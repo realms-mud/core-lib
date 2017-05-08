@@ -2,7 +2,7 @@
 // Class: quests
 // File Name: quests.c
 //
-// Copyright (c) 2011 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: TBD
@@ -38,6 +38,7 @@ private nomask void questNotification(string event, string questItem)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask int isValidQuest(string questItem)
 {
     return (questItem && stringp(questItem) &&
@@ -52,6 +53,7 @@ private nomask int isValidQuest(string questItem)
         intp(quests[questItem]["is completed"]));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask object getQuestObject(string questItem)
 {
     // The passed in value for questItem must be a file containing a valid
@@ -68,25 +70,28 @@ private nomask object getQuestObject(string questItem)
     return ret;
 }
 
-
+/////////////////////////////////////////////////////////////////////////////
 public nomask int questIsInProgress(string questItem)
 {
     return (isValidQuest(questItem) && getQuestObject(questItem) &&
         !quests[questItem]["is completed"]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int questIsActive(string questItem)
 {
     return (isValidQuest(questItem) && getQuestObject(questItem) &&
         quests[questItem]["is active"]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int questIsCompleted(string questItem)
 {
     return (isValidQuest(questItem) && getQuestObject(questItem) &&
         member(quests[questItem], "is completed") && quests[questItem]["is completed"]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask string questState(string questItem)
 {
     string ret = 0;
@@ -98,21 +103,25 @@ public nomask string questState(string questItem)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping activeQuests()
 {
     return (filter_indices(quests, #'questIsActive) + ([ ]));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping completedQuests()
 {
     return (filter_indices(quests, #'questIsCompleted) + ([ ]));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping questsInProgress()
 {
     return (filter_indices(quests, #'questIsInProgress) + ([ ]));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int activateQuest(string questItem)
 {
     int ret = 0;
@@ -127,7 +136,7 @@ public nomask int activateQuest(string questItem)
     return ret;
 }
 
-
+/////////////////////////////////////////////////////////////////////////////
 public nomask int deactivateQuest(string questItem)
 {
     int ret = 0;
@@ -142,6 +151,7 @@ public nomask int deactivateQuest(string questItem)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int advanceQuestState(string questItem, string newState)
 {
     int ret = 0;
@@ -179,6 +189,7 @@ public nomask int advanceQuestState(string questItem, string newState)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int beginQuest(string questItem)
 {
     int ret = 0;
