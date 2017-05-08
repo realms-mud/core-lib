@@ -374,16 +374,16 @@ void CanEquipReturnsTrueIfAllConditionsMet()
     ]);
     Equipment->set("prerequisites", prereqs);
 
-    object owner = clone_object("/lib/tests/support/services/mockUserWithInventory.c");
+    object owner = clone_object("/lib/tests/support/services/combatWithMockServices.c");
     move_object(Equipment, owner);
-    owner->joinGuild("fighter");
+    owner->ToggleMockGuilds();
+    owner->SetGuild("fighter");
     owner->Race("elf");
     owner->Str(10);
-    owner->beginQuest("/lib/tests/support/quests/mockQuest.c");
-    owner->advanceQuestState("/lib/tests/support/quests/mockQuest.c", "blah");
+    owner->ToggleMockQuests();
     owner->addSkillPoints(100);
     owner->advanceSkill("long sword", 6);
-    owner->initiateResearch("/lib/tests/support/research/mockResearch.c");
+    owner->ToggleMockResearch();
     ExpectTrue(Equipment->canEquip(owner), "canEquip");
 }
 
@@ -438,10 +438,9 @@ void CanEquipReturnsTrueForCorrectQuestPrerequisite()
     mapping prereqs = ([ "quests":(["/lib/tests/support/quests/mockQuest.c":1]) ]);
     Equipment->set("prerequisites", prereqs);
 
-    object owner = clone_object("/lib/tests/support/services/mockUserWithInventory.c");
+    object owner = clone_object("/lib/tests/support/services/combatWithMockServices.c");
     move_object(Equipment, owner);
-    owner->beginQuest("/lib/tests/support/quests/mockQuest.c");
-    owner->advanceQuestState("/lib/tests/support/quests/mockQuest.c", "blah");
+    owner->ToggleMockQuests();
     ExpectTrue(Equipment->canEquip(owner));
 }
 

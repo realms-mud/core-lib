@@ -274,7 +274,7 @@ private nomask varargs int checkLevel(object researcher, int level, string guild
 private nomask int checkQuest(object researcher, string quest)
 {
     return (validResearcher(researcher) && researcher->has("quests") &&
-        researcher->questCompleted(quest));
+        researcher->questIsCompleted(quest));
 }
 
 //-----------------------------------------------------------------------------

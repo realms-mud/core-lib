@@ -194,7 +194,7 @@ public nomask int beginQuest(string questItem)
             "state description": 
                 questObj->getStateDescription(questObj->initialState()),
             "is active": 1,
-            "is completed": 0
+            "is completed": questObj->questSucceeded(this_object())
         ]);
 
         questObj->triggerNewQuestState(this_object(), quests[questItem]["state"]);

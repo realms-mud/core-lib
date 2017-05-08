@@ -307,7 +307,9 @@ public nomask int questInCompletionState(string state)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int questSucceeded(object questor)
 {
-    return 1;
+    return CurrentState && stringp(CurrentState) && 
+        member(questPathTree[CurrentState], "is final state") &&
+        (questPathTree[CurrentState]["is final state"] == "success");
 }
 
 /////////////////////////////////////////////////////////////////////////////

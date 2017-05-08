@@ -13,7 +13,7 @@ public void ToggleMockQuests()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int questCompleted(string quest)
+public nomask int questIsCompleted(string quest)
 {
     return useQuests;
 }

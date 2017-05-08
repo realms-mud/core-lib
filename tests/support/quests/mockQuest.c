@@ -5,3 +5,9 @@
 inherit "/lib/modules/quests/questItem.c";
 
 
+void init()
+{
+    addState("blah", "blah");
+    addFinalState("blah", "success");
+    initialState("blah");
+}
