@@ -158,16 +158,13 @@ public nomask int advanceQuestState(string questItem, string newState)
     if(isValidQuest(questItem))
     {
         object questObj = getQuestObject(questItem);
-        if(questObj && objectp(questObj) && 
-           questObj->canAdvanceQuestState(this_object(),
-           quests[questItem]["state"], newState))
+        if(questObj && objectp(questObj))
         {
             ret = 1;
             quests[questItem]["state"] = newState;
             quests[questItem]["state description"] = 
                 questObj->getStateDescription(newState);
 
-            questObj->triggerNewQuestState(this_object(), newState);
             questNotification("onQuestAdvancedState", questItem);
             if(questObj->questInCompletionState(newState))
             {
@@ -204,11 +201,11 @@ public nomask int beginQuest(string questItem)
             "state": questObj->initialState(),
             "state description": 
                 questObj->getStateDescription(questObj->initialState()),
-            "is active": 1,
+            "is active": !questObj->questInCompletionState(questObj->initialState()),
             "is completed": questObj->questSucceeded(this_object())
         ]);
 
-        questObj->triggerNewQuestState(this_object(), quests[questItem]["state"]);
+        questObj->beginQuest(this_object());
         questNotification("onQuestStarted", questItem);
     }
     return ret;

@@ -4,10 +4,18 @@
 //*****************************************************************************
 inherit "/lib/modules/quests/questItem.c";
 
+private string *events = ({});
+
 /////////////////////////////////////////////////////////////////////////////
-public varargs string testInitialState(string state)
+public varargs string testSetInitialState(string state)
 {
-    return questItem::initialState(state);
+    return questItem::setInitialState(state);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs int testAddPrerequisite(string key, mapping prerequisite, string grouping)
+{
+    return prerequisites::addPrerequisite(key, prerequisite, grouping);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,4 +57,23 @@ public varargs void testAddTransition(string state, string newState, string even
 /////////////////////////////////////////////////////////////////////////////
 public void killTheKing()
 {
+    events += ({ "The king is dead!" });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void doExitStuff()
+{
+    events += ({"Exit stuff has been done."});
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void doEnterStuff()
+{
+    events += ({"Enter stuff has been done."});
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string *actionList()
+{
+    return events + ({});
 }

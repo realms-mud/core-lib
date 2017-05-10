@@ -12,8 +12,6 @@ private string BaseQuest = "lib/modules/quests/questItem.c";
 private string Name = "";
 private string InitialState = "";
 private object *questActors = ({});
-private object *Questers = ({});
-private string CurrentState = 0;
 
 private mapping questPathTree = ([
     // "<state>" : ([
@@ -88,23 +86,29 @@ private nomask void onExit(string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int receiveEvent(object initiator, string eventName)
+public nomask varargs int receiveEvent(object quester, string eventName, object initiator)
 {
     int ret = 0;
-    if (initiator && objectp(initiator) && eventName && stringp(eventName) &&
-        member(questPathTree, CurrentState) && 
-        member(questPathTree[CurrentState], "transitions") &&
-        member(questPathTree[CurrentState]["transitions"], eventName))
-    {
-        mapping transition = questPathTree[CurrentState]["transitions"][eventName];
-        ret = member(transition, initiator) ?
-            (transition["initiator"] == program_name(initiator)) : 1;
 
-        if(ret)
+    if (quester && objectp(quester) && eventName && stringp(eventName))
+    {
+        string currentState = quester->questState(program_name(this_object()));
+
+        if(currentState && member(questPathTree, currentState) &&
+            member(questPathTree[currentState], "transitions") &&
+            member(questPathTree[currentState]["transitions"], eventName))
         {
-            onExit(CurrentState);
-            CurrentState = transition["transition"];
-            onEnter(CurrentState);
+            mapping transition = questPathTree[currentState]["transitions"][eventName];
+            ret = initiator && objectp(initiator) && member(transition, initiator) ?
+                (transition["initiator"] == program_name(initiator)) : 1;
+
+            if(ret)
+            {
+                onExit(currentState);
+                currentState = transition["transition"];
+                quester->advanceQuestState(program_name(this_object()), currentState);
+                onEnter(currentState);
+            }
         }
     }
     return ret;
@@ -124,7 +128,7 @@ public nomask string name()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs string initialState(string state)
+protected nomask varargs string setInitialState(string state)
 {
     if(state && stringp(state) && (state != ""))
     {
@@ -134,6 +138,12 @@ protected nomask varargs string initialState(string state)
         }
         InitialState = state;
     }
+    return InitialState;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string initialState()
+{
     return InitialState;
 }
 
@@ -148,7 +158,7 @@ private nomask void addAction(string state, string action, string type)
     else
     {
         raise_error(sprintf("ERROR - questItem: an %s can only be added "
-            "if the both the state exists and the method to call has "
+            "if both the state exists and the method to call has "
             "been implemented on this object.", type));
     }
 }
@@ -204,10 +214,14 @@ protected nomask varargs void addState(string state, string description, string 
                 raise_error("ERROR - questItem: the entry event must be a string.");
             }
         }
+        if (isFinalState)
+        {
+            addFinalState(state, isFinalState);
+        }
     }
     else if(member(questPathTree, state))
     {
-        raise_error(sprintf("ERROR - questItem: the %s state has already been added.", state));   
+        raise_error(sprintf("ERROR - questItem: the '%s' state has already been added.", state));   
     }
     else
     {
@@ -236,6 +250,8 @@ protected nomask varargs void addTransition(string state, string newState, strin
             questPathTree[state]["transitions"] = ([]);
         }
 
+        // This is a way around guards - sned a different event to transition
+        // to a different state.
         if(!member(questPathTree[state]["transitions"], eventName))
         {
             questPathTree[state]["transitions"][eventName] = ([
@@ -249,7 +265,7 @@ protected nomask varargs void addTransition(string state, string newState, strin
 
         if(initiator && stringp(initiator))
         {
-            if(load_object(initiator))
+            if((file_size(initiator) > -1) && !catch(load_object(initiator)))
             {
                 questPathTree[state]["transitions"][eventName]["initiator"] = initiator;
             }
@@ -287,41 +303,46 @@ public nomask string questStory(string *stateList)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int canBeginQuest(object questor)
+public nomask int canBeginQuest(object quester)
 {
-    return 1;
+    return checkPrerequisites(quester);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int triggerNewQuestState(object questor, string newState)
+public nomask int beginQuest(object quester)
 {
-    return 1;
+    int ret = canBeginQuest(quester);
+    if(ret)
+    {
+        onEnter(InitialState);
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int questInCompletionState(string state)
 {
-    return 1;
+    return state && member(questPathTree, state) && 
+        member(questPathTree[state], "is final state");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int questSucceeded(object questor)
+public nomask int questSucceeded(object quester)
 {
-    return CurrentState && stringp(CurrentState) && 
-        member(questPathTree[CurrentState], "is final state") &&
-        (questPathTree[CurrentState]["is final state"] == "success");
-}
+    int ret = quester && objectp(quester);
+    if(ret)
+    {
+        string currentState = quester->questState(program_name(this_object()));
 
-/////////////////////////////////////////////////////////////////////////////
-public nomask int canAdvanceQuestState(object questor, string oldState, string newState)
-{
-    return 1;
+        ret = currentState && stringp(currentState) &&
+            member(questPathTree[currentState], "is final state") &&
+            (questPathTree[currentState]["is final state"] == "success");
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getStateDescription(string state)
 {
-    return "";
+    return member(questPathTree, state) ? questPathTree[state]["description"] : 0;
 }
-
-

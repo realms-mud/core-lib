@@ -9,5 +9,5 @@ void init()
 {
     addState("blah", "blah");
     addFinalState("blah", "success");
-    initialState("blah");
+    setInitialState("blah");
 }
