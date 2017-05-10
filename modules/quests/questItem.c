@@ -311,7 +311,7 @@ public nomask int canBeginQuest(object quester)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int beginQuest(object quester)
 {
-    int ret = canBeginQuest(quester);
+    int ret = member(questPathTree, InitialState) && canBeginQuest(quester);
     if(ret)
     {
         onEnter(InitialState);
