@@ -2,7 +2,7 @@
 // Class: conversationTree
 // File Name: conversationTree.c
 //
-// Copyright (c) 2011 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: TBD
@@ -50,6 +50,7 @@ private nosave mapping topics = ([
 //    ])
 ]);
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs string DefaultMessage(string key)
 {
     if(key && stringp(key) && member(m_indices(topics), key))
@@ -59,24 +60,28 @@ public nomask varargs string DefaultMessage(string key)
     return defaultMessage;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask int isValidResponse(mapping responses)
 {
     // TODO: Finish this
     return 1;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask int isValidCriteria(mapping criteria)
 {
     // TODO: Finish this
     return 1;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask int isValidTrigger(mapping topic)
 {
     // TODO: Finish this
     return 1;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int addTopic(string key, mapping topic)
 {
     int ret = 0;
@@ -93,6 +98,7 @@ public nomask int addTopic(string key, mapping topic)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask string parseTargetMethod(string match)
 {
     string ret = "ERROR";
@@ -143,6 +149,7 @@ private nomask string parseTargetMethod(string match)
 
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private string parseEfunCall(string match)
 {
     string ret = "ERROR";
@@ -212,6 +219,7 @@ private string parseEfunCall(string match)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private string parseTemplate(string template)
 {
     // Options: ##TN[::target]## - target->query_name() (default this_player)
@@ -241,6 +249,7 @@ private string parseTemplate(string template)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask string awaitingResponse()
 {
     return (this_player() &&
@@ -248,7 +257,8 @@ public nomask string awaitingResponse()
             responseMap[this_player()->query_real_name()] : 0;
 }
 
-private nomask int checkCriteria(mapping response) 
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkCriteria(mapping response)
 {
     int ret = 1;
 
@@ -257,6 +267,7 @@ private nomask int checkCriteria(mapping response)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask string displayResponse(mapping response)
 {
     string ret;
@@ -268,6 +279,7 @@ private nomask string displayResponse(mapping response)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask void displayResponses(mapping responses)
 {
     foreach(string response : m_indices(responses))
@@ -288,11 +300,13 @@ private nomask void displayResponses(mapping responses)
     ignoreTalk = 0;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask void executeTrigger(string method)
 {
     call_other(this_object(), method);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask varargs int speakMessage(string key, int noSaveState)
 {
     int ret = 0;
@@ -329,6 +343,7 @@ private nomask varargs int speakMessage(string key, int noSaveState)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask int respondToNPC(string str)
 {
     int ret = 0;
@@ -376,6 +391,7 @@ private nomask int respondToNPC(string str)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int repeatMessage(string str)
 {
     int ret = 0;
@@ -388,6 +404,7 @@ public nomask int repeatMessage(string str)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int talk(string str)
 {
     int ret = 0;
@@ -400,6 +417,7 @@ public nomask int talk(string str)
     return 1;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public void init()
 {
     // this ugly slice of hell adds all of the possible conversation actions

@@ -2,7 +2,7 @@
 // Class: movement
 // File Name: movement.c
 //
-// Copyright (c) 2011 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: TBD
@@ -10,6 +10,7 @@
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
     
+/////////////////////////////////////////////////////////////////////////////
 public nomask void runAway()
 {
     object originalLocation = environment();
@@ -45,6 +46,7 @@ public nomask void runAway()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int move()
 {
 
