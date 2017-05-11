@@ -11,7 +11,7 @@ object Equipment;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Equipment = clone_object("/lib/items/equipment");
+    Equipment = clone_object("/lib/items/equipment"); 
    
     object dictionary = load_object("/lib/dictionaries/guildsDictionary.c");
     object mageGuild = load_object("/lib/tests/support/guilds/mageGuild.c");
