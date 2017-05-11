@@ -539,7 +539,7 @@ void QuestSucceededReturnsTrueWhenQuestCompletesAsSuccess()
     ExpectFalse(QuestItem->questSucceeded(Quester));
 
     King->DoMeetTheKingStuff();
-    ExpectFalse(QuestItem->questSucceeded(Quester));
+    ExpectFalse(QuestItem->questSucceeded(Quester)); 
 
     King->SureIWillServe();
     ExpectFalse(QuestItem->questSucceeded(Quester));
