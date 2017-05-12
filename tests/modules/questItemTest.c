@@ -75,6 +75,35 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void SetNameThrowsWhenNameNotValid()
+{
+    string err = catch (QuestItem->setName(3));
+    ExpectEq("*ERROR - questItem: the name must be a string.", err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetNameSetsTheNameOfTheQuestItem()
+{
+    ExpectFalse(QuestItem->name());
+    QuestItem->setName("Test");
+    ExpectEq("Test", QuestItem->name());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetDescriptionThrowsWhenNameNotValid()
+{
+    string err = catch (QuestItem->setDescription(3));
+    ExpectEq("*ERROR - questItem: the description must be a string.", err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetDescriptionSetsTheNameOfTheQuestItem()
+{
+    ExpectFalse(QuestItem->description());
+    QuestItem->setDescription("Test");
+    ExpectEq("Test", QuestItem->description());
+}
+/////////////////////////////////////////////////////////////////////////////
 void AddStateThrowsWhenStateNotValid()
 {
     string err = catch (QuestItem->testAddState());

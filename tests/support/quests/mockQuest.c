@@ -9,7 +9,7 @@ void init()
 {
     questItem::init();
 
-    name("blah");
+    setName("blah");
     addState("blah", "blah");
     setInitialState("blah");
 }

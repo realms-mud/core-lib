@@ -10,7 +10,7 @@ private string *events = ({});
 void init()
 {
     questItem::init();
-    name("Hail to the king, baby!");
+    setName("Hail to the king, baby!");
     addState("meet the king", "I've been asked to meet the king!");
 
     addState("met the king",

@@ -9,7 +9,8 @@ private nosave string Red = "[0;31m%s[0m";
 private nosave string Green = "[0;32m%s[0m";
 private string BaseQuest = "lib/modules/quests/questItem.c";
 
-private string Name = "";
+private string Name = 0;
+private string Description = 0;
 private string InitialState = "";
 private object *questActors = ({});
 
@@ -66,7 +67,8 @@ private mapping questPathTree = ([
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
-    Name = "";
+    Name = 0;
+    Description = 0;
     InitialState = "";
     questActors = ({});
     questPathTree = ([]);
@@ -134,6 +136,38 @@ public nomask int isValidQuest()
 public nomask string name()
 {
     return Name;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setName(string name)
+{
+    if(name && stringp(name))
+    {
+        Name = name;
+    }
+    else
+    {
+        raise_error("ERROR - questItem: the name must be a string.");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string description()
+{
+    return Description;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setDescription(string description)
+{
+    if (description && stringp(description))
+    {
+        Description = description;
+    }
+    else
+    {
+        raise_error("ERROR - questItem: the description must be a string.");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
