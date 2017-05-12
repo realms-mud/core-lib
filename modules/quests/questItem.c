@@ -64,6 +64,15 @@ private mapping questPathTree = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
+public void init()
+{
+    Name = "";
+    InitialState = "";
+    questActors = ({});
+    questPathTree = ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void onEnter(string state)
 {
     if (member(questPathTree[state], "entry action"))

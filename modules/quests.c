@@ -59,12 +59,25 @@ private nomask object getQuestObject(string questItem)
     // The passed in value for questItem must be a file containing a valid
     // questItem object.
     object ret = 0;
-    if(questItem && stringp(questItem) && (file_size(questItem) > 0))
-    { 
-        ret = load_object(questItem);
-        if(!ret || (member(inherit_list(ret), BaseQuest) < 0))
+
+    if (questItem && stringp(questItem) && strlen(questItem))
+    {
+        if(questItem[0] != '/')
         {
-            ret = 0;
+            questItem = "/" + questItem;
+        }
+
+        if(file_size(questItem) > 0)
+        { 
+            ret = load_object("/" + questItem);
+            if(!ret || (member(inherit_list(ret), BaseQuest) < 0))
+            {
+                ret = 0;
+            }
+            else
+            {
+                ret->init();
+            }
         }
     }
     return ret;
@@ -104,21 +117,21 @@ public nomask string questState(string questItem)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping activeQuests()
+public nomask string *activeQuests()
 {
-    return (filter_indices(quests, #'questIsActive) + ([ ]));
+    return (filter_array(m_indices(quests), #'questIsActive) + ({ }));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping completedQuests()
+public nomask string *completedQuests()
 {
-    return (filter_indices(quests, #'questIsCompleted) + ([ ]));
+    return (filter_array(m_indices(quests), #'questIsCompleted) + ({ }));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping questsInProgress()
+public nomask string *questsInProgress()
 {
-    return (filter_indices(quests, #'questIsInProgress) + ([ ]));
+    return (filter_array(m_indices(quests), #'questIsInProgress) + ({ }));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -152,6 +165,26 @@ public nomask int deactivateQuest(string questItem)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void checkQuestCompletion(string questItem, object questObj)
+{
+    if (questObj->questInCompletionState(quests[questItem]["state"]))
+    {
+        quests[questItem]["is active"] = 0;
+        quests[questItem]["is completed"] = 1;
+        questNotification("onQuestCompleted", questItem);
+
+        if (questObj->questSucceeded(this_object()))
+        {
+            questNotification("onQuestSucceeded", questItem);
+        }
+        else
+        {
+            questNotification("onQuestFailed", questItem);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int advanceQuestState(string questItem, string newState)
 {
     int ret = 0;
@@ -166,21 +199,7 @@ public nomask int advanceQuestState(string questItem, string newState)
                 questObj->getStateDescription(newState);
 
             questNotification("onQuestAdvancedState", questItem);
-            if(questObj->questInCompletionState(newState))
-            {
-                quests[questItem]["is active"] = 0;
-                quests[questItem]["is completed"] = 1;
-                questNotification("onQuestCompleted", questItem);
-
-                if(questObj->questSucceeded(this_object()))
-                {
-                    questNotification("onQuestSucceeded", questItem);
-                }
-                else
-                {
-                    questNotification("onQuestFailed", questItem);
-                }
-            }
+            checkQuestCompletion(questItem, questObj);
         }
     }
     return ret;
@@ -201,12 +220,14 @@ public nomask int beginQuest(string questItem)
             "state": questObj->initialState(),
             "state description": 
                 questObj->getStateDescription(questObj->initialState()),
-            "is active": !questObj->questInCompletionState(questObj->initialState()),
-            "is completed": questObj->questSucceeded(this_object())
+            "is active" : 1,
+            "is completed": 0
         ]);
+        questNotification("onQuestStarted", questItem);
+
+        checkQuestCompletion(questItem, questObj);
 
         questObj->beginQuest(this_object());
-        questNotification("onQuestStarted", questItem);
     }
     return ret;
 }

@@ -7,7 +7,9 @@ inherit "/lib/modules/quests/questItem.c";
 /////////////////////////////////////////////////////////////////////////////
 void init()
 {
+    questItem::init();
+
+    name("blah");
     addState("blah", "blah");
-    addFinalState("blah", "success");
     setInitialState("blah");
 }
