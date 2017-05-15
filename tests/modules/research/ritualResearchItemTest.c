@@ -15,6 +15,7 @@ void Setup()
     Room = clone_object("/lib/environment/room");
 
     ResearchItem = clone_object("/lib/tests/support/research/testRitualResearchItem");
+    ResearchItem->addSpecification("command template", "the command");
     ResearchItem->init();
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices");
@@ -124,8 +125,9 @@ void SettingInvalidUseAbilityCooldownMessageThrowsError()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetValidCommandTemplate()
 {
+    ExpectFalse(ResearchItem->canExecuteCommand("blah"), "cannot execute before setting command template");
     ExpectTrue(ResearchItem->addSpecification("command template", "blah"), "add command template specification");
-    ExpectEq("blah", ResearchItem->query("command template"), "can query the command template");
+    ExpectTrue(ResearchItem->canExecuteCommand("blah"), "can execute the command template");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -180,9 +182,9 @@ void CallingExecuteOnSelfScopeCallsExecuteOnSelf()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CallingExecuteOnTargettedScopeCallsExecuteOnTarget()
+void CallingExecuteOnTargetedScopeCallsExecuteOnTarget()
 {
-    ResearchItem->addSpecification("scope", "targetted");
+    ResearchItem->addSpecification("scope", "targeted");
     ResearchItem->ToggleReportExecution();
     ResearchItem->TogglePerformRitual();
 

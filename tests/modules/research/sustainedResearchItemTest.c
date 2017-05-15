@@ -15,6 +15,7 @@ void Setup()
 {
     ResearchItem = clone_object("/lib/tests/support/research/testSustainedResearchItem");
     ResearchItem->init();
+    ResearchItem->addTestSpecification("command template", "the command");
     ResearchItem->addTestSpecification("command template", "throw turnip at ##Target##");
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices.c");
@@ -205,8 +206,9 @@ void SettingInvalidUseAbilityCooldownMessageThrowsError()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetValidCommandTemplate()
 {
+    ExpectFalse(ResearchItem->canExecuteCommand("blah"), "cannot execute before template set");
     ExpectTrue(ResearchItem->addTestSpecification("command template", "blah"), "add command template specification");
-    ExpectEq("blah", ResearchItem->query("command template"), "can query the command template");
+    ExpectTrue(ResearchItem->canExecuteCommand("blah"), "can execute the command template");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -353,7 +355,7 @@ void CallingExecuteWithSelfScopeAppliesEffectsToUser()
 void ExecuteOnTargetAppliesEffectOnTarget()
 {
     User->ToggleMockResearch();
-    ResearchItem->addTestSpecification("scope", "targetted");
+    ResearchItem->addTestSpecification("scope", "targeted");
     ExpectTrue(ResearchItem->addTestSpecification("bonus long sword", 5));
 
     ExpectEq(10, Target->getSkill("long sword"), "initial long sword skill");
@@ -370,7 +372,7 @@ void ExecuteOnTargetAppliesEffectOnTarget()
 void ExecuteOnTargetAppliesNegativeEffect()
 {
     User->ToggleMockResearch();
-    ResearchItem->addTestSpecification("scope", "targetted");
+    ResearchItem->addTestSpecification("scope", "targeted");
     ExpectTrue(ResearchItem->addTestSpecification("penalty to long sword", 5));
 
     ExpectEq(10, Target->getSkill("long sword"), "initial long sword skill");
@@ -384,7 +386,7 @@ void ExecuteOnTargetAppliesNegativeEffect()
 void ExecuteOnTargetFailsIfEffectNegativeAndTargetNotOnKillList()
 {
     User->ToggleMockResearch();
-    ResearchItem->addTestSpecification("scope", "targetted");
+    ResearchItem->addTestSpecification("scope", "targeted");
     destruct(Target);
     object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
     Target->Name("Frank");
@@ -402,7 +404,7 @@ void ExecuteOnTargetFailsIfEffectNegativeAndTargetNotOnKillList()
 void ExecuteOnTargetFailsIfEffectNegativeAndTargetButNotUserOnKillList()
 {
     User->ToggleMockResearch();
-    ResearchItem->addTestSpecification("scope", "targetted");
+    ResearchItem->addTestSpecification("scope", "targeted");
     User->toggleKillList();
 
     destruct(Target);
@@ -423,7 +425,7 @@ void ExecuteOnTargetFailsIfEffectNegativeAndTargetButNotUserOnKillList()
 void ExecuteOnTargetAppliedIfBothPlayersOnKillList()
 {
     User->ToggleMockResearch();
-    ResearchItem->addTestSpecification("scope", "targetted");
+    ResearchItem->addTestSpecification("scope", "targeted");
     destruct(Target);
     object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
     Target->Name("Frank");
@@ -475,7 +477,7 @@ void NegativeExecuteInAreaAppliedOnCorrectTargets()
     ExpectEq(10, Target->getSkill("long sword"), "initial target long sword skill");
     ExpectEq(10, bystander->getSkill("long sword"), "initial bystander long sword skill");
     ExpectEq(10, badguy->getSkill("long sword"), "initial badguy long sword skill");
-    ExpectTrue(ResearchItem->execute("throw turnip", User), "can execute command");
+    ExpectTrue(ResearchItem->execute("the command", User), "can execute command");
 
     ExpectFalse(User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
     ExpectTrue(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
@@ -514,7 +516,7 @@ void ExecuteInAreaAppliedOnCorrectTargets()
     ExpectEq(10, Target->getSkill("long sword"), "initial target long sword skill");
     ExpectEq(10, bystander->getSkill("long sword"), "initial bystander long sword skill");
     ExpectEq(10, badguy->getSkill("long sword"), "initial badguy long sword skill");
-    ExpectTrue(ResearchItem->execute("throw turnip", User), "can execute command");
+    ExpectTrue(ResearchItem->execute("the command", User), "can execute command");
 
     ExpectTrue(User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
     ExpectFalse(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));

@@ -1,17 +1,99 @@
 //*****************************************************************************
-// Class: baseCommand
-// File Name: baseCommand.c
-//
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-//
-// Description: TBD
-//
 //*****************************************************************************
 #include <mtypes.h>
 
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
 private string MessageParser = "/lib/core/messageParser.c";
+
+private string *commands = ({});
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canExecuteCommand(string passedCommand)
+{
+    int ret = 0;
+
+    if(passedCommand && stringp(passedCommand) && sizeof(commands))
+    {
+        string commandRegexp = "(";
+
+        foreach(string command in commands)
+        {
+            if(sizeof(commandRegexp) > 1)
+            {
+                commandRegexp += "|";
+            }
+            commandRegexp += regreplace(command, " \\[(.+)\\]", "( \\1|$)", 1);
+        }
+        commandRegexp += ")";
+
+        commandRegexp =
+            regreplace(commandRegexp, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
+
+        ret = sizeof(regexp(({ passedCommand }), commandRegexp));
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string commandString(string passedCommand)
+{
+    string ret = 0;
+
+    if(sizeof(commands))
+    {
+        foreach(string command in commands)
+        {
+            string commandRegexp = 
+                regreplace(command, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
+
+            if(sizeof(regexp(({ passedCommand }), commandRegexp)))
+            {
+                ret = regreplace(command, "##(Target|Environment|Item)##", "%s", 1);
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask object getTarget(object owner, string command)
+{
+    object ret = 0;
+    string template = commandString(command);
+
+    if (command && stringp(command) && template && stringp(template))
+    {
+        string targetId;
+        if (sscanf(command, template, targetId) == 1)
+        {
+            ret = present(targetId, environment(owner));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int execute(string command, object initiator)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int addCommandTemplate(string command)
+{
+    int ret = 0;
+
+    if (member(commands, command) == -1)
+    {
+        commands += ({ command });
+        ret = 1;
+    }
+    return ret;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask object messageParser()

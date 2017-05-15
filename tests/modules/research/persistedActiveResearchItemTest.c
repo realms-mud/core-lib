@@ -16,7 +16,7 @@ void Setup()
     ResearchItem = clone_object("/lib/tests/support/research/testPersistedActiveResearchItem");
     ResearchItem->init();
     ResearchItem->testAddSpecification("command template", "throw turnip at ##Target##");
-    ResearchItem->testAddSpecification("scope", "targetted");
+    ResearchItem->testAddSpecification("scope", "targeted");
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices");
     User->Name("Bob");

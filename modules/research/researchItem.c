@@ -139,7 +139,7 @@ protected int addSpecification(string type, mixed value)
             }
             case "scope":
             {
-                if(value && stringp(value) && (member(({ "self", "targetted",
+                if(value && stringp(value) && (member(({ "self", "targeted",
                    "area", "environmental", "region", "global" }),value) > -1))
                 {
                     ret = 1;
@@ -148,7 +148,7 @@ protected int addSpecification(string type, mixed value)
                 else
                 {
                     raise_error("ERROR - researchItem: The value of 'scope' must"
-                        " be one of: self, targetted, area, environmental, "
+                        " be one of: self, targeted, area, environmental, "
                         "region, or global.\n");
                 }
                 break;

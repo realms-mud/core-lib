@@ -20,7 +20,7 @@ public int ritualMultiplier(string type, int value)
 /////////////////////////////////////////////////////////////////////////////
 public object testGetTarget(object owner, string command)
 {
-    return persistedRitualResearchItem::getTarget(owner, command);
+    return baseCommand::getTarget(owner, command);
 }
 
 /////////////////////////////////////////////////////////////////////////////

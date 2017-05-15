@@ -9,7 +9,7 @@ public void init()
 {
     sustainedResearchItem::init();
     addSpecification("name", "Timed research");
-    addSpecification("scope", "targetted");
+    addSpecification("scope", "targeted");
     addSpecification("research type", "timed");
     addSpecification("research cost", 10);
     addSpecification("cooldown", 4);

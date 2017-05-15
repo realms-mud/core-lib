@@ -12,36 +12,6 @@ virtual inherit "/lib/modules/research/ritualResearchItem.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string commandString()
-{
-    string ret = 0;
-    if(member(researchData, "command template") && 
-       stringp(researchData["command template"]))
-    {
-        ret = regreplace(researchData["command template"], 
-            "##(Target|Environment|Item)##","%s", 1);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask object getTarget(object owner, string command)
-{
-    object ret = 0;
-    string template = commandString();
-
-    if (command && stringp(command) && template && stringp(template))
-    {
-        string targetId;
-        if (sscanf(command, template, targetId) == 1)
-        {
-            ret = present(targetId, environment(owner));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected int addSpecification(string type, mixed value)
 {
     int ret = 0;

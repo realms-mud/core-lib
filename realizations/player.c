@@ -15,13 +15,16 @@ virtual inherit "/lib/modules/quests.c";
 virtual inherit "/lib/modules/traits.c";
 virtual inherit "/lib/modules/research.c";
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfPlayer()
 {
     return 1;
 }
 
-public nomask int attackIsDeath(object murderer)
+/////////////////////////////////////////////////////////////////////////////
+public nomask void addCommands()
 {
-    
+    add_action("executeCommand"); add_xverb("");
 }
+
 

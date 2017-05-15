@@ -39,7 +39,7 @@ public int executeOnSelf(object owner, string researchName)
 public int executeOnTarget(string unparsedCommand, object owner,
     string researchName)
 {
-    int ret = query("scope") == "targetted";
+    int ret = query("scope") == "targeted";
     if (reportExecution)
     {
         raise_error("research: executeOnTarget called");

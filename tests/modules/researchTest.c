@@ -281,7 +281,7 @@ void LimitedByEquipmentCorrectlyApplied()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TargettedResearchWithoutAtRunsOnResearcher()
+void TargetedResearchWithoutAtRunsOnResearcher()
 {
     // This is a laziness thing - I don't want to create a granted research 
     ExpectTrue(Research->initiateResearch("lib/tests/support/research/testTimedResearchItem.c"), "initiate research");

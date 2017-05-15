@@ -56,7 +56,7 @@ void CannotSetInvalidType()
 void CannotSetInvalidScope()
 {
     string err = catch (ResearchItem->addSpecification("scope", "weasel"));
-    string expectedError = "*ERROR - researchItem: The value of 'scope' must be one of: self, targetted, area, environmental, region, or global.\n";
+    string expectedError = "*ERROR - researchItem: The value of 'scope' must be one of: self, targeted, area, environmental, region, or global.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid scope");
 }
@@ -69,10 +69,10 @@ void CanSetScopeToSelf()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanSetScopeToTargetted()
+void CanSetScopeToTargeted()
 {
-    ExpectTrue(ResearchItem->addSpecification("scope", "targetted"), "set the research scope");
-    ExpectEq("targetted", ResearchItem->query("scope"), "query the research scope");
+    ExpectTrue(ResearchItem->addSpecification("scope", "targeted"), "set the research scope");
+    ExpectEq("targeted", ResearchItem->query("scope"), "query the research scope");
 }
 
 /////////////////////////////////////////////////////////////////////////////

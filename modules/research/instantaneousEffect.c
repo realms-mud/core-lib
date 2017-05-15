@@ -15,19 +15,6 @@ virtual inherit "/lib/commands/baseCommand.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string commandString()
-{
-    string ret = 0;
-    if(member(researchData, "command template") && 
-       stringp(researchData["command template"]))
-    {
-        ret = regreplace(researchData["command template"], 
-            "##(Target|Environment|Item)##","%s", 1);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask object attackDictionary()
 {
     object ret = 0;
@@ -219,23 +206,6 @@ protected int applyBeneficialEffect(object initiator, object target)
 protected int applyEffect(object initiator, object target)
 {
     return 0;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask object getTarget(object owner, string command)
-{
-    object ret = 0;
-    string template = commandString();
-
-    if(command && stringp(command) && template && stringp(template))
-    {
-        string targetId;
-        if(sscanf(command, template, targetId) == 1)
-        {
-            ret = present(targetId, environment(owner));
-        }
-    }
-    return ret;
 }
     
 /////////////////////////////////////////////////////////////////////////////

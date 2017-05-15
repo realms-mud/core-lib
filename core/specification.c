@@ -13,7 +13,7 @@ protected mapping researchData = ([
     // "name": <name of the research>
     // "description": <research's description>
     // "type": active|passive|sustained|ritual|knowledge
-    // "scope": self|targetted|area|environmental|region|global
+    // "scope": self|targeted|area|environmental|region|global
     // "effect": beneficial|combat|enchantment|summoning|strategic
     // "research type": points|timed|tree root
     // "research cost": <value> - points to purchase or time delay

@@ -17,19 +17,6 @@ public void init()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string commandRegexp()
-{
-    string ret = 0;
-    if(member(researchData, "command template") && 
-       stringp(researchData["command template"]))
-    {
-        ret = regreplace(researchData["command template"], 
-            "##(Target|Environment|Item)##","[A-Za-z]+", 1);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected int addSpecification(string type, mixed value)
 {
     int ret = 0;
@@ -54,11 +41,25 @@ protected int addSpecification(string type, mixed value)
         case "use ability message":
         case "use ability fail message":
         case "use ability cooldown message":
+        {
+            if (value && stringp(value))
+            {
+                researchData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error(sprintf("ERROR - ritualResearchItem: the '%s'"
+                    " specification must be a string.\n",
+                    type));
+            }
+            break;
+        }
         case "command template":
         {
             if(value && stringp(value))
             {
-                researchData[type] = value;
+                ret = addCommandTemplate(value);
                 ret = 1;
             }
             else
@@ -128,7 +129,7 @@ private nomask int applyToScope(string command, object owner,
                 ret = executeOnSelf(owner, researchName);
                 break;
             }
-            case "targetted":
+            case "targeted":
             {
                 ret = executeOnTarget(command, owner, researchName);
                 break;
@@ -170,7 +171,7 @@ public nomask int execute(string command, object initiator)
     int ret = 0;
     string researchName = program_name(this_object());
     
-    if(initiator && objectp(initiator) && 
+    if(initiator && objectp(initiator) && canExecuteCommand(command) &&
        function_exists("isResearched", initiator) &&
        initiator->isResearched(researchName))
     {

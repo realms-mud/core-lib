@@ -38,12 +38,6 @@ public int applyEffect(object initiator, object target)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void addCommandTemplate(string template)
-{
-    researchData["command template"] = template;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public int testApplyFormula(object initiator, string type)
 {
     return instantaneousEffect::applyFormula(initiator, type);
@@ -58,7 +52,7 @@ public int testAddInstantaneousSpecification(string type, mixed value)
 /////////////////////////////////////////////////////////////////////////////
 public object testGetTarget(object owner, string command)
 {
-    return instantaneousEffect::getTarget(owner, command);
+    return baseCommand::getTarget(owner, command);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -13,6 +13,7 @@ void Setup()
 {
     ResearchItem = clone_object("/lib/tests/support/research/testActiveResearchItem");
     ResearchItem->init();
+    ResearchItem->addSpecification("command template", "the command");
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices");
     User->Name("Bob");
@@ -163,8 +164,9 @@ void SettingInvalidUseAbilityCooldownMessageThrowsError()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetValidCommandTemplate()
 {
+    ExpectFalse(ResearchItem->canExecuteCommand("blah"), "cannot execute the command template before set");
     ExpectTrue(ResearchItem->addSpecification("command template", "blah"), "add command template specification");
-    ExpectEq("blah", ResearchItem->query("command template"), "can query the command template");
+    ExpectTrue(ResearchItem->canExecuteCommand("blah"), "can execute the command template");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -241,9 +243,9 @@ void CallingExecuteOnSelfScopeCallsExecuteOnSelf()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CallingExecuteOnTargettedScopeCallsExecuteOnTarget()
+void CallingExecuteOnTargetedScopeCallsExecuteOnTarget()
 {
-    ResearchItem->addSpecification("scope", "targetted");
+    ResearchItem->addSpecification("scope", "targeted");
     ResearchItem->ToggleReportExecution();
 
     User->ToggleMockResearch();

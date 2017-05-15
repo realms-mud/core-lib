@@ -10,7 +10,7 @@ public void init()
     instantaneousActiveResearchItem::init();
     addSpecification("name", "Active research");
     addSpecification("description", "This is limited active research");
-    addSpecification("scope", "targetted");
+    addSpecification("scope", "targeted");
     addSpecification("research type", "granted");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 1);

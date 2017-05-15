@@ -18,32 +18,6 @@ public void init()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string commandRegexp()
-{
-    string ret = 0;
-    if(member(researchData, "command template") && 
-       stringp(researchData["command template"]))
-    {
-        ret = regreplace(researchData["command template"], 
-            "##(Target|Environment|Item)##","[A-Za-z]+", 1);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask string commandString()
-{
-    string ret = 0;
-    if(member(researchData, "command template") && 
-       stringp(researchData["command template"]))
-    {
-        ret = regreplace(researchData["command template"], 
-            "##(Target|Environment|Item)##","%s", 1);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask int addSpecification(string type, mixed value)
 {
     int ret = 0;
@@ -91,12 +65,25 @@ protected nomask int addSpecification(string type, mixed value)
             case "use ability deactivate message":
             case "use ability fail message":
             case "use ability cooldown message":
+            {
+                if (value && stringp(value))
+                {
+                    researchData[type] = value;
+                    ret = 1;
+                }
+                else
+                {
+                    raise_error(sprintf("ERROR - sustainedResearchItem: the '%s'"
+                        " specification must be a string.\n",
+                        type));
+                }
+                break;
+            }
             case "command template":
             {
                 if(value && stringp(value))
                 {
-                    researchData[type] = value;
-                    ret = 1;
+                    ret = addCommandTemplate(value);
                 }
                 else
                 {
@@ -138,23 +125,6 @@ protected nomask int addSpecification(string type, mixed value)
             {
                 ret = "researchItem"::addSpecification(type, value);
             }
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask object getTarget(object owner, string command)
-{
-    object ret = 0;
-    string template = commandString();
-
-    if (command && stringp(command) && template && stringp(template))
-    {
-        string targetId;
-        if (sscanf(command, template, targetId) == 1)
-        {
-            ret = present(targetId, environment(owner));
         }
     }
     return ret;
@@ -327,7 +297,7 @@ private nomask int applyToScope(string command, object owner,
                 ret = executeOnSelf(owner, researchName);
                 break;
             }
-            case "targetted":
+            case "targeted":
             {
                 ret = executeOnTarget(command, owner, researchName);
                 break;
@@ -363,7 +333,7 @@ public nomask int execute(string command, object initiator)
     int ret = 0;
     string researchName = program_name(this_object());
     
-    if(initiator && objectp(initiator) && 
+    if(initiator && objectp(initiator) && canExecuteCommand(command) &&
        function_exists("isResearched", initiator) &&
        initiator->isResearched(researchName))
     {

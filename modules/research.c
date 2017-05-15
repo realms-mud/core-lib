@@ -618,26 +618,17 @@ public nomask int researchCommand(string command)
         
         if(researchObj)
         {
-            string commandTemplate = researchObj->commandRegexp();
-            customEvent = researchObj->query("event handler");
-            if(commandTemplate && stringp(commandTemplate))
+            if ((researchObj->query("scope") == "targeted") &&
+                !sizeof(regexp(({ command }), "at [A-Za-z]+")))
             {
-                if ((researchObj->query("scope") == "targetted") &&
-                    !sizeof(regexp(({ command }), "at [A-Za-z]+")))
-                {
-                    command += " at " + this_object()->Name();
-                }
+                command += " at " + this_object()->Name();
+            }
 
-                string *checkCommand = regexp(({ command }), commandTemplate);
-                if(checkCommand && sizeof(checkCommand))
-                {
-                    commandToExecute = researchItem;
-                    break;
-                }
-                else
-                {
-                    commandToExecute = 0;
-                }                
+            if(researchObj->canExecuteCommand(command))
+            {
+                customEvent = researchObj->query("event handler");
+                commandToExecute = researchItem;
+                break;
             }
         }
     }
