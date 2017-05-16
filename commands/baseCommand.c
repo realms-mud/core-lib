@@ -10,28 +10,41 @@ private string MessageParser = "/lib/core/messageParser.c";
 private string *commands = ({});
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string commandRegExp()
+{
+    string ret = 0;
+
+    if(sizeof(commands))
+    {
+        ret = "(";
+        foreach(string command in commands)
+        {
+            if (sizeof(ret) > 1)
+            {
+                ret += "|";
+            }
+            ret += regreplace(command, " \\[(.+)\\]", "( \\1|$)", 1);
+        }
+        ret += ")";
+
+        ret = regreplace(ret, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int canExecuteCommand(string passedCommand)
 {
     int ret = 0;
 
-    if(passedCommand && stringp(passedCommand) && sizeof(commands))
+    if(passedCommand && stringp(passedCommand))
     {
-        string commandRegexp = "(";
+        string commandRegexp = commandRegExp();
 
-        foreach(string command in commands)
+        if(commandRegexp)
         {
-            if(sizeof(commandRegexp) > 1)
-            {
-                commandRegexp += "|";
-            }
-            commandRegexp += regreplace(command, " \\[(.+)\\]", "( \\1|$)", 1);
+            ret = sizeof(regexp(({ passedCommand }), commandRegexp));
         }
-        commandRegexp += ")";
-
-        commandRegexp =
-            regreplace(commandRegexp, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
-
-        ret = sizeof(regexp(({ passedCommand }), commandRegexp));
     }
 
     return ret;

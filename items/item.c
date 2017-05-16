@@ -316,7 +316,7 @@ public varargs int set(string element, mixed data)
                         ret = isValidBonus(bonusToCheck, data);
                         if (ret)
                         {
-                            isEnchanted += ret;
+                            isEnchanted += 1 + (data / 2);
                         }
                     }
                     break;

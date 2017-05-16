@@ -10,7 +10,7 @@
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
 
-private string name;
+private string name = "";
 private string shortDescription;
 private string longDescription;
 private string messageIn;

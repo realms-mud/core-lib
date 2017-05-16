@@ -854,7 +854,7 @@ private nomask string equipmentText(string item, int verbose)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-static nomask string inventoryText(int verbose)
+public nomask string inventoryText(int verbose)
 {
     string ret = "";
 

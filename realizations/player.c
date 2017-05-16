@@ -15,6 +15,8 @@ virtual inherit "/lib/modules/quests.c";
 virtual inherit "/lib/modules/traits.c";
 virtual inherit "/lib/modules/research.c";
 
+private nosave object commandRegistry = 0;
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfPlayer()
 {
@@ -24,7 +26,23 @@ public nomask int isRealizationOfPlayer()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void addCommands()
 {
-    add_action("executeCommand"); add_xverb("");
+    commandRegistry = load_object("/lib/commands/commandRegistry.c");
+    if(commandRegistry)
+    {
+        commandRegistry->init();
+
+        add_action("executeCommand"); add_xverb("");
+    }
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask int executeCommand(string command)
+{
+    int ret = 0;
 
+    if(commandRegistry)
+    {
+        ret = commandRegistry->executeCommand(command, this_object());
+    }
+    return ret;
+}
