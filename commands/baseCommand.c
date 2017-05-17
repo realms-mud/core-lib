@@ -23,12 +23,16 @@ public nomask string commandRegExp()
             {
                 ret += "|";
             }
+            command = regreplace(command, "\\] *\\[", "| ", 1);
             ret += regreplace(command, " \\[(.+)\\]", "( \\1|$)", 1);
         }
         ret += ")";
 
         ret = regreplace(ret, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
     }
+
+    ret += "$";
+
     return ret;
 }
 

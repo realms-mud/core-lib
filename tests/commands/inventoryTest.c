@@ -98,6 +98,20 @@ void CanExecuteICommand()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ExecuteRegexpIsNotGreedy()
+{
+    ExpectFalse(Player->executeCommand("invent"));
+    ExpectFalse(Player->executeCommand("in"));
+    ExpectFalse(Player->executeCommand("inventoryy"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRegexpFailsIfInvalidFlagsPassed()
+{
+    ExpectFalse(Player->executeCommand("inventory -t bob"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void InventoryShowsSparselyPopulatedList()
 {
     object weapon = clone_object("/lib/items/weapon");

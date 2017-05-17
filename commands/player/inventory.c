@@ -7,9 +7,9 @@ inherit "/lib/commands/baseCommand.c";
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
-    addCommandTemplate("inventory");
-    addCommandTemplate("i");
-    addCommandTemplate("inven");
+    addCommandTemplate("inventory [-v]");
+    addCommandTemplate("i [-v]");
+    addCommandTemplate("inven [-v]");
 }
 
 /////////////////////////////////////////////////////////////////////////////
