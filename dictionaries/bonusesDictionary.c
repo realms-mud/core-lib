@@ -41,7 +41,9 @@ private nomask string *bonusList()
         "heal hit points rate", "heal hit points", "heal spell points",
         "heal spell points rate", "heal stamina", "heal stamina rate", 
         "reduce spell points", "recover spell points", "reduce stamina points", 
-        "recover stamina points", "weapon attack", "defense", "damage" });
+        "recover stamina points", "weapon attack", "defense", "damage",
+        "haste", "slow", "enfeebled", "fortified", "poison", "paralysis",
+        "disease", "damage reflection" });
     
         object attacksDictionary = getDictionary("attacks");
         if(attacksDictionary && function_exists("validAttackTypes", 

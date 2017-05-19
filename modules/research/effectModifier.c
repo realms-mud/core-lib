@@ -220,6 +220,17 @@ protected nomask object getModifierObject(object owner, mapping researchData)
                         applyModifiers(ritualMultiplier(specification,
                             researchData[specification]), owner, researchData["modifier"]));
                 }
+                else if (sscanf(specification, "apply %s", bonusToCheck) &&
+                    bonusDictionary->isValidBonus(bonusToCheck))
+                {
+                    ret->set(bonusToCheck,
+                        applyModifiers(ritualMultiplier(bonusToCheck,
+                            researchData[specification]), owner, researchData["modifier"]));
+                    if(owner->isNegativeCombatModifier(bonusToCheck))
+                    {
+                        ret->set("check kill list", 1);
+                    }
+                }
                 else if (sscanf(specification, "penalty to %s", bonusToCheck) &&
                     bonusDictionary->isValidBonus(bonusToCheck))
                 {

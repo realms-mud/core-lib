@@ -18,7 +18,8 @@ protected int addSpecification(string type, mixed value)
     
     string bonusToCheck;
     if(sscanf(type, "bonus %s", bonusToCheck) || 
-       sscanf(type, "penalty to %s", bonusToCheck))
+       sscanf(type, "penalty to %s", bonusToCheck) ||
+       sscanf(type, "apply %s", bonusToCheck))
     {
         if(getDictionary("bonuses") &&
            getDictionary("bonuses")->isValidBonusModifier(bonusToCheck, value))
