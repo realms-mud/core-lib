@@ -19,6 +19,7 @@ virtual inherit "/lib/modules/factions.c";
 virtual inherit "/lib/modules/skills.c";
 virtual inherit "/lib/modules/races.c";
 virtual inherit "/lib/modules/movement.c";
+virtual inherit "/lib/modules/traits.c";
 
 private nosave string *heartBeatMethods = ({});
 
@@ -57,6 +58,7 @@ public void reset(int arg)
     registerHeartBeat("healing");
     registerHeartBeat("materialAttributes");
     registerHeartBeat("research");
+    registerHeartBeat("traits");
 }
 
 /////////////////////////////////////////////////////////////////////////////

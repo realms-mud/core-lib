@@ -149,6 +149,20 @@ void CanSetTypeToRole()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanSetTypeToEffect()
+{
+    ExpectEq(1, Trait->addSpecification("type", "effect"), "set the type");
+    ExpectEq("effect", Trait->query("type"), "can query the type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetTypeToSustainedEffect()
+{
+    ExpectEq(1, Trait->addSpecification("type", "sustained effect"), "set the type");
+    ExpectEq("sustained effect", Trait->query("type"), "can query the type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void SettingInvalidRootThrowsError()
 {
     string err = catch (Trait->addSpecification("root", 3));
@@ -242,4 +256,61 @@ void CanSetResearchTree()
 {
     ExpectEq(1, Trait->addSpecification("research tree", "lib/tests/support/research/testResearchTree.c"), "set the research tree");
     ExpectEq("lib/tests/support/research/testResearchTree.c", Trait->query("research tree"), "can query the research tree");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SettingInvalidExpireMessageThrowsError()
+{
+    string err = catch (Trait->addSpecification("expire message", 3));
+    string expectedError = "*ERROR - trait: The 'expire message' value must be a string.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid root");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetExpireMessage()
+{
+    ExpectEq(1, Trait->addSpecification("expire message", "some expire message"), "set the expire message");
+    ExpectEq("some expire message", Trait->query("expire message"), "can query the expire message");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SettingInvalidDurationThrowsError()
+{
+    string err = catch (Trait->addSpecification("duration", "blah"));
+    string expectedError = "*ERROR - trait: the duration specification must be a positive integer.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid cost");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetDuration()
+{
+    ExpectEq(1, Trait->addSpecification("duration", 10), "set the duration");
+    ExpectEq(10, Trait->query("duration"), "can query the duration");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EffectTraitsMustHaveDurationSetToBeConsideredValid()
+{
+    Trait->addSpecification("type", "effect");
+    ExpectFalse(Trait->isValidTrait());
+    Trait->addSpecification("duration", 10);
+    ExpectTrue(Trait->isValidTrait());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SettingTriggeringResearchFailsIfNotSustainedResearch()
+{
+    string err = catch (Trait->addSpecification("triggering research", "lib/tests/support/research/testResearchItem.c"));
+    string expectedError = "*ERROR - trait: The 'triggering research' value must be a valid sustained research.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid triggering research");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetTriggeringResearch()
+{
+    ExpectEq(1, Trait->addSpecification("triggering research", "lib/tests/support/research/testSustainedResearchItem.c"), "set the triggering research");
+    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c", Trait->query("triggering research"), "can query the triggering research");
 }

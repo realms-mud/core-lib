@@ -12,7 +12,6 @@ virtual inherit "/lib/realizations/living.c";
 virtual inherit "/lib/modules/guilds.c";
 virtual inherit "/lib/modules/parties.c";
 virtual inherit "/lib/modules/quests.c";
-virtual inherit "/lib/modules/traits.c";
 virtual inherit "/lib/modules/research.c";
 
 private nosave object commandRegistry = 0;

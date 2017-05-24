@@ -10,7 +10,7 @@
 //*****************************************************************************
 private string BaseTrait = "lib/modules/traits/baseTrait.c";
 private string *validTraitTypes = ({ "health", "educational", "personality", 
-    "genetic", "professional", "guild", "role" });
+    "genetic", "professional", "guild", "role", "effect", "sustained effect" });
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object traitObject(string trait)
@@ -51,7 +51,7 @@ public nomask int isValidTraitType(string type)
 public nomask int validTrait(string trait)
 {
     object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj));
+    return (traitObj && objectp(traitObj) && traitObj->isValidTrait());
 }
 
 /////////////////////////////////////////////////////////////////////////////
