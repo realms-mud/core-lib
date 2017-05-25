@@ -528,3 +528,168 @@ void ExecuteInAreaAppliedOnCorrectTargets()
     ExpectEq(10, badguy->getSkill("long sword"), "badguy long sword skill after research used");
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnSelfAppliesTraitOnSelf()
+{
+    ResearchItem->addTestSpecification("scope", "self");
+    ResearchItem->addTestSpecification("hit point cost", 20);
+    ResearchItem->addTestSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+
+    User->ToggleMockResearch();
+    ExpectTrue(ResearchItem->execute("the command", User), "can execute command");
+    ExpectTrue(User->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesTraitOnTarget()
+{
+    User->ToggleMockResearch();
+    ResearchItem->addTestSpecification("scope", "targeted");
+    ResearchItem->addTestSpecification("hit point cost", 20);
+    ResearchItem->addTestSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+
+    ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesNegativeTrait()
+{
+    User->ToggleMockResearch();
+    ResearchItem->addTestSpecification("scope", "targeted");
+    ResearchItem->addTestSpecification("hit point cost", 20);
+    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+
+    ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetFailsIfTraitNegativeAndTargetNotOnKillList()
+{
+    User->ToggleMockResearch();
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    move_object(Target, Room);
+
+    ResearchItem->addTestSpecification("scope", "targeted");
+    ResearchItem->addTestSpecification("hit point cost", 20);
+    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+
+    ExpectFalse(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetFailsIfTraitNegativeAndTargetButNotUserOnKillList()
+{
+    User->ToggleMockResearch();
+    User->toggleKillList();
+
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    Target->toggleKillList();
+    move_object(Target, Room);
+
+    ResearchItem->addTestSpecification("scope", "targeted");
+    ResearchItem->addTestSpecification("hit point cost", 20);
+    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+
+    ExpectFalse(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesTraitIfBothPlayersOnKillList()
+{
+    User->ToggleMockResearch();
+
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    Target->toggleKillList();
+    Target->Str(20);
+    Target->Int(20);
+    Target->Dex(20);
+    Target->Con(20);
+    Target->Wis(20);
+    Target->Chr(20);
+    Target->addSkillPoints(200);
+    Target->advanceSkill("long sword", 10);
+    move_object(Target, Room);
+
+    ResearchItem->addTestSpecification("scope", "targeted");
+    ResearchItem->addTestSpecification("hit point cost", 20);
+    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+
+    ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NegativeExecuteInAreaAppliesTraitOnCorrectTargets()
+{
+    User->ToggleMockResearch();
+
+    object bystander = clone_object("/lib/tests/support/services/combatWithMockServices");
+    bystander->Name("Earl");
+    bystander->addAlias("earl");
+    bystander->Str(20);
+    bystander->addSkillPoints(200);
+    bystander->advanceSkill("long sword", 10);
+    move_object(bystander, Room);
+
+    object badguy = clone_object("/lib/realizations/monster");
+    badguy->Name("Fred");
+    badguy->addAlias("fred");
+    badguy->Str(20);
+    badguy->addSkillPoints(200);
+    badguy->advanceSkill("long sword", 10);
+    move_object(badguy, Room);
+
+    ResearchItem->addTestSpecification("scope", "area");
+    ResearchItem->addTestSpecification("hit point cost", 20);
+    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+
+    ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectFalse(User->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectTrue(badguy->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectFalse(bystander->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteInAreaAppliesTraitOnCorrectTargets()
+{
+    User->ToggleMockResearch();
+    object bystander = clone_object("/lib/tests/support/services/combatWithMockServices");
+    bystander->Name("Earl");
+    bystander->addAlias("earl");
+    bystander->Str(20);
+    bystander->addSkillPoints(200);
+    bystander->advanceSkill("long sword", 10);
+    move_object(bystander, Room);
+
+    object badguy = clone_object("/lib/realizations/monster");
+    badguy->Name("Fred");
+    badguy->addAlias("fred");
+    badguy->Str(20);
+    badguy->addSkillPoints(200);
+    badguy->advanceSkill("long sword", 10);
+    move_object(badguy, Room);
+
+    ResearchItem->addTestSpecification("scope", "area");
+    ResearchItem->addTestSpecification("hit point cost", 20);
+    ResearchItem->addTestSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+
+    ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "target");
+    ExpectTrue(User->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "user");
+    ExpectFalse(badguy->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "badguy");
+    ExpectTrue(bystander->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "bystander");
+}

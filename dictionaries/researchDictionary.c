@@ -26,7 +26,11 @@ public nomask object researchObject(string researchItem)
     if(researchItem && stringp(researchItem) && (file_size(researchItem) > 0))
     { 
         ret = load_object(researchItem);
-        ret->init();
+
+        if(ret && !ret->query("type"))
+        {
+            ret->init();
+        }
         if(!ret || (member(inherit_list(ret), BaseResearch) < 0) ||
            !ret->isValidResearchItem())
         {

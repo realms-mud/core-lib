@@ -386,8 +386,7 @@ void TraitsWithSustainedEffectsAreNotRemovedWhenAssociatedResearchActive()
     ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
     ExpectTrue(Traits->researchCommand("throw turnip"), "command used");
 
-    ExpectTrue(Traits->addTrait(trait), "trait added");
-    ExpectTrue(Traits->isTraitOf(trait), "trait added");
+    ExpectTrue(Traits->isTraitOf(trait), "trait is set on user");
 
     Traits->heart_beat();
     ExpectTrue(Traits->isTraitOf(trait), "trait has not been removed");
@@ -403,7 +402,6 @@ void TraitsWithSustainedEffectsAreRemovedAfterResearchInactivated()
     ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
     ExpectTrue(Traits->researchCommand("throw turnip"), "command used");
 
-    ExpectTrue(Traits->addTrait(trait), "trait added");
     ExpectTrue(Traits->isTraitOf(trait), "trait added");
 
     Traits->heart_beat();
