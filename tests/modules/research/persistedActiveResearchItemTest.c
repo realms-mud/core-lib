@@ -99,6 +99,28 @@ void AddSpecificationThrowsForInvalidPenalties()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void AddSpecificationAllowsValidCombatModifiersToBeApplied()
+{
+    ExpectTrue(ResearchItem->testAddSpecification("apply haste", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("apply slow", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("apply enfeebled", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("apply fortified", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("apply poison", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("apply paralysis", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("apply disease", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("apply damage reflection", 20));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationThrowsForInvalidCombatModifiers()
+{
+    string err = catch (ResearchItem->testAddSpecification("apply blarg", 10));
+    string expectedError = "*ERROR - persistedActiveResearchItem: the 'apply blarg' specification must be a valid modifier as defined in lib/dictionaries/bonusesDictionary.c\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AddSpecificationAllowsTraitToBeApplied()
 {
     ExpectTrue(ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c"));
@@ -262,6 +284,21 @@ void ExecuteOnSelfAppliesEffectOnSelf()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ExecuteOnSelfAppliesCombatEffectOnSelf()
+{
+    ExpectTrue(ResearchItem->testAddSpecification("apply haste", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("duration", 10));
+
+    ExpectTrue(ResearchItem->testExecuteOnSelf(User, program_name(ResearchItem)), "can execute command");
+
+    object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
+    ExpectEq("lib/tests/support/research/testPersistedActiveResearchItem.c#lib/tests/support/services/combatWithMockServices.c",
+        modifier->query("fully qualified name"), "Modifier with FQN is registered");
+
+    ExpectTrue(User->inventoryGetModifier("combatModifiers", "haste"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ExecuteOnSelfCanBeDoneMultipleTimes()
 {
     ExpectTrue(ResearchItem->testAddSpecification("bonus long sword", 10));
@@ -367,6 +404,67 @@ void ExecuteOnTargetAppliedIfBothPlayersOnKillList()
 
     ExpectTrue(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
     ExpectEq(5, Target->getSkill("long sword"), "long sword skill after research used");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesBeneficialCombatEffectOnTarget()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    move_object(Target, Room);
+
+    ExpectTrue(ResearchItem->testAddSpecification("apply haste", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("duration", 10));
+
+    ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
+
+    object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
+    ExpectEq("lib/tests/support/research/testPersistedActiveResearchItem.c#lib/tests/support/services/combatWithMockServices.c",
+        modifier->query("fully qualified name"), "Modifier with FQN is registered");
+
+    ExpectTrue(Target->inventoryGetModifier("combatModifiers", "haste"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetFailsIfCombatEffectNegativeAndTargetNotOnKillList()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    move_object(Target, Room);
+
+    ExpectTrue(ResearchItem->testAddSpecification("apply slow", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("duration", 10));
+
+    ExpectFalse(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
+    ExpectFalse(Target->inventoryGetModifier("combatModifiers", "slow"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetSucceedsIfCombatEffectNegativeAndUserAndTargetOnKillList()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    move_object(Target, Room);
+    Target->toggleKillList();
+
+    ExpectTrue(User->onKillList(), "user");
+    ExpectTrue(Target->onKillList(), "targ");
+    ExpectTrue(ResearchItem->testAddSpecification("apply slow", 1));
+    ExpectTrue(ResearchItem->testAddSpecification("duration", 10));
+
+    ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
+
+    object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
+    ExpectEq("lib/tests/support/research/testPersistedActiveResearchItem.c#lib/tests/support/services/combatWithMockServices.c",
+        modifier->query("fully qualified name"), "Modifier with FQN is registered");
+
+    ExpectTrue(Target->inventoryGetModifier("combatModifiers", "slow"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
