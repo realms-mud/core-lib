@@ -121,6 +121,23 @@ protected nomask int addSpecification(string type, mixed value)
                         "the '%s' specification must be a properly formatted "
                         "modifier.\n", type));
                 }
+                break;
+            }
+            case "negative trait":
+            case "trait":
+            {
+                if (stringp(value) && getDictionary("traits") &&
+                    getDictionary("traits")->isValidSustainedTrait(value))
+                {
+                    researchData[type] = value;
+                    ret = 1;
+                }
+                else
+                {
+                    raise_error("ERROR - sustainedResearchItem: the trait "
+                        "specification must be a valid effect-based trait.\n");
+                }
+                break;
             }
             default:
             {
@@ -150,20 +167,38 @@ private nomask int executeOnSelf(object owner, string researchName)
     }
     else
     {
-        object modifier = getModifierObject(owner, researchData);
-        if (modifier)
+        if (member(researchData, "trait") || member(researchData, "negative trait"))
         {
-            ret = owner->activateSustainedResearch(this_object(), modifier) &&
-                modifier->registerModifierWithTargetList(({ owner }));
-            if (ret && member(researchData, "use ability activate message") &&
-                stringp(researchData["use ability activate message"]))
+            ret = owner->has("traits") &&
+                owner->activateSustainedResearch(this_object()) &&
+                owner->addTrait(researchData["trait"]);
+        }
+        else
+        {
+            object modifier = getModifierObject(owner, researchData);
+            if (modifier)
             {
-                displayMessage(researchData["use ability activate message"],
-                    owner, owner);
+                ret = owner->activateSustainedResearch(this_object(), modifier) &&
+                    modifier->registerModifierWithTargetList(({ owner }));
             }
+        }
+
+        if (ret && member(researchData, "use ability activate message") &&
+            stringp(researchData["use ability activate message"]))
+        {
+            displayMessage(researchData["use ability activate message"],
+                owner, owner);
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkKillList(object owner, object target)
+{
+    return (target->onKillList() && !target->isRealizationOf("player")) ||
+        (target->isRealizationOf("player") && owner->isRealizationOf("player") &&
+        target->onKillList() && owner->onKillList());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -189,22 +224,102 @@ private nomask int executeOnTarget(string unparsedCommand, object owner,
         }
         else
         {
-            object modifier = getModifierObject(owner, researchData);
-            if(modifier && (!modifier->query("check kill list") || (modifier->query("check kill list") &&
-                ((target->onKillList() && !target->isRealizationOf("player")) ||
-                (target->isRealizationOf("player") && owner->isRealizationOf("player") &&
-                target->onKillList() && owner->onKillList())))))
+            if ((member(researchData, "trait") || member(researchData, "negative trait")))
             {
-                ret = owner->activateSustainedResearch(this_object(), modifier) &&
-                      modifier->registerModifierWithTargetList(({ target }));
-                      
-                if(ret && member(researchData, "use ability activate message") 
-                   && stringp(researchData["use ability activate message"]))
+                if (target->has("traits") && member(researchData, "trait"))
                 {
-                    displayMessage(researchData["use ability activate message"],
-                        owner, target);
+                    ret = target->has("traits") &&
+                        owner->activateSustainedResearch(this_object()) &&
+                        target->addTrait(researchData["trait"]);
+                }
+                else if (target->has("traits") && member(researchData, "negative trait") &&
+                    checkKillList(owner, target))
+                {
+                    ret = target->has("traits") &&
+                        owner->activateSustainedResearch(this_object()) && 
+                        target->addTrait(researchData["negative trait"]);
                 }
             }
+            else
+            {
+                object modifier = getModifierObject(owner, researchData);
+                if(modifier && (!modifier->query("check kill list") || (modifier->query("check kill list") &&
+                    checkKillList(owner, target))))
+                {
+                    ret = owner->activateSustainedResearch(this_object(), modifier) &&
+                          modifier->registerModifierWithTargetList(({ target }));
+                }
+            }
+            if (ret && member(researchData, "use ability activate message")
+                && stringp(researchData["use ability activate message"]))
+            {
+                displayMessage(researchData["use ability activate message"],
+                    owner, target);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int applyTraitToArea(object owner, string researchName)
+{
+    int ret = 0;
+
+    if (member(researchData, "trait") || member(researchData, "negative trait"))
+    {
+        object *environmentObjects = all_inventory(environment(owner));
+        foreach(object target in environmentObjects)
+        {
+            if (target->has("traits") && member(researchData, "trait") &&
+                !target->isRealizationOf("monster"))
+            {
+                ret = 1;
+                target->addTrait(researchData["trait"]);
+            }
+            else if (member(researchData, "negative trait") &&
+                checkKillList(owner, target) && (target != owner))
+            {
+                ret = 1;
+                target->addTrait(researchData["negative trait"]);
+            }
+        }
+    }
+
+    if(ret)
+    {
+        owner->activateSustainedResearch(this_object());
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int applyModifierToArea(object owner, string researchName)
+{
+    int ret = 0;
+    object modifier = getModifierObject(owner, researchData);
+    if (modifier && environment(owner))
+    {
+        object *environmentObjects = all_inventory(environment(owner));
+        object *targetObjects = ({});
+        foreach(object target in environmentObjects)
+        {
+            if (function_exists("registerObjectAsInventory", target) &&
+                ((!modifier->query("check kill list") && !target->isRealizationOf("monster")) ||
+                (modifier->query("check kill list") &&
+                (checkKillList(owner, target) && target != owner))))
+            {
+                targetObjects += ({ target });
+            }
+        }
+
+        ret = owner->activateSustainedResearch(this_object(), modifier) &&
+            modifier->registerModifierWithTargetList(targetObjects);
+
+        if (ret)
+        {
+            call_out("deactivateModifierObject", researchData["duration"],
+                modifier);
         }
     }
     return ret;
@@ -228,33 +343,19 @@ private nomask int executeInArea(object owner, string researchName)
     }
     else
     {
-        object modifier = getModifierObject(owner, researchData);
-        if(modifier && environment(owner))
+        if (member(researchData, "trait") || member(researchData, "negative trait"))
         {
-            object *environmentObjects = all_inventory(environment(owner));
-            object *targetObjects = ({ });
-            foreach(object target in environmentObjects)
-            {
-                if(function_exists("registerObjectAsInventory", target) &&
-                    ((!modifier->query("check kill list") && !target->isRealizationOf("monster")) ||
-                    (modifier->query("check kill list") &&
-                    ((target->onKillList() && !target->isRealizationOf("player")) ||
-                    (target->isRealizationOf("player") && owner->isRealizationOf("player") &&
-                    target->onKillList() && owner->onKillList() && target != owner)))))
-                {
-                    targetObjects += ({ target });
-                }
-            }
-            
-            ret = owner->activateSustainedResearch(this_object(), modifier) &&
-                  modifier->registerModifierWithTargetList( targetObjects );
-                  
-            if(ret && member(researchData, "use ability activate message") 
-               && stringp(researchData["use ability activate message"]))
-            {
-                displayMessage(researchData["use ability activate message"],
-                    owner, owner);
-            }
+            ret = applyTraitToArea(owner, researchName);
+        }
+        else
+        {
+            ret = applyModifierToArea(owner, researchName);
+        }         
+        if(ret && member(researchData, "use ability activate message") 
+            && stringp(researchData["use ability activate message"]))
+        {
+            displayMessage(researchData["use ability activate message"],
+                owner, owner);
         }
     }
     return ret;

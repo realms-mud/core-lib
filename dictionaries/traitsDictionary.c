@@ -10,7 +10,9 @@
 //*****************************************************************************
 private string BaseTrait = "lib/modules/traits/baseTrait.c";
 private string *validTraitTypes = ({ "health", "educational", "personality", 
-    "genetic", "professional", "guild", "role" });
+    "genetic", "professional", "guild", "role", "effect", "sustained effect" });
+
+private mapping traits = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object traitObject(string trait)
@@ -27,7 +29,7 @@ public nomask object traitObject(string trait)
     if(trait && stringp(trait) && (file_size(trait) > 0))
     { 
         ret = load_object(trait);
-        if (ret)
+        if(ret && !ret->query("type"))
         {
             ret->init();
         }
@@ -51,7 +53,23 @@ public nomask int isValidTraitType(string type)
 public nomask int validTrait(string trait)
 {
     object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj));
+    return (traitObj && objectp(traitObj) && traitObj->isValidTrait());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidPersistedTrait(string trait)
+{
+    object traitObj = traitObject(trait);
+    return (traitObj && objectp(traitObj) &&
+        (traitObj->query("type") == "effect"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidSustainedTrait(string trait)
+{
+    object traitObj = traitObject(trait);
+    return (traitObj && objectp(traitObj) &&
+        (traitObj->query("type") == "sustained effect"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

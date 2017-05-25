@@ -281,6 +281,17 @@ void LimitedByEquipmentCorrectlyApplied()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TraitCorrectlyApplied()
+{
+    object room = clone_object("/lib/environment/room");
+    move_object(Research, room);
+
+    ExpectTrue(Research->initiateResearch("lib/tests/support/research/testPersistedActiveTraitResearch.c"), "initiate research");
+    ExpectTrue(Research->researchCommand("throw turnip"), "can use research command");
+    ExpectTrue(Research->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"), "trait applied");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void TargetedResearchWithoutAtRunsOnResearcher()
 {
     // This is a laziness thing - I don't want to create a granted research 

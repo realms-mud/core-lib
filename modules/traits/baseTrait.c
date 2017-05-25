@@ -20,7 +20,16 @@ public nomask int isValidTrait()
     // All items that use research items check isValidTrait. Trying to
     // circumvent addSpecification won't work particularly well given that
     // the inherit_list and this method are called in unison.
-    return member(researchData, "type");
+    int ret = member(researchData, "type");
+    if(ret && (researchData["type"] == "effect"))
+    {
+        ret &&= member(researchData, "duration");
+    }
+    if(ret && (researchData["type"] == "sustained effect"))
+    {
+        ret &&= member(researchData, "triggering research");
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -71,6 +80,7 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "expire message":
             case "root":
             case "opposing root":
             {
@@ -102,6 +112,20 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "duration":
+            {
+                if (intp(value) && (value > 0))
+                {
+                    researchData[type] = value;
+                    ret = 1;
+                }
+                else
+                {
+                    raise_error("ERROR - trait: the duration "
+                        "specification must be a positive integer.\n");
+                }
+                break;
+            }
             case "research tree":
             {
                 if(getDictionary("research") &&
@@ -114,6 +138,21 @@ protected int addSpecification(string type, mixed value)
                 {
                     raise_error(sprintf("ERROR - trait: The '%s' value "
                         "must be a valid research tree.\n", type));
+                }
+                break;
+            }
+            case "triggering research":
+            {
+                if(getDictionary("research") &&
+                    getDictionary("research")->isSustainedAbility(value))
+                {
+                    ret = 1;
+                    researchData[type] = value;
+                }
+                else
+                {
+                    raise_error(sprintf("ERROR - trait: The '%s' value "
+                        "must be a valid sustained research.\n", type));
                 }
                 break;
             }

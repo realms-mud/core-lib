@@ -10,7 +10,7 @@ object Traits;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Traits = clone_object("/lib/realizations/player.c");
+    Traits = clone_object("/lib/tests/support/services/mockPlayer.c");
     Traits->Name("Bob");
     Traits->Str(20);
     Traits->Int(20);
@@ -134,7 +134,7 @@ void AddTraitFiresOnTraitAddedEvent()
 {
     Traits->registerEvent(clone_object("/lib/tests/support/events/traitEventSubscriber.c"));
     string err = catch (Traits->addTrait("lib/tests/support/traits/testTrait.c"));
-    string expectedError = "*event handler: onTraitAdded called, data: lib/tests/support/traits/testTrait.c, caller: lib/realizations/player.c";
+    string expectedError = "*event handler: onTraitAdded called, data: lib/tests/support/traits/testTrait.c, caller: lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
@@ -163,7 +163,7 @@ void RemoveTraitFiresOnTraitRemovedEvent()
 
     Traits->registerEvent(clone_object("/lib/tests/support/events/traitEventSubscriber.c"));
     string err = catch (Traits->removeTrait("lib/tests/support/traits/testTrait.c"));
-    string expectedError = "*event handler: onTraitRemoved called, data: lib/tests/support/traits/testTrait.c, caller: lib/realizations/player.c";
+    string expectedError = "*event handler: onTraitRemoved called, data: lib/tests/support/traits/testTrait.c, caller: lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
@@ -334,4 +334,80 @@ void OpinionModifierHandlesMultipleTraitsWithoutApplyingSameModifierMoreThanOnce
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testLimitedByOpponentTrait.c"));
     ExpectEq(5, Traits->opinionModifier(target));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitsWithDurationAreRemovedWhenTheyExpire()
+{
+    string trait = "lib/tests/support/traits/testTraitWithDuration.c";
+
+    ExpectFalse(Traits->isTraitOf(trait), "trait initially not part of user");
+    ExpectTrue(Traits->addTrait(trait), "trait added");
+    ExpectTrue(Traits->isTraitOf(trait), "trait added");
+
+    Traits->agePlayer(10);
+    Traits->heart_beat();
+    ExpectFalse(Traits->isTraitOf(trait), "trait has expired");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitsWithExpireMessagesReportMessageToUserOnExpiry()
+{
+    string trait = "lib/tests/support/traits/testTraitWithDuration.c";
+
+    ExpectTrue(Traits->addTrait(trait), "trait added");
+    ExpectFalse(Traits->caughtMessage());
+
+    Traits->agePlayer(10);
+    Traits->heart_beat();
+    ExpectEq("This is an expire message.", Traits->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitsWithSustainedEffectAreRemovedWhenResearchNotSustained()
+{
+    string trait = "lib/tests/support/traits/testTraitForSustainedResearch.c";
+    ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
+
+    ExpectTrue(Traits->addTrait(trait), "trait added");
+    ExpectTrue(Traits->isTraitOf(trait), "trait added");
+
+    Traits->heart_beat();
+    ExpectFalse(Traits->isTraitOf(trait), "trait was removed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitsWithSustainedEffectsAreNotRemovedWhenAssociatedResearchActive()
+{
+    string trait = "lib/tests/support/traits/testTraitForSustainedResearch.c";
+    object room = clone_object("/lib/environment/room");
+    move_object(Traits, room);
+
+    ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
+    ExpectTrue(Traits->researchCommand("throw turnip"), "command used");
+
+    ExpectTrue(Traits->isTraitOf(trait), "trait is set on user");
+
+    Traits->heart_beat();
+    ExpectTrue(Traits->isTraitOf(trait), "trait has not been removed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitsWithSustainedEffectsAreRemovedAfterResearchInactivated()
+{
+    string trait = "lib/tests/support/traits/testTraitForSustainedResearch.c";
+    object room = clone_object("/lib/environment/room");
+    move_object(Traits, room);
+
+    ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
+    ExpectTrue(Traits->researchCommand("throw turnip"), "command used");
+
+    ExpectTrue(Traits->isTraitOf(trait), "trait added");
+
+    Traits->heart_beat();
+    ExpectTrue(Traits->isTraitOf(trait), "trait has not been removed");
+
+    ExpectTrue(Traits->researchCommand("throw turnip"), "command used again");
+    Traits->heart_beat();
+    ExpectFalse(Traits->isTraitOf(trait), "trait has been removed");
 }

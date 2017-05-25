@@ -11,6 +11,7 @@
 virtual inherit "/lib/core/thing";
 
 private mapping traits = ([ ]);
+private string *temporaryTraits = ({ });
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask object traitDictionary()
@@ -97,6 +98,20 @@ public nomask int addTrait(string trait)
         if(addedTrait && objectp(addedTrait))
         {
             traits[trait]["name"] = addedTrait->query("name");
+
+            if(materialAttributes && addedTrait->query("duration"))
+            {
+                traits[trait]["end time"] = addedTrait->query("duration") + 
+                    materialAttributes->Age();
+                traits[trait]["expire message"] = addedTrait->query("expire message");
+                temporaryTraits += ({ trait });
+            }
+            else if(addedTrait->query("triggering research"))
+            {
+                traits[trait]["triggering research"] = addedTrait->query("triggering research");
+                traits[trait]["expire message"] = addedTrait->query("expire message");
+                temporaryTraits += ({ trait });
+            }
         }
 
         object events = getService("events");
@@ -117,6 +132,11 @@ public nomask int removeTrait(string trait)
     if(isTraitOf(trait) && isValidTrait(trait))
     {
         m_delete(traits, trait);
+
+        if(member(temporaryTraits, trait) > -1)
+        {
+            temporaryTraits -= ({ trait });
+        }
 
         object events = getService("events");
         if(events && objectp(events))
@@ -275,4 +295,42 @@ public nomask int opinionModifier(object target)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void removeTemporaryTrait(string trait)
+{
+    if (member(traits[trait], "expire message"))
+    {
+        tell_object(this_object(), traits[trait]["expire message"]);
+    }
+    removeTrait(trait);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+static nomask void traitsHeartBeat()
+{
+    // Only increment the time spent / decrement usage counters
+    // when not idle.
+    if ((query_idle(this_object()) < 60) && sizeof(temporaryTraits))
+    {
+        foreach(string trait in temporaryTraits)
+        {
+            object materialAttributes = getService("materialAttributes");
+            if(materialAttributes && member(traits[trait], "end time") &&
+                (traits[trait]["end time"] <= materialAttributes->Age()))
+            {
+                removeTemporaryTrait(trait);
+            }
+            else if(member(traits[trait], "triggering research"))
+            {
+                object research = getService("research");
+                if(research && !research->sustainedResearchIsActive(
+                    traits[trait]["triggering research"]))
+                {
+                    removeTemporaryTrait(trait);
+                }
+            }
+        }
+    }
 }

@@ -121,6 +121,36 @@ void AddSpecificationThrowsForInvalidCombatModifiers()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void AddSpecificationAllowsTraitToBeApplied()
+{
+    ExpectTrue(ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationDoesNotAllowNonEffectTraitsToBeApplied()
+{
+    string err = catch (ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    string expectedError = "*ERROR - persistedActiveResearchItem: the trait specification must be a valid effect-based trait.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationAllowsNegativeTraitToBeApplied()
+{
+    ExpectTrue(ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationDoesNotAllowNonEffectNegativeTraitsToBeApplied()
+{
+    string err = catch (ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    string expectedError = "*ERROR - persistedActiveResearchItem: the trait specification must be a valid effect-based trait.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AddSpecificationAllowsDurationToBeApplied()
 {
     ExpectTrue(ResearchItem->testAddSpecification("duration", 30));
@@ -513,3 +543,138 @@ void ExecuteInAreaAppliedOnCorrectTargets()
     ExpectEq(10, badguy->getSkill("long sword"), "badguy long sword skill after research used");
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnSelfAppliesTraitOnSelf()
+{
+    ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+
+    ExpectTrue(ResearchItem->testExecuteOnSelf(User, program_name(ResearchItem)), "can execute command");
+    ExpectTrue(User->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesTraitOnTarget()
+{
+    ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+
+    ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
+    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesNegativeTrait()
+{
+    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
+    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetFailsIfTraitNegativeAndTargetNotOnKillList()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    move_object(Target, Room);
+
+    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ExpectFalse(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
+    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetFailsIfTraitNegativeAndTargetButNotUserOnKillList()
+{
+    User->toggleKillList();
+
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    Target->toggleKillList();
+    move_object(Target, Room);
+
+    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ExpectFalse(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
+    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesTraitIfBothPlayersOnKillList()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    Target->toggleKillList();
+    Target->Str(20);
+    Target->Int(20);
+    Target->Dex(20);
+    Target->Con(20);
+    Target->Wis(20);
+    Target->Chr(20);
+    Target->addSkillPoints(200);
+    Target->advanceSkill("long sword", 10);
+    move_object(Target, Room);
+
+    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
+    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NegativeExecuteInAreaAppliesTraitOnCorrectTargets()
+{
+    object bystander = clone_object("/lib/tests/support/services/combatWithMockServices");
+    bystander->Name("Earl");
+    bystander->addAlias("earl");
+    bystander->Str(20);
+    bystander->addSkillPoints(200);
+    bystander->advanceSkill("long sword", 10);
+    move_object(bystander, Room);
+
+    object badguy = clone_object("/lib/realizations/monster");
+    badguy->Name("Fred");
+    badguy->addAlias("fred");
+    badguy->Str(20);
+    badguy->addSkillPoints(200);
+    badguy->advanceSkill("long sword", 10);
+    move_object(badguy, Room);
+
+    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ExpectTrue(ResearchItem->testExecuteInArea(User, program_name(ResearchItem)), "can execute command");
+
+    ExpectFalse(User->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"), "user safe");
+    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"), "target applied");
+    ExpectTrue(badguy->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"), "badguy applied");
+    ExpectFalse(bystander->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"), "bystander safe");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteInAreaAppliesTraitOnCorrectTargets()
+{
+    object bystander = clone_object("/lib/tests/support/services/combatWithMockServices");
+    bystander->Name("Earl");
+    bystander->addAlias("earl");
+    bystander->Str(20);
+    bystander->addSkillPoints(200);
+    bystander->advanceSkill("long sword", 10);
+    move_object(bystander, Room);
+
+    object badguy = clone_object("/lib/realizations/monster");
+    badguy->Name("Fred");
+    badguy->addAlias("fred");
+    badguy->Str(20);
+    badguy->addSkillPoints(200);
+    badguy->advanceSkill("long sword", 10);
+    move_object(badguy, Room);
+
+    ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ExpectTrue(ResearchItem->testExecuteInArea(User, program_name(ResearchItem)), "can execute command");
+
+    ExpectTrue(User->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectFalse(badguy->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectTrue(bystander->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+}
