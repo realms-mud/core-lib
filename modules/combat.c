@@ -103,6 +103,20 @@ static nomask string *validCombatModifiers()
         "bonus defense class", "bonus damage" });
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *combatEffectModifiers()
+{
+    return ({ "haste", "slow", "enfeebled", "fortified", "poison",
+        "paralysis", "disease", "damage reflection" });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isNegativeCombatModifier(string modifier)
+{
+    return member(({ "slow", "enfeebled", "poison", "paralysis",
+        "disease" }), modifier) > -1;
+}
+
 //-----------------------------------------------------------------------------
 // Method: combatNotification
 // Description: This method is used to broadcast all combat-related events

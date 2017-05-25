@@ -352,6 +352,24 @@ void CallingExecuteWithSelfScopeAppliesEffectsToUser()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ExecuteOnSelfAppliesCombatEffectOnSelf()
+{
+    User->ToggleMockResearch();
+    ResearchItem->addTestSpecification("scope", "self");
+    ResearchItem->addTestSpecification("hit point cost", 20);
+
+    ExpectTrue(ResearchItem->addTestSpecification("apply haste", 1));
+
+    ExpectTrue(ResearchItem->execute("the command", User), "can execute command");
+
+    object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
+    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#lib/tests/support/services/combatWithMockServices.c",
+        modifier->query("fully qualified name"), "Modifier with FQN is registered");
+
+    ExpectTrue(User->inventoryGetModifier("combatModifiers", "haste"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ExecuteOnTargetAppliesEffectOnTarget()
 {
     User->ToggleMockResearch();
@@ -366,6 +384,57 @@ void ExecuteOnTargetAppliesEffectOnTarget()
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectEq(15, Target->getSkill("long sword"), "long sword skill after research used");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesCombatEffectOnTarget()
+{
+    User->ToggleMockResearch();
+    ResearchItem->addTestSpecification("scope", "targeted");
+    ExpectTrue(ResearchItem->addTestSpecification("apply haste", 1));
+
+    ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+
+    object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
+    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#lib/tests/support/services/combatWithMockServices.c",
+        modifier->query("fully qualified name"), "Modifier with FQN is registered");
+
+    ExpectTrue(Target->inventoryGetModifier("combatModifiers", "haste"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetDoesNotApplyCombatEffectOnTargetIfKillListNotTrueForBoth()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    move_object(Target, Room);
+
+    User->ToggleMockResearch();
+    ResearchItem->addTestSpecification("scope", "targeted");
+    ExpectTrue(ResearchItem->addTestSpecification("apply slow", 1));
+
+    ExpectFalse(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+    ExpectFalse(Target->inventoryGetModifier("combatModifiers", "slow"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesCombatEffectOnTargetIfKillListTrueForBoth()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target->Name("Frank");
+    Target->addAlias("frank");
+    Target->toggleKillList();
+    move_object(Target, Room);
+
+    User->ToggleMockResearch();
+    ResearchItem->addTestSpecification("scope", "targeted");
+    ExpectTrue(ResearchItem->addTestSpecification("apply slow", 1));
+
+    ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
+    ExpectTrue(Target->inventoryGetModifier("combatModifiers", "slow"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
