@@ -250,4 +250,9 @@ public void customEventHandler(object caller, string data)
     raise_error(sprintf("event handler: customEventHandler called: %s", data));
 }
 
-
+/////////////////////////////////////////////////////////////////////////////
+public void onIntoxicationChanged(object caller)
+{
+    raise_error(sprintf("event handler: onIntoxicationChanged called, caller: %s",
+        program_name(caller)));
+}
