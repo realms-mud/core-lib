@@ -33,17 +33,17 @@ int executeTests()
     mixed *tests = functionlist(this_object(), RETURN_FUNCTION_NAME | NAME_INHERITED);
     tests -= ignoreList;
 
-    write(sprintf("Testing %s\n", file_name()));
+    debug_message(sprintf("Testing %s\n", file_name()));
     foreach(string test in tests)
     {
         Setup();
         CurrentTestPassed = 1;
 
         call_other(this_object(), test);
-        write(sprintf("%s %s\n", CurrentTestPassed ? Pass : Fail, test));
+        debug_message(sprintf("%s %s\n", CurrentTestPassed ? Pass : Fail, test));
         CleanUp();
     }
-    write(sprintf("Test executed: %s -> %s\n", file_name(), 
+    debug_message(sprintf("Test executed: %s -> %s\n", file_name(), 
         AnyFailure ? Fail : Pass));
 
     return AnyFailure;
@@ -55,7 +55,7 @@ void validateExpect(mixed val1, mixed val2, string msg)
     if (!CurrentTestPassed)
     {
         AnyFailure = 1;
-        write(Fail + (stringp(msg) ? msg : "") + " -> Actual: " + val2 + 
+        debug_message(Fail + (stringp(msg) ? msg : "") + " -> Actual: " + val2 + 
             ", Expected: " + val1 + "\n");
     }
 }
