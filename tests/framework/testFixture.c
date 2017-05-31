@@ -33,7 +33,7 @@ int executeTests()
     mixed *tests = functionlist(this_object(), RETURN_FUNCTION_NAME | NAME_INHERITED);
     tests -= ignoreList;
 
-    debug_message(sprintf("Testing %s\n", file_name()));
+    debug_message(sprintf("\nTesting %s\n", file_name()));
     foreach(string test in tests)
     {
         Setup();
