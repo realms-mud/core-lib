@@ -129,7 +129,7 @@ void AddSpecificationAllowsTraitToBeApplied()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationDoesNotAllowNonEffectTraitsToBeApplied()
 {
-    string err = catch (ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    string err = catch (ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testInvalidPersistedTrait.c"));
     string expectedError = "*ERROR - persistedActiveResearchItem: the trait specification must be a valid effect-based trait.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -144,7 +144,7 @@ void AddSpecificationAllowsNegativeTraitToBeApplied()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationDoesNotAllowNonEffectNegativeTraitsToBeApplied()
 {
-    string err = catch (ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    string err = catch (ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testInvalidPersistedTrait.c"));
     string expectedError = "*ERROR - persistedActiveResearchItem: the trait specification must be a valid effect-based trait.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
