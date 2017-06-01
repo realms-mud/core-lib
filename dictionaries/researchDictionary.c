@@ -55,7 +55,11 @@ public nomask object researchTree(string tree)
     if(tree && stringp(tree) && (file_size(tree) > 0))
     {
         ret = load_object(tree);
-        ret->init();
+
+        if(ret && !ret->query("type"))
+        {
+            ret->init();
+        }
         if(member(inherit_list(ret), BaseResearchTree) < 0)
         {
             ret = 0;
@@ -69,6 +73,21 @@ public nomask int validResearch(string researchItem)
 {
     object researchObj = researchObject(researchItem);
     return (researchObj && objectp(researchObj));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isSustainedResearchItem(string researchItem)
+{
+    int ret = 0;
+
+    if(researchItem && stringp(researchItem))
+    {
+        researchItem = (researchItem[0] == '/') ? researchItem : 
+            "/" + researchItem;
+        ret = (file_size(researchItem) > 0) && 
+        (member(inherit_list(load_object(researchItem)), BaseResearch) > -1);
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -144,7 +144,7 @@ protected int addSpecification(string type, mixed value)
             case "triggering research":
             {
                 if(getDictionary("research") &&
-                    getDictionary("research")->isSustainedAbility(value))
+                    getDictionary("research")->isSustainedResearchItem(value))
                 {
                     ret = 1;
                     researchData[type] = value;
