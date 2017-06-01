@@ -15,7 +15,6 @@ public void init()
     addSpecification("opinion", 10);
     addSpecification("opposing opinion", -10);
     addSpecification("cost", 1);
-    addSpecification("triggering research", "lib/tests/support/research/testPersistedActiveTraitResearch.c");
     addSpecification("expire message", "This is an expire message.");
 }
 
