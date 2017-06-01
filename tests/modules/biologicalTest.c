@@ -65,7 +65,7 @@ void AddIntoxicationCanRemoveFromIntoxValue()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void AddIntoxicationNeverDoesNotSetValueBelowZero()
+void AddIntoxicationDoesNotSetValueBelowZero()
 {
     ExpectEq(10, Character->Intoxicated(10));
     ExpectTrue(Character->addIntoxication(-15));
