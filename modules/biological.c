@@ -32,7 +32,7 @@ private nosave int maxHeadache = 30;
 //-----------------------------------------------------------------------------
 static nomask string *validBiological()
 {
-    return ({ "bonus to intoxicated", "bonus to stuffed", "bonus to drugged",
+    return ({ "bonus to intoxication", "bonus to stuffed", "bonus to drugged",
               "bonus to soaked", "bonus headache" });
 }
 
@@ -244,7 +244,34 @@ public nomask int addSoaked(int soakedLevel)
     return ret;
 }
 
-// TODO: Refactor these next four methods - tons of commonality
+/////////////////////////////////////////////////////////////////////////////
+private nomask int getMaximumBiologicalLevel(string type)
+{
+    int ret = 0;
+    foreach(string service in({ "guilds", "races", "traits" }))
+    {
+        object serviceObject = getService(service);
+        if (serviceObject && function_exists("biologicalModifier"))
+        {
+            ret += serviceObject->biologicalModifier(type);
+        }
+    }
+
+    object attributes = getService("attributes");
+    if (attributes)
+    {
+        ret += attributes->Con() * 2;
+    }
+
+    object inventory = getService("inventory");
+    if (inventory)
+    {
+        ret += inventory->inventoryGetModifier("biological",
+            sprintf("bonus to %s", type));
+    }
+
+    return ret;
+}
 
 //-----------------------------------------------------------------------------
 // Method: drinkAlcohol
@@ -261,50 +288,26 @@ public nomask int addSoaked(int soakedLevel)
 public nomask int drinkAlcohol(int strengthOfDrink)
 {
     int ret = 0;
-    int maxIntox = 0;
+    int maxIntox = getMaximumBiologicalLevel("intoxication");
 
-    foreach(string service : ({ "guilds", "races", "traits" }))
+    if (Intoxicated() > maxIntox)
     {
-        object serviceObject = getService(service);
-        if(serviceObject && function_exists("biologicalModifier"))
-        {
-            maxIntox += serviceObject->biologicalModifier("intoxication");
-        }
-    }
-    
-    object attributes = getService("attributes");
-    if(attributes)
-    {
-        maxIntox += attributes->Con() * 2;
-    }
-    
-    object inventory = getService("inventory");
-    if(inventory)
-    {
-        maxIntox += inventory->inventoryGetModifier("biological", 
-            "bonus to intoxicated");
-    }
-    
-    if((strengthOfDrink + Intoxicated()) > maxIntox)
-    {
-        notify_fail("You fail to reach the drink with your mouth.\n");
-        biologicalNotification("onDrunk");
+        tell_object(this_object(), "You fail to reach the drink with your mouth.\n");
     }
     else
     {
         ret = 1;
         intoxicated += strengthOfDrink;
-        if(intoxicated <= 0)
+        if (intoxicated >= maxIntox)
+        {
+            tell_object(this_object(), "You feel completely inebriated.\n");
+            biologicalNotification("onDrunk");
+        }
+        else if(intoxicated <= 0)
         {
             intoxicated = 0;
-            printf("You are completely sober.\n");
+            tell_object(this_object(), "You are completely sober.\n");
             biologicalNotification("onSober");
-        }
-        else if(headache)
-        {
-            headache = 0;
-            printf("Your headache disappears.\n");
-            biologicalNotification("onDetoxified");
         }
     }    
     return ret;
@@ -325,50 +328,26 @@ public nomask int drinkAlcohol(int strengthOfDrink)
 public nomask int consumeDrug(int strengthOfDrug)
 {
     int ret = 0;
-    int maxDrugged = 0;
+    int maxDrugged = getMaximumBiologicalLevel("drugged");
 
-    foreach(string service : ({ "guilds", "races", "traits" }))
+    if(Drugged() > maxDrugged)
     {
-        object serviceObject = getService(service);
-        if(serviceObject && function_exists("biologicalModifier"))
-        {
-            maxDrugged += serviceObject->biologicalModifier("drugged");
-        }
-    }
-    
-    object attributes = getService("attributes");
-    if(attributes)
-    {
-        maxDrugged += attributes->Con() * 2;
-    }
-    
-    object inventory = getService("inventory");
-    if(inventory)
-    {
-        maxDrugged += inventory->inventoryGetModifier("biological", 
-            "bonus to drugged");
-    }
-    
-    if((strengthOfDrug + Drugged()) > maxDrugged)
-    {
-        notify_fail("You fail to reach your mouth.\n");
-        biologicalNotification("onWastedOnDrugs");
+        tell_object(this_object(), "You fail to reach your mouth.\n");
     }
     else
     {
         ret = 1;
         drugged += strengthOfDrug;
-        if(drugged <= 0)
+        if (drugged >= maxDrugged)
+        {
+            tell_object(this_object(), "You feel completely wasted.\n");
+            biologicalNotification("onWastedOnDrugs");
+        }
+        else if(drugged <= 0)
         {
             drugged = 0;
-            printf("You are completely free of drugs.\n");
+            tell_object(this_object(), "You are completely free of drugs.\n");
             biologicalNotification("onNoLongerDrugged");
-        }
-        else if(headache)
-        {
-            headache = 0;
-            printf("Your headache disappears.\n");
-            biologicalNotification("onDetoxified");
         }
     }    
     return ret;
@@ -388,44 +367,26 @@ public nomask int consumeDrug(int strengthOfDrug)
 public nomask int drink(int strengthOfDrink)
 {
     int ret = 0;
-    int maxSoak = 0;
-
-    foreach(string service : ({ "guilds", "races", "traits" }))
-    {
-        object serviceObject = getService(service);
-        if(serviceObject && function_exists("biologicalModifier"))
-        {
-            maxSoak += serviceObject->biologicalModifier("soaked");
-        }
-    }
+    int maxSoak = getMaximumBiologicalLevel("soaked");
     
-    object attributes = getService("attributes");
-    if(attributes)
+    if(Soaked() > maxSoak)
     {
-        maxSoak += attributes->Con() * 4;
-    }
-    
-    object inventory = getService("inventory");
-    if(inventory)
-    {
-        maxSoak += inventory->inventoryGetModifier("biological", 
-            "bonus to soaked");
-    }
-    
-    if((strengthOfDrink + Soaked()) > maxSoak)
-    {
-        notify_fail("You can't possibly drink that much right now!\n"
-            "You feel crosslegged enough as it is.");
-        biologicalNotification("onSoaked");
+        tell_object(this_object(), "You can't possibly drink that much right now!\n"
+            "You feel crosslegged enough as it is.\n");
     }
     else
     {
         ret = 1;
         soaked += strengthOfDrink;
-        if(soaked <= 0)
+        if (soaked >= maxSoak)
+        {
+            tell_object(this_object(), "You feel like your bladder is going to explode.\n");
+            biologicalNotification("onSoaked");
+        }
+        else if(soaked <= 0)
         {
             soaked = 0;
-            printf("You feel a bit dry in the mouth.\n");
+            tell_object(this_object(), "You feel a bit dry in the mouth.\n");
             biologicalNotification("onNoLongerSoaked");
         }
     }    
@@ -446,44 +407,26 @@ public nomask int drink(int strengthOfDrink)
 public nomask int eat(int strengthOfFood)
 {
     int ret = 0;
-    int maxStuffed = 0;
+    int maxStuffed = getMaximumBiologicalLevel("stuffed");
 
-    foreach(string service : ({ "guilds", "races", "traits" }))
+    if(Stuffed() > maxStuffed)
     {
-        object serviceObject = getService(service);
-        if(serviceObject && function_exists("biologicalModifier"))
-        {
-            maxStuffed += serviceObject->biologicalModifier("stuffed");
-        }
-    }
-    
-    object attributes = getService("attributes");
-    if(attributes)
-    {
-        maxStuffed += attributes->Con() * 4;
-    }
-    
-    object inventory = getService("inventory");
-    if(inventory)
-    {
-        maxStuffed += inventory->inventoryGetModifier("biological", 
-            "bonus to stuffed");
-    }
-    
-    if((strengthOfFood + Stuffed()) > maxStuffed)
-    {
-        notify_fail("This is much too rich for you right now! "
+        tell_object(this_object(), "This is much too rich for you right now! "
             "Perhaps something lighter?\n");
-        biologicalNotification("onCannotEatMore");
     }
     else
     {
         ret = 1;
         stuffed += strengthOfFood;
-        if(stuffed <= 0)
+        if (stuffed >= maxStuffed)
+        {
+            tell_object(this_object(), "You feel full.\n");
+            biologicalNotification("onCannotEatMore");
+        }
+        else if(stuffed <= 0)
         {
             stuffed = 0;
-            printf("Your stomach makes a rumbling sound.\n");
+            tell_object(this_object(), "Your stomach makes a rumbling sound.\n");
             biologicalNotification("onHungry");
         }
     }    
@@ -507,7 +450,7 @@ private nomask void displayBiologicalMessage(string message)
             this_object(), isSecondPerson);
         userMessage = parser->parseVerbs(userMessage, isSecondPerson);
         userMessage = parser->capitalizeSentences(userMessage);
-        write(sprintf("%s\n", userMessage));
+        tell_object(this_object(), sprintf("%s\n", userMessage));
         
         isSecondPerson = 0;
         string everoneElseMessage = parser->parseTargetInfo(message, 
@@ -528,7 +471,7 @@ private nomask void displayBiologicalMessage(string message)
 //-----------------------------------------------------------------------------
 private nomask void determineIfIntoxicationCausesAction()
 {
-    if(intoxicated && !random(50))
+    if(intoxicated && !random(20))
     {
         string *actions = ({ "hiccup", "stumble", "stagger", "lurch", "dither",
                              "falter", "pitch", "teeter", "sway", "wobble", 
@@ -548,7 +491,7 @@ private nomask void determineIfIntoxicationCausesAction()
 //-----------------------------------------------------------------------------
 private nomask void determineIfDruggedCausesAction()
 {
-    if(intoxicated && !random(50))
+    if(intoxicated && !random(20))
     {
         string *actions = ({ "stumble", "stagger", "lurch", "dither",
                              "falter", "pitch", "teeter", "sway", "wobble", 
@@ -584,13 +527,27 @@ public nomask int haveHeadache()
 //-----------------------------------------------------------------------------
 static nomask void biologicalHeartBeat()
 {
+    if (headache > 0)
+    {
+        headache--;
+        if (!headache)
+        {
+            tell_object(this_object(), "Your headache disappears.\n");
+            biologicalNotification("onDetoxified");
+        }
+    }
+    else
+    {
+        headache = 0;
+    }
+
     if(intoxicated > 0)
     {
         intoxicated--;        
         determineIfIntoxicationCausesAction();
         if(!intoxicated)
         {
-            write("You suddenly without reason get a bad headache.\n");
+            tell_object(this_object(), "You suddenly without reason get a bad headache.\n");
             headache = maxHeadache;
             biologicalNotification("onBeginDetox");
         }
@@ -606,7 +563,7 @@ static nomask void biologicalHeartBeat()
         determineIfDruggedCausesAction();
         if(!drugged)
         {
-            write("You suddenly without reason get a bad headache.\n");
+            tell_object(this_object(), "You suddenly without reason get a bad headache.\n");
             headache = maxHeadache;
             biologicalNotification("onBeginDetox");
         }        
@@ -618,7 +575,13 @@ static nomask void biologicalHeartBeat()
 
     if(soaked > 0)
     {
-        soaked--;        
+        soaked--; 
+        
+        if(!soaked)
+        {
+            tell_object(this_object(), "You feel a bit dry in the mouth.\n");
+            biologicalNotification("onNoLongerSoaked");
+        }
     }
     else
     {
@@ -627,26 +590,18 @@ static nomask void biologicalHeartBeat()
 
     if(stuffed > 0)
     {
-        stuffed--;        
-    }
-    else
-    {
-        stuffed = 0;
-    }
-
-    if(headache > 0)
-    {
-        headache--;  
-        if(!headache)
+        stuffed--;
+        
+        if(!stuffed)
         {
-            write("Your headache disappears.\n");
-            biologicalNotification("onDetoxified");
+            tell_object(this_object(), "Your stomach makes a rumbling sound.\n");
+            biologicalNotification("onHungry");
         }
     }
     else
     {
-        headache = 0;
-    }        
+        stuffed = 0;
+    }       
 }
 
 //-----------------------------------------------------------------------------

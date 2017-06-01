@@ -59,6 +59,7 @@ public void reset(int arg)
     registerHeartBeat("materialAttributes");
     registerHeartBeat("research");
     registerHeartBeat("traits");
+    registerHeartBeat("biological");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -29,7 +29,10 @@ private nosave string *validEventHandlers = ({ "onDeath", "onHeartBeat",
     "onTraitRemoved", "onQuestStarted", "onQuestAdvancedState", 
     "onQuestCompleted", "onQuestSucceeded", "onQuestFailed", "onQuestActivated",
     "onQuestDeactivated", "onSkillAdvanced", "onSkillDecreased", 
-    "onSkillPointsIncreased", "onSkillPointsUsed", "onIntoxicationChanged"
+    "onSkillPointsIncreased", "onSkillPointsUsed", "onIntoxicationChanged",
+    "onStuffedChanged", "onDruggedChanged", "onSoakedChanged", "onDrunk",
+    "onSober", "onDetoxified", "onWastedOnDrugs", "onNoLongerDrugged", "onSoaked",
+    "onNoLongerSoaked", "onCannotEatMore", "onHungry", "onBeginDetox"
 });
     
 private nosave mapping eventList = ([ ]);
