@@ -85,7 +85,8 @@ public nomask int isSustainedResearchItem(string researchItem)
         researchItem = (researchItem[0] == '/') ? researchItem : 
             "/" + researchItem;
         ret = (file_size(researchItem) > 0) && 
-        (member(inherit_list(load_object(researchItem)), BaseResearch) > -1);
+        (member(inherit_list(load_object(researchItem)), 
+            "lib/modules/research/sustainedResearchItem.c") > -1);
     }
     return ret;
 }
