@@ -5,7 +5,7 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public nomask void init()
 {
     addCommandTemplate("inventory [-v]");
     addCommandTemplate("i [-v]");
@@ -13,7 +13,7 @@ public void init()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int execute(string command, object initiator)
+public nomask int execute(string command, object initiator)
 {
     int ret = 0;
 
