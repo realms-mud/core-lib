@@ -87,7 +87,8 @@ protected nomask object getTarget(object owner, string command)
         string targetId;
         if (sscanf(command, template, targetId) == 1)
         {
-            ret = present(targetId, environment(owner));
+            ret = present(targetId, environment(owner)) ||
+                present(targetId, owner);
         }
     }
     return ret;
@@ -100,7 +101,7 @@ public int execute(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int addCommandTemplate(string command)
+public nomask int addCommandTemplate(string command)
 {
     int ret = 0;
 
