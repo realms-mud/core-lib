@@ -271,6 +271,22 @@ void SettingInvalidAdditionalLongThrowsError()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanSetUserDescriptionOnItems()
+{
+    ExpectTrue(Item->set("user description", "blah"), "user description can be set");
+    ExpectEq("blah", Item->query("user description"), "'blah' user description was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SettingInvalidUserDescriptionThrowsError()
+{
+    string expected = "*Item: The passed 'user description' data must be a string.\n";
+
+    string err = catch (Item->set("user description", 1));
+    ExpectEq(expected, err, "user description cannot be an integer");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanSetNameOnItems()
 {
     ExpectTrue(Item->set("name", "blah"), "name can be set");

@@ -37,6 +37,7 @@ protected mapping itemData = ([
 //  "light": 1,        // the piece of equipment is a light source
 //  "long":            // Item's long description - applied via parseDescription
 //  "additional long": // Additional description displayed after identified
+//  "user description":// Description displayed when looking at item's user
 //  "material":        // Material the item is made out of - see materials.c
 //  "name":            // The name of the item
 //  "no steal":        // flag set to true if the item cannot be stolen
@@ -252,6 +253,7 @@ public varargs int set(string element, mixed data)
                 case "info":
                 case "long":
                 case "additional long":
+                case "user description":
                 case "name":
                 case "owner":
                 case "read message unidentified":

@@ -258,7 +258,7 @@ void PretitleCanBeSetAndReturnsCorrectValue()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ShortCanBeAndSetReturnsCorrectValue()
+void ShortCanBeSetAndReturnsCorrectValue()
 {
     Attributes->Name("Bob");
     ExpectEq("Bob", Attributes->short(), "short is name by default");
@@ -280,6 +280,97 @@ void ShortIsGhostOfWhenDead()
     Attributes->Name("Bob");
     Attributes->Ghost(1);
     ExpectEq("ghost of Bob", Attributes->short(), "short is a ghost");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DescriptionCanBeSetAndReturnsCorrectValue()
+{
+    ExpectFalse(Attributes->description(), "description is empty by default");
+    ExpectEq("blah", Attributes->description("blah"), "description is set");
+    ExpectEq("blah", Attributes->description(), "description is 'blah'");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MaterialAttributeLongDataReturnedByLong()
+{
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n", Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongReturnsTitle()
+{
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    Attributes->Title("the Unclean");
+    ExpectEq("Tantor the Unclean (male)\nHe is in good shape.\n", Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongReturnsRace()
+{
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    Attributes->Race("elf");
+    ExpectEq("Tantor the title-less (male) (elf)\nHe is in good shape.\n", Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongReturnsDescription()
+{
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    Attributes->Race("elf");
+    Attributes->description("This is a description.");
+    ExpectEq("Tantor the title-less (male) (elf)\nThis is a description.\nHe is in good shape.\n", 
+        Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongReturnsInventoryBasedUserDescriptions()
+{
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("short", "A Sword");
+    weapon->set("user description", "##UserName## has a shiny blah!");
+    weapon->set("weapon type", "long sword");
+    weapon->set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Attributes);
+    ExpectTrue(weapon->equip("blah"));
+
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+
+    string expected = "Tantor the title-less (male)\nHe is in good shape.\nTantor has a shiny blah!\n\tCarrying:\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n[0m[0;31m| [0m[0;36mPrimary Weapon:	[0m[0;37;1mA Sword[0m\n[0;31m| [0m[0;36mEquipped Offhand:	[0m[0;30;1mnothing[0m\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n[0m[0;31m| [0m[0;36mWorn Armor:		[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Helmet:		[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Gloves:		[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Boots:		[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Cloak:		[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Amulet:		[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Belt:		[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Arm Greaves:	[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Leg Greaves:	[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Bracers:		[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn First Ring:	[0m[0;30;1mnothing[0m\n[0;31m| [0m[0;36mWorn Second Ring:	[0m[0;30;1mnothing[0m\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n[0m";
+    ExpectEq(expected, Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongReturnsInventoryWithDetails()
+{
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("short", "A Sword");
+    weapon->set("weapon type", "long sword");
+    weapon->set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Attributes);
+
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n\tCarrying:\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n[0m[0;31m| [0m[0;37;1mA Sword[0m\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n[0m",
+        Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongReturnsWizardInformation()
+{
+    destruct(Attributes);
+    Attributes = clone_object("/lib/tests/support/services/mockWizard.c");
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    ExpectEq("Tantor the title-less (male)\nGeneric Wizard Info\n",
+        Attributes->long());
 }
 
 /////////////////////////////////////////////////////////////////////////////

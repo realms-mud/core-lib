@@ -12,6 +12,7 @@ void Setup()
 {
     Inventory = clone_object("/lib/realizations/player");
     Inventory->Name("Bob");
+    Inventory->Gender(1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -957,4 +958,64 @@ void UsingEquipmentOfTypeReturnsCorrectlyForMultipleEquippedItems()
     ExpectTrue(Inventory->usingEquipmentOfType("chainmail"), "chainmail worn");
     ExpectFalse(Inventory->usingEquipmentOfType("soft leather"), "leather not worn");
     ExpectTrue(Inventory->usingEquipmentOfType("axe"), "axe wielded");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InventoryDescriptionReturnsCorrectDescription()
+{
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("user description", "##UserName## has a shiny blah!");
+
+    ExpectEq("", Inventory->inventoryDescription());
+
+    move_object(weapon, Inventory);
+    ExpectEq("Bob has a shiny blah!\n", Inventory->inventoryDescription());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InventoryDescriptionAddsRegisteredModifiers()
+{
+    object modifier = clone_object("/lib/items/modifierObject");
+    modifier->set("fully qualified name", "thingy");
+    modifier->set("user description", "##UserSubjective## sees an object registered but not in ##UserPossessive## inventory");
+    ExpectEq(1, modifier->set("registration list", ({ Inventory })), "registration list can be set");
+
+    ExpectEq("He sees an object registered but not in his inventory\n", Inventory->inventoryDescription());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InventoryDescriptionReturnsCorrectListOfDescriptions()
+{
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("user description", "##UserName## has a shiny blah!");
+    move_object(weapon, Inventory);
+
+    weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah2");
+    move_object(weapon, Inventory);
+
+    object armor = clone_object("/lib/items/armor");
+    armor->set("name", "stuff");
+    armor->set("user description", "##UserSubjective## is using stuff");
+    move_object(armor, Inventory);
+
+    object item = clone_object("/lib/items/item");
+    item->set("user description", "##UserSubjective## has a hidden item.");
+    move_object(item, Inventory);
+
+    object modifier = clone_object("/lib/items/modifierObject");
+    modifier->set("fully qualified name", "thingy");
+    modifier->set("user description", "##UserSubjective## sees an object registered but not in ##UserPossessive## inventory");
+    ExpectEq(1, modifier->set("registration list", ({ Inventory })), "registration list can be set");
+
+    modifier = clone_object("/lib/items/modifierObject");
+    modifier->set("fully qualified name", "thingy2");
+    modifier->set("user description", "This item is not seen twice");
+    move_object(modifier, Inventory);
+    ExpectEq(1, modifier->set("registration list", ({ Inventory })), "registration list can be set");
+
+    string expectedMessage = "He is using stuff\nHe has a hidden item.\nHe sees an object registered but not in his inventory\nThis item is not seen twice\nBob has a shiny blah!\n";
+    ExpectEq(expectedMessage, Inventory->inventoryDescription());
 }

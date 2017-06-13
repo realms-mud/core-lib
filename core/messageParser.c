@@ -188,7 +188,7 @@ nomask string parseVerbs(string message, int isSecondPerson)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string parseTargetInfo(string message, string typeOfTarget,
+public nomask varargs string parseTargetInfo(string message, string typeOfTarget,
     object target, int isSecondPerson)
 {
     string ret = message;

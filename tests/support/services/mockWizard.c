@@ -1,25 +1,24 @@
 //*****************************************************************************
-// Class: wizard
-// File Name: wizard.c
-//
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-//
-// Description: TBD
-//
 //*****************************************************************************
-virtual inherit "/lib/realizations/player.c";
+virtual inherit "/lib/modules/materialAttributes.c";
 
-private string wizardLevel;
+private string lastCatch = 0;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isRealizationOfWizard()
+public nomask object isRealizationOf(string type)
 {
-    return 1;
+    object ret = 0;
+    if(type == "wizard")
+    {
+        ret = this_object();
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string wizardInformation()
 {
-    return "";    
+    return "Generic Wizard Info\n";
 }

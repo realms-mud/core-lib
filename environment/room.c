@@ -262,7 +262,7 @@ public void long(string item)
 {
     if(set_light(0) < 1)
     {
-        if(this_player()->query_property("infravision"))
+        if(this_player() && this_player()->query_property("infravision"))
         {
             write(formatText(C_PMON,"You gaze into the darkness and see:\n\n"));
         }

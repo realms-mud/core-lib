@@ -241,6 +241,42 @@ public nomask varargs int hitPoints(int increase)
     return hitPoints;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string healthDescription()
+{
+    string ret = 0;
+    if (hitPoints() < (maxHitPoints() / 16))
+    {
+        ret = "is knocking on death's door.";
+    }
+    else if (hitPoints() < (maxHitPoints() / 8))
+    {
+        ret = "is severely injured.";
+    }
+    else if (hitPoints() < (maxHitPoints() / 4))
+    {
+        ret = "has taken a beating.";
+    }
+    else if (hitPoints() < (maxHitPoints() / 2))
+    {
+        ret = "has been roughed up.";
+    }
+    else if (hitPoints() < (3 * maxHitPoints() / 4))
+    {
+        ret = "has some minor injuries.";
+    }
+    else if (hitPoints() < (7 * maxHitPoints() / 8))
+    {
+        ret = "is barely inured.";
+    }
+    else
+    {
+        ret = "is in good shape.";
+    }
+
+    return ret;
+}
+
 //-----------------------------------------------------------------------------
 // Method: maxSpellPoints
 // Description: This method returns the effective total maximum spell points

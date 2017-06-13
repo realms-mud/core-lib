@@ -248,6 +248,55 @@ void HitPointsFiresOnHitPointsChangedEvent()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void HealthDescriptionReturnsInGoodShapeWhenHealthy()
+{
+    Attacker->hitPoints(200);
+    ExpectEq("is in good shape.", Attacker->healthDescription());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HealthDescriptionReturnsBarelyInjuredWhenNearFullHealth()
+{
+    Attacker->hitPoints(100);
+    ExpectEq("is barely inured.", Attacker->healthDescription());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HealthDescriptionReturnsMinorInjuriesBelow75Percent()
+{
+    Attacker->hitPoints(89);
+    ExpectEq("has some minor injuries.", Attacker->healthDescription());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HealthDescriptionReturnsRoughedUpBelow50Percent()
+{
+    Attacker->hitPoints(59);
+    ExpectEq("has been roughed up.", Attacker->healthDescription());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HealthDescriptionReturnsTakenBeatingBelow25Percent()
+{
+    Attacker->hitPoints(29);
+    ExpectEq("has taken a beating.", Attacker->healthDescription());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HealthDescriptionReturnsSeverelInjuredBelow13Percent()
+{
+    Attacker->hitPoints(14);
+    ExpectEq("is severely injured.", Attacker->healthDescription());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HealthDescriptionReturnsSeverelInjuredBelow6Percent()
+{
+    Attacker->hitPoints(5);
+    ExpectEq("is knocking on death's door.", Attacker->healthDescription());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void MaxSpellPointsCorrectlyAppliesAllModifiers()
 {
     object modifier = clone_object("/lib/items/modifierObject");

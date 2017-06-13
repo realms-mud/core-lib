@@ -854,7 +854,33 @@ private nomask string equipmentText(string item, int verbose)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string inventoryText(int verbose)
+public nomask string inventoryDescription()
+{
+    string ret = "";
+
+    object *userDescriptionItems = sort_array(
+        filter_array(m_indices(mkmapping(
+            registeredInventoryObjects() + all_inventory(this_object()))),
+            (: return call_other($1, "query", "user description"); :)),
+        (: return object_name($1) > object_name($2); :));
+
+    object messageParser = load_object("/lib/core/messageParser.c");
+    if(messageParser)
+    {
+        foreach(object userDescriptionItem in userDescriptionItems)
+        {
+            ret += messageParser->capitalizeSentences(
+                messageParser->parseTargetInfo(
+                userDescriptionItem->query("user description"),
+                "User",
+                this_object())) + "\n";
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string inventoryText(int verbose)
 {
     string ret = "";
 
@@ -882,6 +908,11 @@ public nomask string inventoryText(int verbose)
         ret += sprintf(eqFormatter, "Worn Second Ring:\t", equipmentText("ring 2", verbose));
         ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
     }
+    else if(sizeof(all_inventory(this_object())))
+    {
+        ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    }
+
     object *allItems = all_inventory(this_object());
     int addFooter = 0;
     foreach(object equipment in allItems)

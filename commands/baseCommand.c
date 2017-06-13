@@ -63,12 +63,14 @@ private nomask string commandString(string passedCommand)
     {
         foreach(string command in commands)
         {
-            string commandRegexp = 
-                regreplace(command, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
+            string commandRegexp = regreplace(command, "\\] *\\[", "| ", 1);
+            commandRegexp = regreplace(commandRegexp, " \\[(.+)\\]", "( \\1|$)", 1);
+            
+            string commandCheck = regreplace(commandRegexp, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
 
-            if(sizeof(regexp(({ passedCommand }), commandRegexp)))
+            if(sizeof(regexp(({ passedCommand }), commandCheck)))
             {
-                ret = regreplace(command, "##(Target|Environment|Item)##", "%s", 1);
+                ret = regreplace(commandRegexp, "##(Target|Environment|Item)##", "", 1);
                 break;
             }
         }
@@ -84,11 +86,12 @@ protected nomask object getTarget(object owner, string command)
 
     if (command && stringp(command) && template && stringp(template))
     {
-        string targetId;
-        if (sscanf(command, template, targetId) == 1)
+        string *targetId = regexplode(command, template);
+
+        if (sizeof(targetId) == 3)
         {
-            ret = present(targetId, environment(owner)) ||
-                present(targetId, owner);
+            ret = present(targetId[2], environment(owner)) ||
+                present(targetId[2], owner);
         }
     }
     return ret;

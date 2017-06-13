@@ -1,12 +1,6 @@
 //*****************************************************************************
-// Class: materialAttributes
-// File Name: materialAttributes.c
-//
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-//
-// Description: TBD
-//
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
 
@@ -399,19 +393,87 @@ public nomask varargs string ageString(int time)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs void long(string msg)
+public varargs string description(string msg)
 {
-    if(msg && stringp(msg))
+    if (msg && stringp(msg))
     {
         longDescription = msg;
     }
 
-    string desc = longDescription + "\n";
-    if (getService("inventory"))
+    return longDescription;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string basicLongDescription()
+{
+    string ret = capitalize(name);
+
+    if (Pretitle())
     {
-        desc += getService("inventory")->inventoryText();
+        ret = Pretitle() + " " + ret;
     }
-    write(desc);
+
+    if (Title())
+    {
+        ret += " " + Title();
+    }
+    ret += sprintf(" (%s)", GenderDesc());
+
+    object race = getService("races");
+    if (race && race->Race())
+    {
+        ret += sprintf(" (%s)", race->Race());
+    }
+    ret += "\n";
+    if (longDescription)
+    {
+        ret += longDescription + "\n";
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string inventoryLongDescription(int brief)
+{
+    string ret = "";
+    object inventory = getService("inventory");
+    if(inventory)
+    {
+        ret += inventory->inventoryDescription();
+
+        if(!brief)
+        {
+            string inventoryText = inventory->inventoryText();
+            if(inventoryText != "")
+            {
+                ret += "\tCarrying:\n" + inventoryText;
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs string long(int brief)
+{
+    string ret = basicLongDescription();
+
+    object wizard = call_other(this_object(), "isRealizationOf", "wizard");
+    if(wizard)
+    {
+        ret += wizard->wizardInformation();
+    }
+
+    object combat = getService("combat");
+    if(combat)
+    {
+        ret += sprintf("%s %s\n", capitalize(Pronoun()),
+            combat->healthDescription());
+    }
+
+    ret += inventoryLongDescription(brief);
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
