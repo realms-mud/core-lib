@@ -66,6 +66,7 @@ public nomask int executeCommand(string passedCommand, object initiator)
                 {
                     ret = commandObj->execute(passedCommand, initiator);
                 }
+                break;
             }
         }
     }

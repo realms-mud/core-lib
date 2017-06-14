@@ -10,6 +10,15 @@ private string MessageParser = "/lib/core/messageParser.c";
 private string *commands = ({});
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string prepCommandRegExp(string command)
+{
+    string ret = regreplace(command, "\\] *\\[", ")*( ", 1);
+    ret = regreplace(ret, " \\[(.+)\\]", "( \\1)\*", 1);
+
+    return ret + "$";
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string commandRegExp()
 {
     string ret = 0;
@@ -23,15 +32,12 @@ public nomask string commandRegExp()
             {
                 ret += "|";
             }
-            command = regreplace(command, "\\] *\\[", "| ", 1);
-            ret += regreplace(command, " \\[(.+)\\]", "( \\1|$)", 1);
+            ret += prepCommandRegExp(command);
         }
         ret += ")";
 
         ret = regreplace(ret, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
     }
-
-    ret += "$";
 
     return ret;
 }
@@ -63,14 +69,13 @@ private nomask string commandString(string passedCommand)
     {
         foreach(string command in commands)
         {
-            string commandRegexp = regreplace(command, "\\] *\\[", "| ", 1);
-            commandRegexp = regreplace(commandRegexp, " \\[(.+)\\]", "( \\1|$)", 1);
-            
+            string commandRegexp = prepCommandRegExp(command);
             string commandCheck = regreplace(commandRegexp, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
 
             if(sizeof(regexp(({ passedCommand }), commandCheck)))
             {
                 ret = regreplace(commandRegexp, "##(Target|Environment|Item)##", "", 1);
+                ret -="$";
                 break;
             }
         }

@@ -560,6 +560,25 @@ void CalculateDefendAttackUsesCorrectPrimaryWeaponData()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CalculateDefendAttackHandlesSkillPenalty()
+{
+    object weapon = CreateWeapon("blah");
+    weapon->set("skill penalty", 1);
+    Attacker->addSkillPoints(100);
+
+    ExpectEq(4, Attacker->calculateDefendAttack(), "nothing is equipped");
+
+    ExpectTrue(weapon->equip("blah offhand"), "weapon equip called");
+    ExpectEq(-12, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped");
+
+    Attacker->advanceSkill("long sword", 1);
+    ExpectEq(-1, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped");
+
+    Attacker->advanceSkill("long sword", 8);
+    ExpectEq(4, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped and skill of 9");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CalculateDefendAttackUsesCorrectOffhandWeaponData()
 {
     object weapon = CreateWeapon("blah");
@@ -745,6 +764,27 @@ void CalculateAttackWithWeaponCorrectlyAppliesWeaponData()
 
     weapon->set("bonus dexterity", 2);
     ExpectEq(14, Attacker->calculateAttack(Target, weapon, 1), "bonus dexterity applied");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CalculateAttackWithWeaponCorrectlyAppliesSkillPenalty()
+{
+    object weapon = CreateWeapon("blah");
+    weapon->set("skill penalty", 1);
+
+    Attacker->addSkillPoints(100);
+
+    ExpectEq(0, Attacker->calculateAttack(Target, weapon, 1), "initial attack");
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+
+    // This includes: -4 for defender's defend attack, 2 dexterity bonus, 
+    // 2 intelligence bonus, -20 for attacking untrained with longsword, 
+    // -7 weapon encumberance (materials (-2) plus lack of skill (-5)),
+    // -1 for the skill penalty, and 5 for galvorn's attack bonus
+    ExpectEq(-23, Attacker->calculateAttack(Target, weapon, 1), "untrained attack");
+
+    Attacker->advanceSkill("long sword", 1);
+    ExpectEq(-1, Attacker->calculateAttack(Target, weapon, 1), "trained attack");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1114,6 +1154,22 @@ void CalculateDamageCorrectlyAppliesMagicalDamageBonus()
     ExpectEq(4, Attacker->calculateDamage(weapon, "physical", 1), "nothing is equipped");
     Attacker->ToggleMagicalDamageBonus();
     ExpectEq(7, Attacker->calculateDamage(weapon, "physical", 1), "magical damage method called");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CalculateDamageCorrectlyAppliesSkillPenalty()
+{
+    object weapon = CreateWeapon("blah");
+    Attacker->addSkillPoints(100);
+    Attacker->advanceSkill("long sword", 1);
+
+    // 2 from str, 1 from int, and 1 from wis
+    ExpectEq(4, Attacker->calculateDamage(weapon, "physical", 1), "nothing is equipped");
+
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectEq(23, Attacker->calculateDamage(weapon, "physical", 1), "no skill penalty applied");
+    weapon->set("skill penalty", 2);
+    ExpectEq(21, Attacker->calculateDamage(weapon, "physical", 1), "skill penalty applied");
 }
 
 /////////////////////////////////////////////////////////////////////////////

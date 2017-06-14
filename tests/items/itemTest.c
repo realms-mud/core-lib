@@ -612,7 +612,7 @@ void LongReturnsCorrectMessageBeforeIdentification()
     Item->set("long", "Blah blah blah");
     Item->set("additional long", "even more blah");
 
-    ExpectEq("Blah blah blah", Item->LongDescription(), "LongDescription() returns correct value");
+    ExpectEq("Blah blah blah\n", Item->long(), "long() returns correct value");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -622,7 +622,7 @@ void LongReturnsCorrectMessageAfterIdentification()
     Item->set("additional long", "even more blah");
 
     ExpectTrue(Item->identify());
-    ExpectEq("Blah blah blah even more blah\n", Item->LongDescription(), "LongDescription() returns correct value after ID");
+    ExpectEq("Blah blah blah even more blah\n", Item->long(), "long() returns correct value after ID");
 }
 
 /////////////////////////////////////////////////////////////////////////////

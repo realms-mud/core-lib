@@ -61,72 +61,7 @@ varargs string BuildInventoryString(mapping equipped, string *unequipped, int ve
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void Init()
-{
-    ignoreList += ({ "BuildInventoryString" });
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void Setup()
-{
-    Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
-    move_object(Player, clone_object("/lib/tests/support/services/mockPlayer.c"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CleanUp()
-{
-    destruct(Player);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanExecuteLookCommand()
-{
-    ExpectTrue(Player->executeCommand("look"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanExecuteLCommand()
-{
-    ExpectTrue(Player->executeCommand("l"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanExecuteExamineCommand()
-{
-    ExpectTrue(Player->executeCommand("examine"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanExecuteExaCommand()
-{
-    ExpectTrue(Player->executeCommand("exa"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanExecuteGlanceCommand()
-{
-    ExpectTrue(Player->executeCommand("glance"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void ExecuteRegexpIsNotGreedy()
-{
-    ExpectFalse(Player->executeCommand("exam"));
-    ExpectFalse(Player->executeCommand("lo"));
-    ExpectFalse(Player->executeCommand("lookat"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void ExecuteRegexpFailsIfInvalidFlagsPassed()
-{
-    ExpectFalse(Player->executeCommand("look -t bob"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void LookAtLivingShowsInventory()
+string PrepPlayerWithInventory()
 {
     Player->Race("elf");
     Player->Gender(1);
@@ -159,7 +94,193 @@ void LookAtLivingShowsInventory()
     move_object(armor, Player);
     string *unequipped = ({ "Some junk" });
 
+    return BuildInventoryString(items, unequipped);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    ignoreList += ({ "BuildInventoryString", "PrepPlayerWithInventory" });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void Setup()
+{
+    Player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Player->Name("bob");
+    Player->addCommands();
+    move_object(Player, clone_object("/lib/tests/support/services/mockPlayer.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CleanUp()
+{
+    destruct(Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRegexpIsNotGreedy()
+{
+    ExpectFalse(Player->executeCommand("exam"));
+    ExpectFalse(Player->executeCommand("lo"));
+    ExpectFalse(Player->executeCommand("lookat"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRegexpFailsIfInvalidFlagsPassed()
+{
+    ExpectFalse(Player->executeCommand("look -t bob"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookAtLivingShowsInventory()
+{
+    string expectedInventory = PrepPlayerWithInventory();
+
     ExpectTrue(Player->executeCommand("look at bob"));
     ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" + 
-        BuildInventoryString(items, unequipped), Player->caughtMessage());
+        expectedInventory, Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookAtLivingWithBriefDoesNotShowInventory()
+{
+    PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("look -b at bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookInLivingShowsInventory()
+{
+    string expectedInventory = PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("look in bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+        expectedInventory, Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookInLivingWithBriefDoesNotShowInventory()
+{
+    PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("look -b in bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LAtLivingShowsInventory()
+{
+    string expectedInventory = PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("l at bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+        expectedInventory, Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LAtLivingWithBriefDoesNotShowInventory()
+{
+    PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("l -b at bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LInLivingShowsInventory()
+{
+    string expectedInventory = PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("l in bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+        expectedInventory, Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LInLivingWithBriefDoesNotShowInventory()
+{
+    PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("l -b in bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExaLivingShowsInventory()
+{
+    string expectedInventory = PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("exa bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+        expectedInventory, Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExaLivingWithBriefDoesNotShowInventory()
+{
+    PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("exa -b bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExamineLivingShowsInventory()
+{
+    string expectedInventory = PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("examine bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+        expectedInventory, Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExamineLivingWithBriefDoesNotShowInventory()
+{
+    PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("examine -b bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GlanceAtDoesNotShowInventory()
+{
+    PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("glance at bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GlanceInDoesNotShowInventory()
+{
+    PrepPlayerWithInventory();
+
+    ExpectTrue(Player->executeCommand("glance in bob"));
+    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookAtItemShowsInventory()
+{
+    object weapon = clone_object("/lib/items/item");
+    weapon->set("name", "blah");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Player);
+    weapon->equip("blah");
+
+    ExpectTrue(Player->executeCommand("look at blah"));
+    ExpectEq("Sword of Blah\n", Player->caughtMessage());
 }

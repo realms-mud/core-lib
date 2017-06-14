@@ -163,4 +163,3 @@ public void init()
     add_action("unequip", "unwield");
     "equipment"::init();
 }
-

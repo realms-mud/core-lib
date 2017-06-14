@@ -470,7 +470,7 @@ public nomask int inventoryGetDefenseBonus(string damageType)
         registeredInventoryObjects();
     object armor = equipmentInSlot("armor");
     
-    foreach(object item : equippedItems)
+    foreach(object item in equippedItems)
     {
         if(item && objectp(item) && (isEquipment(item) || isModifierItem(item)))
         {
@@ -553,7 +553,11 @@ public nomask int inventoryGetDefendAttackBonus()
             ret += call_other(this_object(), "getSkillModifier",
                 weaponType);
         }
-        
+        if (validModifier("combatModifiers", "skill penalty"))
+        {
+            ret -= offhand->query("skill penalty");
+        }
+
         if(materialsObject())
         {
             ret += materialsObject()->getMaterialDefendAttack(offhand);
@@ -581,9 +585,9 @@ public nomask int inventoryGetAttackBonus(object weapon)
                 skillToUse);
         }
 
-        if(validModifier("combatModifiers", "skill level"))
+        if(validModifier("combatModifiers", "skill penalty"))
         {
-            ret -= weapon->query("skill level");            
+            ret -= weapon->query("skill penalty");            
         }
         
         if(materialsObject())
@@ -636,13 +640,18 @@ public nomask int inventoryGetDamageBonus(object weapon, string damageType)
                 weapon->query("weapon class");
         }
 
+        if (validModifier("combatModifiers", "skill penalty"))
+        {
+            ret -= weapon->query("skill penalty");
+        }
+
         if(materialsObject())
         {
             ret += materialsObject()->getMaterialDamage(weapon, damageType);
         }
     }
     
-    foreach(object item : equippedItems)
+    foreach(object item in equippedItems)
     {
         if(item && objectp(item) && (isEquipment(item) || isModifierItem(item)))
         {
@@ -679,7 +688,7 @@ public nomask string *getExtraDamageTypes(object weapon)
         mapping enchantments = weapon->query("enchantments");
         if(enchantments && mappingp(enchantments))
         {
-            foreach(string enchantment : m_indices(enchantments))
+            foreach(string enchantment in m_indices(enchantments))
             {
                 if(enchantment && stringp(enchantment))
                 {

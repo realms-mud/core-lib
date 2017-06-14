@@ -94,7 +94,7 @@ public nomask varargs int spellAction(int delay)
 static nomask string *validCombatModifiers()
 {
     return ({ "armor class", "defense class", "bonus attack", "soak",
-        "encumberance", "skill level", "bonus defense", "haste", "slow",
+        "encumberance", "skill penalty", "bonus defense", "haste", "slow",
         "enfeebled", "fortified", "poison", "paralysis", "disease",
         "bonus spell points", "bonus stamina points", "bonus heal hit points rate", 
         "bonus heal hit points", "bonus heal spell points", "bonus hit points",
@@ -509,7 +509,8 @@ public nomask int calculateDefendAttack()
             
             if(armorType && stringp(armorType))
             {
-                ret += skills->getSkillModifier(armorType);
+                ret += skills->getSkillModifier(armorType) -
+                    armor->query("skill penalty");
             }            
         }
         

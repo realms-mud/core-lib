@@ -1005,3 +1005,31 @@ public nomask string getMaterialDetails(object item)
     return retVal;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask int getLevelOfIdKnowledge(object equipment)
+{
+    int ret = 0;
+
+    if (this_player())
+    {
+        if(equipment->query("weapon type"))
+        {
+            ret = this_player()->getSkillModifier("weapon smithing");
+        }
+        else if(equipment->query("armor type"))
+        {
+            ret = this_player()->getSkillModifier("armorer");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getEquipmentStatistics(object equipment)
+{
+    string ret = "";
+
+    int idBonus = getLevelOfIdKnowledge(equipment);
+
+    return ret;
+}

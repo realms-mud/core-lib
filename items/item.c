@@ -28,6 +28,7 @@ protected mapping itemData = ([
 //  "bonus armor class": 2     // add 2 the the equipper's armor class  
 //  "charges":         // number of charges the item has
 //  "craftsmanship":   // The skill of the craftsman who created the item
+//  "skill penalty":   // The base skill penalty for the item
 //  "destruct method": // function existing in item that is called on destruct
 //  "enchantments": ([ // adds damage of <key> type to attacks by user
 //      "fire": 20     // an example that adds 20 fire damage while equipped
@@ -226,6 +227,7 @@ public varargs int set(string element, mixed data)
                 }
                 case "charges":
                 case "craftsmanship":
+                case "skill penalty":
                 {
                     if(!data || !intp(data) || (data < 1))
                     {
@@ -428,25 +430,38 @@ public string short()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string LongDescription()
+protected string itemStatistics()
 {
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string long()
+{    
     string description = "";
     if (query("long"))
     {
         description += query("long");
     }
+    else
+    {
+        description += query("short");
+    }
+
     if (query("identified") && query("additional long"))
     {
-        description += sprintf(" %s\n", query("additional long"));
+        description += sprintf(" %s", query("additional long"));
     }
-    //TODO: Add item statistics - enchantments, bonuses, etc.    
-    return description;
-}
 
-/////////////////////////////////////////////////////////////////////////////
-public void long()
-{    
-    printf("%s", LongDescription());
+    string statistics = itemStatistics();
+    if(statistics != "")
+    {
+        description += "\n" + statistics;
+    }
+
+    description += "\n";
+
+    return description;
 }
 
 /////////////////////////////////////////////////////////////////////////////

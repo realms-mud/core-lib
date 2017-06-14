@@ -428,20 +428,11 @@ void InventoryGetEncumberanceReturnsCorrectValue()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void InventoryGetDefendAttackBonusReturnsCorrectValue()
+void InventoryGetDefendAttackAppliesOffhandSkillPenalty()
 {
     Inventory->addSkillPoints(100);
     Inventory->Str(40);
     Inventory->advanceSkill("shield", 6);
-
-    object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("defense class", 2);
-    weapon->set("bonus parry", 1);
-    weapon->set("bonus dodge", 1);
-    weapon->set("weapon type", "long sword");
-    weapon->set("equipment locations", OnehandedWeapon);
-    move_object(weapon, Inventory);
 
     object shield = clone_object("/lib/items/weapon");
     shield->set("name", "shield");
@@ -452,32 +443,13 @@ void InventoryGetDefendAttackBonusReturnsCorrectValue()
     shield->set("weapon type", "shield");
     move_object(shield, Inventory);
 
-    object armor = clone_object("/lib/items/armor");
-    armor->set("name", "stuff");
-    armor->set("bonus dodge", 2);
-    armor->set("armor class", 5);
-    armor->set("armor type", "chainmail");
-    armor->set("equipment locations", Armor);
-    move_object(armor, Inventory);
-
-    object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("bonus parry", 3);
-    modifier->set("bonus shield", 5);
-
     ExpectEq(0, Inventory->inventoryGetDefendAttackBonus(), "initial defense bonus");
 
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(4, Inventory->inventoryGetDefendAttackBonus(), "defense with weapon");
-
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(15, Inventory->inventoryGetDefendAttackBonus(), "defense with shield");
+    ExpectEq(11, Inventory->inventoryGetDefendAttackBonus(), "defense with shield");
 
-    ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(17, Inventory->inventoryGetDefendAttackBonus(), "defense with weapon and armor");
-
-    ExpectEq(1, modifier->set("registration list", ({ Inventory })), "registration list can be set");
-    ExpectEq(22, Inventory->inventoryGetDefendAttackBonus(), "defense with everything");
+    shield->set("skill penalty", 2);
+    ExpectEq(9, Inventory->inventoryGetDefendAttackBonus(), "defense with skill penalty");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -589,6 +561,31 @@ void InventoryGetAttackBonusReturnsPenaltyWhenDualWielding()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void InventoryGetAttackBonusAppliesSkillPenalty()
+{
+    Inventory->addSkillPoints(100);
+    Inventory->Str(16);
+    Inventory->Dex(16);
+    Inventory->advanceSkill("long sword", 6);
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("weapon class", 8);
+    weapon->set("material", "mithril");
+    weapon->set("weapon type", "long sword");
+    weapon->set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Inventory);
+
+    ExpectEq(0, Inventory->inventoryGetAttackBonus(weapon), "initial attack bonus");
+
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectEq(6, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
+
+    weapon->set("skill penalty", 2);
+    ExpectEq(4, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void InventoryGetDamageBonusReturnsCorrectValue()
 {
     Inventory->addSkillPoints(100);
@@ -640,6 +637,30 @@ void InventoryGetDamageBonusReturnsCorrectValue()
 
     weapon->set("enchantments", (["physical": 5]));
     ExpectEq(25, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with enchantments");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InventoryGetDamageBonusHandlesSkillPenalty()
+{
+    Inventory->addSkillPoints(100);
+    Inventory->Str(16);
+    Inventory->advanceSkill("long sword", 6);
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("weapon class", 8);
+    weapon->set("material", "mithril");
+    weapon->set("weapon type", "long sword");
+    weapon->set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Inventory);
+
+    ExpectEq(0, Inventory->inventoryGetDamageBonus(weapon, "physical"), "initial damage bonus");
+
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectEq(14, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with weapon");
+
+    weapon->set("skill penalty", 2);
+    ExpectEq(12, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with skill penalty");
 }
 
 /////////////////////////////////////////////////////////////////////////////

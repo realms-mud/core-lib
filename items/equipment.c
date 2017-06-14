@@ -636,4 +636,14 @@ public void init()
     item::init();
 }
 
-
+/////////////////////////////////////////////////////////////////////////////
+protected string itemStatistics()
+{
+    string ret = "";
+    object itemTypes = load_object(MaterialsBlueprint);
+    if (itemTypes && objectp(itemTypes))
+    {
+        ret = itemTypes->getEquipmentStatistics(this_object());
+    }
+    return ret;
+}
