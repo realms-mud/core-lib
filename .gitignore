@@ -27,3 +27,12 @@
 *.exe
 *.out
 *.app
+
+# Other
+*.sln
+.vs
+Debug
+*.vcxproj
+*.vcxproj.*
+*.db
+*.opendb
