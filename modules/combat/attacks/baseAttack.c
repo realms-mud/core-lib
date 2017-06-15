@@ -1,3 +1,7 @@
+//*****************************************************************************
+// Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
 
 private string *hitDictionary = 0;
 private string *simileDictionary = 0;
@@ -9,11 +13,13 @@ private int toHit;
 private int damage;
 private int initialized = 0;
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isInitialized()
 {
     return initialized;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int setDamageType(string dmgType)
 {
     int ret = 0;
@@ -26,11 +32,13 @@ protected nomask int setDamageType(string dmgType)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getDamageType()
 {
     return damageType;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int attackTypeCalculateAttack()
 {
     int ret = 0;
@@ -45,11 +53,13 @@ public nomask int attackTypeCalculateAttack()
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int attackTypeCalculateDamage()
 {
     return damage;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setAttackValues(int newDamage, int newHit)
 {
     // Technically, this isn't safe as there's only one object of this type per
@@ -61,6 +71,7 @@ public nomask void setAttackValues(int newDamage, int newHit)
     toHit = newHit;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getMessage(int damageInflicted)
 {
     string *messages = ({ });
@@ -102,16 +113,19 @@ public nomask string getMessage(int damageInflicted)
     return messages[random(sizeof(messages))];            
 }
                 
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int addHitDictionary(string *dictionary)
 {
     hitDictionary = dictionary + ({ });
 }
 
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int addSimileDictionary(string *dictionary)
 {
     simileDictionary = dictionary + ({ });
 }
 
+/////////////////////////////////////////////////////////////////////////////
 protected nomask varargs int addHitMessage(string message, string damage)
 {
     int ret = 0;
@@ -145,11 +159,13 @@ protected nomask varargs int addHitMessage(string message, string damage)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int addMissMessage(string message)
 {
     return addHitMessage(message, "miss");
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getRandomSimile()
 {
     string ret = "";
@@ -160,6 +176,7 @@ public nomask string getRandomSimile()
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getRandomVerb()
 {
     string ret = "";
@@ -171,6 +188,7 @@ public nomask string getRandomVerb()
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 public void init()
 {
     initialized = 1;

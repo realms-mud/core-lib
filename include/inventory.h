@@ -1,11 +1,6 @@
 //*****************************************************************************
-// File Name: inventory.h
-//
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-//
-// Description: TBD
-//
 //*****************************************************************************
 #ifndef inventory_h
 #define inventory_h
