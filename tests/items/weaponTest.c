@@ -213,3 +213,18 @@ void CorrectDamageTypeReturnedForQueryDamageType()
 
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void BlueprintCanBeSet()
+{
+    ExpectTrue(Weapon->set("blueprint", "long sword"), "blueprint can be set");
+    ExpectEq("long sword", Weapon->query("blueprint"), "'long sword' blueprint was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InvalidBlueprintCannotBeSet()
+{
+    string expected = "*Weapon: The 'blueprint' element must be a string as defined in the keys of the weaponBlueprints mapping in /lib/dictionaries/materialsDictionary.c.\n";
+
+    string err = catch (Weapon->set("blueprint", "blah"));
+    ExpectEq(expected, err, "blueprint cannot be set");
+}

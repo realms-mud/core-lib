@@ -7,6 +7,7 @@
 //
 //*****************************************************************************
 #include "/lib/include/inventory.h"
+#include "/lib/include/itemFormatters.h"
 
 private nosave string EquipmentBlueprint = "lib/items/equipment.c";
 
@@ -574,7 +575,7 @@ private nosave mapping materials =
     ])
 ]);
 
-private nosave mapping itemTypes = ([
+private nosave mapping weaponBlueprints = ([
     "long sword": ([
         "type": "one-handed weapon",
         "damage type": "slash",
@@ -585,61 +586,296 @@ private nosave mapping itemTypes = ([
         "default attack": 5,
         "default encumberance": 5
     ]),
+    "broad sword": ([
+        "type": "one-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 15,
+        "skill to use": "long sword",
+        "default wc": 10,
+        "default dc": 4,
+        "default attack": 4,
+        "default encumberance": 6
+    ]),
+    "rapier": ([
+        "type": "one-handed weapon",
+        "damage type": "thrust",
+        "skill to craft": 15,
+        "skill to use": "long sword",
+        "default wc": 6,
+        "default dc": 2,
+        "default attack": 8,
+        "default encumberance": 3
+    ]),
+    "katana": ([
+        "type": "one-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 25,
+        "skill to use": "hand and a half sword",
+        "default wc": 10,
+        "default dc": 3,
+        "default attack": 10,
+        "default encumberance": 4
+    ]),
+    "scimitar": ([
+        "type": "one-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 10,
+        "skill to use": "long sword",
+        "default wc": 8,
+        "default dc": 2,
+        "default attack": 5,
+        "default encumberance": 4
+    ]),
+    "cutlass": ([
+        "type": "one-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 12,
+        "skill to use": "long sword",
+        "default wc": 8,
+        "default dc": 3,
+        "default attack": 5,
+        "default encumberance": 4
+    ]),
+    "sabre": ([
+        "type": "one-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 15,
+        "skill to use": "long sword",
+        "default wc": 8,
+        "default dc": 4,
+        "default attack": 5,
+        "default encumberance": 5
+    ]),
+    "spatha": ([
+        "type": "one-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 15,
+        "skill to use": "long sword",
+        "default wc": 10,
+        "default dc": 2,
+        "default attack": 5,
+        "default encumberance": 5
+    ]),
+    "gladius": ([
+        "type": "one-handed weapon",
+        "damage type": "thrust",
+        "skill to craft": 10,
+        "skill to use": "short sword",
+        "default wc": 6,
+        "default dc": 4,
+        "default attack": 4,
+        "default encumberance": 3
+    ]),
+    "harpe": ([
+        "type": "one-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 15,
+        "skill to use": "short sword",
+        "default wc": 6,
+        "default dc": 5,
+        "default attack": 5,
+        "default encumberance": 3
+    ]),
+    "wakisashi": ([
+        "type": "one-handed weapon",
+        "damage type": "thrust",
+        "skill to craft": 20,
+        "skill to use": "short sword",
+        "default wc": 6,
+        "default dc": 6,
+        "default attack": 6,
+        "default encumberance": 3
+    ]),
+    "machete": ([
+        "type": "one-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 5,
+        "skill to use": "short sword",
+        "default wc": 5,
+        "default dc": 2,
+        "default attack": 4,
+        "default encumberance": 2
+    ]),
+    "dagger": ([
+        "type": "one-handed weapon",
+        "damage type": "thrust",
+        "skill to craft": 5,
+        "skill to use": "dagger",
+        "default wc": 4,
+        "default dc": 2,
+        "default attack": 5,
+        "default encumberance": 1
+    ]),
+    "dirk": ([
+        "type": "one-handed weapon",
+        "damage type": "thrust",
+        "skill to craft": 10,
+        "skill to use": "dagger",
+        "default wc": 4,
+        "default dc": 2,
+        "default attack": 6,
+        "default encumberance": 1
+    ]),
+    "stiletto": ([
+        "type": "one-handed weapon",
+        "damage type": "thrust",
+        "skill to craft": 10,
+        "skill to use": "dagger",
+        "default wc": 5,
+        "default dc": 0,
+        "default attack": 6,
+        "default encumberance": 1
+    ]),
+    "claymore": ([
+        "type": "two-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 25,
+        "skill to use": "two-handed sword",
+        "default wc": 16,
+        "default dc": 4,
+        "default attack": 5,
+        "default encumberance": 12
+    ]),
+    "great sword": ([
+        "type": "two-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 20,
+        "skill to use": "two-handed sword",
+        "default wc": 15,
+        "default dc": 4,
+        "default attack": 5,
+        "default encumberance": 10
+    ]),
+    "odachi": ([
+        "type": "two-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 35,
+        "skill to use": "two-handed sword",
+        "default wc": 18,
+        "default dc": 4,
+        "default attack": 6,
+        "default encumberance": 10
+    ]),
+    "bastard sword": ([
+        "type": "one-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 20,
+        "skill to use": "hand and a half sword",
+        "default wc": 12,
+        "default dc": 3,
+        "default attack": 5,
+        "default encumberance": 7
+    ]),
+    "sword staff": ([
+        "type": "two-handed weapon",
+        "damage type": "slash",
+        "skill to craft": 25,
+        "skill to use": "pole arm",
+        "default wc": 15,
+        "default dc": 4,
+        "default attack": 5,
+        "default encumberance": 15
+    ]),
+    "staff": ([
+        "type": "two-handed weapon",
+        "damage type": "bludgeon",
+        "skill to craft": 1,
+        "skill to use": "staff",
+        "default wc": 4,
+        "default dc": 2,
+        "default attack": 4,
+        "default encumberance": 2
+    ]),
+    "shield staff": ([
+        "type": "two-handed weapon",
+        "damage type": "bludgeon",
+        "skill to craft": 8,
+        "skill to use": "staff",
+        "default wc": 4,
+        "default dc": 6,
+        "default attack": 2,
+        "default encumberance": 5
+    ]),
+    "shield": ([
+        "type": "one-handed weapon",
+        "damage type": "bludgeon",
+        "skill to craft": 5,
+        "skill to use": "shield",
+        "default wc": 1,
+        "default dc": 5,
+        "default attack": 0,
+        "default encumberance": 5
+    ]),
+
+]);
+
+private nosave mapping armorBlueprints = ([
     "chainmail": ([
         "type": "armor",
         "skill to craft": 10,
         "skill to use": "chainmail",
         "default ac": 5,
+        "default location": Armor,
         "default encumberance": 10
     ]),
     "gloves": ([
         "type": "armor",
         "skill to craft": 5,
+        "default location": Gloves,
         "default encumberance": 1
     ]),
     "helmet": ([
         "type": "armor",
         "skill to craft": 5,
+        "default location": Helmet,
         "default encumberance": 1
     ]),
     "boots": ([
         "type": "armor",
         "skill to craft": 5,
+        "default location": Boots,
         "default encumberance": 1
     ]),
     "ring": ([
         "type": "armor",
         "skill to craft": 5,
+        "default location": Ring,
         "default encumberance": 1
     ]),
     "cloak": ([
         "type": "armor",
         "skill to craft": 5,
+        "default location": Cloak,
         "default encumberance": 1
     ]),
     "amulet": ([
         "type": "armor",
         "skill to craft": 5,
+        "default location": Amulet,
         "default encumberance": 1
     ]),
     "belt": ([
         "type": "armor",
         "skill to craft": 5,
+        "default location": Belt,
         "default encumberance": 1
     ]),
     "arm greaves": ([
         "type": "armor",
         "skill to craft": 5,
+        "default location": ArmGreaves,
         "default encumberance": 1
     ]),
     "leg greaves": ([
         "type": "armor",
         "skill to craft": 5,
+        "default location": LegGreaves,
         "default encumberance": 1
     ]),
     "bracers": ([
         "type": "armor",
         "skill to craft": 15,
+        "default location": Bracers,
         "default encumberance": 1
     ])
 ]);
@@ -757,13 +993,23 @@ public nomask string getMaterialTypeForMaterial(string material)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isValidEquipmentType(string type)
+public nomask int isValidWeaponBlueprint(string type)
 {
-    return (itemTypes && mappingp(itemTypes) &&
-            member(itemTypes, type) &&
-            member(itemTypes[type], "skill to craft") &&
-            member(itemTypes[type], "type") &&
-            member(itemTypes[type], "default encumberance"));
+    return (weaponBlueprints && mappingp(weaponBlueprints) &&
+            member(weaponBlueprints, type) &&
+            member(weaponBlueprints[type], "skill to craft") &&
+            member(weaponBlueprints[type], "type") &&
+            member(weaponBlueprints[type], "default encumberance"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidArmorBlueprint(string type)
+{
+    return (armorBlueprints && mappingp(armorBlueprints) &&
+        member(armorBlueprints, type) &&
+        member(armorBlueprints[type], "skill to craft") &&
+        member(armorBlueprints[type], "type") &&
+        member(armorBlueprints[type], "default encumberance"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -800,10 +1046,25 @@ public nomask int isValidBonus(string bonus)
 public nomask int getDefaultEquipmentLocations(string type)
 {
     int ret = 0;
-    if(isValidEquipmentType(type))
-    {
+
         //TODO
-    }    
+  
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int getBlueprintModifier(object item, string type)
+{
+    int ret = 0;
+    string itemType = item->query("blueprint");
+    if (isValidWeaponBlueprint(itemType))
+    {
+        ret = weaponBlueprints[itemType][type];
+    }
+    else if (isValidArmorBlueprint(itemType))
+    {
+        ret = armorBlueprints[itemType][type];
+    }
     return ret;
 }
 
@@ -822,11 +1083,7 @@ public nomask int getMaterialCraftsmanshipBonus(object item)
             retVal -= materials[material]["crafting skill required"];
         }
         
-        string itemType = item->query("type");
-        if(isValidEquipmentType(itemType))
-        {
-            retVal -= itemTypes[itemType]["skill to craft"];
-        }
+        retVal -= getBlueprintModifier(item, "skill to craft");
     }
 
     return (retVal > 0) ? retVal / 5 : 0;
@@ -847,16 +1104,11 @@ public nomask int getMaterialEncumberance(object item)
                 retVal = materials[material]["encumberance"];
             }
         }
-        
-        string itemType = item->query("armor type") || item->query("weapon type");
-        if(isValidEquipmentType(itemType))
-        {
-            retVal += itemTypes[itemType]["default encumberance"];
-        }
-        
+        retVal += getBlueprintModifier(item, "default encumberance");
         retVal -= getMaterialCraftsmanshipBonus(item);
     }
-    return retVal;
+
+    return  (retVal > 0) ? retVal : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -890,10 +1142,10 @@ public nomask string *getMaterialDamageType(object weapon)
     string *ret;
     if (isValidItem(weapon))
     {
-        string weaponType = weapon->query("weapon type");
-        if (isValidWeaponType(weaponType) && member(itemTypes, weaponType))
+        string weaponType = weapon->query("blueprint");
+        if (isValidWeaponBlueprint(weaponType))
         {
-            ret = ({ itemTypes[weaponType]["damage type"] });
+            ret = ({ weaponBlueprints[weaponType]["damage type"] });
         }
         else
         {
@@ -951,10 +1203,9 @@ public nomask int getMaterialDefense(object item, string type)
 
             int ac = item->query("armor class");
 
-            string itemType = item->query("armor type") || item->query("weapon type");
-            if(!ac && isValidEquipmentType(itemType))
+            if(!ac)
             {
-                ac = itemTypes[itemType]["default ac"];
+                ac = getBlueprintModifier(item, "default ac");
             }
             retVal += ac;
         }
@@ -1006,6 +1257,54 @@ public nomask string getMaterialDetails(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public varargs string applyMaterialQualityToText(object equipment, string text)
+{
+    string ret = NormalEquipment;
+    string qualityText = "typical for its type";
+
+    if (getMaterialCraftsmanshipBonus(equipment) > 4)
+    {
+        ret = Masterwork;
+        if(!text)
+        {
+            qualityText = "a masterwork item";
+        }
+    }
+    else if (equipment->query("enchanted") > 4)
+    {
+        ret = StrongEnchantment;
+        if (!text)
+        {
+            qualityText = "enchanted with a powerful aura";
+        }
+    }
+    else if (equipment->query("enchanted"))
+    {
+        ret = Enchanted;
+        if (!text)
+        {
+            qualityText = "enchanted";
+        }
+    }
+    else if (getMaterialCraftsmanshipBonus(equipment))
+    {
+        ret = WellCrafted;
+        if (!text)
+        {
+            qualityText = "a well-crafted item";
+        }
+    }
+
+    if(!text)
+    {
+        text = sprintf("This %s is %s.\n", 
+            equipment->query("blueprint") || "item",
+            qualityText);
+    }
+    return sprintf(ret, text);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int getLevelOfIdKnowledge(object equipment)
 {
     int ret = 0;
@@ -1027,7 +1326,7 @@ private nomask int getLevelOfIdKnowledge(object equipment)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getEquipmentStatistics(object equipment)
 {
-    string ret = "";
+    string ret = applyMaterialQualityToText(equipment);
 
     int idBonus = getLevelOfIdKnowledge(equipment);
 

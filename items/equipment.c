@@ -88,7 +88,6 @@ private nosave string SkillsBlueprint = "/lib/dictionaries/skillsDictionary.c";
 //      "fire": 10
 //  ]),
 //  "short":           // short description
-//  "type":            // Type as defined in itemTypes from materials.c
 //  "unequip message": // Message displayed when the item is unequipped
 //  "unequip method":  // Method existing in item that is called on unequip
 //  "value":           // Value / base buy cost of the item
@@ -354,29 +353,6 @@ private nomask int prerequisitesMet(object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkItemType(string data)
-{
-    int ret = 0;
-    object materials = loadBlueprint(MaterialsBlueprint);
-    if(data && stringp(data) && materials && objectp(materials))
-    {
-        ret = materials->isValidEquipmentType(data);
-    }
-    
-    if(ret)
-    {
-        itemData["type"] = data;
-    }
-    else
-    {
-        raise_error(sprintf("Equipment: The 'type' element must be"
-            " a string as defined in the keys of the itemTypes mapping in %s.\n",
-            MaterialsBlueprint));
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public varargs int set(string element, mixed data)
 {
     int ret = 0;
@@ -454,10 +430,11 @@ public varargs int set(string element, mixed data)
                     ret = checkValidPrerequisites(data);
                     break;
                 }
-                case "type":
+                case "blueprint":
                 {
-                    ret = checkItemType(data);
-                    break;
+                    raise_error("Equipment: The blueprint can only be set from "
+                        "a derived type.\n");
+                            break;
                 }
                 default:
                 {

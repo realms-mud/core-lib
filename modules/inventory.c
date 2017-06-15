@@ -1,16 +1,11 @@
 //*****************************************************************************
-// Class: inventory
-// File Name: inventory.c
-//
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-//
-// Description: TBD
-//
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
 
 #include "/lib/include/inventory.h"
+#include "/lib/include/itemFormatters.h"
 
 private int money;
 
@@ -18,16 +13,10 @@ private nosave string ArmorBlueprint = "lib/items/armor.c";
 private nosave string WeaponBlueprint = "lib/items/weapon.c";
 private nosave string ModifierBlueprint = "lib/items/modifierObject.c";
 private nosave int weight = 0;
- 
-            
+           
 private nosave string Cyan = "[0;36m%s[0m";
 private nosave string BoldBlack = "[0;30;1m%s[0m";
-private nosave string BoldWhite = "[0;37;1m%s[0m";
-private nosave string BoldMagenta = "[0;35;1m%s[0m";
 private nosave string Red = "[0;31m%s[0m";
-private nosave string Green = "[0;32m%s[0m";
-private nosave string BoldGreen = "[0;32;1m%s[0m";
-private nosave string Magenta = "[0;35m%s[0m";
 
 private nosave mapping itemRegistry = 
 ([
@@ -821,25 +810,12 @@ private nomask string colorizeText(object item, int verbose)
 
     if (item && item->short())
     {
-        string formatter = BoldWhite;
+        string formatter = NormalEquipment;
 
-        if (materialsObject() && (materialsObject()->getMaterialCraftsmanshipBonus(item) > 4))
+        if (materialsObject())
         {
-            formatter = BoldGreen;
+            ret = materialsObject()->applyMaterialQualityToText(item, item->short());
         }
-        else if (materialsObject() && (materialsObject()->getMaterialCraftsmanshipBonus(item)))
-        {
-            formatter = Green;
-        }
-        else if (item->query("enchanted") > 4)
-        {
-            formatter = BoldMagenta;
-        }
-        else if (item->query("enchanted"))
-        {
-            formatter = Magenta;
-        }
-        ret = sprintf(formatter, item->short());
 
         if (verbose)
         {

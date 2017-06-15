@@ -71,4 +71,20 @@ void InvalidArmorTypeCannotBeSet()
     ExpectEq(expected, err, "armor type cannot be set");
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void BlueprintCanBeSet()
+{
+    ExpectTrue(Armor->set("blueprint", "chainmail"), "blueprint can be set");
+    ExpectEq("chainmail", Armor->query("blueprint"), "'chainmail' blueprint was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InvalidBlueprintCannotBeSet()
+{
+    string expected = "*Armor: The 'blueprint' element must be a string as defined in the keys of the armorBlueprints mapping in /lib/dictionaries/materialsDictionary.c.\n";
+
+    string err = catch (Armor->set("blueprint", "blah"));
+    ExpectEq(expected, err, "blueprint cannot be set");
+}
+
 

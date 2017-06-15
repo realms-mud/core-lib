@@ -421,7 +421,7 @@ void InventoryGetEncumberanceReturnsCorrectValue()
     ExpectEq(0, Inventory->inventoryGetEncumberance(), "encumberance with everything");
 
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(5, Inventory->inventoryGetEncumberance(), "encumberance with shield");
+    ExpectEq(10, Inventory->inventoryGetEncumberance(), "encumberance with shield");
 
     Inventory->advanceSkill("shield", 8);
     ExpectEq(0, Inventory->inventoryGetEncumberance(), "encumberance with shield and skill at 8");
@@ -446,10 +446,10 @@ void InventoryGetDefendAttackAppliesOffhandSkillPenalty()
     ExpectEq(0, Inventory->inventoryGetDefendAttackBonus(), "initial defense bonus");
 
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(11, Inventory->inventoryGetDefendAttackBonus(), "defense with shield");
+    ExpectEq(10, Inventory->inventoryGetDefendAttackBonus(), "defense with shield");
 
     shield->set("skill penalty", 2);
-    ExpectEq(9, Inventory->inventoryGetDefendAttackBonus(), "defense with skill penalty");
+    ExpectEq(8, Inventory->inventoryGetDefendAttackBonus(), "defense with skill penalty");
 }
 
 /////////////////////////////////////////////////////////////////////////////

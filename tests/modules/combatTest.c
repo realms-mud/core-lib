@@ -607,11 +607,12 @@ void CalculateDefendAttackUsesCorrectShieldData()
 
     ExpectEq(4, Attacker->calculateDefendAttack(), "nothing is equipped");
 
+    // If your skill can't overcome the encumberance, it's a bad thing.
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(8, Attacker->calculateDefendAttack(), "shield of dc 1 with skill of 1 equipped");
+    ExpectEq(3, Attacker->calculateDefendAttack(), "shield of dc 1 with skill of 1 equipped");
 
     Attacker->advanceSkill("shield", 5);
-    ExpectEq(14, Attacker->calculateDefendAttack(), "shield skill increased");
+    ExpectEq(12, Attacker->calculateDefendAttack(), "shield skill increased");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -721,20 +722,20 @@ void CalculateDefendAttackUsesCorrectInventoryData()
     ExpectEq(5, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped and skill of 9");
 
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(11, Attacker->calculateDefendAttack(), "shield of dc 1 with skill of 1 equipped");
+    ExpectEq(4, Attacker->calculateDefendAttack(), "shield of dc 1 with skill of 1 equipped");
     Attacker->advanceSkill("shield", 5);
-    ExpectEq(17, Attacker->calculateDefendAttack(), "shield skill increased");
+    ExpectEq(13, Attacker->calculateDefendAttack(), "shield skill increased");
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(-9, Attacker->calculateDefendAttack(), "armor equipped");
+    ExpectEq(-17, Attacker->calculateDefendAttack(), "armor equipped");
 
     Attacker->advanceSkill("chainmail", 1);
-    ExpectEq(13, Attacker->calculateDefendAttack(), "chainmail skill increased to 1");
+    ExpectEq(5, Attacker->calculateDefendAttack(), "chainmail skill increased to 1");
     Attacker->advanceSkill("chainmail", 10);
-    ExpectEq(23, Attacker->calculateDefendAttack(), "chainmail skill increased by 10");
+    ExpectEq(15, Attacker->calculateDefendAttack(), "chainmail skill increased by 10");
 
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(30, Attacker->calculateDefendAttack(), "modifier object added");
+    ExpectEq(24, Attacker->calculateDefendAttack(), "modifier object added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -844,10 +845,10 @@ void CalculateAttackWhileWearingArmorAppliesArmorModifiers()
     ExpectEq(12, Attacker->calculateAttack(Target, weapon, 1), "weapon equipped");
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(-7, Attacker->calculateAttack(Target, weapon, 1), "armor equipped");
+    ExpectEq(-8, Attacker->calculateAttack(Target, weapon, 1), "armor equipped");
 
     Attacker->advanceSkill("chainmail", 1);
-    ExpectEq(4, Attacker->calculateAttack(Target, weapon, 1), "armor equipped");
+    ExpectEq(3, Attacker->calculateAttack(Target, weapon, 1), "armor skill advanced");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -878,26 +879,26 @@ void CalculateAttackUsesCorrectInventoryData()
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     // The sword is "masterwork" because the skill greatly exceeded that required.
     // This accounts for the bonus as the attack would otherwise be -5.
-    ExpectEq(7, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
+    ExpectEq(5, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
 
     Attacker->advanceSkill("long sword", 10);
-    ExpectEq(12, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped and skill of 11");
+    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped and skill of 11");
 
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(12, Attacker->calculateAttack(Target, weapon, 1), "shield with skill of 1 equipped");
+    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "shield with skill of 1 equipped");
     Attacker->advanceSkill("shield", 5);
-    ExpectEq(12, Attacker->calculateAttack(Target, weapon, 1), "shield skill increased");
+    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "shield skill increased");
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(5, Attacker->calculateAttack(Target, weapon, 1), "armor equipped");
+    ExpectEq(-6, Attacker->calculateAttack(Target, weapon, 1), "armor equipped");
 
     Attacker->advanceSkill("chainmail", 1);
-    ExpectEq(12, Attacker->calculateAttack(Target, weapon, 1), "chainmail skill increased to 1");
+    ExpectEq(5, Attacker->calculateAttack(Target, weapon, 1), "chainmail skill increased to 1");
     Attacker->advanceSkill("chainmail", 10);
-    ExpectEq(12, Attacker->calculateAttack(Target, weapon, 1), "chainmail skill increased by 10");
+    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "chainmail skill increased by 10");
 
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1), "modifier object added");
+    ExpectEq(17, Attacker->calculateAttack(Target, weapon, 1), "modifier object added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1053,10 +1054,10 @@ void CalculateSoakDamageCorrectlyAppliesWhenWearingArmor()
     ExpectEq(10, Attacker->calculateSoakDamage("physical"), "armor equipped");
 
     armor->set("craftsmanship", 20);
-    ExpectEq(11, Attacker->calculateSoakDamage("physical"), "craftsmanship bonus");
+    ExpectEq(10, Attacker->calculateSoakDamage("physical"), "craftsmanship bonus");
 
     ExpectTrue(gloves->equip("gloves"), "glove equip called");
-    ExpectEq(12, Attacker->calculateSoakDamage("physical"), "gloves equipped");
+    ExpectEq(11, Attacker->calculateSoakDamage("physical"), "gloves equipped");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1106,7 +1107,7 @@ void CalculateSoakDamageCorrectlyAppliesForInventory()
     ExpectTrue(armor->equip("stuff"), "armor equip called");
     ExpectEq(10, Attacker->calculateSoakDamage("physical"), "armor equipped");
 
-    armor->set("craftsmanship", 20);
+    armor->set("craftsmanship", 30);
     ExpectEq(11, Attacker->calculateSoakDamage("physical"), "craftsmanship bonus");
 
     ExpectTrue(gloves->equip("gloves"), "glove equip called");

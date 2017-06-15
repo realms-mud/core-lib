@@ -330,25 +330,12 @@ void CursedInformationWithoutEquipMessageThrowsError()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanSetTypeOnEquipment()
+void CannotSetBlueprint()
 {
-    // The valid equipment types are defined in /lib/dictionaries/materialsDictionary
-    // and is comprehensively tested there. This is just a small sample to prove that
-    // the type check works properly.
-    ExpectTrue(Equipment->set("type", "chainmail"), "type can be set");
-    ExpectEq("chainmail", Equipment->query("type"), "'chainmail' type was returned");
+    string expected = "*Equipment: The blueprint can only be set from a derived type.\n";
 
-    ExpectTrue(Equipment->set("type", "long sword"), "type can be set");
-    ExpectEq("long sword", Equipment->query("type"), "'long sword' type was returned");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CannotSetInvalidType()
-{
-    string expected = "*Equipment: The 'type' element must be a string as defined in the keys of the itemTypes mapping in /lib/dictionaries/materialsDictionary.c.\n";
-
-    string err = catch (Equipment->set("type", "kitten"));
-    ExpectEq(expected, err, "type must be valid");
+    string err = catch (Equipment->set("blueprint", "long sword"));
+    ExpectEq(expected, err, "blueprint cannot be set");
 }
 
 /////////////////////////////////////////////////////////////////////////////

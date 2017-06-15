@@ -24,9 +24,37 @@ public nomask mixed query(string element)
             ret = itemTypes->getMaterialDamageType(this_object());
         }
     }
+    else if((element == "blueprint") && !member(itemData, "blueprint"))
+    {
+        ret = "equipment"::query("weapon type");
+    }
     else
     {
         ret = "equipment"::query(element);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkBlueprint(string data)
+{
+    int ret = 0;
+    object materials = loadBlueprint(ItemTypesBlueprint);
+    if (data && stringp(data) && materials && objectp(materials))
+    {
+        ret = materials->isValidWeaponBlueprint(data);
+    }
+
+    if (ret)
+    {
+        itemData["blueprint"] = data;
+    }
+    else
+    {
+        raise_error(sprintf("Weapon: The 'blueprint' element must be"
+            " a string as defined in the keys of the weaponBlueprints"
+            " mapping in %s.\n",
+            ItemTypesBlueprint));
     }
     return ret;
 }
@@ -85,6 +113,11 @@ public nomask varargs int set(string element, mixed data)
                         "must be a string as defined in the keys of the "
                         "itemTypes mapping in %s.\n", ItemTypesBlueprint));          
                 }
+                break;
+            }
+            case "blueprint":
+            {
+                ret = checkBlueprint(data);
                 break;
             }
             default:

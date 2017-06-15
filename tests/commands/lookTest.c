@@ -4,6 +4,7 @@
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
 #include "/lib/include/inventory.h"
+#include "/lib/include/itemFormatters.h"
 
 object Player;
 
@@ -275,12 +276,17 @@ void GlanceInDoesNotShowInventory()
 /////////////////////////////////////////////////////////////////////////////
 void LookAtItemShowsInventory()
 {
-    object weapon = clone_object("/lib/items/item");
+    object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
+    weapon->set("blueprint", "long sword");
+    weapon->set("craftsmanship", 130);
     weapon->set("short", "Sword of Blah");
     move_object(weapon, Player);
     weapon->equip("blah");
 
     ExpectTrue(Player->executeCommand("look at blah"));
-    ExpectEq("Sword of Blah\n", Player->caughtMessage());
+    ExpectEq("Sword of Blah\n" + 
+             sprintf(Masterwork, "This long sword is a masterwork item.\n") +
+             "\n",
+        Player->caughtMessage());
 }

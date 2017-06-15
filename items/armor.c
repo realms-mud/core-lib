@@ -15,7 +15,40 @@ private nosave string ItemTypesBlueprint = "/lib/dictionaries/materialsDictionar
 /////////////////////////////////////////////////////////////////////////////
 public nomask mixed query(string element)
 {
-    return "equipment"::query(element);
+    int ret = 0;
+    if((element == "blueprint") && !member(itemData, "blueprint"))
+    {
+        ret = "equipment"::query("armor type");
+    }
+    else
+    {
+        ret = "equipment"::query(element);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkBlueprint(string data)
+{
+    int ret = 0;
+    object materials = loadBlueprint(ItemTypesBlueprint);
+    if (data && stringp(data) && materials && objectp(materials))
+    {
+        ret = materials->isValidArmorBlueprint(data);
+    }
+
+    if (ret)
+    {
+        itemData["blueprint"] = data;
+    }
+    else
+    {
+        raise_error(sprintf("Armor: The 'blueprint' element must be"
+            " a string as defined in the keys of the armorBlueprints"
+            " mapping in %s.\n",
+            ItemTypesBlueprint));
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -56,6 +89,11 @@ public nomask varargs int set(string element, mixed data)
                         "must be a string as defined in the keys of the "
                         "itemTypes mapping in %s.\n", ItemTypesBlueprint));          
                 }
+                break;
+            }
+            case "blueprint":
+            {
+                ret = checkBlueprint(data);
                 break;
             }
             default:

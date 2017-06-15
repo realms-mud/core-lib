@@ -53,7 +53,6 @@ protected mapping itemData = ([
 //      "fire": 10
 //  ]),
 //  "short":           // short description
-//  "type":            // Type as defined in itemTypes from materials.c
 //  "value":           // Value / base buy cost of the item
 //  "weight":          // weight of the item - separate from encumberance
 ]);
