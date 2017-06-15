@@ -4,9 +4,6 @@
 //
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-//
-// Description: TBD
-//
 //*****************************************************************************
 
 protected mapping researchData = ([
@@ -112,8 +109,9 @@ protected nomask int validLimitor(mapping limitor)
                         if (materialsDictionary)
                         {
                             ret &&= materialsDictionary->isValidArmorType(limitor[key]) ||
+                                materialsDictionary->isValidArmorBlueprint(limitor[key]) ||
                                 materialsDictionary->isValidWeaponType(limitor[key]) ||
-                                materialsDictionary->isValidEquipmentType(limitor[key]);
+                                materialsDictionary->isValidWeaponBlueprint(limitor[key]);
                         }
                         break;
                     }
