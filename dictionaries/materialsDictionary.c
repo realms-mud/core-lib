@@ -8,877 +8,13 @@
 //*****************************************************************************
 #include "/lib/include/inventory.h"
 #include "/lib/include/itemFormatters.h"
+#include "materials/materials.h"
+#include "materials/weapons.h"
+#include "materials/armor.h"
 
 private nosave string EquipmentBlueprint = "lib/items/equipment.c";
-
-// TODO: Add minimum craftsmanship levels, research requirements, etc
-private nosave mapping materials =
-([
-    "cloth": ([
-        "class": "textile",
-        "crafting skill required": 0
-    ]),
-    "stone": ([
-        "class": "stone",
-        "crafting skill required": 5,
-        "encumberance": 1,
-        "defense": ([
-            "electricity": 2
-        ])
-    ]),
-    "pine": ([
-        "class": "wood",
-        "crafting skill required": 1
-    ]),
-    "poplar": ([
-        "class": "wood",
-        "crafting skill required": 1
-    ]),
-    "cedar": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "oak": ([
-        "class": "wood",
-        "crafting skill required": 3
-    ]),
-    "maple": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "birch": ([
-        "class": "wood",
-        "crafting skill required": 1
-    ]),
-    "sycamore": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "beech": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "ash": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "hickory": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "mequite": ([
-        "class": "wood",
-        "crafting skill required": 3
-    ]),
-    "walnut": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "pecan": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "dogwood": ([
-        "class": "wood",
-        "crafting skill required": 1
-    ]),
-    "cherry": ([
-        "class": "wood",
-        "crafting skill required": 4
-    ]),
-    "holly": ([
-        "class": "wood",
-        "crafting skill required": 3
-    ]),
-    "apple": ([
-        "class": "wood",
-        "crafting skill required": 3
-    ]),
-    "teak": ([
-        "class": "wood",
-        "attack": ([
-           "physical": 1,
-       ]),
-       "crafting skill required": 6
-    ]),
-    "cypress": ([
-        "class": "wood",
-        "crafting skill required": 3
-    ]),
-    "cottonwood": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "hemlock": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "spruce": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "aspen": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "swamp ash": ([
-        "class": "wood",
-        "attack": ([
-            "physical": 1,
-        ]),
-        "crafting skill required": 5
-    ]),
-    "elm": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-     "basswood": ([
-        "class": "wood",
-        "crafting skill required": 1,
-        "attack": ([
-            "physical": -1,
-        ]),
-        "encumberance": -1,
-    ]),
-    "bloodwood": ([
-        "class": "wood",
-        "attack": ([
-            "physical": 1,
-        ]),
-        "crafting skill required": 5
-    ]),
-    "rosewood": ([
-        "class": "wood",
-        "crafting skill required": 5
-    ]),
-    "buckeye": ([
-        "class": "wood",
-        "crafting skill required": 4
-    ]),
-    "buckthorn": ([
-        "class": "wood",
-        "crafting skill required": 4
-    ]),
-   "alder": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "ironwood": ([
-        "class": "wood",
-        "attack rating": 1,
-        "crafting skill required": 5
-    ]),
-    "malorn": ([
-        "class": "wood",
-        "attack rating": 3,
-        "attack": ([
-            "magical": 2
-        ]),
-        "crafting skill required": 20
-    ]),
-    "redwood": ([
-        "class": "wood",
-        "crafting skill required": 5
-    ]),
-    "mahogany": ([
-        "class": "wood",
-        "crafting skill required": 5,
-        "attack": ([
-            "physical": 1,
-        ]),
-    ]),
-    "mulberry": ([
-        "class": "wood",
-        "crafting skill required": 2
-    ]),
-    "marblewood": ([
-        "class": "wood",
-        "attack": ([
-            "physical": 1,
-        ]),
-        "crafting skill required": 5
-    ]),
-    "purple heart": ([
-        "class": "wood",
-        "attack rating": 2,
-        "crafting skill required": 10,
-        "attack": ([
-            "physical": 2,
-        ]),
-    ]),
-    "bubinga": ([
-        "class": "wood",
-        "attack rating": 1,
-        "crafting skill required": 10
-    ]),
-    "kingwood": ([
-        "class": "wood",
-        "attack rating": 2,
-        "attack": ([
-            "physical": 2,
-        ]),
-        "crafting skill required": 15
-    ]),
-    "koa": ([
-        "class": "wood",
-        "attack rating": 1,
-        "crafting skill required": 10
-    ]),
-
-    "leather": ([
-        "class": "leather",
-        "crafting skill required": 3
-    ]),
-    "bronze": ([
-        "class": "metal",
-        "crafting skill required": 4,
-        "attack": ([
-            "physical": -1
-        ]),
-        "attack rating": -1,
-        "defense": ([
-            "physical": -1
-        ]),
-        "encumberance": -1,
-    ]),
-    "gold": ([
-        "class": "metal",
-        "crafting skill required": 10,
-        "attack": ([
-            "physical": -2
-        ]),
-        "attack rating": -2,
-        "defense": ([
-            "physical": -3,
-            "acid": 15,
-            "disease": 5
-        ]),
-        "encumberance": 2,
-    ]),
-     "platinum": ([
-        "class": "metal",
-        "crafting skill required": 15,
-        "attack": ([
-            "physical": -1
-        ]),
-        "attack rating": -1,
-        "defense": ([
-            "physical": -2,
-            "acid": 15
-        ]),
-        "encumberance": 2,
-    ]),
-   "silver": ([
-        "class": "metal",
-        "crafting skill required": 10,
-        "attack": ([
-            "good": 5
-        ]),
-    ]),
-    "aluminum": ([
-        "class": "metal",
-        "encumberance": -2,
-        "crafting skill required": 25
-    ]),
-    "nickel": ([
-        "class": "metal",
-        "defense": ([
-            "physical": 1
-        ]),
-        "crafting skill required": 20
-    ]),
-    "iron": ([
-        "class": "metal",
-        "crafting skill required": 5
-    ]),
-    "steel": ([
-        "class": "metal",
-        "crafting skill required": 15,   
-        "attack": ([
-            "physical": 1
-        ]),
-        "attack rating": 1,
-        "defense": ([
-            "physical": 1
-        ])
-    ]),
-    "mithril": ([
-        "class": "metal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 3,
-            "magical": 5
-        ]),
-        "attack rating": 3,
-        "defense": ([
-            "physical": 5
-        ]),
-        "encumberance": -4
-    ]),
-    "admantite": ([
-        "class": "metal",
-        "crafting skill required": 20,
-        "attack": ([
-            "physical": 5,
-            "magical": 2
-        ]),
-        "attack rating": 3,
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "galvorn": ([
-        "class": "metal",
-        "crafting skill required": 40,
-        "attack": ([
-            "physical": 8,
-            "magical": 5
-        ]),
-         "attack rating": 5,
-       "defense": ([
-            "physical": 5,
-            "fire": 3,
-            "air": 3
-        ]),
-        "encumberance": 2
-    ]),
-    "special": 0,
-    "spell material": 0,
-    "glassteel": ([
-        "class": "crystal",
-        "crafting skill required": 20,
-        "attack": ([
-            "physical": 3,
-            "magical": 5
-        ]),
-        "defense": ([
-            "physical": -5
-        ]),
-        "encumberance": 1
-    ]),
-    "magical ice": ([
-        "class": "crystal",
-        "crafting skill required": 35,
-        "attack": ([
-            "cold": 10
-        ]),
-        "attack rating": 3,
-        "defense": ([
-            "cold": 10,
-            "fire": -10
-        ]),
-        "encumberance": 2
-    ]),
-    "crystal": ([
-        "class": "crystal",
-        "crafting skill required": 18,
-        "attack": ([
-            "physical": 2,
-            "magical": 3
-        ]),
-        "defense": ([
-            "physical": 2,
-            "magical": 2
-        ])
-    ]),
-    "quartz": ([
-        "class": "crystal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "opal": ([
-        "class": "crystal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "topaz": ([
-        "class": "crystal",
-        "crafting skill required": 30,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "turquoise": ([
-        "class": "crystal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "amethyst": ([
-        "class": "crystal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "garnet": ([
-        "class": "crystal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "florite": ([
-        "class": "crystal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "citrine": ([
-        "class": "crystal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "agate": ([
-        "class": "crystal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "onyx": ([
-        "class": "crystal",
-        "crafting skill required": 30,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "jade": ([
-        "class": "crystal",
-        "crafting skill required": 25,
-        "attack": ([
-            "physical": 2
-        ]),
-        "defense": ([
-            "physical": 2
-        ])
-    ]),
-    "amber": ([
-        "class": "crystal",
-        "crafting skill required": 20,
-        "attack": ([
-            "physical": 1
-        ]),
-        "defense": ([
-            "physical": 1
-        ])
-    ]),
-    "aquamarine": ([
-        "class": "crystal",
-        "crafting skill required": 20,
-        "attack": ([
-            "physical": 1
-        ]),
-        "defense": ([
-            "physical": 1
-        ])
-    ]),
-    "emerald": ([
-        "class": "crystal",
-        "crafting skill required": 30,
-        "attack": ([
-            "physical": 3
-        ]),
-        "defense": ([
-            "physical": 3
-        ])
-    ]),
-    "sapphire": ([
-        "class": "crystal",
-        "crafting skill required": 30,
-        "attack": ([
-            "physical": 3
-        ]),
-        "defense": ([
-            "physical": 3
-        ])
-    ]),
-   "bloodstone": ([
-        "class": "crystal",
-        "crafting skill required": 30,
-        "attack": ([
-            "physical": 3
-        ]),
-        "defense": ([
-            "physical": 3
-        ])
-    ]),
-    "diamond": ([
-        "class": "crystal",
-        "crafting skill required": 35,
-        "attack": ([
-            "physical": 4
-        ]),
-        "defense": ([
-            "physical": 4
-        ])
-    ]),
-    "kirluin": ([
-        "class": "crystal",
-        "crafting skill required": 50,
-        "attack": ([
-            "physical": 8,
-            "electricity": 10
-        ]),
-        "attack rating": 6,
-        "defense": ([
-            "physical": 8,
-            "electricity": 10
-        ]),
-        "encumberance": -3
-    ]),
-    "dragon scale": ([
-        "class": "exotic",
-        "crafting skill required": 50,
-        "defense": ([
-            "fire": 15,
-            "physical": 10
-        ])
-    ])
-]);
-
-private nosave mapping weaponBlueprints = ([
-    "long sword": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 10,
-        "skill to use": "long sword",
-        "default wc": 10,
-        "default dc": 2,
-        "default attack": 5,
-        "default encumberance": 5
-    ]),
-    "broad sword": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 15,
-        "skill to use": "long sword",
-        "default wc": 10,
-        "default dc": 4,
-        "default attack": 4,
-        "default encumberance": 6
-    ]),
-    "rapier": ([
-        "type": "one-handed weapon",
-        "damage type": "thrust",
-        "skill to craft": 15,
-        "skill to use": "long sword",
-        "default wc": 6,
-        "default dc": 2,
-        "default attack": 8,
-        "default encumberance": 3
-    ]),
-    "katana": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 25,
-        "skill to use": "hand and a half sword",
-        "default wc": 10,
-        "default dc": 3,
-        "default attack": 10,
-        "default encumberance": 4
-    ]),
-    "scimitar": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 10,
-        "skill to use": "long sword",
-        "default wc": 8,
-        "default dc": 2,
-        "default attack": 5,
-        "default encumberance": 4
-    ]),
-    "cutlass": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 12,
-        "skill to use": "long sword",
-        "default wc": 8,
-        "default dc": 3,
-        "default attack": 5,
-        "default encumberance": 4
-    ]),
-    "sabre": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 15,
-        "skill to use": "long sword",
-        "default wc": 8,
-        "default dc": 4,
-        "default attack": 5,
-        "default encumberance": 5
-    ]),
-    "spatha": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 15,
-        "skill to use": "long sword",
-        "default wc": 10,
-        "default dc": 2,
-        "default attack": 5,
-        "default encumberance": 5
-    ]),
-    "gladius": ([
-        "type": "one-handed weapon",
-        "damage type": "thrust",
-        "skill to craft": 10,
-        "skill to use": "short sword",
-        "default wc": 6,
-        "default dc": 4,
-        "default attack": 4,
-        "default encumberance": 3
-    ]),
-    "harpe": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 15,
-        "skill to use": "short sword",
-        "default wc": 6,
-        "default dc": 5,
-        "default attack": 5,
-        "default encumberance": 3
-    ]),
-    "wakisashi": ([
-        "type": "one-handed weapon",
-        "damage type": "thrust",
-        "skill to craft": 20,
-        "skill to use": "short sword",
-        "default wc": 6,
-        "default dc": 6,
-        "default attack": 6,
-        "default encumberance": 3
-    ]),
-    "machete": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 5,
-        "skill to use": "short sword",
-        "default wc": 5,
-        "default dc": 2,
-        "default attack": 4,
-        "default encumberance": 2
-    ]),
-    "dagger": ([
-        "type": "one-handed weapon",
-        "damage type": "thrust",
-        "skill to craft": 5,
-        "skill to use": "dagger",
-        "default wc": 4,
-        "default dc": 2,
-        "default attack": 5,
-        "default encumberance": 1
-    ]),
-    "dirk": ([
-        "type": "one-handed weapon",
-        "damage type": "thrust",
-        "skill to craft": 10,
-        "skill to use": "dagger",
-        "default wc": 4,
-        "default dc": 2,
-        "default attack": 6,
-        "default encumberance": 1
-    ]),
-    "stiletto": ([
-        "type": "one-handed weapon",
-        "damage type": "thrust",
-        "skill to craft": 10,
-        "skill to use": "dagger",
-        "default wc": 5,
-        "default dc": 0,
-        "default attack": 6,
-        "default encumberance": 1
-    ]),
-    "claymore": ([
-        "type": "two-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 25,
-        "skill to use": "two-handed sword",
-        "default wc": 16,
-        "default dc": 4,
-        "default attack": 5,
-        "default encumberance": 12
-    ]),
-    "great sword": ([
-        "type": "two-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 20,
-        "skill to use": "two-handed sword",
-        "default wc": 15,
-        "default dc": 4,
-        "default attack": 5,
-        "default encumberance": 10
-    ]),
-    "odachi": ([
-        "type": "two-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 35,
-        "skill to use": "two-handed sword",
-        "default wc": 18,
-        "default dc": 4,
-        "default attack": 6,
-        "default encumberance": 10
-    ]),
-    "bastard sword": ([
-        "type": "one-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 20,
-        "skill to use": "hand and a half sword",
-        "default wc": 12,
-        "default dc": 3,
-        "default attack": 5,
-        "default encumberance": 7
-    ]),
-    "sword staff": ([
-        "type": "two-handed weapon",
-        "damage type": "slash",
-        "skill to craft": 25,
-        "skill to use": "pole arm",
-        "default wc": 15,
-        "default dc": 4,
-        "default attack": 5,
-        "default encumberance": 15
-    ]),
-    "staff": ([
-        "type": "two-handed weapon",
-        "damage type": "bludgeon",
-        "skill to craft": 1,
-        "skill to use": "staff",
-        "default wc": 4,
-        "default dc": 2,
-        "default attack": 4,
-        "default encumberance": 2
-    ]),
-    "shield staff": ([
-        "type": "two-handed weapon",
-        "damage type": "bludgeon",
-        "skill to craft": 8,
-        "skill to use": "staff",
-        "default wc": 4,
-        "default dc": 6,
-        "default attack": 2,
-        "default encumberance": 5
-    ]),
-    "shield": ([
-        "type": "one-handed weapon",
-        "damage type": "bludgeon",
-        "skill to craft": 5,
-        "skill to use": "shield",
-        "default wc": 1,
-        "default dc": 5,
-        "default attack": 0,
-        "default encumberance": 5
-    ]),
-
-]);
-
-private nosave mapping armorBlueprints = ([
-    "chainmail": ([
-        "type": "armor",
-        "skill to craft": 10,
-        "skill to use": "chainmail",
-        "default ac": 5,
-        "default location": Armor,
-        "default encumberance": 10
-    ]),
-    "gloves": ([
-        "type": "armor",
-        "skill to craft": 5,
-        "default location": Gloves,
-        "default encumberance": 1
-    ]),
-    "helmet": ([
-        "type": "armor",
-        "skill to craft": 5,
-        "default location": Helmet,
-        "default encumberance": 1
-    ]),
-    "boots": ([
-        "type": "armor",
-        "skill to craft": 5,
-        "default location": Boots,
-        "default encumberance": 1
-    ]),
-    "ring": ([
-        "type": "armor",
-        "skill to craft": 5,
-        "default location": Ring,
-        "default encumberance": 1
-    ]),
-    "cloak": ([
-        "type": "armor",
-        "skill to craft": 5,
-        "default location": Cloak,
-        "default encumberance": 1
-    ]),
-    "amulet": ([
-        "type": "armor",
-        "skill to craft": 5,
-        "default location": Amulet,
-        "default encumberance": 1
-    ]),
-    "belt": ([
-        "type": "armor",
-        "skill to craft": 5,
-        "default location": Belt,
-        "default encumberance": 1
-    ]),
-    "arm greaves": ([
-        "type": "armor",
-        "skill to craft": 5,
-        "default location": ArmGreaves,
-        "default encumberance": 1
-    ]),
-    "leg greaves": ([
-        "type": "armor",
-        "skill to craft": 5,
-        "default location": LegGreaves,
-        "default encumberance": 1
-    ]),
-    "bracers": ([
-        "type": "armor",
-        "skill to craft": 15,
-        "default location": Bracers,
-        "default encumberance": 1
-    ])
-]);
+private nosave string DetailsText = "\t[0;36m%s: [0m[0;33m%d to %d[0m\n";
+private nosave string SingleDetailText = "\t[0;36m%s: [0m[0;33m%d[0m\n";
 
 private nosave string *validBonuses = ({ "strength", "intelligence", "dexterity",
     "wisdom", "constitution", "charisma",  });
@@ -1053,14 +189,14 @@ public nomask int getDefaultEquipmentLocations(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int getBlueprintModifier(object item, string type)
+public nomask int getBlueprintModifier(object item, string type)
 {
     int ret = 0;
     string itemType = item->query("blueprint");
     if (isValidWeaponBlueprint(itemType))
     {
-        ret = weaponBlueprints[itemType][type];
-    }
+		ret = weaponBlueprints[itemType][type];
+	}
     else if (isValidArmorBlueprint(itemType))
     {
         ret = armorBlueprints[itemType][type];
@@ -1104,7 +240,7 @@ public nomask int getMaterialEncumberance(object item)
                 retVal = materials[material]["encumberance"];
             }
         }
-        retVal += getBlueprintModifier(item, "default encumberance");
+
         retVal -= getMaterialCraftsmanshipBonus(item);
     }
 
@@ -1119,7 +255,7 @@ public nomask string hasExtraAttackType(object item)
     if(isValidItem(item))
     {
         string material = item->query("material");
-        if(isValidMaterial(material))
+        if(isValidMaterial(material) && member(materials[material], "attack"))
         {    
             // Only one extra attack type... if someone adds a material with more, 
             // it's their own damned fault that I ignore it.
@@ -1200,14 +336,6 @@ public nomask int getMaterialDefense(object item, string type)
             {
                 retVal = materials[material]["defense"][type];
             }
-
-            int ac = item->query("armor class");
-
-            if(!ac)
-            {
-                ac = getBlueprintModifier(item, "default ac");
-            }
-            retVal += ac;
         }
                   
         retVal += getMaterialCraftsmanshipBonus(item);
@@ -1239,7 +367,7 @@ public nomask int getMaterialAttack(object item)
         {
             if (member(materials[material], "attack rating"))
             {
-                retVal = materials[material]["attack rating"];
+                retVal += materials[material]["attack rating"];
             }
         }
 
@@ -1305,30 +433,312 @@ public varargs string applyMaterialQualityToText(object equipment, string text)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int getLevelOfIdKnowledge(object equipment)
+public nomask int canCraftBlueprintWithMaterial(object initiator, 
+                                                string blueprint,
+                                                string material)
 {
     int ret = 0;
 
-    if (this_player())
+    if (initiator && member(materials, material))
     {
-        if(equipment->query("weapon type"))
+        ret = 1;
+        int skillLevel;
+
+        if (member(weaponBlueprints, blueprint))
         {
-            ret = this_player()->getSkillModifier("weapon smithing");
+            if (member(({ "bow", "crossbow" }), weaponBlueprints[blueprint]["type"]) > -1)
+            {
+                skillLevel = initiator->getSkill("bowyer and fletcher");
+            }
+            else
+            {
+                skillLevel = initiator->getSkill("weapon smithing");
+            }
+            ret &&= skillLevel >= weaponBlueprints[blueprint]["skill to craft"];
         }
-        else if(equipment->query("armor type"))
+        else if (member(armorBlueprints, blueprint))
         {
-            ret = this_player()->getSkillModifier("armorer");
+            ret &&= initiator->getSkill("armorer") >=
+                armorBlueprints[blueprint]["skill to craft"];
+        }
+
+        switch(materials[material]["class"])
+        {
+            case "wood":
+            {
+                skillLevel = initiator->getSkill("wood crafting");
+                break;
+            }
+            case "stone":
+            {
+                skillLevel = initiator->getSkill("stonemasonry");
+                break;
+            }
+            case "crystal":
+            {
+                skillLevel = initiator->getSkill("gem crafting");
+                break;
+            }
+            case "metal":
+            {
+                skillLevel = initiator->getSkill("metal crafting");
+                break;
+            }
+            case "leather":
+            {
+                skillLevel = initiator->getSkill("leatherworking");
+                break;
+            }
+            case "textile":
+            {
+                skillLevel = initiator->getSkill("sewing");
+                break;
+            }
+            case "exotic":
+            {
+                skillLevel = initiator->getSkill("spellcraft");
+                break;
+            }
+        }
+        ret &&= skillLevel >= materials[material]["crafting skill required"];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int calculateServiceBonuses(string methodToCheck, object initiator)
+{
+    int ret = 0;
+
+    string *servicesToCheck = ({ "races", "guilds", "research", "traits",
+        "biological", "background" });
+
+    foreach(string serviceToCheck in servicesToCheck)
+    {
+        if (initiator->has(serviceToCheck))
+        {
+            ret += call_other(initiator,
+                sprintf("%sBonusTo", serviceToCheck), methodToCheck);
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getEquipmentStatistics(object equipment)
+private nomask string applyWeaponAttackInformation(object weapon, object initiator)
+{
+    int baseAttack = weapon->query("weapon attack");
+
+    if(initiator)
+    {
+        baseAttack += getMaterialAttack(weapon) +
+            initiator->magicalAttackBonus() +
+            calculateServiceBonuses("AttackBonus", initiator) +
+            (initiator->dexterityBonus() / 2) +
+            (initiator->intelligenceBonus() / 2);
+
+        string skillToUse = weapon->query("weapon type");
+        if (skillToUse && stringp(skillToUse))
+        {
+            baseAttack += call_other(initiator, "getSkillModifier",
+                skillToUse);
+        }
+        baseAttack -= weapon->query("skill penalty");
+    }
+
+    return sprintf(DetailsText, "Attack", baseAttack, baseAttack + 100);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyEnchantments(object weapon)
+{
+	string ret = 0;
+
+	mapping enchantments = weapon->query("enchantments");
+	if (!enchantments)
+	{
+		enchantments = ([]);
+	}
+
+	string extraDamage = hasExtraAttackType(weapon);
+	if (extraDamage)
+	{
+		enchantments[extraDamage] = member(enchantments, extraDamage) ?
+			(enchantments[extraDamage] + getMaterialDamage(weapon, extraDamage)) :
+			getMaterialDamage(weapon, extraDamage);
+	}
+
+	if(enchantments && sizeof(enchantments))
+	{
+		ret = "";
+		string *enchantmentKeys = sort_array(m_indices(enchantments),
+			(: return $1 > $2; :));
+
+		foreach(string enchantment in enchantmentKeys)
+		{
+			ret += sprintf(SpecialAttack, sprintf(" [+%d %s]",
+				enchantments[enchantment], enchantment));
+		}
+		ret += "\n";
+	}
+	return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyWeaponDamageInformation(object weapon, object initiator)
+{
+	string ret = "";
+	int baseDamage = weapon->query("weapon class");
+
+	if (initiator)
+	{
+		baseDamage += getMaterialDamage(weapon, "physical") +
+			initiator->magicalDamageBonus() +
+			calculateServiceBonuses("DamageBonus", initiator) +
+			(initiator->strengthBonus() / 2) +
+			(initiator->wisdomBonus() / 4) +
+			(initiator->intelligenceBonus() / 4);
+
+		string skillToUse = weapon->query("weapon type");
+		if (skillToUse && stringp(skillToUse))
+		{
+			baseDamage += call_other(initiator, "getSkillModifier",
+				skillToUse) / 2;
+		}
+		baseDamage -= weapon->query("skill penalty");
+	}
+
+	float modifier = baseDamage / 8.0;
+	ret = sprintf(DetailsText, "Damage", 
+		to_int(baseDamage - modifier), to_int(baseDamage + modifier));
+
+	string enchantments = applyEnchantments(weapon);
+	if (enchantments)
+	{
+		ret -= "\n";
+		ret += enchantments;
+	}
+
+	return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyWeaponDefenseInformation(object weapon, object initiator)
+{
+	int baseDefense = weapon->query("defense class");
+
+	if (initiator)
+	{
+		baseDefense += getMaterialDefendAttack(weapon) +
+			initiator->magicalDefendAttackBonus() +
+			calculateServiceBonuses("DefendAttackBonus", initiator) +
+			(initiator->dexterityBonus() / 2) +
+			(initiator->wisdomBonus() / 2);
+
+		string skillToUse = weapon->query("weapon type");
+		if (skillToUse && stringp(skillToUse))
+		{
+			baseDefense += call_other(initiator, "getSkillModifier",
+				skillToUse) / 2;
+		}
+		baseDefense -= weapon->query("skill penalty");
+	}
+
+	float modifier = baseDefense / 8.0;
+	return sprintf(DetailsText, "Defense",
+		to_int(baseDefense - modifier), to_int(baseDefense + modifier));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyEncumberance(object item, object initiator)
+{
+	int encumberance = item->query("encumberance");
+
+	if (initiator)
+	{
+		encumberance += getMaterialEncumberance(item);
+
+		string skillToUse = item->query("weapon type") ||
+			item->query("armor type");
+		if (skillToUse && stringp(skillToUse))
+		{
+			encumberance -= call_other(initiator, "getSkillModifier",
+				skillToUse);
+		}
+		encumberance += item->query("skill penalty");
+	}
+
+	return sprintf(SingleDetailText, "Encumberance", encumberance);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyBonusDetails(object item)
+{
+	string ret = "";
+	string *bonuses = sort_array(item->query("bonuses"),
+								(: return $1 > $2; :));
+
+	if (sizeof(bonuses))
+	{
+		foreach(string bonus in bonuses)
+		{
+			ret += sprintf(Value,
+				sprintf("\t%s: %d\n", capitalize(bonus), item->query(bonus)));
+		}
+	}
+	return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyWeaponDetails(object weapon, object initiator)
+{
+    return applyWeaponAttackInformation(weapon, initiator) +
+		applyWeaponDamageInformation(weapon, initiator) +
+		applyWeaponDefenseInformation(weapon, initiator) +
+		applyEncumberance(weapon, initiator);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int spellcraftCanIdentifyItem(object item, object initiator)
+{
+	return item && initiator && ((item->query("enchanted") * 5) <=
+		(initiator->getSkillModifier("spellcraft")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getEquipmentStatistics(object equipment, object initiator)
 {
     string ret = applyMaterialQualityToText(equipment);
 
-    int idBonus = getLevelOfIdKnowledge(equipment);
+	if(equipment->query("identified") || canCraftBlueprintWithMaterial(initiator,
+		equipment->query("blueprint"), equipment->query("material")))
+	{
+		if (equipment->query("weapon type"))
+		{
+			ret += applyWeaponDetails(equipment, initiator);
+		}
+		else if (equipment->query("armor type"))
+		{
+			ret = initiator->getSkillModifier("armorer");
+		}
+	}
 
-    return ret;
+	if (equipment->query("identified") ||
+		spellcraftCanIdentifyItem(equipment, initiator))
+	{
+		ret += applyBonusDetails(equipment);
+	}
+
+	if (spellcraftCanIdentifyItem(equipment, initiator) &&
+		canCraftBlueprintWithMaterial(initiator,
+			equipment->query("blueprint"), equipment->query("material")))
+	{
+		equipment->identify();
+	}
+
+	if (!equipment->query("identified"))
+	{
+		ret += sprintf(Unidentified, "This item has not been identified.\n");
+	}
+	return ret;
 }

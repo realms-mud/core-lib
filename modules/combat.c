@@ -151,7 +151,7 @@ private nomask int calculateServiceBonuses(string methodToCheck)
     string *servicesToCheck = ({ "races", "guilds", "research", "traits",
                                  "biological", "background" });
     
-    foreach(string serviceToCheck : servicesToCheck)
+    foreach(string serviceToCheck in servicesToCheck)
     {
         object service = getService(serviceToCheck);
         if(service)
@@ -473,7 +473,7 @@ public nomask int calculateDefendAttack()
         ret += inventory->inventoryGetDefendAttackBonus() -
                inventory->inventoryGetEncumberance();
 
-        object primary = inventory->equipmentInSlot("wielded primary");
+		object primary = inventory->equipmentInSlot("wielded primary");
         if (inventory->isEquipped(primary) && skills)
         {
             string weaponType = primary->query("weapon type");
@@ -690,7 +690,7 @@ public nomask varargs int calculateDamage(object weapon, string damageType, int 
 
     if (!doNotRandomize)
     {
-        ret += ((ret / 8) - random(ret / 4));
+        ret += to_int((ret / 8.0) - random(ret / 4));
     }
     
     return ret;

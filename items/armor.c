@@ -13,14 +13,25 @@ private nosave string ItemTypesBlueprint = "/lib/dictionaries/materialsDictionar
 public nomask mixed query(string element)
 {
     int ret = 0;
-    if((element == "blueprint") && !member(itemData, "blueprint"))
-    {
-        ret = "equipment"::query("armor type");
-    }
-    else
-    {
-        ret = "equipment"::query(element);
-    }
+	switch(element)
+	{
+		case "armor class":
+		{
+			ret = member(itemData, "armor class") ? itemData["armor class"] :
+				materialsObject()->getBlueprintModifier(this_object(), "default ac");
+			break;
+		}
+		case "blueprint":
+		{
+			ret = member(itemData, "blueprint") ? itemData["blueprint"] :
+				"equipment"::query("armor type");
+			break;
+		}
+		default:
+		{
+			ret = "equipment"::query(element);
+		}
+	}
     return ret;
 }
 

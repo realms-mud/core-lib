@@ -152,7 +152,7 @@ void InventoryShowsWellCraftedItemsInGreen()
     weapon->set("name", "blah");
     weapon->set("short", "Sword of Blah");
     weapon->set("weapon type", "long sword");
-    weapon->set("craftsmanship", 15);
+    weapon->set("craftsmanship", 20);
     weapon->set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
     weapon->equip("blah");
@@ -169,7 +169,7 @@ void InventoryShowsMasterworkItemsInBoldGreen()
     weapon->set("name", "blah");
     weapon->set("short", "Sword of Blah");
     weapon->set("weapon type", "long sword");
-    weapon->set("craftsmanship", 35);
+    weapon->set("craftsmanship", 50);
     weapon->set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
     weapon->equip("blah");

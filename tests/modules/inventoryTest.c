@@ -373,7 +373,7 @@ void InventoryGetDefenseBonusReturnsCorrectValue()
 void InventoryGetEncumberanceReturnsCorrectValue()
 {
     Inventory->addSkillPoints(100);
-    Inventory->Str(40);
+    Inventory->Str(20);
 
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
@@ -406,13 +406,13 @@ void InventoryGetEncumberanceReturnsCorrectValue()
     ExpectEq(0, Inventory->inventoryGetEncumberance(), "initial encumberance");
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(17, Inventory->inventoryGetEncumberance(), "encumberance with weapon");
+    ExpectEq(12, Inventory->inventoryGetEncumberance(), "encumberance with weapon");
 
     Inventory->advanceSkill("long sword", 8);
     ExpectEq(0, Inventory->inventoryGetEncumberance(), "encumberance with weapon and skill 8");
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(22, Inventory->inventoryGetEncumberance(), "encumberance with weapon and armor");
+    ExpectEq(15, Inventory->inventoryGetEncumberance(), "encumberance with weapon and armor");
 
     Inventory->advanceSkill("chainmail", 8);
     ExpectEq(2, Inventory->inventoryGetEncumberance(), "encumberance with chainmail trained");
@@ -421,7 +421,7 @@ void InventoryGetEncumberanceReturnsCorrectValue()
     ExpectEq(0, Inventory->inventoryGetEncumberance(), "encumberance with everything");
 
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(10, Inventory->inventoryGetEncumberance(), "encumberance with shield");
+    ExpectEq(15, Inventory->inventoryGetEncumberance(), "encumberance with shield");
 
     Inventory->advanceSkill("shield", 8);
     ExpectEq(0, Inventory->inventoryGetEncumberance(), "encumberance with shield and skill at 8");
@@ -491,16 +491,16 @@ void InventoryGetAttackBonusReturnsCorrectValue()
     ExpectEq(0, Inventory->inventoryGetAttackBonus(weapon), "initial attack bonus");
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(6, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
+    ExpectEq(11, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
 
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(6, Inventory->inventoryGetAttackBonus(weapon), "attack with shield");
+    ExpectEq(11, Inventory->inventoryGetAttackBonus(weapon), "attack with shield");
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(7, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon and armor");
+    ExpectEq(12, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon and armor");
 
     ExpectEq(1, modifier->set("registration list", ({ Inventory })), "registration list can be set");
-    ExpectEq(12, Inventory->inventoryGetAttackBonus(weapon), "attack with everything");
+    ExpectEq(17, Inventory->inventoryGetAttackBonus(weapon), "attack with everything");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -543,21 +543,21 @@ void InventoryGetAttackBonusReturnsPenaltyWhenDualWielding()
     ExpectEq(0, Inventory->inventoryGetAttackBonus(weapon), "initial attack bonus");
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(6, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
+    ExpectEq(11, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
 
     ExpectTrue(offhand->equip("blarg offhand"), "offhand equip called");
-    ExpectEq(-4, Inventory->inventoryGetAttackBonus(weapon), "attack with offhand");
-    ExpectEq(-9, Inventory->inventoryGetAttackBonus(offhand), "attack with offhand");
-
-    Inventory->advanceSkill("dual wield", 1);
     ExpectEq(1, Inventory->inventoryGetAttackBonus(weapon), "attack with offhand");
     ExpectEq(-4, Inventory->inventoryGetAttackBonus(offhand), "attack with offhand");
 
+    Inventory->advanceSkill("dual wield", 1);
+    ExpectEq(6, Inventory->inventoryGetAttackBonus(weapon), "attack with offhand");
+    ExpectEq(1, Inventory->inventoryGetAttackBonus(offhand), "attack with offhand");
+
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(2, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon and armor");
+    ExpectEq(7, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon and armor");
 
     ExpectEq(1, modifier->set("registration list", ({ Inventory })), "registration list can be set");
-    ExpectEq(7, Inventory->inventoryGetAttackBonus(weapon), "attack with everything");
+    ExpectEq(12, Inventory->inventoryGetAttackBonus(weapon), "attack with everything");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -579,10 +579,10 @@ void InventoryGetAttackBonusAppliesSkillPenalty()
     ExpectEq(0, Inventory->inventoryGetAttackBonus(weapon), "initial attack bonus");
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(6, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
+    ExpectEq(11, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
 
     weapon->set("skill penalty", 2);
-    ExpectEq(4, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
+    ExpectEq(9, Inventory->inventoryGetAttackBonus(weapon), "attack with weapon");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -624,19 +624,19 @@ void InventoryGetDamageBonusReturnsCorrectValue()
     ExpectEq(0, Inventory->inventoryGetDamageBonus(weapon, "physical"), "initial damage bonus");
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(14, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with weapon");
+    ExpectEq(12, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with weapon");
 
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(14, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with shield");
+    ExpectEq(12, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with shield");
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(15, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with weapon and armor");
+    ExpectEq(13, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with weapon and armor");
 
     ExpectEq(1, modifier->set("registration list", ({ Inventory })), "registration list can be set");
-    ExpectEq(20, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with everything");
+    ExpectEq(17, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with everything");
 
     weapon->set("enchantments", (["physical": 5]));
-    ExpectEq(25, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with enchantments");
+    ExpectEq(22, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with enchantments");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -657,10 +657,10 @@ void InventoryGetDamageBonusHandlesSkillPenalty()
     ExpectEq(0, Inventory->inventoryGetDamageBonus(weapon, "physical"), "initial damage bonus");
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(14, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with weapon");
+    ExpectEq(12, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with weapon");
 
     weapon->set("skill penalty", 2);
-    ExpectEq(12, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with skill penalty");
+    ExpectEq(10, Inventory->inventoryGetDamageBonus(weapon, "physical"), "damage with skill penalty");
 }
 
 /////////////////////////////////////////////////////////////////////////////

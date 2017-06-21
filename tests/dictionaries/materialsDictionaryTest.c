@@ -5,16 +5,18 @@
 inherit "/lib/tests/framework/testFixture.c";
 
 object Dictionary;
+object Equipment;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Dictionary = clone_object("/lib/dictionaries/researchDictionary");
+    Dictionary = clone_object("/lib/dictionaries/materialsDictionary");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+	destruct(Equipment);
     destruct(Dictionary);
 }
 

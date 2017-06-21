@@ -569,13 +569,13 @@ void CalculateDefendAttackHandlesSkillPenalty()
     ExpectEq(4, Attacker->calculateDefendAttack(), "nothing is equipped");
 
     ExpectTrue(weapon->equip("blah offhand"), "weapon equip called");
-    ExpectEq(-12, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped");
+    ExpectEq(-13, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped");
 
     Attacker->advanceSkill("long sword", 1);
-    ExpectEq(-1, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped");
+    ExpectEq(-2, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped");
 
     Attacker->advanceSkill("long sword", 8);
-    ExpectEq(4, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped and skill of 9");
+    ExpectEq(3, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped and skill of 9");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -621,7 +621,6 @@ void CalculateDefendAttackUsesCorrectArmorData()
     object armor = CreateArmor("stuff");
     armor->set("material", "galvorn");
     armor->set("craftsmanship", 40);
-    armor->set("encumberance", 3);
 
     Attacker->addSkillPoints(200);
 
@@ -629,18 +628,17 @@ void CalculateDefendAttackUsesCorrectArmorData()
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
     // Wearing heavier armor untrained is kinda a bad thing... it'll block, but 
-    // you'll get hit.The untrained penalty for chainmail is -20. There is also 
+    // you'll get hit. The untrained penalty for chainmail is -20. There is also 
     // an encumberance penalty based on both the item type (-10) and material (-2) 
-    // plus the custom-set encumberance field (-3)
-    ExpectEq(-31, Attacker->calculateDefendAttack());
+    ExpectEq(-38, Attacker->calculateDefendAttack());
 
     // Now, there is no negative for not knowing "how to wear" the armor, but there's still
     // the other penalties.
     Attacker->advanceSkill("chainmail", 1);
-    ExpectEq(-9, Attacker->calculateDefendAttack());
+    ExpectEq(-16, Attacker->calculateDefendAttack());
 
     Attacker->advanceSkill("chainmail", 14);
-    ExpectEq(5, Attacker->calculateDefendAttack());
+    ExpectEq(-6, Attacker->calculateDefendAttack());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -727,15 +725,15 @@ void CalculateDefendAttackUsesCorrectInventoryData()
     ExpectEq(13, Attacker->calculateDefendAttack(), "shield skill increased");
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(-17, Attacker->calculateDefendAttack(), "armor equipped");
+    ExpectEq(-27, Attacker->calculateDefendAttack(), "armor equipped");
 
     Attacker->advanceSkill("chainmail", 1);
-    ExpectEq(5, Attacker->calculateDefendAttack(), "chainmail skill increased to 1");
+    ExpectEq(-5, Attacker->calculateDefendAttack(), "chainmail skill increased to 1");
     Attacker->advanceSkill("chainmail", 10);
-    ExpectEq(15, Attacker->calculateDefendAttack(), "chainmail skill increased by 10");
+    ExpectEq(1, Attacker->calculateDefendAttack(), "chainmail skill increased by 10");
 
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(24, Attacker->calculateDefendAttack(), "modifier object added");
+    ExpectEq(10, Attacker->calculateDefendAttack(), "modifier object added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -751,20 +749,20 @@ void CalculateAttackWithWeaponCorrectlyAppliesWeaponData()
     // This includes: -4 for defender's defend attack, 2 dexterity bonus, 
     // 2 intelligence bonus, -20 for attacking untrained with longsword, 
     // -7 weapon encumberance (materials (-2) plus lack of skill (-5)),
-    // and 5 for galvorn's attack bonus
-    ExpectEq(-22, Attacker->calculateAttack(Target, weapon, 1), "untrained attack");
+    // 5 for weapon attack and 5 for galvorn's attack bonus
+    ExpectEq(-17, Attacker->calculateAttack(Target, weapon, 1), "untrained attack");
     
     Attacker->advanceSkill("long sword", 1);
-    ExpectEq(0, Attacker->calculateAttack(Target, weapon, 1), "trained attack");
+    ExpectEq(5, Attacker->calculateAttack(Target, weapon, 1), "trained attack");
 
     Attacker->advanceSkill("long sword", 10);
-    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "trained to 10 attack");
+    ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "trained to 10 attack");
 
     weapon->set("bonus attack", 3);
-    ExpectEq(13, Attacker->calculateAttack(Target, weapon, 1), "bonus attack applied");
+    ExpectEq(18, Attacker->calculateAttack(Target, weapon, 1), "bonus attack applied");
 
     weapon->set("bonus dexterity", 2);
-    ExpectEq(14, Attacker->calculateAttack(Target, weapon, 1), "bonus dexterity applied");
+    ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1), "bonus dexterity applied");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -781,11 +779,12 @@ void CalculateAttackWithWeaponCorrectlyAppliesSkillPenalty()
     // This includes: -4 for defender's defend attack, 2 dexterity bonus, 
     // 2 intelligence bonus, -20 for attacking untrained with longsword, 
     // -7 weapon encumberance (materials (-2) plus lack of skill (-5)),
-    // -1 for the skill penalty, and 5 for galvorn's attack bonus
-    ExpectEq(-23, Attacker->calculateAttack(Target, weapon, 1), "untrained attack");
+    // -1 for the skill penalty, 5 for weapon attack and 5 for 
+	// galvorn's attack bonus
+    ExpectEq(-19, Attacker->calculateAttack(Target, weapon, 1), "untrained attack");
 
     Attacker->advanceSkill("long sword", 1);
-    ExpectEq(-1, Attacker->calculateAttack(Target, weapon, 1), "trained attack");
+    ExpectEq(3, Attacker->calculateAttack(Target, weapon, 1), "trained attack");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -804,29 +803,30 @@ void CalculateAttackWithDualWieldWeaponCorrectlyAppliesWeaponData()
     // 2 intelligence bonus, -20 for attacking untrained with longsword, 
     // -14 weapon encumberance (materials (-4) plus regular (-10)),
     // 5 for galvorn's attack bonus, -5 for untrained dual wield, and -5 for
-    // base primary weapon dual wield penalty, 4 for attribute bonus for skill
-    ExpectEq(-49, Attacker->calculateAttack(Target, weapon, 1), "untrained attack");
-    ExpectEq(-54, Attacker->calculateAttack(Target, offhand, 1), "untrained offhand attack");
+    // base primary weapon dual wield penalty, 4 for attribute bonus for skill,
+	// and 5 for weapon attack
+    ExpectEq(-44, Attacker->calculateAttack(Target, weapon, 1), "untrained attack");
+    ExpectEq(-49, Attacker->calculateAttack(Target, offhand, 1), "untrained offhand attack");
 
     Attacker->advanceSkill("dual wield", 1);
-    ExpectEq(-43, Attacker->calculateAttack(Target, weapon, 1), "dual wield attack");
-    ExpectEq(-48, Attacker->calculateAttack(Target, offhand, 1), "dual wield offhand attack");
-
-    Attacker->advanceSkill("dual wield", 9);
     ExpectEq(-38, Attacker->calculateAttack(Target, weapon, 1), "dual wield attack");
     ExpectEq(-43, Attacker->calculateAttack(Target, offhand, 1), "dual wield offhand attack");
 
+    Attacker->advanceSkill("dual wield", 9);
+    ExpectEq(-33, Attacker->calculateAttack(Target, weapon, 1), "dual wield attack");
+    ExpectEq(-38, Attacker->calculateAttack(Target, offhand, 1), "dual wield offhand attack");
+
     Attacker->advanceSkill("long sword", 10);
-    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "trained to 10 attack");
-    ExpectEq(5, Attacker->calculateAttack(Target, offhand, 1), "trained to 10 attack - offhand");
+    ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "trained to 10 attack");
+    ExpectEq(10, Attacker->calculateAttack(Target, offhand, 1), "trained to 10 attack - offhand");
 
     weapon->set("bonus attack", 3);
-    ExpectEq(13, Attacker->calculateAttack(Target, weapon, 1), "bonus attack applied");
-    ExpectEq(5, Attacker->calculateAttack(Target, offhand, 1), "bonus has no effect on offhand");
+    ExpectEq(18, Attacker->calculateAttack(Target, weapon, 1), "bonus attack applied");
+    ExpectEq(10, Attacker->calculateAttack(Target, offhand, 1), "bonus has no effect on offhand");
 
     weapon->set("bonus dexterity", 2);
-    ExpectEq(14, Attacker->calculateAttack(Target, weapon, 1), "bonus dexterity applied");
-    ExpectEq(6, Attacker->calculateAttack(Target, offhand, 1), "bonus dexterity applied offhand");
+    ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1), "bonus dexterity applied");
+    ExpectEq(11, Attacker->calculateAttack(Target, offhand, 1), "bonus dexterity applied offhand");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -842,13 +842,13 @@ void CalculateAttackWhileWearingArmorAppliesArmorModifiers()
     Attacker->advanceSkill("long sword", 12);
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(12, Attacker->calculateAttack(Target, weapon, 1), "weapon equipped");
+    ExpectEq(17, Attacker->calculateAttack(Target, weapon, 1), "weapon equipped");
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(-8, Attacker->calculateAttack(Target, weapon, 1), "armor equipped");
+    ExpectEq(-13, Attacker->calculateAttack(Target, weapon, 1), "armor equipped");
 
-    Attacker->advanceSkill("chainmail", 1);
-    ExpectEq(3, Attacker->calculateAttack(Target, weapon, 1), "armor skill advanced");
+    Attacker->advanceSkill("chainmail", 10);
+    ExpectEq(1, Attacker->calculateAttack(Target, weapon, 1), "armor skill advanced");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -879,26 +879,26 @@ void CalculateAttackUsesCorrectInventoryData()
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     // The sword is "masterwork" because the skill greatly exceeded that required.
     // This accounts for the bonus as the attack would otherwise be -5.
-    ExpectEq(5, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
+    ExpectEq(6, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
 
     Attacker->advanceSkill("long sword", 10);
-    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped and skill of 11");
+    ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped and skill of 11");
 
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "shield with skill of 1 equipped");
+    ExpectEq(11, Attacker->calculateAttack(Target, weapon, 1), "shield with skill of 1 equipped");
     Attacker->advanceSkill("shield", 5);
-    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "shield skill increased");
+    ExpectEq(14, Attacker->calculateAttack(Target, weapon, 1), "shield skill increased");
 
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(-6, Attacker->calculateAttack(Target, weapon, 1), "armor equipped");
+    ExpectEq(-16, Attacker->calculateAttack(Target, weapon, 1), "armor equipped");
 
     Attacker->advanceSkill("chainmail", 1);
-    ExpectEq(5, Attacker->calculateAttack(Target, weapon, 1), "chainmail skill increased to 1");
+    ExpectEq(-5, Attacker->calculateAttack(Target, weapon, 1), "chainmail skill increased to 1");
     Attacker->advanceSkill("chainmail", 10);
-    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "chainmail skill increased by 10");
+    ExpectEq(-2, Attacker->calculateAttack(Target, weapon, 1), "chainmail skill increased by 10");
 
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(17, Attacker->calculateAttack(Target, weapon, 1), "modifier object added");
+    ExpectEq(5, Attacker->calculateAttack(Target, weapon, 1), "modifier object added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -910,18 +910,18 @@ void CalculateAttackUsesCorrectServiceBonuses()
     Attacker->advanceSkill("long sword", 12);
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
 
-    ExpectEq(12, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
+    ExpectEq(17, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
 
     Attacker->ToggleMockGuilds();
-    ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1), "guild modifier is active");
+    ExpectEq(24, Attacker->calculateAttack(Target, weapon, 1), "guild modifier is active");
     Attacker->ToggleMockResearch();
-    ExpectEq(24, Attacker->calculateAttack(Target, weapon, 1), "research modifier is active");
+    ExpectEq(29, Attacker->calculateAttack(Target, weapon, 1), "research modifier is active");
     Attacker->ToggleMockTrait();
-    ExpectEq(27, Attacker->calculateAttack(Target, weapon, 1), "trait modifier is active");
+    ExpectEq(32, Attacker->calculateAttack(Target, weapon, 1), "trait modifier is active");
     Attacker->ToggleMockBiological();
-    ExpectEq(24, Attacker->calculateAttack(Target, weapon, 1), "biological modifier is active");
+    ExpectEq(29, Attacker->calculateAttack(Target, weapon, 1), "biological modifier is active");
     Attacker->ToggleMockBackground();
-    ExpectEq(27, Attacker->calculateAttack(Target, weapon, 1), "background modifier is active");
+    ExpectEq(32, Attacker->calculateAttack(Target, weapon, 1), "background modifier is active");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -933,14 +933,14 @@ void CalculateAttackDecreasesAttackForDisease()
     Attacker->advanceSkill("long sword", 12);
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
 
-    ExpectEq(12, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
+    ExpectEq(17, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
 
     object modifier = clone_object("/lib/items/modifierObject");
     modifier->set("fully qualified name", "blah");
     modifier->set("disease", 1);
 
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(11, Attacker->calculateAttack(Target, weapon, 1), "disease object added");
+    ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "disease object added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -952,14 +952,14 @@ void CalculateAttackDecreasesAttackForEnfeebled()
     Attacker->advanceSkill("long sword", 18);
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
 
-    ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
+    ExpectEq(20, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
 
     object modifier = clone_object("/lib/items/modifierObject");
     modifier->set("fully qualified name", "blah");
     modifier->set("enfeebled", 1);
 
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(13, Attacker->calculateAttack(Target, weapon, 1), "enfeebled object added");
+    ExpectEq(17, Attacker->calculateAttack(Target, weapon, 1), "enfeebled object added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -971,14 +971,14 @@ void CalculateAttackIncreasesAttackForFortified()
     Attacker->advanceSkill("long sword", 18);
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
 
-    ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
+    ExpectEq(20, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
 
     object modifier = clone_object("/lib/items/modifierObject");
     modifier->set("fully qualified name", "blah");
     modifier->set("fortified", 1);
 
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(16, Attacker->calculateAttack(Target, weapon, 1), "fortified object added");
+    ExpectEq(22, Attacker->calculateAttack(Target, weapon, 1), "fortified object added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -990,9 +990,9 @@ void CalculateAttackCorrectlyAppliesMagicalAttackBonus()
     
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
 
-    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1), "nothing is equipped");
+    ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "nothing is equipped");
     Attacker->ToggleMagicalAttackBonus();
-    ExpectEq(14, Attacker->calculateAttack(Target, weapon, 1), "magical attack method called");
+    ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1), "magical attack method called");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1168,9 +1168,9 @@ void CalculateDamageCorrectlyAppliesSkillPenalty()
     ExpectEq(4, Attacker->calculateDamage(weapon, "physical", 1), "nothing is equipped");
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(23, Attacker->calculateDamage(weapon, "physical", 1), "no skill penalty applied");
+    ExpectEq(22, Attacker->calculateDamage(weapon, "physical", 1), "no skill penalty applied");
     weapon->set("skill penalty", 2);
-    ExpectEq(21, Attacker->calculateDamage(weapon, "physical", 1), "skill penalty applied");
+    ExpectEq(20, Attacker->calculateDamage(weapon, "physical", 1), "skill penalty applied");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1186,10 +1186,10 @@ void CalculateDamageReturnsTheCorrectDamageForWeapons()
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
 
     // wc is 10 and the bonus from galvorn is 8.
-    ExpectEq(23, Attacker->calculateDamage(weapon, "physical", 1, "physical damage"));
+    ExpectEq(22, Attacker->calculateDamage(weapon, "physical", 1, "physical damage"));
 
     Attacker->advanceSkill("long sword", 11);
-    ExpectEq(29, Attacker->calculateDamage(weapon, "physical", 1, "physical damage after skill increased"));
+    ExpectEq(25, Attacker->calculateDamage(weapon, "physical", 1, "physical damage after skill increased"));
 
     ExpectEq(7, Attacker->calculateDamage(weapon, "magical", 1, "Only attribute and magical damage from galvorn are counted"));
 }
@@ -1214,7 +1214,7 @@ void CalculateDamageReturnsTheCorrectDamageForInventory()
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
 
-    ExpectEq(32, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
+    ExpectEq(29, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
     ExpectEq(10, Attacker->calculateDamage(weapon, "magical", 1), "total magical damage");
     ExpectEq(12, Attacker->calculateDamage(weapon, "fire", 1), "total fire damage");
     ExpectEq(12, Attacker->calculateDamage(weapon, "acid", 1), "total acid damage");
@@ -1234,9 +1234,9 @@ void CalculateDamageCorrectlyEnfeebles()
     Attacker->advanceSkill("long sword", 8);
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(27, Attacker->calculateDamage(weapon, "physical", 1), "weapon equipped");
+    ExpectEq(24, Attacker->calculateDamage(weapon, "physical", 1), "weapon equipped");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(21, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
+    ExpectEq(19, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1252,9 +1252,9 @@ void CalculateDamageCorrectlyFortifies()
     Attacker->advanceSkill("long sword", 8);
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(27, Attacker->calculateDamage(weapon, "physical", 1), "weapon equipped");
+    ExpectEq(24, Attacker->calculateDamage(weapon, "physical", 1), "weapon equipped");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(32, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
+    ExpectEq(29, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
 }
 
 /////////////////////////////////////////////////////////////////////////////

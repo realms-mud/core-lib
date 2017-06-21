@@ -110,7 +110,8 @@ public nomask int getSkillModifier(string skill)
         object attributes = getService("attributes");
         if (attributes && (ret >= 0))
         {
-            ret += (attributes->attributeValue(skillsObject()->attributeForSkill(skill)) - 16) / 4;
+            int attributeBonus = (attributes->attributeValue(skillsObject()->attributeForSkill(skill)) - 16) / 4;
+			ret += attributeBonus > 0 ? attributeBonus : 0;
         }
     }
     return ret;

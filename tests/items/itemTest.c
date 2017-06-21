@@ -34,6 +34,25 @@ void CanSetBonusesOnItems()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void QueryingBonusesReturnsAllAddedBonuses()
+{
+	Item->set("weight", 3);
+	Item->set("material", "galvorn");
+
+	ExpectTrue(Item->set("bonus armor class", 5), "bonus armor class can be set");
+	ExpectEq(({ "bonus armor class" }), Item->query("bonuses"));
+
+	ExpectTrue(Item->set("bonus fire attack", 1), "bonus fire attack can be set");
+	ExpectEq(({ "bonus armor class", "bonus fire attack" }), Item->query("bonuses"));
+
+	ExpectTrue(Item->set("bonus gem crafting", 7), "bonus armor class can be set");
+	ExpectEq(({ "bonus armor class", "bonus fire attack", "bonus gem crafting" }), Item->query("bonuses"));
+
+	ExpectTrue(Item->set("bonus attack", 7), "bonus armor class can be set");
+	ExpectEq(({ "bonus attack", "bonus armor class", "bonus fire attack", "bonus gem crafting" }), Item->query("bonuses"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void QueryingUnsetValueCorrectlyReturns()
 {
     ExpectFalse(Item->query("bonus armor class"), "bonus armor class query when unset returns false");
@@ -612,7 +631,7 @@ void LongReturnsCorrectMessageBeforeIdentification()
     Item->set("long", "Blah blah blah");
     Item->set("additional long", "even more blah");
 
-    ExpectEq("Blah blah blah\n", Item->long(), "long() returns correct value");
+    ExpectEq("Blah blah blah\n[0;37;1mThis item is typical for its type.\n[0m[0;36mThis item has not been identified.\n[0m\n", Item->long(), "long() returns correct value");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -622,7 +641,7 @@ void LongReturnsCorrectMessageAfterIdentification()
     Item->set("additional long", "even more blah");
 
     ExpectTrue(Item->identify());
-    ExpectEq("Blah blah blah even more blah\n", Item->long(), "long() returns correct value after ID");
+    ExpectEq("Blah blah blah even more blah\n[0;37;1mThis item is typical for its type.\n[0m\n", Item->long(), "long() returns correct value after ID");
 }
 
 /////////////////////////////////////////////////////////////////////////////

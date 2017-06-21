@@ -66,6 +66,7 @@ string PrepPlayerWithInventory()
 {
     Player->Race("elf");
     Player->Gender(1);
+    Player->hitPoints(Player->maxHitPoints());
 
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
@@ -110,7 +111,13 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->addCommands();
-    move_object(Player, clone_object("/lib/tests/support/services/mockPlayer.c"));
+    Player->Str(10);
+    Player->Dex(10);
+    Player->Con(10);
+    Player->Int(10);
+    Player->Wis(10);
+
+    move_object(Player, clone_object("/lib/environment/room.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -274,19 +281,21 @@ void GlanceInDoesNotShowInventory()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void LookAtItemShowsInventory()
+void LookAtItemShowsDetails()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
-    weapon->set("blueprint", "long sword");
-    weapon->set("craftsmanship", 130);
+    weapon->set("weapon type", "long sword");
     weapon->set("short", "Sword of Blah");
     move_object(weapon, Player);
     weapon->equip("blah");
 
+    Player->addSkillPoints(100);
+    Player->advanceSkill("long sword", 6);
+
     ExpectTrue(Player->executeCommand("look at blah"));
     ExpectEq("Sword of Blah\n" + 
-             sprintf(Masterwork, "This long sword is a masterwork item.\n") +
-             "\n",
-        Player->caughtMessage());
+		sprintf(NormalEquipment, "This long sword is typical for its type.\n") + 
+		sprintf(Unidentified, "This item has not been identified.\n") + "\n",
+		Player->caughtMessage());
 }

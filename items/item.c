@@ -24,7 +24,7 @@ protected mapping itemData = ([
 //  "bonus heal hit points": 3 // heal extra 3 hp per heart_beat heal interval
 //  "bonus heal hit points rate": 2 // decrease heal (hp) interval by 2 seconds
 //  "bonus strength": 2        // add 2 to the equipper's strength stat
-//  "bonus longsword": 4       // add 4 to the longsword skill of the equipper
+//  "bonus long sword": 4      // add 4 to the longsword skill of the equipper
 //  "bonus armor class": 2     // add 2 the the equipper's armor class  
 //  "charges":         // number of charges the item has
 //  "craftsmanship":   // The skill of the craftsman who created the item
@@ -138,6 +138,12 @@ public mixed query(string element)
                     ret = isEnchanted;
                     break;
                 }
+				case "bonuses":
+				{
+					ret = filter_array(m_indices(itemData),
+						(: return sizeof(regexp(({ $1 }), "bonus")) > 0; :));
+					break;
+				}
             }
         }
     }
@@ -431,7 +437,13 @@ public string short()
 /////////////////////////////////////////////////////////////////////////////
 protected string itemStatistics()
 {
-    return "";
+	string ret = "";
+	object itemTypes = load_object(MaterialsBlueprint);
+	if (itemTypes && objectp(itemTypes))
+	{
+		ret = itemTypes->getEquipmentStatistics(this_object(), this_player());
+	}
+	return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -480,7 +492,7 @@ public string readMessage(string item)
     string msg = 0;
     if(id(item))
     {
-        if(member(itemData, "identified") && itemData["identified"] &&
+        if(member(itemData, "identified") && 
             member(itemData, "read message identified"))
         {
             msg = itemData["read message identified"];
@@ -520,7 +532,7 @@ public int identify()
     int ret = 0;
     if(!query("identified"))
     {
-        ret = set("identified", 1);
+        ret = set("identified");
     }
     return ret;
 }

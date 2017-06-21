@@ -15,8 +15,8 @@ virtual inherit "/lib/items/item.c";
 
 private nosave string GuildsBlueprint = "/lib/dictionaries/guildsDictionary.c";
 private nosave string RacesBlueprint = "/lib/dictionaries/racialDictionary.c";
-private nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDictionary.c";
 private nosave string SkillsBlueprint = "/lib/dictionaries/skillsDictionary.c";
+protected nosave string ItemTypesBlueprint = "/lib/dictionaries/materialsDictionary.c";
 
 // This mapping shows all potential modifiers for a specified equipment piece.
 // It is IMPORTANT to note that not all modifiers are available for all items
@@ -99,12 +99,37 @@ private nosave string SkillsBlueprint = "/lib/dictionaries/skillsDictionary.c";
 
 private string *prohibitedKeys = ({ "armor class", "defense class", 
     "weapon class", "hit method", "armor type", "weapon type", "offhand" });
-    
+ 
+/////////////////////////////////////////////////////////////////////////////
+protected nomask object materialsObject()
+{
+	return load_object(ItemTypesBlueprint);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public mixed query(string element)
 {
-    // TODO: If this doesn't do anything else, remove it.
-    return "item"::query(element);
+	mixed ret = 0;
+	switch (element)
+	{
+		case "encumberance":
+		{
+			ret = member(itemData, "encumberance") ? itemData["encumberance"] :
+				materialsObject()->getBlueprintModifier(this_object(), "default encumberance");
+			break;
+		}
+		case "material":
+		{
+			ret = member(itemData, "material") ? itemData["material"] :
+				materialsObject()->getBlueprintModifier(this_object(), "default material");
+			break;
+		}
+		default:
+		{
+			ret = "item"::query(element);
+		}
+	}
+	return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -613,14 +638,3 @@ public void init()
     item::init();
 }
 
-/////////////////////////////////////////////////////////////////////////////
-protected string itemStatistics()
-{
-    string ret = "";
-    object itemTypes = load_object(MaterialsBlueprint);
-    if (itemTypes && objectp(itemTypes))
-    {
-        ret = itemTypes->getEquipmentStatistics(this_object());
-    }
-    return ret;
-}

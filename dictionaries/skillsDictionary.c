@@ -142,28 +142,28 @@ private mapping skills = ([
     "plate armor": ([
         "type": "combat",
         "attribute": "strength",
-        "bonus calculator": "one for two",
+        "bonus calculator": "one for three",
         "untrained penalty": -10,
         "description": "This skill provides proficiency in the use of heavy armors made of plates of material, typically, but not exclusively, of metal. Armors of this family include full plate, field plate, plate mail, and breastplates."
     ]),
     "splint armor": ([
         "type": "combat",
         "attribute": "strength",
-        "bonus calculator": "one for two",
+        "bonus calculator": "one for three",
         "untrained penalty": -10,
         "description": "Splint armor allows for more flexibility than plate armor. Splint armors are typically fashioned out of long bands - or splints - of metal attached to a substrate of leather, cloth, or chain."
     ]),  
     "chainmail": ([
         "type": "combat",
         "attribute": "strength",
-        "bonus calculator": "one for two",
+        "bonus calculator": "one for three",
         "untrained penalty": -10,
         "description": "This skill provides proficiency in the use of chain-type armors such as chain mail and any other armor fashioned of interlocking or interwoven rings of material. This allows for good mobility in a fairly heavy/strong armor."
     ]), 
     "scalemail": ([
         "type": "combat",
         "attribute": "strength",
-        "bonus calculator": "one for two",
+        "bonus calculator": "one for three",
         "untrained penalty": -10,
         "description": "Scale armor represents those armors fashioned of some substrate such as chain armor or leather with small metal (or other rigid substance) plates woven through the substrate (typically layered in a fashion similar to a fish's scales.) Armors of this nature typically afford decent protection at the cost of mobility."
 
@@ -171,21 +171,21 @@ private mapping skills = ([
     "hard leather": ([
         "type": "combat",
         "attribute": "strength",
-        "bonus calculator": "one for two",
+        "bonus calculator": "one for three",
         "untrained penalty": -10,
         "description": "Hard leather is leather treated in a manner above and beyond simple tanning. The leather is fairly rigid and offers better protection than usual leather, but at the sacrifice of mobility. Often times, studs are sewn into the armor to provide extra protection against weapons."
     ]),
     "soft leather": ([
         "type": "combat",
         "attribute": "dexterity",
-        "bonus calculator": "one for two",
+        "bonus calculator": "one for three",
         "untrained penalty": -10,
         "description": "This skill provides proficiency in the use of untreated or tanned leather armors. The armor offers a great deal of mobility but offers only modest protection from harm."
     ]),    
     "no armor": ([
         "type": "combat",
         "attribute": "dexterity",
-        "bonus calculator": "one for two",
+        "bonus calculator": "one for three",
         "untrained penalty": -10,
         "description": "Armors that fall in this category are padded armors made of cloth, robes, and every day clothing."
     ]),
@@ -869,7 +869,13 @@ public nomask int skillBonus(string skill, int rawSkillLevel)
                       skills[skill]["untrained penalty"];
                 break;
             }
-            case "logarithmic":
+			case "one for three":
+			{
+				ret = rawSkillLevel ? (rawSkillLevel / 3) :
+					skills[skill]["untrained penalty"];
+				break;
+			}
+			case "logarithmic":
             {
                 ret = rawSkillLevel ? (to_int(log(rawSkillLevel) / log(2.0))) :
                       skills[skill]["untrained penalty"];
@@ -945,7 +951,7 @@ public nomask int canAdvanceSkill(object skillOwner, string skill, int value)
     int ret = 0;
     if(isValidSkill(skill) && skillOwner && objectp(skillOwner) &&
        function_exists("attributeValue", skillOwner) && (value > 0) &&
-       (skillOwner->attributeValue(skills[skill]["attribute"]) > value))
+       (skillOwner->attributeValue(skills[skill]["attribute"]) >= (value - 10)))
     {
         ret = 1;
     }

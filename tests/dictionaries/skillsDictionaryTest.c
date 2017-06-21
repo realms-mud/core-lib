@@ -220,7 +220,7 @@ void PlateArmorIsAValidSkill()
     ExpectTrue(Dictionary->isValidSkill("plate armor"), "plate armor is a valid skill");
     ExpectEq("combat", Dictionary->skillType("plate armor"), "returns proper skill type");
     ExpectEq("strength", Dictionary->attributeForSkill("plate armor"), "returns proper attribute");
-    ExpectEq(5, Dictionary->skillBonus("plate armor", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(3, Dictionary->skillBonus("plate armor", 10), "skill of 10 returns a 5 bonus");
     ExpectEq(-10, Dictionary->skillBonus("plate armor", 0), "returns correct value when untrained");
 }
 
@@ -230,7 +230,7 @@ void SplintArmorIsAValidSkill()
     ExpectTrue(Dictionary->isValidSkill("splint armor"), "splint armor is a valid skill");
     ExpectEq("combat", Dictionary->skillType("splint armor"), "returns proper skill type");
     ExpectEq("strength", Dictionary->attributeForSkill("splint armor"), "returns proper attribute");
-    ExpectEq(5, Dictionary->skillBonus("splint armor", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(3, Dictionary->skillBonus("splint armor", 10), "skill of 10 returns a 5 bonus");
     ExpectEq(-10, Dictionary->skillBonus("splint armor", 0), "returns correct value when untrained");
 }
 
@@ -240,7 +240,7 @@ void ChainmailIsAValidSkill()
     ExpectTrue(Dictionary->isValidSkill("chainmail"), "chainmail is a valid skill");
     ExpectEq("combat", Dictionary->skillType("chainmail"), "returns proper skill type");
     ExpectEq("strength", Dictionary->attributeForSkill("chainmail"), "returns proper attribute");
-    ExpectEq(5, Dictionary->skillBonus("chainmail", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(3, Dictionary->skillBonus("chainmail", 10), "skill of 10 returns a 5 bonus");
     ExpectEq(-10, Dictionary->skillBonus("chainmail", 0), "returns correct value when untrained");
 }
 
@@ -250,7 +250,7 @@ void ScalemailIsAValidSkill()
     ExpectTrue(Dictionary->isValidSkill("scalemail"), "scalemail is a valid skill");
     ExpectEq("combat", Dictionary->skillType("scalemail"), "returns proper skill type");
     ExpectEq("strength", Dictionary->attributeForSkill("scalemail"), "returns proper attribute");
-    ExpectEq(10, Dictionary->skillBonus("scalemail", 20), "skill of 20 returns a 10 bonus");
+    ExpectEq(7, Dictionary->skillBonus("scalemail", 21), "skill of 20 returns a 10 bonus");
     ExpectEq(-10, Dictionary->skillBonus("scalemail", 0), "returns correct value when untrained");
 }
 
@@ -260,7 +260,7 @@ void HardLeatherIsAValidSkill()
     ExpectTrue(Dictionary->isValidSkill("hard leather"), "hard leather is a valid skill");
     ExpectEq("combat", Dictionary->skillType("hard leather"), "returns proper skill type");
     ExpectEq("strength", Dictionary->attributeForSkill("hard leather"), "returns proper attribute");
-    ExpectEq(5, Dictionary->skillBonus("hard leather", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(3, Dictionary->skillBonus("hard leather", 10), "skill of 10 returns a 5 bonus");
     ExpectEq(-10, Dictionary->skillBonus("hard leather", 0), "returns correct value when untrained");
 }
 
@@ -270,7 +270,7 @@ void SoftLeatherIsAValidSkill()
     ExpectTrue(Dictionary->isValidSkill("soft leather"), "soft leather is a valid skill");
     ExpectEq("combat", Dictionary->skillType("soft leather"), "returns proper skill type");
     ExpectEq("dexterity", Dictionary->attributeForSkill("soft leather"), "returns proper attribute");
-    ExpectEq(5, Dictionary->skillBonus("soft leather", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(3, Dictionary->skillBonus("soft leather", 10), "skill of 10 returns a 5 bonus");
     ExpectEq(-10, Dictionary->skillBonus("soft leather", 0), "returns correct value when untrained");
 }
 
@@ -280,7 +280,7 @@ void NoArmorIsAValidSkill()
     ExpectTrue(Dictionary->isValidSkill("no armor"), "no armor is a valid skill");
     ExpectEq("combat", Dictionary->skillType("no armor"), "returns proper skill type");
     ExpectEq("dexterity", Dictionary->attributeForSkill("no armor"), "returns proper attribute");
-    ExpectEq(5, Dictionary->skillBonus("no armor", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(3, Dictionary->skillBonus("no armor", 10), "skill of 10 returns a 5 bonus");
     ExpectEq(-10, Dictionary->skillBonus("no armor", 0), "returns correct value when untrained");
 }
 
@@ -984,7 +984,7 @@ void CanAdvanceSkillReturnsCorrectly()
     ExpectFalse(Dictionary->canAdvanceSkill(skillOwner, "dodge", -5), "cannot advance skill negatively");
     ExpectFalse(Dictionary->canAdvanceSkill(skillOwner, "dodge", 0), "cannot advance skill by 0");
     ExpectTrue(Dictionary->canAdvanceSkill(skillOwner, "dodge", 10), "can advance when skill lower than attribute");
-    ExpectFalse(Dictionary->canAdvanceSkill(skillOwner, "dodge", 21), "cannot advance when skill higher than attribute");
+    ExpectFalse(Dictionary->canAdvanceSkill(skillOwner, "dodge", 31), "cannot advance when skill higher than attribute+10");
 }
 
 

@@ -7,28 +7,47 @@
 //*****************************************************************************
 inherit "/lib/items/equipment.c";
 
-private nosave string ItemTypesBlueprint = "/lib/dictionaries/materialsDictionary.c";
-    
 /////////////////////////////////////////////////////////////////////////////
 public nomask mixed query(string element)
 {
     mixed ret = 0;
-    if(element == "damage type")
-    {
-        object itemTypes = load_object(ItemTypesBlueprint);
-        if (itemTypes && objectp(itemTypes))
-        {
-            ret = itemTypes->getMaterialDamageType(this_object());
-        }
-    }
-    else if((element == "blueprint") && !member(itemData, "blueprint"))
-    {
-        ret = "equipment"::query("weapon type");
-    }
-    else
-    {
-        ret = "equipment"::query(element);
-    }
+	switch(element)
+	{
+		case "damage type":
+		{
+			ret = materialsObject()->getMaterialDamageType(this_object());
+			break;
+		}
+		case "weapon attack":
+		{
+			ret = member(itemData, "weapon attack") ? itemData["weapon attack"] :
+				materialsObject()->getBlueprintModifier(this_object(), "default attack");
+			break;
+		}
+		case "weapon class":
+		{
+			ret = member(itemData, "weapon class") ? itemData["weapon class"] :
+				materialsObject()->getBlueprintModifier(this_object(), "default wc");
+			break;
+		}
+		case "defense class":
+		{
+			ret = member(itemData, "defense class") ? itemData["defense class"] :
+				materialsObject()->getBlueprintModifier(this_object(), "default dc");
+			break;
+		}
+		case "blueprint":
+		{
+			ret = member(itemData, "blueprint") ? itemData["blueprint"] :
+				"equipment"::query("weapon type");
+			break;
+		}
+		default:
+		{
+			ret = "equipment"::query(element);
+		}
+	}
+
     return ret;
 }
 
@@ -67,6 +86,7 @@ public nomask varargs int set(string element, mixed data)
         {
             case "defense class":
             case "weapon class":
+            case "weapon attack":
             {
                 if(data && intp(data))
                 {
