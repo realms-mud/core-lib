@@ -15,6 +15,7 @@
 private nosave string EquipmentBlueprint = "lib/items/equipment.c";
 private nosave string DetailsText = "\t[0;36m%s: [0m[0;33m%d to %d[0m\n";
 private nosave string SingleDetailText = "\t[0;36m%s: [0m[0;33m%d[0m\n";
+private nosave string DetailString = "\t[0;36m%s: [0m[0;33m%s[0m\n";
 
 private nosave string *validBonuses = ({ "strength", "intelligence", "dexterity",
     "wisdom", "constitution", "charisma",  });
@@ -550,6 +551,27 @@ private nomask string applyWeaponAttackInformation(object weapon, object initiat
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string convertDamageMappingToString(mapping damages)
+{
+	string ret = 0;
+
+	if (damages && sizeof(damages))
+	{
+		ret = "";
+		string *damagetKeys = sort_array(m_indices(damages),
+			(: return $1 > $2; :));
+
+		foreach(string damage in damagetKeys)
+		{
+			ret += sprintf(SpecialAttack, sprintf(" [+%d %s]",
+				damages[damage], damage));
+		}
+		ret += "\n";
+	}
+	return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string applyEnchantments(object weapon)
 {
 	string ret = 0;
@@ -568,20 +590,42 @@ private nomask string applyEnchantments(object weapon)
 			getMaterialDamage(weapon, extraDamage);
 	}
 
-	if(enchantments && sizeof(enchantments))
-	{
-		ret = "";
-		string *enchantmentKeys = sort_array(m_indices(enchantments),
-			(: return $1 > $2; :));
+	return convertDamageMappingToString(enchantments);
+}
 
-		foreach(string enchantment in enchantmentKeys)
-		{
-			ret += sprintf(SpecialAttack, sprintf(" [+%d %s]",
-				enchantments[enchantment], enchantment));
-		}
-		ret += "\n";
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyResistances(object item)
+{
+	string ret = 0;
+
+	mapping resistances = item->query("resistances");
+	if (!resistances)
+	{
+		resistances = ([]);
 	}
-	return ret;
+
+	string material = item->query("material");
+	if (material && member(materials, material) &&
+		member(materials[material], "defense"))
+	{
+		string *materialResistances = m_indices(materials[material]["defense"]);
+		if (sizeof(materialResistances))
+		{
+			foreach(string materialResistance in materialResistances)
+			{
+				resistances[materialResistance] = member(resistances, materialResistance) ?
+					(resistances[materialResistance] + getMaterialDefense(item, materialResistance)) :
+					getMaterialDefense(item, materialResistance);
+			}
+
+			if (item->query("armor type") && member(resistances, "physical"))
+			{
+				m_delete(resistances, "physical");
+			}
+		}
+	}
+
+	return convertDamageMappingToString(resistances);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -690,12 +734,70 @@ private nomask string applyBonusDetails(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string applyMaterialDetails(object item)
+{
+	string ret = "";
+	string material = item->query("material");
+	if (material)
+	{
+		ret += sprintf(DetailString, "Material", capitalize(material));
+	}
+	return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string applyWeaponDetails(object weapon, object initiator)
 {
-    return applyWeaponAttackInformation(weapon, initiator) +
+    return applyMaterialDetails(weapon) +
+		applyWeaponAttackInformation(weapon, initiator) +
 		applyWeaponDamageInformation(weapon, initiator) +
 		applyWeaponDefenseInformation(weapon, initiator) +
 		applyEncumberance(weapon, initiator);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyArmorDetails(object armor, object initiator)
+{
+	int baseAC = armor->query("armor class");
+
+	if (initiator)
+	{
+		baseAC += getMaterialDefense(armor, "physical") +
+			initiator->magicalDefenseBonus() +
+			calculateServiceBonuses("DefenseBonus", initiator) +
+			(initiator->constitutionBonus() / 2) +
+			(initiator->strengthBonus() / 2);
+	}
+
+	string ret = sprintf(SingleDetailText, "Damage Protection", baseAC);
+	
+	string resistances = applyResistances(armor);
+	if (resistances)
+	{
+		ret -= "\n";
+		ret += resistances;
+	}
+	return applyMaterialDetails(armor) + 
+		ret + 
+		applyEncumberance(armor, initiator);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyNonEquipmentDetails(object item)
+{
+	string ret = "";
+
+	string enchantments = applyEnchantments(item);
+	if (enchantments)
+	{
+		ret += sprintf(Value, sprintf("\tEnchantments: %s", enchantments));
+	}
+	string resistances = applyResistances(item);
+	if (resistances)
+	{
+		ret += sprintf(Value, sprintf("\tResistances: %s", resistances));
+	}
+	return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -719,7 +821,11 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
 		}
 		else if (equipment->query("armor type"))
 		{
-			ret = initiator->getSkillModifier("armorer");
+			ret += applyArmorDetails(equipment, initiator);
+		}
+		else
+		{
+			ret += applyNonEquipmentDetails(equipment);
 		}
 	}
 
@@ -727,6 +833,11 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
 		spellcraftCanIdentifyItem(equipment, initiator))
 	{
 		ret += applyBonusDetails(equipment);
+	}
+
+	if (equipment->query("weight"))
+	{
+		ret += sprintf(SingleDetailText, "Weight", equipment->query("weight"));
 	}
 
 	if (spellcraftCanIdentifyItem(equipment, initiator) &&
