@@ -7,5 +7,5 @@ inherit "/lib/dictionaries/groups/baseGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-	setName("Training Wizard");
+    setName("Training Wizard");
 }

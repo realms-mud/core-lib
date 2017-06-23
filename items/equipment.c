@@ -103,33 +103,33 @@ private string *prohibitedKeys = ({ "armor class", "defense class",
 /////////////////////////////////////////////////////////////////////////////
 protected nomask object materialsObject()
 {
-	return load_object(ItemTypesBlueprint);
+    return load_object(ItemTypesBlueprint);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public mixed query(string element)
 {
-	mixed ret = 0;
-	switch (element)
-	{
-		case "encumberance":
-		{
-			ret = member(itemData, "encumberance") ? itemData["encumberance"] :
-				materialsObject()->getBlueprintModifier(this_object(), "default encumberance");
-			break;
-		}
-		case "material":
-		{
-			ret = member(itemData, "material") ? itemData["material"] :
-				materialsObject()->getBlueprintModifier(this_object(), "default material");
-			break;
-		}
-		default:
-		{
-			ret = "item"::query(element);
-		}
-	}
-	return ret;
+    mixed ret = 0;
+    switch (element)
+    {
+        case "encumberance":
+        {
+            ret = member(itemData, "encumberance") ? itemData["encumberance"] :
+                materialsObject()->getBlueprintModifier(this_object(), "default encumberance");
+            break;
+        }
+        case "material":
+        {
+            ret = member(itemData, "material") ? itemData["material"] :
+                materialsObject()->getBlueprintModifier(this_object(), "default material");
+            break;
+        }
+        default:
+        {
+            ret = "item"::query(element);
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

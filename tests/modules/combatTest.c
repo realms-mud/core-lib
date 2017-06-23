@@ -780,7 +780,7 @@ void CalculateAttackWithWeaponCorrectlyAppliesSkillPenalty()
     // 2 intelligence bonus, -20 for attacking untrained with longsword, 
     // -7 weapon encumberance (materials (-2) plus lack of skill (-5)),
     // -1 for the skill penalty, 5 for weapon attack and 5 for 
-	// galvorn's attack bonus
+    // galvorn's attack bonus
     ExpectEq(-19, Attacker->calculateAttack(Target, weapon, 1), "untrained attack");
 
     Attacker->advanceSkill("long sword", 1);
@@ -804,7 +804,7 @@ void CalculateAttackWithDualWieldWeaponCorrectlyAppliesWeaponData()
     // -14 weapon encumberance (materials (-4) plus regular (-10)),
     // 5 for galvorn's attack bonus, -5 for untrained dual wield, and -5 for
     // base primary weapon dual wield penalty, 4 for attribute bonus for skill,
-	// and 5 for weapon attack
+    // and 5 for weapon attack
     ExpectEq(-44, Attacker->calculateAttack(Target, weapon, 1), "untrained attack");
     ExpectEq(-49, Attacker->calculateAttack(Target, offhand, 1), "untrained offhand attack");
 

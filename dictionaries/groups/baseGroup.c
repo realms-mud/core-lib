@@ -21,188 +21,188 @@ protected void applyGroupDetails()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void init()
 {
-	applyGroupDetails();
+    applyGroupDetails();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string group()
 {
-	string group = 0;
+    string group = 0;
 
-	string *groupName = regexp(({ program_name(this_object()) }),
-		"^lib/dictionaries/groups/[a-zA-Z]+\.c$");
-	if (sizeof(groupName))
-	{
-		group = regreplace(groupName[0],
-			"^lib/dictionaries/groups/([a-zA-Z]+)\.c$",
-			"\\1");
-	}
-	return group;
+    string *groupName = regexp(({ program_name(this_object()) }),
+        "^lib/dictionaries/groups/[a-zA-Z]+\.c$");
+    if (sizeof(groupName))
+    {
+        group = regreplace(groupName[0],
+            "^lib/dictionaries/groups/([a-zA-Z]+)\.c$",
+            "\\1");
+    }
+    return group;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string name()
 {
-	return Name;
+    return Name;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isMemberOf(object user)
 {
-	object *members = filter_array(users(),
-		(: return (program_name($1) == "lib/realizations/wizard.c") &&
-			(member($1->groups(), group()) > -1); :));
+    object *members = filter_array(users(),
+        (: return (program_name($1) == "lib/realizations/wizard.c") &&
+            (member($1->groups(), group()) > -1); :));
 
-	return user && objectp(user) && sizeof(members) &&
-		(member(members, user) > -1);
+    return user && objectp(user) && sizeof(members) &&
+        (member(members, user) > -1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string sanitizePath(string path)
 {
-	string *traversePath = explode(path, "/") - ({ "." }) - ({ "" });
+    string *traversePath = explode(path, "/") - ({ "." }) - ({ "" });
 
-	int depth = sizeof(traversePath);
-	if (depth > 0)
-	{
-		int i = 1;
-		// First pass, strip out any ".." except for the leading one.
-		// It's OK if this results in "/../../../blah"
-		while((i != depth) && (depth > 0) && (i >= 0))
-		{
-			if (traversePath[i] == "..")
-			{
-				traversePath[i-1 ..i] = ({ });
-				i--;
-				depth = sizeof(traversePath);
-			}
-			else
-			{
-				i++;
-			}
-		}
-		traversePath -= ({ ".." });
-	}
+    int depth = sizeof(traversePath);
+    if (depth > 0)
+    {
+        int i = 1;
+        // First pass, strip out any ".." except for the leading one.
+        // It's OK if this results in "/../../../blah"
+        while((i != depth) && (depth > 0) && (i >= 0))
+        {
+            if (traversePath[i] == "..")
+            {
+                traversePath[i-1 ..i] = ({ });
+                i--;
+                depth = sizeof(traversePath);
+            }
+            else
+            {
+                i++;
+            }
+        }
+        traversePath -= ({ ".." });
+    }
 
-	return "/" + implode(traversePath, "/");
+    return "/" + implode(traversePath, "/");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int hasPermissions(string path, mapping root)
 {
-	return member(root, path) && member(root[path], "permissions");
+    return member(root, path) && member(root[path], "permissions");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int getPermissionForPath(string path, mapping root)
 {
-	int permissionFlags = Unknown;
-	string *traversePath = explode(path, "/") - ({ "" });
+    int permissionFlags = Unknown;
+    string *traversePath = explode(path, "/") - ({ "" });
 
-	if ((sizeof(traversePath) == 1) && hasPermissions(traversePath[0], root))
-	{
-		permissionFlags = root[traversePath[0]]["permissions"];
-	}
-	else if ((sizeof(traversePath) > 1) && 
-		(member(root, traversePath[0]) || member(root, "$ANY")))
-	{
-		string pathSegment = member(root, traversePath[0]) ? 
-			traversePath[0] : "$ANY";
+    if ((sizeof(traversePath) == 1) && hasPermissions(traversePath[0], root))
+    {
+        permissionFlags = root[traversePath[0]]["permissions"];
+    }
+    else if ((sizeof(traversePath) > 1) && 
+        (member(root, traversePath[0]) || member(root, "$ANY")))
+    {
+        string pathSegment = member(root, traversePath[0]) ? 
+            traversePath[0] : "$ANY";
 
-		permissionFlags = getPermissionForPath(
-			implode(traversePath[1..], "/"), root[pathSegment]);
-	}
-	if ((permissionFlags == Unknown) && member(root, "permissions"))
-	{
-		permissionFlags = root["permissions"];
-	}
+        permissionFlags = getPermissionForPath(
+            implode(traversePath[1..], "/"), root[pathSegment]);
+    }
+    if ((permissionFlags == Unknown) && member(root, "permissions"))
+    {
+        permissionFlags = root["permissions"];
+    }
 
-	return permissionFlags;
+    return permissionFlags;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string convertRelativePathToAbsolutePath(object user, string path)
 {
-	string ret = path;
+    string ret = path;
 
-	if (user && objectp(user))
-	{
-		if(sizeof(ret) && (ret[0] != '/'))
-		{
-			ret = user->workingDirectory() + ret;
-		}
-		ret = regreplace(ret, lower_case(user->Name()), "$USER");
-	}
+    if (user && objectp(user))
+    {
+        if(sizeof(ret) && (ret[0] != '/'))
+        {
+            ret = user->workingDirectory() + ret;
+        }
+        ret = regreplace(ret, lower_case(user->Name()), "$USER");
+    }
 
-	return ret;
+    return ret;
 }
 /////////////////////////////////////////////////////////////////////////////
 public nomask int hasReadAccess(object user, string path)
 {
-	return isMemberOf(user) && getPermissionForPath(
-		sanitizePath(convertRelativePathToAbsolutePath(user, path)),
-		Permissions) & Read;
+    return isMemberOf(user) && getPermissionForPath(
+        sanitizePath(convertRelativePathToAbsolutePath(user, path)),
+        Permissions) & Read;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int hasWriteAccess(object user, string path)
 {
-	return isMemberOf(user) && getPermissionForPath(
-		sanitizePath(convertRelativePathToAbsolutePath(user, path)),
-		Permissions) & Write;
+    return isMemberOf(user) && getPermissionForPath(
+        sanitizePath(convertRelativePathToAbsolutePath(user, path)),
+        Permissions) & Write;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int hasOwnershipAccess(object user, string path)
 {
-	return isMemberOf(user) && getPermissionForPath(
-		sanitizePath(convertRelativePathToAbsolutePath(user, path)),
-		Permissions) & Owner;
+    return isMemberOf(user) && getPermissionForPath(
+        sanitizePath(convertRelativePathToAbsolutePath(user, path)),
+        Permissions) & Owner;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setName(string name)
 {
-	Name = name;
+    Name = name;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void createPermissionForPath(int permission, string path, mapping root)
 {
-	string *traversePath = explode(path, "/") - ({ "" });
+    string *traversePath = explode(path, "/") - ({ "" });
 
-	if (!sizeof(traversePath))
-	{
-		root["permissions"] = permission;
-	}
-	else if (sizeof(traversePath) == 1)
-	{
-		if (!member(root, traversePath[0]))
-		{
-			root[traversePath[0]] = ([ ]);
-		}
-		root[traversePath[0]]["permissions"] = permission;
-	}
-	else if (sizeof(traversePath) > 1)
-	{
-		if (!member(root, traversePath[0]))
-		{
-			root[traversePath[0]] = ([]);
-		}
+    if (!sizeof(traversePath))
+    {
+        root["permissions"] = permission;
+    }
+    else if (sizeof(traversePath) == 1)
+    {
+        if (!member(root, traversePath[0]))
+        {
+            root[traversePath[0]] = ([ ]);
+        }
+        root[traversePath[0]]["permissions"] = permission;
+    }
+    else if (sizeof(traversePath) > 1)
+    {
+        if (!member(root, traversePath[0]))
+        {
+            root[traversePath[0]] = ([]);
+        }
 
-		createPermissionForPath(permission,
-			implode(traversePath[1..], "/"),
-			root[traversePath[0]]);
-	}
+        createPermissionForPath(permission,
+            implode(traversePath[1..], "/"),
+            root[traversePath[0]]);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void addPermission(string path, int permission)
 {
-	if (!sizeof(path) || (sizeof(path) && (path[0] != '/')))
-	{
-		raise_error("baseGroup: The supplied path must be an absolute path.\n");
-	}
+    if (!sizeof(path) || (sizeof(path) && (path[0] != '/')))
+    {
+        raise_error("baseGroup: The supplied path must be an absolute path.\n");
+    }
 
-	createPermissionForPath(permission, sanitizePath(path), Permissions);
+    createPermissionForPath(permission, sanitizePath(path), Permissions);
 }

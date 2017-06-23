@@ -36,20 +36,20 @@ void CanSetBonusesOnItems()
 /////////////////////////////////////////////////////////////////////////////
 void QueryingBonusesReturnsAllAddedBonuses()
 {
-	Item->set("weight", 3);
-	Item->set("material", "galvorn");
+    Item->set("weight", 3);
+    Item->set("material", "galvorn");
 
-	ExpectTrue(Item->set("bonus armor class", 5), "bonus armor class can be set");
-	ExpectEq(({ "bonus armor class" }), Item->query("bonuses"));
+    ExpectTrue(Item->set("bonus armor class", 5), "bonus armor class can be set");
+    ExpectEq(({ "bonus armor class" }), Item->query("bonuses"));
 
-	ExpectTrue(Item->set("bonus fire attack", 1), "bonus fire attack can be set");
-	ExpectEq(({ "bonus armor class", "bonus fire attack" }), Item->query("bonuses"));
+    ExpectTrue(Item->set("bonus fire attack", 1), "bonus fire attack can be set");
+    ExpectEq(({ "bonus armor class", "bonus fire attack" }), Item->query("bonuses"));
 
-	ExpectTrue(Item->set("bonus gem crafting", 7), "bonus armor class can be set");
-	ExpectEq(({ "bonus armor class", "bonus fire attack", "bonus gem crafting" }), Item->query("bonuses"));
+    ExpectTrue(Item->set("bonus gem crafting", 7), "bonus armor class can be set");
+    ExpectEq(({ "bonus armor class", "bonus fire attack", "bonus gem crafting" }), Item->query("bonuses"));
 
-	ExpectTrue(Item->set("bonus attack", 7), "bonus armor class can be set");
-	ExpectEq(({ "bonus attack", "bonus armor class", "bonus fire attack", "bonus gem crafting" }), Item->query("bonuses"));
+    ExpectTrue(Item->set("bonus attack", 7), "bonus armor class can be set");
+    ExpectEq(({ "bonus attack", "bonus armor class", "bonus fire attack", "bonus gem crafting" }), Item->query("bonuses"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

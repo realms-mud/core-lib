@@ -869,13 +869,13 @@ public nomask int skillBonus(string skill, int rawSkillLevel)
                       skills[skill]["untrained penalty"];
                 break;
             }
-			case "one for three":
-			{
-				ret = rawSkillLevel ? (rawSkillLevel / 3) :
-					skills[skill]["untrained penalty"];
-				break;
-			}
-			case "logarithmic":
+            case "one for three":
+            {
+                ret = rawSkillLevel ? (rawSkillLevel / 3) :
+                    skills[skill]["untrained penalty"];
+                break;
+            }
+            case "logarithmic":
             {
                 ret = rawSkillLevel ? (to_int(log(rawSkillLevel) / log(2.0))) :
                       skills[skill]["untrained penalty"];

@@ -295,7 +295,7 @@ void LookAtItemShowsDetails()
 
     ExpectTrue(Player->executeCommand("look at blah"));
     ExpectEq("Sword of Blah\n" + 
-		sprintf(NormalEquipment, "This long sword is typical for its type.\n") + 
-		sprintf(Unidentified, "This item has not been identified.\n") + "\n",
-		Player->caughtMessage());
+        sprintf(NormalEquipment, "This long sword is typical for its type.\n") + 
+        sprintf(Unidentified, "This item has not been identified.\n") + "\n",
+        Player->caughtMessage());
 }

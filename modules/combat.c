@@ -473,7 +473,7 @@ public nomask int calculateDefendAttack()
         ret += inventory->inventoryGetDefendAttackBonus() -
                inventory->inventoryGetEncumberance();
 
-		object primary = inventory->equipmentInSlot("wielded primary");
+        object primary = inventory->equipmentInSlot("wielded primary");
         if (inventory->isEquipped(primary) && skills)
         {
             string weaponType = primary->query("weapon type");

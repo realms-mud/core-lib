@@ -472,7 +472,7 @@ public nomask int inventoryGetDefenseBonus(string damageType)
                 ret += resistances[damageType];
             }
 
-			ret += item->query("armor class");
+            ret += item->query("armor class");
             if((armor == item) && materialsObject())
             {
                 ret += materialsObject()->getMaterialDefense(armor, damageType);
@@ -499,14 +499,14 @@ private nomask int encumberanceForObject(object item, string skill)
             {
                 ret += materialsObject()->getMaterialEncumberance(item);
             }
-			ret -= call_other(this_object(), "getSkillModifier",
-				skillType);
+            ret -= call_other(this_object(), "getSkillModifier",
+                skillType);
 
-			if (validModifier("combatModifiers", "skill penalty"))
-			{
-				ret += item->query("skill penalty");
-			}
-		}
+            if (validModifier("combatModifiers", "skill penalty"))
+            {
+                ret += item->query("skill penalty");
+            }
+        }
     }
     return (ret > 0) ? ret : 0;
 }
@@ -517,7 +517,7 @@ public nomask int inventoryGetEncumberance()
     // Only armor and weapon encumberance is used for this
     int ret = 0;
 
-	ret += encumberanceForObject(equipmentInSlot("armor"), "armor type") +
+    ret += encumberanceForObject(equipmentInSlot("armor"), "armor type") +
         encumberanceForObject(equipmentInSlot("wielded primary"), "weapon type") + 
         encumberanceForObject(equipmentInSlot("wielded offhand"), "weapon type");
 
@@ -569,7 +569,7 @@ public nomask int inventoryGetAttackBonus(object weapon)
     {
         equippedItems += ({ weapon });
  
-		ret += weapon->query("weapon attack");
+        ret += weapon->query("weapon attack");
 
         string skillToUse = weapon->query("weapon type");
         if (skillToUse && stringp(skillToUse) && has("skills"))

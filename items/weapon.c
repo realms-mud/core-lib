@@ -11,42 +11,42 @@ inherit "/lib/items/equipment.c";
 public nomask mixed query(string element)
 {
     mixed ret = 0;
-	switch(element)
-	{
-		case "damage type":
-		{
-			ret = materialsObject()->getMaterialDamageType(this_object());
-			break;
-		}
-		case "weapon attack":
-		{
-			ret = member(itemData, "weapon attack") ? itemData["weapon attack"] :
-				materialsObject()->getBlueprintModifier(this_object(), "default attack");
-			break;
-		}
-		case "weapon class":
-		{
-			ret = member(itemData, "weapon class") ? itemData["weapon class"] :
-				materialsObject()->getBlueprintModifier(this_object(), "default wc");
-			break;
-		}
-		case "defense class":
-		{
-			ret = member(itemData, "defense class") ? itemData["defense class"] :
-				materialsObject()->getBlueprintModifier(this_object(), "default dc");
-			break;
-		}
-		case "blueprint":
-		{
-			ret = member(itemData, "blueprint") ? itemData["blueprint"] :
-				"equipment"::query("weapon type");
-			break;
-		}
-		default:
-		{
-			ret = "equipment"::query(element);
-		}
-	}
+    switch(element)
+    {
+        case "damage type":
+        {
+            ret = materialsObject()->getMaterialDamageType(this_object());
+            break;
+        }
+        case "weapon attack":
+        {
+            ret = member(itemData, "weapon attack") ? itemData["weapon attack"] :
+                materialsObject()->getBlueprintModifier(this_object(), "default attack");
+            break;
+        }
+        case "weapon class":
+        {
+            ret = member(itemData, "weapon class") ? itemData["weapon class"] :
+                materialsObject()->getBlueprintModifier(this_object(), "default wc");
+            break;
+        }
+        case "defense class":
+        {
+            ret = member(itemData, "defense class") ? itemData["defense class"] :
+                materialsObject()->getBlueprintModifier(this_object(), "default dc");
+            break;
+        }
+        case "blueprint":
+        {
+            ret = member(itemData, "blueprint") ? itemData["blueprint"] :
+                "equipment"::query("weapon type");
+            break;
+        }
+        default:
+        {
+            ret = "equipment"::query(element);
+        }
+    }
 
     return ret;
 }

@@ -16,7 +16,7 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-	destruct(Equipment);
+    destruct(Equipment);
     destruct(Dictionary);
 }
 

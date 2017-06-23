@@ -9,12 +9,12 @@ object Group;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-	Group = clone_object("/lib/dictionaries/groups/highwizard.c");
-	Group->init();
+    Group = clone_object("/lib/dictionaries/groups/highwizard.c");
+    Group->init();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-	destruct(Group);
+    destruct(Group);
 }

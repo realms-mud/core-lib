@@ -138,12 +138,12 @@ public mixed query(string element)
                     ret = isEnchanted;
                     break;
                 }
-				case "bonuses":
-				{
-					ret = filter_array(m_indices(itemData),
-						(: return sizeof(regexp(({ $1 }), "bonus")) > 0; :));
-					break;
-				}
+                case "bonuses":
+                {
+                    ret = filter_array(m_indices(itemData),
+                        (: return sizeof(regexp(({ $1 }), "bonus")) > 0; :));
+                    break;
+                }
             }
         }
     }
@@ -437,13 +437,13 @@ public string short()
 /////////////////////////////////////////////////////////////////////////////
 protected string itemStatistics()
 {
-	string ret = "";
-	object itemTypes = load_object(MaterialsBlueprint);
-	if (itemTypes && objectp(itemTypes))
-	{
-		ret = itemTypes->getEquipmentStatistics(this_object(), this_player());
-	}
-	return ret;
+    string ret = "";
+    object itemTypes = load_object(MaterialsBlueprint);
+    if (itemTypes && objectp(itemTypes))
+    {
+        ret = itemTypes->getEquipmentStatistics(this_object(), this_player());
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

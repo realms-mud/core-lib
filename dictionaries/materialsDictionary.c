@@ -196,8 +196,8 @@ public nomask int getBlueprintModifier(object item, string type)
     string itemType = item->query("blueprint");
     if (isValidWeaponBlueprint(itemType))
     {
-		ret = weaponBlueprints[itemType][type];
-	}
+        ret = weaponBlueprints[itemType][type];
+    }
     else if (isValidArmorBlueprint(itemType))
     {
         ret = armorBlueprints[itemType][type];
@@ -553,258 +553,258 @@ private nomask string applyWeaponAttackInformation(object weapon, object initiat
 /////////////////////////////////////////////////////////////////////////////
 private nomask string convertDamageMappingToString(mapping damages)
 {
-	string ret = 0;
+    string ret = 0;
 
-	if (damages && sizeof(damages))
-	{
-		ret = "";
-		string *damagetKeys = sort_array(m_indices(damages),
-			(: return $1 > $2; :));
+    if (damages && sizeof(damages))
+    {
+        ret = "";
+        string *damagetKeys = sort_array(m_indices(damages),
+            (: return $1 > $2; :));
 
-		foreach(string damage in damagetKeys)
-		{
-			ret += sprintf(SpecialAttack, sprintf(" [+%d %s]",
-				damages[damage], damage));
-		}
-		ret += "\n";
-	}
-	return ret;
+        foreach(string damage in damagetKeys)
+        {
+            ret += sprintf(SpecialAttack, sprintf(" [+%d %s]",
+                damages[damage], damage));
+        }
+        ret += "\n";
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyEnchantments(object weapon)
 {
-	string ret = 0;
+    string ret = 0;
 
-	mapping enchantments = weapon->query("enchantments");
-	if (!enchantments)
-	{
-		enchantments = ([]);
-	}
+    mapping enchantments = weapon->query("enchantments");
+    if (!enchantments)
+    {
+        enchantments = ([]);
+    }
 
-	string extraDamage = hasExtraAttackType(weapon);
-	if (extraDamage)
-	{
-		enchantments[extraDamage] = member(enchantments, extraDamage) ?
-			(enchantments[extraDamage] + getMaterialDamage(weapon, extraDamage)) :
-			getMaterialDamage(weapon, extraDamage);
-	}
+    string extraDamage = hasExtraAttackType(weapon);
+    if (extraDamage)
+    {
+        enchantments[extraDamage] = member(enchantments, extraDamage) ?
+            (enchantments[extraDamage] + getMaterialDamage(weapon, extraDamage)) :
+            getMaterialDamage(weapon, extraDamage);
+    }
 
-	return convertDamageMappingToString(enchantments);
+    return convertDamageMappingToString(enchantments);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyResistances(object item)
 {
-	string ret = 0;
+    string ret = 0;
 
-	mapping resistances = item->query("resistances");
-	if (!resistances)
-	{
-		resistances = ([]);
-	}
+    mapping resistances = item->query("resistances");
+    if (!resistances)
+    {
+        resistances = ([]);
+    }
 
-	string material = item->query("material");
-	if (material && member(materials, material) &&
-		member(materials[material], "defense"))
-	{
-		string *materialResistances = m_indices(materials[material]["defense"]);
-		if (sizeof(materialResistances))
-		{
-			foreach(string materialResistance in materialResistances)
-			{
-				resistances[materialResistance] = member(resistances, materialResistance) ?
-					(resistances[materialResistance] + getMaterialDefense(item, materialResistance)) :
-					getMaterialDefense(item, materialResistance);
-			}
+    string material = item->query("material");
+    if (material && member(materials, material) &&
+        member(materials[material], "defense"))
+    {
+        string *materialResistances = m_indices(materials[material]["defense"]);
+        if (sizeof(materialResistances))
+        {
+            foreach(string materialResistance in materialResistances)
+            {
+                resistances[materialResistance] = member(resistances, materialResistance) ?
+                    (resistances[materialResistance] + getMaterialDefense(item, materialResistance)) :
+                    getMaterialDefense(item, materialResistance);
+            }
 
-			if (item->query("armor type") && member(resistances, "physical"))
-			{
-				m_delete(resistances, "physical");
-			}
-		}
-	}
+            if (item->query("armor type") && member(resistances, "physical"))
+            {
+                m_delete(resistances, "physical");
+            }
+        }
+    }
 
-	return convertDamageMappingToString(resistances);
+    return convertDamageMappingToString(resistances);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyWeaponDamageInformation(object weapon, object initiator)
 {
-	string ret = "";
-	int baseDamage = weapon->query("weapon class");
+    string ret = "";
+    int baseDamage = weapon->query("weapon class");
 
-	if (initiator)
-	{
-		baseDamage += getMaterialDamage(weapon, "physical") +
-			initiator->magicalDamageBonus() +
-			calculateServiceBonuses("DamageBonus", initiator) +
-			(initiator->strengthBonus() / 2) +
-			(initiator->wisdomBonus() / 4) +
-			(initiator->intelligenceBonus() / 4);
+    if (initiator)
+    {
+        baseDamage += getMaterialDamage(weapon, "physical") +
+            initiator->magicalDamageBonus() +
+            calculateServiceBonuses("DamageBonus", initiator) +
+            (initiator->strengthBonus() / 2) +
+            (initiator->wisdomBonus() / 4) +
+            (initiator->intelligenceBonus() / 4);
 
-		string skillToUse = weapon->query("weapon type");
-		if (skillToUse && stringp(skillToUse))
-		{
-			baseDamage += call_other(initiator, "getSkillModifier",
-				skillToUse) / 2;
-		}
-		baseDamage -= weapon->query("skill penalty");
-	}
+        string skillToUse = weapon->query("weapon type");
+        if (skillToUse && stringp(skillToUse))
+        {
+            baseDamage += call_other(initiator, "getSkillModifier",
+                skillToUse) / 2;
+        }
+        baseDamage -= weapon->query("skill penalty");
+    }
 
-	float modifier = baseDamage / 8.0;
-	ret = sprintf(DetailsText, "Damage", 
-		to_int(baseDamage - modifier), to_int(baseDamage + modifier));
+    float modifier = baseDamage / 8.0;
+    ret = sprintf(DetailsText, "Damage", 
+        to_int(baseDamage - modifier), to_int(baseDamage + modifier));
 
-	string enchantments = applyEnchantments(weapon);
-	if (enchantments)
-	{
-		ret -= "\n";
-		ret += enchantments;
-	}
+    string enchantments = applyEnchantments(weapon);
+    if (enchantments)
+    {
+        ret -= "\n";
+        ret += enchantments;
+    }
 
-	return ret;
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyWeaponDefenseInformation(object weapon, object initiator)
 {
-	int baseDefense = weapon->query("defense class");
+    int baseDefense = weapon->query("defense class");
 
-	if (initiator)
-	{
-		baseDefense += getMaterialDefendAttack(weapon) +
-			initiator->magicalDefendAttackBonus() +
-			calculateServiceBonuses("DefendAttackBonus", initiator) +
-			(initiator->dexterityBonus() / 2) +
-			(initiator->wisdomBonus() / 2);
+    if (initiator)
+    {
+        baseDefense += getMaterialDefendAttack(weapon) +
+            initiator->magicalDefendAttackBonus() +
+            calculateServiceBonuses("DefendAttackBonus", initiator) +
+            (initiator->dexterityBonus() / 2) +
+            (initiator->wisdomBonus() / 2);
 
-		string skillToUse = weapon->query("weapon type");
-		if (skillToUse && stringp(skillToUse))
-		{
-			baseDefense += call_other(initiator, "getSkillModifier",
-				skillToUse) / 2;
-		}
-		baseDefense -= weapon->query("skill penalty");
-	}
+        string skillToUse = weapon->query("weapon type");
+        if (skillToUse && stringp(skillToUse))
+        {
+            baseDefense += call_other(initiator, "getSkillModifier",
+                skillToUse) / 2;
+        }
+        baseDefense -= weapon->query("skill penalty");
+    }
 
-	float modifier = baseDefense / 8.0;
-	return sprintf(DetailsText, "Defense",
-		to_int(baseDefense - modifier), to_int(baseDefense + modifier));
+    float modifier = baseDefense / 8.0;
+    return sprintf(DetailsText, "Defense",
+        to_int(baseDefense - modifier), to_int(baseDefense + modifier));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyEncumberance(object item, object initiator)
 {
-	int encumberance = item->query("encumberance");
+    int encumberance = item->query("encumberance");
 
-	if (initiator)
-	{
-		encumberance += getMaterialEncumberance(item);
+    if (initiator)
+    {
+        encumberance += getMaterialEncumberance(item);
 
-		string skillToUse = item->query("weapon type") ||
-			item->query("armor type");
-		if (skillToUse && stringp(skillToUse))
-		{
-			encumberance -= call_other(initiator, "getSkillModifier",
-				skillToUse);
-		}
-		encumberance += item->query("skill penalty");
-	}
+        string skillToUse = item->query("weapon type") ||
+            item->query("armor type");
+        if (skillToUse && stringp(skillToUse))
+        {
+            encumberance -= call_other(initiator, "getSkillModifier",
+                skillToUse);
+        }
+        encumberance += item->query("skill penalty");
+    }
 
-	return sprintf(SingleDetailText, "Encumberance", encumberance);
+    return sprintf(SingleDetailText, "Encumberance", encumberance);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyBonusDetails(object item)
 {
-	string ret = "";
-	string *bonuses = sort_array(item->query("bonuses"),
-								(: return $1 > $2; :));
+    string ret = "";
+    string *bonuses = sort_array(item->query("bonuses"),
+                                (: return $1 > $2; :));
 
-	if (sizeof(bonuses))
-	{
-		foreach(string bonus in bonuses)
-		{
-			ret += sprintf(Value,
-				sprintf("\t%s: %d\n", capitalize(bonus), item->query(bonus)));
-		}
-	}
-	return ret;
+    if (sizeof(bonuses))
+    {
+        foreach(string bonus in bonuses)
+        {
+            ret += sprintf(Value,
+                sprintf("\t%s: %d\n", capitalize(bonus), item->query(bonus)));
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyMaterialDetails(object item)
 {
-	string ret = "";
-	string material = item->query("material");
-	if (material)
-	{
-		ret += sprintf(DetailString, "Material", capitalize(material));
-	}
-	return ret;
+    string ret = "";
+    string material = item->query("material");
+    if (material)
+    {
+        ret += sprintf(DetailString, "Material", capitalize(material));
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyWeaponDetails(object weapon, object initiator)
 {
     return applyMaterialDetails(weapon) +
-		applyWeaponAttackInformation(weapon, initiator) +
-		applyWeaponDamageInformation(weapon, initiator) +
-		applyWeaponDefenseInformation(weapon, initiator) +
-		applyEncumberance(weapon, initiator);
+        applyWeaponAttackInformation(weapon, initiator) +
+        applyWeaponDamageInformation(weapon, initiator) +
+        applyWeaponDefenseInformation(weapon, initiator) +
+        applyEncumberance(weapon, initiator);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyArmorDetails(object armor, object initiator)
 {
-	int baseAC = armor->query("armor class");
+    int baseAC = armor->query("armor class");
 
-	if (initiator)
-	{
-		baseAC += getMaterialDefense(armor, "physical") +
-			initiator->magicalDefenseBonus() +
-			calculateServiceBonuses("DefenseBonus", initiator) +
-			(initiator->constitutionBonus() / 2) +
-			(initiator->strengthBonus() / 2);
-	}
+    if (initiator)
+    {
+        baseAC += getMaterialDefense(armor, "physical") +
+            initiator->magicalDefenseBonus() +
+            calculateServiceBonuses("DefenseBonus", initiator) +
+            (initiator->constitutionBonus() / 2) +
+            (initiator->strengthBonus() / 2);
+    }
 
-	string ret = sprintf(SingleDetailText, "Damage Protection", baseAC);
-	
-	string resistances = applyResistances(armor);
-	if (resistances)
-	{
-		ret -= "\n";
-		ret += resistances;
-	}
-	return applyMaterialDetails(armor) + 
-		ret + 
-		applyEncumberance(armor, initiator);
+    string ret = sprintf(SingleDetailText, "Damage Protection", baseAC);
+    
+    string resistances = applyResistances(armor);
+    if (resistances)
+    {
+        ret -= "\n";
+        ret += resistances;
+    }
+    return applyMaterialDetails(armor) + 
+        ret + 
+        applyEncumberance(armor, initiator);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyNonEquipmentDetails(object item)
 {
-	string ret = "";
+    string ret = "";
 
-	string enchantments = applyEnchantments(item);
-	if (enchantments)
-	{
-		ret += sprintf(Value, sprintf("\tEnchantments: %s", enchantments));
-	}
-	string resistances = applyResistances(item);
-	if (resistances)
-	{
-		ret += sprintf(Value, sprintf("\tResistances: %s", resistances));
-	}
-	return ret;
+    string enchantments = applyEnchantments(item);
+    if (enchantments)
+    {
+        ret += sprintf(Value, sprintf("\tEnchantments: %s", enchantments));
+    }
+    string resistances = applyResistances(item);
+    if (resistances)
+    {
+        ret += sprintf(Value, sprintf("\tResistances: %s", resistances));
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private int spellcraftCanIdentifyItem(object item, object initiator)
 {
-	return item && initiator && ((item->query("enchanted") * 5) <=
-		(initiator->getSkillModifier("spellcraft")));
+    return item && initiator && ((item->query("enchanted") * 5) <=
+        (initiator->getSkillModifier("spellcraft")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -812,44 +812,44 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
 {
     string ret = applyMaterialQualityToText(equipment);
 
-	if(equipment->query("identified") || canCraftBlueprintWithMaterial(initiator,
-		equipment->query("blueprint"), equipment->query("material")))
-	{
-		if (equipment->query("weapon type"))
-		{
-			ret += applyWeaponDetails(equipment, initiator);
-		}
-		else if (equipment->query("armor type"))
-		{
-			ret += applyArmorDetails(equipment, initiator);
-		}
-		else
-		{
-			ret += applyNonEquipmentDetails(equipment);
-		}
-	}
+    if(equipment->query("identified") || canCraftBlueprintWithMaterial(initiator,
+        equipment->query("blueprint"), equipment->query("material")))
+    {
+        if (equipment->query("weapon type"))
+        {
+            ret += applyWeaponDetails(equipment, initiator);
+        }
+        else if (equipment->query("armor type"))
+        {
+            ret += applyArmorDetails(equipment, initiator);
+        }
+        else
+        {
+            ret += applyNonEquipmentDetails(equipment);
+        }
+    }
 
-	if (equipment->query("identified") ||
-		spellcraftCanIdentifyItem(equipment, initiator))
-	{
-		ret += applyBonusDetails(equipment);
-	}
+    if (equipment->query("identified") ||
+        spellcraftCanIdentifyItem(equipment, initiator))
+    {
+        ret += applyBonusDetails(equipment);
+    }
 
-	if (equipment->query("weight"))
-	{
-		ret += sprintf(SingleDetailText, "Weight", equipment->query("weight"));
-	}
+    if (equipment->query("weight"))
+    {
+        ret += sprintf(SingleDetailText, "Weight", equipment->query("weight"));
+    }
 
-	if (spellcraftCanIdentifyItem(equipment, initiator) &&
-		canCraftBlueprintWithMaterial(initiator,
-			equipment->query("blueprint"), equipment->query("material")))
-	{
-		equipment->identify();
-	}
+    if (spellcraftCanIdentifyItem(equipment, initiator) &&
+        canCraftBlueprintWithMaterial(initiator,
+            equipment->query("blueprint"), equipment->query("material")))
+    {
+        equipment->identify();
+    }
 
-	if (!equipment->query("identified"))
-	{
-		ret += sprintf(Unidentified, "This item has not been identified.\n");
-	}
-	return ret;
+    if (!equipment->query("identified"))
+    {
+        ret += sprintf(Unidentified, "This item has not been identified.\n");
+    }
+    return ret;
 }

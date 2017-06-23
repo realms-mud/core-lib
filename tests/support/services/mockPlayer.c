@@ -15,11 +15,11 @@ public int agePlayer(int amount)
 /////////////////////////////////////////////////////////////////////////////
 public void catch_tell(string message)
 {
-	lastCatch = message;
+    lastCatch = message;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public string caughtMessage()
 {
-	return lastCatch;
+    return lastCatch;
 }
