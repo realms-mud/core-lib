@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-mapping WizardStats = ([
+mapping WizardGroups = ([
     "apprentice":([
         "name": "Apprentice Wizard",
     ]),
