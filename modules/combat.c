@@ -121,7 +121,7 @@ public nomask int isNegativeCombatModifier(string modifier)
 //
 // Parameters: event - the event that has occured. 
 //-----------------------------------------------------------------------------
-private nomask varargs void combatNotification(string event, string message)
+private nomask varargs void combatNotification(string event, mixed message)
 {
     object eventObj = getService("events");
     
@@ -1284,7 +1284,8 @@ public nomask varargs int hit(int damage, string damageType, object foe)
         }
 
         hitPoints -= ret;
-        combatNotification("onHit", sprintf("%s %d", damageType, damage));
+        combatNotification("onHit", ([ "type": damageType, 
+                                       "damage": damage ]));
   
         if(hitPoints() <= 0)
         {

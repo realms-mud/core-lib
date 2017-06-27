@@ -279,8 +279,8 @@ void NotifyOnHitFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onHit called, data: 25, caller: lib/core/events.c";
-    string err = catch (Events->notify("onHit", "25"));
+    string expected = "*event handler: onHit called, data: physical 25, caller: lib/core/events.c";
+    string err = catch (Events->notify("onHit", ([ "type": "physical", "damage": 25 ])));
     ExpectEq(expected, err, "onHit called on subscriber");
 }
 

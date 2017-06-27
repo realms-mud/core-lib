@@ -150,10 +150,10 @@ public void onCombatDelayed()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void onHit(object caller, string data)
+public void onHit(object caller, mapping data)
 {
-    raise_error(sprintf("event handler: onHit called, data: %s, caller: %s", 
-        data, program_name(caller)));
+    raise_error(sprintf("event handler: onHit called, data: %s %d, caller: %s", 
+        data["type"], data["damage"], program_name(caller)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
