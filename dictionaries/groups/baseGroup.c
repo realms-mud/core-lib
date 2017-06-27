@@ -30,11 +30,11 @@ public nomask string group()
     string group = 0;
 
     string *groupName = regexp(({ program_name(this_object()) }),
-        "^lib/dictionaries/groups/[a-zA-Z]+\.c$");
+        "^lib/.*dictionaries/groups/[a-zA-Z]+\.c$");
     if (sizeof(groupName))
     {
         group = regreplace(groupName[0],
-            "^lib/dictionaries/groups/([a-zA-Z]+)\.c$",
+            "^lib/.*dictionaries/groups/([a-zA-Z]+)\.c$",
             "\\1");
     }
     return group;
@@ -94,7 +94,7 @@ private nomask int hasPermissions(string path, mapping root)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int getPermissionForPath(string path, mapping root)
+private nomask int getPermissionForPath(string path, mapping root)
 {
     int permissionFlags = Unknown;
     string *traversePath = explode(path, "/") - ({ "" });
@@ -131,7 +131,11 @@ private nomask string convertRelativePathToAbsolutePath(object user, string path
         {
             ret = user->workingDirectory() + ret;
         }
-        ret = regreplace(ret, lower_case(user->Name()), "$USER");
+
+        if (user->Name() != "")
+        {
+            ret = regreplace(ret, lower_case(user->Name()), "$USER");
+        }
     }
 
     return ret;

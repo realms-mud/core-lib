@@ -61,12 +61,6 @@ public nomask void setWizardLevel(string level, object granter)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string *customGroups()
-{
-    return customGroups + ({ "baseGroup" });
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask string *groups()
 {
     string *wizardGroups = ({ });
@@ -117,9 +111,14 @@ public nomask string *groups()
         }
         default:
         {
-            wizardGroups += ({ "apprentice" });
+            wizardGroups += ({ "apprentice", "player" });
         }
     }
 
-    return wizardGroups + customGroups();
+    string *custom = customGroups(this_object());
+    if (custom && sizeof(custom))
+    {
+        wizardGroups += custom;
+    }
+    return wizardGroups + ({ });
 }
