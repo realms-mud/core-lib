@@ -1,3 +1,4 @@
+[![Build Status](http://angmar.maelstrom.cc:8081/buildStatus/icon?job=Realms Core Library)](http://angmar.maelstrom.cc:8081/job/Realms%20Core%20Library/)
 #Introduction
 TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
