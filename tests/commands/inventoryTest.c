@@ -103,6 +103,9 @@ void ExecuteRegexpIsNotGreedy()
     ExpectFalse(Player->executeCommand("invent"));
     ExpectFalse(Player->executeCommand("in"));
     ExpectFalse(Player->executeCommand("inventoryy"));
+    ExpectFalse(Player->executeCommand("hi"));
+    ExpectFalse(Player->executeCommand("sgjdfsdfginvent"));
+    ExpectFalse(Player->executeCommand("blarginventory"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

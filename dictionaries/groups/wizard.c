@@ -8,4 +8,8 @@ inherit "/lib/dictionaries/groups/baseGroup.c";
 protected nomask void applyGroupDetails()
 {
     setName("Training Wizard");
+    addPermission("/players", Read);
+    addPermission("/players/$ANY/closed", None);
+    addPermission("/players/$USER/closed", Read | Write | Owner);
+    addPermission("/open", Read | Write);
 }

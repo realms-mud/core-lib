@@ -9,7 +9,11 @@ protected nomask void applyGroupDetails()
 {
     setName("Apprentice Wizard");
     addPermission("/", Read);
-    addPermission("/players/$ANY/closed", None);
+    addPermission("/players", None);
     addPermission("/players/$USER", Read | Write | Owner);
-    addPermission("/open", Read | Write);
+    addPermission("/secure", None);
+    addPermission("/mail", None);
+    addPermission("/banish", None);
+    addPermission("/godstf", None);
+    addPermission("/guild", None);
 }

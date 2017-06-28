@@ -271,3 +271,14 @@ void HasOwnershipAccessReturnsCorrectlyForUSERDirective()
     ExpectTrue(Group->hasOwnershipAccess(Wizard, "/players/earl/thing.c"));
     ExpectFalse(Group->hasOwnershipAccess(Wizard, "/players/fred/thing.c"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanTraverseRelativePaths()
+{
+    string testFile = "/secure/player/./././../../secure/../secure/player/player.c";
+
+    ExpectFalse(Group->hasWriteAccess(Wizard, testFile));
+    Group->testAddPermission("/secure/player/player.c", Write);
+
+    ExpectTrue(Group->hasWriteAccess(Wizard, testFile));
+}
