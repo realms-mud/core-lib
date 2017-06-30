@@ -12,17 +12,7 @@
 //
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
-
-// Flag to determine if an attribute is overwritten or incremented
-private nosave int IncrementAttribute = 1;
-
-private int strength;
-private int intelligence;
-private int dexterity;
-private int wisdom;
-private int constitution;
-private int charisma;
-private int attributePointsToSpend;
+#include "/lib/modules/secure/attributes.h"
 
 //-----------------------------------------------------------------------------
 // Method: validAttributes
@@ -366,19 +356,19 @@ public nomask int charismaBonus()
 //              that can be applied by the spendAttributePoints method - for
 //              example, this would occur during level advancement.
 //
-// Parameters: amount - the additional points to add to attributePointsToSpend 
+// Parameters: amount - the additional points to add to availableAttributePoints 
 //
-// Returns: the new value of attributePointsToSpend
+// Returns: the new value of availableAttributePoints
 //-----------------------------------------------------------------------------
 public nomask int addAttributePointsToSpend(int amount)
 {
-    return attributePointsToSpend += amount;
+    return availableAttributePoints += amount;
 }
 
 //-----------------------------------------------------------------------------
 // Method: spendAttributePoints
 // Description: This method allows external objects to add pooled
-//              attributePointsToSpend of the specified amount to the specified
+//              availableAttributePoints of the specified amount to the specified
 //              attribute.
 //
 // Parameters: attribute - the attribute to spend points advancing.
@@ -390,7 +380,7 @@ public nomask int spendAttributePoints(string attribute, int amount)
 {
     int ret = 0;
     if(attribute && stringp(attribute) && intp(amount) && (amount > 0) &&
-      (attributePointsToSpend >= amount))
+      (availableAttributePoints >= amount))
     {
         switch(attribute)
         {
@@ -425,7 +415,7 @@ public nomask int spendAttributePoints(string attribute, int amount)
                 break;
             }
         }
-        attributePointsToSpend -= amount;
+        availableAttributePoints -= amount;
     }
     return ret;
 }
@@ -433,7 +423,5 @@ public nomask int spendAttributePoints(string attribute, int amount)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int attributePoints()
 {
-    return attributePointsToSpend;
+    return availableAttributePoints;
 }
-
-

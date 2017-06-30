@@ -6,28 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
-
-private int hitPoints;
-private int maxHitPoints;
-private int spellPoints;
-private int maxSpellPoints;
-private int staminaPoints;
-private int maxStaminaPoints;
-private int wimpy;
-private int timeToHealHP;
-private int timeToHealSP;
-private int timeToHealST;
-private int onKillList;
-
-private nosave int IntervalBetweenHealing = 10;
-private nosave int WasSlowedLastRound = 0;
-
-private mapping combatStatistics = ([ ]);
-
-private nosave int combatDelay;
-private nosave int spellAction;
-private nosave mapping hostileList = ([ ]);
-private nosave mapping *attacks = ({ });
+#include "/lib/modules/secure/combat.h"
 
 //-----------------------------------------------------------------------------
 // Method: combatDelay

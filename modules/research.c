@@ -6,18 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
-
-// This mapping contains all of the research items that the living knows.
-private mapping research = ([
-//  <research file name>: ([
-//      "when research began": time,
-//      "time spent learning": seconds,
-//      "research complete": true|false,
-//  ])
-]);
-private string *openResearchTrees = ({ });
-private mapping researchChoices = ([ ]);
-private int researchPoints = 0;
+#include "/lib/modules/secure/research.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask object researchDictionary()

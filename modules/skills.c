@@ -6,10 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
-
-private int availableSkillPoints;
-private mapping skills = ([ ]);
-
+#include "/lib/modules/secure/skills.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private varargs nomask void skillsNotification(string event, string message)

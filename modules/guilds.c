@@ -6,9 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/organizations.c";
-
-private mapping guilds = ([ ]);
-private int unassignedExperience;
+#include "/lib/modules/secure/guilds.h"
 
 //-----------------------------------------------------------------------------
 // Method: validGuildModifiers

@@ -3,9 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing";
-
-private mapping traits = ([ ]);
-private string *temporaryTraits = ({ });
+#include "/lib/modules/secure/traits.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask object traitDictionary()

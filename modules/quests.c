@@ -6,17 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
-
-private nosave string BaseQuest = "lib/modules/quests/questItem.c";
-
-private mapping quests = ([
-// "path to quest object" : ([
-//      "name": "<name>",
-//      "state": "<state>",
-//      "is active", true/false
-//      "is completed", true/false
-// ]),
-]);
+#include "/lib/modules/secure/quests.h"
 
 //-----------------------------------------------------------------------------
 // Method: questNotification
@@ -99,6 +89,19 @@ public nomask int questIsCompleted(string questItem)
 {
     return (isValidQuest(questItem) && getQuestObject(questItem) &&
         member(quests[questItem], "is completed") && quests[questItem]["is completed"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string questStory(string questItem)
+{
+    string ret = "";
+    object quest = getQuestObject(questItem);
+
+    if (isValidQuest(questItem) && getQuestObject(questItem))
+    {
+        ret = quest->questStory(quests[questItem]["states completed"]);
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -191,9 +194,10 @@ public nomask int advanceQuestState(string questItem, string newState)
         if(questObj && objectp(questObj))
         {
             ret = 1;
+            quests[questItem]["states completed"] +=
+                ({ quests[questItem]["state"] });
+
             quests[questItem]["state"] = newState;
-            quests[questItem]["state description"] = 
-                questObj->getStateDescription(newState);
 
             questNotification("onQuestAdvancedState", questItem);
             checkQuestCompletion(questItem, questObj);
@@ -215,8 +219,7 @@ public nomask int beginQuest(string questItem)
         quests[questItem] = ([
             "name": questObj->name(),
             "state": questObj->initialState(),
-            "state description": 
-                questObj->getStateDescription(questObj->initialState()),
+            "states completed": ({ }),
             "is active" : 1,
             "is completed": 0
         ]);

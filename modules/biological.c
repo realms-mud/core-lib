@@ -12,14 +12,7 @@
 //
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
-
-private int intoxicated;
-private int stuffed;
-private int drugged;
-private int soaked;
-private int headache;
-
-private nosave int maxHeadache = 30;
+#include "/lib/modules/secure/biological.h"
 
 //-----------------------------------------------------------------------------
 // Method: validBiological
@@ -634,5 +627,4 @@ public nomask int biologicalBonusTo(string bonus)
     }
     return ret;
 }
-
 

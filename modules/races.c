@@ -6,8 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
-
-private string race;
+#include "/lib/modules/secure/race.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask object racialDictionary()

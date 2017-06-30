@@ -3,24 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
-
-private string name = "";
-private string shortDescription;
-private string longDescription;
-private string messageIn;
-private string messageOut;
-private string magicalMessageIn;
-private string magicalMessageOut;
-private string messageHome;
-private string messageClone;
-private int gender;
-private int age;
-private string *aliases = ({ });
-private int ghost;
-private string title;
-private string pretitle;
-private int invisibility;
-private mapping properties = ([ ]);
+#include "/lib/modules/secure/materialAttributes.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nosave mapping genderPronouns = ([
@@ -63,7 +46,7 @@ public varargs string Name(string newName)
     {
         name = newName;
     }
-    
+
     return ghost ? "some mist" : capitalize(name);
 }
 
@@ -488,4 +471,3 @@ static nomask varargs void materialAttributesHeartBeat(int ageAmount)
 {
     age += ageAmount ? ageAmount : 2;
 }
-
