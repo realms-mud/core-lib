@@ -41,6 +41,7 @@ static nomask mapping sendGuilds()
     string *guildList = m_indices(guilds);
     foreach(string guild in guildList)
     {
+        write("A guild! " + guild);
         string *keys = m_indices(guilds[guild]);
         if (sizeof(keys))
         {

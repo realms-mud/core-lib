@@ -1,56 +1,66 @@
-drop view TestDB.basicPlayerData;
+drop view if exists TestDB.basicPlayerData;
 ##
-drop view TestDB.researchChoicesView;
+drop view if exists TestDB.researchChoicesView;
 ##
-drop view TestDB.traitsView;
+drop view if exists TestDB.traitsView;
 ##
-drop procedure TestDB.saveBiologicalInformation;
+drop procedure if exists TestDB.saveBiologicalInformation;
 ##
-drop procedure TestDB.saveCombatInformation;
+drop procedure if exists TestDB.saveCombatInformation;
 ##
-drop procedure TestDB.saveMaterialAttributes;
+drop procedure if exists TestDB.saveMaterialAttributes;
 ##
-drop procedure TestDB.saveMaterialAttribute;
+drop procedure if exists TestDB.saveMaterialAttribute;
 ##
-drop function TestDB.saveBasicPlayerInformation;
+drop procedure if exists TestDB.saveGuild;
 ##
-drop table TestDB.biological;
+drop procedure if exists TestDB.saveResearch;
 ##
-drop table TestDB.combatStatisticsForRace;
+drop procedure if exists TestDB.saveResearchChoiceOption;
 ##
-drop table TestDB.combatStatistics;
+drop procedure if exists TestDB.saveOpenResearchTrees;
 ##
-drop table TestDB.guilds;
+drop function if exists TestDB.saveBasicPlayerInformation;
 ##
-drop table TestDB.materialAttributes;
+drop function if exists TestDB.saveResearchChoice;
 ##
-drop table TestDB.openResearchTrees;
+drop table if exists TestDB.biological;
 ##
-drop table TestDB.playerCombatData;
+drop table if exists TestDB.combatStatisticsForRace;
 ##
-drop table TestDB.quests;
+drop table if exists TestDB.combatStatistics;
 ##
-drop table TestDB.research;
+drop table if exists TestDB.guilds;
 ##
-drop table TestDB.researchChoiceItems;
+drop table if exists TestDB.materialAttributes;
 ##
-drop table TestDB.researchChoices;
+drop table if exists TestDB.openResearchTrees;
 ##
-drop table TestDB.skills;
+drop table if exists TestDB.playerCombatData;
 ##
-drop table TestDB.wizards;
+drop table if exists TestDB.quests;
 ##
-drop table TestDB.wizardTypes;
+drop table if exists TestDB.research;
 ##
-drop table TestDB.timedtraits;
+drop table if exists TestDB.researchChoiceItems;
 ##
-drop table TestDB.traits;
+drop table if exists TestDB.researchChoices;
 ##
-drop table TestDB.temporaryTraits;
+drop table if exists TestDB.skills;
 ##
-drop table TestDB.inventory;
+drop table if exists TestDB.wizards;
 ##
-drop table TestDB.players;
+drop table if exists TestDB.wizardTypes;
+##
+drop table if exists TestDB.timedtraits;
+##
+drop table if exists TestDB.traits;
+##
+drop table if exists TestDB.temporaryTraits;
+##
+drop table if exists TestDB.inventory;
+##
+drop table if exists TestDB.players;
 ##
 CREATE TABLE TestDB.`players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -294,7 +304,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIE
 CREATE FUNCTION TestDB.`saveBasicPlayerInformation`(p_name varchar(40),
 p_race varchar(20), p_age int, p_gender int, p_ghost int, p_strength int,
 p_intelligence int, p_dexterity int, p_wisdom int, p_constitution int,
-p_charisma int, p_invisible int, p_attributes int) RETURNS int(11)
+p_charisma int, p_invisible int, p_attributes int, p_skill int,
+p_research int, p_unassigned int) RETURNS int(11)
 BEGIN
 	declare pid int;
     
@@ -313,11 +324,19 @@ BEGIN
                            constitution = p_constitution,
                            charisma = p_charisma,
                            invisible = p_invisible,
-                           attributePoints = p_attributes
+                           attributePoints = p_attributes,
+                           skillPoints = p_skill,
+                           researchPoints = p_research,
+                           unassignedExperience = p_unassigned
 		where id = pid;
 	else
-		insert into players (name, race, age, gender, ghost, strength, intelligence, dexterity, wisdom, constitution, charisma, invisible, attributePoints, whenCreated)
-        values (p_name, p_race, p_age, p_gender, p_ghost, p_strength, p_intelligence, p_dexterity, p_wisdom, p_constitution, p_charisma, p_invisible, p_attributes, now());
+		insert into players (name, race, age, gender, ghost, strength,
+        intelligence, dexterity, wisdom, constitution, charisma, invisible,
+        attributePoints, skillPoints, researchPoints, unassignedExperience, 
+        whenCreated)
+        values (p_name, p_race, p_age, p_gender, p_ghost, p_strength, 
+        p_intelligence, p_dexterity, p_wisdom, p_constitution, p_charisma, 
+        p_invisible, p_attributes, p_skill, p_research, p_unassigned, now());
     
         select id into pid from players where name = p_name;
     end if;
@@ -418,3 +437,127 @@ BEGIN
 	call saveMaterialAttribute(p_playerid, 'shortDescription', p_short);
 	call saveMaterialAttribute(p_playerid, 'longDescription', p_long);
 END;
+##
+CREATE PROCEDURE TestDB.`saveGuild`(p_playerid int, p_guild varchar(40), p_title varchar(45), 
+p_pretitle varchar(45), p_rank varchar(45), p_level int, p_experience int, p_leftGuild int,
+p_anathema int, p_rankAdvancedAt int)
+BEGIN
+	declare guildId int;
+ 
+    select id into guildId
+    from guilds where playerid = p_playerid and name = p_guild;
+    
+    if guildId is not null then
+		update guilds set title = p_title,
+						  pretitle = p_pretitle,
+                          rank = p_rank,
+                          level = p_level,
+                          experience = p_experience,
+                          leftGuild = p_leftGuild,
+                          anathema = p_anathema,
+                          rankAdvancedAt = p_rankAdvancedAt
+		where id = guildId;
+	else
+		insert into guilds (playerid,
+									  name,
+									  title,
+									  pretitle,
+                                      rank,
+                                      level,
+									  experience,
+                                      leftGuild,
+								      anathema,
+                                      rankAdvancedAt)
+        values (p_playerid, p_guild, p_title, p_pretitle, p_rank, p_level,
+                p_experience, p_leftGuild, p_anathema, p_rankAdvancedAt);
+    end if;
+END;
+##
+CREATE PROCEDURE TestDB.`saveQuest` (p_playerid int, p_quest varchar(128), p_state varchar(45), 
+p_statesCompleted varchar(45), p_active int, p_completed int)
+BEGIN
+	declare questId int;
+ 
+    select id into questId
+    from quests where playerid = p_playerid and path = p_quest;
+    
+    if questId is not null then
+		update quests set state = p_state,
+						  statesCompleted = p_statesCompleted,
+                          isActive = p_active,
+                          isCompleted = p_completed
+		where id = questId;
+	else
+		insert into quests (playerid, path, state, statesCompleted, isActive, isCompleted)
+        values (p_playerid, p_quest, p_state, p_statesCompleted, p_active, p_completed);
+    end if;
+END;
+##
+CREATE PROCEDURE `saveResearch`(p_playerid int, p_path varchar(128), p_began int, 
+p_whenCompleted int, p_timeSpent int, p_completed int, p_timeToComplete int, 
+p_cooldown int)
+BEGIN
+	declare researchId int;
+ 
+    select id into researchId
+    from research where playerid = p_playerid and path = p_path;
+    
+    if researchId is not null then
+		update research set whenResearchBegan = p_began,
+						  whenResearchComplete = p_whenCompleted,
+                          timeSpentLearning = p_timeSpent,
+                          researchComplete = p_completed,
+                          timeToCompleteLearning = p_timeToComplete,
+                          cooldown = p_cooldown
+		where id = researchId;
+	else
+		insert into research (playerid, path, whenResearchBegan, whenResearchComplete, 
+        timeSpentLearning, researchComplete, timeToCompleteLearning, cooldown)
+        values (p_playerid, p_path, p_began, p_whenCompleted, p_timeSpent, p_completed,
+        p_timeToComplete, p_cooldown);
+    end if;
+END;
+##
+CREATE PROCEDURE TestDB.`pruneResearchChoices` (p_playerid int)
+BEGIN
+	delete from researchChoiceItems
+    where researchChoiceId in (select id from researchChoices where playerid = p_playerid);
+    
+    delete from researchChoices where playerid = p_playerid;
+END;
+##
+CREATE FUNCTION TestDB.`saveResearchChoice` (p_playerid int, p_name varchar(45))
+RETURNS INTEGER
+BEGIN
+	declare choiceId int;
+    
+    insert into researchChoices (playerid, name) values (p_playerId, p_name);
+    
+    select id into choiceId
+    from researchChoices
+    where playerId = p_playerid and name = p_name;
+    
+RETURN choiceId;
+END;
+##
+CREATE PROCEDURE TestDB.`saveResearchChoiceOption` (p_choiceId int, p_selection varchar(5),
+p_type varchar(15), p_name varchar(45), p_description varchar(256), p_key varchar(128))
+BEGIN
+	insert into researchChoiceItems 
+    (researchChoiceId, selectionNumber, type, name, description, researchChoiceItems.key)
+    values (p_choiceId, p_selection, p_type, p_name, p_description, p_key);
+END;
+##
+CREATE PROCEDURE TestDB.`saveOpenResearchTrees` (p_playerid int, p_path varchar(128))
+BEGIN
+	declare researchId int;
+ 
+    select id into researchId
+    from openResearchTrees where playerid = p_playerid and researchTree = p_path;
+    
+    if researchId is null then
+		insert into openResearchTrees (playerId, researchTree)
+        values (p_playerid, p_path);
+    end if;
+END;
+##

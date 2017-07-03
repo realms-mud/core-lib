@@ -425,7 +425,7 @@ public nomask void weaponStuff()
 private nomask int saveBasicPlayerData(int dbHandle, mapping playerData)
 {
     string query = sprintf("select saveBasicPlayerInformation("
-        "'%s','%s',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d);",
+        "'%s','%s',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d);",
         db_conv_string(playerData["name"]),
         db_conv_string(playerData["race"]),
         playerData["age"],
@@ -438,7 +438,10 @@ private nomask int saveBasicPlayerData(int dbHandle, mapping playerData)
         playerData["constitution"],
         playerData["charisma"],
         playerData["invisible"],
-        playerData["availableAttributePoints"]);
+        playerData["availableAttributePoints"],
+        playerData["availableSkillPoints"],
+        playerData["availableResearchPoints"],
+        playerData["unassignedExperience"]);
 
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
@@ -509,6 +512,141 @@ private nomask void saveMaterialAttributes(int dbHandle, int playerId, mapping p
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveGuildData(int dbHandle, int playerId, mapping playerData)
+{
+    if (member(playerData, "guilds") &&
+        sizeof(playerData["guilds"]))
+    {
+        string *guilds = m_indices(playerData["guilds"]);
+        foreach(string guild in guilds)
+        {
+            string query = sprintf("call saveGuild("
+                "%d,'%s','%s','%s','%s',%d,%d,%d,%d,%d);",
+                playerId,
+                db_conv_string(guild),
+                db_conv_string(playerData["guilds"][guild]["title"]),
+                db_conv_string(playerData["guilds"][guild]["pretitle"]),
+                db_conv_string(playerData["guilds"][guild]["rank"]),
+                playerData["guilds"][guild]["level"],
+                playerData["guilds"][guild]["experience"],
+                playerData["guilds"][guild]["left guild"],
+                playerData["guilds"][guild]["anathema"],
+                playerData["guilds"][guild]["rank advanced at"]);
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveQuestData(int dbHandle, int playerId, mapping playerData)
+{
+    if (member(playerData, "quests") &&
+        sizeof(playerData["quests"]))
+    {
+        string *quests = m_indices(playerData["quests"]);
+        foreach(string quest in quests)
+        {
+            string query = sprintf("call saveQuest("
+                "%d,'%s','%s','%s',%d,%d);",
+                playerId,
+                db_conv_string(quest),
+                db_conv_string(playerData["quests"][quest]["state"]),
+                db_conv_string(playerData["quests"][quest]["states completed"]),
+                playerData["quests"][quest]["is active"],
+                playerData["quests"][quest]["is completed"]);
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveResearch(int dbHandle, int playerId, mapping playerData)
+{
+    if (member(playerData, "research") &&
+        sizeof(playerData["research"]))
+    {
+        string *researchItems = m_indices(playerData["research"]);
+        foreach(string research in researchItems)
+        {
+            string query = sprintf("call saveResearch("
+                "%d,'%s',%d,%d,%d,%d,%d,%d);",
+                playerId,
+                db_conv_string(research),
+                playerData["research"][research]["when research began"],
+                playerData["research"][research]["when research complete"],
+                playerData["research"][research]["time spent learning"],
+                playerData["research"][research]["research complete"],
+                playerData["research"][research]["time to complete learning"],
+                playerData["research"][research]["cooldown"]);
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveResearchChoices(int dbHandle, int playerId, mapping playerData)
+{
+    string query = sprintf("call pruneResearchChoices(%d);", playerId);
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+
+    if (member(playerData, "researchChoices") &&
+        sizeof(playerData["researchChoices"]))
+    {
+        string *choices = m_indices(playerData["researchChoices"]);
+        foreach(string choice in choices)
+        {
+            query = sprintf("select saveResearchChoice(%d,'%s');",
+                playerId, db_conv_string(choice));
+
+            db_exec(dbHandle, query);
+            result = db_fetch(dbHandle);
+
+            if (sizeof(result))
+            {
+                int id = to_int(result[0]);
+                string *options = m_indices(playerData["researchChoices"][choice]);
+                foreach(string option in options)
+                {
+                    mapping optionMap = playerData["researchChoices"][choice][option];
+                    query = sprintf("call saveResearchChoiceOption("
+                        "%d,'%s','%s','%s','%s','%s');", id,     
+                        db_conv_string(option),
+                        db_conv_string(optionMap["type"]),
+                        db_conv_string(optionMap["name"]),
+                        db_conv_string(optionMap["description"]),
+                        db_conv_string(optionMap["key"]));
+
+                    db_exec(dbHandle, query);
+                    result = db_fetch(dbHandle);
+                }
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveOpenResearchTrees(int dbHandle, int playerId, mapping playerData)
+{
+    if (member(playerData, "openResearchTrees") &&
+        sizeof(playerData["openResearchTrees"]))
+    {
+        foreach(string tree in playerData["openResearchTrees"])
+        {
+            write("Tree be " + tree);
+            string query = sprintf("call saveOpenResearchTrees(%d,'%s');",
+                playerId, db_conv_string(tree));
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+        }
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask void savePlayerData(mapping playerData)
 {
@@ -519,6 +657,11 @@ public nomask void savePlayerData(mapping playerData)
         saveBiologicalData(dbHandle, playerId, playerData);
         saveCombatData(dbHandle, playerId, playerData);
         saveMaterialAttributes(dbHandle, playerId, playerData);
+        saveGuildData(dbHandle, playerId, playerData);
+        saveQuestData(dbHandle, playerId, playerData);
+        saveResearch(dbHandle, playerId, playerData);
+        saveResearchChoices(dbHandle, playerId, playerData);
+        saveOpenResearchTrees(dbHandle, playerId, playerData);
         db_close(dbHandle);
     }
 }
