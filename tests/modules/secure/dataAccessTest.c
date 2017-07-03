@@ -7,9 +7,160 @@ inherit "/lib/tests/framework/testFixture.c";
 object DataAccess;
 
 /////////////////////////////////////////////////////////////////////////////
+mapping Gorthaur()
+{
+    return ([ 
+        "age": 1,
+        "availableAttributePoints": 1,
+        "availableResearchPoints": 3,
+        "availableSkillPoints": 2,
+        "charisma": 15,
+        "constitution": 14,
+        "dexterity": 12,
+        "drugged": 3,
+        "gender": 1,
+        "ghost": 0,
+        "guilds": ([ 
+            "fighter": ([ 
+                "anathema": 2222,
+                "experience": 0,
+                "left guild": 1111,
+                "level": 5,
+                "pretitle": "",
+                "rank": "",
+                "rank advanced at": 0,
+                "title": "",
+            ]),
+            "mage": ([ 
+                "anathema": 0,
+                "experience": 133,
+                "left guild": 0,
+                "level": 16,
+                "pretitle": "Mage",
+                "rank": "acolyte",
+                "rank advanced at": 2333,
+                "title": "the blah blah",
+            ]),
+        ]),
+        "headache": 1,
+        "hitPoints": 100,
+        "intelligence": 11,
+        "intoxicated": 5,
+        "invisible": 0,
+        "longDescription": "This is a long description",
+        "magicalMessageIn": "blah",
+        "magicalMessageOut": "de-blahs",
+        "maxHitPoints": 110,
+        "maxSpellPoints": 130,
+        "maxStaminaPoints": 150,
+        "messageClone": "does stuff",
+        "messageHome": "blarg",
+        "messageIn": "is now here",
+        "messageOut": "leaves",
+        "name": "gorthaur",
+        "onKillList": 1,
+        "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
+        "playerId": 2,
+        "pretitle": "Weasel Lord",
+        "title": "",
+        "quests": ([ 
+            "lib/tests/support/quests/testQuestItem.c": ([ 
+                "is active": 1,
+                "is completed": 0,
+                "name": "Hail to the king, baby!",
+                "state": "serve the king",
+                "states completed": "meet the king##met the king",
+            ]),
+        ]),
+        "race": "elf",
+        "research": ([ 
+            "/lib/tests/support/research/testGrantedResearchItem.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+        ]),
+        "researchChoices": ([ 
+            "Test": ([ 
+                "1": ([ 
+                    "choice": "Test",
+                    "description": "This is choice #1",
+                    "key": "/lib/tests/support/research/testPersistedActiveTraitResearch.c",
+                    "name": "Choice #1",
+                    "type": "research object",
+                ]),
+                "2": ([ 
+                    "choice": "Test",
+                    "description": "This is choice #2",
+                    "key": "/lib/blah.c",
+                    "name": "Choice #2",
+                    "type": "research object",
+                ]),
+            ]),
+        ]),
+        "shortDescription": "blah",
+        "skills": ([ 
+            "blacksmith": 5,
+            "long sword": 10,
+        ]),
+        "soaked": 2,
+        "spellPoints": 120,
+        "staminaPoints": 140,
+        "strength": 10,
+        "stuffed": 4,
+        "temporaryTraits": "/lib/tests/support/traits/testTraitWithDuration.c",
+        "timeToHealHP": 6,
+        "timeToHealSP": 8,
+        "timeToHealST": 10,
+        "traits": ([ 
+            "/lib/tests/support/traits/testTrait.c": ([ 
+                "added": 5555,
+                "name": "Sword Boy",
+            ]),
+            "/lib/tests/support/traits/testTraitWithDuration.c": ([ 
+                "added": 6666,
+                "end time": 6677,
+                "expire message": "This is an expire message.",
+                "name": "Temporary Jerk",
+                "triggering research": "/lib/tests/support/research/testTimedResearchItem.c",
+            ]),
+        ]),
+        "unassignedExperience": 321,
+        "whenCreated": "1993-09-23 15:33:15",
+        "wimpy": 70,
+        "wisdom": 13 
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PrepDatabase()
+{
+    string dbScript = read_file("/lib/tests/modules/secure/generateDB.sql");
+
+    string *commands = explode(dbScript, "##");
+
+    int dbHandle = db_connect("TestDB");
+    foreach(string command in commands)
+    {
+        db_exec(dbHandle, command);
+    }
+    db_close(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    ignoreList += ({ "Gorthaur", "PrepDatabase" });
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     DataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    PrepDatabase();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,123 +190,22 @@ void PlayerTypeReturnsPlayerWhenNotInDatabase()
 /////////////////////////////////////////////////////////////////////////////
 void GetPlayerDataReturnsDataFromDatabase()
 {
-    mapping expected = ([ 
-        "age": 1,
-        "availableAttributePoints": 0,
-        "availableResearchPoints": 0,
-        "availableSkillPoints": 0,
-        "charisma": 10,
-        "constitution": 10,
-        "dexterity": 12,
-        "drugged": 3,
-        "gender": 1,
-        "ghost": 0,
-        "guilds": ([ 
-            "fighter": ([ 
-                "anathema": 2222,
-                "experience": 0,
-                "left guild": 1111,
-                "level": 5,
-                "pretitle": "",
-                "rank": "",
-                "rank advanced at": 0,
-                "title": "",
-            ]),
-            "mage": ([ 
-                "anathema": 0,
-                "experience": 133,
-                "left guild": 0,
-                "level": 16,
-                "pretitle": "Mage",
-                "rank": "acolyte",
-                "rank advanced at": 2333,
-                "title": "the blah blah",
-            ]),
-        ]),
-        "headache": 1,
-        "hitPoints": 100,
-        "intelligence": 10,
-        "intoxicated": 5,
-        "invisible": 0,
-        "longDescription": "This is a long description",
-        "maxHitPoints": 110,
-        "maxSpellPoints": 130,
-        "maxStaminaPoints": 150,
-        "messageIn": "arrives",
-        "messageOut": "leaves",
-        "name": "gorthaur",
-        "onKillList": 0,
-        "openResearchTrees": ({ "/lib/tree1.c", "/lib/tree2.c" }),
-        "playerId": 2,
-        "quests": ([ 
-            "lib/tests/support/quests/testQuestItem.c": ([ 
-                "is active": 1,
-                "is completed": 0,
-                "name": "Hail to the king, baby!",
-                "state": "serve the king",
-                "states completed": "meet the king##met the king",
-            ]),
-        ]),
-        "race": "elf",
-        "research": ([ 
-            "/lib/some/path.c": ([ 
-                "cooldown": 0,
-                "research complete": 1,
-                "time spent learning": 1,
-                "time to complete learning": 0,
-                "when research began": 3,
-                "when research complete": 4,
-            ]),
-        ]),
-        "researchChoices": ([ 
-            "Test": ([ 
-                "1": ([
-                    "choice": "Test",
-                    "description": "This is choice #1",
-                    "key": "/lib/somekey.c",
-                    "name": "Choice #1",
-                    "type": "research object",
-                ]),
-                "2": ([ 
-                    "choice": "Test",
-                    "description": "This is choice #2",
-                    "key": "/lib/blah.c",
-                    "name": "Choice #2",
-                    "type": "research object",
-                ]),
-            ]),
-        ]),
-        "skills": ([ 
-            "blacksmith": 5,
-            "long sword": 10,
-        ]),
-        "soaked": 2,
-        "shortDescription": "blah",
-        "spellPoints": 120,
-        "staminaPoints": 140,
-        "strength": 10,
-        "stuffed": 4,
-        "temporaryTraits": "/lib/tests/support/traits/testTraitWithDuration.c",
-        "timeToHealHP": 6,
-        "timeToHealSP": 8,
-        "timeToHealST": 10,
-        "traits": ([ 
-            "/lib/tests/support/traits/testTrait.c": ([ 
-                "added": 5555,
-                "name": "Sword Boy",
-            ]),
-            "/lib/tests/support/traits/testTraitWithDuration.c": ([ 
-                "added": 6666,
-                "end time": 6677,
-                "expire message": "This is an expire message.",
-                "name": "Temporary Jerk",
-                "triggering research": "/lib/tests/support/research/testTimedResearchItem.c",
-            ]),
-        ]),
-        "unassignedExperience": 0,
-        "whenCreated": "1993-09-23 15:33:15",
-        "wimpy": 70,
-        "wisdom": 10,
-    ]);
+    mapping expected = Gorthaur();
     ExpectEq(expected, DataAccess->getPlayerData("gorthaur"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InsertWeaponIntoDB()
+{
+    object weapon = clone_object("/lib/tests/support/items/testSword.c");
+    weapon->init();
+
+    //DataAccess->saveInventoryItem(2, program_name(weapon), weapon->query("all"));
+    //DataAccess->weaponStuff();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SaveDoesSaveStuff()
+{
+    DataAccess->savePlayerData(Gorthaur());
 }

@@ -84,7 +84,7 @@ private mapping getMaterialAttributes(int playerId, int dbHandle)
 {
     mapping ret = ([ ]);
 
-    string query = sprintf("select * from materialAttributeItems "
+    string query = sprintf("select * from materialAttributes "
         "where playerid = '%d'", playerId);
     db_exec(dbHandle, query);
 
@@ -380,4 +380,145 @@ public nomask string playerType(string name)
         ret = result[0];
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int saveInventoryItems(int playerId, string itemPath, string data, int equipped)
+{
+    string query = sprintf("insert into inventory "
+        "(playerid,filename,data,isEquipped) "
+        "values ('%d', '%s', '%s', '%d')", 
+        playerId, 
+        db_conv_string(itemPath),
+        db_conv_string(data), 
+        equipped);
+
+    int dbHandle = connect();
+
+    db_exec(dbHandle, query);
+
+    mixed result = db_fetch(dbHandle);
+    db_close(dbHandle);
+
+    return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void weaponStuff()
+{
+    string query = sprintf("select data from inventory where playerid = '2'");
+
+    int dbHandle = connect();
+
+    db_exec(dbHandle, query);
+
+    mixed result = db_fetch(dbHandle);
+    db_close(dbHandle);
+
+    if (result)
+    {
+        write("Got a result = " + result[0]);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int saveBasicPlayerData(int dbHandle, mapping playerData)
+{
+    string query = sprintf("select saveBasicPlayerInformation("
+        "'%s','%s',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d);",
+        db_conv_string(playerData["name"]),
+        db_conv_string(playerData["race"]),
+        playerData["age"],
+        playerData["gender"],
+        playerData["ghost"],
+        playerData["strength"],
+        playerData["intelligence"],
+        playerData["dexterity"],
+        playerData["wisdom"],
+        playerData["constitution"],
+        playerData["charisma"],
+        playerData["invisible"],
+        playerData["availableAttributePoints"]);
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+
+    int ret = 0;
+    if (sizeof(result))
+    {
+        ret = to_int(result[0]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveBiologicalData(int dbHandle, int playerId, mapping playerData)
+{
+    string query = sprintf("call saveBiologicalInformation("
+        "%d,%d,%d,%d,%d,%d);",
+        playerId,
+        playerData["intoxicated"],
+        playerData["stuffed"],
+        playerData["drugged"],
+        playerData["soaked"],
+        playerData["headache"]);
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveCombatData(int dbHandle, int playerId, mapping playerData)
+{
+    string query = sprintf("call saveCombatInformation("
+        "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d);",
+        playerId,
+        playerData["hitPoints"],
+        playerData["maxHitPoints"],
+        playerData["spellPoints"],
+        playerData["maxSpellPoints"],
+        playerData["staminaPoints"],
+        playerData["maxStaminaPoints"],
+        playerData["wimpy"],
+        playerData["onKillList"],
+        playerData["timeToHealHP"],
+        playerData["timeToHealSP"],
+        playerData["timeToHealST"]);
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveMaterialAttributes(int dbHandle, int playerId, mapping playerData)
+{
+    string query = sprintf("call saveMaterialAttributes("
+        "%d,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
+        playerId,
+        db_conv_string(playerData["title"]),
+        db_conv_string(playerData["pretitle"]),
+        db_conv_string(playerData["messageIn"]),
+        db_conv_string(playerData["messageOut"]),
+        db_conv_string(playerData["magicalMessageIn"]),
+        db_conv_string(playerData["magicalMessageOut"]),
+        db_conv_string(playerData["messageHome"]),
+        db_conv_string(playerData["messageClone"]),
+        db_conv_string(playerData["shortDescription"]),
+        db_conv_string(playerData["longDescription"]));
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+}
+/////////////////////////////////////////////////////////////////////////////
+public nomask void savePlayerData(mapping playerData)
+{
+    if (member(playerData, "name"))
+    {
+        int dbHandle = db_connect("TestDB");
+        int playerId = saveBasicPlayerData(dbHandle, playerData);
+        saveBiologicalData(dbHandle, playerId, playerData);
+        saveCombatData(dbHandle, playerId, playerData);
+        saveMaterialAttributes(dbHandle, playerId, playerData);
+        db_close(dbHandle);
+    }
 }

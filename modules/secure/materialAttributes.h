@@ -4,14 +4,14 @@
 //*****************************************************************************
 
 private string name = "";
-private string shortDescription;
-private string longDescription;
-private string messageIn;
-private string messageOut;
-private string magicalMessageIn;
-private string magicalMessageOut;
-private string messageHome;
-private string messageClone;
+private string shortDescription = "";
+private string longDescription = "";
+private string messageIn = "";
+private string messageOut = "";
+private string magicalMessageIn = "";
+private string magicalMessageOut = "";
+private string messageHome = "";
+private string messageClone = "";
 private int gender;
 private int age;
 private string *aliases = ({});
@@ -38,11 +38,10 @@ static nomask void loadMaterialAttributes(mapping data, object persistence)
         messageClone = persistence->extractSaveData("messageClone", data);
         gender = persistence->extractSaveData("gender", data);
         age = persistence->extractSaveData("age", data);
-        aliases = persistence->extractSaveData("aliases", data);
         ghost = persistence->extractSaveData("ghost", data);
         title = persistence->extractSaveData("title", data);
         pretitle = persistence->extractSaveData("pretitle", data);
-        invisibility = persistence->extractSaveData("invisibility", data);
+        invisibility = persistence->extractSaveData("invisible", data);
         whenCreated = persistence->extractSaveData("whenCreated", data);
     }
 }
@@ -63,11 +62,10 @@ static nomask mapping sendMaterialAttributes()
     ret["messageClone"] = messageClone;
     ret["gender"] = gender;
     ret["age"] = age;
-    ret["aliases"] = aliases;
     ret["ghost"] = ghost;
     ret["title"] = title;
     ret["pretitle"] = pretitle;
-    ret["invisibility"] = invisibility;
+    ret["invisible"] = invisibility;
     ret["whenCreated"] = whenCreated;
 
     return ret;

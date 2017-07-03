@@ -8,7 +8,6 @@ private string *temporaryTraits = ({});
 /////////////////////////////////////////////////////////////////////////////
 static nomask void loadTraits(mapping data, object persistence)
 {
-    write("oink!\n");
     if (isValidPersistenceObject(persistence))
     {
         traits = persistence->extractSavedMapping("traits", data);        

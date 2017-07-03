@@ -285,7 +285,7 @@ void ShortIsGhostOfWhenDead()
 /////////////////////////////////////////////////////////////////////////////
 void DescriptionCanBeSetAndReturnsCorrectValue()
 {
-    ExpectFalse(Attributes->description(), "description is empty by default");
+    ExpectEq("", Attributes->description(), "description is empty by default");
     ExpectEq("blah", Attributes->description("blah"), "description is set");
     ExpectEq("blah", Attributes->description(), "description is 'blah'");
 }

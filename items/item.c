@@ -144,6 +144,11 @@ public mixed query(string element)
                         (: return sizeof(regexp(({ $1 }), "bonus")) > 0; :));
                     break;
                 }
+                case "all":
+                {
+                    ret = regreplace(save_value(itemData), "'", "''", 1);
+                    break;
+                }
             }
         }
     }

@@ -73,8 +73,30 @@ private nomask object DataAccess()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping getPlayerInfo()
+{
+    mapping ret = ([]);
+
+    string *services = ({ "materialAttributes", "attributes",
+        "biological", "combat", "races", "guilds", "quests",
+        "research", "skills", "traits" });
+
+    foreach(string service in services)
+    {
+        object serviceObject = getService(service);
+        if (serviceObject)
+        {
+            ret += call_other(serviceObject,
+                sprintf("send%s", capitalize(service)));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void save()
 {
+    mapping playerData = getPlayerInfo();
 
 }
 
@@ -119,8 +141,8 @@ static nomask mapping extractSavedMapping(string key, mapping playerData)
 private nomask void setPlayerInfo(mapping playerData)
 {
     string *services = ({ "materialAttributes", "attributes",
-        "biological", "combat", "race", "guilds", "quests", "research",
-        "skills", "traits" });
+        "biological", "combat", "races", "guilds", "quests",
+        "research", "skills", "traits" });
 
     foreach(string service in services)
     {
@@ -141,6 +163,7 @@ public nomask void restore(string name)
     if (canRestorePlayer(previous_object()))
     {
         mapping playerData = DataAccess()->getPlayerData(name);
+        //write(convertDataToString(playerData));
         setPlayerInfo(playerData);
     }
     else

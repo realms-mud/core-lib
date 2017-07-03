@@ -449,6 +449,7 @@ private void processResearchChoice(string researchItem, string choice, string ev
 /////////////////////////////////////////////////////////////////////////////
 public nomask int selectResearchChoice(string researchItem, string choice)
 {
+
     int ret = member(researchChoices, choice) &&
         initiateResearch(researchItem);
 

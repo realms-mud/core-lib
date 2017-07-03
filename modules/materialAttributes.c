@@ -160,7 +160,7 @@ public varargs string MessageIn(string msg)
     {
         messageIn = msg;
     }
-    else if(!messageIn)
+    else if(!messageIn || (messageIn == ""))
     {
         messageIn = "arrives";
     }
@@ -174,7 +174,7 @@ public varargs string MessageOut(string msg)
     {
         messageOut = msg;
     }
-    else if (!messageOut)
+    else if (!messageOut || (messageOut == ""))
     {
         messageOut = "leaves";
     }
@@ -188,7 +188,7 @@ public varargs string MagicalMessageIn(string msg)
     {
         magicalMessageIn = msg;
     }
-    else if (!magicalMessageIn)
+    else if (!magicalMessageIn || (magicalMessageIn == ""))
     {
         magicalMessageIn = "appears in a puff of smoke";
     }
@@ -202,7 +202,7 @@ public varargs string MagicalMessageOut(string msg)
     {
         magicalMessageOut = msg;
     }
-    else if (!magicalMessageOut)
+    else if (!magicalMessageOut || (magicalMessageOut == ""))
     {
         magicalMessageOut = "vanishes in a puff of smoke";
     }
@@ -216,7 +216,7 @@ public varargs string MessageHome(string msg)
     {
         messageHome = msg;
     }
-    else if (!messageHome)
+    else if (!messageHome || (messageHome == ""))
     {
         messageHome = "goes home";
     }
@@ -231,7 +231,7 @@ public varargs string MessageClone(string msg)
     {
         messageClone = msg;
     }
-    else if (!messageClone)
+    else if (!messageClone || (messageClone == ""))
     {
         messageClone = "creates something";
     }
@@ -241,11 +241,11 @@ public varargs string MessageClone(string msg)
 /////////////////////////////////////////////////////////////////////////////
 public varargs string Title(string msg)
 {
-    if(msg && stringp(msg))
+    if (msg && stringp(msg))
     {
         title = msg;
     }
-    else if (!title)
+    else if (!title || (title == ""))
     {
         title = "the title-less";
     }
@@ -271,7 +271,7 @@ public varargs string short(string newShort)
     {
         shortDescription = newShort;
     }
-    else if (!shortDescription)
+    else if (!shortDescription || (shortDescription == ""))
     {
         shortDescription = name;
     }
@@ -408,7 +408,7 @@ private string basicLongDescription()
         ret += sprintf(" (%s)", race->Race());
     }
     ret += "\n";
-    if (longDescription)
+    if (longDescription && (longDescription != ""))
     {
         ret += longDescription + "\n";
     }

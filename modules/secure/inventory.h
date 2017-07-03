@@ -14,7 +14,7 @@ private nosave string Cyan = "[0;36m%s[0m";
 private nosave string BoldBlack = "[0;30;1m%s[0m";
 private nosave string Red = "[0;31m%s[0m";
 
-private nosave mapping itemRegistry =
+private mapping itemRegistry =
 ([
     "equipped":([
         "wielded primary":0,
