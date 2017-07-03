@@ -386,7 +386,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE `saveMaterialAttribute`(p_playerid int, p_type varchar(45), p_value varchar(256))
+CREATE PROCEDURE TestDB.`saveMaterialAttribute`(p_playerid int, p_type varchar(45), p_value varchar(256))
 BEGIN
 	declare materialId int;
     
@@ -402,7 +402,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE `saveMaterialAttributes`(p_playerid int, p_title varchar(256),
+CREATE PROCEDURE TestDB.`saveMaterialAttributes`(p_playerid int, p_title varchar(256),
 p_pretitle varchar(256), p_msgin varchar(256), p_msgout varchar(256),
 p_magicalin varchar(256), p_magicalout varchar(256), p_home varchar(256),
 p_clone varchar(256), p_short varchar(256), p_long varchar(256))
