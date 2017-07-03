@@ -14,7 +14,11 @@ drop procedure if exists TestDB.saveMaterialAttribute;
 ##
 drop procedure if exists TestDB.saveGuild;
 ##
+drop procedure if exists TestDB.saveQuest;
+##
 drop procedure if exists TestDB.saveResearch;
+##
+drop procedure if exists TestDB.pruneResearchChoices;
 ##
 drop procedure if exists TestDB.saveResearchChoiceOption;
 ##
