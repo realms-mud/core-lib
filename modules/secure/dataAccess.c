@@ -44,6 +44,27 @@ public nomask mapping getPlayerData(string name)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void savePlayerData(mapping playerData)
+{
+    if (member(playerData, "name"))
+    {
+        int dbHandle = connect();
+        int playerId = saveBasicPlayerData(dbHandle, playerData);
+        saveBiologicalData(dbHandle, playerId, playerData);
+        saveCombatData(dbHandle, playerId, playerData);
+        saveMaterialAttributes(dbHandle, playerId, playerData);
+        saveGuildData(dbHandle, playerId, playerData);
+        saveQuestData(dbHandle, playerId, playerData);
+        saveResearch(dbHandle, playerId, playerData);
+        saveResearchChoices(dbHandle, playerId, playerData);
+        saveOpenResearchTrees(dbHandle, playerId, playerData);
+        saveSkills(dbHandle, playerId, playerData);
+        saveTraits(dbHandle, playerId, playerData);
+        db_close(dbHandle);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string playerType(string name)
 {
     string ret = "player";
@@ -103,26 +124,5 @@ public nomask void weaponStuff()
     if (result)
     {
         write("Got a result = " + result[0]);
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void savePlayerData(mapping playerData)
-{
-    if (member(playerData, "name"))
-    {
-        int dbHandle = connect();
-        int playerId = saveBasicPlayerData(dbHandle, playerData);
-        saveBiologicalData(dbHandle, playerId, playerData);
-        saveCombatData(dbHandle, playerId, playerData);
-        saveMaterialAttributes(dbHandle, playerId, playerData);
-        saveGuildData(dbHandle, playerId, playerData);
-        saveQuestData(dbHandle, playerId, playerData);
-        saveResearch(dbHandle, playerId, playerData);
-        saveResearchChoices(dbHandle, playerId, playerData);
-        saveOpenResearchTrees(dbHandle, playerId, playerData);
-        saveSkills(dbHandle, playerId, playerData);
-        saveTraits(dbHandle, playerId, playerData);
-        db_close(dbHandle);
     }
 }

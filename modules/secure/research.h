@@ -21,7 +21,12 @@ static nomask void loadResearch(mapping data, object persistence)
     if (isValidPersistenceObject(persistence))
     {
         researchPoints = persistence->extractSaveData("availableResearchPoints", data);
-        openResearchTrees = persistence->extractSaveData("openResearchTrees", data);
+        
+        string *openTrees = persistence->extractSaveData("openResearchTrees", data);
+        if (sizeof(openTrees))
+        {
+            openResearchTrees = openTrees;
+        }
         research = persistence->extractSavedMapping("research", data);
         researchChoices = persistence->extractSavedMapping("researchChoices", data);
     }

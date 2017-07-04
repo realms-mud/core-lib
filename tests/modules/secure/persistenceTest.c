@@ -7,6 +7,19 @@ inherit "/lib/tests/framework/testFixture.c";
 object Player;
 
 /////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    database->PrepDatabase();
+
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    dataAccess->savePlayerData(database->Gorthaur());
+
+    destruct(dataAccess);
+    destruct(database);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Player = clone_object("/lib/realizations/player.c");

@@ -236,7 +236,8 @@ public nomask int advanceLevel(string guild)
 public nomask int isAnathema(string guild)
 {
     int ret = 0;
-    if(guild && stringp(guild) && member(guilds[guild], "anathema") &&
+    if(guild && stringp(guild) && member(guilds, guild) &&
+       member(guilds[guild], "anathema") &&
        intp(guilds[guild]["anathema"]))
     {
         object materialAttributes = getService("materialAttributes");

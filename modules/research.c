@@ -199,13 +199,21 @@ public nomask string *availableResearchTrees()
         object service = getService(serviceToCheck);
         if(service && function_exists(methodToExecute, service))
         {
-            ret += call_other(service, methodToExecute);
+            string *trees = call_other(service, methodToExecute);
+
+            if (sizeof(trees))
+            {
+                ret += trees;
+            }
         }
     }
     
     // Strip out any redundant research trees, any possible null elements
-    ret = m_indices(mkmapping(ret));
-    ret -= ({ 0 });
+    if (sizeof(ret))
+    {
+        ret = m_indices(mkmapping(ret));
+        ret -= ({ 0 });
+    }
     return ret + ({ });
 }
 

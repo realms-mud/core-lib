@@ -10,9 +10,15 @@ static nomask void loadTraits(mapping data, object persistence)
 {
     if (isValidPersistenceObject(persistence))
     {
-        traits = persistence->extractSavedMapping("traits", data);        
-        temporaryTraits = explode(
-            persistence->extractSaveData("temporaryTraits", data), "##") - ({ "" });
+        traits = persistence->extractSavedMapping("traits", data);
+
+        string temporaryTraitsString = 
+            persistence->extractSaveData("temporaryTraits", data);
+
+        if (stringp(temporaryTraitsString))
+        {
+            temporaryTraits = explode(temporaryTraitsString, "##") - ({ "" });
+        }
     }
 }
 
