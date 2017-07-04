@@ -129,7 +129,6 @@ mapping Gorthaur()
             ]),
         ]),
         "unassignedExperience": 321,
-        "whenCreated": "1993-09-23 15:33:15",
         "wimpy": 70,
         "wisdom": 13 
     ]);
@@ -191,7 +190,13 @@ void PlayerTypeReturnsPlayerWhenNotInDatabase()
 void GetPlayerDataReturnsDataFromDatabase()
 {
     mapping expected = Gorthaur();
-    ExpectEq(expected, DataAccess->getPlayerData("gorthaur"));
+
+    DataAccess->savePlayerData(expected);
+    mapping result = DataAccess->getPlayerData("gorthaur");
+
+    ExpectTrue(member(result, "whenCreated"));
+    m_delete(result, "whenCreated");
+    ExpectEq(expected, result);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -207,5 +212,6 @@ void InsertWeaponIntoDB()
 /////////////////////////////////////////////////////////////////////////////
 void SaveDoesSaveStuff()
 {
+    DataAccess->savePlayerData(Gorthaur());
     DataAccess->savePlayerData(Gorthaur());
 }

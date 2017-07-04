@@ -16,6 +16,12 @@ drop procedure if exists TestDB.saveGuild;
 ##
 drop procedure if exists TestDB.saveQuest;
 ##
+drop procedure if exists TestDB.saveSkills;
+##
+drop procedure if exists TestDB.saveTraits;
+##
+drop procedure if exists TestDB.saveTemporaryTraits;
+##
 drop procedure if exists TestDB.saveResearch;
 ##
 drop procedure if exists TestDB.pruneResearchChoices;
@@ -71,14 +77,14 @@ CREATE TABLE TestDB.`players` (
   `name` varchar(40) NOT NULL,
   `race` varchar(20) NOT NULL,
   `age` int(10) unsigned NOT NULL,
-  `gender` int(10) unsigned NOT NULL,
+  `gender` int(10) unsigned NOT NULL DEFAULT '0',
   `ghost` int(10) unsigned NOT NULL DEFAULT '0',
-  `strength` int(11) NOT NULL,
-  `intelligence` int(11) NOT NULL,
-  `dexterity` int(11) NOT NULL,
-  `wisdom` int(11) NOT NULL,
-  `constitution` int(11) NOT NULL,
-  `charisma` int(11) NOT NULL,
+  `strength` int(11) NOT NULL DEFAULT '0',
+  `intelligence` int(11) NOT NULL DEFAULT '0',
+  `dexterity` int(11) NOT NULL DEFAULT '0',
+  `wisdom` int(11) NOT NULL DEFAULT '0',
+  `constitution` int(11) NOT NULL DEFAULT '0',
+  `charisma` int(11) NOT NULL DEFAULT '0',
   `invisible` int(11) NOT NULL DEFAULT '0',
   `whenCreated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `attributePoints` int(11) NOT NULL DEFAULT '0',
@@ -238,6 +244,10 @@ CREATE TABLE TestDB.`wizardTypes` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+##
+insert into wizardTypes (type) values ('apprentice'), ('wizard'),
+('creator'), ('highwizard'),('senior'),('admin'),('elder'),('sage'),
+('archwizard'),('demigod'),('god'),('owner');
 ##
 CREATE TABLE TestDB.`wizards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -418,7 +428,7 @@ BEGIN
     where playerid = p_playerid and type = p_type;
     
     if materialId is not null then
-		update materialAttributes set value = p_title where id = materialId;
+		update materialAttributes set value = p_value where id = materialId;
 	else
 		insert into materialAttributes (playerid, type, value)
         values (p_playerid, p_type, p_value);
@@ -477,8 +487,8 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE TestDB.`saveQuest` (p_playerid int, p_quest varchar(128), p_state varchar(45), 
-p_statesCompleted varchar(45), p_active int, p_completed int)
+CREATE PROCEDURE TestDB.`saveQuest` (p_playerid int, p_quest varchar(128), p_name varchar(45), 
+p_state varchar(45), p_statesCompleted varchar(45), p_active int, p_completed int)
 BEGIN
 	declare questId int;
  
@@ -486,14 +496,15 @@ BEGIN
     from quests where playerid = p_playerid and path = p_quest;
     
     if questId is not null then
-		update quests set state = p_state,
+		update quests set name = p_name,
+                          state = p_state,
 						  statesCompleted = p_statesCompleted,
                           isActive = p_active,
                           isCompleted = p_completed
 		where id = questId;
 	else
-		insert into quests (playerid, path, state, statesCompleted, isActive, isCompleted)
-        values (p_playerid, p_quest, p_state, p_statesCompleted, p_active, p_completed);
+		insert into quests (playerid, path, name, state, statesCompleted, isActive, isCompleted)
+        values (p_playerid, p_quest, p_name, p_state, p_statesCompleted, p_active, p_completed);
     end if;
 END;
 ##
@@ -565,3 +576,73 @@ BEGIN
     end if;
 END;
 ##
+CREATE PROCEDURE TestDB.`saveSkills` (p_playerid int, p_name varchar(45), 
+p_value int)
+BEGIN
+	declare skillId int;
+ 
+    select id into skillId
+    from skills where playerid = p_playerid and name = p_name;
+    
+    if skillId is not null then
+		update skills set value = p_value
+		where id = skillId;
+	else
+		insert into skills (playerid, name, value)
+        values (p_playerid, p_name, p_value);
+    end if;
+END;
+##
+CREATE PROCEDURE TestDB.`saveTraits` (p_playerid int, p_path varchar(128), 
+p_name varchar(45), p_added int, p_end int, p_expire varchar(256),
+p_trigger varchar(128))
+BEGIN
+	declare tid int;
+ 
+    select id into tid
+    from traits where playerid = p_playerid and path = p_path;
+    
+    if tid is not null then
+		update traits set name = p_name,
+                          added = p_added
+		where id = tid;
+
+        if p_end is not null and p_end <> 0 then 
+            update timedtraits set endTime = p_end,
+                              expireMessage = p_expire,
+                              triggeringResearch = p_trigger
+            where traitid = tid;
+        end if;
+	else
+		insert into traits (playerid, path, name, added)
+        values (p_playerid, p_path, p_name, p_added);
+
+        if p_end is not null and p_end <> 0 then
+            select id into tid
+            from traits where playerid = p_playerid and path = p_path;
+
+   		    insert into timedtraits (traitid, endTime, expireMessage, triggeringResearch)
+            values (tid, p_end, p_expire, p_trigger);
+        end if;
+    end if;
+END;
+##
+CREATE PROCEDURE TestDB.`saveTemporaryTraits` (p_playerid int, p_traits varchar(512))
+BEGIN
+	declare playerId int;
+ 
+    select id into playerId
+    from temporaryTraits where playerid = p_playerid;
+    
+    if playerId is not null then
+		update temporaryTraits set traitList = p_traits
+		where id = playerId;
+	else
+		insert into temporaryTraits (playerid, traitList)
+        values (p_playerid, p_traits);
+    end if;
+END;
+##
+insert into players (id,name,race,age,gender) values (1,'maeglin','elf',1,1);
+##
+insert into wizards (playerid,typeid) values (1, (select id from wizardTypes where type='owner'));

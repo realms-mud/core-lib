@@ -44,7 +44,7 @@ void PlayerMaterialAttributesRestored()
 void PlayerAttributesRestored()
 {
     Player->restore("gorthaur");
-    ExpectEq(11, Player->Str());
+    ExpectEq(13, Player->Str());
     ExpectEq(12, Player->Int());
     ExpectEq(13, Player->Dex());
     ExpectEq(13, Player->Wis());
@@ -73,7 +73,7 @@ void PlayerCombatAttributesRestored()
     ExpectEq(120, Player->spellPoints());
     ExpectEq(230, Player->maxSpellPoints());
     ExpectEq(140, Player->staminaPoints());
-    ExpectEq(222, Player->maxStaminaPoints());
+    ExpectEq(228, Player->maxStaminaPoints());
     ExpectEq(70, Player->Wimpy());
     ExpectTrue(Player->onKillList());
 }

@@ -12,7 +12,7 @@ private nomask void purgeCursors(int handle)
 /////////////////////////////////////////////////////////////////////////////
 private nomask int connect()
 {
-    return db_connect(RealmsDatabase());
+    return db_connect("TestDB");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -550,9 +550,10 @@ private nomask void saveQuestData(int dbHandle, int playerId, mapping playerData
         foreach(string quest in quests)
         {
             string query = sprintf("call saveQuest("
-                "%d,'%s','%s','%s',%d,%d);",
+                "%d,'%s','%s','%s','%s',%d,%d);",
                 playerId,
                 db_conv_string(quest),
+                db_conv_string(playerData["quests"][quest]["name"]),
                 db_conv_string(playerData["quests"][quest]["state"]),
                 db_conv_string(playerData["quests"][quest]["states completed"]),
                 playerData["quests"][quest]["is active"],
@@ -638,7 +639,6 @@ private nomask void saveOpenResearchTrees(int dbHandle, int playerId, mapping pl
     {
         foreach(string tree in playerData["openResearchTrees"])
         {
-            write("Tree be " + tree);
             string query = sprintf("call saveOpenResearchTrees(%d,'%s');",
                 playerId, db_conv_string(tree));
             db_exec(dbHandle, query);
@@ -648,11 +648,64 @@ private nomask void saveOpenResearchTrees(int dbHandle, int playerId, mapping pl
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void saveSkills(int dbHandle, int playerId, mapping playerData)
+{
+    if (member(playerData, "skills") &&
+        sizeof(playerData["skills"]))
+    {
+        string *skills = m_indices(playerData["skills"]);
+        foreach(string skill in skills)
+        {
+            string query = sprintf("call saveSkills(%d,'%s',%d);",
+                playerId,
+                db_conv_string(skill),
+                playerData["skills"][skill]);
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveTraits(int dbHandle, int playerId, mapping playerData)
+{
+    if (member(playerData, "traits") &&
+        sizeof(playerData["traits"]))
+    {
+        string *traits = m_indices(playerData["traits"]);
+        foreach(string trait in traits)
+        {
+            string query = sprintf("call saveTraits("
+                "%d,'%s','%s',%d,%d,'%s','%s');",
+                playerId,
+                db_conv_string(trait),
+                db_conv_string(playerData["traits"][trait]["name"]),
+                playerData["traits"][trait]["added"],
+                playerData["traits"][trait]["end time"],
+                db_conv_string(playerData["traits"][trait]["expire message"]||""),
+                db_conv_string(playerData["traits"][trait]["triggering research"]||""));
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+        }
+    }
+
+    if (member(playerData, "temporaryTraits") &&
+        sizeof(playerData["temporaryTraits"]))
+    {
+        string query = sprintf("call saveTemporaryTraits(%d,'%s');",
+            playerId, db_conv_string(playerData["temporaryTraits"]));
+
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void savePlayerData(mapping playerData)
 {
     if (member(playerData, "name"))
     {
-        int dbHandle = db_connect("TestDB");
+        int dbHandle = connect();
         int playerId = saveBasicPlayerData(dbHandle, playerData);
         saveBiologicalData(dbHandle, playerId, playerData);
         saveCombatData(dbHandle, playerId, playerData);
@@ -662,6 +715,8 @@ public nomask void savePlayerData(mapping playerData)
         saveResearch(dbHandle, playerId, playerData);
         saveResearchChoices(dbHandle, playerId, playerData);
         saveOpenResearchTrees(dbHandle, playerId, playerData);
+        saveSkills(dbHandle, playerId, playerData);
+        saveTraits(dbHandle, playerId, playerData);
         db_close(dbHandle);
     }
 }
