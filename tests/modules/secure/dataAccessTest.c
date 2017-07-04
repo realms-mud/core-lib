@@ -141,7 +141,7 @@ void PrepDatabase()
 
     string *commands = explode(dbScript, "##");
 
-    int dbHandle = db_connect("TestDB");
+    int dbHandle = db_connect(RealmsDatabase());
     foreach(string command in commands)
     {
         db_exec(dbHandle, command);
