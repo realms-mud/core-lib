@@ -9,6 +9,7 @@ object Player;
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
+    setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
     database->PrepDatabase();
 
@@ -23,7 +24,6 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/realizations/player.c");
-    setRestoreCaller(this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////

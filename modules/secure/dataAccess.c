@@ -22,45 +22,60 @@ public nomask mapping getPlayerData(string name)
 {
     mapping data = (["name":name]);
 
-    int dbHandle = connect();
-
-    data += getBasicPlayerData(name, dbHandle);
-
-    if (member(data, "playerId"))
+    if (canAccessDatabase(previous_object()))
     {
-        data += getGuildData(data["playerId"], dbHandle);
-        data += getMaterialAttributes(data["playerId"], dbHandle);
-        data += getQuestData(data["playerId"], dbHandle);
-        data += getResearch(data["playerId"], dbHandle);
-        data += getResearchChoices(data["playerId"], dbHandle);
-        data += getOpenResearchTrees(data["playerId"], dbHandle);
-        data += getSkills(data["playerId"], dbHandle);
-        data += getTraits(data["playerId"], dbHandle);
-        data += getTemporaryTraits(data["playerId"], dbHandle);
-    }
+        int dbHandle = connect();
+        data += getBasicPlayerData(name, dbHandle);
 
-    db_close(dbHandle);
+        if (member(data, "playerId"))
+        {
+            data += getGuildData(data["playerId"], dbHandle);
+            data += getMaterialAttributes(data["playerId"], dbHandle);
+            data += getQuestData(data["playerId"], dbHandle);
+            data += getResearch(data["playerId"], dbHandle);
+            data += getResearchChoices(data["playerId"], dbHandle);
+            data += getOpenResearchTrees(data["playerId"], dbHandle);
+            data += getSkills(data["playerId"], dbHandle);
+            data += getTraits(data["playerId"], dbHandle);
+            data += getTemporaryTraits(data["playerId"], dbHandle);
+        }
+
+        db_close(dbHandle);
+    }
+    else
+    {
+        write("This is where a stern message about trying to circumvent "
+            "security should probably go...\n");
+    }
     return data + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void savePlayerData(mapping playerData)
 {
-    if (member(playerData, "name"))
+    if (canAccessDatabase(previous_object()))
     {
-        int dbHandle = connect();
-        int playerId = saveBasicPlayerData(dbHandle, playerData);
-        saveBiologicalData(dbHandle, playerId, playerData);
-        saveCombatData(dbHandle, playerId, playerData);
-        saveMaterialAttributes(dbHandle, playerId, playerData);
-        saveGuildData(dbHandle, playerId, playerData);
-        saveQuestData(dbHandle, playerId, playerData);
-        saveResearch(dbHandle, playerId, playerData);
-        saveResearchChoices(dbHandle, playerId, playerData);
-        saveOpenResearchTrees(dbHandle, playerId, playerData);
-        saveSkills(dbHandle, playerId, playerData);
-        saveTraits(dbHandle, playerId, playerData);
-        db_close(dbHandle);
+        if (member(playerData, "name"))
+        {
+            int dbHandle = connect();
+            int playerId = saveBasicPlayerData(dbHandle, playerData);
+            saveBiologicalData(dbHandle, playerId, playerData);
+            saveCombatData(dbHandle, playerId, playerData);
+            saveMaterialAttributes(dbHandle, playerId, playerData);
+            saveGuildData(dbHandle, playerId, playerData);
+            saveQuestData(dbHandle, playerId, playerData);
+            saveResearch(dbHandle, playerId, playerData);
+            saveResearchChoices(dbHandle, playerId, playerData);
+            saveOpenResearchTrees(dbHandle, playerId, playerData);
+            saveSkills(dbHandle, playerId, playerData);
+            saveTraits(dbHandle, playerId, playerData);
+            db_close(dbHandle);
+        }
+    }
+    else
+    {
+        write("This is where a stern message about trying to circumvent "
+            "security should probably go...\n");
     }
 }
 

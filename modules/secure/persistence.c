@@ -40,8 +40,17 @@ public nomask mapping getPlayerInfo()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void save()
 {
-    mapping playerData = getPlayerInfo();
-
+    if (canAccessDatabase(previous_object()))
+    {
+        mapping playerData = getPlayerInfo();
+        DataAccess()->savePlayerData(playerData);
+    }
+    else
+    {
+        write("This is where a stern message about trying to circumvent "
+            "security should probably go...\n");
+        destruct(this_object());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -104,7 +113,7 @@ private nomask void setPlayerInfo(mapping playerData)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void restore(string name)
 {
-    if (canRestorePlayer(previous_object()))
+    if (canAccessDatabase(previous_object()))
     {
         mapping playerData = DataAccess()->getPlayerData(name);
         setPlayerInfo(playerData);

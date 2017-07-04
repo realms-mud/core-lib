@@ -10,6 +10,7 @@ object Database;
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
+    setRestoreCaller(this_object());
     Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
     Database->PrepDatabase();
 }
@@ -73,14 +74,4 @@ void CanSaveDataMultipleTimes()
 
     result = DataAccess->getPlayerData("gorthaur");
     ExpectEq(120, result["hitPoints"]);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void InsertWeaponIntoDB()
-{
-    object weapon = clone_object("/lib/tests/support/items/testSword.c");
-    weapon->init();
-
-    //DataAccess->saveInventoryItem(2, program_name(weapon), weapon->query("all"));
-    //DataAccess->weaponStuff();
 }
