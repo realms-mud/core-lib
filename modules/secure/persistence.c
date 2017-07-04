@@ -7,62 +7,6 @@ virtual inherit "/lib/core/thing.c";
 private nosave object dataAccess;
 
 /////////////////////////////////////////////////////////////////////////////
-int sortArray(mixed a, mixed b)
-{
-    string compA;
-    string compB;
-
-    if (mappingp(a) && mappingp(b))
-    {
-        compA = this_object()->convertDataToString(a);
-        compB = this_object()->convertDataToString(b);
-    }
-    else
-    {
-        compA = to_string(a);
-        compB = to_string(b);
-    }
-
-    return compA > compB;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-string convertDataToString(mixed data)
-{
-    string ret = "";
-
-    if (objectp(data))
-    {
-        ret += program_name(data);
-    }
-    else if (pointerp(data) && sizeof(data))
-    {
-        ret += "({ ";
-        data = sort_array(data, "sortArray");
-        foreach(mixed element in data)
-        {
-            ret += convertDataToString(element) + ", ";
-        }
-        ret += "})";
-    }
-    else if (mappingp(data))
-    {
-        ret += "([ ";
-        mixed *indices = sort_array(m_indices(data), "sortArray");
-        foreach(mixed index in indices)
-        {
-            ret += "\"" + convertDataToString(index) + "\": " + convertDataToString(data[index]) + ",\n";
-        }
-        ret += "])";
-    }
-    else
-    {
-        ret += to_string(data);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask object DataAccess()
 {
     if (!dataAccess)
@@ -163,7 +107,6 @@ public nomask void restore(string name)
     if (canRestorePlayer(previous_object()))
     {
         mapping playerData = DataAccess()->getPlayerData(name);
-        //write(convertDataToString(playerData));
         setPlayerInfo(playerData);
     }
     else
