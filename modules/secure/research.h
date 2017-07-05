@@ -33,9 +33,9 @@ static nomask void loadResearch(mapping data, object persistence)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping sendResearchMapping(string type, mapping input)
+private nomask mapping sendResearchMapping(mapping input)
 {
-    mapping ret = ([]);
+    mapping ret = ([ ]);
 
     string *researchList = m_indices(input);
     foreach(string researchItem in researchList)
@@ -43,11 +43,11 @@ private nomask mapping sendResearchMapping(string type, mapping input)
         string *keys = m_indices(input[researchItem]);
         if (sizeof(keys))
         {
-            ret[type][researchItem] = ([]);
+            ret[researchItem] = ([]);
 
             foreach(string key in keys)
             {
-                ret[type][researchItem][key] = input[researchItem][key];
+                ret[researchItem][key] = input[researchItem][key];
             }
         }
     }
@@ -58,9 +58,9 @@ private nomask mapping sendResearchMapping(string type, mapping input)
 static nomask mapping sendResearch()
 {
     return ([
-        "research": sendResearchMapping("research", research),
-        "researchChoices": sendResearchMapping("researchChoices", researchChoices),
-        "openResearchTrees": implode(openResearchTrees, "##"),
-        "researchPoints": researchPoints
+        "research": sendResearchMapping(research),
+        "researchChoices": sendResearchMapping(researchChoices),
+        "openResearchTrees": openResearchTrees,
+        "availableResearchPoints": researchPoints
     ]);
 }
