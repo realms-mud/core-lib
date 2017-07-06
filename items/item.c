@@ -146,7 +146,7 @@ public mixed query(string element)
                 }
                 case "all":
                 {
-                    ret = regreplace(save_value(itemData), "'", "''", 1);
+                    ret = save_value(itemData);
                     break;
                 }
             }
@@ -271,6 +271,7 @@ public varargs int set(string element, mixed data)
                 case "read message unidentified":
                 case "read message identified":            
                 case "short":
+                case "all":
                 {
                     if(!data || !stringp(data))
                     {
@@ -346,7 +347,11 @@ public varargs int set(string element, mixed data)
 
     if(ret)
     {
-        if(mappingp(data))
+        if (element == "all")
+        {
+            itemData = restore_value(data);
+        }
+        else if(mappingp(data))
         {
             itemData[element] = data + ([ ]);
         }
@@ -547,8 +552,6 @@ public void init()
 {
     add_action("read", "read");
 }
-//TODO: Add un/registerObjectAsInventory methods
-
 
 /////////////////////////////////////////////////////////////////////////////
 public int get()

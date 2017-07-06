@@ -6,6 +6,7 @@
 private nosave mapping weaponBlueprints = ([
     "long sword": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 10,
         "skill to use": "long sword",
@@ -17,6 +18,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "broad sword": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 15,
         "skill to use": "long sword",
@@ -28,6 +30,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "rapier": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 15,
         "skill to use": "long sword",
@@ -39,6 +42,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "katana": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 25,
         "skill to use": "hand and a half sword",
@@ -50,6 +54,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "scimitar": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 10,
         "skill to use": "long sword",
@@ -61,6 +66,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "cutlass": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 12,
         "skill to use": "long sword",
@@ -72,6 +78,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "sabre": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 15,
         "skill to use": "long sword",
@@ -83,6 +90,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "spatha": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 15,
         "skill to use": "long sword",
@@ -94,6 +102,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "gladius": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
         "skill to use": "short sword",
@@ -105,6 +114,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "harpe": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 15,
         "skill to use": "short sword",
@@ -116,6 +126,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "wakisashi": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 20,
         "skill to use": "short sword",
@@ -127,6 +138,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "machete": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 5,
         "skill to use": "short sword",
@@ -138,6 +150,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "dagger": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 5,
         "skill to use": "dagger",
@@ -149,6 +162,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "dirk": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
         "skill to use": "dagger",
@@ -160,6 +174,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "stiletto": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
         "skill to use": "dagger",
@@ -171,6 +186,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "claymore": ([
         "type": "two-handed weapon",
+        "default location": TwohandedWeapon,
         "damage type": "slash",
         "skill to craft": 25,
         "skill to use": "two-handed sword",
@@ -182,6 +198,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "great sword": ([
         "type": "two-handed weapon",
+        "default location": TwohandedWeapon,
         "damage type": "slash",
         "skill to craft": 20,
         "skill to use": "two-handed sword",
@@ -193,6 +210,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "odachi": ([
         "type": "two-handed weapon",
+        "default location": TwohandedWeapon,
         "damage type": "slash",
         "skill to craft": 35,
         "skill to use": "two-handed sword",
@@ -204,6 +222,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "bastard sword": ([
         "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 20,
         "skill to use": "hand and a half sword",
@@ -215,6 +234,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "sword staff": ([
         "type": "two-handed weapon",
+        "default location": TwohandedWeapon,
         "damage type": "slash",
         "skill to craft": 25,
         "skill to use": "pole arm",
@@ -226,6 +246,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "staff": ([
         "type": "two-handed weapon",
+        "default location": TwohandedWeapon,
         "damage type": "bludgeon",
         "skill to craft": 1,
         "skill to use": "staff",
@@ -237,6 +258,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "shield staff": ([
         "type": "two-handed weapon",
+        "default location": TwohandedWeapon,
         "damage type": "bludgeon",
         "skill to craft": 8,
         "skill to use": "staff",
@@ -248,6 +270,7 @@ private nosave mapping weaponBlueprints = ([
     ]),
     "shield": ([
         "type": "one-handed weapon",
+        "default location": Shield,
         "damage type": "bludgeon",
         "skill to craft": 5,
         "skill to use": "shield",

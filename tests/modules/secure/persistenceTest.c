@@ -4,6 +4,8 @@
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
 
+#include "/lib/include/inventory.h"
+
 object Player;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -29,6 +31,18 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    // Need to clean up database stuff and the cost of doing a PrepDatabase for each
+    // test is pretty high.
+    object *items = all_inventory(Player);
+    if (sizeof(items))
+    {
+        foreach(object item in items)
+        {
+            item->unequip(item->query("name"), 1);
+            destruct(item);
+        }
+        Player->save();
+    }
     destruct(Player);
 }
 
@@ -373,4 +387,116 @@ void PlayerTraitsSaved()
     Player->restore("gorthaur");
     ExpectEq(({ "/lib/modules/traits/abrasive.c", "/lib/tests/support/traits/testTrait.c", "/lib/tests/support/traits/testTraitWithDuration.c" }),
         Player->Traits());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerInventorySaved()
+{
+    Player->restore("gorthaur");
+
+    move_object(clone_object("/lib/tests/support/items/testSword.c"), Player);
+    Player->save();
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    ExpectFalse(present("Sword of Weasels", Player));
+    Player->restore("gorthaur");
+    ExpectTrue(present("Sword of Weasels", Player)); 
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerCanSaveMultiplesOfSameBlueprint()
+{
+    Player->restore("gorthaur");
+
+    ExpectEq(0, sizeof(all_inventory(Player)));
+    move_object(clone_object("/lib/tests/support/items/testSword.c"), Player);
+    move_object(clone_object("/lib/tests/support/items/testSword.c"), Player);
+    Player->save();
+    ExpectEq(2, sizeof(all_inventory(Player)));
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    ExpectEq(0, sizeof(all_inventory(Player)));
+    Player->restore("gorthaur");
+
+    object *items = all_inventory(Player);
+    ExpectEq(2, sizeof(items));
+    ExpectEq("lib/tests/support/items/testSword.c", items[0]);
+    ExpectEq("lib/tests/support/items/testSword.c", items[1]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ModifierObjectsAreSavedAndRestored()
+{
+    Player->restore("gorthaur");
+    object modifier = clone_object("/lib/items/modifierObject");
+    modifier->set("fully qualified name", "blah");
+    modifier->set("bonus hit points", 6);
+
+    ExpectEq(({}), Player->registeredInventoryObjects());
+    ExpectEq(1, modifier->set("registration list", ({ Player })), "registration list can be set");
+    ExpectEq(({"lib/items/modifierObject.c"}), Player->registeredInventoryObjects());
+    Player->save();
+
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    ExpectEq(({}), Player->registeredInventoryObjects());
+    Player->restore("gorthaur");
+
+    ExpectEq(({"lib/items/modifierObject.c"}), Player->registeredInventoryObjects());
+    object item = Player->registeredInventoryObject("blah");
+    ExpectTrue(item);
+    ExpectEq(6, item->query("bonus hit points"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerInventoryMaintainsWieldedAndWornStateWhenEquippedAtSave()
+{
+    Player->restore("gorthaur");
+
+    object weapon = clone_object("/lib/tests/support/items/testSword.c");
+    move_object(weapon, Player);
+    ExpectTrue(weapon->equip("Sword of Weasels"));
+    ExpectTrue(Player->isEquipped(weapon));
+
+    object shield = clone_object("/lib/items/weapon");
+    shield->set("name", "Shield of Weasels");
+    shield->set("defense class", 1);
+    shield->set("material", "steel");
+    shield->set("craftsmanship", 20);
+    shield->set("weapon type", "shield");
+    move_object(shield, Player);
+    ExpectTrue(shield->equip("Shield of Weasels"));
+    ExpectTrue(Player->isEquipped(shield));
+
+    object armor = clone_object("/lib/items/armor");
+    armor->set("name", "Armor of Weasels");
+    armor->set("bonus hit points", 4);
+    armor->set("armor class", 5);
+    armor->set("armor type", "chainmail");
+    move_object(armor, Player);
+    ExpectTrue(armor->equip("Armor of Weasels"));
+    ExpectTrue(Player->isEquipped(armor));
+
+    Player->save();
+
+    destruct(armor);
+    destruct(weapon);
+    destruct(shield);
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    ExpectFalse(present("Sword of Weasels", Player));
+    Player->restore("gorthaur");
+    ExpectTrue(present("Sword of Weasels", Player));
+    ExpectEq("lib/tests/support/items/testSword.c",
+        Player->equipmentInSlot("wielded primary"));
+
+    shield = Player->equipmentInSlot("wielded offhand");
+    ExpectEq("lib/items/weapon.c", shield);
+    // It's also important that the "generic" items maintain set data!
+    ExpectEq("Shield of Weasels", shield->query("name"));
+
+    armor = Player->equipmentInSlot("armor");
+    ExpectEq("lib/items/armor.c", armor);
+    // It's also important that the "generic" items maintain set data!
+    ExpectEq("Armor of Weasels", armor->query("name"));
 }

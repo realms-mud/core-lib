@@ -23,7 +23,7 @@ public nomask mapping getPlayerInfo()
 
     string *services = ({ "materialAttributes", "attributes",
         "biological", "combat", "races", "guilds", "quests",
-        "research", "skills", "traits" });
+        "research", "skills", "traits", "inventory" });
 
     foreach(string service in services)
     {
@@ -57,7 +57,7 @@ public nomask void save()
 static nomask mixed extractSaveData(string key, mapping playerData)
 {
     mixed ret = 0;
-    if (playerData && member(playerData, key))
+    if (playerData && sizeof(playerData) && member(playerData, key))
     {
         ret = playerData[key];
     }
@@ -95,7 +95,7 @@ private nomask void setPlayerInfo(mapping playerData)
 {
     string *services = ({ "materialAttributes", "attributes",
         "biological", "combat", "races", "guilds", "quests",
-        "research", "skills", "traits" });
+        "research", "skills", "traits", "inventory" });
 
     foreach(string service in services)
     {

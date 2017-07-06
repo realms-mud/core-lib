@@ -10,6 +10,7 @@ virtual inherit "/lib/modules/secure/dataServices/questDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/researchDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/skillsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/traitsDataService.c";
+virtual inherit "/lib/modules/secure/dataServices/inventoryDataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int connect()
@@ -38,6 +39,7 @@ public nomask mapping getPlayerData(string name)
             data += getSkills(data["playerId"], dbHandle);
             data += getTraits(data["playerId"], dbHandle);
             data += getTemporaryTraits(data["playerId"], dbHandle);
+            data += getInventory(data["playerId"], dbHandle);
         }
 
         db_close(dbHandle);
@@ -69,6 +71,7 @@ public nomask void savePlayerData(mapping playerData)
             saveOpenResearchTrees(dbHandle, playerId, playerData);
             saveSkills(dbHandle, playerId, playerData);
             saveTraits(dbHandle, playerId, playerData);
+            saveInventory(dbHandle, playerId, playerData);
             db_close(dbHandle);
         }
     }

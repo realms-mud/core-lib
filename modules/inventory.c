@@ -730,7 +730,7 @@ public nomask int transferItemsTo(object destination)
             }
         }
         
-        foreach(object item : all_inventory())
+        foreach(object item in all_inventory())
         {
             if(item && objectp(item) && !item->drop(Silently))
             {

@@ -30,6 +30,10 @@ drop procedure if exists TestDB.saveResearchChoiceOption;
 ##
 drop procedure if exists TestDB.saveOpenResearchTrees;
 ##
+drop procedure if exists TestDB.pruneInventory;
+##
+drop procedure if exists TestDB.saveInventoryItem;
+##
 drop function if exists TestDB.saveBasicPlayerInformation;
 ##
 drop function if exists TestDB.saveResearchChoice;
@@ -643,6 +647,19 @@ BEGIN
     end if;
 END;
 ##
+CREATE PROCEDURE TestDB.`pruneInventory` (p_playerid int)
+BEGIN
+    delete from inventory where playerid = p_playerid;
+END;
+##
+CREATE PROCEDURE TestDB.`saveInventoryItem` (p_playerid int,
+p_filename varchar(128), p_data blob, p_equipped int)
+BEGIN
+    insert into inventory (playerid,filename,data,isEquipped) 
+        values (p_playerid,p_filename,p_data,p_equipped);
+END;
+##
+
 insert into players (id,name,race,age,gender) values (1,'maeglin','elf',1,1);
 ##
 insert into wizards (playerid,typeid) values (1, (select id from wizardTypes where type='owner'));

@@ -44,6 +44,8 @@ public nomask mapping Gorthaur()
         "intelligence": 11,
         "intoxicated": 5,
         "invisible": 0,
+        "inventory": ([ 
+        ]),
         "longDescription": "This is a long description",
         "magicalMessageIn": "blah",
         "magicalMessageOut": "de-blahs",

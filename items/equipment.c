@@ -124,6 +124,12 @@ public mixed query(string element)
                 materialsObject()->getBlueprintModifier(this_object(), "default material");
             break;
         }
+        case "equipment locations":
+        {
+            ret = member(itemData, "equipment locations") ? itemData["equipment locations"] :
+                materialsObject()->getBlueprintModifier(this_object(), "default location");
+            break;
+        }
         default:
         {
             ret = "item"::query(element);
