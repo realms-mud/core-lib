@@ -35,14 +35,13 @@ private nomask int validWizardLevel(string level)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setWizardLevel(string level, object granter)
 {
-    if (granter && validWizardLevel(level))
+    if (granter && validWizardLevel(level) && 
+        (program_name(granter) == "lib/realizations/wizard.c"))
     {
         string *granterGroups = granter->groups() -
             ({ granter->wizardLevel() });
 
-        int canGrantLevel =
-            (program_name(granter) == "lib/realizations/wizard.c") &&
-            (member(granterGroups, level) > -1) &&
+        int canGrantLevel = (member(granterGroups, level) > -1) &&
             interactive(granter);
 
         if (canGrantLevel)
