@@ -108,10 +108,26 @@ protected nomask int validLimitor(mapping limitor)
                         object materialsDictionary = getDictionary("materials");
                         if (materialsDictionary)
                         {
-                            ret &&= materialsDictionary->isValidArmorType(limitor[key]) ||
-                                materialsDictionary->isValidArmorBlueprint(limitor[key]) ||
-                                materialsDictionary->isValidWeaponType(limitor[key]) ||
-                                materialsDictionary->isValidWeaponBlueprint(limitor[key]);
+                            if (pointerp(limitor[key]) && sizeof(limitor[key]))
+                            {
+                                int isValid = 0;
+                                string *list = limitor[key];
+                                foreach(string equipment in list)
+                                {
+                                    isValid ||= materialsDictionary->isValidArmorType(equipment) ||
+                                        materialsDictionary->isValidArmorBlueprint(equipment) ||
+                                        materialsDictionary->isValidWeaponType(equipment) ||
+                                        materialsDictionary->isValidWeaponBlueprint(equipment);
+                                }
+                                ret &&= isValid;
+                            }
+                            else
+                            {
+                                ret &&= materialsDictionary->isValidArmorType(limitor[key]) ||
+                                    materialsDictionary->isValidArmorBlueprint(limitor[key]) ||
+                                    materialsDictionary->isValidWeaponType(limitor[key]) ||
+                                    materialsDictionary->isValidWeaponBlueprint(limitor[key]);
+                            }
                         }
                         break;
                     }
@@ -310,8 +326,23 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
         }
         if (member(researchData["limited by"], "equipment"))
         {
-            ret &&= function_exists("usingEquipmentOfType", owner) &&
-                owner->usingEquipmentOfType(researchData["limited by"]["equipment"]);
+            if (pointerp(researchData["limited by"]["equipment"]) &&
+                sizeof(researchData["limited by"]["equipment"]))
+            {
+                int hasEquipment = 0;
+                string *list = researchData["limited by"]["equipment"];
+                foreach(string equipment in list)
+                {
+                    hasEquipment ||= owner->usingEquipmentOfType(equipment);
+                }
+                ret &&= hasEquipment;
+            }
+            else
+            {
+                ret &&= function_exists("usingEquipmentOfType", owner) &&
+                    owner->usingEquipmentOfType(researchData["limited by"]["equipment"]);
+            }
+
             if (!ret && verbose)
             {
                 printf("You must be using the proper equipment for that (%s).\n",

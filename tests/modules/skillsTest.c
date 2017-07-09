@@ -327,4 +327,3 @@ void AddSkillPointsFiresOnSkillPointsIncreasedEventToSubscriber()
     string err = catch (Skills->addSkillPoints(100));
     ExpectEq(expected, err, "onSkillPointsIncreased called on subscriber");
 }
-

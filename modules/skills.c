@@ -6,6 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
+#include "/lib/include/itemFormatters.h"
 #include "/lib/modules/secure/skills.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -180,3 +181,74 @@ public nomask int decrementSkill(string skill, int amount)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask string skillListForType(string type)
+{
+    string ret = "";
+    string skillFmt = sprintf(Red, "| ") + "[0;36m%24s[0m : [0;33m%3d[0m [0;34;1m%5s[0m";
+
+    int x = 1;
+    string *combatSkills = skillsObject()->validSkillsOfType(type);
+    foreach(string skill in combatSkills)
+    {
+        int value = 0;
+        if (member(skills, skill))
+        {
+            value = skills[skill];
+        }
+        int bonus = getSkill(skill) - value;
+
+        ret += sprintf(skillFmt, capitalize(skill), value, (bonus > 0) ? "(+" + bonus + ")" : "");
+        if (!(x % 2))
+        {
+            ret += sprintf(Red, " |\n");
+        }
+        else
+        {
+            ret += " ";
+        }
+        x++;
+    }
+    if (!(x % 2))
+    {
+        ret += sprintf("%s%38s%s", sprintf(Red, "|"), "", sprintf(Red, "|\n"));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string buildBanner(string type)
+{
+    string ret = sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+    string banner = sprintf("+ %s Skills +", capitalize(type));
+
+    int startingPoint = 47 - (sizeof(banner) / 2);
+
+    for (int i = startingPoint; i < (startingPoint + sizeof(banner)); i++)
+    {
+        ret[i] = banner[i - startingPoint];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string skillsList(string *types)
+{
+    string ret = "\n";
+    if (!sizeof(types))
+    {
+        types = ({ "combat", "crafting", "erudite", "subterfuge", "general",
+            "magic", "language" });
+    }
+
+    types = sort_array(types, (: $1 > $2 :));
+    foreach(string type in types)
+    {
+        ret += buildBanner(type) + skillListForType(type);
+    }
+
+    ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+    ret += sprintf(BoldBlack, 
+        sprintf("You have %d skill points available to spend.\n", availableSkillPoints));
+    return ret;
+}

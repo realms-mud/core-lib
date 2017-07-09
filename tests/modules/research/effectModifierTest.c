@@ -139,6 +139,21 @@ void IsValidModifierReturnsTrueForResearchModifier()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void IsValidModifierReturnsTrueForTraitModifier()
+{
+    mapping modifier = ([
+        "type":"trait",
+        "trait": "stuff",
+        "name": "blah",
+        "formula": "subtractive",
+        "base value": 5,
+        "rate": 1.1
+    ]);
+
+    ExpectTrue(EffectModifier->testIsValidModifier(modifier));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ApplyModifiersCorrectlyAddsToSkill()
 {
     mapping modifier = ([
@@ -236,6 +251,22 @@ void ApplyModifiersCorrectlyAppliesResearchModifier()
     ExpectEq(15, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void ApplyModifiersCorrectlyAppliesTraitModifier()
+{
+    mapping modifier = ([
+        "type":"trait",
+        "name": "blah",
+        "trait": "test",
+        "formula": "additive",
+        "base value": 10,
+        "rate": 1.5
+    ]);
+
+    User->addTrait("test");
+    User->ToggleMockTrait();
+    ExpectEq(15, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+}
 /////////////////////////////////////////////////////////////////////////////
 void ApplyModifiersAppliesSpecialModifier()
 {

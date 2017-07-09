@@ -807,11 +807,11 @@ void AgricultureIsAValidSkill()
 /////////////////////////////////////////////////////////////////////////////
 void AnimalHandlingAndTrainingIsAValidSkill()
 {
-    ExpectTrue(Dictionary->isValidSkill("animal handling and training"), "animal handling and training is a valid skill");
-    ExpectEq("general", Dictionary->skillType("animal handling and training"), "returns proper skill type");
-    ExpectEq("charisma", Dictionary->attributeForSkill("animal handling and training"), "returns proper attribute");
-    ExpectEq(5, Dictionary->skillBonus("animal handling and training", 10), "skill of 10 returns a 5 bonus");
-    ExpectEq(0, Dictionary->skillBonus("animal handling and training", 0), "returns correct value when untrained");
+    ExpectTrue(Dictionary->isValidSkill("animal handling"), "animal handling is a valid skill");
+    ExpectEq("general", Dictionary->skillType("animal handling"), "returns proper skill type");
+    ExpectEq("charisma", Dictionary->attributeForSkill("animal handling"), "returns proper attribute");
+    ExpectEq(5, Dictionary->skillBonus("animal handling", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(0, Dictionary->skillBonus("animal handling", 0), "returns correct value when untrained");
 }
 
 /////////////////////////////////////////////////////////////////////////////

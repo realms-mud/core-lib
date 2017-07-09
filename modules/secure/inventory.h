@@ -10,10 +10,6 @@ private nosave string WeaponBlueprint = "lib/items/weapon.c";
 private nosave string ModifierBlueprint = "lib/items/modifierObject.c";
 private nosave int weight = 0;
 
-private nosave string Cyan = "[0;36m%s[0m";
-private nosave string BoldBlack = "[0;30;1m%s[0m";
-private nosave string Red = "[0;31m%s[0m";
-
 private mapping itemRegistry =
 ([
     "equipped":([

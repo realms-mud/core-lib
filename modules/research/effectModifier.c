@@ -9,7 +9,7 @@
 private string ModifierObject = "/lib/items/modifierObject.c";
 
 private string *modifierTypes = ({ "skill", "attribute", "skill bonus", 
-                                   "attribute bonus", "level", "research" });
+                                   "attribute bonus", "level", "research", "trait" });
 private string *modifierFormulas = ({ "additive", "subtractive", "logarithmic",
                                       "multiplicative" });
                                       
@@ -99,6 +99,16 @@ private nomask int modifierValueByType(object initiator, mapping modifier)
                 }
                 break;
             }   
+            case "trait":
+            {
+                if (initiator->has("traits") &&
+                    member(modifier, "trait") &&
+                    initiator->isTraitOf(modifier["trait"]))
+                {
+                    ret = modifier["base value"];
+                }
+                break;
+            }
         }
     }
     return ret;

@@ -553,7 +553,7 @@ private mapping skills = ([
         "untrained penalty": 0,
         "description": "This skill allows a character knowledge of basic farming: planting, harvesting, raising animals, butchering, and so on."
     ]),
-    "animal handling and training": ([
+    "animal handling": ([
         "type": "general",
         "attribute": "charisma",
         "bonus calculator": "one for two",
@@ -821,6 +821,8 @@ private mapping skills = ([
     ]),  
 ]);
 
+private nosave string Type;
+
 /////////////////////////////////////////////////////////////////////////////
 private nomask int validateSkill(string skill)
 {
@@ -889,13 +891,17 @@ public nomask int skillBonus(string skill, int rawSkillLevel)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *validSkills()
 {
-    string *listOfSkills = m_indices(skills);
-    
-    foreach(string skill : m_indices(skills))
-    {
-        listOfSkills += ({ skill });
-    }
-    return listOfSkills;
+    return m_indices(skills);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *validSkillsOfType(string type)
+{
+    // Ignore this hacky shortcoming of inline closures...
+    Type = type;
+
+    return sort_array(filter_array(m_indices(skills),
+        (: (skills[$1]["type"] == Type) :)), (: $1 > $2 :));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -903,7 +909,7 @@ public nomask string *validBonusSkills()
 {
     string *listOfSkills = m_indices(skills);
 
-    foreach(string skill : m_indices(skills))
+    foreach(string skill in m_indices(skills))
     {
         listOfSkills += ({ ("bonus " + skill) });
     }

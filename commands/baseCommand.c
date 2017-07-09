@@ -36,7 +36,7 @@ public nomask string commandRegExp()
         }
         ret += ")";
 
-        ret = regreplace(ret, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
+        ret = regreplace(ret, "##(Target|Environment|Item|Value)##", "[A-Za-z0-9 ]+", 1);
     }
 
     return ret;
@@ -70,11 +70,11 @@ private nomask string commandString(string passedCommand)
         foreach(string command in commands)
         {
             string commandRegexp = prepCommandRegExp(command);
-            string commandCheck = regreplace(commandRegexp, "##(Target|Environment|Item)##", "[A-Za-z]+", 1);
+            string commandCheck = regreplace(commandRegexp, "##(Target|Environment|Item|Value)##", "[A-Za-z0-9 ]+", 1);
 
             if(sizeof(regexp(({ passedCommand }), commandCheck)))
             {
-                ret = regreplace(commandRegexp, "##(Target|Environment|Item)##", "", 1);
+                ret = regreplace(commandRegexp, "##(Target|Environment|Item|Value)##", "", 1);
                 ret -="$";
                 break;
             }
