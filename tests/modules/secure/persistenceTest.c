@@ -100,7 +100,8 @@ void PlayerCombatAttributesRestored()
     ExpectEq(120, Player->spellPoints());
     ExpectEq(230, Player->maxSpellPoints());
     ExpectEq(140, Player->staminaPoints());
-    ExpectEq(228, Player->maxStaminaPoints());
+    ExpectEq(150 + (3 * Player->Con()) + (3 * Player->Str()),
+        Player->maxStaminaPoints());
     ExpectEq(70, Player->Wimpy());
     ExpectTrue(Player->onKillList());
 }
