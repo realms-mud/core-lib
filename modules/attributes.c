@@ -41,7 +41,7 @@ static nomask string *validAttributes()
 //
 // Returns: the supplied attribute's value
 //-----------------------------------------------------------------------------
-public nomask int attributeValue(string attribute)
+public varargs nomask int attributeValue(string attribute, int useRaw)
 {
     int value = 0;
     
@@ -87,25 +87,28 @@ public nomask int attributeValue(string attribute)
             }
         }
 
-        string *servicesToCheck = ({ "inventory", "races", "research",
-            "traits" });
-        
-        foreach(string serviceToCheck : servicesToCheck)
+        if (!useRaw)
         {
-            object service = getService(serviceToCheck);
-            if(service)
+            string *servicesToCheck = ({ "inventory", "races", "research",
+                "traits" });
+
+            foreach(string serviceToCheck : servicesToCheck)
             {
-                value += call_other(service, 
-                       sprintf("%sAttributeBonus", serviceToCheck), attribute);
+                object service = getService(serviceToCheck);
+                if (service)
+                {
+                    value += call_other(service,
+                        sprintf("%sAttributeBonus", serviceToCheck), attribute);
+                }
             }
-        } 
-        
-        object room = environment(this_object());
-        if(room && (member(inherit_list(room), "lib/environment/room.c") > -1))
-        {
-            value += room->environmentalAttributeBonus(attribute, 
-                this_object());
-        }        
+
+            object room = environment(this_object());
+            if (room && (member(inherit_list(room), "lib/environment/room.c") > -1))
+            {
+                value += room->environmentalAttributeBonus(attribute,
+                    this_object());
+            }
+        }
     }
       
     return value;

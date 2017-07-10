@@ -71,12 +71,12 @@ void PlayerMaterialAttributesRestored()
 void PlayerAttributesRestored()
 {
     Player->restore("gorthaur");
-    ExpectEq(13, Player->Str());
-    ExpectEq(12, Player->Int());
-    ExpectEq(13, Player->Dex());
-    ExpectEq(13, Player->Wis());
-    ExpectEq(13, Player->Con());
-    ExpectEq(16, Player->Chr());
+    ExpectEq(10, Player->attributeValue("strength", 1));
+    ExpectEq(11, Player->attributeValue("intelligence", 1));
+    ExpectEq(12, Player->attributeValue("dexterity", 1));
+    ExpectEq(13, Player->attributeValue("wisdom", 1));
+    ExpectEq(14, Player->attributeValue("constitution", 1));
+    ExpectEq(15, Player->attributeValue("charisma", 1));
     ExpectEq(1, Player->attributePoints());
 }
 
@@ -224,12 +224,12 @@ void PlayerAttributesSaved()
     Player = clone_object("/lib/realizations/player.c");
     Player->restore("gorthaur");
 
-    ExpectEq(9, Player->Str());
-    ExpectEq(8, Player->Int());
-    ExpectEq(9, Player->Dex());
-    ExpectEq(9, Player->Wis());
-    ExpectEq(9, Player->Con());
-    ExpectEq(12, Player->Chr());
+    ExpectEq(6, Player->attributeValue("strength", 1));
+    ExpectEq(7, Player->attributeValue("intelligence", 1));
+    ExpectEq(8, Player->attributeValue("dexterity", 1));
+    ExpectEq(9, Player->attributeValue("wisdom", 1));
+    ExpectEq(10, Player->attributeValue("constitution", 1));
+    ExpectEq(11, Player->attributeValue("charisma", 1));
     ExpectEq(5, Player->attributePoints());
 }
 
