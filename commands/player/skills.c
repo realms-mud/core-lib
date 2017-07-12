@@ -37,7 +37,7 @@ private nomask int executeAdvanceSkill(string command, object initiator)
                 if (ret)
                 {
                     tell_object(initiator, sprintf("You have increased your '%s'"
-                        " skill by %d and it is now %d\n", skill, value,
+                        " skill by %d and it is now %d.\n", skill, value,
                         initiator->getSkill(skill)));
                 }
                 else

@@ -188,8 +188,8 @@ private nomask string skillListForType(string type)
     string skillFmt = sprintf(Red, "| ") + "[0;36m%24s[0m : [0;33m%3d[0m [0;34;1m%5s[0m";
 
     int x = 1;
-    string *combatSkills = skillsObject()->validSkillsOfType(type);
-    foreach(string skill in combatSkills)
+    string *skillList = skillsObject()->validSkillsOfType(type);
+    foreach(string skill in skillList)
     {
         int value = 0;
         if (member(skills, skill))
