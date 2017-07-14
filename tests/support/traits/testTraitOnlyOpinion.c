@@ -7,16 +7,14 @@ inherit "/lib/modules/traits/baseTrait.c";
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
-    addSpecification("type", "sustained effect");
-    addSpecification("name", "Sustained Jerk");
+    addSpecification("type", "role");
+    addSpecification("name", "Weasel Lord");
     addSpecification("description", "blah blah blah");
-    addSpecification("root", "mean");
-    addSpecification("opposing root", "nice");
-    addSpecification("opinion", 10);
-    addSpecification("opposing opinion", -10);
+    addSpecification("root", "nerd");
+    addSpecification("opposing root", "jock");
+    addSpecification("opinion", 5);
+    addSpecification("opposing opinion", -5);
     addSpecification("cost", 1);
-    addSpecification("triggering research", "lib/tests/support/research/testSustainedTraitResearch.c");
-    addSpecification("expire message", "This is an expire message.");
 }
 
 /////////////////////////////////////////////////////////////////////////////

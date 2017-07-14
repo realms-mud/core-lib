@@ -8,13 +8,11 @@ inherit "/lib/modules/traits/baseTrait.c";
 public void init()
 {
     addSpecification("type", "personality");
-    addSpecification("name", "charming");
-    addSpecification("description", "You are a pleasant person and, darn it, people like you.");
+    addSpecification("name", "test 2");
+    addSpecification("description", "blah blah blah");
     addSpecification("root", "nice");
     addSpecification("opposing root", "jackass");
-    addSpecification("bonus charisma", 1);
-    addSpecification("opinion", 20);
-    addSpecification("opposing opinion", -10);
-    addSpecification("cost", 2);
+    addSpecification("opinion", 15);
+    addSpecification("opposing opinion", -5);
+    addSpecification("cost", 1);
 }
-

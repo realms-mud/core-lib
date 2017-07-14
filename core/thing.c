@@ -109,5 +109,3 @@ protected object getMessageParser()
     }
     return ret;
 }
-
-

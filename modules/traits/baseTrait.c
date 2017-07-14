@@ -40,6 +40,7 @@ protected int addSpecification(string type, mixed value)
     if (sscanf(type, "penalty to %s", bonusToCheck))
     {
         type = sprintf("bonus %s", bonusToCheck);
+        researchData["negative"] = 1;
         applyModifier = -1;
     }
 
@@ -48,6 +49,7 @@ protected int addSpecification(string type, mixed value)
         if (getDictionary("bonuses") &&
             getDictionary("bonuses")->isValidBonusModifier(bonusToCheck, value))
         {
+            researchData["enhanced"] = 1;
             researchData[type] = value * applyModifier;
             ret = 1;
         }
@@ -93,9 +95,16 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "cost":
+            {
+                if (intp(value) && value < 0)
+                {
+                    researchData["negative"] = 1;
+                }
+                // Yes, this intentionally passes through
+            }
             case "opinion":
             case "opposing opinion":
-            case "cost":
             {
                 if (value && intp(value))
                 {

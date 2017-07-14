@@ -47,6 +47,34 @@ public nomask int isValidTraitType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int traitIsOfType(string trait, string type)
+{
+    object traitObj = traitObject(trait);
+    return (traitObj && objectp(traitObj) && (traitObj->query("type") == type));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int traitIsNegative(string trait)
+{
+    object traitObj = traitObject(trait);
+    return (traitObj && objectp(traitObj) && traitObj->query("negative"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int traitHasResearchPath(string trait)
+{
+    object traitObj = traitObject(trait);
+    return (traitObj && objectp(traitObj) && traitObj->query("research tree"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int traitIsEnhancement(string trait)
+{
+    object traitObj = traitObject(trait);
+    return (traitObj && objectp(traitObj) && traitObj->query("enhanced"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int validTrait(string trait)
 {
     object traitObj = traitObject(trait);

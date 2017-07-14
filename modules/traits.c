@@ -3,7 +3,10 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing";
+#include "/lib/include/itemFormatters.h"
 #include "/lib/modules/secure/traits.h"
+
+private nosave string typeOfTrait;
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask object traitDictionary()
@@ -325,4 +328,104 @@ static nomask void traitsHeartBeat()
             }
         }
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getTraitColor(string trait)
+{
+    string ret = "[0;36m";
+
+    if (traitDictionary()->traitIsNegative(trait))
+    {
+        ret = "[0;31;1m";
+    }
+    else if (traitDictionary()->isValidPersistedTrait(trait))
+    {
+        ret = "[0;34;1m";
+    }
+    else if(traitDictionary()->isValidSustainedTrait(trait))
+    {
+        ret = "[0;35m";
+    }
+    else if (traitDictionary()->traitHasResearchPath(trait))
+    {
+        ret = "[0;32;1m";
+    }
+    else if (traitDictionary()->traitIsEnhancement(trait))
+    {
+        ret = "[0;33m";
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string traitListForType(string type)
+{
+    string ret = "";
+    string traitFmt;
+    typeOfTrait = type;
+
+    int columns = 0;
+    string *traitList = filter_array(m_indices(traits),
+        (: traitDictionary()->traitIsOfType($1, typeOfTrait) :));
+    if (type == "effect")
+    {
+        traitList += filter_array(m_indices(traits),
+            (: traitDictionary()->traitIsOfType($1, "sustained effect") :));
+    }
+
+    if (sizeof(traitList))
+    {
+        traitList = sort_array(traitList, (: $1 > $2 :));
+
+        ret += getDictionary("commands")->buildBanner(type, "Traits");
+        foreach(string trait in traitList)
+        {
+            string color = getTraitColor(trait);
+            traitFmt = sprintf(Red, "| ") + getTraitColor(trait) + "%23s[0m ";
+            ret += sprintf(traitFmt, capitalize(traits[trait]["name"]));
+            if ((columns % 3) == 2)
+            {
+                ret += sprintf(Red, "|\n");
+            }
+            columns++;
+        }
+        if ((columns % 3))
+        {
+            for (int i = 0; i < (3 - columns % 3); i++)
+            {
+                ret += sprintf("%s%23s[0m ", sprintf(Red, "| "), "");
+            }
+            ret += sprintf(Red, "|\n");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string traitsList(string *types)
+{
+    string ret = "";
+    if (!sizeof(types))
+    {
+        types = ({ "health", "educational", "personality", "genetic",
+            "professional", "guild", "role", "effect",
+            "sustained effect" });
+    }
+
+    types = sort_array(types, (: $1 > $2 :));
+    foreach(string type in types)
+    {
+        ret += traitListForType(type);
+    }
+    if (ret == "")
+    {
+        ret = sprintf(Cyan, 
+            "You currently do not have any tracked traits.\n");
+    }
+    else
+    {
+        ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+    }
+    return "\n" + ret;
 }

@@ -217,21 +217,6 @@ private nomask string skillListForType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string buildBanner(string type)
-{
-    string ret = sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-    string banner = sprintf("+ %s Skills +", capitalize(type));
-
-    int startingPoint = 47 - (sizeof(banner) / 2);
-
-    for (int i = startingPoint; i < (startingPoint + sizeof(banner)); i++)
-    {
-        ret[i] = banner[i - startingPoint];
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask string skillsList(string *types)
 {
     string ret = "\n";
@@ -244,7 +229,8 @@ public nomask string skillsList(string *types)
     types = sort_array(types, (: $1 > $2 :));
     foreach(string type in types)
     {
-        ret += buildBanner(type) + skillListForType(type);
+        ret += getDictionary("commands")->buildBanner(type, "Skills") +
+            skillListForType(type);
     }
 
     ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
