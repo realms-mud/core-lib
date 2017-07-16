@@ -404,5 +404,23 @@ void DetailsFlagReturnsTraitDetails()
     trait->init();
 
     Player->addTrait("/lib/tests/support/traits/testTrait.c");
+    ExpectTrue(Player->executeCommand("traits -details sword boy"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DFlagReturnsTraitDetails()
+{
+    object trait = load_object("/lib/tests/support/traits/testTrait.c");
+    trait->init();
+
+    Player->addTrait("/lib/tests/support/traits/testTrait.c");
     ExpectTrue(Player->executeCommand("traits -d sword boy"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitDetailsForInvalidTraitReturnsCorrectMessage()
+{
+    ExpectTrue(Player->executeCommand("traits -d llama king"));
+    ExpectEq("Llama king is not a valid trait.\n",
+        Player->caughtMessage());
 }
