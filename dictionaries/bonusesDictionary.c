@@ -40,7 +40,7 @@ private nomask string *bonusList()
         "reduce spell points", "recover spell points", "reduce stamina points", 
         "recover stamina points", "weapon attack", "defense", "damage",
         "haste", "slow", "enfeebled", "fortified", "poison", "paralysis",
-        "disease", "damage reflection" });
+        "disease", "damage reflection", "encumberance" });
     
         object attacksDictionary = getDictionary("attacks");
         if(attacksDictionary && function_exists("validAttackTypes", 

@@ -76,7 +76,7 @@ static nomask string *validCombatModifiers()
         "bonus heal hit points", "bonus heal spell points", "bonus hit points",
         "bonus heal spell points rate", "bonus heal stamina",
         "bonus heal stamina rate", "damage reflection",
-        "bonus defense class", "bonus damage" });
+        "bonus defense class", "bonus damage", "bonus weapon attack" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
