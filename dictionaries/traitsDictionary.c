@@ -5,11 +5,15 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "/lib/include/itemFormatters.h"
+
 private string BaseTrait = "lib/modules/traits/baseTrait.c";
 private string *validTraitTypes = ({ "health", "educational", "personality", 
     "genetic", "professional", "guild", "role", "effect", "sustained effect" });
 
 private mapping traits = ([]);
+
+private nosave string FieldDisplay = Cyan + ": " + Value + "\n";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object traitObject(string trait)
@@ -37,6 +41,41 @@ public nomask object traitObject(string trait)
             ret = 0;
         }
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int traitIsRegistered(string trait)
+{
+    return member(traits, trait) || 
+        (member(m_values(traits), trait) > -1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int registerTrait(object trait)
+{
+    int ret = 0;
+
+    string location = program_name(trait);
+    if (location && stringp(location) && strlen(location) &&
+        (location[0] != '/'))
+    {
+        location = "/" + location;
+    }
+
+    if ((file_size(location) > 0) && !traitIsRegistered(program_name(trait)))
+    {
+        object trait = load_object(location);
+
+        if (trait && objectp(trait) &&
+            (member(inherit_list(trait), BaseTrait) > -1) &&
+            trait->isValidTrait())
+        {
+            ret = 1;
+            traits[lower_case(trait->query("name"))] = program_name(trait);
+        }
+    }
+
     return ret;
 }
 
@@ -290,3 +329,21 @@ public nomask int BonusSkillModifier(string trait, string skill)
     return lookUpBonus(trait, sprintf("bonus %s", skill));
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask string traitDetails(string trait)
+{
+    trait = lower_case(trait);
+    string ret = sprintf("%s is not a valid trait.\n", capitalize(trait));
+
+    string traitFile = traitIsRegistered(trait) ? traits[trait] : 0;
+    if (traitFile && validTrait(traitFile))
+    {
+        object traitObj = traitObject(traitFile);
+
+        ret = sprintf(FieldDisplay, "Trait Name", 
+                capitalize(traitObj->query("name"))) +
+            sprintf(FieldDisplay, "Type", capitalize(traitObj->query("type"))) +
+            sprintf(Value, "\n" + traitObj->query("description"));
+    }
+    return ret;
+}

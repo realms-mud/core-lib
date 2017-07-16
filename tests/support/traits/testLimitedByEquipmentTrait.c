@@ -8,7 +8,7 @@ inherit "/lib/modules/traits/baseTrait.c";
 public void init()
 {
     addSpecification("type", "role");
-    addSpecification("name", "Sword Boy");
+    addSpecification("name", "Sword Master");
     addSpecification("description", "blah blah blah");
     addSpecification("bonus strength", 2);
     addSpecification("bonus long sword", 1);
@@ -19,6 +19,7 @@ public void init()
     addSpecification("opinion", 5);
     addSpecification("opposing opinion", -5);
     addSpecification("cost", 8);
+    "baseTrait"::init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

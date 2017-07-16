@@ -208,7 +208,7 @@ void GuildFlagDisplaysGuildTraits()
 
     ExpectTrue(Player->executeCommand("traits -guild"));
     ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Boy", "", "", "", "") + EndBar,
+        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -220,7 +220,7 @@ void GFlagDisplaysGuildTraits()
 
     ExpectTrue(Player->executeCommand("traits -g"));
     ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Boy", "", "", "", "") + EndBar,
+        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -319,7 +319,7 @@ void AllFlagDisplaysAllTraits()
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(TraitsRow, "[0;36m", "Hunchback", "", "", "", "") + 
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Boy", "", "", "", "") +
+        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") +
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(TraitsRow, "[0;36m", "Leprosy", "", "", "", "") + 
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
@@ -352,7 +352,7 @@ void AFlagDisplaysAllTraits()
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(TraitsRow, "[0;36m", "Hunchback", "", "", "", "") +
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Boy", "", "", "", "") +
+        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") +
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(TraitsRow, "[0;36m", "Leprosy", "", "", "", "") +
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
@@ -385,7 +385,7 @@ void NoFlagDisplaysAllTraits()
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(TraitsRow, "[0;36m", "Hunchback", "", "", "", "") +
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Boy", "", "", "", "") +
+        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") +
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(TraitsRow, "[0;36m", "Leprosy", "", "", "", "") +
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
@@ -395,4 +395,14 @@ void NoFlagDisplaysAllTraits()
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(TraitsRow, "[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
         Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DetailsFlagReturnsTraitDetails()
+{
+    object trait = load_object("/lib/tests/support/traits/testTrait.c");
+    trait->init();
+
+    Player->addTrait("/lib/tests/support/traits/testTrait.c");
+    ExpectTrue(Player->executeCommand("traits -d sword boy"));
 }

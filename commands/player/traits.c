@@ -64,6 +64,33 @@ private nomask int executeListTraits(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int executeTraitDetails(string command, object initiator)
+{
+    int ret = 0;
+
+    if (sizeof(regexp(({ command }), "-d(etails)* [A-Za-z ]+")))
+    {
+        string trait = regreplace(command, "traits -d(etails)* ([A-Za-z ]+)",
+            "\\2");
+
+        object dictionary = 
+            load_object("/lib/dictionaries/traitsDictionary.c");
+
+        if (dictionary)
+        {
+            string message = dictionary->traitDetails(trait);
+
+            if (message)
+            {
+                ret = 1;
+                tell_object(initiator, message);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int execute(string command, object initiator)
 {
     int ret = 0;
@@ -73,7 +100,8 @@ public nomask int execute(string command, object initiator)
     {
         notify_fail("traits: invalid subcommand.\n");
 
-        ret = executeListTraits(command, initiator);
+        ret = executeTraitDetails(command, initiator) ||
+            executeListTraits(command, initiator);
     }
     return ret;
 }

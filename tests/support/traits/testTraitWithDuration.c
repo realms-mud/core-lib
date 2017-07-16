@@ -17,6 +17,7 @@ public void init()
     addSpecification("cost", 1);
     addSpecification("duration", 10);
     addSpecification("expire message", "This is an expire message.");
+    "baseTrait"::init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

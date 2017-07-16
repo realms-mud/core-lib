@@ -16,6 +16,7 @@ public void init()
     addSpecification("opposing opinion", -10);
     addSpecification("cost", 1);
     addSpecification("expire message", "This is an expire message.");
+    "baseTrait"::init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

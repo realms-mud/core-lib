@@ -18,6 +18,7 @@ public void init()
     addSpecification("opposing opinion", -5);
     addSpecification("cost", 1);
     addSpecification("research tree", "lib/tests/support/research/testResearchTreeNoPrerequisites.c");
+    "baseTrait"::init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

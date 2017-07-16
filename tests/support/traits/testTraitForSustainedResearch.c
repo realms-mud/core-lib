@@ -17,6 +17,7 @@ public void init()
     addSpecification("cost", 1);
     addSpecification("triggering research", "lib/tests/support/research/testSustainedTraitResearch.c");
     addSpecification("expire message", "This is an expire message.");
+    "baseTrait"::init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -15,4 +15,5 @@ public void init()
     addSpecification("opinion", 15);
     addSpecification("opposing opinion", -5);
     addSpecification("cost", 1);
+    "baseTrait"::init();
 }

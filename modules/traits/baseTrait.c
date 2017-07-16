@@ -11,13 +11,25 @@ virtual inherit "/lib/core/prerequisites.c";
 private string TraitItemLocation = "lib/modules/traits";
 
 /////////////////////////////////////////////////////////////////////////////
+public void init()
+{
+    object traitsDictionary = getDictionary("traits");
+    if (traitsDictionary &&
+        !traitsDictionary->traitIsRegistered(program_name(this_object())))
+    {
+        traitsDictionary->registerTrait(this_object());
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isValidTrait()
 {
     // The researchData element is an artifact of /lib/core/specification.
     // All items that use research items check isValidTrait. Trying to
     // circumvent addSpecification won't work particularly well given that
     // the inherit_list and this method are called in unison.
-    int ret = member(researchData, "type");
+    int ret = member(researchData, "name") &&
+        member(researchData, "type");
     if(ret && (researchData["type"] == "effect"))
     {
         ret &&= member(researchData, "duration");
