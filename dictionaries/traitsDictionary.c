@@ -339,7 +339,7 @@ public nomask string traitDetails(string trait)
     if (traitFile && validTrait(traitFile))
     {
         object traitObj = traitObject(traitFile);
-
+        
         ret = sprintf(FieldDisplay, "Trait Name", 
                 capitalize(traitObj->query("name"))) +
             sprintf(FieldDisplay, "Type", capitalize(traitObj->query("type"))) +
