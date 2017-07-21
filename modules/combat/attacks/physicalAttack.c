@@ -12,7 +12,7 @@ public void init()
     addHitDictionary(({
         "bash", "slam", "slap", "pummel", "crush", "pound", "punch", "smack",
         "assault" }));
-
+    
     addSimileDictionary(({
         "smashing ##TargetPossessive## ##BodyPart## soundly", "repeatedly in "
         "the ##BodyPart##", "with a ##BodyPart##-shattering force" }));

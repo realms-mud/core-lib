@@ -23,7 +23,3 @@ public void init()
     addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
             "##SimileDictionary## with ##AttackerPossessive## wings.","1-50");
 }
-
-
-
-

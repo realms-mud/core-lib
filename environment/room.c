@@ -6,7 +6,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/core/stateObject.c";
-
 #include <mtypes.h>
 
 protected string currentState;
