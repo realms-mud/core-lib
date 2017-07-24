@@ -547,4 +547,5 @@ void TraitDetailsDisplayTraitLimiters()
     trait->addSpecification("limited by", (["opponent race":"elf"]));
     ExpectTrue(Player->executeCommand("traits -details sword boy"));
     ExpectEq(message, Player->caughtMessage());
+    destruct(trait);
 }
