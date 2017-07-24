@@ -18,7 +18,7 @@ protected mapping researchData = ([
     //      "opponent race": <valid race>
     //      "opponent guild": <valid guild>
     //      "environment": <valid environment type>
-    //      "intoxication": <level>
+    //      "intoxicated": <level>
     //      "drugged": <level>
     //      "near death": <percentage of hit points left (0-100)>
     //      "stamina drained": <percentage of stamina left (0-100)>
@@ -131,7 +131,7 @@ protected nomask int validLimitor(mapping limitor)
                         }
                         break;
                     }
-                    case "intoxication":
+                    case "intoxicated":
                     case "drugged":
                     {
                         ret &&= intp(limitor[key]);
@@ -278,11 +278,11 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
                     researchData["limited by"]["environment"]);
             }
         }
-        if (member(researchData["limited by"], "intoxication"))
+        if (member(researchData["limited by"], "intoxicated"))
         {
             ret &&= function_exists("Intoxicated", owner) &&
                 (owner->Intoxicated() >=
-                    researchData["limited by"]["intoxication"]);
+                    researchData["limited by"]["intoxicated"]);
             if (!ret && verbose)
             {
                 printf("You are not intoxicated enough to do that.\n");
@@ -377,17 +377,71 @@ public mixed query(string element)
         {
             case "bonuses":
             {
-                ret = filter_array(m_indices(researchData),
+                ret = sort_array(filter_array(m_indices(researchData),
                     (: return (sizeof(regexp(({ $1 }), "bonus")) > 0) &&
-                        (researchData[$1] > 0); :));
+                        (researchData[$1] > 0); :)), (: $1 > $2 :));
                 break;
             }
             case "penalties":
             {
-                ret = filter_array(m_indices(researchData),
+                ret = sort_array(filter_array(m_indices(researchData),
                     (: return (sizeof(regexp(({ $1 }), "bonus")) > 0) &&
-                    (researchData[$1] < 0); :));
+                    (researchData[$1] < 0); :)), (: $1 > $2 :));
                 break;
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string displayLimiters()
+{
+    string ret = "";
+
+    if (member(researchData, "limited by") &&
+        sizeof(researchData["limited by"]))
+    {
+        string limiter = "[0;36mThis is only applied when %s %s %s.[0m\n";
+        string *prereqKeys = sort_array(
+            m_indices(researchData["limited by"]), (: $1 > $2 :));
+
+        foreach(string key in prereqKeys)
+        {
+            switch(key)
+            {
+                case "opponent race":
+                case "opponent guild":
+                case "opponent faction":
+                case "environment":
+                {
+                    ret += sprintf(limiter, key, "is", researchData["limited by"][key]);
+                    break;
+                }
+                case "intoxicated":
+                case "drugged":
+                case "near death":
+                case "stamina drained":
+                case "spell points drained":
+                {
+                    ret += sprintf(limiter, "you", "are", key);
+                    break;
+                }               
+                case "equipment":
+                {
+                    string equipment = "";
+                    if(pointerp(researchData["limited by"][key]) && 
+                        sizeof(researchData["limited by"][key]))
+                    {
+                        equipment = implode(researchData["limited by"][key], " or ");
+                    }
+                    else
+                    {
+                        equipment = researchData["limited by"][key];
+                    }
+                    ret += sprintf(limiter, "you're", "using:", equipment);
+                    break;
+                }
             }
         }
     }

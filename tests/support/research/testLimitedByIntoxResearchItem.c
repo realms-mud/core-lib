@@ -11,7 +11,7 @@ public void init()
     addSpecification("name", "intox research");
     addSpecification("scope", "self");
     addSpecification("research type", "granted");
-    addSpecification("limited by", (["intoxication":1]));
+    addSpecification("limited by", (["intoxicated":1]));
     addSpecification("bonus strength", 2);
     addSpecification("penalty to long sword", 2);
     addSpecification("bonus fire attack", 15);

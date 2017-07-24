@@ -353,7 +353,7 @@ private nomask string displayResearchTree(object trait)
             if (tree)
             {
                 ret += sprintf("[0;34;1mThis trait makes the %s research "
-                    "tree available.\n[0m", tree->Name());
+                    "tree available.[0m\n", tree->Name());
             }
         }
     }
@@ -378,7 +378,7 @@ private nomask string displayTraitBonusesAndPenalties(object trait)
     {
         foreach(string penalty in keys)
         {
-            ret += sprintf("[0;31m(-%d)[0m [0;33mPenalty to %s[0m\n",
+            ret += sprintf("[0;31m(%d)[0m [0;33mPenalty to %s[0m\n",
                 trait->query(penalty), bonusName(penalty));
         }
     }
@@ -422,7 +422,8 @@ public nomask string traitDetails(string trait)
             displayTraitComponent(traitObj, "cost") +
             displayTraitBonusesAndPenalties(traitObj) +
             displayResearchTree(traitObj) +
-            traitObj->displayPrerequisites();
+            traitObj->displayPrerequisites() +
+            traitObj->displayLimiters();
     }
     return ret;
 }

@@ -426,12 +426,125 @@ void TraitDetailsForInvalidTraitReturnsCorrectMessage()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void NegativeTraitDetailsDisplayNegativeIdentifier()
+void TraitDetailsDisplayTraitInformation()
 {
+    string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
+        "[0;36mTrait Type[0m: [0;33mRole[0m\n"
+        "[0;33mblah blah blah[0m\n"
+        "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
+        "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
+        "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
+        "[0;36mOpposing opinion[0m: [0;31m-5[0m\n"
+        "[0;36mCost[0m: [0;34;1m+8[0m\n"
+        "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
+        "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
+        "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
+        "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n";
     object trait = load_object("/lib/tests/support/traits/testTrait.c");
     trait->init();
 
+    Player->addTrait("/lib/tests/support/traits/testTrait.c");
+    ExpectTrue(Player->executeCommand("traits -details sword boy"));
+    ExpectEq(message, Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitDetailsDisplayTraitPenalties()
+{
+    string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
+        "[0;36mTrait Type[0m: [0;33mRole[0m\n"
+        "[0;33mblah blah blah[0m\n"
+        "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
+        "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
+        "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
+        "[0;36mOpposing opinion[0m: [0;31m-5[0m\n"
+        "[0;36mCost[0m: [0;34;1m+8[0m\n"
+        "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
+        "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
+        "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
+        "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n"
+        "[0;31m(-2)[0m [0;33mPenalty to Wisdom[0m\n";
+    object trait = load_object("/lib/tests/support/traits/testTrait.c");
+    trait->init();
+
+    trait->addSpecification("penalty to wisdom", 2);
+    Player->addTrait("/lib/tests/support/traits/testTrait.c");
+    ExpectTrue(Player->executeCommand("traits -details sword boy"));
+    ExpectEq(message, Player->caughtMessage());
+    destruct(trait);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NegativeTraitDetailsDisplayNegativeIdentifier()
+{
     Player->addTrait("/lib/modules/traits/abrasive.c");
     ExpectTrue(Player->executeCommand("traits -details abrasive"));
     ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "[Negative]")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitDetailsDisplayTraitResearch()
+{
+    string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
+        "[0;36mTrait Type[0m: [0;33mRole[0m\n"
+        "[0;33mblah blah blah[0m\n"
+        "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
+        "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
+        "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
+        "[0;36mOpposing opinion[0m: [0;31m-5[0m\n"
+        "[0;36mCost[0m: [0;34;1m+8[0m\n"
+        "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
+        "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
+        "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
+        "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n"
+        "[0;34;1mThis trait makes the tree of researchiness research tree available.[0m\n";
+    object trait = load_object("/lib/tests/support/traits/testTrait.c");
+    trait->init();
+
+    trait->addSpecification("research tree", "/lib/tests/support/research/testResearchTreeNoPrerequisites.c");
+    Player->addTrait("/lib/tests/support/traits/testTrait.c");
+    ExpectTrue(Player->executeCommand("traits -details sword boy"));
+    ExpectEq(message, Player->caughtMessage());
+    destruct(trait);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitDetailsDisplayTraitPrerequisites()
+{
+    string message = "[0;36mTrait Name[0m: [0;33mFreak[0m\n"
+        "[0;36mTrait Type[0m: [0;33mGenetic[0m\n"
+        "[0;33mblah blah blah[0m\n"
+        "[0;36mRoot Trait Class[0m: [0;33mDisfigured[0m\n"
+        "[0;36mOpposing Trait Class[0m: [0;33mNormal[0m\n"
+        "[0;36mPrerequisites:[0m\n"
+        "\t[0;36mSkill[0m: [0;35mLong sword of 10[0m\n";
+    object trait = load_object("/lib/tests/support/traits/testTraitWithPrerequisites.c");
+    trait->init();
+
+    ExpectTrue(Player->executeCommand("traits -details freak"));
+    ExpectEq(message, Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitDetailsDisplayTraitLimiters()
+{
+    string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
+        "[0;36mTrait Type[0m: [0;33mRole[0m\n"
+        "[0;33mblah blah blah[0m\n"
+        "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
+        "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
+        "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
+        "[0;36mOpposing opinion[0m: [0;31m-5[0m\n"
+        "[0;36mCost[0m: [0;34;1m+8[0m\n"
+        "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
+        "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
+        "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
+        "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n"
+        "[0;36mThis is only applied when opponent race is elf.[0m\n";
+    object trait = load_object("/lib/tests/support/traits/testTrait.c");
+    trait->init();
+
+    trait->addSpecification("limited by", (["opponent race":"elf"]));
+    ExpectTrue(Player->executeCommand("traits -details sword boy"));
+    ExpectEq(message, Player->caughtMessage());
 }
