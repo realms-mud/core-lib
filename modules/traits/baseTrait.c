@@ -28,8 +28,9 @@ public nomask int isValidTrait()
     // All items that use research items check isValidTrait. Trying to
     // circumvent addSpecification won't work particularly well given that
     // the inherit_list and this method are called in unison.
-    int ret = member(researchData, "name") &&
-        member(researchData, "type");
+    int ret = member(researchData, "name") && member(researchData, "type") &&
+        member(researchData, "root") && member(researchData, "opposing root");
+
     if(ret && (researchData["type"] == "effect"))
     {
         ret &&= member(researchData, "duration");

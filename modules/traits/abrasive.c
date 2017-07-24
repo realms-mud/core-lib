@@ -9,7 +9,7 @@ public void init()
 {
     addSpecification("type", "personality");
     addSpecification("name", "abrasive");
-    addSpecification("description", "You have a knack for getting under the skin of others");
+    addSpecification("description", "You have a knack for getting under the skin of others.");
     addSpecification("root", "jackass");
     addSpecification("opposing root", "nice");
     addSpecification("opinion", -5);

@@ -96,7 +96,8 @@ public nomask int traitIsOfType(string trait, string type)
 public nomask int traitIsNegative(string trait)
 {
     object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj) && traitObj->query("negative"));
+    return (traitObj && objectp(traitObj) && !traitObj->query("enhanced") &&
+        traitObj->query("negative"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -330,6 +331,75 @@ public nomask int BonusSkillModifier(string trait, string skill)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string bonusName(string bonus)
+{
+    return capitalize(regreplace(bonus, "bonus (.+)", "\\1"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayResearchTree(object trait)
+{
+    string ret = "";
+
+    string tree = trait->query("research tree");
+    if (tree)
+    {
+        object researchDictionary =
+            load_object("/lib/dictionaries/researchDictionary.c");
+
+        if (researchDictionary)
+        {
+            object treeObj = researchDictionary->researchTree(tree);
+            if (tree)
+            {
+                ret += sprintf("[0;34;1mThis trait makes the %s research "
+                    "tree available.\n[0m", tree->Name());
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayTraitBonusesAndPenalties(object trait)
+{
+    string ret = "";
+    string *keys = trait->query("bonuses");
+    if (sizeof(keys))
+    {
+        foreach(string bonus in keys)
+        {
+            ret += sprintf("[0;34;1m(+%d)[0m [0;33mBonus %s[0m\n",
+                trait->query(bonus), bonusName(bonus));
+        }
+    }
+    keys = trait->query("penalties");
+    if (sizeof(keys))
+    {
+        foreach(string penalty in keys)
+        {
+            ret += sprintf("[0;31m(-%d)[0m [0;33mPenalty to %s[0m\n",
+                trait->query(penalty), bonusName(penalty));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayTraitComponent(object trait, string component)
+{
+    string ret = "";
+    int value = trait->query(component);
+    if (value)
+    {
+        ret = sprintf(Cyan + ": " +
+            ((value > 0) ? "[0;34;1m+%d[0m\n" : "[0;31m%d[0m\n"),
+            capitalize(component), value);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string traitDetails(string trait)
 {
     trait = lower_case(trait);
@@ -340,10 +410,19 @@ public nomask string traitDetails(string trait)
     {
         object traitObj = traitObject(traitFile);
         
-        ret = sprintf(FieldDisplay, "Trait Name", 
-                capitalize(traitObj->query("name"))) +
-            sprintf(FieldDisplay, "Type", capitalize(traitObj->query("type"))) +
-            sprintf(Value, "\n" + traitObj->query("description"));
+        ret = sprintf(FieldDisplay, "Trait Name",
+            capitalize(traitObj->query("name")) +
+            (traitIsNegative(traitFile) ? "[0;31m [Negative][0m" : "")) +
+            sprintf(FieldDisplay, "Trait Type", capitalize(traitObj->query("type"))) +
+            sprintf(Value, traitObj->query("description")) + "\n" +
+            sprintf(FieldDisplay, "Root Trait Class", capitalize(traitObj->query("root"))) +
+            sprintf(FieldDisplay, "Opposing Trait Class", capitalize(traitObj->query("opposing root"))) +
+            displayTraitComponent(traitObj, "opinion") +
+            displayTraitComponent(traitObj, "opposing opinion") +
+            displayTraitComponent(traitObj, "cost") +
+            displayTraitBonusesAndPenalties(traitObj) +
+            displayResearchTree(traitObj) +
+            traitObj->displayPrerequisites();
     }
     return ret;
 }

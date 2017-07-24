@@ -424,3 +424,14 @@ void TraitDetailsForInvalidTraitReturnsCorrectMessage()
     ExpectEq("Llama king is not a valid trait.\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void NegativeTraitDetailsDisplayNegativeIdentifier()
+{
+    object trait = load_object("/lib/tests/support/traits/testTrait.c");
+    trait->init();
+
+    Player->addTrait("/lib/modules/traits/abrasive.c");
+    ExpectTrue(Player->executeCommand("traits -details abrasive"));
+    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "[Negative]")));
+}

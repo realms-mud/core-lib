@@ -296,7 +296,7 @@ private nomask int checkGuilds(object researcher, string *guilds)
     {
         ret = 1;
         int inGuild = 0;
-        foreach(string guild : guilds)
+        foreach(string guild in guilds)
         {
             inGuild ||= researcher->memberOfGuild(guild);
         }
@@ -324,7 +324,7 @@ private nomask int checkRaces(object researcher, string *races)
     {
         ret = 1;
         int ofRace = 0;
-        foreach(string race : races)
+        foreach(string race in races)
         {
             ofRace ||= researcher->Race() == race;
         }
@@ -352,7 +352,7 @@ private nomask int checkFactions(object researcher, string *factions)
     {
         ret = 1;
         int ofFaction = 0;
-        foreach(string faction : factions)
+        foreach(string faction in factions)
         {
             ofFaction ||= researcher->memberOfFaction(faction);
         }
@@ -380,7 +380,7 @@ private nomask int checkTraits(object researcher, string *traits)
     {
         ret = 1;
         int hasTrait = 0;
-        foreach(string trait : traits)
+        foreach(string trait in traits)
         {
             hasTrait ||= researcher->isTraitOf(trait);
         }
@@ -408,7 +408,7 @@ private nomask int checkBackground(object researcher, string *backgrounds)
     {
         ret = 1;
         int hasBackground = 0;
-        foreach(string background : backgrounds)
+        foreach(string background in backgrounds)
         {
             hasBackground ||= researcher->isBackgroundTraitOf(background);
         }
@@ -560,4 +560,125 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayResearchPrerequsite(string item)
+{
+    string ret = "";
+
+    object dictionary = load_object("/lib/dictionaries/researchDictionary.c");
+    if (dictionary)
+    {
+        object research = dictionary->researchObject(item);
+        if (research)
+        {
+            ret = capitalize(research->query("name"));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayQuestPrerequsite(string item)
+{
+    string ret = "";
+
+    object dictionary = load_object("/lib/dictionaries/questsDictionary.c");
+    if (dictionary)
+    {
+        ret = dictionary->questSummary(item);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayTraitPrerequsite(string *traits)
+{
+    string ret = "";
+
+    object dictionary = load_object("/lib/dictionaries/traitsDictionary.c");
+    if (dictionary && sizeof(traits))
+    {
+        foreach(string trait in traits)
+        {
+            object traitObj = dictionary->traitObject(trait);
+            if (traitObj)
+            {
+                ret += capitalize(traitObj->query("name")) + " or ";
+            }
+        }
+        ret = ret[..(sizeof(ret) - 5)];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string displayPrerequisites()
+{
+    string ret = "";
+
+    if (sizeof(prerequisites))
+    {
+        ret = "[0;36mPrerequisites:[0m\n";
+        string *prereqKeys = m_indices(prerequisites);
+        foreach(string key in prereqKeys)
+        {
+            string prereq = "";
+            switch (prerequisites[key]["type"])
+            {
+                case "quest":
+                {
+                    prereq = displayQuestPrerequsite(key);
+                    break;
+                }
+                case "research":
+                {
+                    prereq = displayResearchPrerequsite(key);
+                    break;
+                }
+                case "trait":
+                {
+                    prereq = displayTraitPrerequsite(prerequisites[key]["value"]);
+                    break;
+                }
+                case "attribute":
+                case "level":
+                case "skill":
+                {
+                    prereq = sprintf("%s of %d", capitalize(key), 
+                        prerequisites[key]["value"]);
+                    if (member(prerequisites[key], "guild"))
+                    {
+                        prereq += " in " + capitalize(prerequisites[key]["guild"]);
+                    }
+                    break;
+                }
+                case "combat statistic":
+                {
+                    prereq = sprintf("%s %s %d", capitalize(key),
+                        (key == "best kill") ? "level is" : "kill count of",
+                        prerequisites[key]["value"]);
+                    break;
+                }
+                case "guild":
+                case "race":
+                case "faction":
+                {
+                    if (pointerp(prerequisites[key]["value"]) &&
+                        sizeof(prerequisites[key]["value"]))
+                    {
+                        foreach(string value in prerequisites[key]["value"])
+                        {
+                            prereq += capitalize(value) + " or ";
+                        }
+                        prereq = prereq[..(sizeof(prereq) - 5)];
+                    }
+                    break;
+                }
+            }
+            ret += sprintf("\t[0;36m%s[0m: [0;35m%s[0m\n",
+                capitalize(prerequisites[key]["type"]), prereq);
+        }
+    }
+    return ret;
+}
 

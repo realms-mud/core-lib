@@ -371,5 +371,25 @@ public mixed query(string element)
             ret += ([]);
         }
     }
+    else
+    {
+        switch (element)
+        {
+            case "bonuses":
+            {
+                ret = filter_array(m_indices(researchData),
+                    (: return (sizeof(regexp(({ $1 }), "bonus")) > 0) &&
+                        (researchData[$1] > 0); :));
+                break;
+            }
+            case "penalties":
+            {
+                ret = filter_array(m_indices(researchData),
+                    (: return (sizeof(regexp(({ $1 }), "bonus")) > 0) &&
+                    (researchData[$1] < 0); :));
+                break;
+            }
+        }
+    }
     return ret;
 }

@@ -128,8 +128,7 @@ public nomask varargs int receiveEvent(object quester, string eventName, object 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidQuest()
 {
-    // TODO: Does anything really need to be done here?
-    return 1;
+    return Name && (InitialState != "");
 }
 
 /////////////////////////////////////////////////////////////////////////////
