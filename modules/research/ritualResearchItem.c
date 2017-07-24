@@ -188,7 +188,7 @@ public nomask int execute(string command, object initiator)
         }
         ret &&= performRitual(initiator);
         
-        if(ret)
+        if(ret && !initiator->spellAction())
         {
             ret = applyToScope(command, initiator, researchName);
             if(!ret && member(researchData, "use ability fail message"))
@@ -196,6 +196,7 @@ public nomask int execute(string command, object initiator)
                 displayMessage(researchData["use ability fail message"], 
                     initiator, initiator);
             }
+            initiator->spellAction(1);
         }
     }
     return ret;

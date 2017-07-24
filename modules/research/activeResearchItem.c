@@ -197,7 +197,7 @@ public nomask int execute(string command, object initiator)
             ret = 0;
         }
         
-        if(ret)
+        if(ret && !initiator->spellAction())
         {
             ret = applyToScope(command, initiator, researchName);
             if(ret)
@@ -215,6 +215,7 @@ public nomask int execute(string command, object initiator)
                     initiator->staminaPoints(-researchData["stamina point cost"]);
                 }
             }
+            initiator->spellAction(1);
         }
     }
     return ret;

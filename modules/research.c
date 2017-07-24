@@ -100,8 +100,10 @@ public nomask varargs int activateSustainedResearch(object researchObj,
        researchDictionary()->isSustainedAbility(researchItem) &&
        (!member(research[researchItem], "sustained active") ||
        (research[researchItem]["sustained active"] == 0))
-       && canApplyLimitedEffect(researchItem))
+       && canApplyLimitedEffect(researchItem) &&
+       !getService("combat")->spellAction())
     {
+        getService("combat")->spellAction(1);
         research[researchItem]["sustained active"] = 1;
         ret = 1;
         
