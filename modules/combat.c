@@ -181,6 +181,14 @@ public nomask int maxHitPoints()
         ret += attributes->Con() * 6;
     }
     
+    // This case will never happen with properly cloned living things. However,
+    // the improperly done is possible. This removes the chance for division by
+    // zero.
+    if (!ret)
+    {
+        ret = 1;
+    }
+
     return ret;
 }
 
@@ -1001,6 +1009,12 @@ private nomask varargs int hitIsAllowed(object foe)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isInCombatWith(object attacker)
+{
+    return member(hostileList, attacker);
 }
 
 /////////////////////////////////////////////////////////////////////////////
