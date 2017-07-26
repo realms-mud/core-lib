@@ -17,7 +17,7 @@ private nomask object DataAccess()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getPlayerInfo()
+private nomask mapping getPlayerInfo()
 {
     mapping ret = ([]);
 
