@@ -34,6 +34,8 @@ drop procedure if exists TestDB.pruneInventory;
 ##
 drop procedure if exists TestDB.saveInventoryItem;
 ##
+drop procedure if exists TestDB.saveFaction;
+##
 drop function if exists TestDB.saveBasicPlayerInformation;
 ##
 drop function if exists TestDB.saveResearchChoice;
@@ -73,6 +75,8 @@ drop table if exists TestDB.traits;
 drop table if exists TestDB.temporaryTraits;
 ##
 drop table if exists TestDB.inventory;
+##
+drop table if exists TestDB.factions;
 ##
 drop table if exists TestDB.players;
 ##
@@ -302,6 +306,20 @@ CREATE TABLE TestDB.`timedtraits` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `timed_traitsid` FOREIGN KEY (`traitid`) REFERENCES `traits` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+##
+CREATE TABLE TestDB.`factions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `playerid` int(11) NOT NULL,
+  `path` varchar(128) NOT NULL,
+  `disposition` varchar(20) NOT NULL,
+  `reputation` int(11) NOT NULL,
+  `lastInteraction` int(11) NOT NULL,
+  `dispositionTime` int(11) NOT NULL,
+  `isMember` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  CONSTRAINT `factions_playerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
 CREATE TABLE TestDB.`inventory` (
@@ -659,7 +677,28 @@ BEGIN
         values (p_playerid,p_filename,p_data,p_equipped);
 END;
 ##
+CREATE PROCEDURE TestDB.`saveFaction` (p_playerid int, p_path varchar(128), 
+p_disposition varchar(20), p_reputation int, p_lastInteraction int, 
+p_dispositionTime int, p_isMember tinyint)
+BEGIN
+ 	declare factionId int;
 
+    select id into factionId
+    from factions where playerid = p_playerid and path = p_path;
+    
+    if factionId is not null then
+		update factions set disposition = p_disposition,
+                            reputation = p_reputation,
+                            lastInteraction = p_lastInteraction,
+                            dispositionTime = p_dispositionTime,
+                            isMember = p_isMember
+		where id = factionId;
+	else
+		insert into factions (playerid, path, disposition, reputation, lastInteraction, dispositionTime, isMember)
+        values (p_playerid, p_path, p_disposition, p_reputation, p_lastInteraction, p_dispositionTime, p_isMember);
+    end if;
+END;
+##
 insert into players (id,name,race,age,gender) values (1,'maeglin','elf',1,1);
 ##
 insert into wizards (playerid,typeid) values (1, (select id from wizardTypes where type='owner'));

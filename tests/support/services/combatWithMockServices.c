@@ -7,7 +7,6 @@ virtual inherit "/lib/modules/materialAttributes.c";
 virtual inherit "/lib/modules/inventory.c";
 virtual inherit "/lib/modules/combat.c";
 virtual inherit "/lib/modules/attributes.c";
-virtual inherit "/lib/modules/factions.c";
 virtual inherit "/lib/modules/skills.c";
 virtual inherit "/lib/modules/races.c";
 virtual inherit "/lib/modules/movement.c";

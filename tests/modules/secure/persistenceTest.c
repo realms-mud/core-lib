@@ -172,6 +172,16 @@ void PlayerTraitsRestored()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void PlayerFactionsRestored()
+{
+    Player->restore("gorthaur");
+    ExpectTrue(Player->memberOfFaction("/lib/tests/support/factions/badGuys.c"));
+    ExpectFalse(Player->memberOfFaction("/lib/tests/support/factions/goodGuys.c"));
+    ExpectEq("admiring", Player->factionDispositionToward("/lib/tests/support/factions/badGuys.c"));
+    ExpectEq("fearful", Player->factionDispositionToward("/lib/tests/support/factions/goodGuys.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void PlayerMaterialAttributesSaved()
 {
     Player->restore("gorthaur");
@@ -500,4 +510,19 @@ void PlayerInventoryMaintainsWieldedAndWornStateWhenEquippedAtSave()
     ExpectEq("lib/items/armor.c", armor);
     // It's also important that the "generic" items maintain set data!
     ExpectEq("Armor of Weasels", armor->query("name"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerFactionsSaved()
+{
+    Player->restore("gorthaur");
+    ExpectTrue(Player->memberOfFaction("/lib/tests/support/factions/badGuys.c"));
+    Player->leaveFaction("/lib/tests/support/factions/badGuys.c");
+    Player->save();
+    destruct(Player);
+
+    Player = clone_object("/lib/realizations/player.c");
+    Player->restore("gorthaur");
+    ExpectFalse(Player->memberOfFaction("/lib/tests/support/factions/badGuys.c"));
+    ExpectEq("betrayed", Player->factionDispositionToward("/lib/tests/support/factions/badGuys.c"));
 }

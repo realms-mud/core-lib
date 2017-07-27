@@ -11,6 +11,7 @@ virtual inherit "/lib/modules/secure/dataServices/researchDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/skillsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/traitsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/inventoryDataService.c";
+virtual inherit "/lib/modules/secure/dataServices/factionsDataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int connect()
@@ -40,6 +41,7 @@ public nomask mapping getPlayerData(string name)
             data += getTraits(data["playerId"], dbHandle);
             data += getTemporaryTraits(data["playerId"], dbHandle);
             data += getInventory(data["playerId"], dbHandle);
+            data += getFactions(data["playerId"], dbHandle);
         }
 
         db_close(dbHandle);
@@ -72,6 +74,7 @@ public nomask void savePlayerData(mapping playerData)
             saveSkills(dbHandle, playerId, playerData);
             saveTraits(dbHandle, playerId, playerData);
             saveInventory(dbHandle, playerId, playerData);
+            saveFactions(dbHandle, playerId, playerData);
             db_close(dbHandle);
         }
     }
@@ -104,43 +107,4 @@ public nomask string playerType(string name)
         ret = result[0];
     }
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int saveInventoryItems(int playerId, string itemPath, string data, int equipped)
-{
-    string query = sprintf("insert into inventory "
-        "(playerid,filename,data,isEquipped) "
-        "values ('%d', '%s', '%s', '%d')", 
-        playerId, 
-        db_conv_string(itemPath),
-        db_conv_string(data), 
-        equipped);
-
-    int dbHandle = connect();
-
-    db_exec(dbHandle, query);
-
-    mixed result = db_fetch(dbHandle);
-    db_close(dbHandle);
-
-    return 1;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void weaponStuff()
-{
-    string query = sprintf("select data from inventory where playerid = '2'");
-
-    int dbHandle = connect();
-
-    db_exec(dbHandle, query);
-
-    mixed result = db_fetch(dbHandle);
-    db_close(dbHandle);
-
-    if (result)
-    {
-        write("Got a result = " + result[0]);
-    }
 }

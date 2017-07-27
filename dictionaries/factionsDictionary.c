@@ -4,9 +4,15 @@
 //*****************************************************************************
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isValidFaction(string type)
+public nomask int isValidFaction(string faction)
 {
     //TODO [236]: Finish this 
     return 1;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canLeaveFaction(string faction, object initiator)
+{
+    //TODO [236]: Finish this 
+    return 1;
+}

@@ -23,7 +23,7 @@ private nomask mapping getPlayerInfo()
 
     string *services = ({ "materialAttributes", "attributes",
         "biological", "combat", "races", "guilds", "quests",
-        "research", "skills", "traits", "inventory" });
+        "research", "skills", "traits", "inventory", "factions" });
 
     foreach(string service in services)
     {
@@ -95,7 +95,7 @@ private nomask void setPlayerInfo(mapping playerData)
 {
     string *services = ({ "materialAttributes", "attributes",
         "biological", "combat", "races", "guilds", "quests",
-        "research", "skills", "traits", "inventory" });
+        "research", "skills", "traits", "inventory", "factions" });
 
     foreach(string service in services)
     {

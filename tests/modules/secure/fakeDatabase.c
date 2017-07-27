@@ -15,6 +15,20 @@ public nomask mapping Gorthaur()
         "constitution": 14,
         "dexterity": 12,
         "drugged": 3,
+        "factions": ([
+            "/lib/tests/support/factions/goodGuys.c":([
+                "disposition": "fearful",
+                "reputation": -1034,
+                "last interaction": 666,
+                "disposition time": 777
+            ]),
+            "/lib/tests/support/factions/badGuys.c":([
+                "disposition": "admiring",
+                "reputation": 1011,
+                "last interaction": 9999,
+                "disposition time": 2
+            ]),
+        ]),
         "gender": 1,
         "ghost": 0,
         "guilds": ([ 
@@ -52,6 +66,7 @@ public nomask mapping Gorthaur()
         "maxHitPoints": 110,
         "maxSpellPoints": 130,
         "maxStaminaPoints": 150,
+        "memberOfFactions": ({ "/lib/tests/support/factions/badGuys.c" }),
         "messageClone": "does stuff",
         "messageHome": "blarg",
         "messageIn": "is now here",
