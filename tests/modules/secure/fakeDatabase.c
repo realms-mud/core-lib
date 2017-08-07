@@ -20,12 +20,14 @@ public nomask mapping Gorthaur()
                 "disposition": "fearful",
                 "reputation": -1034,
                 "last interaction": 666,
+                "number of interactions": 32,
                 "disposition time": 777
             ]),
             "/lib/tests/support/factions/badGuys.c":([
                 "disposition": "admiring",
                 "reputation": 1011,
                 "last interaction": 9999,
+                "number of interactions": 188,
                 "disposition time": 2
             ]),
         ]),

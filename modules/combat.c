@@ -1177,12 +1177,39 @@ private nomask void generateCorpse(object murderer)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int finishOffThisPoorDeadBastard()
+private nomask void updateFactionDispositionsFromCombat(object murderer)
+{
+    object factionService = getService("factions");
+    if (factionService && murderer && objectp(murderer))
+    {
+        int reputationPenalty;
+        if (function_exists("effectiveLevel", this_object()))
+        {
+            int levelDisparity = this_object()->effectiveLevel() -
+                murderer->effectiveLevel();
+
+            reputationPenalty = 0 - ((levelDisparity > 1) ? levelDisparity : 1);
+        }
+        else
+        {
+            reputationPenalty = -1;
+        }
+
+        string *factionList = factionService->Factions();
+
+        foreach(string faction in factionList)
+        {
+            murderer->updateFactionDisposition(faction, reputationPenalty);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int finishOffThisPoorDeadBastard(object murderer)
 {
     int ret = 1;
 
     object player = getService("player");
-    object murderer = previous_object();
        
     if(player)
     {
@@ -1207,7 +1234,7 @@ private nomask int finishOffThisPoorDeadBastard()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int determineFateFromDeath()
+private nomask int determineFateFromDeath(object murderer)
 {
     int killMe = 0;
     
@@ -1242,7 +1269,8 @@ private nomask int determineFateFromDeath()
     if(killMe)
     {
         combatNotification("onDeath");
-        killMe = finishOffThisPoorDeadBastard();
+        updateFactionDispositionsFromCombat(murderer);
+        killMe = finishOffThisPoorDeadBastard(murderer);
     }
     return killMe;
 }
@@ -1282,7 +1310,7 @@ public nomask varargs int hit(int damage, string damageType, object foe)
   
         if(hitPoints() <= 0)
         {
-            determineFateFromDeath();
+            determineFateFromDeath(foe);
         }
         
         if(foe && function_exists("addExperience", foe) &&

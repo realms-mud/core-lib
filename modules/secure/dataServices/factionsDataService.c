@@ -38,10 +38,11 @@ protected nomask mapping getFactions(int playerId, int dbHandle)
                 "disposition":convertString(result[3]),
                 "reputation": to_int(result[4]),
                 "last interaction": to_int(result[5]),
-                "disposition time": to_int(result[6]),
+                "number of interactions": to_int(result[6]),
+                "disposition time": to_int(result[7]),
             ]);
 
-            if (stringp(result[7]) && (to_int(result[7]) == 1))
+            if (stringp(result[8]) && (to_int(result[8]) == 1))
             {
                 ret["memberOfFactions"] += ({ result[2] });
             }
@@ -60,12 +61,13 @@ protected nomask void saveFactions(int dbHandle, int playerId, mapping playerDat
         foreach(string faction in factions)
         {
             string query = sprintf("call saveFaction("
-                "%d,'%s','%s',%d,%d,%d,%d);",
+                "%d,'%s','%s',%d,%d,%d,%d,%d);",
                 playerId,
                 db_conv_string(faction),
                 db_conv_string(playerData["factions"][faction]["disposition"]),
                 playerData["factions"][faction]["reputation"],
                 playerData["factions"][faction]["last interaction"],
+                playerData["factions"][faction]["number of interactions"],
                 playerData["factions"][faction]["disposition time"],
                 (member(playerData["memberOfFactions"], faction) > -1)
             );

@@ -18,3 +18,8 @@ public nomask int memberOfFaction(string faction)
     return useFaction;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *Factions()
+{
+    return ({});
+}

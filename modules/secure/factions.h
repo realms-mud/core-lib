@@ -5,9 +5,10 @@
 
 private mapping factions = ([
     //  <faction file name>: ([
-    //      "disposition": ally, friendly, admiring, neutral, fearful, hostile, enemy, betrayed 
+    //      "disposition": ally, friendly, admiring, cautious, neutral, wary, fearful, hostile, enemy, betrayed 
     //      "reputation": value,
     //      "last interaction": <time>,
+    //      "number of interactions": <number>,
     //      "disposition time": <time>,
     //  ])
 ]);
