@@ -315,6 +315,7 @@ CREATE TABLE TestDB.`factions` (
   `disposition` varchar(20) NOT NULL,
   `reputation` int(11) NOT NULL,
   `lastInteraction` int(11) NOT NULL,
+  `lastReputation` int(11) NOT NULL,
   `numberOfInteractions` int(11) NOT NULL,
   `dispositionTime` int(11) NOT NULL,
   `isMember` tinyint(4) NOT NULL DEFAULT '0',
@@ -680,7 +681,7 @@ END;
 ##
 CREATE PROCEDURE TestDB.`saveFaction` (p_playerid int, p_path varchar(128), 
 p_disposition varchar(20), p_reputation int, p_lastInteraction int, 
-p_numInteractions int, p_dispositionTime int, p_isMember tinyint)
+p_lastReputation int, p_numInteractions int, p_dispositionTime int, p_isMember tinyint)
 BEGIN
  	declare factionId int;
 
@@ -691,13 +692,14 @@ BEGIN
 		update factions set disposition = p_disposition,
                             reputation = p_reputation,
                             lastInteraction = p_lastInteraction,
+                            lastReputation = p_lastReputation,
                             numberOfInteractions = p_numInteractions,
                             dispositionTime = p_dispositionTime,
                             isMember = p_isMember
 		where id = factionId;
 	else
-		insert into factions (playerid, path, disposition, reputation, lastInteraction, numberOfInteractions, dispositionTime, isMember)
-        values (p_playerid, p_path, p_disposition, p_reputation, p_lastInteraction, p_numInteractions, p_dispositionTime, p_isMember);
+		insert into factions (playerid, path, disposition, reputation, lastInteraction, lastReputation, numberOfInteractions, dispositionTime, isMember)
+        values (p_playerid, p_path, p_disposition, p_reputation, p_lastInteraction, p_lastReputation, p_numInteractions, p_dispositionTime, p_isMember);
     end if;
 END;
 ##

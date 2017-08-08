@@ -8,6 +8,7 @@ private mapping factions = ([
     //      "disposition": ally, friendly, admiring, cautious, neutral, wary, fearful, hostile, enemy, betrayed 
     //      "reputation": value,
     //      "last interaction": <time>,
+    //      "last interaction reputation": value,
     //      "number of interactions": <number>,
     //      "disposition time": <time>,
     //  ])

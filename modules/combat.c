@@ -1199,7 +1199,7 @@ private nomask void updateFactionDispositionsFromCombat(object murderer)
 
         foreach(string faction in factionList)
         {
-            murderer->updateFactionDisposition(faction, reputationPenalty);
+            murderer->updateFactionDisposition(faction, reputationPenalty, 1);
         }
     }
 }

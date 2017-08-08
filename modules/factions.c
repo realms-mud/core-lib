@@ -26,26 +26,59 @@ private nomask int dispositionTime()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int isValidFaction(string faction)
+{
+    object dictionary = getDictionary("factions");
+    return dictionary && dictionary->isValidFaction(faction);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs int isKnownFaction(string faction, int whenNotMember)
+{
+    int ret = 0;
+    if(isValidFaction(faction))
+    {
+        if (!member(factions, faction))
+        {
+            factions[faction] = ([
+                "disposition": "neutral",
+                "reputation": 0,
+                "last interaction": dispositionTime(),
+                "last interaction reputation": 0,
+                "number of interactions": 0,
+                "disposition time": dispositionTime()
+            ]);
+            ret = whenNotMember;
+        }
+        else
+        {
+            ret = 1;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string factionDispositionToward(string faction)
 {
-    string ret = "neutral";
+    string ret = "invalid";
 
-    if (!member(factions, faction))
-    {
-        factions[faction] = ([
-            "disposition": "neutral",
-            "reputation": 0,
-            "last interaction": dispositionTime(),
-            "number of interactions": 0,
-            "disposition time": dispositionTime()
-        ]);
-    }
-    else
+    if(isKnownFaction(faction, 1))
     {
         ret = factions[faction]["disposition"];
-        factions[faction]["last interaction"] = dispositionTime();
     }
+    return ret;
+}
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask int factionReputationToward(string faction)
+{
+    int ret = 0;
+
+    if (isKnownFaction(faction))
+    {
+        ret = factions[faction]["reputation"];
+    }
     return ret;
 }
 
@@ -55,7 +88,8 @@ public nomask int joinFaction(string faction)
     int ret = 0;
     object dictionary = getDictionary("factions");
 
-    if (dictionary && dictionary->isValidFaction(faction) &&
+    if (dictionary && isValidFaction(faction) &&
+        (member(memberOfFactions, faction) < 0) &&
         dictionary->canJoinFaction(faction, this_object()))
     {
         ret = 1;
@@ -72,9 +106,12 @@ public nomask int joinFaction(string faction)
                 "disposition": "ally",
                 "reputation": reputation,
                 "last interaction": dispositionTime(),
+                "last interaction reputation": reputation,
                 "number of interactions": interactions + 1,
                 "disposition time": dispositionTime()
         ]);
+
+        memberOfFactions += ({ faction });
     }
     return ret;
 }
@@ -85,7 +122,7 @@ public nomask int leaveFaction(string faction)
     int ret = 0;
     object dictionary = getDictionary("factions");
 
-    if (dictionary && dictionary->isValidFaction(faction) &&
+    if (dictionary && isValidFaction(faction) &&
         dictionary->canLeaveFaction(faction, this_object()) &&
         memberOfFaction(faction))
     {
@@ -98,6 +135,7 @@ public nomask int leaveFaction(string faction)
                 "reputation": reputation - 1000,
                 "number of interactions": interactions + 1,
                 "last interaction": dispositionTime(),
+                "last interaction reputation": reputation - 1000,
                 "disposition time": dispositionTime()
         ]);
 
@@ -107,9 +145,10 @@ public nomask int leaveFaction(string faction)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void checkForDispositionChange(string faction)
+private nomask varargs void checkForDispositionChange(string faction, int killedMember)
 {
-    float reputationTrend = to_float(factions[faction]["reputation"]) /
+    float reputationTrend = (to_float(factions[faction]["reputation"]) - 
+        to_float(factions[faction]["last interaction reputation"])) /
         to_float(factions[faction]["number of interactions"]);
     
     // if there's a general trend toward positive or negative
@@ -120,7 +159,7 @@ private nomask void checkForDispositionChange(string faction)
         (abs(reputationTrend) > 1.25)) || (abs(reputationTrend) > 25.25))
     {
         string newDisposition = getDictionary("factions")->getDisposition(
-            factions[faction]["disposition"], reputationTrend);
+                factions[faction]["disposition"], reputationTrend);
 
         factions[faction] = ([
             "disposition": newDisposition,
@@ -130,26 +169,43 @@ private nomask void checkForDispositionChange(string faction)
             "disposition time": dispositionTime()
         ]);
     }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void updateFactionDisposition(string faction, int reputation)
-{
-    if (!member(factions, faction))
+    else if (killedMember)
     {
         factions[faction] = ([
-            "disposition": "neutral",
-            "reputation": reputation,
+            "disposition":getDictionary("factions")->dispositionFromMurder(faction,
+                factions[faction]["disposition"]),
+            "reputation": factions[faction]["reputation"],
             "number of interactions": 1,
             "last interaction": dispositionTime(),
             "disposition time": dispositionTime()
         ]);
     }
-    else
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void updateFactionDisposition(string faction, int reputation, int killedMember)
+{
+    if (isValidFaction(faction))
     {
-        factions[faction]["reputation"] += reputation;
-        factions[faction]["number of interactions"] += 1;
-        factions[faction]["last interaction"] = dispositionTime();
+        if (!member(factions, faction))
+        {
+            factions[faction] = ([
+                "disposition":"neutral",
+                "reputation" : reputation,
+                "number of interactions" : 1,
+                "last interaction" : dispositionTime(),
+                "disposition time" : dispositionTime()
+            ]);
+        }
+        else
+        {
+            factions[faction]["reputation"] += reputation;
+            factions[faction]["number of interactions"] += 1;
+            factions[faction]["last interaction"] = dispositionTime();
+        }
+        checkForDispositionChange(faction, killedMember);
+
+        factions[faction]["last interaction reputation"] =
+            factions[faction]["reputation"];
     }
-    checkForDispositionChange(faction);
 }
