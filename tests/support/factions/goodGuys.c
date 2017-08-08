@@ -3,3 +3,9 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/factions/baseFaction.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void init()
+{
+    setName("good guys");
+}

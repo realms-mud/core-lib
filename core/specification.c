@@ -262,8 +262,14 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
                     researchData["limited by"]["opponent faction"]);
             if (!ret && verbose)
             {
-                printf("Your opponent is not of the %s faction.\n",
+                object faction = getDictionary("factions")->factionObject(
                     researchData["limited by"]["opponent faction"]);
+
+                if (faction)
+                {
+                    printf("Your opponent is not of the %s faction.\n",
+                        faction->name());
+                }
             }
         }
         if (member(researchData["limited by"], "environment"))
@@ -412,10 +418,19 @@ public nomask string displayLimiters()
             {
                 case "opponent race":
                 case "opponent guild":
-                case "opponent faction":
                 case "environment":
                 {
                     ret += sprintf(limiter, key, "is", researchData["limited by"][key]);
+                    break;
+                }
+                case "opponent faction":
+                {
+                    object faction = getDictionary("factions")->factionObject(
+                        researchData["limited by"][key]);
+                    if (faction)
+                    {
+                        ret += sprintf(limiter, key, "is", faction->name());
+                    }
                     break;
                 }
                 case "intoxicated":

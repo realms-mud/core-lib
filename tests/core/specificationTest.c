@@ -129,7 +129,7 @@ void CannotSetLimitorForInvalidGuild()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetLimitorForOpponentFaction()
 {
-    mapping limitor = (["opponent faction":"good guys"]);
+    mapping limitor = (["opponent faction":"/lib/tests/support/factions/goodGuys.c"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
 }
@@ -262,7 +262,7 @@ void CanApplySkillReturnsTrueWithLimitorForOpponentGuild()
 /////////////////////////////////////////////////////////////////////////////
 void CanApplySkillReturnsTrueWithLimitorForOpponentFaction()
 {
-    mapping limitor = (["opponent faction":"good guys"]);
+    mapping limitor = (["opponent faction":"/lib/tests/support/factions/goodGuys.c"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
 
@@ -458,7 +458,7 @@ void  DisplayLimitersStringCorrectWithLimitorForOpponentGuild()
 /////////////////////////////////////////////////////////////////////////////
 void  DisplayLimitersStringCorrectWithLimitorForOpponentFaction()
 {
-    mapping limitor = (["opponent faction":"good guys"]);
+    mapping limitor = (["opponent faction":"/lib/tests/support/factions/goodGuys.c"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("[0;36mThis is only applied when opponent faction is good guys.[0m\n", Specification->displayLimiters());
 }
