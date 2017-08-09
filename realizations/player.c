@@ -43,3 +43,13 @@ public nomask int executeCommand(string command)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void reset(int arg)
+{
+    "living"::reset(arg);
+    if (!arg)
+    {
+        addCommands();
+    }
+}

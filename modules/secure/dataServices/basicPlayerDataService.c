@@ -57,11 +57,12 @@ protected nomask mapping getBasicPlayerData(string name, int dbHandle)
         ret["timeToHealSP"] = to_int(result[26]);
         ret["timeToHealST"] = to_int(result[27]);
         ret["whenCreated"] = result[28];
-        ret["availableAttributePoints"] = to_int(result[29]);
-        ret["availableSkillPoints"] = to_int(result[30]);
-        ret["availableResearchPoints"] = to_int(result[31]);
-        ret["unassignedExperience"] = to_int(result[32]);
-        ret["playerId"] = to_int(result[33]);
+        ret["location"] = result[29];
+        ret["availableAttributePoints"] = to_int(result[30]);
+        ret["availableSkillPoints"] = to_int(result[31]);
+        ret["availableResearchPoints"] = to_int(result[32]);
+        ret["unassignedExperience"] = to_int(result[33]);
+        ret["playerId"] = to_int(result[34]);
     }
 
     return ret;
@@ -71,7 +72,7 @@ protected nomask mapping getBasicPlayerData(string name, int dbHandle)
 protected nomask int saveBasicPlayerData(int dbHandle, mapping playerData)
 {
     string query = sprintf("select saveBasicPlayerInformation("
-        "'%s','%s',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d);",
+        "'%s','%s',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,'%s');",
         db_conv_string(playerData["name"]),
         db_conv_string(playerData["race"]),
         playerData["age"],
@@ -87,7 +88,8 @@ protected nomask int saveBasicPlayerData(int dbHandle, mapping playerData)
         playerData["availableAttributePoints"],
         playerData["availableSkillPoints"],
         playerData["availableResearchPoints"],
-        playerData["unassignedExperience"]);
+        playerData["unassignedExperience"],
+        playerData["location"]);
 
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);

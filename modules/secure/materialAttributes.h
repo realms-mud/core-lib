@@ -21,6 +21,9 @@ private string pretitle;
 private int invisibility;
 private mapping properties = ([]);
 private string whenCreated;
+private string location;
+
+private nosave string DefaultStart = "/room/city/central_park.c";
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask void loadMaterialAttributes(mapping data, object persistence)
@@ -43,6 +46,7 @@ static nomask void loadMaterialAttributes(mapping data, object persistence)
         pretitle = persistence->extractSaveData("pretitle", data);
         invisibility = persistence->extractSaveData("invisible", data);
         whenCreated = persistence->extractSaveData("whenCreated", data);
+        location = persistence->extractSaveData("location", data);
     }
 }
 
@@ -66,7 +70,9 @@ static nomask mapping sendMaterialAttributes()
     ret["title"] = title;
     ret["pretitle"] = pretitle;
     ret["invisible"] = invisibility;
-    ret["whenCreated"] = whenCreated;
+
+    ret["location"] = environment() ? "/" + program_name(environment()) :
+        DefaultStart;
 
     return ret;
 }

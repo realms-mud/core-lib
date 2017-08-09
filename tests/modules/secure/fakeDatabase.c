@@ -64,6 +64,7 @@ public nomask mapping Gorthaur()
         "invisible": 0,
         "inventory": ([ 
         ]),
+        "location": "/room/city/central_park.c",
         "longDescription": "This is a long description",
         "magicalMessageIn": "blah",
         "magicalMessageOut": "de-blahs",

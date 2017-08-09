@@ -95,6 +95,7 @@ CREATE TABLE TestDB.`players` (
   `charisma` int(11) NOT NULL DEFAULT '0',
   `invisible` int(11) NOT NULL DEFAULT '0',
   `whenCreated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `location` varchar(200) NOT NULL,
   `attributePoints` int(11) NOT NULL DEFAULT '0',
   `skillPoints` int(11) NOT NULL DEFAULT '0',
   `researchPoints` int(11) NOT NULL DEFAULT '0',
@@ -170,7 +171,7 @@ CREATE TABLE TestDB.`materialAttributes` (
 CREATE TABLE TestDB.`openResearchTrees` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
-  `researchTree` varchar(128) NOT NULL,
+  `researchTree` varchar(200) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `openResearchTreesplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -198,7 +199,7 @@ CREATE TABLE TestDB.`playerCombatData` (
 CREATE TABLE TestDB.`quests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
-  `path` varchar(128) NOT NULL,
+  `path` varchar(200) NOT NULL,
   `name` varchar(45) NOT NULL,
   `state` varchar(45) NOT NULL,
   `statesCompleted` varchar(256) DEFAULT NULL,
@@ -212,7 +213,7 @@ CREATE TABLE TestDB.`quests` (
 CREATE TABLE TestDB.`research` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerId` int(11) NOT NULL,
-  `path` varchar(128) NOT NULL,
+  `path` varchar(200) NOT NULL,
   `whenResearchBegan` int(11) NOT NULL DEFAULT '0',
   `whenResearchComplete` int(11) DEFAULT NULL,
   `timeSpentLearning` int(11) DEFAULT NULL,
@@ -240,7 +241,7 @@ CREATE TABLE TestDB.`researchChoiceItems` (
   `type` varchar(15) NOT NULL,
   `name` varchar(45) NOT NULL,
   `description` varchar(256) NOT NULL,
-  `key` varchar(128) NOT NULL,
+  `key` varchar(200) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `researchChoiceId_idx` (`researchChoiceId`)
@@ -289,7 +290,7 @@ CREATE TABLE TestDB.`temporaryTraits` (
 CREATE TABLE TestDB.`traits` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
-  `path` varchar(128) NOT NULL,
+  `path` varchar(200) NOT NULL,
   `name` varchar(45) NOT NULL,
   `added` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -302,7 +303,7 @@ CREATE TABLE TestDB.`timedtraits` (
   `traitid` int(11) NOT NULL,
   `endTime` int(11) NOT NULL,
   `expireMessage` varchar(256) DEFAULT NULL,
-  `triggeringResearch` varchar(128) DEFAULT NULL,
+  `triggeringResearch` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `timed_traitsid` FOREIGN KEY (`traitid`) REFERENCES `traits` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -311,7 +312,7 @@ CREATE TABLE TestDB.`timedtraits` (
 CREATE TABLE TestDB.`factions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
-  `path` varchar(128) NOT NULL,
+  `path` varchar(200) NOT NULL,
   `disposition` varchar(20) NOT NULL,
   `reputation` int(11) NOT NULL,
   `lastInteraction` int(11) NOT NULL,
@@ -326,14 +327,14 @@ CREATE TABLE TestDB.`factions` (
 ##
 CREATE TABLE TestDB.`inventory` (
   `playerid` int(11) NOT NULL,
-  `fileName` varchar(128) NOT NULL,
+  `fileName` varchar(200) NOT NULL,
   `data` blob NOT NULL,
   `isEquipped` int(11) NOT NULL DEFAULT '0',
   KEY `inventory_playerid_idx` (`playerid`),
   CONSTRAINT `inventory_playerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `TestDB`.`basicPlayerData` AS select `TestDB`.`players`.`name` AS `name`,`TestDB`.`players`.`race` AS `race`,`TestDB`.`players`.`age` AS `age`,`TestDB`.`players`.`gender` AS `gender`,`TestDB`.`players`.`ghost` AS `ghost`,`TestDB`.`players`.`strength` AS `strength`,`TestDB`.`players`.`intelligence` AS `intelligence`,`TestDB`.`players`.`dexterity` AS `dexterity`,`TestDB`.`players`.`wisdom` AS `wisdom`,`TestDB`.`players`.`constitution` AS `constitution`,`TestDB`.`players`.`charisma` AS `charisma`,`TestDB`.`players`.`invisible` AS `invisible`,`TestDB`.`biological`.`intoxicated` AS `intoxicated`,`TestDB`.`biological`.`stuffed` AS `stuffed`,`TestDB`.`biological`.`drugged` AS `drugged`,`TestDB`.`biological`.`soaked` AS `soaked`,`TestDB`.`biological`.`headache` AS `headache`,`TestDB`.`playerCombatData`.`hitPoints` AS `hitPoints`,`TestDB`.`playerCombatData`.`maxHitPoints` AS `maxHitPoints`,`TestDB`.`playerCombatData`.`spellPoints` AS `spellPoints`,`TestDB`.`playerCombatData`.`maxSpellPoints` AS `maxSpellPoints`,`TestDB`.`playerCombatData`.`staminaPoints` AS `staminaPoints`,`TestDB`.`playerCombatData`.`maxStaminaPoints` AS `maxStaminaPoints`,`TestDB`.`playerCombatData`.`wimpy` AS `wimpy`,`TestDB`.`playerCombatData`.`onKillList` AS `onKillList`,`TestDB`.`playerCombatData`.`timeToHealHP` AS `timeToHealHP`,`TestDB`.`playerCombatData`.`timeToHealSP` AS `timeToHealSP`,`TestDB`.`playerCombatData`.`timeToHealST` AS `timeToHealST`,`TestDB`.`players`.`whenCreated` AS `whenCreated`,`TestDB`.`players`.`attributePoints` AS `availableAttributePoints`,`TestDB`.`players`.`skillPoints` AS `availableSkillPoints`,`TestDB`.`players`.`researchPoints` AS `availableResearchPoints`,`TestDB`.`players`.`unassignedExperience` AS `unassignedExperience`,`TestDB`.`players`.`id` AS `playerId` from ((`TestDB`.`players` join `TestDB`.`biological` on((`TestDB`.`players`.`id` = `TestDB`.`biological`.`playerid`))) join `TestDB`.`playerCombatData` on((`TestDB`.`players`.`id` = `TestDB`.`playerCombatData`.`playerid`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `TestDB`.`basicPlayerData` AS select `TestDB`.`players`.`name` AS `name`,`TestDB`.`players`.`race` AS `race`,`TestDB`.`players`.`age` AS `age`,`TestDB`.`players`.`gender` AS `gender`,`TestDB`.`players`.`ghost` AS `ghost`,`TestDB`.`players`.`strength` AS `strength`,`TestDB`.`players`.`intelligence` AS `intelligence`,`TestDB`.`players`.`dexterity` AS `dexterity`,`TestDB`.`players`.`wisdom` AS `wisdom`,`TestDB`.`players`.`constitution` AS `constitution`,`TestDB`.`players`.`charisma` AS `charisma`,`TestDB`.`players`.`invisible` AS `invisible`,`TestDB`.`biological`.`intoxicated` AS `intoxicated`,`TestDB`.`biological`.`stuffed` AS `stuffed`,`TestDB`.`biological`.`drugged` AS `drugged`,`TestDB`.`biological`.`soaked` AS `soaked`,`TestDB`.`biological`.`headache` AS `headache`,`TestDB`.`playerCombatData`.`hitPoints` AS `hitPoints`,`TestDB`.`playerCombatData`.`maxHitPoints` AS `maxHitPoints`,`TestDB`.`playerCombatData`.`spellPoints` AS `spellPoints`,`TestDB`.`playerCombatData`.`maxSpellPoints` AS `maxSpellPoints`,`TestDB`.`playerCombatData`.`staminaPoints` AS `staminaPoints`,`TestDB`.`playerCombatData`.`maxStaminaPoints` AS `maxStaminaPoints`,`TestDB`.`playerCombatData`.`wimpy` AS `wimpy`,`TestDB`.`playerCombatData`.`onKillList` AS `onKillList`,`TestDB`.`playerCombatData`.`timeToHealHP` AS `timeToHealHP`,`TestDB`.`playerCombatData`.`timeToHealSP` AS `timeToHealSP`,`TestDB`.`playerCombatData`.`timeToHealST` AS `timeToHealST`,`TestDB`.`players`.`whenCreated` AS `whenCreated`,`TestDB`.`players`.`location` AS `location`,`TestDB`.`players`.`attributePoints` AS `availableAttributePoints`,`TestDB`.`players`.`skillPoints` AS `availableSkillPoints`,`TestDB`.`players`.`researchPoints` AS `availableResearchPoints`,`TestDB`.`players`.`unassignedExperience` AS `unassignedExperience`,`TestDB`.`players`.`id` AS `playerId` from ((`TestDB`.`players` join `TestDB`.`biological` on((`TestDB`.`players`.`id` = `TestDB`.`biological`.`playerid`))) join `TestDB`.`playerCombatData` on((`TestDB`.`players`.`id` = `TestDB`.`playerCombatData`.`playerid`)));
 ##
 CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `TestDB`.`researchChoicesView` AS select `TestDB`.`researchChoices`.`playerId` AS `playerId`,`TestDB`.`researchChoices`.`name` AS `Choice`,`TestDB`.`researchChoiceItems`.`selectionNumber` AS `selectionNumber`,`TestDB`.`researchChoiceItems`.`type` AS `type`,`TestDB`.`researchChoiceItems`.`name` AS `name`,`TestDB`.`researchChoiceItems`.`description` AS `description`,`TestDB`.`researchChoiceItems`.`key` AS `key` from (`TestDB`.`researchChoices` join `TestDB`.`researchChoiceItems` on((`TestDB`.`researchChoices`.`id` = `TestDB`.`researchChoiceItems`.`researchChoiceId`)));
 ##
@@ -343,7 +344,7 @@ CREATE FUNCTION TestDB.`saveBasicPlayerInformation`(p_name varchar(40),
 p_race varchar(20), p_age int, p_gender int, p_ghost int, p_strength int,
 p_intelligence int, p_dexterity int, p_wisdom int, p_constitution int,
 p_charisma int, p_invisible int, p_attributes int, p_skill int,
-p_research int, p_unassigned int) RETURNS int(11)
+p_research int, p_unassigned int, p_location varchar(200)) RETURNS int(11)
 BEGIN
 	declare pid int;
     
@@ -365,16 +366,17 @@ BEGIN
                            attributePoints = p_attributes,
                            skillPoints = p_skill,
                            researchPoints = p_research,
-                           unassignedExperience = p_unassigned
+                           unassignedExperience = p_unassigned,
+                           location = p_location
 		where id = pid;
 	else
 		insert into players (name, race, age, gender, ghost, strength,
         intelligence, dexterity, wisdom, constitution, charisma, invisible,
         attributePoints, skillPoints, researchPoints, unassignedExperience, 
-        whenCreated)
+        whenCreated, location)
         values (p_name, p_race, p_age, p_gender, p_ghost, p_strength, 
         p_intelligence, p_dexterity, p_wisdom, p_constitution, p_charisma, 
-        p_invisible, p_attributes, p_skill, p_research, p_unassigned, now());
+        p_invisible, p_attributes, p_skill, p_research, p_unassigned, now(), p_location);
     
         select id into pid from players where name = p_name;
     end if;
@@ -511,7 +513,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE TestDB.`saveQuest` (p_playerid int, p_quest varchar(128), p_name varchar(45), 
+CREATE PROCEDURE TestDB.`saveQuest` (p_playerid int, p_quest varchar(200), p_name varchar(45), 
 p_state varchar(45), p_statesCompleted varchar(45), p_active int, p_completed int)
 BEGIN
 	declare questId int;
@@ -532,7 +534,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE `saveResearch`(p_playerid int, p_path varchar(128), p_began int, 
+CREATE PROCEDURE `saveResearch`(p_playerid int, p_path varchar(200), p_began int, 
 p_whenCompleted int, p_timeSpent int, p_completed int, p_timeToComplete int, 
 p_cooldown int)
 BEGIN
@@ -580,14 +582,14 @@ RETURN choiceId;
 END;
 ##
 CREATE PROCEDURE TestDB.`saveResearchChoiceOption` (p_choiceId int, p_selection varchar(5),
-p_type varchar(15), p_name varchar(45), p_description varchar(256), p_key varchar(128))
+p_type varchar(15), p_name varchar(45), p_description varchar(256), p_key varchar(200))
 BEGIN
 	insert into researchChoiceItems 
     (researchChoiceId, selectionNumber, type, name, description, researchChoiceItems.key)
     values (p_choiceId, p_selection, p_type, p_name, p_description, p_key);
 END;
 ##
-CREATE PROCEDURE TestDB.`saveOpenResearchTrees` (p_playerid int, p_path varchar(128))
+CREATE PROCEDURE TestDB.`saveOpenResearchTrees` (p_playerid int, p_path varchar(200))
 BEGIN
 	declare researchId int;
  
@@ -617,9 +619,9 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE TestDB.`saveTraits` (p_playerid int, p_path varchar(128), 
+CREATE PROCEDURE TestDB.`saveTraits` (p_playerid int, p_path varchar(200), 
 p_name varchar(45), p_added int, p_end int, p_expire varchar(256),
-p_trigger varchar(128))
+p_trigger varchar(200))
 BEGIN
 	declare tid int;
  
@@ -673,13 +675,13 @@ BEGIN
 END;
 ##
 CREATE PROCEDURE TestDB.`saveInventoryItem` (p_playerid int,
-p_filename varchar(128), p_data blob, p_equipped int)
+p_filename varchar(200), p_data blob, p_equipped int)
 BEGIN
     insert into inventory (playerid,filename,data,isEquipped) 
         values (p_playerid,p_filename,p_data,p_equipped);
 END;
 ##
-CREATE PROCEDURE TestDB.`saveFaction` (p_playerid int, p_path varchar(128), 
+CREATE PROCEDURE TestDB.`saveFaction` (p_playerid int, p_path varchar(200), 
 p_disposition varchar(20), p_reputation int, p_lastInteraction int, 
 p_lastReputation int, p_numInteractions int, p_dispositionTime int, p_isMember tinyint)
 BEGIN

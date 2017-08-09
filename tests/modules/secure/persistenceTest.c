@@ -65,6 +65,8 @@ void PlayerMaterialAttributesRestored()
     ExpectEq("Weasel Lord", Player->Pretitle());
     ExpectEq("blah", Player->short());
     ExpectEq("This is a long description", Player->description());
+    ExpectTrue(Player->creationDate());
+    ExpectEq("/room/city/central_park.c", Player->savedLocation());
 }
 
 /////////////////////////////////////////////////////////////////////////////
