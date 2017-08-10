@@ -275,91 +275,70 @@ void CharismaBonusReturnsCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void SpendAttributesIncrementsStrengthCorrectly()
 {
-    destruct(Attributes);
-    Attributes = clone_object("/lib/tests/support/services/combatWithMockServices");
+    ExpectEq(8, Attributes->Str(8), "initial strength is 8");
 
-    ExpectEq(10, Attributes->Str(10), "initial strength is 10");
-
-    ExpectEq(2, Attributes->SetAttributePoints(2));
-    ExpectEq(12, Attributes->spendAttributePoints("strength", 2), "spendAttributePoints increments by 2");
-    ExpectEq(12, Attributes->Str(), "strength is 12");
+    ExpectEq(2, Attributes->addAttributePointsToSpend(2));
+    ExpectEq(10, Attributes->spendAttributePoints("strength", 2), "spendAttributePoints increments by 2");
+    ExpectEq(10, Attributes->Str(), "strength is 10");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SpendAttributesIncrementsDexterityCorrectly()
 {
-    destruct(Attributes);
-    Attributes = clone_object("/lib/tests/support/services/combatWithMockServices");
+    ExpectEq(8, Attributes->Dex(8), "initial dexterity is 8");
 
-    ExpectEq(10, Attributes->Dex(10), "initial dexterity is 10");
-
-    ExpectEq(2, Attributes->SetAttributePoints(2));
+    ExpectEq(2, Attributes->addAttributePointsToSpend(2));
     ExpectEq(2, Attributes->attributePoints());
-    ExpectEq(12, Attributes->spendAttributePoints("dexterity", 2), "spendAttributePoints increments by 2");
-    ExpectEq(12, Attributes->Dex(), "dexterity is 12");
+    ExpectEq(10, Attributes->spendAttributePoints("dexterity", 2), "spendAttributePoints increments by 2");
+    ExpectEq(10, Attributes->Dex(), "dexterity is 10");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SpendAttributesIncrementsIntelligenceCorrectly()
 {
-    destruct(Attributes);
-    Attributes = clone_object("/lib/tests/support/services/combatWithMockServices");
+    ExpectEq(8, Attributes->Int(8), "initial intelligence is 8");
 
-    ExpectEq(10, Attributes->Int(10), "initial intelligence is 10");
-
-    ExpectEq(2, Attributes->SetAttributePoints(2));
-    ExpectEq(12, Attributes->spendAttributePoints("intelligence", 2), "spendAttributePoints increments by 2");
-    ExpectEq(12, Attributes->Int(), "intelligence is 12");
+    ExpectEq(2, Attributes->addAttributePointsToSpend(2));
+    ExpectEq(10, Attributes->spendAttributePoints("intelligence", 2), "spendAttributePoints increments by 2");
+    ExpectEq(10, Attributes->Int(), "intelligence is 10");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SpendAttributesIncrementsWisdomCorrectly()
 {
-    destruct(Attributes);
-    Attributes = clone_object("/lib/tests/support/services/combatWithMockServices");
+    ExpectEq(8, Attributes->Wis(8), "initial wisdom is 8");
 
-    ExpectEq(10, Attributes->Wis(10), "initial wisdom is 10");
-
-    ExpectEq(2, Attributes->SetAttributePoints(2));
-    ExpectEq(12, Attributes->spendAttributePoints("wisdom", 2), "spendAttributePoints increments by 2");
-    ExpectEq(12, Attributes->Wis(), "wisdom is 12");
+    ExpectEq(2, Attributes->addAttributePointsToSpend(2));
+    ExpectEq(10, Attributes->spendAttributePoints("wisdom", 2), "spendAttributePoints increments by 2");
+    ExpectEq(10, Attributes->Wis(), "wisdom is 10");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SpendAttributesIncrementsConstitutionCorrectly()
 {
-    destruct(Attributes);
-    Attributes = clone_object("/lib/tests/support/services/combatWithMockServices");
+    ExpectEq(8, Attributes->Con(8), "initial constitution is 8");
 
-    ExpectEq(10, Attributes->Con(10), "initial constitution is 10");
-
-    ExpectEq(2, Attributes->SetAttributePoints(2));
-    ExpectEq(12, Attributes->spendAttributePoints("constitution", 2), "spendAttributePoints increments by 2");
-    ExpectEq(12, Attributes->Con(), "constitution is 12");
+    ExpectEq(2, Attributes->addAttributePointsToSpend(2));
+    ExpectEq(10, Attributes->spendAttributePoints("constitution", 2), "spendAttributePoints increments by 2");
+    ExpectEq(10, Attributes->Con(), "constitution is 10");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SpendAttributesIncrementsCharismaCorrectly()
 {
-    destruct(Attributes);
-    Attributes = clone_object("/lib/tests/support/services/combatWithMockServices");
+    ExpectEq(8, Attributes->Chr(8), "initial charisma is 8");
 
-    ExpectEq(10, Attributes->Chr(10), "initial charisma is 10");
-
-    ExpectEq(2, Attributes->SetAttributePoints(2));
-    ExpectEq(12, Attributes->spendAttributePoints("charisma", 2), "spendAttributePoints increments by 2");
-    ExpectEq(12, Attributes->Chr(), "charisma is 12");
+    ExpectEq(2, Attributes->addAttributePointsToSpend(2));
+    ExpectEq(10, Attributes->spendAttributePoints("charisma", 2), "spendAttributePoints increments by 2");
+    ExpectEq(10, Attributes->Chr(), "charisma is 10");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SpendAttributesFailsWhenAdvancementExceedsAvailablePoints()
 {
-    destruct(Attributes);
-    Attributes = clone_object("/lib/tests/support/services/combatWithMockServices");
-
     ExpectEq(10, Attributes->Chr(10), "initial charisma is 10");
 
-    ExpectEq(1, Attributes->SetAttributePoints(1));
+    ExpectEq(1, Attributes->addAttributePointsToSpend(1));
     ExpectFalse(Attributes->spendAttributePoints("charisma", 2), "spendAttributePoints fails");
     ExpectEq(10, Attributes->Chr(), "charisma is still 10");
 }
@@ -367,15 +346,49 @@ void SpendAttributesFailsWhenAdvancementExceedsAvailablePoints()
 /////////////////////////////////////////////////////////////////////////////
 void SpendAttributesDecrementsAvailablePoints()
 {
-    destruct(Attributes);
-    Attributes = clone_object("/lib/tests/support/services/combatWithMockServices");
+    ExpectEq(8, Attributes->Chr(8), "initial charisma is 8");
 
-    ExpectEq(10, Attributes->Chr(10), "initial charisma is 10");
-
-    ExpectEq(2, Attributes->SetAttributePoints(2));
-    ExpectEq(11, Attributes->spendAttributePoints("charisma", 1), "spendAttributePoints fails");
-    ExpectEq(12, Attributes->spendAttributePoints("charisma", 1), "spendAttributePoints fails");
+    ExpectEq(2, Attributes->addAttributePointsToSpend(2));
+    ExpectEq(9, Attributes->spendAttributePoints("charisma", 1), "spendAttributePoints fails");
+    ExpectEq(10, Attributes->spendAttributePoints("charisma", 1), "spendAttributePoints fails");
     ExpectFalse(Attributes->spendAttributePoints("charisma", 1), "spendAttributePoints fails");
-    ExpectEq(12, Attributes->Chr(), "charisma is 12");
+    ExpectEq(10, Attributes->Chr(), "charisma is 10");
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void SpendAttributesFailsWhenAdvancementExceeds10ForLevelLessThan10()
+{
+    ExpectEq(10, Attributes->Chr(10), "initial charisma is 10");
+
+    ExpectEq(1, Attributes->addAttributePointsToSpend(1));
+    ExpectFalse(Attributes->spendAttributePoints("charisma", 1), "spendAttributePoints fails");
+    ExpectEq(10, Attributes->Chr(), "charisma is still 10");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SpendAttributesSucceedsWhenAdvancementEqualToOrLessThanLevel()
+{
+    destruct(Attributes);
+    Attributes = clone_object("/lib/realizations/monster.c");
+
+    Attributes->effectiveLevel(16);
+    ExpectEq(15, Attributes->Chr(15), "initial charisma is 15");
+
+    ExpectEq(2, Attributes->addAttributePointsToSpend(2));
+    ExpectTrue(Attributes->spendAttributePoints("charisma", 1), "spendAttributePoints fails");
+    ExpectEq(16, Attributes->Chr(), "charisma is now 16");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SpendAttributesFailsWhenAdvancementExceedsLevelForLevelGreaterThan10()
+{
+    destruct(Attributes);
+    Attributes = clone_object("/lib/realizations/monster.c");
+
+    Attributes->effectiveLevel(16);
+    ExpectEq(15, Attributes->Chr(15), "initial charisma is 15");
+
+    ExpectEq(2, Attributes->addAttributePointsToSpend(2));
+    ExpectFalse(Attributes->spendAttributePoints("charisma", 2), "spendAttributePoints fails");
+    ExpectEq(15, Attributes->Chr(), "charisma is still 15");
+}

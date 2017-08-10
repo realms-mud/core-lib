@@ -6,9 +6,9 @@
 #define Describe 2
 #define Success 3
 
-private object User = 0;
-private mapping Data = 0;
-private string ResearchTitle = 0;
+protected object User = 0;
+protected mapping Data = 0;
+protected string Description = 0;
 
 private nosave string Cyan = "[0;36m%s[0m";
 private nosave string BoldWhite = "[0;37;1m%s[0m";
@@ -19,104 +19,82 @@ private nosave string BoldGreen = "[0;32;1m%s[0m";
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
-    add_action("applyResearchChoice", "", 3);
+    add_action("applySelection", "", 3);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void cleanUp()
+public nomask void cleanUp()
 {
     destruct(this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void setResearchTitle(string title)
-{
-    if(stringp(title))
-    {
-        ResearchTitle = title;
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public int sortMethod(string a, string b)
+public nomask int sortMethod(string a, string b)
 {
     return to_int(a) > to_int(b);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string displayMessage()
+protected string additionalInstructions()
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string displayDetails(string choice)
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string displayMessage()
 {
     string ret = "";
     
     if(Data)
     {
-        ret = sprintf(Cyan + BoldWhite + "\n", "A new research choice is available: ",
-            Data["1"]["choice"]);
+        ret = sprintf(Cyan + BoldWhite + ":\n", "Character creation - ",
+            Description);
 
         string *choices = sort_array(m_indices(Data), "sortMethod");
         foreach(string choice in choices)
         {
-            string format = sprintf("\t[%s] - %s\n", Red, Green);
+            string format = sprintf("\t[%s] - %s%s\n", Red, "[0;32m%-20s[0m",
+                displayDetails(choice));
             ret += sprintf(format, choice, Data[choice]["name"]);
         }
 
         ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.\n", sizeof(choices)));
         ret += sprintf(Green, "For details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n");
+        ret += sprintf(BoldGreen, additionalInstructions());
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void makeSelection(string selection)
+protected int processSelection(string selection)
 {
-    switch(Data[selection]["type"])
-    {
-        case "research object":
-        {
-            User->selectResearchChoice(Data[selection]["key"],
-                Data[selection]["choice"]);
-            break;
-        }
-        case "research tree":
-        {
-            User->selectResearchPath(Data[selection]["key"],
-                Data[selection]["choice"]);
-            break;
-        }
-    }
-
-    remove_action(1, User);
-    User = 0;
-    Data = 0;
-    ResearchTitle = 0;
-    call_out("cleanUp", 1);
+    return 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void onResearchChoiceAvailable(object user, mapping data)
+private nomask void makeSelection(string selection)
 {
-    if(ResearchTitle && user && objectp(user) && data && mappingp(data) &&
-        member(data, "1") && member(data["1"], "choice") &&
-        member(data["1"], "type") && (ResearchTitle == data["1"]["choice"]))
+    if (processSelection(selection))
     {
-        User = user;
-        Data = data;
-
-        User->unregisterEvent(this_object());
-
-        if(sizeof(data) == 1)
-        {
-            makeSelection("1");
-        }
-        else
-        { 
-            tell_object(User, displayMessage());
-        }
+        remove_action(1, User);
+        User = 0;
+        Data = 0;
+        call_out("cleanUp", 1);
+    }
+    else
+    {
+        tell_object(User, displayMessage());
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int applyResearchChoice(string arguments)
+public nomask int applySelection(string arguments)
 {
     int ret = 0;
     if(User && Data)
@@ -128,7 +106,7 @@ public int applyResearchChoice(string arguments)
             member(Data, element))
         {
             ret = Describe;
-            tell_object(User, sprintf(Data[element]["description"]));
+            tell_object(User, sprintf(Cyan, Data[element]["description"]));
         }
         else if(member(Data, arguments))
         {
@@ -144,4 +122,17 @@ public int applyResearchChoice(string arguments)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected void setUpUserForSelection(object user)
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void initiateSelector(object user)
+{
+    User = user;
+    setUpUserForSelection(User);
+    tell_object(User, displayMessage());
 }

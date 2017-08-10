@@ -138,6 +138,7 @@ void ApplyResearchChoiceReturnsSuccessWhenChooserSetUpAndOptionSelected()
     ResearchChooser->onResearchChoiceAvailable(User, Data);
     ExpectEq(Success, ResearchChooser->applyResearchChoice("1"));
     ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"));
+    ExpectEq("cleanUp", call_out_info()[0][1]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -155,6 +156,7 @@ void OnResearchChoiceAvailableSilentlySelectsOptionIfOnlyOneObjectAvailable()
     ResearchChooser->setResearchTitle("test choice");
     ResearchChooser->onResearchChoiceAvailable(User, Data);
     ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"));
+    ExpectEq("cleanUp", call_out_info()[0][1]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
