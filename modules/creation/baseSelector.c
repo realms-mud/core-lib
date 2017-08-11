@@ -10,6 +10,8 @@ protected object User = 0;
 protected mapping Data = 0;
 protected string Description = 0;
 
+private string *UndoLog = ({ });
+
 private nosave string Cyan = "[0;36m%s[0m";
 private nosave string BoldWhite = "[0;37;1m%s[0m";
 private nosave string Red = "[0;31m%s[0m";
@@ -64,7 +66,7 @@ public nomask string displayMessage()
             ret += sprintf(format, choice, Data[choice]["name"]);
         }
 
-        ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.\n", sizeof(choices)));
+        ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d. You may also undo or reset.\n", sizeof(choices)));
         ret += sprintf(Green, "For details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n");
         ret += sprintf(BoldGreen, additionalInstructions());
     }
@@ -78,17 +80,31 @@ protected int processSelection(string selection)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected void undoSelection(string selection)
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void makeSelection(string selection)
 {
-    if (processSelection(selection))
+    int finished = processSelection(selection);
+    if (finished)
     {
-        remove_action(1, User);
-        User = 0;
-        Data = 0;
-        call_out("cleanUp", 1);
+        if (finished == 1)
+        {
+            remove_action(1, User);
+            User = 0;
+            Data = 0;
+            call_out("cleanUp", 1);
+        }
+        else
+        {
+            tell_object(User, displayMessage());
+        }
     }
     else
     {
+        UndoLog += ({ selection });
         tell_object(User, displayMessage());
     }
 }
@@ -107,6 +123,36 @@ public nomask int applySelection(string arguments)
         {
             ret = Describe;
             tell_object(User, sprintf(Cyan, Data[element]["description"]));
+        }
+        else if ((arguments == "undo") && sizeof(UndoLog))
+        {
+            ret = Success;
+            undoSelection(UndoLog[sizeof(UndoLog) - 1]);
+
+            tell_object(User, sprintf(Cyan,
+                "You have reverted your previous selection.\n") +
+                displayMessage());
+            
+            if (sizeof(UndoLog) > 1)
+            {
+                UndoLog = UndoLog[0..(sizeof(UndoLog) - 2)];
+            }
+            else
+            {
+                UndoLog = ({ });
+            }
+        }
+        else if ((arguments == "reset") && sizeof(UndoLog))
+        {
+            ret = Success;
+            foreach(string selection in UndoLog)
+            {
+                undoSelection(selection);
+            }
+            tell_object(User, sprintf(Cyan,
+                "You have reset your selections.\n") + displayMessage());
+
+            UndoLog = ({});
         }
         else if(member(Data, arguments))
         {

@@ -382,7 +382,7 @@ public nomask int addAttributePointsToSpend(int amount)
 public nomask int spendAttributePoints(string attribute, int amount)
 {
     int ret = 0;
-    if(attribute && stringp(attribute) && intp(amount) && (amount > 0) &&
+    if(attribute && stringp(attribute) && intp(amount) &&
       (availableAttributePoints >= amount) && function_exists("effectiveLevel") &&
       (((amount + attributeValue(attribute)) <= this_object()->effectiveLevel()) ||
       ((amount + attributeValue(attribute)) <= 10)))
