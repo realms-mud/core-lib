@@ -392,13 +392,13 @@ void PlayerTraitsSaved()
     Player->restore("gorthaur");
     ExpectEq(({ "/lib/tests/support/traits/testTrait.c", "/lib/tests/support/traits/testTraitWithDuration.c" }),
         Player->Traits());
-    Player->addTrait("/lib/modules/traits/abrasive.c");
+    Player->addTrait("/lib/modules/traits/personality/abrasive.c");
     Player->save();
 
     destruct(Player);
     Player = clone_object("/lib/realizations/player.c");
     Player->restore("gorthaur");
-    ExpectEq(({ "/lib/modules/traits/abrasive.c", "/lib/tests/support/traits/testTrait.c", "/lib/tests/support/traits/testTraitWithDuration.c" }),
+    ExpectEq(({ "/lib/modules/traits/personality/abrasive.c", "/lib/tests/support/traits/testTrait.c", "/lib/tests/support/traits/testTraitWithDuration.c" }),
         Player->Traits());
 }
 

@@ -313,7 +313,7 @@ void DisplayPrerequisitesCorrectlyDisplaysTraitPrerequisites()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("trait", ([
         "type":"trait", 
-        "value" : ({ "/lib/modules/traits/abrasive.c", "/lib/modules/traits/charming.c" })])));
+        "value" : ({ "/lib/modules/traits/personality/abrasive.c", "/lib/modules/traits/personality/charming.c" })])));
 
     ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mTrait[0m: [0;35mAbrasive or Charming[0m\n",
         Prerequisite->displayPrerequisites());

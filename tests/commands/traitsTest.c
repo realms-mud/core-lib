@@ -79,7 +79,7 @@ void SectionWithThreeTraitsHasNoEmptyColumns()
 {
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait.c");
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait2.c");
-    Player->addTrait("/lib/modules/traits/abrasive.c");
+    Player->addTrait("/lib/modules/traits/personality/abrasive.c");
 
     ExpectTrue(Player->executeCommand("traits"));
     ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
@@ -92,8 +92,8 @@ void SectionWithMoreThanThreeTraitsCorrectlyDisplays()
 {
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait.c");
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait2.c");
-    Player->addTrait("/lib/modules/traits/abrasive.c");
-    Player->addTrait("/lib/modules/traits/charming.c");
+    Player->addTrait("/lib/modules/traits/personality/abrasive.c");
+    Player->addTrait("/lib/modules/traits/personality/charming.c");
 
     ExpectTrue(Player->executeCommand("traits"));
     ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
@@ -477,7 +477,7 @@ void TraitDetailsDisplayTraitPenalties()
 /////////////////////////////////////////////////////////////////////////////
 void NegativeTraitDetailsDisplayNegativeIdentifier()
 {
-    Player->addTrait("/lib/modules/traits/abrasive.c");
+    Player->addTrait("/lib/modules/traits/personality/abrasive.c");
     ExpectTrue(Player->executeCommand("traits -details abrasive"));
     ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "[Negative]")));
 }

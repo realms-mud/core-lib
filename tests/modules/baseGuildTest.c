@@ -480,7 +480,7 @@ void TraitCriteriaAppliedCorrectly()
     mapping criteria = ([
         "type":"trait",
         "apply": "at level 5",
-        "trait object": "lib/modules/traits/abrasive.c"
+        "trait object": "lib/modules/traits/personality/abrasive.c"
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
@@ -488,10 +488,10 @@ void TraitCriteriaAppliedCorrectly()
 
     Guild->guildName("mage");
 
-    ExpectFalse(User->isTraitOf("lib/modules/traits/abrasive.c"), "user does not have the trait");
+    ExpectFalse(User->isTraitOf("lib/modules/traits/personality/abrasive.c"), "user does not have the trait");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/abrasive.c"), "user has the trait");
+    ExpectTrue(User->isTraitOf("lib/modules/traits/personality/abrasive.c"), "user has the trait");
 }
 
 /////////////////////////////////////////////////////////////////////////////

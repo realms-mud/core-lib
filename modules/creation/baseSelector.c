@@ -9,6 +9,7 @@
 protected object User = 0;
 protected mapping Data = 0;
 protected string Description = 0;
+protected int AllowUndo = 1;
 
 private string *UndoLog = ({ });
 
@@ -66,7 +67,7 @@ public nomask string displayMessage()
             ret += sprintf(format, choice, Data[choice]["name"]);
         }
 
-        ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d. You may also undo or reset.\n", sizeof(choices)));
+        ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.%s\n", sizeof(choices), AllowUndo ? " You may also undo or reset." : ""));
         ret += sprintf(Green, "For details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n");
         ret += sprintf(BoldGreen, additionalInstructions());
     }
@@ -124,7 +125,7 @@ public nomask int applySelection(string arguments)
             ret = Describe;
             tell_object(User, sprintf(Cyan, Data[element]["description"]));
         }
-        else if ((arguments == "undo") && sizeof(UndoLog))
+        else if ((arguments == "undo") && sizeof(UndoLog) && AllowUndo)
         {
             ret = Success;
             undoSelection(UndoLog[sizeof(UndoLog) - 1]);
@@ -142,7 +143,7 @@ public nomask int applySelection(string arguments)
                 UndoLog = ({ });
             }
         }
-        else if ((arguments == "reset") && sizeof(UndoLog))
+        else if ((arguments == "reset") && sizeof(UndoLog) && AllowUndo)
         {
             ret = Success;
             foreach(string selection in UndoLog)
