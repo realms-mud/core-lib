@@ -313,6 +313,7 @@ void LongReturnsRace()
     Attributes->Name("Tantor");
     Attributes->Gender(1);
     Attributes->Race("elf");
+    Attributes->hitPoints(200);
     ExpectEq("Tantor the title-less (male) (elf)\nHe is in good shape.\n", Attributes->long());
 }
 
@@ -322,6 +323,7 @@ void LongReturnsDescription()
     Attributes->Name("Tantor");
     Attributes->Gender(1);
     Attributes->Race("elf");
+    Attributes->hitPoints(200);
     Attributes->description("This is a description.");
     ExpectEq("Tantor the title-less (male) (elf)\nThis is a description.\nHe is in good shape.\n", 
         Attributes->long());

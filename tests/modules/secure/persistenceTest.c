@@ -98,7 +98,7 @@ void PlayerCombatAttributesRestored()
 {
     Player->restore("gorthaur");
     ExpectEq(100, Player->hitPoints());
-    ExpectEq(188, Player->maxHitPoints());
+    ExpectEq(200, Player->maxHitPoints());
     ExpectEq(120, Player->spellPoints());
     ExpectEq(230, Player->maxSpellPoints());
     ExpectEq(140, Player->staminaPoints());
