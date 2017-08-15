@@ -32,7 +32,8 @@ private nosave string *validEventHandlers = ({ "onDeath", "onHeartBeat",
     "onSkillPointsIncreased", "onSkillPointsUsed", "onIntoxicationChanged",
     "onStuffedChanged", "onDruggedChanged", "onSoakedChanged", "onDrunk",
     "onSober", "onDetoxified", "onWastedOnDrugs", "onNoLongerDrugged", "onSoaked",
-    "onNoLongerSoaked", "onCannotEatMore", "onHungry", "onBeginDetox"
+    "onNoLongerSoaked", "onCannotEatMore", "onHungry", "onBeginDetox",
+    "onSaveSucceeded", "onRestoreSucceeded", "onRestoreFailed"
 });
     
 private nosave mapping eventList = ([ ]);

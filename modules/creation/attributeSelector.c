@@ -71,8 +71,13 @@ public nomask void init()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection(object user)
 {
-    if ((User->effectiveLevel() <= 1) && !User->Str() && !User->Int() &&
-        !User->Wis() && !User->Dex() && !User->Con() && !User->Chr())
+    if ((User->effectiveLevel() <= 1) &&
+        !User->attributeValue("strength", 1) &&
+        !User->attributeValue("intelligence", 1) &&
+        !User->attributeValue("dexterity", 1) &&
+        !User->attributeValue("wisdom", 1) &&
+        !User->attributeValue("constitution", 1) &&
+        !User->attributeValue("charisma", 1))
     {
         User->Str(2);
         User->Int(2);

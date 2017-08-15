@@ -10,7 +10,6 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object User;
 object Selector;
-mapping Data;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
@@ -420,3 +419,14 @@ void DescribeHumanDisplaysHumanDescription()
         User->caughtMessage());
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void SelectorFiresOnSelectorCompletedWhenRaceChosen()
+{
+    object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
+    Selector->registerEvent(subscriber);
+    Selector->initiateSelector(User);
+
+    ExpectEq(0, subscriber->TimesEventReceived());
+    Selector->applySelection("10");
+    ExpectEq(1, subscriber->TimesEventReceived());
+}

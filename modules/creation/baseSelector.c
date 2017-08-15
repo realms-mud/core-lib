@@ -2,6 +2,8 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+inherit "/lib/core/events.c";
+
 #define Block 1
 #define Describe 2
 #define Success 3
@@ -10,6 +12,7 @@ protected object User = 0;
 protected mapping Data = 0;
 protected string Description = 0;
 protected int AllowUndo = 1;
+protected int AllowAbort = 0;
 
 private string *UndoLog = ({ });
 
@@ -22,6 +25,8 @@ private nosave string BoldGreen = "[0;32;1m%s[0m";
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
+    registerEventHandler("onSelectorCompleted");
+
     add_action("applySelection", "", 3);
 }
 
@@ -69,6 +74,10 @@ public nomask string displayMessage()
 
         ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.%s\n", sizeof(choices), AllowUndo ? " You may also undo or reset." : ""));
         ret += sprintf(Green, "For details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n");
+        if (AllowAbort)
+        {
+            ret += sprintf(Green, "Type 'abort' if you do not wish to make a selection at this time.\n");
+        }
         ret += sprintf(BoldGreen, additionalInstructions());
     }
     return ret;
@@ -94,9 +103,7 @@ private nomask void makeSelection(string selection)
         if (finished == 1)
         {
             remove_action(1, User);
-            User = 0;
-            Data = 0;
-            call_out("cleanUp", 1);
+            notify("onSelectorCompleted");
         }
         else
         {
@@ -155,6 +162,11 @@ public nomask int applySelection(string arguments)
 
             UndoLog = ({});
         }
+        else if ((arguments == "abort") && AllowAbort)
+        {
+            ret = Success;
+            notify("onSelectorCompleted");
+        }
         else if(member(Data, arguments))
         {
             ret = Success;
@@ -177,9 +189,17 @@ protected void setUpUserForSelection(object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void initiateSelector(object user)
+public nomask varargs void initiateSelector(object user, int alreadyInitialized)
 {
     User = user;
-    setUpUserForSelection(User);
+
+    if (!alreadyInitialized)
+    {
+        setUpUserForSelection(User);
+    }
+    else
+    {
+        AllowAbort = 1;
+    }
     tell_object(User, displayMessage());
 }

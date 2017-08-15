@@ -44,6 +44,7 @@ public nomask void save()
     {
         mapping playerData = getPlayerInfo();
         DataAccess()->savePlayerData(playerData);
+        this_object()->notify("onSaveSucceeded");
     }
     else
     {
@@ -116,12 +117,22 @@ public nomask void restore(string name)
     if (canAccessDatabase(previous_object()))
     {
         mapping playerData = DataAccess()->getPlayerData(name);
-        setPlayerInfo(playerData);
+
+        if (sizeof(playerData) > 1)
+        {
+            setPlayerInfo(playerData);
+            this_object()->notify("onRestoreSucceeded");
+        }
+        else
+        {
+            this_object()->Name(name);
+            this_object()->notify("onRestoreFailed");
+        }
     }
     else
     {
         write("This is where a stern message about trying to circumvent "
-            "security should probably go...\n");
+            "security should probably go: " + program_name(previous_object()) + "\n");
         destruct(this_object());
     }
 }

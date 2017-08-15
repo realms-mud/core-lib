@@ -49,7 +49,7 @@ public nomask mapping getPlayerData(string name)
     else
     {
         write("This is where a stern message about trying to circumvent "
-            "security should probably go...\n");
+            "security should probably go: " + program_name(previous_object()) + "\n");
     }
     return data + ([]);
 }
@@ -81,7 +81,7 @@ public nomask void savePlayerData(mapping playerData)
     else
     {
         write("This is where a stern message about trying to circumvent "
-            "security should probably go...\n");
+            "security should probably go: " + program_name(previous_object()) + "\n");
     }
 }
 
