@@ -466,16 +466,36 @@ p_pretitle varchar(256), p_msgin varchar(256), p_msgout varchar(256),
 p_magicalin varchar(256), p_magicalout varchar(256), p_home varchar(256),
 p_clone varchar(256), p_short varchar(256), p_long varchar(256))
 BEGIN
-	call saveMaterialAttribute(p_playerid, 'title', p_title);
-	call saveMaterialAttribute(p_playerid, 'pretitle', p_pretitle);
-	call saveMaterialAttribute(p_playerid, 'messageIn', p_msgin);
-	call saveMaterialAttribute(p_playerid, 'messageOut', p_msgout);
-	call saveMaterialAttribute(p_playerid, 'magicalMessageIn', p_magicalIn);
-	call saveMaterialAttribute(p_playerid, 'magicalMessageOut', p_magicalOut);
-	call saveMaterialAttribute(p_playerid, 'messageHome', p_home);
-	call saveMaterialAttribute(p_playerid, 'messageClone', p_clone);
-	call saveMaterialAttribute(p_playerid, 'shortDescription', p_short);
-	call saveMaterialAttribute(p_playerid, 'longDescription', p_long);
+    if p_title <> '' then
+	    call saveMaterialAttribute(p_playerid, 'title', p_title);
+    end;
+    if p_pretitle <> '' then
+	    call saveMaterialAttribute(p_playerid, 'pretitle', p_pretitle);
+    end;
+    if p_msgin <> '' then
+	    call saveMaterialAttribute(p_playerid, 'messageIn', p_msgin);
+    end;
+    if p_msgout <> '' then
+	    call saveMaterialAttribute(p_playerid, 'messageOut', p_msgout);
+    end;
+    if p_magicalIn <> '' then
+	    call saveMaterialAttribute(p_playerid, 'magicalMessageIn', p_magicalIn);
+    end;
+    if p_magicalOut <> '' then
+	    call saveMaterialAttribute(p_playerid, 'magicalMessageOut', p_magicalOut);
+    end;
+    if p_home <> '' then
+	    call saveMaterialAttribute(p_playerid, 'messageHome', p_home);
+    end;
+    if p_clone <> '' then
+	    call saveMaterialAttribute(p_playerid, 'messageClone', p_clone);
+    end;
+    if p_short <> '' then
+	    call saveMaterialAttribute(p_playerid, 'shortDescription', p_short);
+    end;
+    if p_long <> '' then
+    	call saveMaterialAttribute(p_playerid, 'longDescription', p_long);
+    end;
 END;
 ##
 CREATE PROCEDURE TestDB.`saveGuild`(p_playerid int, p_guild varchar(40), p_title varchar(45), 

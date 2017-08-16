@@ -33,12 +33,17 @@ private nomask void initiateSelector()
         selectorObj->registerEvent(this_object());
         selectorObj->initiateSelector(Player);
     }
-    else
+    else if (Player)
     {
         Player->hitPoints(Player->maxHitPoints());
         Player->spellPoints(Player->maxSpellPoints());
         Player->staminaPoints(Player->maxStaminaPoints());
         move_object(Player, "/room/city/central_park.c");
+        Player->save();
+        destruct(this_object());
+    }
+    else
+    {
         destruct(this_object());
     }
 }

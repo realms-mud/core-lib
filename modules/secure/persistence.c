@@ -49,7 +49,7 @@ public nomask void save()
     else
     {
         write("This is where a stern message about trying to circumvent "
-            "security should probably go...\n");
+            "security should probably go: " + program_name(previous_object()) + "\n");
         destruct(this_object());
     }
 }

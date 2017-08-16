@@ -27,7 +27,6 @@ void Setup()
     Initializer = clone_object("/lib/modules/creation/initializePlayer.c");
 
     User = clone_object("/lib/realizations/player.c");
-    User->Name("Bob");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -75,4 +74,41 @@ void OnSelectorCompletedCleansUpCurrentSelectorAndTransitionsToNextState()
 
     ExpectEq(({ "lib/modules/creation/raceSelector.c" }),
         all_inventory(User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerPointsSetToMaxAndPlayerMovedAndPlayerIsSavedUponCompletion()
+{
+    User->registerEvent(Initializer);
+    User->restore("newcharacter");
+
+    setRestoreCaller(Initializer);
+    string race = User->Race("human");
+    object selector = first_inventory(User);
+    while (selector)
+    {
+        Initializer->onSelectorCompleted(selector);
+        selector = first_inventory(User);
+    }
+
+    ExpectEq(User->maxHitPoints(), User->hitPoints());
+    ExpectEq(User->maxSpellPoints(), User->spellPoints());
+    ExpectEq(User->maxStaminaPoints(), User->staminaPoints());
+
+    destruct(User);
+
+    setRestoreCaller(this_object());
+
+    User = clone_object("/lib/realizations/player.c");
+    ExpectNotEq(race, User->Race());
+    User->restore("newcharacter");
+    ExpectEq(race, User->Race());
+    ExpectEq(2, User->Str());
+    ExpectEq(2, User->Int());
+    ExpectEq(2, User->Dex());
+    ExpectEq(2, User->Wis());
+    ExpectEq(2, User->Con());
+    ExpectEq(2, User->Chr());
+
+    ExpectEq(({ }), all_inventory(User));
 }
