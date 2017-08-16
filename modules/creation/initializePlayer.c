@@ -6,7 +6,9 @@
 private object Player = 0;
 
 private string *selectors = ({
+    "/lib/modules/creation/genderSelector.c",
     "/lib/modules/creation/raceSelector.c",
+    "/lib/modules/creation/subraceSelector.c",
     "/lib/modules/creation/attributeSelector.c"
 });
 
@@ -33,6 +35,9 @@ private nomask void initiateSelector()
     }
     else
     {
+        Player->hitPoints(Player->maxHitPoints());
+        Player->spellPoints(Player->maxSpellPoints());
+        Player->staminaPoints(Player->maxStaminaPoints());
         move_object(Player, "/room/city/central_park.c");
         destruct(this_object());
     }

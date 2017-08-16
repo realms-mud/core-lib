@@ -54,7 +54,7 @@ void OnRestoreFailedInitiatesSelector()
     ExpectEq(({}), all_inventory(User));
     User->restore("newcharacter");
     ExpectTrue(objectp(Initializer));
-    ExpectEq(({ "lib/modules/creation/raceSelector.c" }), 
+    ExpectEq(({ "lib/modules/creation/genderSelector.c" }), 
         all_inventory(User));
 }
 
@@ -64,15 +64,15 @@ void OnSelectorCompletedCleansUpCurrentSelectorAndTransitionsToNextState()
     User->registerEvent(Initializer);
     User->restore("newcharacter");
 
-    ExpectEq(({ "lib/modules/creation/raceSelector.c" }),
+    ExpectEq(({ "lib/modules/creation/genderSelector.c" }),
         all_inventory(User));
 
     object selector = first_inventory(User);
     ExpectTrue(objectp(selector));
 
-    selector->applySelection("10");
+    selector->applySelection("1");
     ExpectFalse(objectp(selector));
 
-    ExpectEq(({ "lib/modules/creation/attributeSelector.c" }),
+    ExpectEq(({ "lib/modules/creation/raceSelector.c" }),
         all_inventory(User));
 }

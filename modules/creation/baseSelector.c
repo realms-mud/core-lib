@@ -184,7 +184,7 @@ public nomask int applySelection(string arguments)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected void setUpUserForSelection(object user)
+protected void setUpUserForSelection()
 {
 }
 
@@ -195,7 +195,7 @@ public nomask varargs void initiateSelector(object user, int alreadyInitialized)
 
     if (!alreadyInitialized)
     {
-        setUpUserForSelection(User);
+        setUpUserForSelection();
     }
     else
     {

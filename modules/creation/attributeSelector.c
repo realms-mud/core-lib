@@ -69,7 +69,7 @@ public nomask void init()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void setUpUserForSelection(object user)
+protected nomask void setUpUserForSelection()
 {
     if ((User->effectiveLevel() <= 1) &&
         !User->attributeValue("strength", 1) &&

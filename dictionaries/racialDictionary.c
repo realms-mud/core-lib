@@ -12,6 +12,8 @@ private string *creatureRaces = ({ "orc", "troll", "gnoll", "undead", "dragon",
     "changeling", "hobgoblin", "kobold", "minotaur", "satyr"
 });
 
+private string SubraceRoot = "/lib/modules/traits/racial/";
+
 private mapping races = ([
      "elf": ([
         "description": "In appearance, elves typically have grey or blue eyes and blond\n"
@@ -31,6 +33,12 @@ private mapping races = ([
         "defend attack": 1,
         "spell points": 25,
         "bonus heal spell points rate": 2,
+        "subraces": ([
+            "wood elf": "woodElf.c",
+            "grey elf": "greyElf.c",
+            "dark elf": "darkElf.c",
+            "sea elf": "seaElf.c"
+        ]),
         "starting skill points": 6,
         "background trait value": 1
     ]),
@@ -51,6 +59,10 @@ private mapping races = ([
         "skills": ([
             "blacksmithing": 4,
             "hammer": 2
+        ]),
+        "subraces": ([
+            "Khazurathi dwarf": "khazurathiDwarf.c",
+            "Mirosti dwarf": "mirostiDwarf.c"
         ]),
         "starting skill points": 6,
         "background trait value": 2
@@ -146,6 +158,19 @@ private mapping races = ([
             "to admire the elaborate, elegant architecture of the elves and dwarves.\n"
             "Humans gain no advantages or disadvantages on Realmsmud, they are the\n"
             "happy medium... and they like it that way.\n",
+        "subraces": ([
+            "Eledhelean": "eledhelHuman.c",
+            "Hillgarathi": "hillgarathHuman.c",
+            "Tirnosti": "tirnostHuman.c",
+            "Menadrosti": "menadrostHuman.c",
+            "Iarwathean": "iarwathHuman.c",
+            "Helcarish": "helcarionHuman.c",
+            "Celebnosti": "celebnostHuman.c",
+            "Andurathi": "andurathHuman.c",
+            "Linmiri": "linmirHuman.c",
+            "Endurgish": "endurghulHuman.c",
+            "Zhenduli": "zhendulachHuman.c"
+        ]),
         "base starting skill points": 10,
         "background trait value": 5
     ]),
@@ -195,6 +220,10 @@ private mapping races = ([
             "weapon smithing": 3,
             "long sword": 5,
             "bow": 3
+        ]),
+        "subraces": ([
+            "Hillgarathi elf": "hillgarathElf.c",
+            "moon elf": "echorluinElf.c"
         ]),
         "starting skill points": 6,
         "background trait value": 2
@@ -478,7 +507,7 @@ private nomask string otherBonusesDescription(string race)
     string *bonuses = m_indices(races[race]) -
         ({ "strength", "intelligence", "wisdom", "dexterity",
         "constitution", "charisma", "description", "starting skill points",
-        "background trait value", "skills", "research trees" });
+        "background trait value", "skills", "research trees", "subraces" });
 
     bonuses = sort_array(bonuses, (: $1 > $2 :));
 
@@ -527,6 +556,40 @@ public nomask mapping characterCreationRaces()
             "description": racialDescription(race)
         ]);
         i++;
+    }
+    return selection;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping characterCreationSubraces(string race)
+{
+    mapping selection = ([]);
+
+    if (member(races, race) && member(races[race], "subraces"))
+    {
+        string *raceList = sort_array(m_indices(races[race]["subraces"]), (: $1 > $2 :));
+        int i = 1;
+        foreach(string subrace in raceList)
+        {
+            string path = SubraceRoot + races[race]["subraces"][subrace];
+            object traitDictionary = load_object("/lib/dictionaries/traitsDictionary.c");
+            object traitObj = traitDictionary->traitObject(path);
+
+            if(traitObj)
+            {
+                selection[to_string(i)] = ([
+                    "name":capitalize(subrace),
+                    "description": traitDictionary->traitDetails(path),
+                    "file": path
+                ]);
+                i++;
+            }
+        }
+        selection[to_string(i)] = ([
+            "name": "Do not add a subrace",
+            "description": "This option does not add a subrace to the player.\n",
+            "file": "none"
+        ]);
     }
     return selection;
 }

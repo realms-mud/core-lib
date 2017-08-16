@@ -7,15 +7,19 @@ inherit "/lib/commands/baseCommand.c";
 /////////////////////////////////////////////////////////////////////////////
 public nomask void init()
 {
-    addCommandTemplate("traits [-d(etails|)] [-ed(ucational|)] [-ef(fect|)] [-ge(netic|)] "
-        "[-g(uild|)] [-h(ealth|)] [-pe(rsonality|)] [-pr(ofessional|)] "
-        "[-r(ole|)] [.*]");
+    addCommandTemplate("traits [-b(ackground|)] [-d(etails|)] [-ed(ucational|)] "
+        "[-ef(fect|)] [-ge(netic|)] [-g(uild|)] [-h(ealth|)] [-pe(rsonality|)] "
+        "[-pr(ofessional|)] [-ra(cial|)] [-ro(le|)] [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int executeListTraits(string command, object initiator)
 {
     string *types = ({});
+    if (sizeof(regexp(({ command }), "-b(ackground)*( |$)")))
+    {
+        types += ({ "background" });
+    }
     if (sizeof(regexp(({ command }), "-ed(ucational)*( |$)")))
     {
         types += ({ "educational" });
@@ -44,7 +48,11 @@ private nomask int executeListTraits(string command, object initiator)
     {
         types += ({ "professional" });
     }
-    if (sizeof(regexp(({ command }), "-r(ole)*( |$)")))
+    if (sizeof(regexp(({ command }), "-ra(cial)*( |$)")))
+    {
+        types += ({ "racial" });
+    }
+    if (sizeof(regexp(({ command }), "-ro(le)*( |$)")))
     {
         types += ({ "role" });
     }
@@ -52,7 +60,7 @@ private nomask int executeListTraits(string command, object initiator)
         (command == "traits"))
     {
         types += ({ "health", "educational", "personality", "genetic",
-            "professional", "guild", "role", "effect" });
+            "professional", "guild", "role", "effect", "background", "racial" });
     }
 
     if (sizeof(types))

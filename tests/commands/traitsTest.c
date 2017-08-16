@@ -292,9 +292,31 @@ void RFlagDisplaysRoleTraits()
     Player->addTrait("/lib/tests/support/traits/testProfessionalTrait.c");
     Player->addTrait("/lib/tests/support/traits/testTraitOnlyOpinion.c");
 
-    ExpectTrue(Player->executeCommand("traits -r"));
+    ExpectTrue(Player->executeCommand("traits -ro"));
     ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(TraitsRow, "[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RacialFlagDisplaysRacialTraits()
+{
+    Player->addTrait("/lib/modules/traits/racial/hillgarathElf.c");
+
+    ExpectTrue(Player->executeCommand("traits -racial"));
+    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Racial Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
+        sprintf(TraitsRow, "[0;36m", "Hillgarathi Elf", "", "", "", "") + EndBar,
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RaFlagDisplaysRaTraits()
+{
+    Player->addTrait("/lib/modules/traits/racial/hillgarathElf.c");
+
+    ExpectTrue(Player->executeCommand("traits -ra"));
+    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Racial Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
+        sprintf(TraitsRow, "[0;36m", "Hillgarathi Elf", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
