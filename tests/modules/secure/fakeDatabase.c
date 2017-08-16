@@ -81,7 +81,6 @@ public nomask mapping Gorthaur()
         "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
         "playerId": 2,
         "pretitle": "Weasel Lord",
-        "title": "",
         "quests": ([ 
             "lib/tests/support/quests/testQuestItem.c": ([ 
                 "is active": 1,

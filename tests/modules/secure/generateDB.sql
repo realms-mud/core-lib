@@ -468,34 +468,34 @@ p_clone varchar(256), p_short varchar(256), p_long varchar(256))
 BEGIN
     if p_title <> '' then
 	    call saveMaterialAttribute(p_playerid, 'title', p_title);
-    end;
+    end if;
     if p_pretitle <> '' then
 	    call saveMaterialAttribute(p_playerid, 'pretitle', p_pretitle);
-    end;
+    end if;
     if p_msgin <> '' then
 	    call saveMaterialAttribute(p_playerid, 'messageIn', p_msgin);
-    end;
+    end if;
     if p_msgout <> '' then
 	    call saveMaterialAttribute(p_playerid, 'messageOut', p_msgout);
-    end;
+    end if;
     if p_magicalIn <> '' then
 	    call saveMaterialAttribute(p_playerid, 'magicalMessageIn', p_magicalIn);
-    end;
+    end if;
     if p_magicalOut <> '' then
 	    call saveMaterialAttribute(p_playerid, 'magicalMessageOut', p_magicalOut);
-    end;
+    end if;
     if p_home <> '' then
 	    call saveMaterialAttribute(p_playerid, 'messageHome', p_home);
-    end;
+    end if;
     if p_clone <> '' then
 	    call saveMaterialAttribute(p_playerid, 'messageClone', p_clone);
-    end;
+    end if;
     if p_short <> '' then
 	    call saveMaterialAttribute(p_playerid, 'shortDescription', p_short);
-    end;
+    end if;
     if p_long <> '' then
     	call saveMaterialAttribute(p_playerid, 'longDescription', p_long);
-    end;
+    end if;
 END;
 ##
 CREATE PROCEDURE TestDB.`saveGuild`(p_playerid int, p_guild varchar(40), p_title varchar(45), 
