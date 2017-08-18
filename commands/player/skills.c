@@ -43,12 +43,13 @@ private nomask int executeAdvanceSkill(string command, object initiator)
                 else
                 {
                     string attribute = skills->attributeForSkill(skill);
+                    int requiredAttribute = (initiator->getSkill(skill,1) + value - 10);
                     notify_fail(sprintf(
                         "Cannot advance '%s': Your %s attribute (%d) must be at "
                         "least %d.\nIt would also cost %d points to raise "
                         "it to level %d.\n", skill, attribute,
                         initiator->attributeValue(attribute), 
-                        (initiator->getSkill(skill) + value - 10),
+                        (requiredAttribute > 2) ? requiredAttribute : 2,
                         initiator->advanceSkillCost(skill, value),
                         initiator->getSkill(skill) + value));
                 }

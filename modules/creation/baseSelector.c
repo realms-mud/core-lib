@@ -13,6 +13,7 @@ protected mapping Data = 0;
 protected string Description = 0;
 protected int AllowUndo = 1;
 protected int AllowAbort = 0;
+protected int NumColumns = 1;
 
 private string *UndoLog = ({ });
 
@@ -55,6 +56,18 @@ protected string displayDetails(string choice)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private string padSelectionDisplay(string selection)
+{
+    string ret = "";
+    if ((sizeof(Data) > 9) && (member(({ "1", "2", "3", "4", "5", "6",
+        "7", "8", "9" }), selection) > -1))
+    {
+        ret = " ";
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string displayMessage()
 {
     string ret = "";
@@ -65,13 +78,26 @@ public nomask string displayMessage()
             Description);
 
         string *choices = sort_array(m_indices(Data), "sortMethod");
+
+        int i = 1;
         foreach(string choice in choices)
         {
-            string format = sprintf("\t[%s] - %s%s\n", Red, "[0;32m%-20s[0m",
+            string format = sprintf("%s[%s]%s - %s%s", 
+                (NumColumns < 3) ? "\t" : "", Red,
+                padSelectionDisplay(choice), "[0;32m%-20s[0m",
                 displayDetails(choice));
             ret += sprintf(format, choice, Data[choice]["name"]);
+            if (!(i % NumColumns))
+            {
+                ret += "\n";
+            }
+            i++;
         }
 
+        if (ret[sizeof(ret) - 1] != '\n')
+        {
+            ret += "\n";
+        }
         ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.%s\n", sizeof(choices), AllowUndo ? " You may also undo or reset." : ""));
         ret += sprintf(Green, "For details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n");
         if (AllowAbort)
@@ -81,6 +107,12 @@ public nomask string displayMessage()
         ret += sprintf(BoldGreen, additionalInstructions());
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int suppressMenuDisplay()
+{
+    return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -113,7 +145,11 @@ private nomask void makeSelection(string selection)
     else
     {
         UndoLog += ({ selection });
-        tell_object(User, displayMessage());
+
+        if (!suppressMenuDisplay())
+        {
+            tell_object(User, displayMessage());
+        }
     }
 }
 
@@ -130,6 +166,7 @@ public nomask int applySelection(string arguments)
             member(Data, element))
         {
             ret = Describe;
+            tell_object(User, displayMessage() + "\n");
             tell_object(User, sprintf(Cyan, Data[element]["description"]));
         }
         else if ((arguments == "undo") && sizeof(UndoLog) && AllowUndo)

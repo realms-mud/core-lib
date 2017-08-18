@@ -129,7 +129,7 @@ private mapping races = ([
         "charisma": -2,
         "stamina points": 50,
         "spell points": -50,
-        "starting skill points": 6,
+        "starting skill points": 8,
         "background trait value": 3
     ]),
     "faerie": ([
@@ -171,8 +171,8 @@ private mapping races = ([
             "Endurgish": "endurghulHuman.c",
             "Zhenduli": "zhendulachHuman.c"
         ]),
-        "base starting skill points": 10,
-        "background trait value": 5
+        "starting skill points": 10,
+        "background trait value": 6
     ]),
     "half troll": ([
         "description": "Half-trolls are people that have both human and troll parents.\n"
@@ -592,4 +592,16 @@ public nomask mapping characterCreationSubraces(string race)
         ]);
     }
     return selection;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int startingSkillPoints(string race)
+{
+    int ret = 0;
+
+    if (member(races[race], "starting skill points"))
+    {
+        ret = races[race]["starting skill points"];
+    }
+    return ret;
 }

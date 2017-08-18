@@ -58,7 +58,7 @@ public nomask int addSkillPoints(int points)
 }
     
 /////////////////////////////////////////////////////////////////////////////
-public nomask int getSkill(string skill)
+public nomask varargs int getSkill(string skill, int raw)
 {
     int ret = 0;
     if(skill && skillsObject()->isValidSkill(skill))
@@ -70,29 +70,35 @@ public nomask int getSkill(string skill)
             ret = skills[skill];
             servicesToCheck += ({ "research", "biological" });
 
-            object inventory = getService("inventory");
-            if (inventory && objectp(inventory))
+            if (!raw)
             {
-                ret += inventory->inventoryGetModifier("bonusSkills",
-                    sprintf("bonus %s", skill));
-            }
+                object inventory = getService("inventory");
+                if (inventory && objectp(inventory))
+                {
+                    ret += inventory->inventoryGetModifier("bonusSkills",
+                        sprintf("bonus %s", skill));
+                }
 
-            object room = environment(this_object());
-            if (room && (member(inherit_list(room), "lib/environment/room.c") > -1))
-            {
-                ret += room->environmentalBonusTo(skill, this_object());
+                object room = environment(this_object());
+                if (room && (member(inherit_list(room), "lib/environment/room.c") > -1))
+                {
+                    ret += room->environmentalBonusTo(skill, this_object());
+                }
             }
         }
     
-        foreach(string serviceToCheck in servicesToCheck)
+        if (!raw)
         {
-            object service = getService(serviceToCheck);
-            if(service)
+            foreach(string serviceToCheck in servicesToCheck)
             {
-                ret += call_other(service, 
-                       sprintf("%sBonusTo", serviceToCheck), skill);
+                object service = getService(serviceToCheck);
+                if (service)
+                {
+                    ret += call_other(service,
+                        sprintf("%sBonusTo", serviceToCheck), skill);
+                }
             }
-        }      
+        }
     }
     return ret;
 }
