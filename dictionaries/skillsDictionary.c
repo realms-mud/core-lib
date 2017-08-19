@@ -1005,26 +1005,26 @@ private mapping skills = ([
         "description": "This skill allows the user the ability to control the forces of\n"
             "magic through the sacrifice of living essence.\n"
     ]),
-    "dwarvish": ([
+    "dwarven": ([
         "type": "language",
         "attribute": "intelligence",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
         "description": "This is the language of dwarves.\n"
     ]),    
-    "high elvish": ([
+    "high elven": ([
         "type": "language",
         "attribute": "intelligence",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
         "description": "This is the language of the high elves.\n"
     ]),  
-    "elvish": ([
+    "elven": ([
         "type": "language",
         "attribute": "intelligence",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This is the language of grey elves.\n"
+        "description": "This is the language of grey elves"
     ]),  
     "sylvan": ([
         "type": "language",

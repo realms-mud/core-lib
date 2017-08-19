@@ -80,7 +80,7 @@ void SelectLanguageDisplaysLanguageSkillSubmenu()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("5");
-    ExpectTrue(sizeof(regexp(({ User->caughtMessage() }), "Elvish")));
+    ExpectTrue(sizeof(regexp(({ User->caughtMessage() }), "Elven")));
 }
 
 /////////////////////////////////////////////////////////////////////////////

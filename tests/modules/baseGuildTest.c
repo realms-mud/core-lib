@@ -690,7 +690,7 @@ void SkillCostsAppliedCorrectlyForLanguageSkills()
     User->addSkillPoints(100);
 
     // Language should always be 1
-    ExpectEq(1, User->advanceSkillCost("dwarvish", 1));
+    ExpectEq(1, User->advanceSkillCost("dwarven", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////

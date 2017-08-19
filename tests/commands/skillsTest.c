@@ -352,8 +352,8 @@ void LanguageFlagOnlyDisplaysLanguageSkills()
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
-        sprintf(SkillsRow, "Dwarvish", 2, "", "Elvish", 3, "") +
-        sprintf(SkillsRow, "Endurghul", 4, "", "High elvish", 5, "") +
+        sprintf(SkillsRow, "Dwarven", 2, "", "Elven", 3, "") +
+        sprintf(SkillsRow, "Endurghul", 4, "", "High elven", 5, "") +
         sprintf(SkillsRow, "Hillgarathi", 6, "", "Menadrosti", 7, "") +
         sprintf(SkillsRow, "Orcish", 8, "", "Sylvan", 9, "") +
         sprintf(HalfRow, "Tirnosti", 0, "", "") +
@@ -371,8 +371,8 @@ void LFlagOnlyDisplaysLanguageSkills()
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
-        sprintf(SkillsRow, "Dwarvish", 2, "", "Elvish", 3, "") +
-        sprintf(SkillsRow, "Endurghul", 4, "", "High elvish", 5, "") +
+        sprintf(SkillsRow, "Dwarven", 2, "", "Elven", 3, "") +
+        sprintf(SkillsRow, "Endurghul", 4, "", "High elven", 5, "") +
         sprintf(SkillsRow, "Hillgarathi", 6, "", "Menadrosti", 7, "") +
         sprintf(SkillsRow, "Orcish", 8, "", "Sylvan", 9, "") +
         sprintf(HalfRow, "Tirnosti", 0, "", "") +
@@ -446,8 +446,8 @@ void AllFlagDisplaysAllSkills()
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
-        sprintf(SkillsRow, "Dwarvish", 2, "", "Elvish", 3, "") +
-        sprintf(SkillsRow, "Endurghul", 4, "", "High elvish", 5, "") +
+        sprintf(SkillsRow, "Dwarven", 2, "", "Elven", 3, "") +
+        sprintf(SkillsRow, "Endurghul", 4, "", "High elven", 5, "") +
         sprintf(SkillsRow, "Hillgarathi", 6, "", "Menadrosti", 7, "") +
         sprintf(SkillsRow, "Orcish", 8, "", "Sylvan", 9, "") +
         sprintf(HalfRow, "Tirnosti", 0, "", "");
@@ -541,8 +541,8 @@ void NoFlagDisplaysAllSkills()
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
-        sprintf(SkillsRow, "Dwarvish", 2, "", "Elvish", 3, "") +
-        sprintf(SkillsRow, "Endurghul", 4, "", "High elvish", 5, "") +
+        sprintf(SkillsRow, "Dwarven", 2, "", "Elven", 3, "") +
+        sprintf(SkillsRow, "Endurghul", 4, "", "High elven", 5, "") +
         sprintf(SkillsRow, "Hillgarathi", 6, "", "Menadrosti", 7, "") +
         sprintf(SkillsRow, "Orcish", 8, "", "Sylvan", 9, "") +
         sprintf(HalfRow, "Tirnosti", 0, "", "");
