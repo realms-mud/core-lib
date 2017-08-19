@@ -1024,7 +1024,7 @@ private mapping skills = ([
         "attribute": "intelligence",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This is the language of grey elves"
+        "description": "This is the language of elves"
     ]),  
     "sylvan": ([
         "type": "language",
