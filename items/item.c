@@ -138,6 +138,12 @@ public mixed query(string element)
                     ret = isEnchanted;
                     break;
                 }
+                case "short":
+                {
+                    // This is only happens if short is not set
+                    ret = query("name");
+                    break;
+                }
                 case "bonuses":
                 {
                     ret = filter_array(m_indices(itemData),

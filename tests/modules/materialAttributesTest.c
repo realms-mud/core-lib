@@ -12,6 +12,7 @@ void Setup()
 {
     Attributes = clone_object("/lib/realizations/player");
     Attributes->Name("Bob");
+    Attributes->hitPoints(500);
 }
 
 /////////////////////////////////////////////////////////////////////////////

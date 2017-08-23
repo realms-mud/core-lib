@@ -164,6 +164,10 @@ private nomask int calculateServiceBonuses(string methodToCheck)
 //-----------------------------------------------------------------------------
 public nomask int maxHitPoints()
 {
+    if (!maxHitPoints)
+    {
+        maxHitPoints = 30;
+    }
     int ret = maxHitPoints;
     
     object inventory = getService("inventory");
@@ -184,7 +188,7 @@ public nomask int maxHitPoints()
     // This case will never happen with properly cloned living things. However,
     // the improperly done is possible. This removes the chance for division by
     // zero.
-    if (!ret)
+    if (ret < 1)
     {
         ret = 1;
     }
@@ -273,6 +277,10 @@ public nomask varargs string healthDescription()
 //-----------------------------------------------------------------------------
 public nomask int maxSpellPoints()
 {
+    if (!maxSpellPoints)
+    {
+        maxSpellPoints = 30;
+    }
     int ret = maxSpellPoints;
     
     object inventory = getService("inventory");
@@ -288,6 +296,10 @@ public nomask int maxSpellPoints()
     if(attributes)
     {
         ret += (attributes->Int() * 3) + (attributes->Wis() * 3);
+    }
+    if (ret < 0)
+    {
+        ret = 0;
     }
     return ret;
 }
@@ -308,6 +320,7 @@ public nomask varargs int spellPoints(int increase)
     if(intp(increase) && (increase != 0))
     {
         spellPoints += increase;
+
         object inventory = getService("inventory");
         if(increase > 0)
         {
@@ -333,7 +346,7 @@ public nomask varargs int spellPoints(int increase)
         combatNotification("onSpellPointsChanged");
     }
 
-    if (increase && (spellPoints > maxSpellPoints()))
+    if(increase && (spellPoints > maxSpellPoints()))
     {
         spellPoints = maxSpellPoints();
     }
@@ -357,6 +370,10 @@ public nomask varargs int spellPoints(int increase)
 //-----------------------------------------------------------------------------
 public nomask int maxStaminaPoints()
 {
+    if (!maxStaminaPoints)
+    {
+        maxStaminaPoints = 30;
+    }
     int ret = maxStaminaPoints;
     
     object inventory = getService("inventory");
@@ -373,6 +390,11 @@ public nomask int maxStaminaPoints()
     {
         ret += (attributes->Str() * 3) + (attributes->Con() * 3);
     }    
+
+    if (ret < 0)
+    {
+        ret = 0;
+    }
     return ret;
 }
 
@@ -549,7 +571,7 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
 
     if (!doNotRandomize)
     {
-        toHit += random(101);
+        toHit += random(101) - 25;
     }
 
     if(attacker && objectp(attacker) && 
@@ -679,7 +701,12 @@ public nomask varargs int calculateDamage(object weapon, string damageType, int 
     {
         ret += to_int((ret / 8.0) - random(ret / 4));
     }
-    
+
+    if (ret < 0)
+    {
+        ret = 0;
+    }
+
     return ret;
 }
 
@@ -923,6 +950,27 @@ static nomask object getTargetToAttack()
         }
     }
     return attacker;    
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getHostileList()
+{
+    string ret = "Nothing at all, aren't you lucky?";
+
+    object *attackers = m_indices(hostileList);
+    if(sizeof(attackers))
+    {
+        ret = "";
+        foreach(object attacker in attackers)
+        {
+            if (ret != "")
+            {
+                ret += ", ";
+            }
+            ret += attacker->Name();
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1486,13 +1534,13 @@ public nomask int attack(object foe)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int Wimpy(string newWimpyVal)
+public nomask varargs int Wimpy(string newWimpyVal, int suppressDisplay)
 {
-    if(!newWimpyVal || !stringp(newWimpyVal))
+    if(!suppressDisplay && (!newWimpyVal || !stringp(newWimpyVal)))
     {
         printf("Wimpy: %d%%\n", wimpy);
     }
-    else
+    else if (!suppressDisplay)
     {
         // Alas, to_int will return 0 if a string w/o an int is passed.
         wimpy = to_int(newWimpyVal);
@@ -1713,3 +1761,40 @@ static nomask void healingHeartBeat()
     }    
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask string vitalsDetails(string vital)
+{
+    string format = "[0;36m%12s:[0m [0;35;1m%s[0m ";
+    int current = call_other(this_object(), lower_case(vital) + "Points");
+    int max = call_other(this_object(), "max" + capitalize(vital) + "Points");
+
+    string bar = "==========";
+    if (!max)
+    {
+        bar = "[0m[0;31m//////////";
+    }
+    else
+    {
+        bar[(10 * current) / max..] = "[0m[0;31m";
+        for (int i = ((10 * current) / max); i < 10; i++)
+        {
+            bar += ".";
+        }
+    }
+
+    string extra = (vital != "Stamina") ? " Points" : "";
+
+    return sprintf(format, vital + extra, bar);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string vitals()
+{
+    return "[0;31m|[0m" + vitalsDetails("Hit") +
+        " " + vitalsDetails("Spell") +
+        " " + vitalsDetails("Stamina") + "[0;31m|[0m\n" +
+        sprintf("[0;31m|[0m%13s [0;33m%-11s[0m %13s [0;33m%-11s[0m %13s [0;33m%-11s[0m[0;31m|[0m\n",
+            "", sprintf("%d/%d", hitPoints(), maxHitPoints()),
+            "", sprintf("%d/%d", spellPoints(), maxSpellPoints()),
+            "", sprintf("%d/%d", staminaPoints(), maxStaminaPoints()));
+}

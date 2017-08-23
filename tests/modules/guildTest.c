@@ -76,11 +76,11 @@ void JoinGuildFiresOnJoinGuildOnSuccess()
 /////////////////////////////////////////////////////////////////////////////
 void JoinGuildAppliesGuildCriteriaForLevelOne()
 {
-    ExpectEq(120, User->maxHitPoints(), "maxHitPoints is 120 before joining");
+    ExpectEq(150, User->maxHitPoints(), "maxHitPoints is 150 before joining");
     ExpectEq(0, User->AvailableSkillPoints(), "no skill points available before joining");
     ExpectEq(0, User->researchPoints(), "no research points available before joining");
     ExpectTrue(User->joinGuild("test"));
-    ExpectEq(125, User->maxHitPoints(), "maxHitPoints is 120 after joining");
+    ExpectEq(155, User->maxHitPoints(), "maxHitPoints is 155 after joining");
     ExpectEq(5, User->AvailableSkillPoints(), "skill points available after joining");
     ExpectEq(1, User->researchPoints(), "research points available after joining");
 }
@@ -168,7 +168,7 @@ void AdvanceLevelAdvancesLevelAndAppliesGuildCriteria()
     ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research not researched");
     ExpectTrue(User->advanceLevel("test"), "level advanced");
     ExpectEq(2, User->guildLevel("test"), "guild level is 2");
-    ExpectEq(130, User->maxHitPoints(), "maxHitPoints is 130 after advancing");
+    ExpectEq(160, User->maxHitPoints(), "maxHitPoints is 160 after advancing");
     ExpectEq(10, User->AvailableSkillPoints(), "skill points available after advancing");
     ExpectEq(1, User->attributePoints(), "attribute points available after advancing");
     ExpectEq(2, User->researchPoints(), "research points available after advancing");
@@ -353,20 +353,20 @@ void CanLeaveGuildFailsIfMemberIsAnathema()
 /////////////////////////////////////////////////////////////////////////////
 void LeavingGuildDoesNotRemoveLearnedGuildSkills()
 {
-    ExpectEq(120, User->maxHitPoints(), "maxHitPoints is 120 when not a member of the guild");
+    ExpectEq(150, User->maxHitPoints(), "maxHitPoints is 150 when not a member of the guild");
     User->joinGuild("test");
     ExpectTrue(User->addExperience(1000), "experience added");
     ExpectEq(0, User->getSkill("long sword"), "no long sword skill before advancing");
     ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research not researched");
     ExpectTrue(User->advanceLevel("test"), "level advanced");
     ExpectEq(2, User->guildLevel("test"), "guild level is 2");
-    ExpectEq(130, User->maxHitPoints(), "maxHitPoints is 130 after advancing");
+    ExpectEq(160, User->maxHitPoints(), "maxHitPoints is 160 after advancing");
     ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research is researched");
     ExpectEq(1, User->getSkill("long sword"), "long sword skill after advancing");
 
     ExpectTrue(User->leaveGuild("test"), "user leaves the guild");
     ExpectEq(0, User->guildLevel("test"), "guild level is now 0");
-    ExpectEq(130, User->maxHitPoints(), "maxHitPoints is unchanged after leaving");
+    ExpectEq(160, User->maxHitPoints(), "maxHitPoints is unchanged after leaving");
     ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research is still researched");
     ExpectEq(1, User->getSkill("long sword"), "long sword skill is still 6");
 }

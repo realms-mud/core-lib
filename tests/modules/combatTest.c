@@ -102,9 +102,9 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void MaxHitPointsWithConOf20Returns120()
+void MaxHitPointsWithConOf20Returns150()
 {
-    ExpectEq(120, Attacker->maxHitPoints());
+    ExpectEq(150, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -118,13 +118,13 @@ void InventoryCorrectlyAffectsMaxHitPoints()
     modifier->set("fully qualified name", "blah");
     modifier->set("bonus hit points", 6);
 
-    ExpectEq(120, Attacker->maxHitPoints(), "hit points still 120 until equipment equipped");
+    ExpectEq(150, Attacker->maxHitPoints(), "hit points still 150 until equipment equipped");
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
     ExpectTrue(armor->equip("stuff"), "armor equip called");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(150, Attacker->maxHitPoints(), "hit points 132 with equipment equipped");
+    ExpectEq(180, Attacker->maxHitPoints(), "hit points 180 with equipment equipped");
     ExpectEq(12, Attacker->inventoryGetModifier("combatModifiers", "bonus hit points"));
 }
 
@@ -132,49 +132,49 @@ void InventoryCorrectlyAffectsMaxHitPoints()
 void MaxHitPointsCorrectlyAppliesRacialModifiers()
 {
     Attacker->Race("dwarf");
-    ExpectEq(142, Attacker->maxHitPoints());
+    ExpectEq(172, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MaxHitPointsCorrectlyAppliesGuildsModifiers()
 {
-    ExpectEq(120, Attacker->maxHitPoints());
+    ExpectEq(150, Attacker->maxHitPoints());
     Attacker->ToggleMockGuilds();
-    ExpectEq(125, Attacker->maxHitPoints());
+    ExpectEq(155, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MaxHitPointsCorrectlyAppliesResearchModifiers()
 {
-    ExpectEq(120, Attacker->maxHitPoints());
+    ExpectEq(150, Attacker->maxHitPoints());
     Attacker->ToggleMockResearch();
-    ExpectEq(134, Attacker->maxHitPoints());
+    ExpectEq(164, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MaxHitPointsCorrectlyAppliesTraitsModifiers()
 {
-    ExpectEq(120, Attacker->maxHitPoints());
+    ExpectEq(150, Attacker->maxHitPoints());
     Attacker->ToggleMockTrait();
 
     // This should apply a +6 for a consititution attribute bonus and a +2 for the trait
-    ExpectEq(128, Attacker->maxHitPoints());
+    ExpectEq(158, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MaxHitPointsCorrectlyAppliesBiologicalModifiers()
 {
-    ExpectEq(120, Attacker->maxHitPoints());
+    ExpectEq(150, Attacker->maxHitPoints());
     Attacker->ToggleMockBiological();
-    ExpectEq(118, Attacker->maxHitPoints());
+    ExpectEq(148, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MaxHitPointsCorrectlyAppliesBackgroundModifiers()
 {
-    ExpectEq(120, Attacker->maxHitPoints());
+    ExpectEq(150, Attacker->maxHitPoints());
     Attacker->ToggleMockBackground();
-    ExpectEq(122, Attacker->maxHitPoints());
+    ExpectEq(152, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -188,7 +188,7 @@ void MaxHitPointsCorrectlyAppliesAllModifiers()
     modifier->set("fully qualified name", "blah");
     modifier->set("bonus hit points", 6);
 
-    ExpectEq(120, Attacker->maxHitPoints(), "hit points still 120 until equipment equipped");
+    ExpectEq(150, Attacker->maxHitPoints(), "hit points still 150 until equipment equipped");
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
@@ -200,7 +200,7 @@ void MaxHitPointsCorrectlyAppliesAllModifiers()
     Attacker->ToggleMockTrait();
     Attacker->ToggleMockBiological();
     Attacker->ToggleMockBackground();
-    ExpectEq(199, Attacker->maxHitPoints());
+    ExpectEq(229, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -220,9 +220,9 @@ void HitPointsCapsAtMaxHitPoints()
     Attacker->ToggleMockTrait();
 
     ExpectEq(0, Attacker->hitPoints());
-    ExpectEq(150, Attacker->hitPoints(200));
-    ExpectEq(150, Attacker->hitPoints());
-    ExpectEq(150, Attacker->maxHitPoints());
+    ExpectEq(180, Attacker->hitPoints(200));
+    ExpectEq(180, Attacker->hitPoints());
+    ExpectEq(180, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -250,35 +250,35 @@ void HitPointsFiresOnHitPointsChangedEvent()
 /////////////////////////////////////////////////////////////////////////////
 void HealthDescriptionReturnsInGoodShapeWhenHealthy()
 {
-    Attacker->hitPoints(200);
+    Attacker->hitPoints(180);
     ExpectEq("is in good shape.", Attacker->healthDescription());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HealthDescriptionReturnsBarelyInjuredWhenNearFullHealth()
 {
-    Attacker->hitPoints(100);
+    Attacker->hitPoints(120);
     ExpectEq("is barely inured.", Attacker->healthDescription());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HealthDescriptionReturnsMinorInjuriesBelow75Percent()
 {
-    Attacker->hitPoints(89);
+    Attacker->hitPoints(100);
     ExpectEq("has some minor injuries.", Attacker->healthDescription());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HealthDescriptionReturnsRoughedUpBelow50Percent()
 {
-    Attacker->hitPoints(59);
+    Attacker->hitPoints(74);
     ExpectEq("has been roughed up.", Attacker->healthDescription());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HealthDescriptionReturnsTakenBeatingBelow25Percent()
 {
-    Attacker->hitPoints(29);
+    Attacker->hitPoints(36);
     ExpectEq("has taken a beating.", Attacker->healthDescription());
 }
 
@@ -292,7 +292,7 @@ void HealthDescriptionReturnsSeverelInjuredBelow13Percent()
 /////////////////////////////////////////////////////////////////////////////
 void HealthDescriptionReturnsSeverelInjuredBelow6Percent()
 {
-    Attacker->hitPoints(5);
+    Attacker->hitPoints(4);
     ExpectEq("is knocking on death's door.", Attacker->healthDescription());
 }
 
@@ -305,22 +305,22 @@ void MaxSpellPointsCorrectlyAppliesAllModifiers()
     modifier->set("bonus spell points", 10);
 
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(136, Attacker->maxSpellPoints());
+    ExpectEq(166, Attacker->maxSpellPoints());
     modifier->set("bonus wisdom", 1);
-    ExpectEq(139, Attacker->maxSpellPoints());
+    ExpectEq(169, Attacker->maxSpellPoints());
     Attacker->Race("elf");
     // 25 for elf plus 3 for int
-    ExpectEq(167, Attacker->maxSpellPoints());
+    ExpectEq(197, Attacker->maxSpellPoints());
     Attacker->ToggleMockGuilds();
-    ExpectEq(172, Attacker->maxSpellPoints());
+    ExpectEq(202, Attacker->maxSpellPoints());
     Attacker->ToggleMockResearch();
-    ExpectEq(186, Attacker->maxSpellPoints());
+    ExpectEq(216, Attacker->maxSpellPoints());
     Attacker->ToggleMockTrait();
-    ExpectEq(194, Attacker->maxSpellPoints());
+    ExpectEq(224, Attacker->maxSpellPoints());
     Attacker->ToggleMockBiological();
-    ExpectEq(192, Attacker->maxSpellPoints());
+    ExpectEq(222, Attacker->maxSpellPoints());
     Attacker->ToggleMockBackground();
-    ExpectEq(194, Attacker->maxSpellPoints());
+    ExpectEq(224, Attacker->maxSpellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -332,22 +332,22 @@ void MaxStaminaPointsCorrectlyAppliesAllModifiers()
     modifier->set("bonus stamina points", 5);
 
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(131, Attacker->maxStaminaPoints());
+    ExpectEq(161, Attacker->maxStaminaPoints());
     modifier->set("bonus constitution", 1);
-    ExpectEq(134, Attacker->maxStaminaPoints());
+    ExpectEq(164, Attacker->maxStaminaPoints());
     Attacker->Race("dwarf");
     // 25 for dwarf plus 3 for strength plus 6 for con
-    ExpectEq(168, Attacker->maxStaminaPoints());
+    ExpectEq(198, Attacker->maxStaminaPoints());
     Attacker->ToggleMockGuilds();
-    ExpectEq(173, Attacker->maxStaminaPoints());
+    ExpectEq(203, Attacker->maxStaminaPoints());
     Attacker->ToggleMockResearch();
-    ExpectEq(187, Attacker->maxStaminaPoints());
+    ExpectEq(217, Attacker->maxStaminaPoints());
     Attacker->ToggleMockTrait();
-    ExpectEq(195, Attacker->maxStaminaPoints());
+    ExpectEq(225, Attacker->maxStaminaPoints());
     Attacker->ToggleMockBiological();
-    ExpectEq(193, Attacker->maxStaminaPoints());
+    ExpectEq(223, Attacker->maxStaminaPoints());
     Attacker->ToggleMockBackground();
-    ExpectEq(195, Attacker->maxStaminaPoints());
+    ExpectEq(225, Attacker->maxStaminaPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -367,9 +367,9 @@ void SpellPointsCapsAtMaxSpellPoints()
     Attacker->ToggleMockTrait();
 
     ExpectEq(0, Attacker->spellPoints());
-    ExpectEq(156, Attacker->spellPoints(200));
-    ExpectEq(156, Attacker->spellPoints());
-    ExpectEq(156, Attacker->maxSpellPoints());
+    ExpectEq(186, Attacker->spellPoints(200));
+    ExpectEq(186, Attacker->spellPoints());
+    ExpectEq(186, Attacker->maxSpellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -454,9 +454,9 @@ void StaminaPointsCapsAtMaxStaminaPoints()
     Attacker->ToggleMockTrait();
 
     ExpectEq(0, Attacker->staminaPoints(), "initial stamina points is zero");
-    ExpectEq(162, Attacker->staminaPoints(200), "incrementing by 200 caps at maxStaminaPoints");
-    ExpectEq(162, Attacker->staminaPoints(), "querying stamina returns expected result");
-    ExpectEq(162, Attacker->maxStaminaPoints(), "max stamina matches");
+    ExpectEq(192, Attacker->staminaPoints(200), "incrementing by 200 caps at maxStaminaPoints");
+    ExpectEq(192, Attacker->staminaPoints(), "querying stamina returns expected result");
+    ExpectEq(192, Attacker->maxStaminaPoints(), "max stamina matches");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1515,6 +1515,7 @@ void AttackInvolvingDeathCreatesCorpseAndDestroysTarget()
 
     object weapon = CreateWeapon("sword");
     Attacker->hitPoints(Attacker->maxHitPoints());
+    weapon->set("bonus long sword", 50);
     weapon->equip("sword");
     move_object(Attacker, room);
 
@@ -1522,7 +1523,7 @@ void AttackInvolvingDeathCreatesCorpseAndDestroysTarget()
     move_object(Target, room);
 
     Attacker->addSkillPoints(100);
-    Attacker->advanceSkill("long sword", 15);
+    Attacker->advanceSkill("long sword", 20);
 
     object *roomItems = all_inventory(room);
     ExpectEq(2, sizeof(roomItems), "two object are in the room");
@@ -1590,7 +1591,7 @@ void HitAddsCorrectExperience()
     Target->hitPoints(Target->maxHitPoints());
 
     Target->hit(100, "physical", Attacker);
-    ExpectEq(3375, Attacker->experience());
+    ExpectEq(2700, Attacker->experience());
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -314,9 +314,9 @@ void CallingExecuteDecreasesHitPointsAppropriately()
     ResearchItem->addSpecification("hit point cost", 20);
 
     User->ToggleMockResearch();
-    ExpectEq(120, User->hitPoints(), "initial hit point total");
+    ExpectEq(150, User->hitPoints(), "initial hit point total");
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(100, User->hitPoints(), "hit point total after execution");
+    ExpectEq(130, User->hitPoints(), "hit point total after execution");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -329,9 +329,9 @@ void CallingExecuteDecreasesSpellPointsAppropriately()
     ResearchItem->addSpecification("spell point cost", 22);
 
     User->ToggleMockResearch();
-    ExpectEq(120, User->spellPoints(), "initial spell point total");
+    ExpectEq(150, User->spellPoints(), "initial spell point total");
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(100, User->spellPoints(), "spell point total after execution");
+    ExpectEq(130, User->spellPoints(), "spell point total after execution");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -344,8 +344,8 @@ void CallingExecuteDecreasesStaminaPointsAppropriately()
     ResearchItem->addSpecification("stamina point cost", 22);
 
     User->ToggleMockResearch();
-    ExpectEq(120, User->staminaPoints(), "initial stamina point total");
+    ExpectEq(150, User->staminaPoints(), "initial stamina point total");
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(100, User->staminaPoints(), "stamina point total after execution");
+    ExpectEq(130, User->staminaPoints(), "stamina point total after execution");
 }
 

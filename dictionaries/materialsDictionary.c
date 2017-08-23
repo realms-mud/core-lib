@@ -526,7 +526,7 @@ private nomask int calculateServiceBonuses(string methodToCheck, object initiato
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyWeaponAttackInformation(object weapon, object initiator)
+public nomask string getWeaponAttackInformation(object weapon, object initiator)
 {
     int baseAttack = weapon->query("weapon attack");
 
@@ -629,7 +629,7 @@ private nomask string applyResistances(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyWeaponDamageInformation(object weapon, object initiator)
+public nomask string getWeaponDamageInformation(object weapon, object initiator)
 {
     string ret = "";
     int baseDamage = weapon->query("weapon class");
@@ -667,7 +667,7 @@ private nomask string applyWeaponDamageInformation(object weapon, object initiat
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyWeaponDefenseInformation(object weapon, object initiator)
+public nomask string getWeaponDefenseInformation(object weapon, object initiator)
 {
     int baseDefense = weapon->query("defense class");
 
@@ -694,7 +694,7 @@ private nomask string applyWeaponDefenseInformation(object weapon, object initia
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyEncumberance(object item, object initiator)
+public nomask string getEncumberance(object item, object initiator)
 {
     int encumberance = item->query("encumberance");
 
@@ -749,14 +749,14 @@ private nomask string applyMaterialDetails(object item)
 private nomask string applyWeaponDetails(object weapon, object initiator)
 {
     return applyMaterialDetails(weapon) +
-        applyWeaponAttackInformation(weapon, initiator) +
-        applyWeaponDamageInformation(weapon, initiator) +
-        applyWeaponDefenseInformation(weapon, initiator) +
-        applyEncumberance(weapon, initiator);
+        getWeaponAttackInformation(weapon, initiator) +
+        getWeaponDamageInformation(weapon, initiator) +
+        getWeaponDefenseInformation(weapon, initiator) +
+        getEncumberance(weapon, initiator);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyArmorDetails(object armor, object initiator)
+public nomask string getDamageProtection(object armor, object initiator)
 {
     int baseAC = armor->query("armor class");
 
@@ -769,7 +769,13 @@ private nomask string applyArmorDetails(object armor, object initiator)
             (initiator->strengthBonus() / 2);
     }
 
-    string ret = sprintf(SingleDetailText, "Damage Protection", baseAC);
+    return sprintf(SingleDetailText, "Damage Protection", baseAC);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyArmorDetails(object armor, object initiator)
+{
+    string ret = getDamageProtection(armor, initiator);
     
     string resistances = applyResistances(armor);
     if (resistances)
@@ -779,7 +785,7 @@ private nomask string applyArmorDetails(object armor, object initiator)
     }
     return applyMaterialDetails(armor) + 
         ret + 
-        applyEncumberance(armor, initiator);
+        getEncumberance(armor, initiator);
 }
 
 /////////////////////////////////////////////////////////////////////////////

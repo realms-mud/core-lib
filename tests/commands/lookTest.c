@@ -116,6 +116,7 @@ void Setup()
     Player->Con(10);
     Player->Int(10);
     Player->Wis(10);
+    Player->hitPoints(30);
 
     move_object(Player, clone_object("/lib/environment/room.c"));
 }

@@ -627,4 +627,3 @@ public nomask int biologicalBonusTo(string bonus)
     }
     return ret;
 }
-

@@ -53,6 +53,10 @@ private nomask void initiateSelector()
 public nomask void onRestoreFailed(object caller)
 {
     Player = caller;
+    Player->hitPoints(30);
+    Player->spellPoints(30);
+    Player->staminaPoints(30);
+
     initiateSelector();
 }
 

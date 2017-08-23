@@ -487,3 +487,50 @@ public nomask int costToAdvanceSkill(string skillType)
     }    
     return ret;
 }    
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string experienceBar(string guild)
+{
+    string format = "[0;34;1m%s[0m";
+    int current = guildExperience(guild);
+    int needed = guildsDictionary()->experienceToNextLevel(guild, guildLevel(guild));
+
+    string bar = "==========";
+    if (current >= needed)
+    {
+        bar = "[0m[0;33;1m Level up ";
+    }
+    else
+    {
+        bar[(10 * current) / needed..] = "[0m[0;31m";
+        for (int i = ((10 * current) / needed); i < 10; i++)
+        {
+            bar += ".";
+        }
+    }
+    return sprintf(format, bar);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string guildsDetails()
+{
+    string format = "[0;31m|[0m [0;36mGuild:[0m [0;33m%-27s[0m [0;36mLevel:[0m [0;33m%-10s[0m [0;36mExperience:[0m [0;33m%-11s[0m [0;31m|[0m\n";
+    string ret = sprintf("[0;31m|[0m [0;33m%-75s[0m [0;31m|[0m\n",
+        "Currently not a member of any guilds.");
+
+    string *guildList = memberOfGuilds();
+
+    if (sizeof(guildList))
+    {
+        ret = "";
+        foreach(string guild in guildList)
+        {
+            ret += sprintf(format, capitalize(guild) +
+                (guildRankName(guild) ? " (" + 
+                    capitalize(guildRankName(guild)) + ")" : ""),
+                to_string(guildLevel(guild)),
+                experienceBar(guild));
+        }
+    }
+    return ret;
+}

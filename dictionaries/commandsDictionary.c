@@ -5,10 +5,10 @@
 #include "/lib/include/itemFormatters.h"
 
 /////////////////////////////////////////////////////////////////////////////
-public string buildBanner(string type, string area)
+public varargs string buildBanner(string type, string area)
 {
     string ret = sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-    string banner = sprintf("+ %s %s +", capitalize(type), capitalize(area));
+    string banner = sprintf("+ %s%s +", capitalize(type), area ? " " + capitalize(area) : "");
 
     int startingPoint = 47 - (sizeof(banner) / 2);
 

@@ -242,9 +242,9 @@ void CallingExecuteWithSustainedHPCostWillDecreaseHP()
     ResearchItem->addTestSpecification("hit point cost", 20);
 
     User->ToggleMockResearch();
-    ExpectEq(134, User->maxHitPoints());
+    ExpectEq(164, User->maxHitPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(114, User->maxHitPoints());
+    ExpectEq(144, User->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -254,11 +254,11 @@ void DeactivatingWithHitPointCostReturnsHPToOriginalValue()
     ResearchItem->addTestSpecification("hit point cost", 20);
 
     User->ToggleMockResearch();
-    ExpectEq(134, User->maxHitPoints());
+    ExpectEq(164, User->maxHitPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(114, User->maxHitPoints());
+    ExpectEq(144, User->maxHitPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "second execution");
-    ExpectEq(134, User->maxHitPoints());
+    ExpectEq(164, User->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -268,9 +268,9 @@ void CallingExecuteWithSustainedSPCostWillDecreaseSP()
     ResearchItem->addTestSpecification("spell point cost", 20);
 
     User->ToggleMockResearch();
-    ExpectEq(134, User->maxSpellPoints());
+    ExpectEq(164, User->maxSpellPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(114, User->maxSpellPoints());
+    ExpectEq(144, User->maxSpellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -280,11 +280,11 @@ void DeactivatingWithSepllPointCostReturnsSPToOriginalValue()
     ResearchItem->addTestSpecification("spell point cost", 20);
 
     User->ToggleMockResearch();
-    ExpectEq(134, User->maxSpellPoints());
+    ExpectEq(164, User->maxSpellPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(114, User->maxSpellPoints());
+    ExpectEq(144, User->maxSpellPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "second execution");
-    ExpectEq(134, User->maxSpellPoints());
+    ExpectEq(164, User->maxSpellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -294,9 +294,9 @@ void CallingExecuteWithSustainedStaminaCostWillDecreaseStamina()
     ResearchItem->addTestSpecification("stamina point cost", 20);
 
     User->ToggleMockResearch();
-    ExpectEq(134, User->maxStaminaPoints());
+    ExpectEq(164, User->maxStaminaPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(114, User->maxStaminaPoints());
+    ExpectEq(144, User->maxStaminaPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -306,11 +306,11 @@ void DeactivatingWithStaminaPointCostReturnsStaminaToOriginalValue()
     ResearchItem->addTestSpecification("stamina point cost", 20);
 
     User->ToggleMockResearch();
-    ExpectEq(134, User->maxStaminaPoints());
+    ExpectEq(164, User->maxStaminaPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(114, User->maxStaminaPoints());
+    ExpectEq(144, User->maxStaminaPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "second execution");
-    ExpectEq(134, User->maxStaminaPoints());
+    ExpectEq(164, User->maxStaminaPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////

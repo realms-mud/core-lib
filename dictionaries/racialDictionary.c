@@ -605,3 +605,26 @@ public nomask int startingSkillPoints(string race)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string raceDetails(object person)
+{
+    string race = person->Race();
+    string subrace = 0;
+
+    if (member(races, race) && member(races[race], "subraces"))
+    {
+        string *subraces = m_indices(races[race]["subraces"]);
+        foreach(string subraceCheck in subraces)
+        {
+            if (person->isTraitOf(SubraceRoot +
+                races[race]["subraces"][subraceCheck]))
+            {
+                subrace = capitalize(subraceCheck);
+                break;
+            }
+        }
+    }
+    return sprintf("%s%s", race ? capitalize(race) : "Unknown",
+        subrace ? " (" + subrace + ")" : "");
+}

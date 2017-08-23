@@ -11,7 +11,7 @@ private nosave string *validWizardLevels = ({ "apprentice", "wizard",
     "creator", "high wizard", "senior", "admin", "elder", "sage",
     "arch wizard", "demi god", "god", "owner" });
 
-private string wizardLevel;
+private string wizardLevel = 0;
 private string *customGroups = ({});
 
 /////////////////////////////////////////////////////////////////////////////
@@ -21,9 +21,16 @@ public nomask int isRealizationOfWizard()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string wizardLevel()
+{
+    return wizardLevel ? wizardLevel : "apprentice";
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string wizardInformation()
 {
-    return "";    
+    // TODO - add wizard info such as GM duties, etc.
+    return wizardLevel();
 }
 
 /////////////////////////////////////////////////////////////////////////////
