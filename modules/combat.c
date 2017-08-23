@@ -1768,6 +1768,11 @@ private nomask string vitalsDetails(string vital)
     int current = call_other(this_object(), lower_case(vital) + "Points");
     int max = call_other(this_object(), "max" + capitalize(vital) + "Points");
 
+    if (current > max)
+    {
+        current = max;
+    }
+
     string bar = "==========";
     if (!max)
     {
