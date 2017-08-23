@@ -10,7 +10,7 @@ object Player;
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
+    Player->Name("rob");
     Player->hitPoints(30);
     Player->spellPoints(30);
     Player->staminaPoints(30);
@@ -83,12 +83,12 @@ void ScoreDisplaysCorrectInformationWithWeaponEquipped()
     weapon->equip("blah");
 
     ExpectTrue(Player->executeCommand("score"));
-    ExpectEq("[0;32mBob the title-less[0m\n"
+    ExpectEq("[0;32mRob the title-less[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m [0;36mRace:[0m [0;32mHigh elf (Hillgarathi elf)      [0m [0;36mOverall Level:[0m [0;32m3                     [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m==[0m[0;31m........[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
-        "[0;31m|[0m              [0;33m30/106     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
+        "[0;31m|[0m              [0;33m30/101     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Attributes +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m[0;36m    Strength:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36mIntelligence:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m [0;36m      Wisdom:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m[0;31m|[0m\n"
         "[0;31m|[0m[0;36m   Dexterity:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m [0;36mConstitution:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36m    Charisma:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m[0;31m|[0m\n"
@@ -135,12 +135,12 @@ void ScoreDisplaysCorrectInformationWithWeaponShieldAndArmorEquipped()
     armor->equip("stuff");
 
     ExpectTrue(Player->executeCommand("?"));
-    ExpectEq("[0;32mBob the title-less[0m\n"
+    ExpectEq("[0;32mRob the title-less[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m [0;36mRace:[0m [0;32mHigh elf (Hillgarathi elf)      [0m [0;36mOverall Level:[0m [0;32m3                     [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m==[0m[0;31m........[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
-        "[0;31m|[0m              [0;33m30/110     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
+        "[0;31m|[0m              [0;33m30/105     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Attributes +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m[0;36m    Strength:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36mIntelligence:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m [0;36m      Wisdom:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m[0;31m|[0m\n"
         "[0;31m|[0m[0;36m   Dexterity:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m [0;36mConstitution:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36m    Charisma:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m[0;31m|[0m\n"
