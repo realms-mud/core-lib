@@ -1584,19 +1584,19 @@ private nomask int calculateVitalsHealRate(string vital)
         {
             case "hit points":
             {
-                ret = (attributes->Con() / 10) +
+                ret = 1 + (attributes->Con() / 10) +
                        calculateServiceBonuses("BonusHealHitPoints");
                 break;
             }
             case "spell points":
             {
-                ret = ((attributes->Int() + attributes->Wis()) / 12) +
+                ret = 1 + ((attributes->Int() + attributes->Wis()) / 12) +
                       calculateServiceBonuses("BonusHealSpellPoints");
                 break;
             }
             case "stamina":
             {
-                ret = (attributes->Con() / 7) + (attributes->Dex() / 15) + 
+                ret = 1 + (attributes->Con() / 10) + (attributes->Dex() / 15) + 
                       calculateServiceBonuses("BonusHealStamina");
                 break;
             }

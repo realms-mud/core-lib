@@ -1706,30 +1706,23 @@ void HeartBeatHealsHitPointsWhenBelowMaxEveryFifthTime()
     Attacker->staminaPoints(Attacker->maxStaminaPoints());
 
     Attacker->heart_beat();
-    ExpectEq(22, Attacker->hitPoints(), "2 hit points healed");
+    ExpectEq(23, Attacker->hitPoints(), "3 hit points healed");
 
     object modifier = clone_object("/lib/items/modifierObject");
     modifier->set("fully qualified name", "blah");
     modifier->set("bonus heal hit points", 2);
     modifier->set("registration list", ({ Attacker }));
 
+    for (int i = 0; i < 14; i++)
+    {
+        Attacker->heart_beat();
+        ExpectEq(23, Attacker->hitPoints(), "0 hit points healed");
+    }
     Attacker->heart_beat();
-    ExpectEq(22, Attacker->hitPoints(), "0 hit points healed");
+    ExpectEq(23, Attacker->hitPoints(), "0 hit points healed");
 
     Attacker->heart_beat();
-    ExpectEq(22, Attacker->hitPoints(), "0 hit points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(22, Attacker->hitPoints(), "0 hit points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(22, Attacker->hitPoints(), "0 hit points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(22, Attacker->hitPoints(), "0 hit points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(26, Attacker->hitPoints(), "4 hit points healed");
+    ExpectEq(28, Attacker->hitPoints(), "5 hit points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1741,23 +1734,23 @@ void HeartBeatHealsAtDifferentRatesWhenBonusApplied()
 
     object modifier = clone_object("/lib/items/modifierObject");
     modifier->set("fully qualified name", "blah");
-    modifier->set("bonus heal hit points rate", 10);
+    modifier->set("bonus heal hit points rate", 26);
     modifier->set("registration list", ({ Attacker }));
 
     Attacker->heart_beat();
-    ExpectEq(22, Attacker->hitPoints(), "2 hit points healed");
+    ExpectEq(23, Attacker->hitPoints(), "3 hit points healed");
 
     Attacker->heart_beat();
-    ExpectEq(22, Attacker->hitPoints(), "0 hit points healed");
+    ExpectEq(23, Attacker->hitPoints(), "0 hit points healed");
 
     Attacker->heart_beat();
-    ExpectEq(22, Attacker->hitPoints(), "0 hit points healed");
+    ExpectEq(23, Attacker->hitPoints(), "0 hit points healed");
 
     Attacker->heart_beat();
-    ExpectEq(24, Attacker->hitPoints(), "2 hit points healed");
+    ExpectEq(26, Attacker->hitPoints(), "3 hit points healed");
 
     Attacker->heart_beat();
-    ExpectEq(24, Attacker->hitPoints(), "0 hit points healed");
+    ExpectEq(26, Attacker->hitPoints(), "0 hit points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1768,30 +1761,23 @@ void HeartBeatHealsSpellPointsWhenBelowMaxEveryFifthTime()
     Attacker->staminaPoints(Attacker->maxStaminaPoints());
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->spellPoints(), "2 spell points healed");
+    ExpectEq(24, Attacker->spellPoints(), "4 spell points healed");
 
     object modifier = clone_object("/lib/items/modifierObject");
     modifier->set("fully qualified name", "blah");
     modifier->set("bonus heal spell points", 2);
     modifier->set("registration list", ({ Attacker }));
 
+    for (int i = 0; i < 14; i++)
+    {
+        Attacker->heart_beat();
+        ExpectEq(24, Attacker->spellPoints(), "0 spell points healed");
+    }
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->spellPoints(), "0 spell points healed");
+    ExpectEq(24, Attacker->spellPoints(), "0 spell points healed");
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->spellPoints(), "0 spell points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->spellPoints(), "0 spell points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->spellPoints(), "0 spell points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->spellPoints(), "0 spell points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(28, Attacker->spellPoints(), "4 spell points healed");
+    ExpectEq(30, Attacker->spellPoints(), "6 spell points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1803,23 +1789,23 @@ void HeartBeatHealsSPAtDifferentRatesWhenBonusApplied()
 
     object modifier = clone_object("/lib/items/modifierObject");
     modifier->set("fully qualified name", "blah");
-    modifier->set("bonus heal spell points rate", 10);
+    modifier->set("bonus heal spell points rate", 26);
     modifier->set("registration list", ({ Attacker }));
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->spellPoints(), "2 spell points healed");
+    ExpectEq(24, Attacker->spellPoints(), "4 spell points healed");
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->spellPoints(), "0 spell points healed");
+    ExpectEq(24, Attacker->spellPoints(), "0 spell points healed");
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->spellPoints(), "0 spell points healed");
+    ExpectEq(24, Attacker->spellPoints(), "0 spell points healed");
 
     Attacker->heart_beat();
-    ExpectEq(26, Attacker->spellPoints(), "2 spell points healed");
+    ExpectEq(28, Attacker->spellPoints(), "4 spell points healed");
 
     Attacker->heart_beat();
-    ExpectEq(26, Attacker->spellPoints(), "0 spell points healed");
+    ExpectEq(28, Attacker->spellPoints(), "0 spell points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1830,30 +1816,24 @@ void HeartBeatHealsStaminaPointsWhenBelowMaxEveryFifthTime()
     Attacker->staminaPoints(20);
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->staminaPoints(), "2 stamina points healed");
+    ExpectEq(24, Attacker->staminaPoints(), "4 stamina points healed");
 
     object modifier = clone_object("/lib/items/modifierObject");
     modifier->set("fully qualified name", "blah");
     modifier->set("bonus heal stamina", 2);
     modifier->set("registration list", ({ Attacker }));
 
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->staminaPoints(), "0 stamina points healed");
+    for (int i = 0; i < 14; i++)
+    {
+        Attacker->heart_beat();
+        ExpectEq(24, Attacker->staminaPoints(), "0 stamina points healed");
+    }
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->staminaPoints(), "0 stamina points healed");
+    ExpectEq(24, Attacker->staminaPoints(), "0 stamina points healed");
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->staminaPoints(), "0 stamina points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->staminaPoints(), "0 stamina points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->staminaPoints(), "0 stamina points healed");
-
-    Attacker->heart_beat();
-    ExpectEq(28, Attacker->staminaPoints(), "4 stamina points healed");
+    ExpectEq(30, Attacker->staminaPoints(), "6 stamina points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1865,23 +1845,23 @@ void HeartBeatHealsStaminaAtDifferentRatesWhenBonusApplied()
 
     object modifier = clone_object("/lib/items/modifierObject");
     modifier->set("fully qualified name", "blah");
-    modifier->set("bonus heal stamina rate", 10);
+    modifier->set("bonus heal stamina rate", 26);
     modifier->set("registration list", ({ Attacker }));
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->staminaPoints(), "2 stamina points healed");
+    ExpectEq(24, Attacker->staminaPoints(), "4 stamina points healed");
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->staminaPoints(), "0 stamina points healed");
+    ExpectEq(24, Attacker->staminaPoints(), "0 stamina points healed");
 
     Attacker->heart_beat();
-    ExpectEq(23, Attacker->staminaPoints(), "0 stamina points healed");
+    ExpectEq(24, Attacker->staminaPoints(), "0 stamina points healed");
 
     Attacker->heart_beat();
-    ExpectEq(26, Attacker->staminaPoints(), "2 stamina points healed");
+    ExpectEq(28, Attacker->staminaPoints(), "4 stamina points healed");
 
     Attacker->heart_beat();
-    ExpectEq(26, Attacker->staminaPoints(), "0 stamina points healed");
+    ExpectEq(28, Attacker->staminaPoints(), "0 stamina points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
