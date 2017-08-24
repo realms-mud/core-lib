@@ -14,11 +14,10 @@ public nomask void runAway()
     if(originalLocation && function_exists("exits", originalLocation))
     {
         string *possibleDestinations = originalLocation->exits();
-        object combat = getService("combat");
         object materialAttributes = getService("materialAttributes");
         
-        if(possibleDestinations && ((combat && combat->triggerWimpy()) || 
-          (materialAttributes && !materialAttributes->queryProperty("no fear"))))
+        if(possibleDestinations && materialAttributes &&
+            !materialAttributes->queryProperty("no fear"))
         {
             int attemptsToRun = 0;
             while((attemptsToRun < 12) && (originalLocation == environment()))
@@ -44,8 +43,58 @@ public nomask void runAway()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int move()
+public varargs nomask int move(string location, string direction)
 {
+    int ret = 0;
+    object environmentDictionary = getDictionary("environment");
+    if (environmentDictionary)
+    {
+        object newLocation = environmentDictionary->getLocation(location);
+        if (environmentDictionary->canMakeMove(this_object(), environment(),
+            newLocation))
+        {
+            ret = 1;
+            object combat = getService("combat");
+            if (combat)
+            {
+                combat->handleMoveFromCombat();
+            }
 
+            object materialAttributes = getService("materialAttributes");
+            if ((set_light(0) > 0) && !materialAttributes->Invisibility())
+            {
+                say(sprintf("%s %s.\n", capitalize(materialAttributes->Name()),
+                    (direction ? sprintf("%s %s", materialAttributes->MessageOut(),
+                        direction) : materialAttributes->MagicalMessageOut())));
+            }
+
+            move_object(this_object(), newLocation);
+
+            if ((set_light(0) > 0) && !materialAttributes->Invisibility())
+            {
+                say(sprintf("%s %s.\n", capitalize(materialAttributes->Name()),
+                    (direction ? materialAttributes->MessageIn() :
+                        materialAttributes->MagicalMessageIn())));
+            }
+
+            object eventObj = getService("events");
+            if (objectp(eventObj))
+            {
+                eventObj->notify("onMove", ([ "from": environment(),
+                                               "to": newLocation ]));
+            }
+
+            object player = getService("player");
+            if (player && environment())
+            {
+                tell_object(this_object(), environment()->long(player->brief()));
+            }
+        }
+    }
+    else
+    {
+        raise_error("ERROR: The environment dictionary could not be loaded!\n");
+    }
+    return ret;
 }
 

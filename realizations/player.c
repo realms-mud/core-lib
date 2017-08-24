@@ -51,5 +51,6 @@ public void reset(int arg)
     if (!arg)
     {
         addCommands();
+        set_heart_beat(1);
     }
 }

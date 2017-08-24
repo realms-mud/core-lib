@@ -1,0 +1,67 @@
+//*****************************************************************************
+// Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
+inherit "/lib/environment/environment.c";
+
+int AllowFrom = 1;
+int AllowTo = 1;
+
+/////////////////////////////////////////////////////////////////////////////
+public void toggleAllowFrom()
+{
+    AllowFrom = !AllowFrom;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void toggleAllowTo()
+{
+    AllowTo = !AllowTo;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void toggleLight()
+{
+    if (set_light(0) > 0)
+    {
+        set_light(-1);
+    }
+    else
+    {
+        set_light(1);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int moveFromIsAllowed(object user, object fromLocation)
+{
+    return AllowFrom;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int moveToIsAllowed(object user, object toLocation)
+{
+    return AllowTo;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int isValidEnvironment()
+{
+    return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string long(string item)
+{
+    string ret = "This is the long description.\n";
+    if (set_light(0) < 0)
+    {
+        ret = "It is too dark.\n";
+    }
+    return ret;
+}
+
+void catch_tell(string x)
+{
+    write(x);
+}

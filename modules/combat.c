@@ -1037,7 +1037,8 @@ private nomask varargs int hitIsAllowed(object foe)
 {
     int ret = living(this_object()) && environment() &&
         !this_object()->isDead() && !this_object()->isInvulnerable() &&
-        !environment()->violenceIsProhibited();
+        !environment()->violenceIsProhibited() && 
+        (!foe || present(foe, environment()));
 
     object player = getService("player");
     if (player)
@@ -1531,6 +1532,18 @@ public nomask int attack(object foe)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+static void handleMoveFromCombat()
+{
+    spellAction(1);
+
+    if (getTargetToAttack())
+    {
+        tell_object(this_object(), 
+            "You have fled the scene of battle! Your enemies shan't forget you.\n");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
