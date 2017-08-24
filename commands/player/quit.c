@@ -20,6 +20,16 @@ public nomask int execute(string command, object initiator)
         ret = 1;
         tell_object(initiator, "Saving character...\n");
         initiator->save();
+
+        object *items = deep_inventory(initiator);
+        if (sizeof(items))
+        {
+            foreach(object item in items)
+            {
+                destruct(item);
+            }
+        }
+
         tell_object(initiator, "We hope you enjoyed your time here. Come back soon!\n");
 
         if (!initiator->Invisibility())
