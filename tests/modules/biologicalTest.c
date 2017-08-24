@@ -31,7 +31,7 @@ void IntoxicatedSetsIntoxicationLevel()
 /////////////////////////////////////////////////////////////////////////////
 void IntoxicatedFiresOnIntoxicationChangedEventWhenValueChanges()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onIntoxicationChanged called, caller: lib/tests/support/services/mockPlayer.c";
@@ -75,7 +75,7 @@ void AddIntoxicationDoesNotSetValueBelowZero()
 /////////////////////////////////////////////////////////////////////////////
 void AddIntoxicationFiresOnIntoxicationChangedEvent()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onIntoxicationChanged called, caller: lib/tests/support/services/mockPlayer.c";
@@ -94,7 +94,7 @@ void StuffedSetsStuffedLevel()
 /////////////////////////////////////////////////////////////////////////////
 void StuffedFiresOnStuffedChangedEventWhenValueChanges()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onStuffedChanged called, caller: lib/tests/support/services/mockPlayer.c";
@@ -138,7 +138,7 @@ void AddStuffedNeverDoesNotSetValueBelowZero()
 /////////////////////////////////////////////////////////////////////////////
 void AddStuffedFiresOnIntoxicationChangedEvent()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onStuffedChanged called, caller: lib/tests/support/services/mockPlayer.c";
@@ -157,7 +157,7 @@ void DruggedSetsDruggedLevel()
 /////////////////////////////////////////////////////////////////////////////
 void DruggedFiresOnDruggedChangedEventWhenValueChanges()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onDruggedChanged called, caller: lib/tests/support/services/mockPlayer.c";
@@ -201,7 +201,7 @@ void AddDruggedNeverDoesNotSetValueBelowZero()
 /////////////////////////////////////////////////////////////////////////////
 void AddDruggedFiresOnIntoxicationChangedEvent()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onDruggedChanged called, caller: lib/tests/support/services/mockPlayer.c";
@@ -220,7 +220,7 @@ void SoakedSetsSoakedLevel()
 /////////////////////////////////////////////////////////////////////////////
 void SoakedFiresOnSoakedChangedEventWhenValueChanges()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onSoakedChanged called, caller: lib/tests/support/services/mockPlayer.c";
@@ -264,7 +264,7 @@ void AddSoakedNeverDoesNotSetValueBelowZero()
 /////////////////////////////////////////////////////////////////////////////
 void AddSoakedFiresOnIntoxicationChangedEvent()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onSoakedChanged called, caller: lib/tests/support/services/mockPlayer.c";
@@ -297,7 +297,7 @@ void CanDrinkAlcoholToDunkedness()
 /////////////////////////////////////////////////////////////////////////////
 void DrinkAlcoholFiresOnDrunkWhenInebriated()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onDrunk called, caller: lib/tests/support/services/mockPlayer.c";
@@ -334,7 +334,7 @@ void SobrietyReturnsWhenIntoxIsZero()
 /////////////////////////////////////////////////////////////////////////////
 void DrinkAlcoholFiresOnSoberWhenNoLongerInebriated()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onSober called, caller: lib/tests/support/services/mockPlayer.c";
@@ -358,7 +358,7 @@ void DetoxFromAlcoholFiresOnBeginDetox()
 {
     ExpectTrue(Character->drinkAlcohol(1));
 
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onBeginDetox called, caller: lib/tests/support/services/mockPlayer.c";
@@ -398,7 +398,7 @@ void OnDetoxifiedFiresAfterDetox()
         ExpectTrue(Character->haveHeadache(), sprintf("Iteration %d\n", i));
     }
 
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onDetoxified called, caller: lib/tests/support/services/mockPlayer.c";
@@ -431,7 +431,7 @@ void CanConsumeDrugToWasted()
 /////////////////////////////////////////////////////////////////////////////
 void ConsumeDrugFiresOnWastedOnDrugsWhenWasted()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onWastedOnDrugs called, caller: lib/tests/support/services/mockPlayer.c";
@@ -468,7 +468,7 @@ void HealthReturnsWhenDruggedIsZero()
 /////////////////////////////////////////////////////////////////////////////
 void ConsumeDrugFiresOnNoLongerDruggedWhenNoLongerDrugged()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onNoLongerDrugged called, caller: lib/tests/support/services/mockPlayer.c";
@@ -492,7 +492,7 @@ void DetoxFromDrugsFiresOnBeginDetox()
 {
     ExpectTrue(Character->consumeDrug(1));
 
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onBeginDetox called, caller: lib/tests/support/services/mockPlayer.c";
@@ -525,7 +525,7 @@ void CanDrinkToSoaked()
 /////////////////////////////////////////////////////////////////////////////
 void DrinkFiresOnSoakedWhenTooMuchHasBeenDrunk()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onSoaked called, caller: lib/tests/support/services/mockPlayer.c";
@@ -563,7 +563,7 @@ void ThirstReturnsWhenSoakedIsZero()
 /////////////////////////////////////////////////////////////////////////////
 void DrinkFiresOnNoLongerSoakedWhenNoLongerSoaked()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onNoLongerSoaked called, caller: lib/tests/support/services/mockPlayer.c";
@@ -587,7 +587,7 @@ void NoLongerSoakedFiresOnNoLongerSoaked()
 {
     ExpectTrue(Character->drink(1));
 
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onNoLongerSoaked called, caller: lib/tests/support/services/mockPlayer.c";
@@ -620,7 +620,7 @@ void CanEatToStuffed()
 /////////////////////////////////////////////////////////////////////////////
 void EatFiresOnStuffedWhenTooMuchHasBeenEaten()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onCannotEatMore called, caller: lib/tests/support/services/mockPlayer.c";
@@ -658,7 +658,7 @@ void HealthReturnsWhenStuffedIsZero()
 /////////////////////////////////////////////////////////////////////////////
 void EatFiresOnHungryWhenNoLongerStuffed()
 {
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onHungry called, caller: lib/tests/support/services/mockPlayer.c";
@@ -680,7 +680,7 @@ void NoLongerStuffedFiresOnHungry()
 {
     ExpectTrue(Character->eat(1));
 
-    object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
+    object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onHungry called, caller: lib/tests/support/services/mockPlayer.c";
