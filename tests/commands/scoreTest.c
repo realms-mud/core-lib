@@ -33,9 +33,9 @@ void Setup()
     Player->addExperience(1700);
     Player->advanceLevel("mage");
 
-    guild = load_object("/lib/tests/support/guilds/testGuild.c");
+    guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
     guild->init();
-    Player->joinGuild("test");
+    Player->joinGuild("fighter");
     Player->addExperience(2000);
 }
 
@@ -87,13 +87,13 @@ void ScoreDisplaysCorrectInformationWithWeaponEquipped()
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m [0;36mRace:[0m [0;32mHigh elf (Hillgarathi elf)      [0m [0;36mOverall Level:[0m [0;32m3                     [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m==[0m[0;31m........[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
-        "[0;31m|[0m              [0;33m30/106     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
+        "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m===[0m[0;31m.......[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
+        "[0;31m|[0m              [0;33m30/96      [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Attributes +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m[0;36m    Strength:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36mIntelligence:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m [0;36m      Wisdom:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m[0;31m|[0m\n"
         "[0;31m|[0m[0;36m   Dexterity:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m [0;36mConstitution:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36m    Charisma:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "[0m[0;31m|[0m [0;36mGuild:[0m [0;33mTest (Neophyte)            [0m [0;36mLevel:[0m [0;33m1         [0m [0;36mExperience:[0m [0;33m[0;34;1m======[0m[0;31m....[0m[0m [0;31m|[0m\n"
+        "[0m[0;31m|[0m [0;36mGuild:[0m [0;33mFighter (Neophyte)         [0m [0;36mLevel:[0m [0;33m1         [0m [0;36mExperience:[0m [0;33m[0;34;1m======[0m[0;31m....[0m[0m [0;31m|[0m\n"
         "[0;31m|[0m [0;36mGuild:[0m [0;33mMage                       [0m [0;36mLevel:[0m [0;33m2         [0m [0;36mExperience:[0m [0;33m[0;34;1m[0m[0;33;1m Level up [0m[0m [0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m [0;36mPrimary Weapon:[0m [0;33mSword of Bla...[0m [0;36mAttack: [0m[0;33m-21 to 79[0m        [0;36mDamage: [0m[0;33m9 to 12[0m    [0;31m|[0m\n"
@@ -139,13 +139,13 @@ void ScoreDisplaysCorrectInformationWithWeaponShieldAndArmorEquipped()
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m [0;36mRace:[0m [0;32mHigh elf (Hillgarathi elf)      [0m [0;36mOverall Level:[0m [0;32m3                     [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m==[0m[0;31m........[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
-        "[0;31m|[0m              [0;33m30/110     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
+        "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m===[0m[0;31m.......[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
+        "[0;31m|[0m              [0;33m30/100     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Attributes +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m[0;36m    Strength:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36mIntelligence:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m [0;36m      Wisdom:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m[0;31m|[0m\n"
         "[0;31m|[0m[0;36m   Dexterity:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m [0;36mConstitution:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36m    Charisma:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "[0m[0;31m|[0m [0;36mGuild:[0m [0;33mTest (Neophyte)            [0m [0;36mLevel:[0m [0;33m1         [0m [0;36mExperience:[0m [0;33m[0;34;1m======[0m[0;31m....[0m[0m [0;31m|[0m\n"
+        "[0m[0;31m|[0m [0;36mGuild:[0m [0;33mFighter (Neophyte)         [0m [0;36mLevel:[0m [0;33m1         [0m [0;36mExperience:[0m [0;33m[0;34;1m======[0m[0;31m....[0m[0m [0;31m|[0m\n"
         "[0;31m|[0m [0;36mGuild:[0m [0;33mMage                       [0m [0;36mLevel:[0m [0;33m2         [0m [0;36mExperience:[0m [0;33m[0;34;1m[0m[0;33;1m Level up [0m[0m [0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m [0;36mPrimary Weapon:[0m [0;33mSword of Bla...[0m [0;36mAttack: [0m[0;33m-66 to 34[0m        [0;36mDamage: [0m[0;33m9 to 12[0m    [0;31m|[0m\n"
@@ -164,14 +164,14 @@ void HitPointsSliderBarsDisplayCorrectly()
 {
     ExpectTrue(Player->executeCommand("score"));
     ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
-        "Hit Points:.*[^=]==[^=]")));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "30/106")));
+        "Hit Points:.*[^=]===[^=]")));
+    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "30/96")));
 
     Player->hitPoints(30);
     ExpectTrue(Player->executeCommand("score"));
     ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
-        "Hit Points:.*[^=]=====[^=]")));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "60/106")));
+        "Hit Points:.*[^=]======[^=]")));
+    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "60/96")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
