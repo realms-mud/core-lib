@@ -1105,86 +1105,13 @@ public int isDead()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping CombatStatistics()
-{
-    return combatStatistics + ([ ]);
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask void generateCombatStatistics(object foe)
 {
-    if(foe && function_exists("has", foe) && foe->has("materialAttributes"))
+    if(foe && function_exists("has", foe) &&
+        foe->has("materialAttributes") && getService("player") &&
+        function_exists("saveCombatStatistics", this_object()))
     {
-        if(!combatStatistics)
-        {
-            combatStatistics = ([ ]);
-        }
-        
-        string foeKey = program_name(foe) + "#" + foe->Name();
-        if(!member(combatStatistics, foeKey))
-        {
-            combatStatistics[foeKey] = ([
-                "name": foe->Name(),
-                "level": foe->effectiveLevel(),
-                "times killed": 0
-            ]);
-        }
-        combatStatistics[foeKey]["times killed"]++;
-    
-        if(!member(combatStatistics, "best kill"))
-        {
-            combatStatistics["best kill"] = ([
-                "name": combatStatistics[foeKey]["name"],
-                "level": combatStatistics[foeKey]["level"],
-                "key": foeKey
-            ]);
-        }
-        else if(combatStatistics["best kill"]["level"] < 
-           combatStatistics[foeKey]["level"])
-        {
-            combatStatistics["best kill"]["name"] = 
-                combatStatistics[foeKey]["name"];
-            combatStatistics["best kill"]["level"] = 
-                combatStatistics[foeKey]["level"];
-            combatStatistics["best kill"]["key"] = foeKey;
-        }
-
-        if(!member(combatStatistics, "race"))
-        {
-            combatStatistics["race"] = ([ ]);
-        }
-        if(function_exists("Race", foe) && foe->Race())
-        {
-            if(!member(combatStatistics["race"], foe->Race()))
-            {
-                combatStatistics["race"][foe->Race()] = 1;
-            }
-            else
-            {
-                combatStatistics["race"][foe->Race()]++;
-            }
-        }
-        
-        if(!member(combatStatistics, "nemesis"))
-        {
-            combatStatistics["nemesis"] = ([
-                "name": combatStatistics[foeKey]["name"],
-                "level": combatStatistics[foeKey]["level"],
-                "key": foeKey,
-                "times killed": 1
-            ]);
-        }
-        else if(combatStatistics[foeKey]["times killed"] >
-                combatStatistics["nemesis"]["times killed"])
-        {
-            combatStatistics["nemesis"]["name"] = 
-                combatStatistics[foeKey]["name"];
-            combatStatistics["nemesis"]["level"] = 
-                combatStatistics[foeKey]["level"];
-            combatStatistics["nemesis"]["times killed"] = 
-                combatStatistics[foeKey]["times killed"];                
-            combatStatistics["nemesis"]["key"] = foeKey;
-        }
+        getService("player")->saveCombatStatistics(this_object(), foe);
     }            
 }
 

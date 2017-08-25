@@ -232,44 +232,6 @@ void CheckPrerequsistesCorrectlyHandlesBackgroundChecks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CheckPrerequsistesCorrectlyHandlesBestKillChecks()
-{
-    ExpectTrue(Prerequisite->AddTestPrerequisite("best kill", (["type":"combat statistic", "value" : 10])));
-    ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "check initially fails");
-
-    object foe = clone_object("/lib/realizations/monster.c");
-    foe->Name("Rargh!");
-    foe->Race("orc");
-    foe->effectiveLevel(8);
-    Researcher->generateCombatStatistics(foe);
-    ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "target has proper level");
-
-    foe->Name("Grog!");
-    foe->effectiveLevel(18);
-    Researcher->generateCombatStatistics(foe);
-    ExpectTrue(Prerequisite->checkPrerequisites(Researcher), "target has proper level");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CheckPrerequsistesCorrectlyHandlesRaceKillChecks()
-{
-    ExpectTrue(Prerequisite->AddTestPrerequisite("orc", (["type":"combat statistic", "value" : 2])));
-    ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "check initially fails");
-
-    object foe = clone_object("/lib/realizations/monster.c");
-    foe->Name("Rargh!");
-    foe->Race("orc");
-    foe->effectiveLevel(8);
-    Researcher->generateCombatStatistics(foe);
-    ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "once orc killed");
-
-    foe->Name("Grog!");
-    foe->effectiveLevel(18);
-    Researcher->generateCombatStatistics(foe);
-    ExpectTrue(Prerequisite->checkPrerequisites(Researcher), "two orcs killed");
-}
-
-/////////////////////////////////////////////////////////////////////////////
 void CheckPrerequsistesCorrectlyHandlesGroupings()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("long sword", (["type":"skill", "value" : 5]), "group a"));

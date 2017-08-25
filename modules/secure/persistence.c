@@ -136,3 +136,49 @@ public nomask void restore(string name)
         destruct(this_object());
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string playerType(string name)
+{
+    return DataAccess()->playerType(name);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void saveCombatStatistics(object player, object foe)
+{
+    string foeKey = program_name(foe) + "#" + foe->Name();
+    string playerName = player->Name();
+
+    DataAccess()->saveCombatStatistics(playerName, foeKey,
+        foe->Name(), foe->effectiveLevel());
+
+    if (function_exists("Race", foe) && foe->Race())
+    {
+        DataAccess()->saveCombatStatisticsForRace(playerName, foe->Race());
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int bestKillMeetsLevel(int level)
+{
+    return DataAccess()->bestKillMeetsLevel(this_object()->Name(), level);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int racialKillsMeetCount(string race, int timesKilled)
+{
+    return DataAccess()->racialKillsMeetCount(
+        this_object()->Name(), race, timesKilled);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getNemesis(string player)
+{
+    return DataAccess()->getNemesis(this_object()->Name()) + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getBestKill(string player)
+{
+    return DataAccess()->getBestKill(this_object()->Name()) + ([]);
+}

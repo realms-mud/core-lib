@@ -36,6 +36,10 @@ drop procedure if exists TestDB.saveInventoryItem;
 ##
 drop procedure if exists TestDB.saveFaction;
 ##
+drop procedure if exists TestDB.saveCombatStatistics;
+##
+drop procedure if exists TestDB.saveCombatStatisticsForRace;
+##
 drop function if exists TestDB.saveBasicPlayerInformation;
 ##
 drop function if exists TestDB.saveResearchChoice;
@@ -120,12 +124,13 @@ CREATE TABLE TestDB.`biological` (
 ##
 CREATE TABLE TestDB.`combatStatistics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(100) NOT NULL,
   `name` varchar(40) NOT NULL,
   `level` int(11) NOT NULL,
-  `key` varchar(100) DEFAULT NULL,
+  `foeKey` varchar(200) DEFAULT NULL,
   `timesKilled` int(11) DEFAULT NULL,
   `playerid` int(11) NOT NULL,
+  `isNemesis` tinyint(4) NOT NULL DEFAULT '0',
+  `isBestKill` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `combatStatisticsplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -722,6 +727,86 @@ BEGIN
 	else
 		insert into factions (playerid, path, disposition, reputation, lastInteraction, lastReputation, numberOfInteractions, dispositionTime, isMember)
         values (p_playerid, p_path, p_disposition, p_reputation, p_lastInteraction, p_lastReputation, p_numInteractions, p_dispositionTime, p_isMember);
+    end if;
+END;
+##
+CREATE PROCEDURE TestDB.`saveCombatStatistics` (p_playerName varchar(40),
+p_key varchar(200), p_name varchar(40), p_level int)
+BEGIN	
+	declare lPlayerId int;
+    declare statId int;
+    declare timesPreviouslyKilled int;
+    
+    select id into lPlayerId
+    from players where name = p_playerName;
+
+    if(lPlayerId is not null) then
+    
+		select id, timesKilled into statId, timesPreviouslyKilled
+		from combatStatistics
+		where (playerid = lPlayerId) AND (foeKey = p_key);
+		
+        if(statId is not null) then
+			update combatStatistics
+			set timesKilled = timesPreviouslyKilled + 1
+            where id = statId;
+		else
+            insert into combatStatistics
+            (name, level, foeKey, timesKilled, playerId)
+            values (p_name, p_level, p_key, 1, lPlayerId);           
+        end if;
+        
+        update combatStatistics
+        set isNemesis = 0, isBestKill = 0
+        where playerid = lPlayerId;
+        
+        -- Stupid MySQL can handle this as an embedded query???
+        select id into statId 
+        from combatStatistics
+		where playerId = lPlayerId
+		order by timesKilled desc, level desc
+		limit 1;
+
+        update combatStatistics
+        set isNemesis = 1
+        where id = statId;
+ 
+        select id into statId
+        from combatStatistics
+		where playerId = lPlayerId
+		order by level desc, timesKilled desc
+		limit 1;
+
+        update combatStatistics
+        set isBestKill = 1
+        where id = statId;
+                    
+    end if;
+END;
+##
+CREATE PROCEDURE TestDB.`saveCombatStatisticsForRace` 
+(p_playerName varchar(40), p_race varchar(20))
+BEGIN	
+	declare lPlayerId int;
+    declare statId int;
+    
+    select id into lPlayerId
+    from players where name = p_playerName;
+
+    if(lPlayerId is not null) then
+		select id into statId
+		from combatStatisticsForRace
+		where (playerid = lPlayerId) AND (race = p_race);
+		
+        if(statId is not null) then
+			update combatStatisticsForRace
+			set timesKilled = timesKilled + 1
+            where id = statId;
+		else
+            insert into combatStatisticsForRace
+            (playerid, race, timesKilled)
+            values (lPlayerId, p_race, 1);           
+        end if;
     end if;
 END;
 ##

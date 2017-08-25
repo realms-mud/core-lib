@@ -528,3 +528,57 @@ void PlayerFactionsSaved()
     ExpectFalse(Player->memberOfFaction("/lib/tests/support/factions/badGuys.c"));
     ExpectEq("betrayed", Player->factionDispositionToward("/lib/tests/support/factions/badGuys.c"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CombatStatisticsCorrectlyApplied()
+{
+    Player->restore("gorthaur");
+
+    object foe = clone_object("/lib/realizations/monster.c");
+    foe->Name("Rargh!");
+    foe->Race("orc");
+    foe->effectiveLevel(8);
+
+    Player->saveCombatStatistics(Player, foe);
+
+    ExpectTrue(Player->bestKillMeetsLevel(8));
+    ExpectTrue(Player->racialKillsMeetCount("orc", 1));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetBestKillReturnsBestKill()
+{
+    Player->restore("gorthaur");
+
+    object foe = clone_object("/lib/realizations/monster.c");
+    foe->Name("blarg");
+    foe->Race("orc");
+    foe->effectiveLevel(18);
+
+    Player->saveCombatStatistics(Player, foe);
+
+    ExpectEq((["name":"Blarg",
+               "level" : 18,
+               "key" : "lib/realizations/monster.c#Blarg",
+               "times killed" : 1]),
+        Player->getBestKill("gorthaur"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetNemesisReturnsNemesis()
+{
+    Player->restore("gorthaur");
+
+    object foe = clone_object("/lib/realizations/monster.c");
+    foe->Name("Rargh!");
+    foe->Race("orc");
+    foe->effectiveLevel(8);
+
+    Player->saveCombatStatistics(Player, foe);
+
+    ExpectEq((["name":"Rargh!",
+               "level" : 8,
+               "key" : "lib/realizations/monster.c#Rargh!",
+               "times killed" : 2]),
+        Player->getNemesis("gorthaur"));
+}

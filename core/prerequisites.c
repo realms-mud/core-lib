@@ -438,19 +438,18 @@ private nomask int checkCombatStats(object researcher, string type, int value)
     int ret = 0;
     if(validResearcher(researcher) && researcher->has("combat"))
     {
-        mapping stats = researcher->CombatStatistics();
-        if(stats && sizeof(stats) && type && stringp(type))
+        if(type && stringp(type))
         {
             switch(type)
             {
                 case "best kill":
                 {
-                    ret = stats["best kill"]["level"] >= value;
+                    ret = researcher->bestKillMeetsLevel(value);
                     break;
                 }
                 default:
                 {
-                    ret = stats["race"][type] >= value;
+                    ret = researcher->racialKillsMeetCount(type, value);
                     break;
                 }
             }

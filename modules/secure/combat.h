@@ -18,8 +18,6 @@ private int onKillList;
 private nosave int IntervalBetweenHealing = 30;
 private nosave int WasSlowedLastRound = 0;
 
-private mapping combatStatistics = ([]);
-
 private nosave int combatDelay;
 private nosave int spellAction;
 private nosave mapping hostileList = ([]);
