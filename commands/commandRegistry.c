@@ -57,6 +57,10 @@ public nomask int executeCommand(string passedCommand, object initiator)
 
     if(sizeof(commandList))
     {
+        if (sizeof(regexp(({ passedCommand }), "^('|:|=)[^ ]")))
+        {
+            passedCommand = passedCommand[0..0] + " " + passedCommand[1..];
+        }
         foreach(string command in commandList)
         {
             if(sizeof(regexp(({ passedCommand }), command)))

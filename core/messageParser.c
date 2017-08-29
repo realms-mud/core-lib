@@ -111,19 +111,31 @@ private nomask string extractVerb(string match)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string verbSecondPerson(string match)
 {
-    return extractVerb(match);
+    string ret = extractVerb(match);
+    if (ret == "be")
+    {
+        ret = "are";
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getSingularThirdPersonVerb(string verb)
 {
     // This will be imperfect, only converting regular forms right now.
-    // TODO might include adding irregulars.
+    // TODO might include adding irregulars other than 'to be'
     string ret = verb;
     
-    ret = regreplace(ret, "(s|ch|sh|x|z|dg|o)$", "\\1e");
-    ret = regreplace(ret, "([^aeiou])y$", "\\1ie");
-    ret += "s";
+    if (ret == "be")
+    {
+        ret = "is";
+    }
+    else
+    {
+        ret = regreplace(ret, "(s|ch|sh|x|z|dg|o)$", "\\1e");
+        ret = regreplace(ret, "([^aeiou])y$", "\\1ie");
+        ret += "s";
+    }
     return ret;
 }    
 

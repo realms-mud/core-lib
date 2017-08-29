@@ -135,13 +135,13 @@ private nomask int isValidLiving(object livingCheck)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string formatText(string text, int colorInfo, object viewer)
+protected nomask string formatText(string text, int colorInfo, object viewer)
 {
     return color(viewer->query("term"), viewer, colorInfo, format(text, 78));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string parseTemplate(string template, string perspective,
+protected nomask string parseTemplate(string template, string perspective,
                                     object initiator, object target)
 {
     string message = template;
@@ -213,7 +213,7 @@ protected nomask void displayMessage(string message, object initiator,
                     parsedMessage = parseTemplate(message, "other",
                         initiator, target);
                 }
-                tell_object(person, formatText(message, colorInfo,
+                tell_object(person, formatText(parsedMessage, colorInfo,
                     person));
             }
         }
