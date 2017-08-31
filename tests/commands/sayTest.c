@@ -193,6 +193,6 @@ void LanguageLevelTenCorrectlyUnderstood()
         Player->caughtMessage());
     ExpectEq("Bob says in tirnosti, `This is a long message that will test how garbled stuff\nshould get when a message is entered'\n",
         Target->caughtMessage());
-    ExpectNotEq("Bob says in tirnosti, `This is a long message that will test how garbled stuff\n should get when a message is entered'\n",
+    ExpectNotEq("Bob says in tirnosti, `This is a long message that will test how garbled stuff\nshould get when a message is entered'\n",
         Bystander->caughtMessage());
 }
