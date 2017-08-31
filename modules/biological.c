@@ -469,7 +469,7 @@ private nomask void determineIfIntoxicationCausesAction()
         string *actions = ({ "hiccup", "stumble", "stagger", "lurch", "dither",
                              "falter", "pitch", "teeter", "sway", "wobble", 
                              "waver", "burp", "totter" });
-        string message = sprintf("##UserName## ##Infinitive:%s## drunkenly.", 
+        string message = sprintf("##UserName## ##Infinitive::%s## drunkenly.", 
             actions[random(sizeof(actions))]);
         
         displayBiologicalMessage(message);
@@ -490,7 +490,7 @@ private nomask void determineIfDruggedCausesAction()
                              "falter", "pitch", "teeter", "sway", "wobble", 
                              "waver", "totter" });
         string message = 
-            sprintf("##UserName## ##Infinitive:%s## as though drugged.",
+            sprintf("##UserName## ##Infinitive::%s## as though drugged.",
             actions[random(sizeof(actions))]);
         
         displayBiologicalMessage(message);

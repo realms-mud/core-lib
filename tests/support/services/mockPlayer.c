@@ -5,6 +5,7 @@
 virtual inherit "/lib/realizations/player.c";
 
 private string lastCatch = 0;
+private int BlockPlayer = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public int agePlayer(int amount)
@@ -22,4 +23,16 @@ public void catch_tell(string message)
 public string caughtMessage()
 {
     return lastCatch;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int blocked(object target)
+{
+    return BlockPlayer;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void toggleBlockPlayer()
+{
+    BlockPlayer = !BlockPlayer;
 }

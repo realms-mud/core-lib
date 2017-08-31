@@ -42,7 +42,7 @@ private nomask void speakMessage(string message, string messageTemplate,
                 }
                 string parsedMessage = regreplace(messageTemplate, "##Message##", newMessage);
 
-                int colorInfo = C_EMOTES;
+                int colorInfo = C_SAYS;
                 if (person == initiator)
                 {
                     parsedMessage = parseTemplate(parsedMessage, "initiator", initiator,

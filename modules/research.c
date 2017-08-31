@@ -75,6 +75,7 @@ public nomask varargs int canApplyResearchBonus(string researchItem, string bonu
 public nomask int sustainedResearchIsActive(string researchItem)
 {
     return (researchDictionary()->isSustainedAbility(researchItem) &&
+        member(research, researchItem) &&
         member(research[researchItem], "sustained active") &&
         research[researchItem]["sustained active"]);
 }

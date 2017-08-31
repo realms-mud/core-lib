@@ -10,6 +10,7 @@ virtual inherit "/lib/modules/guilds.c";
 virtual inherit "/lib/modules/parties.c";
 virtual inherit "/lib/modules/quests.c";
 virtual inherit "/lib/modules/research.c";
+virtual inherit "/lib/modules/settings.c";
 virtual inherit "/lib/modules/secure/persistence.c";
 
 private nosave object commandRegistry = 0;
