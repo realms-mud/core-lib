@@ -37,6 +37,29 @@ protected nomask int isValidState(string state)
             stringp(stateMachineData[state]["short"]));
 }
 
+private string descriptionTemplate;
+private mapping features = ([]);
+
+/////////////////////////////////////////////////////////////////////////////
+protected object environmentDictionary()
+{
+    return load_object("/lib/dictionaries/environmentDictionary.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs int addFeature(string path, string direction)
+{
+    int ret = 0;
+
+    if (environmentDictionary()->getFeature(path))
+    {
+        if (!direction)
+        {
+            direction = "overall";
+        }
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *exits()
 {
