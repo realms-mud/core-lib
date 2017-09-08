@@ -1,431 +1,192 @@
 //*****************************************************************************
-// Class: room
-// File Name: room.c
-//
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/core/stateObject.c";
-#include <mtypes.h>
 
-protected string currentState;
-
-protected mapping stateMachineData = ([
-    "default": ([
-        "long": "This is the room's long description.",
-        "short": "A room",
-        "environment type": "unknown",
-        "items": ([ ]),
-        "objects": ([ ]),
-        "persistent objects": ([ ]),
-        "destinations": ([ ]),
-        "properties": ([ ])
-    ])
+private mapping environmentalElements = ([
+    "terrain":([]),
+    "interior": ([]),
+    "feature": ([]),
+    "building": ([]),
+    "item": ([])
 ]);
-protected object *objectList = ({ });
-protected mapping persistentObjectList = ([ ]);
+
+private mapping exits = ([]);
+private string currentState = "default";
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int isValidState(string state)
-{
-    // These are required elements for all rooms
-    return (member(stateMachineData, state) &&
-            mappingp(stateMachineData[state]) &&
-            member(stateMachineData[state], "long") &&
-            stringp(stateMachineData[state]["long"]) &&
-            member(stateMachineData[state], "short") &&
-            stringp(stateMachineData[state]["short"]));
-}
-
-private string descriptionTemplate;
-private mapping features = ([]);
-
-/////////////////////////////////////////////////////////////////////////////
-protected object environmentDictionary()
+private object environmentDictionary()
 {
     return load_object("/lib/dictionaries/environmentDictionary.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs int addFeature(string path, string direction)
+protected nomask string capitalizeSentences(string message)
 {
-    int ret = 0;
-
-    if (environmentDictionary()->getFeature(path))
-    {
-        if (!direction)
-        {
-            direction = "overall";
-        }
-    }
+    string ret = regreplace(message, "^[a-z]", #'upper_case, 1);
+        ret = regreplace(ret, "[.!?] +[a-z]", #'upper_case, 1);
+            ret = regreplace(ret, "  ", " ");
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *exits()
+private nomask int addEnvironmentalElement(string element, string type, string location)
 {
-    string *ret = 0;
-    if(currentState && member(stateMachineData, currentState))
+    int ret = 1;
+    if (!environmentDictionary()->isValidEnvironmentItem(element))
     {
-        ret += m_indices(stateMachineData[currentState]["destinations"]) + 
-            ({ });
+        ret = environmentDictionary()->registerElement(element, type);
+        if (ret)
+        {
+            element = load_object(element)->Name();
+        }
+    }
+
+    if (ret && environmentDictionary()->isValidEnvironmentItem(element, type))
+    {
+        if (!member(environmentalElements[type], element))
+        {
+            environmentalElements[type][element] = ({});
+        }
+        environmentalElements[type][element] =
+            m_indices(mkmapping(environmentalElements[type][element] +
+                ({ location }) - ({ 0 })));
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void addExits(string state)
+protected nomask varargs void addFeature(string feature, string location)
 {
-    // WARNING: This will remove all actions (intended behavior) - If you
-    // maintain other actions in the room, you will need to handle them for
-    // each state change. This should be called by the entry_action that
-    // is created for the state machine.
-    remove_action(1, this_object());
-
-    if(isValidState(state) &&
-       member(stateMachineData[state], "destinations") &&
-       mappingp(stateMachineData[state]["destinations"]))
+    if (!addEnvironmentalElement(feature, "feature", location))
     {
-        foreach(string destination :
-                m_indices(stateMachineData[state]["destinations"]))
-        {
-            if(present(this_player()))
-            {
-                add_action("move", destination);
-            }
-        }
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid feature.\n", feature));
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void addObjects(string state)
+protected nomask void addExit(string direction, string path)
 {
-    // WARNING: This will remove all objects for a given state that are not
-    // persistent. This should be called by the entry_action that is created
-    // for the state machine. Killable things should never be persistent!
-    if(isValidState(currentState) &&
-       member(stateMachineData[currentState], "objects") &&
-       stateMachineData[state]["objects"] &&
-       mappingp(stateMachineData[currentState]["objects"]))
-    {
-        foreach(object o : objectList)
-        {
-            unregisterObject(currentState, o);
-            if(objectp(o))
-            {
-                object *inventory = deep_inventory(o);
-                foreach(object item : inventory)
-                {
-                    unregisterObject(currentState, item);
-                    destruct(item);
-                }
-            }
-            objectList -= ({ o });
-            destruct(o);
-        }
-
-        foreach(string blueprint :
-                m_values(stateMachineData[state]["objects"]))
-        {
-            object newObject = clone_object(blueprint);
-            objectList += ({ newObject });
-            move_object(newObject, this_object());
-            registerObject(state, newObject);
-        }
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask void addPersistentObjects()
-{
-    if(isValidState("default") &&
-       member(stateMachineData["default"], "persistent objects") &&
-       mappingp(stateMachineData["default"]["persistent objects"]))
-    {
-        foreach(string key : m_indices(persistentObjectList))
-        {
-            unregisterObject(currentState, persistentObjectList[key]);
-            if(objectp(persistentObjectList[key]))
-            {
-                object *inventory = deep_inventory(persistentObjectList[key]);
-                foreach(object item : inventory)
-                {
-                    unregisterPersistentObject(item);
-                    destruct(item);
-                }
-            }
-            destruct(persistentObjectList[persistentObjectList[key]]);
-            m_delete(persistentObjectList, key);
-        }
-
-        foreach(mapping blueprint :
-                m_indices(stateMachineData["default"]["persistent objects"]))
-        {
-            object newObject = clone_object(
-                stateMachineData["default"]["persistent objects"][blueprint]);
-            persistentObjectList[blueprint] = newObject;
-            move_object(newObject, this_object());
-            registerPersistentObject(newObject);
-        }
-    }
 
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int id(string item)
+protected nomask void addBuilding(string feature, string location, string path)
 {
-    int ret = 0;
-
-    if(isValidState(currentState) &&
-       member(stateMachineData[currentState], "items") &&
-       mappingp(stateMachineData[currentState]["items"]))
+    if (addEnvironmentalElement(feature, "building", location))
     {
-        ret = member(stateMachineData[currentState]["items"], item);
+        addExit(location, path);
+    }
+    else
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid building.\n", feature));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setTerrain(string terrain)
+{
+    if (sizeof(environmentalElements["terrain"]) ||
+        sizeof(environmentalElements["interior"]))
+    {
+        raise_error("ERROR in environment.c: Only one terrain OR one "
+            "interior can be set.\n");
+    }
+    else if (!addEnvironmentalElement(terrain, "terrain", "none"))
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid terrain.\n", terrain));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setInterior(string interior)
+{
+    if (sizeof(environmentalElements["terrain"]) ||
+        sizeof(environmentalElements["interior"]))
+    {
+        raise_error("ERROR in environment.c: Only one terrain OR one "
+            "interior can be set.\n");
+    }
+    else if (!addEnvironmentalElement(interior, "interior", "none"))
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid interior.\n", interior));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string getFeatureDescriptions()
+{
+    string ret = "";
+
+    if (sizeof(environmentalElements["feature"]))
+    {
+        string *features = sort_array(
+            m_indices(environmentalElements["feature"]), (: $1 > $2 :));
+        foreach(string feature in features)
+        {
+            string directions = "";
+
+            if (sizeof(environmentalElements["feature"][feature]))
+            {
+                directions = " to the " + 
+                    implode(environmentalElements["feature"][feature], ", ");
+                directions = regreplace(directions, ",([^,]+)$", " and\\1");
+            }
+
+            object featureObj = 
+                environmentDictionary()->environmentalObject(feature);
+            if (featureObj)
+            {
+                ret += directions + " you see " +
+                    featureObj->description(currentState) + ".";
+            }
+        }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int move(string str)
+private string getBaseDescriptionForType(string type)
 {
-    string direction = query_verb();
-
-    int ret = 0;
-    // Need to verify that the current state has this action.
-    if(isValidState(currentState) &&
-       member(stateMachineData[currentState], "destinations") &&
-       mappingp(stateMachineData[currentState]["destinations"]) &&
-       member(stateMachineData[currentState]["destinations"], direction))
+    string ret = 0;
+    if (member(environmentalElements, type))
     {
-        ret = 1;
-        this_player()->move_player(sprintf("%s#%s", direction,
-            stateMachineData[currentState]["destinations"][direction]));
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public mixed query(string property)
-{
-    mixed ret = 0;
-    if (property == "current state")
-    {
-        return currentState;
-    }
-    else if(isValidState(currentState) &&
-       member(stateMachineData[currentState], "properties") &&
-       mappingp(stateMachineData[currentState]["properties"]) &&
-       member(stateMachineData[currentState]["properties"], property))
-    {
-        ret = stateMachineData[currentState]["properties"][property];
-    }
-    else if (property == "environment type")
-    {
-        ret = stateMachineData["default"]["environment type"];
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask string formatText(int colorInfo, string text)
-{
-    return format(text, 78);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask string parseEfunCall(string match)
-{
-    string ret = "ERROR";
-    // This match was found to be of the form efun::type::obj::function
-    // the only supported efun right now is call_other
-    // type can be any of: room, key (into persistentObjects), OR filename
-    // obj is either this, the key into persistentObjects, OR a file path.
-    // function is a method on the called object. This method MUST return a
-    // string. 
-    string *arguments = explode(match, "::");
-    if(sizeof(arguments) == 4)
-    {
-        switch(arguments[0])
+        string element = m_indices(environmentalElements[type])[0];
+        object base = environmentDictionary()->environmentalObject(element);
+        if (base)
         {
-            case "##call_other":
-            {
-                switch(arguments[1])
-                {
-                    case "key":
-                    {
-                        if(member(persistentObjectList, arguments[2]) &&
-                           objectp(persistentObjectList[arguments[2]]))
-                        {
-                            ret = call_other(persistentObjectList[arguments[2]],
-                                             arguments[3]);
-                        }
-                        break;
-                    }
-                    case "filename":
-                    {
-                        if(file_size(arguments[2]) > 0)
-                        {
-                            ret = call_other(arguments[2], arguments[3]);
-                        }
-                        break;
-                    }
-                    case "room":
-                    {
-                        ret = call_other(this_object(), arguments[3]);
-                        break;
-                    }
-                    default:
-                    {
-                        break;
-                    }
-                }
-                break;
-            }
-            default:
-            {
-                break;
-            }
+            ret = base->description(currentState);
+        }
+        else
+        {
+            raise_error(sprintf("ERROR in environment.c: Failed to load "
+                "%s '%s'.\n", type, element));
         }
     }
-
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public string long(string item)
 {
-    if(set_light(0) < 1)
+    string ret = getBaseDescriptionForType("terrain");
+    if (!ret)
     {
-        if(this_player() && this_player()->query_property("infravision"))
-        {
-            write(formatText(C_PMON,"You gaze into the darkness and see:\n\n"));
-        }
-        else
-        {
-            write(formatText(C_PMON, "It is dark.\n"));
-            return "TODO [9]: Fix this!\n";
-        }
+        ret = getBaseDescriptionForType("interior");
     }
-    if(item)
+
+    if (ret)
     {
-        if(id(item))
-        {
-            write(formatText(C_ROOMS_DIRS, sprintf("%s\n",
-                stateMachineData[currentState]["items"][item])));
-        }
+        ret += getFeatureDescriptions();
     }
-    else if(isValidState(currentState))
+    else
     {
-        string longDesc = formatText(C_ROOMS_SHORT,
-            stateMachineData[currentState]["long"]);
- 
-        string roomColor = explode(color(this_player()->query("term"),
-            this_player(), C_ROOMS_SHORT, "test"), "test")[0];
-        // Handle efun calls in the description
-        longDesc = regreplace(longDesc, ":#:", roomColor,1);
-        string ss = regreplace(longDesc,
-            "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_])+",
-            #'parseEfunCall,1);
-
-        write(ss);
-        string exitDescription = "-==- There are no obvious exits.\n";
-        if(member(stateMachineData[currentState], "destinations") &&
-           mappingp(stateMachineData[currentState]["destinations"]))
-        {
-            string *exits =
-                m_indices(stateMachineData[currentState]["destinations"]);
-
-            exitDescription =
-                (sizeof(exits) == 1) ? "-==- There is one obvious exit: " :
-                "-==- There are multiple obvious exits: ";
-
-            foreach(string exit :
-                    m_indices(stateMachineData[currentState]["destinations"]))
-            {
-                exitDescription += sprintf("%s, ", exit);
-            }
-            exitDescription = regreplace(exitDescription, "[,:] ([a-z]+), $",
-                (sizeof(exits) == 1) ? ": \\1.\n" :
-                (sizeof(exits) == 2) ? " and \\1.\n" : ", and \\1.\n");
-
-            write(formatText(C_ROOMS_DIRS, exitDescription));
-        }
+        raise_error("ERROR in environment.c: Either a valid terrain or "
+            "interior must be set.\n");
     }
-    return "TODO [9]: Fix this!\n";
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public string short()
-{
-    string shortDesc = "";
-    if((set_light(0) < 1) && !this_player()->query_property("infravision"))
-    {
-        shortDesc = "It is dark.\n";
-    }
-    
-    else if(isValidState(currentState))
-    {
-        if(set_light(0) < 1)
-        {
-            shortDesc = "[Dark] ";
-        }
-        shortDesc += stateMachineData[currentState]["short"];
-
-        if(member(stateMachineData[currentState], "destinations") &&
-           mappingp(stateMachineData[currentState]["destinations"]))
-        {
-            string *exits =
-                m_indices(stateMachineData[currentState]["destinations"]);
-
-            shortDesc += " ( ";
-
-            foreach(string exit :
-                    m_indices(stateMachineData[currentState]["destinations"]))
-            {
-                shortDesc += regreplace(exit, "(n|s|e|w|d)(orth|outh|ast|est|own)", 
-                    "\\1", 1) + " ";
-            }
-            shortDesc += ")";
-        }
-    }
-    return shortDesc;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public void init()
-{
-    if(!currentState)
-    {
-        currentState = "default";
-        addPersistentObjects();
-        addObjects("default");
-    }
-    addExits(currentState);
-    
-    if(stateMachine && !stateMachine->isInitialized())
-    {
-        stateMachine->init();
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
-{
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public int violenceIsProhibited()
-{
-    return query("no fighting");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public int moveFromIsAllowed(object user, object fromLocation)
-{
-    return 1;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public int moveToIsAllowed(object user, object toLocation)
-{
-    return 1;
+    return capitalizeSentences(ret);
 }

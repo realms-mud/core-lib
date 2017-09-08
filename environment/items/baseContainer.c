@@ -3,3 +3,9 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/environment/items/baseItem.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public string Type()
+{
+    return "container";
+}

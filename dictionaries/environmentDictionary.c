@@ -4,8 +4,10 @@
 //*****************************************************************************
 
 private string BaseEnvironment = "lib/environment/environment.c";
+private string BaseElement = "lib/environment/environmentalElement.c";
 private string currentSeason = "summer";
 private string currentTimeOfDay = "day";
+private mapping elementList = ([]);
 
 private string *validSeasons = ({ "winter", "spring", "summer", "autumn" });
 private string *validTimesOfDay = ({ "midnight", "night", "dawn", "morning", "noon", "afternoon", "evening", "dusk" });
@@ -36,6 +38,76 @@ public nomask object getLocation(string location)
             ret = 0;
         }
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object environmentalObject(string element)
+{
+    object ret = 0;
+
+    if (element && stringp(element) && member(elementList, element) &&
+        (file_size(elementList[element]) > 0))
+    {
+        ret = load_object(elementList[element]);
+        if (member(inherit_list(ret), BaseElement) < 0)
+        {
+            ret = 0;
+        }
+        else
+        {
+            ret->Setup();
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int isValidEnvironmentItem(string element, string type)
+{
+    object environmentalObj = environmentalObject(element);
+    return (environmentalObj && objectp(environmentalObj) &&
+        environmentalObj->Name() && 
+        (!type || (environmentalObj->Type() == type)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidFeature(string element)
+{
+    return isValidEnvironmentItem(element, "feature");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int registerElement(string location, string type)
+{
+    int ret = 0;
+
+    if (location && stringp(location) && strlen(location) &&
+        (location[0] != '/'))
+    {
+        location = "/" + location;
+    }
+
+    if (file_size(location) > 0)
+    {
+        object element = load_object(location);
+        element->Setup();
+
+        if (element && objectp(element) &&
+            (member(inherit_list(element), BaseElement) > -1) &&
+            element->Name() && !member(elementList, element->Name()))
+        {
+            ret = 1;
+            elementList[element->Name()] = location;
+
+            if (type && stringp(type) &&
+                (element->Type() != type))
+            {
+                ret = 0;
+            }
+        }
+    }
+
     return ret;
 }
 

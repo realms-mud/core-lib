@@ -17,8 +17,8 @@
 //       to protect against "vanishing" guards. You've been warned.
 protected mapping states = ([
 //    "layout": ([
-//        "entry_action": "",
-//        "exit_action": "",
+//        "entry action": "",
+//        "exit action": "",
 //        "transitions": ([
 //            "some event": ([        
 //                "guard": 0;0,
@@ -90,18 +90,18 @@ public nomask void unregisterPersistentObject(object o)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void onEnter()
 {
-    if(stateHasObjectList(state) && member(states[state], "entry_action"))
+    if(stateHasObjectList(state) && member(states[state], "entry action"))
     {
-        filter_objects(objectList[state], states[state]["entry_action"]);
+        filter_objects(objectList[state], states[state]["entry action"]);
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void onExit()
 {
-    if(stateHasObjectList(state) && member(states[state], "exit_action"))
+    if(stateHasObjectList(state) && member(states[state], "exit action"))
     {
-        filter_objects(objectList[state], states[state]["exit_action"]);
+        filter_objects(objectList[state], states[state]["exit action"]);
     }
 }
 

@@ -5,8 +5,9 @@
 inherit "/lib/environment/features/baseFeature.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void Setup()
 {
+    Name("fake feature");
     addAdjectives(({ "majestic" }));
     addTimeOfDayDescription("dawn", ({ " that the faint dawn light is just beginning to illuminate" }));
     addTimeOfDayDescription("morning", ({ " lit from a ray of sunshine piercing through the canopy" }), "default", "autumn");

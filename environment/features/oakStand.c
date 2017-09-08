@@ -5,7 +5,7 @@
 inherit "/lib/environment/features/baseFeature.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void Setup()
 {
     addAdjectives(({ "majestic", "towering", "tall", "ancient" }));
     addTimeOfDayDescription("dawn", ({ " that the faint dawn light is just beginning to illuminate" }));

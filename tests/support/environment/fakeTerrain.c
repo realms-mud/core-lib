@@ -2,10 +2,11 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/terrain/baseTerrain.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public string Type()
+public void Setup()
 {
-    return "interior";
+    Name("forest");
+    addDescriptionTemplate("a forest");
 }

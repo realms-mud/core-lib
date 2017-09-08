@@ -4,6 +4,7 @@
 //*****************************************************************************
 
 protected mapping descriptionData = ([]);
+private string elementName = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 protected object environmentDictionary()
@@ -12,12 +13,39 @@ protected object environmentDictionary()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string capitalizeSentences(string message)
+public nomask varargs string Name(string newName)
 {
-    string ret = regreplace(message, "^[a-z]", #'upper_case, 1);
-        ret = regreplace(ret, "[.!?] [a-z]", #'upper_case, 1);
-            ret = regreplace(ret, "  ", " ");
-    return ret;
+    if (newName && stringp(newName))
+    {
+        elementName = newName;
+    }
+    return elementName;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string Type()
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void init()
+{
+    if (!elementName)
+    {
+        Setup();
+    }
+
+    if (environmentDictionary() && stringp(elementName) &&
+        !environmentDictionary()->isValidEnvironmentItem(elementName))
+    {
+        environmentDictionary()->registerElement(program_name(this_object()));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -54,7 +82,7 @@ private nomask string parseWeatherDetails(string message, mapping data)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string parseEntryAction(string message, mapping data)
 {
-    return message;
+    return "you enter " + message + ".";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -94,7 +122,7 @@ protected nomask string parseTemplate(mapping data)
     {
         ret = parseWeatherDetails(ret, data);
     }
-    if (displayWeatherDetails())
+    if (displayEntryMessage())
     {
         ret = parseEntryAction(ret, data);
     }
