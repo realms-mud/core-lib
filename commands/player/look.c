@@ -33,7 +33,11 @@ public nomask int execute(string command, object initiator)
         int brief = sizeof(regexp(({ command }), "-b")) || 
             sizeof(regexp(({ command }), "glance"));
 
-        tell_object(initiator, target->long(brief));
+        string longDesc = target->long(brief);
+        if (longDesc)
+        {
+            tell_object(initiator, longDesc);
+        }
     }
     return ret;
 }

@@ -3,6 +3,8 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
+private nosave string DefaultStart = "/room/city/central_park.c";
+
 private string name = "";
 private string shortDescription = "";
 private string longDescription = "";
@@ -21,9 +23,7 @@ private string pretitle;
 private int invisibility;
 private mapping properties = ([]);
 private string whenCreated;
-private string location;
-
-private nosave string DefaultStart = "/room/city/central_park.c";
+private string location = DefaultStart;
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask void loadMaterialAttributes(mapping data, object persistence)

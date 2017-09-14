@@ -41,6 +41,13 @@ private nomask void initiateSelector()
         Player->staminaPoints(Player->maxStaminaPoints());
         move_object(Player, "/room/city/central_park.c");
         Player->save();
+        Player->executeCommand("look");
+        tell_object(Player, format("[0;32;1mCharacter creation is now complete"
+            " and you have been moved to your starting location.[0m "
+            "[0;32mIf you need additional information to get started or for "
+            "getting around in the game, you can use the 'help' command. Enjoy "
+            "your time here and don't hesitate to contact any of the game "
+            "administrators with your questions or comments.\n[0m", 78));
         destruct(this_object());
     }
     else
