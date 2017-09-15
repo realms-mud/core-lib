@@ -61,7 +61,7 @@ private void validateExpect(mixed val1, mixed val2, string msg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private int sortArray(mixed a, mixed b)
+public int sortArray(mixed a, mixed b)
 {
     string compA;
     string compB;
