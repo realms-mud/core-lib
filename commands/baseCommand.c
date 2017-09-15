@@ -89,7 +89,8 @@ protected nomask object getTarget(object owner, string command)
     object ret = 0;
     string template = commandString(command);
 
-    if (command && stringp(command) && template && stringp(template))
+    if (command && stringp(command) && template && stringp(template) &&
+        environment(owner))
     {
         string *targetId = regexplode(command, template);
 
@@ -97,6 +98,30 @@ protected nomask object getTarget(object owner, string command)
         {
             ret = present(targetId[2], environment(owner)) ||
                 present(targetId[2], owner);
+
+            if (!ret && environment(owner)->isEnvironmentItem(targetId[2]))
+            {
+                ret = environment(owner)->getEnvironmentItem(targetId[2]);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string getTargetString(object owner, string command)
+{
+    string ret = 0;
+    string template = commandString(command);
+
+    if (command && stringp(command) && template && stringp(template) &&
+        environment(owner))
+    {
+        string *targetId = regexplode(command, template);
+
+        if (sizeof(targetId) == 3)
+        {
+            ret = targetId[2];
         }
     }
     return ret;

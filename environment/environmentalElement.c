@@ -5,6 +5,7 @@
 
 protected mapping descriptionData = ([]);
 private string elementName = 0;
+private string State = "default";
 
 /////////////////////////////////////////////////////////////////////////////
 protected object environmentDictionary()
@@ -20,6 +21,32 @@ public nomask varargs string Name(string newName)
         elementName = newName;
     }
     return elementName;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string currentState(string newState)
+{
+    if (newState && stringp(newState))
+    {
+        State = newState;
+    }
+    return State;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *aliases(string state)
+{
+    if (!state)
+    {
+        state = currentState();
+    }
+
+    string *ret = ({ elementName });
+    if (member(descriptionData[state], "aliases"))
+    {
+        ret += descriptionData[state]["aliases"];
+    }
+    return m_indices(mkmapping(ret - ({ 0 })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,9 +76,9 @@ public nomask void init()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string parseSeasonDescription(mapping data)
+private nomask string parseSeasonDescription(string message, mapping data)
 {
-    string ret = data["template"];
+    string ret = message;
     string season = environmentDictionary()->season();
     if (member(data, season) && environmentDictionary()->sunlightIsVisible())
     {
@@ -114,9 +141,9 @@ protected int displayEntryMessage()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string parseTemplate(mapping data)
+protected nomask varargs string parseTemplate(string template, mapping data)
 {
-    string ret = parseSeasonDescription(data);
+    string ret = parseSeasonDescription(template, data);
     ret = parseTimeOfDayDetails(ret, data);
 
     if (displayWeatherDetails())
@@ -138,18 +165,38 @@ public nomask varargs string description(string state)
 
     if (!state)
     {
-        state = "default";
+        state = currentState();
     }
 
     if (member(descriptionData, state) && member(descriptionData[state],
         "template"))
     {
-        ret = parseTemplate(descriptionData[state]);
+        ret = parseTemplate(descriptionData[state]["template"], descriptionData[state]);
     }
 
     if (!ret)
     {
         raise_error(sprintf("ERROR in baseFeature.c: The description for "
+            "the %s state does not exist.\n", state));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string long(int brief)
+{
+    string ret = 0;
+    string state = currentState();
+
+    if (member(descriptionData, state) && member(descriptionData[state],
+        "item template"))
+    {
+        ret = parseTemplate(descriptionData[state]["item template"], descriptionData[state]);
+    }
+
+    if (!ret)
+    {
+        raise_error(sprintf("ERROR in baseFeature.c: The item details for "
             "the %s state does not exist.\n", state));
     }
     return ret;
@@ -183,6 +230,41 @@ protected nomask varargs void addDescriptionTemplate(string template, string sta
         descriptionData[state] = ([]);
     }
     descriptionData[state]["template"] = template;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addItemTemplate(string template, string state)
+{
+    if (!state)
+    {
+        state = "default";
+    }
+
+    if (!member(descriptionData, state))
+    {
+        descriptionData[state] = ([]);
+    }
+    descriptionData[state]["item template"] = template;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addAlias(string alias, string state)
+{
+    if (!state)
+    {
+        state = "default";
+    }
+
+    if (!member(descriptionData, state))
+    {
+        descriptionData[state] = ([]);
+    }
+    if (!member(descriptionData[state], "aliases"))
+    {
+        descriptionData[state]["aliases"] = ({ });
+    }
+    descriptionData[state]["aliases"] = 
+        m_indices(mkmapping(descriptionData[state]["aliases"] + ({ alias })));
 }
 
 /////////////////////////////////////////////////////////////////////////////

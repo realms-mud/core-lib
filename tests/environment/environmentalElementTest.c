@@ -118,3 +118,35 @@ void StateChangesUpdateDescription()
     ExpectEq("a stand of charred tree stumps covered with a murky mist that the sickly first rays barely illuminate",
         Element->description("deadified"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DefaultItemDetailsDisplaysCorrectly()
+{
+    ExpectEq("many majestic oaks with branches laden with acorns",
+        Element->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ItemDetailsForStateDisplaysCorrectly()
+{
+    Dictionary->timeOfDay("night");
+    Dictionary->season("winter");
+
+    Element->currentState("deadified");
+    ExpectEq("many charred tree stumps outlined in the dark",
+        Element->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DefaultAliasesDisplayCorrectly()
+{
+    ExpectEq(({ "fake feature", "oak", "stand", "stand of oak trees" }),
+        Element->aliases());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void StateAliasesDisplayCorrectly()
+{
+    ExpectEq(({ "charred stumps", "fake feature", "stumps", "tree stumps" }),
+        Element->aliases("deadified"));
+}

@@ -29,4 +29,17 @@ public void Setup()
     addTimeOfDayDescription("dawn", ({ " that the sickly first rays barely illuminate" }), "deadified");
     addTimeOfDayDescription("night", ({ " outlined in the dark" }), "deadified");
     addSeasonDescription("winter", ({ " covered with a murky mist" }), "deadified");
+
+    addItemTemplate("many ##Adjective## oaks");
+    addItemTemplate("many charred tree stumps", "deadified");
+    addAlias("stand of oak trees");
+    addAlias("oak");
+    addAlias("stand");
+
+    // This duplicate is intentional
+    addAlias("stand");
+
+    addAlias("charred stumps", "deadified");
+    addAlias("tree stumps", "deadified");
+    addAlias("stumps", "deadified");
 }
