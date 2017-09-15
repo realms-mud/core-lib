@@ -2,16 +2,11 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/interiors/baseInterior.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public string Type()
+public void Setup()
 {
-    return "interior";
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected int displayEntryMessage()
-{
-    return 1;
+    Name("hallway");
+    addDescriptionTemplate("a stone hallway");
 }

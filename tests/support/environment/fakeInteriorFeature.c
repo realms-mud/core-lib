@@ -2,16 +2,12 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/features/baseFeature.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public string Type()
+public void Setup()
 {
-    return "interior";
-}
+    Name("fake interior feature");
 
-/////////////////////////////////////////////////////////////////////////////
-protected int displayEntryMessage()
-{
-    return 1;
+    addDescriptionTemplate("an impressive tapestry of Tantor the Unclean dueling an undead unicorn with his trusty plunger");
 }

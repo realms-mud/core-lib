@@ -12,6 +12,12 @@ private mapping elementList = ([]);
 private string *validSeasons = ({ "winter", "spring", "summer", "autumn" });
 private string *validTimesOfDay = ({ "midnight", "night", "dawn", "morning", "noon", "afternoon", "evening", "dusk" });
 
+private string *entryMessages = ({ "you enter", "you have come across",
+    "you emerge in", "you come upon", "entering the area, you see",
+    "as you arrive, you gaze upon", "you have reached", "you see",
+    "taking in your surroundings, you see", "you behold",
+    "you survey your surroundings and see", });
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask object getLocation(string location)
 {
@@ -179,4 +185,10 @@ public nomask string *timesOfDay()
 public nomask string *seasons()
 {
     return validSeasons + ({});
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getEntryMessage()
+{
+    return entryMessages[random(sizeof(entryMessages))];
 }

@@ -82,7 +82,8 @@ private nomask string parseWeatherDetails(string message, mapping data)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string parseEntryAction(string message, mapping data)
 {
-    return "you enter " + message + ".";
+    return environmentDictionary()->getEntryMessage() + " " +
+        message + ".";
 }
 
 /////////////////////////////////////////////////////////////////////////////

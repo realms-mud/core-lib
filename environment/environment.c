@@ -153,7 +153,7 @@ private string getFeatureDescriptions()
 private string getBaseDescriptionForType(string type)
 {
     string ret = 0;
-    if (member(environmentalElements, type))
+    if (member(environmentalElements, type) && sizeof(environmentalElements[type]))
     {
         string element = m_indices(environmentalElements[type])[0];
         object base = environmentDictionary()->environmentalObject(element);

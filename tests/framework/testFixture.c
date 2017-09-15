@@ -12,22 +12,22 @@ int AnyFailure = 0;
 string *ignoreList = ({ "__INIT", "Init", "Setup", "CleanUp" });
 
 /////////////////////////////////////////////////////////////////////////////
-void Init()
+public void Init()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void Setup()
+public void Setup()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CleanUp()
+public void CleanUp()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-int executeTests()
+public int executeTests()
 {
     Init();
     mixed *tests = functionlist(this_object(), RETURN_FUNCTION_NAME | NAME_INHERITED);
@@ -50,7 +50,7 @@ int executeTests()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void validateExpect(mixed val1, mixed val2, string msg)
+private void validateExpect(mixed val1, mixed val2, string msg)
 {
     if (!CurrentTestPassed)
     {
@@ -61,7 +61,7 @@ void validateExpect(mixed val1, mixed val2, string msg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-int sortArray(mixed a, mixed b)
+private int sortArray(mixed a, mixed b)
 {
     string compA;
     string compB;
@@ -81,7 +81,7 @@ int sortArray(mixed a, mixed b)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-string convertDataToString(mixed data)
+protected string convertDataToString(mixed data)
 {
     string ret = "";
 
@@ -117,7 +117,7 @@ string convertDataToString(mixed data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ExpectEq(mixed val1, mixed val2, string msg)
+public varargs void ExpectEq(mixed val1, mixed val2, string msg)
 {
     string parsedVal1 = convertDataToString(val1);
     string parsedVal2 = convertDataToString(val2);
@@ -127,7 +127,14 @@ void ExpectEq(mixed val1, mixed val2, string msg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ExpectNotEq(mixed val1, mixed val2, string msg)
+public varargs void ExpectSubStringMatch(string val1, string val2, string msg)
+{
+    CurrentTestPassed = sizeof(regexp(({ val2 }), val1));
+    validateExpect(val1, val2, msg);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs void ExpectNotEq(mixed val1, mixed val2, string msg)
 {
     string parsedVal1 = convertDataToString(val1);
     string parsedVal2 = convertDataToString(val2);
@@ -137,14 +144,14 @@ void ExpectNotEq(mixed val1, mixed val2, string msg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ExpectTrue(mixed val1, string msg)
+public varargs void ExpectTrue(mixed val1, string msg)
 {
     CurrentTestPassed = val1;
     validateExpect("true", "false", msg);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ExpectFalse(mixed val1, string msg)
+public varargs void ExpectFalse(mixed val1, string msg)
 {
     CurrentTestPassed = !val1;
     validateExpect("false", "true", msg);
