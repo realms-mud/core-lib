@@ -50,7 +50,7 @@ public int executeTests()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void validateExpect(mixed val1, mixed val2, string msg)
+public void validateExpect(mixed val1, mixed val2, string msg)
 {
     if (!CurrentTestPassed)
     {
@@ -81,7 +81,7 @@ public int sortArray(mixed a, mixed b)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string convertDataToString(mixed data)
+public string convertDataToString(mixed data)
 {
     string ret = "";
 
