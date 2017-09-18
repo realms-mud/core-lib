@@ -7,6 +7,7 @@ inherit "/lib/tests/framework/testFixture.c";
 #include "/lib/include/itemFormatters.h"
 
 object Player;
+object Environment;
 
 string *Slots = ({ "Primary Weapon", "Equipped Offhand", "Worn Armor", "Worn Helmet",
     "Worn Gloves", "Worn Boots", "Worn Cloak", "Worn Amulet", "Worn Belt",
@@ -118,13 +119,17 @@ void Setup()
     Player->Wis(10);
     Player->hitPoints(30);
 
-    move_object(Player, clone_object("/lib/environment/room.c"));
+    Environment = clone_object("/lib/tests/support/environment/testEnvironment.c");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    move_object(Player, Environment);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     destruct(Player);
+    destruct(Environment);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -298,5 +303,42 @@ void LookAtItemShowsDetails()
     ExpectEq("Sword of Blah\n" + 
         sprintf(NormalEquipment, "This long sword is typical for its type.\n") + 
         sprintf(Unidentified, "This item has not been identified.\n") + "\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookAtNonexistentThingReturnsFailureMessage()
+{
+    ExpectTrue(Player->executeCommand("look at llama"));
+    ExpectSubStringMatch("There is no 'llama' here.",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookWithoutArgsShowsEnvironment()
+{
+    ExpectTrue(Player->executeCommand("look"));
+    ExpectSubStringMatch("a forest. To the north you see a stand of majestic oak trees with branches laden with acorns.",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLookAtEnvironmentElements()
+{
+    ExpectTrue(Player->executeCommand("look at oak"));
+    ExpectSubStringMatch("many majestic oaks with branches laden with acorns",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanOnlyLookAtEnvironmentElementsWhenInCorrectState()
+{
+    ExpectTrue(Player->executeCommand("look at charred stumps"));
+    ExpectSubStringMatch("There is no 'charred stumps' here.",
+        Player->caughtMessage());
+
+    Environment->currentState("deadified");
+    ExpectTrue(Player->executeCommand("look at charred stumps"));
+    ExpectSubStringMatch("You see many charred tree stumps.",
         Player->caughtMessage());
 }

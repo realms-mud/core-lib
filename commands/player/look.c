@@ -25,7 +25,7 @@ public nomask int execute(string command, object initiator)
         ret = 1;
 
         object target = getTarget(initiator, command);
-        if(!target)
+        if(!target && (getTargetString(initiator, command) == ""))
         {
             target = environment(initiator);
         }
@@ -33,10 +33,18 @@ public nomask int execute(string command, object initiator)
         int brief = sizeof(regexp(({ command }), "-b")) || 
             sizeof(regexp(({ command }), "glance"));
 
-        string longDesc = target->long(brief);
-        if (longDesc)
+        if (target)
         {
-            tell_object(initiator, longDesc);
+            string longDesc = target->long(brief);
+            if (longDesc)
+            {
+                tell_object(initiator, longDesc);
+            }
+        }
+        else
+        {
+            tell_object(initiator, sprintf("There is no '%s' here.\n",
+                getTargetString(initiator, command)));
         }
     }
     return ret;

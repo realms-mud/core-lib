@@ -120,20 +120,20 @@ void StateChangesUpdateDescription()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void DefaultItemDetailsDisplaysCorrectly()
+void DefaultLongDisplaysCorrectly()
 {
-    ExpectEq("many majestic oaks with branches laden with acorns",
+    ExpectEq("You see many majestic oaks with branches laden with acorns.\n",
         Element->long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ItemDetailsForStateDisplaysCorrectly()
+void LongForStateDisplaysCorrectly()
 {
     Dictionary->timeOfDay("night");
     Dictionary->season("winter");
 
     Element->currentState("deadified");
-    ExpectEq("many charred tree stumps outlined in the dark",
+    ExpectEq("You see many charred tree stumps outlined in the dark.\n",
         Element->long());
 }
 

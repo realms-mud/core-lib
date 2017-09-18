@@ -112,6 +112,10 @@ public nomask varargs int registerElement(string location, string type)
                 ret = 0;
             }
         }
+        else
+        {
+            ret = member(elementList, element->Name());
+        }
     }
 
     return ret;

@@ -226,7 +226,7 @@ public string long(string item)
         raise_error("ERROR in environment.c: Either a valid terrain or "
             "interior must be set.\n");
     }
-    return capitalizeSentences(ret);
+    return capitalizeSentences(ret) + "\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -244,6 +244,7 @@ public nomask object getEnvironmentalElement(string item)
     if (isEnvironmentalElement(item))
     {
         ret = load_object(aliasesToElements[currentState()][item]);
+        ret->currentState(currentState());
     }
     return ret;
 }

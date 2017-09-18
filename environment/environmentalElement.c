@@ -197,7 +197,9 @@ public nomask string long(int brief)
     if (member(descriptionData, state) && member(descriptionData[state],
         "item template"))
     {
-        ret = parseTemplate(descriptionData[state]["item template"], descriptionData[state]);
+        ret = "You see " +
+            parseTemplate(descriptionData[state]["item template"],
+                descriptionData[state]) + ".\n";
     }
 
     if (!ret)
