@@ -11,13 +11,25 @@ private mapping environmentalElements = ([
     "item": ([])
 ]);
 
+private mapping aliasesToElements = ([]);
+
 private mapping exits = ([]);
-private string currentState = "default";
+private string State = "default";
 
 /////////////////////////////////////////////////////////////////////////////
 private object environmentDictionary()
 {
     return load_object("/lib/dictionaries/environmentDictionary.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string currentState(string newState)
+{
+    if (newState && stringp(newState))
+    {
+        State = newState;
+    }
+    return State;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -27,6 +39,20 @@ protected nomask string capitalizeSentences(string message)
         ret = regreplace(ret, "[.!?] +[a-z]", #'upper_case, 1);
             ret = regreplace(ret, "  ", " ");
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void setUpAliases(string element)
+{
+    object environmentalObj = environmentDictionary()->environmentalObject(element);
+    foreach(string state in environmentalObj->states())
+    {
+        aliasesToElements[state] = ([]);
+        foreach(string alias in environmentalObj->aliases(state))
+        {
+            aliasesToElements[state][alias] = program_name(environmentalObj);
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,6 +66,17 @@ private nomask int addEnvironmentalElement(string element, string type, string l
         {
             element = load_object(element)->Name();
         }
+        else if(environmentDictionary()->isValidEnvironmentItem(element))
+        {
+            raise_error(sprintf("ERROR in environment.c: Unable to register '%s'. "
+                "A conflicting item with that name already exists.\n", element));
+        }
+        else
+        {
+            raise_error(sprintf("ERROR in environment.c: Unable to register '%s'. "
+                "Be sure that the file exists and inherits a valid environmental "
+                "element.\n", element));
+        }
     }
 
     if (ret && environmentDictionary()->isValidEnvironmentItem(element, type))
@@ -51,6 +88,7 @@ private nomask int addEnvironmentalElement(string element, string type, string l
         environmentalElements[type][element] =
             m_indices(mkmapping(environmentalElements[type][element] +
                 ({ location }) - ({ 0 })));
+        setUpAliases(element);
     }
     return ret;
 }
@@ -142,7 +180,7 @@ private string getFeatureDescriptions()
             if (featureObj)
             {
                 ret += directions + " you see " +
-                    featureObj->description(currentState) + ".";
+                    featureObj->description(currentState()) + ".";
             }
         }
     }
@@ -159,7 +197,7 @@ private string getBaseDescriptionForType(string type)
         object base = environmentDictionary()->environmentalObject(element);
         if (base)
         {
-            ret = base->description(currentState);
+            ret = base->description(currentState());
         }
         else
         {
@@ -189,4 +227,23 @@ public string long(string item)
             "interior must be set.\n");
     }
     return capitalizeSentences(ret);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isEnvironmentalElement(string item)
+{
+    return member(aliasesToElements, currentState()) &&
+        member(aliasesToElements[currentState()], item);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getEnvironmentalElement(string item)
+{
+    object ret = 0;
+
+    if (isEnvironmentalElement(item))
+    {
+        ret = load_object(aliasesToElements[currentState()][item]);
+    }
+    return ret;
 }

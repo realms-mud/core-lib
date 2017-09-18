@@ -99,9 +99,9 @@ protected nomask object getTarget(object owner, string command)
             ret = present(targetId[2], environment(owner)) ||
                 present(targetId[2], owner);
 
-            if (!ret && environment(owner)->isEnvironmentItem(targetId[2]))
+            if (!ret && environment(owner)->isEnvironmentalElement(targetId[2]))
             {
-                ret = environment(owner)->getEnvironmentItem(targetId[2]);
+                ret = environment(owner)->getEnvironmentalElement(targetId[2]);
             }
         }
     }
