@@ -11,9 +11,15 @@ public void testAddFeature(string feature, string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void testAddExit(string direction, string path)
+public void testAddItem(string feature, string location)
 {
-    addExit(direction, path);
+    addItem(feature, location);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void testAddExit(string direction, string path, string state)
+{
+    addExit(direction, path, state);
 }
 
 /////////////////////////////////////////////////////////////////////////////

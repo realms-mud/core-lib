@@ -120,6 +120,15 @@ void StateChangesUpdateDescription()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void DefaultDescriptionUsedWhenStateDoesNotHaveDescription()
+{
+    Dictionary->timeOfDay("dawn");
+    Dictionary->season("summer");
+    ExpectEq("a stand of majestic oak trees with branches laden with acorns that the faint dawn light is just beginning to illuminate",
+        Element->description("blarg"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DefaultLongDisplaysCorrectly()
 {
     ExpectEq("You see many majestic oaks with branches laden with acorns.\n",

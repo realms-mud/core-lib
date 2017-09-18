@@ -15,6 +15,9 @@ private mapping aliasesToElements = ([]);
 
 private mapping exits = ([]);
 private string State = "default";
+private nosave string Description = "[0;33m%s\n[0m";
+private nosave string Exits = "[0;30;1m -=-=- %s\n[0m";
+private nosave string InventoryItem = "[0;36m%s\n[0m";
 
 /////////////////////////////////////////////////////////////////////////////
 private object environmentDictionary()
@@ -104,17 +107,40 @@ protected nomask varargs void addFeature(string feature, string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void addExit(string direction, string path)
+protected nomask varargs void addItem(string item, string location)
 {
-
+    if (!addEnvironmentalElement(item, "item", location))
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid item.\n", item));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void addBuilding(string feature, string location, string path)
+protected nomask varargs void addExit(string direction, string path, string state)
 {
-    if (addEnvironmentalElement(feature, "building", location))
+    if (!state)
     {
-        addExit(location, path);
+        state = "default";
+    }
+    if (!stringp(direction) || !stringp(path))
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' must be a string and "
+            "'%s' must be a valid destination file.\n", direction, path));
+    }
+    if (!member(exits, state))
+    {
+        exits[state] = ([]);
+    }
+    exits[state][direction] = path;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addBuilding(string feature, string location, string path, string state)
+{
+    if (addEnvironmentalElement(feature, "building", location) && stringp(path))
+    {
+        addExit(location, path, state);
     }
     else
     {
@@ -209,6 +235,58 @@ private string getBaseDescriptionForType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private string getExitDescription()
+{
+    string ret = "";
+
+    string *exitList = ({});
+   
+    if (member(exits, currentState()))
+    {
+        exitList += m_indices(exits[currentState()]);
+    }
+    if (member(exits, "default"))
+    {
+        exitList += m_indices(exits["default"]);
+    }
+    exitList = m_indices(mkmapping(exitList));
+
+    int numExits = sizeof(exitList);
+    if(numExits)
+    {
+        ret = sprintf(Exits, sprintf("There %s %s obvious exit%s: %s",
+            numExits == 1 ? "is" : "are",
+            environmentDictionary()->convertNumberToString(numExits),
+            numExits == 1 ? "" : "s",
+            implode(exitList, ", ")));
+    }
+    else
+    {
+        ret = sprintf(Exits, "There are no obvious exits.");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string getInventoryDescription()
+{
+    string ret = "";
+    object *environmentInventory = all_inventory(this_object());
+    if (sizeof(environmentInventory))
+    {
+        foreach(object environmentItem in environmentInventory)
+        {
+            string shortDesc = environmentItem->short();
+            if (shortDesc && (shortDesc != ""))
+            {
+                ret += sprintf(InventoryItem, capitalize(shortDesc));
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public string long(string item)
 {
     string ret = getBaseDescriptionForType("terrain");
@@ -226,7 +304,8 @@ public string long(string item)
         raise_error("ERROR in environment.c: Either a valid terrain or "
             "interior must be set.\n");
     }
-    return capitalizeSentences(ret) + "\n";
+    return sprintf(Description, capitalizeSentences(ret)) + 
+        getExitDescription() + getInventoryDescription();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -247,4 +326,29 @@ public nomask object getEnvironmentalElement(string item)
         ret->currentState(currentState());
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int move(string str)
+{
+    string direction = query_verb();
+    string destination = 0;
+
+    if (member(exits, currentState()) && 
+        member(exits[currentState()], direction))
+    {
+        destination = exits[currentState()][direction];
+    }
+    else if (member(exits, "default") &&
+        member(exits["default"], direction))
+    {
+        destination = exits[currentState()][direction];
+    }
+
+    if (destination)
+    {
+        write(destination);
+        this_player()->move(destination, direction);
+    }
+    return destination && stringp(destination);
 }

@@ -94,3 +94,84 @@ void AliasesForStateNotAvailableWhenNotInProperState()
     ExpectTrue(Environment->isEnvironmentalElement("tree stumps"), "tree stumps is alias");
     ExpectTrue(Environment->isEnvironmentalElement("stumps"), "stumps is alias");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void LongShowsInventory()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    object person = clone_object("/lib/realizations/player.c");
+    person->Name("dwight");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    ExpectSubStringMatch("Dwight", Environment->long());
+    ExpectSubStringMatch("Sword of Blah", Environment->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongShowsNoObviousExits()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+
+    ExpectSubStringMatch("-=-=- There are no obvious exits",
+        Environment->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongShowsOneObviousExit()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/some/path.c");
+    ExpectSubStringMatch("-=-=- There is one obvious exit: north",
+        Environment->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongShowsTwoObviousExits()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/some/path.c");
+    Environment->testAddExit("south", "/some/path2.c");
+    ExpectSubStringMatch("-=-=- There are two obvious exits: [a-z]+, [a-z]+",
+        Environment->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongShowsManyObviousExits()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/some/path.c");
+    Environment->testAddExit("south", "/some/path2.c");
+    Environment->testAddExit("east", "/some/path3.c");
+    Environment->testAddExit("west", "/some/path4.c");
+    Environment->testAddExit("up", "/some/path5.c");
+
+    ExpectSubStringMatch("-=-=- There are five obvious exits: [a-z, ]+",
+        Environment->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongOnlyShowsExitsWhenInCorrectState()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/some/path.c");
+    Environment->testAddExit("south", "/some/path2.c", "weasels");
+
+    ExpectSubStringMatch("-=-=- There is one obvious exit: north",
+        Environment->long());
+
+    Environment->currentState("weasels");
+    ExpectSubStringMatch("-=-=- There are two obvious exits: [a-z]+, [a-z]+",
+        Environment->long());
+}

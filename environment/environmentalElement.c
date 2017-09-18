@@ -179,6 +179,12 @@ public nomask varargs string description(string state)
     {
         ret = parseTemplate(descriptionData[state]["template"], descriptionData[state]);
     }
+    else if (member(descriptionData, "default") && 
+        member(descriptionData["default"], "template"))
+    {
+        ret = parseTemplate(descriptionData["default"]["template"],
+            descriptionData["default"]);
+    }
 
     if (!ret)
     {
@@ -200,6 +206,13 @@ public nomask string long(int brief)
         ret = "You see " +
             parseTemplate(descriptionData[state]["item template"],
                 descriptionData[state]) + ".\n";
+    }
+    else if (member(descriptionData, "default") && 
+        member(descriptionData["default"], "item template"))
+    {
+        ret = "You see " +
+            parseTemplate(descriptionData["default"]["item template"],
+                descriptionData["default"]) + ".\n";
     }
 
     if (!ret)
