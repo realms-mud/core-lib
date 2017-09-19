@@ -175,3 +175,73 @@ void LongOnlyShowsExitsWhenInCorrectState()
     ExpectSubStringMatch("-=-=- There are two obvious exits: [a-z]+, [a-z]+",
         Environment->long());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanMoveToAttachedLocation()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/realizations/player.c");
+    person->Name("dwight");
+    move_object(person, Environment);
+    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+
+    command("north", person);
+    ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MovesToLocationForAppropriateState()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment->testAddExit("north", "/lib/tests/support/environment/fromLocation.c", "deadified");
+    Environment->currentState("deadified");
+
+    object person = clone_object("/lib/realizations/player.c");
+    person->Name("dwight");
+    move_object(person, Environment);
+    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+
+    command("north", person);
+    ExpectEq("lib/tests/support/environment/fromLocation.c", program_name(environment(person)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MovesToDefaultLocationWhenNotDefinedInState()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment->testAddExit("north", "/lib/tests/support/environment/fromLocation.c", "deadified");
+    Environment->currentState("otherstate");
+
+    object person = clone_object("/lib/realizations/player.c");
+    person->Name("dwight");
+    move_object(person, Environment);
+    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+
+    command("north", person);
+    ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DefaultMoveLocationsStillAvailableWhenInDifferentStateAndNotOverridden()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("south", "/lib/tests/support/environment/toLocation.c");
+    Environment->testAddExit("north", "/lib/tests/support/environment/fromLocation.c", "deadified");
+    Environment->currentState("deadified");
+
+    object person = clone_object("/lib/realizations/player.c");
+    person->Name("dwight");
+    move_object(person, Environment);
+    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+
+    command("south", person);
+    ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+}

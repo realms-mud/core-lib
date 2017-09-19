@@ -342,13 +342,46 @@ public int move(string str)
     else if (member(exits, "default") &&
         member(exits["default"], direction))
     {
-        destination = exits[currentState()][direction];
+        destination = exits["default"][direction];
     }
-
     if (destination)
     {
-        write(destination);
         this_player()->move(destination, direction);
     }
     return destination && stringp(destination);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void init()
+{
+    string *directions = ({});
+    if (member(exits, currentState()) && sizeof(exits[currentState()]))
+    {
+        directions += m_indices(exits[currentState()]);
+    }
+    if (member(exits, "default") && sizeof(exits["default"]))
+    {
+        directions += m_indices(exits["default"]);
+    }
+
+    if (sizeof(directions))
+    {
+        directions = m_indices(mkmapping(directions));
+        foreach(string direction in directions)
+        {
+            add_action("move", direction);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int moveFromIsAllowed(object user, object fromLocation)
+{
+    return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int moveToIsAllowed(object user, object toLocation)
+{
+    return 1;
 }
