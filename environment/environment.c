@@ -354,7 +354,7 @@ public int move(string str)
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
-    remove_action(1);
+    remove_action(1, this_object());
 
     string *directions = ({});
     if (member(exits, currentState()) && sizeof(exits[currentState()]))
