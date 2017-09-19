@@ -14,6 +14,7 @@ void Setup()
 {
     Movement = clone_object("/lib/tests/support/services/mockPlayer");
     Movement->Name("Bob");
+    Movement->reset();
 
     FromPlace = load_object("/lib/tests/support/environment/fromLocation.c");
     FromPlace->toggleLight();
