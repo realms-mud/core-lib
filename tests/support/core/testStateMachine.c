@@ -2,15 +2,14 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/quests/questItem.c";
+inherit "/lib/core/stateMachine.c";
 
 private string *events = ({});
 
 /////////////////////////////////////////////////////////////////////////////
 void init()
 {
-    questItem::init();
-    setName("Hail to the king, baby!");
+    "stateMachine"::init();
     addState("meet the king", "I've been asked to meet the king!");
 
     addState("met the king",
@@ -43,49 +42,55 @@ void init()
 /////////////////////////////////////////////////////////////////////////////
 public varargs string testSetInitialState(string state)
 {
-    return questItem::setInitialState(state);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public varargs int testAddPrerequisite(string key, mapping prerequisite, string grouping)
-{
-    return prerequisites::addPrerequisite(key, prerequisite, grouping);
+    return "stateMachine"::setInitialState(state);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void testAddEntryAction(string state, string action)
 {
-    return questItem::addEntryAction(state, action);
+    return "stateMachine"::addEntryAction(state, action);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void testAddExitAction(string state, string action)
 {
-    return questItem::addExitAction(state, action);
+    return "stateMachine"::addExitAction(state, action);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs void testAddFinalState(string state, string result)
 {
-    questItem::addFinalState(state, result);
+    "stateMachine"::addFinalState(state, result);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs void testAddState(string state, string description, string entryEvent, string isFinalState)
 {
-    questItem::addState(state, description, entryEvent, isFinalState);
+    "stateMachine"::addState(state, description, entryEvent, isFinalState);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs void testRegisterQuestActor(object actor)
+public varargs void testRegisterStateActor(object actor)
 {
-    questItem::registerStateActor(actor);
+    "stateMachine"::registerStateActor(actor);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs void testAddTransition(string state, string newState, string eventName, string initiator)
 {
-    questItem::addTransition(state, newState, eventName, initiator);
+    "stateMachine"::addTransition(state, newState, eventName, initiator);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs void testStartStateMachine()
+{
+    "stateMachine"::startStateMachine();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs string getCurrentState(object caller)
+{
+    return "stateMachine"::getCurrentState(caller);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -27,13 +27,41 @@ void DefaultDescriptionDisplaysCorrectlyForTerrain()
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment->testAddFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
-    Environment->testAddFeature("fake feature", "west");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "west");
     Environment->testAddFeature("fake feature", "east");
+    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
-    ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage. To the north, west and east you see a stand of majestic oak trees with branches laden with acorns.",
+    ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage. To the north, west and east you see a stand of majestic oak trees with branches laden with acorns. To the north you see a sign.",
         Environment->long());
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void BuildingWithoutExitDisplaysCorrectly()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "west");
+    Environment->testAddFeature("fake feature", "east");
+    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+
+    ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage. To the west and east you see a stand of majestic oak trees with branches laden with acorns. To the north you see a sign. To the north you see a building.*no obvious exits",
+        Environment->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void BuildingWithExitDisplaysCorrectly()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north", "/lib/tests/support/environment/toLocation.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "west");
+    Environment->testAddFeature("fake feature", "east");
+    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+
+    ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage. To the west and east you see a stand of majestic oak trees with branches laden with acorns. To the north you see a sign. To the north you see a building.*one obvious exit: north",
+        Environment->long());
+}
 /////////////////////////////////////////////////////////////////////////////
 void DefaultDescriptionDisplaysCorrectlyForInteriors()
 {
@@ -177,6 +205,14 @@ void LongOnlyShowsExitsWhenInCorrectState()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void LongRaisesErrorWhenTerrainOrInteriorNotSete()
+{
+    string expected = "*ERROR in environment.c: Either a valid terrain or interior must be set.\n";
+    string err = catch (Environment->long());
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanMoveToAttachedLocation()
 {
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
@@ -244,4 +280,178 @@ void DefaultMoveLocationsStillAvailableWhenInDifferentStateAndNotOverridden()
 
     command("south", person);
     ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddFeatureRaisesErrorWhenUnableToRegiterObject()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testAddFeature("/some/bad/path.c", "north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddFeatureRaisesErrorOnNamingConflict()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeFeatureDuplicate.c'. A conflicting item with that name already exists.\n";
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    string err = catch (Environment->testAddFeature("/lib/tests/support/environment/fakeFeatureDuplicate.c", "north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddFeatureRaisesErrorOnFailure()
+{
+    string expected = "*ERROR in environment.c: 'forest' is not a valid feature.\n";
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment->testAddFeature("forest", "north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddItemRaisesErrorWhenUnableToRegiterObject()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testAddItem("/some/bad/path.c", "north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddItemRaisesErrorOnNamingConflict()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeItemDuplicate.c'. A conflicting item with that name already exists.\n";
+    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+    string err = catch (Environment->testAddItem("/lib/tests/support/environment/fakeItemDuplicate.c", "north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddItemRaisesErrorOnFailure()
+{
+    string expected = "*ERROR in environment.c: 'forest' is not a valid item.\n";
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment->testAddItem("forest", "north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddExitRaisesErrorOnFailure()
+{
+    string expected = "*ERROR in environment.c: 'north' must be a string and '0' must be a valid destination file.\n";
+    string err = catch (Environment->testAddExit("north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddBuildingRaisesErrorWhenUnableToRegiterObject()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testAddBuilding("/some/bad/path.c", "north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddBuildingRaisesErrorOnNamingConflict()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeBuildingDuplicate.c'. A conflicting item with that name already exists.\n";
+    Environment->testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north");
+    string err = catch (Environment->testAddBuilding("/lib/tests/support/environment/fakeBuildingDuplicate.c", "north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddBuildingRaisesErrorOnFailure()
+{
+    string expected = "*ERROR in environment.c: 'forest' is not a valid building with a valid location.\n";
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment->testAddBuilding("forest", "north"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetTerrainRaisesErrorWhenUnableToRegiterObject()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testSetTerrain("/some/bad/path.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetTerrainRaisesErrorOnNamingConflict()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeTerrainDuplicate.c'. A conflicting item with that name already exists.\n";
+    Dictionary->registerElement("/lib/tests/support/environment/fakeTerrain.c", "terrain");
+    string err = catch (Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrainDuplicate.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetTerrainRaisesErrorOnFailure()
+{
+    string expected = "*ERROR in environment.c: 'fake sign' is not a valid terrain.\n";
+    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+    string err = catch (Environment->testSetTerrain("fake sign"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetTerrainCanOnlyBeCalledOnce()
+{
+    string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetTerrainCannotBeCalledIfInteriorSet()
+{
+    string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
+    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    string err = catch (Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetInteriorCannotBeCalledIfTerrainSet()
+{
+    string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetInteriorRaisesErrorWhenUnableToRegiterObject()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testSetInterior("/some/bad/path.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetInteriorRaisesErrorOnNamingConflict()
+{
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeInteriorDuplicate.c'. A conflicting item with that name already exists.\n";
+    Dictionary->registerElement("/lib/tests/support/environment/fakeInterior.c", "interior");
+    string err = catch (Environment->testSetInterior("/lib/tests/support/environment/fakeInteriorDuplicate.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetInteriorRaisesErrorOnFailure()
+{
+    string expected = "*ERROR in environment.c: 'fake sign' is not a valid interior.\n";
+    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+    string err = catch (Environment->testSetInterior("fake sign"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetInteriorCanOnlyBeCalledOnce()
+{
+    string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
+    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    string err = catch (Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c"));
+    ExpectEq(expected, err);
 }

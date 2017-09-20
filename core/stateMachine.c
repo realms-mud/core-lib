@@ -2,138 +2,260 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+virtual inherit "/lib/core/events.c";
 
-// Valid keys for each state:
-// entry_action - function called on entry into state
-// exit_action - function called on exit from state
-// transitions - mapping of transitions:
-//                  - key is event that could trigger the transition
-//                  - value is mapping of event conditions:
-//                        - guard is the object/method that blocks transition
-//                        - state is the state to transition to
-// NOTE: It would be very bad form to have a non-persistent object as a guard!
-//       If, for example, a monster's death frees a guard, maintain ownership
-//       in the room and check from there. It's more trouble than it's worth
-//       to protect against "vanishing" guards. You've been warned.
-protected mapping states = ([
-//    "layout": ([
-//        "entry action": "",
-//        "exit action": "",
-//        "transitions": ([
-//            "some event": ([        
-//                "guard": 0;0,
-//                "state": "";0
-//            ])
-//        ])
-//    ])
-]);
-
-protected string state = "default";
-
-protected mapping objectList = ([]);
-    
-/////////////////////////////////////////////////////////////////////////////
-private nomask int stateHasObjectList(string state)
-{
-    return (member(states, state) && member(objectList, state));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int registerObject(string state, object objectToCheck)
-{
-    int ret = 0;
-     
-    if(objectToCheck && stateHasObjectList(state))
-    {
-        objectList[state] += ({ objectToCheck });
-        objectToCheck->setStateMachine(this_object());
-        ret = 1;
-    }
-
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int unregisterObject(string state, object objectToCheck)
-{
-    int ret = 0;
-
-    if(objectToCheck && stateHasObjectList(state) &&
-       (member(objectList[state], objectToCheck) > -1))
-    {
-        objectList[state] -= ({ objectToCheck });
-        objectToCheck->setStateMachine(0);
-        ret = 1;
-    }
-
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void registerPersistentObject(object o)
-{
-    foreach(string s : m_indices(states))
-    {
-        registerObject(s, o);
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void unregisterPersistentObject(object o)
-{
-    foreach(string s : m_indices(states))
-    {
-        unregisterObject(s, o);
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask void onEnter()
-{
-    if(stateHasObjectList(state) && member(states[state], "entry action"))
-    {
-        filter_objects(objectList[state], states[state]["entry action"]);
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask void onExit()
-{
-    if(stateHasObjectList(state) && member(states[state], "exit action"))
-    {
-        filter_objects(objectList[state], states[state]["exit action"]);
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int receiveEvent(string event)
-{
-    int ret = 0;
-    if(member(states[state], "transitions") &&
-       member(states[state]["transitions"], event) &&
-       member(states[state]["transitions"][event], "guard") && 
-       states[state]["transitions"][event]["guard", 0] &&
-       call_other(states[state]["transitions"][event]["guard", 0],
-                  states[state]["transitions"][event]["guard", 1]))
-     {
-         onExit();
-         state = states[state]["transitions"][event]["state",0];
-         onEnter();
-         ret = 1;
-     }
-     return ret;
-}
+protected string InitialState = "";
+protected string CurrentState = "default";
+protected object *stateActors = ({});
+protected mapping stateTree = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
-    foreach(string s : m_indices(states))
+    InitialState = "";
+    CurrentState = "default";
+    stateActors = ({});
+    stateTree = ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void onEnter(string state)
+{
+    if (member(stateTree[state], "entry action"))
     {
-        while(member(objectList[s], 0) > -1)
-        {
-            objectList[s] -= ({ 0 });
-        }
+        call_other(this_object(), stateTree[state]["entry action"]);
+    }
+    if (member(stateTree[state], "event"))
+    {
+        filter_objects(stateActors, "notify", stateTree[state]["event"]);
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void onExit(string state)
+{
+    if (member(stateTree[state], "exit action"))
+    {
+        call_other(this_object(), stateTree[state]["exit action"]);
+    }
+}
 
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void startStateMachine()
+{
+    CurrentState = InitialState;
+    onEnter(InitialState);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected varargs string getCurrentState(object caller)
+{
+    return CurrentState;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected void advanceState(object caller, string newState)
+{
+    CurrentState = newState;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int receiveEvent(object caller, string eventName, object initiator)
+{
+    int ret = 0;
+
+    if (caller && objectp(caller) && eventName && stringp(eventName))
+    {
+        string currentState = getCurrentState(caller);
+
+        if (currentState && member(stateTree, currentState) &&
+            member(stateTree[currentState], "transitions") &&
+            member(stateTree[currentState]["transitions"], eventName))
+        {
+            mapping transition = stateTree[currentState]["transitions"][eventName];
+            ret = initiator && objectp(initiator) && member(transition, initiator) ?
+                (transition["initiator"] == program_name(initiator)) : 1;
+
+            if (ret)
+            {
+                onExit(currentState);
+                currentState = transition["transition"];
+                notify("onStateChanged", currentState);
+                advanceState(caller, currentState);
+                onEnter(currentState);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs string setInitialState(string state)
+{
+    if (state && stringp(state) && (state != ""))
+    {
+        if (!member(stateTree, state))
+        {
+            raise_error("ERROR - stateMachine: the initial state must have been added first.");
+        }
+        InitialState = state;
+    }
+    return InitialState;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string initialState()
+{
+    return InitialState;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void addAction(string state, string action, string type)
+{
+    if (state && stringp(state) && action && stringp(action) &&
+        member(stateTree, state) && function_exists(action))
+    {
+        stateTree[state][type] = action;
+    }
+    else
+    {
+        raise_error(sprintf("ERROR - stateMachine: an %s can only be added "
+            "if both the state exists and the method to call has "
+            "been implemented on this object.", type));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void addEntryAction(string state, string action)
+{
+    addAction(state, action, "entry action");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void addExitAction(string state, string action)
+{
+    addAction(state, action, "exit action");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void addFinalState(string state, string result)
+{
+    if (result && state && stringp(state) && member(stateTree, state))
+    {
+        if (stringp(result) &&
+            (member(({ "success", "failure" }), result) > -1))
+        {
+            stateTree[state]["is final state"] = result;
+        }
+        else
+        {
+            raise_error("ERROR - stateMachine: the final state result must be 'success' or 'failure'.");
+        }
+    }
+    else
+    {
+        raise_error("ERROR - stateMachine: the state must exist for it to be set as a final state.");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addState(string state, string description, string entryEvent, string isFinalState)
+{
+    if (state && stringp(state) && description && stringp(description) &&
+        !member(stateTree, state))
+    {
+        stateTree[state] = (["description":description]);
+        if (entryEvent)
+        {
+            if (stringp(entryEvent))
+            {
+                stateTree[state]["event"] = entryEvent;
+            }
+            else
+            {
+                raise_error("ERROR - stateMachine: the entry event must be a string.");
+            }
+        }
+        if (isFinalState)
+        {
+            addFinalState(state, isFinalState);
+        }
+    }
+    else if (member(stateTree, state))
+    {
+        raise_error(sprintf("ERROR - stateMachine: the '%s' state has already been added.", state));
+    }
+    else
+    {
+        raise_error("ERROR - stateMachine: the state could not be added.");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void registerStateActor(object actor)
+{
+    if (actor && objectp(actor))
+    {
+        registerEvent(actor);
+        stateActors += ({ actor });
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void unregisterStateActor(object actor)
+{
+    if (actor && objectp(actor))
+    {
+        unregisterEvent(actor);
+        stateActors -= ({ actor });
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addTransition(string state, string newState, string eventName, string initiator)
+{
+    if (state && stringp(state) && eventName && stringp(eventName) &&
+        newState && stringp(newState) && member(stateTree, state) &&
+        member(stateTree, newState))
+    {
+        if (!member(stateTree[state], "transitions"))
+        {
+            stateTree[state]["transitions"] = ([]);
+        }
+
+        // This is a way around guards - send a different event to transition
+        // to a different state.
+        if (!member(stateTree[state]["transitions"], eventName))
+        {
+            stateTree[state]["transitions"][eventName] = ([
+                "transition":newState
+            ]);
+        }
+        else
+        {
+            raise_error("ERROR - stateMachine: a transition for that event already exists.");
+        }
+
+        if (initiator && stringp(initiator))
+        {
+            if ((file_size(initiator) > -1) && !catch (load_object(initiator)))
+            {
+                stateTree[state]["transitions"][eventName]["initiator"] = initiator;
+            }
+            else
+            {
+                raise_error("ERROR - stateMachine: the transition initiator must be a valid program name.");
+            }
+        }
+    }
+    else
+    {
+        raise_error("ERROR - stateMachine: the transition could not be added.");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getStateDescription(string state)
+{
+    return member(stateTree, state) ? stateTree[state]["description"] : 0;
+}

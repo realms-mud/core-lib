@@ -18,6 +18,7 @@ private string State = "default";
 private nosave string Description = "[0;33m%s\n[0m";
 private nosave string Exits = "[0;30;1m -=-=- %s\n[0m";
 private nosave string InventoryItem = "[0;36m%s\n[0m";
+private nosave object StateMachine = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 private object environmentDictionary()
@@ -33,6 +34,20 @@ public nomask varargs string currentState(string newState)
         State = newState;
     }
     return State;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void setStateMachine(object newSM)
+{
+    if (newSM && objectp(newSM))
+    {
+        if (StateMachine)
+        {
+            StateMachine->unregisterStateActor(this_object());
+        }
+        StateMachine = newSM;
+        StateMachine->registerStateActor(this_object());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -69,7 +84,8 @@ private nomask int addEnvironmentalElement(string element, string type, string l
         {
             element = load_object(element)->Name();
         }
-        else if(environmentDictionary()->isValidEnvironmentItem(element))
+        else if((file_size(element) > 0) &&
+            environmentDictionary()->isValidEnvironmentItem(load_object(element)->Name(), type))
         {
             raise_error(sprintf("ERROR in environment.c: Unable to register '%s'. "
                 "A conflicting item with that name already exists.\n", element));
@@ -82,7 +98,8 @@ private nomask int addEnvironmentalElement(string element, string type, string l
         }
     }
 
-    if (ret && environmentDictionary()->isValidEnvironmentItem(element, type))
+    ret &&= environmentDictionary()->isValidEnvironmentItem(element, type);
+    if (ret)
     {
         if (!member(environmentalElements[type], element))
         {
@@ -126,7 +143,8 @@ protected nomask varargs void addExit(string direction, string path, string stat
     if (!stringp(direction) || !stringp(path))
     {
         raise_error(sprintf("ERROR in environment.c: '%s' must be a string and "
-            "'%s' must be a valid destination file.\n", direction, path));
+            "'%s' must be a valid destination file.\n", to_string(direction),
+            to_string(path)));
     }
     if (!member(exits, state))
     {
@@ -138,14 +156,17 @@ protected nomask varargs void addExit(string direction, string path, string stat
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs void addBuilding(string feature, string location, string path, string state)
 {
-    if (addEnvironmentalElement(feature, "building", location) && stringp(path))
+    if (addEnvironmentalElement(feature, "building", location) && stringp(location))
     {
-        addExit(location, path, state);
+        if (stringp(path))
+        {
+            addExit(location, path, state);
+        }
     }
     else
     {
         raise_error(sprintf("ERROR in environment.c: '%s' is not a "
-            "valid building.\n", feature));
+            "valid building with a valid location.\n", feature));
     }
 }
 
@@ -182,31 +203,32 @@ protected nomask void setInterior(string interior)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string getFeatureDescriptions()
+private string getElementDescriptions(string type)
 {
     string ret = "";
 
-    if (sizeof(environmentalElements["feature"]))
+    if (member(environmentalElements, type) &&
+        sizeof(environmentalElements[type]))
     {
-        string *features = sort_array(
-            m_indices(environmentalElements["feature"]), (: $1 > $2 :));
-        foreach(string feature in features)
+        string *elements = sort_array(
+            m_indices(environmentalElements[type]), (: $1 > $2 :));
+        foreach(string element in elements)
         {
             string directions = "";
 
-            if (sizeof(environmentalElements["feature"][feature]))
+            if (sizeof(environmentalElements[type][element]))
             {
                 directions = " to the " + 
-                    implode(environmentalElements["feature"][feature], ", ");
+                    implode(environmentalElements[type][element], ", ");
                 directions = regreplace(directions, ",([^,]+)$", " and\\1");
             }
 
-            object featureObj = 
-                environmentDictionary()->environmentalObject(feature);
-            if (featureObj)
+            object elementObj = 
+                environmentDictionary()->environmentalObject(element);
+            if (elementObj)
             {
                 ret += directions + " you see " +
-                    featureObj->description(currentState()) + ".";
+                    elementObj->description(currentState()) + ".";
             }
         }
     }
@@ -287,7 +309,7 @@ private string getInventoryDescription()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string long(string item)
+public varargs string long(string item)
 {
     string ret = getBaseDescriptionForType("terrain");
     if (!ret)
@@ -297,7 +319,9 @@ public string long(string item)
 
     if (ret)
     {
-        ret += getFeatureDescriptions();
+        ret += getElementDescriptions("feature") + 
+            getElementDescriptions("item") + 
+            getElementDescriptions("building");
     }
     else
     {
@@ -329,7 +353,7 @@ public nomask object getEnvironmentalElement(string item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int move(string str)
+public nomask int move(string str)
 {
     string direction = query_verb();
     string destination = 0;
@@ -354,6 +378,10 @@ public int move(string str)
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
+    if (objectp(StateMachine))
+    {
+        currentState(StateMachine->getCurrentState());
+    }
     remove_action(1);
 
     string *directions = ({});
@@ -386,4 +414,20 @@ public int moveFromIsAllowed(object user, object fromLocation)
 public int moveToIsAllowed(object user, object toLocation)
 {
     return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void onStateChanged(object caller, string newState)
+{
+    init();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onEntryAction(object caller)
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onExitAction(object caller)
+{
 }
