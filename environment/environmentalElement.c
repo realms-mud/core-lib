@@ -67,17 +67,20 @@ public void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    if (!elementName)
+    if (!arg)
     {
-        Setup();
-    }
+        if (!elementName)
+        {
+            Setup();
+        }
 
-    if (environmentDictionary() && stringp(elementName) &&
-        !environmentDictionary()->isValidEnvironmentItem(elementName))
-    {
-        environmentDictionary()->registerElement(program_name(this_object()));
+        if (environmentDictionary() && stringp(elementName) &&
+            !environmentDictionary()->isValidEnvironmentItem(elementName))
+        {
+            environmentDictionary()->registerElement(program_name(this_object()));
+        }
     }
 }
 

@@ -26,11 +26,7 @@ public nomask object getAttack(string type)
     string fileName = sprintf("%s/%sAttack.c", AttacksDir, type);
     if(file_size(fileName) > 0)
     {
-        ret = load_object(fileName);
-        if(ret && !ret->isInitialized())
-        {
-            ret->init();
-        }        
+        ret = load_object(fileName);        
     }
     return ret;
 }

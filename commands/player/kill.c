@@ -5,9 +5,12 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    addCommandTemplate("kill ##Target##");
+    if (!arg)
+    {
+        addCommandTemplate("kill ##Target##");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

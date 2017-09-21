@@ -5,13 +5,16 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    addCommandTemplate("look [-b] [(at|in) ##Target##]");
-    addCommandTemplate("l [-b] [(at|in) ##Target##]");
-    addCommandTemplate("examine [-b] [##Target##]");
-    addCommandTemplate("exa [-b] [##Target##]");
-    addCommandTemplate("glance [(at|in) ##Target##]");
+    if (!arg)
+    {
+        addCommandTemplate("look [-b] [(at|in) ##Target##]");
+        addCommandTemplate("l [-b] [(at|in) ##Target##]");
+        addCommandTemplate("examine [-b] [##Target##]");
+        addCommandTemplate("exa [-b] [##Target##]");
+        addCommandTemplate("glance [(at|in) ##Target##]");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -5,22 +5,25 @@
 inherit "/lib/modules/combat/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    ::init();
-    setDamageType("neutral");
-    addHitDictionary(({
-        "strike", "hit", "damage", "thump", "lash" }));
+    if (!arg)
+    {
+        ::reset(arg);
+        setDamageType("neutral");
+        addHitDictionary(({
+            "strike", "hit", "damage", "thump", "lash" }));
 
-    addSimileDictionary(({
-        "with waves of colorless energy", "with a shock of colorless force",
-        "soundly", "resoundingly" }));
-        
-    addMissMessage("##AttackerName## ##Infinitive::get## a not-so-bright "
+        addSimileDictionary(({
+            "with waves of colorless energy", "with a shock of colorless force",
+            "soundly", "resoundingly" }));
+
+        addMissMessage("##AttackerName## ##Infinitive::get## a not-so-bright "
             "look on ##AttackerPossessive## face.");
-    
-    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+
+        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
             "##SimileDictionary##.", "1-50");
+    }
 }
 
 

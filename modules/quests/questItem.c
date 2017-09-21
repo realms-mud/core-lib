@@ -62,11 +62,14 @@ private string Description = 0;
     //     "is final state": "failure",
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    Name = 0;
-    Description = 0;
-    "stateMachine"::init();
+    if (!arg)
+    {
+        Name = 0;
+        Description = 0;
+        "stateMachine"::reset(arg);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

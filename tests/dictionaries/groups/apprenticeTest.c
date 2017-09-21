@@ -17,7 +17,6 @@ protected nosave int Read = 0x4;
 void Setup()
 {
     Group = clone_object("/lib/dictionaries/groups/apprentice.c");
-    Group->init();
 
     Wizard = clone_object("/lib/realizations/wizard.c");
     Wizard->Name("Earl");

@@ -14,7 +14,6 @@ object Room;
 void Setup()
 {
     ResearchItem = clone_object("/lib/tests/support/research/testPersistedRitualResearchItem");
-    ResearchItem->init();
     ResearchItem->testAddSpecification("command template", "throw turnip at ##Target##");
     ResearchItem->testAddSpecification("scope", "targeted");
 

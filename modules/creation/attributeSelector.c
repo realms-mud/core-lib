@@ -5,67 +5,69 @@
 inherit "/lib/modules/creation/baseSelector";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    Description = "Choose your starting attributes";
-    Data = ([
-        "1":([
-            "name": "Strength",
-            "description": "The strength attribute represents how strong one is and their overall\nphysical prowess. It is used to determine:\n"
-                "\t- How much they can carry\n"
-                "\t- How easily they can bear a burden (encumberance)\n"
-                "\t- Damage inflicted by physical blows\n"
-                "\t- Ability to withstand physical blows\n"
-                "\t- Ability to learn certain skills - particularly combat skills\n"
-                "\t- Stamina\n"
-                "\t- Key abilities in many martial guilds\n"
-        ]),
-        "2":([
-            "name": "Intelligence",
-            "description": "The intelligence attribute represents one's mental aptitude.\nIt is used to determine:\n"
-                "\t- How many skill points they receive\n"
-                "\t- Damage inflicted by magical means\n"
-                "\t- Ability to land physical attacks in the most ideal locations\n"
-                "\t- Ability to learn certain skills - particularly magic, erudite,\n\t  crafting, and language skills\n"
-                "\t- Spell Points\n"
-                "\t- Key abilities in many thought and magic-based guilds\n"
-        ]),
-        "3":([
-            "name": "Dexterity",
-            "description": "The dexterity attribute represents one's stealth and nimbleness.\nIt is used to determine:\n"
-                "\t- Ability to land physical attacks\n"
-                "\t- Ability to avoid attacks\n"
-                "\t- Ability to learn certain skills - particularly combat and\n\t  subterfuge skills\n"
-                "\t- Key abilities in roguish guilds\n"
-        ]),
-        "4":([
-            "name": "Wisdom",
-            "description": "The wisdom attribute represents one's intuition, common sense,\nand decision-making. It is used to determine:\n"
-                "\t- Damage inflicted\n"
-                "\t- Ability to avoid attacks\n"
-                "\t- Ability to learn certain skills - particularly magic, general,\n\t  and crafting skills\n"
-                "\t- Spell Points\n"
-                "\t- Key abilities in many divine-based guilds\n"
-        ]),
-        "5":([
-            "name": "Constitution",
-            "description": "The constitution attribute represents one's physical toughness.\nIt is used to determine:\n"
-                "\t- Hit points\n"
-                "\t- Ability to withstand physical blows\n"
-                "\t- Many resistances, including magic, poison, and illness\n"
-                "\t- Ability to learn certain skills - particularly magic skills\n"
-        ]),
-        "6":([
-            "name": "Charisma",
-            "description": "The charisma attribute represents one's personality and ability to\nmanipulate others. It is used to determine:\n"
-                "\t- Other's default predisposition toward you\n"
-                "\t- Ability to manipulate conversations\n"
-                "\t- Faction and guild influence\n"
-                "\t- Ability to learn certain skills - particularly magic and\n\t  general skills\n"
-                "\t- Key abilities in many guilds\n"
-        ])
-    ]);
-    "baseSelector"::init();
+    if(!arg)
+    {
+        Description = "Choose your starting attributes";
+        Data = ([
+            "1":([
+                "name": "Strength",
+                "description": "The strength attribute represents how strong one is and their overall\nphysical prowess. It is used to determine:\n"
+                    "\t- How much they can carry\n"
+                    "\t- How easily they can bear a burden (encumberance)\n"
+                    "\t- Damage inflicted by physical blows\n"
+                    "\t- Ability to withstand physical blows\n"
+                    "\t- Ability to learn certain skills - particularly combat skills\n"
+                    "\t- Stamina\n"
+                    "\t- Key abilities in many martial guilds\n"
+            ]),
+            "2":([
+                "name": "Intelligence",
+                "description": "The intelligence attribute represents one's mental aptitude.\nIt is used to determine:\n"
+                    "\t- How many skill points they receive\n"
+                    "\t- Damage inflicted by magical means\n"
+                    "\t- Ability to land physical attacks in the most ideal locations\n"
+                    "\t- Ability to learn certain skills - particularly magic, erudite,\n\t  crafting, and language skills\n"
+                    "\t- Spell Points\n"
+                    "\t- Key abilities in many thought and magic-based guilds\n"
+            ]),
+            "3":([
+                "name": "Dexterity",
+                "description": "The dexterity attribute represents one's stealth and nimbleness.\nIt is used to determine:\n"
+                    "\t- Ability to land physical attacks\n"
+                    "\t- Ability to avoid attacks\n"
+                    "\t- Ability to learn certain skills - particularly combat and\n\t  subterfuge skills\n"
+                    "\t- Key abilities in roguish guilds\n"
+            ]),
+            "4":([
+                "name": "Wisdom",
+                "description": "The wisdom attribute represents one's intuition, common sense,\nand decision-making. It is used to determine:\n"
+                    "\t- Damage inflicted\n"
+                    "\t- Ability to avoid attacks\n"
+                    "\t- Ability to learn certain skills - particularly magic, general,\n\t  and crafting skills\n"
+                    "\t- Spell Points\n"
+                    "\t- Key abilities in many divine-based guilds\n"
+            ]),
+            "5":([
+                "name": "Constitution",
+                "description": "The constitution attribute represents one's physical toughness.\nIt is used to determine:\n"
+                    "\t- Hit points\n"
+                    "\t- Ability to withstand physical blows\n"
+                    "\t- Many resistances, including magic, poison, and illness\n"
+                    "\t- Ability to learn certain skills - particularly magic skills\n"
+            ]),
+            "6":([
+                "name": "Charisma",
+                "description": "The charisma attribute represents one's personality and ability to\nmanipulate others. It is used to determine:\n"
+                    "\t- Other's default predisposition toward you\n"
+                    "\t- Ability to manipulate conversations\n"
+                    "\t- Faction and guild influence\n"
+                    "\t- Ability to learn certain skills - particularly magic and\n\t  general skills\n"
+                    "\t- Key abilities in many guilds\n"
+            ])
+        ]);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

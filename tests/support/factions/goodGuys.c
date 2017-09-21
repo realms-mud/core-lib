@@ -5,7 +5,10 @@
 inherit "/lib/modules/factions/baseFaction.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    setName("good guys");
+    if (!arg)
+    {
+        setName("good guys");
+    }
 }

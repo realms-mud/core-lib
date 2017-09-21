@@ -26,7 +26,6 @@ private nomask void registerPlayerCommands()
                 
                 if(commandObj && (member(inherit_list(commandObj), BaseCommand) > -1))
                 {
-                    commandObj->init();
                     commands[commandObj->commandRegExp()] = fullyQualifiedFile;
                 }
             }
@@ -41,12 +40,15 @@ public nomask int isInitialized()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    commands = ([]);
-    registerPlayerCommands();
+    if (!arg)
+    {
+        commands = ([]);
+        registerPlayerCommands();
 
-    IsInitialized = 1;
+        IsInitialized = 1;
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

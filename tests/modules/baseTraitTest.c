@@ -11,7 +11,6 @@ object Trait;
 void Setup()
 {
     Trait = clone_object("/lib/tests/support/traits/testTraitWithoutResearch.c");
-    Trait->init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

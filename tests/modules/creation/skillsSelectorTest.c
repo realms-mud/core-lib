@@ -136,5 +136,5 @@ void SelectAllAvailableSkillsFiresOnSelectorCompleted()
                 sprintf("You have %d skills left", 10 - i))), "bbb");
         }
     }
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(1, subscriber->TimesEventReceived(), "event received once");
 }

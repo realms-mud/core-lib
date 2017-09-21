@@ -17,7 +17,6 @@ protected nosave int Read = 0x4;
 void Setup()
 {
     Group = clone_object("/lib/tests/support/dictionaries/groups/mockGroup.c");
-    Group->init();
 
     Wizard = clone_object("/lib/realizations/wizard.c");
     setUsers(({ Wizard }));
@@ -37,10 +36,7 @@ void InitCallsApplyGroupDetails()
 {
     destruct(Group);
     Group = clone_object("/lib/tests/support/dictionaries/groups/mockGroup.c");
-
-    ExpectFalse(Group->ApplyWasCalled(), "not initially called");
-    Group->init();
-    ExpectTrue(Group->ApplyWasCalled(), "init() called");
+    ExpectTrue(Group->ApplyWasCalled(), "called");
 }
 
 /////////////////////////////////////////////////////////////////////////////

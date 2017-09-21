@@ -31,10 +31,6 @@ public nomask object traitObject(string trait)
     if(trait && stringp(trait) && (file_size(trait) > 0))
     { 
         ret = load_object(trait);
-        if(ret && !ret->query("type"))
-        {
-            ret->init();
-        }
 
         if(!ret || (member(inherit_list(ret), BaseTrait) < 0) ||
            !ret->isValidTrait())

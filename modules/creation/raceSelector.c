@@ -7,18 +7,20 @@ inherit "/lib/modules/creation/baseSelector";
 private object RacialDictionary;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    Description = "Choose your race";
-    AllowUndo = 0;
-
-    RacialDictionary = load_object("/lib/dictionaries/racialDictionary.c");
-    if (!RacialDictionary)
+    if (!arg)
     {
-        raise_error("raceSelector: ERROR - The racial dictionary is not present!\n");
+        Description = "Choose your race";
+        AllowUndo = 0;
+
+        RacialDictionary = load_object("/lib/dictionaries/racialDictionary.c");
+        if (!RacialDictionary)
+        {
+            raise_error("raceSelector: ERROR - The racial dictionary is not present!\n");
+        }
+        Data = RacialDictionary->characterCreationRaces();
     }
-    Data = RacialDictionary->characterCreationRaces();
-    "baseSelector"::init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

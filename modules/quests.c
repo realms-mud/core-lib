@@ -61,10 +61,6 @@ private nomask object getQuestObject(string questItem)
             {
                 ret = 0;
             }
-            else
-            {
-                ret->init();
-            }
         }
     }
     return ret;

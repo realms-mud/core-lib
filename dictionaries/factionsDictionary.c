@@ -18,10 +18,6 @@ public nomask object factionObject(string faction)
         {
             ret = 0;
         }
-        else
-        {
-            ret->init();
-        }
     }
     return ret;
 }

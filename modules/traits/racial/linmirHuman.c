@@ -5,15 +5,18 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    addSpecification("type", "racial");
-    addSpecification("name", "Linmiri");
-    addSpecification("description", "");
-    addSpecification("root", "human");
-    addSpecification("opposing root", "orc");
-    addSpecification("opinion", 5);
-    addSpecification("opposing opinion", -5);
-    "baseTrait"::init();
+    if (!arg)
+    {
+        addSpecification("type", "racial");
+        addSpecification("name", "Linmiri");
+        addSpecification("description", "");
+        addSpecification("root", "human");
+        addSpecification("opposing root", "orc");
+        addSpecification("opinion", 5);
+        addSpecification("opposing opinion", -5);
+        "baseTrait"::reset(arg);
+    }
 }
 

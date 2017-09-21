@@ -13,7 +13,6 @@ object Guild;
 void Setup()
 {
     Guild = load_object("/lib/tests/support/guilds/testGuild.c");
-    Guild->init();
 
     Specification = clone_object("/lib/tests/support/research/testSpecification");
     Attacker = clone_object("/lib/tests/support/services/combatWithMockServices");

@@ -5,23 +5,26 @@
 inherit "/lib/modules/combat/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    ::init();
-    setDamageType("fire");
-    addHitDictionary(({
-        "scorch", "immolate", "blast", "burn", "torch", "ignite", "singe",
-        "roast", "melt", "broil", "char" }));
+    if (!arg)
+    {
+        ::reset(arg);
+        setDamageType("fire");
+        addHitDictionary(({
+            "scorch", "immolate", "blast", "burn", "torch", "ignite", "singe",
+            "roast", "melt", "broil", "char" }));
 
-    addSimileDictionary(({
-        "with a stream of flame", "with flaming tendrils", "with a pillar of " +
-        "flame", "with a roaring conflagration" }));
-        
-    addMissMessage("##AttackerName## ##Infinitive::produce## a tiny mote of "
+        addSimileDictionary(({
+            "with a stream of flame", "with flaming tendrils", "with a pillar of " +
+            "flame", "with a roaring conflagration" }));
+
+        addMissMessage("##AttackerName## ##Infinitive::produce## a tiny mote of "
             "inconsequential flame.");
-    
-    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## " +
+
+        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## " +
             "##SimileDictionary##.", "1-50");
+    }
 }
 
 

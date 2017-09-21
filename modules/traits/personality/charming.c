@@ -5,17 +5,20 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    addSpecification("type", "personality");
-    addSpecification("name", "charming");
-    addSpecification("description", "You are a pleasant person and, darn it, people like you.");
-    addSpecification("root", "nice");
-    addSpecification("opposing root", "jackass");
-    addSpecification("bonus charisma", 1);
-    addSpecification("opinion", 20);
-    addSpecification("opposing opinion", -10);
-    addSpecification("cost", 2);
-    "baseTrait"::init();
+    if (!arg)
+    {
+        addSpecification("type", "personality");
+        addSpecification("name", "charming");
+        addSpecification("description", "You are a pleasant person and, darn it, people like you.");
+        addSpecification("root", "nice");
+        addSpecification("opposing root", "jackass");
+        addSpecification("bonus charisma", 1);
+        addSpecification("opinion", 20);
+        addSpecification("opposing opinion", -10);
+        addSpecification("cost", 2);
+        "baseTrait"::reset(arg);
+    }
 }
 

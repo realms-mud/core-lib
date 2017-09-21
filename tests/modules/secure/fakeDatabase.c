@@ -82,7 +82,7 @@ public nomask mapping Gorthaur()
         "playerId": 2,
         "pretitle": "Weasel Lord",
         "quests": ([ 
-            "lib/tests/support/quests/testQuestItem.c": ([ 
+            "lib/tests/support/quests/fakeQuestItem.c": ([ 
                 "is active": 1,
                 "is completed": 0,
                 "name": "Hail to the king, baby!",

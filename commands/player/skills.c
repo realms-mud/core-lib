@@ -5,11 +5,14 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    addCommandTemplate("skills [-co(mbat|)] [-cr(afting|)] [-e(rudite|)] "
-        "[-g(eneral|)] [-l(anguage|)] [-m(agic|)] [-s(ubterfuge|)] [-a(ll|)] "
-        "[-advance ##Item##] [-by ##Value##] [.*]");
+    if (!arg)
+    {
+        addCommandTemplate("skills [-co(mbat|)] [-cr(afting|)] [-e(rudite|)] "
+            "[-g(eneral|)] [-l(anguage|)] [-m(agic|)] [-s(ubterfuge|)] [-a(ll|)] "
+            "[-advance ##Item##] [-by ##Value##] [.*]");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -21,10 +21,6 @@ public nomask object guildObject(string guild)
         {
             ret = 0;
         }
-        else
-        {
-            ret->init();
-        }
     }
     return ret;
 }

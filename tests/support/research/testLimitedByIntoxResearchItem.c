@@ -5,16 +5,19 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    passiveResearchItem::init();
-    addSpecification("name", "intox research");
-    addSpecification("scope", "self");
-    addSpecification("research type", "granted");
-    addSpecification("limited by", (["intoxicated":1]));
-    addSpecification("bonus strength", 2);
-    addSpecification("penalty to long sword", 2);
-    addSpecification("bonus fire attack", 15);
-    addSpecification("bonus weapon attack", 2);
+    if (!arg)
+    {
+        passiveResearchItem::reset(arg);
+        addSpecification("name", "intox research");
+        addSpecification("scope", "self");
+        addSpecification("research type", "granted");
+        addSpecification("limited by", (["intoxicated":1]));
+        addSpecification("bonus strength", 2);
+        addSpecification("penalty to long sword", 2);
+        addSpecification("bonus fire attack", 15);
+        addSpecification("bonus weapon attack", 2);
+    }
 }
 

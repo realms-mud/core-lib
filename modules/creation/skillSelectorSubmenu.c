@@ -14,24 +14,26 @@ protected mapping skillMenuSetup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    Description = "Select a skill to advance";
-    AllowUndo = 0;
-    NumColumns = 2;
-
-    SkillDictionary = load_object("/lib/dictionaries/skillsDictionary.c");
-    if (!SkillDictionary)
+    if (!arg)
     {
-        raise_error("raceSelector: ERROR - The skills dictionary is not present!\n");
-    }
-    Data = skillMenuSetup();
+        Description = "Select a skill to advance";
+        AllowUndo = 0;
+        NumColumns = 2;
 
-    Data[to_string(sizeof(Data) + 1)] = ([
-        "name":"Return to previous menu",
-            "description" : "Return to the main skill selection menu.\n"
-    ]);
-    "baseSelector"::init();
+        SkillDictionary = load_object("/lib/dictionaries/skillsDictionary.c");
+        if (!SkillDictionary)
+        {
+            raise_error("raceSelector: ERROR - The skills dictionary is not present!\n");
+        }
+        Data = skillMenuSetup();
+
+        Data[to_string(sizeof(Data) + 1)] = ([
+            "name":"Return to previous menu",
+                "description" : "Return to the main skill selection menu.\n"
+        ]);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

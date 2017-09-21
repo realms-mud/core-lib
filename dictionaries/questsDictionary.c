@@ -23,10 +23,6 @@ public nomask object questObject(string questItem)
     {
         ret = load_object(questItem);
 
-        if (ret && !ret->name())
-        {
-            ret->init();
-        }
         if (!ret || (member(inherit_list(ret), BaseQuest) < 0) ||
             !ret->isValidQuest())
         {

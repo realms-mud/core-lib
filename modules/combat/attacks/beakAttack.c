@@ -5,22 +5,25 @@
 inherit "/lib/modules/combat/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    ::init();
-    setDamageType("physical");
-    addHitDictionary(({
-        "snip", "clip", "pinch", "poke", "tear", "wrend", "bite" }));
+    if (!arg)
+    {
+        ::reset(arg);
+        setDamageType("physical");
+        addHitDictionary(({
+            "snip", "clip", "pinch", "poke", "tear", "wrend", "bite" }));
 
-    addSimileDictionary(({
-        "on ##TargetPossessive## ##BodyPart##", "repeatedly in "
-        "the ##BodyPart##", "viciously" }));
-        
-    addMissMessage("##AttackerName## ##Infinitive::snap## ##AttackerPossessive##"
+        addSimileDictionary(({
+            "on ##TargetPossessive## ##BodyPart##", "repeatedly in "
+            "the ##BodyPart##", "viciously" }));
+
+        addMissMessage("##AttackerName## ##Infinitive::snap## ##AttackerPossessive##"
             " beak menacingly, but harmlessly.");
-    
-    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## beak.","1-50");
+
+        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+            "##SimileDictionary## with ##AttackerPossessive## beak.", "1-50");
+    }
 }
 
 

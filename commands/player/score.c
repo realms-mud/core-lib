@@ -8,12 +8,15 @@ inherit "/lib/commands/baseCommand.c";
 private object Dictionary;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    addCommandTemplate("score");
-    addCommandTemplate("?");
+    if (!arg)
+    {
+        addCommandTemplate("score");
+        addCommandTemplate("?");
 
-    Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
+        Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

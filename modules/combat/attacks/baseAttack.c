@@ -189,9 +189,12 @@ public nomask string getRandomVerb()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    initialized = 1;
+    if (!arg)
+    {
+        initialized = 1;
+    }
 }
 
 

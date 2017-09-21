@@ -5,13 +5,16 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    passiveResearchItem::init();
-    addPrerequisite("long sword", (["type":"skill", "value" : 10]));
-    addSpecification("name", "Spiffy tree root");
-    addSpecification("scope", "self");
-    addSpecification("research type", "tree root");
-    addSpecification("bonus long sword", 2);
+    if (!arg)
+    {
+        passiveResearchItem::reset(arg);
+        addPrerequisite("long sword", (["type":"skill", "value" : 10]));
+        addSpecification("name", "Spiffy tree root");
+        addSpecification("scope", "self");
+        addSpecification("research type", "tree root");
+        addSpecification("bonus long sword", 2);
+    }
 }
 

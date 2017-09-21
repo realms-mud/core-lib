@@ -9,9 +9,12 @@ virtual inherit "/lib/modules/research/researchItem.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    addSpecification("type", "sustained");
+    if (!arg)
+    {
+        addSpecification("type", "sustained");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

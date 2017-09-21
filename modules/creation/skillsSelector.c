@@ -9,52 +9,54 @@ private string *UndoDetails = ({ });
 private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    Description = "Choose a class of skills to advance";
-    Data = ([
-        "1":([
-            "name": "Combat",
-            "description": "Combat skills include all of those skills that allow one to\n"
-                "effectively use weapons, wear armor, and dodge or parry attacks\n"
-        ]),
-        "2":([
-            "name": "Crafting",
-            "description": "Crafting skills include all those skills that allow one to create,\n"
-                "identify, and maintain items within a specific discipline.\n"
-        ]),
-        "3":([
-            "name": "Erudite",
-            "description": "Erudite skils are knowledge-based skills - whether those are scientific\n"
-                "in nature, history of things, a general understanding of how\n"
-                "languages work, basic engineering principles, and spellcraft.\n"
-        ]),
-        "4":([
-            "name": "General",
-            "description": "General skills are those skills that do not neatly fall into one of\n"
-                "the other categories. Many profession-based and survival skills\n"
-                "fall in this category.\n"
-        ]),
-        "5":([
-            "name": "Language",
-            "description": "Theses skills provide the basis for speaking, reading, and writing\n"
-                "in a specific language. If you wish to interact with the denizens\n"
-                "of the game in ways more meaningful than bashing them in the face\n"
-                "with a club, these skills will be critical.\n"
-        ]),
-        "6":([
-            "name": "Magic",
-            "description": "Magic skills provide the ability to protect from and manipulate\n"
-                "the various forms that magic can take.\n"
-        ]),
-        "7":([
-            "name": "Subterfuge",
-            "description": "Subterfuge skills are those skills that deal with uncovering\n"
-                "and perpetrating deception. Several other dexterity and wit-based\n"
-                "skills are also included.\n"
-        ]),
-    ]);
-    "baseSelector"::init();
+    if(!arg)
+    {
+        Description = "Choose a class of skills to advance";
+        Data = ([
+            "1":([
+                "name": "Combat",
+                "description": "Combat skills include all of those skills that allow one to\n"
+                    "effectively use weapons, wear armor, and dodge or parry attacks\n"
+            ]),
+            "2":([
+                "name": "Crafting",
+                "description": "Crafting skills include all those skills that allow one to create,\n"
+                    "identify, and maintain items within a specific discipline.\n"
+            ]),
+            "3":([
+                "name": "Erudite",
+                "description": "Erudite skils are knowledge-based skills - whether those are scientific\n"
+                    "in nature, history of things, a general understanding of how\n"
+                    "languages work, basic engineering principles, and spellcraft.\n"
+            ]),
+            "4":([
+                "name": "General",
+                "description": "General skills are those skills that do not neatly fall into one of\n"
+                    "the other categories. Many profession-based and survival skills\n"
+                    "fall in this category.\n"
+            ]),
+            "5":([
+                "name": "Language",
+                "description": "Theses skills provide the basis for speaking, reading, and writing\n"
+                    "in a specific language. If you wish to interact with the denizens\n"
+                    "of the game in ways more meaningful than bashing them in the face\n"
+                    "with a club, these skills will be critical.\n"
+            ]),
+            "6":([
+                "name": "Magic",
+                "description": "Magic skills provide the ability to protect from and manipulate\n"
+                    "the various forms that magic can take.\n"
+            ]),
+            "7":([
+                "name": "Subterfuge",
+                "description": "Subterfuge skills are those skills that deal with uncovering\n"
+                    "and perpetrating deception. Several other dexterity and wit-based\n"
+                    "skills are also included.\n"
+            ]),
+        ]);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

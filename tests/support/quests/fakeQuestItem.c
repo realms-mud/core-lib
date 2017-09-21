@@ -7,6 +7,43 @@ inherit "/lib/modules/quests/questItem.c";
 private string *events = ({});
 
 /////////////////////////////////////////////////////////////////////////////
+void reset(int arg)
+{
+    if (!arg)
+    {
+        questItem::reset(arg);
+        setName("Hail to the king, baby!");
+        addState("meet the king", "I've been asked to meet the king!");
+
+        addState("met the king",
+            "I met King Tantor the Unclean of Thisplace. He seems to like me.");
+        addTransition("meet the king", "met the king", "meetTheKing");
+
+        addState("serve the king",
+            "The king asked me - ME - to be his personal manservant. Yay me!");
+        addTransition("met the king", "serve the king", "serveTheKing");
+
+        addState("ignore the king",
+            "I told the king to piss off. I have socks to fold.");
+        addTransition("met the king", "ignore the king", "ignoreTheKing");
+        addEntryAction("ignore the king", "killTheKing");
+        addFinalState("ignore the king", "failure");
+
+        addState("save the king",
+            "Earl the Grey tried to kill the king but I gutted him like a fish.");
+        addTransition("serve the king", "save the king", "hailToTheKing");
+        addFinalState("save the king", "success");
+
+        addState("king is dead",
+            "I must lay off the sauce - and the wenches. King Tantor is dead because of my night of debauchery.");
+        addTransition("serve the king", "king is dead", "maybeNobodyWillNotice");
+        addFinalState("king is dead", "failure");
+
+        setInitialState("meet the king");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public varargs string testSetInitialState(string state)
 {
     return questItem::setInitialState(state);

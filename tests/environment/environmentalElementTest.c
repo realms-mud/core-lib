@@ -12,7 +12,6 @@ void Setup()
 {
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     Element = clone_object("/lib/tests/support/environment/fakeFeature.c");
-    Element->init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

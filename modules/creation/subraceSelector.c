@@ -7,12 +7,13 @@ inherit "/lib/modules/creation/baseSelector";
 private object RacialDictionary;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    Description = "Choose your subrace";
-    AllowUndo = 0;
-
-    "baseSelector"::init();
+    if (!arg)
+    {
+        Description = "Choose your subrace";
+        AllowUndo = 0;
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

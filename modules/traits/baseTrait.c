@@ -11,13 +11,16 @@ virtual inherit "/lib/core/prerequisites.c";
 private string TraitItemLocation = "lib/modules/traits";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    object traitsDictionary = getDictionary("traits");
-    if (traitsDictionary &&
-        !traitsDictionary->traitIsRegistered(program_name(this_object())))
+    if (!arg)
     {
-        traitsDictionary->registerTrait(this_object());
+        object traitsDictionary = getDictionary("traits");
+        if (traitsDictionary &&
+            !traitsDictionary->traitIsRegistered(program_name(this_object())))
+        {
+            traitsDictionary->registerTrait(this_object());
+        }
     }
 }
 

@@ -15,10 +15,8 @@ void Setup()
    
     object dictionary = load_object("/lib/dictionaries/guildsDictionary.c");
     object mageGuild = load_object("/lib/tests/support/guilds/mageGuild.c");
-    mageGuild->init();
 
     object fighterGuild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    fighterGuild->init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

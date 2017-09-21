@@ -8,9 +8,12 @@
 virtual inherit "/lib/modules/research/researchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    addSpecification("type", "active");
+    if (!arg)
+    {
+        addSpecification("type", "active");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -6,12 +6,15 @@ inherit "/lib/commands/baseCommand.c";
 #include <mtypes.h>
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    addCommandTemplate("say [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
-        "[-l(anguage|) ##Language##] [-t(arget|) ##Target##] [.*]");
-    addCommandTemplate("' [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
-        "[-l(anguage|) ##Language##] [-t(arget|) ##Target##] [.*]");
+    if (!arg)
+    {
+        addCommandTemplate("say [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
+            "[-l(anguage|) ##Language##] [-t(arget|) ##Target##] [.*]");
+        addCommandTemplate("' [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
+            "[-l(anguage|) ##Language##] [-t(arget|) ##Target##] [.*]");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

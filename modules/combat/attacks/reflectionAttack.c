@@ -5,14 +5,17 @@
 inherit "/lib/modules/combat/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    ::init();
-    setDamageType("magical");
-        
-    addMissMessage("##AttackerName## ##Infinitive::reflect## the attack, but fails to do any damage.");
-    
-    addHitMessage("##AttackerName## ##Infinitive::reflect## the attack back to ##TargetName##.","1-50");
+    if (!arg)
+    {
+        ::reset(arg);
+        setDamageType("magical");
+
+        addMissMessage("##AttackerName## ##Infinitive::reflect## the attack, but fails to do any damage.");
+
+        addHitMessage("##AttackerName## ##Infinitive::reflect## the attack back to ##TargetName##.", "1-50");
+    }
 }
 
 

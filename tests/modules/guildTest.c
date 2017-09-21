@@ -32,7 +32,7 @@ void Setup()
 {
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     Guild = load_object("/lib/tests/support/guilds/testGuild.c");
-    Guild->init();
+    Guild->PrepFakeGuild();
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User->Name("Bob");
@@ -98,7 +98,6 @@ void EffectiveLevelReturnsLevelOfAllJoinedGuilds()
     ExpectEq(1, User->effectiveLevel());
 
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
-    guild->init();
     ExpectTrue(User->joinGuild("mage"));
     ExpectEq(2, User->effectiveLevel());
 }
@@ -116,7 +115,7 @@ void MemberOfGuildsReturnsListOfJoinedGuilds()
     ExpectEq(({ "test"}), User->memberOfGuilds(), "list when member of test guild");
 
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
-    guild->init();
+
     ExpectTrue(User->joinGuild("mage"), "Joined mage guild");
     ExpectEq(({ "test", "mage" }), User->memberOfGuilds(), "list when member of test and mage guild");
 }
@@ -593,7 +592,6 @@ void CanUseEquipmentOfTypeAllowsArmorLocationIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    guild->init();
     User->joinGuild("fighter");
     ExpectTrue(armor->equip("blah"));
 }
@@ -642,7 +640,6 @@ void CanUseEquipmentOfTypeAllowsWeaponTypeIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    guild->init();
     User->joinGuild("fighter");
     ExpectTrue(weapon->equip("blah"));
 }
@@ -691,7 +688,6 @@ void CanUseEquipmentOfTypeDoesNotAllowDamageTypeEvenIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    guild->init();
     User->joinGuild("fighter");
     ExpectFalse(weapon->equip("blah"));
 }
@@ -740,7 +736,6 @@ void CanUseEquipmentOfTypeDoesNotAllowMaterialTypeEvenIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    guild->init();
     User->joinGuild("fighter");
     ExpectFalse(weapon->equip("blah"));
 }
@@ -789,7 +784,6 @@ void CanUseEquipmentOfTypeDoesNotAllowMaterialEvenIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    guild->init();
     User->joinGuild("fighter");
     ExpectFalse(weapon->equip("blah"));
 }

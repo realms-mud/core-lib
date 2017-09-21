@@ -253,7 +253,7 @@ void CheckPrerequsistesCorrectlyHandlesGroupings()
 /////////////////////////////////////////////////////////////////////////////
 void DisplayPrerequisitesCorrectlyDisplaysQuestPrerequisites()
 {
-    ExpectTrue(Prerequisite->AddTestPrerequisite("/lib/tests/support/quests/testQuestItem.c",
+    ExpectTrue(Prerequisite->AddTestPrerequisite("/lib/tests/support/quests/fakeQuestItem.c",
         ([ "type":"quest"])));
 
     ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mQuest[0m: [0;35mHail to the king, baby![0m\n", 

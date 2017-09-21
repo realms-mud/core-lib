@@ -12,7 +12,6 @@ object User;
 void Setup()
 {
     ResearchItem = clone_object("/lib/tests/support/research/testActiveResearchItem");
-    ResearchItem->init();
     ResearchItem->addSpecification("command template", "the command");
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices");

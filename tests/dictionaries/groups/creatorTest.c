@@ -10,7 +10,6 @@ object Group;
 void Setup()
 {
     Group = clone_object("/lib/dictionaries/groups/creator.c");
-    Group->init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

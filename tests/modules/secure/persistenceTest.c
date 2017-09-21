@@ -133,11 +133,11 @@ void PlayerGuildsRestored()
 void PlayerQuestsRestored()
 {
     Player->restore("gorthaur");
-    ExpectEq(({ "lib/tests/support/quests/testQuestItem.c" }), Player->activeQuests());
+    ExpectEq(({ "lib/tests/support/quests/fakeQuestItem.c" }), Player->activeQuests());
 
-    object quest = load_object("/lib/tests/support/quests/testQuestItem.c");
+    object quest = load_object("/lib/tests/support/quests/fakeQuestItem.c");
     ExpectEq(sprintf("[0;36m%s[0m", "I've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me!"),
-        Player->questStory("lib/tests/support/quests/testQuestItem.c"));
+        Player->questStory("lib/tests/support/quests/fakeQuestItem.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -296,9 +296,8 @@ void PlayerGuildsSaved()
 {
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     object mage = load_object("/lib/tests/support/guilds/mageGuild.c");
-    mage->init();
+
     object guild = load_object("/lib/tests/support/guilds/testGuild.c");
-    guild->init();
 
     Player->restore("gorthaur");
     ExpectTrue(Player->joinGuild("test"));
@@ -321,18 +320,18 @@ void PlayerGuildsSaved()
 void PlayerQuestsSaved()
 {
     Player->restore("gorthaur");
-    Player->advanceQuestState("lib/tests/support/quests/testQuestItem.c", "king is dead");
+    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "king is dead");
     Player->save();
 
     destruct(Player);
     Player = clone_object("/lib/realizations/player.c");
     Player->restore("gorthaur");
 
-    ExpectEq(({ "lib/tests/support/quests/testQuestItem.c" }), Player->completedQuests());
+    ExpectEq(({ "lib/tests/support/quests/fakeQuestItem.c" }), Player->completedQuests());
 
-    object quest = load_object("/lib/tests/support/quests/testQuestItem.c");
+    object quest = load_object("/lib/tests/support/quests/fakeQuestItem.c");
     ExpectEq(sprintf("[0;36m%s[0m[0;31m%s[0m", "I've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me! I must lay off the sauce - and the wenches. King Tantor is dead because of my night of debauchery.", " [Failure]"),
-        Player->questStory("lib/tests/support/quests/testQuestItem.c"));
+        Player->questStory("lib/tests/support/quests/fakeQuestItem.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

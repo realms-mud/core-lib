@@ -5,7 +5,7 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
 
 }

@@ -9,10 +9,13 @@ inherit "/lib/commands/baseCommand.c";
 private string targetName = 0;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    addCommandTemplate("tell ##Target## ##Value##");
-    addCommandTemplate("reply ##Value##");
+    if (!arg)
+    {
+        addCommandTemplate("tell ##Target## ##Value##");
+        addCommandTemplate("reply ##Value##");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

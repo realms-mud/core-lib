@@ -119,6 +119,7 @@ void Setup()
     Player->Wis(10);
     Player->hitPoints(30);
 
+    destruct(load_object("/lib/dictionaries/environmentDictionary.c"));
     Environment = clone_object("/lib/tests/support/environment/testEnvironment.c");
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");

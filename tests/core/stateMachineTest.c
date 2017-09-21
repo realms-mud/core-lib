@@ -37,21 +37,21 @@ void AddStateThrowsWhenDescriptionNotValid()
 void AddStateSilentlySucceedsWhenStateIsValid()
 {
     // If anything were to go amiss, this would throw.
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddStateThrowsWhenAddingTheSameStateTwice()
 {
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
-    string err = catch (StateMachine->testAddState("meet the king", "I've been asked to meet the king!"));
-    ExpectEq("*ERROR - stateMachine: the 'meet the king' state has already been added.", err);
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
+    string err = catch (StateMachine->testAddState("added state", "I've been asked to meet the king!"));
+    ExpectEq("*ERROR - stateMachine: the 'added state' state has already been added.", err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddStateThrowsWhenAddingAnInvalidEntryEvent()
 {
-    string err = catch (StateMachine->testAddState("meet the king", "I've been asked to meet the king!", 25));
+    string err = catch (StateMachine->testAddState("added state", "I've been asked to meet the king!", 25));
     ExpectEq("*ERROR - stateMachine: the entry event must be a string.", err);
 }
 
@@ -59,13 +59,13 @@ void AddStateThrowsWhenAddingAnInvalidEntryEvent()
 void AddStateSilentlySucceedsWhenEntryEventIsValid()
 {
     // If anything were to go amiss, this would throw.
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!", "someEvent");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!", "someEvent");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddStateThrowsWhenAddingAnInvalidFinalStateResult()
 {
-    string err = catch (StateMachine->testAddState("meet the king", "I've been asked to meet the king!", "killTheKing", "blah"));
+    string err = catch (StateMachine->testAddState("added state", "I've been asked to meet the king!", "killTheKing", "blah"));
     ExpectEq("*ERROR - stateMachine: the final state result must be 'success' or 'failure'.", err);
 }
 
@@ -73,19 +73,19 @@ void AddStateThrowsWhenAddingAnInvalidFinalStateResult()
 void AddStateSilentlySucceedsWhenFinalStateResultIsSuccess()
 {
     // If anything were to go amiss, this would throw.
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!", "killTheKing", "success");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!", "killTheKing", "success");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddStateSilentlySucceedsWhenFinalStateResultIsFailure()
 {
     // If anything were to go amiss, this would throw.
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!", "killTheKing", "failure");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!", "killTheKing", "failure");
 }
 /////////////////////////////////////////////////////////////////////////////
 void InitialStateThrowsWhenStateNotPresent()
 {
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
     string err = catch (StateMachine->testSetInitialState("blah"));
     ExpectEq("*ERROR - stateMachine: the initial state must have been added first.", err);
 }
@@ -100,9 +100,9 @@ void AddEntryActionThrowsWhenStateNotPresent()
 /////////////////////////////////////////////////////////////////////////////
 void AddEntryActionThrowsWhenAddingAnInvalidEntryAction()
 {
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
 
-    string err = catch (StateMachine->testAddEntryAction("meet the king", "badMethod"));
+    string err = catch (StateMachine->testAddEntryAction("added state", "badMethod"));
     ExpectEq("*ERROR - stateMachine: an entry action can only be added if both the state exists and the method to call has been implemented on this object.", err);
 }
 
@@ -110,8 +110,8 @@ void AddEntryActionThrowsWhenAddingAnInvalidEntryAction()
 void AddEntryActionSilentlySucceedsWhenEverythingValidates()
 {
     // If anything were to go amiss, this would throw.
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
-    StateMachine->testAddEntryAction("meet the king", "killTheKing");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
+    StateMachine->testAddEntryAction("added state", "killTheKing");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -124,23 +124,23 @@ void AddExitActionThrowsWhenStateNotPresent()
 /////////////////////////////////////////////////////////////////////////////
 void AddExitActionThrowsWhenAddingAnInvalidEntryAction()
 {
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
 
-    string err = catch (StateMachine->testAddExitAction("meet the king", "badMethod"));
+    string err = catch (StateMachine->testAddExitAction("added state", "badMethod"));
     ExpectEq("*ERROR - stateMachine: an exit action can only be added if both the state exists and the method to call has been implemented on this object.", err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetStateDescriptionReturnsDescriptionWhenStateExists()
 {
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
     ExpectEq("I've been asked to meet the king!", StateMachine->getStateDescription("meet the king"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetStateDescriptionReturnsNullWhenStateDoesNotExist()
 {
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
     ExpectFalse(StateMachine->getStateDescription("blah"));
 }
 
@@ -148,17 +148,17 @@ void GetStateDescriptionReturnsNullWhenStateDoesNotExist()
 void AddExitActionSilentlySucceedsWhenEverythingValidates()
 {
     // If anything were to go amiss, this would throw.
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
-    StateMachine->testAddExitAction("meet the king", "killTheKing");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
+    StateMachine->testAddExitAction("added state", "killTheKing");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SetInitialStateSetsTheInitialState()
 {
     // If anything were to go amiss, this would throw.
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
-    StateMachine->testSetInitialState("meet the king");
-    ExpectEq("meet the king", StateMachine->initialState());
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
+    StateMachine->testSetInitialState("added state");
+    ExpectEq("added state", StateMachine->initialState());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -247,7 +247,6 @@ void DoesNotTransitionIfNotInProperStateForEvent()
 /////////////////////////////////////////////////////////////////////////////
 void OnEnterEventsFireWhenTransitionOccurs()
 {
-    StateMachine->init();
     StateMachine->testAddEntryAction("met the king", "doEnterStuff");
     StateMachine->testStartStateMachine();
     ExpectEq("meet the king", StateMachine->getCurrentState());
@@ -262,7 +261,6 @@ void OnEnterEventsFireWhenTransitionOccurs()
 /////////////////////////////////////////////////////////////////////////////
 void OnExitEventsFireWhenTransitionOccurs()
 {
-    StateMachine->init();
     StateMachine->testAddExitAction("meet the king", "doExitStuff");
     StateMachine->testStartStateMachine();
     ExpectEq("meet the king", StateMachine->getCurrentState());
@@ -277,7 +275,6 @@ void OnExitEventsFireWhenTransitionOccurs()
 /////////////////////////////////////////////////////////////////////////////
 void OnEnterAndExitEventsFireInCorrectOrder()
 {
-    StateMachine->init();
     StateMachine->testAddExitAction("meet the king", "doExitStuff");
     StateMachine->testAddEntryAction("met the king", "doEnterStuff");
     StateMachine->testStartStateMachine();
@@ -295,7 +292,6 @@ void OnEnterAndExitEventsFireInCorrectOrder()
 /////////////////////////////////////////////////////////////////////////////
 void OnEnterDoesNotFireEventWhenNoneSet()
 {
-    StateMachine->init();
     object King = clone_object("/lib/tests/support/quests/testKingObject.c");
     StateMachine->testRegisterStateActor(King);
     King->SetStateMachine(StateMachine);
@@ -312,11 +308,11 @@ void OnEnterDoesNotFireEventWhenNoneSet()
 /////////////////////////////////////////////////////////////////////////////
 void OnEnterFiresEventWhenItHasBeenSet()
 {
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
 
-    StateMachine->testAddState("met the king",
+    StateMachine->testAddState("next state",
         "I met King Tantor the Unclean of Thisplace. He seems to like me.", "someEvent");
-    StateMachine->testAddTransition("meet the king", "met the king", "meetTheKing");
+    StateMachine->testAddTransition("added state", "next state", "meetTheKing");
 
     object King = clone_object("/lib/tests/support/quests/testKingObject.c");
     StateMachine->testRegisterStateActor(King);
@@ -326,22 +322,22 @@ void OnEnterFiresEventWhenItHasBeenSet()
     object room = clone_object("/lib/environment/room.c");
     move_object(King, room);
 
-    StateMachine->testSetInitialState("meet the king");
+    StateMachine->testSetInitialState("added state");
     StateMachine->testStartStateMachine();
 
-    ExpectEq("meet the king", StateMachine->getCurrentState());
+    ExpectEq("added state", StateMachine->getCurrentState());
     ExpectFalse(King->checkNotification());
 
     King->DoMeetTheKingStuff();
-    ExpectEq("met the king", StateMachine->getCurrentState());
+    ExpectEq("next state", StateMachine->getCurrentState());
     ExpectEq("someEvent", King->checkNotification());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OnEnterFiresIfSetForInitialState()
 {
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!");
-    StateMachine->testAddEntryAction("meet the king", "doEnterStuff");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!");
+    StateMachine->testAddEntryAction("added state", "doEnterStuff");
 
     object King = clone_object("/lib/tests/support/quests/testKingObject.c");
     StateMachine->testRegisterStateActor(King);
@@ -350,18 +346,18 @@ void OnEnterFiresIfSetForInitialState()
     object room = clone_object("/lib/environment/room.c");
     move_object(King, room);
 
-    StateMachine->testSetInitialState("meet the king");
+    StateMachine->testSetInitialState("added state");
     ExpectFalse(member(StateMachine->actionList(), "Enter stuff has been done.") == 0);
     StateMachine->testStartStateMachine();
 
-    ExpectEq("meet the king", StateMachine->getCurrentState());
+    ExpectEq("added state", StateMachine->getCurrentState());
     ExpectTrue(member(StateMachine->actionList(), "Enter stuff has been done.") == 0);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EntryEventFiresIfSetForInitialState()
 {
-    StateMachine->testAddState("meet the king", "I've been asked to meet the king!", "someEvent");
+    StateMachine->testAddState("added state", "I've been asked to meet the king!", "someEvent");
 
     object King = clone_object("/lib/tests/support/quests/testKingObject.c");
     StateMachine->testRegisterStateActor(King);
@@ -371,10 +367,10 @@ void EntryEventFiresIfSetForInitialState()
     object room = clone_object("/lib/environment/room.c");
     move_object(King, room);
 
-    StateMachine->testSetInitialState("meet the king");
+    StateMachine->testSetInitialState("added state");
     ExpectFalse(King->checkNotification());
     StateMachine->testStartStateMachine();
 
-    ExpectEq("meet the king", StateMachine->getCurrentState());
+    ExpectEq("added state", StateMachine->getCurrentState());
     ExpectEq("someEvent", King->checkNotification());
 }

@@ -5,11 +5,14 @@
 inherit "/lib/modules/quests/questItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-void init()
+void reset(int arg)
 {
-    questItem::init();
+    if (!arg)
+    {
+        questItem::reset(arg);
 
-    setName("blah");
-    addState("blah", "blah");
-    setInitialState("blah");
+        setName("blah");
+        addState("blah", "blah");
+        setInitialState("blah");
+    }
 }

@@ -17,12 +17,15 @@ private mapping tree = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    name = "";
-    description = "";
-    treeRoot = "";
-    tree = ([]);
+    if (!arg)
+    {
+        name = "";
+        description = "";
+        treeRoot = 0;
+        tree = ([]);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

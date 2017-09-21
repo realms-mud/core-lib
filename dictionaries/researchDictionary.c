@@ -24,10 +24,6 @@ public nomask object researchObject(string researchItem)
     { 
         ret = load_object(researchItem);
 
-        if(ret && !ret->query("type"))
-        {
-            ret->init();
-        }
         if(!ret || (member(inherit_list(ret), BaseResearch) < 0) ||
            !ret->isValidResearchItem())
         {
@@ -53,10 +49,6 @@ public nomask object researchTree(string tree)
     {
         ret = load_object(tree);
 
-        if(ret && !ret->query("type"))
-        {
-            ret->init();
-        }
         if(member(inherit_list(ret), BaseResearchTree) < 0)
         {
             ret = 0;

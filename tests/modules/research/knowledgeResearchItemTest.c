@@ -11,7 +11,6 @@ object ResearchItem;
 void Setup()
 {
     ResearchItem = clone_object("/lib/modules/research/knowledgeResearchItem");
-    ResearchItem->init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

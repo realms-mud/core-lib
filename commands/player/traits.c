@@ -5,11 +5,14 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    addCommandTemplate("traits [-b(ackground|)] [-d(etails|)] [-ed(ucational|)] "
-        "[-ef(fect|)] [-ge(netic|)] [-g(uild|)] [-h(ealth|)] [-pe(rsonality|)] "
-        "[-pr(ofessional|)] [-ra(cial|)] [-ro(le|)] [.*]");
+    if (!arg)
+    {
+        addCommandTemplate("traits [-b(ackground|)] [-d(etails|)] [-ed(ucational|)] "
+            "[-ef(fect|)] [-ge(netic|)] [-g(uild|)] [-h(ealth|)] [-pe(rsonality|)] "
+            "[-pr(ofessional|)] [-ra(cial|)] [-ro(le|)] [.*]");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

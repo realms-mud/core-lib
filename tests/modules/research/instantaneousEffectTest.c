@@ -12,7 +12,6 @@ object User;
 void Setup()
 {
     Effect = clone_object("/lib/tests/support/research/testInstantaneousEffect");
-    Effect->init();
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices");
     User->Name("Bob");

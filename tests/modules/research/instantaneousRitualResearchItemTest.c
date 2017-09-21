@@ -14,7 +14,6 @@ object Room;
 void Setup()
 {
     Effect = clone_object("/lib/tests/support/research/testInstantaneousRitualResearchItem");
-    Effect->init();
     Effect->testAddSpecification("command template", "throw turnip at ##Target##");
     Effect->testAddSpecification("scope", "targeted");
     Effect->testAddSpecification("damage type", "magical");

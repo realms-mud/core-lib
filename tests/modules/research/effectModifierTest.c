@@ -12,7 +12,6 @@ object User;
 void Setup()
 {
     EffectModifier = clone_object("/lib/tests/support/research/testEffectModifier");
-    EffectModifier->init();
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices");
     User->Name("Bob");

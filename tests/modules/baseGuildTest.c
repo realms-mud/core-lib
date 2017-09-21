@@ -11,7 +11,7 @@ object Guild;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Guild = clone_object("/lib/tests/support/guilds/testGuild");
+    Guild = clone_object("/lib/tests/support/guilds/fakeGuild.c");
 
     User = clone_object("/lib/tests/support/services/researchWithMockServices");
     User->Name("Bob");
@@ -824,12 +824,7 @@ void CanLeaveGuildReturnsFalseWhenMemberIsAnathema()
 void InvalidGuildsPrunedFromProhibitionList()
 {
     object mageGuild = clone_object("/lib/tests/support/guilds/mageGuild.c");
-    mageGuild->init();
-
     object fighterGuild = clone_object("/lib/tests/support/guilds/fighterGuild.c");
-    fighterGuild->init();
-
-    Guild->init();
 
     Guild->testProhibitedGuildCombinations(({ "fighter", "mage", "blarg", "blumfrub", "fake" }));
     ExpectEq(({ "mage", "fighter" }), Guild->prohibitedGuilds());

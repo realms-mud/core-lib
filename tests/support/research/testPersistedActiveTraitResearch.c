@@ -4,13 +4,16 @@
 //*****************************************************************************
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    persistedActiveResearchItem::init();
-    addSpecification("name", "Temp Trait research");
-    addSpecification("scope", "targeted");
-    addSpecification("research type", "granted");
-    addSpecification("cooldown", 4);
-    addSpecification("command template", "throw turnip at ##Target##");
-    addSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    if (!arg)
+    {
+        persistedActiveResearchItem::reset(arg);
+        addSpecification("name", "Temp Trait research");
+        addSpecification("scope", "targeted");
+        addSpecification("research type", "granted");
+        addSpecification("cooldown", 4);
+        addSpecification("command template", "throw turnip at ##Target##");
+        addSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    }
 }

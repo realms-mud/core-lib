@@ -10,12 +10,15 @@ protected object *stateActors = ({});
 protected mapping stateTree = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public void reset(int arg)
 {
-    InitialState = "";
-    CurrentState = "default";
-    stateActors = ({});
-    stateTree = ([]);
+    if (!arg)
+    {
+        InitialState = "";
+        CurrentState = "default";
+        stateActors = ({});
+        stateTree = ([]);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -148,18 +148,21 @@ public void SetupGuild()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    if(guildName == "BaseGuild")
-    { 
-        SetupGuild();
-    }
+    if (!arg)
+    {
+        if (guildName == "BaseGuild")
+        {
+            SetupGuild();
+        }
 
-    object guildDictionary = getDictionary("guilds");
-    if (guildDictionary && (guildName != "BaseGuild") &&
-        (member(guildDictionary->validGuilds(), guildName) == -1))
-    { 
-        guildDictionary->registerGuild(program_name(this_object()));
+        object guildDictionary = getDictionary("guilds");
+        if (guildDictionary && (guildName != "BaseGuild") &&
+            (member(guildDictionary->validGuilds(), guildName) == -1))
+        {
+            guildDictionary->registerGuild(program_name(this_object()));
+        }
     }
 }
 

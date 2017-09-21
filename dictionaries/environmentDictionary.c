@@ -38,10 +38,6 @@ public nomask object getLocation(string location)
     if (location && stringp(location) && (file_size(location) > 0))
     {
         ret = load_object(location);
-        if (ret && !ret->query("current state"))
-        {
-            ret->init();
-        }
 
         if (!ret || (member(inherit_list(ret), BaseEnvironment) < 0) ||
             !ret->isValidEnvironment())

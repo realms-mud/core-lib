@@ -5,11 +5,14 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void init()
+public nomask void reset(int arg)
 {
-    addCommandTemplate("inventory [-v]");
-    addCommandTemplate("i [-v]");
-    addCommandTemplate("inven [-v]");
+    if (!arg)
+    {
+        addCommandTemplate("inventory [-v]");
+        addCommandTemplate("i [-v]");
+        addCommandTemplate("inven [-v]");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

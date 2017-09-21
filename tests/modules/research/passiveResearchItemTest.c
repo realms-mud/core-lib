@@ -11,7 +11,6 @@ object ResearchItem;
 void Setup()
 {
     ResearchItem = clone_object("/lib/tests/support/research/testPassiveResearchItem");
-    ResearchItem->init();
 }
 
 /////////////////////////////////////////////////////////////////////////////
