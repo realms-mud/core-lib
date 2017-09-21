@@ -57,6 +57,7 @@ protected varargs string getCurrentState(object caller)
 protected void advanceState(object caller, string newState)
 {
     CurrentState = newState;
+    notify("onStateChanged", newState);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -8,17 +8,22 @@ private mapping environmentalElements = ([
     "interior": ([]),
     "feature": ([]),
     "building": ([]),
-    "item": ([])
+    "item": ([]),
+    "objects": ([]),
+    "description": ([])
 ]);
 
 private mapping aliasesToElements = ([]);
 
 private mapping exits = ([]);
 private string State = "default";
+
 private nosave string Description = "[0;33m%s\n[0m";
 private nosave string Exits = "[0;30;1m -=-=- %s\n[0m";
 private nosave string InventoryItem = "[0;36m%s\n[0m";
 private nosave object StateMachine = 0;
+private nosave string BaseStateMachine = "lib/core/stateMachine.c";
+private nosave int SetupCompleted = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 private object environmentDictionary()
@@ -39,7 +44,8 @@ public nomask varargs string currentState(string newState)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void setStateMachine(object newSM)
 {
-    if (newSM && objectp(newSM))
+    if (newSM && objectp(newSM) &&
+        (member(inherit_list(newSM), BaseStateMachine) > -1))
     {
         if (StateMachine)
         {
@@ -69,6 +75,59 @@ private nomask void setUpAliases(string element)
         foreach(string alias in environmentalObj->aliases(state))
         {
             aliasesToElements[state][alias] = program_name(environmentalObj);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void pruneStateObjects()
+{
+    if (member(environmentalElements["objects"], currentState()) &&
+        sizeof(environmentalElements["objects"][currentState()]))
+    {
+        foreach(string stateObjectBlueprint in 
+            environmentalElements["objects"][currentState()])
+        {
+            object stateObject = present_clone(stateObjectBlueprint);
+            if (stateObject)
+            {
+                if (StateMachine)
+                {
+                    StateMachine->unregisterStateActor(stateObject);
+                }
+                destruct(stateObject);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void createStateObjects()
+{
+    string *stateObjects = ({});
+    if (member(environmentalElements["objects"], currentState()) && 
+        sizeof(environmentalElements["objects"][currentState()]))
+    {
+        stateObjects += environmentalElements["objects"][currentState()];
+    }
+    if (member(environmentalElements["objects"], "default") && 
+        sizeof(environmentalElements["objects"]["default"]))
+    {
+        stateObjects += environmentalElements["objects"]["default"];
+    }
+
+    if (sizeof(stateObjects))
+    {
+        stateObjects = filter_array(m_indices(mkmapping(stateObjects)),
+            (: return !present_clone($1); :));
+        foreach(string stateObjectBlueprint in stateObjects)
+        {
+            object stateObject = clone_object(stateObjectBlueprint);
+            if (StateMachine)
+            {
+                StateMachine->registerStateActor(stateObject);
+            }
+            move_object(stateObject, this_object());
         }
     }
 }
@@ -130,6 +189,29 @@ protected nomask varargs void addItem(string item, string location)
     {
         raise_error(sprintf("ERROR in environment.c: '%s' is not a "
             "valid item.\n", item));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addObject(string file, string state)
+{
+    if (!state)
+    {
+        state = "default";
+    }
+
+    if (stringp(file) && (file_size(file) > 0))
+    {
+        if (!member(environmentalElements["objects"], state))
+        {
+            environmentalElements["objects"][state] = ({});
+        }
+        environmentalElements["objects"][state] += ({ file });
+    }
+    else
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid file.\n", file));
     }
 }
 
@@ -200,6 +282,87 @@ protected nomask void setInterior(string interior)
         raise_error(sprintf("ERROR in environment.c: '%s' is not a "
             "valid interior.\n", interior));
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void setAdditionalLongDescription(
+    string description, string state)
+{
+    if (!state)
+    {
+        state = "default";
+    }
+
+    if (stringp(description))
+    {
+        environmentalElements["description"][state] = description;
+    }
+    else
+    {
+        raise_error("ERROR in environment.c: The description must be a string.\n");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string parseEfunCall(string match)
+{
+    string ret = "ERROR";
+    // This match was found to be of the form efun::type::obj::function
+    // the only supported efun right now is call_other
+    // type can be any of: room, key (present object), OR filename.
+    // obj is either this OR a file path.
+    // function is a method on the called object. That method MUST return a
+    // string. 
+    string *arguments = explode(match, "::");
+    if (sizeof(arguments) == 4)
+    {
+        switch (arguments[0])
+        {
+            case "##call_other":
+            {
+                switch (arguments[1])
+                {
+                    case "key":
+                    {
+                        object stateObj = present_clone(arguments[2]);
+                        if (stateObj)
+                        {
+                            ret = call_other(stateObj, arguments[3]);
+                        }
+                        else
+                        {
+                            ret = "";
+                        }
+                        break;
+                    }
+                    case "filename":
+                    {
+                        if (file_size(arguments[2]) > 0)
+                        {
+                            ret = call_other(arguments[2], arguments[3]);
+                        }
+                        break;
+                    }
+                    case "room":
+                    {
+                        ret = call_other(this_object(), arguments[3]);
+                        break;
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
+    }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -322,6 +485,14 @@ public varargs string long(string item)
         ret += getElementDescriptions("feature") + 
             getElementDescriptions("item") + 
             getElementDescriptions("building");
+
+        if (member(environmentalElements["description"], currentState()))
+        {
+            ret += " " + environmentalElements["description"][currentState()];
+        }
+        ret = regreplace(ret,
+            "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_])+",
+            #'parseEfunCall,1);
     }
     else
     {
@@ -350,6 +521,12 @@ public nomask object getEnvironmentalElement(string item)
         ret->currentState(currentState());
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int id(string item)
+{
+    return isEnvironmentalElement(item);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -382,8 +559,10 @@ public void init()
     {
         currentState(StateMachine->getCurrentState());
     }
-    remove_action(1);
-
+    if (this_player())
+    {
+        remove_action(1);
+    }
     string *directions = ({});
     if (member(exits, currentState()) && sizeof(exits[currentState()]))
     {
@@ -405,6 +584,26 @@ public void init()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void reset(int arg)
+{
+    if (!arg)
+    {
+        if (!SetupCompleted)
+        {
+            Setup();
+            SetupCompleted = 1;
+        }
+    }
+    createStateObjects();
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public int moveFromIsAllowed(object user, object fromLocation)
 {
     return 1;
@@ -419,15 +618,11 @@ public int moveToIsAllowed(object user, object toLocation)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void onStateChanged(object caller, string newState)
 {
-    init();
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public void onEntryAction(object caller)
-{
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public void onExitAction(object caller)
-{
+    if (caller == StateMachine)
+    {
+        pruneStateObjects();
+        currentState(newState);
+        init();
+        createStateObjects();
+    }
 }

@@ -102,6 +102,35 @@ void IsEnvironmentalElementReturnsTrueWhenAliasInEnvironment()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void IdReturnsFalseWhenElementNotInEnvironment()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+
+    ExpectFalse(Environment->id("raddish"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IdReturnsTrueWhenElementInEnvironment()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+
+    ExpectTrue(Environment->id("fake feature"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IdReturnsTrueWhenAliasInEnvironment()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+
+    ExpectTrue(Environment->id("oak"), "oak is alias");
+    ExpectTrue(Environment->id("stand"), "stand is alias");
+    ExpectTrue(Environment->id("stand of oak trees"), "stand of oak trees is alias");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AliasesForStateNotAvailableWhenNotInProperState()
 {
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
@@ -454,4 +483,143 @@ void SetInteriorCanOnlyBeCalledOnce()
     Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
     string err = catch (Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c"));
     ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddObjectRaisesErrorOnFailure()
+{
+    string expected = "*ERROR in environment.c: '/bad/path.c' is not a valid file.\n";
+    string err = catch (Environment->testAddObject("/bad/path.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddObjectToDefaultStateCreatesObjectOnReset()
+{
+    Environment->testAddObject("/lib/items/weapon.c");
+    ExpectFalse(sizeof(all_inventory(Environment)));
+    Environment->reset();
+    ExpectEq(1, sizeof(all_inventory(Environment)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetupIsOnlyCalledOnceByReset()
+{
+    Environment->reset();
+    ExpectEq(1, Environment->setupCalled());
+    Environment->reset();
+    ExpectEq(1, Environment->setupCalled());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RepeatedResetsDoNotCreateMultiplesOfSameObject()
+{
+    Environment->testAddObject("/lib/items/weapon.c");
+    ExpectFalse(sizeof(all_inventory(Environment)));
+    Environment->reset();
+    ExpectEq(1, sizeof(all_inventory(Environment)));
+    Environment->reset();
+    ExpectEq(1, sizeof(all_inventory(Environment)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResetWillRecreateOnlyObjectsThatAreNotPresent()
+{
+    Environment->testAddObject("/lib/items/weapon.c");
+    Environment->testAddObject("/lib/items/armor.c");
+    ExpectFalse(sizeof(all_inventory(Environment)));
+    Environment->reset();
+    ExpectEq(2, sizeof(all_inventory(Environment)));
+    destruct(all_inventory(Environment)[0]);
+    ExpectEq(1, sizeof(all_inventory(Environment)));
+    Environment->reset();
+    ExpectEq(2, sizeof(all_inventory(Environment)));
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment));
+    ExpectTrue(present_clone("/lib/items/armor.c", Environment));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void OnlyObjectsForProperStateArePresent()
+{
+    object stateMachine = load_object("/lib/core/stateMachine.c");
+    Environment->setStateMachine(stateMachine);
+    Environment->testAddObject("/lib/items/weapon.c");
+    Environment->testAddObject("/lib/items/armor.c", "blah");
+    Environment->testAddObject("/lib/items/item.c", "blah2");
+
+    Environment->reset();
+    ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible for default state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+
+    Environment->onStateChanged(stateMachine, "blah");
+    ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah' state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor present");
+
+    Environment->onStateChanged(stateMachine, "blah2");
+    ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah2' state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectTrue(present_clone("/lib/items/item.c", Environment), "item present");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CallerForOnStateChangedMustBeCurrentlySetStateMachine()
+{
+    object stateMachine = load_object("/lib/core/stateMachine.c");
+    Environment->setStateMachine(stateMachine);
+    Environment->testAddObject("/lib/items/weapon.c");
+    Environment->testAddObject("/lib/items/armor.c", "blah");
+    Environment->testAddObject("/lib/items/item.c", "blah2");
+
+    Environment->reset();
+    ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible for default state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+
+    Environment->onStateChanged(this_object(), "blah");
+    ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible if state machine not initiator");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectFalse(present_clone("/lib/items/armor.c", Environment), "armor present");
+
+    Environment->onStateChanged(stateMachine, "blah");
+    ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah2' state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor present");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetAdditionalLongDescriptionAddsCustomLong()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testSetAdditionalLongDescription("This is an extra message");
+    ExpectSubStringMatch("a forest. To the north you see a stand of majestic oak trees with branches laden with acorns. This is an extra message",
+        Environment->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AdditionalLongDescriptionAddsCustomLongOnlyToCorrectState()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testSetAdditionalLongDescription("This is an extra message", "blah");
+    ExpectSubStringMatch("a forest. To the north you see a stand of majestic oak trees with branches laden with acorns.\n",
+        Environment->long());
+
+    Environment->currentState("blah");
+    ExpectSubStringMatch("This is an extra message",
+        Environment->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ParseEfunCallForCallOtherWithKeyDisplaysInLong()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddObject("/lib/tests/support/items/testSword.c");
+    Environment->testSetAdditionalLongDescription("##call_other::key::/lib/tests/support/items/testSword.c::swordMessage");
+    Environment->reset();
+
+    ExpectTrue(present_clone("/lib/tests/support/items/testSword.c", Environment), "weapon present");
+    ExpectSubStringMatch("a forest. You can feel a weaselish buzz in the air",
+        Environment->long());
+
 }
