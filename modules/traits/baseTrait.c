@@ -32,7 +32,7 @@ public nomask int isValidTrait()
     // circumvent addSpecification won't work particularly well given that
     // the inherit_list and this method are called in unison.
     int ret = member(researchData, "name") && member(researchData, "type") &&
-        member(researchData, "root") && member(researchData, "opposing root");
+        member(researchData, "root");
 
     if(ret && (researchData["type"] == "effect"))
     {

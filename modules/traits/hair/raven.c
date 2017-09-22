@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         addSpecification("type", "genetic");
-        addSpecification("name", "raven hair");
+        addSpecification("name", "raven black hair");
         addSpecification("description", "Your hair is glossy black with faint bluish highlights.");
         addSpecification("root", "hair");
         "baseTrait"::reset(arg);

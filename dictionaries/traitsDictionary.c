@@ -147,13 +147,6 @@ public nomask int traitEffectIsLimited(string trait)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping characterCreationTraits()
-{
-    // TODO [233]
-    return ([ ]);
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask mapping *extraAttacks(string trait, object owner)
 {
     mapping *ret = 0;
@@ -397,23 +390,21 @@ private nomask string displayTraitComponent(object trait, string component)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string traitDetails(string trait)
+public nomask string traitDetailsFromFile(string traitFile)
 {
-    trait = lower_case(trait);
-    string ret = sprintf("%s is not a valid trait.\n", capitalize(trait));
-
-    string traitFile = traitIsRegistered(trait) ? traits[trait] : 0;
+    string ret = "";
     if (traitFile && validTrait(traitFile))
     {
         object traitObj = traitObject(traitFile);
-        
+
         ret = sprintf(FieldDisplay, "Trait Name",
             capitalize(traitObj->query("name")) +
             (traitIsNegative(traitFile) ? "[0;31m [Negative][0m" : "")) +
             sprintf(FieldDisplay, "Trait Type", capitalize(traitObj->query("type"))) +
             sprintf(Value, traitObj->query("description")) + "\n" +
             sprintf(FieldDisplay, "Root Trait Class", capitalize(traitObj->query("root"))) +
-            sprintf(FieldDisplay, "Opposing Trait Class", capitalize(traitObj->query("opposing root"))) +
+            (traitObj->query("opposing root") ? sprintf(FieldDisplay, "Opposing Trait Class", 
+                capitalize(traitObj->query("opposing root"))) : "") +
             displayTraitComponent(traitObj, "opinion") +
             displayTraitComponent(traitObj, "opposing opinion") +
             displayTraitComponent(traitObj, "cost") +
@@ -421,6 +412,20 @@ public nomask string traitDetails(string trait)
             displayResearchTree(traitObj) +
             traitObj->displayPrerequisites() +
             traitObj->displayLimiters();
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string traitDetails(string trait)
+{
+    trait = lower_case(trait);
+    string ret = sprintf("%s is not a valid trait.\n", capitalize(trait));
+
+    string traitFile = traitIsRegistered(trait) ? traits[trait] : 0;
+    if (traitFile)
+    {
+        ret = traitDetailsFromFile(traitFile);
     }
     return ret;
 }
