@@ -167,3 +167,14 @@ void LanguageLevelTenCorrectlyUnderstood()
     ExpectNotEq("Bob shouts in tirnosti, `This is a long message that will test how garbled\nstuff should get when a message is entered'\n",
         Bystander->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void LanguageWithSpaceInNameCorrectlyParsed()
+{
+    Player->addSkillPoints(100);
+    Player->advanceSkill("high elven", 10);
+
+    ExpectTrue(Player->executeCommand("shout -l high elven This is a long message that will test how garbled stuff should get when a message is entered"));
+    ExpectEq("You shout in high elven, `This is a long message that will test how garbled\nstuff should get when a message is entered'\n",
+        Player->caughtMessage());
+}
