@@ -7,6 +7,9 @@ inherit "/lib/modules/traits/baseTrait.c";
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
-
+    addSpecification("type", "personality");
+    addSpecification("name", "dishonest");
+    addSpecification("root", "dishonest");
+    addSpecification("opposing root", "honest");
 }
 

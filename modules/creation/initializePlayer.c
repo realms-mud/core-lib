@@ -11,7 +11,8 @@ private string *selectors = ({
     "/lib/modules/creation/subraceSelector.c",
     "/lib/modules/creation/hairSelector.c",
     "/lib/modules/creation/attributeSelector.c",
-    "/lib/modules/creation/skillsSelector.c"
+    "/lib/modules/creation/skillsSelector.c",
+    "/lib/modules/creation/traitSelector.c"
 });
 
 /////////////////////////////////////////////////////////////////////////////

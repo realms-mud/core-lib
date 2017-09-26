@@ -8,7 +8,10 @@ inherit "/lib/modules/traits/baseTrait.c";
 public void reset(int arg)
 {
     addSpecification("type", "personality");
-    addSpecification("name", "loyal");
-    addSpecification("root", "duty");
+    addSpecification("name", "organizer");
+    addSpecification("description", "");
+    addSpecification("root", "archetype");
+
+    "baseTrait"::reset(arg);
 }
 

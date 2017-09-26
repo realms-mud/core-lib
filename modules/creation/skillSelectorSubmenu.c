@@ -25,7 +25,7 @@ public nomask void reset(int arg)
         SkillDictionary = load_object("/lib/dictionaries/skillsDictionary.c");
         if (!SkillDictionary)
         {
-            raise_error("raceSelector: ERROR - The skills dictionary is not present!\n");
+            raise_error("skillSelectorSubmenu: ERROR - The skills dictionary is not present!\n");
         }
         Data = skillMenuSetup();
 

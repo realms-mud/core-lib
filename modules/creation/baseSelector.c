@@ -14,6 +14,7 @@ protected string Description = 0;
 protected int AllowUndo = 1;
 protected int AllowAbort = 0;
 protected int NumColumns = 1;
+protected int HasDescription = 1;
 
 private string *UndoLog = ({ });
 
@@ -99,7 +100,10 @@ public nomask string displayMessage()
             ret += "\n";
         }
         ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.%s\n", sizeof(choices), AllowUndo ? " You may also undo or reset." : ""));
-        ret += sprintf(Green, "For details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n");
+        if (HasDescription)
+        {
+            ret += sprintf(Green, "For details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n");
+        }
         if (AllowAbort)
         {
             ret += sprintf(Green, "Type 'abort' if you do not wish to make a selection at this time.\n");
@@ -163,7 +167,7 @@ public nomask int applySelection(string arguments)
 
         string element;
         if((sscanf(arguments, "describe %s", element) == 1) &&
-            member(Data, element))
+            member(Data, element) && HasDescription)
         {
             ret = Describe;
             tell_object(User, displayMessage() + "\n");

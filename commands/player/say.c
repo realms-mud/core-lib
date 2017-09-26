@@ -125,10 +125,10 @@ public nomask int execute(string command, object initiator)
             messageTemplate = regreplace(messageTemplate, "##TargetPreposition##", "");
         }
 
-        if (sizeof(regexp(({ command }), "-l(anguage)* [A-Za-z]+")))
+        if (sizeof(regexp(({ command }), "-l(anguage)* ([A-Za-z]+|high elven)")))
         {
-            language = regreplace(command, ".*-l(anguage)* ([A-Za-z]+) .*", "\\2", 1);
-            command = regreplace(command, "-l(anguage)* ([A-Za-z]+)", "", 1);
+            language = regreplace(command, ".*-l(anguage)* ([A-Za-z]+|high elven) .*", "\\2", 1);
+            command = regreplace(command, "-l(anguage)* ([A-Za-z]+|high elven)", "", 1);
             messageTemplate = regreplace(messageTemplate, "##Language##", 
                 getDictionary()->getSpokenLanguage(language, initiator));
             messageTemplate = regreplace(messageTemplate, "##LanguagePreposition##", " in ");

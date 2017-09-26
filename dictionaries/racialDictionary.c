@@ -739,6 +739,7 @@ public nomask mapping characterCreationHair(string race)
     ]);
     return selection;
 }
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int startingSkillPoints(string race)
 {
@@ -747,6 +748,18 @@ public nomask int startingSkillPoints(string race)
     if (member(races[race], "starting skill points"))
     {
         ret = races[race]["starting skill points"];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int backgroundTraitPoints(string race)
+{
+    int ret = 0;
+
+    if (member(races[race], "background trait value"))
+    {
+        ret = races[race]["background trait value"];
     }
     return ret;
 }
