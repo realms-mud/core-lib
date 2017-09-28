@@ -23,15 +23,15 @@ public nomask void reset(int arg)
                     "are used to identify your character's personality.\n"
             ]),
             "2":([
-                "name": "Negative Traits",
-                    "type" : "negative",
-                    "description": "Negative traits are those that are, in some fashion, detrimental\n"
-                    "to your character. Taking traits of this nature will provide you\n"
-                    "with additional trait points to spend on positive traits.\n"
+                "name": "Educational Traits",
+                    "type" : "educational",
+                "description": "Educational traits are learned traits - those that\n"
+                    "have been cultivated both through formal learning as well as\n"
+                    "those uncovered as a result of either success or failure to learn.\n"
             ]),
             "3":([
-                "name": "Positive Traits",
-                    "type" : "positive",
+                "name": "Genetic Traits",
+                    "type" : "genetic",
                     "description": "Positive traits are those traits that provide you with additional\n"
                     "starting abilities and/or bonuses to your character's skills,\n"
                     "attributes, or abilities.\n"
