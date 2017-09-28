@@ -34,14 +34,18 @@ private mapping races = ([
         "defend attack": 1,
         "spell points": 25,
         "bonus heal spell points rate": 2,
+        "skills": ([
+            "elven": 8,
+            "common": 5
+        ]),
         "subraces": ([
             "wood elf": "woodElf.c",
             "grey elf": "greyElf.c",
             "dark elf": "darkElf.c",
             "sea elf": "seaElf.c"
         ]),
-        "starting skill points": 6,
-        "background trait value": 1
+        "starting skill points": 10,
+        "background trait value": 3
     ]),
     "dwarf": ([
         "description": "The dwarves are a short, stocky race of people. They generally\n"
@@ -56,17 +60,19 @@ private mapping races = ([
         "charisma": -1,
         "defense": 2,
         "stamina points": 25,
-        "hit points": 10,
+        "hit points": 25,
         "skills": ([
             "blacksmithing": 4,
-            "hammer": 2
+            "hammer": 3,
+            "dwarven": 8,
+            "common": 5
         ]),
         "subraces": ([
             "Khazurathi dwarf": "khazurathiDwarf.c",
             "Mirosti dwarf": "mirostiDwarf.c"
         ]),
         "starting skill points": 6,
-        "background trait value": 2
+        "background trait value": 4
     ]),
     "draconid": ([
         "description": "",
@@ -75,10 +81,55 @@ private mapping races = ([
         "intelligence": 1,
         "bonus heal spell points": 2,
         "bonus heal spell points rate": 2,
-        "spell points" : 50,
+        "spell points" : 75,
+        "skills": ([
+            "spellcraft": 5,
+            "magical essence" : 5,
+            "elemental air" : 1,
+            "elemental earth" : 1,
+            "elemental fire" : 1,
+            "elemental water" : 1,
+            "draconid": 8,
+            "common": 5
+        ]),
         "research trees": ({ "lib/instances/research/draconidResearchTree.c" }),
-        "starting skill points": 10,
-        "background trait value": 3
+        "starting skill points": 6,
+        "background trait value": 4
+    ]),
+    "maegenstryd": ([
+        "description": "The Maegenstryd are the descendants of the union of high elves,\n"
+            "humans, and the gods themselves. It is said that Aronath - son of Aradran,\n"
+            "the high king of the elves and Eadwyn, a goddess of hope and the mistress\n"
+            "of desires - fell in love with Maerwena, the daughter of the human king of\n"
+            "Tirnen. While the ensuing millenia have diluted their blood as they mate\n"
+            "most often with humans, the touch of the gods and the elves is ever-present.\n"
+            "In appearance, they typically have grey or blue eyes and black hair, much.\n"
+            "like their elven and human forbears did. They are typically taller than\n"
+            "humans - few, indeed are less than six feet tall. About three thousand years\n"
+            "ago after a great war shattered their realms to the far west, the remnants of\n"
+            "their 'race' established the Kingdom of Eledhel and most of that land's\n"
+            "nobility are of this race.\n",
+        "strength": 1,
+        "intelligence": 2,
+        "constitution": 2,
+        "charisma": 1,
+        "hit points": 25,
+        "spell points": 15,
+        "stamina points": 15,
+        "bonus heal hit points rate": 2,
+        "research trees": ({ "lib/instances/research/maegenstrydResearchTree.c" }),
+        "skills": ([
+            "ancient history": 3,
+            "spellcraft": 3,
+            "magical essence" : 3,
+            "perception" : 1,
+            "elven": 4,
+            "high elven": 4,
+            "eledhelean": 8,
+            "common": 5
+        ]),
+        "starting skill points": 8,
+        "background trait value": 4
     ]),
     "halfling": ([
         "description": "Halflings are a very small people that tend to look like\n" 
@@ -92,7 +143,12 @@ private mapping races = ([
         "dexterity": 2,
         "bonus heal hit points": 2,
         "bonus heal hit points rate": 2,
-        "starting skill points": 6,
+        "skills": ([
+            "hide": 3,
+            "move silently": 3,
+            "common": 5
+        ]),
+        "starting skill points": 10,
         "background trait value": 5
     ]),
     "gnome": ([
@@ -108,13 +164,23 @@ private mapping races = ([
         "intelligence": 2,
         "spell points": 25,
         "bonus heal spell points": 2,
-        "starting skill points": 8,
-        "background trait value": 3
+        "skills": ([
+            "spellcraft": 3,
+            "engineering": 2,
+            "common": 8
+        ]),
+        "starting skill points": 10,
+        "background trait value": 4
     ]),
     "half elf": ([
         "description": "",
         "intelligence": 1,
-        "spell points": 10,
+        "spell points": 25,
+        "skills": ([
+            "spellcraft": 3,
+            "elven": 8,
+            "common": 8
+        ]),
         "starting skill points": 10,
         "background trait value": 5
     ]),
@@ -130,8 +196,11 @@ private mapping races = ([
         "charisma": -2,
         "stamina points": 50,
         "spell points": -50,
+        "skills": ([
+            "orcish": 8
+        ]),
         "starting skill points": 8,
-        "background trait value": 3
+        "background trait value": 5
     ]),
     "faerie": ([
         "description": "The faeries are a magical race of winged humanoids. They are\n" 
@@ -149,6 +218,12 @@ private mapping races = ([
         "bonus heal spell points rate": 4,
         "spell points": 50,
         "hit points": -50,
+        "skills": ([
+            "spellcraft": 5,
+            "magical essence" : 5,
+            "elven": 8,
+            "common": 8
+        ]),
         "starting skill points": 10,
         "background trait value": 4
     ]),
@@ -172,6 +247,9 @@ private mapping races = ([
             "Endurgish": "endurghulHuman.c",
             "Zhenduli": "zhendulachHuman.c"
         ]),
+        "skills": ([
+            "common": 5
+        ]),
         "starting skill points": 10,
         "background trait value": 6
     ]),
@@ -190,10 +268,13 @@ private mapping races = ([
         "bonus heal hit points": 2,
         "bonus heal hit points rate": 4,
         "bonus heal spell points rate": -4,        
-        "spell points": -75,
-        "hit points": 50,
+        "spell points": -100,
+        "hit points": 100,
         "stamina points": 25,
         "defense": 4,
+        "skills": ([
+            "orcish": 8
+        ]),
         "starting skill points": 6,
         "background trait value": 5
     ]),
@@ -213,14 +294,19 @@ private mapping races = ([
         "constitution": 1,
         "charisma": 2,
         "defend attack": 1,
+        "hit points": 25,
         "spell points": 50,
         "bonus heal spell points rate": 2,
         "research trees": ({ "lib/instances/research/highElfResearchTree.c" }),
         "skills": ([
+            "spellcraft": 5,
             "blacksmithing": 3,
             "weapon smithing": 3,
             "long sword": 5,
-            "bow": 3
+            "bow": 3,
+            "elven": 8,
+            "high elven": 10,
+            "common": 8
         ]),
         "subraces": ([
             "Hillgarathi elf": "hillgarathElf.c",

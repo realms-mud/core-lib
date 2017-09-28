@@ -87,7 +87,6 @@ protected nomask int processSelection(string selection)
             if (TestTaken && (Data[selection]["type"] == "personality"))
             {
                 tell_object(User, "You have already taken the personality test.\n");
-                tell_object(User, displayMessage());
             }
             else
             {

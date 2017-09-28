@@ -1012,6 +1012,13 @@ private mapping skills = ([
         "untrained penalty": -10,
         "description": "This is the language of dwarves.\n"
     ]),    
+    "draconid": ([
+        "type": "language",
+        "attribute": "intelligence",
+        "bonus calculator": "one for two",
+        "untrained penalty": -10,
+        "description": "This is the language of draconids"
+    ]),  
     "high elven": ([
         "type": "language",
         "attribute": "intelligence",
@@ -1040,6 +1047,13 @@ private mapping skills = ([
         "untrained penalty": -10,
         "description": "This is the language of the citizens of Tirnost.\n"
     ]),  
+    "eledhelean": ([
+        "type": "language",
+        "attribute": "intelligence",
+        "bonus calculator": "one for two",
+        "untrained penalty": -10,
+        "description": "This is the language of the citizens of Hillgarath and the Lonis Vale.\n"
+    ]),
     "hillgarathi": ([
         "type": "language",
         "attribute": "intelligence",

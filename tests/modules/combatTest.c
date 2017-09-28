@@ -132,7 +132,7 @@ void InventoryCorrectlyAffectsMaxHitPoints()
 void MaxHitPointsCorrectlyAppliesRacialModifiers()
 {
     Attacker->Race("dwarf");
-    ExpectEq(172, Attacker->maxHitPoints());
+    ExpectEq(187, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -200,7 +200,7 @@ void MaxHitPointsCorrectlyAppliesAllModifiers()
     Attacker->ToggleMockTrait();
     Attacker->ToggleMockBiological();
     Attacker->ToggleMockBackground();
-    ExpectEq(229, Attacker->maxHitPoints());
+    ExpectEq(244, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -220,9 +220,9 @@ void HitPointsCapsAtMaxHitPoints()
     Attacker->ToggleMockTrait();
 
     ExpectEq(0, Attacker->hitPoints());
-    ExpectEq(180, Attacker->hitPoints(200));
-    ExpectEq(180, Attacker->hitPoints());
-    ExpectEq(180, Attacker->maxHitPoints());
+    ExpectEq(195, Attacker->hitPoints(200));
+    ExpectEq(195, Attacker->hitPoints());
+    ExpectEq(195, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////

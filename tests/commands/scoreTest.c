@@ -87,8 +87,8 @@ void ScoreDisplaysCorrectInformationWithWeaponEquipped()
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m [0;36mRace:[0m [0;32mHigh elf (Hillgarathi elf)      [0m [0;36mOverall Level:[0m [0;32m3                     [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m===[0m[0;31m.......[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
-        "[0;31m|[0m              [0;33m30/96      [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
+        "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m==[0m[0;31m........[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
+        "[0;31m|[0m              [0;33m30/121     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Attributes +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m[0;36m    Strength:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36mIntelligence:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m [0;36m      Wisdom:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m[0;31m|[0m\n"
         "[0;31m|[0m[0;36m   Dexterity:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m [0;36mConstitution:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36m    Charisma:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m[0;31m|[0m\n"
@@ -139,8 +139,8 @@ void ScoreDisplaysCorrectInformationWithWeaponShieldAndArmorEquipped()
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m [0;36mRace:[0m [0;32mHigh elf (Hillgarathi elf)      [0m [0;36mOverall Level:[0m [0;32m3                     [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m===[0m[0;31m.......[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
-        "[0;31m|[0m              [0;33m30/100     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
+        "[0m[0;31m|[0m[0;36m  Hit Points:[0m [0;35;1m==[0m[0;31m........[0m  [0;36mSpell Points:[0m [0;35;1m==========[0m[0;31m[0m  [0;36m     Stamina:[0m [0;35;1m==========[0m[0;31m[0m [0;31m|[0m\n"
+        "[0;31m|[0m              [0;33m30/125     [0m               [0;33m146/146    [0m               [0;33m96/96      [0m[0;31m|[0m\n"
         "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Attributes +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "[0m[0;31m|[0m[0;36m    Strength:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36mIntelligence:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m [0;36m      Wisdom:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m[0;31m|[0m\n"
         "[0;31m|[0m[0;36m   Dexterity:[0m [0;32m[0;32m10    [0m[0;32m     [0m[0m [0;36mConstitution:[0m [0;32m[0;33;1m11    [0m[0;34;1m(+1) [0m[0m [0;36m    Charisma:[0m [0;32m[0;33;1m12    [0m[0;34;1m(+2) [0m[0m[0;31m|[0m\n"
@@ -164,14 +164,15 @@ void HitPointsSliderBarsDisplayCorrectly()
 {
     ExpectTrue(Player->executeCommand("score"));
     ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
-        "Hit Points:.*[^=]===[^=]")));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "30/96")));
+        "Hit Points:.*[^=]==[^=]")), "shows two bars");
+    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "30/121")), "shows 30/121");
 
-    Player->hitPoints(30);
+    Player->hitPoints(32);
     ExpectTrue(Player->executeCommand("score"));
+
     ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
-        "Hit Points:.*[^=]======[^=]")));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "60/96")));
+        "Hit Points:.*[^=]=====[^=]")), "shows 5 bars");
+    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "62/121")), "shows 62/121");
 }
 
 /////////////////////////////////////////////////////////////////////////////

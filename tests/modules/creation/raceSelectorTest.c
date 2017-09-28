@@ -44,7 +44,8 @@ void InitialCreationDisplayIsCorrect()
         "\t[[0;31m9[0m]  - [0;32mHalfling            [0m\n"
         "\t[[0;31m10[0m] - [0;32mHigh elf            [0m\n"
         "\t[[0;31m11[0m] - [0;32mHuman               [0m\n"
-        "[0;32;1mYou must select a number from 1 to 11.\n[0m"
+        "\t[[0;31m12[0m] - [0;32mMaegenstryd         [0m\n"
+        "[0;32;1mYou must select a number from 1 to 12.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());
 }
@@ -149,20 +150,37 @@ void SelectionOfHumanSetsRaceToHuman()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void SelectionOfMaegenstrydSetsRaceToMaegenstryd()
+{
+    Selector->initiateSelector(User);
+    Selector->applySelection("12");
+    ExpectEq("[0;36mYou have selected 'Maegenstryd'.\n[0m", User->caughtMessage());
+    ExpectEq("maegenstryd", User->Race());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DescribeDraconidDisplaysDraconidDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 1");
     ExpectEq("[0;36m\n"
         "The draconid race incurs the following in-game bonuses/penalties:\n"
-        "\t[0;32mStarting skill points:[0m [0;34;1m10[0m\n"
-        "\t[0;32mBonus to trait selection:[0m [0;34;1m3[0m\n"
+        "\t[0;32mStarting skill points:[0m [0;34;1m6[0m\n"
+        "\t[0;32mBonus to trait selection:[0m [0;34;1m4[0m\n"
         "\t[0;32mStrength    [0m [0;34;1m+1[0m\n"
         "\t[0;32mIntelligence[0m [0;34;1m+1[0m\n"
         "\t[0;32mCharisma    [0m [0;34;1m+1[0m\n"
         "\t[0;32mBonus heal spell points[0m [0;34;1m+2[0m\n"
         "\t[0;32mBonus heal spell points rate[0m [0;34;1m+2[0m\n"
-        "\t[0;32mSpell points[0m [0;34;1m+50[0m\n"
+        "\t[0;32mSpell points[0m [0;34;1m+75[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+5[0m\n"
+        "\t[0;32mBonus Draconid skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus Elemental air skill[0m [0;34;1m+1[0m\n"
+        "\t[0;32mBonus Elemental earth skill[0m [0;34;1m+1[0m\n"
+        "\t[0;32mBonus Elemental fire skill[0m [0;34;1m+1[0m\n"
+        "\t[0;32mBonus Elemental water skill[0m [0;34;1m+1[0m\n"
+        "\t[0;32mBonus Magical essence skill[0m [0;34;1m+5[0m\n"
+        "\t[0;32mBonus Spellcraft skill[0m [0;34;1m+5[0m\n"
         "\t[0;34;1mA special research tree only available to this race is unlocked.[0m\n"
         "[0m",
         User->caughtMessage());
@@ -180,17 +198,19 @@ void DescribeDwarfDisplaysDwarfDescription()
         "built to last through war and the elements.\n\n"
         "The dwarf race incurs the following in-game bonuses/penalties:\n"
         "\t[0;32mStarting skill points:[0m [0;34;1m6[0m\n"
-        "\t[0;32mBonus to trait selection:[0m [0;34;1m2[0m\n"
+        "\t[0;32mBonus to trait selection:[0m [0;34;1m4[0m\n"
         "\t[0;32mStrength    [0m [0;34;1m+1[0m\n"
         "\t[0;32mIntelligence[0m [0;31m-1[0m\n"
         "\t[0;32mWisdom      [0m [0;31m-1[0m\n"
         "\t[0;32mConstitution[0m [0;34;1m+2[0m\n"
         "\t[0;32mCharisma    [0m [0;31m-1[0m\n"
         "\t[0;32mDefense     [0m [0;34;1m+2[0m\n"
-        "\t[0;32mHit points  [0m [0;34;1m+10[0m\n"
+        "\t[0;32mHit points  [0m [0;34;1m+25[0m\n"
         "\t[0;32mStamina points[0m [0;34;1m+25[0m\n"
         "\t[0;32mBonus Blacksmithing skill[0m [0;34;1m+4[0m\n"
-        "\t[0;32mBonus Hammer skill[0m [0;34;1m+2[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+5[0m\n"
+        "\t[0;32mBonus Dwarven skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus Hammer skill[0m [0;34;1m+3[0m\n"
         "[0m",
         User->caughtMessage());
 }
@@ -210,8 +230,8 @@ void DescribeElfDisplaysElfDescription()
         "in their own lives. Elves also favor nature and natural beauty,\n"
         "their buildings and art reflect this.\n\n"
         "The elf race incurs the following in-game bonuses/penalties:\n"
-        "\t[0;32mStarting skill points:[0m [0;34;1m6[0m\n"
-        "\t[0;32mBonus to trait selection:[0m [0;34;1m1[0m\n"
+        "\t[0;32mStarting skill points:[0m [0;34;1m10[0m\n"
+        "\t[0;32mBonus to trait selection:[0m [0;34;1m3[0m\n"
         "\t[0;32mStrength    [0m [0;34;1m+1[0m\n"
         "\t[0;32mIntelligence[0m [0;34;1m+1[0m\n"
         "\t[0;32mDexterity   [0m [0;34;1m+1[0m\n"
@@ -220,6 +240,8 @@ void DescribeElfDisplaysElfDescription()
         "\t[0;32mBonus heal spell points rate[0m [0;34;1m+2[0m\n"
         "\t[0;32mDefend attack[0m [0;34;1m+1[0m\n"
         "\t[0;32mSpell points[0m [0;34;1m+25[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+5[0m\n"
+        "\t[0;32mBonus Elven skill[0m [0;34;1m+8[0m\n"
         "[0m",
         User->caughtMessage());
 }
@@ -248,6 +270,10 @@ void DescribeFaerieDisplaysFaerieDescription()
         "\t[0;32mBonus heal spell points rate[0m [0;34;1m+4[0m\n"
         "\t[0;32mHit points  [0m [0;31m-50[0m\n"
         "\t[0;32mSpell points[0m [0;34;1m+50[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus Elven skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus Magical essence skill[0m [0;34;1m+5[0m\n"
+        "\t[0;32mBonus Spellcraft skill[0m [0;34;1m+5[0m\n"
         "[0m",
         User->caughtMessage());
 }
@@ -265,13 +291,16 @@ void DescribeGnomeDisplaysGnomeDescription()
         "They generally reside in tunnels burrowed into mountains or\n"
         "hills.\n\n"
         "The gnome race incurs the following in-game bonuses/penalties:\n"
-        "\t[0;32mStarting skill points:[0m [0;34;1m8[0m\n"
-        "\t[0;32mBonus to trait selection:[0m [0;34;1m3[0m\n"
+        "\t[0;32mStarting skill points:[0m [0;34;1m10[0m\n"
+        "\t[0;32mBonus to trait selection:[0m [0;34;1m4[0m\n"
         "\t[0;32mStrength    [0m [0;31m-1[0m\n"
         "\t[0;32mIntelligence[0m [0;34;1m+2[0m\n"
         "\t[0;32mWisdom      [0m [0;31m-1[0m\n"
         "\t[0;32mBonus heal spell points[0m [0;34;1m+2[0m\n"
         "\t[0;32mSpell points[0m [0;34;1m+25[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus Engineering skill[0m [0;34;1m+2[0m\n"
+        "\t[0;32mBonus Spellcraft skill[0m [0;34;1m+3[0m\n"
         "[0m",
         User->caughtMessage());
 }
@@ -286,7 +315,10 @@ void DescribeHalfElfDisplaysHalfElfDescription()
         "\t[0;32mStarting skill points:[0m [0;34;1m10[0m\n"
         "\t[0;32mBonus to trait selection:[0m [0;34;1m5[0m\n"
         "\t[0;32mIntelligence[0m [0;34;1m+1[0m\n"
-        "\t[0;32mSpell points[0m [0;34;1m+10[0m\n"
+        "\t[0;32mSpell points[0m [0;34;1m+25[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus Elven skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus Spellcraft skill[0m [0;34;1m+3[0m\n"
         "[0m",
         User->caughtMessage());
 }
@@ -303,13 +335,14 @@ void DescribeHalfOrcDisplaysHalfOrcDescription()
         "they gain intelligence and dexterity that the orcs lack.\n\n"
         "The half orc race incurs the following in-game bonuses/penalties:\n"
         "\t[0;32mStarting skill points:[0m [0;34;1m8[0m\n"
-        "\t[0;32mBonus to trait selection:[0m [0;34;1m3[0m\n"
+        "\t[0;32mBonus to trait selection:[0m [0;34;1m5[0m\n"
         "\t[0;32mStrength    [0m [0;34;1m+2[0m\n"
         "\t[0;32mIntelligence[0m [0;31m-1[0m\n"
         "\t[0;32mConstitution[0m [0;34;1m+1[0m\n"
         "\t[0;32mCharisma    [0m [0;31m-2[0m\n"
         "\t[0;32mSpell points[0m [0;31m-50[0m\n"
         "\t[0;32mStamina points[0m [0;34;1m+50[0m\n"
+        "\t[0;32mBonus Orcish skill[0m [0;34;1m+8[0m\n"
         "[0m",
         User->caughtMessage());
 }
@@ -337,9 +370,10 @@ void DescribeHalfTrollDisplaysHalfTrollDescription()
         "\t[0;32mBonus heal hit points rate[0m [0;34;1m+4[0m\n"
         "\t[0;32mBonus heal spell points rate[0m [0;31m-4[0m\n"
         "\t[0;32mDefense     [0m [0;34;1m+4[0m\n"
-        "\t[0;32mHit points  [0m [0;34;1m+50[0m\n"
-        "\t[0;32mSpell points[0m [0;31m-75[0m\n"
+        "\t[0;32mHit points  [0m [0;34;1m+100[0m\n"
+        "\t[0;32mSpell points[0m [0;31m-100[0m\n"
         "\t[0;32mStamina points[0m [0;34;1m+25[0m\n"
+        "\t[0;32mBonus Orcish skill[0m [0;34;1m+8[0m\n"
         "[0m",
         User->caughtMessage());
 }
@@ -356,13 +390,16 @@ void DescribeHalflingDisplaysHalflingDescription()
         "families are quite large. Halflings live in above ground homes\n"
         "made from materials in the surrounding forests.\n\n"
         "The halfling race incurs the following in-game bonuses/penalties:\n"
-        "\t[0;32mStarting skill points:[0m [0;34;1m6[0m\n"
+        "\t[0;32mStarting skill points:[0m [0;34;1m10[0m\n"
         "\t[0;32mBonus to trait selection:[0m [0;34;1m5[0m\n"
         "\t[0;32mStrength    [0m [0;31m-1[0m\n"
         "\t[0;32mDexterity   [0m [0;34;1m+2[0m\n"
         "\t[0;32mCharisma    [0m [0;31m-1[0m\n"
         "\t[0;32mBonus heal hit points[0m [0;34;1m+2[0m\n"
         "\t[0;32mBonus heal hit points rate[0m [0;34;1m+2[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+5[0m\n"
+        "\t[0;32mBonus Hide skill[0m [0;34;1m+3[0m\n"
+        "\t[0;32mBonus Move silently skill[0m [0;34;1m+3[0m\n"
         "[0m",
         User->caughtMessage());
 }
@@ -391,10 +428,15 @@ void DescribeHighElfDisplaysHighElfDescription()
         "\t[0;32mCharisma    [0m [0;34;1m+2[0m\n"
         "\t[0;32mBonus heal spell points rate[0m [0;34;1m+2[0m\n"
         "\t[0;32mDefend attack[0m [0;34;1m+1[0m\n"
+        "\t[0;32mHit points  [0m [0;34;1m+25[0m\n"
         "\t[0;32mSpell points[0m [0;34;1m+50[0m\n"
         "\t[0;32mBonus Blacksmithing skill[0m [0;34;1m+3[0m\n"
         "\t[0;32mBonus Bow skill[0m [0;34;1m+3[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus Elven skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus High elven skill[0m [0;34;1m+10[0m\n"
         "\t[0;32mBonus Long sword skill[0m [0;34;1m+5[0m\n"
+        "\t[0;32mBonus Spellcraft skill[0m [0;34;1m+5[0m\n"
         "\t[0;32mBonus Weapon smithing skill[0m [0;34;1m+3[0m\n"
         "\t[0;34;1mA special research tree only available to this race is unlocked.[0m\n"
         "[0m",
@@ -415,6 +457,48 @@ void DescribeHumanDisplaysHumanDescription()
         "The human race incurs the following in-game bonuses/penalties:\n"
         "\t[0;32mStarting skill points:[0m [0;34;1m10[0m\n"
         "\t[0;32mBonus to trait selection:[0m [0;34;1m6[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+5[0m\n"
+        "[0m",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DescribeMaegenstrydDisplaysMaegenstrydDescription()
+{
+    Selector->initiateSelector(User);
+    Selector->applySelection("describe 12");
+    ExpectEq("[0;36mThe Maegenstryd are the descendants of the union of high elves,\n"
+        "humans, and the gods themselves. It is said that Aronath - son of Aradran,\n"
+        "the high king of the elves and Eadwyn, a goddess of hope and the mistress\n"
+        "of desires - fell in love with Maerwena, the daughter of the human king of\n"
+        "Tirnen. While the ensuing millenia have diluted their blood as they mate\n"
+        "most often with humans, the touch of the gods and the elves is ever-present.\n"
+        "In appearance, they typically have grey or blue eyes and black hair, much.\n"
+        "like their elven and human forbears did. They are typically taller than\n"
+        "humans - few, indeed are less than six feet tall. About three thousand years\n"
+        "ago after a great war shattered their realms to the far west, the remnants of\n"
+        "their 'race' established the Kingdom of Eledhel and most of that land's\n"
+        "nobility are of this race.\n\n"
+        "The maegenstryd race incurs the following in-game bonuses/penalties:\n"
+        "\t[0;32mStarting skill points:[0m [0;34;1m8[0m\n"
+        "\t[0;32mBonus to trait selection:[0m [0;34;1m4[0m\n"
+        "\t[0;32mStrength    [0m [0;34;1m+1[0m\n"
+        "\t[0;32mIntelligence[0m [0;34;1m+2[0m\n"
+        "\t[0;32mConstitution[0m [0;34;1m+2[0m\n"
+        "\t[0;32mCharisma    [0m [0;34;1m+1[0m\n"
+        "\t[0;32mBonus heal hit points rate[0m [0;34;1m+2[0m\n"
+        "\t[0;32mHit points  [0m [0;34;1m+25[0m\n"
+        "\t[0;32mSpell points[0m [0;34;1m+15[0m\n"
+        "\t[0;32mStamina points[0m [0;34;1m+15[0m\n"
+        "\t[0;32mBonus Ancient history skill[0m [0;34;1m+3[0m\n"
+        "\t[0;32mBonus Common skill[0m [0;34;1m+5[0m\n"
+        "\t[0;32mBonus Eledhelean skill[0m [0;34;1m+8[0m\n"
+        "\t[0;32mBonus Elven skill[0m [0;34;1m+4[0m\n"
+        "\t[0;32mBonus High elven skill[0m [0;34;1m+4[0m\n"
+        "\t[0;32mBonus Magical essence skill[0m [0;34;1m+3[0m\n"
+        "\t[0;32mBonus Perception skill[0m [0;34;1m+1[0m\n"
+        "\t[0;32mBonus Spellcraft skill[0m [0;34;1m+3[0m\n"
+        "\t[0;34;1mA special research tree only available to this race is unlocked.[0m\n"
         "[0m",
         User->caughtMessage());
 }

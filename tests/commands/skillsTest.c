@@ -347,17 +347,18 @@ void MFlagOnlyDisplaysMagicSkills()
 /////////////////////////////////////////////////////////////////////////////
 void LanguageFlagOnlyDisplaysLanguageSkills()
 {
-    Player->addSkillPoints(95);
+    Player->addSkillPoints(100);
     PrepSkillsOfType("language");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
-        sprintf(SkillsRow, "Dwarven", 2, "", "Elven", 3, "") +
-        sprintf(SkillsRow, "Endurghul", 4, "", "High elven", 5, "") +
-        sprintf(SkillsRow, "Hillgarathi", 6, "", "Menadrosti", 7, "") +
-        sprintf(SkillsRow, "Orcish", 8, "", "Sylvan", 9, "") +
-        sprintf(HalfRow, "Tirnosti", 0, "", "") +
-        EndBar + sprintf(SkillPoints, 5);
+        sprintf(SkillsRow, "Draconid", 2, "", "Dwarven", 3, "") +
+        sprintf(SkillsRow, "Eledhelean", 4, "", "Elven", 5, "") +
+        sprintf(SkillsRow, "Endurghul", 6, "", "High elven", 7, "") +
+        sprintf(SkillsRow, "Hillgarathi", 8, "", "Menadrosti", 9, "") +
+        sprintf(SkillsRow, "Orcish", 0, "", "Sylvan", 1, "") +
+        sprintf(HalfRow, "Tirnosti", 2, "", "") +
+        EndBar + sprintf(SkillPoints, 4);
 
     ExpectTrue(Player->executeCommand("skills -language"));
     ExpectEq(message, Player->caughtMessage());
@@ -366,17 +367,18 @@ void LanguageFlagOnlyDisplaysLanguageSkills()
 /////////////////////////////////////////////////////////////////////////////
 void LFlagOnlyDisplaysLanguageSkills()
 {
-    Player->addSkillPoints(95);
+    Player->addSkillPoints(100);
     PrepSkillsOfType("language");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
-        sprintf(SkillsRow, "Dwarven", 2, "", "Elven", 3, "") +
-        sprintf(SkillsRow, "Endurghul", 4, "", "High elven", 5, "") +
-        sprintf(SkillsRow, "Hillgarathi", 6, "", "Menadrosti", 7, "") +
-        sprintf(SkillsRow, "Orcish", 8, "", "Sylvan", 9, "") +
-        sprintf(HalfRow, "Tirnosti", 0, "", "") +
-        EndBar + sprintf(SkillPoints, 5);
+        sprintf(SkillsRow, "Draconid", 2, "", "Dwarven", 3, "") +
+        sprintf(SkillsRow, "Eledhelean", 4, "", "Elven", 5, "") +
+        sprintf(SkillsRow, "Endurghul", 6, "", "High elven", 7, "") +
+        sprintf(SkillsRow, "Hillgarathi", 8, "", "Menadrosti", 9, "") +
+        sprintf(SkillsRow, "Orcish", 0, "", "Sylvan", 1, "") +
+        sprintf(HalfRow, "Tirnosti", 2, "", "") +
+        EndBar + sprintf(SkillPoints, 4);
 
     ExpectTrue(Player->executeCommand("skills -l"));
     ExpectEq(message, Player->caughtMessage());
@@ -446,11 +448,12 @@ void AllFlagDisplaysAllSkills()
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
-        sprintf(SkillsRow, "Dwarven", 2, "", "Elven", 3, "") +
-        sprintf(SkillsRow, "Endurghul", 4, "", "High elven", 5, "") +
-        sprintf(SkillsRow, "Hillgarathi", 6, "", "Menadrosti", 7, "") +
-        sprintf(SkillsRow, "Orcish", 8, "", "Sylvan", 9, "") +
-        sprintf(HalfRow, "Tirnosti", 0, "", "");
+        sprintf(SkillsRow, "Draconid", 2, "", "Dwarven", 3, "") +
+        sprintf(SkillsRow, "Eledhelean", 4, "", "Elven", 5, "") +
+        sprintf(SkillsRow, "Endurghul", 6, "", "High elven", 7, "") +
+        sprintf(SkillsRow, "Hillgarathi", 8, "", "Menadrosti", 9, "") +
+        sprintf(SkillsRow, "Orcish", 0, "", "Sylvan", 1, "") +
+        sprintf(HalfRow, "Tirnosti", 2, "", "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Magic Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Animal", 0, "", "Blood", 1, "") +
@@ -471,7 +474,7 @@ void AllFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Open lock", 8, "", "Search", 9, "") +
         sprintf(SkillsRow, "Set traps and snares", 0, "", "Spot", 1, "") +
         sprintf(HalfRow, "Tracking", 2, "", "") +
-        EndBar + sprintf(SkillPoints, 20);
+        EndBar + sprintf(SkillPoints, 14);
 
     ExpectTrue(Player->executeCommand("skills -all"));
     ExpectEq(message, Player->caughtMessage());
@@ -541,11 +544,12 @@ void NoFlagDisplaysAllSkills()
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
-        sprintf(SkillsRow, "Dwarven", 2, "", "Elven", 3, "") +
-        sprintf(SkillsRow, "Endurghul", 4, "", "High elven", 5, "") +
-        sprintf(SkillsRow, "Hillgarathi", 6, "", "Menadrosti", 7, "") +
-        sprintf(SkillsRow, "Orcish", 8, "", "Sylvan", 9, "") +
-        sprintf(HalfRow, "Tirnosti", 0, "", "");
+        sprintf(SkillsRow, "Draconid", 2, "", "Dwarven", 3, "") +
+        sprintf(SkillsRow, "Eledhelean", 4, "", "Elven", 5, "") +
+        sprintf(SkillsRow, "Endurghul", 6, "", "High elven", 7, "") +
+        sprintf(SkillsRow, "Hillgarathi", 8, "", "Menadrosti", 9, "") +
+        sprintf(SkillsRow, "Orcish", 0, "", "Sylvan", 1, "") +
+        sprintf(HalfRow, "Tirnosti", 2, "", "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Magic Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Animal", 0, "", "Blood", 1, "") +
@@ -566,7 +570,7 @@ void NoFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Open lock", 8, "", "Search", 9, "") +
         sprintf(SkillsRow, "Set traps and snares", 0, "", "Spot", 1, "") +
         sprintf(HalfRow, "Tracking", 2, "", "") +
-        EndBar + sprintf(SkillPoints, 20);
+        EndBar + sprintf(SkillPoints, 14);
 
     ExpectTrue(Player->executeCommand("skills"));
     ExpectEq(message, Player->caughtMessage());
