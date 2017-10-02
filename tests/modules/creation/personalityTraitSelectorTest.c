@@ -173,9 +173,9 @@ void SixthQuestionIsCorrect()
         "\t      execute you for this, would they? Regardless, you can't let that\n"
         "\t      poor soul pay for your crime.\n[0m\n"
         "\t[[0;31m3[0m] - [0;32mYou realize that life will be short for you if you're caught,\n"
-        "\t      but you can't let that poor bastard take the fall for you so... there's\n"
-        "\t      nothing for it but to plot a daring rescue. The jail doesn't look all\n"
-        "\t      that sturdy.\n[0m\n"
+        "\t      but you can't let that poor bastard take the fall for you so...\n"
+        "\t      there's nothing for it but to plot a daring rescue. The jail\n"
+        "\t      doesn't look all that sturdy.\n[0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m[0;32;1m[0m",
         User->caughtMessage());
 }
@@ -196,15 +196,16 @@ void SeventhQuestionIsCorrect()
         "inconvenienced and insulted by you because you did not have your servant\n"
         "whipped when they accidentally spilled her glass of wine on the table. She\n"
         "demands an apology. You respond[0m[0m:\n"
-        "\t[[0;31m1[0m] - [0;32mSer Osis of D'Liver can kiss my arse. That wretched dung-beast spilled her\n"
-        "\t      own wine!\n[0m\n"
-        "\t[[0;31m2[0m] - [0;32mSer Osis of D'Liver is a drunkard and a buffoon. I will not punish others\n"
-        "\t      for her inability to hold her liquor.\n[0m\n"
+        "\t[[0;31m1[0m] - [0;32mSer Osis of D'Liver can kiss my arse. That wretched dung-beast\n"
+        "\t      spilled her own wine!\n[0m\n"
+        "\t[[0;31m2[0m] - [0;32mSer Osis of D'Liver is a drunkard and a buffoon. I will not punish\n"
+        "\t      others for her inability to hold her liquor.\n[0m\n"
         "\t[[0;31m3[0m] - [0;32mThe kind of woman who wants to enforce her ideas on others is\n"
         "\t      the kind of woman whose ideas are idiotic.\n[0m\n"
-        "\t[[0;31m4[0m] - [0;32mSer Osis of D'Liver believes in the ideal that her birthright allows her to\n"
-        "\t      step on others. An idealist is one who, on noticing that a rose smells\n"
-        "\t      better than a cabbage, concludes that it also makes a better soup.\n[0m\n"
+        "\t[[0;31m4[0m] - [0;32mSer Osis of D'Liver believes in the ideal that her birthright\n"
+        "\t      allows her to step on others. An idealist is one who, on\n"
+        "\t      noticing that a rose smells better than a cabbage, concludes\n"
+        "\t      that it also makes a better soup.\n[0m\n"
         "[0;32;1mYou must select a number from 1 to 4.\n[0m[0;32;1m[0m",
         User->caughtMessage());
 }

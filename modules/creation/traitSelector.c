@@ -24,18 +24,23 @@ public nomask void reset(int arg)
             ]),
             "2":([
                 "name": "Educational Traits",
-                    "type" : "educational",
+                "type" : "educational",
                 "description": "Educational traits are learned traits - those that\n"
                     "have been cultivated both through formal learning as well as\n"
                     "those uncovered as a result of either success or failure to learn.\n"
             ]),
             "3":([
                 "name": "Genetic Traits",
-                    "type" : "genetic",
-                    "description": "Positive traits are those traits that provide you with additional\n"
-                    "starting abilities and/or bonuses to your character's skills,\n"
-                    "attributes, or abilities.\n"
-            ])
+                "type" : "genetic",
+                "description": "Genetic traits are those traits you have inherited the disposition for\n"
+                    "by your ancestors.\n"
+            ]),
+            "4":([
+                "name": "Health Traits",
+                "type" : "health",
+                "description": "Health traits are those genetic traits that are specifically related to\n"
+                    "your physical and mental health.\n"
+            ]),
         ]);
     }
 }
@@ -96,6 +101,7 @@ protected nomask int processSelection(string selection)
                 SubselectorObj = clone_object(selector);
                 move_object(SubselectorObj, User);
                 SubselectorObj->registerEvent(this_object());
+                SubselectorObj->setPointsRemaining(TotalPoints);
                 SubselectorObj->initiateSelector(User);
             }
         }
@@ -111,8 +117,10 @@ public nomask void onSelectorCompleted(object caller)
         if (stringp(caller->selection()))
         {
             UndoDetails += ({ caller->selection() });
+            TotalPoints -= load_object("/lib/dictionaries/traitsDictionary.c")->
+                traitObject(caller->selection())->query("cost");
         }
-        TotalPoints -= caller->cost();
+
         TestTaken = caller->testTaken();
     }
     caller->cleanUp();

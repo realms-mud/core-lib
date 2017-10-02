@@ -429,3 +429,32 @@ public nomask string traitDetails(string trait)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping creationListForTraitType(string type)
+{
+    mapping ret = ([]);
+
+    if (member(validTraitTypes, type) > -1)
+    {
+        string *traitList = get_dir(
+            sprintf("/lib/modules/traits/%s/*.c", type), 0x10);
+
+        if (sizeof(traitList))
+        {
+            int i = 1;
+            foreach(string trait in traitList)
+            {
+                object traitObj = traitObject(trait);
+
+                ret[to_string(i)] = ([
+                    "name": capitalize(traitObj->query("name")),
+                    "description": traitDetailsFromFile(trait),
+                    "file": trait
+                ]);
+                i++;
+            }
+        }
+    }
+    return ret;
+}

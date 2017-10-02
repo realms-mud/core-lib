@@ -73,7 +73,7 @@ public nomask string displayMessage()
 {
     string ret = "";
     
-    if(Data)
+    if(Data && sizeof(Data))
     {
         ret = sprintf(Cyan + BoldWhite + ":\n", "Character creation - ",
             Description);
@@ -211,8 +211,13 @@ public nomask int applySelection(string arguments)
         else if(member(Data, arguments))
         {
             ret = Success;
+            string choice = Data[arguments]["name"];
+            if (sizeof(choice) > 48)
+            {
+                choice = choice[0..48] + "...";
+            }
             tell_object(User, sprintf(Cyan, sprintf("You have selected '%s'.\n",
-                Data[arguments]["name"])));
+                choice)));
 
             makeSelection(arguments);
         }

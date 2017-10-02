@@ -9,14 +9,15 @@ public void reset(int arg)
 {
     if (!arg)
     {
-        addSpecification("type", "health");
-        addSpecification("name", "clubfooted");
-        addSpecification("description", "You have lost part of your foot through a rather unfortunate accident.");
-        addSpecification("root", "maimed");
-        addSpecification("opposing root", "hale");
-        addSpecification("opinion", -10);
-        addSpecification("penalty to dexterity", 3);
-        addSpecification("cost", -1);
+        addSpecification("type", "genetic");
+        addSpecification("name", "keen");
+        addSpecification("description", "You are extremely astute.");
+        addSpecification("root", "wise");
+        addSpecification("opposing root", "foolish");
+        addSpecification("opinion", 10);
+        addSpecification("bonus wisdom", 1);
+        addSpecification("bonus intelligence", 1);
+        addSpecification("cost", 1);
         "baseTrait"::reset(arg);
     }
 }

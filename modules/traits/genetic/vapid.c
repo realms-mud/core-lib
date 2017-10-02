@@ -12,6 +12,7 @@ public void reset(int arg)
         addSpecification("type", "genetic");
         addSpecification("name", "vapid");
         addSpecification("description", "You are a dull and tedious person. You offer little new insight to conversations and have very little intellectual curiosity.");
+        addSpecification("root", "unintelligent");
         addSpecification("opposing root", "intelligent");
         addSpecification("opinion", -5);
         addSpecification("penalty to intelligence", 1);

@@ -141,9 +141,9 @@ private mapping personalityQuestionnaire = ([
             ]),
             "3": ([
                 "name": "You realize that life will be short for you if you're caught,\n"
-                    "\t      but you can't let that poor bastard take the fall for you so... there's\n"
-                    "\t      nothing for it but to plot a daring rescue. The jail doesn't look all\n"
-                    "\t      that sturdy.\n",
+                    "\t      but you can't let that poor bastard take the fall for you so...\n"
+                    "\t      there's nothing for it but to plot a daring rescue. The jail\n"
+                    "\t      doesn't look all that sturdy.\n",
                 "type": "greedy"
             ])
         ])
@@ -156,13 +156,13 @@ private mapping personalityQuestionnaire = ([
             "demands an apology. You respond",
         "answers": ([
             "1": ([
-                "name": "Ser Osis of D'Liver can kiss my arse. That wretched dung-beast spilled her\n"
-                    "\t      own wine!\n",
+                "name": "Ser Osis of D'Liver can kiss my arse. That wretched dung-beast\n"
+                    "\t      spilled her own wine!\n",
                 "type": "vulgar"
             ]),
             "2": ([
-                "name": "Ser Osis of D'Liver is a drunkard and a buffoon. I will not punish others\n"
-                    "\t      for her inability to hold her liquor.\n",
+                "name": "Ser Osis of D'Liver is a drunkard and a buffoon. I will not punish\n"
+                    "\t      others for her inability to hold her liquor.\n",
                 "type": "abrasive"
             ]),
             "3": ([
@@ -171,9 +171,10 @@ private mapping personalityQuestionnaire = ([
                 "type": "witty"
             ]),
             "4": ([
-                "name": "Ser Osis of D'Liver believes in the ideal that her birthright allows her to\n"
-                    "\t      step on others. An idealist is one who, on noticing that a rose smells\n"
-                    "\t      better than a cabbage, concludes that it also makes a better soup.\n",
+                "name": "Ser Osis of D'Liver believes in the ideal that her birthright\n"
+                    "\t      allows her to step on others. An idealist is one who, on\n"
+                    "\t      noticing that a rose smells better than a cabbage, concludes\n"
+                    "\t      that it also makes a better soup.\n",
                 "type": "orator"
             ])
 
