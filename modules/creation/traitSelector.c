@@ -41,6 +41,16 @@ public nomask void reset(int arg)
                 "description": "Health traits are those genetic traits that are specifically related to\n"
                     "your physical and mental health.\n"
             ]),
+            "5":([
+                "name": "Sexuality Traits",
+                "type" : "sexuality",
+                "description": "Sexuality traits are those traits that deal with sexual identity.\n"
+            ]),
+            "6":([
+                "name": "Exit Trait Selection   [0;31;1m(You will lose unspent trait points!)[0m",
+                "type" : "exit",
+                "description": "This option lets you exit the trait selection menu.\n"
+            ]),
         ]);
     }
 }
@@ -86,7 +96,7 @@ protected nomask int processSelection(string selection)
     int ret = -1;
     if (User)
     {
-        ret = (TotalPoints == 0 && TestTaken);
+        ret = (Data[selection]["type"] == "exit");
         if (!ret)
         {
             if (TestTaken && (Data[selection]["type"] == "personality"))
@@ -121,7 +131,10 @@ public nomask void onSelectorCompleted(object caller)
                 traitObject(caller->selection())->query("cost");
         }
 
-        TestTaken = caller->testTaken();
+        if (!TestTaken)
+        {
+            TestTaken = caller->testTaken();
+        }
     }
     caller->cleanUp();
 

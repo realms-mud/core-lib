@@ -7,8 +7,16 @@ inherit "/lib/modules/traits/baseTrait.c";
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
-    addSpecification("type", "personality");
-    addSpecification("name", "compassionate");
-    addSpecification("root", "kind");
+    if (!arg)
+    {
+        addSpecification("type", "personality");
+        addSpecification("name", "compassionate");
+        addSpecification("description", "You truly care for those around you.");
+        addSpecification("root", "kind");
+        addSpecification("opposing root", "cruel");
+        addSpecification("opinion", 10);
+        addSpecification("opposing opinion", -10);
+        "baseTrait"::reset(arg);
+    }
 }
 

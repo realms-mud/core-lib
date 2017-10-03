@@ -9,13 +9,10 @@ public void reset(int arg)
 {
     if (!arg)
     {
-        addSpecification("type", "personality");
-        addSpecification("name", "honest");
-        addSpecification("description", "You are sincere in your speech and try not to deceive others.");
-        addSpecification("root", "honorable");
-        addSpecification("opposing root", "dishonorable");
-        addSpecification("opinion", 10);
-        addSpecification("opposing opinion", -5);
+        addSpecification("type", "genetic");
+        addSpecification("name", "asexual");
+        addSpecification("description", "You lack sexual attraction to others and have no desire for such activities.");
+        addSpecification("root", "sexual identity");
         "baseTrait"::reset(arg);
     }
 }

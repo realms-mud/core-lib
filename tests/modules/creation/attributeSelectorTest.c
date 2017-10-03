@@ -228,7 +228,6 @@ void SelectorFiresOnSelectorCompletedWhenAllPointsSpent()
     for (int i = 0; i < 18; i++)
     {
         ExpectEq(0, subscriber->TimesEventReceived());
-        ExpectNotEq("cleanUp", call_out_info()[0][1]);
         Selector->applySelection(to_string((i % 6) + 1));
         ExpectEq(17 - i, User->attributePoints());
     }

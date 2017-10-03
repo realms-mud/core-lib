@@ -83,7 +83,7 @@ void SectionWithThreeTraitsHasNoEmptyColumns()
 
     ExpectTrue(Player->executeCommand("traits"));
     ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;31;1m", "Abrasive", "[0;31;1m", "Test 1", "[0;36m", "Test 2") + EndBar,
+        sprintf(TraitsRow, "[0;36m", "Abrasive", "[0;31;1m", "Test 1", "[0;36m", "Test 2") + EndBar,
         Player->caughtMessage());
 }
 
@@ -97,7 +97,7 @@ void SectionWithMoreThanThreeTraitsCorrectlyDisplays()
 
     ExpectTrue(Player->executeCommand("traits"));
     ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;31;1m", "Abrasive", "[0;33m", "Charming", "[0;31;1m", "Test 1") +
+        sprintf(TraitsRow, "[0;36m", "Abrasive", "[0;33m", "Charming", "[0;31;1m", "Test 1") +
         sprintf(TraitsRow, "[0;36m", "Test 2", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }

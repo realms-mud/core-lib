@@ -435,7 +435,7 @@ public nomask mapping creationListForTraitType(string type)
 {
     mapping ret = ([]);
 
-    if (member(validTraitTypes, type) > -1)
+    if ((member(validTraitTypes, type) > -1) || (type == "sexuality"))
     {
         string *traitList = get_dir(
             sprintf("/lib/modules/traits/%s/*.c", type), 0x10);
