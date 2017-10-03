@@ -182,6 +182,65 @@ private mapping personalityQuestionnaire = ([
     ]),
 ]);
 
+private mapping backgrounds = ([
+    "elf":([
+        "wood elf": ({ "scout", "apprentice" }),
+        "grey elf": ({ "noble", "apprentice", "smith", "artist", "musician", "scribe", "merchant" }),
+        "sea elf": ({ "noble", "mariner", "merchant", "smith", "apprentice" }),
+        "dark elf": ({ "noble", "apprentice", "smith" }),
+        "none": ({ "apprentice", "smith", "artist", "musician", "scribe", "merchant" })
+    ]),
+    "dwarf":([
+        "khazurathi dwarf": ({ "noble", "soldier", "smith", "merchant" }),
+        "mirosti dwarf": ({ "noble", "soldier", "smith", "merchant" }),
+        "none": ({ "soldier", "smith", "merchant" }),
+    ]),
+    "draconid":([
+        "none": ({ "noble", "apprentice", "smith", "artist", "musician"})
+    ]),
+    "maegenstryd":([
+        "none": ({ "noble" })
+    ]),
+    "halfling":([
+        "none": ({ "scout", "farmer", "merchant", "musician", "artist" })
+    ]),
+    "gnome":([
+        "none": ({ "noble", "apprentice", "smith", "artist" })
+    ]),
+    "half elf":([
+        "none": ({ "scout", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue" })
+    ]),
+    "half orc":([
+        "none": ({ "scout", "soldier" })
+    ]),
+    "half troll":([
+        "none": ({ "scout", "soldier" })
+    ]),
+    "faerie":([
+        "none": ({ "noble", "scout", "apprentice", "musician" })
+    ]),
+    "human":([
+        "eledhelean": ({ "noble", "mariner", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "hillgarathi": ({ "noble", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "tirnosti": ({ "noble", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "menadrosti": ({ "noble", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "iarwathean": ({ "noble", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "helcarish": ({ "noble", "mariner", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "celebnosti": ({ "noble", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "andurathi": ({ "noble", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "linmiri": ({ "noble", "mariner", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "endurgish": ({ "noble", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "zhenduli": ({ "noble", "scout", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" }),
+        "none": ({ "scout", "mariner", "soldier", "farmer", "smith", "apprentice", "merchant", "musician", "artist", "rogue", "scribe", "acolyte" })
+    ]),
+    "high elf":([
+        "half elf": ({ "noble" }),
+        "hillgarathi elf": ({ "noble", "apprentice", "smith" }),
+        "moon elf": ({ "noble", "mariner", "smith", "apprentice" }),
+        "none": ({ "mariner", "apprentice", "smith" }),
+    ])
+]);
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping personalityQuestionnaire()
 {
