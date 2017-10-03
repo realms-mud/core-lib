@@ -175,7 +175,7 @@ void EducationalTraitsCanBeSelected()
     ExpectTrue(User->isTraitOf("lib/modules/traits/educational/arcane.c"));
     ExpectFalse(objectp(educationalTraits), "The educational trait selector test was cleaned up");
 
-    ExpectSubStringMatch("You have 3 trait points left to assign",
+    ExpectSubStringMatch("You have 4 trait points left to assign",
         User->caughtMessage());
 }
 

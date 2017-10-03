@@ -34,12 +34,23 @@ void InitialCreationDisplayIsCorrectForHighElf()
     User->Race("high elf");
     Selector->initiateSelector(User);
     ExpectEq("[0;36mCharacter creation - [0m[0;37;1mChoose your subrace[0m:\n"
-        "\t[[0;31m1[0m] - [0;32mHillgarathi elf     [0m\n"
-        "\t[[0;31m2[0m] - [0;32mMoon elf            [0m\n"
-        "\t[[0;31m3[0m] - [0;32mDo not add a subrace[0m\n"
-        "[0;32;1mYou must select a number from 1 to 3.\n[0m"
+        "\t[[0;31m1[0m] - [0;32mHalf elf            [0m\n"
+        "\t[[0;31m2[0m] - [0;32mHillgarathi elf     [0m\n"
+        "\t[[0;31m3[0m] - [0;32mMoon elf            [0m\n"
+        "\t[[0;31m4[0m] - [0;32mDo not add a subrace[0m\n"
+        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectionOfHalfHighElfAddsTrait()
+{
+    User->Race("high elf");
+    Selector->initiateSelector(User);
+    Selector->applySelection("1");
+    ExpectEq("[0;36mYou have selected 'Half elf'.\n[0m", User->caughtMessage());
+    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/deityTouchedElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -47,7 +58,7 @@ void SelectionOfHillgarathiHighElfAddsTrait()
 {
     User->Race("high elf");
     Selector->initiateSelector(User);
-    Selector->applySelection("1");
+    Selector->applySelection("2");
     ExpectEq("[0;36mYou have selected 'Hillgarathi elf'.\n[0m", User->caughtMessage());
     ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/hillgarathElf.c"));
 }
@@ -57,7 +68,7 @@ void SelectionOfMoonHighElfAddsTrait()
 {
     User->Race("high elf");
     Selector->initiateSelector(User);
-    Selector->applySelection("2");
+    Selector->applySelection("3");
     ExpectEq("[0;36mYou have selected 'Moon elf'.\n[0m", User->caughtMessage());
     ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/echorluinElf.c"));
 }
@@ -71,7 +82,7 @@ void SelectionOfNoneDoesNotAddTraitButFiresOnSelectorCompleted()
     Selector->initiateSelector(User);
 
     ExpectEq(0, subscriber->TimesEventReceived());
-    Selector->applySelection("3");
+    Selector->applySelection("4");
     ExpectEq(1, subscriber->TimesEventReceived());
 }
 

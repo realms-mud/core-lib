@@ -37,7 +37,7 @@ public void reset(int arg)
         addSpecification("bonus writing", 2);
         addSpecification("bonus ancient history", 1);
         addSpecification("bonus astronomy", 1);
-        addSpecification("cost", 3);
+        addSpecification("cost", 2);
         "baseTrait"::reset(arg);
     }
 }

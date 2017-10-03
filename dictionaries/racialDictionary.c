@@ -103,7 +103,7 @@ private mapping races = ([
             "of desires - fell in love with Maerwena, the daughter of the human king of\n"
             "Tirnen. While the ensuing millenia have diluted their blood as they mate\n"
             "most often with humans, the touch of the gods and the elves is ever-present.\n"
-            "In appearance, they typically have grey or blue eyes and black hair, much.\n"
+            "In appearance, they typically have grey or blue eyes and black hair, much\n"
             "like their elven and human forbears did. They are typically taller than\n"
             "humans - few, indeed are less than six feet tall. About three thousand years\n"
             "ago after a great war shattered their realms to the far west, the remnants of\n"
@@ -175,6 +175,7 @@ private mapping races = ([
     "half elf": ([
         "description": "",
         "intelligence": 1,
+        "hit points": 10,
         "spell points": 25,
         "skills": ([
             "spellcraft": 3,
@@ -309,6 +310,7 @@ private mapping races = ([
             "common": 8
         ]),
         "subraces": ([
+            "Half elf": "deityTouchedElf.c",
             "Hillgarathi elf": "hillgarathElf.c",
             "moon elf": "echorluinElf.c"
         ]),
