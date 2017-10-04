@@ -9,6 +9,7 @@ protected nomask void applyGroupDetails()
 {
     setName("Player");
     addPermission("/p/$ANY/$USER.o", Read);
-    addPermission("/mail/$ANY/$USER.o", Read);
+    addPermission("/mail/$ANY/$USER.o", Read | Write);
     addPermission("/players/$ANY/.plan", Read);
+    addPermission("/doc", Read);
 }

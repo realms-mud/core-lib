@@ -13,6 +13,7 @@ virtual inherit "/lib/modules/secure/dataServices/traitsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/inventoryDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/factionsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/combatStatisticsDataService.c";
+virtual inherit "/lib/modules/secure/dataServices/wizardDataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int connect()
@@ -43,6 +44,7 @@ public nomask mapping getPlayerData(string name)
             data += getTemporaryTraits(data["playerId"], dbHandle);
             data += getInventory(data["playerId"], dbHandle);
             data += getFactions(data["playerId"], dbHandle);
+            data += getWizardLevel(data["playerId"], dbHandle);
         }
 
         db_close(dbHandle);
@@ -76,6 +78,7 @@ public nomask void savePlayerData(mapping playerData)
             saveTraits(dbHandle, playerId, playerData);
             saveInventory(dbHandle, playerId, playerData);
             saveFactions(dbHandle, playerId, playerData);
+            saveWizardLevel(dbHandle, playerId, playerData);
             db_close(dbHandle);
         }
     }

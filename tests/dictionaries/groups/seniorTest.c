@@ -4,16 +4,377 @@
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
 
-object Group;
+object Wizard;
+
+protected nosave int Unknown = 0x8;
+protected nosave int None = 0x0;
+protected nosave int Owner = 0x1;
+protected nosave int Write = 0x2;
+protected nosave int Read = 0x4;
+
+/////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    setRestoreCaller(this_object());
+    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    database->PrepDatabase();
+
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    dataAccess->savePlayerData(database->GetWizardOfLevel("senior"));
+
+    destruct(dataAccess);
+    destruct(database);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Group = clone_object("/lib/dictionaries/groups/senior.c");
+    Wizard = clone_object("/lib/realizations/wizard.c");
+    Wizard->restore("earl");
+    setUsers(({ Wizard }));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    destruct(Group);
+    destruct(Wizard);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanReadFilesInRoot()
+{
+    ExpectTrue(Wizard->hasReadAccess("/ulmo.debug.log"));
+    ExpectTrue(Wizard->hasReadAccess("/doc/regexp"));
+    ExpectTrue(Wizard->hasReadAccess("/lib/modules/combat.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInRoot()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/ulmo.debug.log"));
+    ExpectFalse(Wizard->hasWriteAccess("/doc/regexp"));
+    ExpectFalse(Wizard->hasWriteAccess("/lib/modules/combat.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInRoot()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/ulmo.debug.log"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/doc/regexp"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/lib/modules/combat.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanReadFilesInLog()
+{
+    ExpectTrue(Wizard->hasReadAccess("/log/EXPERIENCE"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInLog()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/log"));
+    ExpectFalse(Wizard->hasWriteAccess("/log/EXPERIENCE"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInLog()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/log"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/log/EXPERIENCE"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanReadTheirLogs()
+{
+    ExpectTrue(Wizard->hasReadAccess("/log"));
+    ExpectTrue(Wizard->hasReadAccess("/log/earl"));
+    ExpectTrue(Wizard->hasReadAccess("/log/earl.rep"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanWriteTheirFilesInLog()
+{
+    ExpectTrue(Wizard->hasWriteAccess("/log/earl"));
+    ExpectTrue(Wizard->hasWriteAccess("/log/earl.rep"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsOwnerOfTheirFilesInLog()
+{
+    ExpectTrue(Wizard->hasOwnershipAccess("/log/earl"));
+    ExpectTrue(Wizard->hasOwnershipAccess("/log/earl.rep"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotReadFilesInSecure()
+{
+    ExpectFalse(Wizard->hasReadAccess("/secure"));
+    ExpectFalse(Wizard->hasReadAccess("/secure/master.c"));
+    ExpectFalse(Wizard->hasReadAccess("/secure/room/board.c"));
+    ExpectFalse(Wizard->hasReadAccess("/secure/player/files/player.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInSecure()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/secure"));
+    ExpectFalse(Wizard->hasWriteAccess("/secure/master.c"));
+    ExpectFalse(Wizard->hasWriteAccess("/secure/room/board.c"));
+    ExpectFalse(Wizard->hasWriteAccess("/secure/player/files/player.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInSecure()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/secure"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/secure/master.c"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/secure/room/board.c"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/secure/player/files/player.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotReadFilesInMail()
+{
+    ExpectFalse(Wizard->hasReadAccess("/mail"));
+    ExpectFalse(Wizard->hasReadAccess("/mail/m/maeglin.o"));
+    ExpectFalse(Wizard->hasReadAccess("/mail/b/blah.o"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInMail()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/mail"));
+    ExpectFalse(Wizard->hasWriteAccess("/mail/m/maeglin.o"));
+    ExpectFalse(Wizard->hasWriteAccess("/mail/b/blah.o"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInMail()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/mail"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/mail/m/maeglin.o"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/mail/b/blah.o"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotReadFilesInBanish()
+{
+    ExpectFalse(Wizard->hasReadAccess("/banish"));
+    ExpectFalse(Wizard->hasReadAccess("/banish/blah.o"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInBanish()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/banish"));
+    ExpectFalse(Wizard->hasWriteAccess("/banish/blah.o"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInBanish()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/banish"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/banish/blah.o"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotReadFilesInGodstf()
+{
+    ExpectFalse(Wizard->hasReadAccess("/godstf"));
+    ExpectFalse(Wizard->hasReadAccess("/godstf/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInGodstf()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/godstf"));
+    ExpectFalse(Wizard->hasWriteAccess("/godstf/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInGodstf()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/godstf"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/godstf/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanReadFilesInRoom()
+{
+    ExpectTrue(Wizard->hasReadAccess("/room"));
+    ExpectTrue(Wizard->hasReadAccess("/room/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInRoom()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/room"));
+    ExpectFalse(Wizard->hasWriteAccess("/room/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInRoom()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/room"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/room/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanReadFilesInOpen()
+{
+    ExpectTrue(Wizard->hasReadAccess("/open"));
+    ExpectTrue(Wizard->hasReadAccess("/open/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanWriteFilesInOpen()
+{
+    ExpectTrue(Wizard->hasWriteAccess("/open"));
+    ExpectTrue(Wizard->hasWriteAccess("/open/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInOpen()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/open"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/open/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanReadFilesInGuild()
+{
+    ExpectTrue(Wizard->hasReadAccess("/guild"));
+    ExpectTrue(Wizard->hasReadAccess("/guild/mage/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInGuild()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/guild"));
+    ExpectFalse(Wizard->hasWriteAccess("/guild/priest/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInGuild()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/guild"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/guild/fighter/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanReadFilesInLib()
+{
+    ExpectTrue(Wizard->hasReadAccess("/lib"));
+    ExpectTrue(Wizard->hasReadAccess("/lib/modules/combat.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInLib()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/lib"));
+    ExpectFalse(Wizard->hasWriteAccess("/lib/modules/combat.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInLib()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/lib"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/lib/modules/combat.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotReadFilesInLibSecure()
+{
+    ExpectFalse(Wizard->hasReadAccess("/lib/dictionaries/groups"));
+    ExpectFalse(Wizard->hasReadAccess("/lib/tests/dictionaries/groups"));
+    ExpectFalse(Wizard->hasReadAccess("/lib/dictionaries/groups/wizard.c"));
+    ExpectFalse(Wizard->hasReadAccess("/lib/modules/secure/"));
+    ExpectFalse(Wizard->hasReadAccess("/lib/tests/modules/secure/"));
+    ExpectFalse(Wizard->hasReadAccess("/lib/modules/secure/combat.h"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteFilesInLibSecure()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/lib/dictionaries/groups"));
+    ExpectFalse(Wizard->hasWriteAccess("/lib/tests/dictionaries/groups"));
+    ExpectFalse(Wizard->hasWriteAccess("/lib/dictionaries/groups/wizard.c"));
+    ExpectFalse(Wizard->hasWriteAccess("/lib/modules/secure/"));
+    ExpectFalse(Wizard->hasWriteAccess("/lib/tests/modules/secure/"));
+    ExpectFalse(Wizard->hasWriteAccess("/lib/modules/secure/combat.h"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInLibSecure()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/lib/dictionaries/groups"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/lib/tests/dictionaries/groups"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/lib/dictionaries/groups/wizard.c"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/lib/modules/secure/"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/lib/tests/modules/secure/"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/lib/modules/secure/combat.h"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanReadFilesInPlayers()
+{
+    ExpectTrue(Wizard->hasReadAccess("/players"));
+    ExpectTrue(Wizard->hasReadAccess("/players/maeglin/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanWriteFilesInPlayers()
+{
+    ExpectTrue(Wizard->hasWriteAccess("/players"));
+    ExpectTrue(Wizard->hasWriteAccess("/players/sonja/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfFilesInPlayers()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/players"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/players/valren/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanReadTheirOwnFiles()
+{
+    ExpectTrue(Wizard->hasReadAccess("/players/earl"));
+    ExpectTrue(Wizard->hasReadAccess("/players/earl/closed/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanWriteTheirOwnFiles()
+{
+    ExpectTrue(Wizard->hasWriteAccess("/players/earl"));
+    ExpectTrue(Wizard->hasWriteAccess("/players/earl/closed/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsOwnerOfTheirOwnFiles()
+{
+    ExpectTrue(Wizard->hasOwnershipAccess("/players/earl"));
+    ExpectTrue(Wizard->hasOwnershipAccess("/players/earl/closed/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotReadOtherClosed()
+{
+    ExpectFalse(Wizard->hasReadAccess("/players/fred/closed"));
+    ExpectFalse(Wizard->hasReadAccess("/players/fred/closed/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorCanNotWriteOtherClosed()
+{
+    ExpectFalse(Wizard->hasWriteAccess("/players/fred/closed"));
+    ExpectFalse(Wizard->hasWriteAccess("/players/fred/closed/blah.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SeniorIsNotOwnerOfOtherClosed()
+{
+    ExpectFalse(Wizard->hasOwnershipAccess("/players/fred/closed"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/players/fred/closed/blah.c"));
 }

@@ -8,4 +8,6 @@ inherit "/lib/dictionaries/groups/baseGroup.c";
 protected nomask void applyGroupDetails()
 {
     setName("Demi God");
+    addPermission("/", Read | Write);
+    addPermission("/godstf", None);
 }

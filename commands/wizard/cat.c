@@ -2,11 +2,25 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/dictionaries/groups/baseGroup.c";
+inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void applyGroupDetails()
+public nomask void reset(int arg)
 {
-    setName("Mud Owner");
-    addPermission("/", Read | Write | Owner);
+    if (!arg)
+    {
+        //addCommandTemplate("save");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int execute(string command, object initiator)
+{
+    int ret = 0;
+
+    if (canExecuteCommand(command))
+    {
+        ret = 1;
+    }
+    return ret;
 }

@@ -6,13 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/realizations/player.c";
-
-private nosave string *validWizardLevels = ({ "apprentice", "wizard",
-    "creator", "high wizard", "senior", "admin", "elder", "sage",
-    "arch wizard", "demi god", "god", "owner" });
-
-private string wizardLevel = 0;
-private string *customGroups = ({});
+#include "/lib/modules/secure/wizard.h"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfWizard()
@@ -23,7 +17,7 @@ public nomask int isRealizationOfWizard()
 /////////////////////////////////////////////////////////////////////////////
 public nomask string wizardLevel()
 {
-    return wizardLevel ? wizardLevel : "apprentice";
+    return wizardLevel ? wizardLevel : "player";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -75,15 +69,18 @@ public nomask string *groups()
     switch (wizardLevel)
     {
         case "owner":
+        {
+            wizardGroups += ({ "owner" });
+        }
         case "god":
         {
             wizardGroups += ({ "god" });
         }
-        case "demi god":
+        case "demigod":
         {
             wizardGroups += ({ "demigod" });
         }
-        case "arch wizard":
+        case "archwizard":
         {
             wizardGroups += ({ "archwizard" });
         }
@@ -103,7 +100,7 @@ public nomask string *groups()
         {
             wizardGroups += ({ "senior" });
         }
-        case "high wizard":
+        case "highwizard":
         {
             wizardGroups += ({ "highwizard" });
         }
@@ -115,9 +112,13 @@ public nomask string *groups()
         {
             wizardGroups += ({ "wizard" });
         }
+        case "apprentice":
+        {
+            wizardGroups += ({ "apprentice" });
+        }
         default:
         {
-            wizardGroups += ({ "apprentice", "player" });
+            wizardGroups += ({ "player" });
         }
     }
 
@@ -127,4 +128,52 @@ public nomask string *groups()
         wizardGroups += custom;
     }
     return wizardGroups + ({ });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask object *groupObjects()
+{
+    object *list = ({});
+
+    foreach(string group in groups())
+    {
+        string groupFile = sprintf(GroupObj, group);
+        if (file_size(groupFile) > 0)
+        {
+            list += ({ load_object(groupFile) });
+        }
+    }
+    return list;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int hasReadAccess(string path)
+{
+    PathToCheck = path;
+    return sizeof(filter_array(groupObjects(),
+        (: return $1->hasReadAccess(this_object(), PathToCheck); :)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int hasWriteAccess(string path)
+{
+    PathToCheck = path;
+    return sizeof(filter_array(groupObjects(),
+        (: return $1->hasWriteAccess(this_object(), PathToCheck); :)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int hasOwnershipAccess(string path)
+{
+    PathToCheck = path;
+    return sizeof(filter_array(groupObjects(),
+        (: return $1->hasOwnershipAccess(this_object(), PathToCheck); :)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int hasExecuteAccess(string command)
+{
+    PathToCheck = command;
+    return sizeof(filter_array(groupObjects(),
+        (: return $1->hasExecuteAccess(this_object(), PathToCheck); :)));
 }

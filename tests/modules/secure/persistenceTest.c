@@ -17,6 +17,7 @@ void Init()
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
     dataAccess->savePlayerData(database->Gorthaur());
+    dataAccess->savePlayerData(database->GetWizardOfLevel("elder"));
 
     destruct(dataAccess);
     destruct(database);
@@ -580,4 +581,14 @@ void GetNemesisReturnsNemesis()
                "key" : "lib/realizations/monster.c#Rargh!",
                "times killed" : 2]),
         Player->getNemesis("gorthaur"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerTypeReturnsForWizard()
+{
+    object wizard = clone_object("/lib/realizations/wizard.c");
+    wizard->restore("earl");
+    ExpectEq(({ "admin", "apprentice", "creator", "elder", "highwizard", "player", "senior", "wizard" }),
+        wizard->groups());
+    destruct(wizard);
 }

@@ -13,6 +13,8 @@ private string Name;
 private mapping Permissions = ([
 ]);
 
+private string *commands = ({ });
+
 /////////////////////////////////////////////////////////////////////////////
 protected void applyGroupDetails()
 {
@@ -143,6 +145,7 @@ private nomask string convertRelativePathToAbsolutePath(object user, string path
 
     return ret;
 }
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int hasReadAccess(object user, string path)
 {
@@ -165,6 +168,12 @@ public nomask int hasOwnershipAccess(object user, string path)
     return isMemberOf(user) && getPermissionForPath(
         sanitizePath(convertRelativePathToAbsolutePath(user, path)),
         Permissions) & Owner;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int hasExecuteAccess(object user, string command)
+{
+    return isMemberOf(user) && (member(commands, command) > -1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -212,4 +221,13 @@ protected nomask void addPermission(string path, int permission)
     }
 
     createPermissionForPath(permission, sanitizePath(path), Permissions);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void addCommand(string command)
+{
+    if ((member(get_dir("/lib/commands/wizard/"), command) > -1))
+    {
+        commands = m_indices(mkmapping(commands + ({ command })));
+    }
 }

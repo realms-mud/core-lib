@@ -99,7 +99,7 @@ private nomask void setPlayerInfo(mapping playerData)
     string *services = ({ "materialAttributes", "attributes",
         "biological", "combat", "races", "guilds", "quests",
         "research", "skills", "traits", "inventory", "factions",
-        "settings"
+        "settings", "wizard"
     });
 
     foreach(string service in services)

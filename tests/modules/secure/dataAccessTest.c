@@ -63,6 +63,23 @@ void GetPlayerDataReturnsDataFromDatabase()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void GetPlayerDataForWizardReturnsDataFromDatabase()
+{
+    mapping expected = Database->GetWizardOfLevel("creator");
+
+    DataAccess->savePlayerData(expected);
+    mapping result = DataAccess->getPlayerData("earl");
+
+    // whenCreated uses "now()" and it's not feasible (without adding a test-only hack)
+    // to add a static, testable value. For now, simply test its existance and
+    // remove it before testing the rest of the mapping.
+    ExpectTrue(member(result, "whenCreated"));
+    m_delete(result, "whenCreated");
+
+    ExpectEq(expected, result);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanSaveDataMultipleTimes()
 {
     DataAccess->savePlayerData(Database->Gorthaur());

@@ -40,6 +40,8 @@ drop procedure if exists TestDB.saveCombatStatistics;
 ##
 drop procedure if exists TestDB.saveCombatStatisticsForRace;
 ##
+drop procedure if exists TestDB.saveWizardLevel;
+##
 drop function if exists TestDB.saveBasicPlayerInformation;
 ##
 drop function if exists TestDB.saveResearchChoice;
@@ -808,6 +810,27 @@ BEGIN
             values (lPlayerId, p_race, 1);           
         end if;
     end if;
+END;
+##
+CREATE PROCEDURE TestDB.`saveWizardLevel`(p_playerid int, p_level varchar(20))
+BEGIN
+	declare levelId int;
+    declare wizardId int;
+    
+    select id into levelId
+    from wizardTypes where type = p_level;
+    
+    if levelId is not null then
+		select id into wizardId
+		from wizards where playerId = p_playerId;
+		
+		if wizardId is not null then
+			update wizards set typeId = levelId
+            where id = wizardId;
+		else
+			insert into wizards (playerId, typeId) values (p_playerId, levelId);
+		end if;
+    end if;    
 END;
 ##
 insert into players (id,name,race,age,gender) values (1,'maeglin','elf',1,1);

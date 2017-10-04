@@ -8,4 +8,6 @@ inherit "/lib/dictionaries/groups/baseGroup.c";
 protected nomask void applyGroupDetails()
 {
     setName("Admin Wizard");
+    addPermission("/room", Read | Write);
+    addPermission("/guild", Read | Write);
 }

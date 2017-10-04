@@ -10,6 +10,7 @@ protected nomask void applyGroupDetails()
     setName("Apprentice Wizard");
     addPermission("/", Read);
     addPermission("/players", None);
+    addPermission("/log", None);
     addPermission("/players/$USER", Read | Write | Owner);
     addPermission("/secure", None);
     addPermission("/mail", None);
@@ -18,4 +19,18 @@ protected nomask void applyGroupDetails()
     addPermission("/guild", None);
     addPermission("/lib/modules/secure", None);
     addPermission("/lib/tests/modules/secure", None);
+    addPermission("/lib/dictionaries/groups", None);
+    addPermission("/lib/tests/dictionaries/groups", None);
+    addCommand("cat");
+    addCommand("cd");
+    addCommand("emote");
+    addCommand("goto");
+    addCommand("light");
+    addCommand("ls");
+    addCommand("more");
+    addCommand("people");
+    addCommand("pwd");
+    addCommand("set");
+    addCommand("tail");
+    addCommand("wiz");
 }

@@ -29,6 +29,7 @@ void CleanUp()
 {
     destruct(Wizard);
     destruct(Group);
+    setCustomGroups(({}));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -79,6 +80,7 @@ void IsMemberOfReturnsTrueIfWizardInteractiveAndInGroup()
 {
     destruct(Group);
     Group = clone_object("/lib/dictionaries/groups/apprentice.c");
+    setCustomGroups(({ Group->group() }));
 
     ExpectTrue(Group->isMemberOf(Wizard));
 }
