@@ -209,7 +209,9 @@ public nomask varargs string parseTargetInfo(string message, string typeOfTarget
     if(isValidAttacker(target))
     {
         // What this lacks in elegance, it more than makes up for in laziness
-        ret = regreplace(ret, sprintf("##%sName##", typeOfTarget), 
+        ret = regreplace(ret, sprintf("##%sName3rd##", typeOfTarget),
+            getName(target, 0), 1);
+        ret = regreplace(ret, sprintf("##%sName##", typeOfTarget),
             getName(target, isSecondPerson), 1);
         ret = regreplace(ret, sprintf("##%sObjective##", typeOfTarget), 
             getObjective(target, isSecondPerson), 1);

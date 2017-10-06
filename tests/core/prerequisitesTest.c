@@ -23,6 +23,7 @@ void PopulatePrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("nifty", (["type":"trait", "value" : ({ "spiffy" })])));
     ExpectTrue(Prerequisite->AddTestPrerequisite("background", (["type":"background", "value" : ({ "test" })])));
     ExpectTrue(Prerequisite->AddTestPrerequisite("faction", (["type":"faction", "value" : ({ "test" })])));
+    ExpectTrue(Prerequisite->AddTestPrerequisite("opinion", (["type":"opinion", "value": 20])));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +71,7 @@ void CanAddValidPrerequisitesByGrouping()
 /////////////////////////////////////////////////////////////////////////////
 void GetPrerequisitesReturnsCorrectValue()
 {
-    string expected = "([ annoying: ([ type: trait, value: ({ boorish, loutish, }), ]), background: ([ type: background, value: ({ test, }), ]), best kill: ([ type: combat statistic, value: 10, ]), faction: ([ type: faction, value: ({ test, }), ]), fetch a pencil: ([ type: quest, ]), guild: ([ type: guild, value: ({ mage, }), ]), level: ([ guild: mage, type: level, value: 10, ]), long sword: ([ type: skill, value: 10, ]), nifty: ([ type: trait, value: ({ spiffy, }), ]), orc: ([ type: combat statistic, value: 10, ]), race: ([ type: race, value: ({ elf, half elf, high elf, }), ]), strength: ([ type: attribute, value: 10, ]), test research: ([ type: research, ]), ])";
+    string expected = "([ annoying: ([ type: trait, value: ({ boorish, loutish, }), ]), background: ([ type: background, value: ({ test, }), ]), best kill: ([ type: combat statistic, value: 10, ]), faction: ([ type: faction, value: ({ test, }), ]), fetch a pencil: ([ type: quest, ]), guild: ([ type: guild, value: ({ mage, }), ]), level: ([ guild: mage, type: level, value: 10, ]), long sword: ([ type: skill, value: 10, ]), nifty: ([ type: trait, value: ({ spiffy, }), ]), opinion: ([ type: opinion, value: 20, ]), orc: ([ type: combat statistic, value: 10, ]), race: ([ type: race, value: ({ elf, half elf, high elf, }), ]), strength: ([ type: attribute, value: 10, ]), test research: ([ type: research, ]), ])";
     PopulatePrerequisites();
     ExpectEq(expected, Prerequisite->getPrerequisites());
 }
@@ -251,6 +252,21 @@ void CheckPrerequsistesCorrectlyHandlesGroupings()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CheckPrerequsistesCorrectlyHandlesOpinionChecks()
+{
+    object owner = clone_object("/lib/realizations/npc.c");
+    destruct(Researcher);
+    Researcher = clone_object("/lib/realizations/player.c");
+    Researcher->Name("Bob");
+
+    ExpectTrue(Prerequisite->AddTestPrerequisite("opinion", (["type":"opinion", "value" : 20]), "group a"));
+    ExpectFalse(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check initially fails for group a");
+
+    Researcher->addTrait("lib/modules/traits/educational/articulate.c");
+    ExpectTrue(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check passes for group a");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DisplayPrerequisitesCorrectlyDisplaysQuestPrerequisites()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("/lib/tests/support/quests/fakeQuestItem.c",
@@ -366,5 +382,15 @@ void DisplayPrerequisitesCorrectlyDisplaysBestKillPrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("best kill", (["type":"combat statistic", "value" : 10])));
 
     ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mCombat statistic[0m: [0;35mBest kill level is 10[0m\n",
+        Prerequisite->displayPrerequisites());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayPrerequisitesCorrectlyDisplaysOpinionWithOpinionPrerequisites()
+{
+    ExpectTrue(Prerequisite->AddTestPrerequisite("opinion", ([
+        "type":"opinion", "value": 10 ])));
+
+    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mOpinion[0m: [0;35mOpinion of 10[0m\n",
         Prerequisite->displayPrerequisites());
 }

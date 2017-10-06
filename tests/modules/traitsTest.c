@@ -316,12 +316,12 @@ void OpinionModifierIsNotModifiedNegativelyByOppositeRoot()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void OpinionModifierIsNotModifiedByUnrelatedRoot()
+void OpinionModifierIsModifiedByUnrelatedRoot()
 {
     object target = clone_object("/lib/realizations/player");
     ExpectTrue(target->addTrait("lib/tests/support/traits/testTrait.c"));
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithoutResearch.c"));
-    ExpectEq(0, Traits->opinionModifier(target));
+    ExpectEq(5, Traits->opinionModifier(target));
 }
 
 /////////////////////////////////////////////////////////////////////////////

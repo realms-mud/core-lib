@@ -68,8 +68,8 @@ protected mapping prerequisites = ([
 private nomask int isValidPrerequisiteType(string type)
 {
     return (member(({ "research", "attribute", "skill", "quest", "guild",
-        "race", "faction", "trait", "background", "combat statistic", "level"
-        }), type) > -1);
+        "race", "faction", "trait", "background", "combat statistic", "level",
+        "opinion" }), type) > -1);
 }
 
 //-----------------------------------------------------------------------------
@@ -468,7 +468,7 @@ private nomask int checkCombatStats(object researcher, string type, int value)
 //
 // Returns: true if the researcher object has passed all of the prerequisites.
 //-----------------------------------------------------------------------------                        
-public nomask varargs int checkPrerequisites(object researcher, string grouping)
+public nomask varargs int checkPrerequisites(object researcher, string grouping, object owner)
 {
     int ret = 1;
     
@@ -544,6 +544,12 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping)
                     case "combat statistic":
                     {
                         ret &&= checkCombatStats(researcher, prerequisite,
+                            prerequisiteData["value"]);
+                        break;
+                    }
+                    case "opinion":
+                    {
+                        ret &&= owner && (owner->opinionOf(researcher) >=
                             prerequisiteData["value"]);
                         break;
                     }
@@ -641,6 +647,7 @@ public nomask string displayPrerequisites()
                 }
                 case "attribute":
                 case "level":
+                case "opinion":
                 case "skill":
                 {
                     prereq = sprintf("%s of %d", capitalize(key), 

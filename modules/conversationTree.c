@@ -2,7 +2,6 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/core/stateObject.c";
 virtual inherit "/lib/core/thing.c";
 
 #define Speech "[0;33m"
@@ -12,36 +11,36 @@ virtual inherit "/lib/core/thing.c";
 #define Action(x) sprintf("[0;31m[%s][0m", x)
 
 private nosave string defaultMessage = "default";
-private nosave mapping responseMap = ([ ]);
+private nosave mapping responseMap = ([]);
 private nosave int ignoreTalk = 0;
 
 private nosave mapping objectList = ([
-//    "spatula": clone_object("/players/maeglin/eledhel/questObjects/runewall")
+    //    "spatula": clone_object("/players/maeglin/eledhel/questObjects/runewall")
 ]);
 
 private nosave mapping topics = ([
-//    "key": ([
-//        "template": "Hi there!",
-//        "is repeatable": 1, // if this doesn't exist, it's not repeatable
-//        "responses": ([
-//            "key": ([
-//                "template": "some text",
-//                "criteria": ([
-//                    "stat": "statName";"GreaterThan|LessThan";"value",
-//                    "guild": "is|isNot";"value",
-//                    "function": "object";"method",
-//                    "state": "a state",
-//                    "object present": "object"
-//                ]),
-//                "npc response": "key",
-//                "delegate": "other";"key", //trigger comment from other NPC
-//                "trigger": "event" // send 'event' to stateMachine
-//            ])
-//        ]),
-//        "criteria": ([ /* same structure as responses criteria */ ]),
-//        "trigger": "event"; "name" // send 'name' event to owning stateMachine
-//                          "method"; "name" // execute 'name' method on this NPC object
-//    ])
+    //    "key": ([
+    //        "template": "Hi there!",
+    //        "is repeatable": 1, // if this doesn't exist, it's not repeatable
+    //        "responses": ([
+    //            "key": ([
+    //                "template": "some text",
+    //                "criteria": ([
+    //                    "stat": "statName";"GreaterThan|LessThan";"value",
+    //                    "guild": "is|isNot";"value",
+    //                    "function": "object";"method",
+    //                    "state": "a state",
+    //                    "object present": "object"
+    //                ]),
+    //                "npc response": "key",
+    //                "delegate": "other";"key", //trigger comment from other NPC
+    //                "trigger": "event" // send 'event' to stateMachine
+    //            ])
+    //        ]),
+    //        "criteria": ([ /* same structure as responses criteria */ ]),
+    //        "trigger": "event"; "name" // send 'name' event to owning stateMachine
+    //                          "method"; "name" // execute 'name' method on this NPC object
+    //    ])
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -330,7 +329,7 @@ private nomask varargs int speakMessage(string key, int noSaveState)
         }
         if(member(topics[key], "event"))
         {
-            sendStateEvent(topics[key]["event"]);
+            //sendStateEvent(topics[key]["event"]);
         }        
         ret = 1;
     }
@@ -372,7 +371,7 @@ private nomask int respondToNPC(string str)
             }            
             if(member(topics[responseTo]["responses"][verb], "event"))
             {
-                sendStateEvent(topics[responseTo]["responses"][verb]["event"]);
+                //sendStateEvent(topics[responseTo]["responses"][verb]["event"]);
             }                        
             if(member(topics[responseTo]["responses"][verb], "npc response"))
             {

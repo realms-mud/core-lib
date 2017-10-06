@@ -286,6 +286,10 @@ public nomask int opinionModifier(object target)
                         }
                     }
                 }
+                else if (targetTraitObj->query("opinion"))
+                {
+                    ret += targetTraitObj->query("opinion");
+                }
             }
         }
     }
