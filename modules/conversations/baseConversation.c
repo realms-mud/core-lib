@@ -61,6 +61,12 @@ public void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int isRepeatable(string id)
+{
+    return(member(topics, id) && member(topics[id], "is repeatable"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void addTopic(string id, string template)
 {
     if (!member(topics, id))
@@ -81,9 +87,10 @@ protected nomask void addRepeatableTopic(string id, string template)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void addTopicPrerequisite(string id, mapping prerequisite)
 {
-    if (member(topics, id))
+    if (member(topics, id) && (sizeof(prerequisite) == 1))
     {
-        addPrerequisite(id, prerequisite, id);
+        addPrerequisite(m_indices(prerequisite)[0],
+            prerequisite[m_indices(prerequisite)[0]], id);
     }
 }
 
@@ -128,9 +135,11 @@ protected nomask void addResponsePrerequisite(string id, string selection, mappi
 {
     string response = sprintf("%s#%s", id, selection);
     if (member(topics, id) && member(topics[id], "responses") &&
-        member(topics[id]["responses"], response))
+        member(topics[id]["responses"], response) &&
+        (sizeof(prerequisite) == 1))
     {
-        addPrerequisite(response, prerequisite, response);
+        addPrerequisite(m_indices(prerequisite)[0],
+            prerequisite[m_indices(prerequisite)[0]], response);
     }
 }
 
@@ -296,6 +305,43 @@ protected nomask void displayMessage(string message, object initiator,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void executeResponseEffect(mapping effects,
+    object actor, object owner)
+{
+    if (member(effects, "opinion"))
+    {
+        owner->adjustOpinion(actor, effects["opinion"]);
+    }
+    if (member(effects, "attack"))
+    {
+        owner->attack(actor);
+    }
+    if (member(effects, "move"))
+    {
+        tell_room(environment(owner), sprintf("%s leaves.\n", owner->Name()));
+        move_object(owner, effects["move"]);
+    }
+    if (member(effects, "give"))
+    {
+        object gift = present_clone(effects["give"]);
+        if (gift)
+        {
+            if (owner->isEquipped(gift))
+            {
+                owner->unequip(gift, 1);
+            }
+        }
+        else
+        {
+            gift = clone_object(effects["give"]);
+        }
+        tell_room(environment(owner), sprintf("%s gives %s to %s.\n",
+            owner->Name(), gift->query("name"), actor->Name()));
+        move_object(gift, actor);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void displayResponse(string choice, object actor, object owner)
 {
     if (member(responseKeys, choice))
@@ -304,6 +350,19 @@ public nomask void displayResponse(string choice, object actor, object owner)
         string id = regexplode(key, "#")[0];
         displayMessage(topics[id]["responses"][key]["template"],
             actor, owner);
+
+        if (member(topics[id]["responses"][key], "event"))
+        {
+            owner->notify(topics[id]["responses"][key]["event"], actor);
+        }
+        if (member(topics[id]["responses"][key], "effect"))
+        {
+            executeResponseEffect(topics[id]["responses"][key]["effect"],
+                actor, owner);
+        }
+        ignoreTalk = 1;
+        owner->responseFromConversation(actor,
+            topics[id]["responses"][key]["selection"]);
     }
 }
 
@@ -324,7 +383,8 @@ private nomask void displayResponses(string id, object actor, object owner)
                     topics[id]["responses"][response]["selection"];
 
                 tell_object(actor, format(Action(choice) + ": " +
-                    Speech + responseKeys[choice] + End, 78));
+                    Speech + topics[id]["responses"][response]["selection"] +
+                    End, 78));
             }
         }
     }
@@ -345,8 +405,6 @@ public nomask int speakMessage(string key, object actor, object owner)
         if (member(topics[key], "responses"))
         {
             displayResponses(key, actor, owner);
-            //ignoreTalk = 1;
-            //call_out("displayResponses", 3, topics[key]["responses"]);
         }
 
         if (member(topics[key], "event"))
@@ -356,4 +414,25 @@ public nomask int speakMessage(string key, object actor, object owner)
         ret = 1;
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void triggerConversation(string trigger,
+    object actor, object owner)
+{
+    ignoreTalk = 0;
+
+    string *topicList = m_indices(topics);
+    if (sizeof(topicList))
+    {
+        foreach(string topic in topicList)
+        {
+            if (member(topics[topic], "trigger") &&
+                (topics[topic]["trigger"] == trigger))
+            {
+                speakMessage(topic, actor, owner);
+                break;
+            }
+        }
+    }
 }

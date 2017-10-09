@@ -29,3 +29,9 @@ public nomask int opinionOf(object target)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask void responseFromConversation(object actor, string response)
+{
+
+}
+
