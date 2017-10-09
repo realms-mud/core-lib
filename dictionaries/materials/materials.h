@@ -233,6 +233,30 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
     ]),
+    "copper": ([
+        "class": "metal",
+        "crafting skill required": 4,
+        "attack": ([
+            "physical": -1
+        ]),
+        "attack rating": -1,
+        "defense": ([
+            "physical": -1
+        ]),
+        "encumberance": -1,
+    ]),
+    "brass": ([
+        "class": "metal",
+        "crafting skill required": 5,
+        "attack": ([
+            "physical": -1
+        ]),
+        "attack rating": -1,
+        "defense": ([
+            "physical": -1
+        ]),
+        "encumberance": -1,
+    ]),
     "gold": ([
         "class": "metal",
         "crafting skill required": 10,
