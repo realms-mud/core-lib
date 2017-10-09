@@ -10,6 +10,18 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 0
     ]),
+    "wool": ([
+        "class": "textile",
+        "crafting skill required": 1
+    ]),
+    "hemp": ([
+        "class": "textile",
+        "crafting skill required": 1
+    ]),
+    "flax": ([
+        "class": "textile",
+        "crafting skill required": 1
+    ]),
     "stone": ([
         "class": "stone",
         "crafting skill required": 5,
@@ -58,7 +70,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2
     ]),
-    "mequite": ([
+    "mesquite": ([
         "class": "wood",
         "crafting skill required": 3
     ]),
@@ -79,6 +91,10 @@ private nosave mapping materials =
         "crafting skill required": 4
     ]),
     "holly": ([
+        "class": "wood",
+        "crafting skill required": 3
+    ]),
+    "yew": ([
         "class": "wood",
         "crafting skill required": 3
     ]),
@@ -216,7 +232,6 @@ private nosave mapping materials =
         "attack rating": 1,
         "crafting skill required": 10
     ]),
-
     "leather": ([
         "class": "leather",
         "crafting skill required": 3
@@ -589,4 +604,21 @@ private nosave mapping materials =
             "physical": 10
         ])
     ]),
+    "dragon leather": ([
+        "class": "leather",
+        "crafting skill required": 50,
+        "defense": ([
+            "fire": 10,
+            "physical": 6
+        ])
+    ]),
+    "bone": ([
+        "class": "exotic",
+        "crafting skill required": 5
+    ]),
+    "ivory": ([
+        "class": "exotic",
+        "crafting skill required": 10
+    ]),
+
 ]);
