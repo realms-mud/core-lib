@@ -186,3 +186,21 @@ public nomask mapping getBestKill(string player)
 {
     return DataAccess()->getBestKill(this_object()->Name()) + ([]);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs int opinionOfCharacter(object target, int modifier)
+{
+    string targetKey = sprintf("%s#%s", program_name(target),
+        target->Name());
+
+    int ret = DataAccess()->getOpinionOfCharacter(this_object()->Name(),
+        targetKey);
+
+    if (modifier)
+    {
+        ret += modifier;
+        DataAccess()->setOpinionOfCharacter(this_object()->Name(),
+            targetKey, ret);
+    }
+    return ret;
+}

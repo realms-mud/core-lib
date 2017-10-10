@@ -61,6 +61,12 @@ public void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string *listTopics()
+{
+    return m_indices(topics);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isRepeatable(string id)
 {
     return(member(topics, id) && member(topics[id], "is repeatable"));

@@ -3,6 +3,9 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
+private nosave string BaseConversation = "lib/modules/conversations/baseConversation.c";
+private nosave mapping topics = ([]);
+
 private mapping opinions = ([]);
 
 /////////////////////////////////////////////////////////////////////////////

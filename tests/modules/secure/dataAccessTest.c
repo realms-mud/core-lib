@@ -233,3 +233,12 @@ void GetNemesisKillReturnsNemesis()
         "times killed" : 3]),
         DataAccess->getNemesis("gorthaur"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void GetOpinionOfCharacterReturnsCorrectValue()
+{
+    DataAccess->setOpinionOfCharacter("gorthaur",
+        "lib/realizations/monster.c#fred", 6);
+
+    ExpectEq(6, DataAccess->getOpinionOfCharacter("gorthaur", "lib/realizations/monster.c#fred"));
+}

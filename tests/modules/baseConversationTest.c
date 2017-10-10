@@ -10,6 +10,20 @@ object Owner;
 object Conversation;
 
 /////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    setRestoreCaller(this_object());
+    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    database->PrepDatabase();
+
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    dataAccess->savePlayerData(database->Gorthaur());
+
+    destruct(dataAccess);
+    destruct(database);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Conversation = clone_object("/lib/tests/support/conversations/fakeConversation.c");
@@ -323,14 +337,17 @@ void CannotAddResponseEffectIfItIsInvalid()
 /////////////////////////////////////////////////////////////////////////////
 void AddResponseEffectAllowsAndAppliesOpinion()
 {
+    destruct(Actor);
+    Actor = clone_object("/lib/realizations/player.c");
+    Actor->restore("gorthaur");
     Conversation->testAddTopic("test", "This is a test message");
     Conversation->testAddResponse("test", "Another", "This is another test response");
     Conversation->testAddResponseEffect("test", "Another", (["opinion":5]));
 
-    ExpectEq(0, Owner->opinionOf(Actor));
+    ExpectEq(15, Owner->opinionOf(Actor));
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     Conversation->displayResponse("1", Actor, Owner);
-    ExpectEq(5, Owner->opinionOf(Actor));
+    ExpectEq(20, Owner->opinionOf(Actor));
 }
 
 /////////////////////////////////////////////////////////////////////////////

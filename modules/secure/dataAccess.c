@@ -14,6 +14,7 @@ virtual inherit "/lib/modules/secure/dataServices/inventoryDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/factionsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/combatStatisticsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/wizardDataService.c";
+virtual inherit "/lib/modules/secure/dataServices/conversationsDataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int connect()

@@ -592,3 +592,16 @@ void PlayerTypeReturnsForWizard()
         wizard->groups());
     destruct(wizard);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void OpinionOfCharacterReturnsCorrectValue()
+{
+    Player->restore("gorthaur");
+    object foe = clone_object("/lib/realizations/monster.c");
+    foe->Name("Betty");
+
+    ExpectEq(0, Player->opinionOfCharacter(foe));
+    ExpectEq(5, Player->opinionOfCharacter(foe, 5));
+    ExpectEq(11, Player->opinionOfCharacter(foe, 6));
+    ExpectEq(11, Player->opinionOfCharacter(foe));
+}
