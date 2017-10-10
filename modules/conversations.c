@@ -6,6 +6,23 @@ virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/conversations.h"
 
 /////////////////////////////////////////////////////////////////////////////
+private varargs int opinionWithoutModifier(object target, int modifier)
+{
+    string targetKey = sprintf("%s#%s", program_name(target),
+        target->Name());
+    if (!member(opinions, targetKey))
+    {
+        opinions[targetKey] = 0;
+    }
+
+    if (modifier)
+    {
+        opinions[targetKey] += modifier;
+    }
+    return opinions[targetKey];
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int opinionOf(object target)
 {
     int ret = 0;
@@ -18,13 +35,18 @@ public nomask int opinionOf(object target)
             ret += traits->opinionModifier(target);
         }
 
-        string targetKey = sprintf("%s#%s", program_name(target),
-            target->Name());
-        if (!member(opinions, targetKey))
-        {
-            opinions[targetKey] = 0;
-        }
-        ret += opinions[targetKey];
+        ret += opinionWithoutModifier(target);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int alterOpinionOf(object target, int value)
+{
+    int ret = 0;
+    if (objectp(target))
+    {
+        ret = opinionWithoutModifier(target, value);
     }
     return ret;
 }

@@ -45,12 +45,28 @@ void AddTopicAddsDiscussionTopic()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CannotAddSameTopicTwice()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    ExpectEq("*ERROR - baseConversation.c, addTopic: Topic 'test' already exists.\n",
+        catch (Conversation->testAddTopic("test", "This is a test message")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AddRepeatableTopicAddsDiscussionTopic()
 {
     Conversation->testAddRepeatableTopic("test", "This is a test message");
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectTrue(Conversation->isRepeatable("test"));
     ExpectSubStringMatch("This is a test message", Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddSameRepeatableTopicTwice()
+{
+    Conversation->testAddRepeatableTopic("test", "This is a test message");
+    ExpectEq("*ERROR - baseConversation.c, addTopic: Topic 'test' already exists.\n",
+        catch (Conversation->testAddRepeatableTopic("test", "This is a test message")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,6 +80,21 @@ void AddTopicPrerequisiteAddsAndHonorsPrerequisite()
     Actor->Race("elf");
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectSubStringMatch("This is a test message", Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddTopicPrerequisiteIfTopicDoesNotExist()
+{
+    ExpectEq("*ERROR - baseConversation.c, addTopicPrerequisite: Could not add the prerequisite to 'test'. Make sure that the topic exists.\n",
+        catch (Conversation->testAddTopicPrerequisite("test", (["race":(["type":"race", "value" : ({ "elf", "high elf", "half elf" })])]))));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddInvalidPrerequisiteToTopic()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    ExpectEq("*ERROR - baseConversation.c, addTopicPrerequisite: The passed prerequisite to 'test' is invalid.\n",
+        catch (Conversation->testAddTopicPrerequisite("test", (["blarg":(["type":"blah", "value" : ({ "elf", "high elf", "half elf" })])]))));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -104,6 +135,13 @@ void AddTopicEventAddsAndTriggersEvent()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CannotAddTopicEventIfTopicDoesNotExist()
+{
+    ExpectEq("*ERROR - baseConversation.c, addTopicEvent: Topic 'test' does not exist.\n",
+        catch (Conversation->testAddTopicEvent("test", "conversationEventHappened")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AddTopicTriggerAddsTrigger()
 {
     Conversation->testAddTopic("test", "This is a test message");
@@ -114,6 +152,13 @@ void AddTopicTriggerAddsTrigger()
 
     Conversation->triggerConversation("conversationEventHappened", Actor, Owner);
     ExpectEq("This is a test message\n[0m", Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddTopicTriggerIfTopicDoesNotExist()
+{
+    ExpectEq("*ERROR - baseConversation.c, addTopicTrigger: Topic 'test' does not exist.\n",
+        catch (Conversation->testAddTopicTrigger("test", "conversationEventHappened")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -138,6 +183,43 @@ void AddMultipleResponsesShowsAvailableResponsesInSortedOrder()
     ExpectEq("This is a test message\n[0m", Actor->caughtMessages()[0]);
     ExpectEq("[0;31m[1][0m: [0;33mAnother\n[0m", Actor->caughtMessages()[1]);
     ExpectEq("[0;31m[2][0m: [0;33mTest response\n[0m", Actor->caughtMessages()[2]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddResponseIfTopicDoesNotExist()
+{
+    ExpectEq("*ERROR - baseConversation.c, addResponse: Topic 'test' does not exist.\n",
+        catch (Conversation->testAddResponse("test", "Test response", "This is a test response")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddResponseIfItAlreadyExists()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Test response", "This is a test response");
+    ExpectEq("*ERROR - baseConversation.c, addResponse: The response 'Test response' already exists.\n",
+        catch (Conversation->testAddResponse("test", "Test response", "This is a test response")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotRespondToMessageBeforeItHasBeenSpoken()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectEq("", Actor->caughtMessages());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanRespondToMessage()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectEq("This is another test response\n[0m", Actor->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -174,6 +256,142 @@ void ResponsesAllDisplayedWhenPrerequisitesMet()
     ExpectEq("This is a test message\n[0m", Actor->caughtMessages()[0]);
     ExpectEq("[0;31m[1][0m: [0;33mAnother\n[0m", Actor->caughtMessages()[1]);
     ExpectEq("[0;31m[2][0m: [0;33mTest response\n[0m", Actor->caughtMessages()[2]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddResponsePrerequisiteIfTopicOrResponseDoNotExist()
+{
+    ExpectEq("*ERROR - baseConversation.c, addResponsePrerequisite: Could not add the prerequiste. Check to make sure that the topic and response exist.\n",
+        catch (Conversation->testAddResponsePrerequisite("test", "Another", (["race":(["type":"race", "value" : ({ "elf", "high elf", "half elf" })])]))));
+
+    Conversation->testAddTopic("test", "This is a test message");
+    ExpectEq("*ERROR - baseConversation.c, addResponsePrerequisite: Could not add the prerequiste. Check to make sure that the topic and response exist.\n",
+        catch (Conversation->testAddResponsePrerequisite("test", "Another", (["race":(["type":"race", "value" : ({ "elf", "high elf", "half elf" })])]))));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddInvalidPrerequisiteToResponse()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    ExpectEq("*ERROR - baseConversation.c, addResponsePrerequisite: The passed prerequisite to 'Another' is invalid.\n",
+        catch (Conversation->testAddResponsePrerequisite("test", "Another", (["blarg":(["type":"blah", "value" : ({ "elf", "high elf", "half elf" })])]))));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEventAddsAndTriggersEvent()
+{
+    object subscriber = clone_object("/lib/tests/support/events/conversationSubscriber.c");
+    Owner->registerEventHandler("conversationEventHappened");
+    Owner->registerEvent(subscriber);
+
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponseEvent("test", "Another", "conversationEventHappened");
+
+    ExpectEq(0, subscriber->TimesConversationEventHappenedReceived());
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectEq(1, subscriber->TimesConversationEventHappenedReceived());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddResponseEventIfResponseDoesNotExist()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    ExpectEq("*ERROR - baseConversation.c, addResponseEvent: Could not add the event. Check to make sure that the topic and response exist.\n",
+        catch (Conversation->testAddResponseEvent("test", "Another", "conversationEventHappened")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddResponseEffectIfResponseDoesNotExist()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    ExpectEq("*ERROR - baseConversation.c, addResponseEffect: Could not add the event. Check to make sure that the topic and response exist and that the effect is valid.\n",
+        catch (Conversation->testAddResponseEffect("test", "Another", (["opinion": 5 ]))));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddResponseEffectIfItIsInvalid()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    ExpectEq("*ERROR - baseConversation.c, addResponseEffect: Could not add the event. Check to make sure that the topic and response exist and that the effect is valid.\n",
+        catch (Conversation->testAddResponseEffect("test", "Another", (["blah":5]))));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEffectAllowsAndAppliesOpinion()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponseEffect("test", "Another", (["opinion":5]));
+
+    ExpectEq(0, Owner->opinionOf(Actor));
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectEq(5, Owner->opinionOf(Actor));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEffectAllowsAndAppliesAttack()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponseEffect("test", "Another", (["attack":1]));
+
+    ExpectEq("Nothing at all, aren't you lucky?", Owner->getHostileList());
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectEq("Bob", Owner->getHostileList());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEffectAllowsAndAppliesMove()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponseEffect("test", "Another", (["move":"/lib/tests/support/environment/toLocation.c"]));
+
+    object room = load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    ExpectTrue(present(Owner, room));
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectFalse(present(Owner, room));
+    ExpectTrue(present(Owner, load_object("/lib/tests/support/environment/toLocation.c")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEffectAllowsAndAppliesGiveWithoutItemPresent()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponseEffect("test", "Another", (["give":"/lib/tests/support/items/testSword.c"]));
+
+    ExpectFalse(present_clone("/lib/tests/support/items/testSword.c", Actor));
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectTrue(present_clone("/lib/tests/support/items/testSword.c", Actor));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEffectAllowsAndAppliesGiveWithItemPresent()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponseEffect("test", "Another", (["give":"/lib/tests/support/items/testSword.c"]));
+
+    object weapon = clone_object("/lib/tests/support/items/testSword.c");
+    move_object(weapon, Owner);
+    ExpectTrue(weapon->equip("Sword of Weasels"), "The sword could be equipped");
+    ExpectTrue(Owner->isEquipped(weapon), "The sword has been equipped");
+
+    ExpectTrue(present_clone(weapon, Owner), "Owner has the sword");
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectFalse(Owner->isEquipped(weapon), "The sword is no longer equipped");
+    ExpectFalse(present_clone(weapon, Owner), "The sword is not in Owner's inventory");
+    ExpectTrue(present_clone(weapon, Actor), "Actor has the sword");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -214,4 +432,12 @@ void DisplayResponseReturnsCorrectMessage()
 
     Conversation->displayResponse("3", Actor, Owner);
     ExpectSubStringMatch("Who I am is not your concern, wraith", Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MessagesAreCorrectlyParsed()
+{
+    Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## at ##InitiatorName## and ##Infinitive::snarl##, @S@`##ActorName##! That was really rude, you jerk!' @A@Annoyed@E@");
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq("[0;36mGertrude glares at you and snarls, [0;33m`Bob! That was really rude,\nyou jerk!' [0;34;1m[Annoyed][0m\n[0m", Actor->caughtMessage());
 }

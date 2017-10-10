@@ -967,7 +967,7 @@ public nomask string getHostileList()
             {
                 ret += ", ";
             }
-            ret += attacker->Name();
+            ret += capitalize(attacker->RealName());
         }
     }
     return ret;

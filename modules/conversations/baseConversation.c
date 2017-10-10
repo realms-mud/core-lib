@@ -8,7 +8,7 @@ virtual inherit "/lib/core/prerequisites.c";
 #define Speech "[0;33m"
 #define Desc "[0;36m"
 #define End "[0m"
-#define Stat(x) sprintf("[0;34m[%s][0m", x)
+#define Stat(x) sprintf("[0;34;1m[%s][0m", x)
 #define Action(x) sprintf("[0;31m[%s][0m", x)
 
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
@@ -75,6 +75,11 @@ protected nomask void addTopic(string id, string template)
             "template": template
         ]);
     }
+    else
+    {
+        raise_error(sprintf("ERROR - baseConversation.c, addTopic: Topic '%s'"
+            " already exists.\n", id));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -89,8 +94,18 @@ protected nomask void addTopicPrerequisite(string id, mapping prerequisite)
 {
     if (member(topics, id) && (sizeof(prerequisite) == 1))
     {
-        addPrerequisite(m_indices(prerequisite)[0],
-            prerequisite[m_indices(prerequisite)[0]], id);
+        if (!addPrerequisite(m_indices(prerequisite)[0],
+            prerequisite[m_indices(prerequisite)[0]], id))
+        {
+            raise_error(sprintf("ERROR - baseConversation.c, addTopicPrerequisite:"
+                " The passed prerequisite to '%s' is invalid.\n", id));
+        }
+    }
+    else
+    {
+        raise_error(sprintf("ERROR - baseConversation.c, addTopicPrerequisite:"
+            " Could not add the prerequisite to '%s'. Make sure that "
+            "the topic exists.\n", id));
     }
 }
 
@@ -101,6 +116,11 @@ protected nomask void addTopicEvent(string id, string event)
     {
         topics[id]["event"] = event;
     }
+    else
+    {
+        raise_error(sprintf("ERROR - baseConversation.c, addTopicEvent: "
+            "Topic '%s' does not exist.\n", id));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,6 +129,11 @@ protected nomask void addTopicTrigger(string id, string event)
     if (member(topics, id))
     {
         topics[id]["trigger"] = event;
+    }
+    else
+    {
+        raise_error(sprintf("ERROR - baseConversation.c, addTopicTrigger: "
+            "Topic '%s' does not exist.\n", id));
     }
 }
 
@@ -123,10 +148,23 @@ protected nomask void addResponse(string id, string selection, string template)
         }
 
         string response = sprintf("%s#%s", id, selection);
-        topics[id]["responses"][response] = ([
-            "selection":selection,
-            "template": template
-        ]);
+        if (!member(topics[id]["responses"], response))
+        {
+            topics[id]["responses"][response] = ([
+                "selection":selection,
+                "template": template
+            ]);
+        }
+        else
+        {
+            raise_error(sprintf("ERROR - baseConversation.c, addResponse: "
+                "The response '%s' already exists.\n", selection));
+        }
+    }
+    else
+    {
+        raise_error(sprintf("ERROR - baseConversation.c, addResponse: "
+            "Topic '%s' does not exist.\n", id));
     }
 }
 
@@ -138,8 +176,18 @@ protected nomask void addResponsePrerequisite(string id, string selection, mappi
         member(topics[id]["responses"], response) &&
         (sizeof(prerequisite) == 1))
     {
-        addPrerequisite(m_indices(prerequisite)[0],
-            prerequisite[m_indices(prerequisite)[0]], response);
+        if (!addPrerequisite(m_indices(prerequisite)[0],
+            prerequisite[m_indices(prerequisite)[0]], response))
+        {
+            raise_error(sprintf("ERROR - baseConversation.c, addResponsePrerequisite:"
+                " The passed prerequisite to '%s' is invalid.\n", selection));
+        }
+    }
+    else
+    {
+        raise_error("ERROR - baseConversation.c, addResponsePrerequisite: "
+            "Could not add the prerequiste. Check to make sure that "
+            "the topic and response exist.\n");
     }
 }
 
@@ -151,6 +199,12 @@ protected nomask void addResponseEvent(string id, string selection, string event
         member(topics[id]["responses"], response))
     {
         topics[id]["responses"][response]["event"] = event;
+    }
+    else
+    {
+        raise_error("ERROR - baseConversation.c, addResponseEvent: "
+            "Could not add the event. Check to make sure that the "
+            "topic and response exist.\n");
     }
 }
 
@@ -197,6 +251,12 @@ protected nomask void addResponseEffect(string id, string selection, mapping eff
     {
         topics[id]["responses"][response]["effect"] = effect;
     }
+    else
+    {
+        raise_error("ERROR - baseConversation.c, addResponseEffect: "
+            "Could not add the event. Check to make sure that the "
+            "topic and response exist and that the effect is valid.\n");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -238,17 +298,19 @@ protected nomask string parseTemplate(string template, string perspective,
 
     if (initiator && objectp(initiator))
     {
-        message = messageParser()->parseSimileDictionary(message, initiator);
+        message = messageParser()->parseSimileDictionary(message, target);
         message = messageParser()->parseVerbDictionary(message,
-            "HitDictionary", initiator);
+            "HitDictionary", target);
 
-        message = messageParser()->parseVerbs(message, isSecondPerson);
+        message = messageParser()->parseVerbs(message, perspective == "target");
     }
 
     if (isValidLiving(initiator))
     {
         message = messageParser()->parseTargetInfo(message, "Initiator",
             initiator, isSecondPerson);
+        message = messageParser()->parseTargetInfo(message, "Actor",
+            initiator, 0);
     }
 
     if (isValidLiving(target))
@@ -263,7 +325,7 @@ protected nomask string parseTemplate(string template, string perspective,
     // Apply colors
     message = regreplace(message, "@S@", Speech, 1);
     message = regreplace(message, "@D@", Desc, 1);
-    message = regreplace(message, "@A@((.+))@E@", Action("\\1"), 1);
+    message = regreplace(message, "@A@((.+))@E@", Stat("\\1"), 1);
     message += End;
     return message;
 }
@@ -310,7 +372,7 @@ private nomask void executeResponseEffect(mapping effects,
 {
     if (member(effects, "opinion"))
     {
-        owner->adjustOpinion(actor, effects["opinion"]);
+        owner->alterOpinionOf(actor, effects["opinion"]);
     }
     if (member(effects, "attack"))
     {
@@ -323,7 +385,7 @@ private nomask void executeResponseEffect(mapping effects,
     }
     if (member(effects, "give"))
     {
-        object gift = present_clone(effects["give"]);
+        object gift = present_clone(effects["give"], owner);
         if (gift)
         {
             if (owner->isEquipped(gift))
