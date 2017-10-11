@@ -148,6 +148,42 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 2,
         "default material": "iron"
     ]),
+    "sickle": ([
+        "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
+        "damage type": "slash",
+        "skill to craft": 8,
+        "skill to use": "short sword",
+        "default wc": 5,
+        "default dc": 5,
+        "default attack": 5,
+        "default encumberance": 3,
+        "default material": "iron"
+    ]),
+    "kama": ([
+        "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
+        "damage type": "slash",
+        "skill to craft": 10,
+        "skill to use": "short sword",
+        "default wc": 4,
+        "default dc": 6,
+        "default attack": 4,
+        "default encumberance": 3,
+        "default material": "iron"
+    ]),
+    "knife": ([
+        "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
+        "damage type": "thrust",
+        "skill to craft": 3,
+        "skill to use": "dagger",
+        "default wc": 3,
+        "default dc": 1,
+        "default attack": 5,
+        "default encumberance": 1,
+        "default material": "iron"
+    ]),
     "dagger": ([
         "type": "one-handed weapon",
         "default location": OnehandedWeapon,
@@ -856,6 +892,18 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default material": "iron"
     ]),
+    "kusarigama": ([
+        "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
+        "damage type": "thrust",
+        "skill to craft": 10,
+        "skill to use": "flail",
+        "default wc": 7,
+        "default dc": 2,
+        "default attack": 4,
+        "default encumberance": 8,
+        "default material": "iron"
+    ]),
     "whip": ([
         "type": "one-handed weapon",
         "default location": OnehandedWeapon,
@@ -1072,6 +1120,18 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default material": "stone"
     ]),
+    "dart": ([
+        "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
+        "damage type": "thrust",
+        "skill to craft": 0,
+        "skill to use": "thrown",
+        "default wc": 5,
+        "default dc": 0,
+        "default attack": 5,
+        "default encumberance": 5,
+        "default material": "iron"
+    ]),
     "pilum": ([
         "type": "one-handed weapon",
         "default location": OnehandedWeapon,
@@ -1115,7 +1175,7 @@ private nosave mapping weaponBlueprints = ([
         "skill to craft": 5,
         "skill to use": "shield",
         "default wc": 0,
-        "default dc": 5,
+        "default dc": 6,
         "default attack": 0,
         "default encumberance": 5,
         "default material": "pine"
@@ -1127,7 +1187,7 @@ private nosave mapping weaponBlueprints = ([
         "skill to craft": 12,
         "skill to use": "shield",
         "default wc": 0,
-        "default dc": 6,
+        "default dc": 7,
         "default attack": 0,
         "default encumberance": 10,
         "default material": "pine"
@@ -1139,7 +1199,7 @@ private nosave mapping weaponBlueprints = ([
         "skill to craft": 10,
         "skill to use": "shield",
         "default wc": 0,
-        "default dc": 2,
+        "default dc": 4,
         "default attack": 0,
         "default encumberance": 3,
         "default material": "iron"
@@ -1151,7 +1211,7 @@ private nosave mapping weaponBlueprints = ([
         "skill to craft": 5,
         "skill to use": "shield",
         "default wc": 0,
-        "default dc": 5,
+        "default dc": 6,
         "default attack": 0,
         "default encumberance": 5,
         "default material": "pine"
@@ -1163,7 +1223,7 @@ private nosave mapping weaponBlueprints = ([
         "skill to craft": 10,
         "skill to use": "shield",
         "default wc": 0,
-        "default dc": 6,
+        "default dc": 8,
         "default attack": 0,
         "default encumberance": 10,
         "default material": "pine"
@@ -1175,7 +1235,7 @@ private nosave mapping weaponBlueprints = ([
         "skill to craft": 5,
         "skill to use": "shield",
         "default wc": 0,
-        "default dc": 8,
+        "default dc": 10,
         "default attack": 0,
         "default encumberance": 15,
         "default material": "pine"
@@ -1187,21 +1247,9 @@ private nosave mapping weaponBlueprints = ([
         "skill to craft": 10,
         "skill to use": "shield",
         "default wc": 0,
-        "default dc": 5,
+        "default dc": 7,
         "default attack": 0,
         "default encumberance": 4,
-        "default material": "pine"
-    ]),
-   "shield": ([
-        "type": "one-handed weapon",
-        "default location": Shield,
-        "damage type": "bludgeon",
-        "skill to craft": 5,
-        "skill to use": "shield",
-        "default wc": 0,
-        "default dc": 5,
-        "default attack": 0,
-        "default encumberance": 5,
         "default material": "pine"
     ]),
    "spiked shield": ([
