@@ -2,17 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
-/////////////////////////////////////////////////////////////////////////////
-private string convertString(string input)
-{
-    string ret = input;
-    if (!stringp(input))
-    {
-        ret = "";
-    }
-    return ret;
-}
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getResearch(int playerId, int dbHandle)
@@ -114,7 +104,7 @@ protected nomask void saveResearch(int dbHandle, int playerId, mapping playerDat
             string query = sprintf("call saveResearch("
                 "%d,'%s',%d,%d,%d,%d,%d,%d);",
                 playerId,
-                db_conv_string(research),
+                sanitizeString(research),
                 playerData["research"][research]["when research began"],
                 playerData["research"][research]["when research complete"],
                 playerData["research"][research]["time spent learning"],
@@ -141,7 +131,7 @@ protected nomask void saveResearchChoices(int dbHandle, int playerId, mapping pl
         foreach(string choice in choices)
         {
             query = sprintf("select saveResearchChoice(%d,'%s');",
-                playerId, db_conv_string(choice));
+                playerId, sanitizeString(choice));
 
             db_exec(dbHandle, query);
             result = db_fetch(dbHandle);
@@ -155,11 +145,11 @@ protected nomask void saveResearchChoices(int dbHandle, int playerId, mapping pl
                     mapping optionMap = playerData["researchChoices"][choice][option];
                     query = sprintf("call saveResearchChoiceOption("
                         "%d,'%s','%s','%s','%s','%s');", id,
-                        db_conv_string(option),
-                        db_conv_string(optionMap["type"]),
-                        db_conv_string(optionMap["name"]),
-                        db_conv_string(optionMap["description"]),
-                        db_conv_string(optionMap["key"]));
+                        sanitizeString(option),
+                        sanitizeString(optionMap["type"]),
+                        sanitizeString(optionMap["name"]),
+                        sanitizeString(optionMap["description"]),
+                        sanitizeString(optionMap["key"]));
 
                     db_exec(dbHandle, query);
                     result = db_fetch(dbHandle);
@@ -178,7 +168,7 @@ protected nomask void saveOpenResearchTrees(int dbHandle, int playerId, mapping 
         foreach(string tree in playerData["openResearchTrees"])
         {
             string query = sprintf("call saveOpenResearchTrees(%d,'%s');",
-                playerId, db_conv_string(tree));
+                playerId, sanitizeString(tree));
             db_exec(dbHandle, query);
             mixed result = db_fetch(dbHandle);
         }

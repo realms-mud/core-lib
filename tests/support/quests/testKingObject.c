@@ -2,10 +2,10 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+inherit "/lib/realizations/npc.c";
 
 object QuestItem;
 object Quester;
-string Notification;
 
 /////////////////////////////////////////////////////////////////////////////
 void SetQuestItem(object item)
@@ -47,16 +47,4 @@ void ConfuseTheForcesOfEvil()
 void DoDebautchedThings()
 {
     QuestItem->receiveEvent(Quester, "maybeNobodyWillNotice", this_object());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void notify(string event)
-{
-    Notification = event;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-string checkNotification()
-{
-    return Notification;
 }

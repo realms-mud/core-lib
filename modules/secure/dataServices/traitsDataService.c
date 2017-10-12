@@ -2,17 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
-/////////////////////////////////////////////////////////////////////////////
-private string convertString(string input)
-{
-    string ret = input;
-    if (!stringp(input))
-    {
-        ret = "";
-    }
-    return ret;
-}
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getTraits(int playerId, int dbHandle)
@@ -84,12 +74,12 @@ protected nomask void saveTraits(int dbHandle, int playerId, mapping playerData)
             string query = sprintf("call saveTraits("
                 "%d,'%s','%s',%d,%d,'%s','%s');",
                 playerId,
-                db_conv_string(trait),
-                db_conv_string(playerData["traits"][trait]["name"]),
+                sanitizeString(trait),
+                sanitizeString(playerData["traits"][trait]["name"]),
                 playerData["traits"][trait]["added"],
                 playerData["traits"][trait]["end time"],
-                db_conv_string(playerData["traits"][trait]["expire message"] || ""),
-                db_conv_string(playerData["traits"][trait]["triggering research"] || ""));
+                sanitizeString(playerData["traits"][trait]["expire message"] || ""),
+                sanitizeString(playerData["traits"][trait]["triggering research"] || ""));
             db_exec(dbHandle, query);
             mixed result = db_fetch(dbHandle);
         }
@@ -99,7 +89,7 @@ protected nomask void saveTraits(int dbHandle, int playerId, mapping playerData)
         sizeof(playerData["temporaryTraits"]))
     {
         string query = sprintf("call saveTemporaryTraits(%d,'%s');",
-            playerId, db_conv_string(playerData["temporaryTraits"]));
+            playerId, sanitizeString(playerData["temporaryTraits"]));
 
         db_exec(dbHandle, query);
         mixed result = db_fetch(dbHandle);

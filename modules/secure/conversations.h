@@ -5,6 +5,7 @@
 
 private nosave string BaseConversation = "lib/modules/conversations/baseConversation.c";
 private nosave mapping topics = ([]);
+private nosave object CurrentTopic = 0;
 
 private mapping opinions = ([]);
 

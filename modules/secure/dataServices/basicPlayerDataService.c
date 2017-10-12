@@ -2,17 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
-/////////////////////////////////////////////////////////////////////////////
-private string convertString(string input)
-{
-    string ret = input;
-    if (!stringp(input))
-    {
-        ret = "";
-    }
-    return ret;
-}
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getBasicPlayerData(string name, int dbHandle)
@@ -20,7 +10,7 @@ protected nomask mapping getBasicPlayerData(string name, int dbHandle)
     mapping ret = ([]);
 
     string query = sprintf("select * from basicPlayerData "
-        "where name = '%s'", db_conv_string(name));
+        "where name = '%s'", sanitizeString(name));
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
 
@@ -73,8 +63,8 @@ protected nomask int saveBasicPlayerData(int dbHandle, mapping playerData)
 {
     string query = sprintf("select saveBasicPlayerInformation("
         "'%s','%s',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,'%s');",
-        db_conv_string(playerData["name"]),
-        db_conv_string(playerData["race"]),
+        sanitizeString(playerData["name"]),
+        sanitizeString(playerData["race"]),
         playerData["age"],
         playerData["gender"],
         playerData["ghost"],

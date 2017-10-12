@@ -2,6 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getSkills(int playerId, int dbHandle)
@@ -37,7 +38,7 @@ protected nomask void saveSkills(int dbHandle, int playerId, mapping playerData)
         {
             string query = sprintf("call saveSkills(%d,'%s',%d);",
                 playerId,
-                db_conv_string(skill),
+                sanitizeString(skill),
                 playerData["skills"][skill]);
             db_exec(dbHandle, query);
             mixed result = db_fetch(dbHandle);

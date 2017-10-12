@@ -2,6 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void saveCombatStatistics(string playerName,
@@ -10,25 +11,27 @@ public nomask void saveCombatStatistics(string playerName,
                                         int foeLevel)
 {
     string query = sprintf("call saveCombatStatistics('%s','%s','%s',%d);",
-        db_conv_string(playerName), 
-        db_conv_string(foeKey), 
-        db_conv_string(foeName), 
+        sanitizeString(playerName), 
+        sanitizeString(foeKey), 
+        sanitizeString(foeName), 
         foeLevel);
 
-    int dbHandle = db_connect(RealmsDatabase());
+    int dbHandle = connect();
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
+    disconnect(dbHandle);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void saveCombatStatisticsForRace(string playerName, string race)
 {
     string query = sprintf("call saveCombatStatisticsForRace('%s','%s');",
-        db_conv_string(playerName), db_conv_string(race));
+        sanitizeString(playerName), sanitizeString(race));
 
-    int dbHandle = db_connect(RealmsDatabase());
+    int dbHandle = connect();
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
+    disconnect(dbHandle);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,12 +42,12 @@ public nomask int bestKillMeetsLevel(string name, int level)
     string query = sprintf("select id from combatStatistics "
         "where (playerid = (select id from players where name = '%s')) "
         "and (isBestKill = 1) and (level >= %d)",
-        db_conv_string(name), level);
+        sanitizeString(name), level);
 
-    int dbHandle = db_connect(RealmsDatabase());
+    int dbHandle = connect();
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
-    db_close(dbHandle);
+    disconnect(dbHandle);
 
     if (result)
     {
@@ -61,12 +64,12 @@ public nomask int racialKillsMeetCount(string name, string race, int timesKilled
     string query = sprintf("select id from combatStatisticsForRace "
         "where (playerid = (select id from players where name = '%s')) "
         "and (race = '%s') and (timesKilled >= %d)",
-        db_conv_string(name), db_conv_string(race), timesKilled);
+        sanitizeString(name), sanitizeString(race), timesKilled);
 
-    int dbHandle = db_connect(RealmsDatabase());
+    int dbHandle = connect();
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
-    db_close(dbHandle);
+    disconnect(dbHandle);
 
     if (result)
     {
@@ -84,12 +87,12 @@ public nomask mapping getBestKill(string player)
         "from combatStatistics "
         "where playerid = (select id from players where name = '%s') "
         "and isBestKill = 1",
-        db_conv_string(player));
+        sanitizeString(player));
 
-    int dbHandle = db_connect(RealmsDatabase());
+    int dbHandle = connect();
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
-    db_close(dbHandle);
+    disconnect(dbHandle);
 
     if (result)
     {
@@ -112,12 +115,12 @@ public nomask mapping getNemesis(string player)
         "from combatStatistics "
         "where playerid = (select id from players where name = '%s') "
         "and isNemesis = 1",
-        db_conv_string(player));
+        sanitizeString(player));
 
-    int dbHandle = db_connect(RealmsDatabase());
+    int dbHandle = connect();
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
-    db_close(dbHandle);
+    disconnect(dbHandle);
 
     if (result)
     {

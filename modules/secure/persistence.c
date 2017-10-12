@@ -24,7 +24,7 @@ private nomask mapping getPlayerInfo()
     string *services = ({ "materialAttributes", "attributes",
         "biological", "combat", "races", "guilds", "quests",
         "research", "skills", "traits", "inventory", "factions",
-        "settings"
+        "settings", "wizard"
     });
 
     foreach(string service in services)
@@ -191,7 +191,7 @@ public nomask mapping getBestKill(string player)
 public varargs int opinionOfCharacter(object target, int modifier)
 {
     string targetKey = sprintf("%s#%s", program_name(target),
-        target->Name());
+        target->Name() ? target->Name() : "any");
 
     int ret = DataAccess()->getOpinionOfCharacter(this_object()->Name(),
         targetKey);
@@ -203,4 +203,20 @@ public varargs int opinionOfCharacter(object target, int modifier)
             targetKey, ret);
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs int characterState(object target, string newState)
+{
+    string targetKey = sprintf("%s#%s", program_name(target),
+        target->Name() ? target->Name() : "any");
+
+    if (newState)
+    {
+        DataAccess()->setCharacterState(this_object()->Name(),
+            targetKey, newState);
+    }
+
+    return DataAccess()->getCharacterState(this_object()->Name(),
+        targetKey);
 }

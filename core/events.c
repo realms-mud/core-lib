@@ -34,7 +34,7 @@ private nosave string *validEventHandlers = ({ "onDeath", "onHeartBeat",
     "onSober", "onDetoxified", "onWastedOnDrugs", "onNoLongerDrugged", "onSoaked",
     "onNoLongerSoaked", "onCannotEatMore", "onHungry", "onBeginDetox",
     "onSaveSucceeded", "onRestoreSucceeded", "onRestoreFailed", "onStateChanged",
-    "onConversationResponse"
+    "onConversationResponse", "receiveEvent"
 });
     
 private nosave mapping eventList = ([ ]);
@@ -177,7 +177,8 @@ public varargs nomask int notify(string event, mixed message)
             else if(handler && objectp(handler) &&
                 function_exists("receiveEvent", handler))
             {
-                call_other(handler, "receiveEvent", this_object(), event);
+                call_other(handler, "receiveEvent", this_object(), 
+                    event, message);
             }
         }
     }

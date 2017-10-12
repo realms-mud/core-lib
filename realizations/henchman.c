@@ -10,7 +10,7 @@ virtual inherit "/lib/modules/guilds.c";
 virtual inherit "/lib/modules/quests.c";
 virtual inherit "/lib/modules/traits.c";
 virtual inherit "/lib/modules/research.c";
-virtual inherit "/lib/modules/conversationTree.c";
+virtual inherit "/lib/modules/conversations.c";
 
 public nomask int isRealizationOfHenchman()
 {

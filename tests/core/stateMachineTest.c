@@ -315,6 +315,9 @@ void OnEnterFiresEventWhenItHasBeenSet()
     StateMachine->testAddTransition("added state", "next state", "meetTheKing");
 
     object King = clone_object("/lib/tests/support/quests/testKingObject.c");
+    object subscriber = clone_object("/lib/tests/support/quests/someEventHandler.c");
+    King->registerEvent(subscriber);
+    ExpectEq(0, subscriber->checkNotification());
     StateMachine->testRegisterStateActor(King);
     King->SetQuestItem(StateMachine);
     King->SetQuester(StateMachine);
@@ -330,7 +333,7 @@ void OnEnterFiresEventWhenItHasBeenSet()
 
     King->DoMeetTheKingStuff();
     ExpectEq("next state", StateMachine->getCurrentState());
-    ExpectEq("someEvent", King->checkNotification());
+    ExpectEq("someEvent", subscriber->checkNotification());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -360,6 +363,9 @@ void EntryEventFiresIfSetForInitialState()
     StateMachine->testAddState("added state", "I've been asked to meet the king!", "someEvent");
 
     object King = clone_object("/lib/tests/support/quests/testKingObject.c");
+    object subscriber = clone_object("/lib/tests/support/quests/someEventHandler.c");
+    King->registerEvent(subscriber);
+    ExpectEq(0, subscriber->checkNotification());
     StateMachine->testRegisterStateActor(King);
     King->SetQuestItem(StateMachine);
     King->SetQuester(StateMachine);
@@ -372,5 +378,5 @@ void EntryEventFiresIfSetForInitialState()
     StateMachine->testStartStateMachine();
 
     ExpectEq("added state", StateMachine->getCurrentState());
-    ExpectEq("someEvent", King->checkNotification());
+    ExpectEq("someEvent", subscriber->checkNotification());
 }

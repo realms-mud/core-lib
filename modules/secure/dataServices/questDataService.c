@@ -2,17 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
-/////////////////////////////////////////////////////////////////////////////
-private string convertString(string input)
-{
-    string ret = input;
-    if (!stringp(input))
-    {
-        ret = "";
-    }
-    return ret;
-}
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getQuestData(int playerId, int dbHandle)
@@ -55,10 +45,10 @@ protected nomask void saveQuestData(int dbHandle, int playerId, mapping playerDa
             string query = sprintf("call saveQuest("
                 "%d,'%s','%s','%s','%s',%d,%d);",
                 playerId,
-                db_conv_string(quest),
-                db_conv_string(playerData["quests"][quest]["name"]),
-                db_conv_string(playerData["quests"][quest]["state"]),
-                db_conv_string(playerData["quests"][quest]["states completed"]),
+                sanitizeString(quest),
+                sanitizeString(playerData["quests"][quest]["name"]),
+                sanitizeString(playerData["quests"][quest]["state"]),
+                sanitizeString(playerData["quests"][quest]["states completed"]),
                 playerData["quests"][quest]["is active"],
                 playerData["quests"][quest]["is completed"]);
             db_exec(dbHandle, query);

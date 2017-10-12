@@ -69,7 +69,7 @@ private nomask int isValidPrerequisiteType(string type)
 {
     return (member(({ "research", "attribute", "skill", "quest", "guild",
         "race", "faction", "trait", "background", "combat statistic", "level",
-        "opinion" }), type) > -1);
+        "opinion", "state" }), type) > -1);
 }
 
 //-----------------------------------------------------------------------------
@@ -550,6 +550,13 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
                     case "opinion":
                     {
                         ret &&= owner && (owner->opinionOf(researcher) >=
+                            prerequisiteData["value"]);
+                        break;
+                    }
+                    case "state":
+                    {
+                        ret &&= researcher && member(prerequisiteData, "state key") &&
+                            (researcher->stateFor(load_object(prerequisiteData["state key"])) ==
                             prerequisiteData["value"]);
                         break;
                     }

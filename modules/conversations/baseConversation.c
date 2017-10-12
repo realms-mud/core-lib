@@ -16,30 +16,7 @@ private int ignoreTalk = 0;
 private int SetupCompleted = 0;
 
 private mapping responseKeys = ([]);
-private mapping topics = ([
-    //    "key": ([
-    //        "template": "Hi there!",
-    //        "is repeatable": 1, // if this doesn't exist, it's not repeatable
-    //        "responses": ([
-    //            "key": ([
-    //                "template": "some text",
-    //                "criteria": ([
-    //                    "stat": "statName";"GreaterThan|LessThan";"value",
-    //                    "guild": "is|isNot";"value",
-    //                    "function": "object";"method",
-    //                    "state": "a state",
-    //                    "object present": "object"
-    //                ]),
-    //                "npc response": "key",
-    //                "delegate": "other";"key", //trigger comment from other NPC
-    //                "trigger": "event" // send 'event' to stateMachine
-    //            ])
-    //        ]),
-    //        "criteria": ([ /* same structure as responses criteria */ ]),
-    //        "trigger": "event"; "name" // send 'name' event to owning stateMachine
-    //                          "method"; "name" // execute 'name' method on this NPC object
-    //    ])
-]);
+private mapping topics = ([ ]);
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
@@ -266,6 +243,23 @@ protected nomask void addResponseEffect(string id, string selection, mapping eff
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void addResponseTopic(string id, string selection, string topic)
+{
+    string response = sprintf("%s#%s", id, selection);
+    if (member(topics, id) && member(topics[id], "responses") &&
+        member(topics[id]["responses"], response) && member(topics, topic))
+    {
+        topics[id]["responses"][response]["topic"] = topic;
+    }
+    else
+    {
+        raise_error("ERROR - baseConversation.c, addResponseTopic: "
+            "Could not add the link to the topic. Check to make sure that the "
+            "topic and response exist.\n");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask object messageParser()
 {
     return load_object("/lib/core/messageParser.c");
@@ -410,10 +404,12 @@ private nomask void executeResponseEffect(mapping effects,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void displayResponse(string choice, object actor, object owner)
+public nomask int displayResponse(string choice, object actor, object owner)
 {
+    int ret = 0;
     if (member(responseKeys, choice))
     {
+        ret = 1;
         string key = responseKeys[choice];
         string id = regexplode(key, "#")[0];
         displayMessage(topics[id]["responses"][key]["template"],
@@ -428,10 +424,17 @@ public nomask void displayResponse(string choice, object actor, object owner)
             executeResponseEffect(topics[id]["responses"][key]["effect"],
                 actor, owner);
         }
-        ignoreTalk = 1;
-        owner->responseFromConversation(actor,
-            topics[id]["responses"][key]["selection"]);
+        if (member(topics[id]["responses"][key], "topic"))
+        {
+            owner->responseFromConversation(actor,
+                topics[id]["responses"][key]["topic"]);
+        }
+        else
+        {
+            owner->responseFromConversation(actor, "default");
+        }
     }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -449,7 +452,6 @@ private nomask void displayResponses(string id, object actor, object owner)
                 string choice = to_string(sizeof(responseKeys) + 1);
                 responseKeys[choice] = id + "#" + 
                     topics[id]["responses"][response]["selection"];
-
                 tell_object(actor, format(Action(choice) + ": " +
                     Speech + topics[id]["responses"][response]["selection"] +
                     End, 78));
@@ -457,6 +459,12 @@ private nomask void displayResponses(string id, object actor, object owner)
         }
     }
     ignoreTalk = 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *responses()
+{
+    return m_indices(responseKeys) + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -474,7 +482,10 @@ public nomask int speakMessage(string key, object actor, object owner)
         {
             displayResponses(key, actor, owner);
         }
-
+        else if(!member(topics[key], "is repeatable"))
+        {
+            owner->responseFromConversation(actor, "default");
+        }
         if (member(topics[key], "event"))
         {
             owner->notify(topics[key]["event"], actor);

@@ -2,17 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
-/////////////////////////////////////////////////////////////////////////////
-private string convertString(string input)
-{
-    string ret = input;
-    if (!stringp(input))
-    {
-        ret = "";
-    }
-    return ret;
-}
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getGuildData(int playerId, int dbHandle)
@@ -58,10 +48,10 @@ protected nomask void saveGuildData(int dbHandle, int playerId, mapping playerDa
             string query = sprintf("call saveGuild("
                 "%d,'%s','%s','%s','%s',%d,%d,%d,%d,%d);",
                 playerId,
-                db_conv_string(guild),
-                db_conv_string(convertString(playerData["guilds"][guild]["title"])),
-                db_conv_string(convertString(playerData["guilds"][guild]["pretitle"])),
-                db_conv_string(convertString(playerData["guilds"][guild]["rank"])),
+                sanitizeString(guild),
+                sanitizeString(convertString(playerData["guilds"][guild]["title"])),
+                sanitizeString(convertString(playerData["guilds"][guild]["pretitle"])),
+                sanitizeString(convertString(playerData["guilds"][guild]["rank"])),
                 playerData["guilds"][guild]["level"],
                 playerData["guilds"][guild]["experience"],
                 playerData["guilds"][guild]["left guild"],

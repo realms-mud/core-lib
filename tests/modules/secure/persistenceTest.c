@@ -605,3 +605,16 @@ void OpinionOfCharacterReturnsCorrectValue()
     ExpectEq(11, Player->opinionOfCharacter(foe, 6));
     ExpectEq(11, Player->opinionOfCharacter(foe));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CharacterStateReturnsCorrectValue()
+{
+    Player->restore("gorthaur");
+    object foe = clone_object("/lib/realizations/monster.c");
+    foe->Name("Betty");
+
+    ExpectEq(0, Player->characterState(foe));
+    ExpectEq("some state", Player->characterState(foe, "some state"));
+    ExpectEq("new state", Player->characterState(foe, "new state"));
+    ExpectEq("new state", Player->characterState(foe));
+}

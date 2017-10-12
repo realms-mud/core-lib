@@ -46,8 +46,21 @@ protected nomask void onExit(string state)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs void startStateMachine()
 {
+    if (sizeof(stateTree))
+    {
+        string *states = m_indices(stateTree);
+        foreach(string state in states)
+        {
+            if (member(stateTree[state], "event"))
+            {
+                filter_objects(stateActors, "registerEventHandler", 
+                    stateTree[state]["event"]);
+            }
+        }
+    }
     CurrentState = InitialState;
     onEnter(InitialState);
+    notify("onStateChanged", InitialState);
 }
 
 /////////////////////////////////////////////////////////////////////////////

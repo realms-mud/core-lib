@@ -2,6 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getWizardLevel(int playerId, int dbHandle)
@@ -33,7 +34,7 @@ protected nomask void saveWizardLevel(int dbHandle, int playerId, mapping player
     {
         string query = sprintf("call saveWizardLevel(%d,'%s');",
             playerId,
-            db_conv_string(playerData["wizard level"] || ""));
+            sanitizeString(playerData["wizard level"] || ""));
 
         db_exec(dbHandle, query);
         mixed result = db_fetch(dbHandle);

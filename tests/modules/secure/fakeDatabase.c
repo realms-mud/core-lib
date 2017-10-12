@@ -164,6 +164,7 @@ public nomask void PrepDatabase()
     {
         db_exec(dbHandle, command);
     }
+    while (db_fetch(dbHandle));
     db_close(dbHandle);
 }
 

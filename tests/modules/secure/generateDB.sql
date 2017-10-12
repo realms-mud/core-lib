@@ -44,11 +44,15 @@ drop procedure if exists TestDB.saveWizardLevel;
 ##
 drop procedure if exists TestDB.saveOpinionOfCharacter;
 ##
+drop procedure if exists TestDB.saveCharacterState;
+##
 drop function if exists TestDB.saveBasicPlayerInformation;
 ##
 drop function if exists TestDB.saveResearchChoice;
 ##
 drop table if exists TestDB.opinions;
+##
+drop table if exists TestDB.characterStates;
 ##
 drop table if exists TestDB.biological;
 ##
@@ -353,6 +357,16 @@ CREATE TABLE TestDB.`opinions` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `opinions_playerid_idx` (`playerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+##
+CREATE TABLE TestDB.`characterStates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `playerId` int(11) NOT NULL,
+  `targetKey` varchar(200) NOT NULL,
+  `state` varchar(80) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `characterStates_playerid_idx` (`playerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
 CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `TestDB`.`basicPlayerData` AS select `TestDB`.`players`.`name` AS `name`,`TestDB`.`players`.`race` AS `race`,`TestDB`.`players`.`age` AS `age`,`TestDB`.`players`.`gender` AS `gender`,`TestDB`.`players`.`ghost` AS `ghost`,`TestDB`.`players`.`strength` AS `strength`,`TestDB`.`players`.`intelligence` AS `intelligence`,`TestDB`.`players`.`dexterity` AS `dexterity`,`TestDB`.`players`.`wisdom` AS `wisdom`,`TestDB`.`players`.`constitution` AS `constitution`,`TestDB`.`players`.`charisma` AS `charisma`,`TestDB`.`players`.`invisible` AS `invisible`,`TestDB`.`biological`.`intoxicated` AS `intoxicated`,`TestDB`.`biological`.`stuffed` AS `stuffed`,`TestDB`.`biological`.`drugged` AS `drugged`,`TestDB`.`biological`.`soaked` AS `soaked`,`TestDB`.`biological`.`headache` AS `headache`,`TestDB`.`playerCombatData`.`hitPoints` AS `hitPoints`,`TestDB`.`playerCombatData`.`maxHitPoints` AS `maxHitPoints`,`TestDB`.`playerCombatData`.`spellPoints` AS `spellPoints`,`TestDB`.`playerCombatData`.`maxSpellPoints` AS `maxSpellPoints`,`TestDB`.`playerCombatData`.`staminaPoints` AS `staminaPoints`,`TestDB`.`playerCombatData`.`maxStaminaPoints` AS `maxStaminaPoints`,`TestDB`.`playerCombatData`.`wimpy` AS `wimpy`,`TestDB`.`playerCombatData`.`onKillList` AS `onKillList`,`TestDB`.`playerCombatData`.`timeToHealHP` AS `timeToHealHP`,`TestDB`.`playerCombatData`.`timeToHealSP` AS `timeToHealSP`,`TestDB`.`playerCombatData`.`timeToHealST` AS `timeToHealST`,`TestDB`.`players`.`whenCreated` AS `whenCreated`,`TestDB`.`players`.`location` AS `location`,`TestDB`.`players`.`attributePoints` AS `availableAttributePoints`,`TestDB`.`players`.`skillPoints` AS `availableSkillPoints`,`TestDB`.`players`.`researchPoints` AS `availableResearchPoints`,`TestDB`.`players`.`unassignedExperience` AS `unassignedExperience`,`TestDB`.`players`.`id` AS `playerId` from ((`TestDB`.`players` join `TestDB`.`biological` on((`TestDB`.`players`.`id` = `TestDB`.`biological`.`playerid`))) join `TestDB`.`playerCombatData` on((`TestDB`.`players`.`id` = `TestDB`.`playerCombatData`.`playerid`)));
@@ -866,6 +880,30 @@ BEGIN
 		else
 			insert into opinions (playerId, targetKey, opinion) 
             values (lplayerId, p_targetKey, p_opinion);
+		end if;
+    end if;    
+END;
+##
+CREATE PROCEDURE TestDB.`saveCharacterState`(p_playerName varchar(40),
+p_targetKey varchar(200), p_state varchar(80))
+BEGIN
+    declare lplayerId int;
+    declare stateId int;
+
+    select id into lplayerId
+    from players where name = p_playerName;
+    
+    if lplayerId is not null then
+		select id into stateId
+		from characterStates 
+        where playerId = lplayerId and targetKey = p_targetKey;
+		
+		if stateId is not null then
+			update characterStates set state = p_state
+            where id = stateId;
+		else
+			insert into characterStates (playerId, targetKey, state) 
+            values (lplayerId, p_targetKey, p_state);
 		end if;
     end if;    
 END;

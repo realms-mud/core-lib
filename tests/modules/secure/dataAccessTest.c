@@ -102,7 +102,8 @@ void SavingSameCombatStatisticMultipleTimesIncrementsTimesKilled()
     int dbHandle = db_connect(RealmsDatabase());
     db_exec(dbHandle, "select * from combatStatistics");
     mixed result = db_fetch(dbHandle);
-    db_close(dbHandle);
+    while(db_fetch(dbHandle));
+db_close(dbHandle);
     ExpectEq(1, result[0], "stat id");
     ExpectEq("bob", result[1], "name");
     ExpectEq(10, result[2], "level");
@@ -118,7 +119,8 @@ void SavingSameCombatStatisticMultipleTimesIncrementsTimesKilled()
     dbHandle = db_connect(RealmsDatabase());
     db_exec(dbHandle, "select * from combatStatistics");
     result = db_fetch(dbHandle);
-    db_close(dbHandle);
+    while(db_fetch(dbHandle));
+db_close(dbHandle);
     ExpectEq(2, result[4], "times killed has incremented");
 }
 
@@ -138,6 +140,7 @@ void SavingUpdatesNemesisToMostFrequentKillWithHighestLevel()
     ExpectEq("fred", result[1], "name");
     ExpectEq(0, result[6], "is nemesis");
 
+    while(db_fetch(dbHandle));
     db_close(dbHandle);
 
     DataAccess->saveCombatStatistics("gorthaur",
@@ -153,6 +156,7 @@ void SavingUpdatesNemesisToMostFrequentKillWithHighestLevel()
     ExpectEq("fred", result[1], "name");
     ExpectEq(1, result[6], "is nemesis");
 
+    while(db_fetch(dbHandle));
     db_close(dbHandle);
 }
 
@@ -165,6 +169,7 @@ void SavingUpdatesBestKillToKillWithHighestLevel()
     mixed result = db_fetch(dbHandle);
     ExpectEq("fred", result[1], "name");
     ExpectEq(1, result[7], "is best kill");
+    while(db_fetch(dbHandle));
     db_close(dbHandle);
 
     DataAccess->saveCombatStatistics("gorthaur",
@@ -181,6 +186,7 @@ void SavingUpdatesBestKillToKillWithHighestLevel()
     ExpectEq("dwight", result[1], "name");
     ExpectEq(1, result[7], "is best kill");
 
+    while(db_fetch(dbHandle));
     db_close(dbHandle);
 }
 
@@ -241,4 +247,13 @@ void GetOpinionOfCharacterReturnsCorrectValue()
         "lib/realizations/monster.c#fred", 6);
 
     ExpectEq(6, DataAccess->getOpinionOfCharacter("gorthaur", "lib/realizations/monster.c#fred"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetCharacterStateReturnsCorrectValue()
+{
+    DataAccess->setCharacterState("gorthaur",
+        "lib/realizations/monster.c#fred", "first state");
+
+    ExpectEq("first state", DataAccess->getCharacterState("gorthaur", "lib/realizations/monster.c#fred"));
 }

@@ -2,17 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
-/////////////////////////////////////////////////////////////////////////////
-private string convertString(string input)
-{
-    string ret = input;
-    if (!stringp(input))
-    {
-        ret = "";
-    }
-    return ret;
-}
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getFactions(int playerId, int dbHandle)
@@ -64,8 +54,8 @@ protected nomask void saveFactions(int dbHandle, int playerId, mapping playerDat
             string query = sprintf("call saveFaction("
                 "%d,'%s','%s',%d,%d,%d,%d,%d,%d);",
                 playerId,
-                db_conv_string(faction),
-                db_conv_string(playerData["factions"][faction]["disposition"]),
+                sanitizeString(faction),
+                sanitizeString(playerData["factions"][faction]["disposition"]),
                 playerData["factions"][faction]["reputation"],
                 playerData["factions"][faction]["last interaction"],
                 playerData["factions"][faction]["last interaction reputation"],

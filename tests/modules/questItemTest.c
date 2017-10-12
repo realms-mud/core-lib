@@ -404,6 +404,8 @@ void OnEnterFiresEventWhenItHasBeenSet()
     QuestItem->testAddTransition("meet the king", "met the king", "meetTheKing");
 
     King = clone_object("/lib/tests/support/quests/testKingObject.c");
+    object subscriber = clone_object("/lib/tests/support/quests/someEventHandler.c");
+    King->registerEvent(subscriber);
     QuestItem->testRegisterQuestActor(King);
     King->SetQuestItem(QuestItem);
     King->SetQuester(Quester);
@@ -413,13 +415,14 @@ void OnEnterFiresEventWhenItHasBeenSet()
 
     QuestItem->testSetInitialState("meet the king");
     Quester->StartQuest(QuestItem);
+    ExpectTrue(QuestItem->beginQuest(Quester));
 
     ExpectEq("meet the king", Quester->questState(program_name(QuestItem)));
-    ExpectFalse(King->checkNotification());
+    ExpectFalse(subscriber->checkNotification());
 
     King->DoMeetTheKingStuff();
     ExpectEq("met the king", Quester->questState(program_name(QuestItem)));
-    ExpectEq("someEvent", King->checkNotification());
+    ExpectEq("someEvent", subscriber->checkNotification());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -451,6 +454,8 @@ void EntryEventFiresIfSetForInitialState()
     QuestItem->testAddState("meet the king", "I've been asked to meet the king!", "someEvent");
 
     King = clone_object("/lib/tests/support/quests/testKingObject.c");
+    object subscriber = clone_object("/lib/tests/support/quests/someEventHandler.c");
+    King->registerEvent(subscriber);
     QuestItem->testRegisterQuestActor(King);
     King->SetQuestItem(QuestItem);
     King->SetQuester(Quester);
@@ -459,12 +464,12 @@ void EntryEventFiresIfSetForInitialState()
     move_object(King, room);
 
     QuestItem->testSetInitialState("meet the king");
-    ExpectFalse(King->checkNotification());
+    ExpectFalse(subscriber->checkNotification());
     Quester->StartQuest(QuestItem);
 
     ExpectTrue(QuestItem->beginQuest(Quester));
     ExpectEq("meet the king", Quester->questState(program_name(QuestItem)));
-    ExpectEq("someEvent", King->checkNotification());
+    ExpectEq("someEvent", subscriber->checkNotification());
 }
 
 /////////////////////////////////////////////////////////////////////////////

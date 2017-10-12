@@ -5,12 +5,11 @@
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int getOpinionOfCharacter(string playerName,
-                                        string targetKey)
+public nomask string getCharacterState(string playerName, string targetKey)
 {
-    int ret = 0;
-    string query = sprintf("select opinion from opinions "
-        "inner join players on opinions.playerId = players.id and "
+    string ret = 0;
+    string query = sprintf("select state from characterStates "
+        "inner join players on characterStates.playerId = players.id and "
         "players.name = '%s' "
         "where targetKey = '%s';",
         sanitizeString(playerName), 
@@ -23,17 +22,19 @@ public nomask int getOpinionOfCharacter(string playerName,
 
     if (sizeof(result))
     {
-        ret = to_int(result[0]);
+        ret = to_string(result[0]);
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setOpinionOfCharacter(string playerName,
-    string targetKey, int value)
+public nomask void setCharacterState(string playerName,
+    string targetKey, string value)
 {
-    string query = sprintf("call saveOpinionOfCharacter('%s','%s', %d);",
-        sanitizeString(playerName), sanitizeString(targetKey), value);
+    string query = sprintf("call saveCharacterState('%s','%s','%s');",
+        sanitizeString(lower_case(playerName)), 
+        sanitizeString(targetKey), 
+        sanitizeString(value));
 
     int dbHandle = connect();
     db_exec(dbHandle, query);

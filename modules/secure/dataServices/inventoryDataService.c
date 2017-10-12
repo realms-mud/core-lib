@@ -2,17 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
-/////////////////////////////////////////////////////////////////////////////
-private string convertString(string input)
-{
-    string ret = input;
-    if (!stringp(input))
-    {
-        ret = "";
-    }
-    return ret;
-}
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getInventory(int playerId, int dbHandle)
@@ -55,8 +45,8 @@ protected nomask void saveInventory(int dbHandle, int playerId, mapping playerDa
         {
             query = sprintf("call saveInventoryItem(%d,'%s','%s',%d);",
                 playerId,
-                db_conv_string(item),
-                db_conv_string(playerData["inventory"][item]["data"]),
+                sanitizeString(item),
+                sanitizeString(playerData["inventory"][item]["data"]),
                 playerData["inventory"][item]["isEquipped"]);
             db_exec(dbHandle, query);
             result = db_fetch(dbHandle);

@@ -2,7 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
+virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 virtual inherit "/lib/modules/secure/dataServices/basicPlayerDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/materialAttributesDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/guildDataService.c";
@@ -15,12 +15,7 @@ virtual inherit "/lib/modules/secure/dataServices/factionsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/combatStatisticsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/wizardDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/conversationsDataService.c";
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int connect()
-{
-    return db_connect(RealmsDatabase());
-}
+virtual inherit "/lib/modules/secure/dataServices/stateDataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getPlayerData(string name)
@@ -48,7 +43,7 @@ public nomask mapping getPlayerData(string name)
             data += getWizardLevel(data["playerId"], dbHandle);
         }
 
-        db_close(dbHandle);
+        disconnect(dbHandle);
     }
     else
     {
@@ -98,14 +93,14 @@ public nomask string playerType(string name)
     string query = sprintf("select wizardTypes.type from wizards "
         "inner join wizardTypes on wizards.typeId = wizardTypes.id "
         "inner join players on wizards.playerid = players.id "
-        "where players.name = '%s'", db_conv_string(name));
+        "where players.name = '%s'", sanitizeString(name));
 
     int dbHandle = connect();
 
     db_exec(dbHandle, query);
 
     mixed result = db_fetch(dbHandle);
-    db_close(dbHandle);
+    disconnect(dbHandle);
 
     if (result)
     {
