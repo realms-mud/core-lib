@@ -11,6 +11,7 @@ private string ResearchDictionary = "/lib/dictionaries/researchDictionary.c";
 
 private string name;
 private string description;
+private string source;
 private string treeRoot;
 
 private mapping tree = ([
@@ -79,6 +80,16 @@ public nomask varargs string Description(string newDescription)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs string Source(string newSource)
+{
+    if (newSource && stringp(newSource))
+    {
+        source = newSource;
+    }
+    return source;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs string TreeRoot(string newRoot)
 {
     if(newRoot && stringp(newRoot) && member(tree, newRoot))
@@ -95,57 +106,6 @@ public nomask varargs string TreeRoot(string newRoot)
     }
     return treeRoot;
 } 
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask mapping getTreeNode(string element, object owner)
-{
-    mapping ret = ([ ]);
-
-    if(element && stringp(element) && member(tree, element) && 
-       (file_size(element) > 0))
-    {
-        object researchItem = getResearchItem(element);
-        if(!tree[element]["children"])
-        {
-            ret[researchItem] = 0;
-        }
-        else if(pointerp(tree[element]["children"]) && 
-                sizeof(tree[element]["children"]) &&
-                stringp(tree[element]["children"][0]))
-        {
-            ret[researchItem] = ([ ]);
-            foreach(string child in tree[element]["children"])
-            {
-                object childItem = getResearchItem(child);
-                ret[researchItem] += getTreeNode(child, owner);
-            }
-        }
-
-        if (owner && objectp(owner))
-        {
-            if (owner->isResearched(element))
-            {
-                ret[researchItem] += (["researched":1]);
-            }
-            else if (owner->isResearching(element))
-            {
-                ret[researchItem] += (["researching":1]);
-            }
-        }
-    }
-    return ret + ([ ]);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask varargs mapping getResearchTree(object owner)
-{
-    mapping ret = ([ ]);
-    if(treeRoot && stringp(treeRoot))
-    {
-        ret += getTreeNode(treeRoot, owner);
-    }
-    return ret + ([ ]);
-}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int prerequisitesMetFor(string researchItem, object owner)
@@ -169,6 +129,81 @@ public nomask int prerequisitesMetFor(string researchItem, object owner)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs mapping getTreeNode(string element, object owner, 
+    int addDetails)
+{
+    mapping ret = ([ ]);
+
+    if(element && stringp(element) && member(tree, element) && 
+        researchDictionary()->researchObject(element))
+    {
+        object researchItem = getResearchItem(element);
+        if(!tree[element]["children"])
+        {
+            ret[researchItem] = addDetails ? ([]) : 0;
+        }
+        else if(pointerp(tree[element]["children"]) && 
+                sizeof(tree[element]["children"]) &&
+                stringp(tree[element]["children"][0]))
+        {
+            ret[researchItem] = ([ ]);
+            foreach(string child in tree[element]["children"])
+            {
+                object childItem = getResearchItem(child);
+
+                if (addDetails)
+                {
+                    ret += getTreeNode(child, owner, 1);
+                }
+                else
+                {
+                    ret[researchItem] += getTreeNode(child, owner);
+                }
+            }
+        }
+
+        if (addDetails && owner && objectp(owner))
+        {
+            if (owner->isResearched(element))
+            {
+                ret[researchItem] += (["researched":1]);
+            }
+            else if (owner->isResearching(element))
+            {
+                ret[researchItem] += (["researching":1]);
+            }
+            else if (prerequisitesMetFor(element, owner))
+            {
+                ret[researchItem] += (["can research":1]);
+            }
+        }
+    }
+    return ret + ([ ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs mapping getResearchTree(object owner)
+{
+    mapping ret = ([ ]);
+    if(treeRoot && stringp(treeRoot))
+    {
+        ret += getTreeNode(treeRoot, owner);
+    }
+    return ret + ([ ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs mapping getFlattenedResearchTree(object owner)
+{
+    mapping ret = ([]);
+    if (treeRoot && stringp(treeRoot))
+    {
+        ret += getTreeNode(treeRoot, owner, 1);
+    }
+    return ret + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -257,4 +292,3 @@ public nomask int addResearchElement(string location)
     }
     return ret;
 }
-

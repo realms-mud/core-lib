@@ -212,6 +212,25 @@ void CanSetResearchCostToIntegerGreaterThanZero()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CannotSetSourceToNonString()
+{
+    string err = catch (ResearchItem->addSpecification("source", 0));
+    string expectedError = "*ERROR - researchItem: The value of 'source' must be a string value.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid source");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetSourceToStringValue()
+{
+    ExpectTrue(ResearchItem->addSpecification("source", "mage guild"), "set the source");
+    ExpectEq("mage guild", ResearchItem->query("source"), "query the source");
+
+    ExpectTrue(ResearchItem->addSpecification("source", "save the llamas quest"), "set the source");
+    ExpectEq("save the llamas quest", ResearchItem->query("source"), "query the source");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanSetPrerequisites()
 {
     mapping prereqs = ([ "fetch a pencil": (["type":"quest"]),

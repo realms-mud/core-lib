@@ -196,6 +196,20 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "source":
+            {
+                if (value && stringp(value))
+                {
+                    ret = 1;
+                    researchData["source"] = value;
+                }
+                else
+                {
+                    raise_error("ERROR - researchItem: The value of 'source' "
+                        "must be a string value.\n");
+                }
+                break;
+            }
             default:
             {
                 ret = specification::addSpecification(type, value);

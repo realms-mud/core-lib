@@ -41,6 +41,13 @@ void CanSetDescriptionForResearchTree()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanSetSourceForResearchTree()
+{
+    ExpectTrue(ResearchTree->Source("research tree source"), "set the research source");
+    ExpectEq("research tree source", ResearchTree->Source(), "query the research source");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AddingInvalidResearchElementThrowsError()
 {
     string err = catch (ResearchTree->addResearchElement("blah"));
@@ -134,7 +141,42 @@ void ResearchTreesCanBeConstructed()
     ExpectTrue(ResearchTree->addChild("/lib/modules/research/persistedActiveResearchItem.c", "/lib/modules/research/passiveResearchItem.c"), "set parent for persistedActiveResearchItem");
     ExpectTrue(ResearchTree->addChild("/lib/modules/research/persistedRitualResearchItem.c", "/lib/modules/research/passiveResearchItem.c"), "set parent for persistedRitualResearchItem");
     ExpectTrue(ResearchTree->addChild("/lib/modules/research/persistedRitualResearchItem.c", "/lib/modules/research/knowledgeResearchItem.c"), "set parent for persistedRitualResearchItem");
-    ExpectEq(expected, ResearchTree->getResearchTree(), "tree still empty");
+    ExpectEq(expected, ResearchTree->getResearchTree(), "tree with data");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetFlattenedResearchTreeReturnsFlatList()
+{
+    mapping expected = ([
+        "lib/tests/support/research/testActiveResearchItem.c":([]),
+        "lib/modules/research/activeResearchItem.c":([]),
+        "lib/modules/research/instantaneousRitualResearchItem.c": ([]),
+        "lib/modules/research/knowledgeResearchItem.c": ([]),
+        "lib/modules/research/persistedActiveResearchItem.c": ([]),
+        "lib/modules/research/persistedRitualResearchItem.c": ([]),
+        "lib/modules/research/instantaneousActiveResearchItem.c": ([]),
+        "lib/modules/research/passiveResearchItem.c" : ([])
+    ]);
+
+    ExpectTrue(ResearchTree->addResearchElement(ResearchItem), "add testActiveResearchItem");
+    ExpectTrue(ResearchTree->addResearchElement("/lib/modules/research/activeResearchItem.c"), "add activeResearchItem");
+    ExpectTrue(ResearchTree->addResearchElement("/lib/modules/research/instantaneousActiveResearchItem.c"), "add instantaneousActiveResearchItem");
+    ExpectTrue(ResearchTree->addResearchElement("/lib/modules/research/instantaneousRitualResearchItem.c"), "add instantaneousRitualResearchItem");
+    ExpectTrue(ResearchTree->addResearchElement("/lib/modules/research/knowledgeResearchItem.c"), "add knowledgeResearchItem");
+    ExpectTrue(ResearchTree->addResearchElement("/lib/modules/research/passiveResearchItem.c"), "add passiveResearchItem");
+    ExpectTrue(ResearchTree->addResearchElement("/lib/modules/research/persistedActiveResearchItem.c"), "add persistedActiveResearchItem");
+    ExpectTrue(ResearchTree->addResearchElement("/lib/modules/research/persistedRitualResearchItem.c"), "add persistedRitualResearchItem");
+    ExpectTrue(ResearchTree->TreeRoot(ResearchItem), "set parent for instantaneousActiveResearchItem");
+    ExpectTrue(ResearchTree->addChild("/lib/modules/research/activeResearchItem.c", ResearchItem), "set parent for activeResearchItem");
+    ExpectTrue(ResearchTree->addChild("/lib/modules/research/instantaneousActiveResearchItem.c", ResearchItem), "set parent for instantaneousActiveResearchItem");
+    ExpectTrue(ResearchTree->addChild("/lib/modules/research/instantaneousRitualResearchItem.c", "/lib/modules/research/activeResearchItem.c"), "set parent for instantaneousRitualResearchItem");
+    ExpectTrue(ResearchTree->addChild("/lib/modules/research/knowledgeResearchItem.c", "/lib/modules/research/activeResearchItem.c"), "set parent for knowledgeResearchItem");
+    ExpectTrue(ResearchTree->addChild("/lib/modules/research/knowledgeResearchItem.c", "/lib/modules/research/instantaneousActiveResearchItem.c"), "set parent for knowledgeResearchItem");
+    ExpectTrue(ResearchTree->addChild("/lib/modules/research/passiveResearchItem.c", "/lib/modules/research/instantaneousActiveResearchItem.c"), "set parent for passiveResearchItem");
+    ExpectTrue(ResearchTree->addChild("/lib/modules/research/persistedActiveResearchItem.c", "/lib/modules/research/passiveResearchItem.c"), "set parent for persistedActiveResearchItem");
+    ExpectTrue(ResearchTree->addChild("/lib/modules/research/persistedRitualResearchItem.c", "/lib/modules/research/passiveResearchItem.c"), "set parent for persistedRitualResearchItem");
+    ExpectTrue(ResearchTree->addChild("/lib/modules/research/persistedRitualResearchItem.c", "/lib/modules/research/knowledgeResearchItem.c"), "set parent for persistedRitualResearchItem");
+    ExpectEq(expected, ResearchTree->getFlattenedResearchTree(), "tree with data");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -199,4 +241,35 @@ void PrerequisitesMetReturnsTrueWhenPrereqMet()
     ExpectTrue(ResearchTree->prerequisitesMetFor("/lib/tests/support/research/testResearchItemWithPrerequisite.c", owner), "check prereqs");
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void GetFlattenedResearchTreeForOwnerReturnsFlatListWithDetails()
+{
+    mapping expected = ([
+        "lib/tests/support/research/testTreeRoot.c":(["researched":1]),
+        "lib/tests/support/research/testLimitedByIntoxResearchItem.c": (["researched":1]),
+        "lib/tests/support/research/mockResearchTimed.c": (["researching":1]),
+        "lib/modules/research/activeResearchItem.c" : (["can research": 1 ]),
+        "lib/modules/research/instantaneousRitualResearchItem.c" : (["can research":1]),
+        "lib/modules/research/knowledgeResearchItem.c" : ([]),
+        "lib/modules/research/persistedActiveResearchItem.c" : ([]),
+        "lib/modules/research/persistedRitualResearchItem.c" : ([]),
+        "lib/modules/research/instantaneousActiveResearchItem.c" : (["can research":1]),
+        "lib/modules/research/passiveResearchItem.c" : ([])
+    ]);
+
+    object owner = clone_object("/lib/realizations/player.c");
+    owner->Name("Fred");
+    owner->Str(20);
+    owner->addSkillPoints(100);
+    owner->advanceSkill("long sword", 10);
+
+    ExpectTrue(owner->addResearchTree("lib/tests/support/research/testDeepResearchTree.c"));
+    ExpectTrue(owner->initiateResearch("lib/tests/support/research/testLimitedByIntoxResearchItem.c"));
+    ExpectTrue(owner->initiateResearch("lib/tests/support/research/mockResearchTimed.c"));
+
+    object tree = load_object("/lib/dictionaries/researchDictionary.c")->
+        researchTree("lib/tests/support/research/testDeepResearchTree.c");
+
+    ExpectEq(expected, tree->getFlattenedResearchTree(owner), "tree with data");
+}
 
