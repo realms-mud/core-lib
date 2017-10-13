@@ -248,13 +248,13 @@ void GetFlattenedResearchTreeForOwnerReturnsFlatListWithDetails()
         "lib/tests/support/research/testTreeRoot.c":(["researched":1]),
         "lib/tests/support/research/testLimitedByIntoxResearchItem.c": (["researched":1]),
         "lib/tests/support/research/mockResearchTimed.c": (["researching":1]),
-        "lib/modules/research/activeResearchItem.c" : (["can research": 1 ]),
-        "lib/modules/research/instantaneousRitualResearchItem.c" : (["can research":1]),
-        "lib/modules/research/knowledgeResearchItem.c" : ([]),
-        "lib/modules/research/persistedActiveResearchItem.c" : ([]),
-        "lib/modules/research/persistedRitualResearchItem.c" : ([]),
-        "lib/modules/research/instantaneousActiveResearchItem.c" : (["can research":1]),
-        "lib/modules/research/passiveResearchItem.c" : ([])
+        "lib/tests/support/research/testResearchA.c" : (["can research": 1 ]),
+        "lib/tests/support/research/testResearchB.c" : (["can research":1]),
+        "lib/tests/support/research/testResearchC.c" : (["can research":1]),
+        "lib/tests/support/research/testResearchD.c" : ([]),
+        "lib/tests/support/research/testResearchE.c" : ([]),
+        "lib/tests/support/research/testResearchF.c" : ([]),
+        "lib/tests/support/research/testResearchG.c" : ([])
     ]);
 
     object owner = clone_object("/lib/realizations/player.c");

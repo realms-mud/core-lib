@@ -6,6 +6,7 @@ public void reset(int arg)
     {
         "passiveResearchItem"::reset(arg);
         addSpecification("name", "mock research");
+        addSpecification("source", "fighter guild");
         addSpecification("description", "This does stuff.");
         addSpecification("scope", "self");
         addSpecification("research type", "granted");

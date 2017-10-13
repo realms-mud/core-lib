@@ -12,5 +12,6 @@ public void reset(int arg)
         researchTree::reset(arg);
         Name("senility");
         Description("this research tree contains the story arc for the senile trait.");
+        Source("traits");
     }
 }

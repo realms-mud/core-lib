@@ -16,25 +16,25 @@ public void reset(int arg)
         addResearchElement("lib/tests/support/research/testTreeRoot.c");
         addResearchElement("lib/tests/support/research/testLimitedByIntoxResearchItem.c");
         addResearchElement("lib/tests/support/research/mockResearchTimed.c");
-        addResearchElement("lib/modules/research/activeResearchItem.c");
-        addResearchElement("lib/modules/research/instantaneousActiveResearchItem.c");
-        addResearchElement("lib/modules/research/instantaneousRitualResearchItem.c");
-        addResearchElement("lib/modules/research/knowledgeResearchItem.c");
-        addResearchElement("lib/modules/research/passiveResearchItem.c");
-        addResearchElement("lib/modules/research/persistedActiveResearchItem.c");
-        addResearchElement("lib/modules/research/persistedRitualResearchItem.c");
+        addResearchElement("lib/tests/support/research/testResearchA.c");
+        addResearchElement("lib/tests/support/research/testResearchB.c");
+        addResearchElement("lib/tests/support/research/testResearchC.c");
+        addResearchElement("lib/tests/support/research/testResearchD.c");
+        addResearchElement("lib/tests/support/research/testResearchE.c");
+        addResearchElement("lib/tests/support/research/testResearchF.c");
+        addResearchElement("lib/tests/support/research/testResearchG.c");
         TreeRoot("lib/tests/support/research/testTreeRoot.c");
         addChild("lib/tests/support/research/testLimitedByIntoxResearchItem.c", "lib/tests/support/research/testTreeRoot.c");
         addChild("lib/tests/support/research/mockResearchTimed.c", "lib/tests/support/research/testTreeRoot.c");
-        addChild("lib/modules/research/activeResearchItem.c", "lib/tests/support/research/testTreeRoot.c");
-        addChild("lib/modules/research/instantaneousActiveResearchItem.c", "lib/tests/support/research/testTreeRoot.c");
-        addChild("lib/modules/research/instantaneousRitualResearchItem.c", "lib/tests/support/research/testLimitedByIntoxResearchItem.c");
-        addChild("lib/modules/research/knowledgeResearchItem.c", "lib/tests/support/research/testLimitedByIntoxResearchItem.c");
-        addChild("lib/modules/research/knowledgeResearchItem.c", "lib/modules/research/instantaneousActiveResearchItem.c");
-        addChild("lib/modules/research/passiveResearchItem.c", "lib/modules/research/instantaneousActiveResearchItem.c");
-        addChild("lib/modules/research/persistedActiveResearchItem.c", "lib/modules/research/passiveResearchItem.c");
-        addChild("lib/modules/research/persistedRitualResearchItem.c", "lib/modules/research/passiveResearchItem.c");
-        addChild("lib/modules/research/persistedRitualResearchItem.c", "lib/modules/research/knowledgeResearchItem.c");
+        addChild("lib/tests/support/research/testResearchA.c", "lib/tests/support/research/testTreeRoot.c");
+        addChild("lib/tests/support/research/testResearchB.c", "lib/tests/support/research/testTreeRoot.c");
+        addChild("lib/tests/support/research/testResearchC.c", "lib/tests/support/research/testLimitedByIntoxResearchItem.c");
+        addChild("lib/tests/support/research/testResearchD.c", "lib/tests/support/research/testLimitedByIntoxResearchItem.c");
+        addChild("lib/tests/support/research/testResearchD.c", "lib/tests/support/research/testResearchB.c");
+        addChild("lib/tests/support/research/testResearchE.c", "lib/tests/support/research/testResearchB.c");
+        addChild("lib/tests/support/research/testResearchF.c", "lib/tests/support/research/testResearchE.c");
+        addChild("lib/tests/support/research/testResearchG.c", "lib/tests/support/research/testResearchE.c");
+        addChild("lib/tests/support/research/testResearchG.c", "lib/tests/support/research/testResearchD.c");
     }
 }
 

@@ -30,13 +30,13 @@ void InitialCreationDisplayIsCorrect()
 {
     Selector->initiateSelector(User);
     ExpectEq("[0;36mCharacter creation - [0m[0;37;1mChoose a class of skills to advance[0m:\n"
-        "\t[[0;31m1[0m] - [0;32mCombat              [0m\n"
-        "\t[[0;31m2[0m] - [0;32mCrafting            [0m\n"
-        "\t[[0;31m3[0m] - [0;32mErudite             [0m\n"
-        "\t[[0;31m4[0m] - [0;32mGeneral             [0m\n"
-        "\t[[0;31m5[0m] - [0;32mLanguage            [0m\n"
-        "\t[[0;31m6[0m] - [0;32mMagic               [0m\n"
-        "\t[[0;31m7[0m] - [0;32mSubterfuge          [0m\n"
+        "\t[[0;31;1m1[0m] - [0;32mCombat              [0m\n"
+        "\t[[0;31;1m2[0m] - [0;32mCrafting            [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mErudite             [0m\n"
+        "\t[[0;31;1m4[0m] - [0;32mGeneral             [0m\n"
+        "\t[[0;31;1m5[0m] - [0;32mLanguage            [0m\n"
+        "\t[[0;31;1m6[0m] - [0;32mMagic               [0m\n"
+        "\t[[0;31;1m7[0m] - [0;32mSubterfuge          [0m\n"
         "[0;32;1mYou must select a number from 1 to 7. You may also undo or reset.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mYou have 10 skills left to assign.\n[0m",

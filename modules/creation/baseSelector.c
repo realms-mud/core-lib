@@ -15,12 +15,13 @@ protected int AllowUndo = 1;
 protected int AllowAbort = 0;
 protected int NumColumns = 1;
 protected int HasDescription = 1;
+protected string Type = "Character creation";
 
 private string *UndoLog = ({ });
 
 private nosave string Cyan = "[0;36m%s[0m";
 private nosave string BoldWhite = "[0;37;1m%s[0m";
-private nosave string Red = "[0;31m%s[0m";
+private nosave string Red = "[0;31;1m%s[0m";
 private nosave string Green = "[0;32m%s[0m";
 private nosave string BoldGreen = "[0;32;1m%s[0m";
 
@@ -75,8 +76,8 @@ public nomask string displayMessage()
     
     if(Data && sizeof(Data))
     {
-        ret = sprintf(Cyan + BoldWhite + ":\n", "Character creation - ",
-            Description);
+        ret = sprintf(Cyan + BoldWhite + ":\n", 
+            sprintf("%s - ", Type), Description);
 
         string *choices = sort_array(m_indices(Data), "sortMethod");
 

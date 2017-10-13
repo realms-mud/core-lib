@@ -12,5 +12,6 @@ public void reset(int arg)
         researchTree::reset(arg);
         Name("maegenstryd");
         Description("this research tree contains the story arc for the maegenstryd race.");
+        Source("traits");
     }
 }

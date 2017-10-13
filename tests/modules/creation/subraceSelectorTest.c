@@ -34,10 +34,10 @@ void InitialCreationDisplayIsCorrectForHighElf()
     User->Race("high elf");
     Selector->initiateSelector(User);
     ExpectEq("[0;36mCharacter creation - [0m[0;37;1mChoose your subrace[0m:\n"
-        "\t[[0;31m1[0m] - [0;32mHalf elf            [0m\n"
-        "\t[[0;31m2[0m] - [0;32mHillgarathi elf     [0m\n"
-        "\t[[0;31m3[0m] - [0;32mMoon elf            [0m\n"
-        "\t[[0;31m4[0m] - [0;32mDo not add a subrace[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32mHalf elf            [0m\n"
+        "\t[[0;31;1m2[0m] - [0;32mHillgarathi elf     [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mMoon elf            [0m\n"
+        "\t[[0;31;1m4[0m] - [0;32mDo not add a subrace[0m\n"
         "[0;32;1mYou must select a number from 1 to 4.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());
@@ -92,11 +92,11 @@ void InitialCreationDisplayIsCorrectForElf()
     User->Race("elf");
     Selector->initiateSelector(User);
     ExpectEq("[0;36mCharacter creation - [0m[0;37;1mChoose your subrace[0m:\n"
-        "\t[[0;31m1[0m] - [0;32mDark elf            [0m\n"
-        "\t[[0;31m2[0m] - [0;32mGrey elf            [0m\n"
-        "\t[[0;31m3[0m] - [0;32mSea elf             [0m\n"
-        "\t[[0;31m4[0m] - [0;32mWood elf            [0m\n"
-        "\t[[0;31m5[0m] - [0;32mDo not add a subrace[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32mDark elf            [0m\n"
+        "\t[[0;31;1m2[0m] - [0;32mGrey elf            [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mSea elf             [0m\n"
+        "\t[[0;31;1m4[0m] - [0;32mWood elf            [0m\n"
+        "\t[[0;31;1m5[0m] - [0;32mDo not add a subrace[0m\n"
         "[0;32;1mYou must select a number from 1 to 5.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());
@@ -148,9 +148,9 @@ void InitialCreationDisplayIsCorrectForDwarf()
     User->Race("dwarf");
     Selector->initiateSelector(User);
     ExpectEq("[0;36mCharacter creation - [0m[0;37;1mChoose your subrace[0m:\n"
-        "\t[[0;31m1[0m] - [0;32mKhazurathi dwarf    [0m\n"
-        "\t[[0;31m2[0m] - [0;32mMirosti dwarf       [0m\n"
-        "\t[[0;31m3[0m] - [0;32mDo not add a subrace[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32mKhazurathi dwarf    [0m\n"
+        "\t[[0;31;1m2[0m] - [0;32mMirosti dwarf       [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mDo not add a subrace[0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());
@@ -259,18 +259,18 @@ void InitialCreationDisplayIsCorrectForHuman()
     User->Race("human");
     Selector->initiateSelector(User);
     ExpectEq("[0;36mCharacter creation - [0m[0;37;1mChoose your subrace[0m:\n"
-        "\t[[0;31m1[0m]  - [0;32mAndurathi           [0m\n"
-        "\t[[0;31m2[0m]  - [0;32mCelebnosti          [0m\n"
-        "\t[[0;31m3[0m]  - [0;32mEledhelean          [0m\n"
-        "\t[[0;31m4[0m]  - [0;32mEndurgish           [0m\n"
-        "\t[[0;31m5[0m]  - [0;32mHelcarish           [0m\n"
-        "\t[[0;31m6[0m]  - [0;32mHillgarathi         [0m\n"
-        "\t[[0;31m7[0m]  - [0;32mIarwathean          [0m\n"
-        "\t[[0;31m8[0m]  - [0;32mLinmiri             [0m\n"
-        "\t[[0;31m9[0m]  - [0;32mMenadrosti          [0m\n"
-        "\t[[0;31m10[0m] - [0;32mTirnosti            [0m\n"
-        "\t[[0;31m11[0m] - [0;32mZhenduli            [0m\n"
-        "\t[[0;31m12[0m] - [0;32mDo not add a subrace[0m\n"
+        "\t[[0;31;1m1[0m]  - [0;32mAndurathi           [0m\n"
+        "\t[[0;31;1m2[0m]  - [0;32mCelebnosti          [0m\n"
+        "\t[[0;31;1m3[0m]  - [0;32mEledhelean          [0m\n"
+        "\t[[0;31;1m4[0m]  - [0;32mEndurgish           [0m\n"
+        "\t[[0;31;1m5[0m]  - [0;32mHelcarish           [0m\n"
+        "\t[[0;31;1m6[0m]  - [0;32mHillgarathi         [0m\n"
+        "\t[[0;31;1m7[0m]  - [0;32mIarwathean          [0m\n"
+        "\t[[0;31;1m8[0m]  - [0;32mLinmiri             [0m\n"
+        "\t[[0;31;1m9[0m]  - [0;32mMenadrosti          [0m\n"
+        "\t[[0;31;1m10[0m] - [0;32mTirnosti            [0m\n"
+        "\t[[0;31;1m11[0m] - [0;32mZhenduli            [0m\n"
+        "\t[[0;31;1m12[0m] - [0;32mDo not add a subrace[0m\n"
         "[0;32;1mYou must select a number from 1 to 12.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());

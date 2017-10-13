@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         passiveResearchItem::reset(arg);
         addSpecification("name", "Granted research");
+        addSpecification("source", "quests");
         addSpecification("description", "This is granted research");
         addSpecification("scope", "self");
         addSpecification("research type", "granted");

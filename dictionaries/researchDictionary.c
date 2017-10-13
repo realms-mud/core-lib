@@ -8,6 +8,7 @@
 
 private string BaseResearch = "lib/modules/research/researchItem.c";
 private string BaseResearchTree = "lib/modules/research/researchTree.c";
+private string ResearchType;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object researchObject(string researchItem)
@@ -393,4 +394,150 @@ public nomask int LimitedSkillModifier(string researchItem, string skill,
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getResearchSourcesForUser(object user)
+{
+    string *ret = ({});
+    if (objectp(user))
+    {
+        string *researchList = user->completedResearch() +
+            user->researchInProgress();
+        if (sizeof(researchList))
+        {
+            foreach(string research in researchList)
+            {
+                object researchObj = researchObject(research);
+                if (researchObj &&
+                    (member(ret, researchObj->query("source")) < 0))
+                {
+                    ret += ({ researchObj->query("source") });
+                }
+            }
+        }
+
+        string *trees = user->availableResearchTrees();
+        if (sizeof(trees))
+        {
+            foreach(string tree in trees)
+            {
+                object treeObj = researchTree(tree);
+                if (treeObj &&
+                    (member(ret, treeObj->Source()) < 0))
+                {
+                    ret += ({ treeObj->Source() });
+                }
+            }
+        }
+    }
+    return ret - ({ 0 });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getResearchDetails(string research)
+{
+    string ret = "";
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping buildResearchList(string *researchList,
+    int startIndex)
+{
+    int index = startIndex;
+    mapping ret = ([]);
+
+    researchList = filter_array(researchList,
+        (: researchObject($1)->query("source") == ResearchType :));
+
+    if (sizeof(researchList))
+    {
+        foreach(string research in researchList)
+        {
+            object researchObj = researchObject(research);
+            if (objectp(researchObj))
+            {
+                string name = researchObj->query("name") || "UNDEFINED";
+                if (sizeof(name) > 20)
+                {
+                    name = name[0..16] + "...";
+                }
+                ret[to_string(index)] = ([
+                    "name": capitalize(name),
+                    "type": research,
+                    "description": getResearchDetails(research)
+                ]);
+            }
+            index++;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping buildResearchTreeList(object user,
+    int startIndex)
+{
+    int index = startIndex;
+    mapping ret = ([]);
+
+    string *trees = filter_array(user->availableResearchTrees(),
+        (: $1->Source() == ResearchType :));
+
+    if (sizeof(trees))
+    {
+        foreach(string tree in trees)
+        {
+            object treeObj = researchTree(tree);
+            string name = treeObj->Name() || "UNDEFINED";
+            if (sizeof(name) > 20)
+            {
+                name = name[0..16] + "...";
+            }
+            ret[to_string(index)] = ([
+                "name": capitalize(name),
+                "description": treeObj->Description(),
+                "type": tree
+            ]);
+            index++;
+
+            object *researchList = sort_array(
+                m_indices(treeObj->getFlattenedResearchTree(user)),
+                (: $1->query("name") > $2->query("name") :));
+
+            if (sizeof(researchList))
+            {
+                string *researchItems = ({ });
+                foreach(object research in researchList)
+                {
+                    if ((research->query("source") == ResearchType) &&
+                        !user->isResearched(program_name(research)) &&
+                        !user->isResearching(program_name(research)))
+                    {
+                        researchItems += ({ program_name(research) });
+                    }
+                }
+                ret += buildResearchList(researchItems, index);
+            }
+            index = sizeof(ret) + startIndex + 1;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getResearchOfType(string type, object user)
+{
+    mapping ret = ([]);
+
+    if (stringp(type) && objectp(user))
+    {
+        ResearchType = type;
+
+        ret = buildResearchList(user->completedResearch() +
+            user->researchInProgress(), sizeof(ret) + 1);
+
+        ret += buildResearchTreeList(user, sizeof(ret) + 1);
+    }
+    return ret;
+}
 

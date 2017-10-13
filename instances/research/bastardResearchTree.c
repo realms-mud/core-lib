@@ -12,5 +12,6 @@ public void reset(int arg)
         researchTree::reset(arg);
         Name("bastard");
         Description("this research tree contains the story arc for the bastard trait.");
+        Source("traits");
     }
 }

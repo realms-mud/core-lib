@@ -223,14 +223,14 @@ public nomask string *availableResearchTrees()
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *completedResearch()
 {
-    return filter_array(m_indices(research), #'isResearched);
+    return filter_array(m_indices(research), #'isResearched) + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *researchInProgress()
 {
     return m_indices(research) -
-        filter_array(m_indices(research), #'isResearched);
+        filter_array(m_indices(research), #'isResearched) + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
