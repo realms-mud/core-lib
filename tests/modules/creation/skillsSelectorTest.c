@@ -39,7 +39,7 @@ void InitialCreationDisplayIsCorrect()
         "\t[[0;31;1m7[0m] - [0;32mSubterfuge          [0m\n"
         "[0;32;1mYou must select a number from 1 to 7. You may also undo or reset.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1mYou have 10 skills left to assign.\n[0m",
+        "[0;32;1mYou have 14 skills left to assign.\n[0m",
         User->caughtMessage());
 }
 
@@ -103,7 +103,7 @@ void SelectSubterfugeDisplaysSubterfugeSkillSubmenu()
 void SelectItemFromSubmenuReturnsToMainAndDecrementsPointsRemaining()
 {
     Selector->initiateSelector(User);
-    ExpectTrue(sizeof(regexp(({ User->caughtMessage() }), "You have 10 skills left")));
+    ExpectTrue(sizeof(regexp(({ User->caughtMessage() }), "You have 14 skills left")));
 
     Selector->applySelection("1");
     ExpectTrue(sizeof(regexp(({ User->caughtMessage() }), "Long sword")));
@@ -111,7 +111,7 @@ void SelectItemFromSubmenuReturnsToMainAndDecrementsPointsRemaining()
     object subselector = all_inventory(User)[0];
     ExpectTrue(objectp(subselector));
     subselector->applySelection("1");
-    ExpectTrue(sizeof(regexp(({ User->caughtMessage() }), "You have 9 skills left")));
+    ExpectTrue(sizeof(regexp(({ User->caughtMessage() }), "You have 13 skills left")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -121,19 +121,19 @@ void SelectAllAvailableSkillsFiresOnSelectorCompleted()
     Selector->registerEvent(subscriber);
     Selector->initiateSelector(User);
 
-    for (int i = 1; i < 11; i++)
+    for (int i = 1; i < 15; i++)
     {
         Selector->applySelection("1");
         ExpectEq(0, subscriber->TimesEventReceived());
 
         object subselector = all_inventory(User)[0];
-        ExpectTrue(objectp(subselector), "aaa");
+        ExpectTrue(objectp(subselector));
         subselector->applySelection(to_string(i));
 
-        if (i < 10)
+        if (i < 14)
         {
             ExpectTrue(sizeof(regexp(({ User->caughtMessage() }),
-                sprintf("You have %d skills left", 10 - i))), "bbb");
+                sprintf("You have %d skills left", 14 - i))));
         }
     }
     ExpectEq(1, subscriber->TimesEventReceived(), "event received once");

@@ -45,7 +45,7 @@ private mapping races = ([
             "sea elf": "seaElf.c"
         ]),
         "starting skill points": 10,
-        "background trait value": 3
+        "background trait value": 4
     ]),
     "dwarf": ([
         "description": "The dwarves are a short, stocky race of people. They generally\n"
@@ -71,8 +71,8 @@ private mapping races = ([
             "Khazurathi dwarf": "khazurathiDwarf.c",
             "Mirosti dwarf": "mirostiDwarf.c"
         ]),
-        "starting skill points": 6,
-        "background trait value": 4
+        "starting skill points": 8,
+        "background trait value": 5
     ]),
     "draconid": ([
         "description": "",
@@ -93,7 +93,7 @@ private mapping races = ([
             "common": 5
         ]),
         "research trees": ({ "lib/instances/research/draconidResearchTree.c" }),
-        "starting skill points": 6,
+        "starting skill points": 8,
         "background trait value": 4
     ]),
     "maegenstryd": ([
@@ -170,7 +170,7 @@ private mapping races = ([
             "common": 8
         ]),
         "starting skill points": 10,
-        "background trait value": 4
+        "background trait value": 5
     ]),
     "half elf": ([
         "description": "",
@@ -226,7 +226,7 @@ private mapping races = ([
             "common": 8
         ]),
         "starting skill points": 10,
-        "background trait value": 4
+        "background trait value": 5
     ]),
     "human": ([
         "description": "Humans are the most common race on Realmsmud. They don't have any\n"
@@ -251,7 +251,7 @@ private mapping races = ([
         "skills": ([
             "common": 5
         ]),
-        "starting skill points": 10,
+        "starting skill points": 14,
         "background trait value": 6
     ]),
     "half troll": ([
@@ -315,7 +315,7 @@ private mapping races = ([
             "moon elf": "echorluinElf.c"
         ]),
         "starting skill points": 6,
-        "background trait value": 2
+        "background trait value": 4
     ])
 ]);
 
