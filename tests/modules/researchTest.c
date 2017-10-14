@@ -138,6 +138,15 @@ void PassiveResearchAttributeBonusesApplied()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void MultipleResearchItemsStackAttributeBonuses()
+{
+    ExpectEq(20, Research->Str(), "initial strength");
+    ExpectTrue(Research->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
+    ExpectTrue(Research->initiateResearch("lib/tests/support/research/secondGrantedResearchItem.c"), "initiate second research");
+    ExpectEq(24, Research->Str(), "after research applied");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void LimitedByIntoxBonusesCorrectlyApplied()
 {
     ExpectEq(({}), Research->researchExtraAttacks(), "initial attacks");

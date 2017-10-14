@@ -178,7 +178,6 @@ public nomask mapping *traitsExtraAttacks()
 public nomask int traitsAttributeBonus(string attribute)
 {
     int ret = 0;
-   
     if(attribute && stringp(attribute))
     {
         string *traitItems = m_indices(traits);
@@ -189,7 +188,7 @@ public nomask int traitsAttributeBonus(string attribute)
                 string method = sprintf("%sBonus", capitalize(attribute));
                 if(function_exists(method, traitDictionary()))
                 {
-                    ret = call_other(traitDictionary(), method, trait);
+                    ret += call_other(traitDictionary(), method, trait);
                 }
             }
         }    

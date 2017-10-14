@@ -545,7 +545,7 @@ public nomask int researchAttributeBonus(string attribute)
                 string method = sprintf("%sBonus", capitalize(attribute));
                 if(function_exists(method, researchDictionary()))
                 {
-                    ret = call_other(researchDictionary(), method, 
+                    ret += call_other(researchDictionary(), method, 
                         researchItem);
                 }
             }

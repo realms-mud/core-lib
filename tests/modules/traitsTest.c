@@ -185,6 +185,15 @@ void TraitAttributeBonusesApplied()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void MultipleTraitsStackAttributeBonuses()
+{
+    ExpectEq(20, Traits->Str(), "initial strength");
+    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"), "add trait");
+    ExpectTrue(Traits->addTrait("lib/modules/traits/genetic/strong.c"), "add trait");
+    ExpectEq(24, Traits->Str(), "after trait strength");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void SetBonusAttackAddsExtraAttack()
 {
     mapping *expectedAttacks = ({ (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"weapon"]), (["attack type":"weapon"]) });
