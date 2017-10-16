@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         passiveResearchItem::reset(arg);
         addPrerequisite("long sword", (["type":"skill", "value" : 10]));
+        addSpecification("description", "This is a description");
         addSpecification("source", "mage guild");
         addSpecification("name", "Spiffy tree root");
         addSpecification("scope", "self");

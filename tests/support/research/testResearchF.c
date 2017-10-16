@@ -12,6 +12,7 @@ public void reset(int arg)
         passiveResearchItem::reset(arg);
         addSpecification("source", "mage guild");
         addSpecification("name", "flambe-maker");
+        addSpecification("description", "This is a description");
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);

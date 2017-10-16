@@ -8,9 +8,11 @@
 virtual inherit "/lib/core/specification.c";
 virtual inherit "/lib/core/prerequisites.c";
 virtual inherit "/lib/commands/baseCommand.c";
-    
+#include "/lib/include/itemFormatters.h"
+
 private nosave string ResearchItemLocation = "lib/modules/research";
-    
+protected nosave string FieldDisplay = "[0;36m%-15s[0m : [0;33m%s[0m\n";
+
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int checkValidType(string typeToCheck)
 {
@@ -232,4 +234,178 @@ public nomask mixed query(string element)
         ret = specification::query(element);
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string timeString(int time)
+{
+    return sprintf("%s%s%s%s%s",
+        ((time / 31557600) ? sprintf("%d year%s ", (time / 31557600),
+        ((time / 31557600) == 1) ? "" : "s") : ""),
+            ((time / 86400) ? sprintf("%d day%s ", ((time % 31557600) / 86400),
+        (((time % 31557600) / 86400) == 1) ? "" : "s") : ""),
+                ((time / 3600) ? sprintf("%d hour%s ", ((time % 86400) / 3600),
+        (((time % 86400) / 3600) == 1) ? "" : "s") : ""),
+                    ((time / 60) ? sprintf("%d minute%s ", ((time % 3600) / 60),
+        (((time % 3600) / 60) == 1) ? "" : "s") : ""),
+        sprintf("%d second%s", (time % 60), (((time % 60) == 1) ? "" : "s")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayCost()
+{
+    string ret = "This research item is granted to the user at a pre-defined time.\n";
+    if (query("research type") == "points")
+    {
+        ret = sprintf("Learning this costs %d research points.\n",
+            query("research cost"));
+    }
+    else if (query("research type") == "timed")
+    {
+        ret = sprintf("Learning this timed research will take %s.\n",
+            timeString(query("research cost")));
+    }
+    return sprintf(Value, ret);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayExtraResearchInformation()
+{
+    string ret = "";
+    string *keys = query("bonuses");
+    if (sizeof(keys))
+    {
+        foreach(string bonus in keys)
+        {
+            ret += sprintf("[0;34;1m(+%d)[0m [0;33mBonus %s[0m\n",
+                query(bonus),
+                capitalize(regreplace(bonus, "bonus (.+)", "\\1")));
+        }
+    }
+    keys = query("penalties");
+    if (sizeof(keys))
+    {
+        foreach(string penalty in keys)
+        {
+            ret += sprintf("[0;31m(%d)[0m [0;33mPenalty to %s[0m\n",
+                query(penalty),
+                capitalize(regreplace(penalty, "bonus (.+)", "\\1")));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayUsageCost()
+{
+    string ret = "";
+
+    string *costs = ({});
+    if (query("hit point cost"))
+    {
+        costs += ({ sprintf("%d hit points", query("hit point cost")) });
+    }
+    if (query("spell point cost"))
+    {
+        costs += ({ sprintf("%d spell points", query("spell point cost")) });
+    }
+    if (query("stamina point cost"))
+    {
+        costs += ({ sprintf("%d stamina points", query("stamina point cost")) });
+    }
+    if (sizeof(costs))
+    {
+        string list = implode(costs, ", ");
+        regreplace(list, ", ([^,]+)$", ", and \\1", 1);
+        ret = sprintf(FieldDisplay, "Cost to use", list);
+    }
+
+    if (query("cooldown"))
+    {
+        ret += sprintf(FieldDisplay, "Usage cooldown", timeString(query("cooldown")));
+    }
+
+    if (displayUsageDetails() != "")
+    {
+        ret += sprintf("[0;36m%-15s[0m : [0;30;1m%s[0m\n",
+            "Command syntax", displayUsageDetails());
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayEffectInformationForType(string type)
+{
+    string ret = "";
+    mapping *formulas = query(type);
+    if (formulas)
+    {
+        foreach(mapping formula in formulas)
+        {
+            string effect = sprintf("%d%% chance to %s",
+                formula["probability"], type);
+            if (member(formula, "base damage"))
+            {
+                effect += sprintf(" %d", formula["base damage"]);
+            }
+            if (member(formula, "range") && formula["range"])
+            {
+                effect += sprintf(" - %d", formula["base damage"] +
+                    formula["range"]);
+            }
+            if (member(formula, "custom method"))
+            {
+                effect += sprintf(" using a custom method");
+            }
+            ret += sprintf(FieldDisplay, "Usage effect", effect);
+
+            mapping *modifiers = query("modifiers");
+            if (modifiers && sizeof(modifiers))
+            {
+                foreach(mapping modifier in modifiers)
+                {
+                    ret += sprintf("%-18s[0;32mModified -> [0;34;1m%1.2f * "
+                        "your %s %s[0m [0;31;1m(%s)[0m\n",
+                        "", modifier["rate"], modifier["name"], 
+                        modifier["type"], modifier["formula"]);
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayEffectInformation()
+{
+    return displayEffectInformationForType("damage hit points") +
+        displayEffectInformationForType("damage spell points") +
+        displayEffectInformationForType("damage stamina points") +
+        displayEffectInformationForType("increase hit points") +
+        displayEffectInformationForType("increase spell points") +
+        displayEffectInformationForType("increase stamina points") +
+        displayEffectInformationForType("decrease intoxication") +
+        displayEffectInformationForType("decrease druggedness") +
+        displayEffectInformationForType("decrease soaked") +
+        displayEffectInformationForType("decrease stuffed") +
+        displayEffectInformationForType("increase intoxication") +
+        displayEffectInformationForType("increase druggedness") +
+        displayEffectInformationForType("increase soaked") +
+        displayEffectInformationForType("increase stuffed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string researchDetails()
+{
+    return sprintf(FieldDisplay, "Research Name", capitalize(query("name"))) +
+        sprintf(Value, query("description")) + "\n" +
+        displayPrerequisites() +
+        displayCost() +
+        sprintf(FieldDisplay, "Research Type", capitalize(query("type"))) +
+        sprintf(FieldDisplay, "Scope", capitalize(query("scope"))) +
+        (query("effect") ? sprintf(FieldDisplay, "Effect", capitalize(query("effect"))) : "") +
+        displayUsageCost() +
+        displayExtraResearchInformation() +
+        displayEffectInformation() + 
+        displayLimiters();
 }

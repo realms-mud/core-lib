@@ -517,4 +517,3 @@ public nomask int applySustainedCost(string modifier)
     }
     return ret;
 }
-

@@ -147,6 +147,24 @@ public nomask int addCommandTemplate(string command)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string displayUsageDetails()
+{
+    string ret = "";
+
+    if (sizeof(commands))
+    {
+        string *commandText = ({});
+        foreach(string command in commands)
+        {
+            commandText += ({ regreplace(command, "##([^#]+)##", "<\\1>", 1) });
+        }
+        ret = implode(commandText, "\n                  ");
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask object messageParser()
 {
     return load_object(MessageParser);

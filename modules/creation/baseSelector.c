@@ -103,7 +103,7 @@ public nomask string displayMessage()
         ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.%s\n", sizeof(choices), AllowUndo ? " You may also undo or reset." : ""));
         if (HasDescription)
         {
-            ret += sprintf(Green, "For details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n");
+            ret += sprintf(Green, "For details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n");
         }
         if (AllowAbort)
         {
@@ -167,7 +167,8 @@ public nomask int applySelection(string arguments)
         ret = Block;
 
         string element;
-        if((sscanf(arguments, "describe %s", element) == 1) &&
+        if(((sscanf(arguments, "describe %s", element) == 1) ||
+            (sscanf(arguments, "? %s", element) == 1)) &&
             member(Data, element) && HasDescription)
         {
             ret = Describe;

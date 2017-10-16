@@ -36,7 +36,7 @@ void InitialCreationDisplayIsCorrect()
         "\t[[0;31;1m1[0m] - [0;32mMale                [0m\n"
         "\t[[0;31;1m2[0m] - [0;32mFemale              [0m\n"
         "[0;32;1mYou must select a number from 1 to 2.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mAvailable traits later in character creation cover gender identity concerns.\n[0m",
         User->caughtMessage());
 }

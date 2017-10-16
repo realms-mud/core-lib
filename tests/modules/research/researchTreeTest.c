@@ -246,6 +246,7 @@ void GetFlattenedResearchTreeForOwnerReturnsFlatListWithDetails()
 {
     mapping expected = ([
         "lib/tests/support/research/testTreeRoot.c":(["researched":1]),
+        "lib/tests/support/research/itemWithModifier.c": (["can research":1]),
         "lib/tests/support/research/testLimitedByIntoxResearchItem.c": (["researched":1]),
         "lib/tests/support/research/mockResearchTimed.c": (["researching":1]),
         "lib/tests/support/research/testResearchA.c" : (["can research": 1 ]),

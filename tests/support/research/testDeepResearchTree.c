@@ -14,6 +14,7 @@ public void reset(int arg)
         Description("this is the land-loving mother pigeon of all research trees");
         Source("mage guild");
         addResearchElement("lib/tests/support/research/testTreeRoot.c");
+        addResearchElement("lib/tests/support/research/itemWithModifier.c");
         addResearchElement("lib/tests/support/research/testLimitedByIntoxResearchItem.c");
         addResearchElement("lib/tests/support/research/mockResearchTimed.c");
         addResearchElement("lib/tests/support/research/testResearchA.c");
@@ -25,6 +26,7 @@ public void reset(int arg)
         addResearchElement("lib/tests/support/research/testResearchG.c");
         TreeRoot("lib/tests/support/research/testTreeRoot.c");
         addChild("lib/tests/support/research/testLimitedByIntoxResearchItem.c", "lib/tests/support/research/testTreeRoot.c");
+        addChild("lib/tests/support/research/itemWithModifier.c", "lib/tests/support/research/testTreeRoot.c");
         addChild("lib/tests/support/research/mockResearchTimed.c", "lib/tests/support/research/testTreeRoot.c");
         addChild("lib/tests/support/research/testResearchA.c", "lib/tests/support/research/testTreeRoot.c");
         addChild("lib/tests/support/research/testResearchB.c", "lib/tests/support/research/testTreeRoot.c");

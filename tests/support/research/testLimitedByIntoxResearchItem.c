@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         passiveResearchItem::reset(arg);
         addSpecification("name", "intox research");
+        addSpecification("description", "This is a description");
         addSpecification("source", "mage guild");
         addSpecification("scope", "self");
         addSpecification("research type", "granted");

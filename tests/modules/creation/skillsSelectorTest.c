@@ -38,7 +38,7 @@ void InitialCreationDisplayIsCorrect()
         "\t[[0;31;1m6[0m] - [0;32mMagic               [0m\n"
         "\t[[0;31;1m7[0m] - [0;32mSubterfuge          [0m\n"
         "[0;32;1mYou must select a number from 1 to 7. You may also undo or reset.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mYou have 14 skills left to assign.\n[0m",
         User->caughtMessage());
 }

@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         passiveResearchItem::reset(arg);
         addSpecification("source", "mage guild");
+        addSpecification("description", "This is a description");
         addSpecification("name", "turnip seclusion");
         addSpecification("scope", "self");
         addSpecification("research type", "points");

@@ -87,7 +87,7 @@ void OnResearchChoiceAvailableSetsUpObjectWhenResearchTitleSet()
 {
     ResearchChooser->setResearchTitle("test choice");
     ResearchChooser->onResearchChoiceAvailable(User, Data);
-    ExpectEq("[0;36mA new research choice is available: [0m[0;37;1mtest choice[0m\n\t[[0;31m1[0m] - [0;32mfirst option[0m\n\t[[0;31m2[0m] - [0;32msecond option[0m\n[0;32;1mYou must select a number from 1 to 2.\n[0m[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m",
+    ExpectEq("[0;36mA new research choice is available: [0m[0;37;1mtest choice[0m\n\t[[0;31m1[0m] - [0;32mfirst option[0m\n\t[[0;31m2[0m] - [0;32msecond option[0m\n[0;32;1mYou must select a number from 1 to 2.\n[0m[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m",
         ResearchChooser->displayMessage());
 }
 

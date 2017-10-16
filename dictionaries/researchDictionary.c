@@ -19,6 +19,7 @@ public nomask object researchObject(string researchItem)
 
     if (researchItem && stringp(researchItem) && researchItem[0] != '/')
     {
+        researchItem = regreplace(researchItem, " ", "_", 1);
         researchItem = "/" + researchItem;
     }
     if(researchItem && stringp(researchItem) && (file_size(researchItem) > 0))
@@ -43,6 +44,7 @@ public nomask object researchTree(string tree)
 
     if (tree && stringp(tree) && tree[0] != '/')
     {
+    tree = regreplace(tree, " ", "_", 1);
         tree = "/" + tree;
     }
 
@@ -433,9 +435,49 @@ public nomask string *getResearchSourcesForUser(object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string bonusName(string bonus)
+{
+    return capitalize(regreplace(bonus, "bonus (.+)", "\\1"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayResearchBonusesAndPenalties(object research)
+{
+    string ret = "";
+    string *keys = research->query("bonuses");
+    if (sizeof(keys))
+    {
+        foreach(string bonus in keys)
+        {
+            ret += sprintf("[0;34;1m(+%d)[0m [0;33mBonus %s[0m\n",
+                research->query(bonus), bonusName(bonus));
+        }
+    }
+    keys = research->query("penalties");
+    if (sizeof(keys))
+    {
+        foreach(string penalty in keys)
+        {
+            ret += sprintf("[0;31m(%d)[0m [0;33mPenalty to %s[0m\n",
+                research->query(penalty), bonusName(penalty));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getResearchDetails(string research)
 {
     string ret = "";
+    object researchObj = researchObject(research);
+    if (researchObj)
+    {
+        ret = researchObj->researchDetails();
+        if (!ret)
+        {
+            ret = "Broken";
+        }
+    }
     return ret;
 }
 
@@ -533,8 +575,8 @@ public nomask mapping getResearchOfType(string type, object user)
     {
         ResearchType = type;
 
-        ret = buildResearchList(user->completedResearch() +
-            user->researchInProgress(), sizeof(ret) + 1);
+        ret = buildResearchList(sort_array(user->completedResearch() +
+            user->researchInProgress(), (: $1 > $2 :)), sizeof(ret) + 1);
 
         ret += buildResearchTreeList(user, sizeof(ret) + 1);
     }

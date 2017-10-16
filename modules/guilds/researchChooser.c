@@ -61,7 +61,7 @@ public string displayMessage()
         }
 
         ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.\n", sizeof(choices)));
-        ret += sprintf(Green, "For details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n");
+        ret += sprintf(Green, "For details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n");
     }
     return ret;
 }
@@ -124,7 +124,8 @@ public int applyResearchChoice(string arguments)
         ret = Block;
 
         string element;
-        if((sscanf(arguments, "describe %s", element) == 1) &&
+        if(((sscanf(arguments, "describe %s", element) == 1) ||
+            (sscanf(arguments, "? %s", element) == 1)) &&
             member(Data, element))
         {
             ret = Describe;

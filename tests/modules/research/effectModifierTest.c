@@ -166,7 +166,7 @@ void ApplyModifiersCorrectlyAddsToSkill()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ApplyModifiersCorrectlySubractsFromAttribute()
+void ApplyModifiersCorrectlySubtractsFromAttribute()
 {
     mapping modifier = ([
         "type":"attribute",

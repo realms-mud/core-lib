@@ -39,7 +39,7 @@ void InitialCreationDisplayIsCorrectForHighElf()
         "\t[[0;31;1m3[0m] - [0;32mMoon elf            [0m\n"
         "\t[[0;31;1m4[0m] - [0;32mDo not add a subrace[0m\n"
         "[0;32;1mYou must select a number from 1 to 4.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());
 }
 
@@ -98,7 +98,7 @@ void InitialCreationDisplayIsCorrectForElf()
         "\t[[0;31;1m4[0m] - [0;32mWood elf            [0m\n"
         "\t[[0;31;1m5[0m] - [0;32mDo not add a subrace[0m\n"
         "[0;32;1mYou must select a number from 1 to 5.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());
 }
 
@@ -152,7 +152,7 @@ void InitialCreationDisplayIsCorrectForDwarf()
         "\t[[0;31;1m2[0m] - [0;32mMirosti dwarf       [0m\n"
         "\t[[0;31;1m3[0m] - [0;32mDo not add a subrace[0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());
 }
 
@@ -272,7 +272,7 @@ void InitialCreationDisplayIsCorrectForHuman()
         "\t[[0;31;1m11[0m] - [0;32mZhenduli            [0m\n"
         "\t[[0;31;1m12[0m] - [0;32mDo not add a subrace[0m\n"
         "[0;32;1mYou must select a number from 1 to 12.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         User->caughtMessage());
 }
 

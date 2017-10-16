@@ -266,5 +266,3 @@ protected nomask int executeInArea(object owner, string researchName)
     }
     return ret;
 }
-
-

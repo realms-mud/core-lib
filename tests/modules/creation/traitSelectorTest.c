@@ -52,7 +52,7 @@ void InitialCreationDisplayIsCorrect()
         "\t[[0;31;1m5[0m] - [0;32mSexuality Traits    [0m\n"
         "\t[[0;31;1m6[0m] - [0;32mExit Trait Selection   [0;31;1m(You will lose unspent trait points!)[0m[0m\n"
         "[0;32;1mYou must select a number from 1 to 6. You may also undo or reset.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mYou have 6 trait points left to assign.\nYou have not yet taken the personality test.\n[0m",
         User->caughtMessage());
 }
@@ -90,7 +90,7 @@ void TakingPersonalityTestShowsThatTestIsCompleted()
         "\t[[0;31;1m5[0m] - [0;32mSexuality Traits    [0m\n"
         "\t[[0;31;1m6[0m] - [0;32mExit Trait Selection   [0;31;1m(You will lose unspent trait points!)[0m[0m\n"
         "[0;32;1mYou must select a number from 1 to 6. You may also undo or reset.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mYou have 6 trait points left to assign.\n[0m",
         User->caughtMessage());
 }
@@ -149,7 +149,7 @@ void EducationalTraitsMenuIsCorrect()
         "\t[[0;31;1m23[0m] - [0;32mUneducated          [0m"
         "\t[[0;31;1m24[0m] - [0;32mReturn to previous menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 24.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mYou may only select a trait once. [0;34;1m(*)[0m [0;32;1mdenotes an already-chosen trait.\n[0m",
         User->caughtMessage());
 
@@ -212,7 +212,7 @@ void GeneticTraitsMenuIsCorrect()
         "\t[[0;31;1m19[0m] - [0;32mWise                [0m"
         "\t[[0;31;1m20[0m] - [0;32mReturn to previous menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 20.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mYou may only select a trait once. [0;34;1m(*)[0m [0;32;1mdenotes an already-chosen trait.\n[0m",
         User->caughtMessage());
 }
@@ -264,7 +264,7 @@ void HealthTraitsMenuIsCorrect()
         "\t[[0;31;1m11[0m] - [0;32mSickly              [0m"
         "\t[[0;31;1m12[0m] - [0;32mReturn to previous menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 12.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mYou may only select a trait once. [0;34;1m(*)[0m [0;32;1mdenotes an already-chosen trait.\n[0m",
         User->caughtMessage());
 }
@@ -309,7 +309,7 @@ void SexualityTraitsMenuIsCorrect()
         "\t[[0;31;1m4[0m] - [0;32mTransgender         [0m\n"
         "\t[[0;31;1m5[0m] - [0;32mReturn to previous menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 5.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' where\nX is the option about which you would like further details.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mYou may only select a trait once. [0;34;1m(*)[0m [0;32;1mdenotes an already-chosen trait.\n[0m",
         User->caughtMessage());
 }

@@ -29,7 +29,8 @@ public nomask int isResearching(string researchItem)
     string *listOfTimedResearch = m_indices(research) -
         filter_array(m_indices(research), #'isResearched);
 
-    return member(listOfTimedResearch, researchItem) > -1;
+    return (member(listOfTimedResearch, researchItem) > -1) ?
+            research[researchItem]["time spent learning"] + 1 : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
