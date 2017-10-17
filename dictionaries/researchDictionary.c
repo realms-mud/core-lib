@@ -482,8 +482,53 @@ public nomask string getResearchDetails(string research)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string displayTreePrerequisites(string researchItem, object user)
+{
+    string ret = "";
+
+    object researchObj = researchObject(researchItem);
+    if (objectp(user) && objectp(researchObj))
+    {
+        string parentInfo = "";
+        string *trees = user->availableResearchTrees();
+        if (sizeof(trees))
+        {
+            string *parents = ({});
+            foreach(string tree in trees)
+            {
+                object treeObj = researchTree(tree);
+                if (objectp(treeObj))
+                {
+                    parents += treeObj->getParents(researchItem);
+                }
+            }
+            if (sizeof(parents))
+            {
+                string *prerequisites = ({});
+                foreach(string parent in parents)
+                {
+                    object research = researchObject(parent);
+                    if (research)
+                    {
+                        string knownTag = user->isResearched(parent) ?
+                            "[0;34;1m" : "[0;31m";
+                        prerequisites += ({ knownTag +
+                            capitalize(research->query("name")) + "[0m" });
+                    }
+                }
+                parentInfo = implode(prerequisites, "[0;33m, ");
+                parentInfo = regreplace(parentInfo, ", ([^,]+)$", " and \\1", 1);
+                ret += sprintf("[0;36m%-15s[0m : %s\n",
+                    "Research Prereqs", parentInfo);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask mapping buildResearchList(string *researchList,
-    int startIndex)
+    int startIndex, object user)
 {
     int index = startIndex;
     mapping ret = ([]);
@@ -504,9 +549,10 @@ private nomask mapping buildResearchList(string *researchList,
                     name = name[0..16] + "...";
                 }
                 ret[to_string(index)] = ([
-                    "name": capitalize(name),
+                    "name":capitalize(name),
                     "type": research,
-                    "description": getResearchDetails(research)
+                    "description": getResearchDetails(research) +
+                        displayTreePrerequisites(research, user)
                 ]);
             }
             index++;
@@ -558,7 +604,7 @@ private nomask mapping buildResearchTreeList(object user,
                         researchItems += ({ program_name(research) });
                     }
                 }
-                ret += buildResearchList(researchItems, index);
+                ret += buildResearchList(researchItems, index, user);
             }
             index = sizeof(ret) + startIndex + 1;
         }
@@ -576,10 +622,15 @@ public nomask mapping getResearchOfType(string type, object user)
         ResearchType = type;
 
         ret = buildResearchList(sort_array(user->completedResearch() +
-            user->researchInProgress(), (: $1 > $2 :)), sizeof(ret) + 1);
+            user->researchInProgress(), (: $1 > $2 :)), sizeof(ret) + 1, user);
 
         ret += buildResearchTreeList(user, sizeof(ret) + 1);
     }
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public mapping getResearchTreeChoices(string type, object user)
+{
+    return ([]);
+}

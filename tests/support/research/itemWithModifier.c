@@ -15,7 +15,7 @@ public void reset(int arg)
         addSpecification("description", "This is limited active research");
         addPrerequisite("long sword", (["type":"skill", "value" : 10]));
         addSpecification("scope", "targeted");
-        addSpecification("research type", "granted");
+        addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("spell point cost", 1);
         addSpecification("limited by", (["equipment":"long sword"]));

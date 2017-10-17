@@ -19,17 +19,19 @@ public nomask void setSource(string source)
 /////////////////////////////////////////////////////////////////////////////
 protected mapping researchMenuSetup(string type)
 {
-    mapping menu = 0;
+    mapping menu = ([]);
     object researchObj = Dictionary->researchObject(type);
     if (researchObj)
     {
         Description = "Details:[0m\n" + 
-            Dictionary->getResearchDetails(type);
+            Dictionary->getResearchDetails(type) +
+            Dictionary->displayTreePrerequisites(type, User);
+
         if (User->isResearching(type))
         {
             ChosenItem = type;
             NumColumns = 1;
-            Description +=
+            Description += 
                 sprintf("[0;31;1mYou still have another %s before "
                     "research is completed.[0m\n", researchObj->timeString(
                         researchObj->query("research cost") -
@@ -51,14 +53,14 @@ protected mapping researchMenuSetup(string type)
     }
 
     researchObj = Dictionary->researchTree(type);
-    if (!menu && researchObj)
+    if (!sizeof(menu) && researchObj)
     {
         NumColumns = 2;
         Description = "Details:[0m\n" +
             Dictionary->getResearchTreeDetails(type);
         menu = Dictionary->getResearchTreeChoices(type, User);
     }
-    else if (!menu)
+    else if (!sizeof(menu))
     {
         NumColumns = 2;
         menu = Dictionary->getResearchOfType(type, User);

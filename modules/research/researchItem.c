@@ -399,13 +399,13 @@ public nomask string researchDetails()
 {
     return sprintf(FieldDisplay, "Research Name", capitalize(query("name"))) +
         sprintf(Value, query("description")) + "\n" +
-        displayPrerequisites() +
         displayCost() +
         sprintf(FieldDisplay, "Research Type", capitalize(query("type"))) +
         sprintf(FieldDisplay, "Scope", capitalize(query("scope"))) +
         (query("effect") ? sprintf(FieldDisplay, "Effect", capitalize(query("effect"))) : "") +
         displayUsageCost() +
         displayExtraResearchInformation() +
-        displayEffectInformation() + 
-        displayLimiters();
+        displayEffectInformation() +
+        displayLimiters() +
+        displayPrerequisites();
 }

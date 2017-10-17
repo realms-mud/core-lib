@@ -292,3 +292,16 @@ public nomask int addResearchElement(string location)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getParents(string researchItem)
+{
+    string *ret = ({});
+    if (member(tree, researchItem) && 
+        member(tree[researchItem], "parents") &&
+        sizeof(tree[researchItem]["parents"]))
+    {
+        ret += tree[researchItem]["parents"];
+    }
+    return ret;
+}
