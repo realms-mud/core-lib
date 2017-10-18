@@ -15,6 +15,7 @@ protected int AllowUndo = 1;
 protected int AllowAbort = 0;
 protected int NumColumns = 1;
 protected int HasDescription = 1;
+protected int SuppressColon = 0;
 protected string Type = "Character creation";
 
 private string *UndoLog = ({ });
@@ -76,8 +77,9 @@ public nomask string displayMessage()
     
     if(Data && sizeof(Data))
     {
-        ret = sprintf(Cyan + BoldWhite + ":\n", 
-            sprintf("%s - ", Type), Description);
+        ret = sprintf(Cyan + BoldWhite + "%s", 
+            sprintf("%s - ", Type), Description,
+            (!SuppressColon ? ":\n" : "\n"));
 
         string *choices = sort_array(m_indices(Data), "sortMethod");
 

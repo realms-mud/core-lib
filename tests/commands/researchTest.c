@@ -111,7 +111,7 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
         "[0;36mPrerequisites:[0m\n"
         "	[0;36mSkill[0m: [0;35mLong sword of 10[0m\n"
         "[0;36mResearch Prereqs[0m : [0;34;1mSpiffy tree root[0m\n"
-        "[0m:\n"
+        "[0m\n"
         "	[[0;31;1m1[0m] - [0;32mReturn to previous menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 1.\n"
         "[0m[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
@@ -177,7 +177,7 @@ void DescribeShowsResearchDetails()
         "[0;36mScope          [0m : [0;33mSelf[0m\n"
         "[0;34;1m(+2)[0m [0;33mBonus Long sword[0m\n"
         "[0;36mResearch Prereqs[0m : [0;31mZap thingy[0m[0;33m and [0;31mGrebe of obstinance[0m\n"
-        "[0m:\n"
+        "[0m\n"
         "	[[0;31;1m1[0m] - [0;32mReturn to previous menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 1.\n"
         "[0m[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
@@ -197,4 +197,92 @@ void ResearchInProcessOfBeingResearchedShowsTimeLeft()
 
     ExpectSubStringMatch("You still have another 9 seconds before research is completed.",
         Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResearchTreesAreProperlyDisplayed()
+{
+    Player->addResearchPoints(1);
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/itemWithModifier.c"), "d");
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("4", Player);
+
+    ExpectEq("[0;36mResearch - [0m[0;37;1mDetails:[0m\n"
+        "[0;36mResearch Tree  [0m : [0;33mTree of researchiness[0m\n"
+        "[0;33mthis is the land-loving mother pigeon of all research trees[0m\n"
+        "[0;33mThe tree offers the following research items:[0m\n"
+        "[0;30;1m[0;34;1mSpiffy tree root[0m\n"
+        "[0;30;1m  |-- [0;33mIntox research[0m\n"
+        "[0;30;1m        |-- [0;31mHand of fist[0m\n"
+        "[0;30;1m        |-- [0;31mGrebe of obstinance[0m\n"
+        "[0;30;1m              |-- [0;31mGrog's revenge[0m\n"
+        "[0;30;1m  |-- [0;34;1mZorlak's revenge[0m\n"
+        "[0;30;1m  |-- [0;35mMock research[0m\n"
+        "[0;30;1m  |-- [0;33mWeasel inversion[0m\n"
+        "[0;30;1m  |-- [0;33mTurnip seclusion[0m\n"
+        "[0;30;1m        |-- [0;31mGrebe of obstinance[0m\n"
+        "[0;30;1m              |-- [0;31mGrog's revenge[0m\n"
+        "[0;30;1m        |-- [0;31mZap thingy[0m\n"
+        "[0;30;1m              |-- [0;31mFlambe-maker[0m\n"
+        "[0;30;1m              |-- [0;31mGrog's revenge[0m\n"
+        "[0m\n"
+        "	[[0;31;1m1[0m]  - [0;32mSpiffy tree root    [0m[0;34;1m (*)[0m	[[0;31;1m2[0m]  - [0;32mFlambe-maker        [0m[0;31m (X)[0m\n"
+        "	[[0;31;1m3[0m]  - [0;32mGrebe of obstinance [0m[0;31m (X)[0m	[[0;31;1m4[0m]  - [0;32mGrog's revenge      [0m[0;31m (X)[0m\n"
+        "	[[0;31;1m5[0m]  - [0;32mHand of fist        [0m[0;31m (X)[0m	[[0;31;1m6[0m]  - [0;32mIntox research      [0m\n"
+        "	[[0;31;1m7[0m]  - [0;32mMock research       [0m[0;35m (!)[0m	[[0;31;1m8[0m]  - [0;32mTurnip seclusion    [0m\n"
+        "	[[0;31;1m9[0m]  - [0;32mWeasel inversion    [0m	[[0;31;1m10[0m] - [0;32mZap thingy          [0m[0;31m (X)[0m\n"
+        "	[[0;31;1m11[0m] - [0;32mZorlak's revenge    [0m[0;34;1m (*)[0m	[[0;31;1m12[0m] - [0;32mReturn to previous menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 12.\n"
+        "[0m[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "[0m[0;32;1m[0;34;1m(*)[0m[0;32;1m denotes already-chosen research while [0;35m(!)[0m[0;32;1m denotes research in progress.\n"
+        "Research denoted [0;31m(X)[0m[0;32;1m cannot yet be learned - view description for details.[0m\n"
+        "[0m",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectingToLearnResearchWhenPointsAvailableResearchesItem()
+{
+    Player->addResearchPoints(1);
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("12", Player);
+    ExpectFalse(Player->isResearched("lib/tests/support/research/itemWithModifier.c"));
+    ExpectEq(1, Player->researchPoints());
+    command("1", Player);
+    ExpectTrue(Player->isResearched("lib/tests/support/research/itemWithModifier.c"));
+    ExpectEq(0, Player->researchPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectingToReturnDoesNotInitiateResearch()
+{
+    Player->addResearchPoints(1);
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("12", Player);
+    ExpectFalse(Player->isResearched("lib/tests/support/research/itemWithModifier.c"));
+    ExpectEq(1, Player->researchPoints());
+    command("2", Player);
+    ExpectFalse(Player->isResearched("lib/tests/support/research/itemWithModifier.c"));
+    ExpectEq(1, Player->researchPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectingToLearnTimedResearchDoesNotUsePointsAndInitiatesResearching()
+{
+    Player->addResearchPoints(1);
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("9", Player);
+    ExpectFalse(Player->isResearched("lib/tests/support/research/testResearchB.c"));
+    ExpectFalse(Player->isResearching("lib/tests/support/research/testResearchB.c"));
+    ExpectEq(1, Player->researchPoints());
+    command("1", Player);
+    ExpectFalse(Player->isResearched("lib/tests/support/research/testResearchB.c"));
+    ExpectTrue(Player->isResearching("lib/tests/support/research/testResearchB.c"));
+    ExpectEq(1, Player->researchPoints());
 }

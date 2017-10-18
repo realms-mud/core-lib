@@ -403,6 +403,7 @@ public nomask string researchDetails()
         sprintf(FieldDisplay, "Research Type", capitalize(query("type"))) +
         sprintf(FieldDisplay, "Scope", capitalize(query("scope"))) +
         (query("effect") ? sprintf(FieldDisplay, "Effect", capitalize(query("effect"))) : "") +
+        (query("duration") ? sprintf(FieldDisplay, "Duration", timeString(query("duration"))) : "") +
         displayUsageCost() +
         displayExtraResearchInformation() +
         displayEffectInformation() +

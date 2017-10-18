@@ -14,8 +14,8 @@ public void reset(int arg)
         addSpecification("description", "This is a description");
         addSpecification("name", "turnip seclusion");
         addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
+        addSpecification("research type", "timed");
+        addSpecification("research cost", 20);
         addSpecification("bonus long sword", 2);
     }
 }

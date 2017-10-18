@@ -6,7 +6,6 @@ inherit "/lib/modules/creation/baseSelector.c";
 
 private object Dictionary;
 private string Source;
-private string ChosenItem;
 private object SubselectorObj;
 private int TotalPoints;
 
@@ -23,13 +22,13 @@ protected mapping researchMenuSetup(string type)
     object researchObj = Dictionary->researchObject(type);
     if (researchObj)
     {
+        SuppressColon = 1;
         Description = "Details:[0m\n" + 
             Dictionary->getResearchDetails(type) +
             Dictionary->displayTreePrerequisites(type, User);
 
         if (User->isResearching(type))
         {
-            ChosenItem = type;
             NumColumns = 1;
             Description += 
                 sprintf("[0;31;1mYou still have another %s before "
@@ -40,7 +39,9 @@ protected mapping researchMenuSetup(string type)
 
         if (!User->isResearched(type) && !User->isResearching(type) &&
             User->canResearch(type) && 
-            (User->researchPoints() >= researchObj->query("research cost")))
+            ((researchObj->query("research type") == "timed") ||
+            ((researchObj->query("research type") == "points") &&
+            (User->researchPoints() >= researchObj->query("research cost")))))
         {
             menu = ([ 
                 "1": ([
@@ -55,9 +56,10 @@ protected mapping researchMenuSetup(string type)
     researchObj = Dictionary->researchTree(type);
     if (!sizeof(menu) && researchObj)
     {
+        SuppressColon = 1;
         NumColumns = 2;
         Description = "Details:[0m\n" +
-            Dictionary->getResearchTreeDetails(type);
+            Dictionary->getResearchTreeDetails(type, User);
         menu = Dictionary->getResearchTreeChoices(type, User);
     }
     else if (!sizeof(menu))
@@ -111,7 +113,7 @@ protected nomask int processSelection(string selection)
         if (Data[selection]["type"] == "learn")
         {
             ret = 1;
-            User->initiateResearch(ChosenItem);
+            User->initiateResearch(Source);
         }
         if (!ret)
         {
@@ -129,7 +131,7 @@ protected nomask int processSelection(string selection)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string selection()
 {
-    return ChosenItem;
+    return Source;
 }
 
 /////////////////////////////////////////////////////////////////////////////

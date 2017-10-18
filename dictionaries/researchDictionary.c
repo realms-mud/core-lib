@@ -482,6 +482,22 @@ public nomask string getResearchDetails(string research)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string getResearchTreeDetails(string research, object user)
+{
+    string ret = "";
+    object researchObj = researchTree(research);
+    if (researchObj)
+    {
+        ret = researchObj->researchTreeDetails(user);
+        if (!ret)
+        {
+            ret = "Broken";
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string displayTreePrerequisites(string researchItem, object user)
 {
     string ret = "";
@@ -562,32 +578,32 @@ private nomask mapping buildResearchList(string *researchList,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping buildResearchTreeList(object user,
-    int startIndex)
+private nomask varargs mapping buildResearchTreeList(string *trees, 
+    object user, int startIndex, int hideTree)
 {
     int index = startIndex;
     mapping ret = ([]);
-
-    string *trees = filter_array(user->availableResearchTrees(),
-        (: $1->Source() == ResearchType :));
 
     if (sizeof(trees))
     {
         foreach(string tree in trees)
         {
             object treeObj = researchTree(tree);
-            string name = treeObj->Name() || "UNDEFINED";
-            if (sizeof(name) > 20)
-            {
-                name = name[0..16] + "...";
-            }
-            ret[to_string(index)] = ([
-                "name": capitalize(name),
-                "description": treeObj->Description(),
-                "type": tree
-            ]);
-            index++;
 
+            if (!hideTree)
+            {
+                string name = treeObj->Name() || "UNDEFINED";
+                if (sizeof(name) > 20)
+                {
+                    name = name[0..16] + "...";
+                }
+                ret[to_string(index)] = ([
+                    "name":capitalize(name),
+                        "description" : treeObj->Description(),
+                        "type" : tree
+                ]);
+                index++;
+            }
             object *researchList = sort_array(
                 m_indices(treeObj->getFlattenedResearchTree(user)),
                 (: $1->query("name") > $2->query("name") :));
@@ -598,8 +614,9 @@ private nomask mapping buildResearchTreeList(object user,
                 foreach(object research in researchList)
                 {
                     if ((research->query("source") == ResearchType) &&
-                        !user->isResearched(program_name(research)) &&
-                        !user->isResearching(program_name(research)))
+                        ((!user->isResearched(program_name(research)) &&
+                        !user->isResearching(program_name(research))) ||
+                            hideTree))
                     {
                         researchItems += ({ program_name(research) });
                     }
@@ -624,7 +641,10 @@ public nomask mapping getResearchOfType(string type, object user)
         ret = buildResearchList(sort_array(user->completedResearch() +
             user->researchInProgress(), (: $1 > $2 :)), sizeof(ret) + 1, user);
 
-        ret += buildResearchTreeList(user, sizeof(ret) + 1);
+        ret += buildResearchTreeList(
+            filter_array(user->availableResearchTrees(),
+            (: $1->Source() == ResearchType :)),
+            user, sizeof(ret) + 1);
     }
     return ret;
 }
@@ -632,5 +652,16 @@ public nomask mapping getResearchOfType(string type, object user)
 /////////////////////////////////////////////////////////////////////////////
 public mapping getResearchTreeChoices(string type, object user)
 {
-    return ([]);
+    mapping ret = ([]);
+
+    if (stringp(type) && objectp(user))
+    {
+        object tree = researchTree(type);
+        if (tree)
+        {
+            ResearchType = tree->Source();
+        }
+        ret += buildResearchTreeList(({ type }), user, 1, 1);
+    }
+    return ret;
 }
