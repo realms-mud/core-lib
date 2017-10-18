@@ -295,6 +295,56 @@ void UnarmedIsAValidSkill()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void AcrobaticsIsAValidSkill()
+{
+    ExpectTrue(Dictionary->isValidSkill("acrobatics"), "acrobatics is a valid skill");
+    ExpectEq("crafting", Dictionary->skillType("acrobatics"), "returns proper skill type");
+    ExpectEq("dexterity", Dictionary->attributeForSkill("acrobatics"), "returns proper attribute");
+    ExpectEq(5, Dictionary->skillBonus("acrobatics", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(-5, Dictionary->skillBonus("acrobatics", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AerophoneIsAValidSkill()
+{
+    ExpectTrue(Dictionary->isValidSkill("aerophone crafting"), "aerophone crafting is a valid skill");
+    ExpectEq("crafting", Dictionary->skillType("aerophone crafting"), "returns proper skill type");
+    ExpectEq("wisdom", Dictionary->attributeForSkill("aerophone crafting"), "returns proper attribute");
+    ExpectEq(5, Dictionary->skillBonus("aerophone crafting", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(-5, Dictionary->skillBonus("aerophone crafting", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void BrewingIsAValidSkill()
+{
+    ExpectTrue(Dictionary->isValidSkill("brewing"), "brewing is a valid skill");
+    ExpectEq("crafting", Dictionary->skillType("brewing"), "returns proper skill type");
+    ExpectEq("wisdom", Dictionary->attributeForSkill("brewing"), "returns proper attribute");
+    ExpectEq(5, Dictionary->skillBonus("brewing", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(-5, Dictionary->skillBonus("brewing", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DrumCraftingIsAValidSkill()
+{
+    ExpectTrue(Dictionary->isValidSkill("drum crafting"), "drum crafting is a valid skill");
+    ExpectEq("crafting", Dictionary->skillType("drum crafting"), "returns proper skill type");
+    ExpectEq("wisdom", Dictionary->attributeForSkill("drum crafting"), "returns proper attribute");
+    ExpectEq(5, Dictionary->skillBonus("drum crafting", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(-5, Dictionary->skillBonus("drum crafting", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LuthieryIsAValidSkill()
+{
+    ExpectTrue(Dictionary->isValidSkill("luthiery"), "luthiery is a valid skill");
+    ExpectEq("crafting", Dictionary->skillType("luthiery"), "returns proper skill type");
+    ExpectEq("wisdom", Dictionary->attributeForSkill("luthiery"), "returns proper attribute");
+    ExpectEq(5, Dictionary->skillBonus("luthiery", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(-5, Dictionary->skillBonus("luthiery", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ArmorerIsAValidSkill()
 {
     ExpectTrue(Dictionary->isValidSkill("armorer"), "armorer is a valid skill");
@@ -705,6 +755,16 @@ void ZoologyIsAValidSkill()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void BluffIsAValidSkill()
+{
+    ExpectTrue(Dictionary->isValidSkill("bluff"), "bluff is a valid skill");
+    ExpectEq("subterfuge", Dictionary->skillType("bluff"), "returns proper skill type");
+    ExpectEq("charisma", Dictionary->attributeForSkill("bluff"), "returns proper attribute");
+    ExpectEq(5, Dictionary->skillBonus("bluff", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(0, Dictionary->skillBonus("bluff", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ClimbIsAValidSkill()
 {
     ExpectTrue(Dictionary->isValidSkill("climb"), "climb is a valid skill");
@@ -892,6 +952,16 @@ void PersuasionIsAValidSkill()
     ExpectEq("charisma", Dictionary->attributeForSkill("persuasion"), "returns proper attribute");
     ExpectEq(5, Dictionary->skillBonus("persuasion", 10), "skill of 10 returns a 5 bonus");
     ExpectEq(0, Dictionary->skillBonus("persuasion", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IntimidationIsAValidSkill()
+{
+    ExpectTrue(Dictionary->isValidSkill("intimidation"), "intimidation is a valid skill");
+    ExpectEq("general", Dictionary->skillType("intimidation"), "returns proper skill type");
+    ExpectEq("charisma", Dictionary->attributeForSkill("intimidation"), "returns proper attribute");
+    ExpectEq(5, Dictionary->skillBonus("intimidation", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(0, Dictionary->skillBonus("intimidation", 0), "returns correct value when untrained");
 }
 
 /////////////////////////////////////////////////////////////////////////////

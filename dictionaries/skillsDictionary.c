@@ -297,6 +297,23 @@ private mapping skills = ([
             "like a chicken with its head cut off or gesticulating like a poor sot who has an\n"
             "army of ants in his/her pants.\n"
     ]),
+    "acrobatics": ([
+        "type": "crafting",
+        "attribute": "dexterity",
+        "bonus calculator": "one for two",
+        "untrained penalty": -5,
+        "description": "This skill allows a character to tumble, perform somersaults, and other complex\n"
+            "motions and feats of corporeal dexterity.\n"
+    ]),
+    "brewing": ([
+        "type": "crafting",
+        "attribute": "wisdom",
+        "bonus calculator": "one for two",
+        "untrained penalty": -5,
+        "description": "This skill allows a character to create liquid substances - be they amazing\n"
+            "beverages of fermented barley goodness or acrid potions that require\n"
+            "distillation.\n"
+    ]),
     "gem crafting": ([
         "type": "crafting",
         "attribute": "intelligence",
@@ -314,6 +331,31 @@ private mapping skills = ([
         "untrained penalty": -5,
         "description": "Leatherworking allows the character to tan and treat leather. The character\n"
             "also has the ability to create clothing, armor, backpacks, saddles, and so on.\n"
+    ]),
+    "luthiery": ([
+        "type": "crafting",
+        "attribute": "wisdom",
+        "bonus calculator": "one for two",
+        "untrained penalty": -5,
+        "description": "Lutheiry allows the character to build, repair, and modify stringed musical\n"
+            "instruments such as the lute, guitar, harp, and violin.\n"
+    ]),
+    "drum crafting": ([
+        "type": "crafting",
+        "attribute": "wisdom",
+        "bonus calculator": "one for two",
+        "untrained penalty": -5,
+        "description": "Drum crafting allows the character to build, repair, and modify percussive\n"
+            "musical instruments such as the drum, chimes, bells, and cymbals.\n"
+    ]),
+    "aerophone crafting": ([
+        "type": "crafting",
+        "attribute": "wisdom",
+        "bonus calculator": "one for two",
+        "untrained penalty": -5,
+        "description": "Aerophone crafting allows the character to build, repair, and modify\n"
+            "musical instruments that make their sounds via moving columns of air such \n"
+            "as woodwind (flute, oboe, etc) and brass (horn, trumpet, etc) instruments.\n"
     ]),
     "metal crafting": ([
         "type": "crafting",
@@ -665,6 +707,15 @@ private mapping skills = ([
             "or thing. The change is not magical in nature, and given time, the\n"
             "disguise or obscurement can be broken through.\n"
     ]),
+    "bluff": ([
+        "type": "subterfuge",
+        "attribute": "charisma",
+        "bonus calculator": "one for two",
+        "untrained penalty": 0,
+        "description": "This skill used to coax others to do or see things your way when you are\n"
+            "in point of fact, absolutely full of shit. In other words, it is persuasion\n"
+            "through the art of deception.\n"
+    ]),
     "find traps": ([
         "type": "subterfuge",
         "attribute": "wisdom",
@@ -807,6 +858,15 @@ private mapping skills = ([
         "bonus calculator": "one for two",
         "untrained penalty": 0,
         "description": "Persuasion is the art of convincing others to think or do what you wish them to.\n"
+    ]),
+    "intimidation": ([
+        "type":"general",
+            "attribute" : "charisma",
+            "bonus calculator" : "one for two",
+            "untrained penalty" : 0,
+            "description" : "Intimidation is the art of convincing others to think or do what you wish them\n"
+            "to through both subtle and not-so-subtle applications of fear or via one's.\n"
+            "daunting or awe-inspiring presence.\n"
     ]),
     "barter": ([
         "type": "general",

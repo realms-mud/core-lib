@@ -129,22 +129,25 @@ void CoFlagOnlyDisplaysCombatSkills()
 /////////////////////////////////////////////////////////////////////////////
 void CraftingFlagOnlyDisplaysCraftingSkills()
 {
-    Player->addSkillPoints(184);
+    Player->addSkillPoints(225);
     PrepSkillsOfType("crafting");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Crafting Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Armorer", 0, "", "Blacksmithing", 1, "") +
-        sprintf(SkillsRow, "Bowyer and fletcher", 2, "", "Carpentry", 3, "") +
-        sprintf(SkillsRow, "Dancing", 4, "", "Gem crafting", 5, "") +
-        sprintf(SkillsRow, "Instrument: bowed", 6, "", "Instrument: brass", 7, "") +
-        sprintf(SkillsRow, "Instrument: percussion", 8, "", "Instrument: plucked", 9, "") +
-        sprintf(SkillsRow, "Instrument: woodwind", 0, "", "Leatherworking", 1, "") +
-        sprintf(SkillsRow, "Metal crafting", 2, "", "Mining", 3, "") +
-        sprintf(SkillsRow, "Pottery", 4, "", "Sculpture", 5, "") +
-        sprintf(SkillsRow, "Sewing", 6, "", "Singing", 7, "") +
-        sprintf(SkillsRow, "Stonemasonry", 8, "", "Weapon smithing", 9, "") +
-        sprintf(SkillsRow, "Weaving and beadwork", 0, "", "Wood crafting", 1, "") +
-        EndBar + sprintf(SkillPoints, 2);
+        sprintf(SkillsRow, "Acrobatics", 0, "", "Aerophone crafting", 1, "") +
+        sprintf(SkillsRow, "Armorer", 2, "", "Blacksmithing", 3, "") +
+        sprintf(SkillsRow, "Bowyer and fletcher", 4, "", "Brewing", 5, "") +
+        sprintf(SkillsRow, "Carpentry", 6, "", "Dancing", 7, "") +
+        sprintf(SkillsRow, "Drum crafting", 8, "", "Gem crafting", 9, "") +
+        sprintf(SkillsRow, "Instrument: bowed", 0, "", "Instrument: brass", 1, "") +
+        sprintf(SkillsRow, "Instrument: percussion", 2, "", "Instrument: plucked", 3, "") +
+        sprintf(SkillsRow, "Instrument: woodwind", 4, "", "Leatherworking", 5, "") +
+        sprintf(SkillsRow, "Luthiery", 6, "", "Metal crafting", 7, "") +
+        sprintf(SkillsRow, "Mining", 8, "", "Pottery", 9, "") +
+        sprintf(SkillsRow, "Sculpture", 0, "", "Sewing", 1, "") +
+        sprintf(SkillsRow, "Singing", 2, "", "Stonemasonry", 3, "") +
+        sprintf(SkillsRow, "Weapon smithing", 4, "", "Weaving and beadwork", 5, "") +
+        sprintf(HalfRow, "Wood crafting", 6, "", "") +
+        EndBar + sprintf(SkillPoints, 3);
 
     ExpectTrue(Player->executeCommand("skills -crafting"));
     ExpectEq(message, Player->caughtMessage());
@@ -153,22 +156,25 @@ void CraftingFlagOnlyDisplaysCraftingSkills()
 /////////////////////////////////////////////////////////////////////////////
 void CrFlagOnlyDisplaysCraftingSkills()
 {
-    Player->addSkillPoints(184);
+    Player->addSkillPoints(225);
     PrepSkillsOfType("crafting");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Crafting Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Armorer", 0, "", "Blacksmithing", 1, "") +
-        sprintf(SkillsRow, "Bowyer and fletcher", 2, "", "Carpentry", 3, "") +
-        sprintf(SkillsRow, "Dancing", 4, "", "Gem crafting", 5, "") +
-        sprintf(SkillsRow, "Instrument: bowed", 6, "", "Instrument: brass", 7, "") +
-        sprintf(SkillsRow, "Instrument: percussion", 8, "", "Instrument: plucked", 9, "") +
-        sprintf(SkillsRow, "Instrument: woodwind", 0, "", "Leatherworking", 1, "") +
-        sprintf(SkillsRow, "Metal crafting", 2, "", "Mining", 3, "") +
-        sprintf(SkillsRow, "Pottery", 4, "", "Sculpture", 5, "") +
-        sprintf(SkillsRow, "Sewing", 6, "", "Singing", 7, "") +
-        sprintf(SkillsRow, "Stonemasonry", 8, "", "Weapon smithing", 9, "") +
-        sprintf(SkillsRow, "Weaving and beadwork", 0, "", "Wood crafting", 1, "") +
-        EndBar + sprintf(SkillPoints, 2);
+        sprintf(SkillsRow, "Acrobatics", 0, "", "Aerophone crafting", 1, "") +
+        sprintf(SkillsRow, "Armorer", 2, "", "Blacksmithing", 3, "") +
+        sprintf(SkillsRow, "Bowyer and fletcher", 4, "", "Brewing", 5, "") +
+        sprintf(SkillsRow, "Carpentry", 6, "", "Dancing", 7, "") +
+        sprintf(SkillsRow, "Drum crafting", 8, "", "Gem crafting", 9, "") +
+        sprintf(SkillsRow, "Instrument: bowed", 0, "", "Instrument: brass", 1, "") +
+        sprintf(SkillsRow, "Instrument: percussion", 2, "", "Instrument: plucked", 3, "") +
+        sprintf(SkillsRow, "Instrument: woodwind", 4, "", "Leatherworking", 5, "") +
+        sprintf(SkillsRow, "Luthiery", 6, "", "Metal crafting", 7, "") +
+        sprintf(SkillsRow, "Mining", 8, "", "Pottery", 9, "") +
+        sprintf(SkillsRow, "Sculpture", 0, "", "Sewing", 1, "") +
+        sprintf(SkillsRow, "Singing", 2, "", "Stonemasonry", 3, "") +
+        sprintf(SkillsRow, "Weapon smithing", 4, "", "Weaving and beadwork", 5, "") +
+        sprintf(HalfRow, "Wood crafting", 6, "", "") +
+        EndBar + sprintf(SkillPoints, 3);
 
     ExpectTrue(Player->executeCommand("skills -cr"));
     ExpectEq(message, Player->caughtMessage());
@@ -223,18 +229,18 @@ void EFlagOnlyDisplaysEruditeSkills()
 /////////////////////////////////////////////////////////////////////////////
 void SubterfugeFlagOnlyDisplaysSubterfugeSkills()
 {
-    Player->addSkillPoints(100);
+    Player->addSkillPoints(105);
     PrepSkillsOfType("subterfuge");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Subterfuge Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Climb", 0, "", "Direction sense", 1, "") +
-        sprintf(SkillsRow, "Disable traps", 2, "", "Disguise", 3, "") +
-        sprintf(SkillsRow, "Find traps", 4, "", "Hide", 5, "") +
-        sprintf(SkillsRow, "Listen", 6, "", "Move silently", 7, "") +
-        sprintf(SkillsRow, "Open lock", 8, "", "Search", 9, "") +
-        sprintf(SkillsRow, "Set traps and snares", 0, "", "Spot", 1, "") +
-        sprintf(HalfRow, "Tracking", 2, "", "") +
-        EndBar + sprintf(SkillPoints, 4);
+        sprintf(SkillsRow, "Bluff", 0, "", "Climb", 1, "") +
+        sprintf(SkillsRow, "Direction sense", 2, "", "Disable traps", 3, "") +
+        sprintf(SkillsRow, "Disguise", 4, "", "Find traps", 5, "") +
+        sprintf(SkillsRow, "Hide", 6, "", "Listen", 7, "") +
+        sprintf(SkillsRow, "Move silently", 8, "", "Open lock", 9, "") +
+        sprintf(SkillsRow, "Search", 0, "", "Set traps and snares", 1, "") +
+        sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
+        EndBar + sprintf(SkillPoints, 3);
 
     ExpectTrue(Player->executeCommand("skills -subterfuge"));
     ExpectEq(message, Player->caughtMessage());
@@ -243,18 +249,18 @@ void SubterfugeFlagOnlyDisplaysSubterfugeSkills()
 /////////////////////////////////////////////////////////////////////////////
 void SFlagOnlyDisplaysSubterfugeSkills()
 {
-    Player->addSkillPoints(100);
+    Player->addSkillPoints(105);
     PrepSkillsOfType("subterfuge");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Subterfuge Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Climb", 0, "", "Direction sense", 1, "") +
-        sprintf(SkillsRow, "Disable traps", 2, "", "Disguise", 3, "") +
-        sprintf(SkillsRow, "Find traps", 4, "", "Hide", 5, "") +
-        sprintf(SkillsRow, "Listen", 6, "", "Move silently", 7, "") +
-        sprintf(SkillsRow, "Open lock", 8, "", "Search", 9, "") +
-        sprintf(SkillsRow, "Set traps and snares", 0, "", "Spot", 1, "") +
-        sprintf(HalfRow, "Tracking", 2, "", "") +
-        EndBar + sprintf(SkillPoints, 4);
+        sprintf(SkillsRow, "Bluff", 0, "", "Climb", 1, "") +
+        sprintf(SkillsRow, "Direction sense", 2, "", "Disable traps", 3, "") +
+        sprintf(SkillsRow, "Disguise", 4, "", "Find traps", 5, "") +
+        sprintf(SkillsRow, "Hide", 6, "", "Listen", 7, "") +
+        sprintf(SkillsRow, "Move silently", 8, "", "Open lock", 9, "") +
+        sprintf(SkillsRow, "Search", 0, "", "Set traps and snares", 1, "") +
+        sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
+        EndBar + sprintf(SkillPoints, 3);
 
     ExpectTrue(Player->executeCommand("skills -s"));
     ExpectEq(message, Player->caughtMessage());
@@ -263,7 +269,7 @@ void SFlagOnlyDisplaysSubterfugeSkills()
 /////////////////////////////////////////////////////////////////////////////
 void GeneralFlagOnlyDisplaysGeneralSkills()
 {
-    Player->addSkillPoints(100);
+    Player->addSkillPoints(102);
     PrepSkillsOfType("general");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
@@ -271,10 +277,10 @@ void GeneralFlagOnlyDisplaysGeneralSkills()
         sprintf(SkillsRow, "Barter", 2, "", "Camp skills", 3, "") +
         sprintf(SkillsRow, "Cooking", 4, "", "Diplomacy", 5, "") +
         sprintf(SkillsRow, "Etiquette", 6, "", "Hunting", 7, "") +
-        sprintf(SkillsRow, "Nautical skills", 8, "", "Persuasion", 9, "") +
-        sprintf(SkillsRow, "Rope skills", 0, "", "Swimming", 1, "") +
-        sprintf(HalfRow, "Weather sense", 2, "", "") +
-        EndBar + sprintf(SkillPoints, 4);
+        sprintf(SkillsRow, "Intimidation", 8, "", "Nautical skills", 9, "") +
+        sprintf(SkillsRow, "Persuasion", 0, "", "Rope skills", 1, "") +
+        sprintf(SkillsRow, "Swimming", 2, "", "Weather sense", 3, "") +
+        EndBar + sprintf(SkillPoints, 0);
 
     ExpectTrue(Player->executeCommand("skills -general"));
     ExpectEq(message, Player->caughtMessage());
@@ -283,7 +289,7 @@ void GeneralFlagOnlyDisplaysGeneralSkills()
 /////////////////////////////////////////////////////////////////////////////
 void GFlagOnlyDisplaysGeneralSkills()
 {
-    Player->addSkillPoints(100);
+    Player->addSkillPoints(102);
     PrepSkillsOfType("general");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
@@ -291,10 +297,10 @@ void GFlagOnlyDisplaysGeneralSkills()
         sprintf(SkillsRow, "Barter", 2, "", "Camp skills", 3, "") +
         sprintf(SkillsRow, "Cooking", 4, "", "Diplomacy", 5, "") +
         sprintf(SkillsRow, "Etiquette", 6, "", "Hunting", 7, "") +
-        sprintf(SkillsRow, "Nautical skills", 8, "", "Persuasion", 9, "") +
-        sprintf(SkillsRow, "Rope skills", 0, "", "Swimming", 1, "") +
-        sprintf(HalfRow, "Weather sense", 2, "", "") +
-        EndBar + sprintf(SkillPoints, 4);
+        sprintf(SkillsRow, "Intimidation", 8, "", "Nautical skills", 9, "") +
+        sprintf(SkillsRow, "Persuasion", 0, "", "Rope skills", 1, "") +
+        sprintf(SkillsRow, "Swimming", 2, "", "Weather sense", 3, "") +
+        EndBar + sprintf(SkillPoints, 0);
 
     ExpectTrue(Player->executeCommand("skills -g"));
     ExpectEq(message, Player->caughtMessage());
@@ -387,7 +393,7 @@ void LFlagOnlyDisplaysLanguageSkills()
 /////////////////////////////////////////////////////////////////////////////
 void AllFlagDisplaysAllSkills()
 {
-    Player->addSkillPoints(1000);
+    Player->addSkillPoints(1040);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -413,17 +419,20 @@ void AllFlagDisplaysAllSkills()
         sprintf(HalfRow, "Unarmed", 6, "", "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Crafting Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Armorer", 0, "", "Blacksmithing", 1, "") +
-        sprintf(SkillsRow, "Bowyer and fletcher", 2, "", "Carpentry", 3, "") +
-        sprintf(SkillsRow, "Dancing", 4, "", "Gem crafting", 5, "") +
-        sprintf(SkillsRow, "Instrument: bowed", 6, "", "Instrument: brass", 7, "") +
-        sprintf(SkillsRow, "Instrument: percussion", 8, "", "Instrument: plucked", 9, "") +
-        sprintf(SkillsRow, "Instrument: woodwind", 0, "", "Leatherworking", 1, "") +
-        sprintf(SkillsRow, "Metal crafting", 2, "", "Mining", 3, "") +
-        sprintf(SkillsRow, "Pottery", 4, "", "Sculpture", 5, "") +
-        sprintf(SkillsRow, "Sewing", 6, "", "Singing", 7, "") +
-        sprintf(SkillsRow, "Stonemasonry", 8, "", "Weapon smithing", 9, "") +
-        sprintf(SkillsRow, "Weaving and beadwork", 0, "", "Wood crafting", 1, "");
+        sprintf(SkillsRow, "Acrobatics", 0, "", "Aerophone crafting", 1, "") +
+        sprintf(SkillsRow, "Armorer", 2, "", "Blacksmithing", 3, "") +
+        sprintf(SkillsRow, "Bowyer and fletcher", 4, "", "Brewing", 5, "") +
+        sprintf(SkillsRow, "Carpentry", 6, "", "Dancing", 7, "") +
+        sprintf(SkillsRow, "Drum crafting", 8, "", "Gem crafting", 9, "") +
+        sprintf(SkillsRow, "Instrument: bowed", 0, "", "Instrument: brass", 1, "") +
+        sprintf(SkillsRow, "Instrument: percussion", 2, "", "Instrument: plucked", 3, "") +
+        sprintf(SkillsRow, "Instrument: woodwind", 4, "", "Leatherworking", 5, "") +
+        sprintf(SkillsRow, "Luthiery", 6, "", "Metal crafting", 7, "") +
+        sprintf(SkillsRow, "Mining", 8, "", "Pottery", 9, "") +
+        sprintf(SkillsRow, "Sculpture", 0, "", "Sewing", 1, "") +
+        sprintf(SkillsRow, "Singing", 2, "", "Stonemasonry", 3, "") +
+        sprintf(SkillsRow, "Weapon smithing", 4, "", "Weaving and beadwork", 5, "") +
+        sprintf(HalfRow, "Wood crafting", 6, "", "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Erudite Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Anatomy and physiology", 0, "", "Ancient history", 1, "") +
@@ -442,9 +451,9 @@ void AllFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Barter", 2, "", "Camp skills", 3, "") +
         sprintf(SkillsRow, "Cooking", 4, "", "Diplomacy", 5, "") +
         sprintf(SkillsRow, "Etiquette", 6, "", "Hunting", 7, "") +
-        sprintf(SkillsRow, "Nautical skills", 8, "", "Persuasion", 9, "") +
-        sprintf(SkillsRow, "Rope skills", 0, "", "Swimming", 1, "") +
-        sprintf(HalfRow, "Weather sense", 2, "", "");
+        sprintf(SkillsRow, "Intimidation", 8, "", "Nautical skills", 9, "") +
+        sprintf(SkillsRow, "Persuasion", 0, "", "Rope skills", 1, "") +
+        sprintf(SkillsRow, "Swimming", 2, "", "Weather sense", 3, "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
@@ -467,14 +476,14 @@ void AllFlagDisplaysAllSkills()
         sprintf(HalfRow, "Transformation", 6, "", "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Subterfuge Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Climb", 0, "", "Direction sense", 1, "") +
-        sprintf(SkillsRow, "Disable traps", 2, "", "Disguise", 3, "") +
-        sprintf(SkillsRow, "Find traps", 4, "", "Hide", 5, "") +
-        sprintf(SkillsRow, "Listen", 6, "", "Move silently", 7, "") +
-        sprintf(SkillsRow, "Open lock", 8, "", "Search", 9, "") +
-        sprintf(SkillsRow, "Set traps and snares", 0, "", "Spot", 1, "") +
-        sprintf(HalfRow, "Tracking", 2, "", "") +
-        EndBar + sprintf(SkillPoints, 14);
+        sprintf(SkillsRow, "Bluff", 0, "", "Climb", 1, "") +
+        sprintf(SkillsRow, "Direction sense", 2, "", "Disable traps", 3, "") +
+        sprintf(SkillsRow, "Disguise", 4, "", "Find traps", 5, "") +
+        sprintf(SkillsRow, "Hide", 6, "", "Listen", 7, "") +
+        sprintf(SkillsRow, "Move silently", 8, "", "Open lock", 9, "") +
+        sprintf(SkillsRow, "Search", 0, "", "Set traps and snares", 1, "") +
+        sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
+        EndBar + sprintf(SkillPoints, 2);
 
     ExpectTrue(Player->executeCommand("skills -all"));
     ExpectEq(message, Player->caughtMessage());
@@ -483,7 +492,7 @@ void AllFlagDisplaysAllSkills()
 /////////////////////////////////////////////////////////////////////////////
 void NoFlagDisplaysAllSkills()
 {
-    Player->addSkillPoints(1000);
+    Player->addSkillPoints(1040);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -509,17 +518,20 @@ void NoFlagDisplaysAllSkills()
         sprintf(HalfRow, "Unarmed", 6, "", "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Crafting Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Armorer", 0, "", "Blacksmithing", 1, "") +
-        sprintf(SkillsRow, "Bowyer and fletcher", 2, "", "Carpentry", 3, "") +
-        sprintf(SkillsRow, "Dancing", 4, "", "Gem crafting", 5, "") +
-        sprintf(SkillsRow, "Instrument: bowed", 6, "", "Instrument: brass", 7, "") +
-        sprintf(SkillsRow, "Instrument: percussion", 8, "", "Instrument: plucked", 9, "") +
-        sprintf(SkillsRow, "Instrument: woodwind", 0, "", "Leatherworking", 1, "") +
-        sprintf(SkillsRow, "Metal crafting", 2, "", "Mining", 3, "") +
-        sprintf(SkillsRow, "Pottery", 4, "", "Sculpture", 5, "") +
-        sprintf(SkillsRow, "Sewing", 6, "", "Singing", 7, "") +
-        sprintf(SkillsRow, "Stonemasonry", 8, "", "Weapon smithing", 9, "") +
-        sprintf(SkillsRow, "Weaving and beadwork", 0, "", "Wood crafting", 1, "");
+        sprintf(SkillsRow, "Acrobatics", 0, "", "Aerophone crafting", 1, "") +
+        sprintf(SkillsRow, "Armorer", 2, "", "Blacksmithing", 3, "") +
+        sprintf(SkillsRow, "Bowyer and fletcher", 4, "", "Brewing", 5, "") +
+        sprintf(SkillsRow, "Carpentry", 6, "", "Dancing", 7, "") +
+        sprintf(SkillsRow, "Drum crafting", 8, "", "Gem crafting", 9, "") +
+        sprintf(SkillsRow, "Instrument: bowed", 0, "", "Instrument: brass", 1, "") +
+        sprintf(SkillsRow, "Instrument: percussion", 2, "", "Instrument: plucked", 3, "") +
+        sprintf(SkillsRow, "Instrument: woodwind", 4, "", "Leatherworking", 5, "") +
+        sprintf(SkillsRow, "Luthiery", 6, "", "Metal crafting", 7, "") +
+        sprintf(SkillsRow, "Mining", 8, "", "Pottery", 9, "") +
+        sprintf(SkillsRow, "Sculpture", 0, "", "Sewing", 1, "") +
+        sprintf(SkillsRow, "Singing", 2, "", "Stonemasonry", 3, "") +
+        sprintf(SkillsRow, "Weapon smithing", 4, "", "Weaving and beadwork", 5, "") +
+        sprintf(HalfRow, "Wood crafting", 6, "", "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Erudite Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Anatomy and physiology", 0, "", "Ancient history", 1, "") +
@@ -538,9 +550,9 @@ void NoFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Barter", 2, "", "Camp skills", 3, "") +
         sprintf(SkillsRow, "Cooking", 4, "", "Diplomacy", 5, "") +
         sprintf(SkillsRow, "Etiquette", 6, "", "Hunting", 7, "") +
-        sprintf(SkillsRow, "Nautical skills", 8, "", "Persuasion", 9, "") +
-        sprintf(SkillsRow, "Rope skills", 0, "", "Swimming", 1, "") +
-        sprintf(HalfRow, "Weather sense", 2, "", "");
+        sprintf(SkillsRow, "Intimidation", 8, "", "Nautical skills", 9, "") +
+        sprintf(SkillsRow, "Persuasion", 0, "", "Rope skills", 1, "") +
+        sprintf(SkillsRow, "Swimming", 2, "", "Weather sense", 3, "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
@@ -563,14 +575,14 @@ void NoFlagDisplaysAllSkills()
         sprintf(HalfRow, "Transformation", 6, "", "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Subterfuge Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Climb", 0, "", "Direction sense", 1, "") +
-        sprintf(SkillsRow, "Disable traps", 2, "", "Disguise", 3, "") +
-        sprintf(SkillsRow, "Find traps", 4, "", "Hide", 5, "") +
-        sprintf(SkillsRow, "Listen", 6, "", "Move silently", 7, "") +
-        sprintf(SkillsRow, "Open lock", 8, "", "Search", 9, "") +
-        sprintf(SkillsRow, "Set traps and snares", 0, "", "Spot", 1, "") +
-        sprintf(HalfRow, "Tracking", 2, "", "") +
-        EndBar + sprintf(SkillPoints, 14);
+        sprintf(SkillsRow, "Bluff", 0, "", "Climb", 1, "") +
+        sprintf(SkillsRow, "Direction sense", 2, "", "Disable traps", 3, "") +
+        sprintf(SkillsRow, "Disguise", 4, "", "Find traps", 5, "") +
+        sprintf(SkillsRow, "Hide", 6, "", "Listen", 7, "") +
+        sprintf(SkillsRow, "Move silently", 8, "", "Open lock", 9, "") +
+        sprintf(SkillsRow, "Search", 0, "", "Set traps and snares", 1, "") +
+        sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
+        EndBar + sprintf(SkillPoints, 2);
 
     ExpectTrue(Player->executeCommand("skills"));
     ExpectEq(message, Player->caughtMessage());
