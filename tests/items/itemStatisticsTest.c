@@ -260,7 +260,7 @@ void ArmorStatisticsModifiedByMaterial()
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
         sprintf("\t[0;36m%s: [0m[0;33m%d[0m", "Damage Protection", 10) +
-        sprintf("[0;31m [+%d %s][0m", 3, "air") +
+        sprintf("[0;31m [+%d %s][0m", 3, "electricity") +
         sprintf("[0;31m [+%d %s][0m\n", 3, "fire") +
         sprintf(SingleDetailText, "Encumberance", 32);
 
@@ -282,7 +282,7 @@ void ArmorProtectionNotModifiedBySkill()
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
         sprintf("\t[0;36m%s: [0m[0;33m%d[0m", "Damage Protection", 10) +
-        sprintf("[0;31m [+%d %s][0m", 3, "air") +
+        sprintf("[0;31m [+%d %s][0m", 3, "electricity") +
         sprintf("[0;31m [+%d %s][0m\n", 3, "fire") +
         sprintf(SingleDetailText, "Encumberance", 19);
 

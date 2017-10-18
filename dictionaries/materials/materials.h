@@ -260,6 +260,15 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
     ]),
+    "tin": ([
+        "class": "metal",
+        "crafting skill required": 5,
+        "attack": ([
+            "physical": -1
+        ]),
+        "attack rating": -1,
+        "encumberance": -1,
+    ]),
     "brass": ([
         "class": "metal",
         "crafting skill required": 5,
@@ -286,18 +295,75 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
     ]),
+    "lead": ([
+        "class": "metal",
+        "crafting skill required": 10,
+        "attack": ([
+            "physical": -2
+        ]),
+        "attack rating": -2,
+        "defense": ([
+            "physical": -3,
+            "fire": -5,
+            "acid": 5,
+            "disease": 5
+        ]),
+        "encumberance": 2,
+    ]),
      "platinum": ([
         "class": "metal",
         "crafting skill required": 15,
         "attack": ([
             "physical": -1
         ]),
-        "attack rating": -1,
+        "attack rating": 1,
         "defense": ([
             "physical": -2,
             "acid": 15
         ]),
         "encumberance": 2,
+    ]),
+     "iridium": ([
+        "class": "metal",
+        "crafting skill required": 25,
+        "attack": ([
+            "physical": 1,
+            "fire" : 5
+        ]),
+        "attack rating": 1,
+        "defense": ([
+            "physical": 3,
+            "fire": -5,
+            "acid": 15
+        ]),
+        "encumberance": 3,
+    ]),
+     "osmium": ([
+        "class": "metal",
+        "crafting skill required": 30,
+        "attack": ([
+            "physical": 2,
+            "fire" : 5
+        ]),
+        "attack rating": 1,
+        "defense": ([
+            "physical": 5,
+            "fire": 5,
+            "acid": 15
+        ]),
+        "encumberance": 4,
+    ]),
+    "palladium": ([
+        "class": "metal",
+        "crafting skill required": 10,
+        "attack": ([
+            "physical":-1
+        ]),
+        "attack rating": 1,
+        "defense": ([
+            "fire": -5,
+            "acid": 10
+        ]),
     ]),
    "silver": ([
         "class": "metal",
@@ -313,6 +379,16 @@ private nosave mapping materials =
     ]),
     "nickel": ([
         "class": "metal",
+        "defense": ([
+            "physical": 1
+        ]),
+        "crafting skill required": 20
+    ]),
+    "cobalt": ([
+        "class": "metal",
+        "attack": ([
+            "physical": 1
+        ]),
         "defense": ([
             "physical": 1
         ]),
@@ -346,6 +422,39 @@ private nosave mapping materials =
         ]),
         "encumberance": -4
     ]),
+    "nurilium": ([
+        "class": "metal",
+        "crafting skill required": 35,
+        "attack": ([
+            "physical": 3,
+            "magical": 5,
+            "electricity": 3
+        ]),
+        "attack rating": 5,
+        "defense": ([
+            "physical": 5,
+            "electricity": -3
+        ]),
+        "encumberance": -2
+    ]),
+    "kirdarium": ([
+        "class": "metal",
+        "crafting skill required": 50,
+        "attack": ([
+            "physical": 5,
+            "magical": 5,
+            "energy": 5,
+            "electricity": 5,
+            "cold": 5
+        ]),
+        "attack rating": 10,
+        "defense": ([
+            "physical": 5,
+            "electricity": -5,
+            "cold": -5
+        ]),
+        "encumberance": -1
+    ]),
     "admantite": ([
         "class": "metal",
         "crafting skill required": 20,
@@ -369,7 +478,7 @@ private nosave mapping materials =
         "defense": ([
             "physical": 5,
             "fire": 3,
-            "air": 3
+            "electricity": 3
         ]),
         "encumberance": 2
     ]),
