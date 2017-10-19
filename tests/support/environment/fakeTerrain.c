@@ -7,6 +7,6 @@ inherit "/lib/environment/terrain/baseTerrain.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("forest");
+    Name("fake forest");
     addDescriptionTemplate("a forest");
 }

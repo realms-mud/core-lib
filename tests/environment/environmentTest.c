@@ -331,9 +331,9 @@ void AddFeatureRaisesErrorOnNamingConflict()
 /////////////////////////////////////////////////////////////////////////////
 void AddFeatureRaisesErrorOnFailure()
 {
-    string expected = "*ERROR in environment.c: 'forest' is not a valid feature.\n";
+    string expected = "*ERROR in environment.c: 'fake forest' is not a valid feature.\n";
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment->testAddFeature("forest", "north"));
+    string err = catch (Environment->testAddFeature("fake forest", "north"));
     ExpectEq(expected, err);
 }
 
@@ -357,9 +357,9 @@ void AddItemRaisesErrorOnNamingConflict()
 /////////////////////////////////////////////////////////////////////////////
 void AddItemRaisesErrorOnFailure()
 {
-    string expected = "*ERROR in environment.c: 'forest' is not a valid item.\n";
+    string expected = "*ERROR in environment.c: 'fake forest' is not a valid item.\n";
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment->testAddItem("forest", "north"));
+    string err = catch (Environment->testAddItem("fake forest", "north"));
     ExpectEq(expected, err);
 }
 
@@ -391,9 +391,9 @@ void AddBuildingRaisesErrorOnNamingConflict()
 /////////////////////////////////////////////////////////////////////////////
 void AddBuildingRaisesErrorOnFailure()
 {
-    string expected = "*ERROR in environment.c: 'forest' is not a valid building with a valid location.\n";
+    string expected = "*ERROR in environment.c: 'fake forest' is not a valid building with a valid location.\n";
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment->testAddBuilding("forest", "north"));
+    string err = catch (Environment->testAddBuilding("fake forest", "north"));
     ExpectEq(expected, err);
 }
 
