@@ -7,6 +7,8 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object Item;
+object Chainmail;
+object Weapon;
 object Room;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -28,11 +30,25 @@ void Setup()
 
     Item = clone_object("/lib/tests/support/items/testSword.c");
     move_object(Item, Player);
+
+    Chainmail = clone_object("/lib/items/armor.c");
+    Chainmail->set("armor type", "chainmail");
+    Chainmail->set("name", "chainmail");
+    Chainmail->set("equipment locations", Armor);
+
+    Weapon = clone_object("/lib/items/weapon.c");
+    Weapon->set("Weapon type", "long sword");
+    Weapon->set("aliases", ({ "sword" }));
+
+    move_object(Chainmail, Player);
+    move_object(Weapon, Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    destruct(Weapon);
+    destruct(Chainmail);
     destruct(Item);
     destruct(Player);
     destruct(Room);
@@ -56,13 +72,85 @@ void DropMovesItemFromPersonToEnvironment()
 /////////////////////////////////////////////////////////////////////////////
 void DropAllMovesAllMovableItemsFromPersonToEnvironment()
 {
-    object armor = clone_object("/lib/items/armor.c");
-    armor->set("armor type", "chainmail");
-    armor->set("equipment locations", Armor);
+    ExpectEq(1, sizeof(all_inventory(Room)));
+    ExpectTrue(Player->executeCommand("drop all"));
+    ExpectEq(4, sizeof(all_inventory(Room)));
+}
 
-    move_object(armor, Player);
+/////////////////////////////////////////////////////////////////////////////
+void AFlagDropsAllMovableItemsThatMatchId()
+{
+    ExpectEq(1, sizeof(all_inventory(Room)));
+    ExpectTrue(Player->executeCommand("drop -a sword"));
+    ExpectEq(3, sizeof(all_inventory(Room)));
+    ExpectTrue(present(Weapon, Room));
+    ExpectTrue(present(Item, Room));
+    ExpectTrue(present(Chainmail, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NoAFlagDropsOnlyTopMovableItemThatMatchesId()
+{
+    ExpectEq(1, sizeof(all_inventory(Room)));
+    ExpectTrue(Player->executeCommand("drop sword"));
+    ExpectEq(2, sizeof(all_inventory(Room)));
+    ExpectTrue(present(Weapon, Room));
+    ExpectTrue(present(Item, Player));
+    ExpectTrue(present(Chainmail, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DropDoesNotDropEquippedItemsByDefault()
+{
+    Item->equip("sword");
+    Chainmail->equip("chainmail");
 
     ExpectEq(1, sizeof(all_inventory(Room)));
     ExpectTrue(Player->executeCommand("drop all"));
+    ExpectEq(2, sizeof(all_inventory(Room)));
+    ExpectTrue(present(Weapon, Room), "Weapon in room");
+    ExpectTrue(present(Item, Player), "Item on player");
+    ExpectTrue(present(Chainmail, Player), "Chainmail on player");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DropWithFFlagForcesDropOfEquippedItems()
+{
+    Item->equip("sword");
+    Chainmail->equip("chainmail");
+
+    ExpectEq(1, sizeof(all_inventory(Room)));
+    ExpectTrue(Player->executeCommand("drop -f all"));
+    ExpectEq(4, sizeof(all_inventory(Room)));
+    ExpectTrue(present(Weapon, Room), "Weapon in room");
+    ExpectTrue(present(Item, Room), "Item on player");
+    ExpectTrue(present(Chainmail, Room), "Chainmail on player");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DropWithFAndAFlagsForcesDropOfEquippedItemsOfProperType()
+{
+    Item->equip("sword");
+    Chainmail->equip("chainmail");
+
+    ExpectEq(1, sizeof(all_inventory(Room)));
+    ExpectTrue(Player->executeCommand("drop -a -f sword"));
     ExpectEq(3, sizeof(all_inventory(Room)));
+    ExpectTrue(present(Weapon, Room), "Weapon in room");
+    ExpectTrue(present(Item, Room), "Item on player");
+    ExpectTrue(present(Chainmail, Player), "Chainmail on player");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DropWithAAndFFlagsReversedForcesDropOfEquippedItemsOfProperType()
+{
+    Item->equip("sword");
+    Chainmail->equip("chainmail");
+
+    ExpectEq(1, sizeof(all_inventory(Room)));
+    ExpectTrue(Player->executeCommand("drop -f -a sword"));
+    ExpectEq(3, sizeof(all_inventory(Room)));
+    ExpectTrue(present(Weapon, Room), "Weapon in room");
+    ExpectTrue(present(Item, Room), "Item on player");
+    ExpectTrue(present(Chainmail, Player), "Chainmail on player");
 }

@@ -189,7 +189,7 @@ public nomask string parseVerbDictionary(string message,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-nomask string parseVerbs(string message, int isSecondPerson)
+public nomask string parseVerbs(string message, int isSecondPerson)
 {
     // ##Infinitive::verb## - replaced with 2nd person or 3rd person form
     return regreplace(message, "##Infinitive::[a-z]+##",

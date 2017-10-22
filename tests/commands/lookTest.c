@@ -18,6 +18,7 @@ string Bar = "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 string EquippedItem = "[0;31m| [0m[0;36m%s:%s[0m[0;%sm%s[0m%s\n";
 string nothingEquipped = "[0;31m| [0m[0;36m%s:%s[0m[0;30;1mnothing[0m\n";
 string UnequippedItem = "[0;31m| [0m[0;37;1m%s[0m%s\n";
+string SingleDetailText = "\t[0;36m%s: [0m[0;33m%d[0m\n";
 
 /////////////////////////////////////////////////////////////////////////////
 varargs string BuildInventoryString(mapping equipped, string *unequipped, int verbose)
@@ -303,6 +304,7 @@ void LookAtItemShowsDetails()
     ExpectTrue(Player->executeCommand("look at blah"));
     ExpectEq("Sword of Blah\n" + 
         sprintf(NormalEquipment, "This long sword is typical for its type.\n") + 
+        sprintf(SingleDetailText, "Weight", 5) + 
         sprintf(Unidentified, "This item has not been identified.\n") + "\n",
         Player->caughtMessage());
 }

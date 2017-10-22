@@ -228,7 +228,7 @@ protected nomask string parseTemplate(string template, string perspective,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void displayMessage(string message, object initiator,
+protected nomask varargs void displayMessage(string message, object initiator,
     object target)
 {
     // This annoying loop handles the fact that everyone has different

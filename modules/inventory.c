@@ -743,31 +743,28 @@ public nomask int transferItemsTo(object destination)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// These will need to get fixed after I hack the driver
-public nomask int add_weight(int weightToAdd)
+public nomask int canCarry(object item)
 {
     int ret = 0;
-    
+    int maxWeight = 0;
+    int attemptedLoad = 0;
+    object *items = all_inventory();
+    if (objectp(item))
+    {
+        items += ({ item });
+    }
+    foreach(object itemInInventory in items)
+    {
+        attemptedLoad += itemInInventory->query("weight");
+    }
     object attributes = getService("attributes");
-    if(attributes)
+    if (attributes)
     {
-        int maxWeight = 2 * attributes->Str() + 10;
-        ret = ((weightToAdd + weight) > maxWeight) ? 0 : 1;
-        if (ret)
-        {
-            weight += weightToAdd;
-            if (weight < 0)
-            {
-                weight = 0;
-            }
-        }
+        maxWeight = 2 * attributes->Str() + 10;
     }
-    else
-    {
-        ret = 1;
-    }
-    return ret;
-}    
+    ret = maxWeight - attemptedLoad;
+    return (maxWeight >= attemptedLoad) ? (ret + 1) : 0;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int can_put_and_get()

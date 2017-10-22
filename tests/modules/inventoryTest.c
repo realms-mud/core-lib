@@ -851,12 +851,17 @@ void TransferItemsToDoesNotMoveCursedOrUnmoveableObjects()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void add_weightCorrectlyAddsWeight()
+void CanCarryCorrectlyDeterminesCurrentCarryWeight()
 {
     Inventory->Str(3);
-    ExpectFalse(Inventory->add_weight(20), "Cannot add more than twice your strength + 10");
-    Inventory->Str(10);
-    ExpectTrue(Inventory->add_weight(20), "Can add less than twice your strength + 10");
+    ExpectEq(17, Inventory->canCarry(), "Initial is 2 * Str + 11");
+
+    object item = clone_object("/lib/tests/support/items/testSword.c");
+    move_object(item, Inventory);
+    ExpectEq(10, Inventory->canCarry(), "Galvorn sword by default weighs 7");
+
+    item->set("weight", 50);
+    ExpectFalse(Inventory->canCarry(), "returns false when max carry is exceeded");
 }
 
 /////////////////////////////////////////////////////////////////////////////

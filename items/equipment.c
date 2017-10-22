@@ -118,6 +118,13 @@ public mixed query(string element)
                 materialsObject()->getBlueprintModifier(this_object(), "default encumberance");
             break;
         }
+        case "weight":
+        {
+            ret = member(itemData, "weight") ? itemData["weight"] :
+                materialsObject()->getBlueprintModifier(this_object(), "default weight") +
+                materialsObject()->getMaterialEncumberance(this_object());
+            break;
+        }
         case "material":
         {
             ret = member(itemData, "material") ? itemData["material"] :
@@ -519,11 +526,9 @@ public int equip(string item)
             }
             else
             {
-                write("Ok.\n");
-
                 if (env->has("materialAttributes"))
                 {
-                    say(sprintf("%s equips %s.\n", env->Name(), query("name")));
+                    outputMessageFromTemplate("##UserName## ##Infinitive::equip## " + query("name") + ".\n");
                 }
             }
             if(query("equip method") && 
@@ -591,14 +596,9 @@ public varargs int unequip(string item, int silently)
                     {
                         outputMessageFromTemplate(query("unequip message"));
                     }
-                    else
+                    else if (env->has("materialAttributes"))
                     {
-                        write("Ok.\n");
-                        if (env->has("materialAttributes"))
-                        {
-                            say(sprintf("%s unequips %s.\n", env->Name(),
-                                query("name")));
-                        }
+                        outputMessageFromTemplate("##UserName## ##Infinitive::unequip## " + query("name") + ".\n");
                     }
                 }
                 if(query("unequip method") && 

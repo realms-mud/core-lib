@@ -11,7 +11,8 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        addCommandTemplate("drop [(-a|-f)+] ##Item##");
+        addCommandTemplate("get [-a] ##Item##");
+        addCommandTemplate("pick up [-a] ##Item##");
     }
 }
 
@@ -25,16 +26,13 @@ public nomask int execute(string command, object initiator)
 
     if (TargetString == "all")
     {
-        targets += filter_array(all_inventory(initiator),
-            (: function_exists("drop", $1) && 
-                !$1->query("undroppable") :));
+        targets += filter_array(all_inventory(environment(initiator)),
+            (: $1->get() :));
     }
     else if (sizeof(regexp(({ command }), "-a")))
     {
-        targets += filter_array(all_inventory(initiator),
-            (: function_exists("drop", $1) && 
-                !$1->query("undroppable") &&
-                $1->id(TargetString) :));
+        targets += filter_array(all_inventory(environment(initiator)),
+            (: $1->get() && $1->id(TargetString) :));
     }
     else
     {
@@ -47,10 +45,15 @@ public nomask int execute(string command, object initiator)
         ret = 1;
         foreach(object target in targets)
         {
-            if (!initiator->isEquipped(target) ||
-                sizeof(regexp(({ command }), "-f")))
+            if (initiator->canCarry(target))
             {
-                target->drop();
+                move_object(target, initiator);
+                displayMessage("##InitiatorName## ##Infinitive::pick## up " +
+                    target->query("name") + ".\n", initiator);
+            }
+            else
+            {
+                tell_object(initiator, "You cannot carry any more weight.\n");
             }
         }
     }

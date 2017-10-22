@@ -46,7 +46,9 @@ void MasterworkItemsCorrectlyDisplayed()
 {
     Weapon->set("craftsmanship", 50);
 
-    string expected = sprintf(Masterwork, "This long sword is a masterwork item.\n") + sprintf(Unidentified, "This item has not been identified.\n");
+    string expected = sprintf(Masterwork, "This long sword is a masterwork item.\n") +
+        sprintf(SingleDetailText, "Weight", 5) + 
+        sprintf(Unidentified, "This item has not been identified.\n");
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
 
@@ -55,7 +57,9 @@ void ExceptionalCraftsmanshipItemsCorrectlyDisplayed()
 {
     Weapon->set("craftsmanship", 30);
 
-    string expected = sprintf(WellCrafted, "This long sword is a well-crafted item.\n") + sprintf(Unidentified, "This item has not been identified.\n");
+    string expected = sprintf(WellCrafted, "This long sword is a well-crafted item.\n") +
+        sprintf(SingleDetailText, "Weight", 5) + 
+        sprintf(Unidentified, "This item has not been identified.\n");
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
 
@@ -64,7 +68,9 @@ void EnchantedItemsCorrectlyDisplayed()
 {
     Weapon->set("bonus attack", 1);
 
-    string expected = sprintf(Enchanted, "This long sword is enchanted.\n") + sprintf(Unidentified, "This item has not been identified.\n");
+    string expected = sprintf(Enchanted, "This long sword is enchanted.\n") +
+        sprintf(SingleDetailText, "Weight", 5) + 
+        sprintf(Unidentified, "This item has not been identified.\n");
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
 
@@ -74,14 +80,18 @@ void StrongEnchantmentItemsCorrectlyDisplayed()
     Weapon->set("bonus attack", 5);
     Weapon->set("bonus strength", 5);
 
-    string expected = sprintf(StrongEnchantment, "This long sword is enchanted with a powerful aura.\n") + sprintf(Unidentified, "This item has not been identified.\n");
+    string expected = sprintf(StrongEnchantment, "This long sword is enchanted with a powerful aura.\n") +
+        sprintf(SingleDetailText, "Weight", 5) + 
+        sprintf(Unidentified, "This item has not been identified.\n");
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WeaponStatisticsNotShownWhenNotIdentified()
 {
-    string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") + sprintf(Unidentified, "This item has not been identified.\n");
+    string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") +
+        sprintf(SingleDetailText, "Weight", 5) + 
+        sprintf(Unidentified, "This item has not been identified.\n");
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
@@ -96,7 +106,8 @@ void WeaponStatisticsWithDetailsShownWhenIdentified()
         sprintf(DetailsText, "Attack", -5, 95) +
         sprintf(DetailsText, "Damage", 4, 5) +
         sprintf(DetailsText, "Defense", -2, -3) +
-        sprintf(SingleDetailText, "Encumberance", 15);
+        sprintf(SingleDetailText, "Encumberance", 15) +
+        sprintf(SingleDetailText, "Weight", 5);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
@@ -113,7 +124,8 @@ void WeaponStatisticsModifiedByMaterial()
         sprintf("\t[0;36m%s: [0m[0;33m%d to %d[0m", "Damage", 11, 14) +
         sprintf("[0;31m [+%d %s][0m\n", 5, "magical") +
         sprintf(DetailsText, "Defense", -2, -3) +
-        sprintf(SingleDetailText, "Encumberance", 17);
+        sprintf(SingleDetailText, "Encumberance", 17) +
+        sprintf(SingleDetailText, "Weight", 7);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
@@ -132,7 +144,8 @@ void WeaponStatisticsModifiedByEnchantment()
         sprintf("[0;31m [+%d %s][0m", 10, "fire") +
         sprintf("[0;31m [+%d %s][0m\n", 7, "magical") +
         sprintf(DetailsText, "Defense", -2, -3) +
-        sprintf(SingleDetailText, "Encumberance", 17);
+        sprintf(SingleDetailText, "Encumberance", 17) +
+        sprintf(SingleDetailText, "Weight", 7);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
@@ -153,7 +166,8 @@ void WeaponStatisticsDisplayBonuses()
         sprintf(SingleDetailText, "Encumberance", 15) +
         sprintf(Value, sprintf("\t%s: %d\n", "Bonus attack", 1)) +
         sprintf(Value, sprintf("\t%s: %d\n", "Bonus hit points", 10)) +
-        sprintf(Value, sprintf("\t%s: %d\n", "Bonus strength", 2));
+        sprintf(Value, sprintf("\t%s: %d\n", "Bonus strength", 2)) +
+        sprintf(SingleDetailText, "Weight", 5);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
@@ -170,7 +184,8 @@ void WeaponStatisticsModifiedBySkillOfUser()
         sprintf(DetailsText, "Attack", 9, 109) +
         sprintf(DetailsText, "Damage", 10, 13) +
         sprintf(DetailsText, "Defense", 3, 4) +
-        sprintf(SingleDetailText, "Encumberance", 1);
+        sprintf(SingleDetailText, "Encumberance", 1) +
+        sprintf(SingleDetailText, "Weight", 5);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
@@ -186,7 +201,8 @@ void WeaponStatisticsModifiedByItemCraftsmanship()
         sprintf(DetailsText, "Attack", -1, 99) +
         sprintf(DetailsText, "Damage", 7, 10) +
         sprintf(DetailsText, "Defense", 0, 1) +
-        sprintf(SingleDetailText, "Encumberance", 15);
+        sprintf(SingleDetailText, "Encumberance", 15) +
+        sprintf(SingleDetailText, "Weight", 5);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
 }
@@ -203,7 +219,8 @@ void AutoIdentifyWhenSkillSufficientlyHigh()
         sprintf(DetailsText, "Attack", -5, 95) +
         sprintf(DetailsText, "Damage", 4, 5) +
         sprintf(DetailsText, "Defense", -2, -3) +
-        sprintf(SingleDetailText, "Encumberance", 15);
+        sprintf(SingleDetailText, "Encumberance", 15) +
+        sprintf(SingleDetailText, "Weight", 5);
 
     ExpectFalse(Weapon->query("identified"));
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
@@ -225,7 +242,8 @@ void AutoIdentifyMagicWhenSpellcraftSufficientlyHigh()
         sprintf(DetailsText, "Damage", 4, 5) +
         sprintf(DetailsText, "Defense", -2, -3) +
         sprintf(SingleDetailText, "Encumberance", 15) +
-        sprintf(Value, sprintf("\t%s: %d\n", "Bonus attack", 1));
+        sprintf(Value, sprintf("\t%s: %d\n", "Bonus attack", 1)) +
+        sprintf(SingleDetailText, "Weight", 5);
 
     ExpectFalse(Weapon->query("identified"));
     ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
@@ -243,7 +261,8 @@ void ArmorStatisticsCorrectlyDisplayed()
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Iron") +
         sprintf(SingleDetailText, "Damage Protection", 5) +
-        sprintf(SingleDetailText, "Encumberance", 30);
+        sprintf(SingleDetailText, "Encumberance", 30) +
+        sprintf(SingleDetailText, "Weight", 8);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(armor, Player));
 }
@@ -262,7 +281,8 @@ void ArmorStatisticsModifiedByMaterial()
         sprintf("\t[0;36m%s: [0m[0;33m%d[0m", "Damage Protection", 10) +
         sprintf("[0;31m [+%d %s][0m", 3, "electricity") +
         sprintf("[0;31m [+%d %s][0m\n", 3, "fire") +
-        sprintf(SingleDetailText, "Encumberance", 32);
+        sprintf(SingleDetailText, "Encumberance", 32) +
+        sprintf(SingleDetailText, "Weight", 10);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(armor, Player));
 }
@@ -284,7 +304,8 @@ void ArmorProtectionNotModifiedBySkill()
         sprintf("\t[0;36m%s: [0m[0;33m%d[0m", "Damage Protection", 10) +
         sprintf("[0;31m [+%d %s][0m", 3, "electricity") +
         sprintf("[0;31m [+%d %s][0m\n", 3, "fire") +
-        sprintf(SingleDetailText, "Encumberance", 19);
+        sprintf(SingleDetailText, "Encumberance", 19) +
+        sprintf(SingleDetailText, "Weight", 10);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(armor, Player));
 }

@@ -374,6 +374,28 @@ public varargs int set(string element, mixed data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+static nomask string parseTemplate(string template)
+{
+    string message = template;
+    object parser = loadBlueprint(MessageParser);
+    if(parser && objectp(parser))
+    {
+        message = parser->parseEfunCall(message);
+
+        object owner = environment(this_object());    
+        if(owner && objectp(owner))// && function_exists("isEquipped", owner))
+        {
+            int isSecondPerson = 1;
+            message = parser->parseTargetInfo(message, "User", owner, 
+                isSecondPerson);
+            message = parser->parseVerbs(message, isSecondPerson);
+            message = parser->capitalizeSentences(message);
+        }
+    }
+    return message;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 static nomask void outputMessageFromTemplate(string template)
 {
     // Messages have several key elements that can be replaced:
@@ -399,45 +421,31 @@ static nomask void outputMessageFromTemplate(string template)
         string message = parser->parseEfunCall(template);
 
         object owner = environment(this_object());
-        if (owner && objectp(owner) && function_exists("isEquipped", owner))
+        if (owner && objectp(owner) && function_exists("isEquipped", owner) &&
+            environment(owner))
         {
-            int isSecondPerson = 0;
-            string allButOwner = parser->parseTargetInfo(message, "User",
-                owner, isSecondPerson);
-            allButOwner = parser->parseVerbs(allButOwner, isSecondPerson);
-            allButOwner = parser->capitalizeSentences(allButOwner);
-            say(sprintf("%s\n", allButOwner));
-
-            isSecondPerson = 1;
-            string onlyOwner = parser->parseTargetInfo(message, "User",
-                owner, isSecondPerson);
-            onlyOwner = parser->parseVerbs(onlyOwner, isSecondPerson);
-            onlyOwner = parser->capitalizeSentences(onlyOwner);
-            write(sprintf("%s\n", onlyOwner));
+            string parsedMessage;
+            foreach(object person in all_inventory(environment(owner)))
+            {
+                if (person && objectp(person))
+                {
+                    if (person == owner)
+                    {
+                        parsedMessage = parser->parseVerbs(message, 1);
+                        parsedMessage = parser->parseTargetInfo(parsedMessage, "User",
+                            owner, 1);
+                    }
+                    else
+                    {
+                        parsedMessage = parser->parseVerbs(message, 0);
+                        parsedMessage = parser->parseTargetInfo(parsedMessage, "User",
+                            owner, 0);
+                    }
+                    tell_object(person, parser->capitalizeSentences(parsedMessage));
+                }
+            }
         }
     }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-static nomask string parseTemplate(string template)
-{
-    string message = template;
-    object parser = loadBlueprint(MessageParser);
-    if(parser && objectp(parser))
-    {
-        message = parser->parseEfunCall(message);
-
-        object owner = environment(this_object());    
-        if(owner && objectp(owner))// && function_exists("isEquipped", owner))
-        {
-            int isSecondPerson = 1;
-            message = parser->parseTargetInfo(message, "User", owner, 
-                isSecondPerson);
-            message = parser->parseVerbs(message, isSecondPerson);
-            message = parser->capitalizeSentences(message);
-        }
-    }
-    return message;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -539,7 +547,7 @@ public int read(string item)
 /////////////////////////////////////////////////////////////////////////////
 public varargs int drop(int silently)
 {
-    return 1;
+    return query("undroppable");
 }
 
 /////////////////////////////////////////////////////////////////////////////
