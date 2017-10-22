@@ -11,6 +11,7 @@ void reset(int arg)
     {
         set("name", "Sword of Weasels");
         set("short", "Sword of Weasels");
+        set("aliases", ({ "sword", "long sword" }));
         set("long", "This is the sword of weasels. It's neat.");
         set("weapon type", "long sword");
         set("material", "galvorn");

@@ -623,11 +623,13 @@ public varargs int drop(int silently)
     int ret = !canUnequip();
     
     object env = environment(this_object());
-    if(env && function_exists("isEquipped", env) && 
-       env->isEquipped(this_object()) && environment(env))
+    if(env && environment(env))
     {
-        ret = !unequip(query("name"), silently);
-
+        if (function_exists("isEquipped", env) &&
+            env->isEquipped(this_object()))
+        {
+            ret = !unequip(query("name"), silently);
+        }
         if(!ret)
         {
             move_object(this_object(), environment(env));
