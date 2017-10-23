@@ -15,4 +15,7 @@ protected nomask void applyGroupDetails()
     addPermission("/log/$USER", Read | Write | Owner);
     addPermission("/log/$USER.rep", Read | Write | Owner);
     addPermission("/open", Read | Write);
+    addCommand("cc");
+    addCommand("clone");
+    addCommand("patch");
 }

@@ -114,8 +114,7 @@ protected nomask string getTargetString(object owner, string command)
     string ret = 0;
     string template = commandString(command);
 
-    if (command && stringp(command) && template && stringp(template) &&
-        environment(owner))
+    if (command && stringp(command) && template && stringp(template))
     {
         string *targetId = regexplode(command, template);
 

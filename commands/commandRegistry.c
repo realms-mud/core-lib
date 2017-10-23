@@ -6,8 +6,10 @@ private string PlayerCommands = "/lib/commands/player/";
 private string WizardCommands = "/lib/commands/wizard/";
 private string CannedEmotes = "/lib/commands/soul.c";
 private string BaseCommand = "lib/commands/baseCommand.c";
+private string Wizard = "lib/realizations/wizard.c";
 
 private mapping commands = ([]);
+private string *wizCommands = ({});
 private int IsInitialized = 0;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -34,6 +36,31 @@ private nomask void registerPlayerCommands()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void registerWizardCommands()
+{
+    string *commandFiles = get_dir(WizardCommands);
+    if (sizeof(commandFiles))
+    {
+        foreach(string command in commandFiles)
+        {
+            string fullyQualifiedFile = sprintf("%s/%s", WizardCommands, command);
+
+            if (file_size(fullyQualifiedFile))
+            {
+                object commandObj = load_object(fullyQualifiedFile);
+
+                if (commandObj && (member(inherit_list(commandObj), BaseCommand) > -1) &&
+                    commandObj->commandRegExp())
+                {
+                    commands[commandObj->commandRegExp()] = fullyQualifiedFile;
+                    wizCommands += ({ commandObj->commandRegExp() });
+                }
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isInitialized()
 {
     return IsInitialized;
@@ -46,7 +73,7 @@ public nomask void reset(int arg)
     {
         commands = ([]);
         registerPlayerCommands();
-
+        registerWizardCommands();
         IsInitialized = 1;
     }
 }
@@ -57,6 +84,10 @@ public nomask int executeCommand(string passedCommand, object initiator)
     int ret = 0;
     string *commandList = m_indices(commands);
 
+    if (member(inherit_list(initiator), Wizard) < 0)
+    {
+        commandList -= wizCommands;
+    }
     if(sizeof(commandList))
     {
         if (sizeof(regexp(({ passedCommand }), "^('|:|=)[^ ]")))

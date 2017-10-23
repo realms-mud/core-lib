@@ -155,6 +155,12 @@ public nomask int hasReadAccess(object user, string path)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string getFullyQualifiedPath(object user, string path)
+{
+    return sanitizePath(convertRelativePathToAbsolutePath(user, path));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int hasWriteAccess(object user, string path)
 {
     return isMemberOf(user) && getPermissionForPath(
@@ -226,7 +232,7 @@ protected nomask void addPermission(string path, int permission)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void addCommand(string command)
 {
-    if ((member(get_dir("/lib/commands/wizard/"), command) > -1))
+    if ((member(get_dir("/lib/commands/wizard/"), command + ".c") > -1))
     {
         commands = m_indices(mkmapping(commands + ({ command })));
     }

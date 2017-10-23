@@ -2,23 +2,32 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/modules/materialAttributes.c";
+virtual inherit "/lib/realizations/wizard.c";
 
 private string lastCatch = 0;
+private string *catchList = ({});
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object isRealizationOf(string type)
+public void catch_tell(string message)
 {
-    object ret = 0;
-    if(type == "wizard")
-    {
-        ret = this_object();
-    }
-    return ret;
+    lastCatch = message;
+    catchList += ({ message });
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string wizardInformation()
+public string caughtMessage()
 {
-    return "Generic Wizard Info\n";
+    return lastCatch;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string *caughtMessages()
+{
+    return catchList + ({});
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void resetCatchList()
+{
+    catchList = ({});
 }

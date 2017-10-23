@@ -372,8 +372,7 @@ void LongReturnsWizardInformation()
     Attributes = clone_object("/lib/tests/support/services/mockWizard.c");
     Attributes->Name("Tantor");
     Attributes->Gender(1);
-    ExpectEq("Tantor the title-less (male)\nGeneric Wizard Info\n",
-        Attributes->long());
+    ExpectSubStringMatch("player", Attributes->long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
