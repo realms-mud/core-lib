@@ -3,11 +3,3 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/environment/terrain/baseTerrain.c";
-
-/////////////////////////////////////////////////////////////////////////////
-public void Setup()
-{
-    Name("city");
-
-    addDescriptionTemplate("a city");
-}

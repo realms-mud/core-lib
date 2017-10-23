@@ -23,13 +23,16 @@ public void init()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int talk()
+public int talk(string who)
 {
     int ret = 0;
-    object conversations = getService("conversations");
-    if (objectp(conversations))
+    if (!who || id(who))
     {
-        ret = conversations->beginConversation(this_player());
+        object conversations = getService("conversations");
+        if (objectp(conversations))
+        {
+            ret = conversations->beginConversation(this_player());
+        }
     }
     return ret;
 }
