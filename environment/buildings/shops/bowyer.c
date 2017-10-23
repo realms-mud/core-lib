@@ -2,12 +2,12 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/buildings/baseBuilding.c";
+inherit "/lib/environment/buildings/baseShop.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("inn");
+    Name("bowyer");
 
     addTimeOfDayDescription("dawn", ({
         ". It has a closed sign in the window. A light is shining out from the windows"
@@ -29,5 +29,5 @@ public void Setup()
     addSeasonDescription("summer", ({ " that has ivy climbing high up its walls" }));
     addSeasonDescription("autumn", ({ " with ivy whose leaves are turning a deep red color still clinging to the walls" }));
 
-    addDescriptionTemplate("an inn in a large brick and wood building");
+    addDescriptionTemplate("a bowyer's shop in a tall wooden building");
 }
