@@ -132,7 +132,7 @@ private nomask string convertRelativePathToAbsolutePath(object user, string path
 
     if (user && objectp(user))
     {
-        if(sizeof(ret) && (ret[0] != '/'))
+        if(sizeof(ret) && (ret[0] != '/') && user->workingDirectory())
         {
             ret = user->workingDirectory() + ret;
         }
