@@ -29,6 +29,8 @@ void Setup()
     Wizard = clone_object("/lib/realizations/wizard.c");
     Wizard->restore("earl");
     Wizard->addCommands();
+
+    move_object(Wizard, Room);
     setUsers(({ Wizard }));
 }
 
@@ -42,48 +44,45 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Wizard->executeCommand("ccc"), "ccc");
-    ExpectFalse(Wizard->executeCommand("accelerate"), "accelerate");
+    ExpectFalse(Wizard->executeCommand("cclone"), "cclone");
+    ExpectFalse(Wizard->executeCommand("cloned"), "cloned");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CCOfExistingProgramReturnsOneWhenSuccessfullyBuilds()
+void CloneOfExistingItemPlacesItInInventory()
 {
-    ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
+    ExpectEq(0, sizeof(all_inventory(Wizard)));
+    ExpectEq(1, Wizard->executeCommand("clone /lib/items/weapon.c"));
+    ExpectEq(1, sizeof(all_inventory(Wizard)));
+    ExpectEq("lib/items/weapon.c", program_name(all_inventory(Wizard)[0]));
+    destruct(all_inventory(Wizard)[0]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CCOfNonexistantFileReturnsFalse()
+void CloneOfNonGettableItemPlacesItInEnvironment()
 {
-    ExpectEq(0, Wizard->executeCommand("cc /lib/include/inventory"));
+    ExpectEq(1, sizeof(all_inventory(environment(Wizard))));
+    ExpectEq(1, Wizard->executeCommand("clone /lib/realizations/npc.c"));
+    ExpectEq(2, sizeof(all_inventory(environment(Wizard))));
+    ExpectEq("lib/realizations/npc.c", 
+        program_name(all_inventory(environment(Wizard))[0]));
+    destruct(all_inventory(environment(Wizard))[0]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CCOfDirectoryWithoutRecurseFlagReturnsFalse()
+void CloneOfNonexistantFileReturnsFalse()
 {
-    ExpectEq(0, Wizard->executeCommand("cc /lib/modules"));
+    ExpectEq(0, Wizard->executeCommand("clone /lib/include/inventory"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CCOfDirectoryRecursivelyBuilds()
+void CloneOfDirectoryReturnsFalse()
 {
-    ExpectEq(6, Wizard->executeCommand("cc -r /obj"));
+    ExpectEq(0, Wizard->executeCommand("clone /lib/modules"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CCOfDirectoryWherePermissionDeniedDoesNotBuild()
+void CloneOfFileWithSyntaxErrorsDoesNotClone()
 {
-    ExpectEq(0, Wizard->executeCommand("cc -r /secure"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CCOfFileWherePermissionDeniedDoesNotBuild()
-{
-    ExpectEq(0, Wizard->executeCommand("cc /secure/player/player.c"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CCOfInvalidFileDoesNotBuild()
-{
-    ExpectEq(0, Wizard->executeCommand("cc /badfile.c"));
+    ExpectEq(0, Wizard->executeCommand("clone /lib/brokenFile.c"));
 }

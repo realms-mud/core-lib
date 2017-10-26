@@ -63,7 +63,8 @@ public nomask int execute(string command, object initiator)
     int ret = 0;
 
     if (canExecuteCommand(command) &&
-        initiator->hasExecuteAccess(regreplace(command, "([^-]+)( -r|) " + getTargetString(initiator, command), "\\1", 1)))
+        initiator->hasExecuteAccess(regreplace(command, "([^-]+)( -r|) " +
+            getTargetString(initiator, command), "\\1", 1)))
     {
         object group = load_object("/lib/dictionaries/groups/baseGroup.c");
         string targetPath = group->getFullyQualifiedPath(initiator, 
