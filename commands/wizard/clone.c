@@ -34,6 +34,8 @@ public nomask int execute(string command, object initiator)
                     ret = 1;
                     move_object(newObj, (newObj->get() ? initiator :
                         environment(initiator)));
+                    tell_object(initiator, sprintf("Cloned object '%s'.\n",
+                        targetPath));
                 }
                 else
                 {

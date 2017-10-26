@@ -112,8 +112,28 @@ private mixed *getPatchParameters(string command, object initiator)
     mixed *parameters = 0;
     if (sizeof(regexp(({ command }), "-v [^-]+")))
     {
-        parameters = regexplode(regreplace(command, ".*-v ([^-]+)( .*|$)", "\\1", 1),
+        mixed *paramList = regexplode(regreplace(command, ".*-v ([^-]+)( .*|$)", "\\1", 1),
             ", *") - ({ ",", ", " });
+        parameters = ({ });
+        foreach(mixed parameter in paramList)
+        {
+            if (to_object(parameter))
+            {
+                parameters += ({ to_object(parameter) });
+            }
+            else if (sizeof(regexp(({ parameter }), "[0-9]*\\.[0-9]+")))
+            {
+                parameters += ({ to_float(parameter) });
+            }
+            else if (to_int(parameter))
+            {
+                parameters += ({ to_int(parameter) });
+            }
+            else
+            {
+                parameters += ({ to_string(parameter) });
+            }
+        }
     }
     return parameters;
 }
@@ -138,7 +158,8 @@ public nomask int execute(string command, object initiator)
                     function, target));
 
                 mixed output = apply(#'call_other, target, function, parameters);
-                tell_object(initiator, sprintf("Returned: %s", 
+
+                tell_object(initiator, sprintf("Returned: %s\n",
                     convertDataToString(output)));
             }
             else
