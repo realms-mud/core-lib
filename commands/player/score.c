@@ -25,7 +25,7 @@ private nomask string overallLevel(object initiator)
     string format = " [0;36mOverall Level:[0m [0;32m%-22s[0m[0;31m|[0m\n";
 
     string level = initiator->isRealizationOf("wizard") ?
-        capitalize(initiator->wizardInformation()) :
+        capitalize(initiator->wizardLevel()) :
         to_string(initiator->effectiveLevel());
 
     return sprintf(format, level);

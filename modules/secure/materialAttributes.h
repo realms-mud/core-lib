@@ -71,7 +71,7 @@ static nomask mapping sendMaterialAttributes()
     ret["pretitle"] = pretitle;
     ret["invisible"] = invisibility;
 
-    ret["location"] = environment() ? "/" + program_name(environment()) :
+    ret["location"] = environment() ? "/" + file_name(environment()) :
         DefaultStart;
 
     return ret;

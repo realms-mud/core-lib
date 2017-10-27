@@ -440,7 +440,7 @@ private string inventoryLongDescription(int brief)
         {
             string inventoryText = inventory->inventoryText();
 
-            if(inventoryText != "")
+            if(inventoryText && inventoryText != "")
             {
                 ret += "\tCarrying:\n" + inventoryText;
             }

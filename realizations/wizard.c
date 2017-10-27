@@ -24,13 +24,15 @@ public nomask string wizardLevel()
 public nomask string wizardInformation()
 {
     // TODO - add wizard info such as GM duties, etc.
-    return wizardLevel();
+    string ret = sprintf("[0;30;1m%s is a mud wizard -> %s[0m\n",
+        capitalize(this_object()->Pronoun()), validWizardLevels[wizardLevel]);
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int validWizardLevel(string level)
 {
-    return member(validWizardLevels, level) > -1;
+    return member(m_indices(validWizardLevels), level) > -1;
 }
 
 /////////////////////////////////////////////////////////////////////////////

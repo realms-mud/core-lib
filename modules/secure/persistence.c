@@ -132,6 +132,7 @@ public nomask void restore(string name)
             this_object()->Name(name);
             this_object()->notify("onRestoreFailed");
         }
+        set_living_name(name);
     }
     else
     {
