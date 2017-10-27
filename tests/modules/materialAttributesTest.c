@@ -372,7 +372,7 @@ void LongReturnsWizardInformation()
     Attributes = clone_object("/lib/tests/support/services/mockWizard.c");
     Attributes->Name("Tantor");
     Attributes->Gender(1);
-    ExpectSubStringMatch("player", Attributes->long());
+    ExpectSubStringMatch("Player", Attributes->long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
