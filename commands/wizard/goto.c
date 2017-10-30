@@ -48,6 +48,10 @@ public nomask int execute(string command, object initiator)
             displayMessage(sprintf("##InitiatorName## %s\n",
                 initiator->MagicalMessageIn()), initiator);
         }
+        else
+        {
+            notify_fail(sprintf("Could not go to '%s'.\n", targetString));
+        }
     }
     return ret;
 }
