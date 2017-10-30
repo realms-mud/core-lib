@@ -23,6 +23,7 @@ private nosave mapping validWizardLevels = ([
 
 private string wizardLevel = 0;
 private string *customGroups = ({});
+private string workingDirectory = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask void loadWizard(mapping data, object persistence)

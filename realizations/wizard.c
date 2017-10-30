@@ -188,3 +188,19 @@ public nomask int hasExecuteAccess(string command)
     return sizeof(filter_array(groupObjects(),
         (: return $1->hasExecuteAccess(this_object(), PathToCheck); :)));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string pwd(string newDirectory)
+{
+    if (newDirectory && hasReadAccess(newDirectory) &&
+        (file_size(newDirectory) == -2))
+    {
+        workingDirectory = newDirectory;
+    }
+    else if (!workingDirectory)
+    {
+        workingDirectory = sprintf("/players/%s",
+            lower_case(this_object()->RealName()));
+    }
+    return workingDirectory;
+}

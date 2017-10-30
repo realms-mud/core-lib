@@ -30,3 +30,16 @@ public nomask int effectiveExperience()
 {
     return 1000 + (1000 * EffectiveLevel * (EffectiveLevel + 1) / 2);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void reset(int arg)
+{
+    if (!arg)
+    {
+        if (this_object()->Name() && (this_object()->Name() != ""))
+        {
+            set_living_name(this_object()->Name());
+        }
+        "living"::reset(arg);
+    }
+}

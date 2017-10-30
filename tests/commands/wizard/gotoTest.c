@@ -45,3 +45,53 @@ void ExecuteRegexpIsNotGreedy()
     ExpectFalse(Wizard->executeCommand("ggoto"), "ggoto");
     ExpectFalse(Wizard->executeCommand("gotor"), "gotor");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGoToFileBasedLocation()
+{
+    ExpectEq(0, environment(Wizard));
+    ExpectTrue(Wizard->executeCommand("goto /lib/tests/support/environment/toLocation.c"));
+    ExpectEq(load_object("/lib/tests/support/environment/toLocation.c"),
+        environment(Wizard));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGoToFileBasedLocationInCurrentDirectory()
+{
+    Wizard->pwd("/lib/tests/support/environment");
+    ExpectEq(0, environment(Wizard));
+    ExpectTrue(Wizard->executeCommand("goto toLocation.c"));
+    ExpectEq(load_object("/lib/tests/support/environment/toLocation.c"),
+        environment(Wizard));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGoToPlayer()
+{
+    object player = clone_object("/lib/realizations/player.c");
+    player->restore("gorthaur");
+    move_object(player, load_object("/lib/tests/support/environment/toLocation.c"));
+
+    ExpectEq(0, environment(Wizard));
+    ExpectTrue(Wizard->executeCommand("goto gorthaur"));
+    ExpectEq(load_object("/lib/tests/support/environment/toLocation.c"),
+        environment(Wizard));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotGoToNonexistantPerson()
+{
+    ExpectFalse(Wizard->executeCommand("goto george"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotGoToNonexistantLocation()
+{
+    ExpectFalse(Wizard->executeCommand("goto /bad/location.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotGoToLocationWithNoReadAccess()
+{
+    ExpectFalse(Wizard->executeCommand("goto /secure/elder_room.c"));
+}
