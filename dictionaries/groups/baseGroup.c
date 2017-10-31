@@ -126,7 +126,7 @@ private nomask int getPermissionForPath(string path, mapping root)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string convertRelativePathToAbsolutePath(object user, string path)
+private nomask varargs string convertRelativePathToAbsolutePath(object user, string path, int doNotConvert)
 {
     string ret = path;
 
@@ -137,7 +137,7 @@ private nomask string convertRelativePathToAbsolutePath(object user, string path
             ret = user->workingDirectory() + ret;
         }
 
-        if (user->Name() != "")
+        if ((user->Name() != "") && !doNotConvert)
         {
             ret = regreplace(ret, lower_case(user->Name()), "$USER");
         }
@@ -157,7 +157,7 @@ public nomask int hasReadAccess(object user, string path)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getFullyQualifiedPath(object user, string path)
 {
-    return sanitizePath(convertRelativePathToAbsolutePath(user, path));
+    return sanitizePath(convertRelativePathToAbsolutePath(user, path, 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////

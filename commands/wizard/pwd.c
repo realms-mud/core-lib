@@ -9,7 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        //addCommandTemplate("save");
+        addCommandTemplate("pwd");
     }
 }
 
@@ -18,9 +18,11 @@ public nomask int execute(string command, object initiator)
 {
     int ret = 0;
 
-    if (canExecuteCommand(command))
+    if (canExecuteCommand(command) && function_exists("pwd", initiator) &&
+        initiator->hasExecuteAccess("pwd"))
     {
         ret = 1;
+        tell_object(initiator, sprintf("%s", initiator->pwd()));
     }
     return ret;
 }

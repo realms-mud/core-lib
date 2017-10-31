@@ -9,7 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        //addCommandTemplate("save");
+        addCommandTemplate("cd [##Target##]");
     }
 }
 
@@ -18,9 +18,43 @@ public nomask int execute(string command, object initiator)
 {
     int ret = 0;
 
-    if (canExecuteCommand(command))
+    if (canExecuteCommand(command) && initiator->hasExecuteAccess("cd"))
     {
-        ret = 1;
+        string newDirectory = getTargetString(initiator, command);
+
+        string homeDir = sprintf("/players/%s", 
+            lower_case(initiator->RealName()));
+
+        if (!newDirectory || (newDirectory == "") || (newDirectory == "~"))
+        {
+            newDirectory = homeDir;
+        }
+        newDirectory = regreplace(newDirectory, "^~/", homeDir);
+        newDirectory = regreplace(newDirectory, "^~", "/players/");
+
+        if (newDirectory[0] != '/')
+        {
+            newDirectory = sprintf("%s/%s", initiator->pwd(), newDirectory);
+        }
+
+        object group = load_object("/lib/dictionaries/groups/baseGroup.c");
+        newDirectory = group->getFullyQualifiedPath(initiator, newDirectory);
+
+        if (initiator->hasReadAccess(newDirectory) &&
+            (file_size(newDirectory) == -2))
+        {
+            ret = 1;
+            initiator->pwd(newDirectory);
+            tell_object(initiator, sprintf("%s\n", newDirectory));
+        }
+        else if (file_size(newDirectory) == -1)
+        {
+            notify_fail("That directory does not exist.\n");
+        }
+        else
+        {
+            notify_fail("You do not have the read access for that.\n");
+        }
     }
     return ret;
 }

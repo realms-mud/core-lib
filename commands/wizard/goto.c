@@ -18,7 +18,7 @@ public nomask int execute(string command, object initiator)
 {
     int ret = 0;
 
-    if (canExecuteCommand(command))
+    if (canExecuteCommand(command) && initiator->hasExecuteAccess("goto"))
     {
         string targetString = getTargetString(initiator, command);
         object target = find_player(targetString) ||
