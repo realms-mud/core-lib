@@ -22,7 +22,7 @@ public nomask int execute(string command, object initiator)
         initiator->hasExecuteAccess("pwd"))
     {
         ret = 1;
-        tell_object(initiator, sprintf("%s", initiator->pwd()));
+        tell_object(initiator, sprintf("%s\n", initiator->pwd()));
     }
     return ret;
 }
