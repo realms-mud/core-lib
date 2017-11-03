@@ -37,23 +37,21 @@ public nomask int execute(string command, object initiator)
             newDirectory = sprintf("%s/%s", initiator->pwd(), newDirectory);
         }
 
-        object group = load_object("/lib/dictionaries/groups/baseGroup.c");
-        newDirectory = group->getFullyQualifiedPath(initiator, newDirectory);
+        newDirectory = initiator->hasReadAccess(newDirectory);
 
-        if (initiator->hasReadAccess(newDirectory) &&
-            (file_size(newDirectory) == -2))
+        if (newDirectory && (file_size(newDirectory) == -2))
         {
             ret = 1;
             initiator->pwd(newDirectory);
             tell_object(initiator, sprintf("%s\n", newDirectory));
         }
+        else if(!newDirectory)
+        {
+            notify_fail("You do not have the read access for that.\n");
+        }
         else if (file_size(newDirectory) == -1)
         {
             notify_fail("That directory does not exist.\n");
-        }
-        else
-        {
-            notify_fail("You do not have the read access for that.\n");
         }
     }
     return ret;

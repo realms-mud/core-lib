@@ -147,25 +147,27 @@ private nomask varargs string convertRelativePathToAbsolutePath(object user, str
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int hasReadAccess(object user, string path)
+public nomask string hasReadAccess(object user, string path)
 {
-    return isMemberOf(user) && getPermissionForPath(
-        sanitizePath(convertRelativePathToAbsolutePath(user, path)),
-        Permissions) & Read;
+    string ret = 0;
+    path = sanitizePath(convertRelativePathToAbsolutePath(user, path));
+    if (isMemberOf(user) && getPermissionForPath(path, Permissions) & Read)
+    {
+        ret = regreplace(path, "\\$USER", lower_case(user->Name()));
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getFullyQualifiedPath(object user, string path)
+public nomask string hasWriteAccess(object user, string path)
 {
-    return sanitizePath(convertRelativePathToAbsolutePath(user, path, 1));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int hasWriteAccess(object user, string path)
-{
-    return isMemberOf(user) && getPermissionForPath(
-        sanitizePath(convertRelativePathToAbsolutePath(user, path)),
-        Permissions) & Write;
+    string ret = 0;
+    path = sanitizePath(convertRelativePathToAbsolutePath(user, path));
+    if (isMemberOf(user) && getPermissionForPath(path, Permissions) & Write)
+    {
+        ret = regreplace(path, "\\$USER", lower_case(user->Name()));
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

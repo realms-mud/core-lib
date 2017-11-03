@@ -158,19 +158,63 @@ private nomask object *groupObjects()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int hasReadAccess(string path)
+public nomask string hasReadAccess(string path)
 {
+    string ret = 0;
     PathToCheck = path;
-    return sizeof(filter_array(groupObjects(),
-        (: return $1->hasReadAccess(this_object(), PathToCheck); :)));
+
+    object *filteredGroups = filter_array(groupObjects(),
+        (: return $1->hasReadAccess(this_object(), PathToCheck); :));
+    if(sizeof(filteredGroups))
+    {
+        ret = filteredGroups[0]->hasReadAccess(this_object(), path);
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int hasWriteAccess(string path)
+public nomask string groupReadAccess(string path)
 {
+    string ret = "";
     PathToCheck = path;
-    return sizeof(filter_array(groupObjects(),
-        (: return $1->hasWriteAccess(this_object(), PathToCheck); :)));
+
+    object *filteredGroups = filter_array(groupObjects(),
+        (: return $1->hasReadAccess(this_object(), PathToCheck); :));
+    if (sizeof(filteredGroups))
+    {
+        ret = sprintf("R: %s", filteredGroups[0]->group());
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string hasWriteAccess(string path)
+{
+    string ret = 0;
+    PathToCheck = path;
+
+    object *filteredGroups = filter_array(groupObjects(),
+        (: return $1->hasWriteAccess(this_object(), PathToCheck); :));
+    if(sizeof(filteredGroups))
+    {
+        ret = filteredGroups[0]->hasWriteAccess(this_object(), path);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string groupWriteAccess(string path)
+{
+    string ret = "";
+    PathToCheck = path;
+
+    object *filteredGroups = filter_array(groupObjects(),
+        (: return $1->hasWriteAccess(this_object(), PathToCheck); :));
+    if (sizeof(filteredGroups))
+    {
+        ret = sprintf("W: %s", filteredGroups[0]->group());
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

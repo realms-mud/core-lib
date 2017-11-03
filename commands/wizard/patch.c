@@ -83,9 +83,8 @@ private object getPatchTarget(string command, object initiator)
 
         if (!target)
         {
-            object group = load_object("/lib/dictionaries/groups/baseGroup.c");
-            string targetPath = group->getFullyQualifiedPath(initiator,
-                targetString);
+            string targetPath = initiator->hasReadAccess(targetString);
+
             if (targetPath && (file_size(targetPath) > 0))
             {
                 catch (target = load_object(targetPath));

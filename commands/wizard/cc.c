@@ -66,11 +66,10 @@ public nomask int execute(string command, object initiator)
         initiator->hasExecuteAccess(regreplace(command, "([^-]+)( -r|) " +
             getTargetString(initiator, command), "\\1", 1)))
     {
-        object group = load_object("/lib/dictionaries/groups/baseGroup.c");
-        string targetPath = group->getFullyQualifiedPath(initiator, 
-                getTargetString(initiator, command));
+        string targetPath = 
+            initiator->hasReadAccess(getTargetString(initiator, command));
 
-        if (initiator->hasReadAccess(targetPath))
+        if (targetPath)
         {
             ret = compile(targetPath, initiator,
                 sizeof(regexp(({ command }), "-r")));

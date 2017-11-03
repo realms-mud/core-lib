@@ -20,11 +20,10 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("clone"))
     {
-        object group = load_object("/lib/dictionaries/groups/baseGroup.c");
-        string targetPath = group->getFullyQualifiedPath(initiator, 
-                getTargetString(initiator, command));
+        string targetPath = 
+            initiator->hasReadAccess(getTargetString(initiator, command));
 
-        if (initiator->hasReadAccess(targetPath))
+        if (targetPath)
         {
             if (file_size(targetPath) > 0)
             {
