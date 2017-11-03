@@ -63,6 +63,20 @@ void ExecuteRegexpIsNotGreedy()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CannotGetLivingObjects()
+{
+    object bystander = clone_object("/lib/realizations/npc.c");
+    bystander->Name("earl");
+    move_object(bystander, Room);
+
+    ExpectEq(0, sizeof(all_inventory(Player)));
+    ExpectFalse(Player->executeCommand("get earl"));
+    ExpectEq(0, sizeof(all_inventory(Player)));
+
+    destruct(bystander);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void GetMovesItemFromEnvironmentToPerson()
 {
     ExpectEq(0, sizeof(all_inventory(Player)));

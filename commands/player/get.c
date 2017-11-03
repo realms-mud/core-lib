@@ -36,7 +36,12 @@ public nomask int execute(string command, object initiator)
     }
     else
     {
-        targets += ({ getTarget(initiator, command) });
+        object target = getTarget(initiator, command);
+
+        if (target->get())
+        {
+            targets += ({ target });
+        }
     }
     targets -= ({ 0 });
 
