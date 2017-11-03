@@ -34,6 +34,16 @@ private nosave mapping armorBlueprints = ([
         "default weight": 4,
         "default material": "cloth"
     ]),
+    "robes": ([
+        "type": "armor",
+        "skill to craft": 5,
+        "skill to use": "no armor",
+        "default ac": 1,
+        "default location": Armor,
+        "default encumberance": 6,
+        "default weight": 4,
+        "default material": "cloth"
+    ]),
     "brigandine": ([
         "type": "armor",
         "skill to craft": 10,
