@@ -91,6 +91,10 @@ public nomask void onSelectorCompleted(object caller)
         if (stringp(caller->selection()))
         {
             TotalPoints = User->researchPoints();
+            if (User)
+            {
+                tell_object(User, displayMessage());
+            }
         }
     }
     caller->cleanUp();
