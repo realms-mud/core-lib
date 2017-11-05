@@ -13,6 +13,13 @@ private mapping skills = ([
         "untrained penalty": 0,
         "description": "This skill provides proficiency in using one's weapon to block an attack.\n"
     ]),
+    "blind fighting": ([
+        "type": "combat",
+        "attribute": "wisdom",
+        "bonus calculator": "one for two",
+        "untrained penalty": -15,
+        "description": "This skill provides proficiency in attacking and defending when you cannot see.\n"
+    ]),
     "dodge": ([
         "type": "combat",
         "attribute": "dexterity",

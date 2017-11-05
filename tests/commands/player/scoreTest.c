@@ -38,6 +38,8 @@ void Setup()
     guild->init();
     Player->joinGuild("fighter");
     Player->addExperience(2000);
+
+    move_object(Player, load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

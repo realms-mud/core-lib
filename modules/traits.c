@@ -22,6 +22,15 @@ public nomask int isTraitOf(string trait)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int hasTraitOfRoot(string root)
+{
+    typeOfTrait = root;
+
+    return (sizeof(filter_array(m_indices(traits),
+        (: traitDictionary()->traitIsOfRoot($1, typeOfTrait) :))));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isValidTrait(string trait)
 {
     return traitDictionary()->validTrait(trait);
@@ -285,7 +294,8 @@ public nomask int opinionModifier(object target)
                         }
                     }
                 }
-                else if (targetTraitObj->query("opinion"))
+                else if (targetTraitObj->query("opinion") &&
+                    !targetTraitObj->query("opposing opinion"))
                 {
                     ret += targetTraitObj->query("opinion");
                 }

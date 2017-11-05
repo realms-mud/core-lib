@@ -79,20 +79,20 @@ void CombatFlagOnlyDisplaysCombatSkills()
     PrepSkillsOfType("combat");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Axe", 0, "", "Bow", 1, "") +
-        sprintf(SkillsRow, "Chainmail", 2, "", "Crossbow", 3, "") +
-        sprintf(SkillsRow, "Dagger", 4, "", "Dodge", 5, "") +
-        sprintf(SkillsRow, "Dual wield", 6, "", "Flail", 7, "") +
-        sprintf(SkillsRow, "Hammer", 8, "", "Hand and a half sword", 9, "") +
-        sprintf(SkillsRow, "Hard leather", 0, "", "Long sword", 1, "") +
-        sprintf(SkillsRow, "Mace", 2, "", "No armor", 3, "") +
-        sprintf(SkillsRow, "Parry", 4, "", "Plate armor", 5, "") +
-        sprintf(SkillsRow, "Pole arm", 6, "", "Scalemail", 7, "") +
-        sprintf(SkillsRow, "Shield", 8, "", "Short sword", 9, "") +
-        sprintf(SkillsRow, "Sling", 0, "", "Soft leather", 1, "") +
-        sprintf(SkillsRow, "Splint armor", 2, "", "Staff", 3, "") +
-        sprintf(SkillsRow, "Thrown", 4, "", "Two-handed sword", 5, "") +
-        sprintf(HalfRow, "Unarmed", 6, "", "") + EndBar +
+        sprintf(SkillsRow, "Axe", 0, "", "Blind fighting", 1, "") +
+        sprintf(SkillsRow, "Bow", 2, "", "Chainmail", 3, "") +
+        sprintf(SkillsRow, "Crossbow", 4, "", "Dagger", 5, "") +
+        sprintf(SkillsRow, "Dodge", 6, "", "Dual wield", 7, "") +
+        sprintf(SkillsRow, "Flail", 8, "", "Hammer", 9, "") +
+        sprintf(SkillsRow, "Hand and a half sword", 0, "", "Hard leather", 1, "") +
+        sprintf(SkillsRow, "Long sword", 2, "", "Mace", 3, "") +
+        sprintf(SkillsRow, "No armor", 4, "", "Parry", 5, "") +
+        sprintf(SkillsRow, "Plate armor", 6, "", "Pole arm", 7, "") +
+        sprintf(SkillsRow, "Scalemail", 8, "", "Shield", 9, "") +
+        sprintf(SkillsRow, "Short sword", 0, "", "Sling", 1, "") +
+        sprintf(SkillsRow, "Soft leather", 2, "", "Splint armor", 3, "") +
+        sprintf(SkillsRow, "Staff", 4, "", "Thrown", 5, "") +
+        sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 0, "") + EndBar +
         sprintf(SkillPoints, 8);
 
     ExpectTrue(Player->executeCommand("skills -combat"));
@@ -106,20 +106,20 @@ void CoFlagOnlyDisplaysCombatSkills()
     PrepSkillsOfType("combat");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Axe", 0, "", "Bow", 1, "") +
-        sprintf(SkillsRow, "Chainmail", 2, "", "Crossbow", 3, "") +
-        sprintf(SkillsRow, "Dagger", 4, "", "Dodge", 5, "") +
-        sprintf(SkillsRow, "Dual wield", 6, "", "Flail", 7, "") +
-        sprintf(SkillsRow, "Hammer", 8, "", "Hand and a half sword", 9, "") +
-        sprintf(SkillsRow, "Hard leather", 0, "", "Long sword", 1, "") +
-        sprintf(SkillsRow, "Mace", 2, "", "No armor", 3, "") +
-        sprintf(SkillsRow, "Parry", 4, "", "Plate armor", 5, "") +
-        sprintf(SkillsRow, "Pole arm", 6, "", "Scalemail", 7, "") +
-        sprintf(SkillsRow, "Shield", 8, "", "Short sword", 9, "") +
-        sprintf(SkillsRow, "Sling", 0, "", "Soft leather", 1, "") +
-        sprintf(SkillsRow, "Splint armor", 2, "", "Staff", 3, "") +
-        sprintf(SkillsRow, "Thrown", 4, "", "Two-handed sword", 5, "") +
-        sprintf(HalfRow, "Unarmed", 6, "", "") + EndBar +
+        sprintf(SkillsRow, "Axe", 0, "", "Blind fighting", 1, "") +
+        sprintf(SkillsRow, "Bow", 2, "", "Chainmail", 3, "") +
+        sprintf(SkillsRow, "Crossbow", 4, "", "Dagger", 5, "") +
+        sprintf(SkillsRow, "Dodge", 6, "", "Dual wield", 7, "") +
+        sprintf(SkillsRow, "Flail", 8, "", "Hammer", 9, "") +
+        sprintf(SkillsRow, "Hand and a half sword", 0, "", "Hard leather", 1, "") +
+        sprintf(SkillsRow, "Long sword", 2, "", "Mace", 3, "") +
+        sprintf(SkillsRow, "No armor", 4, "", "Parry", 5, "") +
+        sprintf(SkillsRow, "Plate armor", 6, "", "Pole arm", 7, "") +
+        sprintf(SkillsRow, "Scalemail", 8, "", "Shield", 9, "") +
+        sprintf(SkillsRow, "Short sword", 0, "", "Sling", 1, "") +
+        sprintf(SkillsRow, "Soft leather", 2, "", "Splint armor", 3, "") +
+        sprintf(SkillsRow, "Staff", 4, "", "Thrown", 5, "") +
+        sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 0, "") + EndBar +
         sprintf(SkillPoints, 8);
 
     ExpectTrue(Player->executeCommand("skills -co"));
@@ -393,7 +393,7 @@ void LFlagOnlyDisplaysLanguageSkills()
 /////////////////////////////////////////////////////////////////////////////
 void AllFlagDisplaysAllSkills()
 {
-    Player->addSkillPoints(1040);
+    Player->addSkillPoints(1060);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -403,20 +403,20 @@ void AllFlagDisplaysAllSkills()
     PrepSkillsOfType("language");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Axe", 0, "", "Bow", 1, "") +
-        sprintf(SkillsRow, "Chainmail", 2, "", "Crossbow", 3, "") +
-        sprintf(SkillsRow, "Dagger", 4, "", "Dodge", 5, "") +
-        sprintf(SkillsRow, "Dual wield", 6, "", "Flail", 7, "") +
-        sprintf(SkillsRow, "Hammer", 8, "", "Hand and a half sword", 9, "") +
-        sprintf(SkillsRow, "Hard leather", 0, "", "Long sword", 1, "") +
-        sprintf(SkillsRow, "Mace", 2, "", "No armor", 3, "") +
-        sprintf(SkillsRow, "Parry", 4, "", "Plate armor", 5, "") +
-        sprintf(SkillsRow, "Pole arm", 6, "", "Scalemail", 7, "") +
-        sprintf(SkillsRow, "Shield", 8, "", "Short sword", 9, "") +
-        sprintf(SkillsRow, "Sling", 0, "", "Soft leather", 1, "") +
-        sprintf(SkillsRow, "Splint armor", 2, "", "Staff", 3, "") +
-        sprintf(SkillsRow, "Thrown", 4, "", "Two-handed sword", 5, "") +
-        sprintf(HalfRow, "Unarmed", 6, "", "");
+        sprintf(SkillsRow, "Axe", 0, "", "Blind fighting", 1, "") +
+        sprintf(SkillsRow, "Bow", 2, "", "Chainmail", 3, "") +
+        sprintf(SkillsRow, "Crossbow", 4, "", "Dagger", 5, "") +
+        sprintf(SkillsRow, "Dodge", 6, "", "Dual wield", 7, "") +
+        sprintf(SkillsRow, "Flail", 8, "", "Hammer", 9, "") +
+        sprintf(SkillsRow, "Hand and a half sword", 0, "", "Hard leather", 1, "") +
+        sprintf(SkillsRow, "Long sword", 2, "", "Mace", 3, "") +
+        sprintf(SkillsRow, "No armor", 4, "", "Parry", 5, "") +
+        sprintf(SkillsRow, "Plate armor", 6, "", "Pole arm", 7, "") +
+        sprintf(SkillsRow, "Scalemail", 8, "", "Shield", 9, "") +
+        sprintf(SkillsRow, "Short sword", 0, "", "Sling", 1, "") +
+        sprintf(SkillsRow, "Soft leather", 2, "", "Splint armor", 3, "") +
+        sprintf(SkillsRow, "Staff", 4, "", "Thrown", 5, "") +
+        sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 7, "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Crafting Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Acrobatics", 0, "", "Aerophone crafting", 1, "") +
@@ -483,7 +483,7 @@ void AllFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Move silently", 8, "", "Open lock", 9, "") +
         sprintf(SkillsRow, "Search", 0, "", "Set traps and snares", 1, "") +
         sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
-        EndBar + sprintf(SkillPoints, 2);
+        EndBar + sprintf(SkillPoints, 8);
 
     ExpectTrue(Player->executeCommand("skills -all"));
     ExpectEq(message, Player->caughtMessage());
@@ -492,7 +492,7 @@ void AllFlagDisplaysAllSkills()
 /////////////////////////////////////////////////////////////////////////////
 void NoFlagDisplaysAllSkills()
 {
-    Player->addSkillPoints(1040);
+    Player->addSkillPoints(1060);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -502,20 +502,20 @@ void NoFlagDisplaysAllSkills()
     PrepSkillsOfType("language");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Axe", 0, "", "Bow", 1, "") +
-        sprintf(SkillsRow, "Chainmail", 2, "", "Crossbow", 3, "") +
-        sprintf(SkillsRow, "Dagger", 4, "", "Dodge", 5, "") +
-        sprintf(SkillsRow, "Dual wield", 6, "", "Flail", 7, "") +
-        sprintf(SkillsRow, "Hammer", 8, "", "Hand and a half sword", 9, "") +
-        sprintf(SkillsRow, "Hard leather", 0, "", "Long sword", 1, "") +
-        sprintf(SkillsRow, "Mace", 2, "", "No armor", 3, "") +
-        sprintf(SkillsRow, "Parry", 4, "", "Plate armor", 5, "") +
-        sprintf(SkillsRow, "Pole arm", 6, "", "Scalemail", 7, "") +
-        sprintf(SkillsRow, "Shield", 8, "", "Short sword", 9, "") +
-        sprintf(SkillsRow, "Sling", 0, "", "Soft leather", 1, "") +
-        sprintf(SkillsRow, "Splint armor", 2, "", "Staff", 3, "") +
-        sprintf(SkillsRow, "Thrown", 4, "", "Two-handed sword", 5, "") +
-        sprintf(HalfRow, "Unarmed", 6, "", "");
+        sprintf(SkillsRow, "Axe", 0, "", "Blind fighting", 1, "") +
+        sprintf(SkillsRow, "Bow", 2, "", "Chainmail", 3, "") +
+        sprintf(SkillsRow, "Crossbow", 4, "", "Dagger", 5, "") +
+        sprintf(SkillsRow, "Dodge", 6, "", "Dual wield", 7, "") +
+        sprintf(SkillsRow, "Flail", 8, "", "Hammer", 9, "") +
+        sprintf(SkillsRow, "Hand and a half sword", 0, "", "Hard leather", 1, "") +
+        sprintf(SkillsRow, "Long sword", 2, "", "Mace", 3, "") +
+        sprintf(SkillsRow, "No armor", 4, "", "Parry", 5, "") +
+        sprintf(SkillsRow, "Plate armor", 6, "", "Pole arm", 7, "") +
+        sprintf(SkillsRow, "Scalemail", 8, "", "Shield", 9, "") +
+        sprintf(SkillsRow, "Short sword", 0, "", "Sling", 1, "") +
+        sprintf(SkillsRow, "Soft leather", 2, "", "Splint armor", 3, "") +
+        sprintf(SkillsRow, "Staff", 4, "", "Thrown", 5, "") +
+        sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 7, "");
 
     message += "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Crafting Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
         sprintf(SkillsRow, "Acrobatics", 0, "", "Aerophone crafting", 1, "") +
@@ -582,7 +582,7 @@ void NoFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Move silently", 8, "", "Open lock", 9, "") +
         sprintf(SkillsRow, "Search", 0, "", "Set traps and snares", 1, "") +
         sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
-        EndBar + sprintf(SkillPoints, 2);
+        EndBar + sprintf(SkillPoints, 8);
 
     ExpectTrue(Player->executeCommand("skills"));
     ExpectEq(message, Player->caughtMessage());
@@ -605,20 +605,20 @@ void MagicalEnhancementsModifySkillValues()
     PrepSkillsOfType("combat");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Axe", 0, "", "Bow", 1, "(+1)") +
-        sprintf(SkillsRow, "Chainmail", 2, "", "Crossbow", 3, "") +
-        sprintf(SkillsRow, "Dagger", 4, "", "Dodge", 5, "") +
-        sprintf(SkillsRow, "Dual wield", 6, "", "Flail", 7, "") +
-        sprintf(SkillsRow, "Hammer", 8, "(+5)", "Hand and a half sword", 9, "") +
-        sprintf(SkillsRow, "Hard leather", 0, "", "Long sword", 1, "(+3)") +
-        sprintf(SkillsRow, "Mace", 2, "", "No armor", 3, "") +
-        sprintf(SkillsRow, "Parry", 4, "", "Plate armor", 5, "") +
-        sprintf(SkillsRow, "Pole arm", 6, "", "Scalemail", 7, "") +
-        sprintf(SkillsRow, "Shield", 8, "", "Short sword", 9, "") +
-        sprintf(SkillsRow, "Sling", 0, "", "Soft leather", 1, "") +
-        sprintf(SkillsRow, "Splint armor", 2, "", "Staff", 3, "") +
-        sprintf(SkillsRow, "Thrown", 4, "", "Two-handed sword", 5, "") +
-        sprintf(HalfRow, "Unarmed", 6, "", "") + EndBar +
+        sprintf(SkillsRow, "Axe", 0, "", "Blind fighting", 1, "") +
+        sprintf(SkillsRow, "Bow", 2, "(+1)", "Chainmail", 3, "") +
+        sprintf(SkillsRow, "Crossbow", 4, "", "Dagger", 5, "") +
+        sprintf(SkillsRow, "Dodge", 6, "", "Dual wield", 7, "") +
+        sprintf(SkillsRow, "Flail", 8, "", "Hammer", 9, "(+5)") +
+        sprintf(SkillsRow, "Hand and a half sword", 0, "", "Hard leather", 1, "") +
+        sprintf(SkillsRow, "Long sword", 2, "(+3)", "Mace", 3, "") +
+        sprintf(SkillsRow, "No armor", 4, "", "Parry", 5, "") +
+        sprintf(SkillsRow, "Plate armor", 6, "", "Pole arm", 7, "") +
+        sprintf(SkillsRow, "Scalemail", 8, "", "Shield", 9, "") +
+        sprintf(SkillsRow, "Short sword", 0, "", "Sling", 1, "") +
+        sprintf(SkillsRow, "Soft leather", 2, "", "Splint armor", 3, "") +
+        sprintf(SkillsRow, "Staff", 4, "", "Thrown", 5, "") +
+        sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 0, "") + EndBar +
         sprintf(SkillPoints, 8);
 
     ExpectTrue(Player->executeCommand("skills -combat"));
@@ -641,20 +641,20 @@ void MagicalEnhancementsDoNotModifySkillsThatAreZero()
     PrepSkillsOfType("combat");
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Axe", 0, "", "Bow", 1, "(+1)") +
-        sprintf(SkillsRow, "Chainmail", 2, "", "Crossbow", 3, "") +
-        sprintf(SkillsRow, "Dagger", 4, "", "Dodge", 5, "") +
-        sprintf(SkillsRow, "Dual wield", 6, "", "Flail", 7, "") +
-        sprintf(SkillsRow, "Hammer", 8, "", "Hand and a half sword", 9, "") +
-        sprintf(SkillsRow, "Hard leather", 0, "", "Long sword", 1, "") +
-        sprintf(SkillsRow, "Mace", 2, "", "No armor", 3, "") +
-        sprintf(SkillsRow, "Parry", 4, "", "Plate armor", 5, "") +
-        sprintf(SkillsRow, "Pole arm", 6, "", "Scalemail", 7, "") +
-        sprintf(SkillsRow, "Shield", 8, "", "Short sword", 9, "") +
-        sprintf(SkillsRow, "Sling", 0, "", "Soft leather", 1, "") +
-        sprintf(SkillsRow, "Splint armor", 2, "", "Staff", 3, "") +
-        sprintf(SkillsRow, "Thrown", 4, "", "Two-handed sword", 5, "") +
-        sprintf(HalfRow, "Unarmed", 6, "", "") + EndBar +
+        sprintf(SkillsRow, "Axe", 0, "", "Blind fighting", 1, "") +
+        sprintf(SkillsRow, "Bow", 2, "(+1)", "Chainmail", 3, "") +
+        sprintf(SkillsRow, "Crossbow", 4, "", "Dagger", 5, "") +
+        sprintf(SkillsRow, "Dodge", 6, "", "Dual wield", 7, "") +
+        sprintf(SkillsRow, "Flail", 8, "", "Hammer", 9, "") +
+        sprintf(SkillsRow, "Hand and a half sword", 0, "", "Hard leather", 1, "") +
+        sprintf(SkillsRow, "Long sword", 2, "", "Mace", 3, "") +
+        sprintf(SkillsRow, "No armor", 4, "", "Parry", 5, "") +
+        sprintf(SkillsRow, "Plate armor", 6, "", "Pole arm", 7, "") +
+        sprintf(SkillsRow, "Scalemail", 8, "", "Shield", 9, "") +
+        sprintf(SkillsRow, "Short sword", 0, "", "Sling", 1, "") +
+        sprintf(SkillsRow, "Soft leather", 2, "", "Splint armor", 3, "") +
+        sprintf(SkillsRow, "Staff", 4, "", "Thrown", 5, "") +
+        sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 0, "") + EndBar +
         sprintf(SkillPoints, 8);
 
     ExpectTrue(Player->executeCommand("skills -combat"));
@@ -682,20 +682,21 @@ void AdvanceSkillSucceeds()
     ExpectEq("You have increased your 'long sword' skill by 1 and it is now 1.\n", Player->caughtMessage());
 
     string message = "\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(SkillsRow, "Axe", 0, "", "Bow", 0, "") +
-        sprintf(SkillsRow, "Chainmail", 0, "", "Crossbow", 0, "") +
-        sprintf(SkillsRow, "Dagger", 0, "", "Dodge", 0, "") +
-        sprintf(SkillsRow, "Dual wield", 0, "", "Flail", 0, "") +
-        sprintf(SkillsRow, "Hammer", 0, "", "Hand and a half sword", 0, "") +
-        sprintf(SkillsRow, "Hard leather", 0, "", "Long sword", 1, "") +
-        sprintf(SkillsRow, "Mace", 0, "", "No armor", 0, "") +
-        sprintf(SkillsRow, "Parry", 0, "", "Plate armor", 0, "") +
-        sprintf(SkillsRow, "Pole arm", 0, "", "Scalemail", 0, "") +
-        sprintf(SkillsRow, "Shield", 0, "", "Short sword", 0, "") +
-        sprintf(SkillsRow, "Sling", 0, "", "Soft leather", 0, "") +
-        sprintf(SkillsRow, "Splint armor", 0, "", "Staff", 0, "") +
-        sprintf(SkillsRow, "Thrown", 0, "", "Two-handed sword", 0, "") +
-        sprintf(HalfRow, "Unarmed", 0, "", "") + EndBar +
+        sprintf(SkillsRow, "Axe", 0, "", "Blind fighting", 0, "") +
+        sprintf(SkillsRow, "Bow", 0, "", "Chainmail", 0, "") +
+        sprintf(SkillsRow, "Crossbow", 0, "", "Dagger", 0, "") +
+        sprintf(SkillsRow, "Dodge", 0, "", "Dual wield", 0, "") +
+        sprintf(SkillsRow, "Flail", 0, "", "Hammer", 0, "") +
+        sprintf(SkillsRow, "Hand and a half sword", 0, "", "Hard leather", 0, "") +
+        sprintf(SkillsRow, "Long sword", 1, "", "Mace", 0, "") +
+        sprintf(SkillsRow, "No armor", 0, "", "Parry", 0, "") +
+        sprintf(SkillsRow, "Plate armor", 0, "", "Pole arm", 0, "") +
+        sprintf(SkillsRow, "Scalemail", 0, "", "Shield", 0, "") +
+        sprintf(SkillsRow, "Short sword", 0, "", "Sling", 0, "") +
+        sprintf(SkillsRow, "Soft leather", 0, "", "Splint armor", 0, "") +
+        sprintf(SkillsRow, "Staff", 0, "", "Thrown", 0, "") +
+        sprintf(SkillsRow, "Two-handed sword", 0, "", "Unarmed", 0, "") + EndBar +
+
         sprintf(SkillPoints, 8);
 
     ExpectTrue(Player->executeCommand("skills -combat"));

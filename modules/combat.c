@@ -528,6 +528,12 @@ public nomask int calculateDefendAttack()
     
     ret += calculateServiceBonuses("DefendAttackBonus");
    
+    object traits = getService("traits");
+    if (traits && skills && (traits->hasTraitOfRoot("blind") ||
+        (set_light(0) <= 0)))
+    {
+        ret += skills->getSkillModifier("blind fighting") - 10;
+    }
     object attributes = getService("attributes");
     if(attributes)
     {
@@ -613,7 +619,14 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
     }
     
     toHit += calculateServiceBonuses("AttackBonus");
-    
+
+    object traits = getService("traits");
+    if (traits && skills && (traits->hasTraitOfRoot("blind") ||
+        (set_light(0) <= 0)))
+    {
+        toHit += skills->getSkillModifier("blind fighting") - 10;
+    }
+
     object attributes = getService("attributes");
     if(attributes)
     {

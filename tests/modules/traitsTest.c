@@ -328,9 +328,9 @@ void OpinionModifierIsNotModifiedNegativelyByOppositeRoot()
 void OpinionModifierIsModifiedByUnrelatedRoot()
 {
     object target = clone_object("/lib/realizations/player");
-    ExpectTrue(target->addTrait("lib/tests/support/traits/testTrait.c"));
+    ExpectTrue(target->addTrait("lib/tests/support/traits/testNoOpposingRootTrait.c"));
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithoutResearch.c"));
-    ExpectEq(5, Traits->opinionModifier(target));
+    ExpectEq(10, Traits->opinionModifier(target));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -343,6 +343,19 @@ void OpinionModifierHandlesMultipleTraitsWithoutApplyingSameModifierMoreThanOnce
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testLimitedByOpponentTrait.c"));
     ExpectEq(5, Traits->opinionModifier(target));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HasTraitOfRootReturnsCorrectlyForQueriedRoot()
+{
+    ExpectFalse(Traits->hasTraitOfRoot("disfigured"));
+    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testGeneticTrait.c"));
+    ExpectTrue(Traits->hasTraitOfRoot("disfigured"));
+    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testHealthTrait.c"));
+    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testPersonalityTrait.c"));
+    ExpectTrue(Traits->hasTraitOfRoot("disfigured"));
+    ExpectTrue(Traits->removeTrait("lib/tests/support/traits/testGeneticTrait.c"));
+    ExpectTrue(Traits->hasTraitOfRoot("disfigured"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

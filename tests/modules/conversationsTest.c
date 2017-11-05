@@ -62,9 +62,10 @@ void CleanUp()
 void AlterOpinionOfUpdatesOpinionOfTarget()
 {
     PrepActor();
-    ExpectEq(15, Owner->opinionOf(Actor));
+    Actor->addTrait("/lib/tests/support/traits/testNoOpposingRootTrait.c");
+    ExpectEq(10, Owner->opinionOf(Actor));
     ExpectEq(5, Owner->alterOpinionOf(Actor, 5));
-    ExpectEq(20, Owner->opinionOf(Actor));
+    ExpectEq(15, Owner->opinionOf(Actor));
 }
 
 /////////////////////////////////////////////////////////////////////////////

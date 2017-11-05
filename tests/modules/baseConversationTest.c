@@ -344,10 +344,11 @@ void AddResponseEffectAllowsAndAppliesOpinion()
     Conversation->testAddResponse("test", "Another", "This is another test response");
     Conversation->testAddResponseEffect("test", "Another", (["opinion":5]));
 
-    ExpectEq(15, Owner->opinionOf(Actor));
+    Actor->addTrait("/lib/tests/support/traits/testNoOpposingRootTrait.c");
+    ExpectEq(10, Owner->opinionOf(Actor));
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     Conversation->displayResponse("1", Actor, Owner);
-    ExpectEq(20, Owner->opinionOf(Actor));
+    ExpectEq(15, Owner->opinionOf(Actor));
 }
 
 /////////////////////////////////////////////////////////////////////////////

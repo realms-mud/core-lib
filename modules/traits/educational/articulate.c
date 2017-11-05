@@ -15,7 +15,6 @@ public void reset(int arg)
         addSpecification("root", "educated");
         addSpecification("opposing root", "uneducated");
         addSpecification("opinion", 25);
-        addSpecification("opposing opinion", 10);
         addSpecification("bonus charisma", 2);
         addSpecification("bonus perception", 2);
         addSpecification("bonus ancient history", 1);

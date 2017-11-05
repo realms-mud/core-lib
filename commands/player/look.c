@@ -25,29 +25,35 @@ public nomask int execute(string command, object initiator)
     // This should always be true, but if not, the command should fail
     if (canExecuteCommand(command))
     {
-        ret = 1;
-
-        object target = getTarget(initiator, command);
-        if(!target && (getTargetString(initiator, command) == ""))
+        if (initiator->hasTraitOfRoot("blind"))
         {
-            target = environment(initiator);
-        }
-
-        int brief = sizeof(regexp(({ command }), "-b")) || 
-            sizeof(regexp(({ command }), "glance"));
-
-        if (target)
-        {
-            string longDesc = target->long(brief);
-            if (longDesc)
-            {
-                tell_object(initiator, longDesc);
-            }
+            notify_fail("You are blind.\n");
         }
         else
         {
-            tell_object(initiator, sprintf("There is no '%s' here.\n",
-                getTargetString(initiator, command)));
+            ret = 1;
+            object target = getTarget(initiator, command);
+            if (!target && (getTargetString(initiator, command) == ""))
+            {
+                target = environment(initiator);
+            }
+
+            int brief = sizeof(regexp(({ command }), "-b")) ||
+                sizeof(regexp(({ command }), "glance"));
+
+            if (target)
+            {
+                string longDesc = target->long(brief);
+                if (longDesc)
+                {
+                    tell_object(initiator, longDesc);
+                }
+            }
+            else
+            {
+                tell_object(initiator, sprintf("There is no '%s' here.\n",
+                    getTargetString(initiator, command)));
+            }
         }
     }
     return ret;

@@ -90,6 +90,13 @@ public nomask int traitIsOfType(string trait, string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int traitIsOfRoot(string trait, string root)
+{
+    object traitObj = traitObject(trait);
+    return (traitObj && objectp(traitObj) && (traitObj->query("root") == root));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int traitIsNegative(string trait)
 {
     object traitObj = traitObject(trait);

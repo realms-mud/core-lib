@@ -7,6 +7,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Attacker;
 object Target;
+object Room;
 
 /////////////////////////////////////////////////////////////////////////////
 void SetUpAttacker()
@@ -92,11 +93,15 @@ void Setup()
 {
     SetUpAttacker();
     SetUpTarget();
+    Room = clone_object("/lib/tests/support/environment/fakeCombatRoom");
+    move_object(Attacker, Room);
+    move_object(Target, Room);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    destruct(Room);
     destruct(Target);
     destruct(Attacker);
 }
@@ -579,6 +584,37 @@ void CalculateDefendAttackHandlesSkillPenalty()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CalculateDefendAttackHandlesBlindness()
+{
+    destruct(Attacker);
+    Attacker = clone_object("/lib/realizations/player.c");
+    Attacker->Name("Bob");
+    Attacker->Str(20);
+    Attacker->Dex(20);
+    Attacker->Con(20);
+    Attacker->Int(20);
+    Attacker->Wis(20);
+    move_object(Attacker, Room);
+
+    object weapon = CreateWeapon("blah");
+    weapon->set("skill penalty", 1);
+    Attacker->addSkillPoints(100);
+    ExpectTrue(Attacker->addTrait("/lib/modules/traits/diseases/cataracts.c"));
+
+    ExpectEq(-21, Attacker->calculateDefendAttack(), "nothing is equipped");
+
+    ExpectTrue(weapon->equip("blah offhand"), "weapon equip called");
+    ExpectEq(-38, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped");
+
+    Attacker->advanceSkill("long sword", 1);
+    ExpectEq(-27, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped");
+
+    Attacker->advanceSkill("blind fighting", 10);
+    ExpectEq(-6, Attacker->calculateDefendAttack(), "weapon with dc of 2 is equipped and skill of 9");
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
 void CalculateDefendAttackUsesCorrectOffhandWeaponData()
 {
     object weapon = CreateWeapon("blah");
@@ -922,6 +958,33 @@ void CalculateAttackUsesCorrectServiceBonuses()
     ExpectEq(29, Attacker->calculateAttack(Target, weapon, 1), "biological modifier is active");
     Attacker->ToggleMockBackground();
     ExpectEq(32, Attacker->calculateAttack(Target, weapon, 1), "background modifier is active");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CalculateAttackUsesHandlesBlindness()
+{
+    destruct(Attacker);
+    Attacker = clone_object("/lib/realizations/player.c");
+    Attacker->Name("Bob");
+    Attacker->Str(20);
+    Attacker->Dex(20);
+    Attacker->Con(20);
+    Attacker->Int(20);
+    Attacker->Wis(20);
+    move_object(Attacker, Room);
+
+    object weapon = CreateWeapon("blah");
+    Attacker->addSkillPoints(100);
+    Attacker->advanceSkill("long sword", 5);
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+
+    ExpectEq(9, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
+
+    ExpectTrue(Attacker->addTrait("/lib/modules/traits/diseases/cataracts.c"));
+    ExpectEq(-16, Attacker->calculateAttack(Target, weapon, 1), "attacker is blind!");
+
+    Attacker->advanceSkill("blind fighting", 10);
+    ExpectEq(-2, Attacker->calculateDefendAttack(), "blind fighting skill added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1383,10 +1446,6 @@ void PlayersCanToggleKillList()
 /////////////////////////////////////////////////////////////////////////////
 void AttackFiresOnAttackEvent()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-    move_object(Target, room);
-
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
@@ -1397,10 +1456,6 @@ void AttackFiresOnAttackEvent()
 /////////////////////////////////////////////////////////////////////////////
 void AttackFiresOnAttackedEvent()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-    move_object(Target, room);
-
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
@@ -1411,28 +1466,24 @@ void AttackFiresOnAttackedEvent()
 /////////////////////////////////////////////////////////////////////////////
 void AttackInvolvingDeathCreatesCorpseAndDestroysTarget()
 {
-    object room = clone_object("/lib/environment/room");
-
     object weapon = CreateWeapon("sword");
     Attacker->hitPoints(Attacker->maxHitPoints());
     weapon->set("bonus long sword", 50);
     weapon->equip("sword");
-    move_object(Attacker, room);
 
     Target->hitPoints(1);
-    move_object(Target, room);
 
     Attacker->addSkillPoints(100);
     Attacker->advanceSkill("long sword", 20);
 
-    object *roomItems = all_inventory(room);
+    object *roomItems = all_inventory(Room);
     ExpectEq(2, sizeof(roomItems), "two object are in the room");
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectTrue(member(roomItems, Target) > -1, "target is in room");
 
     ExpectTrue(Attacker->attack(Target));
 
-    roomItems = all_inventory(room);
+    roomItems = all_inventory(Room);
     ExpectEq(2, sizeof(roomItems), "two object are in the room");
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectFalse(member(roomItems, Target) > -1, "target is in room");
@@ -1442,17 +1493,13 @@ void AttackInvolvingDeathCreatesCorpseAndDestroysTarget()
 /////////////////////////////////////////////////////////////////////////////
 void AttackInvolvingDeathOfPlayerCreatesCorpseButDoesNotDestroyPlayer()
 {
-    object room = clone_object("/lib/environment/room");
-
     object weapon = CreateWeapon("sword");
     Attacker->hitPoints(1);
     weapon->equip("sword");
-    move_object(Attacker, room);
 
     Target->hitPoints(Target->maxHitPoints());
-    move_object(Target, room);
 
-    object *roomItems = all_inventory(room);
+    object *roomItems = all_inventory(Room);
     ExpectEq(2, sizeof(roomItems), "two objects are in the room");
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectTrue(member(roomItems, Target) > -1, "target is in room");
@@ -1460,7 +1507,7 @@ void AttackInvolvingDeathOfPlayerCreatesCorpseButDoesNotDestroyPlayer()
 
     ExpectTrue(Target->attack(Attacker));
 
-    roomItems = all_inventory(room);
+    roomItems = all_inventory(Room);
     ExpectEq(3, sizeof(roomItems), "three objects are in the room");
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectTrue(member(roomItems, Target) > -1, "target is in room");
@@ -1471,9 +1518,6 @@ void AttackInvolvingDeathOfPlayerCreatesCorpseButDoesNotDestroyPlayer()
 /////////////////////////////////////////////////////////////////////////////
 void OnHitFiresWhenLegalHitIsDone()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
@@ -1485,9 +1529,6 @@ void OnHitFiresWhenLegalHitIsDone()
 /////////////////////////////////////////////////////////////////////////////
 void HitAddsCorrectExperience()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-    move_object(Target, room);
     Target->hitPoints(Target->maxHitPoints());
 
     Target->hit(100, "physical", Attacker);
@@ -1497,9 +1538,6 @@ void HitAddsCorrectExperience()
 /////////////////////////////////////////////////////////////////////////////
 void OnDeathFiresWhenKillingBlowLands()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-
     object handler = clone_object("/lib/tests/support/events/onDeathSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
@@ -1522,10 +1560,7 @@ void SettingWimpyWorksCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
 {
-    object room = clone_object("/lib/environment/room");
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
-    move_object(Attacker, room);
-    move_object(Target, room);
 
     Attacker->hitPoints(100);
     Target->hitPoints(Target->maxHitPoints());
@@ -1541,10 +1576,7 @@ void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
 /////////////////////////////////////////////////////////////////////////////
 void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
 {
-    object room = clone_object("/lib/environment/room");
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
-    move_object(Attacker, room);
-    move_object(Target, room);
 
     Attacker->hitPoints(50);
     Target->hitPoints(Target->maxHitPoints());
@@ -1561,10 +1593,6 @@ void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
 /////////////////////////////////////////////////////////////////////////////
 void AttackerAttacksDuringHeartBeat()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-    move_object(Target, room);
-
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
 
@@ -1581,10 +1609,6 @@ void AttackerAttacksDuringHeartBeat()
 /////////////////////////////////////////////////////////////////////////////
 void TargetAttackedDuringHeartBeat()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-    move_object(Target, room);
-
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
 
@@ -1767,10 +1791,6 @@ void HeartBeatHealsStaminaAtDifferentRatesWhenBonusApplied()
 /////////////////////////////////////////////////////////////////////////////
 void DamageReflectionIsTriggered()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-    move_object(Target, room);
-
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
     Attacker->registerAttacker(Target);
@@ -1795,10 +1815,6 @@ void DamageReflectionIsTriggered()
 /////////////////////////////////////////////////////////////////////////////
 void SlowDoesNotAttackEveryRound()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-    move_object(Target, room);
-
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
 
@@ -1827,10 +1843,6 @@ void SlowDoesNotAttackEveryRound()
 /////////////////////////////////////////////////////////////////////////////
 void HasteAddsAnExtraAttack()
 {
-    object room = clone_object("/lib/environment/room");
-    move_object(Attacker, room);
-    move_object(Target, room);
-
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
 

@@ -16,10 +16,5 @@ public void Setup()
     addItem("/lib/tests/support/environment/fakeItem.c", "north");
 
     addExit("south", "/some/path.c");
-
-    addObject("/lib/items/weapon.c", "someState");
-    addObject("/lib/realizations/monster.c");
-    setAdditionalLongDescription("This is an extra long description to be "
-        "displayed after the feature descriptions");
 }
 
