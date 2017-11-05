@@ -28,19 +28,40 @@ public nomask int execute(string command, object initiator)
     {
         targets += filter_array(all_inventory(environment(initiator)),
             (: $1->get() :));
+        if (!sizeof(targets))
+        {
+            notify_fail("There is nothing to get.\n");
+        }
     }
     else if (sizeof(regexp(({ command }), "-a")))
     {
         targets += filter_array(all_inventory(environment(initiator)),
             (: $1->get() && $1->id(TargetString) :));
+
+        if (!sizeof(targets))
+        {
+            notify_fail(sprintf("Could not find any '%s' to get.\n",
+                TargetString));
+        }
     }
     else
     {
         object target = getTarget(initiator, command);
 
-        if (target->get())
+        if (target)
         {
-            targets += ({ target });
+            if (target->get())
+            {
+                targets += ({ target });
+            }
+            else
+            {
+                notify_fail("You cannot get that.\n");
+            }
+        }
+        else
+        {
+            notify_fail(sprintf("Could not find '%s'.\n", TargetString));
         }
     }
     targets -= ({ 0 });
