@@ -573,3 +573,8 @@ public int get()
     return !query("ungettable");
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public int isContainer()
+{
+    return 0;
+}

@@ -2,16 +2,12 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/items/baseItem.c";
+inherit "/lib/environment/items/baseContainer.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public int isContainer()
+public void Setup()
 {
-    return 1;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public int canGet(object target)
-{
-    return 1;
+    Name("fake container");
+    addDescriptionTemplate("a chest");
+    addAlias("chest");
 }

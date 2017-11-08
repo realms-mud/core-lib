@@ -3,9 +3,3 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/environment/buildings/baseBuilding.c";
-
-/////////////////////////////////////////////////////////////////////////////
-public string Type()
-{
-    return "shop";
-}

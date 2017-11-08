@@ -3,3 +3,15 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/items/item.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public int isContainer()
+{
+    return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int canGet(object target)
+{
+    return 1;
+}

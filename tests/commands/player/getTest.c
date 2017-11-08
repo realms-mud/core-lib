@@ -14,7 +14,7 @@ object Weapon;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Room = clone_object("/lib/environment/room.c");
+    Room = clone_object("/lib/tests/support/environment/fakeCombatRoom.c");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
@@ -37,6 +37,7 @@ void Setup()
     Chainmail->set("equipment locations", Armor);
 
     Weapon = clone_object("/lib/items/weapon.c");
+    Weapon->set("short", "sword");
     Weapon->set("Weapon type", "long sword");
     Weapon->set("aliases", ({ "sword" }));
 
@@ -175,4 +176,49 @@ void CannotPickUpItemsIfMaxCarryExceeded()
     ExpectTrue(present(Item, Room));
     ExpectTrue(present(Chainmail, Room));
     ExpectEq("You cannot carry any more weight.\n", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetFromLivingFails()
+{
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("george");
+
+    move_object(observer, Room);
+    move_object(Weapon, observer);
+
+    ExpectFalse(Player->executeCommand("get sword from george"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGetFromEnvironmentalObject()
+{
+    move_object(Weapon, load_object("/lib/tests/support/environment/fakeChest.c"));
+    ExpectEq(0, sizeof(all_inventory(Player)));
+    ExpectTrue(Player->executeCommand("get sword from chest"));
+    ExpectEq(1, sizeof(all_inventory(Player)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGetFromContainerItems()
+{
+    object box = clone_object("/lib/tests/support/items/testContainer.c");
+    move_object(Weapon, box);
+    move_object(box, Room);
+    ExpectEq(0, sizeof(all_inventory(Player)));
+    ExpectTrue(Player->executeCommand("get sword from box"));
+    ExpectEq(1, sizeof(all_inventory(Player)));
+    destruct(box);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGetFromContainerItemsWhenContainerInInventory()
+{
+    object box = clone_object("/lib/tests/support/items/testContainer.c");
+    move_object(Weapon, box);
+    move_object(box, Player);
+    ExpectEq(1, sizeof(all_inventory(Player)));
+    ExpectTrue(Player->executeCommand("get sword from box"));
+    ExpectEq(2, sizeof(all_inventory(Player)));
+    destruct(box);
 }

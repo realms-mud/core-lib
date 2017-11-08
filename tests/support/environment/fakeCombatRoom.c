@@ -14,7 +14,7 @@ public void Setup()
     addBuilding("/lib/tests/support/environment/fakeBuilding.c", "west", "/some/path/location.c");
     addFeature("fake feature", "east");
     addItem("/lib/tests/support/environment/fakeItem.c", "north");
-
+    addItem("/lib/tests/support/environment/fakeChest.c", "north");
     addExit("south", "/some/path.c");
 }
 
