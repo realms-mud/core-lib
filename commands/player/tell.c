@@ -6,8 +6,6 @@ inherit "/lib/commands/baseCommand.c";
 #include "/lib/include/settings.h"
 #include <mtypes.h>
 
-private string targetName = 0;
-
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
@@ -29,10 +27,10 @@ private nomask object findTarget(string command)
 
         if (sizeof(targetId) == 1)
         {
-            targetName = capitalize(regreplace(command, "tell ([A-Za-z]+) .*", "\\1", 1));
+            string targetName = capitalize(regreplace(command, "tell ([A-Za-z]+) .*", "\\1", 1));
 
             object *target = filter_array(users(),
-                (: return $1->Name() == targetName; :));
+                (: return $1->Name() == $2; :), targetName);
 
             if (sizeof(target))
             {

@@ -4,8 +4,6 @@
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
 
-private string TargetString;
-
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
@@ -21,9 +19,9 @@ public nomask int execute(string command, object initiator)
     int ret = 0;
 
     object *targets = ({});
-    TargetString = getTargetString(initiator, command);
+    string targetString = getTargetString(initiator, command);
 
-    if (TargetString == "all")
+    if (targetString == "all")
     {
         targets += filter_array(all_inventory(initiator),
             (: function_exists("drop", $1) && 
@@ -34,7 +32,7 @@ public nomask int execute(string command, object initiator)
         targets += filter_array(all_inventory(initiator),
             (: function_exists("drop", $1) && 
                 !$1->query("undroppable") &&
-                $1->id(TargetString) :));
+                $1->id($2) :), targetString);
     }
     else
     {

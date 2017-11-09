@@ -8,7 +8,6 @@
 
 private string BaseResearch = "lib/modules/research/researchItem.c";
 private string BaseResearchTree = "lib/modules/research/researchTree.c";
-private string ResearchType;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object researchObject(string researchItem)
@@ -544,13 +543,13 @@ public nomask string displayTreePrerequisites(string researchItem, object user)
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping buildResearchList(string *researchList,
-    int startIndex, object user)
+    int startIndex, object user, string type)
 {
     int index = startIndex;
     mapping ret = ([]);
 
     researchList = filter_array(researchList,
-        (: researchObject($1)->query("source") == ResearchType :));
+        (: researchObject($1)->query("source") == $2 :), type);
 
     if (sizeof(researchList))
     {
@@ -579,7 +578,7 @@ private nomask mapping buildResearchList(string *researchList,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs mapping buildResearchTreeList(string *trees, 
-    object user, int startIndex, int hideTree)
+    string type, object user, int startIndex, int hideTree)
 {
     int index = startIndex;
     mapping ret = ([]);
@@ -613,7 +612,7 @@ private nomask varargs mapping buildResearchTreeList(string *trees,
                 string *researchItems = ({ });
                 foreach(object research in researchList)
                 {
-                    if ((research->query("source") == ResearchType) &&
+                    if ((research->query("source") == type) &&
                         ((!user->isResearched(program_name(research)) &&
                         !user->isResearching(program_name(research))) ||
                             hideTree))
@@ -621,7 +620,7 @@ private nomask varargs mapping buildResearchTreeList(string *trees,
                         researchItems += ({ program_name(research) });
                     }
                 }
-                ret += buildResearchList(researchItems, index, user);
+                ret += buildResearchList(researchItems, index, user, type);
             }
             index = sizeof(ret) + startIndex + 1;
         }
@@ -636,15 +635,14 @@ public nomask mapping getResearchOfType(string type, object user)
 
     if (stringp(type) && objectp(user))
     {
-        ResearchType = type;
-
         ret = buildResearchList(sort_array(user->completedResearch() +
-            user->researchInProgress(), (: $1 > $2 :)), sizeof(ret) + 1, user);
+            user->researchInProgress(), (: $1 > $2 :)), sizeof(ret) + 1, 
+            user, type);
 
         ret += buildResearchTreeList(
             filter_array(user->availableResearchTrees(),
-            (: $1->Source() == ResearchType :)),
-            user, sizeof(ret) + 1);
+            (: $1->Source() == $2 :), type),
+            type, user, sizeof(ret) + 1);
     }
     return ret;
 }
@@ -659,9 +657,9 @@ public mapping getResearchTreeChoices(string type, object user)
         object tree = researchTree(type);
         if (tree)
         {
-            ResearchType = tree->Source();
+            ret += buildResearchTreeList(({ type }), 
+                tree->Source(), user, 1, 1);
         }
-        ret += buildResearchTreeList(({ type }), user, 1, 1);
     }
     return ret;
 }

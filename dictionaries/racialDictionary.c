@@ -426,8 +426,6 @@ mapping hairColors = ([
     ])
 ]);
 
-private string filterRace;
-
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidRace(string race)
 {
@@ -797,10 +795,9 @@ public nomask mapping characterCreationSubraces(string race)
 public nomask mapping characterCreationHair(string race)
 {
     mapping selection = ([]);
-    filterRace = race;
 
     string *hairList = sort_array(filter_array(m_indices(hairColors),
-        (: return(member(hairColors[$1]["exclude"], filterRace) == -1); :)),
+        (: return(member(hairColors[$1]["exclude"], $2) == -1); :), race),
         (: $1 > $2 :));
 
     int i = 1;
