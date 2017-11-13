@@ -43,3 +43,45 @@ public nomask string questSummary(string quest)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public string *questTypes()
+{
+    return ({ "primary", "secondary", "guild", "research",
+        "task", "background" });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping questsOfType(object user, string type)
+{
+    mapping ret = ([]);
+    string *sources = ({});
+    if (type == "completed")
+    {
+        sources = user->completedQuests();
+    }
+    else
+    {
+        sources = filter_array(user->questsInProgress(),
+            (: questObject($1) && questObject($1)->type() == $2 :), type);
+    }
+
+    sources = sort_array(sources, (: $1 > $2 :));
+
+    int menuItem = 1;
+    foreach(string source in sources)
+    {
+        object quest = questObject(source);
+        ret[to_string(menuItem)] = ([
+            "name": ((sizeof(quest->name()) > 20) ? 
+                (capitalize(quest->name()[0..16]) + "...") :
+                capitalize(quest->name())),
+            "type": source,
+            "description": format(sprintf("[0;33m%s\n%s[0m\n[0;36m%s[0m\n",
+                quest->name(), quest->description(), 
+                to_string(user->questStory(source))), 78)
+        ]);
+        menuItem++;
+    }
+    return ret;
+}

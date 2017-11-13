@@ -99,7 +99,7 @@ void SetDescriptionThrowsWhenNameNotValid()
 /////////////////////////////////////////////////////////////////////////////
 void SetDescriptionSetsTheNameOfTheQuestItem()
 {
-    ExpectFalse(QuestItem->description());
+    ExpectEq("", QuestItem->description());
     QuestItem->setDescription("Test");
     ExpectEq("Test", QuestItem->description());
 }

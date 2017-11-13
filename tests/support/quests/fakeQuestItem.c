@@ -13,6 +13,7 @@ void reset(int arg)
     {
         questItem::reset(arg);
         setName("Hail to the king, baby!");
+        setDescription("This is the description for this quest.");
         addState("meet the king", "I've been asked to meet the king!");
 
         addState("met the king",

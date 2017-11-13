@@ -12,6 +12,7 @@ private string BaseQuest = "lib/modules/quests/questItem.c";
 
 private string Name = 0;
 private string Description = 0;
+private string Type = "secondary";
 
     // "<state>" : ([
     //     "description": <some text>
@@ -67,7 +68,7 @@ public void reset(int arg)
     if (!arg)
     {
         Name = 0;
-        Description = 0;
+        Description = "";
         "stateMachine"::reset(arg);
     }
 }
@@ -126,6 +127,26 @@ public nomask void setDescription(string description)
     else
     {
         raise_error("ERROR - questItem: the description must be a string.");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string type()
+{
+    return Type;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setType(string type)
+{
+    object dictionary = load_object("/lib/dictionaries/questsDictionary.c");
+    if (type && stringp(type) && (member(dictionary->questTypes(), type) > -1))
+    {
+        Type = type;
+    }
+    else
+    {
+        raise_error("ERROR - questItem: the type must be listed in questTypes.");
     }
 }
 

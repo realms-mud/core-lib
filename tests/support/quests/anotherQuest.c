@@ -12,6 +12,7 @@ void reset(int arg)
         questItem::reset(arg);
 
         setName("another quest");
+        setDescription("Describe me!");
         addState("blah", "blah");
         addFinalState("blah", "success");
         setInitialState("blah");
