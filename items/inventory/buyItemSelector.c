@@ -27,8 +27,8 @@ public nomask void reset(int arg)
     if(!arg)
     {
         AllowUndo = 0;
-        Description = "From this menu, you can view and sell your character's items";
-        Type = "Sell Items";
+        Description = "From this menu, you can view and purchase items";
+        Type = "Purchase Items";
 
         Dictionary = load_object("/lib/dictionaries/shopDictionary.c");
         Data = ([]);
@@ -63,9 +63,9 @@ protected nomask void setUpUserForSelection()
         }
     }
     Data[to_string(menuItem)] = ([
-        "name":"Exit Sell Item Menu",
+        "name":"Exit Buy Item Menu",
         "type": "exit",
-        "description": "This option lets you exit the sell item menu.\n"
+        "description": "This option lets you exit the purchase item menu.\n"
 
     ]);
 }
@@ -73,7 +73,7 @@ protected nomask void setUpUserForSelection()
 /////////////////////////////////////////////////////////////////////////////
 protected string additionalInstructions()
 {
-    return (sizeof(Data) > 1) ? "" : "You have nothing you can sell to this vendor!\n";
+    return (sizeof(Data) > 1) ? "" : "This vendor has nothing they are willing to sell to you.\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -85,7 +85,7 @@ protected nomask int processSelection(string selection)
         ret = (Data[selection]["type"] == "exit");
         if (!ret)
         {
-            SubselectorObj = clone_object("/lib/items/inventory/sellItemSubselector.c");
+            SubselectorObj = clone_object("/lib/items/inventory/buyItemSubselector.c");
             move_object(SubselectorObj, User);
             SubselectorObj->setSellType(lower_case(Data[selection]["type"]));
             SubselectorObj->setStore(Store);

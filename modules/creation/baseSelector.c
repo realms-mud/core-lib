@@ -71,6 +71,15 @@ private string padSelectionDisplay(string selection)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected string choiceFormatter(string choice)
+{
+    return sprintf("%s[%s]%s - %s%s",
+        (NumColumns < 3) ? "\t" : "", Red,
+        padSelectionDisplay(choice), "[0;32m%-20s[0m",
+        displayDetails(choice));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string displayMessage()
 {
     string ret = "";
@@ -86,10 +95,8 @@ public nomask string displayMessage()
         int i = 1;
         foreach(string choice in choices)
         {
-            string format = sprintf("%s[%s]%s - %s%s", 
-                (NumColumns < 3) ? "\t" : "", Red,
-                padSelectionDisplay(choice), "[0;32m%-20s[0m",
-                displayDetails(choice));
+            string format = choiceFormatter(choice);
+
             ret += sprintf(format, choice, Data[choice]["name"]);
             if (!(i % NumColumns))
             {

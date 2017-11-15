@@ -84,7 +84,7 @@ static nomask mapping sendInventory()
             {
                 ret["inventory"][object_name(registeredObject)] = ([
                     "data":registeredObject->query("all"),
-                        "isEquipped" : 1
+                    "isEquipped": 1
                 ]);
             }
         }

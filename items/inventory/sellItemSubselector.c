@@ -49,7 +49,7 @@ protected nomask void setUpUserForSelection()
         raise_error("ERROR: sellItemSubselector.c - The store has not been "
             "set.\n");
     }
-    Data = Dictionary->getItemDetailsForType(User, SellType);
+    Data = Dictionary->getItemDetailsForType(User, SellType, Store);
 
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Return to previous menu",
@@ -66,7 +66,11 @@ protected nomask int processSelection(string selection)
     {
         ret = (Data[selection]["type"] == "exit");
 
-        if (!ret)
+        if (!ret && Data[selection]["do not sell"])
+        {
+            tell_object(User, "You cannot sell that item here.\n");
+        }
+        else if (!ret)
         {
             Dictionary->sellItems(User, Store, 
                 Data[selection]["object list"]);

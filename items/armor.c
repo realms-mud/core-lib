@@ -27,6 +27,12 @@ public nomask mixed query(string element)
                 "equipment"::query("armor type");
             break;
         }
+        case "armor type":
+        {
+            ret = member(itemData, "armor type") ? itemData["armor type"] :
+                materialsObject()->getBlueprintModifier(this_object(), "skill to use");
+            break;
+        }
         case "type":
         {
             ret = "armor";

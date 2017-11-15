@@ -22,7 +22,7 @@ public nomask string *getItemTypes(object user)
             }
         }
     }
-    return ret;
+    return ret - ({ 0 });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -62,11 +62,11 @@ public nomask varargs int valueModifier(object user, object item, int selling)
     }
 
     ret = to_int(ret * multiplier);
-    return (!selling || (ret < 1500)) ? ret : 1500;
+    return (!selling || (ret < 25000)) ? ret : 25000;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getItemDetailsForType(object user, string type)
+public nomask mapping getItemDetailsForType(object user, string type, object store)
 {
     mapping ret = ([]);
     int menuItem = 1;
@@ -100,7 +100,7 @@ public nomask mapping getItemDetailsForType(object user, string type)
             {
                 ret[to_string(menuItem)]["is equipped"] = 1;
             }
-            if (item->query("no sell"))
+            if (item->query("no sell") || !store->canPurchaseItem(item))
             {
                 ret[to_string(menuItem)]["do not sell"] = 1;
             }

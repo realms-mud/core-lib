@@ -227,6 +227,22 @@ public nomask int getMaterialCraftsmanshipBonus(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int getDefaultValue(object item)
+{
+    int ret = getBlueprintModifier(item, "default value");
+
+    string material = item->query("material");
+
+    if (member(materials, material) && member(materials[material],
+        "value multiplier"))
+    {
+        ret = to_int(ret * materials[material]["value multiplier"]);
+    }
+    return to_int(ret * (1 + (getMaterialCraftsmanshipBonus(item) / 5.0)) *
+        (1 + (item->query("enchanted") / 3.0)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int getMaterialEncumberance(object item)
 {
     int retVal = 0;
@@ -267,7 +283,10 @@ public nomask string hasExtraAttackType(object item)
                 listOfAttackTypes -= ({ "physical" });
             }
             
-            retVal = listOfAttackTypes[0];
+            if (sizeof(listOfAttackTypes))
+            {
+                retVal = listOfAttackTypes[0];
+            }
         }
     }
     return retVal;
@@ -553,12 +572,12 @@ private nomask int calculateServiceBonuses(string methodToCheck, object initiato
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getWeaponAttackInformation(object weapon, object initiator)
 {
-    int baseAttack = weapon->query("weapon attack");
+    int baseAttack = weapon->query("weapon attack") +
+        getMaterialAttack(weapon);
 
     if(initiator)
     {
-        baseAttack += getMaterialAttack(weapon) +
-            initiator->magicalAttackBonus() +
+        baseAttack += initiator->magicalAttackBonus() +
             calculateServiceBonuses("AttackBonus", initiator) +
             (initiator->dexterityBonus() / 2) +
             (initiator->intelligenceBonus() / 2);
@@ -657,12 +676,12 @@ private nomask string applyResistances(object item)
 public nomask string getWeaponDamageInformation(object weapon, object initiator)
 {
     string ret = "";
-    int baseDamage = weapon->query("weapon class");
+    int baseDamage = weapon->query("weapon class") +
+        getMaterialDamage(weapon, "physical");
 
     if (initiator)
     {
-        baseDamage += getMaterialDamage(weapon, "physical") +
-            initiator->magicalDamageBonus() +
+        baseDamage += initiator->magicalDamageBonus() +
             calculateServiceBonuses("DamageBonus", initiator) +
             (initiator->strengthBonus() / 2) +
             (initiator->wisdomBonus() / 4) +
@@ -694,12 +713,12 @@ public nomask string getWeaponDamageInformation(object weapon, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getWeaponDefenseInformation(object weapon, object initiator)
 {
-    int baseDefense = weapon->query("defense class");
+    int baseDefense = weapon->query("defense class") +
+        getMaterialDefendAttack(weapon);
 
     if (initiator)
     {
-        baseDefense += getMaterialDefendAttack(weapon) +
-            initiator->magicalDefendAttackBonus() +
+        baseDefense += initiator->magicalDefendAttackBonus() +
             calculateServiceBonuses("DefendAttackBonus", initiator) +
             (initiator->dexterityBonus() / 2) +
             (initiator->wisdomBonus() / 2);
@@ -721,12 +740,11 @@ public nomask string getWeaponDefenseInformation(object weapon, object initiator
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getEncumberance(object item, object initiator)
 {
-    int encumberance = item->query("encumberance");
+    int encumberance = item->query("encumberance") +
+        getMaterialEncumberance(item);
 
     if (initiator)
     {
-        encumberance += getMaterialEncumberance(item);
-
         string skillToUse = item->query("weapon type") ||
             item->query("armor type");
         if (skillToUse && stringp(skillToUse))
@@ -783,12 +801,12 @@ private nomask string applyWeaponDetails(object weapon, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getDamageProtection(object armor, object initiator)
 {
-    int baseAC = armor->query("armor class");
+    int baseAC = armor->query("armor class") +
+        getMaterialDefense(armor, "physical");
 
     if (initiator)
     {
-        baseAC += getMaterialDefense(armor, "physical") +
-            initiator->magicalDefenseBonus() +
+        baseAC += initiator->magicalDefenseBonus() +
             calculateServiceBonuses("DefenseBonus", initiator) +
             (initiator->constitutionBonus() / 2) +
             (initiator->strengthBonus() / 2);
@@ -878,8 +896,7 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
         equipment->identify();
     }
 
-    if (equipment->query("identified") &&
-        equipment->query("cursed"))
+    if (equipment->query("identified") && equipment->query("cursed"))
     {
         ret += sprintf(BoldBlack, "This item is cursed!\n");
     }

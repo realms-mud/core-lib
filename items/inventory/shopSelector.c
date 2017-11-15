@@ -4,7 +4,6 @@
 //*****************************************************************************
 inherit "/lib/modules/creation/baseSelector";
 
-private object Dictionary;
 private object SubselectorObj;
 private string *ProhibitedTypes = ({});
 private object Store;
@@ -27,10 +26,9 @@ public nomask void reset(int arg)
     if(!arg)
     {
         AllowUndo = 0;
-        Description = "From this menu, you can view and sell your character's items";
-        Type = "Sell Items";
+        Description = "Welcome";
+        Type = "Shop";
 
-        Dictionary = load_object("/lib/dictionaries/shopDictionary.c");
         Data = ([]);
     }
 }
@@ -44,36 +42,28 @@ protected nomask void setUpUserForSelection()
             "set.\n");
     }
 
-    string *itemTypes = Dictionary->getItemTypes(User);
-    int menuItem = 1;
+    Description = Store->welcomeMessage();
+    Type = Store->name();
 
-    itemTypes -= ProhibitedTypes;
-    if (sizeof(itemTypes))
-    {
-        itemTypes = sort_array(itemTypes, (: $1 > $2 :));
-        foreach(string itemType in itemTypes)
-        {
-            Data[to_string(menuItem)] = ([
-                "name": capitalize(itemType) + "s",
-                "type": itemType,
-                "description": "This option will allow you to view your sellable\n"
-                    + itemType + "s.\n"
-            ]);
-            menuItem++;
-        }
-    }
-    Data[to_string(menuItem)] = ([
-        "name":"Exit Sell Item Menu",
-        "type": "exit",
-        "description": "This option lets you exit the sell item menu.\n"
-
+    Data = ([
+        "1":([
+            "name": "Purchase Items",
+            "description": "This options lets you purchase items from the store.\n",
+            "type": "buy",
+            "selector": "buyItemSelector"
+        ]),
+        "2":([
+            "name": "Sell Items",
+            "description": "This options lets you sell items to the store.\n",
+            "type": "sell",
+            "selector": "sellItemSelector"
+        ]),
+        "3":([
+            "name":"Exit Shop Menu",
+            "type": "exit",
+            "description": "This option lets you exit the shop menu.\n"
+        ])
     ]);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected string additionalInstructions()
-{
-    return (sizeof(Data) > 1) ? "" : "You have nothing you can sell to this vendor!\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -85,9 +75,9 @@ protected nomask int processSelection(string selection)
         ret = (Data[selection]["type"] == "exit");
         if (!ret)
         {
-            SubselectorObj = clone_object("/lib/items/inventory/sellItemSubselector.c");
+            SubselectorObj = clone_object(sprintf("/lib/items/inventory/%s.c",
+                Data[selection]["selector"]));
             move_object(SubselectorObj, User);
-            SubselectorObj->setSellType(lower_case(Data[selection]["type"]));
             SubselectorObj->setStore(Store);
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->initiateSelector(User);
