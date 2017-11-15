@@ -24,7 +24,7 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TopLevelResearchMenuDisplaysCorrectly()
+void TopLevelMenuDisplaysCorrectly()
 {
     Player->executeCommand("quests");
 

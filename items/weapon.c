@@ -42,6 +42,11 @@ public nomask mixed query(string element)
                 "equipment"::query("weapon type");
             break;
         }
+        case "type":
+        {
+            ret = "weapon";
+            break;
+        }
         default:
         {
             ret = "equipment"::query(element);

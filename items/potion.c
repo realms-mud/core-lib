@@ -12,7 +12,7 @@ public nomask mixed query(string element)
     {
         case "type":
         {
-            ret = "scroll";
+            ret = "potion";
             break;
         }
         default:

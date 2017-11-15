@@ -386,6 +386,31 @@ public nomask string getMaterialDetails(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public varargs string getMaterialQualityFormatter(object equipment)
+{
+    string ret = NormalEquipment;
+
+    if (getMaterialCraftsmanshipBonus(equipment) > 4)
+    {
+        ret = Masterwork;
+    }
+    else if (equipment->query("enchanted") > 4)
+    {
+        ret = StrongEnchantment;
+    }
+    else if (equipment->query("enchanted"))
+    {
+        ret = Enchanted;
+    }
+    else if (getMaterialCraftsmanshipBonus(equipment))
+    {
+        ret = WellCrafted;
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public varargs string applyMaterialQualityToText(object equipment, string text)
 {
     string ret = NormalEquipment;
@@ -851,6 +876,12 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
             equipment->query("blueprint"), equipment->query("material")))
     {
         equipment->identify();
+    }
+
+    if (equipment->query("identified") &&
+        equipment->query("cursed"))
+    {
+        ret += sprintf(BoldBlack, "This item is cursed!\n");
     }
 
     if (!equipment->query("identified"))

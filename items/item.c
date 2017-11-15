@@ -155,6 +155,11 @@ public mixed query(string element)
                     ret = save_value(itemData);
                     break;
                 }
+                case "type":
+                {
+                    ret = "item";
+                    break;
+                }
             }
         }
     }
@@ -230,6 +235,11 @@ public varargs int set(string element, mixed data)
             
             switch(element)
             {
+                case "type":
+                {
+                    raise_error("Item: You cannot modify the item's 'type'.\n");
+                    break;
+                }
                 case "aliases":
                 {
                     if(!data || !pointerp(data) || !sizeof(data) || 

@@ -34,7 +34,7 @@ private nomask object materialsObject()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int canEquip(object item)
+public nomask int canEquip(object item)
 {
     int ret = 1;
     string *dictionaries = ({ "guilds", "racial", "traits", "background" });
