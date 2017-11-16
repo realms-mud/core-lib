@@ -8,19 +8,23 @@ private nosave mapping materials =
 ([
     "cloth": ([
         "class": "textile",
-        "crafting skill required": 0
+        "crafting skill required": 0,
+        "quality": "common"
     ]),
     "wool": ([
         "class": "textile",
-        "crafting skill required": 1
+        "crafting skill required": 1,
+        "quality": "common"
     ]),
     "hemp": ([
         "class": "textile",
-        "crafting skill required": 1
+        "crafting skill required": 1,
+        "quality": "common"
     ]),
     "flax": ([
         "class": "textile",
-        "crafting skill required": 1
+        "crafting skill required": 1,
+        "quality": "common"
     ]),
     "stone": ([
         "class": "stone",
@@ -28,86 +32,105 @@ private nosave mapping materials =
         "encumberance": 1,
         "defense": ([
             "electricity": 2
-        ])
+        ]),
+        "quality": "common"
     ]),
     "pine": ([
         "class": "wood",
-        "crafting skill required": 1
+        "crafting skill required": 1,
+        "quality": "common"
     ]),
     "poplar": ([
         "class": "wood",
-        "crafting skill required": 1
+        "crafting skill required": 1,
+        "quality": "common"
     ]),
     "cedar": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "oak": ([
         "class": "wood",
         "crafting skill required": 3,
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "common"
     ]),
     "maple": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "birch": ([
         "class": "wood",
-        "crafting skill required": 1
+        "crafting skill required": 1,
+        "quality": "common"
     ]),
     "sycamore": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "beech": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "ash": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "hickory": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "mesquite": ([
         "class": "wood",
         "crafting skill required": 3,
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "common"
     ]),
     "walnut": ([
         "class": "wood",
         "crafting skill required": 2,
-        "value multiplier": 1.2
+        "value multiplier": 1.2,
+        "quality": "common"
     ]),
     "pecan": ([
         "class": "wood",
         "crafting skill required": 2,
-        "value multiplier": 1.2
+        "value multiplier": 1.2,
+        "quality": "common"
     ]),
     "dogwood": ([
         "class": "wood",
-        "crafting skill required": 1
+        "crafting skill required": 1,
+        "quality": "common"
     ]),
     "cherry": ([
         "class": "wood",
         "crafting skill required": 4,
-        "value multiplier": 1.25
+        "value multiplier": 1.25,
+        "quality": "common"
     ]),
     "holly": ([
         "class": "wood",
         "crafting skill required": 3,
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "common"
     ]),
     "yew": ([
         "class": "wood",
         "crafting skill required": 3,
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "common"
     ]),
     "apple": ([
         "class": "wood",
-        "crafting skill required": 3
+        "crafting skill required": 3,
+        "quality": "common"
     ]),
     "teak": ([
         "class": "wood",
@@ -115,27 +138,33 @@ private nosave mapping materials =
            "physical": 1,
        ]),
        "crafting skill required": 6,
-        "value multiplier": 1.5
+        "value multiplier": 1.5,
+        "quality": "uncommon"
     ]),
     "cypress": ([
         "class": "wood",
-        "crafting skill required": 3
+        "crafting skill required": 3,
+        "quality": "common"
     ]),
     "cottonwood": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "hemlock": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "spruce": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "aspen": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "swamp ash": ([
         "class": "wood",
@@ -143,11 +172,13 @@ private nosave mapping materials =
             "physical": 1,
         ]),
         "crafting skill required": 5,
-        "value multiplier": 1.4
+        "value multiplier": 1.4,
+        "quality": "uncommon"
     ]),
     "elm": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
      "basswood": ([
         "class": "wood",
@@ -156,6 +187,7 @@ private nosave mapping materials =
             "physical": -1,
         ]),
         "encumberance": -1,
+        "quality": "common"
     ]),
     "bloodwood": ([
         "class": "wood",
@@ -163,30 +195,36 @@ private nosave mapping materials =
             "physical": 1,
         ]),
         "crafting skill required": 5,
-        "value multiplier": 1.4
+        "value multiplier": 1.4,
+        "quality": "uncommon"
     ]),
     "rosewood": ([
         "class": "wood",
         "crafting skill required": 5,
-        "value multiplier": 1.2
+        "value multiplier": 1.2,
+        "quality": "uncommon"
     ]),
     "buckeye": ([
         "class": "wood",
-        "crafting skill required": 4
+        "crafting skill required": 4,
+        "quality": "common"
     ]),
     "buckthorn": ([
         "class": "wood",
-        "crafting skill required": 4
+        "crafting skill required": 4,
+        "quality": "common"
     ]),
    "alder": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "ironwood": ([
         "class": "wood",
         "attack rating": 1,
         "crafting skill required": 5,
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "common"
     ]),
     "malorn": ([
         "class": "wood",
@@ -195,12 +233,14 @@ private nosave mapping materials =
             "magical": 2
         ]),
         "crafting skill required": 20,
-        "value multiplier": 2.5
+        "value multiplier": 2.5,
+        "quality": "very rare"
     ]),
     "redwood": ([
         "class": "wood",
         "crafting skill required": 5,
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "common"
     ]),
     "mahogany": ([
         "class": "wood",
@@ -208,11 +248,13 @@ private nosave mapping materials =
         "attack": ([
             "physical": 1,
         ]),
-        "value multiplier": 1.3
+        "value multiplier": 1.3,
+        "quality": "uncommon"
     ]),
     "mulberry": ([
         "class": "wood",
-        "crafting skill required": 2
+        "crafting skill required": 2,
+        "quality": "common"
     ]),
     "marblewood": ([
         "class": "wood",
@@ -220,7 +262,8 @@ private nosave mapping materials =
             "physical": 1,
         ]),
         "crafting skill required": 5,
-        "value multiplier": 1.4
+        "value multiplier": 1.4,
+        "quality": "rare"
     ]),
     "purple heart": ([
         "class": "wood",
@@ -229,13 +272,15 @@ private nosave mapping materials =
         "attack": ([
             "physical": 2,
         ]),
-        "value multiplier": 1.7
+        "value multiplier": 1.7,
+        "quality": "rare"
     ]),
     "bubinga": ([
         "class": "wood",
         "attack rating": 1,
         "crafting skill required": 10,
-        "value multiplier": 1.7
+        "value multiplier": 1.7,
+        "quality": "rare"
     ]),
     "kingwood": ([
         "class": "wood",
@@ -244,17 +289,119 @@ private nosave mapping materials =
             "physical": 2,
         ]),
         "crafting skill required": 15,
-        "value multiplier": 2.0
+        "value multiplier": 2.0,
+        "quality": "rare"
     ]),
     "koa": ([
         "class": "wood",
         "attack rating": 1,
         "crafting skill required": 10,
-        "value multiplier": 2.0
+        "value multiplier": 2.0,
+        "quality": "rare"
     ]),
     "leather": ([
         "class": "leather",
-        "crafting skill required": 3
+        "crafting skill required": 3,
+        "quality": "common"
+    ]),
+    "cow leather": ([
+        "class": "leather",
+        "crafting skill required": 3,
+        "quality": "common"
+    ]),
+    "deer leather": ([
+        "class": "leather",
+        "crafting skill required": 3,
+        "quality": "common"
+    ]),
+    "goat leather": ([
+        "class": "leather",
+        "crafting skill required": 3,
+        "quality": "common"
+    ]),
+    "sheep leather": ([
+        "class": "leather",
+        "crafting skill required": 3,
+        "quality": "common"
+    ]),
+    "bear leather": ([
+        "class": "leather",
+        "crafting skill required": 3,
+        "quality": "common"
+    ]),
+    "boar leather": ([
+        "class": "leather",
+        "crafting skill required": 3,
+        "quality": "common"
+    ]),
+    "horse leather": ([
+        "class": "leather",
+        "crafting skill required": 3,
+        "quality": "common"
+    ]),
+    "wolf leather": ([
+        "class": "leather",
+        "crafting skill required": 3,
+        "quality": "common"
+    ]),
+    "unicorn leather": ([
+        "class": "leather",
+        "crafting skill required": 20,
+        "defense": ([
+            "physical": 2
+        ]),
+        "value multiplier": 6.0,
+        "quality": "very rare"
+    ]),
+    "pegasus leather": ([
+        "class": "leather",
+        "crafting skill required": 20,
+        "defense": ([
+            "air": 2,
+            "physical": 2
+        ]),
+        "value multiplier": 6.0,
+        "quality": "very rare"
+    ]),
+    "basilisk leather": ([
+        "class": "leather",
+        "crafting skill required": 30,
+        "defense": ([
+            "earth": 5,
+            "physical": 3
+        ]),
+        "value multiplier": 10.0,
+        "quality": "very rare"
+    ]),
+    "wyvern leather": ([
+        "class": "leather",
+        "crafting skill required": 25,
+        "defense": ([
+            "fire": 3,
+            "physical": 3
+        ]),
+        "value multiplier": 8.0,
+        "quality": "very rare"
+    ]),
+    "chimera leather": ([
+        "class": "leather",
+        "crafting skill required": 35,
+        "defense": ([
+            "fire": 4,
+            "physical": 3
+        ]),
+        "value multiplier": 15.0,
+        "quality": "very rare"
+    ]),
+    "hydra leather": ([
+        "class": "leather",
+        "crafting skill required": 40,
+        "defense": ([
+            "fire": 6,
+            "physical": 4
+        ]),
+        "value multiplier": 20.0,
+        "quality": "very rare"
     ]),
     "bronze": ([
         "class": "metal",
@@ -267,7 +414,8 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "encumberance": -1,
-        "value multiplier": 0.95
+        "value multiplier": 0.95,
+        "quality": "common"
     ]),
     "copper": ([
         "class": "metal",
@@ -280,7 +428,8 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "encumberance": -1,
-        "value multiplier": 0.9
+        "value multiplier": 0.9,
+        "quality": "common"
     ]),
     "tin": ([
         "class": "metal",
@@ -290,6 +439,7 @@ private nosave mapping materials =
         ]),
         "attack rating": -1,
         "encumberance": -1,
+        "quality": "uncommon"
     ]),
     "brass": ([
         "class": "metal",
@@ -302,7 +452,8 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "encumberance": -1,
-        "value multiplier": 0.95
+        "value multiplier": 0.95,
+        "quality": "common"
     ]),
     "gold": ([
         "class": "metal",
@@ -317,7 +468,8 @@ private nosave mapping materials =
             "disease": 5
         ]),
         "encumberance": 2,
-        "value multiplier": 8.0
+        "value multiplier": 8.0,
+        "quality": "very rare"
     ]),
     "lead": ([
         "class": "metal",
@@ -333,7 +485,8 @@ private nosave mapping materials =
             "disease": 5
         ]),
         "encumberance": 2,
-        "value multiplier": 1.5
+        "value multiplier": 1.5,
+        "quality": "very rare"
     ]),
      "platinum": ([
         "class": "metal",
@@ -347,7 +500,8 @@ private nosave mapping materials =
             "acid": 15
         ]),
         "encumberance": 2,
-        "value multiplier": 8.5
+        "value multiplier": 8.5,
+        "quality": "very rare"
     ]),
      "iridium": ([
         "class": "metal",
@@ -363,7 +517,8 @@ private nosave mapping materials =
             "acid": 15
         ]),
         "encumberance": 3,
-        "value multiplier": 10.0
+        "value multiplier": 10.0,
+        "quality": "very rare"
     ]),
      "osmium": ([
         "class": "metal",
@@ -379,7 +534,8 @@ private nosave mapping materials =
             "acid": 15
         ]),
         "encumberance": 4,
-        "value multiplier": 8.1
+        "value multiplier": 8.1,
+        "quality": "very rare"
     ]),
     "palladium": ([
         "class": "metal",
@@ -392,7 +548,8 @@ private nosave mapping materials =
             "fire": -5,
             "acid": 10
         ]),
-        "value multiplier": 6.1
+        "value multiplier": 6.1,
+        "quality": "rare"
     ]),
     "silver": ([
         "class": "metal",
@@ -400,13 +557,15 @@ private nosave mapping materials =
         "attack": ([
             "good": 5
         ]),
-        "value multiplier": 2.0
+        "value multiplier": 2.0,
+        "quality": "uncommon"
     ]),
     "aluminum": ([
         "class": "metal",
         "encumberance": -2,
         "crafting skill required": 25,
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "rare"
     ]),
     "nickel": ([
         "class": "metal",
@@ -414,7 +573,8 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "crafting skill required": 20,
-        "value multiplier": 1.3
+        "value multiplier": 1.3,
+        "quality": "uncommon"
     ]),
     "cobalt": ([
         "class": "metal",
@@ -425,11 +585,13 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "crafting skill required": 20,
-        "value multiplier": 1.6
+        "value multiplier": 1.6,
+        "quality": "uncommon"
     ]),
     "iron": ([
         "class": "metal",
-        "crafting skill required": 5
+        "crafting skill required": 5,
+        "quality": "common"
     ]),
     "steel": ([
         "class": "metal",
@@ -441,7 +603,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 1
         ]),
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "common"
     ]),
     "mithril": ([
         "class": "metal",
@@ -455,7 +618,8 @@ private nosave mapping materials =
             "physical": 5
         ]),
         "encumberance": -4,
-        "value multiplier": 20.0
+        "value multiplier": 20.0,
+        "quality": "very rare"
     ]),
     "nurilium": ([
         "class": "metal",
@@ -471,7 +635,8 @@ private nosave mapping materials =
             "electricity": -3
         ]),
         "encumberance": -2,
-        "value multiplier": 30.0
+        "value multiplier": 30.0,
+        "quality": "very rare"
     ]),
     "kirdarium": ([
         "class": "metal",
@@ -490,7 +655,8 @@ private nosave mapping materials =
             "cold": -5
         ]),
         "encumberance": -1,
-        "value multiplier": 45.0
+        "value multiplier": 45.0,
+        "quality": "very rare"
     ]),
     "admantite": ([
         "class": "metal",
@@ -503,7 +669,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 16.0
+        "value multiplier": 16.0,
+        "quality": "very rare"
     ]),
     "galvorn": ([
         "class": "metal",
@@ -519,10 +686,11 @@ private nosave mapping materials =
             "electricity": 3
         ]),
         "encumberance": 2,
-        "value multiplier": 25.0
+        "value multiplier": 25.0,
+        "quality": "very rare"
     ]),
-    "special": 0,
-    "spell material": 0,
+    "special": ([]),
+    "spell material": ([]),
     "glassteel": ([
         "class": "crystal",
         "crafting skill required": 20,
@@ -534,7 +702,8 @@ private nosave mapping materials =
             "physical": -5
         ]),
         "encumberance": 1,
-        "value multiplier": 15.0
+        "value multiplier": 15.0,
+        "quality": "very rare"
     ]),
     "magical ice": ([
         "class": "crystal",
@@ -548,7 +717,8 @@ private nosave mapping materials =
             "fire": -10
         ]),
         "encumberance": 2,
-        "value multiplier": 10.0
+        "value multiplier": 10.0,
+        "quality": "very rare"
     ]),
     "crystal": ([
         "class": "crystal",
@@ -561,7 +731,8 @@ private nosave mapping materials =
             "physical": 2,
             "magical": 2
         ]),
-        "value multiplier": 1.5
+        "value multiplier": 1.5,
+        "quality": "rare"
     ]),
     "quartz": ([
         "class": "crystal",
@@ -572,7 +743,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "rare"
     ]),
     "opal": ([
         "class": "crystal",
@@ -583,7 +755,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "rare"
     ]),
     "topaz": ([
         "class": "crystal",
@@ -594,7 +767,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 1.2
+        "value multiplier": 1.2,
+        "quality": "rare"
     ]),
     "turquoise": ([
         "class": "crystal",
@@ -605,7 +779,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 1.2
+        "value multiplier": 1.2,
+        "quality": "rare"
     ]),
     "amethyst": ([
         "class": "crystal",
@@ -616,7 +791,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 1.1
+        "value multiplier": 1.1,
+        "quality": "rare"
     ]),
     "garnet": ([
         "class": "crystal",
@@ -627,7 +803,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 1.5
+        "value multiplier": 1.5,
+        "quality": "rare"
     ]),
     "florite": ([
         "class": "crystal",
@@ -638,7 +815,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 1.2
+        "value multiplier": 1.2,
+        "quality": "rare"
     ]),
     "citrine": ([
         "class": "crystal",
@@ -649,7 +827,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 1.15
+        "value multiplier": 1.15,
+        "quality": "rare"
     ]),
     "agate": ([
         "class": "crystal",
@@ -660,7 +839,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 1.15
+        "value multiplier": 1.15,
+        "quality": "rare"
     ]),
     "onyx": ([
         "class": "crystal",
@@ -671,7 +851,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 4.5
+        "value multiplier": 4.5,
+        "quality": "very rare"
     ]),
     "jade": ([
         "class": "crystal",
@@ -682,7 +863,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 2
         ]),
-        "value multiplier": 3.5
+        "value multiplier": 3.5,
+        "quality": "very rare"
     ]),
     "amber": ([
         "class": "crystal",
@@ -693,7 +875,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 1
         ]),
-        "value multiplier": 2.5
+        "value multiplier": 2.5,
+        "quality": "rare"
     ]),
     "aquamarine": ([
         "class": "crystal",
@@ -704,7 +887,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 1
         ]),
-        "value multiplier": 1.25
+        "value multiplier": 1.25,
+        "quality": "rare"
     ]),
     "emerald": ([
         "class": "crystal",
@@ -715,7 +899,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 3
         ]),
-        "value multiplier": 11.5
+        "value multiplier": 11.5,
+        "quality": "very rare"
     ]),
     "sapphire": ([
         "class": "crystal",
@@ -726,7 +911,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 3
         ]),
-        "value multiplier": 10.5
+        "value multiplier": 10.5,
+        "quality": "very rare"
     ]),
    "bloodstone": ([
         "class": "crystal",
@@ -737,7 +923,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 3
         ]),
-        "value multiplier": 12.5
+        "value multiplier": 12.5,
+        "quality": "very rare"
     ]),
     "diamond": ([
         "class": "crystal",
@@ -748,7 +935,8 @@ private nosave mapping materials =
         "defense": ([
             "physical": 4
         ]),
-        "value multiplier": 15.5
+        "value multiplier": 15.5,
+        "quality": "very rare"
     ]),
     "kirluin": ([
         "class": "crystal",
@@ -763,7 +951,8 @@ private nosave mapping materials =
             "electricity": 10
         ]),
         "encumberance": -3,
-        "value multiplier": 50.0
+        "value multiplier": 50.0,
+        "quality": "very rare"
     ]),
     "dragon scale": ([
         "class": "exotic",
@@ -772,7 +961,8 @@ private nosave mapping materials =
             "fire": 15,
             "physical": 10
         ]),
-        "value multiplier": 25.0
+        "value multiplier": 25.0,
+        "quality": "very rare"
     ]),
     "dragon leather": ([
         "class": "leather",
@@ -781,16 +971,19 @@ private nosave mapping materials =
             "fire": 10,
             "physical": 6
         ]),
-        "value multiplier": 25.0
+        "value multiplier": 25.0,
+        "quality": "very rare"
     ]),
     "bone": ([
         "class": "exotic",
         "crafting skill required": 5,
-        "value multiplier": 1.5
+        "value multiplier": 1.5,
+        "quality": "uncommon"
     ]),
     "ivory": ([
         "class": "exotic",
         "crafting skill required": 10,
-        "value multiplier": 5.0
+        "value multiplier": 5.0,
+        "quality": "very rare"
     ]),
 ]);

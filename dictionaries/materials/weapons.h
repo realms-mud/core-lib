@@ -124,6 +124,21 @@ private nosave mapping weaponBlueprints = ([
         "default value": 220,
         "default description": ""
     ]),
+    "short sword": ([
+        "type": "one-handed weapon",
+        "default location": OnehandedWeapon,
+        "damage type": "thrust",
+        "skill to craft": 10,
+        "skill to use": "short sword",
+        "default wc": 6,
+        "default dc": 3,
+        "default attack": 5,
+        "default encumberance": 3,
+        "default weight": 3,
+        "default material": "iron",
+        "default value": 100,
+        "default description": ""
+    ]),
     "gladius": ([
         "type": "one-handed weapon",
         "default location": OnehandedWeapon,

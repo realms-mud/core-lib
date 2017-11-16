@@ -84,4 +84,8 @@ void SelectingExitExitsSelector()
     command("3", Player);
     ExpectSubStringMatch("You have selected 'Exit Shop Menu'",
         Player->caughtMessage());
+
+    object shop = clone_object("/lib/environment/buildings/baseShop.c");
+    load_object("/lib/dictionaries/shopDictionary.c")->generateRandomInventory(shop, 5,
+        "weapon", "sword");
 }

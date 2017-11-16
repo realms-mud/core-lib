@@ -30,7 +30,7 @@ public nomask varargs string welcomeMessage(string newMessage)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int storeItem(object item)
+public nomask varargs int storeItem(object item, int isPermanent)
 {
     int ret = 0;
 
@@ -47,8 +47,19 @@ public nomask int storeItem(object item)
             "quality": dictionary->getMaterialQualityFormatter(item),
             "data": item->query("all")
         ]);
+
+        if (isPermanent)
+        {
+            list[object_name(item)]["permanent"] = 1;
+        }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public mapping hereIsStuff()
+{
+    return list + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

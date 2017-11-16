@@ -238,8 +238,8 @@ public nomask int getDefaultValue(object item)
     {
         ret = to_int(ret * materials[material]["value multiplier"]);
     }
-    return to_int(ret * (1 + (getMaterialCraftsmanshipBonus(item) / 5.0)) *
-        (1 + (item->query("enchanted") / 3.0)));
+    return to_int(ret + (250 * (1 + 0.35 * (getMaterialCraftsmanshipBonus(item))) *
+        (1 + 10 * item->query("enchanted"))));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -904,6 +904,97 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
     if (!equipment->query("identified"))
     {
         ret += sprintf(Unidentified, "This item has not been identified.\n");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *getWeightedMaterial(string material)
+{
+    string *weightedMaterials = ({});
+    int numToAdd = 0;
+    switch (materials[material]["quality"])
+    {
+        case "common":
+        {
+            numToAdd = 5;
+            break;
+        }
+        case "uncommon":
+        {
+            numToAdd = 3;
+            break;
+        }
+        case "rare":
+        {
+            numToAdd = 1;
+            break;
+        }
+        case "very rare":
+        {
+            numToAdd = !random(3);
+            break;
+        }
+    }
+
+    for (int i = 0; i < numToAdd; i++)
+    {
+        weightedMaterials += ({ material });
+    }
+    return weightedMaterials;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getRandomMaterial(object item)
+{
+    string defaultMaterial = item->query("material");
+    string ret = defaultMaterial;
+    if (member(materials, defaultMaterial))
+    {
+        string materialClass = materials[defaultMaterial]["class"];
+        int useCrystals = materialClass == "metal";
+
+        string *options = filter_array(m_indices(materials),
+            (: (($2[$1]["class"] == $3) ||
+            ($4 && !random(10) && ($2[$1]["class"] == "crystal"))) :),
+            materials, materialClass, useCrystals);
+
+        string *weightedMaterials = ({});
+        for (int i = 0; i < 100; i++)
+        {
+            weightedMaterials += ({ defaultMaterial });
+        }
+
+        if (sizeof(options))
+        {
+            foreach(string material in options)
+            {
+                weightedMaterials += getWeightedMaterial(material);
+            }
+        }
+        ret = weightedMaterials[random(sizeof(weightedMaterials))];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int getRandomCraftsmanshipBonus(object item)
+{
+    int ret = 5 + random(15);
+
+    string itemBlueprint = item->query("blueprint");
+    if (member(weaponBlueprints, itemBlueprint))
+    {
+        ret += weaponBlueprints[itemBlueprint]["skill to craft"];
+    }
+    else if (member(armorBlueprints, itemBlueprint))
+    {
+        ret += armorBlueprints[itemBlueprint]["skill to craft"];
+    }
+
+    if (!random(5))
+    {
+        ret += 20 + random(25);
     }
     return ret;
 }
