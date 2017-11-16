@@ -1889,7 +1889,7 @@ void HitSucceedsWhenTargetEtherealAndDamageTypeCanDamageThem()
 /////////////////////////////////////////////////////////////////////////////
 void AttackFailsWhenTargetEtherealAndDamageTypeCannotDamageThem()
 {
-    object weapon = clone_object("/lib/instances/items/weapons/long-sword.c");
+    object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     Attacker->addSkillPoints(100);
     ExpectTrue(Attacker->advanceSkill("long sword", 20));
     move_object(weapon, Attacker);
@@ -1906,7 +1906,7 @@ void AttackFailsWhenTargetEtherealAndDamageTypeCannotDamageThem()
 /////////////////////////////////////////////////////////////////////////////
 void AttackSucceedsWhenTargetEtherealAndDamageTypeCanDamageThem()
 {
-    object weapon = clone_object("/lib/instances/items/weapons/long-sword.c");
+    object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     Attacker->addSkillPoints(100);
     ExpectTrue(Attacker->advanceSkill("long sword", 20));
     weapon->set("material", "galvorn");
