@@ -220,9 +220,13 @@ public nomask void displayMessage(object attacker, object foe,
         {
             // This can only happen if damageType is of type baseAttack
             string template = damageType->getMessage(damageInflicted);
+            if ((damageInflicted < 1) && foe->hasTraitOfRoot("ethereal"))
+            {
+                template = "##AttackerPossessive[::Name]## attack harmlessly passes through ##TargetName##.";
+            }
             // This annoying loop handles the fact that everyone has different
             // setting for color.
-            foreach(object person : all_inventory(environment(attacker)))
+            foreach(object person in all_inventory(environment(attacker)))
             {
                 if(person && objectp(person))// && interactive(person))
                 {

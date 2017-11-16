@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         ::reset(arg);
         setDamageType("electricity");
+        damagesEthereal();
         addHitDictionary(({
             "shock", "singe", "fry", "zap", "blast", "zing", "jolt",
             "zap" }));

@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         ::reset(arg);
         setDamageType("evil");
+        damagesEthereal();
         addHitDictionary(({
             "eviscerate", "slam", "menace", "flatten", "crush", "slam",
             "crash", "gut", "rip", "shred", "gouge" }));

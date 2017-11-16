@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         ::reset(arg);
         setDamageType("chaos");
+        damagesEthereal();
         addHitDictionary(({
             "spin", "gesticulate","gyrate", "pirouette", "gesture", "flourish" }));
 

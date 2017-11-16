@@ -1263,7 +1263,22 @@ private nomask int determineFateFromDeath(object murderer)
     }
     return killMe;
 }
-    
+  
+/////////////////////////////////////////////////////////////////////////////
+private nomask int canBeHitIfEthereal(string damageType)
+{
+    int ret = 1;
+
+    object traits = getService("traits");
+    if (traits && traits->hasTraitOfRoot("ethereal") &&
+        (member(({ "electricity", "energy", "evil", "good", "fire",
+            "magical" }), damageType) < 0))
+    {
+        ret = 0;
+    }
+    return ret;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs int hit(int damage, string damageType, object foe)
 {
@@ -1273,7 +1288,8 @@ public nomask varargs int hit(int damage, string damageType, object foe)
     {
         damageType = "physical";
     }
-    if(hitIsAllowed())
+
+    if(hitIsAllowed() && canBeHitIfEthereal(damageType))
     {
         if(!foe || !objectp(foe))
         {
@@ -1360,6 +1376,11 @@ protected nomask void doOneAttack(object foe, object weapon)
             primaryDamageType = weapon->getDamageType();
         }
 
+        if (foe->hasTraitOfRoot("ethereal") && !weapon->canDamageEthereal())
+        {
+            hitSucceeded = 0.0;
+        }
+
         if((hitSucceeded > 0.0) && foe && objectp(foe))
         {
             object inventory = getService("inventory");
@@ -1400,7 +1421,6 @@ protected nomask void doOneAttack(object foe, object weapon)
             if(foe && objectp(foe))
             {
                 damageInflicted += foe->hit(damage, primaryDamageType, this_object());
-                tell_room(environment(this_object()), "(" + damageInflicted + ") ");
             }
         }
 
@@ -1435,9 +1455,9 @@ public nomask int attack(object foe)
             call_other(foe, "notify", "onAttacked");
         }
 
+        ret = 1;
         foreach(mapping attack in getAttacks())
         {
-            ret = 1;
             // I'm going to go out on a limb and assume that 
             // AttacksBlueprint will always exist. If not, this will puke. 
             if(attackObject()->isWeaponAttack(attack))

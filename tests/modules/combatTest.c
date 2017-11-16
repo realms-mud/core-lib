@@ -1864,4 +1864,75 @@ void HasteAddsAnExtraAttack()
     Attacker->heart_beat();
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void HitFailsWhenTargetEtherealAndDamageTypeCannotDamageThem()
+{
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectEq(150, Target->hitPoints());
+    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
 
+    ExpectFalse(Target->hit(100, "physical", Attacker));
+    ExpectEq(150, Target->hitPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HitSucceedsWhenTargetEtherealAndDamageTypeCanDamageThem()
+{
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectEq(150, Target->hitPoints());
+    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+
+    ExpectTrue(Target->hit(100, "energy", Attacker));
+    ExpectEq(54, Target->hitPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AttackFailsWhenTargetEtherealAndDamageTypeCannotDamageThem()
+{
+    object weapon = clone_object("/lib/instances/items/weapons/long-sword.c");
+    Attacker->addSkillPoints(100);
+    ExpectTrue(Attacker->advanceSkill("long sword", 20));
+    move_object(weapon, Attacker);
+    ExpectTrue(weapon->equip("sword"));
+
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectEq(150, Target->hitPoints());
+    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+
+    ExpectTrue(Attacker->attack(Target));
+    ExpectEq(150, Target->hitPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AttackSucceedsWhenTargetEtherealAndDamageTypeCanDamageThem()
+{
+    object weapon = clone_object("/lib/instances/items/weapons/long-sword.c");
+    Attacker->addSkillPoints(100);
+    ExpectTrue(Attacker->advanceSkill("long sword", 20));
+    weapon->set("material", "galvorn");
+
+    // Need to remove random miss chances
+    weapon->set("bonus attack", 200);
+    weapon->set("enchantments", (["energy":20]));
+    move_object(weapon, Attacker);
+    ExpectTrue(weapon->equip("sword"));
+
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectTrue(Target->hitPoints() == Target->maxHitPoints());
+    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+
+    ExpectTrue(Attacker->attack(Target));
+    ExpectTrue(Target->hitPoints() < Target->maxHitPoints(), "target hit");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AttackSucceedsWhenTargetEtherealAndHasNonWeaponAttackThatCanDamageEthereal()
+{
+    ExpectTrue(Attacker->addAttack("energy", 50, 500),"add attack");
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectTrue(Target->hitPoints() == Target->maxHitPoints());
+    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+
+    ExpectTrue(Attacker->attack(Target));
+    ExpectTrue(Target->hitPoints() < Target->maxHitPoints());
+}

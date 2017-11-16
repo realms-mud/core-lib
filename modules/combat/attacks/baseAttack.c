@@ -9,6 +9,8 @@ private mapping damageMessages = ([ ]);
 
 private nosave string AttacksDictionary = "/lib/dictionaries/attacksDictionary.c";
 private string damageType = "generic";
+private int canDamageEthereal = 0;
+
 private int toHit;
 private int damage;
 private int initialized = 0;
@@ -36,6 +38,18 @@ protected nomask int setDamageType(string dmgType)
 public nomask string getDamageType()
 {
     return damageType;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canDamageEthereal()
+{
+    return canDamageEthereal;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void damagesEthereal()
+{
+    canDamageEthereal = 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         ::reset(arg);
         setDamageType("magical");
+        damagesEthereal();
         addHitDictionary(({
             "cast", "gesture", "chant", "intone", "speak" }));
 

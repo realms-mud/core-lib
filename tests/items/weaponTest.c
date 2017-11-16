@@ -228,3 +228,42 @@ void InvalidBlueprintCannotBeSet()
     string err = catch (Weapon->set("blueprint", "blah"));
     ExpectEq(expected, err, "blueprint cannot be set");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDamageEtherealReturnsFalseByDefault()
+{
+    Weapon->set("blueprint", "long sword");
+    ExpectFalse(Weapon->canDamageEthereal());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDamageEtherealReturnsTrueIfItIsMasterwork()
+{
+    Weapon->set("blueprint", "long sword");
+    Weapon->set("craftsmanship", 100);
+    ExpectTrue(Weapon->canDamageEthereal());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDamageEtherealReturnsTrueIfMaterialHasCorrectProperties()
+{
+    Weapon->set("blueprint", "long sword");
+    Weapon->set("material", "galvorn");
+    ExpectTrue(Weapon->canDamageEthereal());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDamageEtherealReturnsTrueIfEnchantmentHasCorrectProperties()
+{
+    Weapon->set("blueprint", "long sword");
+    Weapon->set("enchantments", (["energy": 20]));
+    ExpectTrue(Weapon->canDamageEthereal());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDamageEtherealReturnsFalseIfEnchantmentCannotDamageEthereal()
+{
+    Weapon->set("blueprint", "long sword");
+    Weapon->set("enchantments", (["cold":20]));
+    ExpectFalse(Weapon->canDamageEthereal());
+}

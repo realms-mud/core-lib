@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         ::reset(arg);
         setDamageType("energy");
+        damagesEthereal();
         addHitDictionary(({
             "blast", "beam", "flare", "radiate", "irradiate", "coruscate" }));
 

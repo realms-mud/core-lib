@@ -394,7 +394,7 @@ private nosave mapping materials =
         ]),
         "value multiplier": 6.1
     ]),
-   "silver": ([
+    "silver": ([
         "class": "metal",
         "crafting skill required": 10,
         "attack": ([

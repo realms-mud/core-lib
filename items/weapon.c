@@ -224,3 +224,30 @@ public void init()
     add_action("unequip", "unwield");
     "equipment"::init();
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canDamageEthereal()
+{
+    int canDamage = (materialsObject()->getMaterialCraftsmanshipBonus(
+        this_object()) > 4);
+
+    string *damageTypes = 
+        materialsObject()->getMaterialDamageType(this_object());
+    if (query("enchantments"))
+    {
+        damageTypes += m_indices(query("enchantments"));
+    }
+    if (sizeof(damageTypes))
+    {
+        foreach(string validDamage in ({ "electricity", "energy", "evil", "good",
+            "fire", "magical" }))
+        {
+            if (member(damageTypes, validDamage) > -1)
+            {
+                canDamage = 1;
+                break;
+            }
+        }
+    }
+    return canDamage;
+}

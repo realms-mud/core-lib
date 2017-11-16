@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         ::reset(arg);
         setDamageType("fire");
+        damagesEthereal();
         addHitDictionary(({
             "scorch", "immolate", "blast", "burn", "torch", "ignite", "singe",
             "roast", "melt", "broil", "char" }));
