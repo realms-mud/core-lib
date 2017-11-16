@@ -101,7 +101,13 @@ public mixed query(string element)
     
     if(element && stringp(element))
     {
-        if(member(itemData, element) && itemData[element])
+        if (element == "long")
+        {
+            ret = member(itemData, "long") ? itemData["long"] :
+                loadBlueprint(MaterialsBlueprint)->getBlueprintModifier(
+                    this_object(), "default description");
+        }
+        else if(member(itemData, element) && itemData[element])
         {
             if(pointerp(itemData[element]))
             {
@@ -484,7 +490,7 @@ protected string itemStatistics()
 public string long()
 {    
     string description = "";
-    if (query("long"))
+    if (query("long") && (query("long") != ""))
     {
         description += query("long");
     }

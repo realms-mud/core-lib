@@ -13,7 +13,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 20,
         "default weight": 8,
         "default material": "iron",
-        "default value": 500
+        "default value": 500,
+        "default description": ""
     ]),
     "hauberk": ([
         "type": "armor",
@@ -24,7 +25,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 20,
         "default weight": 8,
         "default material": "iron",
-        "default value": 450
+        "default value": 450,
+        "default description": ""
     ]),
     "gambeson": ([
         "type": "armor",
@@ -35,7 +37,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 6,
         "default weight": 4,
         "default material": "cloth",
-        "default value": 25
+        "default value": 25,
+        "default description": ""
     ]),
     "robes": ([
         "type": "armor",
@@ -46,7 +49,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 6,
         "default weight": 4,
         "default material": "cloth",
-        "default value": 75
+        "default value": 75,
+        "default description": ""
     ]),
     "brigandine": ([
         "type": "armor",
@@ -57,7 +61,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 25,
         "default weight": 10,
         "default material": "iron",
-        "default value": 700
+        "default value": 700,
+        "default description": ""
     ]),
     "banded mail": ([
         "type": "armor",
@@ -68,7 +73,10 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 25,
         "default weight": 9,
         "default material": "iron",
-        "default value": 600
+        "default value": 600,
+        "default description": "Thick, rigid metal bands protect almost the whole body of "
+            "this armor's wearer. It is hinged at the joints, but is "
+            "still heavy and restrictive, but provides good protection."
     ]),
     "splint mail": ([
         "type": "armor",
@@ -79,7 +87,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 25,
         "default weight": 10,
         "default material": "iron",
-        "default value": 550
+        "default value": 550,
+        "default description": ""
     ]),
     "scale armor": ([
         "type": "armor",
@@ -90,7 +99,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 20,
         "default weight": 9,
         "default material": "iron",
-        "default value": 585
+        "default value": 585,
+        "default description": ""
     ]),
     "laminar armor": ([
         "type": "armor",
@@ -101,7 +111,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 35,
         "default weight": 15,
         "default material": "iron",
-        "default value": 2000
+        "default value": 2000,
+        "default description": ""
     ]),
     "plate mail": ([
         "type": "armor",
@@ -112,7 +123,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 30,
         "default weight": 12,
         "default material": "iron",
-        "default value": 1500
+        "default value": 1500,
+        "default description": ""
     ]),
     "breastplate": ([
         "type": "armor",
@@ -123,7 +135,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 25,
         "default weight": 10,
         "default material": "iron",
-        "default value": 1000
+        "default value": 1000,
+        "default description": ""
     ]),
     "plate armor": ([
         "type": "armor",
@@ -134,7 +147,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 40,
         "default weight": 15,
         "default material": "iron",
-        "default value": 2500
+        "default value": 2500,
+        "default description": ""
     ]),
     "boiled leather": ([
         "type": "armor",
@@ -145,7 +159,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 20,
         "default weight": 5,
         "default material": "leather",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
     "hard leather": ([
         "type": "armor",
@@ -156,7 +171,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 15,
         "default weight": 4,
         "default material": "leather",
-        "default value": 225
+        "default value": 225,
+        "default description": ""
     ]),
     "lamellar leather": ([
         "type": "armor",
@@ -167,7 +183,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 15,
         "default weight": 5,
         "default material": "leather",
-        "default value": 310
+        "default value": 310,
+        "default description": ""
     ]),
     "soft leather": ([
         "type": "armor",
@@ -178,7 +195,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 5,
         "default weight": 3,
         "default material": "leather",
-        "default value": 100
+        "default value": 100,
+        "default description": ""
     ]),
     "leather jacket": ([
         "type": "armor",
@@ -189,7 +207,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 5,
         "default weight": 3,
         "default material": "leather",
-        "default value": 100
+        "default value": 100,
+        "default description": ""
     ]),
     "ring mail": ([
         "type": "armor",
@@ -200,7 +219,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 16,
         "default weight": 7,
         "default material": "iron",
-        "default value": 300
+        "default value": 300,
+        "default description": ""
     ]),
    "gloves": ([
         "type": "armor",
@@ -209,7 +229,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "leather",
-        "default value": 25
+        "default value": 25,
+        "default description": ""
     ]),
     "helmet": ([
         "type": "armor",
@@ -218,7 +239,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "iron",
-        "default value": 50
+        "default value": 50,
+        "default description": ""
     ]),
     "coif": ([
         "type": "armor",
@@ -229,7 +251,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 2,
         "default encumberance": 10,
         "default material": "iron",
-        "default value": 100
+        "default value": 100,
+        "default description": ""
     ]),
     "boots": ([
         "type": "armor",
@@ -238,7 +261,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "leather",
-        "default value": 25
+        "default value": 25,
+        "default description": ""
     ]),
     "sabaton": ([
         "type": "armor",
@@ -248,7 +272,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 3,
         "default weight": 2,
         "default material": "iron",
-        "default value": 125
+        "default value": 125,
+        "default description": ""
     ]),
     "ring": ([
         "type": "armor",
@@ -256,7 +281,8 @@ private nosave mapping armorBlueprints = ([
         "default location": Ring,
         "default encumberance": 1,
         "default material": "silver",
-        "default value": 150
+        "default value": 150,
+        "default description": ""
     ]),
     "cloak": ([
         "type": "armor",
@@ -265,7 +291,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "cloth",
-        "default value": 25
+        "default value": 25,
+        "default description": ""
     ]),
     "amulet": ([
         "type": "armor",
@@ -273,7 +300,8 @@ private nosave mapping armorBlueprints = ([
         "default location": Amulet,
         "default encumberance": 1,
         "default material": "iron",
-        "default value": 75
+        "default value": 75,
+        "default description": ""
     ]),
     "belt": ([
         "type": "armor",
@@ -282,7 +310,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "leather",
-        "default value": 25
+        "default value": 25,
+        "default description": ""
     ]),
     "arm greaves": ([
         "type": "armor",
@@ -291,7 +320,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "leather",
-        "default value": 40
+        "default value": 40,
+        "default description": ""
     ]),
     "leg greaves": ([
         "type": "armor",
@@ -300,7 +330,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "leather",
-        "default value": 40
+        "default value": 40,
+        "default description": ""
     ]),
     "bracers": ([
         "type": "armor",
@@ -309,6 +340,7 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "leather",
-        "default value": 200
+        "default value": 200,
+        "default description": ""
     ])
 ]);

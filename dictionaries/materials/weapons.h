@@ -16,7 +16,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 5,
         "default encumberance": 5,
         "default material": "iron",
-        "default value": 200
+        "default value": 200,
+        "default description": ""
     ]),
     "broad sword": ([
         "type": "one-handed weapon",
@@ -30,7 +31,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 6,
         "default material": "iron",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
     "rapier": ([
         "type": "one-handed weapon",
@@ -44,7 +46,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 3,
         "default weight": 3,
         "default material": "steel",
-        "default value": 200
+        "default value": 200,
+        "default description": ""
     ]),
     "katana": ([
         "type": "one-handed weapon",
@@ -58,7 +61,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 4,
         "default weight": 4,
         "default material": "steel",
-        "default value": 400
+        "default value": 400,
+        "default description": ""
     ]),
     "scimitar": ([
         "type": "one-handed weapon",
@@ -72,7 +76,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 4,
         "default weight": 5,
         "default material": "iron",
-        "default value": 150
+        "default value": 150,
+        "default description": ""
     ]),
     "cutlass": ([
         "type": "one-handed weapon",
@@ -86,7 +91,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 4,
         "default weight": 5,
         "default material": "iron",
-        "default value": 175
+        "default value": 175,
+        "default description": ""
     ]),
     "sabre": ([
         "type": "one-handed weapon",
@@ -100,7 +106,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 5,
         "default material": "iron",
-        "default value": 200
+        "default value": 200,
+        "default description": ""
     ]),
     "spatha": ([
         "type": "one-handed weapon",
@@ -114,7 +121,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 6,
         "default material": "iron",
-        "default value": 220
+        "default value": 220,
+        "default description": ""
     ]),
     "gladius": ([
         "type": "one-handed weapon",
@@ -128,7 +136,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 3,
         "default weight": 3,
         "default material": "iron",
-        "default value": 100
+        "default value": 100,
+        "default description": ""
     ]),
     "harpe": ([
         "type": "one-handed weapon",
@@ -142,7 +151,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 3,
         "default weight": 3,
         "default material": "iron",
-        "default value": 125
+        "default value": 125,
+        "default description": ""
     ]),
     "wakisashi": ([
         "type": "one-handed weapon",
@@ -156,7 +166,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 3,
         "default weight": 3,
         "default material": "steel",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
     "machete": ([
         "type": "one-handed weapon",
@@ -170,7 +181,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 2,
         "default weight": 2,
         "default material": "iron",
-        "default value": 75
+        "default value": 75,
+        "default description": ""
     ]),
     "sickle": ([
         "type": "one-handed weapon",
@@ -184,7 +196,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 3,
         "default weight": 3,
         "default material": "iron",
-        "default value": 115
+        "default value": 115,
+        "default description": ""
     ]),
     "kama": ([
         "type": "one-handed weapon",
@@ -198,7 +211,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 3,
         "default weight": 3,
         "default material": "iron",
-        "default value": 140
+        "default value": 140,
+        "default description": ""
     ]),
     "knife": ([
         "type": "one-handed weapon",
@@ -212,7 +226,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "iron",
-        "default value": 25
+        "default value": 25,
+        "default description": ""
     ]),
     "dagger": ([
         "type": "one-handed weapon",
@@ -226,7 +241,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "iron",
-        "default value": 50
+        "default value": 50,
+        "default description": ""
     ]),
     "dirk": ([
         "type": "one-handed weapon",
@@ -240,7 +256,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "iron",
-        "default value": 75
+        "default value": 75,
+        "default description": ""
     ]),
     "stiletto": ([
         "type": "one-handed weapon",
@@ -254,7 +271,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "iron",
-        "default value": 65
+        "default value": 65,
+        "default description": ""
     ]),
     "claymore": ([
         "type": "two-handed weapon",
@@ -268,7 +286,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 8,
         "default material": "iron",
-        "default value": 500
+        "default value": 500,
+        "default description": ""
     ]),
     "great sword": ([
         "type": "two-handed weapon",
@@ -282,7 +301,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 8,
         "default material": "iron",
-        "default value": 450
+        "default value": 450,
+        "default description": ""
     ]),
     "odachi": ([
         "type": "two-handed weapon",
@@ -296,7 +316,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 8,
         "default material": "iron",
-        "default value": 900
+        "default value": 900,
+        "default description": ""
     ]),
     "bastard sword": ([
         "type": "one-handed weapon",
@@ -310,7 +331,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 7,
         "default weight": 7,
         "default material": "iron",
-        "default value": 400
+        "default value": 400,
+        "default description": ""
     ]),
     "sword staff": ([
         "type": "two-handed weapon",
@@ -324,7 +346,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 15,
         "default weight": 8,
         "default material": "iron",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
     "staff": ([
         "type": "two-handed weapon",
@@ -338,7 +361,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 2,
         "default weight": 4,
         "default material": "pine",
-        "default value": 15
+        "default value": 15,
+        "default description": ""
     ]),
     "quarterstaff": ([
         "type": "two-handed weapon",
@@ -352,7 +376,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 2,
         "default weight": 4,
         "default material": "pine",
-        "default value": 35
+        "default value": 35,
+        "default description": ""
     ]),
     "brogit staff": ([
         "type": "two-handed weapon",
@@ -366,7 +391,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 8,
         "default material": "iron",
-        "default value": 115
+        "default value": 115,
+        "default description": ""
     ]),
     "jeddart staff": ([
         "type": "two-handed weapon",
@@ -380,7 +406,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 8,
         "default material": "iron",
-        "default value": 200
+        "default value": 200,
+        "default description": ""
     ]),
     "swordstaff": ([
         "type": "two-handed weapon",
@@ -394,7 +421,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 7,
         "default material": "iron",
-        "default value": 350
+        "default value": 350,
+        "default description": ""
     ]),
     "shield staff": ([
         "type": "two-handed weapon",
@@ -408,7 +436,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 7,
         "default material": "pine",
-        "default value": 150
+        "default value": 150,
+        "default description": ""
     ]),
     "battle axe": ([
         "type": "one-handed weapon",
@@ -422,7 +451,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 6,
         "default material": "iron",
-        "default value": 200
+        "default value": 200,
+        "default description": ""
     ]),
     "beareded axe": ([
         "type": "one-handed weapon",
@@ -436,7 +466,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 5,
         "default material": "iron",
-        "default value": 175
+        "default value": 175,
+        "default description": ""
     ]),
     "hatchet": ([
         "type": "one-handed weapon",
@@ -450,7 +481,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 2,
         "default weight": 3,
         "default material": "iron",
-        "default value": 70
+        "default value": 70,
+        "default description": ""
     ]),
     "panabas": ([
         "type": "one-handed weapon",
@@ -464,7 +496,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 2,
         "default weight": 3,
         "default material": "iron",
-        "default value": 110
+        "default value": 110,
+        "default description": ""
     ]),
     "danish axe": ([
         "type": "one-handed weapon",
@@ -478,7 +511,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 5,
         "default material": "iron",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
     "broad axe": ([
         "type": "one-handed weapon",
@@ -492,7 +526,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 5,
         "default material": "iron",
-        "default value": 300
+        "default value": 300,
+        "default description": ""
     ]),
     "sparth axe": ([
         "type": "two-handed weapon",
@@ -506,7 +541,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 4,
         "default weight": 5,
         "default material": "iron",
-        "default value": 400
+        "default value": 400,
+        "default description": ""
     ]),
     "lochaber axe": ([
         "type": "two-handed weapon",
@@ -520,7 +556,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 7,
         "default material": "iron",
-        "default value": 350
+        "default value": 350,
+        "default description": ""
     ]),
     "splitting maul": ([
         "type": "two-handed weapon",
@@ -534,7 +571,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 16,
         "default weight": 10,
         "default material": "iron",
-        "default value": 300
+        "default value": 300,
+        "default description": ""
     ]),
     "maul": ([
         "type": "two-handed weapon",
@@ -548,7 +586,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 16,
         "default weight": 10,
         "default material": "iron",
-        "default value": 280
+        "default value": 280,
+        "default description": ""
     ]),
     "bardiche": ([
         "type": "two-handed weapon",
@@ -562,7 +601,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 14,
         "default weight": 10,
         "default material": "iron",
-        "default value": 600
+        "default value": 600,
+        "default description": ""
     ]),
     "bec de corbin": ([
         "type": "two-handed weapon",
@@ -576,7 +616,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 14,
         "default weight": 10,
         "default material": "iron",
-        "default value": 650
+        "default value": 650,
+        "default description": ""
     ]),
     "bill": ([
         "type": "two-handed weapon",
@@ -590,7 +631,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 10,
         "default material": "iron",
-        "default value": 450
+        "default value": 450,
+        "default description": ""
     ]),
     "brandistock": ([
         "type": "one-handed weapon",
@@ -604,7 +646,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 10,
         "default material": "iron",
-        "default value": 400
+        "default value": 400,
+        "default description": ""
     ]),
     "earspoon": ([
         "type": "two-handed weapon",
@@ -618,7 +661,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 8,
         "default material": "iron",
-        "default value": 550
+        "default value": 550,
+        "default description": ""
     ]),
     "military fork": ([
         "type": "two-handed weapon",
@@ -632,7 +676,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 8,
         "default material": "iron",
-        "default value": 300
+        "default value": 300,
+        "default description": ""
     ]),
     "pitchfork": ([
         "type": "two-handed weapon",
@@ -646,7 +691,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 14,
         "default weight": 8,
         "default material": "iron",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
     "trident": ([
         "type": "two-handed weapon",
@@ -660,7 +706,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 8,
         "default material": "iron",
-        "default value": 275
+        "default value": 275,
+        "default description": ""
     ]),
     "partisan": ([
         "type": "two-handed weapon",
@@ -674,7 +721,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 9,
         "default material": "iron",
-        "default value": 320
+        "default value": 320,
+        "default description": ""
     ]),
     "ranseur": ([
         "type": "two-handed weapon",
@@ -688,7 +736,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 10,
         "default material": "iron",
-        "default value": 300
+        "default value": 300,
+        "default description": ""
     ]),
     "halberd": ([
         "type": "two-handed weapon",
@@ -702,7 +751,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 14,
         "default weight": 12,
         "default material": "iron",
-        "default value": 850
+        "default value": 850,
+        "default description": ""
     ]),
     "sovnya": ([
         "type": "two-handed weapon",
@@ -716,7 +766,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 10,
         "default material": "iron",
-        "default value": 750
+        "default value": 750,
+        "default description": ""
     ]),
     "spetum": ([
         "type": "two-handed weapon",
@@ -730,7 +781,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 10,
         "default material": "iron",
-        "default value": 800
+        "default value": 800,
+        "default description": ""
     ]),
     "war scythe": ([
         "type": "two-handed weapon",
@@ -744,7 +796,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 8,
         "default material": "iron",
-        "default value": 550
+        "default value": 550,
+        "default description": ""
     ]),
     "fauchard": ([
         "type": "two-handed weapon",
@@ -758,7 +811,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 10,
         "default material": "iron",
-        "default value": 400
+        "default value": 400,
+        "default description": ""
     ]),
     "guisarme": ([
         "type": "two-handed weapon",
@@ -772,7 +826,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 10,
         "default material": "iron",
-        "default value": 475
+        "default value": 475,
+        "default description": ""
     ]),
     "pollaxe": ([
         "type": "two-handed weapon",
@@ -786,7 +841,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 10,
         "default material": "iron",
-        "default value": 550
+        "default value": 550,
+        "default description": ""
     ]),
     "ahlspiess": ([
         "type": "two-handed weapon",
@@ -800,7 +856,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 10,
         "default material": "iron",
-        "default value": 525
+        "default value": 525,
+        "default description": ""
     ]),
     "lance": ([
         "type": "two-handed weapon",
@@ -814,7 +871,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 12,
         "default material": "iron",
-        "default value": 600
+        "default value": 600,
+        "default description": ""
     ]),
     "voulge": ([
         "type": "two-handed weapon",
@@ -828,7 +886,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 10,
         "default material": "iron",
-        "default value": 480
+        "default value": 480,
+        "default description": ""
     ]),
     "glaive": ([
         "type": "two-handed weapon",
@@ -842,7 +901,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 15,
         "default weight": 10,
         "default material": "iron",
-        "default value": 515
+        "default value": 515,
+        "default description": ""
     ]),
     "pike": ([
         "type": "two-handed weapon",
@@ -856,7 +916,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 11,
         "default weight": 10,
         "default material": "iron",
-        "default value": 375
+        "default value": 375,
+        "default description": ""
     ]),
     "spear": ([
         "type": "two-handed weapon",
@@ -870,7 +931,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 9,
         "default weight": 8,
         "default material": "iron",
-        "default value": 325
+        "default value": 325,
+        "default description": ""
     ]),
     "war hammer": ([
         "type": "one-handed weapon",
@@ -884,7 +946,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 6,
         "default material": "iron",
-        "default value": 510
+        "default value": 510,
+        "default description": ""
     ]),
     "horseman's pick": ([
         "type": "one-handed weapon",
@@ -898,7 +961,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 8,
         "default material": "iron",
-        "default value": 525
+        "default value": 525,
+        "default description": ""
     ]),
     "lucerne hammer": ([
         "type": "two-handed weapon",
@@ -912,7 +976,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 8,
         "default material": "iron",
-        "default value": 550
+        "default value": 550,
+        "default description": ""
     ]),
     "club": ([
         "type": "one-handed weapon",
@@ -926,7 +991,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 6,
         "default material": "pine",
-        "default value": 25
+        "default value": 25,
+        "default description": ""
     ]),
     "cudgel": ([
         "type": "one-handed weapon",
@@ -940,7 +1006,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 6,
         "default material": "pine",
-        "default value": 100
+        "default value": 100,
+        "default description": ""
     ]),
     "mace": ([
         "type": "one-handed weapon",
@@ -954,7 +1021,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 6,
         "default material": "iron",
-        "default value": 175
+        "default value": 175,
+        "default description": ""
     ]),
     "virge": ([
         "type": "one-handed weapon",
@@ -968,7 +1036,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 6,
         "default material": "iron",
-        "default value": 150
+        "default value": 150,
+        "default description": ""
     ]),
     "pernache": ([
         "type": "one-handed weapon",
@@ -982,7 +1051,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 6,
         "default material": "iron",
-        "default value": 200
+        "default value": 200,
+        "default description": ""
     ]),
     "flanged mace": ([
         "type": "one-handed weapon",
@@ -996,7 +1066,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 6,
         "default material": "iron",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
     "morning star": ([
         "type": "one-handed weapon",
@@ -1010,7 +1081,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 6,
         "default material": "iron",
-        "default value": 225
+        "default value": 225,
+        "default description": ""
     ]),
     "goedendag": ([
         "type": "one-handed weapon",
@@ -1024,7 +1096,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 6,
         "default material": "iron",
-        "default value": 200
+        "default value": 200,
+        "default description": ""
     ]),
     "flail": ([
         "type": "one-handed weapon",
@@ -1038,7 +1111,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 8,
         "default material": "iron",
-        "default value": 175
+        "default value": 175,
+        "default description": ""
     ]),
     "kusarigama": ([
         "type": "one-handed weapon",
@@ -1052,7 +1126,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 7,
         "default material": "iron",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
     "whip": ([
         "type": "one-handed weapon",
@@ -1066,7 +1141,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 3,
         "default weight": 3,
         "default material": "leather",
-        "default value": 75
+        "default value": 75,
+        "default description": ""
     ]),
     "military flail": ([
         "type": "one-handed weapon",
@@ -1080,7 +1156,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 8,
         "default material": "iron",
-        "default value": 275
+        "default value": 275,
+        "default description": ""
     ]),
     "hinged flail": ([
         "type": "one-handed weapon",
@@ -1094,7 +1171,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 6,
         "default material": "iron",
-        "default value": 300
+        "default value": 300,
+        "default description": ""
     ]),
     "segmented flail": ([
         "type": "one-handed weapon",
@@ -1108,7 +1186,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 12,
         "default weight": 8,
         "default material": "iron",
-        "default value": 325
+        "default value": 325,
+        "default description": ""
     ]),
     "cat of nine tails": ([
         "type": "two-handed weapon",
@@ -1122,7 +1201,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 15,
         "default weight": 10,
         "default material": "iron",
-        "default value": 490
+        "default value": 490,
+        "default description": ""
     ]),
     "crossbow": ([
         "type": "two-handed weapon",
@@ -1136,7 +1216,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 4,
         "default material": "cedar",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
     "levered crossbow": ([
         "type": "two-handed weapon",
@@ -1150,7 +1231,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 5,
         "default material": "cedar",
-        "default value": 400
+        "default value": 400,
+        "default description": ""
     ]),
     "cranequin crossbow": ([
         "type": "two-handed weapon",
@@ -1164,7 +1246,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 15,
         "default weight": 6,
         "default material": "cedar",
-        "default value": 750
+        "default value": 750,
+        "default description": ""
     ]),
     "short bow": ([
         "type": "two-handed weapon",
@@ -1178,7 +1261,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 4,
         "default material": "cedar",
-        "default value": 225
+        "default value": 225,
+        "default description": ""
     ]),
     "long bow": ([
         "type": "two-handed weapon",
@@ -1192,7 +1276,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 6,
         "default material": "cedar",
-        "default value": 350
+        "default value": 350,
+        "default description": ""
     ]),
     "recurve bow": ([
         "type": "two-handed weapon",
@@ -1206,7 +1291,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 8,
         "default weight": 4,
         "default material": "cedar",
-        "default value": 300
+        "default value": 300,
+        "default description": ""
     ]),
     "composite bow": ([
         "type": "two-handed weapon",
@@ -1220,7 +1306,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 5,
         "default material": "cedar",
-        "default value": 800
+        "default value": 800,
+        "default description": ""
     ]),
     "sling": ([
         "type": "one-handed weapon",
@@ -1234,7 +1321,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 2,
         "default weight": 2,
         "default material": "flax",
-        "default value": 25
+        "default value": 25,
+        "default description": ""
     ]),
     "slingshot": ([
         "type": "one-handed weapon",
@@ -1248,7 +1336,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 2,
         "default weight": 2,
         "default material": "leather",
-        "default value": 100
+        "default value": 100,
+        "default description": ""
     ]),
     "kestros": ([
         "type": "one-handed weapon",
@@ -1262,7 +1351,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 4,
         "default material": "leather",
-        "default value": 175
+        "default value": 175,
+        "default description": ""
     ]),
     "throwing spear": ([
         "type": "one-handed weapon",
@@ -1276,7 +1366,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 7,
         "default weight": 4,
         "default material": "pine",
-        "default value": 100
+        "default value": 100,
+        "default description": ""
     ]),
     "javelin": ([
         "type": "one-handed weapon",
@@ -1290,7 +1381,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 7,
         "default weight": 4,
         "default material": "iron",
-        "default value": 150
+        "default value": 150,
+        "default description": ""
     ]),
     "rock": ([
         "type": "one-handed weapon",
@@ -1304,7 +1396,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 1,
         "default material": "stone",
-        "default value": 2
+        "default value": 2,
+        "default description": ""
     ]),
     "dart": ([
         "type": "one-handed weapon",
@@ -1318,7 +1411,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 1,
         "default material": "iron",
-        "default value": 15
+        "default value": 15,
+        "default description": ""
     ]),
     "pilum": ([
         "type": "one-handed weapon",
@@ -1332,7 +1426,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 7,
         "default weight": 3,
         "default material": "iron",
-        "default value": 85
+        "default value": 85,
+        "default description": ""
     ]),
     "throwing axe": ([
         "type": "one-handed weapon",
@@ -1346,7 +1441,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 3,
         "default material": "iron",
-        "default value": 75
+        "default value": 75,
+        "default description": ""
     ]),
     "throwing hammer": ([
         "type": "one-handed weapon",
@@ -1360,7 +1456,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 6,
         "default weight": 3,
         "default material": "iron",
-        "default value": 75
+        "default value": 75,
+        "default description": ""
     ]),
    "shield": ([
         "type": "one-handed weapon",
@@ -1374,7 +1471,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 5,
         "default material": "pine",
-        "default value": 150
+        "default value": 150,
+        "default description": ""
     ]),
    "bouche shield": ([
         "type": "one-handed weapon",
@@ -1388,7 +1486,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 6,
         "default encumberance": 10,
         "default material": "pine",
-        "default value": 200
+        "default value": 200,
+        "default description": ""
     ]),
    "buckler": ([
         "type": "one-handed weapon",
@@ -1402,7 +1501,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 3,
         "default weight": 3,
         "default material": "iron",
-        "default value": 95
+        "default value": 95,
+        "default description": ""
     ]),
    "heater shield": ([
         "type": "one-handed weapon",
@@ -1416,7 +1516,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 4,
         "default material": "pine",
-        "default value": 250
+        "default value": 250,
+        "default description": ""
     ]),
    "kite shield": ([
         "type": "one-handed weapon",
@@ -1430,7 +1531,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 10,
         "default weight": 8,
         "default material": "pine",
-        "default value": 300
+        "default value": 300,
+        "default description": ""
     ]),
    "pavise shield": ([
         "type": "one-handed weapon",
@@ -1444,7 +1546,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 15,
         "default weight": 10,
         "default material": "pine",
-        "default value": 500
+        "default value": 500,
+        "default description": ""
     ]),
    "targe shield": ([
         "type": "one-handed weapon",
@@ -1458,7 +1561,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 4,
         "default weight": 4,
         "default material": "pine",
-        "default value": 325
+        "default value": 325,
+        "default description": ""
     ]),
    "spiked shield": ([
         "type": "one-handed weapon",
@@ -1472,6 +1576,7 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default weight": 5,
         "default material": "iron",
-        "default value": 525
+        "default value": 525,
+        "default description": ""
     ]),
 ]);
