@@ -49,7 +49,7 @@ protected nomask void setUpUserForSelection()
         raise_error("ERROR: sellItemSubselector.c - The store has not been "
             "set.\n");
     }
-    Data = Dictionary->getItemDetailsForType(User, SellType, Store);
+    Data = Dictionary->getSellItemDetailsForType(User, SellType, Store);
 
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Return to previous menu",

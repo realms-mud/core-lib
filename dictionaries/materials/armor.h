@@ -6,6 +6,7 @@
 private nosave mapping armorBlueprints = ([
     "chainmail": ([
         "type": "armor",
+        "subtype": "medium armor",
         "skill to craft": 10,
         "skill to use": "chainmail",
         "default ac": 6,
@@ -18,6 +19,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "hauberk": ([
         "type": "armor",
+        "subtype": "medium armor",
         "skill to craft": 10,
         "skill to use": "chainmail",
         "default ac": 5,
@@ -30,6 +32,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "gambeson": ([
         "type": "armor",
+        "subtype": "light armor",
         "skill to craft": 5,
         "skill to use": "no armor",
         "default ac": 1,
@@ -42,6 +45,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "robes": ([
         "type": "armor",
+        "subtype": "clothing",
         "skill to craft": 5,
         "skill to use": "no armor",
         "default ac": 1,
@@ -52,8 +56,87 @@ private nosave mapping armorBlueprints = ([
         "default value": 75,
         "default description": ""
     ]),
+    "dress": ([
+        "type": "armor",
+        "subtype": "clothing",
+        "skill to craft": 5,
+        "skill to use": "no armor",
+        "default ac": 0,
+        "default location": Armor,
+        "default encumberance": 2,
+        "default weight": 2,
+        "default material": "cloth",
+        "default value": 25,
+        "default description": ""
+    ]),
+    "shirt": ([
+        "type": "armor",
+        "subtype": "clothing",
+        "skill to craft": 5,
+        "skill to use": "no armor",
+        "default ac": 0,
+        "default location": Armor,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "cloth",
+        "default value": 15,
+        "default description": ""
+    ]),
+    "pants": ([
+        "type": "armor",
+        "subtype": "clothing",
+        "skill to craft": 5,
+        "skill to use": "no armor",
+        "default ac": 0,
+        "default location": LegGreaves,
+        "default encumberance": 2,
+        "default weight": 1,
+        "default material": "cloth",
+        "default value": 15,
+        "default description": ""
+    ]),
+    "kilt": ([
+        "type": "armor",
+        "subtype": "clothing",
+        "skill to craft": 5,
+        "skill to use": "no armor",
+        "default ac": 0,
+        "default location": LegGreaves,
+        "default encumberance": 2,
+        "default weight": 1,
+        "default material": "cloth",
+        "default value": 15,
+        "default description": ""
+    ]),
+    "skirt": ([
+        "type": "armor",
+        "subtype": "clothing",
+        "skill to craft": 5,
+        "skill to use": "no armor",
+        "default ac": 0,
+        "default location": LegGreaves,
+        "default encumberance": 2,
+        "default weight": 1,
+        "default material": "cloth",
+        "default value": 15,
+        "default description": ""
+    ]),
+    "shorts": ([
+        "type": "armor",
+        "subtype": "clothing",
+        "skill to craft": 5,
+        "skill to use": "no armor",
+        "default ac": 0,
+        "default location": LegGreaves,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "cloth",
+        "default value": 10,
+        "default description": ""
+    ]),
     "brigandine": ([
         "type": "armor",
+        "subtype": "heavy armor",
         "skill to craft": 10,
         "skill to use": "splint armor",
         "default ac": 7,
@@ -66,6 +149,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "banded mail": ([
         "type": "armor",
+        "subtype": "heavy armor",
         "skill to craft": 10,
         "skill to use": "splint armor",
         "default ac": 6,
@@ -80,6 +164,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "splint mail": ([
         "type": "armor",
+        "subtype": "heavy armor",
         "skill to craft": 10,
         "skill to use": "splint armor",
         "default ac": 6,
@@ -92,6 +177,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "scale armor": ([
         "type": "armor",
+        "subtype": "heavy armor",
         "skill to craft": 15,
         "skill to use": "scalemail",
         "default ac": 6,
@@ -104,6 +190,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "laminar armor": ([
         "type": "armor",
+        "subtype": "heavy armor",
         "skill to craft": 12,
         "skill to use": "plate armor",
         "default ac": 9,
@@ -116,6 +203,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "plate mail": ([
         "type": "armor",
+        "subtype": "heavy armor",
         "skill to craft": 12,
         "skill to use": "plate armor",
         "default ac": 8,
@@ -128,6 +216,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "breastplate": ([
         "type": "armor",
+        "subtype": "heavy armor",
         "skill to craft": 12,
         "skill to use": "plate armor",
         "default ac": 7,
@@ -140,6 +229,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "plate armor": ([
         "type": "armor",
+        "subtype": "heavy armor",
         "skill to craft": 15,
         "skill to use": "plate armor",
         "default ac": 10,
@@ -152,6 +242,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "boiled leather": ([
         "type": "armor",
+        "subtype": "medium armor",
         "skill to craft": 15,
         "skill to use": "hard leather",
         "default ac": 4,
@@ -164,6 +255,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "hard leather": ([
         "type": "armor",
+        "subtype": "medium armor",
         "skill to craft": 5,
         "skill to use": "hard leather",
         "default ac": 3,
@@ -176,6 +268,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "lamellar leather": ([
         "type": "armor",
+        "subtype": "medium armor",
         "skill to craft": 10,
         "skill to use": "hard leather",
         "default ac": 4,
@@ -188,6 +281,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "soft leather": ([
         "type": "armor",
+        "subtype": "light armor",
         "skill to craft": 5,
         "skill to use": "soft leather",
         "default ac": 1,
@@ -200,10 +294,11 @@ private nosave mapping armorBlueprints = ([
     ]),
     "leather jacket": ([
         "type": "armor",
+        "subtype": "light armor",
         "skill to craft": 8,
         "skill to use": "soft leather",
         "default ac": 1,
-        "default location": Armor,
+        "default location": Armor | ArmGreaves,
         "default encumberance": 5,
         "default weight": 3,
         "default material": "leather",
@@ -212,6 +307,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "ring mail": ([
         "type": "armor",
+        "subtype": "medium armor",
         "skill to craft": 10,
         "skill to use": "chainmail",
         "default ac": 4,
@@ -224,6 +320,7 @@ private nosave mapping armorBlueprints = ([
     ]),
    "gloves": ([
         "type": "armor",
+        "subtype": "accessory",
         "skill to craft": 5,
         "default location": Gloves,
         "default encumberance": 1,
@@ -234,8 +331,10 @@ private nosave mapping armorBlueprints = ([
     ]),
     "helmet": ([
         "type": "armor",
+        "subtype": "accessory",
         "skill to craft": 5,
         "default location": Helmet,
+        "default ac": 1,
         "default encumberance": 1,
         "default weight": 1,
         "default material": "iron",
@@ -244,6 +343,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "coif": ([
         "type": "armor",
+        "subtype": "accessory",
         "skill to craft": 10,
         "skill to use": "chainmail",
         "default ac": 2,
@@ -256,6 +356,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "boots": ([
         "type": "armor",
+        "subtype": "accessory",
         "skill to craft": 5,
         "default location": Boots,
         "default encumberance": 1,
@@ -266,6 +367,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "sabaton": ([
         "type": "armor",
+        "subtype": "accessory",
         "skill to craft": 10,
         "default ac": 2,
         "default location": Boots,
@@ -277,6 +379,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "ring": ([
         "type": "armor",
+        "subtype": "accessory",
         "skill to craft": 5,
         "default location": Ring,
         "default encumberance": 1,
@@ -286,6 +389,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "cloak": ([
         "type": "armor",
+        "subtype": "clothing",
         "skill to craft": 5,
         "default location": Cloak,
         "default encumberance": 1,
@@ -296,6 +400,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "amulet": ([
         "type": "armor",
+        "subtype": "accessory",
         "skill to craft": 5,
         "default location": Amulet,
         "default encumberance": 1,
@@ -305,6 +410,7 @@ private nosave mapping armorBlueprints = ([
     ]),
     "belt": ([
         "type": "armor",
+        "subtype": "accessory",
         "skill to craft": 5,
         "default location": Belt,
         "default encumberance": 1,
@@ -313,19 +419,45 @@ private nosave mapping armorBlueprints = ([
         "default value": 25,
         "default description": ""
     ]),
-    "arm greaves": ([
+    "padded arm greaves": ([
+        "type":"armor",
+        "subtype" : "light armor",
+        "skill to craft" : 5,
+        "default location" : ArmGreaves,
+        "default encumberance" : 1,
+        "default weight" : 1,
+        "default material" : "cloth",
+        "default value" : 40,
+        "default description" : ""
+    ]),
+    "padded leg greaves": ([
         "type": "armor",
+        "subtype": "light armor",
         "skill to craft": 5,
-        "default location": ArmGreaves,
+        "default location": LegGreaves,
         "default encumberance": 1,
         "default weight": 1,
-        "default material": "leather",
+        "default material": "cloth",
         "default value": 40,
         "default description": ""
     ]),
-    "leg greaves": ([
+    "leather arm greaves": ([
+        "type":"armor",
+        "subtype" : "light armor",
+        "skill to craft" : 5,
+        "default ac": 1,
+        "default location" : ArmGreaves,
+        "default encumberance" : 1,
+        "default weight" : 1,
+        "default material" : "leather",
+        "default value" : 40,
+        "default description" : ""
+    ]),
+    "leather leg greaves": ([
         "type": "armor",
+        "subtype": "light armor",
         "skill to craft": 5,
+        "default ac": 1,
         "default location": LegGreaves,
         "default encumberance": 1,
         "default weight": 1,
@@ -333,8 +465,33 @@ private nosave mapping armorBlueprints = ([
         "default value": 40,
         "default description": ""
     ]),
+    "plate arm greaves": ([
+        "type":"armor",
+        "subtype" : "heavy armor",
+        "skill to craft" : 5,
+        "default ac": 2,
+        "default location" : ArmGreaves,
+        "default encumberance" : 2,
+        "default weight" : 2,
+        "default material" : "iron",
+        "default value" : 75,
+        "default description" : ""
+    ]),
+    "plate leg greaves": ([
+        "type": "armor",
+        "subtype": "heavy armor",
+        "skill to craft": 5,
+        "default ac": 2,
+        "default location": LegGreaves,
+        "default encumberance": 2,
+        "default weight": 2,
+        "default material": "iron",
+        "default value": 75,
+        "default description": ""
+    ]),
     "bracers": ([
         "type": "armor",
+        "subtype": "accessory",
         "skill to craft": 15,
         "default location": Bracers,
         "default encumberance": 1,

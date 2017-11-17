@@ -20,11 +20,11 @@ protected string Type = "Character creation";
 
 private string *UndoLog = ({ });
 
-private nosave string Cyan = "[0;36m%s[0m";
-private nosave string BoldWhite = "[0;37;1m%s[0m";
-private nosave string Red = "[0;31;1m%s[0m";
-private nosave string Green = "[0;32m%s[0m";
-private nosave string BoldGreen = "[0;32;1m%s[0m";
+protected nosave string Cyan = "[0;36m%s[0m";
+protected nosave string BoldWhite = "[0;37;1m%s[0m";
+protected nosave string Red = "[0;31;1m%s[0m";
+protected nosave string Green = "[0;32m%s[0m";
+protected nosave string BoldGreen = "[0;32;1m%s[0m";
 
 /////////////////////////////////////////////////////////////////////////////
 public void init()
@@ -59,7 +59,7 @@ protected string displayDetails(string choice)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string padSelectionDisplay(string selection)
+protected string padSelectionDisplay(string selection)
 {
     string ret = "";
     if ((sizeof(Data) > 9) && (member(({ "1", "2", "3", "4", "5", "6",

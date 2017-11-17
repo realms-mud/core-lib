@@ -2,12 +2,20 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/creation/baseSelector";
+inherit "/lib/modules/creation/baseSelector.c";
 
 private object Dictionary;
+private string BuyType;
+private string BuySubType;
 private object SubselectorObj;
-private string *ProhibitedTypes = ({});
 private object Store;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setBuyType(string type, string subtype)
+{
+    BuyType = type;
+    BuySubType = subtype;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setStore(object store)
@@ -16,21 +24,18 @@ public nomask void setStore(object store)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setProhibitedTypes(string *types)
-{
-    ProhibitedTypes = types + ({ });
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
-    if(!arg)
+    if (!arg)
     {
+        Description = "Select an item to buy:\n"
+            "[0;31m-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-[0m";
         AllowUndo = 0;
-        Description = "From this menu, you can view and sell your character's items";
-        Type = "Sell Items";
-
+        NumColumns = 1;
+        SuppressColon = 1;
+        Type = "Buy Items";
         Dictionary = load_object("/lib/dictionaries/shopDictionary.c");
+
         Data = ([]);
     }
 }
@@ -38,42 +43,23 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    if (!Store)
+    if (!BuyType)
     {
-        raise_error("ERROR: sellItemSelector.c - The store has not been "
+        raise_error("ERROR: buyItemSubselector.c - The type has not been "
             "set.\n");
     }
-
-    string *itemTypes = Dictionary->getSellItemTypes(User);
-    int menuItem = 1;
-
-    itemTypes -= ProhibitedTypes;
-    if (sizeof(itemTypes))
+    if (!Store)
     {
-        itemTypes = sort_array(itemTypes, (: $1 > $2 :));
-        foreach(string itemType in itemTypes)
-        {
-            Data[to_string(menuItem)] = ([
-                "name": capitalize(itemType) + "s",
-                "type": itemType,
-                "description": "This option will allow you to view your sellable\n"
-                    + itemType + "s.\n"
-            ]);
-            menuItem++;
-        }
+        raise_error("ERROR: buyItemSubselector.c - The store has not been "
+            "set.\n");
     }
-    Data[to_string(menuItem)] = ([
-        "name":"Exit Sell Item Menu",
+    Data = Dictionary->getBuyItemDetailsForType(Store, BuyType, BuySubType);
+
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name":"Return to previous menu",
         "type": "exit",
-        "description": "This option lets you exit the sell item menu.\n"
-
+        "description" : "Return to the main sell item menu.\n"
     ]);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected string additionalInstructions()
-{
-    return (sizeof(Data) > 1) ? "" : "You have nothing you can sell to this vendor!\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -83,15 +69,30 @@ protected nomask int processSelection(string selection)
     if (User)
     {
         ret = (Data[selection]["type"] == "exit");
+
         if (!ret)
         {
-            SubselectorObj = clone_object("/lib/items/inventory/sellItemSubselector.c");
-            move_object(SubselectorObj, User);
-            SubselectorObj->setSellType(lower_case(Data[selection]["type"]));
-            SubselectorObj->setStore(Store);
-            SubselectorObj->registerEvent(this_object());
-            SubselectorObj->initiateSelector(User);
+            Dictionary->buyItems(User, Store, 
+                Data[selection]["object list"]);
+            setUpUserForSelection();
         }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string selection()
+{
+    return BuyType;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string displayDetails(string choice)
+{
+    string ret = "";
+    if (Data[choice]["summary"])
+    {
+        ret = Data[choice]["summary"];
     }
     return ret;
 }
@@ -116,4 +117,12 @@ public nomask void onSelectorCompleted(object caller)
 protected nomask int suppressMenuDisplay()
 {
     return objectp(SubselectorObj);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string choiceFormatter(string choice)
+{
+    return sprintf("[%s]%s - %s%s", Red,
+        padSelectionDisplay(choice), "[0;32m%s[0m",
+        displayDetails(choice));
 }

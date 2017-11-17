@@ -6,19 +6,12 @@ inherit "/lib/modules/creation/baseSelector";
 
 private object Dictionary;
 private object SubselectorObj;
-private string *ProhibitedTypes = ({});
 private object Store;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setStore(object store)
 {
     Store = store;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void setProhibitedTypes(string *types)
-{
-    ProhibitedTypes = types + ({ });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,24 +33,26 @@ protected nomask void setUpUserForSelection()
 {
     if (!Store)
     {
-        raise_error("ERROR: sellItemSelector.c - The store has not been "
+        raise_error("ERROR: buyItemSelector.c - The store has not been "
             "set.\n");
     }
 
-    string *itemTypes = Dictionary->getItemTypes(User);
+    string *itemTypes = Dictionary->getBuyItemTypes(Store);
     int menuItem = 1;
 
-    itemTypes -= ProhibitedTypes;
     if (sizeof(itemTypes))
     {
         itemTypes = sort_array(itemTypes, (: $1 > $2 :));
         foreach(string itemType in itemTypes)
         {
             Data[to_string(menuItem)] = ([
-                "name": capitalize(itemType) + "s",
-                "type": itemType,
-                "description": "This option will allow you to view your sellable\n"
-                    + itemType + "s.\n"
+                "name": capitalize(itemType),
+                "type": regreplace(itemType, "(.+)s - .*", "\\1", 1),
+                "subType": lower_case(regreplace(itemType, ".+ - (.+)", "\\1", 1)),
+                "description": "This option will allow you to view "
+                    + lower_case(regreplace(itemType, ".+ - (.+)", "\\1", 1)) +
+                    " type " + regreplace(itemType, "(.+)s - .*", "\\1", 1) +
+                    "s that are for sale.\n"
             ]);
             menuItem++;
         }
@@ -66,7 +61,6 @@ protected nomask void setUpUserForSelection()
         "name":"Exit Buy Item Menu",
         "type": "exit",
         "description": "This option lets you exit the purchase item menu.\n"
-
     ]);
 }
 
@@ -87,7 +81,8 @@ protected nomask int processSelection(string selection)
         {
             SubselectorObj = clone_object("/lib/items/inventory/buyItemSubselector.c");
             move_object(SubselectorObj, User);
-            SubselectorObj->setSellType(lower_case(Data[selection]["type"]));
+            SubselectorObj->setBuyType(lower_case(Data[selection]["type"]),
+                lower_case(Data[selection]["subType"]));
             SubselectorObj->setStore(Store);
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->initiateSelector(User);

@@ -12,7 +12,7 @@ private mapping alwaysGenerate = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *getItemTypes(object user)
+public nomask string *getSellItemTypes(object user)
 {
     string *ret = ({});
 
@@ -73,7 +73,7 @@ public nomask varargs int valueModifier(object user, object item, int selling)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getItemDetailsForType(object user, string type, object store)
+public nomask mapping getSellItemDetailsForType(object user, string type, object store)
 {
     mapping ret = ([]);
     int menuItem = 1;
@@ -179,11 +179,13 @@ public nomask void sellItems(object user, object store, object *items)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void generateDefaultItems(object shop, string type,
-    string subType)
+private nomask void generateDefaultItems(object shop)
 {
+    string type = shop->shopType();
+    string subType = shop->shopSubType();
+
     string dir = sprintf("/lib/instances/items/%s%s/", type + "s",
-        (subType ? "/" + subType + "s" : ""));
+        ((subType != "all") ? "/" + subType + "s" : ""));
 
     string *defaultItems = ({});
     if (member(alwaysGenerate, type) && member(alwaysGenerate[type], subType))
@@ -195,6 +197,7 @@ private nomask void generateDefaultItems(object shop, string type,
         foreach(string itemName in defaultItems)
         {
             object item = clone_object(sprintf("%s%s.c", dir, itemName));
+            item->identify();
             shop->storeItem(item, 1);
             destruct(item);
         }
@@ -258,11 +261,12 @@ private nomask int addEnchantment(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void generateRandomItems(object shop, int numItems,
-    string type, string subType)
+private nomask void generateRandomItems(object shop)
 {
-    string dir = sprintf("/lib/instances/items/%s%s/", type + "s",
-        (subType ? "/" + subType + "s" : ""));
+    int numItems = shop->randomItemsToGenerate();
+    string dir = sprintf("/lib/instances/items/%s%s/", 
+        shop->shopType() + "s", ((shop->shopSubType() != "all") ? 
+            "/" + shop->shopSubType() + "s" : ""));
 
     string *itemBlueprints = get_dir(dir);
 
@@ -312,16 +316,71 @@ private nomask void generateRandomItems(object shop, int numItems,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs void generateRandomInventory(object shop, int numItems,
-    string type, string subType)
+public nomask void generateRandomInventory(object shop)
 {
-    if (!subType)
+    if (shop->shopSubType() != "all")
     {
-        subType = "all";
+        generateRandomItems(shop);
     }
-    else
+    generateDefaultItems(shop);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getBuyItemTypes(object store)
+{
+    string *types = ({});
+    mapping inventory = store->storeInventory();
+    string *inventoryItems = m_indices(inventory);
+
+    if (sizeof(inventoryItems))
     {
-        generateRandomItems(shop, numItems, type, subType);
+        foreach(string item in inventoryItems)
+        {
+            string itemType = inventory[item]["type"];
+            if (member(inventory[item], "subType") &&
+                inventory[item]["subType"])
+            {
+                itemType += "s - " + 
+                    capitalize(inventory[item]["subType"]);
+            }
+            if (member(types, itemType) < 0)
+            {
+                types += ({ itemType });
+            }
+        }
     }
-    generateDefaultItems(shop, type, subType);
+    return types;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getBuyItemDetailsForType(object store, string type, string subtype)
+{
+    mapping inventory = store->storeInventory();
+    string *itemList = m_indices(filter_mapping(inventory,
+        (: (($2[$1]["type"] == $3) && 
+           (($4 == "all") || ($2[$1]["subType"] == $4))) :), 
+            inventory, type, subtype));
+    mapping ret = ([]);
+    if (sizeof(itemList))
+    {
+        int menuItem = 1;
+        foreach(string item in itemList)
+        {
+            string qualityFormat = regreplace(inventory[item]["quality"],
+                "(.*)%s(.*)", "\\1%-23s\\2", 1);
+            ret[to_string(menuItem)] = ([
+                "name": sprintf("%s [0;32m%8d[0m",
+                    sprintf(qualityFormat, 
+                    ((sizeof(inventory[item]["name"]) <= 23) ? inventory[item]["name"] :
+                        inventory[item]["name"][0..19] + "...")),
+                    inventory[item]["value"]),
+                "description": inventory[item]["description"],
+                "data": inventory[item]["data"],
+                "summary": inventory[item]["summary"],
+                "blueprint": regreplace(item, "([^#]+)#.*", "/\\1.c", 1)
+            ]);
+            menuItem++;
+        }
+    }
+    return ret;
 }

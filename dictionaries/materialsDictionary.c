@@ -407,7 +407,7 @@ public nomask string getMaterialDetails(object item)
 /////////////////////////////////////////////////////////////////////////////
 public varargs string getMaterialQualityFormatter(object equipment)
 {
-    string ret = NormalEquipment;
+    string ret = Cyan;
 
     if (getMaterialCraftsmanshipBonus(equipment) > 4)
     {
@@ -417,13 +417,13 @@ public varargs string getMaterialQualityFormatter(object equipment)
     {
         ret = StrongEnchantment;
     }
-    else if (equipment->query("enchanted"))
-    {
-        ret = Enchanted;
-    }
     else if (getMaterialCraftsmanshipBonus(equipment))
     {
         ret = WellCrafted;
+    }
+    else if (equipment->query("enchanted"))
+    {
+        ret = Enchanted;
     }
 
     return ret;
@@ -570,12 +570,12 @@ private nomask int calculateServiceBonuses(string methodToCheck, object initiato
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getWeaponAttackInformation(object weapon, object initiator)
+private nomask int getAttackData(object weapon, object initiator)
 {
     int baseAttack = weapon->query("weapon attack") +
         getMaterialAttack(weapon);
 
-    if(initiator)
+    if (initiator)
     {
         baseAttack += initiator->magicalAttackBonus() +
             calculateServiceBonuses("AttackBonus", initiator) +
@@ -583,6 +583,7 @@ public nomask string getWeaponAttackInformation(object weapon, object initiator)
             (initiator->intelligenceBonus() / 2);
 
         string skillToUse = weapon->query("weapon type");
+        write("skill to use: " + skillToUse);
         if (skillToUse && stringp(skillToUse))
         {
             baseAttack += call_other(initiator, "getSkillModifier",
@@ -590,6 +591,13 @@ public nomask string getWeaponAttackInformation(object weapon, object initiator)
         }
         baseAttack -= weapon->query("skill penalty");
     }
+    return baseAttack;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getWeaponAttackInformation(object weapon, object initiator)
+{
+    int baseAttack = getAttackData(weapon, initiator);
 
     return sprintf(DetailsText, "Attack", baseAttack, baseAttack + 100);
 }
@@ -673,9 +681,8 @@ private nomask string applyResistances(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getWeaponDamageInformation(object weapon, object initiator)
+private nomask int getDamageData(object weapon, object initiator)
 {
-    string ret = "";
     int baseDamage = weapon->query("weapon class") +
         getMaterialDamage(weapon, "physical");
 
@@ -695,6 +702,14 @@ public nomask string getWeaponDamageInformation(object weapon, object initiator)
         }
         baseDamage -= weapon->query("skill penalty");
     }
+    return baseDamage;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getWeaponDamageInformation(object weapon, object initiator)
+{
+    string ret = "";
+    int baseDamage = getDamageData(weapon, initiator);
 
     float modifier = baseDamage / 8.0;
     ret = sprintf(DetailsText, "Damage", 
@@ -711,7 +726,7 @@ public nomask string getWeaponDamageInformation(object weapon, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getWeaponDefenseInformation(object weapon, object initiator)
+private nomask int getWeaponDefenseData(object weapon, object initiator)
 {
     int baseDefense = weapon->query("defense class") +
         getMaterialDefendAttack(weapon);
@@ -731,6 +746,13 @@ public nomask string getWeaponDefenseInformation(object weapon, object initiator
         }
         baseDefense -= weapon->query("skill penalty");
     }
+    return baseDefense;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getWeaponDefenseInformation(object weapon, object initiator)
+{
+    int baseDefense = getWeaponDefenseData(weapon, initiator);
 
     float modifier = baseDefense / 8.0;
     return sprintf(DetailsText, "Defense",
@@ -738,7 +760,7 @@ public nomask string getWeaponDefenseInformation(object weapon, object initiator
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getEncumberance(object item, object initiator)
+private nomask int getEncumberanceData(object item, object initiator)
 {
     int encumberance = item->query("encumberance") +
         getMaterialEncumberance(item);
@@ -754,6 +776,13 @@ public nomask string getEncumberance(object item, object initiator)
         }
         encumberance += item->query("skill penalty");
     }
+    return encumberance;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getEncumberance(object item, object initiator)
+{
+    int encumberance = getEncumberanceData(item, initiator);
 
     return sprintf(SingleDetailText, "Encumberance", encumberance);
 }
@@ -799,7 +828,7 @@ private nomask string applyWeaponDetails(object weapon, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getDamageProtection(object armor, object initiator)
+private nomask int getDamageProtectionData(object armor, object initiator)
 {
     int baseAC = armor->query("armor class") +
         getMaterialDefense(armor, "physical");
@@ -811,6 +840,13 @@ public nomask string getDamageProtection(object armor, object initiator)
             (initiator->constitutionBonus() / 2) +
             (initiator->strengthBonus() / 2);
     }
+    return baseAC;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getDamageProtection(object armor, object initiator)
+{
+    int baseAC = getDamageProtectionData(armor, initiator);
 
     return sprintf(SingleDetailText, "Damage Protection", baseAC);
 }
@@ -904,6 +940,36 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
     if (!equipment->query("identified"))
     {
         ret += sprintf(Unidentified, "This item has not been identified.\n");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getItemSummary(object equipment)
+{
+    string ret = "[0;30;1mThis item has not been identified[0m";
+
+    if (equipment->query("identified") || canCraftBlueprintWithMaterial(this_player(),
+        equipment->query("blueprint"), equipment->query("material")))
+    {
+        if (equipment->query("weapon type"))
+        {
+            ret = sprintf("    [0;36mAttack: [0;32m%2d[0;36m, Damage: [0;32m%2d[0;36m,"
+                " Defense: [0;32m%2d[0m", 
+                getAttackData(equipment, this_player()),
+                getDamageData(equipment, this_player()), 
+                getWeaponDefenseData(equipment, this_player()));
+        }
+        else if (equipment->query("armor type"))
+        {
+            ret = sprintf("    [0;36mSoak: [0;32m%2d[0;36m, Encumberance: [0;32m%2d[0m",
+                getDamageProtectionData(equipment, this_player()),
+                getEncumberanceData(equipment, this_player()));
+        }
+        else
+        {
+            ret += "[0;32mView item details for summary[0m";
+        }
     }
     return ret;
 }
