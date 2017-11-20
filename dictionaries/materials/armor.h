@@ -69,6 +69,19 @@ private nosave mapping armorBlueprints = ([
         "default value": 25,
         "default description": ""
     ]),
+    "gown": ([
+        "type": "armor",
+        "subtype": "clothing",
+        "skill to craft": 5,
+        "skill to use": "no armor",
+        "default ac": 0,
+        "default location": Armor,
+        "default encumberance": 2,
+        "default weight": 2,
+        "default material": "cloth",
+        "default value": 25,
+        "default description": ""
+    ]),
     "shirt": ([
         "type": "armor",
         "subtype": "clothing",
@@ -284,7 +297,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "light armor",
         "skill to craft": 5,
         "skill to use": "soft leather",
-        "default ac": 1,
+        "default ac": 2,
         "default location": Armor,
         "default encumberance": 5,
         "default weight": 3,
@@ -303,6 +316,19 @@ private nosave mapping armorBlueprints = ([
         "default weight": 3,
         "default material": "leather",
         "default value": 100,
+        "default description": ""
+    ]),
+    "padded armor": ([
+        "type": "armor",
+        "subtype": "light armor",
+        "skill to craft": 5,
+        "skill to use": "soft leather",
+        "default ac": 1,
+        "default location": Armor,
+        "default encumberance": 5,
+        "default weight": 4,
+        "default material": "leather",
+        "default value": 50,
         "default description": ""
     ]),
     "ring mail": ([
@@ -329,7 +355,30 @@ private nosave mapping armorBlueprints = ([
         "default value": 25,
         "default description": ""
     ]),
+   "gauntlets": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 7,
+        "default location": Gloves,
+        "default encumberance": 3,
+        "default weight": 1,
+        "default material": "iron",
+        "default value": 50,
+        "default description": ""
+    ]),
     "helmet": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 5,
+        "default location": Helmet,
+        "default ac": 1,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "iron",
+        "default value": 50,
+        "default description": ""
+    ]),
+    "helm": ([
         "type": "armor",
         "subtype": "accessory",
         "skill to craft": 5,
@@ -354,6 +403,66 @@ private nosave mapping armorBlueprints = ([
         "default value": 100,
         "default description": ""
     ]),
+    "circlet": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 10,
+        "default location": Helmet,
+        "default ac": 0,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "silver",
+        "default value": 350,
+        "default description": ""
+    ]),
+    "diadem": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 10,
+        "default location": Helmet,
+        "default ac": 0,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "silver",
+        "default value": 350,
+        "default description": ""
+    ]),
+    "tiara": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 10,
+        "default location": Helmet,
+        "default ac": 0,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "silver",
+        "default value": 350,
+        "default description": ""
+    ]),
+    "crown": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 10,
+        "default location": Helmet,
+        "default ac": 0,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "silver",
+        "default value": 350,
+        "default description": ""
+    ]),
+    "hat": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 5,
+        "default location": Helmet,
+        "default ac": 1,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "cloth",
+        "default value": 15,
+        "default description": ""
+    ]),
     "boots": ([
         "type": "armor",
         "subtype": "accessory",
@@ -362,6 +471,28 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default weight": 1,
         "default material": "leather",
+        "default value": 25,
+        "default description": ""
+    ]),
+    "shoes": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 5,
+        "default location": Boots,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "leather",
+        "default value": 25,
+        "default description": ""
+    ]),
+    "sandals": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 5,
+        "default location": Boots,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "cloth",
         "default value": 25,
         "default description": ""
     ]),
@@ -408,7 +539,28 @@ private nosave mapping armorBlueprints = ([
         "default value": 75,
         "default description": ""
     ]),
+    "necklace": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 5,
+        "default location": Amulet,
+        "default encumberance": 1,
+        "default material": "silver",
+        "default value": 125,
+        "default description": ""
+    ]),
     "belt": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 5,
+        "default location": Belt,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "leather",
+        "default value": 25,
+        "default description": ""
+    ]),
+    "sash": ([
         "type": "armor",
         "subtype": "accessory",
         "skill to craft": 5,

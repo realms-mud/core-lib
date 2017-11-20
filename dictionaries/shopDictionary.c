@@ -19,6 +19,13 @@ private mapping alwaysGenerate = ([
         "sling":({ "kestros", "sling", "slingshot", "sling-staff" }),
         "thrown":({ "dart", "javelin", "rock", "throwing-axe", "throwing-hammer", "throwing-spear" }),
         "shield":({ "shield", "buckler", "heater-shield", "kite-shield", "spiked-shield", "pavise-shield" })
+    ]),
+    "armor":([
+        "medium armor":({ "chainmail", "boiled-leather", "hard-leather", "lamellar-leather", "ring-mail"}),
+        "light armor":({ "gambeson", "soft-leather", "leather-jacket", "padded-armor", "leather-arm-greaves", "leather-leg-greaves"}),
+        "heavy armor":({ "breastplate", "brigandine", "plate-armor", "scale-armor", "splint-mail", "plate-leg-greaves", "plate-arm-greaves"}),
+        "clothing":({ "cloak", "robes", "dress", "shirt", "pants", "skirt", "gown"}),
+        "accessories":({ "belt", "boots", "helmet" }),
     ])
 ]);
 
