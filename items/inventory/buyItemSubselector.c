@@ -72,8 +72,7 @@ protected nomask int processSelection(string selection)
 
         if (!ret)
         {
-            Dictionary->buyItems(User, Store, 
-                Data[selection]["object list"]);
+            Dictionary->buyItem(User, Store, Data[selection]);
             setUpUserForSelection();
         }
     }

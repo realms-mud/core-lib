@@ -95,6 +95,22 @@ public nomask varargs int storeItem(object item, int isPermanent)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs int buyItem(string key)
+{
+    int ret = 0;
+
+    if (member(list, key))
+    {
+        ret = 1;
+        if (!member(list[key], "permanent"))
+        {
+            m_delete(list, key);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping storeInventory()
 {
     return list + ([]);

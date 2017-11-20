@@ -94,3 +94,114 @@ void SelectSubMenuDisplaysBuyList()
     ExpectSubStringMatch("You must select a number from 1 to 21",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DescribeShowsItemDetails()
+{
+    destruct(Store);
+    Store = clone_object("/lib/environment/buildings/baseShop.c");
+    Store->name("Bob's Swords");
+    Store->welcomeMessage("Remember: Nobody outsells Bob");
+    Store->shopType("weapon");
+    Store->shopSubType("sword");
+    Store->setRandomItemsToGenerate(0);
+    load_object("/lib/dictionaries/shopDictionary.c")->generateRandomInventory(Store);
+    Selector->setStore(Store);
+
+    Selector->initiateSelector(Player);
+    move_object(Selector, Player);
+    command("1", Player);
+    command("? 1", Player);
+
+    ExpectSubStringMatch("Bastard sword.*Material.*Attack.*Damage.*Defense.*You can buy this item for 650",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PurchaseWithInsufficientFundsFails()
+{
+    Selector->initiateSelector(Player);
+    move_object(Selector, Player);
+    command("1", Player);
+    command("1", Player);
+
+    ExpectSubStringMatch("You do not have the funds for that",
+        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PurchaseWithSufficientFundsSubtractsMoneyAndAddsItemToPlayerInventory()
+{
+    Player->addMoney(1000000);
+    Selector->initiateSelector(Player);
+    move_object(Selector, Player);
+    command("1", Player);
+
+    ExpectEq(1000000, Player->Money());
+    ExpectEq(2, sizeof(all_inventory(Player)));
+    ExpectFalse(member(inherit_list(all_inventory(Player)[0]), "lib/items/weapon.c") > -1);
+    command("1", Player);
+
+    string purchaseMessage = Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2];
+
+    ExpectSubStringMatch("You purchased.*for.*", purchaseMessage);
+    ExpectEq(3, sizeof(all_inventory(Player)));
+
+    int value = to_int(regreplace(purchaseMessage, ".*for .([0-9]+).*", "\\1", 1));
+    ExpectTrue(value > 25);
+    ExpectTrue(member(inherit_list(all_inventory(Player)[0]), "lib/items/weapon.c") > -1);
+    ExpectEq(1000000 - value, Player->Money());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PurchaseOfPermanentItemDoesNotRemoveFromStore()
+{
+    destruct(Store);
+    Store = clone_object("/lib/environment/buildings/baseShop.c");
+    Store->name("Bob's Swords");
+    Store->welcomeMessage("Remember: Nobody outsells Bob");
+    Store->shopType("weapon");
+    Store->shopSubType("sword");
+    Store->setRandomItemsToGenerate(0);
+    load_object("/lib/dictionaries/shopDictionary.c")->generateRandomInventory(Store);
+    Selector->setStore(Store);
+
+    Selector->initiateSelector(Player);
+    move_object(Selector, Player);
+    command("1", Player);
+
+    Player->addMoney(1000000);
+    ExpectEq(1000000, Player->Money());
+
+    string initialMessage = Player->caughtMessage();
+    command("1", Player);
+    ExpectTrue(1000000 > Player->Money());
+    ExpectEq(initialMessage, Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PurchaseOfNonPermanentItemRemovesItFromStore()
+{
+    Selector->initiateSelector(Player);
+    move_object(Selector, Player);
+    command("1", Player);
+
+    Player->addMoney(1000000);
+    ExpectEq(1000000, Player->Money());
+    ExpectEq(2, sizeof(all_inventory(Player)));
+
+    string initialMessage = Player->caughtMessage();
+    command("1", Player);
+    command("2", Player);
+    command("3", Player);
+    command("4", Player);
+    command("5", Player);
+    command("6", Player);
+    command("7", Player);
+    command("8", Player);
+    command("9", Player);
+    command("10", Player);
+    ExpectTrue(1000000 > Player->Money());
+    ExpectEq(12, sizeof(all_inventory(Player)));
+    ExpectFalse(initialMessage == Player->caughtMessage());
+}

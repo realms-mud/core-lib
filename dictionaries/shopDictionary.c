@@ -174,6 +174,10 @@ public nomask void sellItems(object user, object store, object *items)
             }
         }
     }
+    if (money)
+    {
+        user->addMoney(money);
+    }
     tell_object(user, sprintf("[0;37mYou received $%d for your sold items.[0m\n",
         money));
 }
@@ -363,9 +367,13 @@ public nomask mapping getBuyItemDetailsForType(object store, string type, string
     mapping ret = ([]);
     if (sizeof(itemList))
     {
+        itemList = sort_array(itemList, (: $1 > $2 :));
         int menuItem = 1;
         foreach(string item in itemList)
         {
+            string valueStr = sprintf("[0;32mYou can buy this item for %d.[0m\n",
+                inventory[item]["value"]);
+
             string qualityFormat = regreplace(inventory[item]["quality"],
                 "(.*)%s(.*)", "\\1%-23s\\2", 1);
             ret[to_string(menuItem)] = ([
@@ -374,13 +382,39 @@ public nomask mapping getBuyItemDetailsForType(object store, string type, string
                     ((sizeof(inventory[item]["name"]) <= 23) ? inventory[item]["name"] :
                         inventory[item]["name"][0..19] + "...")),
                     inventory[item]["value"]),
-                "description": inventory[item]["description"],
+                "description": inventory[item]["description"] + valueStr,
                 "data": inventory[item]["data"],
+                "value": inventory[item]["value"],
                 "summary": inventory[item]["summary"],
-                "blueprint": regreplace(item, "([^#]+)#.*", "/\\1.c", 1)
+                "blueprint": regreplace(item, "([^#]+)#.*", "/\\1.c", 1),
+                "key": item
             ]);
             menuItem++;
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void buyItem(object user, object store, mapping item)
+{
+    int money = 0;
+    if (sizeof(item) && member(item, "blueprint") &&
+        member(item, "value") && member(item, "data"))
+    {
+        if (user->Money() >= item["value"])
+        {
+            object itemObj = clone_object(item["blueprint"]);
+            itemObj->set("all", item["data"]);
+            user->addMoney(-item["value"]);
+            store->buyItem(item["key"]);
+            move_object(itemObj, user);
+            tell_object(user, sprintf("[0;32mYou purchased %s for $%d.[0m\n",
+                itemObj->query("name"), item["value"]));
+        }
+        else
+        {
+            tell_object(user, "[0;32mYou do not have the funds for that.[0m\n");
+        }
+    }
 }
