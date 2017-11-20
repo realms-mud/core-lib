@@ -500,7 +500,23 @@ private nosave mapping weaponBlueprints = ([
         "default value": 200,
         "default description": ""
     ]),
-    "beareded axe": ([
+    "axe": ([
+        "type": "one-handed weapon",
+        "subtype": "axe",
+        "default location": OnehandedWeapon,
+        "damage type": "slash",
+        "skill to craft": 8,
+        "skill to use": "axe",
+        "default wc": 7,
+        "default dc": 1,
+        "default attack": 6,
+        "default encumberance": 5,
+        "default weight": 5,
+        "default material": "iron",
+        "default value": 150,
+        "default description": ""
+    ]),
+    "bearded axe": ([
         "type": "one-handed weapon",
         "subtype": "axe",
         "default location": OnehandedWeapon,
@@ -1362,6 +1378,22 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 4,
         "default material": "cedar",
         "default value": 225,
+        "default description": ""
+    ]),
+    "bow": ([
+        "type": "two-handed weapon",
+        "subtype": "bow",
+        "default location": TwohandedWeapon,
+        "damage type": "thrust",
+        "skill to craft": 10,
+        "skill to use": "bow",
+        "default wc": 8,
+        "default dc": 0,
+        "default attack": 6,
+        "default encumberance": 8,
+        "default weight": 5,
+        "default material": "cedar",
+        "default value": 300,
         "default description": ""
     ]),
     "long bow": ([

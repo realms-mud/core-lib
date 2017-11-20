@@ -8,6 +8,17 @@ private mapping alwaysGenerate = ([
     "weapon":([
         "dagger":({ "dagger", "dirk", "knife", "stiletto" }),
         "sword":({ "bastard-sword", "broad-sword", "claymore", "long-sword", "short-sword" }),
+        "staff":({ "quarterstaff", "shield-staff", "staff", "swordstaff" }),
+        "axe":({ "axe", "battle-axe", "bearded-axe", "hatchet", "broad-axe", "splitting-maul" }),
+        "pole-arm":({ "bardiche", "brandistock", "glaive", "halberd", "lance", "military-fork", "pike", "pitchfork", "spear", "trident" }),
+        "hammer":({ "horsemans-pick", "lucerne-hammer", "maul", "war-hammer" }),
+        "mace":({ "club", "flanged-mace", "mace", "morning-star" }),
+        "flail":({ "flail", "whip", "military-flail", "hinged-flail" }),
+        "crossbow":({ "crossbow", "levered-crossbow", "cranequin-crossbow" }),
+        "bow":({ "short-bow", "bow", "long-bow", "recurve-bow", "composite-bow"}),
+        "sling":({ "kestros", "sling", "slingshot", "sling-staff" }),
+        "thrown":({ "dart", "javelin", "rock", "throwing-axe", "throwing-hammer", "throwing-spear" }),
+        "shield":({ "shield", "buckler", "heater-shield", "kite-shield", "spiked-shield", "pavise-shield" })
     ])
 ]);
 
@@ -189,7 +200,8 @@ private nomask void generateDefaultItems(object shop)
     string subType = shop->shopSubType();
 
     string dir = sprintf("/lib/instances/items/%s%s/", type + "s",
-        ((subType != "all") ? "/" + subType + "s" : ""));
+        ((subType != "all") ? "/" + regreplace(subType, " ", "-", 1)
+            + ((subType != "thrown") ? "s" : "") : ""));
 
     string *defaultItems = ({});
     if (member(alwaysGenerate, type) && member(alwaysGenerate[type], subType))
