@@ -2,7 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/buildings/baseBuilding.c";
+inherit "/lib/environment/environment.c";
 
 private mapping list = ([]);
 private string *ProhibitedTypes = ({});

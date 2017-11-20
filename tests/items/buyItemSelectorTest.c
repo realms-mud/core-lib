@@ -11,7 +11,7 @@ object Store;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Store = clone_object("/lib/environment/buildings/baseShop.c");
+    Store = clone_object("/lib/environment/baseShop.c");
     Store->name("Bob's Swords");
     Store->welcomeMessage("Remember: Nobody outsells Bob");
     Store->shopType("weapon");
@@ -99,7 +99,7 @@ void SelectSubMenuDisplaysBuyList()
 void DescribeShowsItemDetails()
 {
     destruct(Store);
-    Store = clone_object("/lib/environment/buildings/baseShop.c");
+    Store = clone_object("/lib/environment/baseShop.c");
     Store->name("Bob's Swords");
     Store->welcomeMessage("Remember: Nobody outsells Bob");
     Store->shopType("weapon");
@@ -157,7 +157,7 @@ void PurchaseWithSufficientFundsSubtractsMoneyAndAddsItemToPlayerInventory()
 void PurchaseOfPermanentItemDoesNotRemoveFromStore()
 {
     destruct(Store);
-    Store = clone_object("/lib/environment/buildings/baseShop.c");
+    Store = clone_object("/lib/environment/baseShop.c");
     Store->name("Bob's Swords");
     Store->welcomeMessage("Remember: Nobody outsells Bob");
     Store->shopType("weapon");
