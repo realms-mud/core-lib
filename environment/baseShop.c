@@ -144,3 +144,22 @@ public nomask int canPurchaseItem(object item)
 {
     return 1;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int shop(string arguments)
+{
+    int ret = 0;
+    if (this_player())
+    {
+        ret = 1;
+        initiateShopInteraction(this_player());
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void init()
+{
+    "environment"::init();
+    add_action("shop", "shop");
+}
