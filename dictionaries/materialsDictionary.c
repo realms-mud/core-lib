@@ -583,7 +583,7 @@ private nomask int getAttackData(object weapon, object initiator)
             (initiator->intelligenceBonus() / 2);
 
         string skillToUse = weapon->query("weapon type");
-        write("skill to use: " + skillToUse);
+
         if (skillToUse && stringp(skillToUse))
         {
             baseAttack += call_other(initiator, "getSkillModifier",
