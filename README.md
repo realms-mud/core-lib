@@ -19,7 +19,13 @@ to implement it. The /tests/support directory contains "test helpers" in additio
 
 For example, suppose you want to create a guild:
 - /modules/guilds.c is the player-side component that controls guild support.
-- /modules/guilds/baseGuild.c is the object that defines the guild. This is an example of what a guild might look like:
+- /modules/guilds/baseGuild.c is the object that defines the guild.
+- /tests/modules/baseGuildTest.c and /tests/modules/guildTest.c show everything guilds can do.
+- /tests/support/guilds/testGuild.c (at least the SetupGuild method) shows an example guild.
+- You would also want to look at the research module, skills module, and potentially the traits module to create abilities.
+- In addition, /dictionaries contains many "services" (ie: in software terms - I renamed them "dictionaries" because they're not true services). For example, the shopDictionary provides somewhat static methods/data for randomly generating "normal" and "well-crafted", and "magical" items of a given type for shops. materialsDictionary supplies all the content surrounding armor/weapon material and blueprint content, and so on.
+
+For example, this is what a guild might look like:
 ```
 /////////////////////////////////////////////////////////////////////////////
 public void SetupGuild()
@@ -86,11 +92,6 @@ public void SetupGuild()
     ]));
 }
 ```
-Seriously??? You didn't keep the formatting? Stupid VSTS...
-- /tests/modules/baseGuildTest.c and /tests/modules/guildTest.c show everything guilds can do.
-- /tests/support/guilds/testGuild.c (at least the SetupGuild method) shows an example guild.
-- You would also want to look at the research module, skills module, and potentially the traits module to create abilities.
-- In addition, /dictionaries contains many "services" (ie: in software terms - I renamed them "dictionaries" because they're not true services). For example, the shopDictionary provides somewhat static methods/data for randomly generating "normal" and "well-crafted", and "magical" items of a given type for shops. materialsDictionary supplies all the content surrounding armor/weapon material and blueprint content, and so on.
 
 #Contribute
 If you'd like to contribute to this project, contact Allen. Adding component to the library is a pretty straigthforward process, but the steps must be followed:
