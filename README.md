@@ -86,6 +86,7 @@ public void SetupGuild()
     ]));
 }
 ```
+Seriously??? You didn't keep the formatting? Stupid VSTS...
 - /tests/modules/baseGuildTest.c and /tests/modules/guildTest.c show everything guilds can do.
 - /tests/support/guilds/testGuild.c (at least the SetupGuild method) shows an example guild.
 - You would also want to look at the research module, skills module, and potentially the traits module to create abilities.
