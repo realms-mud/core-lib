@@ -950,7 +950,7 @@ static nomask object getTargetToAttack()
     int numPotentialAttackers = sizeof(listOfPotentialAttackers);
     if(numPotentialAttackers)
     {
-        listOfPotentialAttackers = filter_array(listOfPotentialAttackers,
+        listOfPotentialAttackers = filter(listOfPotentialAttackers,
             #'present, environment(this_object()));
         listOfPotentialAttackers = sort_array(listOfPotentialAttackers,
             #'orderAttackers);

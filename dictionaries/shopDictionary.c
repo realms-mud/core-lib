@@ -96,7 +96,7 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
     mapping ret = ([]);
     int menuItem = 1;
 
-    object *items = filter_array(deep_inventory(user) -
+    object *items = filter(deep_inventory(user) -
         user->registeredInventoryObjects(),
         (: (($1->query("type") == $2) && !$3->isModifierItem($1)) :), 
         type, user);
@@ -145,7 +145,7 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
                 ((member(({ "armor", "weapon", "instrument" }), type) > -1) ?
                     " unequipped" : ""),
             "description": "This option will sell all of your unequipped " + type,
-            "object list": filter_array(items, 
+            "object list": filter(items, 
                 (: (!$2->isEquipped($1) && !$1->query("cursed") &&
                    !$1->query("no sell")) :), user)
         ]);

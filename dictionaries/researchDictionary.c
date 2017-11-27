@@ -548,7 +548,7 @@ private nomask mapping buildResearchList(string *researchList,
     int index = startIndex;
     mapping ret = ([]);
 
-    researchList = filter_array(researchList,
+    researchList = filter(researchList,
         (: researchObject($1)->query("source") == $2 :), type);
 
     if (sizeof(researchList))
@@ -640,7 +640,7 @@ public nomask mapping getResearchOfType(string type, object user)
             user, type);
 
         ret += buildResearchTreeList(
-            filter_array(user->availableResearchTrees(),
+            filter(user->availableResearchTrees(),
             (: $1->Source() == $2 :), type),
             type, user, sizeof(ret) + 1);
     }

@@ -37,7 +37,7 @@ private nomask varargs int compile(string path, object initiator, int recurse)
     }
     else if(recurse)
     {
-        files = filter_array(files, 
+        files = filter(files, 
             (: ($1[(sizeof($1)-2)..(sizeof($1)-1)] == ".c") ||
                 (file_size("/" + $1) == -2) :));
 

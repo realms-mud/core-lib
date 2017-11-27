@@ -27,7 +27,7 @@ private nomask void shoutMessage(string message, string messageTemplate,
 {
     message = regreplace(message, "shout *(.*)", "\\1", 1);
 
-    object *targets = filter_array(users(), (: return !$1->isEarmuffed(); :));
+    object *targets = filter(users(), (: return !$1->isEarmuffed(); :));
     if (member(targets, initiator) < 0)
     {
         // Add initiator if they're earmuffed.

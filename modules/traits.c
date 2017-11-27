@@ -26,7 +26,7 @@ public nomask int hasTraitOfRoot(string root)
 {
     typeOfTrait = root;
 
-    return (sizeof(filter_array(m_indices(traits),
+    return (sizeof(filter(m_indices(traits),
         (: traitDictionary()->traitIsOfRoot($1, typeOfTrait) :))));
 }
 
@@ -240,7 +240,7 @@ public nomask int traitsBonusTo(string bonus)
 public nomask string *traitsResearchTrees()
 {
     string *research = ({});
-    string *traitsWithResearch = filter_array(m_indices(traits), #'traitHasResearchTree);
+    string *traitsWithResearch = filter(m_indices(traits), #'traitHasResearchTree);
     
     foreach(string trait in traitsWithResearch)
     {
@@ -270,7 +270,7 @@ public nomask int opinionModifier(object target)
             {
                 object targetTraitObj = traitDictionary()->traitObject(targetTrait);
                 string targetRoot = targetTraitObj->query("root");
-                string *affectingTraits = filter_array(m_indices(traits), 
+                string *affectingTraits = filter(m_indices(traits), 
                     #'traitAffectedByType, 
                     targetRoot);
 
@@ -379,11 +379,11 @@ private nomask string traitListForType(string type)
     typeOfTrait = type;
 
     int columns = 0;
-    string *traitList = filter_array(m_indices(traits),
+    string *traitList = filter(m_indices(traits),
         (: traitDictionary()->traitIsOfType($1, typeOfTrait) :));
     if (type == "effect")
     {
-        traitList += filter_array(m_indices(traits),
+        traitList += filter(m_indices(traits),
             (: traitDictionary()->traitIsOfType($1, "sustained effect") :));
     }
 

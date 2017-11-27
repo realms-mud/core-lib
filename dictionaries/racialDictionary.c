@@ -796,7 +796,7 @@ public nomask mapping characterCreationHair(string race)
 {
     mapping selection = ([]);
 
-    string *hairList = sort_array(filter_array(m_indices(hairColors),
+    string *hairList = sort_array(filter(m_indices(hairColors),
         (: return(member(hairColors[$1]["exclude"], $2) == -1); :), race),
         (: $1 > $2 :));
 

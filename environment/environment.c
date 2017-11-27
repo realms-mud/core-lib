@@ -118,7 +118,7 @@ private nomask void createStateObjects()
 
     if (sizeof(stateObjects))
     {
-        stateObjects = filter_array(m_indices(mkmapping(stateObjects)),
+        stateObjects = filter(m_indices(mkmapping(stateObjects)),
             (: return !present_clone($1); :));
         foreach(string stateObjectBlueprint in stateObjects)
         {

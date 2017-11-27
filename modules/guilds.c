@@ -70,7 +70,7 @@ public nomask string *memberOfGuilds()
     string *ret = ({ });
     if(sizeof(guilds))
     {
-        ret = filter_array(m_indices(guilds), #'memberOfGuild);
+        ret = filter(m_indices(guilds), #'memberOfGuild);
     }
     return ret + ({ });
 }

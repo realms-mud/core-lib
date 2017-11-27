@@ -163,7 +163,7 @@ public nomask string hasReadAccess(string path)
     string ret = 0;
     PathToCheck = path;
 
-    object *filteredGroups = filter_array(groupObjects(),
+    object *filteredGroups = filter(groupObjects(),
         (: return $1->hasReadAccess(this_object(), PathToCheck); :));
     if(sizeof(filteredGroups))
     {
@@ -178,7 +178,7 @@ public nomask string groupReadAccess(string path)
     string ret = "";
     PathToCheck = path;
 
-    object *filteredGroups = filter_array(groupObjects(),
+    object *filteredGroups = filter(groupObjects(),
         (: return $1->hasReadAccess(this_object(), PathToCheck); :));
     if (sizeof(filteredGroups))
     {
@@ -193,7 +193,7 @@ public nomask string hasWriteAccess(string path)
     string ret = 0;
     PathToCheck = path;
 
-    object *filteredGroups = filter_array(groupObjects(),
+    object *filteredGroups = filter(groupObjects(),
         (: return $1->hasWriteAccess(this_object(), PathToCheck); :));
     if(sizeof(filteredGroups))
     {
@@ -208,7 +208,7 @@ public nomask string groupWriteAccess(string path)
     string ret = "";
     PathToCheck = path;
 
-    object *filteredGroups = filter_array(groupObjects(),
+    object *filteredGroups = filter(groupObjects(),
         (: return $1->hasWriteAccess(this_object(), PathToCheck); :));
     if (sizeof(filteredGroups))
     {
@@ -221,7 +221,7 @@ public nomask string groupWriteAccess(string path)
 public nomask int hasOwnershipAccess(string path)
 {
     PathToCheck = path;
-    return sizeof(filter_array(groupObjects(),
+    return sizeof(filter(groupObjects(),
         (: return $1->hasOwnershipAccess(this_object(), PathToCheck); :)));
 }
 
@@ -229,7 +229,7 @@ public nomask int hasOwnershipAccess(string path)
 public nomask int hasExecuteAccess(string command)
 {
     PathToCheck = command;
-    return sizeof(filter_array(groupObjects(),
+    return sizeof(filter(groupObjects(),
         (: return $1->hasExecuteAccess(this_object(), PathToCheck); :)));
 }
 

@@ -23,13 +23,13 @@ public nomask int execute(string command, object initiator)
 
     if (targetString == "all")
     {
-        targets += filter_array(all_inventory(initiator),
+        targets += filter(all_inventory(initiator),
             (: function_exists("drop", $1) && 
                 !$1->query("undroppable") :));
     }
     else if (sizeof(regexp(({ command }), "-a")))
     {
-        targets += filter_array(all_inventory(initiator),
+        targets += filter(all_inventory(initiator),
             (: function_exists("drop", $1) && 
                 !$1->query("undroppable") &&
                 $1->id($2) :), targetString);

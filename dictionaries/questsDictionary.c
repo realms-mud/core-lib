@@ -62,7 +62,7 @@ public nomask mapping questsOfType(object user, string type)
     }
     else
     {
-        sources = filter_array(user->questsInProgress(),
+        sources = filter(user->questsInProgress(),
             (: questObject($1) && questObject($1)->type() == $2 :), type);
     }
 

@@ -1020,7 +1020,7 @@ public nomask string getRandomMaterial(object item)
         string materialClass = materials[defaultMaterial]["class"];
         int useCrystals = materialClass == "metal";
 
-        string *options = filter_array(m_indices(materials),
+        string *options = filter(m_indices(materials),
             (: (($2[$1]["class"] == $3) ||
             ($4 && !random(10) && ($2[$1]["class"] == "crystal"))) :),
             materials, materialClass, useCrystals);

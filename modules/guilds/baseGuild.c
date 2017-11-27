@@ -881,7 +881,7 @@ private nomask int isBonusAttack(string bonusItem)
 public nomask mapping *getExtraAttacks(int level, string rank)
 {
     mapping *ret = ({ });
-    string *keys = filter_array(m_indices(bonusGrid), #'isBonusAttack);
+    string *keys = filter(m_indices(bonusGrid), #'isBonusAttack);
     string *ranks = m_indices(mkmapping(({ "default", rank })));
 
     if(keys)

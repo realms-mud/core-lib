@@ -206,7 +206,7 @@ private nomask int isBonusAttack(string bonusItem)
 public nomask mapping *getExtraAttacks()
 {
     mapping *ret = ({ });
-    string *keys = filter_array(m_indices(researchData), #'isBonusAttack);
+    string *keys = filter(m_indices(researchData), #'isBonusAttack);
     if(keys)
     {
         foreach(string key in keys)

@@ -813,7 +813,7 @@ public nomask string inventoryDescription()
     string ret = "";
 
     object *userDescriptionItems = sort_array(
-        filter_array(m_indices(mkmapping(
+        filter(m_indices(mkmapping(
             registeredInventoryObjects() + all_inventory(this_object()))),
             (: return call_other($1, "query", "user description"); :)),
         (: return object_name($1) > object_name($2); :));

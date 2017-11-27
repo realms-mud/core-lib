@@ -19,7 +19,7 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object *getAll(object initiator, object source)
 {
-    object *targets = filter_array(all_inventory(source),
+    object *targets = filter(all_inventory(source),
         (: $1->get() :));
     if (!sizeof(targets))
     {
@@ -31,7 +31,7 @@ private nomask object *getAll(object initiator, object source)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object *getAllOfSpecificId(object initiator, object source)
 {
-    object *targets = filter_array(all_inventory(source),
+    object *targets = filter(all_inventory(source),
         (: $1->get() && $1->id(TargetString) :));
 
     if (!sizeof(targets))

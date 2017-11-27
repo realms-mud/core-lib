@@ -116,19 +116,19 @@ public nomask string questState(string questItem)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *activeQuests()
 {
-    return (filter_array(m_indices(quests), #'questIsActive) + ({ }));
+    return (filter(m_indices(quests), #'questIsActive) + ({ }));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *completedQuests()
 {
-    return (filter_array(m_indices(quests), #'questIsCompleted) + ({ }));
+    return (filter(m_indices(quests), #'questIsCompleted) + ({ }));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *questsInProgress()
 {
-    return (filter_array(m_indices(quests), #'questIsInProgress) + ({ }));
+    return (filter(m_indices(quests), #'questIsInProgress) + ({ }));
 }
 
 /////////////////////////////////////////////////////////////////////////////

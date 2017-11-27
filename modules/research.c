@@ -27,7 +27,7 @@ public nomask int isResearched(string researchItem)
 public nomask int isResearching(string researchItem)
 {
     string *listOfTimedResearch = m_indices(research) -
-        filter_array(m_indices(research), #'isResearched);
+        filter(m_indices(research), #'isResearched);
 
     return (member(listOfTimedResearch, researchItem) > -1) ?
             research[researchItem]["time spent learning"] + 1 : 0;
@@ -161,7 +161,7 @@ public nomask int deactivateSustainedResearch(string researchItem)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string *activeAndSustainedResearchAbilities()
 {
-    return filter_array(m_indices(research), 
+    return filter(m_indices(research), 
         #'isActiveOrSustainedResearchAbility);
 }        
 
@@ -224,14 +224,14 @@ public nomask string *availableResearchTrees()
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *completedResearch()
 {
-    return filter_array(m_indices(research), #'isResearched) + ({});
+    return filter(m_indices(research), #'isResearched) + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *researchInProgress()
 {
     return m_indices(research) -
-        filter_array(m_indices(research), #'isResearched) + ({});
+        filter(m_indices(research), #'isResearched) + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -687,7 +687,7 @@ static nomask void researchHeartBeat()
         }
 
         string *listOfBlockedResearch = 
-            filter_array(m_indices(research), #'blockedByCooldown);
+            filter(m_indices(research), #'blockedByCooldown);
 
         foreach(string researchItem in listOfBlockedResearch)
         {

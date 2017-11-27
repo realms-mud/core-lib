@@ -54,7 +54,7 @@ public nomask string name()
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isMemberOf(object user)
 {
-    object *members = filter_array(users(),
+    object *members = filter(users(),
         (: return (program_name($1) == "lib/realizations/wizard.c") &&
             (member($1->groups(), group()) > -1); :));
 

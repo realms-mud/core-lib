@@ -152,7 +152,7 @@ public mixed query(string element)
                 }
                 case "bonuses":
                 {
-                    ret = filter_array(m_indices(itemData),
+                    ret = filter(m_indices(itemData),
                         (: return sizeof(regexp(({ $1 }), "bonus")) > 0; :));
                     break;
                 }

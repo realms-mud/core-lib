@@ -1245,7 +1245,7 @@ public nomask string *validSkillsOfType(string type)
     // Ignore this hacky shortcoming of inline closures...
     Type = type;
 
-    return sort_array(filter_array(m_indices(skills),
+    return sort_array(filter(m_indices(skills),
         (: (skills[$1]["type"] == Type) :)), (: $1 > $2 :));
 }
 
