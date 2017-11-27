@@ -158,7 +158,7 @@ public nomask string questStory(string *stateList)
     string ret = "The quest has just begun.";
     if(sizeof(stateList))
     {
-        ret = sprintf(Cyan, implode(map_array(stateList, 
+        ret = sprintf(Cyan, implode(map(stateList, 
             (: (member(stateTree, $1) ? stateTree[$1]["description"] : "") :))," "));
 
         if(member(stateTree[stateList[sizeof(stateList) - 1]], "is final state"))
