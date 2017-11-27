@@ -483,3 +483,40 @@ static nomask varargs void materialAttributesHeartBeat(int ageAmount)
 {
     age += ageAmount ? ageAmount : 2;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int canSee(int neededLevel)
+{
+    int ret = 0;
+    int lightLevel = 0;
+    if (!neededLevel)
+    {
+        neededLevel = 1;
+    }
+
+    object location = environment(this_object());
+    if (location)
+    {
+        lightLevel = location->isIlluminated();
+    }
+
+    if (lightLevel < neededLevel)
+    {
+        object *inventory = all_inventory(this_object());
+        if (sizeof(inventory))
+        {
+            foreach(object item in inventory)
+            {
+                int itemLight = item->query("light");
+                if (itemLight > lightLevel)
+                {
+                    lightLevel = itemLight;
+                }
+            }
+        }
+    }
+
+    object traits = getService("traits");
+    return (!traits || (traits && (!traits->hasTraitOfRoot("blind")))) ?
+        (lightLevel >= neededLevel) : 0;
+}

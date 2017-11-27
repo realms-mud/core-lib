@@ -61,7 +61,8 @@ public varargs nomask int move(string location, string direction)
             }
 
             object materialAttributes = getService("materialAttributes");
-            if ((set_light(0) > 0) && !materialAttributes->Invisibility())
+            if (materialAttributes->canSee() &&
+                !materialAttributes->Invisibility())
             {
                 say(sprintf("%s %s.\n", capitalize(materialAttributes->Name()),
                     (direction ? sprintf("%s %s", materialAttributes->MessageOut(),
@@ -70,7 +71,8 @@ public varargs nomask int move(string location, string direction)
 
             move_object(this_object(), newLocation);
 
-            if ((set_light(0) > 0) && !materialAttributes->Invisibility())
+            if (materialAttributes->canSee() && 
+                !materialAttributes->Invisibility())
             {
                 say(sprintf("%s %s.\n", capitalize(materialAttributes->Name()),
                     (direction ? materialAttributes->MessageIn() :

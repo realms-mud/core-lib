@@ -24,7 +24,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void DefaultDescriptionDisplaysCorrectly()
 {
-    ExpectEq("a stand of majestic oak trees with branches laden with acorns",
+    ExpectEq("a stand of majestic oak trees with branches laden with acorns, noonishly glowing",
         Element->description());
 }
 
@@ -130,7 +130,7 @@ void DefaultDescriptionUsedWhenStateDoesNotHaveDescription()
 /////////////////////////////////////////////////////////////////////////////
 void DefaultLongDisplaysCorrectly()
 {
-    ExpectEq("You see many majestic oaks with branches laden with acorns.\n",
+    ExpectEq("You see many majestic oaks with branches laden with acorns, noonishly glowing.\n",
         Element->long());
 }
 

@@ -6,6 +6,7 @@ inherit "/lib/environment/environment.c";
 
 int AllowFrom = 1;
 int AllowTo = 1;
+int isLight = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public void toggleAllowFrom()
@@ -22,14 +23,13 @@ public void toggleAllowTo()
 /////////////////////////////////////////////////////////////////////////////
 public void toggleLight()
 {
-    if (set_light(0) > 0)
-    {
-        set_light(-1);
-    }
-    else
-    {
-        set_light(1);
-    }
+    isLight = !isLight;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int alwaysLight()
+{
+    return isLight;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -54,7 +54,7 @@ public int isValidEnvironment()
 public string long(string item)
 {
     string ret = "This is the long description.\n";
-    if (set_light(0) < 0)
+    if (!isIlluminated())
     {
         ret = "It is too dark.\n";
     }

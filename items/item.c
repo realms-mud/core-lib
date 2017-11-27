@@ -311,10 +311,6 @@ public varargs int set(string element, mixed data)
                         raise_error(sprintf("Item: The passed '%s' data "
                             "must be an integer.\n", element));
                     }
-                    else
-                    {
-                        set_light(data);
-                    }
                     break;                
                 }
                 case "destruct method":

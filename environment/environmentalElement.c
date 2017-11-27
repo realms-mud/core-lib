@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-protected mapping descriptionData = ([]);
+protected mapping descriptionData = ([ ]);
 private string elementName = 0;
 private string State = "default";
 
@@ -339,4 +339,95 @@ protected nomask varargs void addTimeOfDayDescription(string period, string *lis
             }
         }
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs mapping setSourceOfLightBySeason(int magnitude, string season)
+{
+    mapping data = ([]);
+    if (environmentDictionary()->isValidSeason(season))
+    {
+        data[season] = magnitude;
+    }
+    else
+    {
+        foreach(string item in environmentDictionary()->seasons())
+        {
+            data[item] = magnitude;
+        }
+    }
+    return data;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs mapping setSourceOfLightByTime(int magnitude, string period, string season)
+{
+    mapping data = ([]);
+    if (environmentDictionary()->isValidTimeOfDay(period))
+    {
+        data[period] = setSourceOfLightBySeason(magnitude, season);
+    }
+    else
+    {
+        foreach(string timeOfDay in environmentDictionary()->timesOfDay())
+        {
+            data[timeOfDay] = setSourceOfLightBySeason(magnitude, season);
+        }
+    }
+    return data;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addSourceOfLight(int magnitude, string state, string period, string season)
+{
+    string *states = ({ });
+    if (state && (state != ""))
+    {
+        states = ({ state });
+    }
+    else
+    {
+        states = states();
+
+        if (!sizeof(states))
+        {
+            states = ({ "default" });
+        }
+    }
+    if (!member(descriptionData, "light"))
+    {
+        descriptionData["light"] = ([]);
+    }
+
+    if (sizeof(states))
+    {
+        foreach(string stateItem in states)
+        {
+            descriptionData["light"][stateItem] = 
+                setSourceOfLightByTime(magnitude, period, season);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int isSourceOfLight(string state)
+{
+    int ret = 0;
+
+    if (!state)
+    {
+        state = "default";
+    }
+
+    string timeOfDay = environmentDictionary()->timeOfDay();
+    string season = environmentDictionary()->season();
+
+    if (member(descriptionData, "light") &&
+        member(descriptionData["light"], state) &&
+        member(descriptionData["light"][state], timeOfDay) &&
+        member(descriptionData["light"][state][timeOfDay], season))
+    {
+        ret = descriptionData["light"][state][timeOfDay][season];
+    }
+    return ret;
 }

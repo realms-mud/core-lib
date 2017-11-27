@@ -626,3 +626,52 @@ public nomask void onStateChanged(object caller, string newState)
         createStateObjects();
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int getElementLighting()
+{
+    int ret = 0;
+
+    foreach(string elementType in({ "feature", "building", "item" }))
+    {
+        if (sizeof(environmentalElements[elementType]))
+        {
+            string *elements = m_indices(environmentalElements[elementType]);
+            foreach(string element in elements)
+            {
+                object elementObj =
+                    environmentDictionary()->environmentalObject(element);
+                if (elementObj)
+                {
+                    int lightSource = elementObj->isSourceOfLight(currentState());
+                    if (lightSource > ret)
+                    {
+                        ret = lightSource;
+                    }
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int alwaysLight()
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isIlluminated()
+{
+    int ret = sizeof(environmentalElements["terrain"]) &&
+        environmentDictionary()->sunlightIsVisible();
+
+    int hasLight = getElementLighting();
+    if (hasLight > ret)
+    {
+        ret = hasLight;
+    }
+    return ret || alwaysLight();
+}
+

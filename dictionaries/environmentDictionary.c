@@ -6,7 +6,7 @@
 private string BaseEnvironment = "lib/environment/environment.c";
 private string BaseElement = "lib/environment/environmentalElement.c";
 private string currentSeason = "summer";
-private string currentTimeOfDay = "day";
+private string currentTimeOfDay = "noon";
 private mapping elementList = ([]);
 
 private string *validSeasons = ({ "winter", "spring", "summer", "autumn" });
