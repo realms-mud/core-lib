@@ -47,7 +47,7 @@ private nomask object getQuestObject(string questItem)
     // questItem object.
     object ret = 0;
 
-    if (questItem && stringp(questItem) && strlen(questItem))
+    if (questItem && stringp(questItem) && sizeof(questItem))
     {
         if(questItem[0] != '/')
         {

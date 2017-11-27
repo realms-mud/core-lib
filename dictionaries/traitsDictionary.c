@@ -54,7 +54,7 @@ public nomask int registerTrait(object trait)
     int ret = 0;
 
     string location = program_name(trait);
-    if (location && stringp(location) && strlen(location) &&
+    if (location && stringp(location) && sizeof(location) &&
         (location[0] != '/'))
     {
         location = "/" + location;

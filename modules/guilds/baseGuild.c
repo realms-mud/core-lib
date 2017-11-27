@@ -558,7 +558,7 @@ public nomask int queryBonus(string bonus, int level, string rank)
     string bonusToCheck;
     if(sscanf(bonus, "bonus %s", bonusToCheck))
     {
-        if (!rank || !stringp(rank) || !strlen(rank))
+        if (!rank || !stringp(rank) || !sizeof(rank))
         {
             rank = "default";
         }

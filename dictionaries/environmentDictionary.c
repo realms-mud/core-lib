@@ -89,7 +89,7 @@ public nomask varargs int registerElement(string location, string type)
 {
     int ret = 0;
 
-    if (location && stringp(location) && strlen(location) &&
+    if (location && stringp(location) && sizeof(location) &&
         (location[0] != '/'))
     {
         location = "/" + location;

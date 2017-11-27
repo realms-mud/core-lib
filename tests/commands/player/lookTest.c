@@ -32,7 +32,7 @@ varargs string BuildInventoryString(mapping equipped, string *unequipped, int ve
         ret += Bar;
         foreach(string slot in Slots)
         {
-            string spacing = (strlen(slot) >= 14) ? "\t" : "\t\t";
+            string spacing = (sizeof(slot) >= 14) ? "\t" : "\t\t";
 
             if(member(equipped, slot))
             {
