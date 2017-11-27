@@ -762,10 +762,10 @@ void DropMovesItemOutOfInventory()
     Equipment->set("name", "thingy");
     Equipment->set("equipment locations", Cloak);
 
-    ExpectEq(file_name(owner), file_name(environment(Equipment)));
+    ExpectEq(object_name(owner), object_name(environment(Equipment)));
     ExpectTrue(Equipment->equip("thingy"), "equip");
     ExpectFalse(Equipment->drop(), "drop");
-    ExpectEq(file_name(container), file_name(environment(Equipment)));
+    ExpectEq(object_name(container), object_name(environment(Equipment)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -792,10 +792,10 @@ void DropDoesNotMoveCursedOutOfInventory()
     Equipment->set("name", "thingy");
     Equipment->set("equipment locations", Cloak);
 
-    ExpectEq(file_name(owner), file_name(environment(Equipment)));
+    ExpectEq(object_name(owner), object_name(environment(Equipment)));
     ExpectTrue(Equipment->equip("thingy"), "equip");
     ExpectTrue(Equipment->drop(), "drop");
-    ExpectEq(file_name(owner), file_name(environment(Equipment)));
+    ExpectEq(object_name(owner), object_name(environment(Equipment)));
 }
 
 

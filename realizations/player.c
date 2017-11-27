@@ -28,7 +28,7 @@ public nomask void addCommands()
     commandRegistry = load_object("/lib/commands/commandRegistry.c");
     if(commandRegistry)
     {
-        add_action("executeCommand"); add_xverb("");
+        add_action("executeCommand", "");
     }
 }
 

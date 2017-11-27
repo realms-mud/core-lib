@@ -483,7 +483,7 @@ public nomask int experienceToNextLevel(int currentLevel)
     {
         raise_error(
             sprintf("baseGuild: Error in experienceToNextLevel "
-                "guild file: %s", file_name(this_object())));
+                "guild file: %s", object_name(this_object())));
     }
     return ret;
 }
