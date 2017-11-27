@@ -1,6 +1,4 @@
 [![Build Status](http://angmar.maelstrom.cc:8081/buildStatus/icon?job=Realms Core Library)](http://angmar.maelstrom.cc:8081/job/Realms%20Core%20Library/)
-
-[![A quest](http://realmsmud.org/images/intro.gif)]
 #Introduction
 This is the core library for RealmsMUD. Many content creators find building rich areas to be a very difficult task.
 When the creator wants to do something "interesting", the ability to create said interesting things is often beyond the
@@ -13,6 +11,7 @@ worlds. Some of the highlights include:
 - Crafting: Full support for players creating their own objects is supported
 - Faction support: Players/monsters can belong to factions, allowing for complex interactions.
 
+![A quest](http://realmsmud.org/images/intro.gif)
 #Getting Started
 All lib functionality is exercised in the /tests directory. In order to see how to use something, you can simply look at its associated tests to glean ideas on how 
 to implement it. The /tests/support directory contains "test helpers" in addition to some concrete examples of items, quests, guilds, research, and so on.
