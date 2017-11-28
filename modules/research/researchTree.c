@@ -355,7 +355,7 @@ private nomask string getNodeInfo(string element, object owner,
             {
                 displayColor = "[0;33m";
             }
-            object researchItem = getResearchItem(element);
+            researchItem = getResearchItem(element);
             ret += sprintf("[0;30;1m%" + (level * 6) + "s%s%s[0m\n", 
                 (level ? "|-- " : ""), 
                 displayColor,

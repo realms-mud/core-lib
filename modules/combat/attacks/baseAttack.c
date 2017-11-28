@@ -131,12 +131,14 @@ public nomask string getMessage(int damageInflicted)
 protected nomask int addHitDictionary(string *dictionary)
 {
     hitDictionary = dictionary + ({ });
+    return 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int addSimileDictionary(string *dictionary)
 {
     simileDictionary = dictionary + ({ });
+    return 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////

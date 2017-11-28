@@ -62,7 +62,7 @@ public nomask int registerTrait(object trait)
 
     if ((file_size(location) > 0) && !traitIsRegistered(program_name(trait)))
     {
-        object trait = load_object(location);
+        trait = load_object(location);
 
         if (trait && objectp(trait) &&
             (member(inherit_list(trait), BaseTrait) > -1) &&

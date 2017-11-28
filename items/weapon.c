@@ -198,7 +198,7 @@ public nomask int equip(string item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int unequip(string item, int silently)
+public nomask varargs int unequip(string item, int silently)
 {
     int ret = "equipment"::unequip(item, silently);
     

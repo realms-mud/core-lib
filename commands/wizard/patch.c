@@ -97,12 +97,12 @@ private object getPatchTarget(string command, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 private string getPatchFunction(string command, object initiator)
 {
-    string function = 0;
+    string methodName = 0;
     if (sizeof(regexp(({ command }), "-f [A-Za-z_0-9]+")))
     {
-        function = regreplace(command, ".*-f ([A-Za-z_0-9]+).*", "\\1", 1);
+        methodName = regreplace(command, ".*-f ([A-Za-z_0-9]+).*", "\\1", 1);
     }
-    return function;
+    return methodName;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -145,18 +145,18 @@ public nomask int execute(string command, object initiator)
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("patch"))
     {
         object target = getPatchTarget(command, initiator);
-        string function = getPatchFunction(command, initiator);
+        string methodName = getPatchFunction(command, initiator);
         mixed *parameters = getPatchParameters(command, initiator);
 
         if (objectp(target))
         {
-            if (function && function_exists(function, target))
+            if (methodName && function_exists(methodName, target))
             {
                 ret = 1;
                 tell_object(initiator, sprintf("Function '%s' found in %O.\n",
-                    function, target));
+                    methodName, target));
 
-                mixed output = apply(#'call_other, target, function, parameters);
+                mixed output = apply(#'call_other, target, methodName, parameters);
 
                 tell_object(initiator, sprintf("Returned: %s\n",
                     convertDataToString(output)));
@@ -164,7 +164,7 @@ public nomask int execute(string command, object initiator)
             else
             {
                 notify_fail(sprintf("Function '%s' does not exist in %O.\n",
-                    to_string(function), target));
+                    to_string(methodName), target));
             }
         }
         else

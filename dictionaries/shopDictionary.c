@@ -379,7 +379,7 @@ public nomask string *getBuyItemTypes(object store)
 public nomask mapping getBuyItemDetailsForType(object store, string type, string subtype)
 {
     mapping inventory = store->storeInventory();
-    string *itemList = m_indices(filter_mapping(inventory,
+    string *itemList = m_indices(filter_indices(inventory,
         (: (($2[$1]["type"] == $3) && 
            (($4 == "all") || ($2[$1]["subType"] == $4))) :), 
             inventory, type, subtype));

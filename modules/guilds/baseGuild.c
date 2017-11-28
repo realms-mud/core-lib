@@ -978,7 +978,7 @@ protected nomask int prohibitedGuildCombinations(string *guilds)
 
     if(guilds && pointerp(guilds) && sizeof(guilds))
     {
-        int ret = 1;
+        ret = 1;
         ProhibitedGuilds = guilds;
 
         object guildDictionary = getDictionary("guilds");
@@ -991,6 +991,7 @@ protected nomask int prohibitedGuildCombinations(string *guilds)
             }
         }
     }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

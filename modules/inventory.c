@@ -531,7 +531,6 @@ public nomask int inventoryGetAttackBonus(object weapon)
     int ret = 0;
     object *equippedItems = equippedByMask(AllWorn) + 
         registeredInventoryObjects();
-    string skillToUse = 0;
     
     if(isEquipped(weapon))
     {
