@@ -459,3 +459,60 @@ void GetReturnsFalse()
     ExpectFalse(Attributes->get());
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void CanSeeReturnsEnvironmentIlluminationByDefault()
+{
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("midnight");
+    move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
+    ExpectFalse(Attributes->canSee());
+
+    dictionary->timeOfDay("noon");
+    ExpectTrue(Attributes->canSee());
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSeeReturnsTrueWhenDarkvisionPresent()
+{
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("midnight");
+    move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
+    ExpectFalse(Attributes->canSee());
+
+    Attributes->addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
+    ExpectTrue(Attributes->canSee());
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSeeReturnsFalseWhenBlindTraitPresent()
+{
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("noon");
+    move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
+    ExpectTrue(Attributes->canSee());
+
+    Attributes->addTrait("/lib/modules/traits/diseases/cataracts.c");
+    ExpectFalse(Attributes->canSee());
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSeeReturnsTrueWhenItemWithLightPresent()
+{
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("midnight");
+    move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
+    ExpectFalse(Attributes->canSee());
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("short", "A Sword");
+    weapon->set("weapon type", "long sword");
+    weapon->set("light", 1);
+    weapon->set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Attributes);
+    ExpectTrue(Attributes->canSee());
+    destruct(dictionary);
+}

@@ -345,3 +345,69 @@ void CanOnlyLookAtEnvironmentElementsWhenInCorrectState()
     ExpectSubStringMatch("You see many charred tree stumps.",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void LookWhenBlindFailsWithBlindMessage()
+{
+    ExpectTrue(Player->addTrait("/lib/modules/traits/diseases/cataracts.c"));
+    ExpectTrue(Player->executeCommand("look"));
+    ExpectEq("[0;30;1mYou are blind.[0m\n", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookWhenDarkFailsWithDarkMessage()
+{
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("midnight");
+    ExpectTrue(Player->executeCommand("look"));
+    ExpectEq("[0;30;1mIt is too dark.[0m\n", Player->caughtMessage());
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookWhenDarkSucceedsWhenUserHasDarkvision()
+{
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("midnight");
+    Player->addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
+    ExpectTrue(Player->executeCommand("look"));
+    ExpectSubStringMatch("a forest. To the north.*Bob",
+        Player->caughtMessage());
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookWhenDarkShowsLifeSignaturesWithInfravision()
+{
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("midnight");
+    Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
+    ExpectTrue(Player->executeCommand("look"));
+    ExpectSubStringMatch("You can see objects faintly glowing in red.*Bob",
+        Player->caughtMessage());
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookWhenDarkDoesNotShowEtherealSignaturesWithInfravision()
+{
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("midnight");
+    Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
+    Player->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+    ExpectTrue(Player->executeCommand("look"));
+    ExpectEq("[0;30;1mIt is too dark.[0m\n", Player->caughtMessage());
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LookWhenDarkDoesNotShowUndeadSignaturesWithInfravision()
+{
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("midnight");
+    Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
+    Player->addTrait("/lib/tests/support/traits/testUndeadTrait.c");
+    ExpectTrue(Player->executeCommand("look"));
+    ExpectEq("[0;30;1mIt is too dark.[0m\n", Player->caughtMessage());
+    destruct(dictionary);
+}

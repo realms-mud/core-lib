@@ -517,6 +517,11 @@ public nomask varargs int canSee(int neededLevel)
     }
 
     object traits = getService("traits");
+    if (traits && traits->hasTraitOfRoot("darkvision"))
+    {
+        lightLevel = neededLevel;
+    }
+
     return (!traits || (traits && (!traits->hasTraitOfRoot("blind")))) ?
         (lightLevel >= neededLevel) : 0;
 }

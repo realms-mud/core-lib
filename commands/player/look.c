@@ -25,13 +25,43 @@ public nomask int execute(string command, object initiator)
     // This should always be true, but if not, the command should fail
     if (canExecuteCommand(command))
     {
+        ret = 1;
         if (initiator->hasTraitOfRoot("blind"))
         {
-            notify_fail("You are blind.\n");
+            tell_object(initiator, "[0;30;1mYou are blind.[0m\n");
+        }
+        else if (!initiator->canSee())
+        {
+            tell_object(initiator, "[0;30;1mIt is too dark.[0m\n");
+
+            object *environmentInventory = filter(
+                all_inventory(environment(initiator)),
+                (: $1->isRealizationOfLiving() &&
+                   !$1->hasTraitOfRoot("ethereal") &&
+                   !$1->hasTraitOfRoot("undead") :));
+
+            if ((getTargetString(initiator, command) == "") &&
+                initiator->hasTraitOfRoot("infravision") &&
+                sizeof(environmentInventory))
+            {
+                string visibleList = "[0;30;1mYou can see objects faintly glowing in red:\n[0m";
+                foreach(object environmentItem in environmentInventory)
+                {
+                    string shortDesc = environmentItem->short();
+                    if (shortDesc && (shortDesc != ""))
+                    {
+                        visibleList += sprintf("[0;31m%s\n[0m", capitalize(shortDesc));
+                    }
+                }
+
+                if (visibleList != "")
+                {
+                    tell_object(initiator, visibleList);
+                }
+            }
         }
         else
         {
-            ret = 1;
             object target = getTarget(initiator, command);
             if (!target && (getTargetString(initiator, command) == ""))
             {

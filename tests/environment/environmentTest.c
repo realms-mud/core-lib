@@ -623,3 +623,61 @@ void ParseEfunCallForCallOtherWithKeyDisplaysInLong()
         Environment->long());
 
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void InteriorsReturnFalseForIsIlluminatedByDefault()
+{
+    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    ExpectFalse(Environment->isIlluminated());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TerrainReturnValueForTimeOfDayForIsIlluminatedByDefault()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Dictionary->timeOfDay("midnight");
+    ExpectFalse(Environment->isIlluminated());
+
+    Dictionary->timeOfDay("dawn");
+    ExpectTrue(Environment->isIlluminated());
+
+    Dictionary->timeOfDay("afternoon");
+    ExpectTrue(Environment->isIlluminated());
+
+    Dictionary->timeOfDay("night");
+    ExpectFalse(Environment->isIlluminated());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TerrainAffectedByLightSources()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
+
+    Dictionary->timeOfDay("midnight");
+    ExpectFalse(Environment->isIlluminated());
+
+    Dictionary->timeOfDay("night");
+    ExpectFalse(Environment->isIlluminated());
+
+    Dictionary->season("spring");
+    ExpectTrue(Environment->isIlluminated());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InteriorsAffectedByLightSources()
+{
+    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    Environment->testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
+
+    ExpectFalse(Environment->isIlluminated());
+
+    Dictionary->timeOfDay("midnight");
+    ExpectFalse(Environment->isIlluminated());
+
+    Dictionary->timeOfDay("night");
+    ExpectFalse(Environment->isIlluminated());
+
+    Dictionary->season("spring");
+    ExpectTrue(Environment->isIlluminated());
+}
