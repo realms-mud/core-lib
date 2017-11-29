@@ -9,7 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        addCommandTemplate("cc [-r] ##Target##");
+        addCommandTemplate("cc [-r] [##Target##]");
     }
 }
 
@@ -21,6 +21,11 @@ private nomask varargs int compile(string path, object initiator, int recurse)
     {
         path += "/";
     }
+    else if (file_size(path) < 0)
+    {
+        path += ".c";
+    }
+
     string *files = get_dir(path, 0x10);
     if (!sizeof(files) || !initiator->hasReadAccess(path))
     {
@@ -63,11 +68,24 @@ public nomask int execute(string command, object initiator)
     int ret = 0;
 
     if (canExecuteCommand(command) &&
-        initiator->hasExecuteAccess(regreplace(command, "([^-]+)( -r|) " +
+        initiator->hasExecuteAccess(regreplace(command, "([^-]+)( -r|)( |$)" +
             getTargetString(initiator, command), "\\1", 1)))
     {
-        string targetPath = 
-            initiator->hasReadAccess(getTargetString(initiator, command));
+        string target = getTargetString(initiator, command);
+        if (!target || (target == ""))
+        {
+            if (sizeof(regexp(({ command }), "-r")))
+            {
+                target = initiator->pwd();
+            }
+            else if (environment(initiator))
+            {
+                target = regreplace(object_name(environment(initiator)),
+                    "^([^#]+)#.*", "/\\1.c", 1);
+            }
+        }
+
+        string targetPath = initiator->hasReadAccess(target);
 
         if (targetPath)
         {

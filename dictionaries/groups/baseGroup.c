@@ -132,9 +132,9 @@ private nomask varargs string convertRelativePathToAbsolutePath(object user, str
 
     if (user && objectp(user))
     {
-        if(sizeof(ret) && (ret[0] != '/') && user->workingDirectory())
+        if(sizeof(ret) && (ret[0] != '/') && user->pwd())
         {
-            ret = user->workingDirectory() + ret;
+            ret = sprintf("%s/%s", user->pwd(), ret);
         }
 
         if ((user->Name() != "") && !doNotConvert)
@@ -151,6 +151,7 @@ public nomask string hasReadAccess(object user, string path)
 {
     string ret = 0;
     path = sanitizePath(convertRelativePathToAbsolutePath(user, path));
+
     if (isMemberOf(user) && getPermissionForPath(path, Permissions) & Read)
     {
         ret = regreplace(path, "\\$USER", lower_case(user->Name()));

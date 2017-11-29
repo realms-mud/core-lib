@@ -86,3 +86,28 @@ void CloneOfFileWithSyntaxErrorsDoesNotClone()
 {
     ExpectEq(0, Wizard->executeCommand("clone /lib/brokenFile.c"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CloneHandlesRelativePaths()
+{
+    Wizard->pwd("/lib/items");
+    ExpectEq(1, Wizard->executeCommand("clone weapon.c"));
+    ExpectEq("lib/items/weapon.c", program_name(all_inventory(Wizard)[0]));
+    destruct(all_inventory(Wizard)[0]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CloneCanCloneValidObjectsWhenDotCMissing()
+{
+    Wizard->pwd("/lib/items");
+    ExpectEq(1, Wizard->executeCommand("clone weapon"));
+    ExpectEq("lib/items/weapon.c", program_name(all_inventory(Wizard)[0]));
+    destruct(all_inventory(Wizard)[0]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CloneCanNotCloneInValidObjectsWhenDotCMissing()
+{
+    Wizard->pwd("/lib/items");
+    ExpectEq(0, Wizard->executeCommand("clone badFile"));
+}

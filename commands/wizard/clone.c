@@ -10,6 +10,7 @@ public nomask void reset(int arg)
     if (!arg)
     {
         addCommandTemplate("clone ##Target##");
+        addCommandTemplate("cl ##Target##");
     }
 }
 
@@ -20,8 +21,13 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("clone"))
     {
-        string targetPath = 
-            initiator->hasReadAccess(getTargetString(initiator, command));
+        string target = getTargetString(initiator, command);
+        if ((sizeof(target) < 2) || 
+            (target[(sizeof(target) - 2)..(sizeof(target) - 1)] != ".c"))
+        {
+            target += ".c";
+        }
+        string targetPath = initiator->hasReadAccess(target);
 
         if (targetPath)
         {

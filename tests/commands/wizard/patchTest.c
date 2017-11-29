@@ -109,3 +109,11 @@ void ExecuteReturnsTrueWhenFunctionExistsAndNoParamsPassed()
     ExpectEq(1, Wizard->executeCommand("patch -t /lib/items/weapon.c -f get"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void PatchWorksForRelativePathItemThatHasNotBeenCloned()
+{
+    object target = load_object("/lib/items/weapon.c");
+    Wizard->pwd("/lib/items");
+    ExpectEq(1, Wizard->executeCommand("patch -t weapon.c -f set -v name,bob"));
+    ExpectEq("bob", target->query("name"));
+}

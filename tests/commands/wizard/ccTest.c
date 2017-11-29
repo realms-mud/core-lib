@@ -30,6 +30,8 @@ void Setup()
     Wizard->restore("earl");
     Wizard->addCommands();
     setUsers(({ Wizard }));
+
+    move_object(Wizard, Room);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -71,6 +73,13 @@ void CCOfDirectoryRecursivelyBuilds()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void RecursiveCCWithoutTargetRecursivelyBuildsPWD()
+{
+    Wizard->pwd("/lib/core");
+    ExpectEq(8, Wizard->executeCommand("cc -r"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CCOfDirectoryWherePermissionDeniedDoesNotBuild()
 {
     ExpectEq(0, Wizard->executeCommand("cc -r /secure"));
@@ -86,4 +95,24 @@ void CCOfFileWherePermissionDeniedDoesNotBuild()
 void CCOfInvalidFileDoesNotBuild()
 {
     ExpectEq(0, Wizard->executeCommand("cc /badfile.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CCOfProgramWithRelativePathSuccessfullyBuilds()
+{
+    Wizard->pwd("/lib/modules");
+    ExpectEq(1, Wizard->executeCommand("cc combat.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CCOfProgramWithRelativeButNoDotCSuccessfullyBuilds()
+{
+    Wizard->pwd("/lib/modules");
+    ExpectEq(1, Wizard->executeCommand("cc combat"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CCWithoutParamsCompilesEnvironment()
+{
+    ExpectEq(1, Wizard->executeCommand("cc"));
 }

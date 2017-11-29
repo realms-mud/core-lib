@@ -82,9 +82,9 @@ private nomask string getGroupInfo(string file, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getFileInfo(string file, object initiator)
 {
-    string *fileDetails = get_dir("/" + file, 0x07);
+    string *fileDetails = get_dir(file, 0x07);
 
-    return sprintf("[0;32m%s%s%s[0m  %-32s%10s [0;36m%s[0m  %s\n",
+    return sprintf("[0;32m%s%s%s[0m  %-40s%10s [0;36m%s[0m  %s\n",
         ((file_size(file) == -2) ? "d" : "-"),
         (initiator->hasReadAccess(file) ? "r" : "-"),
         (initiator->hasWriteAccess(file) ? "w" : "-"),
@@ -109,7 +109,12 @@ private nomask varargs int listFiles(string path, object initiator,
     else if ((sizeof(files) == 1) || !recurse)
     {
         ret = 1;
-        string *fileDetails = get_dir("/" + files[0], 0x17);
+
+        if (sizeof(files[0]) && (files[0][0] != '/'))
+        {
+            files[0] = "/" + files[0];
+        }
+        string *fileDetails = get_dir(files[0], 0x17);
 
         if (maxWidth)
         {
@@ -159,7 +164,7 @@ private nomask int maxWidth(string path, string command)
         {
             if (sizeof(file) > maxWidth)
             {
-                maxWidth = sizeof(file) + 5;
+                maxWidth = sizeof(file) + 9;
             }
         }
     }

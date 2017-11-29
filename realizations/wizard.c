@@ -85,51 +85,52 @@ public nomask string *groups()
         }
         case "god":
         {
-            wizardGroups += ({ "god" });
+            // This is done instead of += to reverse the search order
+            wizardGroups = ({ "god" }) + wizardGroups;
         }
         case "demigod":
         {
-            wizardGroups += ({ "demigod" });
+            wizardGroups = ({ "demigod" }) + wizardGroups;
         }
         case "archwizard":
         {
-            wizardGroups += ({ "archwizard" });
+            wizardGroups = ({ "archwizard" }) + wizardGroups;
         }
         case "sage":
         {
-            wizardGroups += ({ "sage" });
+            wizardGroups = ({ "sage" }) + wizardGroups;
         }
         case "elder":
         {
-            wizardGroups += ({ "elder" });
+            wizardGroups = ({ "elder" }) + wizardGroups;
         }
         case "admin":
         {
-            wizardGroups += ({ "admin" });
+            wizardGroups = ({ "admin" }) + wizardGroups;
         }
         case "senior":
         {
-            wizardGroups += ({ "senior" });
+            wizardGroups = ({ "senior" }) + wizardGroups;
         }
         case "highwizard":
         {
-            wizardGroups += ({ "highwizard" });
+            wizardGroups = ({ "highwizard" }) + wizardGroups;
         }
         case "creator":
         {
-            wizardGroups += ({ "creator" });
+            wizardGroups = ({ "creator" }) + wizardGroups;
         }
         case "wizard":
         {
-            wizardGroups += ({ "wizard" });
+            wizardGroups = ({ "wizard" }) + wizardGroups;
         }
         case "apprentice":
         {
-            wizardGroups += ({ "apprentice" });
+            wizardGroups = ({ "apprentice" }) + wizardGroups;
         }
         default:
         {
-            wizardGroups += ({ "player" });
+            wizardGroups = ({ "player" }) + wizardGroups;
         }
     }
 
