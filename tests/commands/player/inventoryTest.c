@@ -56,6 +56,10 @@ varargs string BuildInventoryString(mapping equipped, string *unequipped, int ve
 
         ret += Bar;
     }
+
+    ret += sprintf("[0;31m| [0;36mYou currently have [0;32m%d[0;36m in cash on hand.\n", Player->Money());
+    ret += Bar;
+
     return ret;
 }
 
@@ -233,4 +237,13 @@ void CanExecuteVerboseInventory()
 
     ExpectTrue(Player->executeCommand("inventory -v"));
     ExpectEq(BuildInventoryString(items, 0, 1), Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InventoryShowsCorrectAmountOfMoney()
+{
+    Player->addMoney(123456);
+    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectSubStringMatch("123456", Player->caughtMessage());
+    ExpectEq(BuildInventoryString(([])), Player->caughtMessage());
 }

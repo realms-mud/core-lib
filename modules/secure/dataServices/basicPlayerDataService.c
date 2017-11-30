@@ -52,7 +52,8 @@ protected nomask mapping getBasicPlayerData(string name, int dbHandle)
         ret["availableSkillPoints"] = to_int(result[31]);
         ret["availableResearchPoints"] = to_int(result[32]);
         ret["unassignedExperience"] = to_int(result[33]);
-        ret["playerId"] = to_int(result[34]);
+        ret["money"] = to_int(result[34]);
+        ret["playerId"] = to_int(result[35]);
     }
 
     return ret;
@@ -62,7 +63,7 @@ protected nomask mapping getBasicPlayerData(string name, int dbHandle)
 protected nomask int saveBasicPlayerData(int dbHandle, mapping playerData)
 {
     string query = sprintf("select saveBasicPlayerInformation("
-        "'%s','%s',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,'%s');",
+        "'%s','%s',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,'%s',%d);",
         sanitizeString(playerData["name"]),
         sanitizeString(playerData["race"]),
         playerData["age"],
@@ -79,7 +80,8 @@ protected nomask int saveBasicPlayerData(int dbHandle, mapping playerData)
         playerData["availableSkillPoints"],
         playerData["availableResearchPoints"],
         playerData["unassignedExperience"],
-        playerData["location"]);
+        playerData["location"],
+        playerData["money"]);
 
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);

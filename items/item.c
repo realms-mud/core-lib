@@ -554,7 +554,17 @@ public int read(string item)
 /////////////////////////////////////////////////////////////////////////////
 public varargs int drop(int silently)
 {
-    return query("undroppable");
+    int ret = 1;
+    if (!query("undroppable"))
+    {
+        object env = environment(this_object());
+        if (env && environment(env))
+        {
+            ret = 0;
+            move_object(this_object(), environment(env));
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

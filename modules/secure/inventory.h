@@ -37,6 +37,7 @@ static nomask void loadInventory(mapping data, object persistence)
 {
     if (isValidPersistenceObject(persistence) && member(data, "inventory"))
     {
+        money = persistence->extractSaveData("money", data);
         mapping items = persistence->extractSavedMapping("inventory", data);
 
         if (sizeof(items))
@@ -73,7 +74,10 @@ static nomask void loadInventory(mapping data, object persistence)
 /////////////////////////////////////////////////////////////////////////////
 static nomask mapping sendInventory()
 {
-    mapping ret = (["inventory": ([]) ]);
+    mapping ret = ([
+        "money": money,
+        "inventory": ([]) 
+    ]);
 
     object *registeredObjects = m_values(itemRegistry["guild objects"]);
     if (sizeof(registeredObjects))

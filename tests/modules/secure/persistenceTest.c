@@ -167,6 +167,13 @@ void PlayerSkillsRestored()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void PlayerMoneyRestored()
+{
+    Player->restore("gorthaur");
+    ExpectEq(12345, Player->Money());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void PlayerTraitsRestored()
 {
     Player->restore("gorthaur");
@@ -408,12 +415,15 @@ void PlayerInventorySaved()
     Player->restore("gorthaur");
 
     move_object(clone_object("/lib/tests/support/items/testSword.c"), Player);
+    Player->addMoney(200000);
     Player->save();
     destruct(Player);
     Player = clone_object("/lib/realizations/player.c");
     ExpectFalse(present("Sword of Weasels", Player));
+    ExpectEq(0, Player->Money());
     Player->restore("gorthaur");
     ExpectTrue(present("Sword of Weasels", Player)); 
+    ExpectEq(212345, Player->Money());
 }
 
 /////////////////////////////////////////////////////////////////////////////

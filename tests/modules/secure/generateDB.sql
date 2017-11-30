@@ -114,6 +114,7 @@ CREATE TABLE TestDB.`players` (
   `skillPoints` int(11) NOT NULL DEFAULT '0',
   `researchPoints` int(11) NOT NULL DEFAULT '0',
   `unassignedExperience` int(11) DEFAULT NULL,
+  `playerMoney` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `id_UNIQUE` (`id`)
@@ -369,7 +370,7 @@ CREATE TABLE TestDB.`characterStates` (
   KEY `characterStates_playerid_idx` (`playerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `TestDB`.`basicPlayerData` AS select `TestDB`.`players`.`name` AS `name`,`TestDB`.`players`.`race` AS `race`,`TestDB`.`players`.`age` AS `age`,`TestDB`.`players`.`gender` AS `gender`,`TestDB`.`players`.`ghost` AS `ghost`,`TestDB`.`players`.`strength` AS `strength`,`TestDB`.`players`.`intelligence` AS `intelligence`,`TestDB`.`players`.`dexterity` AS `dexterity`,`TestDB`.`players`.`wisdom` AS `wisdom`,`TestDB`.`players`.`constitution` AS `constitution`,`TestDB`.`players`.`charisma` AS `charisma`,`TestDB`.`players`.`invisible` AS `invisible`,`TestDB`.`biological`.`intoxicated` AS `intoxicated`,`TestDB`.`biological`.`stuffed` AS `stuffed`,`TestDB`.`biological`.`drugged` AS `drugged`,`TestDB`.`biological`.`soaked` AS `soaked`,`TestDB`.`biological`.`headache` AS `headache`,`TestDB`.`playerCombatData`.`hitPoints` AS `hitPoints`,`TestDB`.`playerCombatData`.`maxHitPoints` AS `maxHitPoints`,`TestDB`.`playerCombatData`.`spellPoints` AS `spellPoints`,`TestDB`.`playerCombatData`.`maxSpellPoints` AS `maxSpellPoints`,`TestDB`.`playerCombatData`.`staminaPoints` AS `staminaPoints`,`TestDB`.`playerCombatData`.`maxStaminaPoints` AS `maxStaminaPoints`,`TestDB`.`playerCombatData`.`wimpy` AS `wimpy`,`TestDB`.`playerCombatData`.`onKillList` AS `onKillList`,`TestDB`.`playerCombatData`.`timeToHealHP` AS `timeToHealHP`,`TestDB`.`playerCombatData`.`timeToHealSP` AS `timeToHealSP`,`TestDB`.`playerCombatData`.`timeToHealST` AS `timeToHealST`,`TestDB`.`players`.`whenCreated` AS `whenCreated`,`TestDB`.`players`.`location` AS `location`,`TestDB`.`players`.`attributePoints` AS `availableAttributePoints`,`TestDB`.`players`.`skillPoints` AS `availableSkillPoints`,`TestDB`.`players`.`researchPoints` AS `availableResearchPoints`,`TestDB`.`players`.`unassignedExperience` AS `unassignedExperience`,`TestDB`.`players`.`id` AS `playerId` from ((`TestDB`.`players` join `TestDB`.`biological` on((`TestDB`.`players`.`id` = `TestDB`.`biological`.`playerid`))) join `TestDB`.`playerCombatData` on((`TestDB`.`players`.`id` = `TestDB`.`playerCombatData`.`playerid`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `TestDB`.`basicPlayerData` AS select `TestDB`.`players`.`name` AS `name`,`TestDB`.`players`.`race` AS `race`,`TestDB`.`players`.`age` AS `age`,`TestDB`.`players`.`gender` AS `gender`,`TestDB`.`players`.`ghost` AS `ghost`,`TestDB`.`players`.`strength` AS `strength`,`TestDB`.`players`.`intelligence` AS `intelligence`,`TestDB`.`players`.`dexterity` AS `dexterity`,`TestDB`.`players`.`wisdom` AS `wisdom`,`TestDB`.`players`.`constitution` AS `constitution`,`TestDB`.`players`.`charisma` AS `charisma`,`TestDB`.`players`.`invisible` AS `invisible`,`TestDB`.`biological`.`intoxicated` AS `intoxicated`,`TestDB`.`biological`.`stuffed` AS `stuffed`,`TestDB`.`biological`.`drugged` AS `drugged`,`TestDB`.`biological`.`soaked` AS `soaked`,`TestDB`.`biological`.`headache` AS `headache`,`TestDB`.`playerCombatData`.`hitPoints` AS `hitPoints`,`TestDB`.`playerCombatData`.`maxHitPoints` AS `maxHitPoints`,`TestDB`.`playerCombatData`.`spellPoints` AS `spellPoints`,`TestDB`.`playerCombatData`.`maxSpellPoints` AS `maxSpellPoints`,`TestDB`.`playerCombatData`.`staminaPoints` AS `staminaPoints`,`TestDB`.`playerCombatData`.`maxStaminaPoints` AS `maxStaminaPoints`,`TestDB`.`playerCombatData`.`wimpy` AS `wimpy`,`TestDB`.`playerCombatData`.`onKillList` AS `onKillList`,`TestDB`.`playerCombatData`.`timeToHealHP` AS `timeToHealHP`,`TestDB`.`playerCombatData`.`timeToHealSP` AS `timeToHealSP`,`TestDB`.`playerCombatData`.`timeToHealST` AS `timeToHealST`,`TestDB`.`players`.`whenCreated` AS `whenCreated`,`TestDB`.`players`.`location` AS `location`,`TestDB`.`players`.`attributePoints` AS `availableAttributePoints`,`TestDB`.`players`.`skillPoints` AS `availableSkillPoints`,`TestDB`.`players`.`researchPoints` AS `availableResearchPoints`,`TestDB`.`players`.`unassignedExperience` AS `unassignedExperience`,`TestDB`.`players`.`playerMoney` AS `playerMoney`,`TestDB`.`players`.`id` AS `playerId` from ((`TestDB`.`players` join `TestDB`.`biological` on((`TestDB`.`players`.`id` = `TestDB`.`biological`.`playerid`))) join `TestDB`.`playerCombatData` on((`TestDB`.`players`.`id` = `TestDB`.`playerCombatData`.`playerid`)));
 ##
 CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `TestDB`.`researchChoicesView` AS select `TestDB`.`researchChoices`.`playerId` AS `playerId`,`TestDB`.`researchChoices`.`name` AS `Choice`,`TestDB`.`researchChoiceItems`.`selectionNumber` AS `selectionNumber`,`TestDB`.`researchChoiceItems`.`type` AS `type`,`TestDB`.`researchChoiceItems`.`name` AS `name`,`TestDB`.`researchChoiceItems`.`description` AS `description`,`TestDB`.`researchChoiceItems`.`key` AS `key` from (`TestDB`.`researchChoices` join `TestDB`.`researchChoiceItems` on((`TestDB`.`researchChoices`.`id` = `TestDB`.`researchChoiceItems`.`researchChoiceId`)));
 ##
@@ -379,7 +380,7 @@ CREATE FUNCTION TestDB.`saveBasicPlayerInformation`(p_name varchar(40),
 p_race varchar(20), p_age int, p_gender int, p_ghost int, p_strength int,
 p_intelligence int, p_dexterity int, p_wisdom int, p_constitution int,
 p_charisma int, p_invisible int, p_attributes int, p_skill int,
-p_research int, p_unassigned int, p_location varchar(200)) RETURNS int(11)
+p_research int, p_unassigned int, p_location varchar(200), p_money int) RETURNS int(11)
 BEGIN
 	declare pid int;
     
@@ -402,16 +403,17 @@ BEGIN
                            skillPoints = p_skill,
                            researchPoints = p_research,
                            unassignedExperience = p_unassigned,
-                           location = p_location
+                           location = p_location,
+                           playerMoney = p_money
 		where id = pid;
 	else
 		insert into players (name, race, age, gender, ghost, strength,
         intelligence, dexterity, wisdom, constitution, charisma, invisible,
         attributePoints, skillPoints, researchPoints, unassignedExperience, 
-        whenCreated, location)
+        whenCreated, location, playerMoney)
         values (p_name, p_race, p_age, p_gender, p_ghost, p_strength, 
         p_intelligence, p_dexterity, p_wisdom, p_constitution, p_charisma, 
-        p_invisible, p_attributes, p_skill, p_research, p_unassigned, now(), p_location);
+        p_invisible, p_attributes, p_skill, p_research, p_unassigned, now(), p_location, p_money);
     
         select id into pid from players where name = p_name;
     end if;

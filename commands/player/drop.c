@@ -48,7 +48,11 @@ public nomask int execute(string command, object initiator)
             if (!initiator->isEquipped(target) ||
                 sizeof(regexp(({ command }), "-f")))
             {
-                target->drop();
+                if (!target->drop())
+                {
+                    displayMessage("##InitiatorName## ##Infinitive::drop## " +
+                        target->query("name") + ".\n", initiator);
+                }
             }
         }
     }
