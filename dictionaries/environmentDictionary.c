@@ -37,8 +37,7 @@ public nomask object getLocation(string location)
     {
         ret = load_object(location);
 
-        if (!ret || (member(inherit_list(ret), BaseEnvironment) < 0) ||
-            !ret->isValidEnvironment())
+        if (!ret || (member(inherit_list(ret), BaseEnvironment) < 0))
         {
             ret = 0;
         }
