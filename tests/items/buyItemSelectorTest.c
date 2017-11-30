@@ -11,12 +11,12 @@ object Store;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Store = clone_object("/lib/environment/baseShop.c");
+    Store = clone_object("/lib/environment/shopInventories/baseShop.c");
     Store->name("Bob's Swords");
     Store->welcomeMessage("Remember: Nobody outsells Bob");
-    Store->shopType("weapon");
-    Store->shopSubType("sword");
-    load_object("/lib/dictionaries/shopDictionary.c")->generateRandomInventory(Store);
+    Store->shopType("weapons");
+    Store->shopSubType("swords");
+    load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Store);
 
     Selector = clone_object("/lib/items/inventory/buyItemSelector.c");
     Selector->setStore(Store);
@@ -99,13 +99,13 @@ void SelectSubMenuDisplaysBuyList()
 void DescribeShowsItemDetails()
 {
     destruct(Store);
-    Store = clone_object("/lib/environment/baseShop.c");
+    Store = clone_object("/lib/environment/shopInventories/baseShop.c");
     Store->name("Bob's Swords");
     Store->welcomeMessage("Remember: Nobody outsells Bob");
-    Store->shopType("weapon");
-    Store->shopSubType("sword");
+    Store->shopType("weapons");
+    Store->shopSubType("swords");
     Store->setRandomItemsToGenerate(0);
-    load_object("/lib/dictionaries/shopDictionary.c")->generateRandomInventory(Store);
+    load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Store);
     Selector->setStore(Store);
 
     Selector->initiateSelector(Player);
@@ -157,13 +157,13 @@ void PurchaseWithSufficientFundsSubtractsMoneyAndAddsItemToPlayerInventory()
 void PurchaseOfPermanentItemDoesNotRemoveFromStore()
 {
     destruct(Store);
-    Store = clone_object("/lib/environment/baseShop.c");
+    Store = clone_object("/lib/environment/shopInventories/baseShop.c");
     Store->name("Bob's Swords");
     Store->welcomeMessage("Remember: Nobody outsells Bob");
-    Store->shopType("weapon");
-    Store->shopSubType("sword");
+    Store->shopType("weapons");
+    Store->shopSubType("swords");
     Store->setRandomItemsToGenerate(0);
-    load_object("/lib/dictionaries/shopDictionary.c")->generateRandomInventory(Store);
+    load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Store);
     Selector->setStore(Store);
 
     Selector->initiateSelector(Player);

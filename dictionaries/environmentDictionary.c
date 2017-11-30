@@ -26,8 +26,6 @@ private mapping numbersAsString = ([ 0:"no", 1:"one", 2:"two", 3:"three",
 /////////////////////////////////////////////////////////////////////////////
 public nomask object getLocation(string location)
 {
-    // The passed in value for trait must be a file containing a valid
-    // trait object.
     object ret = 0;
 
     if (location && stringp(location) && location[0] != '/')

@@ -2,7 +2,6 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
 
 private mapping list = ([]);
 private string *ProhibitedTypes = ({});
@@ -11,6 +10,12 @@ private string WelcomeMessage = "Welcome";
 private string ShopType = "unknown";
 private string ShopItemSubType = "all";
 private int ItemsToGenerate = 15;
+
+/////////////////////////////////////////////////////////////////////////////
+public string Type()
+{
+    return "shop";
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string name(string newName)
@@ -146,20 +151,6 @@ public nomask int canPurchaseItem(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int shop(string arguments)
+public void Setup()
 {
-    int ret = 0;
-    if (this_player())
-    {
-        ret = 1;
-        initiateShopInteraction(this_player());
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public void init()
-{
-    "environment"::init();
-    add_action("shop", "shop");
 }

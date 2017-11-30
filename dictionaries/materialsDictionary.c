@@ -411,11 +411,11 @@ public varargs string getMaterialQualityFormatter(object equipment)
 
     if (getMaterialCraftsmanshipBonus(equipment) > 4)
     {
-        ret = Masterwork;
+        ret = "[0;32;1m%-20s[0m";
     }
     else if (equipment->query("enchanted") > 4)
     {
-        ret = StrongEnchantment;
+        ret = "[0;35;1m%-20s[0m";
     }
     else if (getMaterialCraftsmanshipBonus(equipment))
     {
@@ -968,7 +968,7 @@ public nomask string getItemSummary(object equipment)
         }
         else
         {
-            ret += "[0;32mView item details for summary[0m";
+            ret = "    [0;36mView description for summary[0m";
         }
     }
     return ret;

@@ -10,6 +10,7 @@ private mapping environmentalElements = ([
     "building": ([]),
     "item": ([]),
     "objects": ([]),
+    "shop": 0,
     "description": ([])
 ]);
 
@@ -133,7 +134,7 @@ private nomask void createStateObjects()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int addEnvironmentalElement(string element, string type, string location)
+private nomask varargs int addEnvironmentalElement(string element, string type, string location)
 {
     int ret = 1;
     if (!environmentDictionary()->isValidEnvironmentItem(element))
@@ -190,6 +191,38 @@ protected nomask varargs void addItem(string item, string location)
         raise_error(sprintf("ERROR in environment.c: '%s' is not a "
             "valid item.\n", item));
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addShop(string shop)
+{
+    object dictionary = load_object("/lib/dictionaries/shopDictionary.c");
+    object shopObj = dictionary->getShopObject(shop);
+    if (shopObj)
+    {
+        if (!environmentalElements["shop"])
+        {
+            shopObj->Setup();
+            dictionary->generateInventory(shopObj);
+            environmentalElements["shop"] = shopObj;
+        }
+        else
+        {
+            raise_error("ERROR in environment.c: a shop has already been "
+                "assigned to this environment.\n");
+        }
+    }
+    else
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid shop.\n", shop));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getShop()
+{
+    return environmentalElements["shop"];
 }
 
 /////////////////////////////////////////////////////////////////////////////

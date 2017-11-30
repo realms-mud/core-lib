@@ -135,3 +135,12 @@ protected nomask int suppressMenuDisplay()
 {
     return objectp(SubselectorObj);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string choiceFormatter(string choice)
+{
+    return sprintf("%s[%s]%s - %s%s",
+        (NumColumns < 3) ? "\t" : "", Red,
+        padSelectionDisplay(choice), "[0;32m%-30s[0m",
+        displayDetails(choice));
+}

@@ -625,9 +625,8 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 35,
         "attack": ([
-            "physical": 3,
-            "magical": 5,
-            "electricity": 3
+            "physical": 5,
+            "energy": 8
         ]),
         "attack rating": 5,
         "defense": ([
@@ -642,17 +641,13 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 50,
         "attack": ([
-            "physical": 5,
-            "magical": 5,
-            "energy": 5,
-            "electricity": 5,
-            "cold": 5
+            "physical": 10,
+            "electricity": 10,
         ]),
         "attack rating": 10,
         "defense": ([
-            "physical": 5,
-            "electricity": -5,
-            "cold": -5
+            "physical": 10,
+            "electricity": -5
         ]),
         "encumberance": -1,
         "value multiplier": 45.0,

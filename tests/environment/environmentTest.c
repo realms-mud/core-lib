@@ -494,6 +494,39 @@ void AddObjectRaisesErrorOnFailure()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanAddShop()
+{
+    Environment->testAddShop("/lib/environment/shopInventories/swordsmith.c");
+    ExpectEq("lib/environment/shopInventories/swordsmith.c", Environment->getShop());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanOnlyAddOneShop()
+{
+    Environment->testAddShop("/lib/environment/shopInventories/swordsmith.c");
+
+    string expected = "*ERROR in environment.c: a shop has already been assigned to this environment.\n";
+    string err = catch (Environment->testAddShop("/lib/environment/shopInventories/tailor.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddShopRaisesErrorIfInvalidObjectPassed()
+{
+    string expected = "*ERROR in environment.c: '/bad/path.c' is not a valid shop.\n";
+    string err = catch (Environment->testAddShop("/bad/path.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddShopRaisesErrorIfPassedFileIsNotAShop()
+{
+    string expected = "*ERROR in environment.c: '/lib/environment/environment.c' is not a valid shop.\n";
+    string err = catch (Environment->testAddShop("/lib/environment/environment.c"));
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AddObjectToDefaultStateCreatesObjectOnReset()
 {
     Environment->testAddObject("/lib/items/weapon.c");

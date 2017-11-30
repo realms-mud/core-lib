@@ -4,21 +4,23 @@
 //*****************************************************************************
 #include "/lib/include/itemFormatters.h"
 
+private string BaseShop = "lib/environment/shopInventories/baseShop.c";
+
 private mapping alwaysGenerate = ([
-    "weapon":([
-        "dagger":({ "dagger", "dirk", "knife", "stiletto" }),
-        "sword":({ "bastard-sword", "broad-sword", "claymore", "long-sword", "short-sword" }),
-        "staff":({ "quarterstaff", "shield-staff", "staff", "swordstaff" }),
-        "axe":({ "axe", "battle-axe", "bearded-axe", "hatchet", "broad-axe", "splitting-maul" }),
-        "pole-arm":({ "bardiche", "brandistock", "glaive", "halberd", "lance", "military-fork", "pike", "pitchfork", "spear", "trident" }),
-        "hammer":({ "horsemans-pick", "lucerne-hammer", "maul", "war-hammer" }),
-        "mace":({ "club", "flanged-mace", "mace", "morning-star" }),
-        "flail":({ "flail", "whip", "military-flail", "hinged-flail" }),
-        "crossbow":({ "crossbow", "levered-crossbow", "cranequin-crossbow" }),
-        "bow":({ "short-bow", "bow", "long-bow", "recurve-bow", "composite-bow"}),
-        "sling":({ "kestros", "sling", "slingshot", "sling-staff" }),
+    "weapons":([
+        "daggers":({ "dagger", "dirk", "knife", "stiletto" }),
+        "swords":({ "bastard-sword", "broad-sword", "claymore", "long-sword", "short-sword" }),
+        "staffs":({ "quarterstaff", "shield-staff", "staff", "swordstaff" }),
+        "axes":({ "axe", "battle-axe", "bearded-axe", "hatchet", "broad-axe", "splitting-maul" }),
+        "pole-arms":({ "bardiche", "brandistock", "glaive", "halberd", "lance", "military-fork", "pike", "pitchfork", "spear", "trident" }),
+        "hammers":({ "horsemans-pick", "lucerne-hammer", "maul", "war-hammer" }),
+        "maces":({ "club", "flanged-mace", "mace", "morning-star" }),
+        "flails":({ "flail", "whip", "military-flail", "hinged-flail" }),
+        "crossbows":({ "crossbow", "levered-crossbow", "cranequin-crossbow" }),
+        "bows":({ "short-bow", "bow", "long-bow", "recurve-bow", "composite-bow"}),
+        "slings":({ "kestros", "sling", "slingshot", "sling-staff" }),
         "thrown":({ "dart", "javelin", "rock", "throwing-axe", "throwing-hammer", "throwing-spear" }),
-        "shield":({ "shield", "buckler", "heater-shield", "kite-shield", "spiked-shield", "pavise-shield" })
+        "shields":({ "shield", "buckler", "heater-shield", "kite-shield", "spiked-shield", "pavise-shield" })
     ]),
     "armor":([
         "medium armor":({ "chainmail", "boiled-leather", "hard-leather", "lamellar-leather", "ring-mail"}),
@@ -28,6 +30,28 @@ private mapping alwaysGenerate = ([
         "accessories":({ "belt", "boots", "helmet" }),
     ])
 ]);
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getShopObject(string location)
+{
+    object ret = 0;
+
+    if (location && stringp(location) && location[0] != '/')
+    {
+        location = "/" + location;
+    }
+
+    if (location && stringp(location) && (file_size(location) > 0))
+    {
+        ret = load_object(location);
+
+        if (!ret || (member(inherit_list(ret), BaseShop) < 0))
+        {
+            ret = 0;
+        }
+    }
+    return ret;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *getSellItemTypes(object user)
@@ -111,7 +135,7 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
                 sprintf("[0;32mYou can sell this item for %d.[0m\n", value) :
                 "[0;32mThis item has no value to the merchant.[0m\n";
 
-            string name = item->query("name") + "    ";
+            string name = item->query("name");
             ret[to_string(menuItem)] = ([
                 "name": sprintf(materials->getMaterialQualityFormatter(item),
                     ((sizeof(name) > 20) ? name[0..16] + "..." : name)),
@@ -141,9 +165,9 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
         }
 
         ret[to_string(menuItem)] = ([
-            "name": "Sell all" + 
+            "name": "[0;30;1mSell all" + 
                 ((member(({ "armor", "weapon", "instrument" }), type) > -1) ?
-                    " unequipped" : ""),
+                    " unused[0m    " : ""),
             "description": "This option will sell all of your unequipped " + type,
             "object list": filter(items, 
                 (: (!$2->isEquipped($1) && !$1->query("cursed") &&
@@ -206,14 +230,28 @@ private nomask void generateDefaultItems(object shop)
     string type = shop->shopType();
     string subType = shop->shopSubType();
 
-    string dir = sprintf("/lib/instances/items/%s%s/", type + "s",
+    string dir = sprintf("/lib/instances/items/%s%s/", type,
         ((subType != "all") ? "/" + regreplace(subType, " ", "-", 1)
-            + ((subType != "thrown") ? "s" : "") : ""));
+        : ""));
 
     string *defaultItems = ({});
     if (member(alwaysGenerate, type) && member(alwaysGenerate[type], subType))
     {
         defaultItems = alwaysGenerate[type][subType];
+    }
+    else if (member(alwaysGenerate, type) && (subType == "all"))
+    {
+        string *directories = m_indices(alwaysGenerate[type]);
+        if (sizeof(directories))
+        {
+            foreach(string directory in directories)
+            {
+                foreach(string item in alwaysGenerate[type][directory])
+                {
+                    defaultItems += ({ sprintf("%s/%s", directory, item) });
+                }
+            }
+        }
     }
     if (sizeof(defaultItems))
     {
@@ -288,8 +326,8 @@ private nomask void generateRandomItems(object shop)
 {
     int numItems = shop->randomItemsToGenerate();
     string dir = sprintf("/lib/instances/items/%s%s/", 
-        shop->shopType() + "s", ((shop->shopSubType() != "all") ? 
-            "/" + shop->shopSubType() + "s" : ""));
+        shop->shopType(), ((shop->shopSubType() != "all") ? 
+            "/" + regreplace(shop->shopSubType(), " ", "-", 1) : ""));
 
     string *itemBlueprints = get_dir(dir);
 
@@ -304,6 +342,13 @@ private nomask void generateRandomItems(object shop)
 
             int numEnchantments = 1 + random(5);
             item->set("material", materials->getRandomMaterial(item));
+            
+            string *aliases = ({ lower_case(item->query("name")) });
+            if (item->query("aliases"))
+            {
+                aliases += item->query("aliases");
+            }
+            item->set("aliases", aliases);
 
             for (int j = 0; j < numEnchantments; j++)
             {
@@ -339,7 +384,7 @@ private nomask void generateRandomItems(object shop)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void generateRandomInventory(object shop)
+public nomask void generateInventory(object shop)
 {
     if (shop->shopSubType() != "all")
     {
@@ -424,7 +469,9 @@ public nomask void buyItem(object user, object store, mapping item)
         if (user->Money() >= item["value"])
         {
             object itemObj = clone_object(item["blueprint"]);
+            write(item["data"] + "\n");
             itemObj->set("all", item["data"]);
+            itemObj->set("value", item["value"]);
             user->addMoney(-item["value"]);
             store->buyItem(item["key"]);
             move_object(itemObj, user);

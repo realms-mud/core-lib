@@ -66,3 +66,9 @@ public void testSetInterior(string terrain)
 {
     setInterior(terrain);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void testAddShop(string shop)
+{
+    addShop(shop);
+}

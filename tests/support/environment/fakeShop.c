@@ -2,15 +2,12 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/items/weapon.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+public void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Axe");
-        set("short", "Axe");
-        set("blueprint", "axe");
-    }
+    setTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    addFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    addShop("/lib/environment/shopInventories/swordsmith.c");
 }

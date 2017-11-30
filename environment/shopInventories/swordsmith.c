@@ -2,15 +2,13 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/items/weapon.c";
+inherit "/lib/environment/shopInventories/baseShop.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+public void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Axe");
-        set("short", "Axe");
-        set("blueprint", "axe");
-    }
+    name("The Swordsmith");
+    welcomeMessage("Welcome to the swordsmith's shop");
+    shopType("weapons");
+    shopSubType("swords");
 }

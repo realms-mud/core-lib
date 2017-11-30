@@ -101,12 +101,9 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (caller->selection())
     {
-        if (stringp(caller->selection()))
+        if (User)
         {
-            if (User)
-            {
-                tell_object(User, displayMessage());
-            }
+            tell_object(User, displayMessage());
         }
     }
     caller->cleanUp();

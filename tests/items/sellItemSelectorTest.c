@@ -12,7 +12,7 @@ object Weapon;
 void Setup()
 {
     Selector = clone_object("/lib/items/inventory/sellItemSelector.c");
-    Selector->setStore(load_object("/lib/environment/baseShop.c"));
+    Selector->setStore(load_object("/lib/environment/shopInventories/baseShop.c"));
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
@@ -141,9 +141,9 @@ void SelectSubMenuDisplaysSellListWithUnidentifiedItemsDenotedCorrectly()
     Selector->applySelection("1");
 
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels    [0m[0m[0;35m (?)[0m"
-        "\t[[0;31;1m2[0m] - [0;32mSell all unequipped [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels[0m   [0m[0;35m (?)[0m"
+        "\t[[0;31;1m2[0m] - [0;32m[0;30;1mSell all unused[0m    [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
@@ -157,9 +157,9 @@ void SelectSubMenuDisplaysSellListWithIdentifiedItemsDenotedCorrectly()
     Selector->applySelection("1");
 
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels    [0m[0m"
-        "\t[[0;31;1m2[0m] - [0;32mSell all unequipped [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels[0m   [0m"
+        "\t[[0;31;1m2[0m] - [0;32m[0;30;1mSell all unused[0m    [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
@@ -174,9 +174,9 @@ void SelectSubMenuDisplaysSellListWithEquippedItemsDenotedCorrectly()
     Selector->applySelection("1");
 
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels    [0m[0m[0;34;1m (*)[0m"
-        "\t[[0;31;1m2[0m] - [0;32mSell all unequipped [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels[0m   [0m[0;34;1m (*)[0m"
+        "\t[[0;31;1m2[0m] - [0;32m[0;30;1mSell all unused[0m    [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
@@ -190,9 +190,9 @@ void SelectSubMenuDisplaysSellListWithUnsellableItemsDenotedCorrectly()
     Selector->applySelection("1");
 
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels    [0m[0m[0;31m (X)[0m"
-        "\t[[0;31;1m2[0m] - [0;32mSell all unequipped [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels[0m   [0m[0;31m (X)[0m"
+        "\t[[0;31;1m2[0m] - [0;32m[0;30;1mSell all unused[0m    [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
@@ -210,9 +210,9 @@ void SelectSubMenuDisplaysSellListWithKnownCursedtemsDenotedCorrectly()
     Selector->applySelection("1");
 
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels    [0m[0m[0;30;1m (C)[0m"
-        "\t[[0;31;1m2[0m] - [0;32mSell all unequipped [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels[0m   [0m[0;30;1m (C)[0m"
+        "\t[[0;31;1m2[0m] - [0;32m[0;30;1mSell all unused[0m    [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
@@ -254,16 +254,16 @@ void SellingItemRemovesItemFromOwnerAndSendsItToTheStoreForCorrectMoney()
     ExpectTrue(present_clone(name, Player));
     command("1", Player);
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels    [0m[0m[0;35m (?)[0m"
-        "\t[[0;31;1m2[0m] - [0;32mSell all unequipped [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels[0m   [0m[0;35m (?)[0m"
+        "\t[[0;31;1m2[0m] - [0;32m[0;30;1mSell all unused[0m    [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
 
     command("1", Player);
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 1.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
@@ -292,20 +292,20 @@ void SellingAllUnequippedDoesNotSellEquippedItems()
     ExpectTrue(present_clone(name, Player));
     command("1", Player);
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Swingine...[0m[0m"
+        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Swinginess[0m[0m"
         "\t[[0;31;1m2[0m] - [0;32m[0;35mSword of really l...[0m[0m\n"
-        "\t[[0;31;1m3[0m] - [0;32m[0;35mSword of Weasels    [0m[0m[0;34;1m (*)[0m"
-        "\t[[0;31;1m4[0m] - [0;32mSell all unequipped [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m3[0m] - [0;32m[0;35mSword of Weasels[0m   [0m[0;34;1m (*)[0m"
+        "\t[[0;31;1m4[0m] - [0;32m[0;30;1mSell all unused[0m    [0m\n"
+        "\t[[0;31;1m5[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 5.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
 
     command("4", Player);
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels    [0m[0m[0;34;1m (*)[0m"
-        "\t[[0;31;1m2[0m] - [0;32mSell all unequipped [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Weasels[0m   [0m[0;34;1m (*)[0m"
+        "\t[[0;31;1m2[0m] - [0;32m[0;30;1mSell all unused[0m    [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
@@ -338,11 +338,11 @@ void SellingAllUnequippedDoesNotSellCursedItems()
     ExpectTrue(present_clone(name, Player));
     command("1", Player);
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Swingine...[0m[0m"
+        "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of Swinginess[0m[0m"
         "\t[[0;31;1m2[0m] - [0;32m[0;35mSword of really l...[0m[0m[0;30;1m (C)[0m\n"
-        "\t[[0;31;1m3[0m] - [0;32m[0;35mSword of Weasels    [0m[0m[0;34;1m (*)[0m"
-        "\t[[0;31;1m4[0m] - [0;32mSell all unequipped [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m3[0m] - [0;32m[0;35mSword of Weasels[0m   [0m[0;34;1m (*)[0m"
+        "\t[[0;31;1m4[0m] - [0;32m[0;30;1mSell all unused[0m    [0m\n"
+        "\t[[0;31;1m5[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 5.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
@@ -350,9 +350,9 @@ void SellingAllUnequippedDoesNotSellCursedItems()
     command("4", Player);
     ExpectEq("[0;36mSell Items - [0m[0;37;1mSelect an item to sell[0m:\n"
         "\t[[0;31;1m1[0m] - [0;32m[0;35mSword of really l...[0m[0m[0;30;1m (C)[0m"
-        "\t[[0;31;1m2[0m] - [0;32m[0;35mSword of Weasels    [0m[0m[0;34;1m (*)[0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mSell all unequipped [0m"
-        "\t[[0;31;1m4[0m] - [0;32mReturn to previous menu[0m\n"
+        "\t[[0;31;1m2[0m] - [0;32m[0;35mSword of Weasels[0m   [0m[0;34;1m (*)[0m\n"
+        "\t[[0;31;1m3[0m] - [0;32m[0;30;1mSell all unused[0m    [0m"
+        "\t[[0;31;1m4[0m] - [0;32mReturn to previous menu       [0m\n"
         "[0;32;1mYou must select a number from 1 to 4.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());

@@ -89,15 +89,9 @@ protected nomask int processSelection(string selection)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
-    if (caller->selection())
+    if (User)
     {
-        if (stringp(caller->selection()))
-        {
-            if (User)
-            {
-                tell_object(User, displayMessage());
-            }
-        }
+        tell_object(User, displayMessage());
     }
     caller->cleanUp();
 }

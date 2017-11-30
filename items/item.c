@@ -15,7 +15,6 @@ private nosave string AttacksBlueprint = "/lib/dictionaries/attacksDictionary.c"
 private nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDictionary.c";
 private nosave string MessageParser = "/lib/core/messageParser.c";
 private nosave string BonusesBlueprint = "/lib/dictionaries/bonusesDictionary.c";
-private nosave int isEnchanted = 0;
 
 protected mapping itemData = ([ 
 //  "aliases": ({ }),  // string array of alternate names for item
@@ -137,11 +136,6 @@ public mixed query(string element)
                     {
                         ret = 1;
                     }
-                    break;
-                }
-                case "enchanted":
-                {
-                    ret = isEnchanted;
                     break;
                 }
                 case "short":
@@ -270,7 +264,8 @@ public varargs int set(string element, mixed data)
                     break;
                 }
                 case "value":
-                case "weight":                
+                case "weight":
+                case "enchanted":
                 case "encumberance":
                 case "no steal":
                 case "no sell":
@@ -332,7 +327,7 @@ public varargs int set(string element, mixed data)
 
                     if(ret)
                     {
-                        isEnchanted++;
+                        set("enchanted", query("enchanted") + 1);
                     }
                     break;
                 }
@@ -349,7 +344,7 @@ public varargs int set(string element, mixed data)
                         ret = isValidBonus(bonusToCheck, data);
                         if (ret)
                         {
-                            isEnchanted += 1 + (data / 2);
+                            set("enchanted", query("enchanted") + 1 + (data / 2));
                         }
                     }
                     break;
@@ -568,7 +563,7 @@ public int identify()
     int ret = 0;
     if(!query("identified"))
     {
-        ret = set("identified");
+        ret = set("identified",1);
     }
     return ret;
 }
