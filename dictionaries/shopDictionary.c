@@ -439,7 +439,8 @@ public nomask mapping getBuyItemDetailsForType(object store, string type, string
                 inventory[item]["value"]);
 
             string qualityFormat = regreplace(inventory[item]["quality"],
-                "(.*)%s(.*)", "\\1%-23s\\2", 1);
+                "(.*)%(-20|)s(.*)", "\\1%-23s\\3", 1);
+
             ret[to_string(menuItem)] = ([
                 "name": sprintf("%s [0;32m%8d[0m",
                     sprintf(qualityFormat, 
