@@ -109,7 +109,7 @@ db_close(dbHandle);
     ExpectEq(10, result[2], "level");
     ExpectEq("lib/realizations/monster.c#bob", result[3], "key");
     ExpectEq(1, result[4], "times killed");
-    ExpectEq(2, result[5], "player id");
+    ExpectEq(3, result[5], "player id");
     ExpectEq(1, result[6], "is nemesis");
     ExpectEq(1, result[7], "is best kill");
 

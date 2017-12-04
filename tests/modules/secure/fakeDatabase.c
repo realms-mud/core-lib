@@ -80,7 +80,7 @@ public nomask mapping Gorthaur()
         "name": "gorthaur",
         "onKillList": 1,
         "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
-        "playerId": 2,
+        "playerId": 3,
         "pretitle": "Weasel Lord",
         "quests": ([ 
             "lib/tests/support/quests/fakeQuestItem.c": ([ 
@@ -246,7 +246,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string *groups)
         "name": "earl",
         "onKillList": 1,
         "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
-        "playerId": 3,
+        "playerId": 4,
         "pretitle": "Weasel Lord",
         "quests": ([ 
             "lib/tests/support/quests/fakeQuestItem.c": ([ 

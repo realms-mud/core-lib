@@ -180,7 +180,7 @@ private nosave mapping materials =
         "crafting skill required": 2,
         "quality": "common"
     ]),
-     "basswood": ([
+    "basswood": ([
         "class": "wood",
         "crafting skill required": 1,
         "attack": ([
@@ -214,7 +214,7 @@ private nosave mapping materials =
         "crafting skill required": 4,
         "quality": "common"
     ]),
-   "alder": ([
+    "alder": ([
         "class": "wood",
         "crafting skill required": 2,
         "quality": "common"
