@@ -1,5 +1,17 @@
-Copyright (c) 2017, Allen Cummings, RealmsMUD
+Copyright (c) 2017, Allen Cummings, RealmsMUD (maeglin@realmsmud.org)
 All rights reserved.
+
+*****
+NOTE: This mudlib is currently NOT a released product. It has been provided for
+those who wish to begin development using the library but its use is not intended
+for use on production systems. There are areas intended for the initial
+release that have not yet been fully implemented. When it is officially released,
+this notice will be removed and this restriction will be lifted. Until then,
+this software may NOT be used in whole or in part without prior written consent
+from the author.
+*****
+
+The latest version of this mudlib can be found at: http://scm.realmsmud.org
 
 Redistribution and use in source and forms, with or without modification, are
 permitted provided that the following conditions are met:
