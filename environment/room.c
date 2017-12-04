@@ -5,6 +5,9 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+// WARNING: This file has been deprecated and will be removed soon.
+// Please use environment.c instead!
+
 inherit "/lib/core/stateObject.c";
 #include <mtypes.h>
 
