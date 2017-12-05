@@ -422,6 +422,84 @@ private nosave mapping weaponBlueprints = ([
         "default value": 25,
         "default description": ""
     ]),
+    "tiger claws": ([
+        "type": "one-handed weapon",
+        "subtype": "dagger",
+        "default location": OnehandedWeapon,
+        "damage type": "thrust",
+        "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 1]),
+            "metal crafting": (["type":"skill", "value": 1]),
+            "weapon smithing": (["type":"skill", "value": 8]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "leather": 1
+        ]),
+        "skill to use": "dagger",
+        "default wc": 4,
+        "default dc": 4,
+        "default attack": 6,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "iron",
+        "default value": 150,
+        "default description": ""
+    ]),
+    "talon": ([
+        "type": "one-handed weapon",
+        "subtype": "dagger",
+        "default location": OnehandedWeapon,
+        "damage type": "thrust",
+        "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 1]),
+            "metal crafting": (["type":"skill", "value": 1]),
+            "weapon smithing": (["type":"skill", "value": 8]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "leather": 1
+        ]),
+        "skill to use": "dagger",
+        "default wc": 4,
+        "default dc": 5,
+        "default attack": 6,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "iron",
+        "default value": 175,
+        "default description": ""
+    ]),
+    "katar": ([
+        "type": "one-handed weapon",
+        "subtype": "dagger",
+        "default location": OnehandedWeapon,
+        "damage type": "thrust",
+        "skill to craft": 12,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 1]),
+            "metal crafting": (["type":"skill", "value": 1]),
+            "weapon smithing": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "metal": 3,
+            "leather": 1
+        ]),
+        "skill to use": "dagger",
+        "default wc": 4,
+        "default dc": 4,
+        "default attack": 6,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "iron",
+        "default value": 250,
+        "default description": ""
+    ]),
     "dagger": ([
         "type": "one-handed weapon",
         "subtype": "dagger",
@@ -2253,6 +2331,17 @@ private nosave mapping weaponBlueprints = ([
         "default location": TwohandedWeapon,
         "damage type": "thrust",
         "skill to craft": 15,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftCrossbow.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "bowyer and fletcher": (["type":"skill", "value": 10]),
+            "engineering": (["type":"skill", "value": 2]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+            "wood": 5,
+            "textile": 1
+        ]),
         "skill to use": "crossbow",
         "default wc": 10,
         "default dc": 0,
@@ -2269,6 +2358,17 @@ private nosave mapping weaponBlueprints = ([
         "default location": TwohandedWeapon,
         "damage type": "thrust",
         "skill to craft": 18,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftCrossbow.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "bowyer and fletcher": (["type":"skill", "value": 10]),
+            "engineering": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 5,
+            "textile": 1
+        ]),
         "skill to use": "crossbow",
         "default wc": 11,
         "default dc": 0,
@@ -2285,6 +2385,17 @@ private nosave mapping weaponBlueprints = ([
         "default location": TwohandedWeapon,
         "damage type": "thrust",
         "skill to craft": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftCrossbow.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "bowyer and fletcher": (["type":"skill", "value": 15]),
+            "engineering": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 3,
+            "wood": 5,
+            "textile": 2
+        ]),
         "skill to use": "crossbow",
         "default wc": 15,
         "default dc": 0,
@@ -2301,6 +2412,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": TwohandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBow.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "bowyer and fletcher": (["type":"skill", "value": 7]),
+        ]),
+        "crafting materials": ([
+            "wood": 5,
+            "textile": 1
+        ]),
         "skill to use": "bow",
         "default wc": 7,
         "default dc": 0,
@@ -2317,6 +2437,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": TwohandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBow.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "bowyer and fletcher": (["type":"skill", "value": 7]),
+        ]),
+        "crafting materials": ([
+            "wood": 6,
+            "textile": 1
+        ]),
         "skill to use": "bow",
         "default wc": 8,
         "default dc": 0,
@@ -2333,6 +2462,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": TwohandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBow.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "bowyer and fletcher": (["type":"skill", "value": 7]),
+        ]),
+        "crafting materials": ([
+            "wood": 6,
+            "textile": 2
+        ]),
         "skill to use": "bow",
         "default wc": 10,
         "default dc": 0,
@@ -2349,6 +2487,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": TwohandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBow.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "bowyer and fletcher": (["type":"skill", "value": 7]),
+        ]),
+        "crafting materials": ([
+            "wood": 6,
+            "textile": 1
+        ]),
         "skill to use": "bow",
         "default wc": 8,
         "default dc": 0,
@@ -2365,6 +2512,16 @@ private nosave mapping weaponBlueprints = ([
         "default location": TwohandedWeapon,
         "damage type": "thrust",
         "skill to craft": 18,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBow.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "bowyer and fletcher": (["type":"skill", "value": 7]),
+        ]),
+        "crafting materials": ([
+            "wood": 6,
+            "exotic": 1,
+            "textile": 1
+        ]),
         "skill to use": "bow",
         "default wc": 12,
         "default dc": 0,
@@ -2381,6 +2538,14 @@ private nosave mapping weaponBlueprints = ([
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
         "skill to craft": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftSling.c":(["type":"research"]),
+            "weapon smithing": (["type":"skill", "value": 2]),
+        ]),
+        "crafting materials": ([
+            "leather": 1,
+            "textile": 1
+        ]),
         "skill to use": "sling",
         "default wc": 4,
         "default dc": 0,
@@ -2397,6 +2562,16 @@ private nosave mapping weaponBlueprints = ([
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
         "skill to craft": 6,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftSling.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+            "weapon smithing": (["type":"skill", "value": 4]),
+        ]),
+        "crafting materials": ([
+            "wood": 6,
+            "leather": 1,
+            "textile": 1
+        ]),
         "skill to use": "sling",
         "default wc": 6,
         "default dc": 2,
@@ -2413,6 +2588,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftSling.c":(["type":"research"]),
+            "weapon smithing": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "wood": 1,
+            "leather": 1,
+            "textile": 1
+        ]),
         "skill to use": "sling",
         "default wc": 6,
         "default dc": 0,
@@ -2429,6 +2613,14 @@ private nosave mapping weaponBlueprints = ([
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftSling.c":(["type":"research"]),
+            "weapon smithing": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "leather": 1,
+            "textile": 2
+        ]),
         "skill to use": "sling",
         "default wc": 8,
         "default dc": 0,
@@ -2445,6 +2637,14 @@ private nosave mapping weaponBlueprints = ([
         "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
+            "weapon smithing": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+            "wood": 5
+        ]),
         "skill to use": "thrown",
         "default wc": 6,
         "default dc": 0,
@@ -2461,6 +2661,14 @@ private nosave mapping weaponBlueprints = ([
         "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
+            "weapon smithing": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 4
+        ]),
         "skill to use": "thrown",
         "default wc": 8,
         "default dc": 0,
@@ -2477,6 +2685,11 @@ private nosave mapping weaponBlueprints = ([
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
         "skill to craft": 0,
+        "crafting prerequisites": ([
+        ]),
+        "crafting materials": ([
+            "stone": 1
+        ]),
         "skill to use": "thrown",
         "default wc": 2,
         "default dc": 0,
@@ -2492,7 +2705,15 @@ private nosave mapping weaponBlueprints = ([
         "subtype": "thrown",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
-        "skill to craft": 0,
+        "skill to craft": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
+            "weapon smithing": (["type":"skill", "value": 1]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+            "wood": 1
+        ]),
         "skill to use": "thrown",
         "default wc": 5,
         "default dc": 0,
@@ -2509,6 +2730,14 @@ private nosave mapping weaponBlueprints = ([
         "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 12,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
+            "weapon smithing": (["type":"skill", "value": 12]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 5
+        ]),
         "skill to use": "thrown",
         "default wc": 9,
         "default dc": 0,
@@ -2525,6 +2754,14 @@ private nosave mapping weaponBlueprints = ([
         "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 12,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
+            "weapon smithing": (["type":"skill", "value": 12]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 4
+        ]),
         "skill to use": "thrown",
         "default wc": 8,
         "default dc": 0,
@@ -2541,6 +2778,14 @@ private nosave mapping weaponBlueprints = ([
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
         "skill to craft": 12,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
+            "weapon smithing": (["type":"skill", "value": 12]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 4
+        ]),
         "skill to use": "thrown",
         "default wc": 8,
         "default dc": 0,
@@ -2557,6 +2802,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": Shield,
         "damage type": "bludgeon",
         "skill to craft": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicShield.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 1]),
+            "weapon smithing": (["type":"skill", "value": 4]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 4
+        ]),
         "skill to use": "shield",
         "default wc": 0,
         "default dc": 6,
@@ -2573,6 +2827,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": Shield,
         "damage type": "bludgeon",
         "skill to craft": 12,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicShield.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "weapon smithing": (["type":"skill", "value": 7]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+            "wood": 6
+        ]),
         "skill to use": "shield",
         "default wc": 0,
         "default dc": 7,
@@ -2589,6 +2852,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": Shield,
         "damage type": "bludgeon",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicShield.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "weapon smithing": (["type":"skill", "value": 7]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 6
+        ]),
         "skill to use": "shield",
         "default wc": 0,
         "default dc": 4,
@@ -2605,6 +2877,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": Shield,
         "damage type": "bludgeon",
         "skill to craft": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicShield.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+            "weapon smithing": (["type":"skill", "value": 3]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+            "wood": 5
+        ]),
         "skill to use": "shield",
         "default wc": 0,
         "default dc": 6,
@@ -2621,6 +2902,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": Shield,
         "damage type": "bludgeon",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicShield.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "weapon smithing": (["type":"skill", "value": 7]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 6
+        ]),
         "skill to use": "shield",
         "default wc": 0,
         "default dc": 8,
@@ -2637,6 +2927,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": Shield,
         "damage type": "bludgeon",
         "skill to craft": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicShield.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+            "weapon smithing": (["type":"skill", "value": 3]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 6
+        ]),
         "skill to use": "shield",
         "default wc": 0,
         "default dc": 10,
@@ -2653,6 +2952,15 @@ private nosave mapping weaponBlueprints = ([
         "default location": Shield,
         "damage type": "bludgeon",
         "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicShield.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "weapon smithing": (["type":"skill", "value": 7]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 7
+        ]),
         "skill to use": "shield",
         "default wc": 0,
         "default dc": 7,
@@ -2669,6 +2977,16 @@ private nosave mapping weaponBlueprints = ([
         "default location": Shield,
         "damage type": "bludgeon",
         "skill to craft": 8,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftSpikedShield.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 3]),
+            "metal crafting": (["type":"skill", "value": 2]),
+            "weapon smithing": (["type":"skill", "value": 3]),
+        ]),
+        "crafting materials": ([
+            "metal": 2,
+            "wood": 6
+        ]),
         "skill to use": "shield",
         "default wc": 2,
         "default dc": 5,
