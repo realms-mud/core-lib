@@ -11,7 +11,7 @@ object Weapon;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Selector = clone_object("/lib/items/inventory/sellItemSelector.c");
+    Selector = clone_object("/lib/environment/shopInventories/sellItemSelector.c");
     Selector->setStore(load_object("/lib/environment/shopInventories/baseShop.c"));
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");

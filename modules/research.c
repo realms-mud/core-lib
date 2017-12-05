@@ -60,7 +60,7 @@ private nomask varargs int canApplyLimitedEffect(string researchItem, string bon
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs int canApplyResearchBonus(string researchItem, string bonus)
 {
-    int ret = isResearched(researchItem) && canApplyLimitedEffect(researchItem, bonus);
+    int ret = canApplyLimitedEffect(researchItem, bonus);
 
     if(ret && isActiveOrSustainedResearchAbility(researchItem))
     {

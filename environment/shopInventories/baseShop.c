@@ -130,7 +130,7 @@ public nomask void resetInventory()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void initiateShopInteraction(object user)
 {
-    object selectorObj = clone_object("/lib/items/inventory/shopSelector.c");
+    object selectorObj = clone_object("/lib/environment/shopInventories/shopSelector.c");
     move_object(selectorObj, user);
     selectorObj->setStore(this_object());
     selectorObj->setProhibitedTypes(ProhibitedTypes);

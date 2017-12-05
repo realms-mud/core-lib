@@ -76,7 +76,7 @@ void CCOfDirectoryRecursivelyBuilds()
 void RecursiveCCWithoutTargetRecursivelyBuildsPWD()
 {
     Wizard->pwd("/lib/core");
-    ExpectEq(8, Wizard->executeCommand("cc -r"));
+    ExpectEq(9, Wizard->executeCommand("cc -r"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

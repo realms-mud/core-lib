@@ -116,6 +116,7 @@ public nomask varargs int usingEquipmentOfType(string type, int location)
         {
             ret ||= (equipment->query("weapon type") == type) ||
                 (equipment->query("armor type") == type) ||
+                (equipment->query("crafting tool") == type) ||
                 (member(
                     materialsObject()->slotsUsedByItemMask(equipment->query("equipment locations")),
                     type) > -1);

@@ -18,7 +18,7 @@ void Setup()
     Store->shopSubType("swords");
     load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Store);
 
-    Selector = clone_object("/lib/items/inventory/buyItemSelector.c");
+    Selector = clone_object("/lib/environment/shopInventories/buyItemSelector.c");
     Selector->setStore(Store);
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");

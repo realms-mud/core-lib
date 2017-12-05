@@ -14,7 +14,7 @@ void Setup()
     Store = clone_object("/lib/environment/shopInventories/baseShop.c");
     Store->name("Bob's Swords");
     Store->welcomeMessage("Remember: Nobody outsells Bob");
-    Selector = clone_object("/lib/items/inventory/shopSelector.c");
+    Selector = clone_object("/lib/environment/shopInventories/shopSelector.c");
     Selector->setStore(Store);
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");

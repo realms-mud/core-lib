@@ -2,11 +2,10 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/creation/baseSelector";
+inherit "/lib/core/baseSelector.c";
 
 private object Dictionary;
 private object SubselectorObj;
-private string *ProhibitedTypes = ({});
 private object Store;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -16,19 +15,13 @@ public nomask void setStore(object store)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setProhibitedTypes(string *types)
-{
-    ProhibitedTypes = types + ({ });
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
     if(!arg)
     {
         AllowUndo = 0;
-        Description = "From this menu, you can view and sell your character's items";
-        Type = "Sell Items";
+        Description = "From this menu, you can view and purchase items";
+        Type = "Purchase Items";
 
         Dictionary = load_object("/lib/dictionaries/shopDictionary.c");
         Data = ([]);
@@ -40,40 +33,41 @@ protected nomask void setUpUserForSelection()
 {
     if (!Store)
     {
-        raise_error("ERROR: sellItemSelector.c - The store has not been "
+        raise_error("ERROR: buyItemSelector.c - The store has not been "
             "set.\n");
     }
 
-    string *itemTypes = Dictionary->getSellItemTypes(User);
+    string *itemTypes = Dictionary->getBuyItemTypes(Store);
     int menuItem = 1;
 
-    itemTypes -= ProhibitedTypes;
     if (sizeof(itemTypes))
     {
         itemTypes = sort_array(itemTypes, (: $1 > $2 :));
         foreach(string itemType in itemTypes)
         {
             Data[to_string(menuItem)] = ([
-                "name": capitalize(itemType) + "s",
-                "type": itemType,
-                "description": "This option will allow you to view your sellable\n"
-                    + itemType + "s.\n"
+                "name": capitalize(itemType),
+                "type": regreplace(itemType, "(.+)s - .*", "\\1", 1),
+                "subType": lower_case(regreplace(itemType, ".+ - (.+)", "\\1", 1)),
+                "description": "This option will allow you to view "
+                    + lower_case(regreplace(itemType, ".+ - (.+)", "\\1", 1)) +
+                    " type " + regreplace(itemType, "(.+)s - .*", "\\1", 1) +
+                    "s that are for sale.\n"
             ]);
             menuItem++;
         }
     }
     Data[to_string(menuItem)] = ([
-        "name":"Exit Sell Item Menu",
+        "name":"Exit Buy Item Menu",
         "type": "exit",
-        "description": "This option lets you exit the sell item menu.\n"
-
+        "description": "This option lets you exit the purchase item menu.\n"
     ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected string additionalInstructions()
 {
-    return (sizeof(Data) > 1) ? "" : "You have nothing you can sell to this vendor!\n";
+    return (sizeof(Data) > 1) ? "" : "This vendor has nothing they are willing to sell to you.\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -85,9 +79,10 @@ protected nomask int processSelection(string selection)
         ret = (Data[selection]["type"] == "exit");
         if (!ret)
         {
-            SubselectorObj = clone_object("/lib/items/inventory/sellItemSubselector.c");
+            SubselectorObj = clone_object("/lib/environment/shopInventories/buyItemSubselector.c");
             move_object(SubselectorObj, User);
-            SubselectorObj->setSellType(lower_case(Data[selection]["type"]));
+            SubselectorObj->setBuyType(lower_case(Data[selection]["type"]),
+                lower_case(Data[selection]["subType"]));
             SubselectorObj->setStore(Store);
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->initiateSelector(User);

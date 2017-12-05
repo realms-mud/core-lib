@@ -2,17 +2,19 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/creation/baseSelector.c";
+inherit "/lib/core/baseSelector.c";
 
 private object Dictionary;
-private string SellType;
+private string BuyType;
+private string BuySubType;
 private object SubselectorObj;
 private object Store;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setSellType(string type)
+public nomask void setBuyType(string type, string subtype)
 {
-    SellType = type;
+    BuyType = type;
+    BuySubType = subtype;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,10 +28,12 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        Description = "Select an item to sell";
+        Description = "Select an item to buy:\n"
+            "[0;31m-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-[0m";
         AllowUndo = 0;
-        NumColumns = 2;
-        Type = "Sell Items";
+        NumColumns = 1;
+        SuppressColon = 1;
+        Type = "Buy Items";
         Dictionary = load_object("/lib/dictionaries/shopDictionary.c");
 
         Data = ([]);
@@ -39,17 +43,17 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    if (!SellType)
+    if (!BuyType)
     {
-        raise_error("ERROR: sellItemSubselector.c - The type has not been "
+        raise_error("ERROR: buyItemSubselector.c - The type has not been "
             "set.\n");
     }
     if (!Store)
     {
-        raise_error("ERROR: sellItemSubselector.c - The store has not been "
+        raise_error("ERROR: buyItemSubselector.c - The store has not been "
             "set.\n");
     }
-    Data = Dictionary->getSellItemDetailsForType(User, SellType, Store);
+    Data = Dictionary->getBuyItemDetailsForType(Store, BuyType, BuySubType);
 
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Return to previous menu",
@@ -66,14 +70,9 @@ protected nomask int processSelection(string selection)
     {
         ret = (Data[selection]["type"] == "exit");
 
-        if (!ret && Data[selection]["do not sell"])
+        if (!ret)
         {
-            tell_object(User, "You cannot sell that item here.\n");
-        }
-        else if (!ret)
-        {
-            Dictionary->sellItems(User, Store, 
-                Data[selection]["object list"]);
+            Dictionary->buyItem(User, Store, Data[selection]);
             setUpUserForSelection();
         }
     }
@@ -83,34 +82,17 @@ protected nomask int processSelection(string selection)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string selection()
 {
-    return SellType;
+    return BuyType;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string displayDetails(string choice)
 {
     string ret = "";
-
-    if (Data[choice]["do not sell"] || 
-        (member(Data[choice], "value") && (!Data[choice]["value"])))
+    if (Data[choice]["summary"])
     {
-        ret = "[0;31m (X)[0m";
+        ret = Data[choice]["summary"];
     }
-    else if (Data[choice]["is equipped"])
-    {
-        ret = "[0;34;1m (*)[0m";
-    }
-    else if (member(Data[choice], "identified") &&
-        !Data[choice]["identified"])
-    {
-        ret = "[0;35m (?)[0m";
-    }
-    else if (member(Data[choice], "known cursed item") &&
-        Data[choice]["known cursed item"])
-    {
-        ret = "[0;30;1m (C)[0m";
-    }
-
     return ret;
 }
 
@@ -139,8 +121,7 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "\t" : "", Red,
-        padSelectionDisplay(choice), "[0;32m%-30s[0m",
+    return sprintf("[%s]%s - %s%s", Red,
+        padSelectionDisplay(choice), "[0;32m%s[0m",
         displayDetails(choice));
 }

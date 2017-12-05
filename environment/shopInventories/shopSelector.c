@@ -2,7 +2,7 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/creation/baseSelector";
+inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
 private string *ProhibitedTypes = ({});
@@ -75,7 +75,7 @@ protected nomask int processSelection(string selection)
         ret = (Data[selection]["type"] == "exit");
         if (!ret)
         {
-            SubselectorObj = clone_object(sprintf("/lib/items/inventory/%s.c",
+            SubselectorObj = clone_object(sprintf("/lib/environment/shopInventories/%s.c",
                 Data[selection]["selector"]));
             move_object(SubselectorObj, User);
             SubselectorObj->setStore(Store);
