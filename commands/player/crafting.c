@@ -25,7 +25,6 @@ public nomask int execute(string command, object initiator)
 {
     int ret = 0;
 
-    // This should always be true, but if not, the command should fail
     if (canExecuteCommand(command))
     {
         object selector = clone_object("/lib/modules/crafting/craftingSelector.c");
