@@ -9,7 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        //addCommandTemplate("save");
+        addCommandTemplate("light [-l ##Level##]");
     }
 }
 
