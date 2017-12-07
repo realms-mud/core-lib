@@ -470,7 +470,6 @@ public nomask void buyItem(object user, object store, mapping item)
         if (user->Money() >= item["value"])
         {
             object itemObj = clone_object(item["blueprint"]);
-            write(item["data"] + "\n");
             itemObj->set("all", item["data"]);
             itemObj->set("value", item["value"]);
             user->addMoney(-item["value"]);

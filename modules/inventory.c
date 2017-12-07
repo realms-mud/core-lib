@@ -234,21 +234,21 @@ public nomask int equip(object itemToEquip)
         
         if(itemMask)
         {
-            int failedUnequip = 0;
+            int equipOK = 1;
             object *itemsToUnequip = equippedByMask(itemMask);
-            foreach(object item : itemsToUnequip)
+            foreach(object item in itemsToUnequip)
             {
-                failedUnequip += unequip(item);
-            }                    
+                equipOK &&= unequip(item);
+            }
                         
             string *slotsToEquip = materialsObject()->slotsUsedByItemMask(itemMask);
             
-            if(!failedUnequip && !itemToEquip->isEquipped())
+            if(equipOK && !itemToEquip->isEquipped())
             {
                 ret = itemToEquip->canEquip(this_object());
                 if(ret)
                 {
-                    foreach(string slot : slotsToEquip)
+                    foreach(string slot in slotsToEquip)
                     {
                         if(ret)
                         {

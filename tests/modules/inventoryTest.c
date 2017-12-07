@@ -1045,3 +1045,26 @@ void InventoryDescriptionReturnsCorrectListOfDescriptions()
     string expectedMessage = "He is using stuff\nHe has a hidden item.\nHe sees an object registered but not in his inventory\nThis item is not seen twice\nBob has a shiny blah!\n";
     ExpectEq(expectedMessage, Inventory->inventoryDescription());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void EquippingSecondItemOfTypeUnequipsFirstItemANdEquipsSecond()
+{
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("blueprint", "long sword");
+    weapon->set("name", "blah");
+    move_object(weapon, Inventory);
+
+    object weapon2 = clone_object("/lib/items/weapon");
+    weapon2->set("blueprint", "long sword");
+    weapon2->set("name", "blah2");
+    move_object(weapon2, Inventory);
+
+    ExpectFalse(Inventory->isEquipped(weapon), "weapon initially unequipped");
+    ExpectFalse(Inventory->isEquipped(weapon2), "weapon2 initially unequipped");
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectTrue(Inventory->isEquipped(weapon), "weapon equipped after weapon equip called");
+    ExpectFalse(Inventory->isEquipped(weapon2), "weapon2 unequipped after weapon equip called");
+    ExpectTrue(weapon2->equip("blah2"), "weapon2 equip called");
+    ExpectFalse(Inventory->isEquipped(weapon), "weapon unequipped after weapon2 equip called");
+    ExpectTrue(Inventory->isEquipped(weapon2), "weapon2 equipped after weapon2 equip called");
+}
