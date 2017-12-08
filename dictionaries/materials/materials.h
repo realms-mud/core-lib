@@ -875,6 +875,10 @@ private nosave mapping materials =
     "bronze": ([
         "class": "metal",
         "crafting skill required": 4,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 4])
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -889,6 +893,10 @@ private nosave mapping materials =
     "copper": ([
         "class": "metal",
         "crafting skill required": 4,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftCommonMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 4])
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -903,6 +911,10 @@ private nosave mapping materials =
     "tin": ([
         "class": "metal",
         "crafting skill required": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftUncommonMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -910,9 +922,28 @@ private nosave mapping materials =
         "encumberance": -1,
         "quality": "uncommon"
     ]),
+    "zinc": ([
+        "class": "metal",
+        "crafting skill required": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftUncommonMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": -1
+        ]),
+        "defense": ([
+            "acid": -1
+        ]),
+        "quality": "uncommon"
+    ]),
     "brass": ([
         "class": "metal",
         "crafting skill required": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -927,6 +958,11 @@ private nosave mapping materials =
     "gold": ([
         "class": "metal",
         "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 8]),
+            "metal crafting": (["type":"skill", "value": 2])
+        ]),
         "attack": ([
             "physical": -2
         ]),
@@ -943,6 +979,11 @@ private nosave mapping materials =
     "lead": ([
         "class": "metal",
         "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftRareMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 8]),
+            "metal crafting": (["type":"skill", "value": 2])
+        ]),
         "attack": ([
             "physical": -2
         ]),
@@ -957,9 +998,34 @@ private nosave mapping materials =
         "value multiplier": 1.5,
         "quality": "very rare"
     ]),
-     "platinum": ([
+    "pewter": ([
+        "class": "metal",
+        "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 8]),
+            "metal crafting": (["type":"skill", "value": 2])
+        ]),
+        "attack": ([
+            "physical": -1
+        ]),
+        "defense": ([
+            "physical": -1,
+            "acid": 3,
+            "disease": 3
+        ]),
+        "encumberance": 1,
+        "value multiplier": 1.5,
+        "quality": "uncommon"
+    ]),
+    "platinum": ([
         "class": "metal",
         "crafting skill required": 15,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -972,9 +1038,35 @@ private nosave mapping materials =
         "value multiplier": 8.5,
         "quality": "very rare"
     ]),
-     "iridium": ([
+    "tantalum": ([
+        "class": "metal",
+        "crafting skill required": 15,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": 1
+        ]),
+        "attack rating": 1,
+        "defense": ([
+            "acid": 15
+        ]),
+        "encumberance": 2,
+        "value multiplier": 8.5,
+        "quality": "very rare"
+    ]),
+    "iridium": ([
         "class": "metal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 3]),
+            "physics": (["type":"skill", "value": 2])
+        ]),
         "attack": ([
             "physical": 1,
             "fire" : 5
@@ -989,9 +1081,16 @@ private nosave mapping materials =
         "value multiplier": 10.0,
         "quality": "very rare"
     ]),
-     "osmium": ([
+    "osmium": ([
         "class": "metal",
         "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2,
             "fire" : 5
@@ -1009,6 +1108,13 @@ private nosave mapping materials =
     "palladium": ([
         "class": "metal",
         "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5]),
+            "metal crafting": (["type":"skill", "value": 3]),
+            "chemistry": (["type":"skill", "value": 1]),
+            "physics": (["type":"skill", "value": 1])
+        ]),
         "attack": ([
             "physical":-1
         ]),
@@ -1023,48 +1129,135 @@ private nosave mapping materials =
     "silver": ([
         "class": "metal",
         "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 8]),
+            "metal crafting": (["type":"skill", "value": 2])
+        ]),
         "attack": ([
             "good": 5
         ]),
         "value multiplier": 2.0,
         "quality": "uncommon"
     ]),
+    "electrum": ([
+        "class": "metal",
+        "crafting skill required": 20,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10])
+        ]),
+        "attack": ([
+            "good": 4,
+            "physical": -1
+        ]),
+        "attack rating": -1,
+        "defense": ([
+            "physical": -1,
+            "acid": 15,
+            "disease": 5
+        ]),
+        "value multiplier": 5.0,
+        "quality": "uncommon"
+    ]),
     "aluminum": ([
         "class": "metal",
         "encumberance": -2,
-        "crafting skill required": 25,
-        "value multiplier": 1.1,
-        "quality": "rare"
-    ]),
-    "nickel": ([
-        "class": "metal",
-        "defense": ([
-            "physical": 1
-        ]),
-        "crafting skill required": 20,
-        "value multiplier": 1.3,
-        "quality": "uncommon"
-    ]),
-    "cobalt": ([
-        "class": "metal",
+        "attack rating": 2,
         "attack": ([
             "physical": 1
         ]),
         "defense": ([
             "physical": 1
         ]),
-        "crafting skill required": 20,
+        "crafting skill required": 35,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5]),
+            "metal crafting": (["type":"skill", "value": 5]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 20])
+        ]),
+        "value multiplier": 1.1,
+        "quality": "rare"
+    ]),
+    "nickel": ([
+        "class": "metal",
+        "defense": ([
+            "physical": 1,
+            "acid": 1
+        ]),
+        "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5]),
+            "metal crafting": (["type":"skill", "value": 5]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
+        "value multiplier": 1.3,
+        "quality": "rare"
+    ]),
+    "cobalt": ([
+        "class": "metal",
+        "attack": ([
+            "physical": 3
+        ]),
+        "defense": ([
+            "physical": 3
+        ]),
+        "attack rating": 2,
+        "crafting skill required": 35,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5]),
+            "metal crafting": (["type":"skill", "value": 5]),
+            "chemistry": (["type":"skill", "value": 10]),
+            "physics": (["type":"skill", "value": 15])
+        ]),
         "value multiplier": 1.6,
-        "quality": "uncommon"
+        "quality": "rare"
+    ]),
+    "titanium": ([
+        "class": "metal",
+        "crafting skill required": 20,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 5]),
+            "chemistry": (["type":"skill", "value": 2]),
+            "physics": (["type":"skill", "value": 3])
+        ]),
+        "attack": ([
+            "physical": 5
+        ]),
+        "attack rating": 1,
+        "defense": ([
+            "physical": 3
+        ]),
+        "value multiplier": 8.0,
+        "quality": "very rare"
     ]),
     "iron": ([
         "class": "metal",
         "crafting skill required": 5,
-        "quality": "common"
+         "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftCommonMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5])
+        ]),
+       "quality": "common"
     ]),
     "steel": ([
         "class": "metal",
         "crafting skill required": 15,   
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 3]),
+            "chemistry": (["type":"skill", "value": 1]),
+            "physics": (["type":"skill", "value": 1])
+        ]),
         "attack": ([
             "physical": 1
         ]),
@@ -1075,9 +1268,35 @@ private nosave mapping materials =
         "value multiplier": 1.1,
         "quality": "common"
     ]),
+    "cast iron": ([
+        "class": "metal",
+        "crafting skill required": 15,   
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 3]),
+            "chemistry": (["type":"skill", "value": 1]),
+            "physics": (["type":"skill", "value": 1])
+        ]),
+        "attack": ([
+            "physical": 1
+        ]),
+        "defense": ([
+            "physical": -1
+        ]),
+        "value multiplier": 1.1,
+        "quality": "common"
+    ]),
     "mithril": ([
         "class": "metal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 2]),
+            "physics": (["type":"skill", "value": 3])
+        ]),
         "attack": ([
             "physical": 3,
             "magical": 5
@@ -1093,6 +1312,13 @@ private nosave mapping materials =
     "nurilium": ([
         "class": "metal",
         "crafting skill required": 35,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 5,
             "energy": 8
@@ -1109,6 +1335,13 @@ private nosave mapping materials =
     "kirdarium": ([
         "class": "metal",
         "crafting skill required": 50,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 10]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
         "attack": ([
             "physical": 10,
             "electricity": 10,
@@ -1125,6 +1358,13 @@ private nosave mapping materials =
     "admantite": ([
         "class": "metal",
         "crafting skill required": 20,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 5]),
+            "chemistry": (["type":"skill", "value": 2]),
+            "physics": (["type":"skill", "value": 3])
+        ]),
         "attack": ([
             "physical": 5,
             "magical": 2
@@ -1139,6 +1379,13 @@ private nosave mapping materials =
     "galvorn": ([
         "class": "metal",
         "crafting skill required": 40,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 8,
             "magical": 5
@@ -1148,6 +1395,28 @@ private nosave mapping materials =
             "physical": 5,
             "fire": 3,
             "electricity": 3
+        ]),
+        "encumberance": 2,
+        "value multiplier": 25.0,
+        "quality": "very rare"
+    ]),
+    "meteoric iron": ([
+        "class": "metal",
+        "crafting skill required": 40,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 15]),
+            "metal crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": 8
+        ]),
+        "attack rating": 3,
+        "defense": ([
+            "physical": 5,
+            "fire": 5
         ]),
         "encumberance": 2,
         "value multiplier": 25.0,
