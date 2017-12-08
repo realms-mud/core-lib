@@ -998,6 +998,45 @@ private nosave mapping materials =
         "value multiplier": 1.5,
         "quality": "very rare"
     ]),
+    "magnesium": ([
+        "class": "metal",
+        "crafting skill required": 20,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftRareMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10])
+        ]),
+        "attack": ([
+            "fire": 5
+        ]),
+        "defense": ([
+            "fire": -5
+        ]),
+        "value multiplier": 1.5,
+        "quality": "rare"
+    ]),
+    "graphite": ([
+        "class": "metal",
+        "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5]),
+            "metal crafting": (["type":"skill", "value": 5]),
+            "chemistry": (["type":"skill", "value": 10]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
+        "attack rating": 1,
+        "attack": ([
+            "physical": 1
+        ]),
+        "defense": ([
+            "physical": 1,
+            "fire": 5
+        ]),
+        "encumberance": -2,
+        "value multiplier": 1.5,
+        "quality": "rare"
+    ]),
     "pewter": ([
         "class": "metal",
         "crafting skill required": 10,
@@ -1235,6 +1274,27 @@ private nosave mapping materials =
         "attack rating": 1,
         "defense": ([
             "physical": 3
+        ]),
+        "value multiplier": 8.0,
+        "quality": "very rare"
+    ]),
+    "tungsten": ([
+        "class": "metal",
+        "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 5]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
+        "attack": ([
+            "physical": 5
+        ]),
+        "attack rating": 3,
+        "defense": ([
+            "physical": -1,
+            "fire": 5
         ]),
         "value multiplier": 8.0,
         "quality": "very rare"
