@@ -6,13 +6,13 @@
 // TODO: Add minimum craftsmanship levels, research requirements, etc
 private nosave mapping materials =
 ([
-    "cloth": ([
+    "linen": ([
         "class": "textile",
         "crafting skill required": 0,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "wool": ([
         "class": "textile",
@@ -21,7 +21,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "hemp": ([
         "class": "textile",
@@ -30,7 +30,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "flax": ([
         "class": "textile",
@@ -39,7 +39,61 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
+    ]),
+    "cotton": ([
+        "class": "textile",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "weaving and beadwork": (["type":"skill", "value": 1]),
+        ]),
+        "scarcity": "common"
+    ]),
+    "ramie": ([
+        "class": "textile",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "weaving and beadwork": (["type":"skill", "value": 1]),
+        ]),
+        "scarcity": "common"
+    ]),
+    "burlap": ([
+        "class": "textile",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "weaving and beadwork": (["type":"skill", "value": 1]),
+        ]),
+        "scarcity": "common"
+    ]),
+    "canvas": ([
+        "class": "textile",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "weaving and beadwork": (["type":"skill", "value": 2]),
+        ]),
+        "scarcity": "common"
+    ]),
+    "silk": ([
+        "class": "textile",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "weaving and beadwork": (["type":"skill", "value": 2]),
+        ]),
+        "scarcity": "rare"
+    ]),
+    "velvet": ([
+        "class": "textile",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "weaving and beadwork": (["type":"skill", "value": 2]),
+        ]),
+        "scarcity": "rare"
     ]),
     "stone": ([
         "class": "stone",
@@ -52,7 +106,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 5]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "sandstone": ([
         "class": "stone",
@@ -66,7 +120,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "quartzite": ([
         "class": "stone",
@@ -82,7 +136,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 15]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "granite": ([
         "class": "stone",
@@ -95,7 +149,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "basalt": ([
         "class": "stone",
@@ -108,7 +162,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "marble": ([
         "class": "stone",
@@ -121,7 +175,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 15]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "limestone": ([
         "class": "stone",
@@ -131,7 +185,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 8]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "slate": ([
         "class": "stone",
@@ -145,7 +199,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 6]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "chalk": ([
         "class": "stone",
@@ -157,7 +211,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 3]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "shale": ([
         "class": "stone",
@@ -169,7 +223,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 3]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "coal": ([
         "class": "stone",
@@ -181,7 +235,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 6]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "dolomite": ([
         "class": "stone",
@@ -190,7 +244,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 7]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "flint": ([
         "class": "stone",
@@ -203,7 +257,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "terra cotta": ([
         "class": "clay",
@@ -215,7 +269,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 3]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "earthenware": ([
         "class": "clay",
@@ -227,7 +281,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 4]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "stoneware": ([
         "class": "clay",
@@ -236,7 +290,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 5]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "plaster": ([
         "class": "clay",
@@ -248,7 +302,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 3]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "ceramic slip": ([
         "class": "clay",
@@ -257,7 +311,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 5]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "kaolin": ([
         "class": "clay",
@@ -269,7 +323,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 10]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "pine": ([
         "class": "wood",
@@ -278,7 +332,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "poplar": ([
         "class": "wood",
@@ -287,7 +341,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "cedar": ([
         "class": "wood",
@@ -296,7 +350,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "oak": ([
         "class": "wood",
@@ -306,7 +360,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "maple": ([
         "class": "wood",
@@ -315,7 +369,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "birch": ([
         "class": "wood",
@@ -324,7 +378,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "sycamore": ([
         "class": "wood",
@@ -333,7 +387,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "beech": ([
         "class": "wood",
@@ -342,7 +396,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "ash": ([
         "class": "wood",
@@ -351,7 +405,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "hickory": ([
         "class": "wood",
@@ -360,7 +414,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "mesquite": ([
         "class": "wood",
@@ -370,7 +424,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "walnut": ([
         "class": "wood",
@@ -380,7 +434,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.2,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "pecan": ([
         "class": "wood",
@@ -390,7 +444,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.2,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "dogwood": ([
         "class": "wood",
@@ -399,7 +453,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "cherry": ([
         "class": "wood",
@@ -409,7 +463,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
         "value multiplier": 1.25,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "holly": ([
         "class": "wood",
@@ -419,7 +473,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "yew": ([
         "class": "wood",
@@ -429,7 +483,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "apple": ([
         "class": "wood",
@@ -438,7 +492,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "teak": ([
         "class": "wood",
@@ -451,7 +505,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 6]),
         ]),
         "value multiplier": 1.5,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "cypress": ([
         "class": "wood",
@@ -460,7 +514,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "cottonwood": ([
         "class": "wood",
@@ -469,7 +523,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "hemlock": ([
         "class": "wood",
@@ -478,7 +532,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "spruce": ([
         "class": "wood",
@@ -487,7 +541,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "aspen": ([
         "class": "wood",
@@ -496,7 +550,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "swamp ash": ([
         "class": "wood",
@@ -509,7 +563,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.4,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "elm": ([
         "class": "wood",
@@ -518,7 +572,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "basswood": ([
         "class": "wood",
@@ -531,7 +585,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "bloodwood": ([
         "class": "wood",
@@ -544,7 +598,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.4,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "rosewood": ([
         "class": "wood",
@@ -554,7 +608,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.2,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "buckeye": ([
         "class": "wood",
@@ -563,7 +617,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "buckthorn": ([
         "class": "wood",
@@ -572,7 +626,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "alder": ([
         "class": "wood",
@@ -581,7 +635,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "ironwood": ([
         "class": "wood",
@@ -592,7 +646,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.1,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "malorn": ([
         "class": "wood",
@@ -607,7 +661,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 2.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "redwood": ([
         "class": "wood",
@@ -617,7 +671,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.1,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "mahogany": ([
         "class": "wood",
@@ -630,7 +684,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.3,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "mulberry": ([
         "class": "wood",
@@ -639,7 +693,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "marblewood": ([
         "class": "wood",
@@ -652,7 +706,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.4,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "purple heart": ([
         "class": "wood",
@@ -667,7 +721,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.7,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "bubinga": ([
         "class": "wood",
@@ -679,7 +733,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.7,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "kingwood": ([
         "class": "wood",
@@ -694,7 +748,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 2.0,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "koa": ([
         "class": "wood",
@@ -706,7 +760,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 2.0,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "leather": ([
         "class": "leather",
@@ -715,7 +769,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "cow leather": ([
         "class": "leather",
@@ -724,7 +778,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "deer leather": ([
         "class": "leather",
@@ -733,7 +787,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "goat leather": ([
         "class": "leather",
@@ -742,7 +796,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "sheep leather": ([
         "class": "leather",
@@ -751,7 +805,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "bear leather": ([
         "class": "leather",
@@ -760,7 +814,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "boar leather": ([
         "class": "leather",
@@ -769,7 +823,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "horse leather": ([
         "class": "leather",
@@ -778,7 +832,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "wolf leather": ([
         "class": "leather",
@@ -787,7 +841,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "unicorn leather": ([
         "class": "leather",
@@ -800,7 +854,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 20])
         ]),
         "value multiplier": 6.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "pegasus leather": ([
         "class": "leather",
@@ -814,7 +868,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 20])
         ]),
         "value multiplier": 6.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "basilisk leather": ([
         "class": "leather",
@@ -828,7 +882,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 30])
         ]),
         "value multiplier": 10.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "wyvern leather": ([
         "class": "leather",
@@ -842,7 +896,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftExoticLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 25])
         ]),
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "chimera leather": ([
         "class": "leather",
@@ -856,7 +910,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 35])
         ]),
         "value multiplier": 15.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "hydra leather": ([
         "class": "leather",
@@ -870,7 +924,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 40])
         ]),
         "value multiplier": 20.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "bronze": ([
         "class": "metal",
@@ -888,7 +942,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "value multiplier": 0.95,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "copper": ([
         "class": "metal",
@@ -906,7 +960,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "value multiplier": 0.9,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "tin": ([
         "class": "metal",
@@ -920,7 +974,7 @@ private nosave mapping materials =
         ]),
         "attack rating": -1,
         "encumberance": -1,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "zinc": ([
         "class": "metal",
@@ -935,7 +989,7 @@ private nosave mapping materials =
         "defense": ([
             "acid": -1
         ]),
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "brass": ([
         "class": "metal",
@@ -953,7 +1007,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "value multiplier": 0.95,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "gold": ([
         "class": "metal",
@@ -974,7 +1028,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 8.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "lead": ([
         "class": "metal",
@@ -996,7 +1050,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 1.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "magnesium": ([
         "class": "metal",
@@ -1013,7 +1067,7 @@ private nosave mapping materials =
             "fire": -5
         ]),
         "value multiplier": 1.5,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "graphite": ([
         "class": "metal",
@@ -1035,7 +1089,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 1.5,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "pewter": ([
         "class": "metal",
@@ -1055,7 +1109,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 1,
         "value multiplier": 1.5,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "platinum": ([
         "class": "metal",
@@ -1075,7 +1129,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 8.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "tantalum": ([
         "class": "metal",
@@ -1094,7 +1148,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 8.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "iridium": ([
         "class": "metal",
@@ -1118,7 +1172,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 3,
         "value multiplier": 10.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "osmium": ([
         "class": "metal",
@@ -1142,7 +1196,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 4,
         "value multiplier": 8.1,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "palladium": ([
         "class": "metal",
@@ -1163,7 +1217,7 @@ private nosave mapping materials =
             "acid": 10
         ]),
         "value multiplier": 6.1,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "silver": ([
         "class": "metal",
@@ -1177,7 +1231,7 @@ private nosave mapping materials =
             "good": 5
         ]),
         "value multiplier": 2.0,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "electrum": ([
         "class": "metal",
@@ -1198,7 +1252,7 @@ private nosave mapping materials =
             "disease": 5
         ]),
         "value multiplier": 5.0,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "aluminum": ([
         "class": "metal",
@@ -1219,7 +1273,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 20])
         ]),
         "value multiplier": 1.1,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "nickel": ([
         "class": "metal",
@@ -1236,7 +1290,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 10])
         ]),
         "value multiplier": 1.3,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "cobalt": ([
         "class": "metal",
@@ -1256,7 +1310,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 15])
         ]),
         "value multiplier": 1.6,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "titanium": ([
         "class": "metal",
@@ -1276,7 +1330,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "value multiplier": 8.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "tungsten": ([
         "class": "metal",
@@ -1297,7 +1351,7 @@ private nosave mapping materials =
             "fire": 5
         ]),
         "value multiplier": 8.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "iron": ([
         "class": "metal",
@@ -1306,7 +1360,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftCommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
         ]),
-       "quality": "common"
+       "scarcity": "common"
     ]),
     "steel": ([
         "class": "metal",
@@ -1326,7 +1380,7 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "value multiplier": 1.1,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "cast iron": ([
         "class": "metal",
@@ -1345,7 +1399,7 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "value multiplier": 1.1,
-        "quality": "common"
+        "scarcity": "common"
     ]),
     "mithril": ([
         "class": "metal",
@@ -1367,7 +1421,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -4,
         "value multiplier": 20.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "nurilium": ([
         "class": "metal",
@@ -1390,7 +1444,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 30.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "kirdarium": ([
         "class": "metal",
@@ -1413,7 +1467,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "value multiplier": 45.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "admantite": ([
         "class": "metal",
@@ -1434,7 +1488,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 16.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "galvorn": ([
         "class": "metal",
@@ -1458,7 +1512,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 25.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "meteoric iron": ([
         "class": "metal",
@@ -1480,7 +1534,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 25.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "special": ([]),
     "spell material": ([]),
@@ -1496,7 +1550,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 1,
         "value multiplier": 15.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "magical ice": ([
         "class": "crystal",
@@ -1511,7 +1565,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 10.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "crystal": ([
         "class": "crystal",
@@ -1525,7 +1579,7 @@ private nosave mapping materials =
             "magical": 2
         ]),
         "value multiplier": 1.5,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "quartz": ([
         "class": "crystal",
@@ -1537,7 +1591,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.1,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "opal": ([
         "class": "crystal",
@@ -1549,7 +1603,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.1,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "topaz": ([
         "class": "crystal",
@@ -1561,7 +1615,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.2,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "turquoise": ([
         "class": "crystal",
@@ -1573,7 +1627,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.2,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "amethyst": ([
         "class": "crystal",
@@ -1585,7 +1639,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.1,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "garnet": ([
         "class": "crystal",
@@ -1597,7 +1651,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.5,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "florite": ([
         "class": "crystal",
@@ -1609,7 +1663,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.2,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "citrine": ([
         "class": "crystal",
@@ -1621,7 +1675,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.15,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "agate": ([
         "class": "crystal",
@@ -1633,7 +1687,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.15,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "onyx": ([
         "class": "crystal",
@@ -1645,7 +1699,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 4.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "jade": ([
         "class": "crystal",
@@ -1657,7 +1711,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 3.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "amber": ([
         "class": "crystal",
@@ -1669,7 +1723,7 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "value multiplier": 2.5,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "aquamarine": ([
         "class": "crystal",
@@ -1681,7 +1735,7 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "value multiplier": 1.25,
-        "quality": "rare"
+        "scarcity": "rare"
     ]),
     "emerald": ([
         "class": "crystal",
@@ -1693,7 +1747,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "value multiplier": 11.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "sapphire": ([
         "class": "crystal",
@@ -1705,7 +1759,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "value multiplier": 10.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
    "bloodstone": ([
         "class": "crystal",
@@ -1717,7 +1771,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "value multiplier": 12.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "diamond": ([
         "class": "crystal",
@@ -1729,7 +1783,7 @@ private nosave mapping materials =
             "physical": 4
         ]),
         "value multiplier": 15.5,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "kirluin": ([
         "class": "crystal",
@@ -1745,7 +1799,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "dragon scale": ([
         "class": "exotic",
@@ -1755,7 +1809,7 @@ private nosave mapping materials =
             "physical": 10
         ]),
         "value multiplier": 25.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "dragon leather": ([
         "class": "leather",
@@ -1769,18 +1823,18 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 50])
         ]),
         "value multiplier": 25.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
     "bone": ([
         "class": "exotic",
         "crafting skill required": 5,
         "value multiplier": 1.5,
-        "quality": "uncommon"
+        "scarcity": "uncommon"
     ]),
     "ivory": ([
         "class": "exotic",
         "crafting skill required": 10,
         "value multiplier": 5.0,
-        "quality": "very rare"
+        "scarcity": "very rare"
     ]),
 ]);
