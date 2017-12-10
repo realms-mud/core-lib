@@ -1538,15 +1538,23 @@ private nosave mapping materials =
     ]),
     "special": ([]),
     "spell material": ([]),
-    "glassteel": ([
+    "magical crystal": ([
         "class": "crystal",
-        "crafting skill required": 20,
+        "crafting skill required": 40,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMagicalMaterials.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "attack rating": 5,
         "attack": ([
-            "physical": 3,
-            "magical": 5
+            "physical": 5,
+            "magical": 8
         ]),
         "defense": ([
-            "physical": -5
+            "physical": 5
         ]),
         "encumberance": 1,
         "value multiplier": 15.0,
@@ -1555,6 +1563,12 @@ private nosave mapping materials =
     "magical ice": ([
         "class": "crystal",
         "crafting skill required": 35,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMagicalMaterials.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 10]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "cold": 10
         ]),
@@ -1563,13 +1577,19 @@ private nosave mapping materials =
             "cold": 10,
             "fire": -10
         ]),
-        "encumberance": 2,
+        "encumberance": 1,
         "value multiplier": 10.0,
         "scarcity": "very rare"
     ]),
     "crystal": ([
         "class": "crystal",
         "crafting skill required": 18,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 3]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2,
             "magical": 3
@@ -1584,6 +1604,12 @@ private nosave mapping materials =
     "quartz": ([
         "class": "crystal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1596,6 +1622,12 @@ private nosave mapping materials =
     "opal": ([
         "class": "crystal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1608,6 +1640,12 @@ private nosave mapping materials =
     "topaz": ([
         "class": "crystal",
         "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1620,6 +1658,12 @@ private nosave mapping materials =
     "turquoise": ([
         "class": "crystal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1632,6 +1676,12 @@ private nosave mapping materials =
     "amethyst": ([
         "class": "crystal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1644,6 +1694,12 @@ private nosave mapping materials =
     "garnet": ([
         "class": "crystal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1656,6 +1712,12 @@ private nosave mapping materials =
     "florite": ([
         "class": "crystal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1668,6 +1730,12 @@ private nosave mapping materials =
     "citrine": ([
         "class": "crystal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1680,6 +1748,12 @@ private nosave mapping materials =
     "agate": ([
         "class": "crystal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1692,6 +1766,12 @@ private nosave mapping materials =
     "onyx": ([
         "class": "crystal",
         "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1704,6 +1784,12 @@ private nosave mapping materials =
     "jade": ([
         "class": "crystal",
         "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 2
         ]),
@@ -1716,6 +1802,12 @@ private nosave mapping materials =
     "amber": ([
         "class": "crystal",
         "crafting skill required": 20,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 1
         ]),
@@ -1728,6 +1820,12 @@ private nosave mapping materials =
     "aquamarine": ([
         "class": "crystal",
         "crafting skill required": 20,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 1
         ]),
@@ -1740,6 +1838,12 @@ private nosave mapping materials =
     "emerald": ([
         "class": "crystal",
         "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 3
         ]),
@@ -1752,6 +1856,12 @@ private nosave mapping materials =
     "sapphire": ([
         "class": "crystal",
         "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
         "attack": ([
             "physical": 3
         ]),
@@ -1764,6 +1874,12 @@ private nosave mapping materials =
    "bloodstone": ([
         "class": "crystal",
         "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
         "attack": ([
             "physical": 3
         ]),
@@ -1776,6 +1892,12 @@ private nosave mapping materials =
     "diamond": ([
         "class": "crystal",
         "crafting skill required": 35,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
         "attack": ([
             "physical": 4
         ]),
@@ -1788,6 +1910,13 @@ private nosave mapping materials =
     "kirluin": ([
         "class": "crystal",
         "crafting skill required": 50,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "attack": ([
             "physical": 8,
             "electricity": 10
@@ -1801,9 +1930,177 @@ private nosave mapping materials =
         "value multiplier": 50.0,
         "scarcity": "very rare"
     ]),
+    "gwyrluin": ([
+        "class": "crystal",
+        "crafting skill required": 50,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": 8,
+            "earth": 10
+        ]),
+        "attack rating": 6,
+        "defense": ([
+            "physical": 8,
+            "earth": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 50.0,
+        "scarcity": "very rare"
+    ]),
+    "durluin": ([
+        "class": "crystal",
+        "crafting skill required": 60,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 25]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
+        "attack": ([
+            "physical": 10,
+            "evil": 10
+        ]),
+        "attack rating": 6,
+        "defense": ([
+            "physical": 10,
+            "evil": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 50.0,
+        "scarcity": "very rare"
+    ]),
+    "trynluin": ([
+        "class": "crystal",
+        "crafting skill required": 60,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 25]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
+        "attack": ([
+            "physical": 10,
+            "good": 10
+        ]),
+        "attack rating": 6,
+        "defense": ([
+            "physical": 10,
+            "good": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 50.0,
+        "scarcity": "very rare"
+    ]),
+    "rhudluin": ([
+        "class": "crystal",
+        "crafting skill required": 50,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": 8,
+            "fire": 10
+        ]),
+        "attack rating": 6,
+        "defense": ([
+            "physical": 8,
+            "fire": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 50.0,
+        "scarcity": "very rare"
+    ]),
+    "melynuin": ([
+        "class": "crystal",
+        "crafting skill required": 50,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": 8,
+            "energy": 10
+        ]),
+        "attack rating": 6,
+        "defense": ([
+            "physical": 8,
+            "energy": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 50.0,
+        "scarcity": "very rare"
+    ]),
+    "asurluin": ([
+        "class": "crystal",
+        "crafting skill required": 50,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": 8,
+            "water": 10
+        ]),
+        "attack rating": 6,
+        "defense": ([
+            "physical": 8,
+            "water": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 50.0,
+        "scarcity": "very rare"
+    ]),
+    "marnluin": ([
+        "class": "crystal",
+        "crafting skill required": 50,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": 8,
+            "cold": 10
+        ]),
+        "attack rating": 6,
+        "defense": ([
+            "physical": 8,
+            "cold": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 50.0,
+        "scarcity": "very rare"
+    ]),
     "dragon scale": ([
         "class": "exotic",
         "crafting skill required": 50,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftExoticMaterials.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "leatherworking": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
         "defense": ([
             "fire": 15,
             "physical": 10
@@ -1820,7 +2117,8 @@ private nosave mapping materials =
         ]),
         "crafting prerequisites": ([
             "lib/instances/research/crafting/craftExoticLeather.c":(["type":"research"]),
-            "leatherworking": (["type":"skill", "value": 50])
+            "spellcraft": (["type":"skill", "value": 25]),
+            "leatherworking": (["type":"skill", "value": 25])
         ]),
         "value multiplier": 25.0,
         "scarcity": "very rare"
@@ -1828,12 +2126,24 @@ private nosave mapping materials =
     "bone": ([
         "class": "exotic",
         "crafting skill required": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftExoticMaterials.c":(["type":"research"]),
+            "wood craft": (["type":"skill", "value": 1]),
+            "chemistry": (["type":"skill", "value": 2]),
+            "physics": (["type":"skill", "value": 2])
+        ]),
         "value multiplier": 1.5,
         "scarcity": "uncommon"
     ]),
     "ivory": ([
         "class": "exotic",
         "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftExoticMaterials.c":(["type":"research"]),
+            "wood craft": (["type":"skill", "value": 2]),
+            "chemistry": (["type":"skill", "value": 4]),
+            "physics": (["type":"skill", "value": 4])
+        ]),
         "value multiplier": 5.0,
         "scarcity": "very rare"
     ]),

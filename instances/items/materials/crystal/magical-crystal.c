@@ -9,9 +9,9 @@ public void reset(int arg)
 {
     if (!arg) 
     {
-        set("name", "Meteoric iron");
-        set("short", "Meteoric iron");
-        set("aliases", ({ "iron" }));
-        set("blueprint", "meteoric iron");
+        set("name", "Magical crystal");
+        set("short", "Magical crystal");
+        set("aliases", ({ "crystal" }));
+        set("blueprint", "magical crystal");
     }
 }
