@@ -1,5 +1,5 @@
-[![Build Status](http://angmar.maelstrom.cc:8081/buildStatus/icon?job=Realms Core Library)](http://angmar.maelstrom.cc:8081/job/Realms%20Core%20Library/)
-#Introduction
+![Build Status](http://angmar.maelstrom.cc:8081/buildStatus/icon?job=Realms%20Core%20Library)
+# Introduction
 This is the core library for RealmsMUD. Many content creators find building rich areas to be a very difficult task.
 When the creator wants to do something "interesting", the ability to create said interesting things is often beyond the
 ability of all but the most programatically-adept. The goal of this library is to abstract the difficulty of creating detailed and complex
@@ -12,7 +12,7 @@ worlds. Some of the highlights include:
 - Faction support: Players/monsters can belong to factions, allowing for complex interactions.
 
 ![A quest](http://realmsmud.org/images/intro.gif)
-#Getting Started
+# Getting Started
 The mudlib has been broken down into what I felt was a sensible directory structure:
 
 - /commands is the area where player and wizard actions/commands have been implemented. Commands all inherit from baseCommand.c and consist of one or more command templates (one or more regular expression-like definitions that show what a user types to execute the command) and the execution action. For those commands that are limited in scope of who can use them, there is a role-based access control system integrated.
@@ -44,7 +44,7 @@ For example, suppose you want to create a guild:
 - You would also want to look at the research module, skills module, and potentially the traits module to create abilities.
 - In addition, /dictionaries contains many "services" (ie: in software terms - I renamed them "dictionaries" because they're not true services). For example, the shopDictionary provides somewhat static methods/data for randomly generating "normal" and "well-crafted", and "magical" items of a given type for shops. materialsDictionary supplies all the content surrounding armor/weapon material and blueprint content, and so on.
 
-#Contribute
+# Contribute
 If you'd like to contribute to this project, contact Allen. Adding component to the library is a pretty straigthforward process, but the steps must be followed:
 - A work item must be created detailing the desired change, bug, etc. 
 - After the work is completed, a pull request must be submitted. Other devs (particularly, Allen) will get a chance to code review the item and provide feedback.
