@@ -933,6 +933,11 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 4])
         ]),
+        "crafting materials": ([
+            "copper": 3,
+            "tin": 1,
+            "zinc": 1
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -998,6 +1003,10 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
         ]),
+        "crafting materials": ([
+            "copper": 3,
+            "zinc": 1
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -1052,6 +1061,47 @@ private nosave mapping materials =
         "value multiplier": 1.5,
         "scarcity": "very rare"
     ]),
+    "antimony": ([
+        "class": "metal",
+        "crafting skill required": 12,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftRareMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 2])
+        ]),
+        "attack": ([
+            "physical": -2
+        ]),
+        "attack rating": -1,
+        "defense": ([
+            "physical": -2,
+            "acid": 5,
+            "disease": 5
+        ]),
+        "encumberance": 2,
+        "value multiplier": 2.0,
+        "scarcity": "very rare"
+    ]),
+    "bismuth": ([
+        "class": "metal",
+        "crafting skill required": 12,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftRareMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 2])
+        ]),
+        "attack": ([
+            "physical": -1
+        ]),
+        "attack rating": -1,
+        "defense": ([
+            "physical": -1,
+            "electricity": 10
+        ]),
+        "encumberance": 1,
+        "value multiplier": 1.6,
+        "scarcity": "rare"
+    ]),
     "magnesium": ([
         "class": "metal",
         "crafting skill required": 20,
@@ -1098,6 +1148,12 @@ private nosave mapping materials =
             "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 8]),
             "metal crafting": (["type":"skill", "value": 2])
+        ]),
+        "crafting materials": ([
+            "copper": 1,
+            "tin": 4,
+            "antimony": 1,
+            "bismuth": 1
         ]),
         "attack": ([
             "physical": -1
@@ -1241,6 +1297,10 @@ private nosave mapping materials =
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 10])
         ]),
+        "crafting materials": ([
+            "gold": 1,
+            "silver": 1
+        ]),
         "attack": ([
             "good": 4,
             "physical": -1
@@ -1372,6 +1432,10 @@ private nosave mapping materials =
             "chemistry": (["type":"skill", "value": 1]),
             "physics": (["type":"skill", "value": 1])
         ]),
+        "crafting materials": ([
+            "iron": 5,
+            "graphite": 1
+        ]),
         "attack": ([
             "physical": 1
         ]),
@@ -1391,6 +1455,10 @@ private nosave mapping materials =
             "metal crafting": (["type":"skill", "value": 3]),
             "chemistry": (["type":"skill", "value": 1]),
             "physics": (["type":"skill", "value": 1])
+        ]),
+        "crafting materials": ([
+            "iron": 5,
+            "graphite": 1
         ]),
         "attack": ([
             "physical": 1
@@ -2145,6 +2213,246 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 4])
         ]),
         "value multiplier": 5.0,
+        "scarcity": "very rare"
+    ]),
+    "kirnalt": ([
+        "class": "metal",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 20]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "kirluin": 1,
+            "mithril": 2,
+            "graphite": 1
+        ]),
+        "attack": ([
+            "physical": 10,
+            "electricity": 10
+        ]),
+        "attack rating": 8,
+        "defense": ([
+            "physical": 10,
+            "electricity": 10
+        ]),
+        "encumberance": -2,
+        "value multiplier": 70.0,
+        "scarcity": "very rare"
+    ]),
+    "gwyrnalt": ([
+        "class": "metal",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 20]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "gwyrluin": 1,
+            "mithril": 2,
+            "graphite": 1
+        ]),
+        "attack": ([
+            "physical": 10,
+            "earth": 10
+        ]),
+        "attack rating": 8,
+        "defense": ([
+            "physical": 10,
+            "earth": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 70.0,
+        "scarcity": "very rare"
+    ]),
+    "durnalt": ([
+        "class": "metal",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 20]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "durluin": 1,
+            "mithril": 2,
+            "graphite": 1
+        ]),
+        "attack": ([
+            "physical": 12,
+            "evil": 10
+        ]),
+        "attack rating": 8,
+        "defense": ([
+            "physical": 12,
+            "evil": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 75.0,
+        "scarcity": "very rare"
+    ]),
+    "trynalt": ([
+        "class": "metal",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 20]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "trynluin": 1,
+            "mithril": 2,
+            "graphite": 1
+        ]),
+        "attack": ([
+            "physical": 12,
+            "good": 10
+        ]),
+        "attack rating": 8,
+        "defense": ([
+            "physical": 12,
+            "good": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 75.0,
+        "scarcity": "very rare"
+    ]),
+    "rhudnalt": ([
+        "class": "metal",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 20]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "rhudluin": 1,
+            "mithril": 2,
+            "graphite": 1
+        ]),
+        "attack": ([
+            "physical": 10,
+            "fire": 10
+        ]),
+        "attack rating": 8,
+        "defense": ([
+            "physical": 10,
+            "fire": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 70.0,
+        "scarcity": "very rare"
+    ]),
+    "melynalt": ([
+        "class": "metal",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 20]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "melynuin": 1,
+            "mithril": 2,
+            "graphite": 1
+        ]),
+        "attack": ([
+            "physical": 10,
+            "energy": 10
+        ]),
+        "attack rating": 8,
+        "defense": ([
+            "physical": 10,
+            "energy": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 70.0,
+        "scarcity": "very rare"
+    ]),
+    "asurnalt": ([
+        "class": "metal",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 20]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "asurluin": 1,
+            "mithril": 2,
+            "graphite": 1
+        ]),
+        "attack": ([
+            "physical": 10,
+            "water": 10
+        ]),
+        "attack rating": 8,
+        "defense": ([
+            "physical": 10,
+            "water": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 70.0,
+        "scarcity": "very rare"
+    ]),
+    "marnalt": ([
+        "class": "metal",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 20]),
+            "blacksmithing": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "marnluin": 1,
+            "mithril": 2,
+            "graphite": 1
+        ]),
+        "attack": ([
+            "physical": 10,
+            "cold": 10
+        ]),
+        "attack rating": 8,
+        "defense": ([
+            "physical": 10,
+            "cold": 10
+        ]),
+        "encumberance": -3,
+        "value multiplier": 70.0,
         "scarcity": "very rare"
     ]),
 ]);
