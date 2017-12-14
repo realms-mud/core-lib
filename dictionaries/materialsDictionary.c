@@ -180,13 +180,50 @@ public nomask int isValidBonus(string bonus)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int getDefaultEquipmentLocations(string type)
+public nomask string *getEquipmentSubTypes(string type)
 {
-    int ret = 0;
+    string *ret = ({});
+    mapping items = ([]);
+    if (type == "armor")
+    {
+        items = armorBlueprints;
+    }
+    else if (type == "weapons")
+    {
+        items = weaponBlueprints;
+    }
+    string *indices = m_indices(items);
 
-        //TODO
+    if (sizeof(indices))
+    {
+        foreach(string item in indices)
+        {
+            if (member(ret, items[item]["subtype"]) < 0)
+            {
+                ret += ({ items[item]["subtype"] });
+            }
+        }
+    }
+    return sort_array(ret, (: $1 > $2 :));
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getEquipmentBySubType(string type, string subType)
+{
+    mapping items = ([]);
+    if (type == "armor")
+    {
+        items = armorBlueprints;
+    }
+    else if (type == "weapons")
+    {
+        items = weaponBlueprints;
+    }
+    string *indices = m_indices(items);
   
-    return ret;
+    return filter(indices,
+        (: $3[$1]["subtype"] == $2 :), subType, items);
 }
 
 /////////////////////////////////////////////////////////////////////////////

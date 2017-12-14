@@ -5,6 +5,12 @@
 #include "/lib/include/itemFormatters.h"
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask object getDictionary()
+{
+    return load_object("/lib/dictionaries/materialsDictionary.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getTopLevelCraftingMenu(object user)
 {
     return ([
@@ -67,8 +73,8 @@ public nomask mapping getTopLevelCraftingMenu(object user)
             "name":"Imbue Materials with Magical Effects",
             "description" : "This option lets you imbue crafting materials with magical effect,\n"
                 "provided that you have the proper materials and knowledge on hand.\n",
-            "selector" : "imbue with magical effects",
-            "canShow" : user->getSkill("spellcraft")
+            "selector": "imbue with magical effects",
+            "canShow": user->getSkill("spellcraft")
         ]),
     ]);
 }
@@ -76,5 +82,22 @@ public nomask mapping getTopLevelCraftingMenu(object user)
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getCraftingList(string type, object user)
 {
-    return ([]);
+    mapping ret = ([]);
+    string *itemSubtypes = getDictionary()->getEquipmentSubTypes(type);
+
+    int menuItem = 1;
+    if (sizeof(itemSubtypes))
+    {
+        foreach(string item in itemSubtypes)
+        {
+            ret[to_string(menuItem)] = ([
+                "name": capitalize(item),
+                "description": "",
+                "selector": item,
+                "canShow": 1
+            ]);
+            menuItem++;
+        }
+    }
+    return ret;
 }
