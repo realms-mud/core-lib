@@ -31,7 +31,7 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
 {
     Selector->initiateSelector(Player);
 
-    ExpectEq("[0;36mCraft Armor - [0m[0;37;1mFrom this menu, you can craft armor[0m:\n"
+    ExpectEq("[0;36mCraft Armor - [0m[0;37;1mFrom this menu, you can craft items[0m:\n"
         "\t[[0;31;1m1[0m] - [0;32mAccessory           [0m\n"
         "\t[[0;31;1m2[0m] - [0;32mClothing            [0m\n"
         "\t[[0;31;1m3[0m] - [0;32mHeavy armor         [0m\n"
@@ -43,3 +43,62 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
         Player->caughtMessage());
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingAccessoryDisplaysAccessoryMenu()
+{
+    Selector->initiateSelector(Player);
+    command("1", Player);
+
+    ExpectSubStringMatch("36mCraft Accessory.*Exit Craft Accessory",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingClothingDisplaysClothingMenu()
+{
+    Selector->initiateSelector(Player);
+    command("2", Player);
+
+    ExpectSubStringMatch("36mCraft Clothing.*Exit Craft Clothing",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingHeavyArmorDisplaysHeavyArmorMenu()
+{
+    Selector->initiateSelector(Player);
+    command("3", Player);
+
+    ExpectSubStringMatch("36mCraft Heavy armor.*Exit Craft Heavy armor",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingLightArmorDisplaysLightArmorMenu()
+{
+    Selector->initiateSelector(Player);
+    command("4", Player);
+
+    ExpectSubStringMatch("36mCraft Light armor.*Exit Craft Light armor",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingMediumArmorDisplaysMediumArmorMenu()
+{
+    Selector->initiateSelector(Player);
+    command("5", Player);
+
+    ExpectSubStringMatch("36mCraft Medium armor.*Exit Craft Medium armor",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingExitReturnsToTopLevelMenu()
+{
+    Selector->initiateSelector(Player);
+    command("6", Player);
+
+    ExpectSubStringMatch("You have selected 'Exit Craft Armor Menu'",
+        Player->caughtMessage());
+}

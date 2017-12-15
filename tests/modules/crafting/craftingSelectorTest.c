@@ -166,7 +166,7 @@ void SelectingCraftArmorDisplaysCorrectSubmenu()
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftArmor.c"), "added research");
     Selector->initiateSelector(Player);
     command("1", Player);
-    ExpectSubStringMatch("36mCraft Armor.*From this menu, you can craft armor",
+    ExpectSubStringMatch("36mCraft Armor.*From this menu, you can craft items",
         Player->caughtMessage());
 }
 

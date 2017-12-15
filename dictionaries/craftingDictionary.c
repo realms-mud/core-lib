@@ -93,8 +93,35 @@ public nomask mapping getCraftingList(string type, object user)
             ret[to_string(menuItem)] = ([
                 "name": capitalize(item),
                 "description": "",
-                "selector": item,
+                "selector": type,
+                "sub type": item,
                 "canShow": 1
+            ]);
+            menuItem++;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getCraftingListBySubType(string type, string subType,
+    object user)
+{
+    mapping ret = ([]);
+    string *itemSubtypes = getDictionary()->getEquipmentBySubType(type, 
+        subType);
+
+    int menuItem = 1;
+    if (sizeof(itemSubtypes))
+    {
+        foreach(string item in itemSubtypes)
+        {
+            ret[to_string(menuItem)] = ([
+                "name":capitalize(item),
+                "description" : "",
+                "selector" : type,
+                "sub type" : item,
+                "canShow" : 1
             ]);
             menuItem++;
         }

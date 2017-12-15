@@ -31,7 +31,7 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
 {
     Selector->initiateSelector(Player);
 
-    ExpectEq("[0;36mCraft Weapons - [0m[0;37;1mFrom this menu, you can craft weapons[0m:\n"
+    ExpectEq("[0;36mCraft Weapons - [0m[0;37;1mFrom this menu, you can craft items[0m:\n"
         "\t[[0;31;1m1[0m]  - [0;32mAxe                 [0m\n"
         "\t[[0;31;1m2[0m]  - [0;32mBow                 [0m\n"
         "\t[[0;31;1m3[0m]  - [0;32mCrossbow            [0m\n"

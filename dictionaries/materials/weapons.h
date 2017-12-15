@@ -17,8 +17,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 10,
-            "leather": 1
+            "blade": (["metal": 6 ]),
+            "guard": (["metal": 2, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "long sword",
         "default wc": 10,
@@ -43,8 +45,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 12,
-            "leather": 1
+            "blade": (["metal": 8 ]),
+            "guard": (["metal": 2, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "long sword",
         "default wc": 10,
@@ -69,8 +73,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
         "crafting materials": ([
-            "metal": 8,
-            "leather": 1
+            "blade": (["metal": 4 ]),
+            "guard": (["metal": 2, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "long sword",
         "default wc": 6,
@@ -95,8 +101,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 15]),
         ]),
         "crafting materials": ([
-            "metal": 10,
-            "leather": 1
+            "blade": (["metal": 6 ]),
+            "guard": (["metal": 2, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "hand and a half sword",
         "default wc": 10,
@@ -121,8 +129,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 11,
-            "leather": 1
+            "blade": (["metal": 8 ]),
+            "guard": (["metal": 2, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "long sword",
         "default wc": 8,
@@ -147,8 +157,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 12,
-            "leather": 1
+            "blade": (["metal": 6 ]),
+            "guard": (["metal": 2, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "long sword",
         "default wc": 8,
@@ -173,8 +185,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 12,
-            "leather": 1
+            "blade": (["metal": 8 ]),
+            "guard": (["metal": 2, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "long sword",
         "default wc": 8,
@@ -199,8 +213,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 10,
-            "leather": 1
+            "blade": (["metal": 6 ]),
+            "guard": (["metal": 2, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "long sword",
         "default wc": 10,
@@ -225,8 +241,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "leather": 1
+            "blade": (["metal": 3 ]),
+            "guard": (["metal": 1, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "short sword",
         "default wc": 6,
@@ -251,8 +269,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 7,
-            "leather": 1
+            "blade": (["metal":4 ]),
+            "guard": (["metal": 1, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "short sword",
         "default wc": 6,
@@ -277,8 +297,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 7,
-            "leather": 1
+            "blade": (["metal": 4 ]),
+            "guard": (["metal": 1, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "short sword",
         "default wc": 6,
@@ -303,8 +325,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "leather": 1
+            "blade": (["metal": 3 ]),
+            "guard": (["metal": 1, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "short sword",
         "default wc": 6,
@@ -329,8 +353,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
         "crafting materials": ([
-            "metal": 4,
-            "leather": 1
+            "blade": (["metal": 3 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
         ]),
         "skill to use": "short sword",
         "default wc": 5,
@@ -355,9 +379,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 4,
-            "leather": 1,
-            "wood": 1
+            "blade": (["metal": 3 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ])
         ]),
         "skill to use": "short sword",
         "default wc": 5,
@@ -382,9 +405,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 4,
-            "leather": 1,
-            "wood": 1
+            "blade": (["metal": 3 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ])
         ]),
         "skill to use": "short sword",
         "default wc": 4,
@@ -409,8 +431,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 1
+            "blade": (["metal": 1 ]),
+            "hilt": (["metal": 1, "wood": 1 ]),
         ]),
         "skill to use": "dagger",
         "default wc": 3,
@@ -435,8 +457,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "leather": 1
+            "blade": (["metal": 3 ]),
+            "binding": (["leather": 1 ]),
         ]),
         "skill to use": "dagger",
         "default wc": 4,
@@ -461,8 +483,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "leather": 1
+            "blade": (["metal": 3 ]),
+            "binding": (["leather": 1 ]),
         ]),
         "skill to use": "dagger",
         "default wc": 4,
@@ -487,8 +509,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 3,
-            "leather": 1
+            "blade": (["metal": 4 ]),
+            "binding": (["leather": 2 ]),
         ]),
         "skill to use": "dagger",
         "default wc": 4,
@@ -513,8 +535,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "leather": 1
+            "blade": (["metal": 1 ]),
+            "guard": (["metal": 0, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "dagger",
         "default wc": 4,
@@ -539,8 +563,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "leather": 1
+            "blade": (["metal": 1 ]),
+            "guard": (["metal": 0, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "dagger",
         "default wc": 4,
@@ -565,8 +591,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "leather": 1
+            "blade": (["metal": 1 ]),
+            "guard": (["metal": 0, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
         "skill to use": "dagger",
         "default wc": 5,
@@ -591,8 +619,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 15]),
         ]),
         "crafting materials": ([
-            "metal": 15,
-            "leather": 1
+            "blade": (["metal": 10 ]),
+            "guard": (["metal": 1, "crystal": 0 ]),
+            "hilt": (["metal": 2, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 2, "crystal": 0 ]),
         ]),
         "skill to use": "two-handed sword",
         "default wc": 16,
@@ -617,8 +647,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 15,
-            "leather": 1
+            "blade": (["metal": 10 ]),
+            "guard": (["metal": 1, "crystal": 0 ]),
+            "hilt": (["metal": 2, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 2, "crystal": 0 ]),
         ]),
         "skill to use": "two-handed sword",
         "default wc": 15,
@@ -643,8 +675,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 20]),
         ]),
         "crafting materials": ([
-            "metal": 15,
-            "leather": 1
+            "blade": (["metal": 10 ]),
+            "guard": (["metal": 1, "crystal": 0 ]),
+            "hilt": (["metal": 2, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 2, "crystal": 0 ]),
         ]),
         "skill to use": "two-handed sword",
         "default wc": 18,
@@ -669,8 +703,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 12,
-            "leather": 1
+            "blade": (["metal": 8 ]),
+            "guard": (["metal": 1, "crystal": 0 ]),
+            "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
+            "pommel": (["metal": 2, "crystal": 0 ]),
         ]),
         "skill to use": "hand and a half sword",
         "default wc": 12,
@@ -695,9 +731,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 15]),
         ]),
         "crafting materials": ([
-            "metal": 4,
-            "leather": 1,
-            "wood": 5
+            "blade": (["metal": 4 ]),
+            "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 15,
@@ -720,8 +755,8 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "leather": 1
+            "head": (["wood": 1, "crystal" : 0 ]),
+            "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
         "default wc": 2,
@@ -748,10 +783,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "leather": 1,
-            "metal": 2,
-            "crystal": 1
+            "head": (["wood": 1, "metal": 1, "crystal": 1 ]),
+            "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
         "default wc": 8,
@@ -774,8 +807,8 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "leather": 1
+            "head": (["wood": 1, "crystal": 0 ]),
+            "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
         "default wc": 4,
@@ -800,9 +833,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "metal": 3,
-            "leather": 1
+            "head": (["wood": 1, "metal": 2, "crystal": 0 ]),
+            "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
         "default wc": 8,
@@ -827,9 +859,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "metal": 4,
-            "leather": 1
+            "blade": (["metal": 4 ]),
+            "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
         "default wc": 12,
@@ -854,9 +885,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 4,
-            "leather": 1,
-            "wood": 5
+            "blade": (["metal": 4 ]),
+            "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
         "default wc": 12,
@@ -881,9 +911,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "leather": 1,
-            "wood": 6
+            "head": (["wood": 1, "crystal" : 0]),
+            "shaft": (["wood": 4, "leather": 1 ]),
+            "shield": ([ "wood": 2, "metal": 2 ])
         ]),
         "skill to use": "staff",
         "default wc": 4,
@@ -908,8 +938,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 4
+            "head": (["metal": 5 ]),
+            "haft": (["wood": 4 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 10,
@@ -934,8 +965,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "wood": 3
+            "head": (["metal": 4 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 7,
@@ -960,8 +992,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "wood": 3
+            "head": (["metal": 5 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 8,
@@ -986,8 +1019,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
         "crafting materials": ([
-            "metal": 3,
-            "wood": 1
+            "head": (["metal": 3 ]),
+            "haft": (["wood": 1 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 4,
@@ -1012,8 +1046,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 3,
-            "wood": 3
+            "head": (["metal": 3 ]),
+            "haft": (["wood": 2 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 5,
@@ -1038,8 +1073,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 3
+            "head": (["metal": 5 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 9,
@@ -1064,8 +1100,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 3
+            "head": (["metal": 5 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 10,
@@ -1090,8 +1127,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 4
+            "head": (["metal": 6 ]),
+            "haft": (["wood": 4 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 12,
@@ -1116,8 +1154,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 5
+            "head": (["metal": 6 ]),
+            "haft": (["wood": 5 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 12,
@@ -1142,8 +1181,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 8,
-            "wood": 5
+            "head": (["metal": 8 ]),
+            "haft": (["wood": 4 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 12,
@@ -1155,7 +1195,7 @@ private nosave mapping weaponBlueprints = ([
         "default value": 375,
         "default description": ""
     ]),
-     "labrys": ([
+    "labrys": ([
         "type": "two-handed weapon",
         "subtype": "axe",
         "default location": TwohandedWeapon,
@@ -1168,8 +1208,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 8,
-            "wood": 5
+            "head": (["metal": 8 ]),
+            "haft": (["wood": 5 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 11,
@@ -1194,8 +1235,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
         "crafting materials": ([
-            "metal": 7,
-            "wood": 5
+            "head": (["metal": 7 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "axe",
         "default wc": 16,
@@ -1220,8 +1262,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
         "crafting materials": ([
-            "metal": 8,
-            "wood": 5
+            "head": (["metal": 7 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "hammer",
         "default wc": 14,
@@ -1246,9 +1289,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 6
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 14,
@@ -1273,9 +1316,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 15,
@@ -1300,9 +1343,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1327,9 +1370,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 4,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 4 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 10,
@@ -1354,9 +1397,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 4 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 14,
@@ -1381,9 +1424,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1408,9 +1451,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 4 ]),
+            "shaft": (["wood": 4 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1435,9 +1478,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 5 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1462,9 +1505,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1489,9 +1532,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 10,
@@ -1516,9 +1559,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "leather": 1,
-            "wood": 6
+            "head": (["metal": 6 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 15,
@@ -1543,9 +1586,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 6
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1570,9 +1613,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 14,
@@ -1597,9 +1640,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 5 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1624,9 +1667,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1651,9 +1694,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1678,9 +1721,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1705,9 +1748,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1732,9 +1775,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "leather": 1,
-            "wood": 7
+            "head": (["metal": 2, "wood": 1 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 14,
@@ -1759,9 +1802,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1786,9 +1829,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 5 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1813,9 +1856,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 3,
-            "leather": 1,
-            "wood": 5
+            "head": (["metal": 3 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 12,
@@ -1840,9 +1883,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 3,
-            "leather": 1,
-            "wood": 4
+            "head": (["metal": 2 ]),
+            "shaft": (["wood": 4 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "pole arm",
         "default wc": 10,
@@ -1867,9 +1910,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "wood": 3,
-            "leather": 1
+            "head": (["metal": 4 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "hammer",
         "default wc": 10,
@@ -1894,9 +1937,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "wood": 4,
-            "leather": 1
+            "head": (["metal": 5 ]),
+            "haft": (["wood": 4 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "hammer",
         "default wc": 12,
@@ -1921,9 +1964,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "wood": 5,
-            "leather": 1
+            "head": (["metal": 5 ]),
+            "haft": (["wood": 5 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "hammer",
         "default wc": 13,
@@ -1946,7 +1989,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
         "crafting materials": ([
-            "wood": 4
+            "head": (["wood": 2 ]),
+            "haft": (["wood": 2 ])
         ]),
         "skill to use": "mace",
         "default wc": 4,
@@ -1969,7 +2013,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
         "crafting materials": ([
-            "wood": 4
+            "head": (["wood": 2 ]),
+            "haft": (["wood": 2 ])
         ]),
         "skill to use": "mace",
         "default wc": 4,
@@ -1994,9 +2039,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "wood": 3,
-            "leather": 1
+            "head": (["metal": 5 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "mace",
         "default wc": 8,
@@ -2021,9 +2066,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 2]),
         ]),
         "crafting materials": ([
-            "metal": 4,
-            "wood": 3,
-            "leather": 1
+            "head": (["metal": 4 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "mace",
         "default wc": 6,
@@ -2047,8 +2092,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "leather": 1
+            "head": (["metal": 3 ]),
+            "haft": (["metal": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "mace",
         "default wc": 8,
@@ -2073,9 +2119,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 2,
-            "leather": 1
+            "head": (["metal": 5 ]),
+            "haft": (["wood": 2 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "mace",
         "default wc": 10,
@@ -2100,9 +2146,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 2,
-            "leather": 1
+            "head": (["metal": 6 ]),
+            "haft": (["wood": 2 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "mace",
         "default wc": 8,
@@ -2127,8 +2173,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 4
+            "head": (["metal": 2 ]),
+            "haft": (["wood": 4 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "mace",
         "default wc": 8,
@@ -2153,9 +2200,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "wood": 2,
-            "leather": 1
+            "head": (["metal": 3 ]),
+            "chain": (["metal": 2 ]),
+            "haft": (["wood": 2 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "flail",
         "default wc": 6,
@@ -2180,9 +2228,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 2,
-            "leather": 1
+            "head": (["metal": 4 ]),
+            "chain": (["metal": 2 ]),
+            "haft": (["wood": 2 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "flail",
         "default wc": 7,
@@ -2205,7 +2254,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "leather": 4
+            "body": (["leather": 4 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "flail",
         "default wc": 4,
@@ -2230,9 +2280,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 2,
-            "leather": 1
+            "head": (["metal": 4 ]),
+            "chain": (["metal": 2 ]),
+            "haft": (["wood": 2 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "flail",
         "default wc": 8,
@@ -2257,9 +2308,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 2,
-            "leather": 1
+            "head": (["metal": 4 ]),
+            "hinge": (["metal": 1 ]),
+            "haft": (["wood": 2 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "flail",
         "default wc": 9,
@@ -2284,9 +2336,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "wood": 2,
-            "leather": 1
+            "head": (["metal": 4 ]),
+            "chain": (["metal": 1 ]),
+            "haft": (["wood": 2 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "flail",
         "default wc": 10,
@@ -2311,9 +2364,10 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 15]),
         ]),
         "crafting materials": ([
-            "metal": 8,
-            "wood": 3,
-            "leather": 2
+            "head": (["metal": 6 ]),
+            "chain": (["metal": 2 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "flail",
         "default wc": 13,
@@ -2338,9 +2392,10 @@ private nosave mapping weaponBlueprints = ([
             "engineering": (["type":"skill", "value": 2]),
         ]),
         "crafting materials": ([
-            "metal": 1,
-            "wood": 5,
-            "textile": 1
+            "trigger": (["metal": 1 ]),
+            "bow": (["wood": 3 ]),
+            "stock": (["wood": 3, "leather": 1 ]),
+            "string": ([ "textile": 2 ])
         ]),
         "skill to use": "crossbow",
         "default wc": 10,
@@ -2365,9 +2420,11 @@ private nosave mapping weaponBlueprints = ([
             "engineering": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 5,
-            "textile": 1
+            "trigger": (["metal": 1 ]),
+            "lever": (["metal": 1 ]),
+            "bow": (["wood": 3 ]),
+            "stock": (["wood": 3, "leather": 1 ]),
+            "string": ([ "textile": 2 ])
         ]),
         "skill to use": "crossbow",
         "default wc": 11,
@@ -2392,9 +2449,11 @@ private nosave mapping weaponBlueprints = ([
             "engineering": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 3,
-            "wood": 5,
-            "textile": 2
+            "trigger": (["metal": 1 ]),
+            "cranequin": (["metal": 1 ]),
+            "bow": (["wood": 3 ]),
+            "stock": (["wood": 3, "leather": 1 ]),
+            "string": ([ "textile": 2 ])
         ]),
         "skill to use": "crossbow",
         "default wc": 15,
@@ -2418,8 +2477,10 @@ private nosave mapping weaponBlueprints = ([
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "wood": 5,
-            "textile": 1
+            "bow": (["wood": 3 ]),
+            "rest": (["wood": 1 ]),
+            "grip": (["leather": 1 ]),
+            "string": ([ "textile": 3 ])
         ]),
         "skill to use": "bow",
         "default wc": 7,
@@ -2443,8 +2504,10 @@ private nosave mapping weaponBlueprints = ([
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "textile": 1
+            "bow": (["wood": 4 ]),
+            "rest": (["wood": 1 ]),
+            "grip": (["leather": 1 ]),
+            "string": ([ "textile": 4 ])
         ]),
         "skill to use": "bow",
         "default wc": 8,
@@ -2468,8 +2531,10 @@ private nosave mapping weaponBlueprints = ([
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "textile": 2
+            "bow": (["wood": 5 ]),
+            "rest": (["wood": 1 ]),
+            "grip": (["leather": 1 ]),
+            "string": ([ "textile": 5 ])
         ]),
         "skill to use": "bow",
         "default wc": 10,
@@ -2493,8 +2558,10 @@ private nosave mapping weaponBlueprints = ([
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "textile": 1
+            "bow": (["wood": 4 ]),
+            "rest": (["wood": 1 ]),
+            "grip": (["leather": 1 ]),
+            "string": ([ "textile": 4 ])
         ]),
         "skill to use": "bow",
         "default wc": 8,
@@ -2518,9 +2585,10 @@ private nosave mapping weaponBlueprints = ([
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "exotic": 1,
-            "textile": 1
+            "bow": (["wood": 4, "exotic": 2 ]),
+            "rest": (["wood": 1 ]),
+            "grip": (["leather": 1 ]),
+            "string": ([ "textile": 5 ])
         ]),
         "skill to use": "bow",
         "default wc": 12,
@@ -2543,8 +2611,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 2]),
         ]),
         "crafting materials": ([
-            "leather": 1,
-            "textile": 1
+            "projectile pocket": (["leather": 1 ]),
+            "rope": ([ "textile": 2 ])
         ]),
         "skill to use": "sling",
         "default wc": 4,
@@ -2568,9 +2636,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "wood": 6,
-            "leather": 1,
-            "textile": 1
+            "shaft": ([ "wood": 4 ]),
+            "projectile pocket": (["leather": 1 ]),
+            "rope": ([ "textile": 2 ])
         ]),
         "skill to use": "sling",
         "default wc": 6,
@@ -2593,9 +2661,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "wood": 1,
-            "leather": 1,
-            "textile": 1
+            "grip": ([ "wood": 1 ]),
+            "projectile pocket": (["leather": 1 ]),
+            "rope": ([ "textile": 2 ])
         ]),
         "skill to use": "sling",
         "default wc": 6,
@@ -2618,8 +2686,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "leather": 1,
-            "textile": 2
+            "projectile pocket": (["leather": 1 ]),
+            "rope": ([ "textile": 3 ])
         ]),
         "skill to use": "sling",
         "default wc": 8,
@@ -2642,8 +2710,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 1,
-            "wood": 5
+            "shaft": (["wood": 4 ]),
+            "head": (["metal": 1 ])
         ]),
         "skill to use": "thrown",
         "default wc": 6,
@@ -2666,8 +2734,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 4
+            "shaft": (["wood": 4 ]),
+            "head": (["metal": 2 ])
         ]),
         "skill to use": "thrown",
         "default wc": 8,
@@ -2688,7 +2756,7 @@ private nosave mapping weaponBlueprints = ([
         "crafting prerequisites": ([
         ]),
         "crafting materials": ([
-            "stone": 1
+            "bullet": (["stone": 1 ])
         ]),
         "skill to use": "thrown",
         "default wc": 2,
@@ -2711,8 +2779,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
         "crafting materials": ([
-            "metal": 1,
-            "wood": 1
+            "shaft": (["wood": 1, "feather": 4 ]),
+            "head": (["metal": 1 ])
         ]),
         "skill to use": "thrown",
         "default wc": 5,
@@ -2735,8 +2803,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 5
+            "shaft": (["wood": 4 ]),
+            "head": (["metal": 2 ])
         ]),
         "skill to use": "thrown",
         "default wc": 9,
@@ -2759,8 +2827,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 4
+            "haft": (["wood": 2 ]),
+            "head": (["metal": 2 ]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "thrown",
         "default wc": 8,
@@ -2783,8 +2852,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 4
+            "haft": (["wood": 2 ]),
+            "head": (["metal": 2 ]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "thrown",
         "default wc": 8,
@@ -2808,8 +2878,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 4
+            "shield": (["wood":2, "metal": 2 ]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "shield",
         "default wc": 0,
@@ -2833,8 +2903,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 1,
-            "wood": 6
+            "shield": (["wood":6, "metal": 1 ]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "shield",
         "default wc": 0,
@@ -2858,8 +2928,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 6
+            "shield": (["wood":3, "metal": 2 ]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "shield",
         "default wc": 0,
@@ -2883,8 +2953,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
         "crafting materials": ([
-            "metal": 1,
-            "wood": 5
+            "shield": (["wood":4, "metal": 2 ]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "shield",
         "default wc": 0,
@@ -2908,8 +2978,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 6
+            "shield": (["wood":5, "metal": 2 ]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "shield",
         "default wc": 0,
@@ -2933,8 +3003,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 6
+            "shield": (["wood":5, "metal": 2 ]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "shield",
         "default wc": 0,
@@ -2958,8 +3028,8 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 7
+            "shield": (["wood":6, "metal": 2 ]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "shield",
         "default wc": 0,
@@ -2984,8 +3054,9 @@ private nosave mapping weaponBlueprints = ([
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "wood": 6
+            "shield": (["wood":6, "metal": 1 ]),
+            "spike": (["metal":1]),
+            "grip": (["leather": 1])
         ]),
         "skill to use": "shield",
         "default wc": 2,

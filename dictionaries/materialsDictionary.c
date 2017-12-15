@@ -207,7 +207,6 @@ public nomask string *getEquipmentSubTypes(string type)
     return sort_array(ret, (: $1 > $2 :));
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *getEquipmentBySubType(string type, string subType)
 {
@@ -222,8 +221,9 @@ public nomask string *getEquipmentBySubType(string type, string subType)
     }
     string *indices = m_indices(items);
   
-    return filter(indices,
-        (: $3[$1]["subtype"] == $2 :), subType, items);
+    return sort_array(filter(indices,
+        (: $3[$1]["subtype"] == $2 :), subType, items),
+        (: $1 > $2 :));
 }
 
 /////////////////////////////////////////////////////////////////////////////
