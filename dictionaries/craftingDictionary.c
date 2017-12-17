@@ -117,14 +117,20 @@ public nomask mapping getCraftingListBySubType(string type, string subType,
         foreach(string item in itemSubtypes)
         {
             ret[to_string(menuItem)] = ([
-                "name":capitalize(item),
-                "description" : "",
-                "selector" : type,
-                "sub type" : item,
-                "canShow" : 1
+                "name": capitalize(item),
+                "description": "",
+                "selector": item,
+                "canShow": 1,
+                "show materials": 1
             ]);
             menuItem++;
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getCraftingDataForItem(string item, object user)
+{
+    return ([]);
 }

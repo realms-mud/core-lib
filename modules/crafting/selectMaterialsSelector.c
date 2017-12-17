@@ -6,19 +6,12 @@ inherit "/lib/core/baseSelector.c";
 
 private object Dictionary;
 private object SubselectorObj;
-private string CraftingType;
-private string CraftingSubType = 0;
+private string CraftingItem;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setType(string type)
+public nomask void setItem(string item)
 {
-    CraftingType = type;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void setSubType(string type)
-{
-    CraftingSubType = type;
+    CraftingItem = item;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -36,27 +29,19 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    if (!CraftingType)
+    if (!CraftingItem)
     {
-        raise_error("ERROR: craftItemSubselector.c - The type has not been "
+        raise_error("ERROR: selectMaterialsSelector.c - The type has not been "
             "set.\n");
     }
 
-    string displayType = CraftingSubType ? CraftingSubType : CraftingType;
-
     Description = "From this menu, you can craft items";
-    Type = "Craft " + capitalize(displayType);
+    Type = "Craft " + capitalize(CraftingItem);
 
-    if (CraftingSubType)
-    {
-        Data = Dictionary->getCraftingListBySubType(CraftingType, CraftingSubType, User);
-    }
-    else
-    {
-        Data = Dictionary->getCraftingList(CraftingType, User);
-    }
+    Data = Dictionary->getCraftingDataForItem(CraftingItem, User);
+
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name": sprintf("Exit Craft %s Menu", capitalize(displayType)),
+        "name": sprintf("Exit Craft %s Menu", capitalize(CraftingItem)),
         "type": "exit",
         "description": "This option lets you exit this crafting menu.\n"
     ]);
@@ -71,28 +56,12 @@ protected nomask int processSelection(string selection)
         ret = (Data[selection]["type"] == "exit");
         if (!ret)
         {
-            if(member(Data[selection], "show materials"))
-            {
-                SubselectorObj =
-                    clone_object("/lib/modules/crafting/selectMaterialsSelector.c");
-                SubselectorObj->setItem(Data[selection]["selector"]);
-                move_object(SubselectorObj, User);
-                SubselectorObj->registerEvent(this_object());
-                SubselectorObj->initiateSelector(User);
-            }
-            else
-            {
-                SubselectorObj =
-                    clone_object("/lib/modules/crafting/craftItemSelector.c");
-                SubselectorObj->setType(Data[selection]["selector"]);
-                if (member(Data[selection], "sub type"))
-                {
-                    SubselectorObj->setSubType(Data[selection]["sub type"]);
-                }
-                move_object(SubselectorObj, User);
-                SubselectorObj->registerEvent(this_object());
-                SubselectorObj->initiateSelector(User);
-            }
+            SubselectorObj =
+                clone_object("/lib/modules/crafting/selectMaterialsSelector.c");
+            SubselectorObj->setItem(Data[selection]["selector"]);
+            move_object(SubselectorObj, User);
+            SubselectorObj->registerEvent(this_object());
+            SubselectorObj->initiateSelector(User);
         }
     }
     return ret;
