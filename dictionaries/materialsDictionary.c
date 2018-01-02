@@ -25,8 +25,6 @@ private nosave string *validArmorLocations = ({ "armor", "gloves", "helmet",
     "bracers" });
 private nosave string *validArmorTypes = ({ "plate armor", "splint armor", "chainmail",
     "scalemail", "hard leather", "soft leather", "no armor" });
-//private nosave string *validWeaponTypes = ({ "one-handed weapon", 
-//    "two-handed weapon", "ranged weapon" });
 private nosave string *validWeaponTypes = ({ "shield", "axe", "long sword",
     "hand and a half sword", "short sword", "dagger", "bow", "crossbow", "sling",
     "thrown", "two-handed sword", "pole arm", "mace", "hammer", "flail", "staff" });
@@ -177,53 +175,6 @@ public nomask int isValidDamageType(string type)
 public nomask int isValidBonus(string bonus)
 {
     return (member(validBonuses, bonus) > -1);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask string *getEquipmentSubTypes(string type)
-{
-    string *ret = ({});
-    mapping items = ([]);
-    if (type == "armor")
-    {
-        items = armorBlueprints;
-    }
-    else if (type == "weapons")
-    {
-        items = weaponBlueprints;
-    }
-    string *indices = m_indices(items);
-
-    if (sizeof(indices))
-    {
-        foreach(string item in indices)
-        {
-            if (member(ret, items[item]["subtype"]) < 0)
-            {
-                ret += ({ items[item]["subtype"] });
-            }
-        }
-    }
-    return sort_array(ret, (: $1 > $2 :));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask string *getEquipmentBySubType(string type, string subType)
-{
-    mapping items = ([]);
-    if (type == "armor")
-    {
-        items = armorBlueprints;
-    }
-    else if (type == "weapons")
-    {
-        items = weaponBlueprints;
-    }
-    string *indices = m_indices(items);
-  
-    return sort_array(filter(indices,
-        (: $3[$1]["subtype"] == $2 :), subType, items),
-        (: $1 > $2 :));
 }
 
 /////////////////////////////////////////////////////////////////////////////

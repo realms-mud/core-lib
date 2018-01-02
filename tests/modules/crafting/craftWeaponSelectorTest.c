@@ -51,3 +51,22 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
         Player->caughtMessage());
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingMediumArmorDisplaysMediumArmorMenu()
+{
+    Selector->initiateSelector(Player);
+    command("12", Player);
+
+    ExpectSubStringMatch("36mCraft Sword.*Exit Craft Sword",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingExitReturnsToTopLevelMenu()
+{
+    Selector->initiateSelector(Player);
+    command("14", Player);
+
+    ExpectSubStringMatch("You have selected 'Exit Craft Weapons Menu'",
+        Player->caughtMessage());
+}

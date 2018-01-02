@@ -5,13 +5,13 @@
 
 private nosave mapping weaponBlueprints = ([
     "long sword": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftLongSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -33,13 +33,13 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "broad sword": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftLongSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -61,7 +61,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "rapier": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -89,7 +89,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "katana": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -117,13 +117,13 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "scimitar": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftCurvedSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -145,13 +145,13 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "cutlass": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftCurvedSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -173,13 +173,13 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "sabre": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftCurvedSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -201,13 +201,13 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "spatha": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftLongSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -229,7 +229,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "short sword": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -257,7 +257,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "gladius": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -285,7 +285,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "harpe": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -313,7 +313,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "wakisashi": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -341,7 +341,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "machete": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -367,13 +367,13 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "sickle": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftCurvedSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -393,7 +393,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "kama": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -419,7 +419,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "knife": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "dagger",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -445,13 +445,13 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "tiger claws": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "dagger",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftExoticSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -471,13 +471,13 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "talon": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "dagger",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftExoticSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -497,13 +497,13 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "katar": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "dagger",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicSwords.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftExoticSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -523,7 +523,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "dagger": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "dagger",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -551,7 +551,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "dirk": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "dagger",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -579,7 +579,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "stiletto": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "dagger",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -607,7 +607,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "claymore": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -635,7 +635,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "great sword": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -663,7 +663,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "odachi": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -691,7 +691,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "bastard sword": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sword",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -719,7 +719,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "sword staff": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -745,7 +745,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "staff": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "staff",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -769,7 +769,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "ornate staff": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "staff",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -797,7 +797,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "quarterstaff": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "staff",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -821,7 +821,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "brogit staff": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "staff",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -847,7 +847,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "jeddart staff": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "staff",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -873,7 +873,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "swordstaff": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "staff",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -899,7 +899,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "shield staff": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "staff",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -926,7 +926,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "battle axe": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -953,7 +953,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "axe": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -980,7 +980,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "bearded axe": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -1007,7 +1007,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "hatchet": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -1034,7 +1034,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "panabas": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -1061,7 +1061,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "danish axe": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -1088,7 +1088,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "broad axe": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -1115,7 +1115,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "sparth axe": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1142,7 +1142,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "lochaber axe": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1169,7 +1169,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "double bit axe": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1196,7 +1196,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "labrys": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1223,7 +1223,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
    "splitting maul": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "axe",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -1250,7 +1250,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "maul": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "hammer",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -1277,7 +1277,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "bardiche": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location":TwohandedWeapon,
         "damage type": "slash",
@@ -1304,7 +1304,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "bec de corbin": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -1331,7 +1331,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "bill": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1358,7 +1358,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "brandistock": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -1385,7 +1385,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "earspoon": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1412,7 +1412,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "military fork": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1439,7 +1439,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "pitchfork": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1466,7 +1466,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "trident": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1493,7 +1493,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "partisan": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1520,7 +1520,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "ranseur": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1547,7 +1547,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "halberd": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1574,7 +1574,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "sovnya": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1601,7 +1601,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "spetum": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1628,7 +1628,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "war scythe": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1655,7 +1655,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "fauchard": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1682,7 +1682,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "guisarme": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1709,7 +1709,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "pollaxe": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1736,7 +1736,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "ahlspiess": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1763,7 +1763,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "lance": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1790,7 +1790,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "voulge": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1817,7 +1817,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "glaive": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "slash",
@@ -1844,7 +1844,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "pike": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1871,7 +1871,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "spear": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "pole arm",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -1898,7 +1898,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "war hammer": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "hammer",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -1925,7 +1925,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "horseman's pick": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "hammer",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -1952,7 +1952,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "lucerne hammer": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "hammer",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -1979,7 +1979,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "club": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "mace",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2003,7 +2003,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "cudgel": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "mace",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2027,7 +2027,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "mace": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "mace",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2054,7 +2054,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "virge": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "mace",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2081,7 +2081,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "pernach": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "mace",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2107,7 +2107,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "flanged mace": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "mace",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2134,7 +2134,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "morning star": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "mace",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2161,7 +2161,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "goedendag": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "mace",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -2188,7 +2188,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "flail": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "flail",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2216,7 +2216,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "kusarigama": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "flail",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -2244,7 +2244,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "whip": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "flail",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -2268,7 +2268,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "military flail": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "flail",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2296,7 +2296,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "hinged flail": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "flail",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2324,7 +2324,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "segmented flail": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "flail",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2352,7 +2352,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "cat of nine tails": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "flail",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -2380,7 +2380,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "crossbow": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "crossbow",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -2408,7 +2408,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "levered crossbow": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "crossbow",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -2437,7 +2437,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "cranequin crossbow": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "crossbow",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -2466,7 +2466,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "short bow": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -2493,7 +2493,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "bow": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -2520,7 +2520,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "long bow": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -2547,7 +2547,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "recurve bow": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -2574,7 +2574,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "composite bow": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
         "damage type": "thrust",
@@ -2601,7 +2601,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "sling": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sling",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2625,7 +2625,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "sling staff": ([
-        "type": "two-handed weapon",
+        "type": "weapon",
         "subtype": "sling",
         "default location": TwohandedWeapon,
         "damage type": "bludgeon",
@@ -2651,7 +2651,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "slingshot": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sling",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2676,7 +2676,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "kestros": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "sling",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2700,7 +2700,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "throwing spear": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "thrown",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -2724,7 +2724,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "javelin": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "thrown",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -2748,7 +2748,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "rock": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "thrown",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2769,7 +2769,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "dart": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "thrown",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -2793,7 +2793,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "pilum": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "thrown",
         "default location": OnehandedWeapon,
         "damage type": "thrust",
@@ -2817,7 +2817,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "throwing axe": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "thrown",
         "default location": OnehandedWeapon,
         "damage type": "slash",
@@ -2842,7 +2842,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
     "throwing hammer": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "thrown",
         "default location": OnehandedWeapon,
         "damage type": "bludgeon",
@@ -2867,7 +2867,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
    "shield": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "shield",
         "default location": Shield,
         "damage type": "bludgeon",
@@ -2892,7 +2892,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
    "bouche shield": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "shield",
         "default location": Shield,
         "damage type": "bludgeon",
@@ -2917,7 +2917,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
    "buckler": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "shield",
         "default location": Shield,
         "damage type": "bludgeon",
@@ -2942,7 +2942,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
    "heater shield": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "shield",
         "default location": Shield,
         "damage type": "bludgeon",
@@ -2967,7 +2967,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
    "kite shield": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "shield",
         "default location": Shield,
         "damage type": "bludgeon",
@@ -2992,7 +2992,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
    "pavise shield": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "shield",
         "default location": Shield,
         "damage type": "bludgeon",
@@ -3017,7 +3017,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
    "targe shield": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "shield",
         "default location": Shield,
         "damage type": "bludgeon",
@@ -3042,7 +3042,7 @@ private nosave mapping weaponBlueprints = ([
         "default description": ""
     ]),
    "spiked shield": ([
-        "type": "one-handed weapon",
+        "type": "weapon",
         "subtype": "shield",
         "default location": Shield,
         "damage type": "bludgeon",

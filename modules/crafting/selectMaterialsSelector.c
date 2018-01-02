@@ -7,11 +7,18 @@ inherit "/lib/core/baseSelector.c";
 private object Dictionary;
 private object SubselectorObj;
 private string CraftingItem;
+private string CraftingType;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
 {
     CraftingItem = item;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setType(string type)
+{
+    CraftingType = type;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -29,7 +36,7 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    if (!CraftingItem)
+    if (!CraftingItem || !CraftingType)
     {
         raise_error("ERROR: selectMaterialsSelector.c - The type has not been "
             "set.\n");
@@ -38,7 +45,7 @@ protected nomask void setUpUserForSelection()
     Description = "From this menu, you can craft items";
     Type = "Craft " + capitalize(CraftingItem);
 
-    Data = Dictionary->getCraftingDataForItem(CraftingItem, User);
+    Data = Dictionary->getCraftingDataForItem(CraftingType, CraftingItem, User);
 
     Data[to_string(sizeof(Data) + 1)] = ([
         "name": sprintf("Exit Craft %s Menu", capitalize(CraftingItem)),

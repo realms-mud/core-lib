@@ -2,13 +2,11 @@
 // Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "/lib/include/inventory.h"
 #include "/lib/include/itemFormatters.h"
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask object getDictionary()
-{
-    return load_object("/lib/dictionaries/materialsDictionary.c");
-}
+#include "materials/materials.h"
+#include "materials/weapons.h"
+#include "materials/armor.h"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getTopLevelCraftingMenu(object user)
@@ -80,10 +78,45 @@ public nomask mapping getTopLevelCraftingMenu(object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask mapping getBlueprintsByType(string type)
+{
+    mapping items = ([]);
+    if (type == "armor")
+    {
+        items = armorBlueprints;
+    }
+    else if (type == "weapons")
+    {
+        items = weaponBlueprints;
+    }
+    return items + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *getEquipmentSubTypes(string type)
+{
+    string *ret = ({});
+    mapping items = getBlueprintsByType(type);
+    string *indices = m_indices(items);
+
+    if (sizeof(indices))
+    {
+        foreach(string item in indices)
+        {
+            if (member(ret, items[item]["subtype"]) < 0)
+            {
+                ret += ({ items[item]["subtype"] });
+            }
+        }
+    }
+    return sort_array(ret, (: $1 > $2 :));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getCraftingList(string type, object user)
 {
     mapping ret = ([]);
-    string *itemSubtypes = getDictionary()->getEquipmentSubTypes(type);
+    string *itemSubtypes = getEquipmentSubTypes(type);
 
     int menuItem = 1;
     if (sizeof(itemSubtypes))
@@ -92,7 +125,7 @@ public nomask mapping getCraftingList(string type, object user)
         {
             ret[to_string(menuItem)] = ([
                 "name": capitalize(item),
-                "description": "",
+                "description": sprintf("This option lets you craft %s", item),
                 "selector": type,
                 "sub type": item,
                 "canShow": 1
@@ -104,23 +137,116 @@ public nomask mapping getCraftingList(string type, object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string *getEquipmentBySubType(string type, string subType)
+{
+    mapping items = getBlueprintsByType(type);
+    string *indices = m_indices(items);
+
+    return sort_array(filter(indices,
+        (: $3[$1]["subtype"] == $2 :), subType, items),
+        (: $1 > $2 :));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int sortArray(mixed a, mixed b)
+{
+    string compA;
+    string compB;
+
+    if (mappingp(a) && mappingp(b))
+    {
+        compA = this_object()->convertDataToString(a);
+        compB = this_object()->convertDataToString(b);
+    }
+    else
+    {
+        compA = to_string(a);
+        compB = to_string(b);
+    }
+
+    return compA > compB;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string convertDataToString(mixed data)
+{
+    string ret = "";
+
+    if (objectp(data))
+    {
+        ret += program_name(data);
+    }
+    else if (pointerp(data) && sizeof(data))
+    {
+        ret += "({ ";
+        data = sort_array(data, "sortArray");
+        foreach(mixed element in data)
+        {
+            ret += convertDataToString(element) + ", ";
+        }
+        ret += "})";
+    }
+    else if (mappingp(data))
+    {
+        ret += "([ ";
+        mixed *indices = sort_array(m_indices(data), "sortArray");
+        foreach(mixed index in indices)
+        {
+            ret += convertDataToString(index) + ": " + convertDataToString(data[index]) + ", ";
+        }
+        ret += "])";
+    }
+    else
+    {
+        ret += to_string(data);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int prerequisitesMet(string type, string item, object user)
+{
+    object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
+    mapping blueprints = getBlueprintsByType(type);
+
+    if (sizeof(blueprints) && member(blueprints, item))
+    {
+        blueprintObj->set("blueprint data", blueprints[item]);
+    }
+    int ret = blueprintObj->checkPrerequisites(user);
+    destruct(blueprintObj);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int materialsAvailable(string type, string item, object user)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getCraftingListBySubType(string type, string subType,
     object user)
 {
     mapping ret = ([]);
-    string *itemSubtypes = getDictionary()->getEquipmentBySubType(type, 
-        subType);
+    string *itemSubtypes = getEquipmentBySubType(type, subType);
 
     int menuItem = 1;
     if (sizeof(itemSubtypes))
     {
         foreach(string item in itemSubtypes)
         {
+            string nameDesc = (sizeof(item) < 21) ? item :
+                (item[0..16] + "...");
             ret[to_string(menuItem)] = ([
-                "name": capitalize(item),
-                "description": "",
+                "name": capitalize(nameDesc),
+                "description": sprintf("This option lets you craft %s", item),
                 "selector": item,
-                "canShow": 1,
+                "type": type,
+                "canShow": prerequisitesMet(type, item, user) &&
+                    materialsAvailable(type, item, user),
+                "prerequisites met": prerequisitesMet(type, item, user),
+                "have materials": materialsAvailable(type, item, user),
                 "show materials": 1
             ]);
             menuItem++;
@@ -130,7 +256,20 @@ public nomask mapping getCraftingListBySubType(string type, string subType,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getCraftingDataForItem(string item, object user)
+private nomask mapping getMaterialByClass(string materialClass)
 {
-    return ([]);
+    return filter(m_indices(materials),
+        (: materials[$1]["class"] == $2 :), materialClass);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getCraftingDataForItem(string type, string item, object user)
+{
+    mapping ret = ([]);
+    mapping blueprints = getBlueprintsByType(type);
+    if (member(blueprints, item))
+    {
+
+    }
+    return getMaterialByClass("crystal");
 }

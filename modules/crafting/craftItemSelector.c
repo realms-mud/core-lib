@@ -55,9 +55,12 @@ protected nomask void setUpUserForSelection()
     {
         Data = Dictionary->getCraftingList(CraftingType, User);
     }
+
+    NumColumns = Data["1"]["show materials"] ? 2 : 1;
     Data[to_string(sizeof(Data) + 1)] = ([
         "name": sprintf("Exit Craft %s Menu", capitalize(displayType)),
         "type": "exit",
+        "canShow": 1,
         "description": "This option lets you exit this crafting menu.\n"
     ]);
 }
@@ -76,6 +79,7 @@ protected nomask int processSelection(string selection)
                 SubselectorObj =
                     clone_object("/lib/modules/crafting/selectMaterialsSelector.c");
                 SubselectorObj->setItem(Data[selection]["selector"]);
+                SubselectorObj->setType(Data[selection]["type"]);
                 move_object(SubselectorObj, User);
                 SubselectorObj->registerEvent(this_object());
                 SubselectorObj->initiateSelector(User);
@@ -115,4 +119,32 @@ public nomask void onSelectorCompleted(object caller)
 protected nomask int suppressMenuDisplay()
 {
     return objectp(SubselectorObj);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string displayDetails(string choice)
+{
+    string *ret = ({});
+
+    if (member(Data[choice], "prerequisites met") &&
+        !Data[choice]["prerequisites met"])
+    {
+        ret += ({ "P" });
+    }
+    if (member(Data[choice], "have materials") &&
+        !Data[choice]["have materials"])
+    {
+        ret += ({ "M" });
+    }
+    return sizeof(ret) ? sprintf("[0;34;1m([0;35m%s[0;34;1m)[0m", implode(ret, ",")) : "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string choiceFormatter(string choice)
+{
+    return sprintf("%s[%s]%s - %s%s", 
+        (NumColumns < 3) ? "\t" : "", Red,
+        padSelectionDisplay(choice),
+        Data[choice]["canShow"] ? "[0;32m%-20s[0m" : "[0;31m%-20s[0m",
+        displayDetails(choice));
 }

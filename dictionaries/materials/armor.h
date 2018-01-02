@@ -14,8 +14,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 5,
-            "textile": 1
+            "metal": 10,
+            "textile": 2
         ]),
         "skill to use": "chainmail",
         "default ac": 6,
@@ -36,8 +36,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 4,
-            "textile": 1
+            "metal": 8,
+            "textile": 2
         ]),
         "skill to use": "chainmail",
         "default ac": 5,
@@ -58,7 +58,7 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 2]),
         ]),
         "crafting materials": ([
-            "textile": 4
+            "textile": 10
         ]),
         "skill to use": "no armor",
         "default ac": 1,
@@ -79,7 +79,7 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 2]),
         ]),
         "crafting materials": ([
-            "textile": 4
+            "textile": 10
         ]),
         "skill to use": "no armor",
         "default ac": 1,
@@ -103,7 +103,7 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 2]),
         ]),
         "crafting materials": ([
-            "textile": 4,
+            "textile": 10,
             "crystal": 1,
             "metal": 1
         ]),
@@ -126,7 +126,7 @@ private nosave mapping armorBlueprints = ([
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "textile": 4
+            "textile": 10
         ]),
         "skill to use": "no armor",
         "default ac": 0,
@@ -147,7 +147,7 @@ private nosave mapping armorBlueprints = ([
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "textile": 4
+            "textile": 9
         ]),
         "skill to use": "no armor",
         "default ac": 0,
@@ -168,7 +168,7 @@ private nosave mapping armorBlueprints = ([
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "textile": 2
+            "textile": 5
         ]),
         "skill to use": "no armor",
         "default ac": 0,
@@ -189,7 +189,7 @@ private nosave mapping armorBlueprints = ([
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "textile": 2
+            "textile": 5
         ]),
         "skill to use": "no armor",
         "default ac": 0,
@@ -210,7 +210,7 @@ private nosave mapping armorBlueprints = ([
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "textile": 2
+            "textile": 4
         ]),
         "skill to use": "no armor",
         "default ac": 0,
@@ -231,7 +231,7 @@ private nosave mapping armorBlueprints = ([
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "textile": 2
+            "textile": 4
         ]),
         "skill to use": "no armor",
         "default ac": 0,
@@ -252,7 +252,7 @@ private nosave mapping armorBlueprints = ([
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
         "crafting materials": ([
-            "textile": 1
+            "textile": 3
         ]),
         "skill to use": "no armor",
         "default ac": 0,
@@ -273,8 +273,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "textile": 1
+            "metal": 10,
+            "textile": 2
         ]),
         "skill to use": "splint armor",
         "default ac": 7,
@@ -295,8 +295,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 7]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "textile": 1
+            "metal": 10,
+            "textile": 2
         ]),
         "skill to use": "splint armor",
         "default ac": 6,
@@ -319,8 +319,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 6,
-            "textile": 1
+            "metal": 12,
+            "textile": 2
         ]),
         "skill to use": "splint armor",
         "default ac": 6,
@@ -342,8 +342,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 9]),
         ]),
         "crafting materials": ([
-            "metal": 4,
-            "leather": 3
+            "metal": 6,
+            "leather": 6
         ]),
         "skill to use": "scalemail",
         "default ac": 6,
@@ -364,8 +364,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 9]),
         ]),
         "crafting materials": ([
-            "metal": 8,
-            "textile": 2
+            "metal": 12,
+            "textile": 4
         ]),
         "skill to use": "plate armor",
         "default ac": 9,
@@ -386,8 +386,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 9]),
         ]),
         "crafting materials": ([
-            "metal": 8,
-            "textile": 2
+            "metal": 12,
+            "textile": 4
         ]),
         "skill to use": "plate armor",
         "default ac": 8,
@@ -408,7 +408,7 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 9]),
         ]),
         "crafting materials": ([
-            "metal": 6,
+            "metal": 8,
             "textile": 2
         ]),
         "skill to use": "plate armor",
@@ -430,8 +430,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
-            "metal": 10,
-            "textile": 2
+            "metal": 15,
+            "textile": 4
         ]),
         "skill to use": "plate armor",
         "default ac": 10,
@@ -452,8 +452,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "leather": 6,
-            "textile": 1
+            "leather": 10,
+            "textile": 2
         ]),
         "skill to use": "hard leather",
         "default ac": 4,
@@ -474,8 +474,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 2]),
         ]),
         "crafting materials": ([
-            "leather": 5,
-            "textile": 1
+            "leather": 10,
+            "textile": 2
         ]),
         "skill to use": "hard leather",
         "default ac": 3,
@@ -496,8 +496,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "leather": 6,
-            "textile": 1
+            "leather": 10,
+            "textile": 2
         ]),
         "skill to use": "hard leather",
         "default ac": 4,
@@ -518,8 +518,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 2]),
         ]),
         "crafting materials": ([
-            "leather": 4,
-            "textile": 1
+            "leather": 10,
+            "textile": 2
         ]),
         "skill to use": "soft leather",
         "default ac": 2,
@@ -540,8 +540,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 3]),
         ]),
         "crafting materials": ([
-            "leather": 4,
-            "textile": 1
+            "leather": 8,
+            "textile": 2
         ]),
         "skill to use": "soft leather",
         "default ac": 1,
@@ -562,7 +562,7 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 2]),
         ]),
         "crafting materials": ([
-            "textile": 4
+            "textile": 10
         ]),
         "skill to use": "soft leather",
         "default ac": 1,
@@ -584,8 +584,8 @@ private nosave mapping armorBlueprints = ([
             "armorer": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 3,
-            "leather": 4
+            "metal": 6,
+            "leather": 6
         ]),
         "skill to use": "chainmail",
         "default ac": 4,
