@@ -52,12 +52,290 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ChoosingMediumArmorDisplaysMediumArmorMenu()
+void ChoosingAxeDisplaysAxeMenu()
+{
+    Selector->initiateSelector(Player);
+    command("1", Player);
+
+    ExpectSubStringMatch("36mCraft Axe.*Exit Craft Axe",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingBowDisplaysBowMenu()
+{
+    Selector->initiateSelector(Player);
+    command("2", Player);
+
+    ExpectSubStringMatch("36mCraft Bow.*Exit Craft Bow",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingCrossbowDisplaysCrossbowMenu()
+{
+    Selector->initiateSelector(Player);
+    command("3", Player);
+
+    ExpectSubStringMatch("36mCraft Crossbow.*Exit Craft Crossbow",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingDaggerDisplaysDaggerMenu()
+{
+    Selector->initiateSelector(Player);
+    command("4", Player);
+
+    ExpectSubStringMatch("36mCraft Dagger.*Exit Craft Dagger",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingFlailDisplaysFlailMenu()
+{
+    Selector->initiateSelector(Player);
+    command("5", Player);
+
+    ExpectSubStringMatch("36mCraft Flail.*Exit Craft Flail",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingHammerDisplaysHammerMenu()
+{
+    Selector->initiateSelector(Player);
+    command("6", Player);
+
+    ExpectSubStringMatch("36mCraft Hammer.*Exit Craft Hammer",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingMaceDisplaysMaceMenu()
+{
+    Selector->initiateSelector(Player);
+    command("7", Player);
+
+    ExpectSubStringMatch("36mCraft Mace.*Exit Craft Mace",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingPoleArmDisplaysPoleArmMenu()
+{
+    Selector->initiateSelector(Player);
+    command("8", Player);
+
+    ExpectSubStringMatch("36mCraft Pole arm.*Exit Craft Pole arm",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingShieldDisplaysShieldMenu()
+{
+    Selector->initiateSelector(Player);
+    command("9", Player);
+
+    ExpectSubStringMatch("36mCraft Shield.*Exit Craft Shield",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingSlingDisplaysSlingMenu()
+{
+    Selector->initiateSelector(Player);
+    command("10", Player);
+
+    ExpectSubStringMatch("36mCraft Sling.*Exit Craft Sling",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingStaffDisplaysStaffMenu()
+{
+    Selector->initiateSelector(Player);
+    command("11", Player);
+
+    ExpectSubStringMatch("36mCraft Staff.*Exit Craft Staff",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingSwordDisplaysSwordMenu()
 {
     Selector->initiateSelector(Player);
     command("12", Player);
 
     ExpectSubStringMatch("36mCraft Sword.*Exit Craft Sword",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChoosingThrownDisplaysThrownMenu()
+{
+    Selector->initiateSelector(Player);
+    command("13", Player);
+
+    ExpectSubStringMatch("36mCraft Thrown.*Exit Craft Thrown",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SubmenuChoicesDisabledWhenMaterialAndPrerequisiteChecksFail()
+{
+    Selector->initiateSelector(Player);
+    command("12", Player);
+    command("1", Player);
+
+    ExpectSubStringMatch("36mCraft Sword.*Exit Craft Sword",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectionDisabledWhenMaterialAndPrerequisiteChecksFail()
+{
+    Selector->initiateSelector(Player);
+    command("12", Player);
+
+    ExpectSubStringMatch("31mLong sword.*34;1m.*35mP,M",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectionDisabledWhenMaterialCheckFailsButPrerequisitesPass()
+{
+    Player->Wis(20);
+    Player->Str(20);
+    Player->addSkillPoints(100);
+    Player->advanceSkill("blacksmithing", 10);
+    Player->advanceSkill("metal crafting", 10);
+    Player->advanceSkill("weapon smithing", 10);
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));
+    Selector->initiateSelector(Player);
+    command("12", Player);
+
+    ExpectSubStringMatch("31mLong sword.*34;1m.*35mM",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectionEnabledWhenMaterialCheckPassesButPrerequisitesFail()
+{
+    Player->Wis(20);
+    Player->Str(20);
+    Player->addSkillPoints(100);
+    Player->advanceSkill("blacksmithing", 10);
+    Player->advanceSkill("metal crafting", 10);
+    Player->advanceSkill("weapon smithing", 10);
+
+    object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 6);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/steel.c");
+    material->set("quantity", 10);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/wood/koa.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/leather/pegasus-leather.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    Selector->initiateSelector(Player);
+    command("12", Player);
+
+    ExpectSubStringMatch("31mLong sword.*34;1m.*35mP",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectionEnabledWhenMaterialCheckAndPrerequisitesPass()
+{
+    Player->Wis(20);
+    Player->Str(20);
+    Player->addSkillPoints(100);
+    Player->advanceSkill("blacksmithing", 10);
+    Player->advanceSkill("metal crafting", 10);
+    Player->advanceSkill("weapon smithing", 10);
+
+    object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 6);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/steel.c");
+    material->set("quantity", 10);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/wood/koa.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/leather/pegasus-leather.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));
+    Selector->initiateSelector(Player);
+    command("12", Player);
+
+    ExpectSubStringMatch("32mLong sword[^()]+",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectingItemOpensSelectMaterialMenu()
+{
+    Player->Wis(20);
+    Player->Str(20);
+    Player->addSkillPoints(100);
+    Player->advanceSkill("blacksmithing", 10);
+    Player->advanceSkill("metal crafting", 10);
+    Player->advanceSkill("weapon smithing", 10);
+
+    object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 6);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/steel.c");
+    material->set("quantity", 10);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/wood/koa.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/leather/pegasus-leather.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));
+    Selector->initiateSelector(Player);
+    command("12", Player);
+    command("10", Player);
+
+    ExpectSubStringMatch("36mCraft Long sword.*Exit Craft Long sword",
         Player->caughtMessage());
 }
 

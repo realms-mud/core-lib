@@ -72,7 +72,9 @@ protected nomask int processSelection(string selection)
     if (User)
     {
         ret = (Data[selection]["type"] == "exit");
-        if (!ret)
+        if (!ret && ((member(Data[selection], "prerequisites met") &&
+            Data[selection]["prerequisites met"]) ||
+            !member(Data[selection], "prerequisites met")))
         {
             if(member(Data[selection], "show materials"))
             {
@@ -80,6 +82,7 @@ protected nomask int processSelection(string selection)
                     clone_object("/lib/modules/crafting/selectMaterialsSelector.c");
                 SubselectorObj->setItem(Data[selection]["selector"]);
                 SubselectorObj->setType(Data[selection]["type"]);
+                SubselectorObj->setSubType(Data[selection]["sub type"]);
                 move_object(SubselectorObj, User);
                 SubselectorObj->registerEvent(this_object());
                 SubselectorObj->initiateSelector(User);
@@ -124,19 +127,24 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string displayDetails(string choice)
 {
-    string *ret = ({});
+    string *flags = ({});
 
     if (member(Data[choice], "prerequisites met") &&
         !Data[choice]["prerequisites met"])
     {
-        ret += ({ "P" });
+        flags += ({ "P" });
     }
     if (member(Data[choice], "have materials") &&
         !Data[choice]["have materials"])
     {
-        ret += ({ "M" });
+        flags += ({ "M" });
     }
-    return sizeof(ret) ? sprintf("[0;34;1m([0;35m%s[0;34;1m)[0m", implode(ret, ",")) : "";
+    string ret = sizeof(flags) ? sprintf("[0;34;1m([0;35m%s[0;34;1m)[0m", implode(flags, ",")) : "     ";
+    if (sizeof(flags) == 1)
+    {
+        ret += "  ";
+    }
+    return member(Data[choice], "show materials") ? ret : "";
 }
 
 /////////////////////////////////////////////////////////////////////////////

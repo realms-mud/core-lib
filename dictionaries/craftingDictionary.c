@@ -148,62 +148,6 @@ private nomask string *getEquipmentBySubType(string type, string subType)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int sortArray(mixed a, mixed b)
-{
-    string compA;
-    string compB;
-
-    if (mappingp(a) && mappingp(b))
-    {
-        compA = this_object()->convertDataToString(a);
-        compB = this_object()->convertDataToString(b);
-    }
-    else
-    {
-        compA = to_string(a);
-        compB = to_string(b);
-    }
-
-    return compA > compB;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public string convertDataToString(mixed data)
-{
-    string ret = "";
-
-    if (objectp(data))
-    {
-        ret += program_name(data);
-    }
-    else if (pointerp(data) && sizeof(data))
-    {
-        ret += "({ ";
-        data = sort_array(data, "sortArray");
-        foreach(mixed element in data)
-        {
-            ret += convertDataToString(element) + ", ";
-        }
-        ret += "})";
-    }
-    else if (mappingp(data))
-    {
-        ret += "([ ";
-        mixed *indices = sort_array(m_indices(data), "sortArray");
-        foreach(mixed index in indices)
-        {
-            ret += convertDataToString(index) + ": " + convertDataToString(data[index]) + ", ";
-        }
-        ret += "])";
-    }
-    else
-    {
-        ret += to_string(data);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask int prerequisitesMet(string type, string item, object user)
 {
     object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
@@ -212,6 +156,7 @@ private nomask int prerequisitesMet(string type, string item, object user)
     if (sizeof(blueprints) && member(blueprints, item))
     {
         blueprintObj->set("blueprint data", blueprints[item]);
+        blueprintObj->set("blueprint", item);
     }
     int ret = blueprintObj->checkPrerequisites(user);
     destruct(blueprintObj);
@@ -221,7 +166,28 @@ private nomask int prerequisitesMet(string type, string item, object user)
 /////////////////////////////////////////////////////////////////////////////
 private nomask int materialsAvailable(string type, string item, object user)
 {
-    return 0;
+    object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
+    mapping blueprints = getBlueprintsByType(type);
+
+    if (sizeof(blueprints) && member(blueprints, item))
+    {
+        blueprintObj->set("blueprint data", blueprints[item]);
+        blueprintObj->set("blueprint", item);
+    }
+    int ret = blueprintObj->checkAgregateMaterials(user);
+    destruct(blueprintObj);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getSubType(string subType)
+{
+    string ret = regreplace(subType, " ", "-");
+    ret = regreplace(ret, "(s|ch|sh|x|z|dg|o)$", "\\1e");
+    ret = regreplace(ret, "([^aeiou])y$", "\\1ie");
+    ret += "s";
+    ret = regreplace(ret, "(.*ing|.*armor|.*thrown)s$", "\\1");
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -243,6 +209,7 @@ public nomask mapping getCraftingListBySubType(string type, string subType,
                 "description": sprintf("This option lets you craft %s", item),
                 "selector": item,
                 "type": type,
+                "sub type": getSubType(subType),
                 "canShow": prerequisitesMet(type, item, user) &&
                     materialsAvailable(type, item, user),
                 "prerequisites met": prerequisitesMet(type, item, user),
@@ -266,10 +233,30 @@ private nomask mapping getMaterialByClass(string materialClass)
 public nomask mapping getCraftingDataForItem(string type, string item, object user)
 {
     mapping ret = ([]);
+    object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
     mapping blueprints = getBlueprintsByType(type);
-    if (member(blueprints, item))
-    {
 
+    if (sizeof(blueprints) && member(blueprints, item))
+    {
+        blueprintObj->set("blueprint data", blueprints[item]);
+        blueprintObj->set("blueprint", item);
+
+        string *itemSubtypes = m_indices(blueprints[item]["crafting materials"]);
+        int menuItem = 1;
+        if (sizeof(itemSubtypes))
+        {
+            foreach(string item in itemSubtypes)
+            {
+
+                ret[to_string(menuItem)] = ([
+                    "name": sprintf("Select %s", capitalize(item)),
+                    "description" : sprintf("This option lets you craft %s", item),
+                    "selector" : item,
+                ]);
+                menuItem++;
+            }
+        }
     }
-    return getMaterialByClass("crystal");
+
+    return ret;
 }

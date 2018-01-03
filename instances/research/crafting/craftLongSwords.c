@@ -15,7 +15,7 @@ public void reset(int arg)
             "knowledge required to craft knives, daggers, and swords out of "
             "typical bladed weapon materials such as iron, bronze, and steel.");
         addSpecification("research type", "granted");
-        addPrerequisite("lib/instances/research/crafting/craftWeapons.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/craftBasicSwords.c", (["type":"research"]));
     }
 }
 

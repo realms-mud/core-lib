@@ -8,6 +8,8 @@ private object Dictionary;
 private object SubselectorObj;
 private string CraftingItem;
 private string CraftingType;
+private string CraftingSubType;
+private object Item;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -22,15 +24,44 @@ public nomask void setType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void setSubType(string type)
+{
+    CraftingSubType = type;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
     if(!arg)
     {
         AllowUndo = 0;
-
+        SuppressColon = 1;
         Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
         Data = ([]);
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void getItemToCraft()
+{
+    if (!Item)
+    {
+        string file = sprintf("/lib/instances/items/%s/%s/%s.c",
+            CraftingType, CraftingSubType, regreplace(CraftingItem, " ", "-"));
+        Item = clone_object(file);
+        Item->set("identified");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getDescription()
+{
+    string ret = load_object("/lib/dictionaries/materialsDictionary.c")->
+        getEquipmentStatistics(Item, 0);
+    ret = regreplace(ret, ".*Material[^\n]*(.*)", "\\1", 1);
+    return sprintf("From this menu, you will select the\ncomponents that "
+        "will be used to craft your %s. The relative statistics\nfor the item "
+        "you are creating are:", CraftingItem) + ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -41,8 +72,9 @@ protected nomask void setUpUserForSelection()
         raise_error("ERROR: selectMaterialsSelector.c - The type has not been "
             "set.\n");
     }
+    getItemToCraft();
 
-    Description = "From this menu, you can craft items";
+    Description = getDescription();
     Type = "Craft " + capitalize(CraftingItem);
 
     Data = Dictionary->getCraftingDataForItem(CraftingType, CraftingItem, User);

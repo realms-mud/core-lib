@@ -190,6 +190,10 @@ public nomask int getBlueprintModifier(object item, string type)
     {
         ret = armorBlueprints[itemType][type];
     }
+    else if (isValidMaterial(itemType))
+    {
+        ret = materials[itemType][type];
+    }
     return ret;
 }
 
