@@ -7,6 +7,7 @@
 #include "materials/materials.h"
 #include "materials/weapons.h"
 #include "materials/armor.h"
+#include "materials/components.h"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getTopLevelCraftingMenu(object user)
@@ -88,6 +89,10 @@ private nomask mapping getBlueprintsByType(string type)
     else if (type == "weapons")
     {
         items = weaponBlueprints;
+    }
+    else if (type == "materials")
+    {
+        items = materials;
     }
     return items + ([]);
 }
@@ -233,30 +238,121 @@ private nomask mapping getMaterialByClass(string materialClass)
 public nomask mapping getCraftingDataForItem(string type, string item, object user)
 {
     mapping ret = ([]);
-    object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
     mapping blueprints = getBlueprintsByType(type);
 
     if (sizeof(blueprints) && member(blueprints, item))
     {
-        blueprintObj->set("blueprint data", blueprints[item]);
-        blueprintObj->set("blueprint", item);
-
-        string *itemSubtypes = m_indices(blueprints[item]["crafting materials"]);
+        string *itemSubtypes = sort_array(
+            m_indices(blueprints[item]["crafting materials"]), (: $1 > $2 :));
         int menuItem = 1;
         if (sizeof(itemSubtypes))
         {
-            foreach(string item in itemSubtypes)
+            foreach(string subType in itemSubtypes)
             {
+                int isMaterial = 
+                    !mappingp(blueprints[item]["crafting materials"][subType]);
+                
+                string elementType = isMaterial ?
+                    blueprints[item]["crafting materials"][subType] : subType;
 
                 ret[to_string(menuItem)] = ([
-                    "name": sprintf("Select %s", capitalize(item)),
-                    "description" : sprintf("This option lets you craft %s", item),
-                    "selector" : item,
+                    "name": sprintf("Select %s", capitalize(subType)),
+                    "description": sprintf("This option lets you craft %s", item),
+                    "type": elementType,
+                    "selector": (isMaterial ? "material" : "component"),
                 ]);
                 menuItem++;
             }
         }
     }
 
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string *getTypes(string type, object user)
+{
+    string *types = ({ type });
+    if ((type == "metal") && user->isResearched("lib/instances/research/crafting/useCrystalsAsMetal.c"))
+    {
+        types += ({ "crystal" });
+    }
+    return types;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getMaterialsOfTypeOnHand(string type, object user)
+{
+    mapping ret = ([]);
+
+    object *inventory = filter(deep_inventory(user),
+        (: ((member(inherit_list($1), "lib/items/material.c") > -1) &&
+            (member($2, $1->query("class")) > -1)) :), getTypes(type, user));
+
+    if (sizeof(inventory))
+    {
+        foreach(object item in inventory)
+        {
+            string material = item->query("blueprint");
+            if (!member(ret, material))
+            {
+                ret[material] = 0;
+            }
+            ret[material] += item->query("quantity");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getMaterialsOfType(string type, object user, int quantity)
+{
+    mapping ret = ([]);
+    mapping materialsOnHand = getMaterialsOfTypeOnHand(type, user);
+    string *materialsOfType = sort_array(filter(m_indices(materials),
+        (: (member($2, materials[$1]["class"]) > -1) :), getTypes(type, user)),
+        (: $1 > $2 :));
+
+    if(sizeof(materialsOfType))
+    {
+        int menuItem = 1;
+        foreach(string material in materialsOfType)
+        {
+            int hasMaterials = (member(materialsOnHand, material) &&
+                (materialsOnHand[material] >= quantity));
+            int prerequisites = prerequisitesMet("materials", material, user);
+
+            ret[to_string(menuItem)] = ([
+                "name": capitalize(material),
+                "description": sprintf("This option lets you craft using %s", material),
+                "has materials": hasMaterials,
+                "prerequisites met": prerequisites,
+                "canShow": (hasMaterials && prerequisites)
+            ]);
+            menuItem++;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs mapping getMaterialsDataForItem(string type,
+    object user, mapping materialsData)
+{
+    mapping ret = ([]);
+    string *components = sort_array(filter(m_indices(craftingComponents),
+        (: (craftingComponents[$1]["class"] == $2) :), type),
+        (: $1 > $2 :));
+    int menuItem = 1;
+
+    foreach(string component in components)
+    {
+        ret[to_string(menuItem)] = ([
+            "name": capitalize(component),
+            "type": component,
+            "description": format(craftingComponents[component]["description"], 78)
+        ]);
+        menuItem++;
+    }
     return ret;
 }

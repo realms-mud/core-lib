@@ -2057,6 +2057,25 @@ private nosave mapping materials =
         "description": "",
         "scarcity": "very rare"
     ]),
+    "ruby": ([
+        "class": "crystal",
+        "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": 3
+        ]),
+        "defense": ([
+            "physical": 3
+        ]),
+        "value multiplier": 11.5,
+        "description": "",
+        "scarcity": "very rare"
+    ]),
     "sapphire": ([
         "class": "crystal",
         "crafting skill required": 30,
