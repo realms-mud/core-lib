@@ -8,7 +8,8 @@ private object Dictionary;
 private object SubselectorObj;
 private string CraftingComponent;
 private object CraftingItem;
-private mapping Materials;
+private int Quantity;
+private string Selection;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -17,15 +18,21 @@ public nomask void setItem(string item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setCraftingItem(object item)
+public nomask string materialClass()
 {
-    CraftingItem = item;
+    return CraftingComponent;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setDetails(mapping data)
+public nomask void setQuantity(int quantity)
 {
-    Materials = data;
+    Quantity = quantity;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setCraftingItem(object item)
+{
+    CraftingItem = item;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,22 +50,22 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    if (!CraftingComponent)
+    if (!CraftingItem)
     {
         raise_error("ERROR: componentSelector.c - The type has not been "
             "set.\n");
     }
 
-    Description = sprintf("Select materials and the type of %s you will craft",
-        CraftingComponent);
+    Description = "pick stuff";
     Type = "Craft " + capitalize(CraftingComponent);
 
-    Data = Dictionary->getMaterialsDataForItem(CraftingComponent,
-        User, Materials);
+    Data = Dictionary->getMaterialsOfType(CraftingComponent, User, Quantity,
+        CraftingItem);
 
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name": sprintf("Exit %s Menu", capitalize(CraftingComponent)),
+        "name": sprintf("Exit Select %s Menu", capitalize(CraftingComponent)),
         "type": "exit",
+        "canShow": 1,
         "description": "This option lets you exit this crafting menu.\n"
     ]);
 }
@@ -70,53 +77,13 @@ protected nomask int processSelection(string selection)
     if (User)
     {
         ret = (Data[selection]["type"] == "exit");
-        if (Data[selection]["selector"] == "material")
+        if (!ret && Data[selection]["canShow"])
         {
-            SubselectorObj = clone_object(sprintf("/lib/modules/crafting/%sSelector.c",
-                Data[selection]["selector"]));
-            SubselectorObj->setItem(Data[selection]["type"]);
-            SubselectorObj->setCraftingItem(CraftingItem);
-            SubselectorObj->setQuantity(Materials[Data[selection]["type"]]);
-            move_object(SubselectorObj, User);
-            SubselectorObj->registerEvent(this_object());
-            SubselectorObj->initiateSelector(User);
-        }
-        else
-        {
-            CraftingItem->set("description", Data[selection]["description"]);
+            Selection = Data[selection]["type"];
             ret = 1;
         }
     }
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask string displayDetails(string choice)
-{
-    string ret = "";
-
-    if (Data[choice]["selector"] == "material")
-    {
-        ret = sprintf("[0;35;1m(%s)[0m\n",
-            Data[choice]["type"]);
-    }
-
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void onSelectorCompleted(object caller)
-{
-    if (caller->selection())
-    {
-        if (User)
-        {
-            Dictionary->setCraftingMaterial(CraftingItem, caller->materialClass(),
-                caller->selection(), CraftingComponent);
-            tell_object(User, displayMessage());
-        }
-    }
-    caller->cleanUp();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -126,11 +93,47 @@ protected nomask int suppressMenuDisplay()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask string displayDetails(string choice)
+{
+    string *flags = ({});
+
+    if (member(Data[choice], "prerequisites met") &&
+        !Data[choice]["prerequisites met"])
+    {
+        flags += ({ "P" });
+    }
+    if (member(Data[choice], "has materials") &&
+        !Data[choice]["has materials"])
+    {
+        flags += ({ "M" });
+    }
+    string ret = sizeof(flags) ? sprintf("[0;34;1m([0;35m%s[0;34;1m)[0m", implode(flags, ",")) : "     ";
+    if (sizeof(flags) == 1)
+    {
+        ret += "  ";
+    }
+    return member(Data[choice], "canShow") ? ret : "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "    " : "", Red,
-        padSelectionDisplay(choice), "[0;32m%-20s[0m",
-        displayDetails(choice),
-        (member(Data[choice], "selector") && (to_int(choice) % 2) ? "\n" : ""));
+        padSelectionDisplay(choice),
+        Data[choice]["canShow"] ? "[0;32m%-20s[0m" : "[0;31m%-20s[0m",
+        displayDetails(choice));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string additionalInstructions()
+{
+    return "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string selection()
+{
+    return Selection;
 }

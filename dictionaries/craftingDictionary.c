@@ -98,6 +98,40 @@ private nomask mapping getBlueprintsByType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask object getBlueprintFor(object item)
+{
+    mapping items = ([]);
+    string *itemInheritance = inherit_list(item);
+
+    if (member(itemInheritance, "lib/items/armor.c") > -1)
+    {
+        items = armorBlueprints;
+    }
+    else if (member(itemInheritance, "lib/items/weapon.c") > -1)
+    {
+        items = weaponBlueprints;
+    }
+    else if (member(itemInheritance, "lib/items/material.c") > -1)
+    {
+        items = materials;
+    }
+
+    object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
+    string blueprint = item->query("blueprint");
+    if (sizeof(items) && member(items, blueprint))
+    {
+        blueprintObj->set("blueprint data", items[blueprint]);
+        blueprintObj->set("blueprint", blueprint);
+    }
+    else
+    {
+        destruct(blueprintObj);
+        blueprintObj = 0;
+    }
+    return blueprintObj;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string *getEquipmentSubTypes(string type)
 {
     string *ret = ({});
@@ -244,6 +278,7 @@ public nomask mapping getCraftingDataForItem(string type, string item, object us
     {
         string *itemSubtypes = sort_array(
             m_indices(blueprints[item]["crafting materials"]), (: $1 > $2 :));
+
         int menuItem = 1;
         if (sizeof(itemSubtypes))
         {
@@ -259,6 +294,7 @@ public nomask mapping getCraftingDataForItem(string type, string item, object us
                     "name": sprintf("Select %s", capitalize(subType)),
                     "description": sprintf("This option lets you craft %s", item),
                     "type": elementType,
+                    "details": blueprints[item]["crafting materials"][subType],
                     "selector": (isMaterial ? "material" : "component"),
                 ]);
                 menuItem++;
@@ -305,7 +341,8 @@ private nomask mapping getMaterialsOfTypeOnHand(string type, object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getMaterialsOfType(string type, object user, int quantity)
+public nomask mapping getMaterialsOfType(string type, object user,
+    int quantity, object craftingItem)
 {
     mapping ret = ([]);
     mapping materialsOnHand = getMaterialsOfTypeOnHand(type, user);
@@ -316,27 +353,33 @@ public nomask mapping getMaterialsOfType(string type, object user, int quantity)
     if(sizeof(materialsOfType))
     {
         int menuItem = 1;
+        string currentMaterial = craftingItem->query("material");
         foreach(string material in materialsOfType)
         {
             int hasMaterials = (member(materialsOnHand, material) &&
                 (materialsOnHand[material] >= quantity));
             int prerequisites = prerequisitesMet("materials", material, user);
+            
+            craftingItem->set("material", material);
 
             ret[to_string(menuItem)] = ([
                 "name": capitalize(material),
-                "description": sprintf("This option lets you craft using %s", material),
+                "type": material,
+                "description": sprintf("This option lets you craft using %s\n%s", 
+                    material, load_object("/lib/dictionaries/materialsDictionary.c")->getEquipmentStatistics(craftingItem)),
                 "has materials": hasMaterials,
                 "prerequisites met": prerequisites,
                 "canShow": (hasMaterials && prerequisites)
             ]);
             menuItem++;
         }
+        craftingItem->set("material", currentMaterial);
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs mapping getMaterialsDataForItem(string type,
+public nomask mapping getMaterialsDataForItem(string type,
     object user, mapping materialsData)
 {
     mapping ret = ([]);
@@ -345,6 +388,22 @@ public nomask varargs mapping getMaterialsDataForItem(string type,
         (: $1 > $2 :));
     int menuItem = 1;
 
+    if (sizeof(materialsData))
+    {
+        string *materialsList = m_indices(materialsData);
+        foreach(string material in materialsList)
+        {
+            ret[to_string(menuItem)] = ([
+                "name": sprintf("Select %s to use", material),
+                "is optional": materialsData[material] == 0,
+                "selector": "material",
+                "type": material,
+                "description": sprintf("This option selects the %s you will "
+                    "use to craft the %s", material, type),
+            ]);
+            menuItem++;
+        }
+    }
     foreach(string component in components)
     {
         ret[to_string(menuItem)] = ([
@@ -355,4 +414,32 @@ public nomask varargs mapping getMaterialsDataForItem(string type,
         menuItem++;
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void setCraftingMaterial(object item, string materialClass,
+    string material, string component)
+{
+    object blueprint = getBlueprintFor(item);
+
+    mapping materialSelections = item->query("materials");
+    if (!materialSelections)
+    {
+        materialSelections = ([]);
+    }
+
+    if (!component)
+    {
+        if (!member(materialSelections, materialClass))
+        {
+            
+        }
+    }
+    else
+    {
+        if (!member(materialSelections, component))
+        {
+            materialSelections[component] = ([]);
+        }
+    }
 }

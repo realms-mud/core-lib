@@ -421,7 +421,7 @@ void InventoryGetEncumberanceReturnsCorrectValue()
     ExpectEq(0, Inventory->inventoryGetEncumberance(), "encumberance with everything");
 
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
-    ExpectEq(15, Inventory->inventoryGetEncumberance(), "encumberance with shield");
+    ExpectEq(11, Inventory->inventoryGetEncumberance(), "encumberance with shield");
 
     Inventory->advanceSkill("shield", 8);
     ExpectEq(0, Inventory->inventoryGetEncumberance(), "encumberance with shield and skill at 8");

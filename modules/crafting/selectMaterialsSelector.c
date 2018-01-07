@@ -98,6 +98,7 @@ protected nomask int processSelection(string selection)
             SubselectorObj = clone_object(sprintf("/lib/modules/crafting/%sSelector.c",
                 Data[selection]["selector"]));
             SubselectorObj->setItem(Data[selection]["type"]);
+            SubselectorObj->setCraftingItem(Item);
             SubselectorObj->setDetails(Data[selection]["details"]);
             move_object(SubselectorObj, User);
             SubselectorObj->registerEvent(this_object());
@@ -110,12 +111,10 @@ protected nomask int processSelection(string selection)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
-    if (caller->selection())
+    if (User)
     {
-        if (User)
-        {
-            tell_object(User, displayMessage());
-        }
+        setUpUserForSelection();
+        tell_object(User, displayMessage());
     }
     caller->cleanUp();
 }

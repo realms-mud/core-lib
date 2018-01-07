@@ -151,8 +151,15 @@ protected nomask string displayDetails(string choice)
 protected string choiceFormatter(string choice)
 {
     return sprintf("%s[%s]%s - %s%s", 
-        (NumColumns < 3) ? "\t" : "", Red,
+        (NumColumns < 3) ? "    " : "", Red,
         padSelectionDisplay(choice),
         Data[choice]["canShow"] ? "[0;32m%-20s[0m" : "[0;31m%-20s[0m",
         displayDetails(choice));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string additionalInstructions()
+{
+    return member(Data["1"], "have materials") ? "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n" : "";
 }

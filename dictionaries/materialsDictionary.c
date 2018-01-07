@@ -242,6 +242,9 @@ public nomask int getMaterialEncumberance(object item)
     if(isValidItem(item))
     {
         string material = item->query("material");
+        retVal -= getMaterialCraftsmanshipBonus(item);
+        retVal = (retVal > 0) ? retVal : 0;
+
         if(isValidMaterial(material))
         {
             if(member(materials[material], "encumberance"))
@@ -250,10 +253,9 @@ public nomask int getMaterialEncumberance(object item)
             }
         }
 
-        retVal -= getMaterialCraftsmanshipBonus(item);
     }
 
-    return  (retVal > 0) ? retVal : 0;
+    return  retVal;
 }
 
 /////////////////////////////////////////////////////////////////////////////
