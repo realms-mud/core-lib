@@ -2,7 +2,7 @@
 // Class: combat
 // File Name: combat.c
 //
-// Copyright (c) 2017 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
