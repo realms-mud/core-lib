@@ -394,7 +394,7 @@ public nomask mapping getMaterialsDataForItem(string type,
         foreach(string material in materialsList)
         {
             ret[to_string(menuItem)] = ([
-                "name": sprintf("Select %s to use", material),
+                "name": sprintf("Select %s", material),
                 "is optional": materialsData[material] == 0,
                 "selector": "material",
                 "type": material,
@@ -409,7 +409,7 @@ public nomask mapping getMaterialsDataForItem(string type,
         ret[to_string(menuItem)] = ([
             "name": capitalize(component),
             "type": component,
-            "description": format(craftingComponents[component]["description"], 78)
+            "description": format("This is " + craftingComponents[component]["description"], 78)
         ]);
         menuItem++;
     }
@@ -420,9 +420,7 @@ public nomask mapping getMaterialsDataForItem(string type,
 public nomask varargs void setCraftingMaterial(object item, string materialClass,
     string material, string component)
 {
-    object blueprint = getBlueprintFor(item);
-
-    mapping materialSelections = item->query("materials");
+    mapping materialSelections = item->query("crafting materials");
     if (!materialSelections)
     {
         materialSelections = ([]);
@@ -432,7 +430,7 @@ public nomask varargs void setCraftingMaterial(object item, string materialClass
     {
         if (!member(materialSelections, materialClass))
         {
-            
+            materialSelections[materialClass] = material;
         }
     }
     else
@@ -441,5 +439,72 @@ public nomask varargs void setCraftingMaterial(object item, string materialClass
         {
             materialSelections[component] = ([]);
         }
+        materialSelections[component][materialClass] = material;
     }
+    item->set("crafting materials", materialSelections);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void selectComponent(object item, string component, string value)
+{
+    mapping materialSelections = item->query("crafting materials");
+    if (!materialSelections)
+    {
+        materialSelections = ([]);
+    }
+    if (member(craftingComponents, value))
+    {
+        if (!member(materialSelections, component))
+        {
+            materialSelections[component] = ([]);
+        }
+        materialSelections[component]["type"] = value;
+        materialSelections[component]["value"] = 
+            craftingComponents[value]["value"];
+        materialSelections[component]["description"] = 
+            craftingComponents[value]["description"];
+        item->set("crafting materials", materialSelections);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string getCraftingMaterial(object item, string materialClass,
+    string component)
+{
+    string ret = "none";
+    mapping materialSelections = item->query("crafting materials");
+    if (materialSelections && mappingp(materialSelections))
+    {
+        if (!component)
+        {
+            if (member(materialSelections, materialClass))
+            {
+                ret = materialSelections[materialClass];
+            }
+        }
+        else
+        {
+            if (member(materialSelections, component))
+            {
+                ret = materialSelections[component][materialClass];
+            }
+        }
+    }
+    if (sizeof(ret) > 9)
+    {
+        ret = ret[0..5] + "...";
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string selectionForComponent(object item, string component)
+{
+    string ret = "";
+    mapping materialSelections = item->query("crafting materials");
+    if (materialSelections && mappingp(materialSelections))
+    {
+        ret = materialSelections[component]["type"];
+    }
+    return ret;
 }

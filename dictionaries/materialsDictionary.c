@@ -252,7 +252,6 @@ public nomask int getMaterialEncumberance(object item)
                 retVal = materials[material]["encumberance"];
             }
         }
-
     }
 
     return  retVal;

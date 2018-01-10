@@ -57,9 +57,14 @@ protected nomask void setUpUserForSelection()
         User, Materials);
 
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name": sprintf("Exit %s Menu", capitalize(CraftingComponent)),
+        "name": "Confirm Selection",
+        "type": "confirm",
+        "description": "This option confirms the item to craft and returns to the previous menu.\n"
+    ]);
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name": "Cancel Selection",
         "type": "exit",
-        "description": "This option lets you exit this crafting menu.\n"
+        "description": "This option cancels and exits this crafting menu.\n"
     ]);
 }
 
@@ -83,8 +88,9 @@ protected nomask int processSelection(string selection)
         }
         else
         {
-            CraftingItem->set("description", Data[selection]["description"]);
-            ret = 1;
+            Dictionary->selectComponent(CraftingItem, CraftingComponent,
+                Data[selection]["type"]);
+            ret = 0;
         }
     }
     return ret;
@@ -93,14 +99,19 @@ protected nomask int processSelection(string selection)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string displayDetails(string choice)
 {
-    string ret = "";
+    string ret = sprintf("%9s", "");
 
     if (Data[choice]["selector"] == "material")
     {
-        ret = sprintf("[0;35;1m(%s)[0m\n",
-            Data[choice]["type"]);
+        ret = sprintf("%-22s", sprintf("[0;35;1m%s[0m",
+            Dictionary->getCraftingMaterial(CraftingItem, Data[choice]["type"],
+               CraftingComponent)));
     }
-
+    else if (Data[choice]["type"] ==
+        Dictionary->selectionForComponent(CraftingItem, CraftingComponent))
+    {
+        ret = sprintf("%-22s", "[0;35;1m(*)[0m");
+    }
     return ret;
 }
 
@@ -131,6 +142,5 @@ protected string choiceFormatter(string choice)
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "    " : "", Red,
         padSelectionDisplay(choice), "[0;32m%-20s[0m",
-        displayDetails(choice),
-        (member(Data[choice], "selector") && (to_int(choice) % 2) ? "\n" : ""));
+        displayDetails(choice));
 }

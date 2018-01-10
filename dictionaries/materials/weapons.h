@@ -18,7 +18,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 6 ]),
-            "guard": (["metal": 2, "crystal": 0 ]),
+            "crossguard": (["metal": 2, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -46,7 +46,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 8 ]),
-            "guard": (["metal": 2, "crystal": 0 ]),
+            "crossguard": (["metal": 2, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -74,7 +74,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 4 ]),
-            "guard": (["metal": 2, "crystal": 0 ]),
+            "crossguard": (["metal": 2, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -102,7 +102,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 6 ]),
-            "guard": (["metal": 2, "crystal": 0 ]),
+            "crossguard": (["metal": 2, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -130,7 +130,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 8 ]),
-            "guard": (["metal": 2, "crystal": 0 ]),
+            "crossguard": (["metal": 2, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -158,7 +158,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 6 ]),
-            "guard": (["metal": 2, "crystal": 0 ]),
+            "crossguard": (["metal": 2, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -186,7 +186,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 8 ]),
-            "guard": (["metal": 2, "crystal": 0 ]),
+            "crossguard": (["metal": 2, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -214,7 +214,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 6 ]),
-            "guard": (["metal": 2, "crystal": 0 ]),
+            "crossguard": (["metal": 2, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -242,7 +242,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 3 ]),
-            "guard": (["metal": 1, "crystal": 0 ]),
+            "crossguard": (["metal": 1, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -270,7 +270,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal":4 ]),
-            "guard": (["metal": 1, "crystal": 0 ]),
+            "crossguard": (["metal": 1, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -298,7 +298,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 4 ]),
-            "guard": (["metal": 1, "crystal": 0 ]),
+            "crossguard": (["metal": 1, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -326,7 +326,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 3 ]),
-            "guard": (["metal": 1, "crystal": 0 ]),
+            "crossguard": (["metal": 1, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -536,7 +536,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 1 ]),
-            "guard": (["metal": 0, "crystal": 0 ]),
+            "crossguard": (["metal": 0, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -564,7 +564,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 1 ]),
-            "guard": (["metal": 0, "crystal": 0 ]),
+            "crossguard": (["metal": 0, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -592,7 +592,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 1 ]),
-            "guard": (["metal": 0, "crystal": 0 ]),
+            "crossguard": (["metal": 0, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 1, "crystal": 0 ]),
         ]),
@@ -620,7 +620,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 10 ]),
-            "guard": (["metal": 1, "crystal": 0 ]),
+            "crossguard": (["metal": 1, "crystal": 0 ]),
             "hilt": (["metal": 2, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 2, "crystal": 0 ]),
         ]),
@@ -648,7 +648,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 10 ]),
-            "guard": (["metal": 1, "crystal": 0 ]),
+            "crossguard": (["metal": 1, "crystal": 0 ]),
             "hilt": (["metal": 2, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 2, "crystal": 0 ]),
         ]),
@@ -676,7 +676,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 10 ]),
-            "guard": (["metal": 1, "crystal": 0 ]),
+            "crossguard": (["metal": 1, "crystal": 0 ]),
             "hilt": (["metal": 2, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 2, "crystal": 0 ]),
         ]),
@@ -704,7 +704,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "crafting materials": ([
             "blade": (["metal": 8 ]),
-            "guard": (["metal": 1, "crystal": 0 ]),
+            "crossguard": (["metal": 1, "crystal": 0 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
             "pommel": (["metal": 2, "crystal": 0 ]),
         ]),
