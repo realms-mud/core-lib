@@ -161,6 +161,8 @@ public nomask void PrepDatabase()
     string *commands = explode(dbScript, "##");
 
     int dbHandle = db_connect(RealmsDatabase());
+    db_exec(dbHandle, "use " + RealmsDatabase() + ";");
+
     foreach(string command in commands)
     {
         db_exec(dbHandle, command);

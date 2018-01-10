@@ -1,100 +1,100 @@
-drop view if exists RealmsQA.basicPlayerData;
+drop view if exists basicPlayerData;
 ##
-drop view if exists RealmsQA.researchChoicesView;
+drop view if exists researchChoicesView;
 ##
-drop view if exists RealmsQA.traitsView;
+drop view if exists traitsView;
 ##
-drop procedure if exists RealmsQA.saveBiologicalInformation;
+drop procedure if exists saveBiologicalInformation;
 ##
-drop procedure if exists RealmsQA.saveCombatInformation;
+drop procedure if exists saveCombatInformation;
 ##
-drop procedure if exists RealmsQA.saveMaterialAttributes;
+drop procedure if exists saveMaterialAttributes;
 ##
-drop procedure if exists RealmsQA.saveMaterialAttribute;
+drop procedure if exists saveMaterialAttribute;
 ##
-drop procedure if exists RealmsQA.saveGuild;
+drop procedure if exists saveGuild;
 ##
-drop procedure if exists RealmsQA.saveQuest;
+drop procedure if exists saveQuest;
 ##
-drop procedure if exists RealmsQA.saveSkills;
+drop procedure if exists saveSkills;
 ##
-drop procedure if exists RealmsQA.saveTraits;
+drop procedure if exists saveTraits;
 ##
-drop procedure if exists RealmsQA.saveTemporaryTraits;
+drop procedure if exists saveTemporaryTraits;
 ##
-drop procedure if exists RealmsQA.saveResearch;
+drop procedure if exists saveResearch;
 ##
-drop procedure if exists RealmsQA.pruneResearchChoices;
+drop procedure if exists pruneResearchChoices;
 ##
-drop procedure if exists RealmsQA.saveResearchChoiceOption;
+drop procedure if exists saveResearchChoiceOption;
 ##
-drop procedure if exists RealmsQA.saveOpenResearchTrees;
+drop procedure if exists saveOpenResearchTrees;
 ##
-drop procedure if exists RealmsQA.pruneInventory;
+drop procedure if exists pruneInventory;
 ##
-drop procedure if exists RealmsQA.saveInventoryItem;
+drop procedure if exists saveInventoryItem;
 ##
-drop procedure if exists RealmsQA.saveFaction;
+drop procedure if exists saveFaction;
 ##
-drop procedure if exists RealmsQA.saveCombatStatistics;
+drop procedure if exists saveCombatStatistics;
 ##
-drop procedure if exists RealmsQA.saveCombatStatisticsForRace;
+drop procedure if exists saveCombatStatisticsForRace;
 ##
-drop procedure if exists RealmsQA.saveWizardLevel;
+drop procedure if exists saveWizardLevel;
 ##
-drop procedure if exists RealmsQA.saveOpinionOfCharacter;
+drop procedure if exists saveOpinionOfCharacter;
 ##
-drop procedure if exists RealmsQA.saveCharacterState;
+drop procedure if exists saveCharacterState;
 ##
-drop function if exists RealmsQA.saveBasicPlayerInformation;
+drop function if exists saveBasicPlayerInformation;
 ##
-drop function if exists RealmsQA.saveResearchChoice;
+drop function if exists saveResearchChoice;
 ##
-drop table if exists RealmsQA.opinions;
+drop table if exists opinions;
 ##
-drop table if exists RealmsQA.characterStates;
+drop table if exists characterStates;
 ##
-drop table if exists RealmsQA.biological;
+drop table if exists biological;
 ##
-drop table if exists RealmsQA.combatStatisticsForRace;
+drop table if exists combatStatisticsForRace;
 ##
-drop table if exists RealmsQA.combatStatistics;
+drop table if exists combatStatistics;
 ##
-drop table if exists RealmsQA.guilds;
+drop table if exists guilds;
 ##
-drop table if exists RealmsQA.materialAttributes;
+drop table if exists materialAttributes;
 ##
-drop table if exists RealmsQA.openResearchTrees;
+drop table if exists openResearchTrees;
 ##
-drop table if exists RealmsQA.playerCombatData;
+drop table if exists playerCombatData;
 ##
-drop table if exists RealmsQA.quests;
+drop table if exists quests;
 ##
-drop table if exists RealmsQA.research;
+drop table if exists research;
 ##
-drop table if exists RealmsQA.researchChoiceItems;
+drop table if exists researchChoiceItems;
 ##
-drop table if exists RealmsQA.researchChoices;
+drop table if exists researchChoices;
 ##
-drop table if exists RealmsQA.skills;
+drop table if exists skills;
 ##
-drop table if exists RealmsQA.wizards;
+drop table if exists wizards;
 ##
-drop table if exists RealmsQA.wizardTypes;
+drop table if exists wizardTypes;
 ##
-drop table if exists RealmsQA.timedtraits;
+drop table if exists timedtraits;
 ##
-drop table if exists RealmsQA.traits;
+drop table if exists traits;
 ##
-drop table if exists RealmsQA.temporaryTraits;
+drop table if exists temporaryTraits;
 ##
-drop table if exists RealmsQA.inventory;
+drop table if exists inventory;
 ##
-drop table if exists RealmsQA.factions;
+drop table if exists factions;
 ##
-drop table if exists RealmsQA.players;
+drop table if exists players;
 ##
-CREATE TABLE RealmsQA.`players` (
+CREATE TABLE `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
   `race` varchar(20) NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE RealmsQA.`players` (
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`biological` (
+CREATE TABLE `biological` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `intoxicated` smallint NOT NULL DEFAULT '0',
@@ -133,7 +133,7 @@ CREATE TABLE RealmsQA.`biological` (
   CONSTRAINT `playerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`combatStatistics` (
+CREATE TABLE `combatStatistics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
   `level` int(11) NOT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE RealmsQA.`combatStatistics` (
   CONSTRAINT `combatStatisticsplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`combatStatisticsForRace` (
+CREATE TABLE `combatStatisticsForRace` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `race` varchar(20) NOT NULL,
@@ -157,7 +157,7 @@ CREATE TABLE RealmsQA.`combatStatisticsForRace` (
   CONSTRAINT `combatStatisticsForRaceplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`guilds` (
+CREATE TABLE `guilds` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `name` varchar(40) NOT NULL,
@@ -174,7 +174,7 @@ CREATE TABLE RealmsQA.`guilds` (
   CONSTRAINT `guildsplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`materialAttributes` (
+CREATE TABLE `materialAttributes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `type` varchar(40) NOT NULL,
@@ -184,7 +184,7 @@ CREATE TABLE RealmsQA.`materialAttributes` (
   CONSTRAINT `materialAttributesplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`openResearchTrees` (
+CREATE TABLE `openResearchTrees` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `researchTree` varchar(200) NOT NULL,
@@ -193,7 +193,7 @@ CREATE TABLE RealmsQA.`openResearchTrees` (
   CONSTRAINT `openResearchTreesplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`playerCombatData` (
+CREATE TABLE `playerCombatData` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `hitPoints` int(11) NOT NULL,
@@ -212,7 +212,7 @@ CREATE TABLE RealmsQA.`playerCombatData` (
   CONSTRAINT `playerCombatDataplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`quests` (
+CREATE TABLE `quests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `path` varchar(200) NOT NULL,
@@ -226,7 +226,7 @@ CREATE TABLE RealmsQA.`quests` (
   CONSTRAINT `questsplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`research` (
+CREATE TABLE `research` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerId` int(11) NOT NULL,
   `path` varchar(200) NOT NULL,
@@ -241,7 +241,7 @@ CREATE TABLE RealmsQA.`research` (
   CONSTRAINT `researchplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`researchChoices` (
+CREATE TABLE `researchChoices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerId` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
@@ -250,7 +250,7 @@ CREATE TABLE RealmsQA.`researchChoices` (
   CONSTRAINT `researchChoicesplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`researchChoiceItems` (
+CREATE TABLE `researchChoiceItems` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `researchChoiceId` int(11) NOT NULL,
   `selectionNumber` varchar(5) NOT NULL,
@@ -263,7 +263,7 @@ CREATE TABLE RealmsQA.`researchChoiceItems` (
   KEY `researchChoiceId_idx` (`researchChoiceId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`wizardTypes` (
+CREATE TABLE `wizardTypes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
@@ -274,7 +274,7 @@ insert into wizardTypes (type) values ('apprentice'), ('wizard'),
 ('creator'), ('highwizard'),('senior'),('admin'),('elder'),('sage'),
 ('archwizard'),('demigod'),('god'),('owner');
 ##
-CREATE TABLE RealmsQA.`wizards` (
+CREATE TABLE `wizards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerId` int(11) NOT NULL,
   `typeId` int(11) NOT NULL,
@@ -284,7 +284,7 @@ CREATE TABLE RealmsQA.`wizards` (
   KEY `typeid_idx` (`typeId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`skills` (
+CREATE TABLE `skills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
@@ -294,7 +294,7 @@ CREATE TABLE RealmsQA.`skills` (
   CONSTRAINT `skillsplayerid_idx` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`temporaryTraits` (
+CREATE TABLE `temporaryTraits` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `traitList` varchar(512) NOT NULL,
@@ -303,7 +303,7 @@ CREATE TABLE RealmsQA.`temporaryTraits` (
   CONSTRAINT `temptraitsplayerid_idx` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`traits` (
+CREATE TABLE `traits` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `path` varchar(200) NOT NULL,
@@ -314,7 +314,7 @@ CREATE TABLE RealmsQA.`traits` (
   CONSTRAINT `traits_playerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`timedtraits` (
+CREATE TABLE `timedtraits` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `traitid` int(11) NOT NULL,
   `endTime` int(11) NOT NULL,
@@ -325,7 +325,7 @@ CREATE TABLE RealmsQA.`timedtraits` (
   CONSTRAINT `timed_traitsid` FOREIGN KEY (`traitid`) REFERENCES `traits` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`factions` (
+CREATE TABLE `factions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
   `path` varchar(200) NOT NULL,
@@ -341,7 +341,7 @@ CREATE TABLE RealmsQA.`factions` (
   CONSTRAINT `factions_playerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`inventory` (
+CREATE TABLE `inventory` (
   `playerid` int(11) NOT NULL,
   `fileName` varchar(200) NOT NULL,
   `data` blob NOT NULL,
@@ -350,7 +350,7 @@ CREATE TABLE RealmsQA.`inventory` (
   CONSTRAINT `inventory_playerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`opinions` (
+CREATE TABLE `opinions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerId` int(11) NOT NULL,
   `targetKey` varchar(200) NOT NULL,
@@ -360,7 +360,7 @@ CREATE TABLE RealmsQA.`opinions` (
   KEY `opinions_playerid_idx` (`playerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE TABLE RealmsQA.`characterStates` (
+CREATE TABLE `characterStates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerId` int(11) NOT NULL,
   `targetKey` varchar(200) NOT NULL,
@@ -370,13 +370,13 @@ CREATE TABLE RealmsQA.`characterStates` (
   KEY `characterStates_playerid_idx` (`playerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `RealmsQA`.`basicPlayerData` AS select `RealmsQA`.`players`.`name` AS `name`,`RealmsQA`.`players`.`race` AS `race`,`RealmsQA`.`players`.`age` AS `age`,`RealmsQA`.`players`.`gender` AS `gender`,`RealmsQA`.`players`.`ghost` AS `ghost`,`RealmsQA`.`players`.`strength` AS `strength`,`RealmsQA`.`players`.`intelligence` AS `intelligence`,`RealmsQA`.`players`.`dexterity` AS `dexterity`,`RealmsQA`.`players`.`wisdom` AS `wisdom`,`RealmsQA`.`players`.`constitution` AS `constitution`,`RealmsQA`.`players`.`charisma` AS `charisma`,`RealmsQA`.`players`.`invisible` AS `invisible`,`RealmsQA`.`biological`.`intoxicated` AS `intoxicated`,`RealmsQA`.`biological`.`stuffed` AS `stuffed`,`RealmsQA`.`biological`.`drugged` AS `drugged`,`RealmsQA`.`biological`.`soaked` AS `soaked`,`RealmsQA`.`biological`.`headache` AS `headache`,`RealmsQA`.`playerCombatData`.`hitPoints` AS `hitPoints`,`RealmsQA`.`playerCombatData`.`maxHitPoints` AS `maxHitPoints`,`RealmsQA`.`playerCombatData`.`spellPoints` AS `spellPoints`,`RealmsQA`.`playerCombatData`.`maxSpellPoints` AS `maxSpellPoints`,`RealmsQA`.`playerCombatData`.`staminaPoints` AS `staminaPoints`,`RealmsQA`.`playerCombatData`.`maxStaminaPoints` AS `maxStaminaPoints`,`RealmsQA`.`playerCombatData`.`wimpy` AS `wimpy`,`RealmsQA`.`playerCombatData`.`onKillList` AS `onKillList`,`RealmsQA`.`playerCombatData`.`timeToHealHP` AS `timeToHealHP`,`RealmsQA`.`playerCombatData`.`timeToHealSP` AS `timeToHealSP`,`RealmsQA`.`playerCombatData`.`timeToHealST` AS `timeToHealST`,`RealmsQA`.`players`.`whenCreated` AS `whenCreated`,`RealmsQA`.`players`.`location` AS `location`,`RealmsQA`.`players`.`attributePoints` AS `availableAttributePoints`,`RealmsQA`.`players`.`skillPoints` AS `availableSkillPoints`,`RealmsQA`.`players`.`researchPoints` AS `availableResearchPoints`,`RealmsQA`.`players`.`unassignedExperience` AS `unassignedExperience`,`RealmsQA`.`players`.`playerMoney` AS `playerMoney`,`RealmsQA`.`players`.`id` AS `playerId` from ((`RealmsQA`.`players` join `RealmsQA`.`biological` on((`RealmsQA`.`players`.`id` = `RealmsQA`.`biological`.`playerid`))) join `RealmsQA`.`playerCombatData` on((`RealmsQA`.`players`.`id` = `RealmsQA`.`playerCombatData`.`playerid`)));
+CREATE VIEW `basicPlayerData` AS select `players`.`name` AS `name`,`players`.`race` AS `race`,`players`.`age` AS `age`,`players`.`gender` AS `gender`,`players`.`ghost` AS `ghost`,`players`.`strength` AS `strength`,`players`.`intelligence` AS `intelligence`,`players`.`dexterity` AS `dexterity`,`players`.`wisdom` AS `wisdom`,`players`.`constitution` AS `constitution`,`players`.`charisma` AS `charisma`,`players`.`invisible` AS `invisible`,`biological`.`intoxicated` AS `intoxicated`,`biological`.`stuffed` AS `stuffed`,`biological`.`drugged` AS `drugged`,`biological`.`soaked` AS `soaked`,`biological`.`headache` AS `headache`,`playerCombatData`.`hitPoints` AS `hitPoints`,`playerCombatData`.`maxHitPoints` AS `maxHitPoints`,`playerCombatData`.`spellPoints` AS `spellPoints`,`playerCombatData`.`maxSpellPoints` AS `maxSpellPoints`,`playerCombatData`.`staminaPoints` AS `staminaPoints`,`playerCombatData`.`maxStaminaPoints` AS `maxStaminaPoints`,`playerCombatData`.`wimpy` AS `wimpy`,`playerCombatData`.`onKillList` AS `onKillList`,`playerCombatData`.`timeToHealHP` AS `timeToHealHP`,`playerCombatData`.`timeToHealSP` AS `timeToHealSP`,`playerCombatData`.`timeToHealST` AS `timeToHealST`,`players`.`whenCreated` AS `whenCreated`,`players`.`location` AS `location`,`players`.`attributePoints` AS `availableAttributePoints`,`players`.`skillPoints` AS `availableSkillPoints`,`players`.`researchPoints` AS `availableResearchPoints`,`players`.`unassignedExperience` AS `unassignedExperience`,`players`.`playerMoney` AS `playerMoney`,`players`.`id` AS `playerId` from ((`players` join `biological` on((`players`.`id` = `biological`.`playerid`))) join `playerCombatData` on((`players`.`id` = `playerCombatData`.`playerid`)));
 ##
-CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `RealmsQA`.`researchChoicesView` AS select `RealmsQA`.`researchChoices`.`playerId` AS `playerId`,`RealmsQA`.`researchChoices`.`name` AS `Choice`,`RealmsQA`.`researchChoiceItems`.`selectionNumber` AS `selectionNumber`,`RealmsQA`.`researchChoiceItems`.`type` AS `type`,`RealmsQA`.`researchChoiceItems`.`name` AS `name`,`RealmsQA`.`researchChoiceItems`.`description` AS `description`,`RealmsQA`.`researchChoiceItems`.`key` AS `key` from (`RealmsQA`.`researchChoices` join `RealmsQA`.`researchChoiceItems` on((`RealmsQA`.`researchChoices`.`id` = `RealmsQA`.`researchChoiceItems`.`researchChoiceId`)));
+CREATE VIEW `researchChoicesView` AS select `researchChoices`.`playerId` AS `playerId`,`researchChoices`.`name` AS `Choice`,`researchChoiceItems`.`selectionNumber` AS `selectionNumber`,`researchChoiceItems`.`type` AS `type`,`researchChoiceItems`.`name` AS `name`,`researchChoiceItems`.`description` AS `description`,`researchChoiceItems`.`key` AS `key` from (`researchChoices` join `researchChoiceItems` on((`researchChoices`.`id` = `researchChoiceItems`.`researchChoiceId`)));
 ##
-CREATE ALGORITHM=UNDEFINED DEFINER=`realms`@`localhost` SQL SECURITY DEFINER VIEW `RealmsQA`.`traitsView` AS select `RealmsQA`.`traits`.`playerid` AS `playerid`,`RealmsQA`.`traits`.`path` AS `path`,`RealmsQA`.`traits`.`name` AS `name`,`RealmsQA`.`traits`.`added` AS `added`,`RealmsQA`.`timedtraits`.`endTime` AS `endTime`,`RealmsQA`.`timedtraits`.`expireMessage` AS `expireMessage`,`RealmsQA`.`timedtraits`.`triggeringResearch` AS `triggeringResearch` from (`RealmsQA`.`traits` left join `RealmsQA`.`timedtraits` on((`RealmsQA`.`traits`.`id` = `RealmsQA`.`timedtraits`.`traitid`)));
+CREATE VIEW `traitsView` AS select `traits`.`playerid` AS `playerid`,`traits`.`path` AS `path`,`traits`.`name` AS `name`,`traits`.`added` AS `added`,`timedtraits`.`endTime` AS `endTime`,`timedtraits`.`expireMessage` AS `expireMessage`,`timedtraits`.`triggeringResearch` AS `triggeringResearch` from (`traits` left join `timedtraits` on((`traits`.`id` = `timedtraits`.`traitid`)));
 ##
-CREATE FUNCTION RealmsQA.`saveBasicPlayerInformation`(p_name varchar(40),
+CREATE FUNCTION `saveBasicPlayerInformation`(p_name varchar(40),
 p_race varchar(20), p_age int, p_gender int, p_ghost int, p_strength int,
 p_intelligence int, p_dexterity int, p_wisdom int, p_constitution int,
 p_charisma int, p_invisible int, p_attributes int, p_skill int,
@@ -421,7 +421,7 @@ RETURN pid;
 END;
 ##
 
-CREATE PROCEDURE RealmsQA.`saveBiologicalInformation`(p_playerid int, p_intoxicated int,
+CREATE PROCEDURE `saveBiologicalInformation`(p_playerid int, p_intoxicated int,
 p_stuffed int, p_drugged int, p_soaked int, p_headache int)
 BEGIN
 	declare pid int;
@@ -442,7 +442,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveCombatInformation`(p_playerid int, p_hp int,
+CREATE PROCEDURE `saveCombatInformation`(p_playerid int, p_hp int,
 p_maxhp int, p_sp int, p_maxsp int, p_st int, p_maxst int, p_wimpy int,
 p_killList int, p_healhp int, p_healsp int, p_healst int)
 BEGIN
@@ -482,7 +482,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveMaterialAttribute`(p_playerid int, p_type varchar(45), p_value varchar(256))
+CREATE PROCEDURE `saveMaterialAttribute`(p_playerid int, p_type varchar(45), p_value varchar(256))
 BEGIN
 	declare materialId int;
     
@@ -498,7 +498,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveMaterialAttributes`(p_playerid int, p_title varchar(256),
+CREATE PROCEDURE `saveMaterialAttributes`(p_playerid int, p_title varchar(256),
 p_pretitle varchar(256), p_msgin varchar(256), p_msgout varchar(256),
 p_magicalin varchar(256), p_magicalout varchar(256), p_home varchar(256),
 p_clone varchar(256), p_short varchar(256), p_long varchar(256))
@@ -535,7 +535,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveGuild`(p_playerid int, p_guild varchar(40), p_title varchar(45), 
+CREATE PROCEDURE `saveGuild`(p_playerid int, p_guild varchar(40), p_title varchar(45), 
 p_pretitle varchar(45), p_rank varchar(45), p_level int, p_experience int, p_leftGuild int,
 p_anathema int, p_rankAdvancedAt int)
 BEGIN
@@ -570,7 +570,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveQuest` (p_playerid int, p_quest varchar(200), p_name varchar(45), 
+CREATE PROCEDURE `saveQuest` (p_playerid int, p_quest varchar(200), p_name varchar(45), 
 p_state varchar(45), p_statesCompleted varchar(45), p_active int, p_completed int)
 BEGIN
 	declare questId int;
@@ -616,7 +616,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`pruneResearchChoices` (p_playerid int)
+CREATE PROCEDURE `pruneResearchChoices` (p_playerid int)
 BEGIN
 	delete from researchChoiceItems
     where researchChoiceId in (select id from researchChoices where playerid = p_playerid);
@@ -624,7 +624,7 @@ BEGIN
     delete from researchChoices where playerid = p_playerid;
 END;
 ##
-CREATE FUNCTION RealmsQA.`saveResearchChoice` (p_playerid int, p_name varchar(45))
+CREATE FUNCTION `saveResearchChoice` (p_playerid int, p_name varchar(45))
 RETURNS INTEGER
 BEGIN
 	declare choiceId int;
@@ -638,7 +638,7 @@ BEGIN
 RETURN choiceId;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveResearchChoiceOption` (p_choiceId int, p_selection varchar(5),
+CREATE PROCEDURE `saveResearchChoiceOption` (p_choiceId int, p_selection varchar(5),
 p_type varchar(15), p_name varchar(45), p_description varchar(256), p_key varchar(200))
 BEGIN
 	insert into researchChoiceItems 
@@ -646,7 +646,7 @@ BEGIN
     values (p_choiceId, p_selection, p_type, p_name, p_description, p_key);
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveOpenResearchTrees` (p_playerid int, p_path varchar(200))
+CREATE PROCEDURE `saveOpenResearchTrees` (p_playerid int, p_path varchar(200))
 BEGIN
 	declare researchId int;
  
@@ -659,7 +659,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveSkills` (p_playerid int, p_name varchar(45), 
+CREATE PROCEDURE `saveSkills` (p_playerid int, p_name varchar(45), 
 p_value int)
 BEGIN
 	declare skillId int;
@@ -676,7 +676,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveTraits` (p_playerid int, p_path varchar(200), 
+CREATE PROCEDURE `saveTraits` (p_playerid int, p_path varchar(200), 
 p_name varchar(45), p_added int, p_end int, p_expire varchar(256),
 p_trigger varchar(200))
 BEGIN
@@ -710,7 +710,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveTemporaryTraits` (p_playerid int, p_traits varchar(512))
+CREATE PROCEDURE `saveTemporaryTraits` (p_playerid int, p_traits varchar(512))
 BEGIN
 	declare playerId int;
  
@@ -726,19 +726,19 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`pruneInventory` (p_playerid int)
+CREATE PROCEDURE `pruneInventory` (p_playerid int)
 BEGIN
     delete from inventory where playerid = p_playerid;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveInventoryItem` (p_playerid int,
+CREATE PROCEDURE `saveInventoryItem` (p_playerid int,
 p_filename varchar(200), p_data blob, p_equipped int)
 BEGIN
     insert into inventory (playerid,filename,data,isEquipped) 
         values (p_playerid,p_filename,p_data,p_equipped);
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveFaction` (p_playerid int, p_path varchar(200), 
+CREATE PROCEDURE `saveFaction` (p_playerid int, p_path varchar(200), 
 p_disposition varchar(20), p_reputation int, p_lastInteraction int, 
 p_lastReputation int, p_numInteractions int, p_dispositionTime int, p_isMember tinyint)
 BEGIN
@@ -762,7 +762,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveCombatStatistics` (p_playerName varchar(40),
+CREATE PROCEDURE `saveCombatStatistics` (p_playerName varchar(40),
 p_key varchar(200), p_name varchar(40), p_level int)
 BEGIN	
 	declare lPlayerId int;
@@ -816,7 +816,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveCombatStatisticsForRace` 
+CREATE PROCEDURE `saveCombatStatisticsForRace` 
 (p_playerName varchar(40), p_race varchar(20))
 BEGIN	
 	declare lPlayerId int;
@@ -842,7 +842,7 @@ BEGIN
     end if;
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveWizardLevel`(p_playerid int, p_level varchar(20))
+CREATE PROCEDURE `saveWizardLevel`(p_playerid int, p_level varchar(20))
 BEGIN
 	declare levelId int;
     declare wizardId int;
@@ -863,7 +863,7 @@ BEGIN
     end if;    
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveOpinionOfCharacter`(p_playerName varchar(40),
+CREATE PROCEDURE `saveOpinionOfCharacter`(p_playerName varchar(40),
 p_targetKey varchar(200), p_opinion int)
 BEGIN
     declare lplayerId int;
@@ -886,7 +886,7 @@ BEGIN
     end if;    
 END;
 ##
-CREATE PROCEDURE RealmsQA.`saveCharacterState`(p_playerName varchar(40),
+CREATE PROCEDURE `saveCharacterState`(p_playerName varchar(40),
 p_targetKey varchar(200), p_state varchar(80))
 BEGIN
     declare lplayerId int;

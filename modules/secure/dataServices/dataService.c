@@ -31,6 +31,12 @@ protected nomask int connect()
     {
         raise_error(db_error(ret));
     }
+
+    if (ret)
+    {
+        db_exec(ret, "use " + RealmsDatabase() + ";");
+    }
+
     while (db_fetch(ret));
     return ret;
 }
