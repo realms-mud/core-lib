@@ -415,7 +415,7 @@ private string getElementDescriptions(string type)
             if (sizeof(environmentalElements[type][element]))
             {
                 directions = " to the " + 
-                    implode(environmentalElements[type][element], ", ");
+                    implode(sort_array(environmentalElements[type][element], (: $1 > $2 :)), ", ");
                 directions = regreplace(directions, ",([^,]+)$", " and\\1");
             }
 
@@ -467,7 +467,7 @@ private string getExitDescription()
     {
         exitList += m_indices(exits["default"]);
     }
-    exitList = m_indices(mkmapping(exitList));
+    exitList = sort_array(m_indices(mkmapping(exitList)), (: $1 > $2 :));
 
     int numExits = sizeof(exitList);
     if(numExits)
