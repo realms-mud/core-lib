@@ -187,7 +187,7 @@ private nomask string *getEquipmentBySubType(string type, string subType)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int prerequisitesMet(string type, string item, object user)
+private nomask object getBlueprintItem(string type, string item)
 {
     object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
     mapping blueprints = getBlueprintsByType(type);
@@ -197,25 +197,26 @@ private nomask int prerequisitesMet(string type, string item, object user)
         blueprintObj->set("blueprint data", blueprints[item]);
         blueprintObj->set("blueprint", item);
     }
-    int ret = blueprintObj->checkPrerequisites(user);
-    destruct(blueprintObj);
-    return ret;
+    return blueprintObj;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int materialsAvailable(string type, string item, object user)
+private nomask int prerequisitesMet(object blueprintObj, object user)
 {
-    object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
-    mapping blueprints = getBlueprintsByType(type);
+    return blueprintObj->checkPrerequisites(user);
+}
 
-    if (sizeof(blueprints) && member(blueprints, item))
-    {
-        blueprintObj->set("blueprint data", blueprints[item]);
-        blueprintObj->set("blueprint", item);
-    }
-    int ret = blueprintObj->checkAgregateMaterials(user);
-    destruct(blueprintObj);
-    return ret;
+/////////////////////////////////////////////////////////////////////////////
+private nomask int materialsAvailable(object blueprintObj, object user)
+{
+    return blueprintObj->checkAgregateMaterials(user);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getDescriptionDetails(object blueprintObj)
+{
+    return blueprintObj->displayPrerequisites() +
+        blueprintObj->displayNeededMaterials();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -241,21 +242,26 @@ public nomask mapping getCraftingListBySubType(string type, string subType,
     {
         foreach(string item in itemSubtypes)
         {
+            object blueprintObj = getBlueprintItem(type, item);
+
+            int prereqsMet = prerequisitesMet(blueprintObj, user);
+            int materialsMet = materialsAvailable(blueprintObj, user);
             string nameDesc = (sizeof(item) < 21) ? item :
                 (item[0..16] + "...");
             ret[to_string(menuItem)] = ([
                 "name": capitalize(nameDesc),
-                "description": sprintf("This option lets you craft: %s", item),
+                "description": sprintf("This option lets you craft: %s\n%s", 
+                    item, getDescriptionDetails(blueprintObj)),
                 "selector": item,
                 "type": type,
                 "sub type": getSubType(subType),
-                "canShow": prerequisitesMet(type, item, user) &&
-                    materialsAvailable(type, item, user),
-                "prerequisites met": prerequisitesMet(type, item, user),
-                "have materials": materialsAvailable(type, item, user),
+                "canShow": prereqsMet && materialsMet,
+                "prerequisites met": prereqsMet,
+                "have materials": materialsMet,
                 "show materials": 1
             ]);
             menuItem++;
+            destruct(blueprintObj);
         }
     }
     return ret;
@@ -359,8 +365,11 @@ public nomask mapping getMaterialsOfType(string type, object user,
         {
             int hasMaterials = (member(materialsOnHand, material) &&
                 (materialsOnHand[material] >= quantity));
-            int prerequisites = prerequisitesMet("materials", material, user);
-            
+
+            object blueprintObj = getBlueprintItem("materials", material);
+            int prerequisites = prerequisitesMet(blueprintObj, user);
+            destruct(blueprintObj);
+
             craftingItem->set("material", material);
 
             ret[to_string(menuItem)] = ([

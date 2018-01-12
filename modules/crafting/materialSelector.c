@@ -56,8 +56,8 @@ protected nomask void setUpUserForSelection()
             "set.\n");
     }
 
-    Description = "pick stuff";
-    Type = "Craft " + capitalize(CraftingComponent);
+    Description = "choose a " + CraftingComponent + " with which to craft";
+    Type = "Select " + capitalize(CraftingComponent);
 
     Data = Dictionary->getMaterialsOfType(CraftingComponent, User, Quantity,
         CraftingItem);

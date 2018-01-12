@@ -10,8 +10,11 @@ object Selector;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Selector = clone_object("/lib/modules/crafting/craftItemSelector.c");
+    Selector = clone_object("/lib/modules/crafting/selectMaterialsSelector.c");
+    Selector->setItem("long sword");
     Selector->setType("weapons");
+    Selector->setSubType("swords");
+
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->addCommands();
@@ -26,17 +29,13 @@ void Setup()
     Player->advanceSkill("chemistry", 10);
     Player->advanceSkill("physics", 10);
     Player->addResearchPoints(20);
-
-    object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 5);
-    move_object(material, Player);
-
+    /*
     material = clone_object("/lib/instances/items/materials/metal/admantite.c");
     material->set("quantity", 6);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/steel.c");
-    material->set("quantity", 10);
+    material->set("quantity", 4);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/iron.c");
@@ -54,7 +53,7 @@ void Setup()
     material = clone_object("/lib/instances/items/materials/leather/pegasus-leather.c");
     material->set("quantity", 5);
     move_object(material, Player);
-
+*/
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));
@@ -70,87 +69,67 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
+void SelectingMaterialDisplaysComponentMenu()
 {
     Selector->initiateSelector(Player);
-    command("12", Player);
-    command("10", Player);
-
-    ExpectEq("[0;36mCraft Long sword - [0m[0;37;1mFrom this menu, you will select the\n"
-        "components that will be used to craft your long sword. The relative statistics\n"
-        "for the item you are creating are:\n"
-        "\t[0;36mAttack: [0m[0;33m5 to 105[0m\n"
-        "\t[0;36mDamage: [0m[0;33m8 to 11[0m\n"
-        "\t[0;36mDefense: [0m[0;33m1 to 2[0m\n"
-        "\t[0;36mEncumberance: [0m[0;33m5[0m\n"
-        "\t[0;36mWeight: [0m[0;33m5[0m\n[0m\n"
-        "\t[[0;31;1m1[0m] - [0;32mSelect Blade        [0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mSelect Crossguard   [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mSelect Hilt         [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mSelect Pommel       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mExit Craft Long sword Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
-        Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void DescribeShowsDetailsAboutComponent()
-{
-    Selector->initiateSelector(Player);
-    command("12", Player);
-    command("10", Player);
-    command("? 1", Player);
-
-    ExpectSubStringMatch("This option lets you craft the blade for your long sword",
-        Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void SelectingComponentDisplaysComponentMenu()
-{
-    Selector->initiateSelector(Player);
-    command("12", Player);
-    command("10", Player);
+    command("1", Player);
     command("1", Player);
 
-    ExpectEq("[0;36mCraft Blade - [0m[0;37;1mSelect materials and the type of blade you will craft[0m:\n"
-        "    [[0;31;1m1[0m]  - [0;32mSelect metal        [0m[0;35;1mnone[0m     "
-        "    [[0;31;1m2[0m]  - [0;32mFlamberge           [0m         \n"
-        "    [[0;31;1m3[0m]  - [0;32mSerrated            [0m         "
-        "    [[0;31;1m4[0m]  - [0;32mType X              [0m         \n"
-        "    [[0;31;1m5[0m]  - [0;32mType XI             [0m         "
-        "    [[0;31;1m6[0m]  - [0;32mType XIII           [0m         \n"
-        "    [[0;31;1m7[0m]  - [0;32mType XIIa           [0m         "
-        "    [[0;31;1m8[0m]  - [0;32mType XIV            [0m         \n"
-        "    [[0;31;1m9[0m]  - [0;32mType XIX            [0m         "
-        "    [[0;31;1m10[0m] - [0;32mType XIa            [0m         \n"
-        "    [[0;31;1m11[0m] - [0;32mType XV             [0m         "
-        "    [[0;31;1m12[0m] - [0;32mType XVI            [0m         \n"
-        "    [[0;31;1m13[0m] - [0;32mType XVII           [0m         "
-        "    [[0;31;1m14[0m] - [0;32mType XVIII          [0m         \n"
-        "    [[0;31;1m15[0m] - [0;32mType XVIIIa         [0m         "
-        "    [[0;31;1m16[0m] - [0;32mType XVIIIb         [0m         \n"
-        "    [[0;31;1m17[0m] - [0;32mType XVIIIc         [0m         "
-        "    [[0;31;1m18[0m] - [0;32mType XVIIId         [0m         \n"
-        "    [[0;31;1m19[0m] - [0;32mType XVIIIe         [0m         "
-        "    [[0;31;1m20[0m] - [0;32mType XVa            [0m         \n"
-        "    [[0;31;1m21[0m] - [0;32mType XX             [0m         "
-        "    [[0;31;1m22[0m] - [0;32mType XXI            [0m         \n"
-        "    [[0;31;1m23[0m] - [0;32mType XXII           [0m         "
-        "    [[0;31;1m24[0m] - [0;32mType Xa             [0m         \n"
-        "    [[0;31;1m25[0m] - [0;31mConfirm Selection   [0m         "
-        "    [[0;31;1m26[0m] - [0;32mCancel Selection    [0m         \n"
-        "[0;32;1mYou must select a number from 1 to 26.\n[0m"
+    ExpectEq("[0;36mSelect Metal - [0m[0;37;1mchoose a metal with which to craft[0m:\n"
+        "    [[0;31;1m1[0m]  - [0;31mAdmantite           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m2[0m]  - [0;31mAluminum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m3[0m]  - [0;31mAluminum bronze     [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m4[0m]  - [0;31mAntimony            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m5[0m]  - [0;31mAsurnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m6[0m]  - [0;31mBismuth             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m7[0m]  - [0;31mBrass               [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m8[0m]  - [0;31mBronze              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m9[0m]  - [0;31mCast iron           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m10[0m] - [0;31mCobalt              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m11[0m] - [0;31mCopper              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m12[0m] - [0;31mCupronickel         [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m13[0m] - [0;31mDurnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m14[0m] - [0;31mElectrum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m15[0m] - [0;31mGalvorn             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m16[0m] - [0;31mGold                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m17[0m] - [0;31mGraphite            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m18[0m] - [0;31mGwyrnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m19[0m] - [0;31mIridium             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m20[0m] - [0;31mIron                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m21[0m] - [0;31mKirdarium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m22[0m] - [0;31mKirnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m23[0m] - [0;31mLead                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m24[0m] - [0;31mMagnalium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m25[0m] - [0;31mMagnesium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m26[0m] - [0;31mMarnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m27[0m] - [0;31mMelynalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m28[0m] - [0;31mMeteoric iron       [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m29[0m] - [0;31mMithril             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m30[0m] - [0;31mNickel              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m31[0m] - [0;31mNurilium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m32[0m] - [0;31mOsmium              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m33[0m] - [0;31mPalladium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m34[0m] - [0;31mPewter              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m35[0m] - [0;31mPlatinum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m36[0m] - [0;31mRhudnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m37[0m] - [0;31mSilver              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m38[0m] - [0;31mSteel               [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m39[0m] - [0;31mTantalum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m40[0m] - [0;31mTin                 [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m41[0m] - [0;31mTitanium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m42[0m] - [0;31mTrynalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m43[0m] - [0;31mTungsten            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n" +
+        "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
+        "[0;32;1mYou must select a number from 1 to 45.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
         Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void SelectingMaterialChangesSelectedComponentInMenu()
+void PFlagRemovedWhenPrerequisitesMet()
 {
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftCommonMetal.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftUncommonMetal.c"));
@@ -159,92 +138,209 @@ void SelectingMaterialChangesSelectedComponentInMenu()
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftPreciousMetal.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftMythicMetal.c"));
     Selector->initiateSelector(Player);
-    command("12", Player);
-    command("10", Player);
-    command("1", Player);
     command("1", Player);
     command("1", Player);
 
-    ExpectEq("[0;36mCraft Blade - [0m[0;37;1mSelect materials and the type of blade you will craft[0m:\n"
-        "    [[0;31;1m1[0m]  - [0;32mSelect metal        [0m[0;35;1madmantite[0m"
-        "    [[0;31;1m2[0m]  - [0;32mFlamberge           [0m         \n"
-        "    [[0;31;1m3[0m]  - [0;32mSerrated            [0m         "
-        "    [[0;31;1m4[0m]  - [0;32mType X              [0m         \n"
-        "    [[0;31;1m5[0m]  - [0;32mType XI             [0m         "
-        "    [[0;31;1m6[0m]  - [0;32mType XIII           [0m         \n"
-        "    [[0;31;1m7[0m]  - [0;32mType XIIa           [0m         "
-        "    [[0;31;1m8[0m]  - [0;32mType XIV            [0m         \n"
-        "    [[0;31;1m9[0m]  - [0;32mType XIX            [0m         "
-        "    [[0;31;1m10[0m] - [0;32mType XIa            [0m         \n"
-        "    [[0;31;1m11[0m] - [0;32mType XV             [0m         "
-        "    [[0;31;1m12[0m] - [0;32mType XVI            [0m         \n"
-        "    [[0;31;1m13[0m] - [0;32mType XVII           [0m         "
-        "    [[0;31;1m14[0m] - [0;32mType XVIII          [0m         \n"
-        "    [[0;31;1m15[0m] - [0;32mType XVIIIa         [0m         "
-        "    [[0;31;1m16[0m] - [0;32mType XVIIIb         [0m         \n"
-        "    [[0;31;1m17[0m] - [0;32mType XVIIIc         [0m         "
-        "    [[0;31;1m18[0m] - [0;32mType XVIIId         [0m         \n"
-        "    [[0;31;1m19[0m] - [0;32mType XVIIIe         [0m         "
-        "    [[0;31;1m20[0m] - [0;32mType XVa            [0m         \n"
-        "    [[0;31;1m21[0m] - [0;32mType XX             [0m         "
-        "    [[0;31;1m22[0m] - [0;32mType XXI            [0m         \n"
-        "    [[0;31;1m23[0m] - [0;32mType XXII           [0m         "
-        "    [[0;31;1m24[0m] - [0;32mType Xa             [0m         \n"
-        "    [[0;31;1m25[0m] - [0;31mConfirm Selection   [0m         "
-        "    [[0;31;1m26[0m] - [0;32mCancel Selection    [0m         \n"
-        "[0;32;1mYou must select a number from 1 to 26.\n[0m"
+    ExpectEq("[0;36mSelect Metal - [0m[0;37;1mchoose a metal with which to craft[0m:\n"
+        "    [[0;31;1m1[0m]  - [0;31mAdmantite           [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m2[0m]  - [0;31mAluminum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m3[0m]  - [0;31mAluminum bronze     [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m4[0m]  - [0;31mAntimony            [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m5[0m]  - [0;31mAsurnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m6[0m]  - [0;31mBismuth             [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m7[0m]  - [0;31mBrass               [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m8[0m]  - [0;31mBronze              [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m9[0m]  - [0;31mCast iron           [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m10[0m] - [0;31mCobalt              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m11[0m] - [0;31mCopper              [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m12[0m] - [0;31mCupronickel         [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m13[0m] - [0;31mDurnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m14[0m] - [0;31mElectrum            [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m15[0m] - [0;31mGalvorn             [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m16[0m] - [0;31mGold                [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m17[0m] - [0;31mGraphite            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m18[0m] - [0;31mGwyrnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m19[0m] - [0;31mIridium             [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m20[0m] - [0;31mIron                [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m21[0m] - [0;31mKirdarium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m22[0m] - [0;31mKirnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m23[0m] - [0;31mLead                [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m24[0m] - [0;31mMagnalium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m25[0m] - [0;31mMagnesium           [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m26[0m] - [0;31mMarnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m27[0m] - [0;31mMelynalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m28[0m] - [0;31mMeteoric iron       [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m29[0m] - [0;31mMithril             [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m30[0m] - [0;31mNickel              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m31[0m] - [0;31mNurilium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m32[0m] - [0;31mOsmium              [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m33[0m] - [0;31mPalladium           [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m34[0m] - [0;31mPewter              [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m35[0m] - [0;31mPlatinum            [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m36[0m] - [0;31mRhudnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m37[0m] - [0;31mSilver              [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m38[0m] - [0;31mSteel               [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m39[0m] - [0;31mTantalum            [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m40[0m] - [0;31mTin                 [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m41[0m] - [0;31mTitanium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m42[0m] - [0;31mTrynalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m43[0m] - [0;31mTungsten            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n" +
+        "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
+        "[0;32;1mYou must select a number from 1 to 45.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
         Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void SelectingTypeFlagsChosenTypeInComponentMenu()
+void MFlagRemovedWhenQuantityMet()
 {
+    object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 6);
+    move_object(material, Player);
+
     Selector->initiateSelector(Player);
-    command("12", Player);
-    command("10", Player);
     command("1", Player);
-    command("6", Player);
+    command("1", Player);
 
-    ExpectEq("[0;36mCraft Blade - [0m[0;37;1mSelect materials and the type of blade you will craft[0m:\n"
-        "    [[0;31;1m1[0m]  - [0;32mSelect metal        [0m[0;35;1mnone[0m     "
-        "    [[0;31;1m2[0m]  - [0;32mFlamberge           [0m         \n"
-        "    [[0;31;1m3[0m]  - [0;32mSerrated            [0m         "
-        "    [[0;31;1m4[0m]  - [0;32mType X              [0m         \n"
-        "    [[0;31;1m5[0m]  - [0;32mType XI             [0m         "
-        "    [[0;31;1m6[0m]  - [0;32mType XIII           [0m[0;35;1m   (*)[0m   \n"
-        "    [[0;31;1m7[0m]  - [0;32mType XIIa           [0m         "
-        "    [[0;31;1m8[0m]  - [0;32mType XIV            [0m         \n"
-        "    [[0;31;1m9[0m]  - [0;32mType XIX            [0m         "
-        "    [[0;31;1m10[0m] - [0;32mType XIa            [0m         \n"
-        "    [[0;31;1m11[0m] - [0;32mType XV             [0m         "
-        "    [[0;31;1m12[0m] - [0;32mType XVI            [0m         \n"
-        "    [[0;31;1m13[0m] - [0;32mType XVII           [0m         "
-        "    [[0;31;1m14[0m] - [0;32mType XVIII          [0m         \n"
-        "    [[0;31;1m15[0m] - [0;32mType XVIIIa         [0m         "
-        "    [[0;31;1m16[0m] - [0;32mType XVIIIb         [0m         \n"
-        "    [[0;31;1m17[0m] - [0;32mType XVIIIc         [0m         "
-        "    [[0;31;1m18[0m] - [0;32mType XVIIId         [0m         \n"
-        "    [[0;31;1m19[0m] - [0;32mType XVIIIe         [0m         "
-        "    [[0;31;1m20[0m] - [0;32mType XVa            [0m         \n"
-        "    [[0;31;1m21[0m] - [0;32mType XX             [0m         "
-        "    [[0;31;1m22[0m] - [0;32mType XXI            [0m         \n"
-        "    [[0;31;1m23[0m] - [0;32mType XXII           [0m         "
-        "    [[0;31;1m24[0m] - [0;32mType Xa             [0m         \n"
-        "    [[0;31;1m25[0m] - [0;31mConfirm Selection   [0m         "
-        "    [[0;31;1m26[0m] - [0;32mCancel Selection    [0m         \n"
-        "[0;32;1mYou must select a number from 1 to 26.\n[0m"
+    ExpectEq("[0;36mSelect Metal - [0m[0;37;1mchoose a metal with which to craft[0m:\n"
+        "    [[0;31;1m1[0m]  - [0;31mAdmantite           [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
+        "    [[0;31;1m2[0m]  - [0;31mAluminum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m3[0m]  - [0;31mAluminum bronze     [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m4[0m]  - [0;31mAntimony            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m5[0m]  - [0;31mAsurnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m6[0m]  - [0;31mBismuth             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m7[0m]  - [0;31mBrass               [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m8[0m]  - [0;31mBronze              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m9[0m]  - [0;31mCast iron           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m10[0m] - [0;31mCobalt              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m11[0m] - [0;31mCopper              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m12[0m] - [0;31mCupronickel         [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m13[0m] - [0;31mDurnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m14[0m] - [0;31mElectrum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m15[0m] - [0;31mGalvorn             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m16[0m] - [0;31mGold                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m17[0m] - [0;31mGraphite            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m18[0m] - [0;31mGwyrnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m19[0m] - [0;31mIridium             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m20[0m] - [0;31mIron                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m21[0m] - [0;31mKirdarium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m22[0m] - [0;31mKirnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m23[0m] - [0;31mLead                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m24[0m] - [0;31mMagnalium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m25[0m] - [0;31mMagnesium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m26[0m] - [0;31mMarnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m27[0m] - [0;31mMelynalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m28[0m] - [0;31mMeteoric iron       [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m29[0m] - [0;31mMithril             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m30[0m] - [0;31mNickel              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m31[0m] - [0;31mNurilium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m32[0m] - [0;31mOsmium              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m33[0m] - [0;31mPalladium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m34[0m] - [0;31mPewter              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m35[0m] - [0;31mPlatinum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m36[0m] - [0;31mRhudnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m37[0m] - [0;31mSilver              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m38[0m] - [0;31mSteel               [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m39[0m] - [0;31mTantalum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m40[0m] - [0;31mTin                 [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m41[0m] - [0;31mTitanium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m42[0m] - [0;31mTrynalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m43[0m] - [0;31mTungsten            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n" +
+        "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
+        "[0;32;1mYou must select a number from 1 to 45.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
         Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
+void QuantityCanBeSpreadAcrossMultipleObjects()
 {
+    object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 2);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 2);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 1);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 1);
+    move_object(material, Player);
+
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("1", Player);
+
+    ExpectEq("[0;36mSelect Metal - [0m[0;37;1mchoose a metal with which to craft[0m:\n"
+        "    [[0;31;1m1[0m]  - [0;31mAdmantite           [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
+        "    [[0;31;1m2[0m]  - [0;31mAluminum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m3[0m]  - [0;31mAluminum bronze     [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m4[0m]  - [0;31mAntimony            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m5[0m]  - [0;31mAsurnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m6[0m]  - [0;31mBismuth             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m7[0m]  - [0;31mBrass               [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m8[0m]  - [0;31mBronze              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m9[0m]  - [0;31mCast iron           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m10[0m] - [0;31mCobalt              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m11[0m] - [0;31mCopper              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m12[0m] - [0;31mCupronickel         [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m13[0m] - [0;31mDurnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m14[0m] - [0;31mElectrum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m15[0m] - [0;31mGalvorn             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m16[0m] - [0;31mGold                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m17[0m] - [0;31mGraphite            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m18[0m] - [0;31mGwyrnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m19[0m] - [0;31mIridium             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m20[0m] - [0;31mIron                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m21[0m] - [0;31mKirdarium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m22[0m] - [0;31mKirnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m23[0m] - [0;31mLead                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m24[0m] - [0;31mMagnalium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m25[0m] - [0;31mMagnesium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m26[0m] - [0;31mMarnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m27[0m] - [0;31mMelynalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m28[0m] - [0;31mMeteoric iron       [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m29[0m] - [0;31mMithril             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m30[0m] - [0;31mNickel              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m31[0m] - [0;31mNurilium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m32[0m] - [0;31mOsmium              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m33[0m] - [0;31mPalladium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m34[0m] - [0;31mPewter              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m35[0m] - [0;31mPlatinum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m36[0m] - [0;31mRhudnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m37[0m] - [0;31mSilver              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m38[0m] - [0;31mSteel               [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m39[0m] - [0;31mTantalum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m40[0m] - [0;31mTin                 [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m41[0m] - [0;31mTitanium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m42[0m] - [0;31mTrynalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m43[0m] - [0;31mTungsten            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n" +
+        "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
+        "[0;32;1mYou must select a number from 1 to 45.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
+        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void FlagsMovedAndOptionEnabledWhenPrerequisitesAndQuantityMet()
+{
+    object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    material->set("quantity", 6);
+    move_object(material, Player);
+
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftCommonMetal.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftUncommonMetal.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftAlloy.c"));
@@ -252,130 +348,58 @@ void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftPreciousMetal.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftMythicMetal.c"));
     Selector->initiateSelector(Player);
-    command("12", Player);
-    command("10", Player);
     command("1", Player);
     command("1", Player);
-    command("1", Player);
-    command("6", Player);
 
-    ExpectEq("[0;36mCraft Blade - [0m[0;37;1mSelect materials and the type of blade you will craft[0m:\n"
-        "    [[0;31;1m1[0m]  - [0;32mSelect metal        [0m[0;35;1madmantite[0m"
-        "    [[0;31;1m2[0m]  - [0;32mFlamberge           [0m         \n"
-        "    [[0;31;1m3[0m]  - [0;32mSerrated            [0m         "
-        "    [[0;31;1m4[0m]  - [0;32mType X              [0m         \n"
-        "    [[0;31;1m5[0m]  - [0;32mType XI             [0m         "
-        "    [[0;31;1m6[0m]  - [0;32mType XIII           [0m[0;35;1m   (*)[0m   \n"
-        "    [[0;31;1m7[0m]  - [0;32mType XIIa           [0m         "
-        "    [[0;31;1m8[0m]  - [0;32mType XIV            [0m         \n"
-        "    [[0;31;1m9[0m]  - [0;32mType XIX            [0m         "
-        "    [[0;31;1m10[0m] - [0;32mType XIa            [0m         \n"
-        "    [[0;31;1m11[0m] - [0;32mType XV             [0m         "
-        "    [[0;31;1m12[0m] - [0;32mType XVI            [0m         \n"
-        "    [[0;31;1m13[0m] - [0;32mType XVII           [0m         "
-        "    [[0;31;1m14[0m] - [0;32mType XVIII          [0m         \n"
-        "    [[0;31;1m15[0m] - [0;32mType XVIIIa         [0m         "
-        "    [[0;31;1m16[0m] - [0;32mType XVIIIb         [0m         \n"
-        "    [[0;31;1m17[0m] - [0;32mType XVIIIc         [0m         "
-        "    [[0;31;1m18[0m] - [0;32mType XVIIId         [0m         \n"
-        "    [[0;31;1m19[0m] - [0;32mType XVIIIe         [0m         "
-        "    [[0;31;1m20[0m] - [0;32mType XVa            [0m         \n"
-        "    [[0;31;1m21[0m] - [0;32mType XX             [0m         "
-        "    [[0;31;1m22[0m] - [0;32mType XXI            [0m         \n"
-        "    [[0;31;1m23[0m] - [0;32mType XXII           [0m         "
-        "    [[0;31;1m24[0m] - [0;32mType Xa             [0m         \n"
-        "    [[0;31;1m25[0m] - [0;32mConfirm Selection   [0m         "
-        "    [[0;31;1m26[0m] - [0;32mCancel Selection    [0m         \n"
-        "[0;32;1mYou must select a number from 1 to 26.\n[0m"
+    ExpectEq("[0;36mSelect Metal - [0m[0;37;1mchoose a metal with which to craft[0m:\n"
+        "    [[0;31;1m1[0m]  - [0;32mAdmantite           [0m     "
+        "    [[0;31;1m2[0m]  - [0;31mAluminum            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m3[0m]  - [0;31mAluminum bronze     [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m4[0m]  - [0;31mAntimony            [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m5[0m]  - [0;31mAsurnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m6[0m]  - [0;31mBismuth             [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m7[0m]  - [0;31mBrass               [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m8[0m]  - [0;31mBronze              [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m9[0m]  - [0;31mCast iron           [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m10[0m] - [0;31mCobalt              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m11[0m] - [0;31mCopper              [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m12[0m] - [0;31mCupronickel         [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m13[0m] - [0;31mDurnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m14[0m] - [0;31mElectrum            [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m15[0m] - [0;31mGalvorn             [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m16[0m] - [0;31mGold                [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m17[0m] - [0;31mGraphite            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m18[0m] - [0;31mGwyrnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m19[0m] - [0;31mIridium             [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m20[0m] - [0;31mIron                [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m21[0m] - [0;31mKirdarium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m22[0m] - [0;31mKirnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m23[0m] - [0;31mLead                [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m24[0m] - [0;31mMagnalium           [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m25[0m] - [0;31mMagnesium           [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m26[0m] - [0;31mMarnalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m27[0m] - [0;31mMelynalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m28[0m] - [0;31mMeteoric iron       [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m29[0m] - [0;31mMithril             [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m30[0m] - [0;31mNickel              [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m31[0m] - [0;31mNurilium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m32[0m] - [0;31mOsmium              [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m33[0m] - [0;31mPalladium           [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m34[0m] - [0;31mPewter              [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m35[0m] - [0;31mPlatinum            [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m36[0m] - [0;31mRhudnalt            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m37[0m] - [0;31mSilver              [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m38[0m] - [0;31mSteel               [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m39[0m] - [0;31mTantalum            [0m[0;34;1m([0;35mM[0;34;1m)[0m  "
+        "    [[0;31;1m40[0m] - [0;31mTin                 [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n"
+        "    [[0;31;1m41[0m] - [0;31mTitanium            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m42[0m] - [0;31mTrynalt             [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n"
+        "    [[0;31;1m43[0m] - [0;31mTungsten            [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n" +
+        "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
+        "[0;32;1mYou must select a number from 1 to 45.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
-        Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CancelDoesNotSetValuesForWeaponCraftingMenu()
-{
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftMythicMetal.c"));
-    Selector->initiateSelector(Player);
-    command("12", Player);
-    command("10", Player);
-    command("1", Player);
-    command("1", Player);
-    command("1", Player);
-    command("6", Player);
-    command("26", Player);
-
-    ExpectEq("[0;36mCraft Long sword - [0m[0;37;1mFrom this menu, you will select the\n"
-        "components that will be used to craft your long sword. The relative statistics\n"
-        "for the item you are creating are:\n"
-        "\t[0;36mAttack: [0m[0;33m5 to 105[0m\n"
-        "\t[0;36mDamage: [0m[0;33m8 to 11[0m\n"
-        "\t[0;36mDefense: [0m[0;33m1 to 2[0m\n"
-        "\t[0;36mEncumberance: [0m[0;33m5[0m\n"
-        "\t[0;36mWeight: [0m[0;33m5[0m\n[0m\n"
-        "\t[[0;31;1m1[0m] - [0;32mSelect Blade        [0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mSelect Crossguard   [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mSelect Hilt         [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mSelect Pommel       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mExit Craft Long sword Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
-        Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void ConfirmSetsValuesForWeaponCraftingMenu()
-{
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftMythicMetal.c"));
-    Selector->initiateSelector(Player);
-    command("12", Player);
-    command("10", Player);
-    command("1", Player);
-    command("1", Player);
-    command("1", Player);
-    command("6", Player);
-    command("25", Player);
-
-    ExpectEq("[0;36mCraft Long sword - [0m[0;37;1mFrom this menu, you will select the\n"
-        "components that will be used to craft your long sword. The relative statistics\n"
-        "for the item you are creating are:\n"
-        "\t[0;36mAttack: [0m[0;33m5 to 105[0m\n"
-        "\t[0;36mDamage: [0m[0;33m8 to 11[0m\n"
-        "\t[0;36mDefense: [0m[0;33m1 to 2[0m\n"
-        "\t[0;36mEncumberance: [0m[0;33m5[0m\n"
-        "\t[0;36mWeight: [0m[0;33m5[0m\n[0m\n"
-        "\t[[0;31;1m1[0m] - [0;32mSelect Blade        [0m[0;35;1m   (*)[0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mSelect Crossguard   [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mSelect Hilt         [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mSelect Pommel       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mExit Craft Long sword Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
-        Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void ConfirmDoesNothingWhenDisabled()
-{
-    Selector->initiateSelector(Player);
-    command("12", Player);
-    command("10", Player);
-    command("1", Player);
-    command("25", Player);
-
-    ExpectSubStringMatch("31mConfirm Selection",
+        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
         Player->caughtMessage());
 }

@@ -631,7 +631,7 @@ public nomask string displayPrerequisites()
     if (sizeof(prerequisites))
     {
         ret = "[0;36mPrerequisites:[0m\n";
-        string *prereqKeys = m_indices(prerequisites);
+        string *prereqKeys = sort_array(m_indices(prerequisites), (: $1 > $2 :));
         foreach(string key in prereqKeys)
         {
             string prereq = "";

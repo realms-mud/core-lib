@@ -61,13 +61,14 @@ public nomask varargs int set(string element, mixed data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping getMaterialList()
+private nomask varargs mapping getMaterialList(string component)
 {
     mapping ret = ([]);
     string *materialList = m_indices(itemData["crafting materials"]);
     foreach(string material in materialList)
     {
-        if (mappingp(itemData["crafting materials"][material]))
+        if (mappingp(itemData["crafting materials"][material]) &&
+            (!component || (material == component)))
         {
             string *componentMaterials =
                 m_indices(itemData["crafting materials"][material]);
@@ -155,4 +156,32 @@ public nomask varargs int checkAgregateMaterials(object user)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string displayNeededMaterials(string component)
+{
+    string ret = "";
+
+    if (member(itemData, "crafting materials") &&
+        mappingp(itemData["crafting materials"]) &&
+        sizeof(itemData["crafting materials"]))
+    {
+        ret = "\n[0;36mMaterials:\n";
+        mapping neededMaterials = getMaterialList(component);
+
+        if (sizeof(neededMaterials))
+        {
+            string *materials = sort_array(m_indices(neededMaterials), (: $1 > $2 :));
+            foreach(string material in materials)
+            {
+                ret += (neededMaterials[material] > 0) ?
+                    sprintf("\t[0;32m%s needed: [0;35m%d[0m\n",
+                        capitalize(material), neededMaterials[material]) :
+                    sprintf("\t[0;31;1m(Optional)[0;32m %s can be used to "
+                        "embellish the design[0m\n", material);
+            }
+        }
+    }
+    return ret + "\n";
 }
