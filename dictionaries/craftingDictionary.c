@@ -164,7 +164,7 @@ public nomask mapping getCraftingList(string type, object user)
         {
             ret[to_string(menuItem)] = ([
                 "name": capitalize(item),
-                "description": sprintf("This option lets you craft: %s", item),
+                "description": sprintf("This option lets you craft: %s\n", item),
                 "selector": type,
                 "sub type": item,
                 "canShow": 1
@@ -250,7 +250,7 @@ public nomask mapping getCraftingListBySubType(string type, string subType,
                 (item[0..16] + "...");
             ret[to_string(menuItem)] = ([
                 "name": capitalize(nameDesc),
-                "description": sprintf("This option lets you craft: %s\n%s", 
+                "description": sprintf("This option lets you craft: %s\n%s\n", 
                     item, getDescriptionDetails(blueprintObj)),
                 "selector": item,
                 "type": type,
@@ -298,7 +298,7 @@ public nomask mapping getCraftingDataForItem(string type, string item, object us
 
                 ret[to_string(menuItem)] = ([
                     "name": sprintf("Select %s", capitalize(subType)),
-                    "description": sprintf("This option lets you craft the %s for your %s", 
+                    "description": sprintf("This option lets you craft the %s for your %s\n", 
                         elementType, item),
                     "type": elementType,
                     "details": blueprints[item]["crafting materials"][subType],
@@ -375,7 +375,7 @@ public nomask mapping getMaterialsOfType(string type, object user,
             ret[to_string(menuItem)] = ([
                 "name": capitalize(material),
                 "type": material,
-                "description": sprintf("This option lets you craft using: %s\n%s", 
+                "description": sprintf("This option lets you craft using: %s\n%s\n", 
                     material, load_object("/lib/dictionaries/materialsDictionary.c")->getEquipmentStatistics(craftingItem)),
                 "has materials": hasMaterials,
                 "prerequisites met": prerequisites,
@@ -430,7 +430,7 @@ public nomask mapping getMaterialsDataForItem(string type,
                 "selector": "material",
                 "type": material,
                 "description": sprintf("This option selects the %s you will "
-                    "use to craft the %s", material, type),
+                    "use to craft the %s\n", material, type),
             ]);
             menuItem++;
         }
@@ -445,7 +445,7 @@ public nomask mapping getMaterialsDataForItem(string type,
         ret[to_string(menuItem)] = ([
             "name": name,
             "type": component,
-            "description": format("This is " + craftingComponents[component]["description"], 78)
+            "description": format("This is " + craftingComponents[component]["description"], 78) + "\n"
         ]);
         menuItem++;
     }
@@ -539,7 +539,8 @@ public nomask string selectionForComponent(object item, string component)
 {
     string ret = "";
     mapping materialSelections = item->query("crafting materials");
-    if (materialSelections && mappingp(materialSelections))
+    if (materialSelections && mappingp(materialSelections) &&
+        member(materialSelections, component))
     {
         ret = materialSelections[component]["type"];
     }

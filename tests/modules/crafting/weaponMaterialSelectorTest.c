@@ -29,31 +29,7 @@ void Setup()
     Player->advanceSkill("chemistry", 10);
     Player->advanceSkill("physics", 10);
     Player->addResearchPoints(20);
-    /*
-    material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 6);
-    move_object(material, Player);
 
-    material = clone_object("/lib/instances/items/materials/metal/steel.c");
-    material->set("quantity", 4);
-    move_object(material, Player);
-
-    material = clone_object("/lib/instances/items/materials/metal/iron.c");
-    material->set("quantity", 3);
-    move_object(material, Player);
-
-    material = clone_object("/lib/instances/items/materials/metal/iron.c");
-    material->set("quantity", 5);
-    move_object(material, Player);
-
-    material = clone_object("/lib/instances/items/materials/wood/koa.c");
-    material->set("quantity", 5);
-    move_object(material, Player);
-
-    material = clone_object("/lib/instances/items/materials/leather/pegasus-leather.c");
-    material->set("quantity", 5);
-    move_object(material, Player);
-*/
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));

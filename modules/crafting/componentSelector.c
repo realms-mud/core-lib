@@ -136,13 +136,13 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (caller->selection())
     {
-        if (User)
-        {
-            Dictionary->setCraftingMaterial(CraftingItem, caller->materialClass(),
-                caller->selection(), CraftingComponent);
-            setUpUserForSelection();
-            tell_object(User, displayMessage());
-        }
+        Dictionary->setCraftingMaterial(CraftingItem, caller->materialClass(),
+            caller->selection(), CraftingComponent);
+    }
+    if (User)
+    {
+        setUpUserForSelection();
+        tell_object(User, displayMessage());
     }
     caller->cleanUp();
 }

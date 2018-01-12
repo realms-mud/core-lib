@@ -56,7 +56,7 @@ protected nomask void setUpUserForSelection()
         Data = Dictionary->getCraftingList(CraftingType, User);
     }
 
-    NumColumns = Data["1"]["show materials"] ? 2 : 1;
+    NumColumns = (member(Data["1"], "show materials") && Data["1"]["show materials"]) ? 2 : 1;
     Data[to_string(sizeof(Data) + 1)] = ([
         "name": sprintf("Exit Craft %s Menu", capitalize(displayType)),
         "type": "exit",
@@ -108,12 +108,9 @@ protected nomask int processSelection(string selection)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
-    if (caller->selection())
+    if (User)
     {
-        if (User)
-        {
-            tell_object(User, displayMessage());
-        }
+        tell_object(User, displayMessage());
     }
     caller->cleanUp();
 }
