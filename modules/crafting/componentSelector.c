@@ -59,6 +59,7 @@ protected nomask void setUpUserForSelection()
     Data[to_string(sizeof(Data) + 1)] = ([
         "name": "Confirm Selection",
         "type": "confirm",
+        "is disabled": !Dictionary->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials),
         "description": "This option confirms the item to craft and returns to the previous menu.\n"
     ]);
     Data[to_string(sizeof(Data) + 1)] = ([
@@ -74,7 +75,7 @@ protected nomask int processSelection(string selection)
     int ret = -1;
     if (User)
     {
-        ret = (Data[selection]["type"] == "exit");
+        ret = 0;
         if (Data[selection]["selector"] == "material")
         {
             SubselectorObj = clone_object(sprintf("/lib/modules/crafting/%sSelector.c",
@@ -86,10 +87,25 @@ protected nomask int processSelection(string selection)
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->initiateSelector(User);
         }
+        else if (Data[selection]["type"] == "exit")
+        {
+            ret = 1;
+            mapping materialData = CraftingItem->query("crafting materials");
+            if (materialData && member(materialData, CraftingComponent))
+            {
+                CraftingItem->set("crafting materials",
+                    m_delete(materialData, CraftingComponent));
+            }
+        }
+        else if (Data[selection]["type"] == "confirm")
+        {
+            ret = !Data[selection]["is disabled"];
+        }
         else
         {
             Dictionary->selectComponent(CraftingItem, CraftingComponent,
                 Data[selection]["type"]);
+            setUpUserForSelection();
             ret = 0;
         }
     }
@@ -110,7 +126,7 @@ protected nomask string displayDetails(string choice)
     else if (Data[choice]["type"] ==
         Dictionary->selectionForComponent(CraftingItem, CraftingComponent))
     {
-        ret = sprintf("%-22s", "[0;35;1m(*)[0m");
+        ret = sprintf("%-22s", "[0;35;1m   (*)[0m");
     }
     return ret;
 }
@@ -124,6 +140,7 @@ public nomask void onSelectorCompleted(object caller)
         {
             Dictionary->setCraftingMaterial(CraftingItem, caller->materialClass(),
                 caller->selection(), CraftingComponent);
+            setUpUserForSelection();
             tell_object(User, displayMessage());
         }
     }
@@ -139,8 +156,21 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
+    string displayFormat = "[0;32m%-20s[0m";
+    if (member(Data[choice], "is disabled") &&
+        Data[choice]["is disabled"])
+    {
+        displayFormat = "[0;31m%-20s[0m";
+    }
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "    " : "", Red,
-        padSelectionDisplay(choice), "[0;32m%-20s[0m",
+        padSelectionDisplay(choice), displayFormat,
         displayDetails(choice));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string additionalInstructions()
+{
+    return "[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
+        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n";
 }

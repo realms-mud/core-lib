@@ -109,6 +109,24 @@ protected nomask int processSelection(string selection)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask string displayDetails(string choice)
+{
+    string ret = "";
+
+    mapping itemComponents = Item->query("crafting materials");
+    string *componentList = ({});
+    if (sizeof(itemComponents))
+    {
+        componentList = m_indices(itemComponents);
+    }
+    if (member(componentList, Data[choice]["type"]) > -1)
+    {
+        ret = "[0;35;1m   (*)[0m";
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
     if (User)
@@ -117,6 +135,12 @@ public nomask void onSelectorCompleted(object caller)
         tell_object(User, displayMessage());
     }
     caller->cleanUp();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string additionalInstructions()
+{
+    return "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////

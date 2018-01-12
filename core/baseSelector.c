@@ -30,7 +30,6 @@ protected nosave string BoldGreen = "[0;32;1m%s[0m";
 public void init()
 {
     registerEventHandler("onSelectorCompleted");
-
     add_action("applySelection", "", 3);
 }
 
