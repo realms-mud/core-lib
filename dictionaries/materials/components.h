@@ -355,4 +355,208 @@ private nosave mapping craftingComponents =
             "crystal": 2,
         ]),
     ]),
+    "Tapered Grip": ([
+        "class": "hilt",
+        "value": 10,
+        "description": "a simple hilt covered with a tapered guard made out of wood and wrapped in leather."
+    ]),
+    "Ovular Grip": ([
+        "class": "hilt",
+        "value": 10,
+        "description": "a simple hilt covered with a guard made out of wood and wrapped in leather that gently curves in at the two ends."
+    ]),
+    "Cylindrical Grip": ([
+        "class": "hilt",
+        "value": 5,
+        "description": "a simple hilt covered with a guard made out of wood and wrapped in leather."
+    ]),
+    "Lattice Grip": ([
+        "class": "hilt",
+        "value": 15,
+        "description": "a hilt covered with a guard made out of wood and wrapped in latticed leather."
+    ]),
+    "Helix Grip": ([
+        "class": "hilt",
+        "value": 15,
+        "description": "a hilt covered with a slightly ovular guard made out of wood and wrapped in leather. The leather then has a helix of wire wrapped around it."
+    ]),
+    "Rope Grip": ([
+        "class": "hilt",
+        "value": 10,
+        "description": "a hilt covered with a slightly ovular guard made out of wood and wrapped in thin strands of leather."
+    ]),
+    "Spiral Grip": ([
+        "class": "hilt",
+        "value": 15,
+        "description": "a hilt covered with a slightly ovular guard made out of wood and wrapped in spiraled wire."
+    ]),
+    "Brazil-nut": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a wide metal pommel with a single lobes, giving it a shape somewhat like a Brazil-nut."
+    ]),
+    "Mushroom": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a metal pommel with a short, rounded end."
+    ]),
+    "Carolingian": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a metal pommel with several lobes, giving it the shape of a 'cocked hat'."
+    ]),
+    "Lobed": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a wide, heavy metal pommel with several lobes, giving it the shape of a 'cocked hat'."
+    ]),
+    "Shell": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a wide, heavy metal pommel shaped somewhat like a clam shell, tapering at the tip."
+    ]),
+    "Angular Shell": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a thin metal pommel with a pentagonal shape."
+    ]),
+    "Concave Disk": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a disc-shaped metal pommel with thick, concave faces."
+    ]),
+    "Convex Disk": ([
+        "class": "pommel",
+        "value": 25,
+        "description": "a disc-shaped metal pommel with thick, squashed globular form and flower-like pattern on its surface."
+    ]),
+    "Chamfered Disk": ([
+        "class": "pommel",
+        "value": 18,
+        "description": "a thick disc-shaped metal pommel with thick, chamfered edges."
+    ]),
+    "Broad Chamfer": ([
+        "class": "pommel",
+        "value": 20,
+        "description": "a thick disc-shaped metal pommel with thick chamfered edge that widens to the radius of the pommel."
+    ]),
+    "Multi-disc": ([
+        "class": "pommel",
+        "value": 20,
+        "description": "a metal pommel fashioned of two discs - a flatter outer disc and a raised inner disc."
+    ]),
+    "Boat": ([
+        "class": "pommel",
+        "value": 20,
+        "description": "a metal pommel shaped somewhat like a boat."
+    ]),
+    "Crescent": ([
+        "class": "pommel",
+        "value": 20,
+        "description": "a metal pommel shaped like a crescent, the outer curve away from the blade."
+    ]),
+    "Shield": ([
+        "class": "pommel",
+        "value": 18,
+        "description": "a metal pommel shaped somewhat like a shield."
+    ]),
+    "Sphere": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a metal pommel of spherical shape."
+    ]),
+    "Faceted": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a metal pommel with a faceted shape. It is wide at the end and tapers toward the grip."
+    ]),
+    "Fish Tail": ([
+        "class": "pommel",
+        "value": 15,
+        "description": "a metal pommel with a with a somewhat fish-tailed shape."
+    ]),
+    "Eagle Talon": ([
+        "class": "pommel",
+        "value": 50,
+        "description": "a metal pommel that has been intricately sculpted to resemble an eagle's talon. Clutched in its grip is a gemstone.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Dragon Talon": ([
+        "class": "pommel",
+        "value": 50,
+        "description": "a metal pommel that has been intricately sculpted to resemble a dragon's talon. Clutched in its grip is a gemstone.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Griffin Talon": ([
+        "class": "pommel",
+        "value": 50,
+        "description": "a metal pommel that has been intricately sculpted to resemble a griffin's talon. Clutched in its grip is a gemstone.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Wolf Maw": ([
+        "class": "pommel",
+        "value": 50,
+        "description": "a metal pommel that has been intricately sculpted to resemble a wolf's head. It has two small gems for its eyes.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Feline": ([
+        "class": "pommel",
+        "value": 50,
+        "description": "a metal pommel that has been intricately sculpted to resemble a cat's head. It has two small gems for its eyes.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Dragon Maw": ([
+        "class": "pommel",
+        "value": 50,
+        "description": "a metal pommel that has been intricately sculpted to resemble a dragon's head. It has two small gems for its eyes.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Serpent": ([
+        "class": "pommel",
+        "value": 50,
+        "description": "a metal pommel that has been intricately sculpted to resemble a snake's head. It has two small gems for its eyes.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
 ]);
