@@ -364,3 +364,55 @@ void ConfirmDoesNothingWhenDisabled()
     ExpectSubStringMatch("31mConfirm Selection",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void ComponentsWithAdditionalPrerequisitesAreDisabledWhenPrerequisitesNotMet()
+{
+    Selector->initiateSelector(Player);
+    command("2", Player);
+
+    ExpectSubStringMatch("31mDracolich Form.*",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSelectDisabledComponents()
+{
+    Selector->initiateSelector(Player);
+    command("2", Player);
+    command("11", Player);
+
+    ExpectSubStringMatch("31mDracolich Form[^*]*Dragon",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ComponentsAreEnabledWhenPrerequisitesAreMet()
+{
+    object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    Player->advanceSkill("gem crafting", 10);
+    Player->advanceSkill("sculpture", 15);
+
+    Selector->initiateSelector(Player);
+    command("2", Player);
+    command("11", Player);
+
+    ExpectSubStringMatch("32mDracolich Form.*[*].*Dragon",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ComponentDescriptionsShowPrerequisitesAndMaterialsNeeded()
+{
+    Selector->initiateSelector(Player);
+    command("2", Player);
+    command("? 11", Player);
+
+    ExpectSubStringMatch("This is an ornate knuckleguard that has been sculpted to appear as though a\n"
+        "dracolich is protecting the user's hand.*Prerequisites.*Gem crafting of 5.*"
+        "Sculpture of 15.*Materials.*Crystal needed.*2",
+        Player->caughtMessage());
+}

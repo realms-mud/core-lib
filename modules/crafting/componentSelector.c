@@ -101,7 +101,7 @@ protected nomask int processSelection(string selection)
         {
             ret = !Data[selection]["is disabled"];
         }
-        else
+        else if (!Data[selection]["is disabled"])
         {
             Dictionary->selectComponent(CraftingItem, CraftingComponent,
                 Data[selection]["type"]);

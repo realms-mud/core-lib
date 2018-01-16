@@ -509,7 +509,7 @@ public string long()
 /////////////////////////////////////////////////////////////////////////////
 public int id(string item)
 {
-    string *aliases = ({ query("name") });
+    string *aliases = ({ query("name"), lower_case(query("name")) });
     if (pointerp(query("aliases")))
     {
         aliases += query("aliases");

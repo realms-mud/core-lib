@@ -692,6 +692,7 @@ void IdReturnsTrueForCorrectIdentifiers()
     Item->set("aliases", ({ "creature", "weasel", "Gerty" }));
 
     ExpectTrue(Item->id("Gertrude"), "Gertrude is a valid id");
+    ExpectTrue(Item->id("gertrude"), "gertrude is a valid id");
     ExpectTrue(Item->id("creature"), "creature is a valid id");
     ExpectTrue(Item->id("weasel"), "weasel is a valid id");
     ExpectTrue(Item->id("Gerty"), "Gerty is a valid id");

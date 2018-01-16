@@ -82,17 +82,32 @@ public nomask mapping getTopLevelCraftingMenu(object user)
 private nomask mapping getBlueprintsByType(string type)
 {
     mapping items = ([]);
-    if (type == "armor")
+    switch (type)
     {
-        items = armorBlueprints;
-    }
-    else if (type == "weapons")
-    {
-        items = weaponBlueprints;
-    }
-    else if (type == "materials")
-    {
-        items = materials;
+        case "armor":
+        {
+            items = armorBlueprints;
+            break;
+        }
+        case "weapons":
+        {
+            items = weaponBlueprints;
+            break;
+        }
+        case "materials":
+        {
+            items = materials;
+            break;
+        }
+        case "components":
+        {
+            items = craftingComponents;
+            break;
+        }
+        default:
+        {
+            items = ([]);
+        }
     }
     return items + ([]);
 }
@@ -437,6 +452,8 @@ public nomask mapping getMaterialsDataForItem(string type,
     }
     foreach(string component in components)
     {
+        object blueprintObj = getBlueprintItem("components", component);
+
         string name = capitalize(component);
         if (sizeof(name) > 20)
         {
@@ -445,8 +462,11 @@ public nomask mapping getMaterialsDataForItem(string type,
         ret[to_string(menuItem)] = ([
             "name": name,
             "type": component,
-            "description": format("This is " + craftingComponents[component]["description"], 78) + "\n"
+            "is disabled": (!prerequisitesMet(blueprintObj, user) || !materialsAvailable(blueprintObj, user)),
+            "description": format("This is " + craftingComponents[component]["description"] +
+                "\n" + getDescriptionDetails(blueprintObj), 78) + "\n"
         ]);
+        destruct(blueprintObj);
         menuItem++;
     }
     return ret;
