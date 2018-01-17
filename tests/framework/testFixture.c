@@ -156,5 +156,3 @@ public varargs void ExpectFalse(mixed val1, string msg)
     CurrentTestPassed = !val1;
     validateExpect("false", "true", msg);
 }
-
-

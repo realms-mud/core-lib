@@ -9,6 +9,7 @@ private object SubselectorObj;
 private string CraftingComponent;
 private object CraftingItem;
 private mapping Materials;
+private string InitialMaterial;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -34,6 +35,7 @@ public nomask void reset(int arg)
     if(!arg)
     {
         AllowUndo = 0;
+        AllowAbort = 1;
         NumColumns = 2;
         Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
         Data = ([]);
@@ -47,6 +49,11 @@ protected nomask void setUpUserForSelection()
     {
         raise_error("ERROR: componentSelector.c - The type has not been "
             "set.\n");
+    }
+
+    if (!InitialMaterial)
+    {
+        InitialMaterial = CraftingItem->query("material");
     }
 
     Description = sprintf("Select materials and the type of %s you will craft",
@@ -95,6 +102,7 @@ protected nomask int processSelection(string selection)
             {
                 CraftingItem->set("crafting materials",
                     m_delete(materialData, CraftingComponent));
+                CraftingItem->set("material", InitialMaterial);
             }
         }
         else if (Data[selection]["type"] == "confirm")

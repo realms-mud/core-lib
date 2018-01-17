@@ -12,6 +12,7 @@ public nomask void reset(int arg)
     if(!arg)
     {
         AllowUndo = 0;
+        AllowAbort = 1;
         Description = "Main Menu";
         Type = "Crafting";
         Data = ([]);
@@ -40,7 +41,7 @@ protected nomask int processSelection(string selection)
     int ret = -1;
     if (User)
     {
-        ret = (Data[selection]["type"] == "exit");
+        ret = (Data[selection]["type"] == "exit") || (selection == "abort");
         if (!ret && Data[selection]["canShow"])
         {
             SubselectorObj = 

@@ -16,6 +16,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 6 ]),
             "crossguard": (["metal": 2, "crystal": 0 ]),
@@ -44,6 +45,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 8 ]),
             "crossguard": (["metal": 2, "crystal": 0 ]),
@@ -72,6 +74,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 4 ]),
             "crossguard": (["metal": 2, "crystal": 0 ]),
@@ -100,6 +103,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 8]),
             "weapon smithing": (["type":"skill", "value": 15]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 6 ]),
             "crossguard": (["metal": 2, "crystal": 0 ]),
@@ -128,6 +132,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 8 ]),
             "crossguard": (["metal": 2, "crystal": 0 ]),
@@ -156,6 +161,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 6 ]),
             "crossguard": (["metal": 2, "crystal": 0 ]),
@@ -184,6 +190,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 8 ]),
             "crossguard": (["metal": 2, "crystal": 0 ]),
@@ -212,6 +219,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 6 ]),
             "crossguard": (["metal": 2, "crystal": 0 ]),
@@ -240,6 +248,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 3 ]),
             "crossguard": (["metal": 1, "crystal": 0 ]),
@@ -268,6 +277,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal":4 ]),
             "crossguard": (["metal": 1, "crystal": 0 ]),
@@ -296,6 +306,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 4 ]),
             "crossguard": (["metal": 1, "crystal": 0 ]),
@@ -324,6 +335,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 6]),
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 3 ]),
             "crossguard": (["metal": 1, "crystal": 0 ]),
@@ -352,6 +364,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 3 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ]),
@@ -378,6 +391,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 3 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ])
@@ -404,6 +418,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 3 ]),
             "hilt": (["metal": 1, "wood": 1, "leather": 1 ])
@@ -430,6 +445,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 1 ]),
             "hilt": (["metal": 1, "wood": 1 ]),
@@ -456,6 +472,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 3 ]),
             "binding": (["leather": 1 ]),
@@ -482,6 +499,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 3 ]),
             "binding": (["leather": 1 ]),
@@ -508,6 +526,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 4 ]),
             "binding": (["leather": 2 ]),
@@ -534,6 +553,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 1 ]),
             "crossguard": (["metal": 0, "crystal": 0 ]),
@@ -562,6 +582,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 1 ]),
             "crossguard": (["metal": 0, "crystal": 0 ]),
@@ -590,6 +611,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 1 ]),
             "crossguard": (["metal": 0, "crystal": 0 ]),
@@ -618,6 +640,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 7]),
             "weapon smithing": (["type":"skill", "value": 15]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 10 ]),
             "crossguard": (["metal": 1, "crystal": 0 ]),
@@ -646,6 +669,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 7]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 10 ]),
             "crossguard": (["metal": 1, "crystal": 0 ]),
@@ -674,6 +698,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 10]),
             "weapon smithing": (["type":"skill", "value": 20]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 10 ]),
             "crossguard": (["metal": 1, "crystal": 0 ]),
@@ -702,6 +727,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 7]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 8 ]),
             "crossguard": (["metal": 1, "crystal": 0 ]),
@@ -730,6 +756,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 15]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 4 ]),
             "shaft": (["wood": 5, "leather": 1 ])
@@ -754,8 +781,9 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftBasicStaff.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
+        "primary component": "staff head", 
         "crafting materials": ([
-            "head": (["wood": 1, "crystal" : 0 ]),
+            "staff head": (["wood": 1, "crystal" : 0 ]),
             "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
@@ -782,8 +810,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "staff head", 
         "crafting materials": ([
-            "head": (["wood": 1, "metal": 1, "crystal": 1 ]),
+            "staff head": (["wood": 1, "metal": 1, "crystal": 1 ]),
             "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
@@ -806,8 +835,9 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftBasicStaff.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
+        "primary component": "staff head", 
         "crafting materials": ([
-            "head": (["wood": 1, "crystal": 0 ]),
+            "staff head": (["wood": 1, "crystal": 0 ]),
             "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
@@ -832,8 +862,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "staff head", 
         "crafting materials": ([
-            "head": (["wood": 1, "metal": 2, "crystal": 0 ]),
+            "staff head": (["wood": 1, "metal": 2, "crystal": 0 ]),
             "shaft": (["wood": 5, "leather": 1 ])
         ]),
         "skill to use": "staff",
@@ -858,6 +889,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 4 ]),
             "shaft": (["wood": 5, "leather": 1 ])
@@ -884,6 +916,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "blade", 
         "crafting materials": ([
             "blade": (["metal": 4 ]),
             "shaft": (["wood": 5, "leather": 1 ])
@@ -910,8 +943,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
+        "primary component": "staff head", 
         "crafting materials": ([
-            "head": (["wood": 1, "crystal" : 0]),
+            "staff head": (["wood": 1, "crystal" : 0]),
             "shaft": (["wood": 4, "leather": 1 ]),
             "shield": ([ "wood": 2, "metal": 2 ])
         ]),
@@ -937,8 +971,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "axe head": (["metal": 5 ]),
             "haft": (["wood": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -964,8 +999,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "axe head": (["metal": 4 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -991,8 +1027,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "axe head": (["metal": 5 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1018,8 +1055,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 3 ]),
+            "axe head": (["metal": 3 ]),
             "haft": (["wood": 1 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1045,8 +1083,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 3 ]),
+            "axe head": (["metal": 3 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1072,8 +1111,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "axe head": (["metal": 5 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1099,8 +1139,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "axe head": (["metal": 5 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1126,8 +1167,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 6 ]),
+            "axe head": (["metal": 6 ]),
             "haft": (["wood": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1153,8 +1195,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 6 ]),
+            "axe head": (["metal": 6 ]),
             "haft": (["wood": 5 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1180,8 +1223,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 8 ]),
+            "axe head": (["metal": 8 ]),
             "haft": (["wood": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1207,8 +1251,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 8 ]),
+            "axe head": (["metal": 8 ]),
             "haft": (["wood": 5 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1234,8 +1279,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 7 ]),
+            "axe head": (["metal": 7 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1261,8 +1307,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 6]),
         ]),
+        "primary component": "hammer head", 
         "crafting materials": ([
-            "head": (["metal": 7 ]),
+            "hammer head": (["metal": 7 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1288,8 +1335,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "bardiche head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "bardiche head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1315,8 +1363,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
+        "primary component": "hammer head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "hammer head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1342,8 +1391,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "bill head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "bill head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1369,8 +1419,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "brandistock head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "brandistock head": (["metal": 4 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1396,8 +1447,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "earspoon head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "earspoon head": (["metal": 4 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1423,8 +1475,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "fork head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "fork head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1450,8 +1503,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "fork head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "fork head": (["metal": 4 ]),
             "shaft": (["wood": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1477,8 +1531,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "fork head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "fork head": (["metal": 5 ]),
             "shaft": (["wood": 5 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1504,8 +1559,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "partisan head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "partisan head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1531,8 +1587,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "fork head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "fork head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1558,8 +1615,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "halberd head", 
         "crafting materials": ([
-            "head": (["metal": 6 ]),
+            "halberd head": (["metal": 6 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1585,8 +1643,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "sovnya head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "sovnya head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1612,8 +1671,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "spetum head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "spetum head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1639,8 +1699,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "scythe head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "scythe head": (["metal": 5 ]),
             "shaft": (["wood": 5 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1666,8 +1727,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "fauchard head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "fauchard head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1693,8 +1755,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "guisarme head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "guisarme head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1720,8 +1783,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "axe head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1747,8 +1811,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "ahlspiess head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "ahlspiess head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1774,8 +1839,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "lance head", 
         "crafting materials": ([
-            "head": (["metal": 2, "wood": 1 ]),
+            "lance head": (["metal": 2, "wood": 1 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1801,8 +1867,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "voulge head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "voulge head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1828,8 +1895,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "glaive head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "glaive head": (["metal": 5 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1855,8 +1923,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "spear head", 
         "crafting materials": ([
-            "head": (["metal": 3 ]),
+            "spear head": (["metal": 3 ]),
             "shaft": (["wood": 6 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1882,8 +1951,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "spear head", 
         "crafting materials": ([
-            "head": (["metal": 2 ]),
+            "spear head": (["metal": 2 ]),
             "shaft": (["wood": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1909,8 +1979,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "hammer head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "hammer head": (["metal": 4 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1936,8 +2007,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "hammer head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "hammer head": (["metal": 5 ]),
             "haft": (["wood": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1963,8 +2035,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "hammer head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "hammer head": (["metal": 5 ]),
             "haft": (["wood": 5 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1988,8 +2061,9 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftBasicMace.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
+        "primary component": "club head", 
         "crafting materials": ([
-            "head": (["wood": 2 ]),
+            "club head": (["wood": 2 ]),
             "haft": (["wood": 2 ])
         ]),
         "skill to use": "mace",
@@ -2012,8 +2086,9 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftBasicMace.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
+        "primary component": "club head", 
         "crafting materials": ([
-            "head": (["wood": 2 ]),
+            "club head": (["wood": 2 ]),
             "haft": (["wood": 2 ])
         ]),
         "skill to use": "mace",
@@ -2038,8 +2113,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "mace head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "mace head": (["metal": 5 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -2065,8 +2141,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 2]),
         ]),
+        "primary component": "mace head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "mace head": (["metal": 4 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -2091,8 +2168,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "mace head", 
         "crafting materials": ([
-            "head": (["metal": 3 ]),
+            "mace head": (["metal": 3 ]),
             "haft": (["metal": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -2118,8 +2196,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "mace head", 
         "crafting materials": ([
-            "head": (["metal": 5 ]),
+            "mace head": (["metal": 5 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -2145,8 +2224,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "mace head", 
         "crafting materials": ([
-            "head": (["metal": 6 ]),
+            "mace head": (["metal": 6 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -2172,8 +2252,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
+        "primary component": "mace head", 
         "crafting materials": ([
-            "head": (["metal": 2 ]),
+            "mace head": (["metal": 2 ]),
             "haft": (["wood": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -2199,8 +2280,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
+        "primary component": "flail head", 
         "crafting materials": ([
-            "head": (["metal": 3 ]),
+            "flail head": (["metal": 3 ]),
             "chain": (["metal": 2 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
@@ -2227,8 +2309,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "flail head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "flail head": (["metal": 4 ]),
             "chain": (["metal": 2 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
@@ -2253,8 +2336,9 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftBasicFlail.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "whip body", 
         "crafting materials": ([
-            "body": (["leather": 4 ]),
+            "whip body": (["leather": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
         "skill to use": "flail",
@@ -2279,8 +2363,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "flail head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "flail head": (["metal": 4 ]),
             "chain": (["metal": 2 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
@@ -2307,8 +2392,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "flail head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "flail head": (["metal": 4 ]),
             "hinge": (["metal": 1 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
@@ -2335,8 +2421,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "flail head", 
         "crafting materials": ([
-            "head": (["metal": 4 ]),
+            "flail head": (["metal": 4 ]),
             "chain": (["metal": 1 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
@@ -2363,8 +2450,9 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 15]),
         ]),
+        "primary component": "flail head", 
         "crafting materials": ([
-            "head": (["metal": 6 ]),
+            "flail head": (["metal": 6 ]),
             "chain": (["metal": 2 ]),
             "haft": (["wood": 3 ]),
             "grip": ([ "leather": 1 ])
@@ -2391,6 +2479,7 @@ private nosave mapping weaponBlueprints = ([
             "bowyer and fletcher": (["type":"skill", "value": 10]),
             "engineering": (["type":"skill", "value": 2]),
         ]),
+        "primary component": "bow", 
         "crafting materials": ([
             "trigger": (["metal": 1 ]),
             "bow": (["wood": 3 ]),
@@ -2419,6 +2508,7 @@ private nosave mapping weaponBlueprints = ([
             "bowyer and fletcher": (["type":"skill", "value": 10]),
             "engineering": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "bow", 
         "crafting materials": ([
             "trigger": (["metal": 1 ]),
             "lever": (["metal": 1 ]),
@@ -2448,6 +2538,7 @@ private nosave mapping weaponBlueprints = ([
             "bowyer and fletcher": (["type":"skill", "value": 15]),
             "engineering": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "bow", 
         "crafting materials": ([
             "trigger": (["metal": 1 ]),
             "cranequin": (["metal": 1 ]),
@@ -2476,6 +2567,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "bow", 
         "crafting materials": ([
             "bow": (["wood": 3 ]),
             "rest": (["wood": 1 ]),
@@ -2503,6 +2595,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "bow", 
         "crafting materials": ([
             "bow": (["wood": 4 ]),
             "rest": (["wood": 1 ]),
@@ -2530,6 +2623,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "bow", 
         "crafting materials": ([
             "bow": (["wood": 5 ]),
             "rest": (["wood": 1 ]),
@@ -2557,6 +2651,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "bow", 
         "crafting materials": ([
             "bow": (["wood": 4 ]),
             "rest": (["wood": 1 ]),
@@ -2584,6 +2679,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "bow", 
         "crafting materials": ([
             "bow": (["wood": 4, "exotic": 2 ]),
             "rest": (["wood": 1 ]),
@@ -2610,6 +2706,7 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftSling.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 2]),
         ]),
+        "primary component": "projectile pocket", 
         "crafting materials": ([
             "projectile pocket": (["leather": 1 ]),
             "rope": ([ "textile": 2 ])
@@ -2635,6 +2732,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
+        "primary component": "projectile pocket", 
         "crafting materials": ([
             "shaft": ([ "wood": 4 ]),
             "projectile pocket": (["leather": 1 ]),
@@ -2660,6 +2758,7 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftSling.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "projectile pocket", 
         "crafting materials": ([
             "grip": ([ "wood": 1 ]),
             "projectile pocket": (["leather": 1 ]),
@@ -2685,6 +2784,7 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftSling.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "projectile pocket", 
         "crafting materials": ([
             "projectile pocket": (["leather": 1 ]),
             "rope": ([ "textile": 3 ])
@@ -2709,9 +2809,10 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
+        "primary component": "spear head", 
         "crafting materials": ([
             "shaft": (["wood": 4 ]),
-            "head": (["metal": 1 ])
+            "spear head": (["metal": 1 ])
         ]),
         "skill to use": "thrown",
         "default wc": 6,
@@ -2733,9 +2834,10 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
+        "primary component": "spear head", 
         "crafting materials": ([
             "shaft": (["wood": 4 ]),
-            "head": (["metal": 2 ])
+            "spear head": (["metal": 2 ])
         ]),
         "skill to use": "thrown",
         "default wc": 8,
@@ -2755,6 +2857,7 @@ private nosave mapping weaponBlueprints = ([
         "skill to craft": 0,
         "crafting prerequisites": ([
         ]),
+        "primary component": "bullet", 
         "crafting materials": ([
             "bullet": (["stone": 1 ])
         ]),
@@ -2778,9 +2881,10 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
+        "primary component": "dart head", 
         "crafting materials": ([
             "shaft": (["wood": 1, "feather": 4 ]),
-            "head": (["metal": 1 ])
+            "dart head": (["metal": 1 ])
         ]),
         "skill to use": "thrown",
         "default wc": 5,
@@ -2802,9 +2906,10 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
+        "primary component": "spear head", 
         "crafting materials": ([
             "shaft": (["wood": 4 ]),
-            "head": (["metal": 2 ])
+            "spear head": (["metal": 2 ])
         ]),
         "skill to use": "thrown",
         "default wc": 9,
@@ -2826,9 +2931,10 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
+        "primary component": "axe head", 
         "crafting materials": ([
             "haft": (["wood": 2 ]),
-            "head": (["metal": 2 ]),
+            "axe head": (["metal": 2 ]),
             "grip": (["leather": 1])
         ]),
         "skill to use": "thrown",
@@ -2851,9 +2957,10 @@ private nosave mapping weaponBlueprints = ([
             "lib/instances/research/crafting/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
+        "primary component": "hammer head", 
         "crafting materials": ([
             "haft": (["wood": 2 ]),
-            "head": (["metal": 2 ]),
+            "hammer head": (["metal": 2 ]),
             "grip": (["leather": 1])
         ]),
         "skill to use": "thrown",
@@ -2877,6 +2984,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
+        "primary component": "shield", 
         "crafting materials": ([
             "shield": (["wood":2, "metal": 2 ]),
             "grip": (["leather": 1])
@@ -2902,6 +3010,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "shield", 
         "crafting materials": ([
             "shield": (["wood":6, "metal": 1 ]),
             "grip": (["leather": 1])
@@ -2927,6 +3036,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "shield", 
         "crafting materials": ([
             "shield": (["wood":3, "metal": 2 ]),
             "grip": (["leather": 1])
@@ -2952,6 +3062,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
+        "primary component": "shield", 
         "crafting materials": ([
             "shield": (["wood":4, "metal": 2 ]),
             "grip": (["leather": 1])
@@ -2977,6 +3088,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "shield", 
         "crafting materials": ([
             "shield": (["wood":5, "metal": 2 ]),
             "grip": (["leather": 1])
@@ -3002,6 +3114,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
+        "primary component": "shield", 
         "crafting materials": ([
             "shield": (["wood":5, "metal": 2 ]),
             "grip": (["leather": 1])
@@ -3027,6 +3140,7 @@ private nosave mapping weaponBlueprints = ([
             "wood crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
+        "primary component": "shield", 
         "crafting materials": ([
             "shield": (["wood":6, "metal": 2 ]),
             "grip": (["leather": 1])
@@ -3053,6 +3167,7 @@ private nosave mapping weaponBlueprints = ([
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
+        "primary component": "spike", 
         "crafting materials": ([
             "shield": (["wood":6, "metal": 1 ]),
             "spike": (["metal":1]),

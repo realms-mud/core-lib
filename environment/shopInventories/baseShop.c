@@ -145,6 +145,12 @@ public nomask void onSelectorCompleted(object caller)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void onSelectorAborted(object caller)
+{
+    caller->cleanUp();
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int canPurchaseItem(object item)
 {
     return 1;

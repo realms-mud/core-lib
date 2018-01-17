@@ -10,6 +10,7 @@ private string CraftingItem;
 private string CraftingType;
 private string CraftingSubType;
 private object Item;
+private string InitialMaterial;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -35,6 +36,7 @@ public nomask void reset(int arg)
     if(!arg)
     {
         AllowUndo = 0;
+        AllowAbort = 1;
         SuppressColon = 1;
         Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
         Data = ([]);
@@ -50,6 +52,7 @@ private nomask void getItemToCraft()
             CraftingType, CraftingSubType, regreplace(CraftingItem, " ", "-"));
         Item = clone_object(file);
         Item->set("identified");
+        InitialMaterial = Item->query("material");
     }
 }
 
@@ -58,7 +61,12 @@ private nomask string getDescription()
 {
     string ret = load_object("/lib/dictionaries/materialsDictionary.c")->
         getEquipmentStatistics(Item, 0);
-    ret = regreplace(ret, ".*Material[^\n]*(.*)", "\\1", 1);
+
+    ret = regreplace(ret, "[^\t]*(\t.*Mater.*)", "\n\\1", 1);
+    if (Item->query("material") == InitialMaterial)
+    {
+        ret = regreplace(ret, "(.*Material: )([^\n])*(.*)", "\\1[0;31mnone selected[0m\\3", 1);
+    }
     return sprintf("From this menu, you will select the\ncomponents that "
         "will be used to craft your %s. The relative statistics\nfor the item "
         "you are creating are:", CraftingItem) + ret;
@@ -80,6 +88,13 @@ protected nomask void setUpUserForSelection()
     Data = Dictionary->getCraftingDataForItem(CraftingType, CraftingItem, User);
 
     Data[to_string(sizeof(Data) + 1)] = ([
+        "name": sprintf("Craft Selected %s", capitalize(CraftingItem)),
+        "type": "craft",
+        "is disabled": !Dictionary->allComponentsHaveBeenChosen(Item),
+        "description": "This option lets you exit this crafting menu.\n"
+    ]);
+
+    Data[to_string(sizeof(Data) + 1)] = ([
         "name": sprintf("Exit Craft %s Menu", capitalize(CraftingItem)),
         "type": "exit",
         "description": "This option lets you exit this crafting menu.\n"
@@ -93,7 +108,15 @@ protected nomask int processSelection(string selection)
     if (User)
     {
         ret = (Data[selection]["type"] == "exit");
-        if (!ret)
+        if (Data[selection]["type"] == "craft")
+        {
+            if (!Data[selection]["is disabled"])
+            {
+                Dictionary->craftItem(Item, User);
+                ret = 1;
+            }
+        }
+        else if (!ret)
         {
             SubselectorObj = clone_object(sprintf("/lib/modules/crafting/%sSelector.c",
                 Data[selection]["selector"]));
@@ -124,6 +147,21 @@ protected nomask string displayDetails(string choice)
         ret = "[0;35;1m   (*)[0m";
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string choiceFormatter(string choice)
+{
+    string displayFormat = "[0;32m%-20s[0m";
+    if (member(Data[choice], "is disabled") &&
+        Data[choice]["is disabled"])
+    {
+        displayFormat = "[0;31m%-20s[0m";
+    }
+    return sprintf("%s[%s]%s - %s%s",
+        (NumColumns < 3) ? "\t" : "", Red,
+        padSelectionDisplay(choice), displayFormat,
+        displayDetails(choice));
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-// TODO: Add minimum craftsmanship levels, research requirements, etc
+private nosave string *materialClasses = ({ "textile", "crystal", "clay", "exotic", "leather", "metal", "stone", "wood" });
 private nosave mapping materials =
 ([
     "linen": ([

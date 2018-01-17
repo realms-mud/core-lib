@@ -30,6 +30,7 @@ protected nosave string BoldGreen = "[0;32;1m%s[0m";
 public void init()
 {
     registerEventHandler("onSelectorCompleted");
+    registerEventHandler("onSelectorAborted");
     add_action("applySelection", "", 3);
 }
 
@@ -109,13 +110,13 @@ public nomask string displayMessage()
             ret += "\n";
         }
         ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.%s\n", sizeof(choices), AllowUndo ? " You may also undo or reset." : ""));
-        if (HasDescription)
-        {
-            ret += sprintf(Green, "For details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n");
-        }
         if (AllowAbort)
         {
             ret += sprintf(Green, "Type 'abort' if you do not wish to make a selection at this time.\n");
+        }
+        if (HasDescription)
+        {
+            ret += sprintf(Green, "For details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n");
         }
         ret += sprintf(BoldGreen, additionalInstructions());
     }
@@ -216,7 +217,8 @@ public nomask int applySelection(string arguments)
         else if ((arguments == "abort") && AllowAbort)
         {
             ret = Success;
-            notify("onSelectorCompleted");
+            tell_object(User, sprintf(Cyan, Type + " has been aborted.\n"));
+            notify("onSelectorAborted");
         }
         else if(member(Data, arguments))
         {
@@ -258,4 +260,11 @@ public nomask varargs void initiateSelector(object user, int alreadyInitialized)
         AllowAbort = 1;
     }
     tell_object(User, displayMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void onSelectorAborted(object caller)
+{
+    caller->cleanUp();
+    notify("onSelectorAborted");
 }

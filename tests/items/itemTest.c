@@ -699,3 +699,48 @@ void IdReturnsTrueForCorrectIdentifiers()
     ExpectFalse(Item->id("George"), "George is not a valid id");
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void CraftingMaterialsAreDisplayedInLongDescription()
+{
+    Item->set("crafting materials",
+        ([
+            "blade": ([
+                "description": "a broad, flat, metal blade with parallel edges and a lenticular cross - section. The fuller is narrow and runs half of the length of the blade, ending in a rounded point.", 
+                "metal": "admantite", 
+                "type": "Type XIII", 
+                "value": 110
+            ]), 
+            "crossguard": ([
+                "crystal": "ruby", 
+                "description": "an ornate metal knuckleguard that has been sculpted to appear as though a dracolich with crystal eyes is protecting the user's hand.", 
+                "metal": "galvorn", 
+                "type": "Dracolich Form", 
+                "value": 325
+            ]), 
+            "hilt": ([
+                "description": "a hilt of metal covered with a slightly ovular grip made out of wood and wrapped in spiraled metal wire.",
+                "leather": "pegasus leather", 
+                "metal": "gold",
+                "type": "Spiral Grip", 
+                "value": 15,
+                "wood": "koa"
+            ]), 
+            "pommel": ([ 
+                "crystal": "ruby", 
+                "description": "an exquisite metal pommel that has been intricately sculpted to resemble a dragon's talon. Clutched in its grip is a beautifully cut crystal.", 
+                "metal": "platinum", 
+                "type": "Dragon Talon", 
+                "value": 50 
+            ])
+        ]));
+
+    ExpectSubStringMatch("The blade is a broad, flat, admantite blade with parallel edges and a\n"
+        "lenticular cross - section. The fuller is narrow and runs half of the length\n"
+        "of the blade, ending in a rounded point. The crossguard is an ornate galvorn\n"
+        "knuckleguard that has been sculpted to appear as though a dracolich with ruby\n"
+        "eyes is protecting the user's hand. The hilt is a hilt of gold covered with a\n"
+        "slightly ovular grip made out of koa and wrapped in spiraled gold wire. The\n"
+        "pommel is an exquisite platinum pommel that has been intricately sculpted to\n"
+        "resemble a dragon's talon. Clutched in its grip is a beautifully cut ruby.",
+        Item->long());
+}

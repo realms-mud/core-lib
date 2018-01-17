@@ -13,6 +13,7 @@ virtual inherit "/lib/core/thing.c";
 
 private nosave string AttacksBlueprint = "/lib/dictionaries/attacksDictionary.c";
 private nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDictionary.c";
+private nosave string CraftingDictionary = "/lib/dictionaries/craftingDictionary.c";
 private nosave string MessageParser = "/lib/core/messageParser.c";
 private nosave string BonusesBlueprint = "/lib/dictionaries/bonusesDictionary.c";
 
@@ -105,6 +106,12 @@ public mixed query(string element)
             ret = member(itemData, "long") ? itemData["long"] :
                 loadBlueprint(MaterialsBlueprint)->getBlueprintModifier(
                     this_object(), "default description");
+        }
+        else if (element == "primary component")
+        {
+            ret = member(itemData, "primary component") ? itemData["primary component"] :
+                loadBlueprint(MaterialsBlueprint)->getBlueprintModifier(
+                    this_object(), "primary component");
         }
         else if(member(itemData, element) && itemData[element])
         {
@@ -390,7 +397,7 @@ static nomask string parseTemplate(string template)
         message = parser->parseEfunCall(message);
 
         object owner = environment(this_object());    
-        if(owner && objectp(owner))// && function_exists("isEquipped", owner))
+        if(owner && objectp(owner))
         {
             int isSecondPerson = 1;
             message = parser->parseTargetInfo(message, "User", owner, 
@@ -478,6 +485,19 @@ protected string itemStatistics()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected string describeCraftingMaterials()
+{
+    string ret = "";
+
+    object itemTypes = load_object(CraftingDictionary);
+    if (itemTypes && objectp(itemTypes))
+    {
+        ret = itemTypes->getEquipmentMaterials(this_object());
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public string long()
 {    
     string description = "";
@@ -495,6 +515,12 @@ public string long()
         description += sprintf(" %s", query("additional long"));
     }
 
+    string materials = describeCraftingMaterials();
+    if (materials != "")
+    {
+        description += "\n" + materials;
+    }
+
     string statistics = itemStatistics();
     if(statistics != "")
     {
@@ -503,7 +529,7 @@ public string long()
 
     description += "\n";
 
-    return description;
+    return format(description, 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -21,6 +21,12 @@ public nomask void onSelectorCompleted(object caller)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void onSelectorAborted(object caller)
+{
+    caller->cleanUp();
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int execute(string command, object initiator)
 {
     int ret = 0;
@@ -28,8 +34,8 @@ public nomask int execute(string command, object initiator)
     if (canExecuteCommand(command))
     {
         object selector = clone_object("/lib/modules/crafting/craftingSelector.c");
-        selector->registerEvent(this_object());
         move_object(selector, initiator);
+        selector->registerEvent(this_object());
         selector->initiateSelector(initiator);
         ret = 1;
     }

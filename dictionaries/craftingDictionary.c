@@ -339,7 +339,58 @@ private string *getTypes(string type, object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping getMaterialsOfTypeOnHand(string type, object user)
+public nomask mapping materialsUsedForCrafting(object item)
+{
+    mapping ret = ([]);
+    mapping craftingMaterials = item->query("crafting materials");
+    if (craftingMaterials && mappingp(craftingMaterials))
+    {
+        string *components = filter(m_indices(craftingMaterials),
+            (: mappingp($2[$1]) :), craftingMaterials);
+
+        object blueprintObj = getBlueprintFor(item);
+        mapping blueprintMaterials = blueprintObj->query("crafting materials");
+        destruct(blueprintObj);
+        if (sizeof(components) && sizeof(blueprintMaterials))
+        {
+            foreach(string component in components)
+            {
+                foreach(string materialClass in materialClasses)
+                {
+                    if (member(craftingMaterials[component], materialClass))
+                    {
+                        string type = craftingMaterials[component]["type"];
+                        if (member(craftingComponents, type) &&
+                            member(craftingComponents[type], "crafting materials") &&
+                            member(craftingComponents[type]["crafting materials"], materialClass))
+                        {
+                            if (!member(ret, craftingMaterials[component][materialClass]))
+                            {
+                                ret[craftingMaterials[component][materialClass]] = 0;
+                            }
+                            ret[craftingMaterials[component][materialClass]] +=
+                                craftingComponents[type]["crafting materials"][materialClass];
+                        }
+                        else if(member(blueprintMaterials, component) &&
+                            member(blueprintMaterials[component], materialClass))
+                        {
+                            if (!member(ret, craftingMaterials[component][materialClass]))
+                            {
+                                ret[craftingMaterials[component][materialClass]] = 0;
+                            }
+                            ret[craftingMaterials[component][materialClass]] +=
+                                blueprintMaterials[component][materialClass];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getMaterialsOfTypeOnHand(string type, object user, object craftingItem)
 {
     mapping ret = ([]);
 
@@ -349,6 +400,7 @@ private nomask mapping getMaterialsOfTypeOnHand(string type, object user)
 
     if (sizeof(inventory))
     {
+        mapping materialsToBeUsed = materialsUsedForCrafting(craftingItem);
         foreach(object item in inventory)
         {
             string material = item->query("blueprint");
@@ -357,6 +409,10 @@ private nomask mapping getMaterialsOfTypeOnHand(string type, object user)
                 ret[material] = 0;
             }
             ret[material] += item->query("quantity");
+            if (member(materialsToBeUsed, material))
+            {
+                ret[material] -= materialsToBeUsed[material];
+            }
         }
     }
     return ret;
@@ -367,7 +423,7 @@ public nomask mapping getMaterialsOfType(string type, object user,
     int quantity, object craftingItem)
 {
     mapping ret = ([]);
-    mapping materialsOnHand = getMaterialsOfTypeOnHand(type, user);
+    mapping materialsOnHand = getMaterialsOfTypeOnHand(type, user, craftingItem);
     string *materialsOfType = sort_array(filter(m_indices(materials),
         (: (member($2, materials[$1]["class"]) > -1) :), getTypes(type, user)),
         (: $1 > $2 :));
@@ -436,7 +492,7 @@ public nomask mapping getMaterialsDataForItem(string type,
 
     if (sizeof(materialsData))
     {
-        string *materialsList = m_indices(materialsData);
+        string *materialsList = sort_array(m_indices(materialsData), (: $1 > $2 :));
         foreach(string material in materialsList)
         {
             ret[to_string(menuItem)] = ([
@@ -477,6 +533,8 @@ public nomask varargs void setCraftingMaterial(object item, string materialClass
     string material, string component)
 {
     mapping materialSelections = item->query("crafting materials");
+    string primaryComponent = item->query("primary component");
+
     if (!materialSelections)
     {
         materialSelections = ([]);
@@ -497,6 +555,17 @@ public nomask varargs void setCraftingMaterial(object item, string materialClass
         }
         materialSelections[component][materialClass] = material;
     }
+
+    object materialsDictionary = 
+        load_object("/lib/dictionaries/materialsDictionary.c");
+
+    if ((component == primaryComponent) && 
+        (materialsDictionary->getMaterialTypeForMaterial(item->query("material")) == 
+        materialsDictionary->getMaterialTypeForMaterial(material)))
+    {
+        item->set("material", material);
+    }
+        
     item->set("crafting materials", materialSelections);
 }
 
@@ -565,4 +634,135 @@ public nomask string selectionForComponent(object item, string component)
         ret = materialSelections[component]["type"];
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string replaceDescriptiveText(string text, string type, mapping data)
+{
+    string ret = text;
+
+    if (member(data, type))
+    {
+        ret = regreplace(ret, type, data[type], 1);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getEquipmentMaterials(object item)
+{
+    string ret = "";
+
+    mapping craftingMaterials = item->query("crafting materials");
+    if (craftingMaterials && mappingp(craftingMaterials))
+    {
+        string *components = sort_array(filter(m_indices(craftingMaterials),
+            (: mappingp($2[$1]) :), craftingMaterials), (: $1 > $2 :));
+
+        if (sizeof(components))
+        {
+            foreach(string component in components)
+            {
+                string description = craftingMaterials[component]["description"];
+
+                foreach(string materialClass in materialClasses)
+                {
+                    description = replaceDescriptiveText(description, materialClass,
+                        craftingMaterials[component]);
+                }
+                ret += sprintf("The %s is %s ", component, description);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int allComponentsHaveBeenChosen(object item)
+{
+    int ret = 0;
+    mapping materialsToUse = item->query("crafting materials");
+
+    object blueprintObj = getBlueprintFor(item);
+    mapping blueprintMaterials = blueprintObj->query("crafting materials");
+    destruct(blueprintObj);
+
+    if (sizeof(blueprintMaterials) && sizeof(materialsToUse))
+    {
+        ret = 1;
+        string *materialList = m_indices(blueprintMaterials);
+        foreach(string material in materialList)
+        {
+            ret &&= member(materialsToUse, material);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int useCraftingMaterial(object user, string materialName, int quantity)
+{
+    int ret = 0;
+    object *inventory = filter(deep_inventory(user),
+        (: ((member(inherit_list($1), "lib/items/material.c") > -1) && 
+            $1->id($2)) :), materialName);
+
+    if (sizeof(inventory))
+    {
+        int quantityLeft = quantity;
+        foreach(object item in inventory)
+        {
+            int itemQuantity = item->query("quantity");
+
+            if (itemQuantity >= quantityLeft)
+            {
+                itemQuantity -= quantityLeft;
+                quantityLeft = 0;
+                if (itemQuantity > 0)
+                {
+                    item->set("quantity", itemQuantity);
+                }
+                else
+                {
+                    destruct(item);
+                }
+            }
+            else
+            {
+                quantityLeft -= itemQuantity;
+                destruct(item);
+            }
+        }
+        ret = (quantityLeft == 0);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void craftItem(object item, object user)
+{
+    int canCraft = 0;
+    mapping materialsUsed = materialsUsedForCrafting(item);
+
+    if (sizeof(materialsUsed))
+    {
+        canCraft = 1;
+        string *materialsToRemove = m_indices(materialsUsed);
+        foreach(string material in materialsToRemove)
+        {
+            canCraft &&= useCraftingMaterial(user, material, 
+                materialsUsed[material]);
+        }
+
+        if (canCraft)
+        {
+            move_object(item, user);
+        }
+        else
+        {
+            // This can only happen if this method is called outside
+            // of the crafting selectors.
+            destruct(item);
+        }
+    }
 }

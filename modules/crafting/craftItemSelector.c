@@ -27,6 +27,7 @@ public nomask void reset(int arg)
     if(!arg)
     {
         AllowUndo = 0;
+        AllowAbort = 1;
 
         Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
         Data = ([]);

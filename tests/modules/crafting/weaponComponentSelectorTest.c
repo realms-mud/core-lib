@@ -80,6 +80,7 @@ void SpecificWeaponMenuDisplaysCorrectly()
     ExpectEq("[0;36mCraft Long sword - [0m[0;37;1mFrom this menu, you will select the\n"
         "components that will be used to craft your long sword. The relative statistics\n"
         "for the item you are creating are:\n"
+        "\t[0;36mMaterial: [0;31mnone selected[0m\n"
         "\t[0;36mAttack: [0m[0;33m5 to 105[0m\n"
         "\t[0;36mDamage: [0m[0;33m8 to 11[0m\n"
         "\t[0;36mDefense: [0m[0;33m1 to 2[0m\n"
@@ -89,8 +90,10 @@ void SpecificWeaponMenuDisplaysCorrectly()
         "\t[[0;31;1m2[0m] - [0;32mSelect Crossguard   [0m\n"
         "\t[[0;31;1m3[0m] - [0;32mSelect Hilt         [0m\n"
         "\t[[0;31;1m4[0m] - [0;32mSelect Pommel       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mExit Craft Long sword Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
+        "\t[[0;31;1m5[0m] - [0;31mCraft Selected Long sword[0m\n"
+        "\t[[0;31;1m6[0m] - [0;32mExit Craft Long sword Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
+        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
         Player->caughtMessage());
@@ -140,6 +143,7 @@ void SelectingComponentDisplaysComponentMenu()
         "    [[0;31;1m25[0m] - [0;31mConfirm Selection   [0m         "
         "    [[0;31;1m26[0m] - [0;32mCancel Selection    [0m         \n"
         "[0;32;1mYou must select a number from 1 to 26.\n[0m"
+        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
         "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -188,6 +192,7 @@ void SelectingMaterialChangesSelectedComponentInMenu()
         "    [[0;31;1m25[0m] - [0;31mConfirm Selection   [0m         "
         "    [[0;31;1m26[0m] - [0;32mCancel Selection    [0m         \n"
         "[0;32;1mYou must select a number from 1 to 26.\n[0m"
+        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
         "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -229,6 +234,7 @@ void SelectingTypeFlagsChosenTypeInComponentMenu()
         "    [[0;31;1m25[0m] - [0;31mConfirm Selection   [0m         "
         "    [[0;31;1m26[0m] - [0;32mCancel Selection    [0m         \n"
         "[0;32;1mYou must select a number from 1 to 26.\n[0m"
+        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
         "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -278,6 +284,7 @@ void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
         "    [[0;31;1m25[0m] - [0;32mConfirm Selection   [0m         "
         "    [[0;31;1m26[0m] - [0;32mCancel Selection    [0m         \n"
         "[0;32;1mYou must select a number from 1 to 26.\n[0m"
+        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
         "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -303,6 +310,7 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
     ExpectEq("[0;36mCraft Long sword - [0m[0;37;1mFrom this menu, you will select the\n"
         "components that will be used to craft your long sword. The relative statistics\n"
         "for the item you are creating are:\n"
+        "\t[0;36mMaterial: [0;31mnone selected[0m\n"
         "\t[0;36mAttack: [0m[0;33m5 to 105[0m\n"
         "\t[0;36mDamage: [0m[0;33m8 to 11[0m\n"
         "\t[0;36mDefense: [0m[0;33m1 to 2[0m\n"
@@ -312,8 +320,10 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
         "\t[[0;31;1m2[0m] - [0;32mSelect Crossguard   [0m\n"
         "\t[[0;31;1m3[0m] - [0;32mSelect Hilt         [0m\n"
         "\t[[0;31;1m4[0m] - [0;32mSelect Pommel       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mExit Craft Long sword Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
+        "\t[[0;31;1m5[0m] - [0;31mCraft Selected Long sword[0m\n"
+        "\t[[0;31;1m6[0m] - [0;32mExit Craft Long sword Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
+        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
         Player->caughtMessage());
@@ -338,8 +348,9 @@ void ConfirmSetsValuesForWeaponCraftingMenu()
     ExpectEq("[0;36mCraft Long sword - [0m[0;37;1mFrom this menu, you will select the\n"
         "components that will be used to craft your long sword. The relative statistics\n"
         "for the item you are creating are:\n"
-        "\t[0;36mAttack: [0m[0;33m5 to 105[0m\n"
-        "\t[0;36mDamage: [0m[0;33m8 to 11[0m\n"
+        "\t[0;36mMaterial: [0m[0;33mAdmantite[0m\n"
+        "\t[0;36mAttack: [0m[0;33m8 to 108[0m\n"
+        "\t[0;36mDamage: [0m[0;33m13 to 16[0m[0;31m [+2 magical][0m\n"
         "\t[0;36mDefense: [0m[0;33m1 to 2[0m\n"
         "\t[0;36mEncumberance: [0m[0;33m5[0m\n"
         "\t[0;36mWeight: [0m[0;33m5[0m\n[0m\n"
@@ -347,8 +358,10 @@ void ConfirmSetsValuesForWeaponCraftingMenu()
         "\t[[0;31;1m2[0m] - [0;32mSelect Crossguard   [0m\n"
         "\t[[0;31;1m3[0m] - [0;32mSelect Hilt         [0m\n"
         "\t[[0;31;1m4[0m] - [0;32mSelect Pommel       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mExit Craft Long sword Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
+        "\t[[0;31;1m5[0m] - [0;31mCraft Selected Long sword[0m\n"
+        "\t[[0;31;1m6[0m] - [0;32mExit Craft Long sword Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
+        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
         Player->caughtMessage());
@@ -411,8 +424,8 @@ void ComponentDescriptionsShowPrerequisitesAndMaterialsNeeded()
     command("2", Player);
     command("? 11", Player);
 
-    ExpectSubStringMatch("This is an ornate knuckleguard that has been sculpted to appear as though a\n"
-        "dracolich is protecting the user's hand.*Prerequisites.*Gem crafting of 5.*"
+    ExpectSubStringMatch("This is an ornate metal knuckleguard that has been sculpted to appear as\nthough a "
+        "dracolich with crystal eyes is protecting the user's hand.*Prerequisites.*Gem crafting of 5.*"
         "Sculpture of 15.*Materials.*Crystal needed.*2",
         Player->caughtMessage());
 }
