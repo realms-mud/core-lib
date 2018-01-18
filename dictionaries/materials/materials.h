@@ -10,7 +10,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 0,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
         ]),
         "description": "",
         "scarcity": "common"
@@ -19,7 +19,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -29,7 +29,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -39,7 +39,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -49,7 +49,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -59,7 +59,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -69,7 +69,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -79,7 +79,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -89,7 +89,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 10]),
         ]),
         "defense": ([
@@ -103,7 +103,7 @@ private nosave mapping materials =
         "class": "textile",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftTextiles.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -117,7 +117,7 @@ private nosave mapping materials =
             "electricity": 2
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 5]),
         ]),
         "description": "",
@@ -132,7 +132,7 @@ private nosave mapping materials =
             "physical": -3
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -149,7 +149,7 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 15]),
         ]),
         "description": "",
@@ -163,7 +163,7 @@ private nosave mapping materials =
             "electricity": 3
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "description": "",
@@ -177,7 +177,7 @@ private nosave mapping materials =
             "electricity": 3
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "description": "",
@@ -191,7 +191,7 @@ private nosave mapping materials =
             "electricity": 2
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 15]),
         ]),
         "description": "",
@@ -202,7 +202,7 @@ private nosave mapping materials =
         "crafting skill required": 8,
         "encumberance": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 8]),
         ]),
         "description": "",
@@ -217,7 +217,7 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 6]),
         ]),
         "description": "",
@@ -230,7 +230,7 @@ private nosave mapping materials =
             "physical": -2
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 3]),
         ]),
         "description": "",
@@ -243,7 +243,7 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 3]),
         ]),
         "description": "",
@@ -256,7 +256,7 @@ private nosave mapping materials =
             "fire": 5
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 6]),
         ]),
         "description": "",
@@ -266,7 +266,7 @@ private nosave mapping materials =
         "class": "stone",
         "crafting skill required": 7,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 7]),
         ]),
         "description": "",
@@ -280,7 +280,7 @@ private nosave mapping materials =
             "fire": 3
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftStone.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "description": "",
@@ -293,7 +293,7 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 3]),
         ]),
         "description": "",
@@ -306,7 +306,7 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 4]),
         ]),
         "description": "",
@@ -316,7 +316,7 @@ private nosave mapping materials =
         "class": "clay",
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 5]),
         ]),
         "description": "",
@@ -329,7 +329,7 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 3]),
         ]),
         "description": "",
@@ -339,7 +339,7 @@ private nosave mapping materials =
         "class": "clay",
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 5]),
         ]),
         "description": "",
@@ -352,7 +352,7 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClay.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 10]),
         ]),
         "description": "",
@@ -362,7 +362,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -372,7 +372,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -382,7 +382,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -392,7 +392,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
@@ -403,7 +403,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -413,7 +413,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -423,7 +423,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -433,7 +433,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -443,7 +443,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -453,7 +453,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -463,7 +463,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
@@ -474,7 +474,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.2,
@@ -485,7 +485,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.2,
@@ -496,7 +496,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -506,7 +506,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 4,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
         "value multiplier": 1.25,
@@ -517,7 +517,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
@@ -528,7 +528,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
@@ -539,7 +539,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "description": "",
@@ -552,7 +552,7 @@ private nosave mapping materials =
        ]),
        "crafting skill required": 6,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftUncommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftUncommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 6]),
         ]),
         "value multiplier": 1.5,
@@ -563,7 +563,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "description": "",
@@ -573,7 +573,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -583,7 +583,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -593,7 +593,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -603,7 +603,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -616,7 +616,7 @@ private nosave mapping materials =
         ]),
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftUncommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftUncommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.4,
@@ -627,7 +627,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -641,7 +641,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
@@ -654,7 +654,7 @@ private nosave mapping materials =
         ]),
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftUncommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftUncommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.4,
@@ -665,7 +665,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftUncommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftUncommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.2,
@@ -676,7 +676,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 4,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
         "description": "",
@@ -686,7 +686,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 4,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
         "description": "",
@@ -696,7 +696,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -707,7 +707,7 @@ private nosave mapping materials =
         "attack rating": 1,
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.1,
@@ -722,7 +722,7 @@ private nosave mapping materials =
         ]),
         "crafting skill required": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 15]),
             "carpentry": (["type":"skill", "value": 5]),
         ]),
@@ -734,7 +734,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.1,
@@ -748,7 +748,7 @@ private nosave mapping materials =
             "physical": 1,
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftUncommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftUncommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.3,
@@ -759,7 +759,7 @@ private nosave mapping materials =
         "class": "wood",
         "crafting skill required": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
@@ -772,7 +772,7 @@ private nosave mapping materials =
         ]),
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.4,
@@ -787,7 +787,7 @@ private nosave mapping materials =
             "physical": 2,
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 8]),
             "carpentry": (["type":"skill", "value": 2]),
         ]),
@@ -800,7 +800,7 @@ private nosave mapping materials =
         "attack rating": 1,
         "crafting skill required": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 8]),
             "carpentry": (["type":"skill", "value": 2]),
         ]),
@@ -816,7 +816,7 @@ private nosave mapping materials =
         ]),
         "crafting skill required": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 10]),
             "carpentry": (["type":"skill", "value": 5]),
         ]),
@@ -829,7 +829,7 @@ private nosave mapping materials =
         "attack rating": 1,
         "crafting skill required": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareWood.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 8]),
             "carpentry": (["type":"skill", "value": 2]),
         ]),
@@ -841,7 +841,7 @@ private nosave mapping materials =
         "class": "leather",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
@@ -851,7 +851,7 @@ private nosave mapping materials =
         "class": "leather",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
@@ -861,7 +861,7 @@ private nosave mapping materials =
         "class": "leather",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
@@ -871,7 +871,7 @@ private nosave mapping materials =
         "class": "leather",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
@@ -881,7 +881,7 @@ private nosave mapping materials =
         "class": "leather",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
@@ -891,7 +891,7 @@ private nosave mapping materials =
         "class": "leather",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
@@ -901,7 +901,7 @@ private nosave mapping materials =
         "class": "leather",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
@@ -911,7 +911,7 @@ private nosave mapping materials =
         "class": "leather",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
@@ -921,7 +921,7 @@ private nosave mapping materials =
         "class": "leather",
         "crafting skill required": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
@@ -934,7 +934,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 20])
         ]),
         "value multiplier": 6.0,
@@ -949,7 +949,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 20])
         ]),
         "value multiplier": 6.0,
@@ -964,7 +964,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 30])
         ]),
         "value multiplier": 10.0,
@@ -980,7 +980,7 @@ private nosave mapping materials =
         ]),
         "value multiplier": 8.0,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 25])
         ]),
         "description": "",
@@ -994,7 +994,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 35])
         ]),
         "value multiplier": 15.0,
@@ -1009,7 +1009,7 @@ private nosave mapping materials =
             "physical": 4
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 40])
         ]),
         "value multiplier": 20.0,
@@ -1020,7 +1020,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 4,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 4])
         ]),
         "crafting materials": ([
@@ -1044,7 +1044,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 4,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 4])
         ]),
         "attack": ([
@@ -1063,7 +1063,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftUncommonMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
         ]),
         "attack": ([
@@ -1078,7 +1078,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftUncommonMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
         ]),
         "attack": ([
@@ -1094,7 +1094,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
         ]),
         "crafting materials": ([
@@ -1117,7 +1117,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 8]),
             "metal crafting": (["type":"skill", "value": 2])
         ]),
@@ -1139,7 +1139,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftUncommonMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 8]),
             "metal crafting": (["type":"skill", "value": 2])
         ]),
@@ -1162,7 +1162,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftUncommonMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 2])
         ]),
@@ -1184,7 +1184,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 2])
         ]),
@@ -1205,7 +1205,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5])
         ]),
@@ -1225,7 +1225,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 10]),
@@ -1248,7 +1248,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 8]),
             "metal crafting": (["type":"skill", "value": 2])
         ]),
@@ -1275,7 +1275,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5])
         ]),
@@ -1296,7 +1296,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5])
         ]),
@@ -1316,7 +1316,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 3]),
@@ -1341,7 +1341,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -1366,7 +1366,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 3]),
             "chemistry": (["type":"skill", "value": 1]),
@@ -1388,7 +1388,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPreciousMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 8]),
             "metal crafting": (["type":"skill", "value": 2])
         ]),
@@ -1403,7 +1403,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 10])
         ]),
@@ -1437,7 +1437,7 @@ private nosave mapping materials =
         ]),
         "crafting skill required": 35,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -1455,7 +1455,7 @@ private nosave mapping materials =
         ]),
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -1476,7 +1476,7 @@ private nosave mapping materials =
         ]),
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -1499,7 +1499,7 @@ private nosave mapping materials =
         ]),
         "crafting skill required": 45,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 15]),
@@ -1517,7 +1517,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 45,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 15]),
@@ -1552,7 +1552,7 @@ private nosave mapping materials =
         "attack rating": 2,
         "crafting skill required": 35,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 10]),
@@ -1566,7 +1566,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 2]),
@@ -1587,7 +1587,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftReconditeMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -1609,7 +1609,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 5,
          "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftCommonMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
         ]),
         "description": "",
@@ -1619,7 +1619,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 15,   
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 3]),
             "chemistry": (["type":"skill", "value": 1]),
@@ -1644,7 +1644,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 15,   
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftAlloy.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 3]),
             "chemistry": (["type":"skill", "value": 1]),
@@ -1668,7 +1668,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 2]),
@@ -1691,7 +1691,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 35,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -1715,7 +1715,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 50,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 10]),
@@ -1739,7 +1739,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 2]),
@@ -1761,7 +1761,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 40,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 20]),
             "metal crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -1786,7 +1786,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 40,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicMetal.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 15]),
             "metal crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -1811,7 +1811,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 40,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMagicalMaterials.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMagicalMaterials.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -1834,7 +1834,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 35,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMagicalMaterials.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMagicalMaterials.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 10]),
             "physics": (["type":"skill", "value": 5])
@@ -1856,7 +1856,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 18,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 3]),
             "physics": (["type":"skill", "value": 5])
@@ -1877,7 +1877,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -1896,7 +1896,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -1915,7 +1915,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -1934,7 +1934,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -1953,7 +1953,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -1972,7 +1972,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -1991,7 +1991,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -2010,7 +2010,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -2029,7 +2029,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -2048,7 +2048,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -2067,7 +2067,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -2086,7 +2086,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -2105,7 +2105,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -2124,7 +2124,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -2143,7 +2143,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
@@ -2162,7 +2162,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 10])
@@ -2181,7 +2181,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 10])
@@ -2200,7 +2200,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 35,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftRareGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftRareGems.c":(["type":"research"]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 10])
@@ -2219,7 +2219,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 50,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicGems.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -2243,7 +2243,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 50,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicGems.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -2267,7 +2267,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 60,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicGems.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 25]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -2291,7 +2291,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 60,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicGems.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 25]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -2315,7 +2315,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 50,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicGems.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -2339,7 +2339,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 50,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicGems.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -2363,7 +2363,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 50,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicGems.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -2387,7 +2387,7 @@ private nosave mapping materials =
         "class": "crystal",
         "crafting skill required": 50,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicGems.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicGems.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -2411,7 +2411,7 @@ private nosave mapping materials =
         "class": "exotic",
         "crafting skill required": 50,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticMaterials.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "leatherworking": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 5]),
@@ -2433,7 +2433,7 @@ private nosave mapping materials =
             "physical": 6
         ]),
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticLeather.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticLeather.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 25]),
             "leatherworking": (["type":"skill", "value": 25])
         ]),
@@ -2445,7 +2445,7 @@ private nosave mapping materials =
         "class": "exotic",
         "crafting skill required": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticMaterials.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
             "wood craft": (["type":"skill", "value": 1]),
             "chemistry": (["type":"skill", "value": 2]),
             "physics": (["type":"skill", "value": 2])
@@ -2458,7 +2458,7 @@ private nosave mapping materials =
         "class": "exotic",
         "crafting skill required": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftExoticMaterials.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
             "wood craft": (["type":"skill", "value": 2]),
             "chemistry": (["type":"skill", "value": 4]),
             "physics": (["type":"skill", "value": 4])
@@ -2471,7 +2471,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 80,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicAlloy.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "metal crafting": (["type":"skill", "value": 20]),
@@ -2502,7 +2502,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 80,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicAlloy.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "metal crafting": (["type":"skill", "value": 20]),
@@ -2533,7 +2533,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 80,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicAlloy.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "metal crafting": (["type":"skill", "value": 20]),
@@ -2564,7 +2564,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 80,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicAlloy.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "metal crafting": (["type":"skill", "value": 20]),
@@ -2595,7 +2595,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 80,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicAlloy.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "metal crafting": (["type":"skill", "value": 20]),
@@ -2626,7 +2626,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 80,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicAlloy.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "metal crafting": (["type":"skill", "value": 20]),
@@ -2657,7 +2657,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 80,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicAlloy.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "metal crafting": (["type":"skill", "value": 20]),
@@ -2688,7 +2688,7 @@ private nosave mapping materials =
         "class": "metal",
         "crafting skill required": 80,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftMythicAlloy.c":(["type":"research"]),
+            "lib/instances/research/crafting/materials/craftMythicAlloy.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 20]),
             "gem crafting": (["type":"skill", "value": 20]),
             "metal crafting": (["type":"skill", "value": 20]),

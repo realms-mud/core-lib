@@ -30,9 +30,9 @@ void Setup()
     Player->advanceSkill("physics", 10);
     Player->addResearchPoints(20);
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
 
     move_object(Selector, Player);
 }
@@ -108,12 +108,12 @@ void SelectingMaterialDisplaysComponentMenu()
 /////////////////////////////////////////////////////////////////////////////
 void PFlagRemovedWhenPrerequisitesMet()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftMythicMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftMythicMetal.c"));
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);
@@ -321,12 +321,12 @@ void FlagsMovedAndOptionEnabledWhenPrerequisitesAndQuantityMet()
     material->set("quantity", 6);
     move_object(material, Player);
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftMythicMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftMythicMetal.c"));
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);

@@ -13,8 +13,9 @@ public void reset(int arg)
         Name("Swordsmithing");
         Description("This research tree tracks the knowledge required to craft knives, daggers, and swords");
         addPrerequisite("weaponsmithing", (["type":"skill", "value" : 3]));
-        addResearchElement("lib/instances/research/crafting/craftBasicSwords.c");
-        TreeRoot("lib/instances/research/crafting/craftBasicSwords.c");
+        addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c", (["type":"research"]));
+        addResearchElement("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c");
+        TreeRoot("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c");
     }
 }
 

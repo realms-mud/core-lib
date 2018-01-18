@@ -50,7 +50,7 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithCraftWeaponPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"), "added research");
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectEq("[0;36mCrafting - [0m[0;37;1mMain Menu[0m:\n"
@@ -72,7 +72,7 @@ void TopLevelMenuWithCraftWeaponPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void SelectUnavailableOptionReturnsToMainMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"), "added research");
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"), "added research");
     Selector->initiateSelector(Player);
     command("1", Player);
 
@@ -95,7 +95,7 @@ void SelectUnavailableOptionReturnsToMainMenu()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithCraftArmorPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftArmor.c"), "added research");
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftArmor.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectSubStringMatch("32mCraft Armor and Clothing",
@@ -166,7 +166,7 @@ void DescriptionsAreDisplayed()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingCraftArmorDisplaysCorrectSubmenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftArmor.c"), "added research");
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftArmor.c"), "added research");
     Selector->initiateSelector(Player);
     command("1", Player);
     ExpectSubStringMatch("36mCraft Armor.*From this menu, you can craft items",

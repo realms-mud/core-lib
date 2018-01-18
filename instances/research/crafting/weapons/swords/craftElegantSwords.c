@@ -15,7 +15,7 @@ public void reset(int arg)
             "knowledge required to craft rapiers, harpe, kamas, and bastard swords out of "
             "typical bladed weapon materials such as iron, bronze, and steel.");
         addSpecification("research type", "granted");
-        addPrerequisite("lib/instances/research/crafting/craftBasicSwords.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c", (["type":"research"]));
     }
 }
 

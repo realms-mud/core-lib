@@ -15,7 +15,7 @@ public void reset(int arg)
             "knowledge required to craft items using mythic gems such as kirluin and rhudluin.");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addPrerequisite("lib/instances/research/crafting/craftRareGems.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/materials/craftRareGems.c", (["type":"research"]));
     }
 }
 

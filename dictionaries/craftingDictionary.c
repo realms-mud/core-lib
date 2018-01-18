@@ -19,7 +19,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "the proper materials and equipment on hand.\n",
             "selector" : "armor",
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/crafting/craftArmor.c", "armorer")                  
+                "lib/instances/research/crafting/armor/craftArmor.c", "armorer")                  
         ]),
         "2":([
             "name":"Craft Jewelry and Artwork",
@@ -43,7 +43,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "the proper materials and equipment on hand.\n",
             "selector" : "weapons",
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/crafting/craftWeapons.c", "weapon smithing")                  
+                "lib/instances/research/crafting/weapons/craftWeapons.c", "weapon smithing")                  
         ]),
         "5":([
             "name":"Brew Potions",
@@ -331,7 +331,7 @@ public nomask mapping getCraftingDataForItem(string type, string item, object us
 private string *getTypes(string type, object user)
 {
     string *types = ({ type });
-    if ((type == "metal") && user->isResearched("lib/instances/research/crafting/useCrystalsAsMetal.c"))
+    if ((type == "metal") && user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsMetal.c"))
     {
         types += ({ "crystal" });
     }

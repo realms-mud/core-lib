@@ -10,12 +10,12 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Using Uncommon Metals");
+        addSpecification("name", "Craft Rare Gems");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft items using uncommon metals such as tin or zinc.");
+            "knowledge required to craft items using precious gems such as rubies and diamonds.");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addPrerequisite("lib/instances/research/crafting/craftCommonMetal.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/materials/craftGems.c", (["type":"research"]));
     }
 }
 

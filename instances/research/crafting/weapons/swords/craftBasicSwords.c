@@ -10,12 +10,12 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Using Alloys");
+        addSpecification("name", "Craft Basic Swords");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft items using alloys such as bronze or steel.");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addPrerequisite("lib/instances/research/crafting/craftCommonMetal.c", (["type":"research"]));
+            "knowledge required to craft knives, daggers, and swords out of "
+            "typical bladed weapon materials such as iron, bronze, and steel.");
+        addSpecification("research type", "granted");
+        addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c", (["type":"research"]));
     }
 }
 

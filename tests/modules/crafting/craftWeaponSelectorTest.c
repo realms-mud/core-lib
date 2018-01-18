@@ -212,9 +212,9 @@ void SelectionDisabledWhenMaterialCheckFailsButPrerequisitesPass()
     Player->advanceSkill("blacksmithing", 10);
     Player->advanceSkill("metal crafting", 10);
     Player->advanceSkill("weapon smithing", 10);
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
     Selector->initiateSelector(Player);
     command("12", Player);
 
@@ -289,9 +289,9 @@ void SelectionEnabledWhenMaterialCheckAndPrerequisitesPass()
     material->set("quantity", 5);
     move_object(material, Player);
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
     Selector->initiateSelector(Player);
     command("12", Player);
 
@@ -329,9 +329,9 @@ void SelectingItemOpensSelectMaterialMenu()
     material->set("quantity", 5);
     move_object(material, Player);
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
     Selector->initiateSelector(Player);
     command("12", Player);
     command("10", Player);

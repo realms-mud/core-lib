@@ -10,12 +10,13 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Using Rare Metals");
+        addSpecification("name", "Craft Rare Wood");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft items using rare metals such as magnesium or lead.");
+            "knowledge required to craft items using uncommon wood such as "
+            "purple heart or koa.");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addPrerequisite("lib/instances/research/crafting/craftUncommonMetal.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/materials/craftUncommonWood.c", (["type":"research"]));
     }
 }
 

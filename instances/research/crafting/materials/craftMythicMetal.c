@@ -10,12 +10,12 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Basic Swords");
+        addSpecification("name", "Craft Using Mythic Metals");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft knives, daggers, and swords out of "
-            "typical bladed weapon materials such as iron, bronze, and steel.");
-        addSpecification("research type", "granted");
-        addPrerequisite("lib/instances/research/crafting/craftBasicSwords.c", (["type":"research"]));
+            "knowledge required to craft items using extremely rare metals such as admantite or mithril.");
+        addSpecification("research type", "points");
+        addSpecification("research cost", 1);
+        addPrerequisite("lib/instances/research/crafting/materials/craftPreciousMetal.c", (["type":"research"]));
     }
 }
 

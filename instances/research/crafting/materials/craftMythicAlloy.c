@@ -10,13 +10,13 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Uncommon Wood");
+        addSpecification("name", "Craft Using Mythic Metals");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft items using uncommon wood such as "
-            "swamp ash or rosewood.");
+            "knowledge required to craft items using extremely rare metals such as admantite or mithril.");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addPrerequisite("lib/instances/research/crafting/craftCommonWood.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/materials/craftMythicMetal.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/materials/craftMythicGems.c", (["type":"research"]));
     }
 }
 

@@ -85,22 +85,22 @@ void SetUpInventory()
 void SetUpResearch()
 {
     Player->addResearchPoints(20);
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftGems.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftRareGems.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftMythicMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLeather.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftExoticLeather.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftCommonWood.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftUncommonWood.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftRareWood.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftWeapons.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftBasicSwords.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftLongSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareGems.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftLeather.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftExoticLeather.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonWood.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonWood.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareWood.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

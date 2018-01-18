@@ -10,12 +10,14 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Basic Swords");
+        addSpecification("name", "Substitute metals with crystals");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft knives, daggers, and swords out of "
-            "typical bladed weapon materials such as iron, bronze, and steel.");
-        addSpecification("research type", "granted");
-        addPrerequisite("lib/instances/research/crafting/craftWeapons.c", (["type":"research"]));
+            "knowledge required to use gems and crystals as substitues for "
+            "metals when crafting.");
+        addSpecification("research type", "points");
+        addSpecification("research cost", 1);
+        addPrerequisite("lib/instances/research/crafting/materials/craftGems.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/materials/craftReconditeMetal.c", (["type":"research"]));
     }
 }
 

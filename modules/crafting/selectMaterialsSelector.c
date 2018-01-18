@@ -10,7 +10,6 @@ private string CraftingItem;
 private string CraftingType;
 private string CraftingSubType;
 private object Item;
-private string InitialMaterial;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -52,7 +51,6 @@ private nomask void getItemToCraft()
             CraftingType, CraftingSubType, regreplace(CraftingItem, " ", "-"));
         Item = clone_object(file);
         Item->set("identified");
-        InitialMaterial = Item->query("material");
     }
 }
 
@@ -63,7 +61,9 @@ private nomask string getDescription()
         getEquipmentStatistics(Item, 0);
 
     ret = regreplace(ret, "[^\t]*(\t.*Mater.*)", "\n\\1", 1);
-    if (Item->query("material") == InitialMaterial)
+
+    mapping craftingMaterials = Item->query("crafting materials");
+    if (!sizeof(craftingMaterials))
     {
         ret = regreplace(ret, "(.*Material: )([^\n])*(.*)", "\\1[0;31mnone selected[0m\\3", 1);
     }
