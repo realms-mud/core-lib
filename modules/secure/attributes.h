@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 // Flag to determine if an attribute is overwritten or incremented

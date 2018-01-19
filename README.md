@@ -1,6 +1,6 @@
 ![Build Status](http://angmar.maelstrom.cc:8081/buildStatus/icon?job=Realms%20Core%20Library)
 # Introduction
-This is the core library for Realms MUD. Many content creators find building rich areas to be a very difficult task.
+This is the core library for RealmsMUD. Many content creators find building rich areas to be a very difficult task.
 When the creator wants to do something "interesting", the ability to create said interesting things is often beyond the
 ability of all but the most programatically-adept. The goal of this library is to abstract the difficulty of creating detailed and complex
 worlds. Some of the highlights include:
@@ -11,7 +11,7 @@ worlds. Some of the highlights include:
 - Crafting: Full support for players creating their own objects is supported
 - Faction support: Players/monsters can belong to factions, allowing for complex interactions.
 
-![A quest](http://Realms MUD.org/images/intro.gif)
+![A quest](http://RealmsMUD.org/images/intro.gif)
 # Getting Started
 The mudlib has been broken down into what I felt was a sensible directory structure:
 

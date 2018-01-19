@@ -2,7 +2,7 @@
 // Class: guildsDictionary
 // File Name: guildsDictionary.c
 //
-// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 private string BaseGuild = "lib/modules/guilds/baseGuild.c";

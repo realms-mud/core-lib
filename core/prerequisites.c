@@ -2,7 +2,7 @@
 // Class: prerequisites
 // File Name: prerequisites.c
 //
-// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: This class is used to handle prerequisites. It is primarily
