@@ -2,7 +2,7 @@
 // Class: racialDictionary
 // File Name: racialDictionary.c
 //
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 #include "/lib/include/itemFormatters.h"
@@ -229,11 +229,11 @@ private mapping races = ([
         "background trait value": 5
     ]),
     "human": ([
-        "description": "Humans are the most common race on Realmsmud. They don't have any\n"
+        "description": "Humans are the most common race on Realms MUD. They don't have any\n"
             "real preferences on where they live, except that they prefer tropical\n"
             "or temperate regions. They live in above ground dwellings, and tend\n"
             "to admire the elaborate, elegant architecture of the elves and dwarves.\n"
-            "Humans gain no advantages or disadvantages on Realmsmud, they are the\n"
+            "Humans gain no advantages or disadvantages on Realms MUD, they are the\n"
             "happy medium... and they like it that way.\n",
         "subraces": ([
             "Eledhelean": "eledhelHuman.c",

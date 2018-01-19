@@ -2,7 +2,7 @@
 // Class: equipment
 // File Name: equipment.c
 //
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: This class defines exactly what equipment is and as such,
@@ -16,7 +16,6 @@ virtual inherit "/lib/items/item.c";
 private nosave string GuildsBlueprint = "/lib/dictionaries/guildsDictionary.c";
 private nosave string RacesBlueprint = "/lib/dictionaries/racialDictionary.c";
 private nosave string SkillsBlueprint = "/lib/dictionaries/skillsDictionary.c";
-protected nosave string ItemTypesBlueprint = "/lib/dictionaries/materialsDictionary.c";
 
 // This mapping shows all potential modifiers for a specified equipment piece.
 // It is IMPORTANT to note that not all modifiers are available for all items
@@ -101,12 +100,6 @@ private string *prohibitedKeys = ({ "armor class", "defense class",
     "weapon class", "hit method", "armor type", "weapon type", "offhand" });
  
 /////////////////////////////////////////////////////////////////////////////
-protected nomask object materialsObject()
-{
-    return load_object(ItemTypesBlueprint);
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public mixed query(string element)
 {
     mixed ret = 0;
@@ -135,12 +128,6 @@ public mixed query(string element)
         {
             ret = member(itemData, "material") ? itemData["material"] :
                 materialsObject()->getBlueprintModifier(this_object(), "default material");
-            break;
-        }
-        case "value":
-        {
-            ret = member(itemData, "value") ? itemData["value"] :
-                materialsObject()->getDefaultValue(this_object());
             break;
         }
         case "equipment locations":

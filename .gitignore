@@ -36,3 +36,5 @@ Debug
 *.vcxproj.*
 *.db
 *.opendb
+/.gitconfig
+/.gitconfig.backup

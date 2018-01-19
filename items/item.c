@@ -2,7 +2,7 @@
 // Class: item
 // File Name: item.c
 //
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: This class defines exactly what items that can be carried are
@@ -12,7 +12,7 @@
 virtual inherit "/lib/core/thing.c";
 
 private nosave string AttacksBlueprint = "/lib/dictionaries/attacksDictionary.c";
-private nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDictionary.c";
+protected nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDictionary.c";
 private nosave string CraftingDictionary = "/lib/dictionaries/craftingDictionary.c";
 private nosave string MessageParser = "/lib/core/messageParser.c";
 private nosave string BonusesBlueprint = "/lib/dictionaries/bonusesDictionary.c";
@@ -69,6 +69,12 @@ protected nomask object loadBlueprint(string blueprint)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask object materialsObject()
+{
+    return load_object(MaterialsBlueprint);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private string *prohibitedKeys = ({ "armor class", "defense class",
     "weapon class", "hit method", "armor type", "weapon type", "offhand",
     "equip message", "equip method", "equipment locations", "prerequisites",
@@ -101,71 +107,78 @@ public mixed query(string element)
     
     if(element && stringp(element))
     {
-        if (element == "long")
+        switch (element)
         {
-            ret = member(itemData, "long") ? itemData["long"] :
-                loadBlueprint(MaterialsBlueprint)->getBlueprintModifier(
-                    this_object(), "default description");
-        }
-        else if (element == "primary component")
-        {
-            ret = member(itemData, "primary component") ? itemData["primary component"] :
-                loadBlueprint(MaterialsBlueprint)->getBlueprintModifier(
-                    this_object(), "primary component");
-        }
-        else if(member(itemData, element) && itemData[element])
-        {
-            if(pointerp(itemData[element]))
+            case "long":
             {
-                ret = itemData[element] + ({ });
+                ret = member(itemData, "long") ? itemData["long"] :
+                    materialsObject()->getBlueprintModifier(
+                        this_object(), "default description");
+                break;
             }
-            else if(mappingp(itemData[element]))
+            case "primary component":
             {
-                ret = itemData[element] + ([ ]);
+                ret = member(itemData, "primary component") ? itemData["primary component"] :
+                    materialsObject()->getBlueprintModifier(
+                        this_object(), "primary component");
+                break;
             }
-            else
+            case "value":
             {
-                ret = itemData[element];
+                ret = member(itemData, "value") ? itemData["value"] :
+                    materialsObject()->getDefaultValue(this_object());
+                break;
             }
-        }
-        else if(member(itemData, element))
-        {
-            // handles boolean 'existence' data
-            ret = 1;
-        }
-        else
-        {
-            switch(element)
+            case "charged":
             {
-                case "charged":
+                if (member(itemData, "charges") && itemData["charges"])
                 {
-                    if(member(itemData, "charges") && itemData["charges"])
+                    ret = 1;
+                }
+                break;
+            }
+            case "short":
+            {
+                ret = itemData["short"] ? itemData["short"] : query("name");
+                break;
+            }
+            case "bonuses":
+            {
+                ret = filter(m_indices(itemData),
+                    (: return sizeof(regexp(({ $1 }), "bonus")) > 0; :));
+                break;
+            }
+            case "all":
+            {
+                ret = save_value(itemData);
+                break;
+            }
+            case "type":
+            {
+                ret = "item";
+                break;
+            }
+            default:
+            {
+                if(member(itemData, element) && itemData[element])
+                {
+                    if(pointerp(itemData[element]))
                     {
-                        ret = 1;
+                        ret = itemData[element] + ({ });
                     }
-                    break;
+                    else if(mappingp(itemData[element]))
+                    {
+                        ret = itemData[element] + ([ ]);
+                    }
+                    else
+                    {
+                        ret = itemData[element];
+                    }
                 }
-                case "short":
+                else if(member(itemData, element))
                 {
-                    // This is only happens if short is not set
-                    ret = query("name");
-                    break;
-                }
-                case "bonuses":
-                {
-                    ret = filter(m_indices(itemData),
-                        (: return sizeof(regexp(({ $1 }), "bonus")) > 0; :));
-                    break;
-                }
-                case "all":
-                {
-                    ret = save_value(itemData);
-                    break;
-                }
-                case "type":
-                {
-                    ret = "item";
-                    break;
+                    // handles boolean 'existence' data
+                    ret = 1;
                 }
             }
         }

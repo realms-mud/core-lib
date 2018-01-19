@@ -1,16 +1,10 @@
 //*****************************************************************************
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/items/item.c";
 
 protected nosave string ItemTypesBlueprint = "/lib/dictionaries/materialsDictionary.c";
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask object materialsObject()
-{
-    return load_object(ItemTypesBlueprint);
-}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mixed query(string element)

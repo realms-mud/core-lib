@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
@@ -449,11 +449,11 @@ void DescribeHumanDisplaysHumanDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 11");
-    ExpectEq("[0;36mHumans are the most common race on Realmsmud. They don't have any\n"
+    ExpectEq("[0;36mHumans are the most common race on Realms MUD. They don't have any\n"
         "real preferences on where they live, except that they prefer tropical\n"
         "or temperate regions. They live in above ground dwellings, and tend\n"
         "to admire the elaborate, elegant architecture of the elves and dwarves.\n"
-        "Humans gain no advantages or disadvantages on Realmsmud, they are the\n"
+        "Humans gain no advantages or disadvantages on Realms MUD, they are the\n"
         "happy medium... and they like it that way.\n\n"
         "The human race incurs the following in-game bonuses/penalties:\n"
         "\t[0;32mStarting skill points:[0m [0;34;1m14[0m\n"

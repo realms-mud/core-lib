@@ -2,7 +2,7 @@
 // Class: weapon
 // File Name: weapon.c
 //
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/items/equipment.c";
@@ -66,10 +66,9 @@ public nomask mixed query(string element)
 private nomask int checkBlueprint(string data)
 {
     int ret = 0;
-    object materials = loadBlueprint(ItemTypesBlueprint);
-    if (data && stringp(data) && materials && objectp(materials))
+    if (data && stringp(data))
     {
-        ret = materials->isValidWeaponBlueprint(data);
+        ret = materialsObject()->isValidWeaponBlueprint(data);
     }
 
     if (ret)
@@ -81,7 +80,7 @@ private nomask int checkBlueprint(string data)
         raise_error(sprintf("Weapon: The 'blueprint' element must be"
             " a string as defined in the keys of the weaponBlueprints"
             " mapping in %s.\n",
-            ItemTypesBlueprint));
+            MaterialsBlueprint));
     }
     return ret;
 }
@@ -128,9 +127,7 @@ public nomask varargs int set(string element, mixed data)
             }
             case "weapon type":
             {
-                object itemTypes = load_object(ItemTypesBlueprint);
-                if(itemTypes && objectp(itemTypes) &&
-                   itemTypes->isValidWeaponType(data))
+                if(materialsObject()->isValidWeaponType(data))
                 {
                     itemData[element] = data;
                     ret = 1;
@@ -139,7 +136,7 @@ public nomask varargs int set(string element, mixed data)
                 {
                     raise_error(sprintf("Weapon: The 'weapon type' element "
                         "must be a string as defined in the keys of the "
-                        "itemTypes mapping in %s.\n", ItemTypesBlueprint));          
+                        "itemTypes mapping in %s.\n", MaterialsBlueprint));
                 }
                 break;
             }

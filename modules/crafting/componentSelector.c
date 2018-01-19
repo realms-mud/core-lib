@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
@@ -10,6 +10,7 @@ private string CraftingComponent;
 private object CraftingItem;
 private mapping Materials;
 private string InitialMaterial;
+private string ConfirmChoice;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -63,7 +64,8 @@ protected nomask void setUpUserForSelection()
     Data = Dictionary->getMaterialsDataForItem(CraftingComponent,
         User, Materials);
 
-    Data[to_string(sizeof(Data) + 1)] = ([
+    ConfirmChoice = to_string(sizeof(Data) + 1);
+    Data[ConfirmChoice] = ([
         "name": "Confirm Selection",
         "type": "confirm",
         "is disabled": !Dictionary->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials),
@@ -113,7 +115,8 @@ protected nomask int processSelection(string selection)
         {
             Dictionary->selectComponent(CraftingItem, CraftingComponent,
                 Data[selection]["type"]);
-            setUpUserForSelection();
+            Data[ConfirmChoice]["is disabled"] = 
+                !Dictionary->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials);
             ret = 0;
         }
     }
@@ -149,7 +152,8 @@ public nomask void onSelectorCompleted(object caller)
     }
     if (User)
     {
-        setUpUserForSelection();
+        Data[ConfirmChoice]["is disabled"] =
+            !Dictionary->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials);
         tell_object(User, displayMessage());
     }
     caller->cleanUp();

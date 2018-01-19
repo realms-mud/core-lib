@@ -2,7 +2,7 @@
 // Class: armor
 // File Name: armor.c
 //
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/items/equipment.c";
@@ -50,10 +50,9 @@ public nomask mixed query(string element)
 private nomask int checkBlueprint(string data)
 {
     int ret = 0;
-    object materials = loadBlueprint(ItemTypesBlueprint);
-    if (data && stringp(data) && materials && objectp(materials))
+    if (data && stringp(data))
     {
-        ret = materials->isValidArmorBlueprint(data);
+        ret = materialsObject()->isValidArmorBlueprint(data);
     }
 
     if (ret)
@@ -65,7 +64,7 @@ private nomask int checkBlueprint(string data)
         raise_error(sprintf("Armor: The 'blueprint' element must be"
             " a string as defined in the keys of the armorBlueprints"
             " mapping in %s.\n",
-            ItemTypesBlueprint));
+            MaterialsBlueprint));
     }
     return ret;
 }
@@ -95,9 +94,7 @@ public nomask varargs int set(string element, mixed data)
             }
             case "armor type":
             {
-                object itemTypes = load_object(ItemTypesBlueprint);
-                if(itemTypes && objectp(itemTypes) && data && stringp(data) &&
-                   itemTypes->isValidArmorType(data))
+                if(data && stringp(data) && materialsObject()->isValidArmorType(data))
                 {
                     itemData[element] = data;
                     ret = 1;
@@ -106,7 +103,7 @@ public nomask varargs int set(string element, mixed data)
                 {
                     raise_error(sprintf("Armor: The 'armor type' element "
                         "must be a string as defined in the keys of the "
-                        "itemTypes mapping in %s.\n", ItemTypesBlueprint));          
+                        "itemTypes mapping in %s.\n", MaterialsBlueprint));
                 }
                 break;
             }

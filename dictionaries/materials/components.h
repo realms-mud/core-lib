@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2018 - Allen Cummings, Realms MUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
@@ -558,5 +558,25 @@ private nosave mapping craftingComponents =
         "crafting materials": ([
             "crystal": 1,
         ]),
+    ]),
+    "Simple binding": ([
+        "class": "binding",
+        "value": 0,
+        "description": "a simple leather strap."
+    ]),
+    "Glove": ([
+        "class": "binding",
+        "value": 20,
+        "description": "a leather glove that cunningly houses the weapon's blades."
+    ]),
+    "Retracting Glove": ([
+        "class": "binding",
+        "value": 100,
+        "description": "a leather glove that cunningly houses the weapon's blades. It contains a mechanism that allows the claws to be retracted when not in use."
+    ]),
+    "Simple shaft": ([
+        "class": "shaft",
+        "value": 5,
+        "description": "a simple, straight pole of wood with leather wrapped around the grip."
     ]),
 ]);
