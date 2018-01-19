@@ -660,10 +660,10 @@ public nomask string *getExtraDamageTypes(object weapon)
         object materialsObj = materialsObject();
         if(materialsObj)
         {
-            string extraDamage = materialsObj->hasExtraAttackType(weapon);
-            if(extraDamage)
+            string *extraDamages = materialsObj->hasExtraAttackTypes(weapon);
+            if(sizeof(extraDamages))
             {
-                types += ({ extraDamage });
+                types += extraDamages;
             }
         }
 

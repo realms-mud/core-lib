@@ -1699,7 +1699,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 5,
-            "energy": 8
+            "energy": 4,
+            "fire": 4
         ]),
         "attack rating": 5,
         "defense": ([
@@ -1723,7 +1724,9 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 10,
-            "electricity": 10,
+            "electricity": 4,
+            "magical": 3,
+            "cold": 3
         ]),
         "attack rating": 10,
         "defense": ([
@@ -2227,7 +2230,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 8,
-            "electricity": 10
+            "electricity": 5,
+            "magical": 5
         ]),
         "attack rating": 6,
         "defense": ([
@@ -2251,7 +2255,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 8,
-            "earth": 10
+            "earth": 5,
+            "magical": 5
         ]),
         "attack rating": 6,
         "defense": ([
@@ -2275,7 +2280,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 10,
-            "evil": 10
+            "evil": 5,
+            "magical": 5
         ]),
         "attack rating": 6,
         "defense": ([
@@ -2299,7 +2305,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 10,
-            "good": 10
+            "good": 5,
+            "magical": 5
         ]),
         "attack rating": 6,
         "defense": ([
@@ -2323,7 +2330,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 8,
-            "fire": 10
+            "fire": 5,
+            "magical": 5
         ]),
         "attack rating": 6,
         "defense": ([
@@ -2347,7 +2355,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 8,
-            "energy": 10
+            "energy": 5,
+            "magical": 5
         ]),
         "attack rating": 6,
         "defense": ([
@@ -2371,7 +2380,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 8,
-            "water": 10
+            "water": 5,
+            "magical": 5
         ]),
         "attack rating": 6,
         "defense": ([
@@ -2395,7 +2405,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 8,
-            "cold": 10
+            "cold": 5,
+            "magical": 5
         ]),
         "attack rating": 6,
         "defense": ([
@@ -2486,7 +2497,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 10,
-            "electricity": 10
+            "electricity": 5,
+            "magical": 6
         ]),
         "attack rating": 8,
         "defense": ([
@@ -2517,7 +2529,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 10,
-            "earth": 10
+            "earth": 5,
+            "magical": 6
         ]),
         "attack rating": 8,
         "defense": ([
@@ -2548,7 +2561,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 12,
-            "evil": 10
+            "evil": 5,
+            "magical": 6
         ]),
         "attack rating": 8,
         "defense": ([
@@ -2579,7 +2593,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 12,
-            "good": 10
+            "good": 5,
+            "magical": 6
         ]),
         "attack rating": 8,
         "defense": ([
@@ -2610,7 +2625,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 10,
-            "fire": 10
+            "fire": 5,
+            "magical": 6
         ]),
         "attack rating": 8,
         "defense": ([
@@ -2641,7 +2657,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 10,
-            "energy": 10
+            "energy": 5,
+            "magical": 6
         ]),
         "attack rating": 8,
         "defense": ([
@@ -2672,7 +2689,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 10,
-            "water": 10
+            "water": 5,
+            "magical": 6
         ]),
         "attack rating": 8,
         "defense": ([
@@ -2703,7 +2721,8 @@ private nosave mapping materials =
         ]),
         "attack": ([
             "physical": 10,
-            "cold": 10
+            "cold": 5,
+            "magical": 6
         ]),
         "attack rating": 8,
         "defense": ([

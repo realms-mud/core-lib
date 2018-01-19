@@ -258,17 +258,15 @@ public nomask int getMaterialEncumberance(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string hasExtraAttackType(object item)
+public nomask string *hasExtraAttackTypes(object item)
 {
-    string retVal = 0;
+    string *retVal = 0;
 
     if(isValidItem(item))
     {
         string material = item->query("material");
         if(isValidMaterial(material) && member(materials[material], "attack"))
         {    
-            // Only one extra attack type... if someone adds a material with more, 
-            // it's their own damned fault that I ignore it.
             string *listOfAttackTypes = m_indices(materials[material]["attack"]);
             
             if(member(listOfAttackTypes, "physical") > -1)
@@ -278,7 +276,7 @@ public nomask string hasExtraAttackType(object item)
             
             if (sizeof(listOfAttackTypes))
             {
-                retVal = listOfAttackTypes[0];
+                retVal = listOfAttackTypes;
             }
         }
     }
@@ -627,12 +625,15 @@ private nomask string applyEnchantments(object weapon)
         enchantments = ([]);
     }
 
-    string extraDamage = hasExtraAttackType(weapon);
-    if (extraDamage)
+    string *extraDamages = hasExtraAttackTypes(weapon);
+    if(sizeof(extraDamages))
     {
-        enchantments[extraDamage] = member(enchantments, extraDamage) ?
-            (enchantments[extraDamage] + getMaterialDamage(weapon, extraDamage)) :
-            getMaterialDamage(weapon, extraDamage);
+        foreach(string extraDamage in extraDamages)
+        {
+            enchantments[extraDamage] = member(enchantments, extraDamage) ?
+                (enchantments[extraDamage] + getMaterialDamage(weapon, extraDamage)) :
+                getMaterialDamage(weapon, extraDamage);
+        }
     }
 
     return convertDamageMappingToString(enchantments);

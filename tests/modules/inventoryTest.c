@@ -669,25 +669,28 @@ void GetExtraDamageTypesReturnsCorrectValue()
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
     weapon->set("weapon class", 8);
-    weapon->set("material", "mithril");
+    weapon->set("material", "kirdarium");
     weapon->set("weapon type", "long sword");
     weapon->set("equipment locations", OnehandedWeapon);
     move_object(weapon, Inventory);
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
 
     string *damageTypes = Inventory->getExtraDamageTypes(weapon);
-    ExpectEq(2, sizeof(damageTypes), "2 damage types");
-    ExpectTrue((member(damageTypes, "physical") > -1), "physical is one of the damage types");
-    ExpectTrue((member(damageTypes, "magical") > -1), "magical is one of the damage types");
-
-    weapon->set("enchantments", (["physical":5, "fire": 10, "acid": 10 ]));
-    damageTypes = Inventory->getExtraDamageTypes(weapon);
-    // Though physical is both default and an enchantment, it should not get counted twice
     ExpectEq(4, sizeof(damageTypes), "4 damage types");
     ExpectTrue((member(damageTypes, "physical") > -1), "physical is one of the damage types");
     ExpectTrue((member(damageTypes, "magical") > -1), "magical is one of the damage types");
+    ExpectTrue((member(damageTypes, "electricity") > -1), "electricity is one of the damage types");
+    ExpectTrue((member(damageTypes, "cold") > -1), "cold is one of the damage types");
+
+    weapon->set("enchantments", (["fire": 10, "cold": 10 ]));
+    damageTypes = Inventory->getExtraDamageTypes(weapon);
+    // Though cold is both default and an enchantment, it should not get counted twice
+    ExpectEq(5, sizeof(damageTypes), "5 damage types");
+    ExpectTrue((member(damageTypes, "physical") > -1), "physical is one of the damage types");
+    ExpectTrue((member(damageTypes, "magical") > -1), "magical is one of the damage types");
     ExpectTrue((member(damageTypes, "fire") > -1), "fire is one of the damage types");
-    ExpectTrue((member(damageTypes, "acid") > -1), "fire is one of the damage types");
+    ExpectTrue((member(damageTypes, "electricity") > -1), "electricity is one of the damage types");
+    ExpectTrue((member(damageTypes, "cold") > -1), "cold is one of the damage types");
 }
 
 /////////////////////////////////////////////////////////////////////////////
