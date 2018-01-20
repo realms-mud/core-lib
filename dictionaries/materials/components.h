@@ -579,4 +579,267 @@ private nosave mapping craftingComponents =
         "value": 5,
         "description": "a simple, straight pole of wood with leather wrapped around the grip."
     ]),
+    "Segmented shaft": ([
+        "class": "shaft",
+        "value": 15,
+        "description": "a simple, pole of wood with slightly wider segments of wood at the quarter and mid points. Leather has been wrapped around the grip."
+    ]),
+    "Knotwork shaft": ([
+        "class": "shaft",
+        "value": 50,
+        "description": "a pole of wood that has exquisitely carved knotwork along its length. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Serpent shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has exquisitely carved scales along its length and a carved serpent's head about two-thirds of the way up its length. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Dragon shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has been exquisitely carved with a scene of intertwined dragons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Huntsman's shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has been exquisitely carved with a scene of a hunter stalking a boar in a forest. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Griffin shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has been exquisitely carved with a scene of intertwined griffins along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Eagle shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has been exquisitely carved with a scene of many eagles in flight along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Raven shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has been exquisitely carved with a scene of many ravens in flight along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Vine shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has been exquisitely carved with a scene of intertwined vines along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Runed shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has been exquisitely carved with runes of power along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Skeleton shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has been exquisitely carved with a macabre scene of intertwined skeletons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Dracolich shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has a hideously carved scene of skeletal dragons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Wrath shaft": ([
+        "class": "shaft",
+        "value": 70,
+        "description": "a pole of wood that has a terrifying carved scene of a brutal battle its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Simple Staff Head": ([
+        "class": "staff head",
+        "value": 5,
+        "description": "a simple wood cap placed on the end."
+    ]),
+    "Knotwork Head": ([
+        "class": "staff head",
+        "value": 15,
+        "description": "a slightly bulbous head of wood that has intricate knotwork carved into it.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 2]),
+            "sculpture": (["type":"skill", "value": 2]),
+        ]),
+    ]),
+    "Serpent Head": ([
+        "class": "staff head",
+        "value": 75,
+        "description": "a slightly bulbous head of wood that has been intricately carved into the shape of a serpent's head. The serpent has eyes of encrusted crystal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Dragon Head": ([
+        "class": "staff head",
+        "value": 75,
+        "description": "a slightly bulbous head of wood that has been intricately carved into the shape of a dragon's head. The dragon has eyes of encrusted crystal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Griffin Head": ([
+        "class": "staff head",
+        "value": 75,
+        "description": "a slightly bulbous head of wood that has been intricately carved into the shape of a griffin's head. The griffin has eyes of encrusted crystal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Eagle Head": ([
+        "class": "staff head",
+        "value": 75,
+        "description": "a slightly bulbous head of wood that has been intricately carved into the shape of an eagle's head. The eagle has eyes of encrusted crystal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Raven Head": ([
+        "class": "staff head",
+        "value": 75,
+        "description": "a slightly bulbous head of wood that has been intricately carved into the shape of a raven's head. The raven has eyes of encrusted crystal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Wolf Head": ([
+        "class": "staff head",
+        "value": 75,
+        "description": "a slightly bulbous head of wood that has been intricately carved into the shape of a wolf's head. The wolf has eyes of encrusted crystal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Skull Head": ([
+        "class": "staff head",
+        "value": 75,
+        "description": "a slightly bulbous head of wood that has been intricately carved into the shape of a human skull. The skull has eyes of encrusted crystal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Eagle Talon Head": ([
+        "class": "staff head",
+        "value": 175,
+        "description": "a slightly bulbous head of wood that has been intricately carved into the shape of an eagle's talon embossed with metal. It is clutching a large crystal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+            "metal": 1,
+        ]),
+    ]),
+    "Crystal Head": ([
+        "class": "staff head",
+        "value": 175,
+        "description": "a slightly bulbous head of wood that has been intricately carved into the shape of vines of wood and metal wrapped around a large crystal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+            "metal": 1,
+        ]),
+    ]),
+    "Celestial Head": ([
+        "class": "staff head",
+        "value": 175,
+        "description": "a slightly bulbous head of metal that has been intricately carved into a stylized orb of crystal wrapped in wood and metal.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+            "metal": 1,
+        ]),
+    ]),
 ]);

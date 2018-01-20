@@ -4,7 +4,6 @@
 //*****************************************************************************
 
 private string Fail = "[0;31m[  FAILED  ][0m ";
-
 private string LibPrefix = "/lib";
 private string TestPrefix = "/lib/tests";
 private string *DirectoriesToSearch = ({
@@ -67,5 +66,3 @@ private void executeTests()
         delay++;
     }
 }
-
-

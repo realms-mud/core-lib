@@ -68,4 +68,3 @@ public void heart_beat()
         call_other(this_object(), method);
     }
 }
-

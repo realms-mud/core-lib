@@ -33,7 +33,7 @@ protected mapping itemData = ([
 //  "enchantments": ([ // adds damage of <key> type to attacks by user
 //      "fire": 20     // an example that adds 20 fire damage while equipped
 //  ]),                // see attacks.c for details
-//  "identified":
+//  "identified":      // True if the item has been identified
 //  "info":            // Special item information used by identify skill
 //  "light": 1,        // the piece of equipment is a light source
 //  "long":            // Item's long description - applied via parseDescription

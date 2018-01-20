@@ -130,7 +130,3 @@ protected nomask void unregisterPersistentObject(object objectToUnregister)
         stateMachine->unregisterPersistentObject(objectToUnregister);
     }
 }
-
-
-
-
