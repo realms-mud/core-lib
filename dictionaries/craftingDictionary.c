@@ -766,3 +766,20 @@ public nomask void craftItem(object item, object user)
         }
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setCraftingSkill(string type, string item, 
+    object target, object user)
+{
+    object blueprintObj = getBlueprintItem(type, item);
+    string *skills = blueprintObj->query("crafting skills");
+    if (sizeof(skills))
+    {
+        int craftingSkill = 0;
+        foreach(string skill in skills)
+        {
+            craftingSkill += user->getSkill(skill);
+        }
+        target->set("craftsmanship", craftingSkill);
+    }
+}

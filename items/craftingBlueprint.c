@@ -15,11 +15,21 @@ private nomask int setPrerequisiteData(mapping data)
         string *prereqList = m_indices(prereqs);
         if (sizeof(prereqList))
         {
+            itemData["crafting skills"] = ({});
             foreach(string prereq in prereqList)
             {
                 addPrerequisite(prereq, prereqs[prereq]);
+
+                if (prereqs[prereq]["type"] == "skill")
+                {
+                    itemData["crafting skills"] += ({ prereq });
+                }
             }
         }
+    }
+    if (member(data, "skill to craft"))
+    {
+        itemData["skill to craft"] = data["skill to craft"];
     }
     return ret;
 }

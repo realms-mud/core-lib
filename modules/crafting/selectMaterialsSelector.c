@@ -113,6 +113,8 @@ protected nomask int processSelection(string selection)
             if (!Data[selection]["is disabled"])
             {
                 Dictionary->craftItem(Item, User);
+                Dictionary->setCraftingSkill(CraftingType, CraftingItem,
+                    Item, User);
                 ret = 1;
             }
         }

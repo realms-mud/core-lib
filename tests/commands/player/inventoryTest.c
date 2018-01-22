@@ -21,7 +21,7 @@ varargs string BuildInventoryString(mapping equipped, string *unequipped, int ve
 {
     string ret = "";
     
-    string showVerbose = verbose ? "   (blarg)" : "";
+    string showVerbose = verbose ? "   " : "";
 
     if(sizeof(equipped))
     {

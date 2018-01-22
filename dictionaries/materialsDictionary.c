@@ -390,7 +390,7 @@ public nomask int getMaterialAttack(object item)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getMaterialDetails(object item)
 {
-    string retVal = "(blarg)";
+    string retVal = "";
 
     return retVal;
 }

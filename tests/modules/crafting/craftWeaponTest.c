@@ -232,7 +232,9 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
 
     CraftSword();
     command("5", Player);
-    ExpectTrue(present("long sword", Player));
+
+    object sword = present("long sword", Player);
+    ExpectTrue(sword);
 
     ExpectEq((["crystal":(["ruby":2]),
         "leather" : (["pegasus leather":4]),
@@ -243,4 +245,6 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
             "platinum" : 2,
             "steel" : 10]),
         "wood": (["koa":4])]), getMaterialsOnHand());
+    ExpectEq(40, sword->query("craftsmanship"));
+    ExpectEq(2, load_object("/lib/dictionaries/materialsDictionary.c")->getMaterialCraftsmanshipBonus(sword));
 }
