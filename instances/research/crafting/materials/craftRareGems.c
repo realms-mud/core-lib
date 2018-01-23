@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         knowledgeResearchItem::reset(arg);
         addSpecification("name", "Craft Rare Gems");
+        addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to craft items using precious gems such as rubies and diamonds.");
         addSpecification("research type", "points");

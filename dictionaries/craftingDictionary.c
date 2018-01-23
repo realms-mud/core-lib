@@ -10,6 +10,12 @@
 #include "materials/components.h"
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int isValidType(string type)
+{
+    return (member(weaponSubTypes + armorCategories, type) > -1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getTopLevelCraftingMenu(object user)
 {
     return ([
@@ -739,7 +745,7 @@ private nomask int useCraftingMaterial(object user, string materialName, int qua
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void craftItem(object item, object user)
+public nomask int craftItem(object item, object user)
 {
     int canCraft = 0;
     mapping materialsUsed = materialsUsedForCrafting(item);
@@ -753,18 +759,8 @@ public nomask void craftItem(object item, object user)
             canCraft &&= useCraftingMaterial(user, material, 
                 materialsUsed[material]);
         }
-
-        if (canCraft)
-        {
-            move_object(item, user);
-        }
-        else
-        {
-            // This can only happen if this method is called outside
-            // of the crafting selectors.
-            destruct(item);
-        }
     }
+    return canCraft;
 }
 
 /////////////////////////////////////////////////////////////////////////////

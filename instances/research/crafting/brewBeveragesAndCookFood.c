@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         knowledgeResearchItem::reset(arg);
         addSpecification("name", "Brew Beverages / Cook Food");
+        addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to brew beverages (such as ale) and cook finer cuisine.");
         addSpecification("research type", "granted");

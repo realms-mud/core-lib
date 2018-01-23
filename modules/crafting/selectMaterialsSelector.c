@@ -51,6 +51,7 @@ private nomask void getItemToCraft()
             CraftingType, CraftingSubType, regreplace(CraftingItem, " ", "-"));
         Item = clone_object(file);
         Item->set("identified");
+        User->itemBeingCrafted(Item);
     }
 }
 
@@ -108,14 +109,22 @@ protected nomask int processSelection(string selection)
     if (User)
     {
         ret = (Data[selection]["type"] == "exit");
+        if (ret == 1)
+        {
+            User->abortCrafting();
+        }
+
         if (Data[selection]["type"] == "craft")
         {
             if (!Data[selection]["is disabled"])
             {
-                Dictionary->craftItem(Item, User);
-                Dictionary->setCraftingSkill(CraftingType, CraftingItem,
-                    Item, User);
-                ret = 1;
+                if (Dictionary->craftItem(Item, User))
+                {
+                    Dictionary->setCraftingSkill(CraftingType, CraftingItem,
+                        Item, User);
+                    User->completeCrafting();
+                    ret = 1;
+                }
             }
         }
         else if (!ret)
@@ -187,4 +196,11 @@ protected nomask string additionalInstructions()
 protected nomask int suppressMenuDisplay()
 {
     return objectp(SubselectorObj);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onSelectorAborted(object caller)
+{
+    User->abortCrafting();
+    "baseSelector"::onSelectorAborted(caller);
 }

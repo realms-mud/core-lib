@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         knowledgeResearchItem::reset(arg);
         addSpecification("name", "Craft Using Mythic Metals");
+        addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to craft items using extremely rare metals such as admantite or mithril.");
         addSpecification("research type", "points");

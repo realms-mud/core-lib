@@ -137,6 +137,13 @@ public mixed query(string element)
                 }
                 break;
             }
+            case "crafting type":
+            {
+                ret = member(itemData, "crafting type") ? itemData["crafting type"] :
+                    materialsObject()->getBlueprintModifier(
+                        this_object(), "subtype");
+                break;
+            }
             case "short":
             {
                 ret = itemData["short"] ? itemData["short"] : query("name");

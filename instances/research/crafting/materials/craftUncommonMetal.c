@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         knowledgeResearchItem::reset(arg);
         addSpecification("name", "Craft Using Uncommon Metals");
+        addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to craft items using uncommon metals such as tin or zinc.");
         addSpecification("research type", "points");

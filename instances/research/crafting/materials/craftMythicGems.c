@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         knowledgeResearchItem::reset(arg);
         addSpecification("name", "Craft Mythic Gems");
+        addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to craft items using mythic gems such as kirluin and rhudluin.");
         addSpecification("research type", "points");

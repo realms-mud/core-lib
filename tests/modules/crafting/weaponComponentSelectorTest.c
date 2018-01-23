@@ -429,3 +429,104 @@ void ComponentDescriptionsShowPrerequisitesAndMaterialsNeeded()
         "Sculpture of 15.*Materials.*Crystal needed.*2",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void OnCraftingStartedIsEmittedWhenCraftingBegins()
+{
+    object eventSubscriber = clone_object("/lib/tests/support/events/craftingEventsSubscriber.c");
+    Player->registerEvent(eventSubscriber);
+
+    ExpectEq(([]), eventSubscriber->events());
+    Selector->initiateSelector(Player);
+    ExpectEq((["onCraftingStarted": "lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void OnCraftingAbortedIsEmittedWhenCraftingIsExited()
+{
+    object eventSubscriber = clone_object("/lib/tests/support/events/craftingEventsSubscriber.c");
+    Player->registerEvent(eventSubscriber);
+
+    ExpectEq(([]), eventSubscriber->events());
+    Selector->initiateSelector(Player);
+    eventSubscriber->clearEvents();
+
+    command("6", Player);
+    ExpectEq((["onCraftingAborted":1]), eventSubscriber->events());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void OnCraftingAbortedIsEmittedWhenCraftingIsAborted()
+{
+    object eventSubscriber = clone_object("/lib/tests/support/events/craftingEventsSubscriber.c");
+    Player->registerEvent(eventSubscriber);
+
+    ExpectEq(([]), eventSubscriber->events());
+    Selector->initiateSelector(Player);
+    eventSubscriber->clearEvents();
+
+    command("1", Player);
+    command("abort", Player);
+    ExpectEq((["onCraftingAborted":1]), eventSubscriber->events());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void OnCraftingCompletedIsEmittedWhenCraftingIsCompleted()
+{
+    object material = clone_object("/lib/instances/items/materials/metal/gold.c");
+    material->set("quantity", 3);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/platinum.c");
+    material->set("quantity", 3);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/galvorn.c");
+    material->set("quantity", 3);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    object eventSubscriber = clone_object("/lib/tests/support/events/craftingEventsSubscriber.c");
+    Player->registerEvent(eventSubscriber);
+
+    ExpectEq(([]), eventSubscriber->events());
+    Selector->initiateSelector(Player);
+    eventSubscriber->clearEvents();
+
+    object sword = Player->itemBeingCrafted();
+    sword->set("crafting materials", ([
+        "blade": ([ "description": "a broad, flat, metal blade with parallel edges and a lenticular cross-section. The fuller is narrow and runs half of the length of the blade, ending in a rounded point.", 
+                    "metal": "admantite", 
+                    "type": "Type XIII",
+                    "value": 110 
+        ]), 
+        "crossguard": ([ "crystal": "ruby", 
+                    "description": "an ornate metal knuckleguard that has been sculpted to appear as though a dracolich with crystal eyes is protecting the user's hand.", 
+                    "metal": "galvorn", 
+                    "type": "Dracolich Form", 
+                    "value": 325 
+        ]), 
+        "hilt": ([ "description": "a hilt of metal covered with a slightly ovular grip made out of wood and wrapped in spiraled metal wire.", 
+                    "leather": "pegasus leather", 
+                    "metal": "gold", 
+                    "type": "Spiral Grip", "value": 15, 
+                    "wood": "koa" 
+        ]), 
+        "pommel": ([ "crystal": "ruby", 
+                    "description": "an exquisite metal pommel that has been intricately sculpted to resemble a dragon's talon. Clutched in its grip is a beautifully cut crystal.", 
+                    "metal": "platinum", 
+                    "type": "Dragon Talon", 
+                    "value": 50
+        ])
+    ]));
+    sword->set("material", "admantite");
+
+    command("1", Player);
+    command("25", Player);
+    command("5", Player);
+
+    ExpectEq((["onCraftingCompleted":"lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
+}

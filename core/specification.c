@@ -92,6 +92,16 @@ protected nomask int validLimitor(mapping limitor)
                         }
                         break;
                     }
+                    case "crafting type":
+                    {
+                        object craftingDictionary = getDictionary("crafting");
+                        if (craftingDictionary)
+                        {
+                            ret &&= craftingDictionary->isValidType(
+                                limitor[key]);
+                        }
+                        break;
+                    }
                     case "environment":
                     {
                         object environmentDictionary =
@@ -272,6 +282,15 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
                 }
             }
         }
+        if (member(researchData["limited by"], "crafting type"))
+        {
+            ret &&= target && (target->query("crafting type") ==
+                    researchData["limited by"]["crafting type"]);
+            if (!ret && verbose)
+            {
+                printf("The item is of the wrong type to be affected by this research.\n");
+            }
+        }
         if (member(researchData["limited by"], "environment"))
         {
             ret &&= environment(owner) &&
@@ -418,6 +437,7 @@ public nomask string displayLimiters()
             {
                 case "opponent race":
                 case "opponent guild":
+                case "crafting type":
                 case "environment":
                 {
                     ret += sprintf(limiter, key, "is", researchData["limited by"][key]);

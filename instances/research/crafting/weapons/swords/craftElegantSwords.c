@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         knowledgeResearchItem::reset(arg);
         addSpecification("name", "Craft Elegant Swords");
+        addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to craft rapiers, harpe, kamas, and bastard swords out of "
             "typical bladed weapon materials such as iron, bronze, and steel.");

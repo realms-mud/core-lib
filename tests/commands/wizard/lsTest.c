@@ -100,7 +100,7 @@ void LsDisplaysUnreadableFilesCorrectly()
 void WildcardsWork()
 {
     ExpectTrue(Wizard->executeCommand("ls -l /lib/modules/"));
-    ExpectEq(33, sizeof(explode(Wizard->caughtMessages(), "\n")));
+    ExpectEq(34, sizeof(explode(Wizard->caughtMessages(), "\n")));
 
     Wizard->resetCatchList();
     ExpectTrue(Wizard->executeCommand("ls -l /lib/modules/b*"));

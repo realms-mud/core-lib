@@ -3,6 +3,10 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
+private nosave string *weaponSubTypes = ({ "sword", "dagger", "pole arm",
+    "staff", "axe", "hammer", "mace", "flail", "crossbow", "bow", "sling",
+    "thrown", "shield" });
+
 private nosave mapping weaponBlueprints = ([
     "long sword": ([
         "type": "weapon",

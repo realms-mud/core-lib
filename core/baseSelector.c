@@ -263,7 +263,7 @@ public nomask varargs void initiateSelector(object user, int alreadyInitialized)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void onSelectorAborted(object caller)
+public void onSelectorAborted(object caller)
 {
     caller->cleanUp();
     notify("onSelectorAborted");

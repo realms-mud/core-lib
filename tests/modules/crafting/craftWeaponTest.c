@@ -11,7 +11,7 @@ object Selector;
 void Init()
 {
     ignoreList += ({ "SetUpSkills", "SetUpInventory", "SetUpResearch",
-        "CraftSword", "getMaterialsOnHand", "__inline_lib_tests_modules_crafting_craftWeaponTest_c_146_0000" });
+        "CraftSword", "PopulateSwordData", "getMaterialsOnHand", "__inline_lib_tests_modules_crafting_craftWeaponTest_c_179_0000" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -139,6 +139,39 @@ void CraftSword()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void PopulateSwordData(object sword)
+{
+    sword->set("material", "admantite");
+    sword->set("crafting materials", ([
+        "blade": ([ "description": "a broad, flat, metal blade with parallel edges and a lenticular cross-section. The fuller is narrow and runs half of the length of the blade, ending in a rounded point.", 
+                    "metal": "admantite", 
+                    "type": "Type XIII",
+                    "value": 110 
+        ]), 
+        "crossguard": ([ "crystal": "ruby", 
+                    "description": "an ornate metal knuckleguard that has been sculpted to appear as though a dracolich with crystal eyes is protecting the user's hand.", 
+                    "metal": "galvorn", 
+                    "type": "Dracolich Form", 
+                    "value": 325 
+        ]), 
+        "hilt": ([ "description": "a hilt of metal covered with a slightly ovular grip made out of wood and wrapped in spiraled metal wire.", 
+                    "leather": "pegasus leather", 
+                    "metal": "gold", 
+                    "type": "Spiral Grip", "value": 15, 
+                    "wood": "koa" 
+        ]), 
+        "pommel": ([ "crystal": "ruby", 
+                    "description": "an exquisite metal pommel that has been intricately sculpted to resemble a dragon's talon. Clutched in its grip is a beautifully cut crystal.", 
+                    "metal": "platinum", 
+                    "type": "Dragon Talon", 
+                    "value": 50
+        ])
+    ]));
+    command("1", Player);
+    command("25", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getMaterialsOnHand()
 {
     mapping ret = ([]);
@@ -230,11 +263,13 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
                    "steel": 10 ]),
         "wood": (["koa": 5]) ]), getMaterialsOnHand());
 
-    CraftSword();
+    object sword = Player->itemBeingCrafted();
+    ExpectTrue(sword, "Crafting item has been set");
+    PopulateSwordData(sword);
     command("5", Player);
 
-    object sword = present("long sword", Player);
-    ExpectTrue(sword);
+    ExpectFalse(Player->itemBeingCrafted(), "Crafting item has been reset");
+    ExpectEq(sword, present("long sword", Player));
 
     ExpectEq((["crystal":(["ruby":2]),
         "leather" : (["pegasus leather":4]),
@@ -243,8 +278,26 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
             "gold" : 2,
             "iron" : 8,
             "platinum" : 2,
-            "steel" : 10]),
+            "steel" : 10
+        ]),
         "wood": (["koa":4])]), getMaterialsOnHand());
     ExpectEq(40, sword->query("craftsmanship"));
     ExpectEq(2, load_object("/lib/dictionaries/materialsDictionary.c")->getMaterialCraftsmanshipBonus(sword));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CraftingIsNotAffectedByNotApplicableLimitedByCraftingTypeResearch()
+{
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/limitedByCraftingResearch.c"));
+    Selector->setItem("dagger");
+    Selector->setType("weapons");
+    Selector->setSubType("daggers");
+
+    ExpectEq(10, Player->getSkill("weapon smithing"));
+    Selector->initiateSelector(Player);
+
+    object sword = Player->itemBeingCrafted();
+    PopulateSwordData(sword);
+
+    ExpectEq(10, Player->getSkill("weapon smithing"));
 }

@@ -161,3 +161,10 @@ protected nomask string additionalInstructions()
     return member(Data["1"], "have materials") ? "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n" : "";
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void onSelectorAborted(object caller)
+{
+    User->abortCrafting();
+    "baseSelector"::onSelectorAborted(caller);
+}
