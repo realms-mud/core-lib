@@ -355,37 +355,37 @@ private nosave mapping craftingComponents =
             "crystal": 2,
         ]),
     ]),
-    "Tapered Grip": ([
+    "Tapered Hilt": ([
         "class": "hilt",
         "value": 10,
         "description": "a simple metal hilt covered with a tapered grip made out of wood and wrapped in leather."
     ]),
-    "Ovular Grip": ([
+    "Ovular Hilt": ([
         "class": "hilt",
         "value": 10,
         "description": "a simple metal hilt covered with a grip made out of wood and wrapped in leather that gently curves in at the two ends."
     ]),
-    "Cylindrical Grip": ([
+    "Cylindrical Hilt": ([
         "class": "hilt",
         "value": 5,
         "description": "a simple metal hilt covered with a grip made out of wood and wrapped in leather."
     ]),
-    "Lattice Grip": ([
+    "Lattice Hilt": ([
         "class": "hilt",
         "value": 15,
         "description": "a hilt of metal covered with a grip made out of wood and wrapped in latticed leather."
     ]),
-    "Helix Grip": ([
+    "Helix Hilt": ([
         "class": "hilt",
         "value": 15,
         "description": "a hilt of metal covered with a slightly ovular grip made out of wood and wrapped in leather. The leather has a helix of metal wire wrapped around it."
     ]),
-    "Rope Grip": ([
+    "Rope Hilt": ([
         "class": "hilt",
         "value": 10,
         "description": "a hilt of metal covered with a slightly ovular grip made out of wood and wrapped in thin strands of leather."
     ]),
-    "Spiral Grip": ([
+    "Spiral Hilt": ([
         "class": "hilt",
         "value": 15,
         "description": "a hilt of metal covered with a slightly ovular grip made out of wood and wrapped in spiraled metal wire."
@@ -841,5 +841,158 @@ private nosave mapping craftingComponents =
             "crystal": 1,
             "metal": 1,
         ]),
+    ]),
+    "Simple haft": ([
+        "class": "haft",
+        "value": 5,
+        "description": "a simple, straight roughly three foot long handle of wood with leather wrapped around the grip."
+    ]),
+    "Segmented haft": ([
+        "class": "haft",
+        "value": 15,
+        "description": "a simple, roughly three foot long handle of wood with slightly wider segments of wood at the quarter and mid points. Leather has been wrapped around the grip."
+    ]),
+    "Knotwork haft": ([
+        "class": "haft",
+        "value": 50,
+        "description": "a roughly three foot long handle of wood that has exquisitely carved knotwork along its length. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Serpent haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has exquisitely carved scales along its length and a carved serpent's head about two-thirds of the way up its length. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Dragon haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has been exquisitely carved with a scene of intertwined dragons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Huntsman's haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has been exquisitely carved with a scene of a hunter stalking a boar in a forest. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Griffin haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has been exquisitely carved with a scene of intertwined griffins along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Eagle haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has been exquisitely carved with a scene of many eagles in flight along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Raven haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has been exquisitely carved with a scene of many ravens in flight along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Vine haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has been exquisitely carved with a scene of intertwined vines along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Runed haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has been exquisitely carved with runes of power along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Skeleton haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has been exquisitely carved with a macabre scene of intertwined skeletons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Dracolich haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has a hideously carved scene of skeletal dragons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Wrath haft": ([
+        "class": "haft",
+        "value": 70,
+        "description": "a roughly three foot long handle of wood that has a terrifying carved scene of a brutal battle its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+    ]),
+    "Tapered Grip": ([
+        "class": "grip",
+        "value": 10,
+        "description": "a simple leather grip wraps around a a tapered haft."
+    ]),
+    "Ovular Grip": ([
+        "class": "grip",
+        "value": 10,
+        "description": "a grip wrapped in leather that gently curves in at the two ends."
+    ]),
+    "Cylindrical Grip": ([
+        "class": "grip",
+        "value": 5,
+        "description": "a simple grip wrapped in leather."
+    ]),
+    "Lattice Grip": ([
+        "class": "grip",
+        "value": 15,
+        "description": "a grip wrapped in latticed leather."
+    ]),
+    "Helix Grip": ([
+        "class": "grip",
+        "value": 15,
+        "description": "a slightly ovular grip wrapped in leather. The leather has a helix of metal wire wrapped around it."
+    ]),
+    "Rope Grip": ([
+        "class": "grip",
+        "value": 10,
+        "description": "a slightly ovular grip wrapped in thin strands of leather."
+    ]),
+    "Spiral Grip": ([
+        "class": "grip",
+        "value": 15,
+        "description": "a slightly ovular grip made out of wood and wrapped in spiraled metal wire."
     ]),
 ]);
