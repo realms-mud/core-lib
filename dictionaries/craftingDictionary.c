@@ -16,6 +16,16 @@ public nomask int isValidType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string *validCraftingBonuses()
+{
+    return ({ "crafting value multiplier", "crafting encumberance", 
+        "crafting weapon class", "crafting defense class", "crafting attack",
+        "crafting weight reduction", "crafting armor class", "crafting duration",
+        "crafting enchantment power", "crafting potency"
+    });
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getTopLevelCraftingMenu(object user)
 {
     return ([

@@ -1,24 +1,27 @@
-Copyright (c) 2018, Allen Cummings, RealmsMUD (maeglin@RealmsMUD.org)
+Copyright (c) 2018, Allen Cummings, RealmsMUD (maeglin@realmsmud.org)
 All rights reserved.
 
 *****
 NOTE: This mudlib is currently NOT a released product. It has been provided for
-those who wish to begin development using the library but its use is not intended
-for use on production systems. There are areas intended for the initial
-release that have not yet been fully implemented. When it is officially released,
-this notice will be removed and this restriction will be lifted. Until then,
-this software may NOT be used in whole or in part without prior written consent
-from the author.
+those who wish to begin development using the library but its use is NOT intended
+and NOT permitted for use on production systems. There are areas intended for the
+initial release that have not yet been fully implemented. When it is officially
+released, this notice will be removed and this restriction will be lifted. Until
+then, this software may NOT be used in whole or in part without prior written
+consent from the author.
 *****
 
-The latest version of this mudlib can be found at: http://scm.RealmsMUD.org
+The latest version of this mudlib can be found at: http://scm.realmsmud.org
 
-Redistribution and use in source and forms, with or without modification, are
-permitted provided that the following conditions are met:
+Redistribution and use in source and all forms, with or without modification, 
+are permitted provided that the following conditions are met:
 
-- Redistributions of source code must retain the above copyright notice, this
+- Redistributions of source code MUST retain the above copyright notice, this
 list of conditions and the following disclaimer and must retain the copyright
 notice as noted within each source file. 
+
+- Any derivative works MUST credit this work and its author(s) where the source
+code or the ideas contained within have been used in whole or in part.
 
 - Redistributions in any other form must reproduce the above copyright notice, 
 this list of conditions and the following disclaimer in the documentation 

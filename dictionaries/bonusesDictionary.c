@@ -61,6 +61,13 @@ private nomask string *bonusList()
         {
             bonuses += skillsDictionary->validSkills();
         }
+
+        object craftingDictionary = getDictionary("crafting");
+        if (craftingDictionary && function_exists("validCraftingBonuses", 
+            craftingDictionary))
+        {
+            bonuses += craftingDictionary->validCraftingBonuses();
+        }
     }
     return bonuses + ({ });
 }
