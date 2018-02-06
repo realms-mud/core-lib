@@ -18,7 +18,7 @@ public nomask int isValidType(string type)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *validCraftingBonuses()
 {
-    return ({ "crafting value multiplier", "crafting encumberance", 
+    return ({ "crafting value multiplier", "crafting encumberance reduction", 
         "crafting weapon class", "crafting defense class", "crafting attack",
         "crafting weight reduction", "crafting armor class", "crafting duration",
         "crafting enchantment power", "crafting potency"
@@ -752,6 +752,20 @@ private nomask int useCraftingMaterial(object user, string materialName, int qua
         ret = (quantityLeft == 0);
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void applyCraftingBonuses(object item, object user)
+{
+    string *craftingBonuses = validCraftingBonuses();
+    foreach(string bonus in craftingBonuses)
+    {
+        int bonusValue = user->researchBonusTo(bonus);
+        if (bonusValue)
+        {
+            item->set(bonus, bonusValue);
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -277,4 +277,3 @@ protected nomask void displayMessageToSelf(string message, object initiator)
             initiator));
     }
 }
-

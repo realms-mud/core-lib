@@ -115,6 +115,12 @@ public mixed query(string element)
         {
             ret = member(itemData, "encumberance") ? itemData["encumberance"] :
                 materialsObject()->getBlueprintModifier(this_object(), "default encumberance");
+
+            if (member(itemData, "crafting encumberance reduction"))
+            {
+                int decrease = itemData["crafting encumberance reduction"];
+                ret = to_int(((100.0 - decrease) / 100.0) * ret);
+            }
             break;
         }
         case "weight":
@@ -122,6 +128,12 @@ public mixed query(string element)
             ret = member(itemData, "weight") ? itemData["weight"] :
                 materialsObject()->getBlueprintModifier(this_object(), "default weight") +
                 materialsObject()->getMaterialEncumberance(this_object());
+            
+            if (member(itemData, "crafting weight reduction"))
+            {
+                int decrease = itemData["crafting weight reduction"];
+                ret = to_int(((100.0 - decrease) / 100.0) * ret);
+            }
             break;
         }
         case "material":

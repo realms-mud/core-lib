@@ -53,6 +53,15 @@ void InvalidWeaponClassCannotBeSet()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void WeaponClassIsAffectedByCraftingWeaponClass()
+{
+    ExpectTrue(Weapon->set("weapon class", 5), "value can be set");
+    ExpectEq(5, Weapon->query("weapon class"), "5 value was returned");
+    ExpectTrue(Weapon->set("crafting weapon class", 1), "value multiplier can be set");
+    ExpectEq(6, Weapon->query("weapon class"), "6 value was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DefenseClassCanBeSet()
 {
     ExpectTrue(Weapon->set("defense class", 5), "defense class can be set");
@@ -66,6 +75,40 @@ void InvalidDefenseClassCannotBeSet()
 
     string err = catch (Weapon->set("defense class", "spaghetti"));
     ExpectEq(expected, err, "defense class cannot be set");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DefenseClassIsAffectedByCraftingDefenseClass()
+{
+    ExpectTrue(Weapon->set("defense class", 5), "value can be set");
+    ExpectEq(5, Weapon->query("defense class"), "5 value was returned");
+    ExpectTrue(Weapon->set("crafting defense class", 1), "value multiplier can be set");
+    ExpectEq(6, Weapon->query("defense class"), "6 value was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WeaponAttackCanBeSet()
+{
+    ExpectTrue(Weapon->set("weapon attack", 5), "defense class can be set");
+    ExpectEq(5, Weapon->query("weapon attack"), "5 defense class was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InvalidWeaponAttackCannotBeSet()
+{
+    string expected = "*Weapon: The passed 'weapon attack' data must be an integer.\n";
+
+    string err = catch (Weapon->set("weapon attack", "spaghetti"));
+    ExpectEq(expected, err, "weapon attack cannot be set");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WeaponAttackIsAffectedByCraftingWeaponAttack()
+{
+    ExpectTrue(Weapon->set("weapon attack", 5), "value can be set");
+    ExpectEq(5, Weapon->query("weapon attack"), "5 value was returned");
+    ExpectTrue(Weapon->set("crafting attack", 1), "value multiplier can be set");
+    ExpectEq(6, Weapon->query("weapon attack"), "6 value was returned");
 }
 
 /////////////////////////////////////////////////////////////////////////////

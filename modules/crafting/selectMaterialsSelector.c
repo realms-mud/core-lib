@@ -52,6 +52,7 @@ private nomask void getItemToCraft()
         Item = clone_object(file);
         Item->set("identified");
         User->itemBeingCrafted(Item);
+        Dictionary->applyCraftingBonuses(Item, User);
     }
 }
 

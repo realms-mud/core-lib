@@ -52,6 +52,15 @@ void InvalidArmorClassCannotBeSet()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ArmorClassIsAffectedByCraftingArmorClass()
+{
+    ExpectTrue(Armor->set("armor class", 5), "value can be set");
+    ExpectEq(5, Armor->query("armor class"), "5 value was returned");
+    ExpectTrue(Armor->set("crafting armor class", 1), "value multiplier can be set");
+    ExpectEq(6, Armor->query("armor class"), "6 value was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ArmorTypeCanBeSet()
 {
     // A comprehensive test of the valid armor types is in the materialsDictionary test

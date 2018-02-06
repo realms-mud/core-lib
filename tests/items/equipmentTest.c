@@ -798,4 +798,20 @@ void DropDoesNotMoveCursedOutOfInventory()
     ExpectEq(object_name(owner), object_name(environment(Equipment)));
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void EncumberanceIsAffectedByCraftingEncumberanceReduction()
+{
+    ExpectTrue(Equipment->set("encumberance", 100), "value can be set");
+    ExpectEq(100, Equipment->query("encumberance"), "100 value was returned");
+    ExpectTrue(Equipment->set("crafting encumberance reduction", 25), "value multiplier can be set");
+    ExpectEq(75, Equipment->query("encumberance"), "75 value was returned");
+}
 
+/////////////////////////////////////////////////////////////////////////////
+void WeightIsAffectedByCraftingWeightReduction()
+{
+    ExpectTrue(Equipment->set("weight", 100), "value can be set");
+    ExpectEq(100, Equipment->query("weight"), "100 value was returned");
+    ExpectTrue(Equipment->set("crafting weight reduction", 25), "value multiplier can be set");
+    ExpectEq(75, Equipment->query("weight"), "75 value was returned");
+}

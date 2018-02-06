@@ -301,3 +301,39 @@ void CraftingIsNotAffectedByNotApplicableLimitedByCraftingTypeResearch()
 
     ExpectEq(10, Player->getSkill("weapon smithing"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CraftingItemIsNotAffectedByCraftingBonusesWhenOfDifferentType()
+{
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector->setItem("dagger");
+    Selector->setType("weapons");
+    Selector->setSubType("daggers");
+
+    Selector->initiateSelector(Player);
+
+    object dagger = Player->itemBeingCrafted();
+    PopulateSwordData(dagger);
+
+    ExpectEq(4, dagger->query("weapon class"));
+    ExpectEq(2, dagger->query("defense class"));
+    ExpectEq(5, dagger->query("weapon attack"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CraftingItemIsAffectedByCraftingBonusesWhenOfType()
+{
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector->setItem("long sword");
+    Selector->setType("weapons");
+    Selector->setSubType("swords");
+
+    Selector->initiateSelector(Player);
+
+    object sword = Player->itemBeingCrafted();
+    PopulateSwordData(sword);
+
+    ExpectEq(11, sword->query("weapon class"));
+    ExpectEq(3, sword->query("defense class"));
+    ExpectEq(6, sword->query("weapon attack"));
+}

@@ -19,6 +19,11 @@ public nomask mixed query(string element)
         {
             ret = member(itemData, "armor class") ? itemData["armor class"] :
                 materialsObject()->getBlueprintModifier(this_object(), "default ac");
+
+            if (member(itemData, "crafting armor class"))
+            {
+                ret += itemData["crafting armor class"];
+            }
             break;
         }
         case "blueprint":

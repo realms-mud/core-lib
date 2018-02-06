@@ -137,6 +137,15 @@ void CanSetValueOnItems()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ValueIsAffectedByCraftingValueMultiplier()
+{
+    ExpectTrue(Item->set("value", 100), "value can be set");
+    ExpectEq(100, Item->query("value"), "100 value was returned");
+    ExpectTrue(Item->set("crafting value multiplier", 25), "value multiplier can be set");
+    ExpectEq(125, Item->query("value"), "125 value was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void SettingInvalidValueThrowsError()
 {
     string expected = "*Item: The passed 'value' data must be an integer.\n";
@@ -432,6 +441,16 @@ void EnchantmentsSetEnchantedFlag()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void EnchantmentsAreAffectedByCraftingEnchantmentPower()
+{
+    ExpectTrue(Item->set("enchantments", (["fire":10])), "enchantments can be set");
+    ExpectEq(10, Item->query("enchantments")["fire"], "'fire' enchantment with a 10 damage was returned");
+    ExpectTrue(Item->set("crafting enchantment power", 1), "value multiplier can be set");
+    ExpectTrue(Item->set("enchantments", (["fire":10])), "enchantments can be set");
+    ExpectEq(11, Item->query("enchantments")["fire"], "'fire' enchantment with a 10 damage was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void SettingMalformedEnchantmentReturnsFalse()
 {
     ExpectFalse(Item->set("enchantments", "blah"), "malformed enchantments cannot be set");
@@ -453,6 +472,16 @@ void CanSetResistancesOnItems()
 
     ExpectEq(10, Item->query("resistances")["fire"], "'fire' resistance with a 10 was returned");
     ExpectEq(20, Item->query("resistances")["acid"], "'acid' resistance with a 20 was returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistancesAreAffectedByCraftingEnchantmentPower()
+{
+    ExpectTrue(Item->set("resistances", (["fire":10])), "enchantments can be set");
+    ExpectEq(10, Item->query("resistances")["fire"], "'fire' enchantment with a 10 damage was returned");
+    ExpectTrue(Item->set("crafting enchantment power", 1), "value multiplier can be set");
+    ExpectTrue(Item->set("resistances", (["fire":10])), "enchantments can be set");
+    ExpectEq(11, Item->query("resistances")["fire"], "'fire' enchantment with a 10 damage was returned");
 }
 
 /////////////////////////////////////////////////////////////////////////////

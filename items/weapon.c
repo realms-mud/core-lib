@@ -22,18 +22,33 @@ public nomask mixed query(string element)
         {
             ret = member(itemData, "weapon attack") ? itemData["weapon attack"] :
                 materialsObject()->getBlueprintModifier(this_object(), "default attack");
+
+            if (member(itemData, "crafting attack"))
+            {
+                ret += itemData["crafting attack"];
+            }
             break;
         }
         case "weapon class":
         {
             ret = member(itemData, "weapon class") ? itemData["weapon class"] :
                 materialsObject()->getBlueprintModifier(this_object(), "default wc");
+
+            if (member(itemData, "crafting weapon class"))
+            {
+                ret += itemData["crafting weapon class"];
+            }
             break;
         }
         case "defense class":
         {
             ret = member(itemData, "defense class") ? itemData["defense class"] :
                 materialsObject()->getBlueprintModifier(this_object(), "default dc");
+
+            if (member(itemData, "crafting defense class"))
+            {
+                ret += itemData["crafting defense class"];
+            }
             break;
         }
         case "blueprint":

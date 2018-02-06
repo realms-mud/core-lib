@@ -127,6 +127,12 @@ public mixed query(string element)
             {
                 ret = member(itemData, "value") ? itemData["value"] :
                     materialsObject()->getDefaultValue(this_object());
+
+                if (member(itemData, "crafting value multiplier"))
+                {
+                    int increase = itemData["crafting value multiplier"];
+                    ret = to_int(((100.0 + increase) / 100.0) * ret);
+                }
                 break;
             }
             case "charged":
@@ -351,6 +357,17 @@ public varargs int set(string element, mixed data)
                 case "resistances":
                 {
                     ret = checkDamageType(element, data);
+
+                    if (ret && member(itemData, "crafting enchantment power"))
+                    {
+                        int enhanceBy = itemData["crafting enchantment power"];
+
+                        string *enchantments = m_indices(data);
+                        foreach(string enchantment in enchantments)
+                        {
+                            data[enchantment] += enhanceBy;
+                        }
+                    }
 
                     if(ret)
                     {
