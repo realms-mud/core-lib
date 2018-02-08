@@ -995,4 +995,176 @@ private nosave mapping craftingComponents =
         "value": 15,
         "description": "a slightly ovular grip made out of wood and wrapped in spiraled metal wire."
     ]),
+    "Type A": ([
+        "class": "axe head",
+        "value": 15,
+        "description": "a narrow metal head with a crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are fairly subtle."
+    ]),
+    "Type B": ([
+        "class": "axe head",
+        "value": 25,
+        "description": "a narrow metal head with a crescent cutting edge that ends in a large beard. It has a symmetrical convex bit. Both the top and bottom lugs are fairly subtle."
+    ]),
+    "Type B-a": ([
+        "class": "axe head",
+        "value": 50,
+        "description": "a narrow metal head with a crescent cutting edge that ends in a large beard. It has a symmetrical convex bit. Both the top and bottom lugs are fairly subtle. On the axe's butt is a rather large fluke."
+    ]),
+    "Type C": ([
+        "class": "axe head",
+        "value": 25,
+        "description": "a narrow metal head with a crescent cutting edge that ends in a large beard. It has a bit with a straight top and a convex bottom. There are no top lugs and the bottom ones are fairly subtle."
+    ]),
+    "Type C-a": ([
+        "class": "axe head",
+        "value": 50,
+        "description": "a narrow metal head with a crescent cutting edge that ends in a large beard. It has a bit with a straight top and a convex bottom. There are no top lugs and the bottom ones are fairly subtle. On the axe's butt is a rather large fluke."
+    ]),
+    "Type D": ([
+        "class": "axe head",
+        "value": 25,
+        "description": "a metal head with a straight cutting edge that ends in a subtle beard. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+    ]),
+    "Type D-a": ([
+        "class": "axe head",
+        "value": 25,
+        "description": "a metal head with a straight cutting edge that ends in a subtle beard. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced. On the axe's butt is a rather large fluke."
+    ]),
+    "Type E": ([
+        "class": "axe head",
+        "value": 25,
+        "description": "a metal head with a crescent cutting edge with a rather pronounced upper edge and a cropped beard on the bottom. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+    ]),
+    "Type F": ([
+        "class": "axe head",
+        "value": 30,
+        "description": "a metal head with a crescent cutting edge with a gracefully angled upper edge and a cropped beard on the bottom. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+    ]),
+    "Type F-a": ([
+        "class": "axe head",
+        "value": 55,
+        "description": "a metal head with a crescent cutting edge with a gracefully angled upper edge and a cropped beard on the bottom. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced. On the axe's butt is a rather large fluke."
+    ]),
+    "Type G": ([
+        "class": "axe head",
+        "value": 20,
+        "description": "a narrow metal head with a crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are rather pronounced."
+    ]),
+    "Type H": ([
+        "class": "axe head",
+        "value": 20,
+        "description": "a narrow metal head with a crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are asymmetric and rather pronounced."
+    ]),
+    "Type I": ([
+        "class": "axe head",
+        "value": 20,
+        "description": "a rather thick metal head with a crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are rather pronounced."
+    ]),
+    "Type K": ([
+        "class": "axe head",
+        "value": 45,
+        "description": "a broad metal head with a crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are asymmetric and rather pronounced."
+    ]),
+    "Type L": ([
+        "class": "axe head",
+        "value": 30,
+        "description": "a metal head with a large crescent cutting edge. The top of the cutting edge is angled somewhat forward from the bottom of the edge. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+    ]),
+    "Type L-a": ([
+        "class": "axe head",
+        "value": 30,
+        "description": "a metal head with a large crescent cutting edge. The top of the cutting edge is angled somewhat forward from the bottom of the edge. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced. On the axe's butt is a rather large fluke."
+    ]),
+    "Type M": ([
+        "class": "axe head",
+        "value": 45,
+        "description": "a metal head with an extremely broad crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are asymmetric and rather pronounced."
+    ]),
+    "Type M-a": ([
+        "class": "axe head",
+        "value": 75,
+        "description": "a metal head with an extremely broad crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are asymmetric and rather pronounced. On the axe's butt is a rather large fluke."
+    ]),
+    "Type A-d": ([
+        "class": "double axe head",
+        "value": 30,
+        "description": "a narrow metal head with a pair of counter-balanced, crescent cutting edges and symmetrical convex tops and bottoms. Both the top and bottom lugs are fairly subtle."
+    ]),
+    "Type B-d": ([
+        "class": "double axe head",
+        "value": 50,
+        "description": "a narrow metal head with a pair of counter-balanced, crescent cutting edges that ends in large beards. It has a symmetrical convex bit. Both the top and bottom lugs are fairly subtle."
+    ]),
+    "Type C-d": ([
+        "class": "double axe head",
+        "value": 50,
+        "description": "a narrow metal head with a pair of counter-balanced, crescent cutting edges that end in large beards. It has a bit with a straight top and a convex bottom. There are no top lugs and the bottom ones are fairly subtle."
+    ]),
+    "Type D-d": ([
+        "class": "double axe head",
+        "value": 50,
+        "description": "a metal head with a pair of counter-balanced, straight cutting edges that end in subtle beards. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+    ]),
+    "Type E-d": ([
+        "class": "double axe head",
+        "value": 50,
+        "description": "a metal head with a pair of counter-balanced, crescent cutting edges with rather pronounced upper edges and cropped beards on the bottom. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+    ]),
+    "Type F-d": ([
+        "class": "double axe head",
+        "value": 60,
+        "description": "a metal head with a pair of counter-balanced, crescent cutting edges with a gracefully angled upper edge and a cropped beard on the bottom. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+    ]),
+    "Type G-d": ([
+        "class": "double axe head",
+        "value": 40,
+        "description": "a narrow metal head with a pair of counter-balanced, crescent cutting edges and symmetrical convex tops and bottoms. Both the top and bottom lugs are rather pronounced."
+    ]),
+    "Type H-d": ([
+        "class": "double axe head",
+        "value": 40,
+        "description": "a narrow metal head with a pair of counter-balanced, crescent cutting edges and symmetrical convex tops and bottoms. Both the top and bottom lugs are asymmetric and rather pronounced."
+    ]),
+    "Type I-d": ([
+        "class": "double axe head",
+        "value": 40,
+        "description": "a rather thick metal head with a pair of counter-balanced, crescent cutting edges and symmetrical convex tops and bottoms. Both the top and bottom lugs are rather pronounced."
+    ]),
+    "Type K-d": ([
+        "class": "double axe head",
+        "value": 90,
+        "description": "a broad metal head with a pair of counter-balanced, crescent cutting edges and symmetrical convex tops and bottom.s Both the top and bottom lugs are asymmetric and rather pronounced."
+    ]),
+    "Type L-d": ([
+        "class": "double axe head",
+        "value": 60,
+        "description": "a metal head with a pair of counter-balanced, large crescent cutting edges. The top of the cutting edges are angled somewhat forward from the bottom of the edge. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+    ]),
+    "Type M-d": ([
+        "class": "double axe head",
+        "value": 90,
+        "description": "a metal head with a pair of counter-balanced, extremely broad crescent cutting edges and symmetrical convex tops and bottoms. Both the top and bottom lugs are asymmetric and rather pronounced."
+    ]),
+    "Triangular tip": ([
+        "class": "panabas head",
+        "value": 60,
+        "description": "a metal head with a gracefully arcing cutting edge that ends in a sharp point. The tip then angles backward into a broad, triangular spike that ends in a convex cutting edge."
+    ]),
+    "Flattened tip": ([
+        "class": "panabas head",
+        "value": 50,
+        "description": "a metal head with a gracefully arcing cutting edge that ends in a flattened end. The reverse side angles backward into a convex cutting edge."
+    ]),
+    "Rounded tip": ([
+        "class": "panabas head",
+        "value": 45,
+        "description": "a curved, broad metal blade with nearly parallel edges that "
+            "first widen before gracefully tapering into a rounded point."
+    ]),
+    "Rounded tip": ([
+        "class": "panabas head",
+        "value": 75,
+        "description": "a curved, broad metal blade with nearly parallel edges that "
+            "has a pronounced bend in the blade where it widens before gracefully tapering into an acute point."
+    ]),
 ]);

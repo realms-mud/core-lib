@@ -1082,14 +1082,14 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicAxe.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftExoticAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
-        "primary component": "axe head", 
+        "primary component": "panabas head", 
         "crafting materials": ([
-            "axe head": (["metal": 3 ]),
+            "panabas head": (["metal": 3 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1166,7 +1166,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicAxe.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftExoticAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1194,7 +1194,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicAxe.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftExoticAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 6]),
@@ -1222,14 +1222,14 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicAxe.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftDoubleAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
-        "primary component": "axe head", 
+        "primary component": "double axe head", 
         "crafting materials": ([
-            "axe head": (["metal": 8 ]),
+            "double axe head": (["metal": 8 ]),
             "haft": (["wood": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -1250,14 +1250,14 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicAxe.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftDoubleAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
-        "primary component": "axe head", 
+        "primary component": "double axe head", 
         "crafting materials": ([
-            "axe head": (["metal": 8 ]),
+            "double axe head": (["metal": 8 ]),
             "haft": (["wood": 5 ]),
             "grip": ([ "leather": 1 ])
         ]),
