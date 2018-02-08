@@ -24,7 +24,7 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Room = clone_object("/lib/environment/room.c");
+    Room = clone_object("/lib/environment/environment.c");
 
     Wizard = clone_object("/lib/realizations/wizard.c");
     Wizard->restore("earl");

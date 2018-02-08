@@ -49,7 +49,7 @@ void Setup()
     Target->spellPoints(50);
     Target->staminaPoints(50);
 
-    Room = clone_object("/lib/environment/room");
+    Room = clone_object("/lib/environment/environment");
     move_object(User, Room);
     move_object(Target, Room);
 }

@@ -216,7 +216,7 @@ void ApplyModifiersCorrectlyAppliesBaseValues()
         "rate": 1.6
     ]);
 
-    ExpectEq(16, EffectModifier->testApplyModifiers(1, User, ({ modifier })));
+    ExpectEq(16, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -231,7 +231,7 @@ void ApplyModifiersCorrectlyAppliesLevelModifier()
 
     User->ToggleMockGuilds();
     User->SetGuild("mage");
-    ExpectEq(12, EffectModifier->testApplyModifiers(1, User, ({ modifier })));
+    ExpectEq(12, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////

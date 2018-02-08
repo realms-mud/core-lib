@@ -293,10 +293,14 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
         }
         if (member(researchData["limited by"], "environment"))
         {
-            ret &&= environment(owner) &&
-                function_exists("query", environment(owner)) &&
-                (environment(owner)->query("environment type") ==
-                    researchData["limited by"]["environment"]);
+            object environmentDictionary =
+                getDictionary("environment");
+            if (environmentDictionary)
+            {
+                ret &&= environment(owner) &&
+                    environmentDictionary->isEnvironmentOfType(environment(owner),
+                        researchData["limited by"]["environment"]);
+            }
             if (!ret && verbose)
             {
                 printf("You are not in the correct environment (%s) to do that.\n",

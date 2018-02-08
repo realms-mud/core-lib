@@ -11,7 +11,7 @@ object Selector;
 void Init()
 {
     ignoreList += ({ "SetUpSkills", "SetUpInventory", "SetUpResearch",
-        "CraftSword", "PopulateSwordData", "getMaterialsOnHand", "__inline_lib_tests_modules_crafting_craftWeaponTest_c_179_0000" });
+        "CraftSword", "PopulateSwordData", "getMaterialsOnHand", "__inline_lib_tests_modules_crafting_craftWeaponTest_c_179_#0000" });
 }
 
 /////////////////////////////////////////////////////////////////////////////

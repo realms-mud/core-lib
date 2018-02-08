@@ -13,7 +13,7 @@ object TargetEvents;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Room = clone_object("/lib/environment/room.c");
+    Room = clone_object("/lib/environment/environment.c");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");

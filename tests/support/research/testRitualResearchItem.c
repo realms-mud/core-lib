@@ -8,13 +8,13 @@ private int reportExecution;
 private int ritualPerformed;
 
 /////////////////////////////////////////////////////////////////////////////
-public int ToggleReportExecution()
+public void ToggleReportExecution()
 {
     reportExecution = !reportExecution;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int TogglePerformRitual()
+public void TogglePerformRitual()
 {
     ritualPerformed = !ritualPerformed;
 }

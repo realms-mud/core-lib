@@ -44,7 +44,7 @@ void SetUpQuestItem()
     King->SetQuestItem(QuestItem);
     King->SetQuester(Quester);
 
-    object room = clone_object("/lib/environment/room.c");
+    object room = clone_object("/lib/environment/environment.c");
     move_object(King, room);
 
     QuestItem->testSetInitialState("meet the king");
@@ -410,7 +410,7 @@ void OnEnterFiresEventWhenItHasBeenSet()
     King->SetQuestItem(QuestItem);
     King->SetQuester(Quester);
 
-    object room = clone_object("/lib/environment/room.c");
+    object room = clone_object("/lib/environment/environment.c");
     move_object(King, room);
 
     QuestItem->testSetInitialState("meet the king");
@@ -436,7 +436,7 @@ void OnEnterFiresIfSetForInitialState()
     King->SetQuestItem(QuestItem);
     King->SetQuester(Quester);
 
-    object room = clone_object("/lib/environment/room.c");
+    object room = clone_object("/lib/environment/environment.c");
     move_object(King, room);
 
     QuestItem->testSetInitialState("meet the king");
@@ -460,7 +460,7 @@ void EntryEventFiresIfSetForInitialState()
     King->SetQuestItem(QuestItem);
     King->SetQuester(Quester);
 
-    object room = clone_object("/lib/environment/room.c");
+    object room = clone_object("/lib/environment/environment.c");
     move_object(King, room);
 
     QuestItem->testSetInitialState("meet the king");

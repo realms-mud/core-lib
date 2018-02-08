@@ -12,7 +12,7 @@ object Room;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Room = clone_object("/lib/environment/room");
+    Room = clone_object("/lib/environment/environment");
 
     ResearchItem = clone_object("/lib/tests/support/research/testRitualResearchItem");
     ResearchItem->addSpecification("command template", "the command");

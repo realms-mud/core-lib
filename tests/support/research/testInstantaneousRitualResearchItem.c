@@ -8,13 +8,13 @@ private int ritualPerformed;
 private int applyMultiplier;
 
 /////////////////////////////////////////////////////////////////////////////
-public int TogglePerformRitual()
+public void TogglePerformRitual()
 {
     ritualPerformed = !ritualPerformed;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int ToggleMultiplier()
+public void ToggleMultiplier()
 {
     applyMultiplier = !applyMultiplier;
 }

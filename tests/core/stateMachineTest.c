@@ -322,7 +322,7 @@ void OnEnterFiresEventWhenItHasBeenSet()
     King->SetQuestItem(StateMachine);
     King->SetQuester(StateMachine);
 
-    object room = clone_object("/lib/environment/room.c");
+    object room = clone_object("/lib/environment/environment.c");
     move_object(King, room);
 
     StateMachine->testSetInitialState("added state");
@@ -346,7 +346,7 @@ void OnEnterFiresIfSetForInitialState()
     StateMachine->testRegisterStateActor(King);
     King->SetStateMachine(StateMachine);
 
-    object room = clone_object("/lib/environment/room.c");
+    object room = clone_object("/lib/environment/environment.c");
     move_object(King, room);
 
     StateMachine->testSetInitialState("added state");
@@ -370,7 +370,7 @@ void EntryEventFiresIfSetForInitialState()
     King->SetQuestItem(StateMachine);
     King->SetQuester(StateMachine);
 
-    object room = clone_object("/lib/environment/room.c");
+    object room = clone_object("/lib/environment/environment.c");
     move_object(King, room);
 
     StateMachine->testSetInitialState("added state");

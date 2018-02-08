@@ -10,7 +10,7 @@ private string *catchList = ({ });
 private int BlockPlayer = 0;
 
 /////////////////////////////////////////////////////////////////////////////
-public int agePlayer(int amount)
+public void agePlayer(int amount)
 {
     this_object()->materialAttributesHeartBeat(amount);
 }

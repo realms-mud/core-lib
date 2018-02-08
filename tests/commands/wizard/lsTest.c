@@ -50,7 +50,7 @@ void ExecuteRegexpIsNotGreedy()
 void LsListsContentsOfSpecifiedDirectory()
 {
     ExpectTrue(Wizard->executeCommand("ls /"));
-    ExpectSubStringMatch("brokenFile.c[^\n]+guild", Wizard->caughtMessages());
+    ExpectSubStringMatch("brokenFile.c.+guild", Wizard->caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////

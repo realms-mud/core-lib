@@ -176,7 +176,7 @@ void LimitedByOpponentBonusesCorrectlyApplied()
     target->Con(20);
     target->Wis(20);
     target->Chr(20);
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
     move_object(target, room);
 
@@ -259,7 +259,7 @@ void ResearchCommandExecutesCommandBasedResearch()
     target->addSkillPoints(100);
     target->advanceSkill("long sword", 5);
 
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
     move_object(target, room);
 
@@ -273,7 +273,7 @@ void ResearchCommandExecutesCommandBasedResearch()
 /////////////////////////////////////////////////////////////////////////////
 void LimitedByEquipmentCorrectlyApplied()
 {
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
     ExpectTrue(Research->initiateResearch("lib/tests/support/research/testLimitedActiveResearchItem.c"), "initiate research");
@@ -292,7 +292,7 @@ void LimitedByEquipmentCorrectlyApplied()
 /////////////////////////////////////////////////////////////////////////////
 void TraitCorrectlyApplied()
 {
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
     ExpectTrue(Research->initiateResearch("lib/tests/support/research/testPersistedActiveTraitResearch.c"), "initiate research");
@@ -312,7 +312,7 @@ void TargetedResearchWithoutAtRunsOnResearcher()
     Research->heart_beat();
     ExpectTrue(Research->isResearched("lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
 
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
     ExpectEq(5, Research->getSkill("long sword"));
@@ -334,7 +334,7 @@ void CustomEventFiredWhenResearchUsed()
     Research->heart_beat();
     ExpectTrue(Research->isResearched("lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
 
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
     object subscriber = clone_object("/lib/tests/support/events/customEventSubscriber");
@@ -373,7 +373,7 @@ void CannotUseResearchWhileAwaitingCooldown()
     Research->heart_beat();
     ExpectTrue(Research->isResearched("lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
 
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
     ExpectFalse(Research->blockedByCooldown("lib/tests/support/research/testTimedResearchItem.c"), "not blocked by cool down");

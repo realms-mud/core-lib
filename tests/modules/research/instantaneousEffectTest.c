@@ -358,7 +358,7 @@ void GetTargetReturnsFalseIfTargetDoesNotExist()
 /////////////////////////////////////////////////////////////////////////////
 void GetTargetReturnsFalseIfTargetNotPresent()
 {
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     object victim = clone_object("/lib/tests/support/services/combatWithMockServices");
     victim->Name("Frank");
     victim->addAlias("frank");
@@ -370,7 +370,7 @@ void GetTargetReturnsFalseIfTargetNotPresent()
 /////////////////////////////////////////////////////////////////////////////
 void GetTargetReturnsValidTarget()
 {
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
     move_object(User, room);
     move_object(owner, room);
@@ -397,7 +397,7 @@ void ExecuteOnSelfCallsApplyBeneficialEffect()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteOnTargetMustHaveAValidTarget()
 {
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
     move_object(owner, room);
 
@@ -414,7 +414,7 @@ void ExecuteOnTargetMustHaveAValidTarget()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteInAreaCallsApplyEffect()
 {
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
     move_object(owner, room);
     move_object(User, room);

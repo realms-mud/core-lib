@@ -7,7 +7,7 @@ inherit "/lib/modules/research/activeResearchItem.c";
 private int reportExecution;
 
 /////////////////////////////////////////////////////////////////////////////
-public int ToggleReportExecution()
+public void ToggleReportExecution()
 {
     reportExecution = !reportExecution;
 }

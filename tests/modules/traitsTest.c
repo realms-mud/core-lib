@@ -206,7 +206,7 @@ void SetBonusAttackAddsExtraAttack()
 /////////////////////////////////////////////////////////////////////////////
 void LimitedByEquipmentCorrectlyApplied()
 {
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Traits, room);
 
     ExpectEq(5, Traits->getSkill("long sword"), "initial long sword skill");
@@ -243,7 +243,7 @@ void LimitedByOpponentBonusesCorrectlyApplied()
     target->Con(20);
     target->Wis(20);
     target->Chr(20);
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Traits, room);
     move_object(target, room);
 
@@ -402,7 +402,7 @@ void TraitsWithSustainedEffectAreRemovedWhenResearchNotSustained()
 void TraitsWithSustainedEffectsAreNotRemovedWhenAssociatedResearchActive()
 {
     string trait = "lib/tests/support/traits/testTraitForSustainedResearch.c";
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Traits, room);
 
     ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
@@ -418,7 +418,7 @@ void TraitsWithSustainedEffectsAreNotRemovedWhenAssociatedResearchActive()
 void TraitsWithSustainedEffectsAreRemovedAfterResearchInactivated()
 {
     string trait = "lib/tests/support/traits/testTraitForSustainedResearch.c";
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Traits, room);
 
     ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");

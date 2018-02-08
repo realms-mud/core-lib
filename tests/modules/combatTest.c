@@ -701,7 +701,7 @@ void CalculateDefendAttackCorrectlyAppliesDisease()
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
     ExpectEq(14, Attacker->calculateDefendAttack(), "before disease is applied");
     modifier->set("disease", 1);
-    ExpectEq(12, Attacker->calculateDefendAttack(), "disease applied");
+    ExpectEq(13, Attacker->calculateDefendAttack(), "disease applied");
 }
 
 /////////////////////////////////////////////////////////////////////////////

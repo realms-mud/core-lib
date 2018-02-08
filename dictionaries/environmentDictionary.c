@@ -135,6 +135,13 @@ public nomask int isValidType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int isEnvironmentOfType(object environment, string type)
+{
+    //TODO [236]: Finish this 
+    return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isValidSeason(string season)
 {
     return season && stringp(season) &&

@@ -33,18 +33,19 @@ public int executeTests()
     mixed *tests = functionlist(this_object(), RETURN_FUNCTION_NAME | NAME_INHERITED);
     tests -= ignoreList;
 
-    debug_message(sprintf("\nTesting %s\n", object_name()));
+    debug_message(sprintf("\nTesting %s\n", object_name()), 0x5);
     foreach(string test in tests)
     {
         Setup();
         CurrentTestPassed = 1;
 
         call_other(this_object(), test);
-        debug_message(sprintf("%s %s\n", CurrentTestPassed ? Pass : Fail, test));
+        debug_message(sprintf("%s %s\n", CurrentTestPassed ? Pass : Fail, test),
+            0x5);
         CleanUp();
     }
     debug_message(sprintf("Test executed: %s -> %s\n", object_name(),
-        AnyFailure ? Fail : Pass));
+        AnyFailure ? Fail : Pass), 0x5);
 
     return AnyFailure;
 }
@@ -56,7 +57,7 @@ public void validateExpect(mixed val1, mixed val2, string msg)
     {
         AnyFailure = 1;
         debug_message(Fail + (stringp(msg) ? msg : "") + " -> Actual: " + val2 + 
-            ", Expected: " + val1 + "\n");
+            ", Expected: " + val1 + "\n", 0x5);
     }
 }
 

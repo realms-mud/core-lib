@@ -51,7 +51,7 @@ public int isValidEnvironment()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string long(string item)
+public varargs string long(string item)
 {
     string ret = "This is the long description.\n";
     if (!isIlluminated())

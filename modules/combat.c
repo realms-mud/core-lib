@@ -141,7 +141,7 @@ private nomask int calculateServiceBonuses(string methodToCheck)
     }
     
     object room = environment(this_object());
-    if(room && (member(inherit_list(room), "lib/environment/room.c") > -1))
+    if(room && (member(inherit_list(room), "lib/environment/environment.c") > -1))
     {
         // this_object is passed as a type check - meaning that environmental
         // affects are not always applied to everything equally - there may

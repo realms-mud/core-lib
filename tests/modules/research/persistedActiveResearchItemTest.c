@@ -48,7 +48,7 @@ void Setup()
     Target->addSkillPoints(200);
     Target->advanceSkill("long sword", 10);
 
-    Room = clone_object("/lib/environment/room");
+    Room = clone_object("/lib/environment/environment");
     move_object(User, Room);
     move_object(Target, Room);
 }
@@ -238,7 +238,7 @@ void GetTargetReturnsFalseIfTargetDoesNotExist()
 /////////////////////////////////////////////////////////////////////////////
 void GetTargetReturnsFalseIfTargetNotPresent()
 {
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
     move_object(Target, room);
 
     ExpectFalse(ResearchItem->testGetTarget(User, "throw turnip at frank"));

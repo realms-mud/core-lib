@@ -272,7 +272,7 @@ void CanApplySkillReturnsTrueWithLimitorForOpponentFaction()
 /////////////////////////////////////////////////////////////////////////////
 void CanApplySkillReturnsTrueWithLimitorForEnvironment()
 {
-    object room = clone_object("/lib/environment/room");
+    object room = clone_object("/lib/environment/environment");
 
     mapping limitor = (["environment":"unknown"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
