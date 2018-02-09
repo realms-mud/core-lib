@@ -1978,7 +1978,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicHammer.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftWarHammer.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
@@ -1999,6 +1999,62 @@ private nosave mapping weaponBlueprints = ([
         "default value": 510,
         "default description": ""
     ]),
+    "pick axe": ([
+        "type": "weapon",
+        "subtype": "hammer",
+        "default location": OnehandedWeapon,
+        "damage type": "bludgeon",
+        "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicHammer.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+            "metal crafting": (["type":"skill", "value": 3]),
+            "weapon smithing": (["type":"skill", "value": 5]),
+        ]),
+        "primary component": "hammer head", 
+        "crafting materials": ([
+            "hammer head": (["metal": 4 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
+        ]),
+        "skill to use": "hammer",
+        "default wc": 6,
+        "default dc": 3,
+        "default attack": 5,
+        "default encumberance": 6,
+        "default weight": 6,
+        "default material": "iron",
+        "default value": 150,
+        "default description": ""
+    ]),
+    "mattock": ([
+        "type": "weapon",
+        "subtype": "hammer",
+        "default location": OnehandedWeapon,
+        "damage type": "bludgeon",
+        "skill to craft": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/craftBasicHammer.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+            "metal crafting": (["type":"skill", "value": 3]),
+            "weapon smithing": (["type":"skill", "value": 6]),
+        ]),
+        "primary component": "hammer head", 
+        "crafting materials": ([
+            "hammer head": (["metal": 4 ]),
+            "haft": (["wood": 3 ]),
+            "grip": ([ "leather": 1 ])
+        ]),
+        "skill to use": "hammer",
+        "default wc": 9,
+        "default dc": 3,
+        "default attack": 5,
+        "default encumberance": 6,
+        "default weight": 6,
+        "default material": "iron",
+        "default value": 250,
+        "default description": ""
+    ]),
     "horseman's pick": ([
         "type": "weapon",
         "subtype": "hammer",
@@ -2006,7 +2062,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicHammer.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftWarHammer.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -2034,7 +2090,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftBasicHammer.c":(["type":"research"]),
+            "lib/instances/research/crafting/craftWarHammer.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),

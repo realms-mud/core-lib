@@ -10,11 +10,11 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Double Bit Axe");
+        addSpecification("name", "Craft War Hammer");
         addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft double bit axes.");
+            "knowledge required to craft basic hammers such as war hammers and lucerne hammers.");
         addSpecification("research type", "granted");
-        addPrerequisite("lib/instances/research/crafting/weapons/axes/craftBasicAxe.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c", (["type":"research"]));
     }
 }

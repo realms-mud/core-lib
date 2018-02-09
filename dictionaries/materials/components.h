@@ -1161,10 +1161,65 @@ private nosave mapping craftingComponents =
         "description": "a curved, broad metal blade with nearly parallel edges that "
             "first widen before gracefully tapering into a rounded point."
     ]),
-    "Rounded tip": ([
+    "Pointed tip": ([
         "class": "panabas head",
         "value": 75,
         "description": "a curved, broad metal blade with nearly parallel edges that "
             "has a pronounced bend in the blade where it widens before gracefully tapering into an acute point."
+    ]),
+    "Simple Hammer": ([
+        "class": "hammer head",
+        "value": 10,
+        "description": "a large, rounded metal head with a broad, flat surface."
+    ]),
+    "Simple Fluked Hammer": ([
+        "class": "hammer head",
+        "value": 20,
+        "description": "a large, rounded metal head with a broad, flat surface. It is balanced with a sharp fluke on the opposite side of the hammer surface."
+    ]),
+    "Cubic Hammer": ([
+        "class": "hammer head",
+        "value": 15,
+        "description": "a large, square metal head with a broad, flat surface."
+    ]),
+    "Cubic Fluked Hammer": ([
+        "class": "hammer head",
+        "value": 25,
+        "description": "a large, square metal head with a broad, flat surface. It is balanced with a sharp fluke on the opposite side of the hammer surface."
+    ]),
+    "Cubic Spiked Hammer": ([
+        "class": "hammer head",
+        "value": 75,
+        "description": "a large, square metal head with a broad, flat surface. It is balanced with a sharp fluke on the opposite side of the hammer surface. The top of the hammer is crafted with a squat, dagger-like spike perpendicular to the head."
+    ]),
+    "Pronged Hammer": ([
+        "class": "hammer head",
+        "value": 100,
+        "description": "a large, square metal head with four prongs jutting from its striking surface. It is balanced with a sharp fluke on the opposite side of the hammer surface. The top of the hammer is crafted with a squat, dagger-like spike perpendicular to the head."
+    ]),
+    "Cross Hammer": ([
+        "class": "hammer head",
+        "value": 110,
+        "description": "a large, cross-shaped metal head with four prongs jutting from its striking surface. It is balanced with a long, sharp fluke on the opposite side of the hammer surface. The top of the hammer is crafted with a squat, dagger-like spike perpendicular to the head."
+    ]),
+    "Bladed Hammer": ([
+        "class": "hammer head",
+        "value": 80,
+        "description": "a large, cross-shaped metal head with four prongs jutting from its striking surface. It is balanced with a long, dagger-like blade on the opposite side of the hammer surface."
+    ]),
+    "Wedge Hammer": ([
+        "class": "hammer head",
+        "value": 100,
+        "description": "a narrow metal head ending in a sharp wedge. It is balanced on the other side by an equal, symmetric wedge."
+    ]),
+    "Offset Wedge Hammer": ([
+        "class": "hammer head",
+        "value": 100,
+        "description": "a narrow metal head ending in a sharp wedge. It is balanced on the other side by an equal adze-style wedge."
+    ]),
+    "Pronged-Ball Hammer": ([
+        "class": "hammer head",
+        "value": 120,
+        "description": "a large, square metal head with four prongs jutting from its striking surface. It is balanced with a ball-shaped head on the opposite side."
     ]),
 ]);
