@@ -473,7 +473,7 @@ private nosave mapping craftingComponents =
     "Fish Tail": ([
         "class": "pommel",
         "value": 15,
-        "description": "a metal pommel with a with a somewhat fish-tailed shape."
+        "description": "a pommel of metal with a with a somewhat fish-tailed shape."
     ]),
     "Eagle Talon": ([
         "class": "pommel",
@@ -1023,27 +1023,27 @@ private nosave mapping craftingComponents =
     "Type D": ([
         "class": "axe head",
         "value": 25,
-        "description": "a metal head with a straight cutting edge that ends in a subtle beard. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+        "description": "a head of metal with a straight cutting edge that ends in a subtle beard. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
     ]),
     "Type D-a": ([
         "class": "axe head",
         "value": 25,
-        "description": "a metal head with a straight cutting edge that ends in a subtle beard. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced. On the axe's butt is a rather large fluke."
+        "description": "a head of metal with a straight cutting edge that ends in a subtle beard. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced. On the axe's butt is a rather large fluke."
     ]),
     "Type E": ([
         "class": "axe head",
         "value": 25,
-        "description": "a metal head with a crescent cutting edge with a rather pronounced upper edge and a cropped beard on the bottom. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+        "description": "a head of metal with a crescent cutting edge with a rather pronounced upper edge and a cropped beard on the bottom. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
     ]),
     "Type F": ([
         "class": "axe head",
         "value": 30,
-        "description": "a metal head with a crescent cutting edge with a gracefully angled upper edge and a cropped beard on the bottom. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+        "description": "a head of metal with a crescent cutting edge with a gracefully angled upper edge and a cropped beard on the bottom. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
     ]),
     "Type F-a": ([
         "class": "axe head",
         "value": 55,
-        "description": "a metal head with a crescent cutting edge with a gracefully angled upper edge and a cropped beard on the bottom. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced. On the axe's butt is a rather large fluke."
+        "description": "a head of metal with a crescent cutting edge with a gracefully angled upper edge and a cropped beard on the bottom. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced. On the axe's butt is a rather large fluke."
     ]),
     "Type G": ([
         "class": "axe head",
@@ -1068,22 +1068,22 @@ private nosave mapping craftingComponents =
     "Type L": ([
         "class": "axe head",
         "value": 30,
-        "description": "a metal head with a large crescent cutting edge. The top of the cutting edge is angled somewhat forward from the bottom of the edge. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+        "description": "a head of metal with a large crescent cutting edge. The top of the cutting edge is angled somewhat forward from the bottom of the edge. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
     ]),
     "Type L-a": ([
         "class": "axe head",
         "value": 30,
-        "description": "a metal head with a large crescent cutting edge. The top of the cutting edge is angled somewhat forward from the bottom of the edge. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced. On the axe's butt is a rather large fluke."
+        "description": "a head of metal with a large crescent cutting edge. The top of the cutting edge is angled somewhat forward from the bottom of the edge. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced. On the axe's butt is a rather large fluke."
     ]),
     "Type M": ([
         "class": "axe head",
         "value": 45,
-        "description": "a metal head with an extremely broad crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are asymmetric and rather pronounced."
+        "description": "a head of metal with an extremely broad crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are asymmetric and rather pronounced."
     ]),
     "Type M-a": ([
         "class": "axe head",
         "value": 75,
-        "description": "a metal head with an extremely broad crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are asymmetric and rather pronounced. On the axe's butt is a rather large fluke."
+        "description": "a head of metal with an extremely broad crescent cutting edge and a symmetrical convex top and bottom. Both the top and bottom lugs are asymmetric and rather pronounced. On the axe's butt is a rather large fluke."
     ]),
     "Type A-d": ([
         "class": "double axe head",
@@ -1103,17 +1103,17 @@ private nosave mapping craftingComponents =
     "Type D-d": ([
         "class": "double axe head",
         "value": 50,
-        "description": "a metal head with a pair of counter-balanced, straight cutting edges that end in subtle beards. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+        "description": "a head of metal with a pair of counter-balanced, straight cutting edges that end in subtle beards. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
     ]),
     "Type E-d": ([
         "class": "double axe head",
         "value": 50,
-        "description": "a metal head with a pair of counter-balanced, crescent cutting edges with rather pronounced upper edges and cropped beards on the bottom. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+        "description": "a head of metal with a pair of counter-balanced, crescent cutting edges with rather pronounced upper edges and cropped beards on the bottom. It has an asymmetrical convex bit. Both the top and bottom lugs are pronounced."
     ]),
     "Type F-d": ([
         "class": "double axe head",
         "value": 60,
-        "description": "a metal head with a pair of counter-balanced, crescent cutting edges with a gracefully angled upper edge and a cropped beard on the bottom. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+        "description": "a head of metal with a pair of counter-balanced, crescent cutting edges with a gracefully angled upper edge and a cropped beard on the bottom. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
     ]),
     "Type G-d": ([
         "class": "double axe head",
@@ -1138,22 +1138,22 @@ private nosave mapping craftingComponents =
     "Type L-d": ([
         "class": "double axe head",
         "value": 60,
-        "description": "a metal head with a pair of counter-balanced, large crescent cutting edges. The top of the cutting edges are angled somewhat forward from the bottom of the edge. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
+        "description": "a head of metal with a pair of counter-balanced, large crescent cutting edges. The top of the cutting edges are angled somewhat forward from the bottom of the edge. It has a slightly asymmetrical convex bit. Both the top and bottom lugs are pronounced."
     ]),
     "Type M-d": ([
         "class": "double axe head",
         "value": 90,
-        "description": "a metal head with a pair of counter-balanced, extremely broad crescent cutting edges and symmetrical convex tops and bottoms. Both the top and bottom lugs are asymmetric and rather pronounced."
+        "description": "a head of metal with a pair of counter-balanced, extremely broad crescent cutting edges and symmetrical convex tops and bottoms. Both the top and bottom lugs are asymmetric and rather pronounced."
     ]),
     "Triangular tip": ([
         "class": "panabas head",
         "value": 60,
-        "description": "a metal head with a gracefully arcing cutting edge that ends in a sharp point. The tip then angles backward into a broad, triangular spike that ends in a convex cutting edge."
+        "description": "a head of metal with a gracefully arcing cutting edge that ends in a sharp point. The tip then angles backward into a broad, triangular spike that ends in a convex cutting edge."
     ]),
     "Flattened tip": ([
         "class": "panabas head",
         "value": 50,
-        "description": "a metal head with a gracefully arcing cutting edge that ends in a flattened end. The reverse side angles backward into a convex cutting edge."
+        "description": "a head of metal with a gracefully arcing cutting edge that ends in a flattened end. The reverse side angles backward into a convex cutting edge."
     ]),
     "Rounded tip": ([
         "class": "panabas head",
@@ -1221,5 +1221,145 @@ private nosave mapping craftingComponents =
         "class": "hammer head",
         "value": 120,
         "description": "a large, square metal head with four prongs jutting from its striking surface. It is balanced with a ball-shaped head on the opposite side."
+    ]),
+    "Crescent Bardiche": ([
+        "class": "bardiche head",
+        "value": 75,
+        "description": "a head of metal with a massive crescent cutting edge. The edge is connected to the shaft at the bottom of the edge with a sturdy ring and at the head's center at the top of the shaft with a large metal cap."
+    ]),
+    "Offset Bardiche": ([
+        "class": "bardiche head",
+        "value": 70,
+        "description": "a head of metal with a massive crescent cutting edge. The bottom of the edge is blunted and the top is somewhat elongated. It is connected to the shaft at the top of the shaft with a large metal cap."
+    ]),
+    "Rhomboidal Bardiche": ([
+        "class": "bardiche head",
+        "value": 80,
+        "description": "a head of metal with a massive rhombus-shaped cutting edge. The edge is connected to the shaft at the bottom of the edge with a sturdy ring and at the head's center at the top of the shaft with a large metal cap."
+    ]),
+    "Fluked Bardiche": ([
+        "class": "bardiche head",
+        "value": 100,
+        "description": "a head of metal with a massive crescent cutting edge. The upper reverse edge is also sharpened with a broad fluke several inches from the top point. The edge is connected to the shaft at the bottom of the edge with a sturdy ring and at the head's center at the top of the shaft with a large metal cap."
+    ]),
+    "Spiked Bardiche": ([
+        "class": "bardiche head",
+        "value": 100,
+        "description": "a head of metal with a massive crescent cutting edge. The reverse is counter-weighted by a large fluked spike. The edge is connected to the shaft at the bottom of the edge with a sturdy ring and at the head's center at the top of the shaft with a large metal cap."
+    ]),
+    "Bill Head": ([
+        "class": "bill head",
+        "value": 25,
+        "description": "a head of metal with a broad, sharpened blade that ends in a pronounced curved hook."
+    ]),
+    "Spiked Bill Head": ([
+        "class": "bill head",
+        "value": 50,
+        "description": "a head of metal with a broad, sharpened blade that ends in a pronounced curved hook. The reverse side counter-balances with a sharpened spike."
+    ]),
+    "Spear Bill Head": ([
+        "class": "bill head",
+        "value": 55,
+        "description": "a head of metal with a broad, sharpened blade that ends in an acute thrusting point with a pronounced curved hook veering outward at the base of the thrusting point. The reverse side counter-balances with a sharpened spike."
+    ]),
+    "Guisarme Head": ([
+        "class": "guisarme head",
+        "value": 55,
+        "description": "a head of metal with a broad, sharpened blade with a pronounced, flattened edge that ends in an acute thrusting point with a pronounced curved hook veering outward at the base of the thrusting point. The reverse side counter-balances with a sharpened spike."
+    ]),
+    "Splayed Head": ([
+        "class": "guisarme head",
+        "value": 50,
+        "description": "a head of metal with a broad, sharpened blade with a pronounced, flattened edge that splits into a broad thrusting point and a pronounced curved hook veering outward. The reverse side counter-balances with a sharpened spike."
+    ]),
+    "Single Spike Brandistock": ([
+        "class": "brandistock head",
+        "value": 15,
+        "description": "a head of metal with a long, narrow spike that ends in an acute, sharpened tip. At the base of the primary spike are two perpendicular spikes of about four inches in length, each about 45 degrees offset from the primary spike."
+    ]),
+    "Double Spike Brandistock": ([
+        "class": "brandistock head",
+        "value": 30,
+        "description": "a head of metal with a long, fork of two spikes that end in acute, sharpened tips. At the base of the primary spikes are two perpendicular spikes of about four inches in length, each about 45 degrees offset from the primary spike."
+    ]),
+    "Flattened Earspoon": ([
+        "class": "earspoon head",
+        "value": 15,
+        "description": "a head of metal with a long, flattened blade. The broad blade ends in an acute point. At the base of the blade are two counter-balanced flukes jutting out perpendicular to the primary cutting edge."
+    ]),
+    "Cross-Blade Earspoon": ([
+        "class": "earspoon head",
+        "value": 35,
+        "description": "a head of metal with a long, sharp blade with four cutting edges, each offset by 90 degrees. At the base of the blade are two counter-balanced flukes jutting out perpendicular to the primary cutting edge."
+    ]),
+    "Double Spike Fork": ([
+        "class": "pitchfork head",
+        "value": 10,
+        "description": "a head of metal with a long, fork of two spikes that end in acute, sharpened tips."
+    ]),
+    "Triple Spike Fork": ([
+        "class": "pitchfork head",
+        "value": 20,
+        "description": "a head of metal with a long, fork of three spikes that end in acute, sharpened tips."
+    ]),
+    "Quadruple Spike Fork": ([
+        "class": "pitchfork head",
+        "value": 30,
+        "description": "a head of metal with a long, fork of four spikes that end in acute, sharpened tips."
+    ]),
+    "Bladed Double Fork": ([
+        "class": "fork head",
+        "value": 40,
+        "description": "a head of metal with two symmetric curved blades that end in acute, sharpened tips."
+    ]),
+    "Bladed Triple Fork": ([
+        "class": "fork head",
+        "value": 50,
+        "description": "a head of metal with two symmetric curved blades that end in acute, sharpened tips. In the middle is a long, sharpened spike about six inches longer than the other blades."
+    ]),
+    "Bladed, Spiked Fork": ([
+        "class": "fork head",
+        "value": 45,
+        "description": "a head of metal with two symmetric curved blades that end in acute, sharpened tips. In the middle is a short, sharpened spike about four inches long."
+    ]),
+    "Simple Trident": ([
+        "class": "trident head",
+        "value": 20,
+        "description": "a head of metal with a long, fork of three spikes that end in acute, sharpened tips."
+    ]),
+    "Bladed Trident": ([
+        "class": "trident head",
+        "value": 40,
+        "description": "a head of metal with two symmetric curved blades and a broad, straight center blade that all end in acute, sharpened tips."
+    ]),
+    "Barbed Trident": ([
+        "class": "trident head",
+        "value": 50,
+        "description": "a head of metal with two symmetric convex blades and a broad, straight center blade that all end in tips with pronounced, barbed blades."
+    ]),
+    "Concave Trident": ([
+        "class": "trident head",
+        "value": 55,
+        "description": "a head of metal with two symmetric concave blades and a broad, straight center blade that all end in tips with pronounced, pronged blades."
+    ]),
+    "Fluked Partisan": ([
+        "class": "partisan head",
+        "value": 15,
+        "description": "a head of metal with a long, broad blade that ends in an acute, sharpened tip. At the base of the primary blade are two counter-balanced flukes of about four inches in length that are perpendicular to the blade."
+    ]),
+    "Fanned Partisan": ([
+        "class": "partisan head",
+        "value": 25,
+        "description": "a head of metal with a long, broad blade that ends in an acute, sharpened tip. The base of the blade fans out significantly into two counterbalanced edges, as though they were the base of a triangle."
+    ]),
+    "Arc Partisan": ([
+        "class": "partisan head",
+        "value": 35,
+        "description": "a head of metal with a long, broad blade that ends in an acute, sharpened tip. The base of the blade fans out significantly into two counterbalanced edgesthat gracefully arc up into inverted flukes."
+    ]),
+    "Leaf Partisan": ([
+        "class": "partisan head",
+        "value": 40,
+        "description": "a head of metal with a long, bowed, almost leaf-shaped blade that ends in an acute, sharpened tip. The base of the blade fans out significantly into two counterbalanced edgesthat gracefully arc up into inverted flukes."
     ]),
 ]);
