@@ -1691,6 +1691,34 @@ private nosave mapping weaponBlueprints = ([
         "default value": 750,
         "default description": ""
     ]),
+    "double-blade sovnya": ([
+        "type": "weapon",
+        "subtype": "pole arm",
+        "default location": TwohandedWeapon,
+        "damage type": "slash",
+        "skill to craft": 20,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "metal crafting": (["type":"skill", "value": 5]),
+            "weapon smithing": (["type":"skill", "value": 10]),
+        ]),
+        "primary component": "sovnya head", 
+        "crafting materials": ([
+            "double sovnya head": (["metal": 8 ]),
+            "shaft": (["wood": 6 ]),
+            "grip": ([ "leather": 1 ])
+        ]),
+        "skill to use": "pole arm",
+        "default wc": 15,
+        "default dc": 4,
+        "default attack": 7,
+        "default encumberance": 8,
+        "default weight": 12,
+        "default material": "iron",
+        "default value": 850,
+        "default description": ""
+    ]),
     "spetum": ([
         "type": "weapon",
         "subtype": "pole arm",
