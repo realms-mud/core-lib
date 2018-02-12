@@ -2797,7 +2797,7 @@ private nosave mapping weaponBlueprints = ([
         "primary component": "projectile pocket", 
         "crafting materials": ([
             "projectile pocket": (["leather": 1 ]),
-            "rope": ([ "textile": 2 ])
+            "string": ([ "textile": 2 ])
         ]),
         "skill to use": "sling",
         "default wc": 4,
@@ -2824,7 +2824,7 @@ private nosave mapping weaponBlueprints = ([
         "crafting materials": ([
             "shaft": ([ "wood": 4 ]),
             "projectile pocket": (["leather": 1 ]),
-            "rope": ([ "textile": 2 ])
+            "string": ([ "textile": 2 ])
         ]),
         "skill to use": "sling",
         "default wc": 6,
@@ -2850,7 +2850,7 @@ private nosave mapping weaponBlueprints = ([
         "crafting materials": ([
             "grip": ([ "wood": 1 ]),
             "projectile pocket": (["leather": 1 ]),
-            "rope": ([ "textile": 2 ])
+            "string": ([ "textile": 2 ])
         ]),
         "skill to use": "sling",
         "default wc": 6,
@@ -2875,7 +2875,7 @@ private nosave mapping weaponBlueprints = ([
         "primary component": "projectile pocket", 
         "crafting materials": ([
             "projectile pocket": (["leather": 1 ]),
-            "rope": ([ "textile": 3 ])
+            "string": ([ "textile": 3 ])
         ]),
         "skill to use": "sling",
         "default wc": 8,

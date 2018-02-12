@@ -1682,4 +1682,344 @@ private nosave mapping craftingComponents =
         "value": 40,
         "description": "a large, spherical metal head with a series of large flukes jutting from the surface roughly every twenty degrees."
     ]),
+    "Simple Hinge": ([
+        "class": "hinge",
+        "value": 5,
+        "description": "a hinge made of a single, thick link of metal attached to the other surface by a sturdy metal pin."
+    ]),
+    "Loop-on-loop": ([
+        "class": "hinge",
+        "value": 15,
+        "description": "a hinge made of two thick, intertwined links of metal."
+    ]),
+    "Interlocking Chain": ([
+        "class": "chain",
+        "value": 5,
+        "description": "a simple chain of interlocking metal links."
+    ]),
+    "Rope Chain": ([
+        "class": "chain",
+        "value": 25,
+        "description": "a chain made up of many thin links of metal woven together in roughly the same manner that a rope is fashioned."
+    ]),
+    "Snake Chain": ([
+        "class": "chain",
+        "value": 25,
+        "description": "a chain of closely fitted metal rings that form a flexible tube that looks like the underside of a snake."
+    ]),
+    "Spherical Flail": ([
+        "class": "flail head",
+        "value": 5,
+        "description": "a small, rounded metal head with a perfect spherical surface attached to the chain."
+    ]),
+    "Rhomboidal Flail": ([
+        "class": "flail head",
+        "value": 5,
+        "description": "a long, rhomboidal metal head attached to the chain."
+    ]),
+    "Flanged Flail": ([
+        "class": "flail head",
+        "value": 15,
+        "description": "a cylindrical metal head with six triangular flanges jutting from the surface attached to a chain."
+    ]),
+    "Spiked Flail": ([
+        "class": "flail head",
+        "value": 20,
+        "description": "a spherical metal head with a series of spikes jutting from the surface roughly every twenty degrees. The head is attached to the weapon by a sturdy chain."
+    ]),
+    "Ring Flail": ([
+        "class": "flail head",
+        "value": 10,
+        "description": "two heavy rings of metal are attached to the weapon by sturdy chains."
+    ]),
+    "Double Spiked Flail": ([
+        "class": "flail head",
+        "value": 35,
+        "description": "two spherical metal heads with a series of spikes jutting from the surface roughly every twenty degrees. The heads are attached to the weapon by a sturdy chains."
+    ]),
+    "Many-Spiked Flail": ([
+        "class": "flail head",
+        "value": 45,
+        "description": "many spherical metal heads with a series of spikes jutting from the surface roughly every twenty degrees. The heads are attached to the weapon by a sturdy chains."
+    ]),
+    "Rope Whip": ([
+        "class": "whip body",
+        "value": 5,
+        "description": "a series of leather strips woven together in roughly the same manner that a rope is fashioned."
+    ]),
+    "Snake Whip": ([
+        "class": "whip body",
+        "value": 10,
+        "description": "a chain of closely fitted leather strips that form a flexible tube that looks like the underside of a snake."
+    ]),
+    "Simple Spike": ([
+        "class": "spike",
+        "value": 5,
+        "description": "a set of metal spikes."
+    ]),
+    "Bladed Spike": ([
+        "class": "spike",
+        "value": 15,
+        "description": "a set of metal spikes fanning out into cutting surfaces."
+    ]),
+    "Simple Trigger": ([
+        "class": "trigger",
+        "value": 5,
+        "description": "a simple metal trigger."
+    ]),
+    "Simple Trigger": ([
+        "class": "trigger",
+        "value": 5,
+        "description": "a simple metal trigger."
+    ]),
+    "Shunt Trigger": ([
+        "class": "trigger",
+        "value": 10,
+        "description": "a simple metal trigger that, when pressed, drops a claw mechanism holding back the string."
+    ]),
+    "Latch Trigger": ([
+        "class": "trigger",
+        "value": 10,
+        "description": "a simple metal trigger that, when pressed, raises a latching mechanism that holds back the string."
+    ]),
+    "Rocking Trigger": ([
+        "class": "trigger",
+        "value": 15,
+        "description": "a sophisticated metal trigger with a locking mechanism. When placed in the forward position, the trigger cannot discharge. When pulled, a cam lowers until the string is no longer held in its specially-designed groove."
+    ]),
+    "Full Stock": ([
+        "class": "stock",
+        "value": 15,
+        "description": "a long wood stock designed to rest on the user's shoulder. Padding made from leather has been added to absorb the force of firing. There is also a stabilizing strap used to improve aim."
+    ]),
+    "Pistol Grip": ([
+        "class": "stock",
+        "value": 5,
+        "description": "a short wood stock designed to be held in one hand. A strap of leather adds stability and control."
+    ]),
+    "Simple String": ([
+        "class": "string",
+        "value": 5,
+        "description": "a series of textile strings bundled together."
+    ]),
+    "Braided String": ([
+        "class": "string",
+        "value": 10,
+        "description": "a series of textile strings braided together."
+    ]),
+    "Woven String": ([
+        "class": "string",
+        "value": 15,
+        "description": "a series of textile strings woven together."
+    ]),
+    "Simple Bow": ([
+        "class": "bow",
+        "value": 5,
+        "description": "a bow made of wood that has limbs with only a slight bend to it."
+    ]),
+    "Double Curved Bow": ([
+        "class": "bow",
+        "value": 15,
+        "description": "a bow made of wood that has limbs with a slight curve both above and below the rest."
+    ]),
+    "Angular Bow": ([
+        "class": "bow",
+        "value": 10,
+        "description": "a bow made of wood that has a limbs with moderate bend at its rest."
+    ]),
+    "Scythian Bow": ([
+        "class": "bow",
+        "value": 25,
+        "description": "a bow made of wood that has limbs with a pronounced curve both above and below the rest."
+    ]),
+    "Arched Bow": ([
+        "class": "bow",
+        "value": 12,
+        "description": "a bow made of wood that has limbs that are gracefully curved along its entire course."
+    ]),
+    "Curved Notch Bow": ([
+        "class": "bow",
+        "value": 20,
+        "description": "a bow made of wood that has limbs with a slight curve both above and below the rest. The string notches are curved slightly in the opposite direction."
+    ]),
+    "Simple Rest": ([
+        "class": "rest",
+        "value": 5,
+        "description": "a widened block of wood upon which nocked arrows lay."
+    ]),
+    "Flex Rest": ([
+        "class": "rest",
+        "value": 15,
+        "description": "a block of wood with a thin, flexible flap upon which an arrow rests."
+    ]),
+    "Drop-down Rest": ([
+        "class": "rest",
+        "value": 100,
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 20]),
+        ]),
+        "description": "a block of wood with a complex mechanism that drops the rest as soon as the arrow it is balancing is released."
+    ]),
+    "Simple Lever": ([
+        "class": "lever",
+        "value": 5,
+        "description": "a simple metal lever used to pull back the string of the crossbow."
+    ]),
+    "Attached Lever": ([
+        "class": "lever",
+        "value": 15,
+        "description": "a simple metal lever attached to the crossbow that is used to pull back the string."
+    ]),
+    "Simple Cranequin": ([
+        "class": "cranequin",
+        "value": 5,
+        "description": "a simple metal cranequin used to draw back the string of the crossbow."
+    ]),
+    "Pulleyed Cranequin": ([
+        "class": "cranequin",
+        "value": 25,
+        "description": "a complex metal cranequin used to draw back the string of the crossbow without requiring exertion of the full draw power."
+    ]),
+    "Simple Pocket": ([
+        "class": "projectile pocket",
+        "value": 5,
+        "description": "a simple leather pocket in which ammunition can be laid."
+    ]),
+    "Eagle Pocket": ([
+        "class": "projectile pocket",
+        "value": 25,
+        "crafting prerequisites": ([
+            "leatherworking": (["type":"skill", "value": 5]),
+        ]),
+        "description": "a simple leather pocket in which ammunition can be laid. An eagle has been embroidered on it."
+    ]),
+    "Hawk Pocket": ([
+        "class": "projectile pocket",
+        "value": 25,
+        "crafting prerequisites": ([
+            "leatherworking": (["type":"skill", "value": 5]),
+        ]),
+        "description": "a simple leather pocket in which ammunition can be laid. A hawk has been embroidered on it."
+    ]),
+    "Wolf Pocket": ([
+        "class": "projectile pocket",
+        "value": 25,
+        "crafting prerequisites": ([
+            "leatherworking": (["type":"skill", "value": 5]),
+        ]),
+        "description": "a simple leather pocket in which ammunition can be laid. A wolf has been embroidered on it."
+    ]),
+    "Dragon Pocket": ([
+        "class": "projectile pocket",
+        "value": 25,
+        "crafting prerequisites": ([
+            "leatherworking": (["type":"skill", "value": 5]),
+        ]),
+        "description": "a simple leather pocket in which ammunition can be laid. A dragon has been embroidered on it."
+    ]),
+    "Simple Bullet": ([
+        "class": "bullet",
+        "value": 1,
+        "description": "a spherical piece of stone."
+    ]),
+    "Elongated Bullet": ([
+        "class": "bullet",
+        "value": 5,
+        "description": "a slightly ovular piece of stone."
+    ]),
+    "Simple Dart": ([
+        "class": "dart head",
+        "value": 1,
+        "description": "a tip that ends in a short metal spike."
+    ]),
+    "Bladed Dart": ([
+        "class": "dart head",
+        "value": 5,
+        "description": "a tip that ends in a blade of metal."
+    ]),
+    "Leaf Dart": ([
+        "class": "dart head",
+        "value": 5,
+        "description": "a tip that ends in a leaf-shaped blade of metal."
+    ]),
+    "Barbed Dart": ([
+        "class": "dart head",
+        "value": 5,
+        "description": "a tip that ends in a barbed blade of metal."
+    ]),
+    "Simple Shield": ([
+        "class": "shield",
+        "value": 5,
+        "description": "a flattened board of wood reinforced with metal."
+    ]),
+    "Plied Shield": ([
+        "class": "shield",
+        "value": 15,
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 5]),
+        ]),
+        "description": "several flattened boards of wood rotated to offset the direction of the grain. This is then reinforced with metal."
+    ]),
+    "Curved Shield": ([
+        "class": "shield",
+        "value": 35,
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 10]),
+        ]),
+        "description": "several curved planks of wood rotated to offset the direction of the grain. This is then reinforced with metal."
+    ]),
+    "Dragon Shield": ([
+        "class": "shield",
+        "value": 50,
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 15]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "description": "several curved planks of wood rotated to offset the direction of the grain. This is then reinforced with metal. Carved upon its surface is the likeness of a dragon."
+    ]),
+    "Eagle Shield": ([
+        "class": "shield",
+        "value": 50,
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 15]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "description": "several curved planks of wood rotated to offset the direction of the grain. This is then reinforced with metal. Carved upon its surface is the likeness of an eagle."
+    ]),
+    "Griffin Shield": ([
+        "class": "shield",
+        "value": 50,
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 15]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "description": "several curved planks of wood rotated to offset the direction of the grain. This is then reinforced with metal. Carved upon its surface is the likeness of a griffin."
+    ]),
+    "Wolf Shield": ([
+        "class": "shield",
+        "value": 50,
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 15]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "description": "several curved planks of wood rotated to offset the direction of the grain. This is then reinforced with metal. Carved upon its surface is the likeness of a wolf."
+    ]),
+    "Serpent Shield": ([
+        "class": "shield",
+        "value": 50,
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 15]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "description": "several curved planks of wood rotated to offset the direction of the grain. This is then reinforced with metal. Carved upon its surface is the likeness of a serpent."
+    ]),
+    "Battle-scene Shield": ([
+        "class": "shield",
+        "value": 50,
+        "crafting prerequisites": ([
+            "wood crafting": (["type":"skill", "value": 15]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "description": "several curved planks of wood rotated to offset the direction of the grain. This is then reinforced with metal. Carved upon its surface is the likeness of a brutal battle."
+    ]),
 ]);
