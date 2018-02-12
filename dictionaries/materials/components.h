@@ -1562,4 +1562,124 @@ private nosave mapping craftingComponents =
         "value": 15,
         "description": "a head of metal with a broad, rhomboidal blade that ends in an acute, sharpened tip."
     ]),
+    "Simple Club": ([
+        "class": "club head",
+        "value": 5,
+        "description": "a large, rounded wood head with a broad, cylindrical surface."
+    ]),
+    "Spherical Club": ([
+        "class": "club head",
+        "value": 10,
+        "description": "a large, rounded wood head with a perfect spherical surface."
+    ]),
+    "Rhomboidal Club": ([
+        "class": "club head",
+        "value": 10,
+        "description": "a large, faceted wood head with a rhomboidal surface."
+    ]),
+    "Spiked Club": ([
+        "class": "club head",
+        "value": 10,
+        "description": "a large, rounded wood head with a broad, cylindrical surface. Many spikes jut out from the surface."
+    ]),
+    "Simple Mace": ([
+        "class": "mace head",
+        "value": 5,
+        "description": "a large, rounded metal head with a broad, cylindrical surface."
+    ]),
+    "Spherical Mace": ([
+        "class": "mace head",
+        "value": 10,
+        "description": "a large, rounded metal head with a perfect cylindrical surface."
+    ]),
+    "Rhomboidal Mace": ([
+        "class": "mace head",
+        "value": 15,
+        "description": "a large, faceted metal head with a rhomboidal surface."
+    ]),
+    "Hexahedron Mace": ([
+        "class": "mace head",
+        "value": 20,
+        "description": "a large, faceted metal head with a hexehedral surface."
+    ]),
+    "Octahedron Mace": ([
+        "class": "mace head",
+        "value": 25,
+        "description": "a large, faceted metal head with an octahedral surface."
+    ]),
+    "Flanged Mace": ([
+        "class": "flanged head",
+        "value": 5,
+        "description": "a large, cylindrical metal head with six triangular flanges jutting from the surface."
+    ]),
+    "Four-Flanged Mace": ([
+        "class": "flanged head",
+        "value": 15,
+        "description": "a large, cylindrical metal head with four long-bladed flanges jutting from the surface."
+    ]),
+    "Five-Flanged Mace": ([
+        "class": "flanged head",
+        "value": 20,
+        "description": "a large, cylindrical metal head with five long-bladed flanges jutting from the surface."
+    ]),
+    "Eight-Flanged Mace": ([
+        "class": "flanged head",
+        "value": 10,
+        "description": "a large, cylindrical metal head with eight triangular flanges jutting from the surface."
+    ]),
+    "Double Triangle Mace": ([
+        "class": "flanged head",
+        "value": 25,
+        "description": "a large, cylindrical metal head with six double triangle flanges jutting from the surface."
+    ]),
+    "Curved Mace": ([
+        "class": "flanged head",
+        "value": 15,
+        "description": "a large, cylindrical metal head with six crescent-shaped flanges jutting from the surface."
+    ]),
+    "Simple Goedendag": ([
+        "class": "goedendag head",
+        "value": 5,
+        "description": "a large, cylindrical metal head with five rows of spikes jutting from the surface."
+    ]),
+    "Six-Row Goedendag": ([
+        "class": "goedendag head",
+        "value": 10,
+        "description": "a large, cylindrical metal head with six rows of spikes jutting from the surface."
+    ]),
+    "Block Goedendag": ([
+        "class": "goedendag head",
+        "value": 5,
+        "description": "a large, rectangular metal head with a massive spike jutting from each surface."
+    ]),
+    "Octahedral Goedendag": ([
+        "class": "goedendag head",
+        "value": 15,
+        "description": "a large, octahedral metal head with a massive spike jutting from each surface."
+    ]),
+    "Dodecahedral Goedendag": ([
+        "class": "goedendag head",
+        "value": 35,
+        "description": "a large, dodecahedral metal head with a massive spike jutting from each surface."
+    ]),
+    "Octahedral Morning Star": ([
+        "class": "morning star head",
+        "value": 15,
+        "description": "a large, octahedral metal head with a massive spike jutting from each surface."
+    ]),
+    "Dodecahedral Morning Star": ([
+        "class": "morning star head",
+        "value": 25,
+        "description": "a large, dodecahedral metal head with a massive spike jutting from each surface."
+    ]),
+    "Spherical Morning Star": ([
+        "class": "morning star head",
+        "value": 35,
+        "description": "a large, spherical metal head with a series of spikes jutting from the surface roughly every twenty degrees."
+    ]),
+    "Fluked Morning Star": ([
+        "class": "morning star head",
+        "value": 40,
+        "description": "a large, spherical metal head with a series of large flukes jutting from the surface roughly every twenty degrees."
+    ]),
 ]);

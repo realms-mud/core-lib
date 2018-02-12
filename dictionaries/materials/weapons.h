@@ -2258,7 +2258,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "primary component": "mace head", 
         "crafting materials": ([
-            "mace head": (["metal": 3 ]),
+            "flanged head": (["metal": 3 ]),
             "haft": (["metal": 3 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -2286,7 +2286,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "primary component": "mace head", 
         "crafting materials": ([
-            "mace head": (["metal": 5 ]),
+            "flanged head": (["metal": 5 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -2314,7 +2314,7 @@ private nosave mapping weaponBlueprints = ([
         ]),
         "primary component": "mace head", 
         "crafting materials": ([
-            "mace head": (["metal": 6 ]),
+            "morning star head": (["metal": 6 ]),
             "haft": (["wood": 2 ]),
             "grip": ([ "leather": 1 ])
         ]),
@@ -2335,14 +2335,14 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/maces/craftComplexMace.c":(["type":"research"]),
+            "lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
         "primary component": "mace head", 
         "crafting materials": ([
-            "mace head": (["metal": 2 ]),
+            "goedendag head": (["metal": 2 ]),
             "haft": (["wood": 4 ]),
             "grip": ([ "leather": 1 ])
         ]),
