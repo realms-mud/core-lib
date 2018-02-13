@@ -32,8 +32,8 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("[0;36mCrafting - [0m[0;37;1mMain Menu[0m:\n"
-        "[[0;31;1m1[0m] - [0;31mCraft Armor and Clothing                 [0;35m(Missing Prerequisites)[0m\n"
-        "[[0;31;1m2[0m] - [0;31mCraft Jewelry and Artwork                [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m1[0m] - [0;31mCraft Armor, Clothing, and Jewelry       [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m2[0m] - [0;31mCraft Artwork                            [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m3[0m] - [0;31mCraft Musical Instrument                 [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m4[0m] - [0;31mCraft Weapons                            [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m5[0m] - [0;31mBrew Potions                             [0;35m(Missing Prerequisites)[0m\n"
@@ -54,8 +54,8 @@ void TopLevelMenuWithCraftWeaponPrereqMetDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("[0;36mCrafting - [0m[0;37;1mMain Menu[0m:\n"
-        "[[0;31;1m1[0m] - [0;31mCraft Armor and Clothing                 [0;35m(Missing Prerequisites)[0m\n"
-        "[[0;31;1m2[0m] - [0;31mCraft Jewelry and Artwork                [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m1[0m] - [0;31mCraft Armor, Clothing, and Jewelry       [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m2[0m] - [0;31mCraft Artwork                            [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m3[0m] - [0;31mCraft Musical Instrument                 [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m4[0m] - [0;32mCraft Weapons[0m\n"
         "[[0;31;1m5[0m] - [0;31mBrew Potions                             [0;35m(Missing Prerequisites)[0m\n"
@@ -77,8 +77,8 @@ void SelectUnavailableOptionReturnsToMainMenu()
     command("1", Player);
 
     ExpectEq("[0;36mCrafting - [0m[0;37;1mMain Menu[0m:\n"
-        "[[0;31;1m1[0m] - [0;31mCraft Armor and Clothing                 [0;35m(Missing Prerequisites)[0m\n"
-        "[[0;31;1m2[0m] - [0;31mCraft Jewelry and Artwork                [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m1[0m] - [0;31mCraft Armor, Clothing, and Jewelry       [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m2[0m] - [0;31mCraft Artwork                            [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m3[0m] - [0;31mCraft Musical Instrument                 [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m4[0m] - [0;32mCraft Weapons[0m\n"
         "[[0;31;1m5[0m] - [0;31mBrew Potions                             [0;35m(Missing Prerequisites)[0m\n"
@@ -98,7 +98,7 @@ void TopLevelMenuWithCraftArmorPrereqMetDisplaysCorrectly()
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftArmor.c"), "added research");
     Selector->initiateSelector(Player);
 
-    ExpectSubStringMatch("32mCraft Armor and Clothing",
+    ExpectSubStringMatch("32mCraft Armor, Clothing, and Jewelry",
         Player->caughtMessage());
 }
 
@@ -108,7 +108,7 @@ void TopLevelMenuWithCraftArtworkPrereqMetDisplaysCorrectly()
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftArtwork.c"), "added research");
     Selector->initiateSelector(Player);
 
-    ExpectSubStringMatch("32mCraft Jewelry and Artwork",
+    ExpectSubStringMatch("32mCraft Artwork",
         Player->caughtMessage());
 }
 

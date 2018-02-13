@@ -1771,7 +1771,8 @@ private nosave mapping materials =
         ]),
         "attack rating": 3,
         "defense": ([
-            "physical": 2
+            "physical": 2,
+            "magical": 1
         ]),
         "value multiplier": 16.0,
         "description": "",

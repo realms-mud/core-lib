@@ -23,11 +23,16 @@ void Setup()
     Player->advanceSkill("sewing", 10);
     Player->advanceSkill("metal crafting", 10);
     Player->advanceSkill("armorer", 10);
+    Player->advanceSkill("blacksmithing", 10);
     Player->advanceSkill("chemistry", 10);
     Player->advanceSkill("physics", 10);
     Player->addResearchPoints(20);
 
     object material = clone_object("/lib/instances/items/materials/textile/silk.c");
+    material->set("quantity", 15);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/metal/iron.c");
     material->set("quantity", 15);
     move_object(material, Player);
 
@@ -49,7 +54,7 @@ void ChoosingClothingDisplaysClothingMenu()
     command("2", Player);
 
     ExpectEq("[0;36mCraft Clothing - [0m[0;37;1mFrom this menu, you can craft items[0m:\n"
-        "    [[0;31;1m1[0m]  - [0;31mCloak               [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
+        "    [[0;31;1m1[0m]  - [0;31mCloak               [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
         "    [[0;31;1m2[0m]  - [0;31mDress               [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
         "    [[0;31;1m3[0m]  - [0;31mGown                [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
         "    [[0;31;1m4[0m]  - [0;31mKilt                [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
@@ -163,41 +168,40 @@ void CraftingArmorMovesArmorToUserAndConsumesMaterials()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ChoosingHeavyArmorDisplaysHeavyArmorMenu()
+void CanCraftHeavyArmor()
 {
+    object admantite = clone_object("/lib/instances/items/materials/metal/admantite.c");
+    admantite->set("quantity", 15);
+    move_object(admantite, Player);
+    ExpectEq(15, admantite->query("quantity"));
+    ExpectTrue(present("admantite", Player), "admantite present");
+
+    ExpectFalse(present("plate", Player), "plate not present");
+
+    object silk = present("silk", Player);
+    ExpectEq(15, silk->query("quantity"));
+
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftArmor.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftPlateArmor.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftTextiles.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    Player->advanceSkill("weaving and beadwork", 10);
+
     Selector->initiateSelector(Player);
     command("3", Player);
-
-    ExpectSubStringMatch("36mCraft Heavy armor.*Exit Craft Heavy armor",
-        Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void ChoosingLightArmorDisplaysLightArmorMenu()
-{
-    Selector->initiateSelector(Player);
-    command("4", Player);
-
-    ExpectSubStringMatch("36mCraft Light armor.*Exit Craft Light armor",
-        Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void ChoosingMediumArmorDisplaysMediumArmorMenu()
-{
-    Selector->initiateSelector(Player);
-    command("5", Player);
-
-    ExpectSubStringMatch("36mCraft Medium armor.*Exit Craft Medium armor",
-        Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void ChoosingExitReturnsToTopLevelMenu()
-{
-    Selector->initiateSelector(Player);
     command("6", Player);
+    command("1", Player);
+    command("1", Player);
+    command("2", Player);
+    command("15", Player);
+    command("3", Player);
 
-    ExpectSubStringMatch("You have selected 'Exit Craft Armor Menu'",
-        Player->caughtMessage());
+    ExpectTrue(present("plate", Player), "plate now present");
+    ExpectFalse(present("admantite", Player), "admantite not present");
+    ExpectEq(11, silk->query("quantity"));
 }

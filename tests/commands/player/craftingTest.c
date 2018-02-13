@@ -24,8 +24,8 @@ void TopLevelCraftingMenuDisplaysCorrectly()
 {
     command("crafting", Player);
     ExpectEq("[0;36mCrafting - [0m[0;37;1mMain Menu[0m:\n"
-        "[[0;31;1m1[0m] - [0;31mCraft Armor and Clothing                 [0;35m(Missing Prerequisites)[0m\n"
-        "[[0;31;1m2[0m] - [0;31mCraft Jewelry and Artwork                [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m1[0m] - [0;31mCraft Armor, Clothing, and Jewelry       [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m2[0m] - [0;31mCraft Artwork                            [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m3[0m] - [0;31mCraft Musical Instrument                 [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m4[0m] - [0;31mCraft Weapons                            [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m5[0m] - [0;31mBrew Potions                             [0;35m(Missing Prerequisites)[0m\n"
@@ -44,8 +44,8 @@ void TopLevelCraftingMenuDisplaysCorrectlyWhenCraftIsExecuted()
 {
     command("craft", Player);
     ExpectEq("[0;36mCrafting - [0m[0;37;1mMain Menu[0m:\n"
-        "[[0;31;1m1[0m] - [0;31mCraft Armor and Clothing                 [0;35m(Missing Prerequisites)[0m\n"
-        "[[0;31;1m2[0m] - [0;31mCraft Jewelry and Artwork                [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m1[0m] - [0;31mCraft Armor, Clothing, and Jewelry       [0;35m(Missing Prerequisites)[0m\n"
+        "[[0;31;1m2[0m] - [0;31mCraft Artwork                            [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m3[0m] - [0;31mCraft Musical Instrument                 [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m4[0m] - [0;31mCraft Weapons                            [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m5[0m] - [0;31mBrew Potions                             [0;35m(Missing Prerequisites)[0m\n"

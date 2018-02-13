@@ -30,7 +30,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
 {
     return ([
         "1":([
-            "name":"Craft Armor and Clothing",
+            "name":"Craft Armor, Clothing, and Jewelry",
             "description" : "This option lets you create armors, provided that you have\n"
                 "the proper materials and equipment on hand.\n",
             "selector" : "armor",
@@ -38,10 +38,10 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "lib/instances/research/crafting/armor/craftArmor.c", "armorer")                  
         ]),
         "2":([
-            "name":"Craft Jewelry and Artwork",
-            "description" : "This option lets you create jewelry and artwork, provided that you have\n"
+            "name":"Craft Artwork",
+            "description" : "This option lets you create artwork, provided that you have\n"
                 "the proper materials and equipment on hand.\n",
-            "selector" : "jewelry and artwork",
+            "selector" : "artwork",
             "canShow" : user->canApplyResearchBonus(
                 "lib/instances/research/crafting/craftArtwork.c", "gem crafting")                  
         ]),
