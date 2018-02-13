@@ -22,6 +22,10 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
+        "defense": ([
+            "cold": 2,
+            "water": 1,
+        ]),
         "description": "",
         "scarcity": "common"
     ]),
@@ -53,6 +57,7 @@ private nosave mapping materials =
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "",
+        "value multiplier": 1.2,
         "scarcity": "common"
     ]),
     "ramie": ([
@@ -63,6 +68,7 @@ private nosave mapping materials =
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "",
+        "value multiplier": 1.1,
         "scarcity": "common"
     ]),
     "burlap": ([
@@ -73,6 +79,7 @@ private nosave mapping materials =
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "",
+        "value multiplier": 0.9,
         "scarcity": "common"
     ]),
     "canvas": ([
@@ -82,6 +89,10 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 2]),
         ]),
+        "defense": ([
+            "physical": 1
+        ]),
+        "encumberance": 1,
         "description": "",
         "scarcity": "common"
     ]),
@@ -93,9 +104,10 @@ private nosave mapping materials =
             "weaving and beadwork": (["type":"skill", "value": 10]),
         ]),
         "defense": ([
-            "physical": 2
+            "physical": 1
         ]),
         "encumberance": -1,
+        "value multiplier": 2.2,
         "description": "",
         "scarcity": "rare"
     ]),
@@ -106,6 +118,11 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 2]),
         ]),
+        "defense": ([
+            "physical": 1
+        ]),
+        "encumberance": 1,
+        "value multiplier": 2.0,
         "description": "",
         "scarcity": "rare"
     ]),
@@ -2286,7 +2303,7 @@ private nosave mapping materials =
         "attack rating": 6,
         "defense": ([
             "physical": 10,
-            "evil": 10
+            "good": 10
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
@@ -2567,7 +2584,7 @@ private nosave mapping materials =
         "attack rating": 8,
         "defense": ([
             "physical": 12,
-            "evil": 10
+            "good": 10
         ]),
         "encumberance": -3,
         "value multiplier": 75.0,
@@ -2731,6 +2748,214 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
+        "description": "",
+        "scarcity": "very rare"
+    ]),
+    "kirsil": ([
+        "class": "textile",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftMythicTextiles.c":(["type":"research"]),
+            "sewing": (["type":"skill", "value": 10]),
+            "weaving and beadwork": (["type":"skill", "value": 20]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "kirluin": 1,
+            "silk": 2
+        ]),
+        "defense": ([
+            "physical": 10,
+            "electricity": 10,
+            "magical": 10
+        ]),
+        "encumberance": -2,
+        "value multiplier": 75.0,
+        "description": "",
+        "scarcity": "very rare"
+    ]),
+    "gwyrsil": ([
+        "class": "textile",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftMythicTextiles.c":(["type":"research"]),
+            "sewing": (["type":"skill", "value": 10]),
+            "weaving and beadwork": (["type":"skill", "value": 20]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "gwyrluin": 1,
+            "silk": 2
+        ]),
+        "defense": ([
+            "physical": 10,
+            "earth": 10,
+            "magical": 10
+        ]),
+        "encumberance": -2,
+        "value multiplier": 75.0,
+        "description": "",
+        "scarcity": "very rare"
+    ]),
+    "dursil": ([
+        "class": "textile",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftMythicTextiles.c":(["type":"research"]),
+            "sewing": (["type":"skill", "value": 10]),
+            "weaving and beadwork": (["type":"skill", "value": 20]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "durluin": 1,
+            "silk": 2
+        ]),
+        "defense": ([
+            "physical": 10,
+            "good": 10,
+            "magical": 10
+        ]),
+        "encumberance": -2,
+        "value multiplier": 75.0,
+        "description": "",
+        "scarcity": "very rare"
+    ]),
+    "trynsil": ([
+        "class": "textile",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftMythicTextiles.c":(["type":"research"]),
+            "sewing": (["type":"skill", "value": 10]),
+            "weaving and beadwork": (["type":"skill", "value": 20]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "trynluin": 1,
+            "silk": 2
+        ]),
+        "defense": ([
+            "physical": 10,
+            "evil": 10,
+            "magical": 10
+        ]),
+        "encumberance": -2,
+        "value multiplier": 75.0,
+        "description": "",
+        "scarcity": "very rare"
+    ]),
+    "rhudsil": ([
+        "class": "textile",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftMythicTextiles.c":(["type":"research"]),
+            "sewing": (["type":"skill", "value": 10]),
+            "weaving and beadwork": (["type":"skill", "value": 20]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "rhudluin": 1,
+            "silk": 2
+        ]),
+        "defense": ([
+            "physical": 10,
+            "fire": 10,
+            "magical": 10
+        ]),
+        "encumberance": -2,
+        "value multiplier": 75.0,
+        "description": "",
+        "scarcity": "very rare"
+    ]),
+    "melynsil": ([
+        "class": "textile",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftMythicTextiles.c":(["type":"research"]),
+            "sewing": (["type":"skill", "value": 10]),
+            "weaving and beadwork": (["type":"skill", "value": 20]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "melynuin": 1,
+            "silk": 2
+        ]),
+        "defense": ([
+            "physical": 10,
+            "energy": 10,
+            "magical": 10
+        ]),
+        "encumberance": -2,
+        "value multiplier": 75.0,
+        "description": "",
+        "scarcity": "very rare"
+    ]),
+    "asursil": ([
+        "class": "textile",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftMythicTextiles.c":(["type":"research"]),
+            "sewing": (["type":"skill", "value": 10]),
+            "weaving and beadwork": (["type":"skill", "value": 20]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "asurluin": 1,
+            "silk": 2
+        ]),
+        "defense": ([
+            "physical": 10,
+            "water": 10,
+            "magical": 10
+        ]),
+        "encumberance": -2,
+        "value multiplier": 75.0,
+        "description": "",
+        "scarcity": "very rare"
+    ]),
+    "marnsil": ([
+        "class": "textile",
+        "crafting skill required": 80,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftMythicTextiles.c":(["type":"research"]),
+            "sewing": (["type":"skill", "value": 10]),
+            "weaving and beadwork": (["type":"skill", "value": 20]),
+            "spellcraft": (["type":"skill", "value": 20]),
+            "gem crafting": (["type":"skill", "value": 20]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "marnluin": 1,
+            "silk": 2
+        ]),
+        "defense": ([
+            "physical": 10,
+            "cold": 10,
+            "magical": 10
+        ]),
+        "encumberance": -2,
+        "value multiplier": 75.0,
         "description": "",
         "scarcity": "very rare"
     ]),

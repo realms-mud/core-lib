@@ -124,6 +124,8 @@ protected nomask int processSelection(string selection)
                     Dictionary->setCraftingSkill(CraftingType, CraftingItem,
                         Item, User);
                     User->completeCrafting();
+                    tell_object(User, sprintf("[0;32;1mYou have successfully "
+                        "crafted %s.[0m\n", CraftingItem));
                     ret = 1;
                 }
             }
@@ -134,7 +136,15 @@ protected nomask int processSelection(string selection)
                 Data[selection]["selector"]));
             SubselectorObj->setItem(Data[selection]["type"]);
             SubselectorObj->setCraftingItem(Item);
-            SubselectorObj->setDetails(Data[selection]["details"]);
+            if (member(Data[selection], "details"))
+            {
+                SubselectorObj->setDetails(Data[selection]["details"]);
+            }
+            if (member(Data[selection], "quantity"))
+            {
+                SubselectorObj->setQuantity(Data[selection]["quantity"]);
+            }
+
             move_object(SubselectorObj, User);
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->initiateSelector(User);
@@ -181,6 +191,11 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
+        if (caller->materialClass() && caller->selection())
+        {
+            Dictionary->setCraftingMaterial(Item, caller->materialClass(),
+                caller->selection());
+        }
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }

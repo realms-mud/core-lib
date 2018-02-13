@@ -323,15 +323,12 @@ public nomask mapping getCraftingDataForItem(string type, string item, object us
             {
                 int isMaterial = 
                     !mappingp(blueprints[item]["crafting materials"][subType]);
-                
-                string elementType = isMaterial ?
-                    blueprints[item]["crafting materials"][subType] : subType;
 
                 ret[to_string(menuItem)] = ([
                     "name": sprintf("Select %s", capitalize(subType)),
                     "description": sprintf("This option lets you craft the %s for your %s\n", 
-                        elementType, item),
-                    "type": elementType,
+                        subType, item),
+                    "type": subType,
                     "details": blueprints[item]["crafting materials"][subType],
                     "selector": (isMaterial ? "material" : "component"),
                 ]);
@@ -355,6 +352,68 @@ private string *getTypes(string type, object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask mapping materialsUsedForSubcomponents(string *components,
+    mapping craftingMaterials, mapping blueprintMaterials)
+{
+    mapping ret = ([]);
+    foreach(string component in components)
+    {
+        foreach(string materialClass in materialClasses)
+        {
+            if (member(craftingMaterials[component], materialClass))
+            {
+                string type = craftingMaterials[component]["type"];
+                if (member(craftingComponents, type) &&
+                    member(craftingComponents[type], "crafting materials") &&
+                    member(craftingComponents[type]["crafting materials"], materialClass))
+                {
+                    if (!member(ret, craftingMaterials[component][materialClass]))
+                    {
+                        ret[craftingMaterials[component][materialClass]] = 0;
+                    }
+                    ret[craftingMaterials[component][materialClass]] +=
+                        craftingComponents[type]["crafting materials"][materialClass];
+                }
+                else if (member(blueprintMaterials, component) &&
+                    member(blueprintMaterials[component], materialClass))
+                {
+                    if (!member(ret, craftingMaterials[component][materialClass]))
+                    {
+                        ret[craftingMaterials[component][materialClass]] = 0;
+                    }
+                    ret[craftingMaterials[component][materialClass]] +=
+                        blueprintMaterials[component][materialClass];
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping materialsUsedForSingleComponentItem(
+    mapping craftingMaterials, mapping blueprintMaterials)
+{
+    mapping ret = ([]);
+    foreach(string materialClass in materialClasses)
+    {
+        if (member(craftingMaterials, materialClass))
+        {
+            if (member(blueprintMaterials, materialClass))
+            {
+                if (!member(ret, craftingMaterials[materialClass]))
+                {
+                    ret[craftingMaterials[materialClass]] = 0;
+                }
+                ret[craftingMaterials[materialClass]] +=
+                    blueprintMaterials[materialClass];
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping materialsUsedForCrafting(object item)
 {
     mapping ret = ([]);
@@ -367,38 +426,17 @@ public nomask mapping materialsUsedForCrafting(object item)
         object blueprintObj = getBlueprintFor(item);
         mapping blueprintMaterials = blueprintObj->query("crafting materials");
         destruct(blueprintObj);
-        if (sizeof(components) && sizeof(blueprintMaterials))
+        if (sizeof(blueprintMaterials))
         {
-            foreach(string component in components)
+            if (sizeof(components))
             {
-                foreach(string materialClass in materialClasses)
-                {
-                    if (member(craftingMaterials[component], materialClass))
-                    {
-                        string type = craftingMaterials[component]["type"];
-                        if (member(craftingComponents, type) &&
-                            member(craftingComponents[type], "crafting materials") &&
-                            member(craftingComponents[type]["crafting materials"], materialClass))
-                        {
-                            if (!member(ret, craftingMaterials[component][materialClass]))
-                            {
-                                ret[craftingMaterials[component][materialClass]] = 0;
-                            }
-                            ret[craftingMaterials[component][materialClass]] +=
-                                craftingComponents[type]["crafting materials"][materialClass];
-                        }
-                        else if(member(blueprintMaterials, component) &&
-                            member(blueprintMaterials[component], materialClass))
-                        {
-                            if (!member(ret, craftingMaterials[component][materialClass]))
-                            {
-                                ret[craftingMaterials[component][materialClass]] = 0;
-                            }
-                            ret[craftingMaterials[component][materialClass]] +=
-                                blueprintMaterials[component][materialClass];
-                        }
-                    }
-                }
+                ret = materialsUsedForSubcomponents(components,
+                    craftingMaterials, blueprintMaterials);
+            }
+            else
+            {
+                ret = materialsUsedForSingleComponentItem(
+                    craftingMaterials, blueprintMaterials);
             }
         }
     }

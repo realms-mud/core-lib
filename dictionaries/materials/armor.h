@@ -12,7 +12,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "medium armor",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftChainmail.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftChainmail.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 7]),
         ]),
@@ -34,7 +34,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "medium armor",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftChainmail.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftChainmail.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 7]),
         ]),
@@ -56,7 +56,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "light armor",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 2]),
         ]),
@@ -68,7 +68,7 @@ private nosave mapping armorBlueprints = ([
         "default location": Armor,
         "default encumberance": 6,
         "default weight": 4,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 25,
         "default description": ""
     ]),
@@ -77,7 +77,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 2]),
         ]),
@@ -89,7 +89,7 @@ private nosave mapping armorBlueprints = ([
         "default location": Armor,
         "default encumberance": 6,
         "default weight": 4,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 75,
         "default description": ""
     ]),
@@ -98,7 +98,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "gem crafting": (["type":"skill", "value": 1]),
@@ -115,7 +115,7 @@ private nosave mapping armorBlueprints = ([
         "default location": Armor,
         "default encumberance": 6,
         "default weight": 5,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 475,
         "default description": ""
     ]),
@@ -124,7 +124,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -136,7 +136,7 @@ private nosave mapping armorBlueprints = ([
         "default location": Armor,
         "default encumberance": 2,
         "default weight": 2,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 25,
         "default description": ""
     ]),
@@ -145,7 +145,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -157,7 +157,7 @@ private nosave mapping armorBlueprints = ([
         "default location": Armor,
         "default encumberance": 2,
         "default weight": 2,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 25,
         "default description": ""
     ]),
@@ -166,7 +166,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -178,7 +178,7 @@ private nosave mapping armorBlueprints = ([
         "default location": Armor,
         "default encumberance": 1,
         "default weight": 1,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 15,
         "default description": ""
     ]),
@@ -187,7 +187,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -199,7 +199,7 @@ private nosave mapping armorBlueprints = ([
         "default location": LegGreaves,
         "default encumberance": 2,
         "default weight": 1,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 15,
         "default description": ""
     ]),
@@ -208,7 +208,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -220,7 +220,7 @@ private nosave mapping armorBlueprints = ([
         "default location": LegGreaves,
         "default encumberance": 2,
         "default weight": 1,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 15,
         "default description": ""
     ]),
@@ -229,7 +229,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -241,7 +241,7 @@ private nosave mapping armorBlueprints = ([
         "default location": LegGreaves,
         "default encumberance": 2,
         "default weight": 1,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 15,
         "default description": ""
     ]),
@@ -250,7 +250,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -262,7 +262,7 @@ private nosave mapping armorBlueprints = ([
         "default location": LegGreaves,
         "default encumberance": 1,
         "default weight": 1,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 10,
         "default description": ""
     ]),
@@ -271,7 +271,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "heavy armor",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftSplintArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftSplintArmor.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 7]),
         ]),
@@ -293,7 +293,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "heavy armor",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftSplintArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftSplintArmor.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 7]),
         ]),
@@ -317,7 +317,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "heavy armor",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftSplintArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftSplintArmor.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
             "armorer": (["type":"skill", "value": 5]),
         ]),
@@ -339,7 +339,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "heavy armor",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftScaleArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftScaleArmor.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 9]),
@@ -362,7 +362,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "heavy armor",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPlateArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftPlateArmor.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 9]),
         ]),
@@ -384,7 +384,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "heavy armor",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPlateArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftPlateArmor.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 9]),
         ]),
@@ -406,7 +406,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "heavy armor",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPlateArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftPlateArmor.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 9]),
         ]),
@@ -428,7 +428,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "heavy armor",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftPlateArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftPlateArmor.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
             "armorer": (["type":"skill", "value": 10]),
         ]),
@@ -450,7 +450,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "medium armor",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeatherArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftLeatherArmor.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 10]),
             "armorer": (["type":"skill", "value": 5]),
         ]),
@@ -472,7 +472,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "medium armor",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeatherArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftLeatherArmor.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 2]),
         ]),
@@ -494,7 +494,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "medium armor",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeatherArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftLeatherArmor.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 5]),
             "armorer": (["type":"skill", "value": 5]),
         ]),
@@ -516,7 +516,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "light armor",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeatherArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftLeatherArmor.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 2]),
         ]),
@@ -538,7 +538,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "light armor",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftLeatherArmor.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftLeatherArmor.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 5]),
             "armorer": (["type":"skill", "value": 3]),
         ]),
@@ -560,7 +560,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "light armor",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 3]),
             "armorer": (["type":"skill", "value": 2]),
         ]),
@@ -581,7 +581,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "medium armor",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftChainmail.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftChainmail.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 2]),
             "armorer": (["type":"skill", "value": 5]),
@@ -604,7 +604,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGloves.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftGloves.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "leatherworking": (["type":"skill", "value": 4]),
         ]),
@@ -624,7 +624,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 7,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftGloves.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftGloves.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
@@ -643,7 +643,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftHelmet.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftHelmet.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
@@ -663,7 +663,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftHelmet.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftHelmet.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
@@ -683,7 +683,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftHelmet.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftHelmet.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 10]),
         ]),
         "crafting materials": ([
@@ -704,7 +704,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftJewelry.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 8]),
             "gem crafting": (["type":"skill", "value": 2]),
         ]),
@@ -725,7 +725,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftJewelry.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 8]),
             "gem crafting": (["type":"skill", "value": 2]),
         ]),
@@ -746,7 +746,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftJewelry.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 8]),
             "gem crafting": (["type":"skill", "value": 2]),
         ]),
@@ -767,7 +767,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftJewelry.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 8]),
             "gem crafting": (["type":"skill", "value": 2]),
         ]),
@@ -788,7 +788,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 3]),
             "weaving and beadwork": (["type":"skill", "value": 2]),
         ]),
@@ -799,7 +799,7 @@ private nosave mapping armorBlueprints = ([
         "default ac": 1,
         "default encumberance": 1,
         "default weight": 1,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 15,
         "default description": ""
     ]),
@@ -808,7 +808,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "leatherworking": (["type":"skill", "value": 4]),
         ]),
@@ -828,7 +828,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "leatherworking": (["type":"skill", "value": 4]),
         ]),
@@ -848,7 +848,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "leatherworking": (["type":"skill", "value": 4]),
         ]),
@@ -859,7 +859,7 @@ private nosave mapping armorBlueprints = ([
         "default location": Boots,
         "default encumberance": 1,
         "default weight": 1,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 25,
         "default description": ""
     ]),
@@ -868,7 +868,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 10])
         ]),
         "crafting materials": ([
@@ -888,7 +888,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftJewelry.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 4]),
             "gem crafting": (["type":"skill", "value": 1]),
         ]),
@@ -907,7 +907,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "clothing",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -918,7 +918,7 @@ private nosave mapping armorBlueprints = ([
         "default location": Cloak,
         "default encumberance": 1,
         "default weight": 1,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 25,
         "default description": ""
     ]),
@@ -927,7 +927,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftJewelry.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
             "gem crafting": (["type":"skill", "value": 5]),
         ]),
@@ -946,7 +946,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftJewelry.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
             "gem crafting": (["type":"skill", "value": 5]),
         ]),
@@ -965,7 +965,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 1]),
             "leatherworking": (["type":"skill", "value": 4]),
         ]),
@@ -985,7 +985,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -1004,7 +1004,7 @@ private nosave mapping armorBlueprints = ([
         "subtype" : "light armor",
         "skill to craft" : 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -1014,7 +1014,7 @@ private nosave mapping armorBlueprints = ([
         "default location" : ArmGreaves,
         "default encumberance" : 1,
         "default weight" : 1,
-        "default material" : "cloth",
+        "default material" : "linen",
         "default value" : 40,
         "default description" : ""
     ]),
@@ -1022,7 +1022,7 @@ private nosave mapping armorBlueprints = ([
         "type": "armor",
         "subtype": "light armor",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "weaving and beadwork": (["type":"skill", "value": 4]),
         ]),
@@ -1033,7 +1033,7 @@ private nosave mapping armorBlueprints = ([
         "default location": LegGreaves,
         "default encumberance": 1,
         "default weight": 1,
-        "default material": "cloth",
+        "default material": "linen",
         "default value": 40,
         "default description": ""
     ]),
@@ -1042,7 +1042,7 @@ private nosave mapping armorBlueprints = ([
         "subtype" : "light armor",
         "skill to craft" : 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "leatherworking": (["type":"skill", "value": 4]),
         ]),
@@ -1062,7 +1062,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "light armor",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "sewing": (["type":"skill", "value": 1]),
             "leatherworking": (["type":"skill", "value": 4]),
         ]),
@@ -1082,7 +1082,7 @@ private nosave mapping armorBlueprints = ([
         "subtype" : "heavy armor",
         "skill to craft" : 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
@@ -1101,7 +1101,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "heavy armor",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftClothing.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftClothing.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
@@ -1120,7 +1120,7 @@ private nosave mapping armorBlueprints = ([
         "subtype": "accessory",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/craftJewelry.c":(["type":"research"]),
+            "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 3]),
             "gem crafting": (["type":"skill", "value": 2]),
             "leatherworking": (["type":"skill", "value": 10]),

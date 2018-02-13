@@ -111,6 +111,7 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
+        setUpUserForSelection();
         tell_object(User, displayMessage());
     }
     caller->cleanUp();
