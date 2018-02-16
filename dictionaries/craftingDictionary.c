@@ -519,8 +519,12 @@ public nomask int hasMaterialsSelected(object item, string component,
 {
     int ret = 0;
     mapping componentData = item->query("crafting materials");
+
     string *materialsList = filter(m_indices(materialsData),
-        (: $2[$1] :), materialsData);
+        (: ($2[$1] || ($3 && member($3, $4) && 
+            member(craftingComponents[$3[$4]["type"]], "crafting materials") &&
+            member(craftingComponents[$3[$4]["type"]]["crafting materials"], $1))) :),
+            materialsData, componentData, component);
 
     if (componentData && member(componentData, component) &&
         member(componentData[component], "type") && sizeof(materialsData))
@@ -618,6 +622,7 @@ public nomask varargs void setCraftingMaterial(object item, string materialClass
         materialsDictionary->getMaterialTypeForMaterial(material)))
     {
         item->set("material", material);
+        item->set("primary crafting material", material);
     }
         
     item->set("crafting materials", materialSelections);
@@ -726,6 +731,11 @@ public nomask string getEquipmentMaterials(object item)
                 }
                 ret += sprintf("The %s is %s ", component, description);
             }
+        }
+        if (item->query("primary crafting material"))
+        {
+            ret = regreplace(ret, "PrimaryMaterial",
+                item->query("primary crafting material"), 1);
         }
     }
     return ret;

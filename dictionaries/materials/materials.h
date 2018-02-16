@@ -1412,7 +1412,9 @@ private nosave mapping materials =
         "attack": ([
             "good": 5
         ]),
-        "value multiplier": 2.0,
+        "defense": ([
+            "good": 3
+        ]),        "value multiplier": 2.0,
         "description": "",
         "scarcity": "uncommon"
     ]),

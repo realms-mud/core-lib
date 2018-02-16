@@ -65,7 +65,8 @@ private nomask string getDescription()
     ret = regreplace(ret, "[^\t]*(\t.*Mater.*)", "\n\\1", 1);
 
     mapping craftingMaterials = Item->query("crafting materials");
-    if (!sizeof(craftingMaterials))
+
+    if (!Item->query("primary crafting material"))
     {
         ret = regreplace(ret, "(.*Material: )([^\n])*(.*)", "\\1[0;31mnone selected[0m\\3", 1);
     }

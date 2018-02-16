@@ -577,17 +577,17 @@ private nosave mapping craftingComponents =
     "Simple shaft": ([
         "class": "shaft",
         "value": 5,
-        "description": "a simple, straight pole of wood with leather wrapped around the grip."
+        "description": "a simple, straight ring of PrimaryMetal with leather wrapped around the grip."
     ]),
     "Segmented shaft": ([
         "class": "shaft",
         "value": 15,
-        "description": "a simple, pole of wood with slightly wider segments of wood at the quarter and mid points. Leather has been wrapped around the grip."
+        "description": "a simple, ring of PrimaryMetal with slightly wider segments of wood at the quarter and mid points. Leather has been wrapped around the grip."
     ]),
     "Knotwork shaft": ([
         "class": "shaft",
         "value": 50,
-        "description": "a pole of wood that has exquisitely carved knotwork along its length. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has exquisitely carved knotwork along its length. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 5]),
@@ -596,7 +596,7 @@ private nosave mapping craftingComponents =
     "Serpent shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has exquisitely carved scales along its length and a carved serpent's head about two-thirds of the way up its length. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has exquisitely carved scales along its length and a carved serpent's head about two-thirds of the way up its length. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -605,7 +605,7 @@ private nosave mapping craftingComponents =
     "Dragon shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has been exquisitely carved with a scene of intertwined dragons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of intertwined dragons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -614,7 +614,7 @@ private nosave mapping craftingComponents =
     "Huntsman's shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has been exquisitely carved with a scene of a hunter stalking a boar in a forest. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of a hunter stalking a boar in a forest. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -623,7 +623,7 @@ private nosave mapping craftingComponents =
     "Griffin shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has been exquisitely carved with a scene of intertwined griffins along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of intertwined griffins along its course. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -632,7 +632,7 @@ private nosave mapping craftingComponents =
     "Eagle shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has been exquisitely carved with a scene of many eagles in flight along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of many eagles in flight along its course. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -641,7 +641,7 @@ private nosave mapping craftingComponents =
     "Raven shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has been exquisitely carved with a scene of many ravens in flight along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of many ravens in flight along its course. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -650,7 +650,7 @@ private nosave mapping craftingComponents =
     "Vine shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has been exquisitely carved with a scene of intertwined vines along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of intertwined vines along its course. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -659,7 +659,7 @@ private nosave mapping craftingComponents =
     "Runed shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has been exquisitely carved with runes of power along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with runes of power along its course. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -668,7 +668,7 @@ private nosave mapping craftingComponents =
     "Skeleton shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has been exquisitely carved with a macabre scene of intertwined skeletons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a macabre scene of intertwined skeletons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -677,7 +677,7 @@ private nosave mapping craftingComponents =
     "Dracolich shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has a hideously carved scene of skeletal dragons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has a hideously carved scene of skeletal dragons along its course. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -686,7 +686,7 @@ private nosave mapping craftingComponents =
     "Wrath shaft": ([
         "class": "shaft",
         "value": 70,
-        "description": "a pole of wood that has a terrifying carved scene of a brutal battle its course. Etched leather has been wrapped around it in two locations for improved grip.",
+        "description": "a ring of PrimaryMetal that has a terrifying carved scene of a brutal battle its course. Etched leather has been wrapped around it in two locations for improved grip.",
         "crafting prerequisites": ([
             "wood crafting": (["type":"skill", "value": 5]),
             "sculpture": (["type":"skill", "value": 10]),
@@ -2022,4 +2022,177 @@ private nosave mapping craftingComponents =
         ]),
         "description": "several curved planks of wood rotated to offset the direction of the grain. This is then reinforced with metal. Carved upon its surface is the likeness of a brutal battle."
     ]),
+    "Simple Ring": ([
+        "class": "ring design",
+        "value": 5,
+        "description": "a simple ring of PrimaryMaterial.",
+    ]),
+    "Ring with Jewel": ([
+        "class": "ring design",
+        "value": 40,
+        "description": "a ring of PrimaryMaterial with a one-carat crystal setting.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Knotwork Ring": ([
+        "class": "ring design",
+        "value": 50,
+        "description": "a ring of PrimaryMaterial with exquisitely carved knotwork along its surface.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Double Knotwork Ring": ([
+        "class": "ring design",
+        "value": 75,
+        "description": "a ring of PrimaryMaterial intertwined with metal with exquisitely carved knotwork along its surface.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+        ]),
+    ]),
+   "Eagle Talon Ring": ([
+        "class": "ring design",
+        "value": 175,
+        "description": "a ring of metal and PrimaryMaterial that has been intricately carved into the shape of an eagle's talon embossed with metal. It is clutching a large crystal.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+            "metal": 1,
+        ]),
+    ]),
+    "Serpent Ring": ([
+        "class": "ring design",
+        "value": 70,
+        "description": "a ring of PrimaryMaterial that has exquisitely carved scales along its length and a carved serpent's head set with crystal eyes.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Dragon Ring": ([
+        "class": "ring design",
+        "value": 125,
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of intertwined dragons of metal and PrimaryMaterial with eyes of crystal along its course.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+            "metal": 1,
+        ]),
+    ]),
+    "Huntsman's Ring": ([
+        "class": "ring design",
+        "value": 70,
+        "description": "a ring of PrimaryMetal that has been exquisitely embossed using metal of a scene of a hunter stalking a boar in a forest.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+        ]),
+    ]),
+    "Griffin Ring": ([
+        "class": "ring design",
+        "value": 85,
+        "description": "a ring of PrimaryMaterial that has been exquisitely carved with a scene of intertwined griffins with crystal eyes along its course.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Eagle Ring": ([
+        "class": "ring design",
+        "value": 70,
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of many eagles in flight along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Raven Ring": ([
+        "class": "ring design",
+        "value": 70,
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of many ravens in flight along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Vine Ring": ([
+        "class": "ring design",
+        "value": 70,
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a scene of intertwined vines of metal along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Runed Ring": ([
+        "class": "ring design",
+        "value": 35,
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with runes of power along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Skeleton Ring": ([
+        "class": "ring design",
+        "value": 70,
+        "description": "a ring of PrimaryMetal that has been exquisitely carved with a macabre scene of intertwined skeletons along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Dracolich Ring": ([
+        "class": "ring design",
+        "value": 70,
+        "description": "a ring of PrimaryMetal that has a hideously carved scene of a skeletal dragon with eyes of crystal along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Wrath Ring": ([
+        "class": "ring design",
+        "value": 70,
+        "description": "a ring of PrimaryMetal that has a terrifying carved scene of a brutal battle its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+
 ]);

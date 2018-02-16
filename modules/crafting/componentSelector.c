@@ -105,6 +105,7 @@ protected nomask int processSelection(string selection)
                 CraftingItem->set("crafting materials",
                     m_delete(materialData, CraftingComponent));
                 CraftingItem->set("material", InitialMaterial);
+                CraftingItem->unset("primary crafting material");
             }
         }
         else if (Data[selection]["type"] == "confirm")

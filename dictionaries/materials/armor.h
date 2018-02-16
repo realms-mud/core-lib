@@ -889,12 +889,11 @@ private nosave mapping armorBlueprints = ([
         "skill to craft": 5,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
-            "metal crafting": (["type":"skill", "value": 4]),
-            "gem crafting": (["type":"skill", "value": 1]),
+            "metal crafting": (["type":"skill", "value": 5])
         ]),
         "crafting materials": ([
             "metal": 1,
-            "crystal": 1
+            "ring design": (["metal": 0, "crystal": 0 ])
         ]),
         "default location": Ring,
         "default encumberance": 1,

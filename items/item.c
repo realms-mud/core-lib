@@ -425,6 +425,18 @@ public varargs int set(string element, mixed data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public int unset(string element)
+{
+    int ret = 0;
+    if (member(itemData, element))
+    {
+        ret = 1;
+        m_delete(itemData, element);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 static nomask string parseTemplate(string template)
 {
     string message = template;

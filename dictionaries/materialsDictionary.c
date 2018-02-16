@@ -262,7 +262,7 @@ public nomask string *hasExtraAttackTypes(object item)
 {
     string *retVal = 0;
 
-    if(isValidItem(item))
+    if(isValidItem(item) && item->query("weapon type"))
     {
         string material = item->query("material");
         if(isValidMaterial(material) && member(materials[material], "attack"))
@@ -652,7 +652,8 @@ private nomask string applyResistances(object item)
 
     string material = item->query("material");
     if (material && member(materials, material) &&
-        member(materials[material], "defense"))
+        member(materials[material], "defense") &&
+        item->query("armor type"))
     {
         string *materialResistances = m_indices(materials[material]["defense"]);
         if (sizeof(materialResistances))
@@ -864,7 +865,7 @@ private nomask string applyArmorDetails(object armor, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyNonEquipmentDetails(object item)
 {
-    string ret = "";
+    string ret = applyMaterialDetails(item);
 
     string enchantments = applyEnchantments(item);
     if (enchantments)
