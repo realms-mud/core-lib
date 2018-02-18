@@ -8,6 +8,7 @@
 #include "materials/weapons.h"
 #include "materials/armor.h"
 #include "materials/components.h"
+#include "materials/enchantments.h"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidType(string type)

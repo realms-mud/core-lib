@@ -2194,5 +2194,4 @@ private nosave mapping craftingComponents =
             "sculpture": (["type":"skill", "value": 5]),
         ]),
     ]),
-
 ]);
