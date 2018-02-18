@@ -232,32 +232,32 @@ private nosave mapping craftingComponents =
     "Bent Cross with Ecusson": ([
         "class": "crossguard",
         "value": 25,
-        "description": "a straight, hexagonal bar with a pronounced ecusson at the tang. The terminals have been bent toward the blade."
+        "description": "a straight, hexagonal bar of metal with a pronounced ecusson at the tang. The terminals have been bent toward the blade."
     ]),
     "Curved Cross with Ecusson": ([
         "class": "crossguard",
         "value": 30,
-        "description": "a straight, flattened-V-shaped bar with a pronounced ecusson at the tang that has been prominently curved toward the blade. Each terminal has been rolled over into a circular knob."
+        "description": "a straight, flattened-V-shaped bar of metal with a pronounced ecusson at the tang that has been prominently curved toward the blade. Each terminal has been rolled over into a circular knob."
     ]),
     "S-Shaped Cross": ([
         "class": "crossguard",
         "value": 30,
-        "description": "a straight, flattened-V-shaped bar with a pronounced ecusson at the tang. Each arm has been strongly curved in the opposite direction along the horizontal plane."
+        "description": "a straight, flattened-V-shaped bar of metal with a pronounced ecusson at the tang. Each arm has been strongly curved in the opposite direction along the horizontal plane."
     ]),
     "Swept - Vine Form": ([
         "class": "crossguard",
         "value": 50,
-        "description": "an ornate knuckleguard that has been sculpted to appear as though the user's hand has been wrapped in vines."
+        "description": "an ornate metal knuckleguard that has been sculpted to appear as though the user's hand has been wrapped in vines."
     ]),
     "Swept": ([
         "class": "crossguard",
         "value": 40,
-        "description": "a knuckleguard that has been fashioned to cover a portion of the user's hand."
+        "description": "a knuckleguard of metal that has been fashioned to cover a portion of the user's hand."
     ]),
     "Basket": ([
         "class": "crossguard",
         "value": 75,
-        "description": "an ornate knuckleguard that has been sculpted to offer significant protection to the user's hand."
+        "description": "an ornate metal knuckleguard that has been sculpted to offer significant protection to the user's hand."
     ]),
     "Snake Form": ([
         "class": "crossguard",
