@@ -86,8 +86,8 @@ public nomask mapping getTopLevelCraftingMenu(object user)
             "canShow" : 1                 
         ]),
         "8":([
-            "name":"Imbue Materials with Magical Effects",
-            "description" : "This option lets you imbue crafting materials with magical effect,\n"
+            "name":"Imbue with Magical Effects",
+            "description" : "This option lets you imbue items with magical effect,\n"
                 "provided that you have the proper materials and knowledge on hand.\n",
             "selector": "imbue with magical effects",
             "canShow": user->getSkill("spellcraft")
