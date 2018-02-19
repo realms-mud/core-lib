@@ -91,10 +91,17 @@ protected nomask void setUpUserForSelection()
     Data = Dictionary->getCraftingDataForItem(CraftingType, CraftingItem, User);
 
     Data[to_string(sizeof(Data) + 1)] = ([
+        "name":sprintf("Enchant %s", capitalize(CraftingItem)),
+            "type" : "enchantments",
+            "is disabled" : !Dictionary->canEnchantItem(Item, User),
+            "description" : "This option lets you enchant the item being crafted.\n"
+    ]);
+
+    Data[to_string(sizeof(Data) + 1)] = ([
         "name": sprintf("Craft Selected %s", capitalize(CraftingItem)),
         "type": "craft",
         "is disabled": !Dictionary->allComponentsHaveBeenChosen(Item),
-        "description": "This option lets you exit this crafting menu.\n"
+        "description": "This option lets you craft the chosen item.\n"
     ]);
 
     Data[to_string(sizeof(Data) + 1)] = ([
@@ -129,6 +136,18 @@ protected nomask int processSelection(string selection)
                         "crafted %s.[0m\n", CraftingItem));
                     ret = 1;
                 }
+            }
+        }
+        else if (Data[selection]["type"] == "enchantments")
+        {
+            if (!Data[selection]["is disabled"])
+            {
+                SubselectorObj = clone_object("/lib/modules/crafting/enchantmentSelector.c");
+                SubselectorObj->setCraftingItem(Item);
+
+                move_object(SubselectorObj, User);
+                SubselectorObj->registerEvent(this_object());
+                SubselectorObj->initiateSelector(User);
             }
         }
         else if (!ret)

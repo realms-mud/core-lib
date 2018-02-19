@@ -243,7 +243,7 @@ void ChoosingCraftSelectedFailsWhenDisabled()
     Selector->initiateSelector(Player);
     string priorMessage = Player->caughtMessage();
 
-    command("5", Player);
+    command("6", Player);
     ExpectEq(priorMessage, Player->caughtMessage());
 }
 
@@ -266,7 +266,7 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
     object sword = Player->itemBeingCrafted();
     ExpectTrue(sword, "Crafting item has been set");
     PopulateSwordData(sword);
-    command("5", Player);
+    command("6", Player);
 
     ExpectFalse(Player->itemBeingCrafted(), "Crafting item has been reset");
     ExpectEq(sword, present("long sword", Player));

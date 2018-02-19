@@ -3,12 +3,13 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
+private nosave string *enchantmentClasses = ({ "offensive", "defensive", "vitals", "attributes", "skills", "abilities" });
 private nosave mapping equipmentEnchantments =
 ([
     "fire enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftFireEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental fire": (["type":"skill", "value": 5]),
         ]),
@@ -22,7 +23,7 @@ private nosave mapping equipmentEnchantments =
     "fire resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftFireEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental fire": (["type":"skill", "value": 5]),
         ]),
@@ -36,7 +37,7 @@ private nosave mapping equipmentEnchantments =
     "acid enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftAcidEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/acid/craftAcidEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "destruction": (["type":"skill", "value": 5]),
         ]),
@@ -50,7 +51,7 @@ private nosave mapping equipmentEnchantments =
     "acid resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftAcidEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/acid/craftAcidEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "destruction": (["type":"skill", "value": 5]),
         ]),
@@ -64,7 +65,7 @@ private nosave mapping equipmentEnchantments =
     "air enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftAirEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/air/craftAirEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental air": (["type":"skill", "value": 5]),
         ]),
@@ -78,7 +79,7 @@ private nosave mapping equipmentEnchantments =
     "air resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftAirEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/air/craftAirEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental air": (["type":"skill", "value": 5]),
         ]),
@@ -92,7 +93,7 @@ private nosave mapping equipmentEnchantments =
     "chaos enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftChaosEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/chaos/craftChaosEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
@@ -106,7 +107,7 @@ private nosave mapping equipmentEnchantments =
     "chaos resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftChaosEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/chaos/craftChaosEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
@@ -120,7 +121,7 @@ private nosave mapping equipmentEnchantments =
     "cold enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftColdEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/cold/craftColdEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental water": (["type":"skill", "value": 5]),
         ]),
@@ -134,7 +135,7 @@ private nosave mapping equipmentEnchantments =
     "cold resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftColdEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/cold/craftColdEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental water": (["type":"skill", "value": 5]),
         ]),
@@ -148,7 +149,7 @@ private nosave mapping equipmentEnchantments =
     "disease enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftDiseaseEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/disease/craftDiseaseEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
@@ -162,7 +163,7 @@ private nosave mapping equipmentEnchantments =
     "disease resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftDiseaseEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/disease/craftDiseaseEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
@@ -176,7 +177,7 @@ private nosave mapping equipmentEnchantments =
     "earth enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftEarthEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/earth/craftEarthEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental earth": (["type":"skill", "value": 5]),
         ]),
@@ -190,7 +191,7 @@ private nosave mapping equipmentEnchantments =
     "earth resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftEarthEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/earth/craftEarthEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental earth": (["type":"skill", "value": 5]),
         ]),
@@ -204,7 +205,7 @@ private nosave mapping equipmentEnchantments =
     "electricity enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftElectricityEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/electricity/craftElectricityEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental air": (["type":"skill", "value": 5]),
         ]),
@@ -218,7 +219,7 @@ private nosave mapping equipmentEnchantments =
     "electricity resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftElectricityEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/electricity/craftElectricityEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental air": (["type":"skill", "value": 5]),
         ]),
@@ -232,7 +233,7 @@ private nosave mapping equipmentEnchantments =
     "energy enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftEnergyEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/energy/craftEnergyEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "evocation": (["type":"skill", "value": 5]),
         ]),
@@ -246,7 +247,7 @@ private nosave mapping equipmentEnchantments =
     "energy resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftEnergyEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/energy/craftEnergyEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "evocation": (["type":"skill", "value": 5]),
         ]),
@@ -260,7 +261,7 @@ private nosave mapping equipmentEnchantments =
     "evil enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftEvilEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/evil/craftEvilEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "blood": (["type":"skill", "value": 5]),
         ]),
@@ -274,7 +275,7 @@ private nosave mapping equipmentEnchantments =
     "evil resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftGoodEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/good/craftGoodEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "spirit": (["type":"skill", "value": 5]),
         ]),
@@ -288,7 +289,7 @@ private nosave mapping equipmentEnchantments =
     "good enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftGoodEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/good/craftGoodEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "spirit": (["type":"skill", "value": 5]),
         ]),
@@ -302,7 +303,7 @@ private nosave mapping equipmentEnchantments =
     "good resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftEvilEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/evil/craftEvilEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "blood": (["type":"skill", "value": 5]),
         ]),
@@ -316,7 +317,7 @@ private nosave mapping equipmentEnchantments =
     "magical enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftMagicalEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/magical/craftMagicalEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
@@ -330,7 +331,7 @@ private nosave mapping equipmentEnchantments =
     "magical resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftMagicalEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/magical/craftMagicalEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
@@ -344,7 +345,7 @@ private nosave mapping equipmentEnchantments =
     "neutral enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftNeutralEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/neutral/craftNeutralEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
@@ -358,7 +359,7 @@ private nosave mapping equipmentEnchantments =
     "neutral resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftNeutralEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/neutral/craftNeutralEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
@@ -372,7 +373,7 @@ private nosave mapping equipmentEnchantments =
     "paralysis enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftParalysisEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/paralysis/craftParalysisEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
@@ -386,7 +387,7 @@ private nosave mapping equipmentEnchantments =
     "paralysis resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftParalysisEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/paralysis/craftParalysisEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
@@ -400,7 +401,7 @@ private nosave mapping equipmentEnchantments =
     "poison enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftPoisonEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/poison/craftPoisonEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
@@ -414,7 +415,7 @@ private nosave mapping equipmentEnchantments =
     "poison resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftPoisonEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/poison/craftPoisonEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
@@ -428,7 +429,7 @@ private nosave mapping equipmentEnchantments =
     "psionic enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftPsionicEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/psionic/craftPsionicEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "mind": (["type":"skill", "value": 5]),
         ]),
@@ -442,7 +443,7 @@ private nosave mapping equipmentEnchantments =
     "psionic resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftPsionicEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/psionic/craftPsionicEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "mind": (["type":"skill", "value": 5]),
         ]),
@@ -456,7 +457,7 @@ private nosave mapping equipmentEnchantments =
     "sonic enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftSonicEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/sonic/craftSonicEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "senses": (["type":"skill", "value": 5]),
         ]),
@@ -470,7 +471,7 @@ private nosave mapping equipmentEnchantments =
     "sonic resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftSonicEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/sonic/craftSonicEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "senses": (["type":"skill", "value": 5]),
         ]),
@@ -484,7 +485,7 @@ private nosave mapping equipmentEnchantments =
     "undead enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftUndeadEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/undead/craftUndeadEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "destruction": (["type":"skill", "value": 5]),
         ]),
@@ -498,7 +499,7 @@ private nosave mapping equipmentEnchantments =
     "undead resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftUndeadEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/undead/craftUndeadEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "destruction": (["type":"skill", "value": 5]),
         ]),
@@ -512,7 +513,7 @@ private nosave mapping equipmentEnchantments =
     "water enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftWaterEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/water/craftWaterEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental water": (["type":"skill", "value": 5]),
         ]),
@@ -526,7 +527,7 @@ private nosave mapping equipmentEnchantments =
     "water resistance":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftWaterEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/water/craftWaterEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental water": (["type":"skill", "value": 5]),
         ]),
@@ -540,7 +541,7 @@ private nosave mapping equipmentEnchantments =
     "weapon damage":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftWeaponEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/weapon/craftWeaponEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
@@ -554,7 +555,7 @@ private nosave mapping equipmentEnchantments =
     "weapon attack":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftWeaponEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/weapon/craftWeaponEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "evocation": (["type":"skill", "value": 5]),
         ]),
@@ -566,7 +567,7 @@ private nosave mapping equipmentEnchantments =
     "additional attack":([
         "class": "offensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftWeaponEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/weapon/craftWeaponEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "evocation": (["type":"skill", "value": 10]),
         ]),
@@ -578,7 +579,7 @@ private nosave mapping equipmentEnchantments =
     "weapon defense":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftWeaponEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/weapon/craftWeaponEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "manipulation": (["type":"skill", "value": 5]),
         ]),
@@ -590,7 +591,7 @@ private nosave mapping equipmentEnchantments =
     "damage soak":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftSoakEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/protection/craftSoakEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
@@ -604,7 +605,7 @@ private nosave mapping equipmentEnchantments =
     "damage reflection":([
         "class": "defensive",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftDamageReflection.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/weapon/craftDamageReflection.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
@@ -616,7 +617,7 @@ private nosave mapping equipmentEnchantments =
     "hit points":([
         "class": "vitals",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftHitPointsEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/vitals/craftHitPointsEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
@@ -628,7 +629,7 @@ private nosave mapping equipmentEnchantments =
     "heal hit points amount": ([
         "class": "vitals",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftHitPointsEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/vitals/craftHitPointsEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 10]),
         ]),
@@ -640,7 +641,7 @@ private nosave mapping equipmentEnchantments =
     "heal hit points rate": ([
         "class": "vitals",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftHitPointsEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/vitals/craftHitPointsEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 15]),
         ]),
@@ -652,7 +653,7 @@ private nosave mapping equipmentEnchantments =
     "stamina points":([
         "class": "vitals",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftStaminaPointsEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/vitals/craftStaminaPointsEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
@@ -664,7 +665,7 @@ private nosave mapping equipmentEnchantments =
     "heal stamina points amount": ([
         "class": "vitals",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftStaminaPointsEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/vitals/craftStaminaPointsEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 10]),
         ]),
@@ -676,7 +677,7 @@ private nosave mapping equipmentEnchantments =
     "heal stamina points rate": ([
         "class": "vitals",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftStaminaPointsEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/vitals/craftStaminaPointsEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 15]),
         ]),
@@ -688,7 +689,7 @@ private nosave mapping equipmentEnchantments =
     "spell points":([
         "class": "vitals",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftSpellPointsEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/vitals/craftSpellPointsEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
@@ -700,7 +701,7 @@ private nosave mapping equipmentEnchantments =
     "heal spell points amount": ([
         "class": "vitals",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftSpellPointsEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/vitals/craftSpellPointsEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "magical essence": (["type":"skill", "value": 10]),
         ]),
@@ -712,7 +713,7 @@ private nosave mapping equipmentEnchantments =
     "heal spell points rate": ([
         "class": "vitals",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftSpellPointsEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/vitals/craftSpellPointsEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "magical essence": (["type":"skill", "value": 15]),
         ]),
@@ -722,9 +723,9 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 5.0,
     ]),
     "enhance strength":([
-        "class": "vitals",
+        "class": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftStrengthEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/attributes/craftStrengthEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 15]),
         ]),
@@ -734,9 +735,9 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 8.0,
     ]),
     "enhance intelligence":([
-        "class": "vitals",
+        "class": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftIntelligenceEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/attributes/craftIntelligenceEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "mind": (["type":"skill", "value": 15]),
         ]),
@@ -746,9 +747,9 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 8.0,
     ]),
     "enhance wisdom":([
-        "class": "vitals",
+        "class": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftWisdomEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/attributes/craftWisdomEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "senses": (["type":"skill", "value": 15]),
         ]),
@@ -758,9 +759,9 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 8.0,
     ]),
     "enhance dexterity":([
-        "class": "vitals",
+        "class": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftDexterityEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/attributes/craftDexterityEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "manipulation": (["type":"skill", "value": 15]),
         ]),
@@ -770,9 +771,9 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 8.0,
     ]),
     "enhance constitution":([
-        "class": "vitals",
+        "class": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftConstitutionEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/attributes/craftConstitutionEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 15]),
         ]),
@@ -782,9 +783,9 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 8.0,
     ]),
     "enhance charisma":([
-        "class": "vitals",
+        "class": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/enchantments/craftCharismaEnchantment.c":(["type":"research"]),
+            "lib/instances/research/crafting/enchantments/attributes/craftCharismaEnchantment.c":(["type":"research"]),
             "spellcraft": (["type":"skill", "value": 10]),
             "mind": (["type":"skill", "value": 15]),
         ]),

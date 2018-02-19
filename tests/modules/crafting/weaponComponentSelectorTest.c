@@ -90,9 +90,10 @@ void SpecificWeaponMenuDisplaysCorrectly()
         "\t[[0;31;1m2[0m] - [0;32mSelect Crossguard   [0m\n"
         "\t[[0;31;1m3[0m] - [0;32mSelect Hilt         [0m\n"
         "\t[[0;31;1m4[0m] - [0;32mSelect Pommel       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;31mCraft Selected Long sword[0m\n"
-        "\t[[0;31;1m6[0m] - [0;32mExit Craft Long sword Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
+        "\t[[0;31;1m5[0m] - [0;31mEnchant Long sword  [0m\n"
+        "\t[[0;31;1m6[0m] - [0;31mCraft Selected Long sword[0m\n"
+        "\t[[0;31;1m7[0m] - [0;32mExit Craft Long sword Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 7.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -320,9 +321,10 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
         "\t[[0;31;1m2[0m] - [0;32mSelect Crossguard   [0m\n"
         "\t[[0;31;1m3[0m] - [0;32mSelect Hilt         [0m\n"
         "\t[[0;31;1m4[0m] - [0;32mSelect Pommel       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;31mCraft Selected Long sword[0m\n"
-        "\t[[0;31;1m6[0m] - [0;32mExit Craft Long sword Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
+        "\t[[0;31;1m5[0m] - [0;31mEnchant Long sword  [0m\n"
+        "\t[[0;31;1m6[0m] - [0;31mCraft Selected Long sword[0m\n"
+        "\t[[0;31;1m7[0m] - [0;32mExit Craft Long sword Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 7.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -358,9 +360,10 @@ void ConfirmSetsValuesForWeaponCraftingMenu()
         "\t[[0;31;1m2[0m] - [0;32mSelect Crossguard   [0m\n"
         "\t[[0;31;1m3[0m] - [0;32mSelect Hilt         [0m\n"
         "\t[[0;31;1m4[0m] - [0;32mSelect Pommel       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;31mCraft Selected Long sword[0m\n"
-        "\t[[0;31;1m6[0m] - [0;32mExit Craft Long sword Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
+        "\t[[0;31;1m5[0m] - [0;31mEnchant Long sword  [0m\n"
+        "\t[[0;31;1m6[0m] - [0;31mCraft Selected Long sword[0m\n"
+        "\t[[0;31;1m7[0m] - [0;32mExit Craft Long sword Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 7.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -451,7 +454,7 @@ void OnCraftingAbortedIsEmittedWhenCraftingIsExited()
     Selector->initiateSelector(Player);
     eventSubscriber->clearEvents();
 
-    command("6", Player);
+    command("7", Player);
     ExpectEq((["onCraftingAborted":1]), eventSubscriber->events());
 }
 
@@ -526,7 +529,7 @@ void OnCraftingCompletedIsEmittedWhenCraftingIsCompleted()
 
     command("1", Player);
     command("25", Player);
-    command("5", Player);
+    command("6", Player);
 
     ExpectEq((["onCraftingCompleted":"lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
 }

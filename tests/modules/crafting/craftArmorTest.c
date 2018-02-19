@@ -89,9 +89,10 @@ void ChoosingRobesDisplaysRobesMenu()
         "\t[0;36mEncumberance: [0m[0;33m6[0m\n"
         "\t[0;36mWeight: [0m[0;33m4[0m\n[0m\n"
         "\t[[0;31;1m1[0m] - [0;32mSelect Textile      [0m\n"
-        "\t[[0;31;1m2[0m] - [0;31mCraft Selected Robes[0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mExit Craft Robes Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 3.\n[0m"
+        "\t[[0;31;1m2[0m] - [0;31mEnchant Robes       [0m\n"
+        "\t[[0;31;1m3[0m] - [0;31mCraft Selected Robes[0m\n"
+        "\t[[0;31;1m4[0m] - [0;32mExit Craft Robes Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -133,9 +134,10 @@ void SelectingMaterialUpdatesRobesMenu()
         "\t[0;36mEncumberance: [0m[0;33m5[0m\n"
         "\t[0;36mWeight: [0m[0;33m3[0m\n[0m\n"
         "\t[[0;31;1m1[0m] - [0;32mSelect Textile      [0m[0;35;1m   (*)[0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mCraft Selected Robes[0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mExit Craft Robes Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 3.\n[0m"
+        "\t[[0;31;1m2[0m] - [0;31mEnchant Robes       [0m\n"
+        "\t[[0;31;1m3[0m] - [0;32mCraft Selected Robes[0m\n"
+        "\t[[0;31;1m4[0m] - [0;32mExit Craft Robes Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -158,7 +160,7 @@ void CraftingArmorMovesArmorToUserAndConsumesMaterials()
     command("7", Player);
     command("1", Player);
     command("15", Player);
-    command("2", Player);
+    command("3", Player);
 
     ExpectTrue(present("robes", Player));
     ExpectEq(5, silk->query("quantity"));
@@ -199,7 +201,7 @@ void CanCraftHeavyArmor()
     command("1", Player);
     command("2", Player);
     command("15", Player);
-    command("3", Player);
+    command("4", Player);
 
     ExpectTrue(present("plate", Player), "plate now present");
     ExpectFalse(present("admantite", Player), "admantite not present");

@@ -116,9 +116,10 @@ void ChoosingRobesDisplaysRobesMenu()
         "\t[0;36mMaterial: [0;31mnone selected[0m\n[0m\n"
         "\t[[0;31;1m1[0m] - [0;32mSelect Metal        [0m\n"
         "\t[[0;31;1m2[0m] - [0;32mSelect Ring design  [0m\n"
-        "\t[[0;31;1m3[0m] - [0;31mCraft Selected Ring [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mExit Craft Ring Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
+        "\t[[0;31;1m3[0m] - [0;31mEnchant Ring        [0m\n"
+        "\t[[0;31;1m4[0m] - [0;31mCraft Selected Ring [0m\n"
+        "\t[[0;31;1m5[0m] - [0;32mExit Craft Ring Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -155,9 +156,10 @@ void SelectingMaterialUpdatesRobesMenu()
         "\t[0;36mMaterial: [0m[0;33mAdmantite[0m\n[0m\n"
         "\t[[0;31;1m1[0m] - [0;32mSelect Metal        [0m[0;35;1m   (*)[0m\n"
         "\t[[0;31;1m2[0m] - [0;32mSelect Ring design  [0m\n"
-        "\t[[0;31;1m3[0m] - [0;31mCraft Selected Ring [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mExit Craft Ring Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
+        "\t[[0;31;1m3[0m] - [0;31mEnchant Ring        [0m\n"
+        "\t[[0;31;1m4[0m] - [0;31mCraft Selected Ring [0m\n"
+        "\t[[0;31;1m5[0m] - [0;32mExit Craft Ring Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -180,9 +182,10 @@ void CanAddComponentThatDoesNotModifyMaterials()
         "\t[0;36mMaterial: [0;31mnone selected[0m\n[0m\n"
         "\t[[0;31;1m1[0m] - [0;32mSelect Metal        [0m\n"
         "\t[[0;31;1m2[0m] - [0;32mSelect Ring design  [0m[0;35;1m   (*)[0m\n"
-        "\t[[0;31;1m3[0m] - [0;31mCraft Selected Ring [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mExit Craft Ring Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
+        "\t[[0;31;1m3[0m] - [0;31mEnchant Ring        [0m\n"
+        "\t[[0;31;1m4[0m] - [0;31mCraft Selected Ring [0m\n"
+        "\t[[0;31;1m5[0m] - [0;32mExit Craft Ring Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
@@ -240,7 +243,7 @@ void CanCraftItemWithBothPrimaryMaterialAndComponent()
     command("19", Player);
     command("1", Player);
     command("1", Player);
-    command("3", Player);
+    command("4", Player);
 
     ExpectSubStringMatch("The ring design is a ring of gold and admantite that has been intricately\n"
         "carved into the shape of an eagle's talon embossed with gold. It is clutching\n"

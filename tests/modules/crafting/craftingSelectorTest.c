@@ -145,6 +145,7 @@ void TopLevelMenuWithBrewAndCookFoodMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithImbuePrereqMetDisplaysCorrectly()
 {
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/imbueItems.c"), "added research");
     Player->Int(10);
     Player->addSkillPoints(20);
     Player->advanceSkill("spellcraft", 10);

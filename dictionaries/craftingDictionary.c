@@ -22,7 +22,7 @@ public nomask string *validCraftingBonuses()
     return ({ "crafting value multiplier", "crafting encumberance reduction", 
         "crafting weapon class", "crafting defense class", "crafting attack",
         "crafting weight reduction", "crafting armor class", "crafting duration",
-        "crafting enchantment power", "crafting potency"
+        "crafting enchantment power", "crafting potency", "crafting enchantments"
     });
 }
 
@@ -90,7 +90,8 @@ public nomask mapping getTopLevelCraftingMenu(object user)
             "description" : "This option lets you imbue items with magical effect,\n"
                 "provided that you have the proper materials and knowledge on hand.\n",
             "selector": "imbue with magical effects",
-            "canShow": user->getSkill("spellcraft")
+            "canShow": user->canApplyResearchBonus(
+                "lib/instances/research/crafting/enchantments/imbueItems.c", "spellcraft")
         ]),
     ]);
 }
@@ -119,6 +120,11 @@ private nomask mapping getBlueprintsByType(string type)
         case "components":
         {
             items = craftingComponents;
+            break;
+        }
+        case "enchantments":
+        {
+            items = equipmentEnchantments;
             break;
         }
         default:
@@ -851,4 +857,70 @@ public nomask void setCraftingSkill(string type, string item,
         }
         target->set("craftsmanship", craftingSkill);
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canEnchantItem(object item, object user)
+{
+    return user->isResearched("lib/instances/research/crafting/enchantments/craftEnchantments.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getEnchantmentTypes()
+{
+    mapping ret = ([]);
+
+    int menuItem = 1;
+    string *enchantmentTypes = sort_array(enchantmentClasses, (: $1 > $2 :));
+    foreach(string enchantmentType in enchantmentTypes)
+    {
+        ret[to_string(menuItem)] = ([
+            "name": capitalize(enchantmentType),
+            "type": enchantmentType,
+            "description": sprintf("This option lets you craft using: %s\n",
+                enchantmentType),
+            "canShow": 1
+        ]);
+        menuItem++;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getEnchantmentsOfType(string type, object user,
+    object craftingItem)
+{
+    mapping ret = ([]);
+    string *enchantmentsOfType = sort_array(
+        filter(m_indices(equipmentEnchantments),
+        (: (equipmentEnchantments[$1]["class"] == $2) :), type),
+        (: $1 > $2 :));
+
+    if (sizeof(enchantmentsOfType))
+    {
+        int menuItem = 1;
+        foreach(string enchantment in enchantmentsOfType)
+        {
+            int hasMaterials = 1;
+
+            object blueprintObj = getBlueprintItem("enchantments", enchantment);
+            int prerequisites = prerequisitesMet(blueprintObj, user);
+            destruct(blueprintObj);
+
+            string nameDesc = (sizeof(enchantment) < 21) ? enchantment :
+                (enchantment[0..16] + "...");
+
+            ret[to_string(menuItem)] = ([
+                "name": capitalize(nameDesc),
+                "type": enchantment,
+                "description" : sprintf("This option lets you craft using: %s\n%s\n",
+                    enchantment, load_object("/lib/dictionaries/materialsDictionary.c")->getEquipmentStatistics(craftingItem)),
+                "has materials" : hasMaterials,
+                "prerequisites met" : prerequisites,
+                "canShow" : (hasMaterials && prerequisites)
+            ]);
+            menuItem++;
+        }
+    }
+    return ret;
 }
