@@ -19,4 +19,3 @@ public void reset(int arg)
         TreeRoot("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c");
     }
 }
-

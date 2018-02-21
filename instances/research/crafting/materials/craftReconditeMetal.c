@@ -21,4 +21,3 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/materials/craftAlloyMetal.c", (["type":"research"]));
     }
 }
-

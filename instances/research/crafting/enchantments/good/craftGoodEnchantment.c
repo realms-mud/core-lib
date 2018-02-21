@@ -18,4 +18,3 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/enchantments/craftEnchantments.c", (["type":"research"]));
     }
 }
-

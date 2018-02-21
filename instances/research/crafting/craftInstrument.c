@@ -17,4 +17,3 @@ public void reset(int arg)
         addSpecification("research type", "granted");
     }
 }
-

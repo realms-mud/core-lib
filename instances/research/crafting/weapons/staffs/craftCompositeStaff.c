@@ -18,4 +18,3 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c", (["type":"research"]));
     }
 }
-

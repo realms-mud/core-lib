@@ -20,4 +20,3 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/materials/craftCommonWood.c", (["type":"research"]));
     }
 }
-

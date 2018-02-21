@@ -19,4 +19,3 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c", (["type":"research"]));
     }
 }
-
