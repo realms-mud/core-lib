@@ -203,17 +203,18 @@ public nomask string long(int brief)
     string ret = 0;
     string state = currentState();
 
+    string introText = (elementName == "legacy") ? "" : "You see ";
     if (member(descriptionData, state) && member(descriptionData[state],
         "item template"))
     {
-        ret = "You see " +
+        ret = introText +
             parseTemplate(descriptionData[state]["item template"],
                 descriptionData[state]) + ".\n";
     }
     else if (member(descriptionData, "default") && 
         member(descriptionData["default"], "item template"))
     {
-        ret = "You see " +
+        ret = introText +
             parseTemplate(descriptionData["default"]["item template"],
                 descriptionData["default"]) + ".\n";
     }

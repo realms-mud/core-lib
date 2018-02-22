@@ -495,7 +495,8 @@ private string getInventoryDescription()
         foreach(object environmentItem in environmentInventory)
         {
             string shortDesc = environmentItem->short();
-            if (shortDesc && (shortDesc != ""))
+            if (shortDesc && (shortDesc != "") && 
+                (environmentItem != this_player()))
             {
                 ret += sprintf(InventoryItem, capitalize(shortDesc));
             }

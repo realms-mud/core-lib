@@ -21,4 +21,3 @@ public void Setup()
     setAdditionalLongDescription("This is an extra long description to be "
         "displayed after the feature descriptions");
 }
-
