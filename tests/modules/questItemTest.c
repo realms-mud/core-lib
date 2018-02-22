@@ -310,7 +310,7 @@ void AddTransitionSilentlySucceedsWhenEverythingValidates()
 void QuestStoryReturnsCorrectNarrativeForQuestStatesCompleted()
 {
     SetUpQuestItem();
-    ExpectEq("[0;36mThis test will fail! I've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me! I told the king to piss off. I have socks to fold.[0m[0;31m [Failure][0m",
+    ExpectEq("[0;36mI've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me! I told the king to piss off. I have socks to fold.[0m[0;31m [Failure][0m",
         QuestItem->questStory(({"meet the king", "met the king", "serve the king", "ignore the king"})));
 }
 
