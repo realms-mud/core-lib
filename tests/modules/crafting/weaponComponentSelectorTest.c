@@ -96,7 +96,7 @@ void SpecificWeaponMenuDisplaysCorrectly()
         "[0;32;1mYou must select a number from 1 to 7.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 
@@ -147,7 +147,7 @@ void SelectingComponentDisplaysComponentMenu()
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 
@@ -196,7 +196,7 @@ void SelectingMaterialChangesSelectedComponentInMenu()
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 
@@ -238,7 +238,7 @@ void SelectingTypeFlagsChosenTypeInComponentMenu()
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 
@@ -288,7 +288,7 @@ void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 
@@ -327,7 +327,7 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
         "[0;32;1mYou must select a number from 1 to 7.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 
@@ -366,7 +366,7 @@ void ConfirmSetsValuesForWeaponCraftingMenu()
         "[0;32;1mYou must select a number from 1 to 7.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 

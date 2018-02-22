@@ -80,7 +80,8 @@ void SelectingEnchantAbilitiesDisplaysAbilitiesMenu()
         "[0;32;1mYou must select a number from 1 to 1.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
 }
@@ -103,7 +104,8 @@ void SelectingEnchantAttributesDisplaysAttributesMenu()
         "[0;32;1mYou must select a number from 1 to 7.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
 }
@@ -142,7 +144,8 @@ void SelectingDefensiveEnchantmentDisplaysDefensiveMenu()
         "[0;32;1mYou must select a number from 1 to 23.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
 }
@@ -181,7 +184,8 @@ void SelectingOffensiveEnchantmentDisplaysOffensiveMenu()
         "[0;32;1mYou must select a number from 1 to 23.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
 }
@@ -198,7 +202,8 @@ void SelectingSkillsEnchantmentDisplaysSkillsMenu()
         "[0;32;1mYou must select a number from 1 to 1.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
 }
@@ -224,7 +229,8 @@ void SelectingVitalsEnchantmentDisplaysVitalsMenu()
         "[0;32;1mYou must select a number from 1 to 10.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
 }
@@ -238,4 +244,21 @@ void SelectingExitReturnsToPreviousMenu()
 
     ExpectSubStringMatch("Exit Craft Long sword Menu",
         Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectionCanBeZeroToThreeEntries()
+{
+    Selector->initiateSelector(Player);
+    command("5", Player);
+    command("4", Player);
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)]", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)]", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)]", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m", Player->caughtMessage());
 }

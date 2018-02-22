@@ -13,8 +13,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental fire": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "fire": 2,
+        "effects": ([
+            "enchantments": ([
+                "fire": 2,
+            ]),
         ]),
         "rune": "kenaz",
         "description": "",
@@ -30,6 +32,11 @@ private nosave mapping equipmentEnchantments =
         "defense": ([
             "fire": 2,
         ]),
+        "effects": ([
+            "resistances": ([
+                "fire": 2,
+            ]),
+        ]),
         "rune": "kenaz",
         "description": "",
         "value multiplier": 5.0,
@@ -41,8 +48,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "destruction": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "acid": 2,
+        "effects": ([
+            "enchantments": ([
+                "acid":2,
+            ]),
         ]),
         "rune": "hagalaz",
         "description": "",
@@ -55,8 +64,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "destruction": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "acid": 2,
+        "effects": ([
+            "resistances": ([
+                "acid":2,
+            ]),
         ]),
         "rune": "hagalaz",
         "description": "",
@@ -69,8 +80,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental air": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "air": 2,
+        "effects": ([
+            "enchantments": ([
+                "air":2,
+            ]),
         ]),
         "rune": "tiwaz",
         "description": "",
@@ -83,8 +96,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental air": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "air": 2,
+        "effects": ([
+            "resistances": ([
+                "air":2,
+            ]),
         ]),
         "rune": "tiwaz",
         "description": "",
@@ -97,8 +112,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "chaos": 2,
+        "effects": ([
+            "enchantments": ([
+                "chaos":2,
+            ]),
         ]),
         "rune": "perthro",
         "description": "",
@@ -111,8 +128,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "chaos": 2,
+        "effects": ([
+            "resistances": ([
+                "chaos":2,
+            ]),
         ]),
         "rune": "perthro",
         "description": "",
@@ -125,8 +144,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental water": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "cold": 2,
+        "effects": ([
+            "enchantments": ([
+                "cold":2,
+            ]),
         ]),
         "rune": "isa",
         "description": "",
@@ -139,8 +160,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental water": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "cold": 2,
+        "effects": ([
+            "resistances": ([
+                "cold":2,
+            ]),
         ]),
         "rune": "isa",
         "description": "",
@@ -153,8 +176,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "disease": 2,
+        "effects": ([
+            "enchantments": ([
+                "disease":2,
+            ]),
         ]),
         "rune": "kenaz merkstave",
         "description": "",
@@ -167,8 +192,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "disease": 2,
+        "effects": ([
+            "resistances": ([
+                "disease":2,
+            ]),
         ]),
         "rune": "kenaz merkstave",
         "description": "",
@@ -181,8 +208,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental earth": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "earth": 2,
+        "effects": ([
+            "enchantments": ([
+                "earth":2,
+            ]),
         ]),
         "rune": "ingwaz",
         "description": "",
@@ -195,8 +224,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental earth": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "earth": 2,
+        "effects": ([
+            "resistances": ([
+                "earth":2,
+            ]),
         ]),
         "rune": "ingwaz",
         "description": "",
@@ -209,8 +240,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental air": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "electricity": 2,
+        "effects": ([
+            "enchantments": ([
+                "electricity":2,
+            ]),
         ]),
         "rune": "ansuz",
         "description": "",
@@ -223,8 +256,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental air": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "electricity": 2,
+        "effects": ([
+            "resistances": ([
+                "electricity":2,
+            ]),
         ]),
         "rune": "ansuz",
         "description": "",
@@ -237,8 +272,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "evocation": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "energy": 2,
+        "effects": ([
+            "enchantments": ([
+                "energy":2,
+            ]),
         ]),
         "rune": "fehu",
         "description": "",
@@ -251,8 +288,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "evocation": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "energy": 2,
+        "effects": ([
+            "resistances": ([
+                "energy":2,
+            ]),
         ]),
         "rune": "fehu",
         "description": "",
@@ -265,8 +304,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "blood": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "evil": 2,
+        "effects": ([
+            "enchantments": ([
+                "evil":2,
+            ]),
         ]),
         "rune": "thurisaz merkstave",
         "description": "",
@@ -279,8 +320,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "spirit": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "evil": 2,
+        "effects": ([
+            "resistances": ([
+                "evil":2,
+            ]),
         ]),
         "rune": "uruz",
         "description": "",
@@ -293,8 +336,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "spirit": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "good": 2,
+        "effects": ([
+            "enchantments": ([
+                "good":2,
+            ]),
         ]),
         "rune": "uruz",
         "description": "",
@@ -307,8 +352,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "blood": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "good": 2,
+        "effects": ([
+            "resistances": ([
+                "good":2,
+            ]),
         ]),
         "rune": "thurisaz merkstave",
         "description": "",
@@ -321,8 +368,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "magical": 2,
+        "effects": ([
+            "enchantments": ([
+                "magical":2,
+            ]),
         ]),
         "rune": "gebo",
         "description": "",
@@ -335,8 +384,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "magical": 2,
+        "effects": ([
+            "resistances": ([
+                "magical":2,
+            ]),
         ]),
         "rune": "gebo",
         "description": "",
@@ -349,8 +400,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "neutral": 2,
+        "effects": ([
+            "enchantments": ([
+                "neutral":2,
+            ]),
         ]),
         "rune": "raidho",
         "description": "",
@@ -363,8 +416,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "neutral": 2,
+        "effects": ([
+            "resistances": ([
+                "neutral":2,
+            ]),
         ]),
         "rune": "raidho",
         "description": "",
@@ -377,8 +432,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "paralysis": 2,
+        "effects": ([
+            "enchantments": ([
+                "paralysis":2,
+            ]),
         ]),
         "rune": "nauthiz",
         "description": "",
@@ -391,8 +448,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "paralysis": 2,
+        "effects": ([
+            "resistances": ([
+                "paralysis":2,
+            ]),
         ]),
         "rune": "nauthiz",
         "description": "",
@@ -405,8 +464,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "poison": 2,
+        "effects": ([
+            "enchantments": ([
+                "poison":2,
+            ]),
         ]),
         "rune": "algiz merkstave",
         "description": "",
@@ -419,8 +480,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "poison": 2,
+        "effects": ([
+            "resistances": ([
+                "poison":2,
+            ]),
         ]),
         "rune": "algiz",
         "description": "",
@@ -433,8 +496,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "mind": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "psionic": 2,
+        "effects": ([
+            "enchantments": ([
+                 "psionic":2,
+            ]),
         ]),
         "rune": "wunjo",
         "description": "",
@@ -447,8 +512,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "mind": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "psionic": 2,
+        "effects": ([
+            "resistances": ([
+                "psionic":2,
+            ]),
         ]),
         "rune": "wunjo",
         "description": "",
@@ -461,8 +528,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "senses": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "sonic": 2,
+        "effects": ([
+            "enchantments": ([
+                 "sonic":2,
+            ]),
         ]),
         "rune": "sowilo",
         "description": "",
@@ -475,8 +544,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "senses": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "sonic": 2,
+        "effects": ([
+            "resistances": ([
+                "sonic":2,
+            ]),
         ]),
         "rune": "sowilo",
         "description": "",
@@ -489,8 +560,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "destruction": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "undead": 2,
+        "effects": ([
+            "enchantments": ([
+                "undead":2,
+            ]),
         ]),
         "rune": "berkano merkstave",
         "description": "",
@@ -503,8 +576,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "destruction": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "undead": 2,
+        "effects": ([
+            "resistances": ([
+                "undead":2,
+            ]),
         ]),
         "rune": "berkano merkstave",
         "description": "",
@@ -517,8 +592,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental water": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "water": 2,
+        "effects": ([
+            "enchantments": ([
+                "water":2,
+            ]),
         ]),
         "rune": "laguz",
         "description": "",
@@ -531,8 +608,10 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "elemental water": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "water": 2,
+        "effects": ([
+            "resistances": ([
+                "water":2,
+            ]),
         ]),
         "rune": "laguz",
         "description": "",
@@ -545,8 +624,8 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "transformation": (["type":"skill", "value": 5]),
         ]),
-        "attack": ([
-            "physical": 2,
+        "effects": ([
+            "bonus damage": 2,
         ]),
         "rune": "eihwaz",
         "description": "",
@@ -559,7 +638,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "evocation": (["type":"skill", "value": 5]),
         ]),
-        "attack rating": 2,
+        "effects": ([
+            "bonus attack": 2,
+        ]),
         "rune": "jera",
         "description": "",
         "value multiplier": 5.0,
@@ -571,7 +652,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "evocation": (["type":"skill", "value": 10]),
         ]),
-        "weapon attack": 1,
+        "effects": ([
+            "bonus weapon attack":1,
+        ]),
         "rune": "eihwaz",
         "description": "",
         "value multiplier": 10.0,
@@ -583,7 +666,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "manipulation": (["type":"skill", "value": 5]),
         ]),
-        "defense rating": 2,
+        "effects": ([
+            "bonus defense class":2,
+        ]),
         "rune": "algiz",
         "description": "",
         "value multiplier": 5.0,
@@ -595,8 +680,8 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
-        "defense": ([
-            "physical": 2,
+        "effects": ([
+            "bonus soak": 2,
         ]),
         "rune": "algiz",
         "description": "",
@@ -609,7 +694,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
-        "damage reflection": 1,
+        "effects": ([
+            "bonus damage reflection":1,
+        ]),
         "rune": "othala",
         "description": "",
         "value multiplier": 8.0,
@@ -621,7 +708,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
-        "bonus hit points": 5,
+        "effects": ([
+            "bonus hit points":5,
+        ]),
         "rune": "berkano",
         "description": "",
         "value multiplier": 5.0,
@@ -633,7 +722,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 10]),
         ]),
-        "bonus heal hit points": 1,
+        "effects": ([
+            "bonus heal hit points":1,
+        ]),
         "rune": "berkano",
         "description": "",
         "value multiplier": 5.0,
@@ -645,7 +736,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 15]),
         ]),
-        "bonus heal hit points rate": 1,
+        "effects": ([
+            "bonus heal hit points rate":1,
+        ]),
         "rune": "berkano",
         "description": "",
         "value multiplier": 5.0,
@@ -657,7 +750,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "body": (["type":"skill", "value": 5]),
         ]),
-        "bonus hit points": 5,
+        "effects": ([
+            "bonus hit points":5,
+        ]),
         "rune": "ehwaz",
         "description": "",
         "value multiplier": 5.0,
@@ -669,7 +764,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 10]),
         ]),
-        "bonus heal stamina points": 1,
+        "effects": ([
+            "bonus heal stamina points":1,
+        ]),
         "rune": "ehwaz",
         "description": "",
         "value multiplier": 5.0,
@@ -681,7 +778,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 15]),
         ]),
-        "bonus heal stamina points rate": 1,
+        "effects": ([
+            "bonus heal stamina points rate":1,
+        ]),
         "rune": "ehwaz",
         "description": "",
         "value multiplier": 5.0,
@@ -693,7 +792,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 5]),
             "magical essence": (["type":"skill", "value": 5]),
         ]),
-        "bonus spell points": 5,
+        "effects": ([
+            "bonus spell points":5,
+        ]),
         "rune": "dagaz",
         "description": "",
         "value multiplier": 5.0,
@@ -705,7 +806,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "magical essence": (["type":"skill", "value": 10]),
         ]),
-        "bonus heal spell points": 1,
+        "effects": ([
+            "bonus heal spell points":1,
+        ]),
         "rune": "dagaz",
         "description": "",
         "value multiplier": 5.0,
@@ -717,7 +820,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "magical essence": (["type":"skill", "value": 15]),
         ]),
-        "bonus heal spell points rate": 1,
+        "effects": ([
+            "bonus heal spell points rate":1,
+        ]),
         "rune": "dagaz",
         "description": "",
         "value multiplier": 5.0,
@@ -729,7 +834,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 15]),
         ]),
-        "bonus strength": 1,
+        "effects": ([
+            "bonus strength":1,
+        ]),
         "rune": "stregaz",
         "description": "",
         "value multiplier": 8.0,
@@ -741,7 +848,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "mind": (["type":"skill", "value": 15]),
         ]),
-        "bonus intelligence": 1,
+        "effects": ([
+            "bonus intelligence":1,
+        ]),
         "rune": "inigaz",
         "description": "",
         "value multiplier": 8.0,
@@ -753,7 +862,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "senses": (["type":"skill", "value": 15]),
         ]),
-        "bonus wisdom": 1,
+        "effects": ([
+            "bonus wisdom":1,
+        ]),
         "rune": "wesgaz",
         "description": "",
         "value multiplier": 8.0,
@@ -765,7 +876,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "manipulation": (["type":"skill", "value": 15]),
         ]),
-        "bonus dexterity": 1,
+        "effects": ([
+            "bonus dexterity":1,
+        ]),
         "rune": "dezgano",
         "description": "",
         "value multiplier": 8.0,
@@ -777,7 +890,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "body": (["type":"skill", "value": 15]),
         ]),
-        "bonus constitution": 1,
+        "effects": ([
+            "bonus constitution": 1,
+        ]),
         "rune": "corgaz",
         "description": "",
         "value multiplier": 8.0,
@@ -789,7 +904,9 @@ private nosave mapping equipmentEnchantments =
             "spellcraft": (["type":"skill", "value": 10]),
             "mind": (["type":"skill", "value": 15]),
         ]),
-        "bonus charisma": 1,
+        "effects": ([
+            "bonus charisma": 1,
+        ]),
         "rune": "sylgaz",
         "description": "",
         "value multiplier": 8.0,

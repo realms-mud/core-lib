@@ -225,7 +225,7 @@ public nomask void onSelectorCompleted(object caller)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n";
+    return "[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -239,4 +239,9 @@ public void onSelectorAborted(object caller)
 {
     User->abortCrafting();
     "baseSelector"::onSelectorAborted(caller);
+}
+
+public object blah()
+{
+    return Item;
 }

@@ -74,11 +74,16 @@ protected nomask int processSelection(string selection)
     int ret = -1;
     if (User)
     {
+        write(Data[selection]["type"]);
         ret = (Data[selection]["type"] == "exit");
         if (!ret && !CraftingComponent)
         {
             CraftingComponent = Data[selection]["type"];
             setUpUserForSelection();
+        }
+        else if (!ret && CraftingComponent)
+        {
+            Dictionary->addEnchantment(CraftingItem, Data[selection]["type"]);
         }
     }
     return ret;
@@ -93,22 +98,46 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string displayDetails(string choice)
 {
+    string ret = "";
     string *flags = ({});
 
-    if (member(Data[choice], "prerequisites met") &&
-        !Data[choice]["prerequisites met"])
+    mapping itemEnchantments = CraftingItem->query("crafting enchantments");
+    string *enchantmentList = ({});
+
+    if (mappingp(itemEnchantments) && sizeof(itemEnchantments))
     {
-        flags += ({ "P" });
+        enchantmentList = m_indices(itemEnchantments);
     }
-    if (member(Data[choice], "has materials") &&
-        !Data[choice]["has materials"])
+    if (member(enchantmentList, Data[choice]["type"]) > -1)
     {
-        flags += ({ "M" });
+        ret = "[0;35;1m(";
+        for (int i = 0; i < itemEnchantments[Data[choice]["type"]]; i++)
+        {
+            ret += "*";
+        }
+        ret += ")[0m";
+        for (int i = 0; i < (3 - itemEnchantments[Data[choice]["type"]]); i++)
+        {
+            ret += " ";
+        }
     }
-    string ret = sizeof(flags) ? sprintf("[0;34;1m([0;35m%s[0;34;1m)[0m", implode(flags, ",")) : "     ";
-    if (sizeof(flags) == 1)
+    else
     {
-        ret += "  ";
+        if (member(Data[choice], "prerequisites met") &&
+            !Data[choice]["prerequisites met"])
+        {
+            flags += ({ "P" });
+        }
+        if (member(Data[choice], "has materials") &&
+            !Data[choice]["has materials"])
+        {
+            flags += ({ "M" });
+        }
+        ret = sizeof(flags) ? sprintf("[0;34;1m([0;35m%s[0;34;1m)[0m", implode(flags, ",")) : "     ";
+        if (sizeof(flags) == 1)
+        {
+            ret += "  ";
+        }
     }
     return member(Data[choice], "canShow") ? ret : "";
 }
@@ -126,7 +155,8 @@ protected string choiceFormatter(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return CraftingComponent ? "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+    return CraftingComponent ? "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n" : "";
 }
 

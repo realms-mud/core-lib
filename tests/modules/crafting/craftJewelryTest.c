@@ -122,7 +122,7 @@ void ChoosingRobesDisplaysRobesMenu()
         "[0;32;1mYou must select a number from 1 to 5.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 
@@ -162,7 +162,7 @@ void SelectingMaterialUpdatesRobesMenu()
         "[0;32;1mYou must select a number from 1 to 5.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 
@@ -188,7 +188,7 @@ void CanAddComponentThatDoesNotModifyMaterials()
         "[0;32;1mYou must select a number from 1 to 5.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n[0m",
+        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
         Player->caughtMessage());
 }
 

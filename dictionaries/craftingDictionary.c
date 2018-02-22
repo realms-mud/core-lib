@@ -924,3 +924,38 @@ public nomask mapping getEnchantmentsOfType(string type, object user,
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void addEnchantment(object item, string enchantment)
+{
+    mapping craftingEnchantments = item->query("crafting enchantments");
+    if (!mappingp(craftingEnchantments))
+    {
+        craftingEnchantments = ([]);
+    }
+    if (member(equipmentEnchantments, enchantment))
+    {
+        int newLevel = 1;
+        if (member(craftingEnchantments, enchantment))
+        {
+            newLevel += craftingEnchantments[enchantment];
+        }
+        if (newLevel < 4)
+        {
+            craftingEnchantments[enchantment] = newLevel;
+        }
+        else
+        {
+             m_delete(craftingEnchantments, enchantment);
+        }
+
+        if (sizeof(craftingEnchantments))
+        {
+            item->set("crafting enchantments", craftingEnchantments);
+        }
+        else
+        {
+            item->unset("crafting enchantments");
+        }
+    }
+}

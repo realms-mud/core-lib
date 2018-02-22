@@ -185,5 +185,5 @@ protected string choiceFormatter(string choice)
 protected nomask string additionalInstructions()
 {
     return "[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type that has been chosen.\n";
+        "[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n";
 }
