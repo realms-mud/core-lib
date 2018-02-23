@@ -824,6 +824,48 @@ public nomask void applyCraftingBonuses(object item, object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int getEnchantmentStrength(mapping enchantments)
+{
+    int ret = 0;
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int applyEnchantments(object item, object user)
+{
+    int ret = 1;
+    mapping enchantments = item->query("crafting enchantments");
+    if (!mappingp(enchantments))
+    {
+        enchantments = ([]);
+    }
+    string *enchantmentList = m_indices(enchantments);
+    foreach(string enchantment in enchantmentList)
+    {
+        if (member(equipmentEnchantments, enchantment))
+        {
+            mapping effects = equipmentEnchantments[enchantment]["effects"];
+            foreach(string effect in m_indices(effects))
+            {
+                if (effect == "enchantments")
+                {
+                    
+                }
+                else if (effect == "resistances")
+                {
+
+                }
+                else
+                {
+
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int craftItem(object item, object user)
 {
     int canCraft = 0;
@@ -839,6 +881,9 @@ public nomask int craftItem(object item, object user)
                 materialsUsed[material]);
         }
     }
+
+    canCraft &&= applyEnchantments(item, user);
+
     return canCraft;
 }
 
@@ -926,8 +971,9 @@ public nomask mapping getEnchantmentsOfType(string type, object user,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void addEnchantment(object item, string enchantment)
+public nomask varargs int addEnchantment(object item, string enchantment, int decrement)
 {
+    int ret = 1;
     mapping craftingEnchantments = item->query("crafting enchantments");
     if (!mappingp(craftingEnchantments))
     {
@@ -935,18 +981,23 @@ public nomask void addEnchantment(object item, string enchantment)
     }
     if (member(equipmentEnchantments, enchantment))
     {
-        int newLevel = 1;
+        int newLevel = decrement ? -1 : 1;
         if (member(craftingEnchantments, enchantment))
         {
             newLevel += craftingEnchantments[enchantment];
         }
+        if (newLevel < 0)
+        {
+            newLevel = 0;
+        }
+
         if (newLevel < 4)
         {
             craftingEnchantments[enchantment] = newLevel;
         }
         else
         {
-             m_delete(craftingEnchantments, enchantment);
+            ret = 0;
         }
 
         if (sizeof(craftingEnchantments))
@@ -958,4 +1009,5 @@ public nomask void addEnchantment(object item, string enchantment)
             item->unset("crafting enchantments");
         }
     }
+    return ret;
 }

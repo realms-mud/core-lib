@@ -77,10 +77,11 @@ void SelectingEnchantAbilitiesDisplaysAbilitiesMenu()
 
     ExpectEq("[0;36mSelect Enchant abilities - [0m[0;37;1mchoose the enchant abilities with which to craft[0m:\n"
         "    [[0;31;1m1[0m] - [0;32mExit Select Enchant abilities Menu[0m     \n"
-        "[0;32;1mYou must select a number from 1 to 1.\n[0m"
+        "[0;32;1mYou must select a number from 1 to 1. You may also undo or reset.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n"
+        "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
@@ -101,10 +102,11 @@ void SelectingEnchantAttributesDisplaysAttributesMenu()
         "    [[0;31;1m5[0m] - [0;31mEnhance strength    [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
         "    [[0;31;1m6[0m] - [0;31mEnhance wisdom      [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
         "    [[0;31;1m7[0m] - [0;32mExit Select Enchant attributes Menu[0m     \n"
-        "[0;32;1mYou must select a number from 1 to 7.\n[0m"
+        "[0;32;1mYou must select a number from 1 to 7. You may also undo or reset.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n"
+        "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
@@ -141,10 +143,11 @@ void SelectingDefensiveEnchantmentDisplaysDefensiveMenu()
         "    [[0;31;1m21[0m] - [0;31mWater resistance    [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
         "    [[0;31;1m22[0m] - [0;31mWeapon defense      [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
         "    [[0;31;1m23[0m] - [0;32mExit Select Enchant defensive Menu[0m     \n"
-        "[0;32;1mYou must select a number from 1 to 23.\n[0m"
+        "[0;32;1mYou must select a number from 1 to 23. You may also undo or reset.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n"
+        "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
@@ -181,10 +184,11 @@ void SelectingOffensiveEnchantmentDisplaysOffensiveMenu()
         "    [[0;31;1m21[0m] - [0;31mWeapon attack       [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
         "    [[0;31;1m22[0m] - [0;31mWeapon damage       [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
         "    [[0;31;1m23[0m] - [0;32mExit Select Enchant offensive Menu[0m     \n"
-        "[0;32;1mYou must select a number from 1 to 23.\n[0m"
+        "[0;32;1mYou must select a number from 1 to 23. You may also undo or reset.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n"
+        "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
@@ -199,10 +203,11 @@ void SelectingSkillsEnchantmentDisplaysSkillsMenu()
 
     ExpectEq("[0;36mSelect Enchant skills - [0m[0;37;1mchoose the enchant skills with which to craft[0m:\n"
         "    [[0;31;1m1[0m] - [0;32mExit Select Enchant skills Menu[0m     \n"
-        "[0;32;1mYou must select a number from 1 to 1.\n[0m"
+        "[0;32;1mYou must select a number from 1 to 1. You may also undo or reset.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n"
+        "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
@@ -226,10 +231,11 @@ void SelectingVitalsEnchantmentDisplaysVitalsMenu()
         "    [[0;31;1m8[0m]  - [0;31mSpell points        [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
         "    [[0;31;1m9[0m]  - [0;31mStamina points      [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
         "    [[0;31;1m10[0m] - [0;32mExit Select Enchant vitals Menu[0m     \n"
-        "[0;32;1mYou must select a number from 1 to 10.\n[0m"
+        "[0;32;1mYou must select a number from 1 to 10. You may also undo or reset.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n"
+        "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that material requirements are missing.\n[0m",
         Player->caughtMessage());
@@ -247,8 +253,45 @@ void SelectingExitReturnsToPreviousMenu()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void SelectionCanBeZeroToThreeEntries()
+void CanNotAddMoreThanMaximumEnchantmentsAllowed()
 {
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector->initiateSelector(Player);
+    command("5", Player);
+    command("4", Player);
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)].*3 more", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)].*2 more", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectionCanBeZeroToThreeEntriesAndDoesNotIncreaseBeyondThree()
+{
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector->initiateSelector(Player);
+    command("5", Player);
+    command("4", Player);
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)].*3 more", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)].*2 more", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanUndoSelection()
+{
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
     command("4", Player);
@@ -257,8 +300,6 @@ void SelectionCanBeZeroToThreeEntries()
     ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)]", Player->caughtMessage());
     command("11", Player);
     ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)]", Player->caughtMessage());
-    command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)]", Player->caughtMessage());
-    command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[ ]+..0m", Player->caughtMessage());
+    command("undo", Player);
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)]", Player->caughtMessage());
 }
