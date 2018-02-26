@@ -19,7 +19,12 @@ public nomask int isValidType(string type)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *validCraftingBonuses()
 {
-    return ({ "crafting value multiplier", "crafting encumberance reduction", 
+    string *enchantments = m_indices(equipmentEnchantments);
+    for(int i = 0; i < sizeof(enchantments); i++)
+    {
+        enchantments[i] = "crafting " + enchantments[i];
+    }
+    return enchantments + ({ "crafting value multiplier", "crafting encumberance reduction",
         "crafting weapon class", "crafting defense class", "crafting attack",
         "crafting weight reduction", "crafting armor class", "crafting duration",
         "crafting enchantment power", "crafting potency", "crafting enchantments"
@@ -824,14 +829,56 @@ public nomask void applyCraftingBonuses(object item, object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int getEnchantmentStrength(mapping enchantments)
+private nomask int getEnchantmentStrength(string enchantment, object user)
 {
-    int ret = 0;
+    int ret = user->researchBonusTo(sprintf("crafting %s", enchantment));
+
+    mapping skills = equipmentEnchantments[enchantment]["crafting prerequisites"];
+
+    if (sizeof(skills))
+    {
+        string *skillList = m_indices(skills);
+        foreach(string skill in skillList)
+        {
+            if (skills[skill]["type"] == "skill")
+            {
+                ret += (user->getSkill(skill) - skills[skill]["value"]) / 10;
+            }
+        }
+    }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int applyEnchantments(object item, object user)
+private nomask int applyEffects(string enchantment, object user, object item,
+    int count)
+{
+    int ret = 1;
+
+    int bonus = getEnchantmentStrength(enchantment, user);
+
+    mapping effects = equipmentEnchantments[enchantment]["effects"] + ([]);
+    foreach(string effect in m_indices(effects))
+    {
+        if (mappingp(effects[effect]))
+        {
+            foreach(string element in m_indices(effects[effect]))
+            {
+                effects[effect][element] = 
+                    (effects[effect][element] + bonus) * count;
+            }
+        }
+        else
+        {
+            effects[effect] = (effects[effect] + bonus) * count;
+        }
+        ret &&= item->set(effect, effects[effect]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int applyEnchantments(object item, object user)
 {
     int ret = 1;
     mapping enchantments = item->query("crafting enchantments");
@@ -844,22 +891,8 @@ private nomask int applyEnchantments(object item, object user)
     {
         if (member(equipmentEnchantments, enchantment))
         {
-            mapping effects = equipmentEnchantments[enchantment]["effects"];
-            foreach(string effect in m_indices(effects))
-            {
-                if (effect == "enchantments")
-                {
-                    
-                }
-                else if (effect == "resistances")
-                {
-
-                }
-                else
-                {
-
-                }
-            }
+            ret &&= applyEffects(enchantment, user, item, 
+                enchantments[enchantment]);
         }
     }
     return ret;
@@ -881,7 +914,6 @@ public nomask int craftItem(object item, object user)
                 materialsUsed[material]);
         }
     }
-
     canCraft &&= applyEnchantments(item, user);
 
     return canCraft;

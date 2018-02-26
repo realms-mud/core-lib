@@ -9,8 +9,6 @@ private object SubselectorObj;
 private string CraftingComponent;
 private object CraftingItem;
 private string Selection;
-private int TotalEnchantments;
-private int PossibleEnchantments;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -46,9 +44,10 @@ protected nomask void setUpUserForSelection()
             "set.\n");
     }
 
-    if (!PossibleEnchantments)
+    if (!CraftingItem->query("possible enchantments"))
     {
-        PossibleEnchantments = User->researchBonusTo("crafting enchantments");
+        CraftingItem->set("possible enchantments",
+            User->researchBonusTo("crafting enchantments"));
     }
 
     string enchantmentType = "enchantment type";
@@ -83,20 +82,26 @@ protected nomask int processSelection(string selection)
     int ret = -1;
     if (User)
     {
-        write(Data[selection]["type"]);
         ret = (Data[selection]["type"] == "exit");
         if (!ret && !CraftingComponent)
         {
-            CraftingComponent = Data[selection]["type"];
-            setUpUserForSelection();
+            SubselectorObj = clone_object("/lib/modules/crafting/enchantmentSelector.c");
+            SubselectorObj->setItem(Data[selection]["type"]);
+            SubselectorObj->setCraftingItem(CraftingItem);
+
+            move_object(SubselectorObj, User);
+            SubselectorObj->registerEvent(this_object());
+            SubselectorObj->initiateSelector(User);
         }
         else if (!ret && CraftingComponent && 
-            (TotalEnchantments < PossibleEnchantments))
+            (CraftingItem->query("total enchantments") < 
+                CraftingItem->query("possible enchantments")))
         {
             if (Dictionary->addEnchantment(CraftingItem,
                 Data[selection]["type"]))
             {
-                TotalEnchantments++;
+                CraftingItem->set("total enchantments",
+                    CraftingItem->query("total enchantments") + 1);
             }
         }
     }
@@ -170,13 +175,14 @@ protected string choiceFormatter(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    string ret = sprintf("You can imbue this item with %d more (out of %d) enchantments.\n"
-        "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
-        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
-        "[0;35mM[0m[0;32m denotes that material requirements are missing.\n",
-        PossibleEnchantments - TotalEnchantments, PossibleEnchantments);
+    string ret = sprintf("You can imbue this item with %d more (out of %d) enchantments.\n",
+        CraftingItem->query("possible enchantments") - CraftingItem->query("total enchantments"),
+        CraftingItem->query("possible enchantments"));
 
-    return CraftingComponent ? ret : "";
+    string otherInfo = "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
+        "[0;35mM[0m[0;32m denotes that material requirements are missing.\n";
+    return CraftingComponent ? ret + otherInfo : ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -191,6 +197,17 @@ protected nomask void undoSelection(string selection)
     if (User)
     {
         Dictionary->addEnchantment(CraftingItem, Data[selection]["type"], 1);
-        TotalEnchantments--;
+        CraftingItem->set("total enchantments",
+            CraftingItem->query("total enchantments") - 1);
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void onSelectorCompleted(object caller)
+{
+    if (User)
+    {
+        tell_object(User, displayMessage());
+    }
+    caller->cleanUp();
 }

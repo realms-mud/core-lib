@@ -569,16 +569,17 @@ public string long()
     {
         description += "\n" + materials;
     }
+    description = format(description, 78);
 
     string statistics = itemStatistics();
     if(statistics != "")
     {
-        description += "\n" + statistics;
+        description += statistics;
     }
 
     description += "\n";
 
-    return format(description, 78);
+    return description;
 }
 
 /////////////////////////////////////////////////////////////////////////////

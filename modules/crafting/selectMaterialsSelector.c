@@ -70,6 +70,18 @@ private nomask string getDescription()
     {
         ret = regreplace(ret, "(.*Material: )([^\n])*(.*)", "\\1[0;31mnone selected[0m\\3", 1);
     }
+
+    mapping enchantments = Item->query("crafting enchantments");
+    if (mappingp(enchantments))
+    {
+        ret += "[0;32mThis item will have the following enchantments:[0m\n";
+        string *enchantmentList = m_indices(enchantments);
+        foreach(string enchantment in enchantmentList)
+        {
+            ret += sprintf("[0;35;1m\t%s (x%d)[0m\n", 
+                capitalize(enchantment), enchantments[enchantment]);
+        }
+    }
     return sprintf("From this menu, you will select the\ncomponents that "
         "will be used to craft your %s. The relative statistics\nfor the item "
         "you are creating are:", CraftingItem) + ret;

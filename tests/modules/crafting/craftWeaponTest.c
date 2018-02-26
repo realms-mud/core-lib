@@ -11,7 +11,7 @@ object Selector;
 void Init()
 {
     ignoreList += ({ "SetUpSkills", "SetUpInventory", "SetUpResearch",
-        "CraftSword", "PopulateSwordData", "getMaterialsOnHand", "__inline_lib_tests_modules_crafting_craftWeaponTest_c_179_#0000" });
+        "CraftSword", "PopulateSwordData", "getMaterialsOnHand", "__inline_lib_tests_modules_crafting_craftWeaponTest_c_180_#0000" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -142,6 +142,7 @@ void CraftSword()
 void PopulateSwordData(object sword)
 {
     sword->set("material", "admantite");
+    sword->set("primary crafting material", "admantite");
     sword->set("crafting materials", ([
         "blade": ([ "description": "a broad, flat, metal blade with parallel edges and a lenticular cross-section. The fuller is narrow and runs half of the length of the blade, ending in a rounded point.", 
                     "metal": "admantite", 
@@ -336,4 +337,36 @@ void CraftingItemIsAffectedByCraftingBonusesWhenOfType()
     ExpectEq(11, sword->query("weapon class"));
     ExpectEq(3, sword->query("defense class"));
     ExpectEq(6, sword->query("weapon attack"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CraftingSetsEnchantments()
+{
+    Player->advanceSkill("spellcraft", 20);
+    Player->advanceSkill("elemental fire", 20);
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+
+    Selector->initiateSelector(Player);
+
+    object sword = Player->itemBeingCrafted();
+    PopulateSwordData(sword);
+    sword->set("crafting enchantments", (["spell points":1]));
+    command("5", Player);
+    command("4", Player);
+    command("11", Player);
+    command("11", Player);
+    command("23", Player);
+    command("7", Player);
+
+    ExpectSubStringMatch("Spell points .x1.*Fire enchantment .x2", 
+        Player->caughtMessage());
+
+    command("6", Player);
+
+    ExpectEq(sword, present("long sword", Player));
+
+    ExpectEq((["fire":10]), sword->query("enchantments"));
+    ExpectEq(6, sword->query("bonus spell points"));
 }

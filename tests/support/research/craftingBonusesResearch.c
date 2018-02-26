@@ -26,6 +26,7 @@ public void reset(int arg)
         addSpecification("bonus crafting armor class", 1);
         addSpecification("bonus crafting armor class", 1);
         addSpecification("bonus crafting enchantments", 3);
+        addSpecification("bonus crafting fire enchantment", 1);
     }
 }
 

@@ -64,7 +64,8 @@ void SelectingEnchantDisplaysEnchantmentTypeMenu()
         "    [[0;31;1m7[0m] - [0;32mExit Select Enchantment type Menu[0m     \n"
         "[0;32;1mYou must select a number from 1 to 7.\n[0m"
         "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
+        "[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n[0m",
         Player->caughtMessage());
 }
 
@@ -302,4 +303,20 @@ void CanUndoSelection()
     ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)]", Player->caughtMessage());
     command("undo", Player);
     ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)]", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ChangesToEnchantmentSelectionIsPropegatedToOtherMenus()
+{
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector->initiateSelector(Player);
+    command("5", Player);
+    command("4", Player);
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*3 more.*out of 4", Player->caughtMessage());
+    command("11", Player);
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*2 more.*out of 4", Player->caughtMessage());
+    command("23", Player);
+    ExpectSubStringMatch("Select Enchantment type.*2 more.*out of 4", Player->caughtMessage());
 }

@@ -147,6 +147,12 @@ void SelectingMaterialUpdatesRobesMenu()
 /////////////////////////////////////////////////////////////////////////////
 void CraftingArmorMovesArmorToUserAndConsumesMaterials()
 {
+    Player->advanceSkill("spellcraft", 20);
+    Player->advanceSkill("elemental fire", 20);
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+
     ExpectFalse(present("robes", Player));
 
     object silk = present("silk", Player);
@@ -160,13 +166,21 @@ void CraftingArmorMovesArmorToUserAndConsumesMaterials()
     command("7", Player);
     command("1", Player);
     command("15", Player);
+    command("2", Player);
+    command("3", Player);
+    command("12", Player);
+    command("23", Player);
+    command("7", Player);
+
+    ExpectSubStringMatch("Fire resistance .x1", Player->caughtMessage());
     command("3", Player);
 
     ExpectTrue(present("robes", Player));
     ExpectEq(5, silk->query("quantity"));
 
-    ExpectSubStringMatch("31mRobes",
-        Player->caughtMessage());
+    ExpectSubStringMatch("31mRobes", Player->caughtMessage());
+
+    ExpectSubStringMatch("4 fire", present("robes", Player)->long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
