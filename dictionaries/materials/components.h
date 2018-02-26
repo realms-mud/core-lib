@@ -2152,7 +2152,7 @@ private nosave mapping craftingComponents =
             "sculpture": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "crystal": 1,
+            "metal": 1,
         ]),
     ]),
     "Runed Ring": ([
@@ -2192,6 +2192,406 @@ private nosave mapping craftingComponents =
         "crafting prerequisites": ([
             "metal crafting": (["type":"skill", "value": 10]),
             "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Simple Pendant": ([
+        "class": "pendant design",
+        "value": 5,
+        "description": "a simple pendant of PrimaryMaterial.",
+    ]),
+    "Pendant with Jewel": ([
+        "class": "pendant design",
+        "value": 40,
+        "description": "a pendant of PrimaryMaterial with a one-carat crystal setting.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Knotwork Pendant": ([
+        "class": "pendant design",
+        "value": 50,
+        "description": "a pendant of PrimaryMaterial with exquisitely carved knotwork along its surface.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Double Knotwork Pendant": ([
+        "class": "pendant design",
+        "value": 75,
+        "description": "a pendant of PrimaryMaterial intertwined with metal with exquisitely carved knotwork along its surface.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+        ]),
+    ]),
+   "Eagle Talon Pendant": ([
+        "class": "pendant design",
+        "value": 175,
+        "description": "a pendant of metal and PrimaryMaterial that has been intricately carved into the shape of an eagle's talon embossed with metal. It is clutching a large crystal.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+            "metal": 1,
+        ]),
+    ]),
+    "Serpent Pendant": ([
+        "class": "pendant design",
+        "value": 70,
+        "description": "a pendant of PrimaryMaterial that has exquisitely carved scales along its length and a carved serpent's head set with crystal eyes.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Dragon Pendant": ([
+        "class": "pendant design",
+        "value": 125,
+        "description": "a pendant of metal that has been exquisitely carved with a scene of intertwined dragons of metal and PrimaryMaterial with eyes of crystal along its course.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+            "metal": 1,
+        ]),
+    ]),
+    "Huntsman's Pendant": ([
+        "class": "pendant design",
+        "value": 70,
+        "description": "a pendant of PrimaryMetal that has been exquisitely embossed using metal of a scene of a hunter stalking a boar in a forest.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+        ]),
+    ]),
+    "Griffin Pendant": ([
+        "class": "pendant design",
+        "value": 85,
+        "description": "a pendant of PrimaryMaterial that has been exquisitely carved with a scene of intertwined griffins with crystal eyes along its course.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Eagle Pendant": ([
+        "class": "pendant design",
+        "value": 70,
+        "description": "a pendant of metal that has been exquisitely carved with a scene of many eagles in flight along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Raven Pendant": ([
+        "class": "pendant design",
+        "value": 70,
+        "description": "a pendant of metal that has been exquisitely carved with a scene of many ravens in flight along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Vine Pendant": ([
+        "class": "pendant design",
+        "value": 70,
+        "description": "a pendant of metal that has been exquisitely carved with a scene of intertwined vines of PrimaryMetal along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+        ]),
+    ]),
+    "Runed Pendant": ([
+        "class": "pendant design",
+        "value": 35,
+        "description": "a pendant of metal that has been exquisitely carved with runes of power along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Skeleton Pendant": ([
+        "class": "pendant design",
+        "value": 70,
+        "description": "a pendant of metal that has been exquisitely carved with a macabre scene of intertwined skeletons along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Dracolich Pendant": ([
+        "class": "pendant design",
+        "value": 70,
+        "description": "a pendant of metal that has a hideously carved scene of a skeletal dragon with eyes of crystal along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Wrath Pendant": ([
+        "class": "pendant design",
+        "value": 70,
+        "description": "a pendant of metal that has a terrifying carved scene of a brutal battle its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Simple Jewelry Chain": ([
+        "class": "jewelry chain",
+        "value": 5,
+        "description": "a simple chain of ovular links of PrimaryMaterial.",
+    ]),
+    "Anchor Jewelry Chain": ([
+        "class": "jewelry chain",
+        "value": 15,
+        "description": "a chain of interlocking PrimaryMaterial alternating between a single, small, round link and a larger oval link.",
+    ]),
+    "Ball Jewelry Chain": ([
+        "class": "jewelry chain",
+        "value": 15,
+        "description": "a chain made of round beads of PrimaryMaterial.",
+    ]),
+    "Box Jewelry Chain": ([
+        "class": "jewelry chain",
+        "value": 20,
+        "description": "a simple chain of large box-shaped links of interlocking PrimaryMaterial.",
+    ]),
+    "Curb Jewelry Chain": ([
+        "class": "jewelry chain",
+        "value": 10,
+        "description": "a simple chain of ovular links of interlocking PrimaryMaterial.",
+    ]),
+    "Rope Jewelry Chain": ([
+        "class": "jewelry chain",
+        "value": 25,
+        "description": "a chain made up of many thin links of PrimaryMaterial woven together in roughly the same manner that a rope is fashioned."
+    ]),
+    "Snake Jewelry Chain": ([
+        "class": "jewelry chain",
+        "value": 25,
+        "description": "a chain of closely fitted PrimaryMaterial rings that form a flexible tube that looks like the underside of a snake."
+    ]),
+    "Simple Fillet": ([
+        "class": "fillet design",
+        "value": 5,
+        "description": "a simple fillet of PrimaryMaterial.",
+    ]),
+    "Fillet with Jewel": ([
+        "class": "fillet design",
+        "value": 40,
+        "description": "a fillet of PrimaryMaterial with a one-carat crystal setting.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Knotwork Fillet": ([
+        "class": "fillet design",
+        "value": 50,
+        "description": "a fillet of PrimaryMaterial with exquisitely carved knotwork along its surface.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Double Knotwork Fillet": ([
+        "class": "fillet design",
+        "value": 75,
+        "description": "a fillet of PrimaryMaterial intertwined with metal with exquisitely carved knotwork along its surface.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+        ]),
+    ]),
+    "Dragon Fillet": ([
+        "class": "fillet design",
+        "value": 125,
+        "description": "a fillet of PrimaryMetal that has been exquisitely carved with a scene of intertwined dragons of metal and PrimaryMaterial with eyes of crystal along its course.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+            "metal": 1,
+        ]),
+    ]),
+    "Vine Fillet": ([
+        "class": "fillet design",
+        "value": 70,
+        "description": "a fillet of PrimaryMetal that has been exquisitely carved with a scene of intertwined vines of metal along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+        ]),
+    ]),
+    "Runed Fillet": ([
+        "class": "fillet design",
+        "value": 35,
+        "description": "a fillet of PrimaryMetal that has been exquisitely carved with runes of power along its course.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+    ]),
+    "Simple Tiara": ([
+        "class": "tiara design",
+        "value": 5,
+        "description": "a series of encrusted crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Leaf Tiara": ([
+        "class": "tiara design",
+        "value": 5,
+        "description": "a series of leaf-shaped crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Rose Tiara": ([
+        "class": "tiara design",
+        "value": 25,
+        "description": "a series of PrimaryMetal roses encrusted in crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+        ]),
+    ]),
+    "Flower Tiara": ([
+        "class": "tiara design",
+        "value": 25,
+        "description": "a series of PrimaryMetal flowers encrusted in crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+        ]),
+    ]),
+    "Simple Crown": ([
+        "class": "crown design",
+        "value": 5,
+        "description": "a series of encrusted crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Leaf Crown": ([
+        "class": "crown design",
+        "value": 5,
+        "description": "a series of leaf-shaped crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+        ]),
+    ]),
+    "Rose Crown": ([
+        "class": "crown design",
+        "value": 25,
+        "description": "a series of PrimaryMetal roses encrusted in crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+        ]),
+    ]),
+    "Flower Crown": ([
+        "class": "crown design",
+        "value": 25,
+        "description": "a series of PrimaryMetal flowers encrusted in crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+        ]),
+    ]),
+    "Cross Crown": ([
+        "class": "crown design",
+        "value": 25,
+        "description": "a series of PrimaryMetal crosses encrusted in crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+        ]),
+    ]),
+    "Spade Crown": ([
+        "class": "crown design",
+        "value": 25,
+        "description": "a series of PrimaryMetal spades encrusted in crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+        ]),
+    ]),
+    "Eagle Crown": ([
+        "class": "crown design",
+        "value": 25,
+        "description": "a series of PrimaryMetal eagle wings encrusted in crystal caps the fillet.",
+        "crafting prerequisites": ([
+            "gem crafting": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
         ]),
     ]),
 ]);

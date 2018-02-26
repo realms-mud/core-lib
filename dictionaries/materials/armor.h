@@ -710,7 +710,7 @@ private nosave mapping armorBlueprints = ([
         ]),
         "crafting materials": ([
             "metal": 2,
-            "crystal": 1
+            "fillet design": (["metal": 0, "crystal": 0 ])
         ]),
         "default location": Helmet,
         "default ac": 0,
@@ -731,7 +731,7 @@ private nosave mapping armorBlueprints = ([
         ]),
         "crafting materials": ([
             "metal": 2,
-            "crystal": 1
+            "fillet design": (["metal": 0, "crystal": 0 ])
         ]),
         "default location": Helmet,
         "default ac": 0,
@@ -752,7 +752,8 @@ private nosave mapping armorBlueprints = ([
         ]),
         "crafting materials": ([
             "metal": 2,
-            "crystal": 1
+            "fillet design": (["metal": 0, "crystal": 0 ]),
+            "tiara design": (["metal": 0, "crystal": 0 ]),
         ]),
         "default location": Helmet,
         "default ac": 0,
@@ -773,7 +774,8 @@ private nosave mapping armorBlueprints = ([
         ]),
         "crafting materials": ([
             "metal": 3,
-            "crystal": 2
+            "fillet design": (["metal": 0, "crystal": 0 ]),
+            "crown design": (["metal": 0, "crystal": 0 ]),
         ]),
         "default location": Helmet,
         "default ac": 0,
@@ -931,8 +933,9 @@ private nosave mapping armorBlueprints = ([
             "gem crafting": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 1,
-            "crystal": 1
+            "metal":1,
+            "jewelry chain": (["metal": 1 ]),
+            "pendant design": (["metal": 0, "crystal": 0 ])
         ]),
         "default location": Amulet,
         "default encumberance": 1,
@@ -950,8 +953,9 @@ private nosave mapping armorBlueprints = ([
             "gem crafting": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 1,
-            "crystal": 1
+            "metal":1,
+            "jewelry chain": (["metal": 1 ]),
+            "pendant design": (["metal": 0, "crystal": 0 ])
         ]),
         "default location": Amulet,
         "default encumberance": 1,
@@ -1135,5 +1139,28 @@ private nosave mapping armorBlueprints = ([
         "default material": "leather",
         "default value": 200,
         "default description": ""
+    ]),
+    "bracelet": ([
+        "type": "armor",
+        "subtype": "accessory",
+        "skill to craft": 15,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/armor/craftJewelry.c":(["type":"research"]),
+            "metal crafting": (["type":"skill", "value": 3]),
+            "gem crafting": (["type":"skill", "value": 2]),
+            "leatherworking": (["type":"skill", "value": 10]),
+        ]),
+        "crafting materials": ([
+            "metal":1,
+            "jewelry chain": (["metal": 1 ]),
+            "pendant design": (["metal": 0, "crystal": 0 ])
+        ]),
+        "default location": Bracers,
+        "default encumberance": 1,
+        "default weight": 1,
+        "default material": "leather",
+        "default value": 200,
+        "default description": ""
     ])
+
 ]);
