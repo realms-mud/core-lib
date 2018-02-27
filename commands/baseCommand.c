@@ -8,6 +8,13 @@ private string MaterialAttributes = "lib/modules/materialAttributes.c";
 private string MessageParser = "/lib/core/messageParser.c";
 
 private string *commands = ({});
+protected int SplitCommands;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *commandList()
+{
+    return commands + ({});
+}
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string prepCommandRegExp(string command)
@@ -19,20 +26,28 @@ private nomask string prepCommandRegExp(string command)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string commandRegExp()
+public nomask varargs string commandRegExp(string commandToParse)
 {
     string ret = 0;
 
     if(sizeof(commands))
     {
         ret = "(";
-        foreach(string command in commands)
+
+        if (commandToParse && (member(commands, commandToParse) > -1))
         {
-            if (sizeof(ret) > 1)
+            ret += prepCommandRegExp(commandToParse);
+        }
+        else
+        {
+            foreach(string command in commands)
             {
-                ret += "|";
+                if (sizeof(ret) > 1)
+                {
+                    ret += "|";
+                }
+                ret += prepCommandRegExp(command);
             }
-            ret += prepCommandRegExp(command);
         }
         ret += ")";
 
@@ -49,11 +64,30 @@ public nomask int canExecuteCommand(string passedCommand)
 
     if(passedCommand && stringp(passedCommand))
     {
-        string commandRegexp = commandRegExp();
-
-        if(commandRegexp)
+        string commandRegexp;
+        if (SplitCommands)
         {
-            ret = sizeof(regexp(({ passedCommand }), commandRegexp));
+            foreach(string command in commands)
+            {
+                commandRegexp = commandRegExp(command);
+                if (commandRegexp)
+                {
+                    ret = sizeof(regexp(({ passedCommand }), commandRegexp));
+                    if (ret)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            commandRegexp = commandRegExp();
+
+            if (commandRegexp)
+            {
+                ret = sizeof(regexp(({ passedCommand }), commandRegexp));
+            }
         }
     }
 
@@ -72,10 +106,10 @@ protected nomask string commandString(string passedCommand)
             string commandRegexp = prepCommandRegExp(command);
             string commandCheck = regreplace(commandRegexp, "##(Target|Environment|Item|Value)##", ".+", 1);
 
-            if(sizeof(regexp(({ passedCommand }), commandCheck)))
+            if (sizeof(regexp(({ passedCommand }), commandCheck)))
             {
                 ret = regreplace(commandRegexp, "##(Target|Environment|Item|Value)##", "", 1);
-                ret -="$";
+                ret -= "$";
                 break;
             }
         }
@@ -191,7 +225,8 @@ protected nomask string parseTemplate(string template, string perspective,
     // ##InitiatorName## - Initiator's name
     // ##InitiatorPossessive[::Name]## - Initiator possessive / your / Name's
     // ##InitiatorObjective## - Initiator's objective / you
-    // ##InitiatorSubjective## - Initiator's subjective/pronoun / you
+    // ##InitiatorReflexive## - Initiator's reflexive pronoun / yourself
+    // ##InitiatorSubjective## - Initiator's subjective pronoun / you
     // ##Target[NPOS]## - Target's (one of above 4)
     // ##HitDictionary## - random word from the hit dictionary (slash/slashes,
     //   chop/chops)

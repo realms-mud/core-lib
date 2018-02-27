@@ -20,15 +20,15 @@ private nomask void registerPlayerCommands()
     {
         foreach(string command in commandFiles)
         {
-            string fullyQualifiedFile = sprintf("%s/%s", PlayerCommands, command);
+            string fullyQualifiedFile = sprintf("%s%s", PlayerCommands, command);
 
             if(file_size(fullyQualifiedFile))
             { 
                 object commandObj = load_object(fullyQualifiedFile);
-                
-                if(commandObj && (member(inherit_list(commandObj), BaseCommand) > -1))
+                string *commandList = commandObj->commandList();
+                foreach(string commandEntry in commandList)
                 {
-                    commands[commandObj->commandRegExp()] = fullyQualifiedFile;
+                    commands[commandObj->commandRegExp(commandEntry)] = fullyQualifiedFile;
                 }
             }
         }
@@ -50,10 +50,10 @@ private nomask void registerWizardCommands()
                 object commandObj = load_object(fullyQualifiedFile);
 
                 if (commandObj && (member(inherit_list(commandObj), BaseCommand) > -1) &&
-                    commandObj->commandRegExp())
+                    commandObj->commandRegExp(command))
                 {
-                    commands[commandObj->commandRegExp()] = fullyQualifiedFile;
-                    wizCommands += ({ commandObj->commandRegExp() });
+                    commands[commandObj->commandRegExp(command)] = fullyQualifiedFile;
+                    wizCommands += ({ commandObj->commandRegExp(command) });
                 }
             }
         }
