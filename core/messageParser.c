@@ -64,6 +64,7 @@ private nomask varargs string getPossessiveName(object actor, int isSecondPerson
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private nomask varargs string getPossessive(object actor, int isSecondPerson)
 {
     string ret = "your";
