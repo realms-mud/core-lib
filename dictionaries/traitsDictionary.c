@@ -408,7 +408,7 @@ public nomask string traitDetailsFromFile(string traitFile)
             capitalize(traitObj->query("name")) +
             (traitIsNegative(traitFile) ? "[0;31m [Negative][0m" : "")) +
             sprintf(FieldDisplay, "Trait Type", capitalize(traitObj->query("type"))) +
-            sprintf(Value, traitObj->query("description")) + "\n" +
+            format(sprintf(Value, traitObj->query("description")), 78) + "\n" +
             sprintf(FieldDisplay, "Root Trait Class", capitalize(traitObj->query("root"))) +
             (traitObj->query("opposing root") ? sprintf(FieldDisplay, "Opposing Trait Class", 
                 capitalize(traitObj->query("opposing root"))) : "") +

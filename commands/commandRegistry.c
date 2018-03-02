@@ -9,8 +9,24 @@ private string BaseCommand = "lib/commands/baseCommand.c";
 private string Wizard = "lib/realizations/wizard.c";
 
 private mapping commands = ([]);
+private mapping commandTypes = ([]);
+
 private string *wizCommands = ({});
-private int IsInitialized = 0;
+private int IsInitialized = 0; 
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void registerCommandAsType(object commandObj,
+    string fullyQualifiedFile, string command)
+{
+    string commandType = commandObj->commandType();
+    if (!member(commandTypes, commandType))
+    {
+        commandTypes[commandType] = ([]);
+    }
+
+    string commandText = regreplace(command, "^([^[#]+) *[[#].*", "\\1", 1);
+    commandTypes[commandType][commandText] = fullyQualifiedFile;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void registerPlayerCommands()
@@ -29,6 +45,7 @@ private nomask void registerPlayerCommands()
                 foreach(string commandEntry in commandList)
                 {
                     commands[commandObj->commandRegExp(commandEntry)] = fullyQualifiedFile;
+                    registerCommandAsType(commandObj, fullyQualifiedFile, commandEntry);
                 }
             }
         }
@@ -108,4 +125,10 @@ public nomask int executeCommand(string passedCommand, object initiator)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getListOfCommands()
+{
+    return commandTypes + ([]);
 }

@@ -9,6 +9,7 @@ private string MessageParser = "/lib/core/messageParser.c";
 
 private string *commands = ({});
 protected int SplitCommands;
+protected string CommandType = "general";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *commandList()
@@ -195,6 +196,12 @@ public nomask string displayUsageDetails()
     }
 
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string commandType()
+{
+    return CommandType;
 }
 
 /////////////////////////////////////////////////////////////////////////////

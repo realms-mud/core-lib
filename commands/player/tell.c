@@ -11,6 +11,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
+        CommandType = "social";
         addCommandTemplate("tell ##Target## ##Value##");
         addCommandTemplate("reply ##Value##");
     }

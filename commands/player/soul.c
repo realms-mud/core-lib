@@ -235,6 +235,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
+        CommandType = "emote / soul";
         SplitCommands = 1;
         string *emoteList = m_indices(emoteTemplates);
         foreach(string emote in emoteList)

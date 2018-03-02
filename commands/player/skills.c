@@ -9,6 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
+        CommandType = "player R&D";
         addCommandTemplate("skills [-co(mbat|)] [-cr(afting|)] [-e(rudite|)] "
             "[-g(eneral|)] [-l(anguage|)] [-m(agic|)] [-s(ubterfuge|)] [-a(ll|)] "
             "[-advance ##Item##] [-by ##Value##] [.*]");

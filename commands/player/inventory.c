@@ -9,6 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
+        CommandType = "player information";
         addCommandTemplate("inventory [-v]");
         addCommandTemplate("i [-v]");
         addCommandTemplate("inven [-v]");

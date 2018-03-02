@@ -10,6 +10,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
+        CommandType = "emote / soul";
         addCommandTemplate("emote [.*]");
         addCommandTemplate(": [.*]");
     }

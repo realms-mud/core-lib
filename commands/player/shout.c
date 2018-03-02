@@ -10,6 +10,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
+        CommandType = "social";
         addCommandTemplate("shout [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
             "[-l(anguage|) ##Language##] [.*]");
     }

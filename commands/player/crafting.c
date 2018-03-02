@@ -9,6 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
+        CommandType = "player R&D";
         addCommandTemplate("crafting");
         addCommandTemplate("craft");
     }

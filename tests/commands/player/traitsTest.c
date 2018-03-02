@@ -452,7 +452,7 @@ void TraitDetailsDisplayTraitInformation()
 {
     string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
         "[0;36mTrait Type[0m: [0;33mRole[0m\n"
-        "[0;33mblah blah blah[0m\n"
+        "[0;33mblah blah blah\n[0m\n"
         "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
         "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
         "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
@@ -475,7 +475,7 @@ void TraitDetailsDisplayTraitPenalties()
 {
     string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
         "[0;36mTrait Type[0m: [0;33mRole[0m\n"
-        "[0;33mblah blah blah[0m\n"
+        "[0;33mblah blah blah\n[0m\n"
         "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
         "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
         "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
@@ -509,7 +509,7 @@ void TraitDetailsDisplayTraitResearch()
 {
     string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
         "[0;36mTrait Type[0m: [0;33mRole[0m\n"
-        "[0;33mblah blah blah[0m\n"
+        "[0;33mblah blah blah\n[0m\n"
         "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
         "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
         "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
@@ -535,7 +535,7 @@ void TraitDetailsDisplayTraitPrerequisites()
 {
     string message = "[0;36mTrait Name[0m: [0;33mFreak[0m\n"
         "[0;36mTrait Type[0m: [0;33mGenetic[0m\n"
-        "[0;33mblah blah blah[0m\n"
+        "[0;33mblah blah blah\n[0m\n"
         "[0;36mRoot Trait Class[0m: [0;33mDisfigured[0m\n"
         "[0;36mOpposing Trait Class[0m: [0;33mNormal[0m\n"
         "[0;36mPrerequisites:[0m\n"
@@ -552,7 +552,7 @@ void TraitDetailsDisplayTraitLimiters()
 {
     string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
         "[0;36mTrait Type[0m: [0;33mRole[0m\n"
-        "[0;33mblah blah blah[0m\n"
+        "[0;33mblah blah blah\n[0m\n"
         "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
         "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
         "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
