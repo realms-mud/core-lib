@@ -24,7 +24,7 @@ private nomask void registerCommandAsType(object commandObj,
         commandTypes[commandType] = ([]);
     }
 
-    string commandText = regreplace(command, "^([^[#]+) *[[#].*", "\\1", 1);
+    string commandText = regreplace(command, "^([^[#]+) +[[#].*", "\\1", 1);
     commandTypes[commandType][commandText] = fullyQualifiedFile;
 }
 

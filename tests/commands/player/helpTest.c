@@ -27,5 +27,13 @@ void CleanUp()
 void HelpDisplaysMainHelpMenu()
 {
     ExpectTrue(Player->executeCommand("help"));
+    ExpectSubStringMatch("Emote / Soul Help.*ack.*Interactions.*General.*save", 
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HelpForSpecificCommandDisplaysCommandInfo()
+{
+    ExpectTrue(Player->executeCommand("help say"));
 //    ExpectEq("x", Player->caughtMessage());
 }

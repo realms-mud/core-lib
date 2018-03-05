@@ -235,7 +235,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        CommandType = "emote / soul";
+        CommandType = "Emote / Soul";
         SplitCommands = 1;
         string *emoteList = m_indices(emoteTemplates);
         foreach(string emote in emoteList)
@@ -354,5 +354,20 @@ public nomask int execute(string command, object initiator)
             }
         }
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string displayUsageDetails(string displayCommand)
+{
+    string ret = "";
+
+    if (sizeof(commands) && member(emoteTemplates, displayCommand))
+    {
+        string *commandText = ({});
+        commandText += ({ regreplace(displayCommand, "##([^#]+)##", "<\\1>", 1) });
+        ret = implode(commandText, "\n                  ");
+    }
+
     return ret;
 }

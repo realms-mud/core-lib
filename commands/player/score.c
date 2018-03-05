@@ -12,7 +12,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        CommandType = "player information";
+        CommandType = "Player Information";
         addCommandTemplate("score");
         addCommandTemplate("?");
 

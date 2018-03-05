@@ -9,7 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        CommandType = "player information";
+        CommandType = "Player Information";
         addCommandTemplate("traits [-b(ackground|)] [-d(etails|)] [-ed(ucational|)] "
             "[-ef(fect|)] [-ge(netic|)] [-g(uild|)] [-h(ealth|)] [-pe(rsonality|)] "
             "[-pr(ofessional|)] [-ra(cial|)] [-ro(le|)] [.*]");

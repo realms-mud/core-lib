@@ -9,7 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        CommandType = "interactions";
+        CommandType = "Interactions";
         addCommandTemplate("shop");
     }
 }

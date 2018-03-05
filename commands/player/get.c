@@ -11,7 +11,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        CommandType = "interactions";
+        CommandType = "Interactions";
         addCommandTemplate("get [-a] [##Item##] [from ##Target##]");
         addCommandTemplate("pick up [-a] ##Item##");
     }

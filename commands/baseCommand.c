@@ -7,7 +7,7 @@
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
 private string MessageParser = "/lib/core/messageParser.c";
 
-private string *commands = ({});
+protected string *commands = ({});
 protected int SplitCommands;
 protected string CommandType = "general";
 
@@ -181,7 +181,7 @@ public nomask int addCommandTemplate(string command)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayUsageDetails()
+public string displayUsageDetails(string displayCommand)
 {
     string ret = "";
 
