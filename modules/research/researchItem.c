@@ -296,6 +296,26 @@ private nomask string displayExtraResearchInformation()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string displayUsageInfo()
+{
+    string ret = "";
+
+    if (sizeof(commands))
+    {
+        string *commandText = ({});
+        foreach(string command in commands)
+        {
+            string currentCommand = regreplace(command, "\\|", "", 1);
+            currentCommand = "[0;36m" + regreplace(currentCommand, "##([^#]+)##", "[0;33m<\\1>[0m[0;36m", 1) + "[0m";
+            commandText += ({ regreplace(currentCommand, "\n", "\n\t\t", 1) });
+        }
+        ret = implode(commandText, "\n                  ");
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string displayUsageCost()
 {
     string ret = "";
@@ -325,10 +345,11 @@ private nomask string displayUsageCost()
         ret += sprintf(FieldDisplay, "Usage cooldown", timeString(query("cooldown")));
     }
 
-    if (displayUsageDetails() != "")
+    string details = displayUsageInfo();
+    if (details != "")
     {
-        ret += sprintf("[0;36m%-15s[0m : [0;30;1m%s[0m\n",
-            "Command syntax", displayUsageDetails());
+        ret += sprintf("[0;36m%-15s[0m : %s\n",
+            "Command syntax", details);
     }
     return ret;
 }

@@ -13,6 +13,7 @@ void Setup()
     Player->Name("bob");
     Player->Race("human");
     Player->Gender(1);
+    Player->pageSize(200);
     Player->addCommands();
     move_object(Player, this_object());
 }
@@ -27,13 +28,23 @@ void CleanUp()
 void HelpDisplaysMainHelpMenu()
 {
     ExpectTrue(Player->executeCommand("help"));
-    ExpectSubStringMatch("Emote / Soul Help.*ack.*Interactions.*General.*save", 
+    command(" ", Player);
+    ExpectSubStringMatch("zing.*Interactions.*General.*save", 
         Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PagingDisplaysBreakRequiringInput()
+{
+    Player->pageSize(20);
+    ExpectTrue(Player->executeCommand("help"));
+    ExpectEq("\n[0;35;1mMore? [q to quit][0m\n", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HelpForSpecificCommandDisplaysCommandInfo()
 {
     ExpectTrue(Player->executeCommand("help say"));
-//    ExpectEq("x", Player->caughtMessage());
+    ExpectSubStringMatch("Synopsis.*Syntax.*Description.*Options.*.*Notes", 
+        Player->caughtMessage());
 }

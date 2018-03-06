@@ -6,62 +6,6 @@ inherit "/lib/commands/baseCommand.c";
 private object Dictionary;
 
 /////////////////////////////////////////////////////////////////////////////
-public int sortArray(mixed a, mixed b)
-{
-    string compA;
-    string compB;
-
-    if (mappingp(a) && mappingp(b))
-    {
-        compA = this_object()->convertDataToString(a);
-        compB = this_object()->convertDataToString(b);
-    }
-    else
-    {
-        compA = to_string(a);
-        compB = to_string(b);
-    }
-
-    return compA > compB;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public string convertDataToString(mixed data)
-{
-    string ret = "";
-
-    if (objectp(data))
-    {
-        ret += program_name(data);
-    }
-    else if (pointerp(data) && sizeof(data))
-    {
-        ret += "({ ";
-        data = sort_array(data, "sortArray");
-        foreach(mixed element in data)
-        {
-            ret += convertDataToString(element) + ", ";
-        }
-        ret += "})";
-    }
-    else if (mappingp(data))
-    {
-        ret += "([ ";
-        mixed *indices = sort_array(m_indices(data), "sortArray");
-        foreach(mixed index in indices)
-        {
-            ret += convertDataToString(index) + ": " + convertDataToString(data[index]) + ", ";
-        }
-        ret += "])";
-    }
-    else
-    {
-        ret += to_string(data);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
     if (!arg)
@@ -133,16 +77,47 @@ private nomask string topLevelHelpMessage(mapping commandList)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void pageString(string message, object initiator)
+{
+    string *messageLines = explode(message, "\n");
+    int pageSize = initiator->pageSize();
+    if (sizeof(messageLines) > pageSize)
+    {
+        pageString(implode(messageLines[0..(pageSize - 1)], "\n"), initiator);
+        tell_object(initiator, "\n[0;35;1mMore? [q to quit][0m\n");
+        input_to("responseToPage", 1, "[0;36m" + implode(messageLines[pageSize..], "\n"), initiator);
+    }
+    else
+    {
+        tell_object(initiator, message);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+static nomask void responseToPage(string response, string message, object initiator)
+{
+    if (stringp(response) && (lower_case(response[0..0]) != "q"))
+    {
+        pageString(message, initiator);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string displayHelpDetails(string commandFile, string command)
 {
-    string ret = "Help for " + commandFile;
+    string ret = "";
     object commandObj = load_object(commandFile);
 
     if (commandObj)
     {
-        ret = commandObj->displayUsageDetails(command);
+        ret += Dictionary->buildBanner("Help for", command) +
+            commandObj->displaySynopsis(command);
+
+        ret += commandObj->displayUsageDetails(command) +
+            commandObj->displayDescription(command) +
+            commandObj->displayOptions(command) +
+            commandObj->displayNotes(command);
     }
-    write(ret);
     return ret;
 }
 
@@ -166,9 +141,8 @@ public nomask int execute(string command, object initiator)
         else if(member(flattenedCommandList, command))
         {
             message = displayHelpDetails(flattenedCommandList[command], command);
-            write("Boogers!\n");
         }
-        tell_object(initiator, message);
+        pageString(message, initiator);
         ret = 1;
     }
     return ret;

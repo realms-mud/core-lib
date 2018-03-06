@@ -71,3 +71,13 @@ public nomask object ReplyToUser()
 {
     return ReplyTo;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int pageSize(int newSize)
+{
+    if (newSize)
+    {
+        PageSize = newSize;
+    }
+    return PageSize;
+}

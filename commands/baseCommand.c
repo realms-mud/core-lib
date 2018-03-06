@@ -181,24 +181,6 @@ public nomask int addCommandTemplate(string command)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string displayUsageDetails(string displayCommand)
-{
-    string ret = "";
-
-    if (sizeof(commands))
-    {
-        string *commandText = ({});
-        foreach(string command in commands)
-        {
-            commandText += ({ regreplace(command, "##([^#]+)##", "<\\1>", 1) });
-        }
-        ret = implode(commandText, "\n                  ");
-    }
-
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask string commandType()
 {
     return CommandType;
@@ -318,4 +300,119 @@ protected nomask void displayMessageToSelf(string message, object initiator)
         tell_object(initiator, formatText(message, colorInfo,
             initiator));
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag)
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string usageDetails(string displayCommand)
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand)
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand)
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string options(string displayCommand)
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand)
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string copyright()
+{
+    return "[0;36;1mCopyright\n[0;36m\tCopyright (C) 1991-2018 Allen "
+        "Cummings. For additional licensing\n\tinformation, see "
+        "http://realmsmud.org/license/ [0m\n";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string wildcardMeaning()
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string displayUsageDetails(string displayCommand)
+{
+    string ret = "";
+
+    if (sizeof(commands))
+    {
+        string *commandText = ({});
+        foreach(string command in commands)
+        {
+            string currentCommand = regreplace(command, "\\[\\.\\*\\]", wildcardMeaning(), 1);
+            currentCommand = format(regreplace(currentCommand, "\\|", "", 1), 78);
+            currentCommand = "[0;36m" + regreplace(currentCommand, "##([^#]+)##", "[0;33m<\\1>[0m[0;36m", 1) + "[0m";
+            commandText += ({ regreplace(currentCommand, "\n", "\n\t\t", 1) });
+        }
+        ret = "\t" + implode(commandText, "\n\t");
+    }
+
+    return "\n[0;36;1mSyntax\n[0m" + ret + "\n[0m";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string displaySynopsis(string displayCommand)
+{
+    return format(sprintf("[0;36;1mSynopsis\n[0;36m\t%s - %s\n[0m", 
+        displayCommand, synopsis(displayCommand)), 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string displayDescription(string displayCommand)
+{
+    return format(sprintf("[0;36;1mDescription\n[0;36m%s\n[0m\n",
+        description(displayCommand)), 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string displayOptions(string displayCommand)
+{
+    string ret = "";
+    if (sizeof(commands))
+    {
+        string commandBlueprint = regreplace(commands[0], "^([^-[]+ +)(.*)", "\\2");
+        string *options = explode(commandBlueprint, " [") - ({ ".*]" });
+        string *optionList = ({});
+        foreach(string option in options)
+        {
+            string shorthand = "[0;36;1m" + regreplace(option, "\\[*(.+)\\([^)]+\\)([^]]*)[]]$", "\\1\\2") + "[0m";
+            string verbose = "[0;36;1m" + regreplace(option, "\\[*(.+)\\(([^|]+)\\|\\)([^]]*)[]]$", "\\1\\2\\3") + "[0m";
+
+            optionList += ({ "    " + regreplace(format(shorthand + ", " + verbose, 78),
+                "##([^#]+)##", "[0;33m<\\1>[0m", 1) + "[0;36m\t" +
+                regreplace(format(flagInformation(shorthand), 78), "\n", "\n\t", 1) + "[0m\n" });
+        }
+        ret = implode(optionList, "");
+    }
+    return "[0;36;1mOptions\n" + "[0m" + ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string displayNotes(string displayCommand)
+{
+    return format(sprintf("[0;36;1mNotes\n[0;36m\t%s\n[0m\n",
+        notes(displayCommand)), 78) + copyright();
 }

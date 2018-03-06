@@ -358,7 +358,7 @@ public nomask int execute(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayUsageDetails(string displayCommand)
+protected nomask string usageDetails(string displayCommand)
 {
     string ret = "";
 
