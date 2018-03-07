@@ -567,7 +567,7 @@ public string long()
     string materials = describeCraftingMaterials();
     if (materials != "")
     {
-        description += "\n" + materials;
+        description += " " + materials;
     }
     description = format(description, 78);
 

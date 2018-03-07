@@ -113,7 +113,7 @@ void DescribeShowsItemDetails()
     command("1", Player);
     command("? 1", Player);
 
-    ExpectSubStringMatch("Bastard sword.*Material.*Attack.*Damage.*Defense.*You can buy this item for 650",
+    ExpectSubStringMatch("bastard sword.*Material.*Attack.*Damage.*Defense.*You can buy this item for 650",
         Player->caughtMessage());
 }
 

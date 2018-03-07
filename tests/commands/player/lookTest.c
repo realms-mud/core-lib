@@ -302,7 +302,7 @@ void LookAtItemShowsDetails()
     Player->advanceSkill("long sword", 6);
 
     ExpectTrue(Player->executeCommand("look at blah"));
-    ExpectEq("Sword of Blah\n" + 
+    ExpectEq("This is a sword with a blade that is about 40 inches (100 cm) long.\n" + 
         sprintf(NormalEquipment, "This long sword is typical for its type.\n") + 
         sprintf(SingleDetailText, "Weight", 5) + 
         sprintf(Unidentified, "This item has not been identified.\n") + "\n",
