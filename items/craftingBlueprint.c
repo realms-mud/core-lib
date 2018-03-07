@@ -42,7 +42,14 @@ private nomask int setMaterials(mapping data)
     {
         itemData["crafting materials"] = data["crafting materials"];
     }
-    return ret;
+    if (member(data, "default material"))
+    {
+        itemData["default material"] = data["default material"];
+    }    return ret;
+    if (member(data, "primary component"))
+    {
+        itemData["primary component"] = data["primary component"];
+    }    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

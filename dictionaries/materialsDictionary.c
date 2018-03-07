@@ -974,11 +974,11 @@ private nomask string *getWeightedMaterial(string material)
 {
     string *weightedMaterials = ({});
     int numToAdd = 0;
-    switch (materials[material]["quality"])
+    switch (materials[material]["scarcity"])
     {
         case "common":
         {
-            numToAdd = 5;
+            numToAdd = 8;
             break;
         }
         case "uncommon":
@@ -1006,6 +1006,37 @@ private nomask string *getWeightedMaterial(string material)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs string getRandomMaterialFromClass(string materialClass,
+    string defaultMaterial)
+{
+    int useCrystals = materialClass == "metal";
+
+    string *options = filter(m_indices(materials),
+        (: (($2[$1]["class"] == $3) ||
+        ($4 && !random(10) && ($2[$1]["class"] == "crystal"))) :),
+        materials, materialClass, useCrystals);
+
+    string *weightedMaterials = ({});
+
+    if (defaultMaterial)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            weightedMaterials += ({ defaultMaterial });
+        }
+    }
+
+    if (sizeof(options))
+    {
+        foreach(string material in options)
+        {
+            weightedMaterials += getWeightedMaterial(material);
+        }
+    }
+    return weightedMaterials[random(sizeof(weightedMaterials))];
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getRandomMaterial(object item)
 {
     string defaultMaterial = item->query("material");
@@ -1013,27 +1044,7 @@ public nomask string getRandomMaterial(object item)
     if (member(materials, defaultMaterial))
     {
         string materialClass = materials[defaultMaterial]["class"];
-        int useCrystals = materialClass == "metal";
-
-        string *options = filter(m_indices(materials),
-            (: (($2[$1]["class"] == $3) ||
-            ($4 && !random(10) && ($2[$1]["class"] == "crystal"))) :),
-            materials, materialClass, useCrystals);
-
-        string *weightedMaterials = ({});
-        for (int i = 0; i < 100; i++)
-        {
-            weightedMaterials += ({ defaultMaterial });
-        }
-
-        if (sizeof(options))
-        {
-            foreach(string material in options)
-            {
-                weightedMaterials += getWeightedMaterial(material);
-            }
-        }
-        ret = weightedMaterials[random(sizeof(weightedMaterials))];
+        ret = getRandomMaterialFromClass(materialClass, defaultMaterial);
     }
     return ret;
 }

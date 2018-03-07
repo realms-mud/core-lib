@@ -150,6 +150,7 @@ void PurchaseWithSufficientFundsSubtractsMoneyAndAddsItemToPlayerInventory()
     int value = to_int(regreplace(purchaseMessage, ".*for .([0-9]+).*", "\\1", 1));
     ExpectTrue(value > 25);
     ExpectTrue(member(inherit_list(all_inventory(Player)[0]), "lib/items/weapon.c") > -1);
+    ExpectTrue(mappingp(all_inventory(Player)[0]->query("crafting materials")));
     ExpectEq(1000000 - value, Player->Money());
 }
 

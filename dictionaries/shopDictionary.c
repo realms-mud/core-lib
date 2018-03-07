@@ -253,11 +253,15 @@ private nomask void generateDefaultItems(object shop)
             }
         }
     }
+
+    object craftingDictionary = load_object("/lib/dictionaries/craftingDictionary.c");
     if (sizeof(defaultItems))
     {
         foreach(string itemName in defaultItems)
         {
             object item = clone_object(sprintf("%s%s.c", dir, itemName));
+            craftingDictionary->getRandomCraftingMaterial(item, 1);
+
             item->identify();
             shop->storeItem(item, 1);
             destruct(item);
@@ -324,6 +328,8 @@ private nomask int addEnchantment(object item)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void generateRandomItems(object shop)
 {
+    object craftingDictionary = load_object("/lib/dictionaries/craftingDictionary.c");
+
     int numItems = shop->randomItemsToGenerate();
     string dir = sprintf("/lib/instances/items/%s%s/", 
         shop->shopType(), ((shop->shopSubType() != "all") ? 
@@ -339,6 +345,7 @@ private nomask void generateRandomItems(object shop)
         {
             object item = clone_object(sprintf("%s%s", dir,
                 itemBlueprints[random(sizeof(itemBlueprints))]));
+            craftingDictionary->getRandomCraftingMaterial(item);
 
             int numEnchantments = 1 + random(5);
             item->set("material", materials->getRandomMaterial(item));
