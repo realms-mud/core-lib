@@ -720,6 +720,25 @@ private nomask string replaceDescriptiveText(string text, string type, mapping d
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string addMaterialsToDescription(object item)
+{
+    string ret = item->query("long");
+    mapping craftingMaterials = item->query("crafting materials");
+
+    if (craftingMaterials && mappingp(craftingMaterials))
+    {
+        foreach(string materialClass in materialClasses)
+        {
+            if (member(craftingMaterials, materialClass))
+            {
+                ret = regreplace(ret, materialClass, craftingMaterials[materialClass], 1);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getEquipmentMaterials(object item)
 {
     string ret = "";

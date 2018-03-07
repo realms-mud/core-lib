@@ -246,7 +246,8 @@ void CanCraftItemWithBothPrimaryMaterialAndComponent()
     command("1", Player);
     command("4", Player);
 
-    ExpectSubStringMatch("The ring design is a ring of gold and admantite that has been intricately\n"
-        "carved into the shape of an eagle's talon embossed with gold. It is clutching\n"
+    ExpectSubStringMatch("This is a small band of admantite worn on the finger. The ring design is a\n"
+        "ring of gold and admantite that has been intricately carved into the shape of\n"
+        "an eagle's talon embossed with gold. It is clutching "
         "a large ruby.", present("ring", Player)->long());
 }

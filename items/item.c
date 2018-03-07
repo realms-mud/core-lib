@@ -552,7 +552,15 @@ public string long()
     string description = "";
     if (query("long") && (query("long") != ""))
     {
-        description += query("long");
+        object itemTypes = load_object(CraftingDictionary);
+        if (itemTypes && objectp(itemTypes))
+        {
+            description += itemTypes->addMaterialsToDescription(this_object());
+        }
+        else
+        {
+            description += query("long");
+        }
     }
     else
     {
