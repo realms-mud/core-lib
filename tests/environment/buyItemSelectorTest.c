@@ -52,6 +52,7 @@ void TopLevelMenuDisplaysCorrectly()
         "\t[[0;31;1m3[0m] - [0;32mWeapons - Sword     [0m\n"
         "\t[[0;31;1m4[0m] - [0;32mExit Buy Item Menu  [0m\n"
         "[0;32;1mYou must select a number from 1 to 4.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
 }
@@ -65,6 +66,7 @@ void SelectingExitExitsTheMenu()
         "\t[[0;31;1m1[0m] - [0;32mWeapons - Sword     [0m\n"
         "\t[[0;31;1m2[0m] - [0;32mExit Buy Item Menu  [0m\n"
         "[0;32;1mYou must select a number from 1 to 2.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
 

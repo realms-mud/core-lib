@@ -112,7 +112,7 @@ public nomask string displayMessage()
         ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.%s\n", sizeof(choices), AllowUndo ? " You may also undo or reset." : ""));
         if (AllowAbort)
         {
-            ret += sprintf(Green, "Type 'abort' if you do not wish to make a selection at this time.\n");
+            ret += sprintf(Green, "Type 'exit' if you do not wish to make a selection at this time.\n");
         }
         if (HasDescription)
         {
@@ -214,10 +214,10 @@ public nomask int applySelection(string arguments)
 
             UndoLog = ({});
         }
-        else if ((arguments == "abort") && AllowAbort)
+        else if ((arguments == "exit") && AllowAbort)
         {
             ret = Success;
-            tell_object(User, sprintf(Cyan, Type + " has been aborted.\n"));
+            tell_object(User, sprintf(Cyan, Type + " has been exited.\n"));
             notify("onSelectorAborted");
         }
         else if(member(Data, arguments))

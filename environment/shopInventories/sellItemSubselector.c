@@ -27,6 +27,7 @@ public nomask void reset(int arg)
     if (!arg)
     {
         Description = "Select an item to sell";
+        AllowAbort = 1;
         AllowUndo = 0;
         NumColumns = 2;
         Type = "Sell Items";

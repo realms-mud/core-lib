@@ -30,6 +30,7 @@ public nomask void reset(int arg)
     {
         Description = "Select an item to buy:\n"
             "[0;31m-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-[0m";
+        AllowAbort = 1;
         AllowUndo = 0;
         NumColumns = 1;
         SuppressColon = 1;

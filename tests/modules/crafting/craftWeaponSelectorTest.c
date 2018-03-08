@@ -47,7 +47,7 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
         "    [[0;31;1m13[0m] - [0;32mThrown              [0m\n"
         "    [[0;31;1m14[0m] - [0;32mExit Craft Weapons Menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 14.\n[0m"
-        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
 }

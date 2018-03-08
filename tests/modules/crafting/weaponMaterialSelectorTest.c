@@ -98,7 +98,7 @@ void SelectingMaterialDisplaysComponentMenu()
         "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n" +
         "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
         "[0;32;1mYou must select a number from 1 to 45.\n[0m"
-        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
@@ -165,7 +165,7 @@ void PFlagRemovedWhenPrerequisitesMet()
         "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n" +
         "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
         "[0;32;1mYou must select a number from 1 to 45.\n[0m"
-        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
@@ -230,7 +230,7 @@ void MFlagRemovedWhenQuantityMet()
         "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n" +
         "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
         "[0;32;1mYou must select a number from 1 to 45.\n[0m"
-        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
@@ -307,7 +307,7 @@ void QuantityCanBeSpreadAcrossMultipleObjects()
         "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mP,M[0;34;1m)[0m\n" +
         "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
         "[0;32;1mYou must select a number from 1 to 45.\n[0m"
-        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
@@ -378,7 +378,7 @@ void FlagsMovedAndOptionEnabledWhenPrerequisitesAndQuantityMet()
         "    [[0;31;1m44[0m] - [0;31mZinc                [0m[0;34;1m([0;35mM[0;34;1m)[0m  \n" +
         "    [[0;31;1m45[0m] - [0;32mExit Select Metal Menu[0m     \n"
         "[0;32;1mYou must select a number from 1 to 45.\n[0m"
-        "[0;32mType 'abort' if you do not wish to make a selection at this time.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
         "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",

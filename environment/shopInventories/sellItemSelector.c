@@ -26,6 +26,7 @@ public nomask void reset(int arg)
 {
     if(!arg)
     {
+        AllowAbort = 1;
         AllowUndo = 0;
         Description = "From this menu, you can view and sell your character's items";
         Type = "Sell Items";

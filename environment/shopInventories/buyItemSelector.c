@@ -19,6 +19,7 @@ public nomask void reset(int arg)
 {
     if(!arg)
     {
+        AllowAbort = 1;
         AllowUndo = 0;
         Description = "From this menu, you can view and purchase items";
         Type = "Purchase Items";

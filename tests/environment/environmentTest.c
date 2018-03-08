@@ -32,7 +32,7 @@ void DefaultDescriptionDisplaysCorrectlyForTerrain()
     Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
     ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east, north and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign.",
-        Environment->long());
+        regreplace(Environment->long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -46,7 +46,7 @@ void BuildingWithoutExitDisplaysCorrectly()
     Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
     ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign. To the north you see a building.*no obvious exits",
-        Environment->long());
+        regreplace(Environment->long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ void BuildingWithExitDisplaysCorrectly()
     Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
     ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign. To the north you see a building.*one obvious exit: north",
-        Environment->long());
+        regreplace(Environment->long(), "\n", " ", 1));
 }
 /////////////////////////////////////////////////////////////////////////////
 void DefaultDescriptionDisplaysCorrectlyForInteriors()
@@ -69,7 +69,7 @@ void DefaultDescriptionDisplaysCorrectlyForInteriors()
     Environment->testAddFeature("/lib/tests/support/environment/fakeInteriorFeature.c", "north");
 
     ExpectSubStringMatch("a stone hallway. To the north you see an impressive tapestry of Tantor the Unclean dueling an undead unicorn with his trusty plunger.",
-        Environment->long());
+        regreplace(Environment->long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -626,7 +626,7 @@ void SetAdditionalLongDescriptionAddsCustomLong()
     Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment->testSetAdditionalLongDescription("This is an extra message");
     ExpectSubStringMatch("a forest. To the north you see a stand of majestic oak trees with branches laden with acorns.*This is an extra message",
-        Environment->long());
+        regreplace(Environment->long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -635,12 +635,12 @@ void AdditionalLongDescriptionAddsCustomLongOnlyToCorrectState()
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment->testSetAdditionalLongDescription("This is an extra message", "blah");
-    ExpectSubStringMatch("a forest. To the north you see a stand of majestic oak trees with branches laden with acorns.*\n",
-        Environment->long());
+    ExpectSubStringMatch("a forest. To the north you see a stand of majestic oak trees with branches laden with acorns.*",
+        regreplace(Environment->long(), "\n", " ", 1));
 
     Environment->currentState("blah");
     ExpectSubStringMatch("This is an extra message",
-        Environment->long());
+        regreplace(Environment->long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -653,7 +653,7 @@ void ParseEfunCallForCallOtherWithKeyDisplaysInLong()
 
     ExpectTrue(present_clone("/lib/tests/support/items/testSword.c", Environment), "weapon present");
     ExpectSubStringMatch("a forest. You can feel a weaselish buzz in the air",
-        Environment->long());
+        regreplace(Environment->long(), "\n", " ", 1));
 
 }
 

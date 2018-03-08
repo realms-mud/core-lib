@@ -42,6 +42,7 @@ void TopLevelMenuDisplaysCorrectly()
         "\t[[0;31;1m2[0m] - [0;32mSell Items          [0m\n"
         "\t[[0;31;1m3[0m] - [0;32mExit Shop Menu      [0m\n"
         "[0;32;1mYou must select a number from 1 to 3.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
         Player->caughtMessage());
 }
@@ -63,6 +64,7 @@ void SelectingPurchaseDisplaysBuyMenu()
     ExpectEq("[0;36mPurchase Items - [0m[0;37;1mFrom this menu, you can view and purchase items[0m:\n"
         "\t[[0;31;1m1[0m] - [0;32mExit Buy Item Menu  [0m\n"
         "[0;32;1mYou must select a number from 1 to 1.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mThis vendor has nothing they are willing to sell to you.\n[0m",
         Player->caughtMessage());
@@ -76,6 +78,7 @@ void SelectingSellItemsDisplaysSellMenu()
     ExpectEq("[0;36mSell Items - [0m[0;37;1mFrom this menu, you can view and sell your character's items[0m:\n"
         "\t[[0;31;1m1[0m] - [0;32mExit Sell Item Menu [0m\n"
         "[0;32;1mYou must select a number from 1 to 1.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1mYou have nothing you can sell to this vendor!\n[0m",
         Player->caughtMessage());

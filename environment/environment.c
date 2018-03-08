@@ -533,7 +533,7 @@ public varargs string long(string item)
         raise_error("ERROR in environment.c: Either a valid terrain or "
             "interior must be set.\n");
     }
-    return sprintf(Description, capitalizeSentences(ret)) + 
+    return format(sprintf(Description, capitalizeSentences(ret)), 78) + 
         getExitDescription() + getInventoryDescription();
 }
 

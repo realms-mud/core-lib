@@ -25,6 +25,7 @@ public nomask void reset(int arg)
 {
     if(!arg)
     {
+        AllowAbort = 1;
         AllowUndo = 0;
         Description = "Welcome";
         Type = "Shop";

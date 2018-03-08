@@ -347,9 +347,7 @@ private nomask void generateRandomItems(object shop)
                 itemBlueprints[random(sizeof(itemBlueprints))]));
             craftingDictionary->getRandomCraftingMaterial(item);
 
-            int numEnchantments = 1 + random(5);
-            item->set("material", materials->getRandomMaterial(item));
-            
+            int numEnchantments = 1 + random(5);            
             string *aliases = ({ lower_case(item->query("name")) });
             if (item->query("aliases"))
             {
