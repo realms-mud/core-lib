@@ -1,6 +1,7 @@
 //*****************************************************************************
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
+// Translated with permission, originally written by: AUTHOR @ RealmsMUD
 //*****************************************************************************
 inherit "/lib/environment/environment.c";
 
@@ -8,17 +9,13 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/legacy.c");
-    setAdditionalLongDescription("##LongDescription##");
+    setShortDescription("##ShortDescription##");
+    setAdditionalLongDescription(
+        "##LongDescription##");
 
-    /* AddItems */
-    /* AddExits */
-    /* AddObjects */
+/* AddItems */
+/* AddExits */
+/* AddObjects */
 }
-
-/////////////////////////////////////////////////////////////////////////////
-protected int alwaysLight()
-{
-    return /* IsLight */0;
-}
-
+/* IsLight */
 /* AddMethods */

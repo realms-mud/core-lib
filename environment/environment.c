@@ -20,6 +20,7 @@ private mapping exits = ([]);
 private string State = "default";
 
 private nosave string Description = "[0;33m%s\n[0m";
+private nosave string ShortDescription = "";
 private nosave string Exits = "[0;30;1m -=-=- %s\n[0m";
 private nosave string InventoryItem = "[0;36m%s\n[0m";
 private nosave object StateMachine = 0;
@@ -503,6 +504,12 @@ private string getInventoryDescription()
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void setShortDescription(string newShort)
+{
+    ShortDescription = newShort;
 }
 
 /////////////////////////////////////////////////////////////////////////////
