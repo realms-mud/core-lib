@@ -50,6 +50,18 @@ public void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void init()
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected object clone_object(string objectFile)
+{
+    clone_list[objectFile] = 1;
+    return efun::clone_object(objectFile);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void add_clone(string file, int quantity)
 {
     clone_list[file] = quantity;
@@ -150,6 +162,7 @@ private string generateObjects(string inputFile)
             }
         }
     }
+
     return regreplace(inputFile, "[/][*] AddObjects [*][/]\n", objectList);
 }
 
@@ -157,6 +170,12 @@ private string generateObjects(string inputFile)
 private string generateItems(string inputFile)
 {
     string itemList = "";
+    int totalItemEntries = sizeof(items);
+    for (int i = 0; i < totalItemEntries; i += 2)
+    {
+        itemList += sprintf("    addLegacyItem(\"%s\", \"%s\");\n",
+            items[i], items[i+1]);
+    }
 
     if (sizeof(itemList))
     {

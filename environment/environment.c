@@ -73,7 +73,10 @@ private nomask void setUpAliases(string element)
     object environmentalObj = environmentDictionary()->environmentalObject(element);
     foreach(string state in environmentalObj->states())
     {
-        aliasesToElements[state] = ([]);
+        if (!member(aliasesToElements, state))
+        {
+            aliasesToElements[state] = ([]);
+        }
         foreach(string alias in environmentalObj->aliases(state))
         {
             aliasesToElements[state][alias] = program_name(environmentalObj);
@@ -181,6 +184,25 @@ protected nomask varargs void addFeature(string feature, string location)
     {
         raise_error(sprintf("ERROR in environment.c: '%s' is not a "
             "valid feature.\n", feature));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addLegacyItem(string item, string description)
+{
+    if (sizeof(environmentalElements["terrain"]) &&
+        member(environmentalElements["terrain"], "legacy"))
+    {
+        if (!member(aliasesToElements, "default"))
+        {
+            aliasesToElements["default"] = ([]);
+        }
+        aliasesToElements["default"][item] = description;
+    }
+    else
+    {
+        raise_error("ERROR in environment.c: addLegacyItem is only "
+            "usable when the terrain is in legacy mode.\n");
     }
 }
 
@@ -558,8 +580,18 @@ public nomask object getEnvironmentalElement(string item)
 
     if (isEnvironmentalElement(item))
     {
-        ret = load_object(aliasesToElements[currentState()][item]);
-        ret->currentState(currentState());
+        if (sizeof(environmentalElements["terrain"]) &&
+            member(environmentalElements["terrain"], "legacy"))
+        {
+            ret = load_object("/lib/environment/items/legacyItem.c");
+            ret->setItemData(item, aliasesToElements["default"][item]);
+            ret->currentState("default");
+        }
+        else
+        {
+            ret = load_object(aliasesToElements[currentState()][item]);
+            ret->currentState(currentState());
+        }
     }
     return ret;
 }

@@ -4,6 +4,7 @@
 //*****************************************************************************
 
 protected mapping descriptionData = ([ ]);
+protected int isLegacy = 0;
 private string elementName = 0;
 private string State = "default";
 
@@ -203,7 +204,7 @@ public nomask string long(int brief)
     string ret = 0;
     string state = currentState();
 
-    string introText = (elementName == "legacy") ? "" : "You see ";
+    string introText = isLegacy ? "" : "You see ";
     if (member(descriptionData, state) && member(descriptionData[state],
         "item template"))
     {
