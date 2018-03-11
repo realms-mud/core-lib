@@ -15,6 +15,7 @@ private string *preferredSkills = ({ "general", "erudite", "language" });
 private int CanLeaveGuild = 1;
 private string *ProhibitedGuilds = ({ });
 private mapping prohibitedEquipment = ([]);
+private int IsNonCombatGuild = 0;
 
 private mapping ranks = ([ 
 //  This mapping must have the following form:
@@ -272,6 +273,18 @@ public nomask varargs string guildName(string newName)
         guildName = newName;
     }
     return guildName;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isNonCombatGuild()
+{
+    return IsNonCombatGuild;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void nonCombatGuild()
+{
+    IsNonCombatGuild = 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////

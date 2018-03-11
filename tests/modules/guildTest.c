@@ -193,6 +193,39 @@ void AddExperienceCorrectlyHandlesMultipleGuilds()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void AddExperienceToSpecificGuildCorrectlyHandled()
+{
+    ExpectTrue(User->joinGuild("test"));
+    ExpectTrue(User->addExperience(1000), "experience added");
+    ExpectTrue(User->advanceLevel("test"), "level advanced");
+    ExpectTrue(User->joinGuild("mage"));
+
+    ExpectEq(0, User->guildExperience("test"), "initial test guild experience");
+    ExpectEq(0, User->guildExperience("mage"), "initial mage guild experience");
+
+    ExpectTrue(User->addExperience(300, "mage"), "experience added");
+    ExpectEq(0, User->guildExperience("test"), "new test guild experience");
+    ExpectEq(300, User->guildExperience("mage"), "new mage guild experience");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddExperienceToCombatGuildsDoesNotAddToNonCombatGuilds()
+{
+    object guild = load_object("/lib/tests/support/guilds/nonCombatGuild.c");
+    ExpectTrue(User->joinGuild("smith"));
+    ExpectTrue(User->addExperience(1000, "smith"), "experience added");
+    ExpectTrue(User->advanceLevel("smith"), "level advanced");
+    ExpectTrue(User->joinGuild("mage"));
+
+    ExpectEq(0, User->guildExperience("smith"), "initial test guild experience");
+    ExpectEq(0, User->guildExperience("mage"), "initial mage guild experience");
+
+    ExpectTrue(User->addExperience(300), "experience added");
+    ExpectEq(0, User->guildExperience("smith"), "new test guild experience");
+    ExpectEq(300, User->guildExperience("mage"), "new mage guild experience");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void GuildRankIsCorrectlyApplied()
 {
     ExpectEq(0, User->guildRank("test"));

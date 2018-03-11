@@ -466,3 +466,15 @@ public nomask int costToAdvanceSkillOfType(string guild, string type)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isNonCombatGuild(string guild)
+{
+    int ret = 0;
+
+    object guildObj = guildObject(guild);
+    if (guildObj && objectp(guildObj))
+    {
+        ret = guildObj->isNonCombatGuild();
+    }
+    return ret;
+}

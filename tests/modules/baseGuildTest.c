@@ -1077,3 +1077,13 @@ void isProhibitedEquipmentAffectedByDamageType()
     ExpectTrue(Guild->testAddEquipmentProhibition("damage type", ({ "slash" })));
     ExpectTrue(Guild->isProhibitedEquipment(weapon));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void isNonCombatGuildReturnsTrueOnlyForNonCombatGuilds()
+{
+    ExpectFalse(Guild->isNonCombatGuild());
+
+    object nonCombat = clone_object("/lib/tests/support/guilds/nonCombatGuild.c");
+    ExpectTrue(nonCombat->isNonCombatGuild());
+    destruct(nonCombat);
+}

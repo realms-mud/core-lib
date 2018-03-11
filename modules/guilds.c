@@ -36,7 +36,7 @@ static nomask string *validGuild()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int effectiveLevel()
+public nomask varargs int effectiveLevel(int onlyShowCombatGuilds)
 {
     int ret = 0;
    
@@ -48,29 +48,35 @@ public nomask int effectiveLevel()
     {
         foreach(string guild in m_indices(guilds))
         {
-            ret += guilds[guild]["level"];
+            if (!onlyShowCombatGuilds || (onlyShowCombatGuilds &&
+                !guildsDictionary()->isNonCombatGuild(guild)))
+            {
+                ret += guilds[guild]["level"];
+            }
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int memberOfGuild(string guild)
+public nomask varargs int memberOfGuild(string guild, int onlyListCombatGuilds)
 {
     return(guild && stringp(guild) && member(guilds, guild) && 
            mappingp(guilds[guild]) && member(guilds[guild], "level") &&
            member(guilds[guild], "experience") && 
            member(guilds[guild], "rank") &&
-           !member(guilds[guild], "left guild"));
+           !member(guilds[guild], "left guild") &&
+           (!onlyListCombatGuilds || (onlyListCombatGuilds &&
+           !guildsDictionary()->isNonCombatGuild(guild))));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *memberOfGuilds()
+public nomask varargs string *memberOfGuilds(int onlyListCombatGuilds)
 {
     string *ret = ({ });
     if(sizeof(guilds))
     {
-        ret = filter(m_indices(guilds), #'memberOfGuild);
+        ret = filter(m_indices(guilds), #'memberOfGuild, onlyListCombatGuilds);
     }
     return ret + ({ });
 }
@@ -126,25 +132,39 @@ public nomask int guildExperience(string guild)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int addExperience(int amount)
+private nomask void addExperienceToGuild(int amount, string guild)
+{
+    int newExperienceAmount = guilds[guild]["experience"] + amount;
+    int maxExp = 2 * guildsDictionary()->experienceToNextLevel(guild, guildLevel(guild));
+    if (newExperienceAmount > maxExp)
+    {
+        guilds[guild]["experience"] = maxExp;
+    }
+    else
+    {
+        guilds[guild]["experience"] = newExperienceAmount;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int addExperience(int amount, string selectedGuild)
 {
     int ret = 0;
-    if (sizeof(guilds))
+    if (selectedGuild && member(guilds, selectedGuild))
+    {
+        addExperienceToGuild(amount, selectedGuild);
+        ret = amount;
+    }
+    else if (sizeof(guilds))
     {
         amount += unassignedExperience;
         unassignedExperience = 0;
-        float guildLevels = to_float(effectiveLevel());
-        foreach(string guild in memberOfGuilds())
+        float guildLevels = to_float(effectiveLevel(1));
+        foreach(string guild in memberOfGuilds(1))
         {
             // Since to_int truncates, the 0.5 is added to handle rounding issues.
-            guilds[guild]["experience"] += to_int(0.5 + amount * 
-                (guildLevel(guild) / guildLevels));
-
-            int maxExp = 2 * guildsDictionary()->experienceToNextLevel(guild, guildLevel(guild));
-            if(guilds[guild]["experience"] > maxExp)
-            {
-                guilds[guild]["experience"] = maxExp;
-            }
+            addExperienceToGuild(to_int(0.5 + amount *
+                (guildLevel(guild) / guildLevels)), guild);
         }
         ret = amount;
     }
