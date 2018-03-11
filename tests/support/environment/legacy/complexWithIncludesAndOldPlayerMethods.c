@@ -35,7 +35,7 @@ void init() {
   add_action("kill_me", "kill");
   add_action("look", "look");
   add_action("look", "l");
-  add_action("look", "exa"); 
+  add_action("look", "exa");
 }
 
 int look(string str) {

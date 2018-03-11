@@ -14,6 +14,28 @@ protected string long_exit, short_exit;
 protected mapping clone_list = ([]);
 protected int alwaysLight;
 
+private string *methodsToIgnore = ({ "__INIT", "add_clone", "add_wanderer", 
+    "annotateAuthor", "clone_object", "generateCustomMethods", "generateExits", 
+    "generateItems", "generateLightMethod", "generateLongDescription", 
+    "generateNewRoom", "generateObjects", "generateShortDescription", 
+    "set_dest_dir", "set_items", "set_light", "set_long", "set_short", 
+    "translateFile", "reset"
+});
+
+private mapping methodsToReplace = ([
+    "query_name": "Name",
+    "query_real_name": "RealName",
+    "query_objective": "Objective",
+    "query_pronoun": "Pronoun",
+    "query_possessive": "Possessive",
+    "query_gender": "Gender",
+    "query_gender_string": "GenderDesc",
+    "query_hp": "hitPoints",
+    "query_sp": "spellPoints",
+    "query_level": "effectiveLevel",
+    "hit_player": "hit",
+]);
+
 /////////////////////////////////////////////////////////////////////////////
 public void set_short(string arg)
 {
@@ -185,10 +207,81 @@ private string generateItems(string inputFile)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private string replaceObjectMethods(string inputFile)
+{
+    string ret = inputFile;
+
+    string *methods = m_indices(methodsToReplace);
+    foreach(string method in methods)
+    {
+        if(method == "hit_player")
+        {
+            ret = regreplace(ret, "(hit_player.[^,]+), (DAMAGE|RESIST)_[A-Z_]+", "\\1", 1);
+        }
+        ret = regreplace(ret, method, methodsToReplace[method], 1);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private string generateCustomMethods(string inputFile)
 {
     string methods = "";
 
+    string *fileDetails = explode(read_file(
+        sprintf("/%s.c", object_name(this_object()))), "\n");
+    string functionRegExp = ".*(" + 
+        implode(functionlist(this_object()) - methodsToIgnore, "|") + ")[^;]+$";
+
+    mapping fileLocations = ([ "end": sizeof(fileDetails) ]);
+
+    int fileSize = sizeof(fileDetails);
+    for (int i = 0; i < fileSize; i++)
+    {
+        if (sizeof(regexp(({ fileDetails[i] }), functionRegExp)))
+        {
+            fileLocations[regreplace(fileDetails[i], functionRegExp, "\\1")] = i;
+        }
+    }
+    if (sizeof(fileLocations))
+    {
+        string *functions = sort_array(m_indices(fileLocations),
+            (: $3[$1] > $3[$2] :), fileLocations);
+
+        string previousFunction = 0;
+        string *addedFunctions = ({});
+        foreach(string functionName in functions)
+        {
+            if (previousFunction)
+            {
+                addedFunctions += fileDetails[fileLocations[previousFunction]..(fileLocations[functionName] - 1)];
+            }
+            previousFunction = functionName;
+        }
+
+        if (sizeof(addedFunctions))
+        {
+            methods = "/////////////////////////////////////////////////////////////////////////////\n" + methods;
+            methods += implode(addedFunctions, "\n");
+        }
+    }
+
+    int i = 0;
+    while (i < sizeof(fileDetails))
+    {
+        if (sizeof(regexp(({ fileDetails[i] }), "#include \"[^\"]+\.c\".*")))
+        {
+            string fileToAdd = regreplace(fileDetails[i], "#include \"([^\"]+\.c)\".*", "\\1");
+            if (fileToAdd)
+            {
+                methods += "\n" + read_file(fileToAdd);
+            }
+        }
+        i++;
+    }
+
+    methods = replaceObjectMethods(methods);
+    methods = regreplace(methods, "\"\/*players\/", "\"/lib/legacy\/", 1);
     return regreplace(inputFile, "[/][*] AddMethods [*][/]\n", methods);
 }
 
