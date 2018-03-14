@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Florite");
         set("short", "Florite");
-        set("aliases", ({ "gem" }));
+        set("aliases", ({ "gem", "florite" }));
         set("blueprint", "florite");
     }
 }

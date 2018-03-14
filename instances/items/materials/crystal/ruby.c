@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Ruby");
         set("short", "Ruby");
-        set("aliases", ({ "gem" }));
+        set("aliases", ({ "gem", "ruby" }));
         set("blueprint", "ruby");
     }
 }

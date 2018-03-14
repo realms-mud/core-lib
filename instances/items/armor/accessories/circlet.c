@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Circlet");
         set("short", "Circlet");
+        set("aliases", ({ "circlet" }));
         set("blueprint", "circlet");
     }
 }

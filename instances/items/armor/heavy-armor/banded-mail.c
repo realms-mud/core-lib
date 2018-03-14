@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Banded mail");
         set("short", "Banded mail");
-        set("aliases", ({ "armor", "mail" }));
+        set("aliases", ({ "armor", "mail", "banded mail" }));
         set("blueprint", "banded mail");
     }
 }

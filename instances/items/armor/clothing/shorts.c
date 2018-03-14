@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Shorts");
         set("short", "Shorts");
-        set("aliases", ({ "clothing", "clothes" }));
+        set("aliases", ({ "clothing", "clothes", "shorts" }));
         set("blueprint", "shorts");
     }
 }

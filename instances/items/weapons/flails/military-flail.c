@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Military flail");
         set("short", "Military flail");
-        set("aliases", ({ "flail" }));
+        set("aliases", ({ "flail", "military flail" }));
         set("blueprint", "military flail");
     }
 }

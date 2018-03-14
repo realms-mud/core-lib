@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Glaive");
         set("short", "Glaive");
+        set("aliases", ({ "glaive" }));
         set("blueprint", "glaive");
     }
 }

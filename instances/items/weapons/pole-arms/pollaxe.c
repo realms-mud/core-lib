@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Pollaxe");
         set("short", "Pollaxe");
-        set("aliases", ({ "axe" }));
+        set("aliases", ({ "axe", "pollaxe", "pole axe" }));
         set("blueprint", "pollaxe");
     }
 }

@@ -12,6 +12,7 @@ public void reset(int arg)
         set("name", "Meteoric iron");
         set("short", "Meteoric iron");
         set("aliases", ({ "iron" }));
+        set("aliases", ({ "metal", "meteoric iron", "iron" }));
         set("blueprint", "meteoric iron");
     }
 }

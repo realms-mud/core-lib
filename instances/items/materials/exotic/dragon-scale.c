@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Dragon scale");
         set("short", "Dragon scale");
+        set("aliases", ({ "scale", "dragon scale" }));
         set("blueprint", "dragon scale");
     }
 }

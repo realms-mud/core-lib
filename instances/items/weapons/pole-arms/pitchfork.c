@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Pitchfork");
         set("short", "Pitchfork");
-        set("aliases", ({ "fork" }));
+        set("aliases", ({ "fork", "pitchfork" }));
         set("blueprint", "pitchfork");
     }
 }

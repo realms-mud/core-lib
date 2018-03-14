@@ -168,6 +168,12 @@ private nomask void makeSelection(string selection)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected int handleSpecialSelection()
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int applySelection(string arguments)
 {
     int ret = 0;
@@ -183,6 +189,11 @@ public nomask int applySelection(string arguments)
             ret = Describe;
             tell_object(User, displayMessage() + "\n");
             tell_object(User, sprintf(Cyan, Data[element]["description"]));
+        }
+        else if (handleSpecialSelection())
+        {
+            write("I be here.\n");
+            makeSelection(arguments);
         }
         else if ((arguments == "undo") && sizeof(UndoLog) && AllowUndo)
         {

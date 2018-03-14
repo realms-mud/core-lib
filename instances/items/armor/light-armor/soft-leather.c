@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Soft leather");
         set("short", "Soft leather");
-        set("aliases", ({ "armor", "leather" }));
+        set("aliases", ({ "armor", "leather", "soft leather" }));
         set("blueprint", "soft leather");
     }
 }

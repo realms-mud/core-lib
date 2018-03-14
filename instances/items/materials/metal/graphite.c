@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Graphite");
         set("short", "Graphite");
+        set("aliases", ({ "metal", "graphite" }));
         set("blueprint", "graphite");
     }
 }

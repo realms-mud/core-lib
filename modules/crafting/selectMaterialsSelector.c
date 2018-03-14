@@ -10,6 +10,9 @@ private string CraftingItem;
 private string CraftingType;
 private string CraftingSubType;
 private object Item;
+private int SettingName = 0;
+private int SettingDescription = 0;
+private string NewDescription = "";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -104,9 +107,21 @@ protected nomask void setUpUserForSelection()
 
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":sprintf("Enchant %s", capitalize(CraftingItem)),
-            "type" : "enchantments",
-            "is disabled" : !Dictionary->canEnchantItem(Item, User),
-            "description" : "This option lets you enchant the item being crafted.\n"
+        "type" : "enchantments",
+        "is disabled" : !Dictionary->canEnchantItem(Item, User),
+        "description" : "This option lets you enchant the item being crafted.\n"
+    ]);
+
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name":sprintf("Give %s a name", CraftingItem),
+        "type" : "name",
+        "description" : "This option lets you name the item being crafted.\n"
+    ]);
+
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name":sprintf("Give %s a special description", CraftingItem),
+        "type" : "describe",
+        "description" : "This option lets you name the item being crafted.\n"
     ]);
 
     Data[to_string(sizeof(Data) + 1)] = ([
@@ -124,62 +139,102 @@ protected nomask void setUpUserForSelection()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected int handleSpecialSelection()
+{
+    return SettingName || SettingDescription;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int processSelection(string selection)
 {
     int ret = -1;
     if (User)
     {
-        ret = (Data[selection]["type"] == "exit");
-        if (ret == 1)
+        if (SettingName)
         {
-            User->abortCrafting();
+            SettingName = 0;
+            Item->set("name", selection);
+            ret = 0;
         }
-
-        if (Data[selection]["type"] == "craft")
+        else if (SettingDescription)
         {
-            if (!Data[selection]["is disabled"])
+            if (selection != "**")
             {
-                if (Dictionary->craftItem(Item, User))
-                {
-                    Dictionary->setCraftingSkill(CraftingType, CraftingItem,
-                        Item, User);
-                    User->completeCrafting();
-                    tell_object(User, sprintf("[0;32;1mYou have successfully "
-                        "crafted %s.[0m\n", CraftingItem));
-                    ret = 1;
-                }
+                NewDescription += selection + "\n";
+            }
+            else
+            {
+                SettingDescription = 0;
+                Item->set("long", NewDescription);
+                NewDescription = "";
             }
         }
-        else if (Data[selection]["type"] == "enchantments")
+        else
         {
-            if (!Data[selection]["is disabled"])
+            ret = (Data[selection]["type"] == "exit");
+            if (ret == 1)
             {
-                SubselectorObj = clone_object("/lib/modules/crafting/enchantmentSelector.c");
+                User->abortCrafting();
+            }
+
+            if (Data[selection]["type"] == "name")
+            {
+                SettingName = 1;
+                tell_object(User, "[0;32mPlease enter the item's new name: [0m");
+            }
+            else if (Data[selection]["type"] == "describe")
+            {
+                SettingDescription = 1;
+                NewDescription = "";
+                tell_object(User, "[0;32mPlease enter the item's new description. "
+                    "Type '**' on a line by itself\nwhen you are done.\n[0m");
+            }
+            else if (Data[selection]["type"] == "craft")
+            {
+                if (!Data[selection]["is disabled"])
+                {
+                    if (Dictionary->craftItem(Item, User))
+                    {
+                        Dictionary->setCraftingSkill(CraftingType, CraftingItem,
+                            Item, User);
+                        User->completeCrafting();
+                        tell_object(User, sprintf("[0;32;1mYou have successfully "
+                            "crafted %s.[0m\n", CraftingItem));
+                        ret = 1;
+                    }
+                }
+            }
+            else if (Data[selection]["type"] == "enchantments")
+            {
+                if (!Data[selection]["is disabled"])
+                {
+                    SubselectorObj = clone_object("/lib/modules/crafting/enchantmentSelector.c");
+                    SubselectorObj->setCraftingItem(Item);
+
+                    move_object(SubselectorObj, User);
+                    SubselectorObj->registerEvent(this_object());
+                    SubselectorObj->initiateSelector(User);
+                }
+            }
+            else if (!ret)
+            {
+                SubselectorObj = clone_object(sprintf("/lib/modules/crafting/%sSelector.c",
+                    Data[selection]["selector"]));
+                SubselectorObj->setItem(Data[selection]["type"]);
                 SubselectorObj->setCraftingItem(Item);
+                if (member(Data[selection], "details"))
+                {
+                    SubselectorObj->setDetails(Data[selection]["details"]);
+                }
+                if (member(Data[selection], "quantity"))
+                {
+                    SubselectorObj->setQuantity(Data[selection]["quantity"]);
+                }
 
                 move_object(SubselectorObj, User);
                 SubselectorObj->registerEvent(this_object());
                 SubselectorObj->initiateSelector(User);
             }
-        }
-        else if (!ret)
-        {
-            SubselectorObj = clone_object(sprintf("/lib/modules/crafting/%sSelector.c",
-                Data[selection]["selector"]));
-            SubselectorObj->setItem(Data[selection]["type"]);
-            SubselectorObj->setCraftingItem(Item);
-            if (member(Data[selection], "details"))
-            {
-                SubselectorObj->setDetails(Data[selection]["details"]);
-            }
-            if (member(Data[selection], "quantity"))
-            {
-                SubselectorObj->setQuantity(Data[selection]["quantity"]);
-            }
-
-            move_object(SubselectorObj, User);
-            SubselectorObj->registerEvent(this_object());
-            SubselectorObj->initiateSelector(User);
         }
     }
     return ret;

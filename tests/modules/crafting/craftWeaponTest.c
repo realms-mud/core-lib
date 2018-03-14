@@ -268,6 +268,15 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
     ExpectTrue(sword, "Crafting item has been set");
     PopulateSwordData(sword);
     command("6", Player);
+    command("Blah", Player);
+    command("7", Player);
+    command("this is a", Player);
+    command("description", Player);
+    command("**", Player);
+    command("8", Player);
+
+    ExpectEq("Blah", sword->query("name"));
+    ExpectEq("this is a\ndescription\n", sword->query("long"));
 
     ExpectFalse(Player->itemBeingCrafted(), "Crafting item has been reset");
     ExpectEq(sword, present("long sword", Player));
@@ -363,7 +372,7 @@ void CraftingSetsEnchantments()
     ExpectSubStringMatch("Spell points .x1.*Fire enchantment .x2", 
         Player->caughtMessage());
 
-    command("6", Player);
+    command("8", Player);
 
     ExpectEq(sword, present("long sword", Player));
 

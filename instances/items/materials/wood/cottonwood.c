@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Cottonwood");
         set("short", "Cottonwood");
-        set("aliases", ({ "wood" }));
+        set("aliases", ({ "wood", "cottonwood" }));
         set("blueprint", "cottonwood");
     }
 }

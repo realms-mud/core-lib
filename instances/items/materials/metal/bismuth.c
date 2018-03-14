@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Bismuth");
         set("short", "Bismuth");
+        set("aliases", ({ "metal", "bismuth" }));
         set("blueprint", "bismuth");
     }
 }

@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Military fork");
         set("short", "Military fork");
-        set("aliases", ({ "fork" }));
+        set("aliases", ({ "fork", "military fork" }));
         set("blueprint", "military fork");
     }
 }

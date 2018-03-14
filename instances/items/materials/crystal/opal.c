@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Opal");
         set("short", "Opal");
-        set("aliases", ({ "gem" }));
+        set("aliases", ({ "gem", "opal" }));
         set("blueprint", "opal");
     }
 }

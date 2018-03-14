@@ -9,9 +9,9 @@ public void reset(int arg)
 {
     if (!arg) 
     {
-        set("name", "Cranequin crossbow");
-        set("short", "Cranequin crossbow");
-        set("aliases", ({ "crossbow", "cranequin crossbow" }));
-        set("blueprint", "cranequin crossbow");
+        set("name", "Pick axe");
+        set("short", "Pick axe");
+        set("aliases", ({ "hammer", "pick axe" }));
+        set("blueprint", "pick axe");
     }
 }

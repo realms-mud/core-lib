@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Segmented flail");
         set("short", "Segmented flail");
-        set("aliases", ({ "flail" }));
+        set("aliases", ({ "flail", "segmented flail" }));
         set("blueprint", "segmented flail");
     }
 }

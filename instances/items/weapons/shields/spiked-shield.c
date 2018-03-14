@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Spiked shield");
         set("short", "Spiked shield");
-        set("aliases", ({ "shield" }));
+        set("aliases", ({ "shield", "spiked shield" }));
         set("blueprint", "spiked shield");
     }
 }

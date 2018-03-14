@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Quartz");
         set("short", "Quartz");
-        set("aliases", ({ "gem" }));
+        set("aliases", ({ "gem", "quartz" }));
         set("blueprint", "quartz");
     }
 }

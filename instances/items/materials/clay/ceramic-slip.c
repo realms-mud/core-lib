@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Ceramic slip");
         set("short", "Ceramic slip");
-        set("aliases", ({ "slip", "clay" }));
+        set("aliases", ({ "slip", "clay", "ceramic", "ceramic slip" }));
         set("blueprint", "ceramic slip");
     }
 }

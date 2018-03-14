@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Magical ice");
         set("short", "Magical ice");
-        set("aliases", ({ "ice" }));
+        set("aliases", ({ "ice", "magical ice" }));
         set("blueprint", "magical ice");
     }
 }

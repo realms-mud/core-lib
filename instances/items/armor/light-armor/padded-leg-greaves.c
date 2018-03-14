@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Padded leg greaves");
         set("short", "Padded leg greaves");
-        set("aliases", ({ "leg greaves", "greaves" }));
+        set("aliases", ({ "leg greaves", "greaves", "padded leg greaves", "padded greaves" }));
         set("blueprint", "padded leg greaves");
 
     }

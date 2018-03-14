@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Pavise shield");
         set("short", "Pavise shield");
-        set("aliases", ({ "shield" }));
+        set("aliases", ({ "shield", "pavise shield" }));
         set("blueprint", "pavise shield");
     }
 }

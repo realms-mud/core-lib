@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Heater shield");
         set("short", "Heater shield");
-        set("aliases", ({ "shield" }));
+        set("aliases", ({ "shield", "heater shield" }));
         set("blueprint", "heater shield");
     }
 }

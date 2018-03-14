@@ -13,6 +13,7 @@ public void reset(int arg)
         set("short", "Dagger");
         set("long", "It has a short blade that is only as long as the "
             "hilt. Its blade is about six inches long (.2 meters).");
+        set("aliases", ({ "dagger" }));
         set("blueprint", "dagger");
     }
 }

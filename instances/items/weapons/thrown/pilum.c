@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Pilum");
         set("short", "Pilum");
+        set("aliases", ({ "pilum" }));
         set("blueprint", "pilum");
     }
 }

@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Brogit staff");
         set("short", "Brogit staff");
-        set("aliases", ({ "staff" }));
+        set("aliases", ({ "staff", "brogit staff" }));
         set("blueprint", "brogit staff");
     }
 }

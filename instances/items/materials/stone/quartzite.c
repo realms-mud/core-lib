@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Quartzite");
         set("short", "Quartzite");
+        set("aliases", ({ "stone", "quartzite" }));
         set("blueprint", "quartzite");
     }
 }

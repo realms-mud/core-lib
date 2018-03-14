@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Diadem");
         set("short", "Diadem");
+        set("aliases", ({ "diadem" }));
         set("blueprint", "diadem");
     }
 }

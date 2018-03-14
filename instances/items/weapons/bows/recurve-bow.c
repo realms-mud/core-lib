@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Recurve bow");
         set("short", "Recurve bow");
-        set("aliases", ({ "bow" }));
+        set("aliases", ({ "bow", "recurve bow" }));
         set("blueprint", "recurve bow");
     }
 }

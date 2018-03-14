@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Partisan");
         set("short", "Partisan");
+        set("aliases", ({ "partisan" }));
         set("blueprint", "partisan");
     }
 }

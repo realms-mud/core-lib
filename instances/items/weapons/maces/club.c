@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Club");
         set("short", "Club");
+        set("aliases", ({ "club" }));
         set("blueprint", "club");
     }
 }

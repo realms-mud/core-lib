@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Lucerne hammer");
         set("short", "Lucerne hammer");
-        set("aliases", ({ "hammer" }));
+        set("aliases", ({ "hammer", "lucerne hammer" }));
         set("blueprint", "lucerne hammer");
     }
 }

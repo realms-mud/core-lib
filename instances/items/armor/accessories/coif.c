@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         set("name", "Coif");
         set("short", "Coif");
+        set("aliases", ({ "coif" }));
         set("blueprint", "coif");
     }
 }

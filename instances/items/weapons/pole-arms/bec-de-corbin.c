@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Bec de Corbin");
         set("short", "Bec de Corbin");
-        set("aliases", ({ "corbin", "bec" }));
+        set("aliases", ({ "corbin", "bec", "bec de corbin" }));
         set("blueprint", "bec de corbin");
     }
 }

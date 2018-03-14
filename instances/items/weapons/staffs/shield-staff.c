@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Shield staff");
         set("short", "Shield staff");
-        set("aliases", ({ "staff" }));
+        set("aliases", ({ "staff", "shield staff" }));
         set("blueprint", "shield staff");
     }
 }

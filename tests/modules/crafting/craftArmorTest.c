@@ -90,9 +90,11 @@ void ChoosingRobesDisplaysRobesMenu()
         "\t[0;36mWeight: [0m[0;33m4[0m\n[0m\n"
         "\t[[0;31;1m1[0m] - [0;32mSelect Textile      [0m\n"
         "\t[[0;31;1m2[0m] - [0;31mEnchant Robes       [0m\n"
-        "\t[[0;31;1m3[0m] - [0;31mCraft Selected Robes[0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mExit Craft Robes Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
+        "\t[[0;31;1m3[0m] - [0;32mGive robes a name   [0m\n"
+        "\t[[0;31;1m4[0m] - [0;32mGive robes a special description[0m\n"
+        "\t[[0;31;1m5[0m] - [0;31mCraft Selected Robes[0m\n"
+        "\t[[0;31;1m6[0m] - [0;32mExit Craft Robes Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
         "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
@@ -135,9 +137,11 @@ void SelectingMaterialUpdatesRobesMenu()
         "\t[0;36mWeight: [0m[0;33m3[0m\n[0m\n"
         "\t[[0;31;1m1[0m] - [0;32mSelect Textile      [0m[0;35;1m   (*)[0m\n"
         "\t[[0;31;1m2[0m] - [0;31mEnchant Robes       [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mCraft Selected Robes[0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mExit Craft Robes Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
+        "\t[[0;31;1m3[0m] - [0;32mGive robes a name   [0m\n"
+        "\t[[0;31;1m4[0m] - [0;32mGive robes a special description[0m\n"
+        "\t[[0;31;1m5[0m] - [0;32mCraft Selected Robes[0m\n"
+        "\t[[0;31;1m6[0m] - [0;32mExit Craft Robes Menu[0m\n"
+        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
         "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
         "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
@@ -173,7 +177,7 @@ void CraftingArmorMovesArmorToUserAndConsumesMaterials()
     command("7", Player);
 
     ExpectSubStringMatch("Fire resistance .x1", Player->caughtMessage());
-    command("3", Player);
+    command("5", Player);
 
     ExpectTrue(present("robes", Player));
     ExpectEq(5, silk->query("quantity"));
@@ -181,6 +185,47 @@ void CraftingArmorMovesArmorToUserAndConsumesMaterials()
     ExpectSubStringMatch("31mRobes", Player->caughtMessage());
 
     ExpectSubStringMatch("4 fire", present("robes", Player)->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetNameAndDescription()
+{
+    Player->advanceSkill("spellcraft", 20);
+    Player->advanceSkill("elemental fire", 20);
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+
+    ExpectFalse(present("robes", Player));
+
+    object silk = present("silk", Player);
+    ExpectEq(15, silk->query("quantity"));
+
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftClothing.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftTextiles.c"));
+    Player->advanceSkill("weaving and beadwork", 10);
+    Selector->initiateSelector(Player);
+    command("2", Player);
+    command("7", Player);
+    command("1", Player);
+    command("15", Player);
+    command("2", Player);
+    command("3", Player);
+    command("12", Player);
+    command("23", Player);
+    command("7", Player);
+    command("3", Player);
+    command("Blah", Player);
+    command("4", Player);
+    command("this is a", Player);
+    command("description", Player);
+    command("**", Player);
+    command("5", Player);
+
+    object robes = present("robes", Player);
+    ExpectTrue(robes);
+    ExpectEq("Blah", robes->query("name"));
+    ExpectEq("this is a\ndescription\n", robes->query("long"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -215,7 +260,7 @@ void CanCraftHeavyArmor()
     command("1", Player);
     command("2", Player);
     command("15", Player);
-    command("4", Player);
+    command("6", Player);
 
     ExpectTrue(present("plate", Player), "plate now present");
     ExpectFalse(present("admantite", Player), "admantite not present");

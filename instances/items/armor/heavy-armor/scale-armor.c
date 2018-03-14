@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Scale armor");
         set("short", "Scale armor");
-        set("aliases", ({ "armor", "scale" }));
+        set("aliases", ({ "armor", "scale", "scale armor" }));
         set("blueprint", "scale armor");
     }
 }

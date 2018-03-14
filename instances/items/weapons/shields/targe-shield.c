@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Targe shield");
         set("short", "Targe shield");
-        set("aliases", ({ "shield" }));
+        set("aliases", ({ "shield", "targe shield" }));
         set("blueprint", "targe shield");
     }
 }
