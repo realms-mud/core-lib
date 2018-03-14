@@ -214,12 +214,16 @@ void CanSetNameAndDescription()
     command("12", Player);
     command("23", Player);
     command("7", Player);
+    ExpectSubStringMatch("Give robes a name +..0m", Player->caughtMessage());
+    ExpectSubStringMatch("Give robes a special description..0m", Player->caughtMessage());
     command("3", Player);
     command("Blah", Player);
     command("4", Player);
     command("this is a", Player);
     command("description", Player);
     command("**", Player);
+    ExpectSubStringMatch("Give robes a name.*Blah", Player->caughtMessage());
+    ExpectSubStringMatch("Give robes a special description.*[*]", Player->caughtMessage());
     command("5", Player);
 
     object robes = present("robes", Player);

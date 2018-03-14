@@ -12,7 +12,8 @@ private string CraftingSubType;
 private object Item;
 private int SettingName = 0;
 private int SettingDescription = 0;
-private string NewDescription = "";
+private string NewDescription = 0;
+private string OriginalName = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -166,7 +167,6 @@ protected nomask int processSelection(string selection)
             {
                 SettingDescription = 0;
                 Item->set("long", NewDescription);
-                NewDescription = "";
             }
         }
         else
@@ -180,6 +180,7 @@ protected nomask int processSelection(string selection)
             if (Data[selection]["type"] == "name")
             {
                 SettingName = 1;
+                OriginalName = Item->query("name");
                 tell_object(User, "[0;32mPlease enter the item's new name: [0m");
             }
             else if (Data[selection]["type"] == "describe")
@@ -252,6 +253,16 @@ protected nomask string displayDetails(string choice)
         componentList = m_indices(itemComponents);
     }
     if (member(componentList, Data[choice]["type"]) > -1)
+    {
+        ret = "[0;35;1m   (*)[0m";
+    }
+    else if ((Data[choice]["type"] == "name") && OriginalName &&
+        (Item->query("name") != OriginalName))
+    {
+        ret = sprintf("[0;35;1m   (%s)[0m", Item->query("name"));
+    }
+    else if ((Data[choice]["type"] == "describe") && NewDescription &&
+        Item->query("long"))
     {
         ret = "[0;35;1m   (*)[0m";
     }

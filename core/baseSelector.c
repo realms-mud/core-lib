@@ -192,7 +192,6 @@ public nomask int applySelection(string arguments)
         }
         else if (handleSpecialSelection())
         {
-            write("I be here.\n");
             makeSelection(arguments);
         }
         else if ((arguments == "undo") && sizeof(UndoLog) && AllowUndo)
