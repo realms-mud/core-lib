@@ -8,11 +8,12 @@ private nosave mapping materials =
 ([
     "linen": ([
         "class": "textile",
-        "crafting skill required": 0,
+        "crafting skill required": 1,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
+            "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a textile made from the tightly-woven fibers of the flax plant.",
         "scarcity": "common"
     ]),
     "wool": ([
@@ -23,10 +24,10 @@ private nosave mapping materials =
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "defense": ([
-            "cold": 2,
-            "water": 1,
+            "cold": 1,
+            "water": -1,
         ]),
-        "description": "",
+        "description": "This is a textile made from the tightly-woven wool of sheep.",
         "scarcity": "common"
     ]),
     "hemp": ([
@@ -36,18 +37,50 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a textile made from the tightly-woven fibers of the hemp plant.",
         "scarcity": "common"
     ]),
-    "flax": ([
+    "cashmere": ([
         "class": "textile",
-        "crafting skill required": 1,
+        "crafting skill required": 5,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
-            "weaving and beadwork": (["type":"skill", "value": 1]),
+            "weaving and beadwork": (["type":"skill", "value": 5]),
+        ]),
+        "defense": ([
+            "cold": 3,
+        ]),
+        "description": "This is a textile made from the tightly-woven wool of cashmere goats that is finer, stronger, lighter, softer, and about three times more insulating than sheep wool.",
+        "value multiplier": 2.5,
+        "scarcity": "uncommon"
+    ]),
+    "mohair": ([
+        "class": "textile",
+        "crafting skill required": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
+            "weaving and beadwork": (["type":"skill", "value": 5]),
+        ]),
+        "defense": ([
+            "cold": 2,
+        ]),
+        "description": "This is a textile made from the tightly-woven, silk-like hair of the angora goat.",
+        "scarcity": "uncommon"
+    ]),
+    "qiviut": ([
+        "class": "textile",
+        "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
+            "weaving and beadwork": (["type":"skill", "value": 10]),
+        ]),
+        "defense": ([
+            "cold": 5,
+            "water": 1,
         ]),
         "description": "",
-        "scarcity": "common"
+        "value multiplier": 15.0,
+        "scarcity": "rare"
     ]),
     "cotton": ([
         "class": "textile",

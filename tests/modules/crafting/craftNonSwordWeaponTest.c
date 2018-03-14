@@ -54,7 +54,7 @@ void Setup()
     material->set("quantity", 15);
     move_object(material, Player);
 
-    material = clone_object("/lib/instances/items/materials/textile/flax.c");
+    material = clone_object("/lib/instances/items/materials/textile/linen.c");
     material->set("quantity", 15);
     move_object(material, Player);
 

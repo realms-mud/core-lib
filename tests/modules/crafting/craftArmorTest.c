@@ -126,7 +126,7 @@ void SelectingMaterialUpdatesRobesMenu()
     command("2", Player);
     command("7", Player);
     command("1", Player);
-    command("15", Player);
+    command("17", Player);
 
     ExpectEq("[0;36mCraft Robes - [0m[0;37;1mFrom this menu, you will select the\n"
         "components that will be used to craft your robes. The relative statistics\n"
@@ -169,7 +169,7 @@ void CraftingArmorMovesArmorToUserAndConsumesMaterials()
     command("2", Player);
     command("7", Player);
     command("1", Player);
-    command("15", Player);
+    command("17", Player);
     command("2", Player);
     command("3", Player);
     command("12", Player);
@@ -208,7 +208,7 @@ void CanSetNameAndDescription()
     command("2", Player);
     command("7", Player);
     command("1", Player);
-    command("15", Player);
+    command("17", Player);
     command("2", Player);
     command("3", Player);
     command("12", Player);
@@ -263,7 +263,7 @@ void CanCraftHeavyArmor()
     command("1", Player);
     command("1", Player);
     command("2", Player);
-    command("15", Player);
+    command("17", Player);
     command("6", Player);
 
     ExpectTrue(present("plate", Player), "plate now present");
