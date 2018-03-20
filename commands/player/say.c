@@ -236,9 +236,9 @@ protected string flagInformation(string flag)
 /////////////////////////////////////////////////////////////////////////////
 protected string description(string displayCommand)
 {
-    return "Say allows a player to display a message to all players "
+    return format("Say allows a player to display a message to all players "
         "located in the same room where he or she is standing. The character ' "
-        "can be used as an abbreviation for say to save time.";
+        "can be used as an abbreviation for say to save time.", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////

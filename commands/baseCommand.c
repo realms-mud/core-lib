@@ -383,15 +383,15 @@ public string displaySynopsis(string displayCommand)
 /////////////////////////////////////////////////////////////////////////////
 public string displayDescription(string displayCommand)
 {
-    return format(sprintf("[0;36;1mDescription\n[0;36m%s\n[0m\n",
-        description(displayCommand)), 78);
+    return sprintf("[0;36;1mDescription\n[0;36m%s\n[0m\n",
+        description(displayCommand));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public string displayOptions(string displayCommand)
 {
     string ret = "";
-    if (sizeof(commands))
+    if (sizeof(commands) && sizeof(regexp(({ commands[0] }), " [[]*-[a-zA-Z]")))
     {
         string commandBlueprint = regreplace(commands[0], "^([^-[]+ +)(.*)", "\\2");
         string *options = explode(commandBlueprint, " [") - ({ ".*]" });
@@ -407,7 +407,7 @@ public string displayOptions(string displayCommand)
         }
         ret = implode(optionList, "");
     }
-    return "[0;36;1mOptions\n" + "[0m" + ret;
+    return "[0;36;1mOptions\n" + "[0m" + ((ret != "") ? ret : "[0;36m\tThis command does not have any options.[0m\n\n");
 }
 
 /////////////////////////////////////////////////////////////////////////////
