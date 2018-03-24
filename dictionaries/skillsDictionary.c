@@ -421,7 +421,7 @@ private mapping skills = ([
         "description": "Having this skill gives a character proficiency in the use of musical\n"
             "instruments such as the trumpet as well as the ability to create new songs using\n"
             "the instrument. Other instruments covered by this skill include the horn,\n"
-            "cornett, serpent, and other instruments of this ilk.\n"
+            "cornet, serpent, and other instruments of this ilk.\n"
     ]),
    "instrument: percussion": ([
         "type": "crafting",

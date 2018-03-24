@@ -2472,7 +2472,7 @@ private nosave mapping materials =
         "scarcity": "very rare"
     ]),
     "dragon scale": ([
-        "class": "exotic",
+        "class": "leather",
         "crafting skill required": 50,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
@@ -2515,6 +2515,32 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 2])
         ]),
         "value multiplier": 1.5,
+        "description": "",
+        "scarcity": "uncommon"
+    ]),
+    "horn": ([
+        "class": "exotic",
+        "crafting skill required": 7,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
+            "wood craft": (["type":"skill", "value": 2]),
+            "chemistry": (["type":"skill", "value": 3]),
+            "physics": (["type":"skill", "value": 3])
+        ]),
+        "value multiplier": 2.0,
+        "description": "",
+        "scarcity": "uncommon"
+    ]),
+    "antler": ([
+        "class": "exotic",
+        "crafting skill required": 7,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
+            "wood craft": (["type":"skill", "value": 2]),
+            "chemistry": (["type":"skill", "value": 3]),
+            "physics": (["type":"skill", "value": 3])
+        ]),
+        "value multiplier": 2.0,
         "description": "",
         "scarcity": "uncommon"
     ]),

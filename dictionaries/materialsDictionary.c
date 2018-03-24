@@ -11,6 +11,7 @@
 #include "materials/materials.h"
 #include "materials/weapons.h"
 #include "materials/armor.h"
+#include "materials/instruments.h"
 
 private nosave string EquipmentBlueprint = "lib/items/equipment.c";
 private nosave string DetailsText = "\t[0;36m%s: [0m[0;33m%d to %d[0m\n";
@@ -148,6 +149,16 @@ public nomask int isValidArmorBlueprint(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int isValidInstrumentBlueprint(string type)
+{
+    return (instrumentBlueprints && mappingp(instrumentBlueprints) &&
+        member(instrumentBlueprints, type) &&
+        member(instrumentBlueprints[type], "skill to craft") &&
+        member(instrumentBlueprints[type], "type") &&
+        member(instrumentBlueprints[type], "default encumberance"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isValidArmorLocation(string type)
 {
     return (member(validArmorLocations, type) > -1);
@@ -193,6 +204,10 @@ public nomask int getBlueprintModifier(object item, string type)
     else if (isValidMaterial(itemType))
     {
         ret = materials[itemType][type];
+    }
+    else if (isValidInstrumentBlueprint(itemType))
+    {
+        ret = instrumentBlueprints[itemType][type];
     }
     return ret;
 }
