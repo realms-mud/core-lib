@@ -18,4 +18,5 @@ protected nomask void applyGroupDetails()
     addCommand("cc");
     addCommand("clone");
     addCommand("patch");
+    addCommand("mv");
 }
