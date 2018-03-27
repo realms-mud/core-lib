@@ -16,7 +16,7 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int execute(string command, object initiator)
 {
-    int ret = 1;
+    int ret = 0;
 
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("mv"))
     {
@@ -32,14 +32,15 @@ public nomask int execute(string command, object initiator)
             }
             else
             {
-                raise_error(sprintf("The file '%s' does not exist.",
-                    source));
+                tell_object(initiator, format(sprintf("The file '%s' does not exist.",
+                    source), 78));
             }
         }
         else
         {
-            raise_error(sprintf("You do not have write access to "
-                "both '%s' and '%s'", source, destination));
+            tell_object(initiator, format(sprintf(
+                "You do not have write access to "
+                "both '%s' and '%s'", source, destination), 78));
         }
     }
     return ret;

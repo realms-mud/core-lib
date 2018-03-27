@@ -5,6 +5,7 @@
 inherit "/lib/tests/framework/testFixture.c";
 
 object Wizard;
+object Catch;
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
@@ -23,9 +24,13 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    Catch = clone_object("/lib/tests/support/services/catchShadow.c");
+
     Wizard = clone_object("/lib/realizations/wizard.c");
     Wizard->restore("earl");
     Wizard->addCommands();
+    Catch->beginShadow(Wizard);
+
     setUsers(({ Wizard }));
 }
 
@@ -52,4 +57,32 @@ void MvMovesFileToCorrectLocation()
     ExpectEq(-1, file_size("/players/earl/x"));
     ExpectEq(0, file_size("/players/earl/y"));
     rm("/players/earl/y");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MvFailsWhenFileDoesNotExist()
+{
+    ExpectEq(-1, file_size("/players/earl/x"));
+    ExpectEq(-1, file_size("/players/earl/y"));
+    ExpectFalse(Wizard->executeCommand("mv /players/earl/x /players/earl/y"));
+    ExpectSubStringMatch("The file '/players/earl/x' does not exist.", 
+        Wizard->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MvFailsWhenUserDoesNotHaveWriteAccessToSource()
+{
+    ExpectFalse(Wizard->executeCommand("mv /secure/master.c /players/earl/y"));
+    ExpectSubStringMatch("You do not have write access to both '/secure/master.c' and '/players/earl/y'",
+        Wizard->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MvFailsWhenUserDoesNotHaveWriteAccessToDestination()
+{
+    copy_file("/players/earl/blah", "/players/earl/x");
+    ExpectFalse(Wizard->executeCommand("mv /players/earl/x /secure/y"));
+    ExpectSubStringMatch("You do not have write access to both '/players/earl/x' and '/secure/y'",
+        Wizard->caughtMessage());
+    rm("/players/earl/x");
 }
