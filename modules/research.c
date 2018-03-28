@@ -517,7 +517,9 @@ public nomask int selectResearchPath(string researchTree, string choice)
 public nomask mapping *researchExtraAttacks()
 {
     mapping *extraAttacks = ({ });
-    string *researchItems = m_indices(research);
+    string *researchItems = filter(m_indices(research),
+        (: !researchDictionary()->isActiveOrSustainedAbility($1) :));
+
     foreach(string researchItem in researchItems)
     {
         if(canApplyResearchBonus(researchItem))
@@ -540,7 +542,9 @@ public nomask int researchAttributeBonus(string attribute)
     
     if(attribute && stringp(attribute))
     {
-        string *researchItems = m_indices(research);
+        string *researchItems = filter(m_indices(research),
+            (: !researchDictionary()->isActiveOrSustainedAbility($1) :));
+
         foreach(string researchItem in researchItems)
         {
             if(canApplyResearchBonus(researchItem, attribute))
@@ -564,7 +568,9 @@ public nomask int researchBonusTo(string bonus)
     
     if(function_exists(bonus, researchDictionary()))
     {
-        string *researchItems = m_indices(research);
+        string *researchItems = filter(m_indices(research),
+            (: !researchDictionary()->isActiveOrSustainedAbility($1) :));
+
         foreach(string researchItem in researchItems)
         {
             if(canApplyResearchBonus(researchItem, bonus))
@@ -583,7 +589,9 @@ public nomask int researchBonusTo(string bonus)
     }
     else if(function_exists("BonusSkillModifier", researchDictionary()))
     {
-        string *researchItems = m_indices(research);
+        string *researchItems = filter(m_indices(research),
+            (: !researchDictionary()->isActiveOrSustainedAbility($1) :));
+
         foreach(string researchItem in researchItems)
         {
             if(researchDictionary()->researchEffectIsLimited(researchItem) &&
@@ -719,4 +727,3 @@ static nomask void researchHeartBeat()
         }
     }
 }
-
