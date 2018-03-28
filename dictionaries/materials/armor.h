@@ -969,7 +969,7 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 25,
-        "default description": "This is a cloak of textile. A small brooch of metal is fastenes it to the user."
+        "default description": "This is a cloak of textile. A small brooch of metal fastens it to the user."
     ]),
     "amulet": ([
         "type": "armor",
