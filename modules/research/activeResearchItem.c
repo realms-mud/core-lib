@@ -171,6 +171,7 @@ public nomask int execute(string command, object initiator)
        function_exists("isResearched", initiator) &&
        initiator->isResearched(researchName))
     {
+        notify_fail("");
         ret = 1;
         if(initiator->blockedByCooldown(researchName))
         {

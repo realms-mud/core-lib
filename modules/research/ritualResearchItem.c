@@ -170,11 +170,12 @@ public nomask int execute(string command, object initiator)
 {
     int ret = 0;
     string researchName = program_name(this_object());
-    
+
     if(initiator && objectp(initiator) && canExecuteCommand(command) &&
        function_exists("isResearched", initiator) &&
        initiator->isResearched(researchName))
     {
+        notify_fail("");
         ret = 1;
         if(initiator->blockedByCooldown(researchName))
         {

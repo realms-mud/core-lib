@@ -25,6 +25,7 @@ public void reset(int arg)
         addSpecification("cooldown", 4);
         addSpecification("event handler", "usedResearchEvent");
         addSpecification("command template", "throw turnip at ##Target##");
+        addSpecification("use ability message", "##InitiatorName## ##Infinitive::throw## a turnip at ##TargetName##.");
     }
 }
 

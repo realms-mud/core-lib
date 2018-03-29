@@ -41,6 +41,11 @@ public nomask int executeCommand(string command)
     if(commandRegistry)
     {
         ret = commandRegistry->executeCommand(command, this_object());
+        if (!ret)
+        {
+            object researchService = getService("research");
+            ret = researchService->researchCommand(command);
+        }
     }
     return ret;
 }
