@@ -82,7 +82,7 @@ public nomask varargs int storeItem(object item, int isPermanent)
 
         list[object_name(item)] = ([
             "name": item->query("name"),
-            "description": item->long(),
+            "description": item->long(1),
             "value": item->query("value"),
             "type": item->query("type"),
             "subType": dictionary->getBlueprintModifier(item, "subtype"),
@@ -91,9 +91,14 @@ public nomask varargs int storeItem(object item, int isPermanent)
             "data": item->query("all")
         ]);
 
+        if (item->query("enchanted") || item->query("craftsmanship"))
+        {
+            list[object_name(item)]["do not prune"] = 1;
+        }
         if (isPermanent)
         {
             list[object_name(item)]["permanent"] = 1;
+            list[object_name(item)]["do not prune"] = 1;
         }
     }
     return ret;
@@ -159,4 +164,28 @@ public nomask int canPurchaseItem(object item)
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void updateShopInventory()
+{
+    int inventorySize = sizeof(list);
+    if (inventorySize)
+    {
+        string *items = filter(m_indices(list),
+            (: !member(list[$1], "do not prune") :));
+
+        foreach(string item in items)
+        {
+            m_delete(list, item);
+        }
+    }
+
+    inventorySize = sizeof(list);
+    if (inventorySize < 15)
+    {
+        ItemsToGenerate = 16 - inventorySize + random(6);
+        object dictionary = load_object("/lib/dictionaries/shopDictionary.c");
+        dictionary->generateRandomItems(this_object());
+    }
 }

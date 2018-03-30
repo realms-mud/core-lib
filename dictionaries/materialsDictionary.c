@@ -959,22 +959,22 @@ public nomask string getItemSummary(object equipment)
 {
     string ret = "[0;30;1mThis item has not been identified[0m";
 
-    if (equipment->query("identified") || canCraftBlueprintWithMaterial(this_player(),
+    if (equipment->query("identified") || canCraftBlueprintWithMaterial(0,
         equipment->query("blueprint"), equipment->query("material")))
     {
         if (equipment->query("weapon type"))
         {
             ret = sprintf("    [0;36mAttack: [0;32m%2d[0;36m, Damage: [0;32m%2d[0;36m,"
                 " Defense: [0;32m%2d[0m", 
-                getAttackData(equipment, this_player()),
-                getDamageData(equipment, this_player()), 
-                getWeaponDefenseData(equipment, this_player()));
+                getAttackData(equipment, 0),
+                getDamageData(equipment, 0), 
+                getWeaponDefenseData(equipment, 0));
         }
         else if (equipment->query("armor type"))
         {
             ret = sprintf("    [0;36mSoak: [0;32m%2d[0;36m, Encumberance: [0;32m%2d[0m",
-                getDamageProtectionData(equipment, this_player()),
-                getEncumberanceData(equipment, this_player()));
+                getDamageProtectionData(equipment, 0),
+                getEncumberanceData(equipment, 0));
         }
         else
         {

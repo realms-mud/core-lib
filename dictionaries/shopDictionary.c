@@ -43,7 +43,7 @@ public nomask object getShopObject(string location)
 
     if (location && stringp(location) && (file_size(location) > 0))
     {
-        ret = load_object(location);
+        ret = clone_object(location);
 
         if (!ret || (member(inherit_list(ret), BaseShop) < 0))
         {
@@ -75,10 +75,8 @@ public nomask string *getSellItemTypes(object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs int valueModifier(object user, object item, int selling)
+public nomask varargs float valueModifier(object user, int selling)
 {
-    int ret = item->query("value");
-
     float multiplier = 0.05 + (user->charismaBonus() / 20.0);
     if (user->getSkill("bluff"))
     {
@@ -110,8 +108,7 @@ public nomask varargs int valueModifier(object user, object item, int selling)
         multiplier = 0.05;
     }
 
-    ret = to_int(ret * multiplier);
-    return (!selling || (ret < 25000)) ? ret : 25000;
+    return multiplier;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -128,20 +125,24 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
     object materials = load_object("/lib/dictionaries/materialsDictionary.c");
     if (sizeof(items))
     {
+        float multiplier = valueModifier(user, 1);
         foreach(object item in items)
         {
-            int value = valueModifier(user, item, 1);
+            int value = to_int(item->query("value") * multiplier);
+            value = (value < 25000) ? value : 25000;
+
             string valueStr = value ?
                 sprintf("[0;32mYou can sell this item for %d.[0m\n", value) :
                 "[0;32mThis item has no value to the merchant.[0m\n";
 
             string name = item->query("name");
+
             ret[to_string(menuItem)] = ([
                 "name": sprintf(materials->getMaterialQualityFormatter(item),
                     ((sizeof(name) > 20) ? name[0..16] + "..." : name)),
                 "identified": item->query("identified"),
                 "object list": ({ item }),
-                "description": item->long() + valueStr,
+                "description": item->long(1) + valueStr,
                 "value": value
             ]);
 
@@ -196,6 +197,7 @@ public nomask void sellItems(object user, object store, object *items)
     int money = 0;
     if (sizeof(items))
     {
+        float multiplier = valueModifier(user, 1);
         foreach(object item in items)
         {
             moveNestedItemsToUser(user, item);
@@ -208,7 +210,9 @@ public nomask void sellItems(object user, object store, object *items)
             // If the item's still equipped, it can't be sold
             if (!user->isEquipped(item))
             {
-                money += valueModifier(user, item, 1);
+                int value = to_int(item->query("value") * multiplier);
+                value = (value < 25000) ? value : 25000;
+                money += value;
                 tell_object(user, sprintf("[0;32mYou sell %s.[0m\n",
                     item->query("name")));
                 store->storeItem(item);
@@ -326,7 +330,7 @@ private nomask int addEnchantment(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void generateRandomItems(object shop)
+public nomask void generateRandomItems(object shop)
 {
     object craftingDictionary = load_object("/lib/dictionaries/craftingDictionary.c");
 

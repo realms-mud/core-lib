@@ -522,13 +522,14 @@ public string short()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string itemStatistics()
+protected string itemStatistics(int doNotApplyUserStatistics)
 {
     string ret = "";
     object itemTypes = load_object(MaterialsBlueprint);
     if (itemTypes && objectp(itemTypes))
     {
-        ret = itemTypes->getEquipmentStatistics(this_object(), this_player());
+        ret = itemTypes->getEquipmentStatistics(this_object(), 
+            (doNotApplyUserStatistics ? 0 : this_player()));
     }
     return ret;
 }
@@ -547,7 +548,7 @@ protected string describeCraftingMaterials()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string long()
+public varargs string long(int doNotApplyUserStatistics)
 {    
     string description = "";
     if (query("long") && (query("long") != ""))
@@ -579,7 +580,7 @@ public string long()
     }
     description = format(description, 78);
 
-    string statistics = itemStatistics();
+    string statistics = itemStatistics(doNotApplyUserStatistics);
     if(statistics != "")
     {
         description += statistics;

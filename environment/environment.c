@@ -671,6 +671,12 @@ public void reset(int arg)
             Setup();
             SetupCompleted = 1;
         }
+
+        object shopObj = getShop();
+        if (objectp(shopObj))
+        {
+            shopObj->updateShopInventory();
+        }
     }
     createStateObjects();
 }
