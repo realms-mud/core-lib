@@ -42,6 +42,7 @@ public nomask void reset(int arg)
     {
         Description = "Select a quest to view in more detail";
         AllowUndo = 0;
+        AllowAbort = 1;
         Type = "Quest";
         Dictionary = load_object("/lib/dictionaries/questsDictionary.c");
 

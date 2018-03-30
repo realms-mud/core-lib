@@ -77,6 +77,7 @@ public nomask void reset(int arg)
     {
         Description = "Select a research item to view in more detail";
         AllowUndo = 0;
+        AllowAbort = 1;
         Type = "Research";
         Dictionary = load_object("/lib/dictionaries/researchDictionary.c");
 
@@ -165,9 +166,9 @@ protected nomask string additionalInstructions()
     {
         ret += sprintf("You have %d research points left to assign.\n", TotalPoints);
     }
-    return ret + "[0;34;1m(*)[0m[0;32;1m denotes already-chosen research while "
-        "[0;35m(!)[0m[0;32;1m denotes research in progress.\nResearch denoted "
-        "[0;31m(X)[0m[0;32;1m cannot yet be learned - view description for details.[0m\n";
+    return ret + "[0;34;1m(*)[0m[0;32m denotes already-chosen research while "
+        "[0;35m(!)[0m[0;32m denotes research in progress.\nResearch denoted "
+        "[0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -77,10 +77,11 @@ void ResearchSubmenuDisplaysCorrectly()
         "\t[[0;31;1m12[0m] - [0;32mZorlak's revenge    [0m\n"
         "\t[[0;31;1m13[0m] - [0;32mReturn to previous menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 13.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
         "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m"
-        "[0;34;1m(*)[0m[0;32;1m denotes already-chosen research while "
-        "[0;35m(!)[0m[0;32;1m denotes research in progress.\nResearch denoted "
-        "[0;31m(X)[0m[0;32;1m cannot yet be learned - view description for details.[0m\n[0m",
+        "[0;34;1m(*)[0m[0;32m denotes already-chosen research while "
+        "[0;35m(!)[0m[0;32m denotes research in progress.\nResearch denoted "
+        "[0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n[0m",
         Player->caughtMessage());
 }
 
@@ -113,11 +114,12 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
         "[0;36mResearch Prereqs[0m : [0;34;1mSpiffy tree root[0m\n"
         "[0m\n"
         "	[[0;31;1m1[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 1.\n"
-        "[0m[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
+        "[0;32;1mYou must select a number from 1 to 1.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
-        "[0m[0;32;1m[0;34;1m(*)[0m[0;32;1m denotes already-chosen research while [0;35m(!)[0m[0;32;1m denotes research in progress.\n"
-        "Research denoted [0;31m(X)[0m[0;32;1m cannot yet be learned - view description for details.[0m\n"
+        "[0m[0;32;1m[0;34;1m(*)[0m[0;32m denotes already-chosen research while [0;35m(!)[0m[0;32m denotes research in progress.\n"
+        "Research denoted [0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n"
         "[0m", Player->caughtMessage());
 }
 
@@ -179,11 +181,12 @@ void DescribeShowsResearchDetails()
         "[0;36mResearch Prereqs[0m : [0;31mZap thingy[0m[0;33m and [0;31mGrebe of obstinance[0m\n"
         "[0m\n"
         "	[[0;31;1m1[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 1.\n"
-        "[0m[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
+        "[0;32;1mYou must select a number from 1 to 1.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
-        "[0m[0;32;1m[0;34;1m(*)[0m[0;32;1m denotes already-chosen research while [0;35m(!)[0m[0;32;1m denotes research in progress.\n"
-        "Research denoted [0;31m(X)[0m[0;32;1m cannot yet be learned - view description for details.[0m\n"
+        "[0m[0;32;1m[0;34;1m(*)[0m[0;32m denotes already-chosen research while [0;35m(!)[0m[0;32m denotes research in progress.\n"
+        "Research denoted [0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n"
         "[0m", Player->caughtMessage());
 }
 
@@ -234,11 +237,12 @@ void ResearchTreesAreProperlyDisplayed()
         "	[[0;31;1m7[0m]  - [0;32mMock research       [0m[0;35m (!)[0m	[[0;31;1m8[0m]  - [0;32mTurnip seclusion    [0m\n"
         "	[[0;31;1m9[0m]  - [0;32mWeasel inversion    [0m	[[0;31;1m10[0m] - [0;32mZap thingy          [0m[0;31m (X)[0m\n"
         "	[[0;31;1m11[0m] - [0;32mZorlak's revenge    [0m[0;34;1m (*)[0m	[[0;31;1m12[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 12.\n"
-        "[0m[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
+        "[0;32;1mYou must select a number from 1 to 12.\n[0m"
+        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
+        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
-        "[0m[0;32;1m[0;34;1m(*)[0m[0;32;1m denotes already-chosen research while [0;35m(!)[0m[0;32;1m denotes research in progress.\n"
-        "Research denoted [0;31m(X)[0m[0;32;1m cannot yet be learned - view description for details.[0m\n"
+        "[0m[0;32;1m[0;34;1m(*)[0m[0;32m denotes already-chosen research while [0;35m(!)[0m[0;32m denotes research in progress.\n"
+        "Research denoted [0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n"
         "[0m",
         Player->caughtMessage());
 }
