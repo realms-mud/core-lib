@@ -168,3 +168,41 @@ void InitiateShopInteractionShowsShopMenu()
         player->caughtMessage());
     destruct(player);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void UpdateShopInventoryRemovesGenericWeaponsButNotSpecialOnes()
+{
+    object swordA = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    swordA->set("craftsmanship", 80);
+    swordA->set("material", "galvorn");
+    swordA->set("bonus attack", 5);
+
+    object swordB = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+
+    ExpectTrue(Shop->storeItem(swordA));
+    ExpectTrue(Shop->storeItem(swordB));
+
+    mapping inventory = Shop->storeInventory();
+
+    ExpectTrue(member(inventory, object_name(swordA)));
+    ExpectTrue(member(inventory, object_name(swordB)));
+
+    Shop->updateShopInventory();
+    inventory = Shop->storeInventory();
+
+    ExpectTrue(member(inventory, object_name(swordA)));
+    ExpectFalse(member(inventory, object_name(swordB)));
+    destruct(swordA);
+    destruct(swordB);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UpdateShopInventoryAddsEquipment()
+{
+    Shop->shopType("weapons");
+    Shop->shopSubType("swords");
+
+    ExpectEq(0, sizeof(Shop->storeInventory()));
+    Shop->updateShopInventory();
+    ExpectTrue(15 < sizeof(Shop->storeInventory()));
+}

@@ -501,6 +501,16 @@ void CanAddShop()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ShopInventoryUpdatesOnReset()
+{
+    Environment->testAddShop("/lib/environment/shopInventories/swordsmith.c");
+    Environment->getShop()->resetInventory();
+    ExpectEq(0, sizeof(Environment->getShop()->storeInventory()));
+    Environment->reset();
+    ExpectTrue(15 < sizeof(Environment->getShop()->storeInventory()));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanOnlyAddOneShop()
 {
     Environment->testAddShop("/lib/environment/shopInventories/swordsmith.c");
