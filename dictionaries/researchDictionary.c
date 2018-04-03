@@ -667,7 +667,7 @@ public mapping getResearchTreeChoices(string type, object user)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *getResearchBonuses(string researchItem)
 {
-    string *ret = 0;
+    string *ret = ({});
     object researchObj = researchObject(researchItem);
     if (researchObj)
     {

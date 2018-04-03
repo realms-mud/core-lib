@@ -118,6 +118,12 @@ public nomask int addTrait(string trait)
             }
         }
 
+        string *bonuses = traitDictionary()->getTraitBonuses(trait);
+        if (bonuses && sizeof(bonuses))
+        {
+            traits[trait]["bonuses"] = bonuses;
+        }
+
         object events = getService("events");
         if(events && objectp(events))
         {
@@ -167,7 +173,10 @@ private nomask varargs int canApplyLimitedTrait(string trait, string bonus)
 public nomask mapping *traitsExtraAttacks()
 {
     mapping *extraAttacks = ({ });
-    string *traitItems = m_indices(traits);
+    string *traitItems = filter(m_indices(traits),
+        (: (member(traits[$1], "bonuses") &&
+           sizeof(regexp(traits[$1]["bonuses"], "bonus [^ ]+ attack"))) :));
+
     foreach(string trait in traitItems)
     {
         if(canApplyLimitedTrait(trait))
@@ -189,7 +198,11 @@ public nomask int traitsAttributeBonus(string attribute)
     int ret = 0;
     if(attribute && stringp(attribute))
     {
-        string *traitItems = m_indices(traits);
+        string *traitItems = filter(m_indices(traits),
+            (: (member(traits[$1], "bonuses") &&
+                sizeof(regexp(traits[$1]["bonuses"],
+                "bonus " + $2))) :), attribute);
+
         foreach(string trait in traitItems)
         {
             if(canApplyLimitedTrait(trait, attribute))
@@ -212,7 +225,13 @@ public nomask int traitsBonusTo(string bonus)
     
     if(function_exists(bonus, traitDictionary()))
     {
-        string *traitItems = m_indices(traits);
+        string bonusString =
+            getDictionary("bonuses")->getBonusFromFunction(bonus);
+
+        string *traitItems = filter(m_indices(traits),
+            (: (member(traits[$1], "bonuses") &&
+                sizeof(regexp(traits[$1]["bonuses"], $2))) :), bonusString);
+
         foreach(string trait in traitItems)
         {
             if (canApplyLimitedTrait(trait, bonus))
@@ -223,7 +242,11 @@ public nomask int traitsBonusTo(string bonus)
     }
     else if(function_exists("BonusSkillModifier", traitDictionary()))
     {
-        string *traitItems = m_indices(traits);
+        string *traitItems = filter(m_indices(traits),
+            (: (member(traits[$1], "bonuses") &&
+                sizeof(regexp(traits[$1]["bonuses"],
+                "bonus " + $2))) :), bonus);
+
         foreach(string trait in traitItems)
         {
             if(canApplyLimitedTrait(trait, bonus))

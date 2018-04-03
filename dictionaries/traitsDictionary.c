@@ -465,3 +465,15 @@ public nomask mapping creationListForTraitType(string type)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getTraitBonuses(string trait)
+{
+    string *ret = ({});
+    object traitObj = traitObject(trait);
+    if (traitObj)
+    {
+        ret = traitObj->query("raw bonuses");
+    }
+    return ret + ({});
+}

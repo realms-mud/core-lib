@@ -11,7 +11,19 @@ static nomask void loadTraits(mapping data, object persistence)
     if (isValidPersistenceObject(persistence))
     {
         traits = persistence->extractSavedMapping("traits", data);
-
+        string *traitList = m_indices(traits);
+        if (sizeof(traitList))
+        {
+            object dictionary = load_object("/lib/dictionaries/traitsDictionary");
+            foreach(string trait in traitList)
+            {
+                string *bonuses = dictionary->getTraitBonuses(trait);
+                if (bonuses && sizeof(bonuses))
+                {
+                    traits[trait]["bonuses"] = bonuses;
+                }
+            }
+        }
         string temporaryTraitsString = 
             persistence->extractSaveData("temporaryTraits", data);
 
