@@ -703,3 +703,38 @@ void SelectResearchPathDoesNotAddResearchWhithoutChoiceSetUp()
     ExpectFalse(Research->selectResearchChoice("lib/tests/support/research/testSecondResearchTree.c", "Test name"));
     ExpectFalse(Research->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void PassiveResearchCombatBonusesApplied()
+{
+    ExpectEq(150, Research->maxSpellPoints(), "initial spell points");
+    ExpectTrue(Research->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
+    ExpectEq(155, Research->maxSpellPoints(), "after research spell points");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResearchSustainedCommandReducesByCost()
+{
+    ExpectTrue(Research->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
+    ExpectTrue(Research->isResearched("lib/tests/support/research/testSustainedTraitResearch.c"), "finally researched");
+
+    object target = clone_object("/lib/realizations/player");
+    target->Name("Frank");
+    target->addAlias("frank");
+    target->Str(20);
+    target->Int(20);
+    target->Dex(20);
+    target->Con(20);
+    target->Wis(20);
+    target->Chr(20);
+
+    object room = clone_object("/lib/environment/environment");
+    move_object(Research, room);
+    move_object(target, room);
+
+    ExpectEq(150, Research->maxSpellPoints(), "initial max spell points");
+    ExpectTrue(Research->researchCommand("throw turnip at frank"));
+    ExpectEq(140, Research->maxSpellPoints(), "max spell points decreased");
+    ExpectTrue(Research->sustainedResearchIsActive("lib/tests/support/research/testSustainedTraitResearch.c"), "research is active");
+    ExpectTrue(target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "trait is active");
+}

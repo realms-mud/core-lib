@@ -318,10 +318,11 @@ public nomask varargs int initiateResearch(string researchItem)
                         researchDictionary()->getResearchCost(researchItem);
                     research[researchItem] = ([
                         "when research began":time(),
-                            "when research complete" : time(),
-                            "time spent learning" : 0,
-                            "research complete" : 1
+                        "when research complete": time(),
+                        "time spent learning": 0,
+                        "research complete": 1
                     ]);
+
                     ret = 1;
 
                     object events = getService("events");
@@ -376,6 +377,12 @@ public nomask varargs int initiateResearch(string researchItem)
     }
     if (ret)
     {
+        string *bonuses = researchDictionary()->getResearchBonuses(researchItem);
+        if (bonuses && sizeof(bonuses) &&
+            !researchDictionary()->isActiveOrSustainedAbility(researchItem))
+        {
+            research[researchItem]["bonuses"] = bonuses;
+        }
         registerResearchEvents();
     }
     return ret;
@@ -518,7 +525,8 @@ public nomask mapping *researchExtraAttacks()
 {
     mapping *extraAttacks = ({ });
     string *researchItems = filter(m_indices(research),
-        (: !researchDictionary()->isActiveOrSustainedAbility($1) :));
+        (: (member(research[$1], "bonuses") &&
+           sizeof(regexp(research[$1]["bonuses"], "bonus [^ ]+ attack"))) :));
 
     foreach(string researchItem in researchItems)
     {
@@ -543,7 +551,9 @@ public nomask int researchAttributeBonus(string attribute)
     if(attribute && stringp(attribute))
     {
         string *researchItems = filter(m_indices(research),
-            (: !researchDictionary()->isActiveOrSustainedAbility($1) :));
+            (: (member(research[$1], "bonuses") &&
+                sizeof(regexp(research[$1]["bonuses"], 
+                "bonus " + $2))) :), attribute);
 
         foreach(string researchItem in researchItems)
         {
@@ -565,32 +575,44 @@ public nomask int researchAttributeBonus(string attribute)
 public nomask int researchBonusTo(string bonus)
 {
     int ret = 0;
-    
+
+    if (member(({ "MaxHitPoints", "MaxSpellPoints",
+            "MaxStaminaPoints" }), bonus) > -1)
+    {
+        string *sustainedResearchActive = filter(m_indices(research),
+            (: (member(research[$1], "sustained active") &&
+               research[$1]["sustained active"]) :));
+
+        foreach(string researchItem in sustainedResearchActive)
+        {
+            ret -= call_other(researchDictionary(),
+                "applySustainedCostTo", researchItem, bonus);
+        }
+    }
+
     if(function_exists(bonus, researchDictionary()))
     {
+        string bonusString = 
+            getDictionary("bonuses")->getBonusFromFunction(bonus);
+
         string *researchItems = filter(m_indices(research),
-            (: !researchDictionary()->isActiveOrSustainedAbility($1) :));
+            (: (member(research[$1], "bonuses") &&
+                sizeof(regexp(research[$1]["bonuses"], $2))) :), bonusString);
 
         foreach(string researchItem in researchItems)
         {
             if(canApplyResearchBonus(researchItem, bonus))
             {
-                ret += call_other(researchDictionary(), bonus, researchItem);
-                
-                if(researchDictionary()->isSustainedAbility(researchItem) &&
-                   (member(({ "MaxHitPoints", "MaxSpellPoints", 
-                              "MaxStaminaPoints" }), bonus) > -1))
-                {
-                    ret -= call_other(researchDictionary(), 
-                        "applySustainedCostTo", researchItem, bonus);
-                }                
+                ret += call_other(researchDictionary(), bonus, researchItem);              
             }
         }
     }
     else if(function_exists("BonusSkillModifier", researchDictionary()))
     {
         string *researchItems = filter(m_indices(research),
-            (: !researchDictionary()->isActiveOrSustainedAbility($1) :));
+            (: (member(research[$1], "bonuses") &&
+                sizeof(regexp(research[$1]["bonuses"], 
+                "bonus " + $2))) :), bonus);
 
         foreach(string researchItem in researchItems)
         {

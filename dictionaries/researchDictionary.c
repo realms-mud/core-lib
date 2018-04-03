@@ -663,3 +663,15 @@ public mapping getResearchTreeChoices(string type, object user)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getResearchBonuses(string researchItem)
+{
+    string *ret = 0;
+    object researchObj = researchObject(researchItem);
+    if (researchObj)
+    {
+        ret = researchObj->query("raw bonuses");
+    }
+    return ret + ({});
+}

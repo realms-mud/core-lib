@@ -19,6 +19,6 @@ public void reset(int arg)
         addSpecification("bonus long sword", 5);
         addSpecification("bonus fire attack", 15);
         addSpecification("bonus weapon attack", 2);
+        addSpecification("bonus spell points", 5);
     }
 }
-

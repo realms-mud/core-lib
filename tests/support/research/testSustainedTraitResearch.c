@@ -14,8 +14,8 @@ public void reset(int arg)
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
         addSpecification("cooldown", 4);
+        addSpecification("spell point cost", 10);
         addSpecification("command template", "throw turnip at ##Target##");
         addSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
     }
 }
-

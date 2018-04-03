@@ -101,7 +101,7 @@ void PlayerCombatAttributesRestored()
     ExpectEq(100, Player->hitPoints());
     ExpectEq(200, Player->maxHitPoints());
     ExpectEq(120, Player->spellPoints());
-    ExpectEq(230, Player->maxSpellPoints());
+    ExpectEq(235, Player->maxSpellPoints());
     ExpectEq(140, Player->staminaPoints());
     ExpectEq(150 + (3 * Player->Con()) + (3 * Player->Str()),
         Player->maxStaminaPoints());

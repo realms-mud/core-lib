@@ -28,6 +28,21 @@ static nomask void loadResearch(mapping data, object persistence)
             openResearchTrees = openTrees;
         }
         research = persistence->extractSavedMapping("research", data);
+
+        string *researchItems = m_indices(research);
+        if (sizeof(researchItems))
+        {
+            foreach(string researchItem in researchItems)
+            {
+                object dictionary = load_object("/lib/dictionaries/researchDictionary");
+                string *bonuses = dictionary->getResearchBonuses(researchItem);
+                if (bonuses && sizeof(bonuses) &&
+                    !dictionary->isActiveOrSustainedAbility(researchItem))
+                {
+                    research[researchItem]["bonuses"] = bonuses;
+                }
+            }
+        }
         researchChoices = persistence->extractSavedMapping("researchChoices", data);
     }
 }

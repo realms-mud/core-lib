@@ -418,6 +418,13 @@ public mixed query(string element)
                     (researchData[$1] < 0); :)), (: $1 > $2 :));
                 break;
             }
+            case "raw bonuses":
+            {
+                ret = sort_array(filter(m_indices(researchData),
+                    (: (sizeof(regexp(({ $1 }), "bonus")) > 0) :)),
+                    (: $1 > $2 :));
+                break;
+            }
         }
     }
     return ret;

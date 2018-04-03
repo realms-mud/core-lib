@@ -8,6 +8,25 @@
 private nosave string LibDirectory = "lib/dictionaries";
 
 private string *bonuses = 0;
+private mapping functionsToBonuses = ([
+    "MaxHitPoints": "bonus hit points",
+    "MaxSpellPoints": "bonus spell points",
+    "MaxStaminaPoints": "bonus stamina points",
+    "DefendAttackBonus": "bonus defend attack",
+    "AttackBonus": "bonus attack",
+    "DefenseBonus": "bonus defense",
+    "DamageBonus": "bonus damage",
+    "BonusHealHitPoints": "bonus heal hit points",
+    "BonusHealSpellPoints": "bonus heal spell points",
+    "BonusHealStamina": "bonus heal stamina points",
+    "BonusHealHitPointsRate": "bonus heal hit points rate",
+    "BonusHealSpellPointsRate": "bonus heal spell points rate",
+    "BonusHealStaminaRate": "bonus heal stamina rate",
+    "RecoverSpellPoints": "bonus recover spell points",
+    "ReduceSpellPoints": "bonus reduce spell points",
+    "RecoverStaminaPoints": "bonus recover stamina points",
+    "ReduceStaminaPoints": "bonus reduce stamina points"
+]);
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask object getDictionary(string service)
@@ -86,3 +105,13 @@ public nomask int isValidBonusModifier(string bonus, int amount)
     //TODO: Finish me
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getBonusFromFunction(string bonusFunction)
+{
+    string ret = 0;
+    if (member(functionsToBonuses, bonusFunction))
+    {
+        ret = functionsToBonuses[bonusFunction];
+    }
+    return ret;
+}
