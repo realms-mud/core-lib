@@ -35,6 +35,17 @@ public nomask int alterOpinionOf(object target, int value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int alterOpinionFromEmote(object target, mapping emoteData)
+{
+    int ret = 0;
+    if (objectp(target))
+    {
+        ret = target->opinionOfCharacter(this_object(), emoteData["value"]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void addConversation(string conversation)
 {
     if (file_size(conversation) > 0)
