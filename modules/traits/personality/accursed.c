@@ -7,6 +7,12 @@ inherit "/lib/modules/traits/baseTrait.c";
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
-
+    addSpecification("type", "personality");
+    addSpecification("name", "accursed");
+    addSpecification("description", "You are an extremely dislikable person.");
+    addSpecification("root", "cruel");
+    addSpecification("opposing root", "kind");
+    addSpecification("opinion", -5);
+    addSpecification("opposing opinion", -10);
+    "baseTrait"::reset(arg);
 }
-

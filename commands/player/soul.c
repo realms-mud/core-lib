@@ -352,7 +352,8 @@ public nomask int execute(string command, object initiator)
             {
                 speakMessage(messageTemplate, initiator, targetObj);
 
-                if (targetObj && (initiator != targetObj))
+                if (targetObj && (initiator != targetObj) && 
+                    member(emoteTemplates[action], "value"))
                 {
                     targetObj->alterOpinionFromEmote(initiator,
                         emoteTemplates[action]);
