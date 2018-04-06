@@ -10,11 +10,11 @@ public void reset(int arg)
     if (!arg)
     {
         addSpecification("type", "personality");
-        addSpecification("name", "addict");
-        addSpecification("description", "You are prone to compulsive or obsessive behavior "
-            "be it toward a substance, habit, or activity.");
-        addSpecification("root", "addict");
-        addSpecification("opinion", -5);
+        addSpecification("name", "exciting");
+        addSpecification("description", "People gravitate toward you as you "
+            "have a knack for piquing their enthusiasm.");
+        addSpecification("root", "interesting");
+        addSpecification("opinion", 5);
         "baseTrait"::reset(arg);
     }
 }
