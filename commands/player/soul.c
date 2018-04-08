@@ -12,11 +12,14 @@ mapping emoteTemplates = ([
     "admire": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::admire####TargetName::the ambiguity of admiring without a target##.",
         "reactions": ([
-            "opinion modifier": 5,
+            "opinion modifier": 3,
         ]),
     ]),
     "agree": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::agree####TargetPreposition::with####TargetName##.", 
+        "reactions": ([
+            "opinion modifier": 1,
+        ]),
     ]),
     "agrin": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::grin####TargetPreposition::at####TargetName## like an ass.", 
@@ -29,12 +32,22 @@ mapping emoteTemplates = ([
     ]),
     "amorous": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::feel## amorous##TargetPreposition::toward####TargetName##.", 
+        "reactions": ([
+            "romance action": 1,
+            "opinion modifier": 5,
+        ]),
     ]),
     "annoy": ([ 
         "template": "##InitiatorName## ##Infinitive::be## ##Adverb## annoying##TargetName##.", 
+         "reactions": ([
+            "opinion modifier": -1,
+        ]),
     ]),
     "apologize": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::apologize####TargetPreposition::to####TargetName##.", 
+         "reactions": ([
+            "opinion modifier": 1,
+        ]),
     ]),
     "applaud": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::give## a round of applause##TargetPreposition::to####TargetName##.", 
@@ -44,9 +57,18 @@ mapping emoteTemplates = ([
     ]),
     "backhand": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::backhand####TargetName::an invisible, deceased llama##.", 
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -10,
+            "retaliation": "##TargetName## ##Infinitive::punch####InitiatorName##."
+        ]),
     ]),
     "baha": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::go## BAHAHAHA##TargetPreposition::at####TargetName##.", 
+         "reactions": ([
+            "opinion modifier": -1,
+        ]),
     ]),
     "bark": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::bark## like a dog##TargetPreposition::at####TargetName##.", 
@@ -59,6 +81,10 @@ mapping emoteTemplates = ([
     ]),
     "beep": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::beep####TargetName::like a person mercilessly spared from the ravages of sanity.####TargetPreposition::on the nose.##", 
+         "reactions": ([
+            "can be blocked": 1,
+            "opinion modifier": -1,
+        ]),
     ]),
     "beg": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::beg## like a dog##TargetPreposition::at####TargetName##.", 
@@ -80,12 +106,24 @@ mapping emoteTemplates = ([
     ]),
     "boot": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::give####TargetName::an imaginary mime## a boot to the head!", 
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -10,
+            "retaliation": "##TargetName## ##Infinitive::punch####InitiatorName## in the jaw."
+        ]),
     ]),
     "bootie": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::shake## ##InitiatorPossessive## bootie!", 
     ]),
     "bop": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::bop####TargetName::an invisible flying turtle##!", 
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -5,
+            "retaliation": "##TargetName## ##Infinitive::bop####InitiatorName##."
+        ]),
     ]),
     "bored": ([ 
         "template": "##InitiatorName## ##Infinitive::be## ##Adverb## bored##TargetPreposition::with####TargetName##.",
@@ -95,9 +133,18 @@ mapping emoteTemplates = ([
     ]),
     "bow": ([
         "template": "##InitiatorName## ##Infinitive::bow####TargetPreposition::to####TargetName## ##Adverb::gracefully##.",
+         "reactions": ([
+            "opinion modifier": 1,
+        ]),
     ]),
     "bpoke": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::poke####TargetName::an imaginary sea otter## and ##Infinitive::sneer##, 'Does this bug you?'",
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -1,
+            "retaliation": "##TargetName## ##Infinitive::punch####InitiatorName## in the groin and ##Infinitive::sneer##, 'Did that bug you?'"
+        ]),
     ]),
     "brb": ([
         "template": "##InitiatorName## ##Adverb## will be right back (after a word from ##InitiatorPossessive## sponsors).",
@@ -119,6 +166,13 @@ mapping emoteTemplates = ([
     ]),
     "caress": ([
         "template": "##InitiatorName## ##Adverb::gently## ##Infinitive::run## ##InitiatorPossessive## finger down ##TargetPossessive::Name::an invisible, deaf mime's## cheek.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 10,
+            "retaliation": "##TargetName## ##Infinitive::push####InitiatorName## away.",
+            "reciprocation": "##TargetName## ##Infinitive::smile## at##InitiatorName##."
+        ]),
     ]),
     "cheer": ([
         "template": "##InitiatorName## ##Infinitive::cheer## ##Adverb::enthusiastically####TargetPreposition::at####TargetName##.",
@@ -134,6 +188,11 @@ mapping emoteTemplates = ([
     ]),
     "choke": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::choke####TargetName##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -5,
+        ]),
     ]),
     "chortle": ([
         "template": "##InitiatorName## ##Infinitive::chortle## ##Adverb::gleefully####TargetPreposition::at####TargetName##.",
@@ -146,9 +205,15 @@ mapping emoteTemplates = ([
     ]),
     "comfort": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::comfort####TargetName::a small rock##.",
+         "reactions": ([
+            "opinion modifier": 5,
+        ]),
     ]),
     "congratulate": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::congratulate####TargetName::self## on a job well done.",
+         "reactions": ([
+           "opinion modifier": 1,
+        ]),
     ]),
     "cough": ([
         "template": "##InitiatorName## ##Infinitive::cough## ##Adverb::noisily####TargetPreposition::at####TargetName##.",
@@ -170,36 +235,68 @@ mapping emoteTemplates = ([
     ]),
     "cuddle": ([
         "template": "##InitiatorName## ##Infinitive::cuddle####TargetName::self## ##Adverb::tenderly##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 10,
+            "retaliation": "##TargetName## ##Infinitive::push####InitiatorName## away.",
+            "reciprocation": "##TargetName## ##Infinitive::kiss####InitiatorName## tenderly."
+        ]),
     ]),
     "curtsey": ([
         "template": "##InitiatorName## ##Infinitive::curtsey####TargetPreposition::to####TargetName## ##Adverb::gracefully##.",
+         "reactions": ([
+            "opinion modifier": 1,
+        ]),
     ]),
     "dammit": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::say##, `DAMMIT!'##TargetPreposition::to####TargetName##.",
     ]),
     "dance": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::dance####TargetPreposition::with####TargetName::happily####TargetPreposition::, sweeping ####TargetObjective####TargetPreposition::across the dance floor##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 2,
+        ]),
     ]),
     "daydream": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::get## lost in a daydream##TargetPreposition::about####TargetName##.",
+         "reactions": ([
+            "romance action": 1,
+            "opinion modifier": 2,
+        ]),
     ]),
     "die": ([
         "template": "##InitiatorName## ##Infinitive::roll## over ##Adverb## and ##Infinitive::do## ##InitiatorPossessive## best to look dead.",
     ]),
     "disagree": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::disagree####TargetPreposition::with####TargetName##.",
+         "reactions": ([
+            "hostile action": 1,
+            "opinion modifier": -5,
+        ]),
     ]),
     "doh": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::smack## ##InitiatorPossessive## head and ##Infinitive::go##, `Doh!'",
     ]),
     "drool": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::drool## all over##TargetName::self##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -2,
+        ]),
     ]),
     "duck": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::duck## out of the way.",
     ]),
     "duh": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::scream## `DUH!'##TargetPreposition::at####TargetName##.",
+         "reactions": ([
+            "hostile action": 1,
+            "opinion modifier": -5,
+        ]),
     ]),
     "eek": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::go## 'eeeeeeeeeeeeek!'##TargetPreposition::to####TargetName##.",
@@ -218,9 +315,21 @@ mapping emoteTemplates = ([
     ]),
     "embrace": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::gather####TargetName::self## in a warm, loving embrace.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 15,
+            "retaliation": "##TargetName## ##Infinitive::push####InitiatorName## away.",
+            "reciprocation": "##TargetName## gently ##Infinitive::kiss####InitiatorName##."
+        ]),
     ]),
     "explode": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::explode####TargetPreposition::at####TargetName::all over the room##!",
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -2,
+        ]),
     ]),
     "faint": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::faint##... THUMP!",
@@ -233,6 +342,10 @@ mapping emoteTemplates = ([
     ]),
     "flash": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::strip## ##InitiatorPossessive## clothes and ##Infinitive::bare## ##InitiatorPossessive## body for all to see!",
+         "reactions": ([
+            "hostile action": 1,
+            "opinion modifier": -25,
+        ]),
     ]),
     "flex": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::flex## ##InitiatorPossessive## muscles##TargetPreposition::at####TargetName##!",
@@ -242,12 +355,28 @@ mapping emoteTemplates = ([
     ]),
     "flipoff": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::give####TargetName::self## the finger!",
+         "reactions": ([
+            "hostile action": 1,
+            "opinion modifier": -5,
+        ]),
     ]),
     "flirt": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::flirt####TargetPreposition::with####TargetName::with disaster##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 5,
+            "retaliation": "##TargetName## ##Infinitive::reply## to ##InitiatorName##, `You can stop that.'",
+            "reciprocation": "##TargetName## ##Infinitive::smile## at##InitiatorName##."
+       ]),
     ]),
     "flog": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::flog####TargetName::an invisible, mute mime##!",
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -10,
+        ]),
     ]),
     "flop": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::flop## to the floor... FLOP!",
@@ -257,21 +386,47 @@ mapping emoteTemplates = ([
     ]),
     "fondle": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::fondle####TargetName::self##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 10,
+            "retaliation": "##TargetName## ##Infinitive::knee####InitiatorName## in the groin and ##Infinitive::scream##, `How dare you?'.",
+            "reciprocation": "##TargetName## playfully ##Infinitive::moan## at ##InitiatorName##."
+        ]),
     ]),
     "freeze": ([
         "template": "##InitiatorName## ##Infinitive::freeze## ##Adverb## and ##Infinitive::turn## into a popsicle!",
     ]),
     "french": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::give####TargetName::an invisible toad## a deep, hot, passionate kiss...it seems to last forever.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 20,
+            "retaliation": "##TargetName## ##Infinitive::push####InitiatorName## away and ##Infinitive::snarl##, `Stay away from me!'.",
+            "reciprocation": "##TargetName## playfully ##Infinitive::nibble## ##InitiatorPossessive::Name## tongue as they pull away."
+        ]),
     ]),
     "frown": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::frown####TargetPreposition::at####TargetName##.",
+         "reactions": ([
+            "hostile action": 1,
+            "opinion modifier": -1,
+        ]),
     ]),
     "fume": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::fume####TargetPreposition::at####TargetName##.",
+         "reactions": ([
+            "hostile action": 1,
+            "opinion modifier": -5,
+        ]),
     ]),
     "gag": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::gag####TargetPreposition::at####TargetName##.",
+         "reactions": ([
+            "hostile action": 1,
+            "opinion modifier": -2,
+        ]),
     ]),
     "gasp": ([
         "template": "##InitiatorName## ##Infinitive::gasp## ##Adverb::in astonishment####TargetPreposition::at####TargetName##.",
@@ -287,18 +442,36 @@ mapping emoteTemplates = ([
     ]),
     "glare": ([
         "template": "##InitiatorName## ##Infinitive::glare## ##Adverb::icily####TargetPreposition::at####TargetName##.",
+         "reactions": ([
+            "hostile action": 1,
+            "opinion modifier": -1,
+        ]),
     ]),
     "gloat": ([
         "template": "##InitiatorName## ##Infinitive::gloat## ##Adverb::foolishly####TargetPreposition::at####TargetName##.",
+         "reactions": ([
+            "hostile action": 1,
+            "opinion modifier": -5,
+        ]),
     ]),
     "goo": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::goo####TargetPreposition::at####TargetName##.",
     ]),
     "goose": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::goose####TargetName::self##!",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 5,
+        ]),
     ]),
     "grab": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::grab####TargetName::at nothing in particular####TargetPreposition::by the arm##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -1,
+        ]),
     ]),
     "grimace": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::grimace####TargetPreposition::at####TargetName##.",
@@ -311,9 +484,19 @@ mapping emoteTemplates = ([
     ]),
     "grope": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::grope####TargetName::self##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 10,
+            "retaliation": "##TargetName## ##Infinitive::knee####InitiatorName## in the groin and ##Infinitive::scream##, `Asshole!'.",
+            "reciprocation": "##TargetName## ##Infinitive::grope## ##InitiatorName##."
+        ]),
     ]),
     "grovel": ([
         "template": "##InitiatorName## ##Infinitive::grovel## ##Adverb::shamelessly####TargetPreposition::before####TargetName##.",
+         "reactions": ([
+            "opinion modifier": 1,
+        ]),
     ]),
     "growl": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::growl####TargetPreposition::at####TargetName##.",
@@ -329,6 +512,13 @@ mapping emoteTemplates = ([
     ]),
     "handkiss": ([
         "template": "##InitiatorName## ##Adverb::gently## ##Infinitive::take####TargetPossessive::Name::a dismembered## hand and ##Infinitive::kiss## it lightly.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 5,
+            "retaliation": "##TargetName## ##Infinitive::pull## ##TargetPossessive## hand away from ##InitiatorName## and ##Infinitive::say##, `What's wrong with you?'",
+            "reciprocation": "##TargetName## ##Infinitive::blush## at ##InitiatorName##."
+        ]),
     ]),
     "harumph": ([
         "template": "##InitiatorName## ##Infinitive::harumph####TargetPreposition::at####TargetName## ##Adverb::indignantly##.",
@@ -341,6 +531,9 @@ mapping emoteTemplates = ([
     ]),
     "hi5": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::give####TargetName::self## a Hi-5!",
+         "reactions": ([
+            "can be blocked": 1,
+        ]),
     ]),
     "hiccup": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::hiccup####TargetPreposition::at####TargetName##.",
@@ -350,6 +543,13 @@ mapping emoteTemplates = ([
     ]),
     "hold": ([
         "template": "##InitiatorName## ##Infinitive::hold####TargetName::a stuffed ogre doll## ##Adverb::closely##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 5,
+            "retaliation": "##TargetName## ##Infinitive::knee## ##InitiatorName## in the groin ##Infinitive::snarl##, `Release me, jackwagon!'",
+            "reciprocation": "##TargetName## gently ##Infinitive::kiss## ##InitiatorName##."
+        ]),
     ]),
     "hop": ([
         "template": "##InitiatorName## ##Infinitive::hop## ##Adverb::around##.",
@@ -362,21 +562,45 @@ mapping emoteTemplates = ([
     ]),
     "hug": ([
         "template": "##InitiatorName## ##Infinitive::hug####TargetName::a stuffed ogre doll## ##Adverb::affectionately##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 5,
+            "retaliation": "##TargetName## ##Infinitive::knee## ##InitiatorName## in the groin ##Infinitive::snarl##, `Back off!'",
+            "reciprocation": "##TargetName## tenderly ##Infinitive::wrap## ##TargetPossessive## arms around ##InitiatorName##."
+        ]),
     ]),
     "ignore": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::ignore####TargetName::the screams of the fallen##.",
     ]),
     "insult": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::mutter## something slanderous about ##TargetName####TargetPreposition::and ##horses in physically improbable acts.",
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -5,
+        ]),
     ]),
     "jump": ([
         "template": "##InitiatorName## ##Infinitive::jump## ##Adverb::up and down####TargetPreposition::on####TargetName##.",
     ]),
     "kick": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::kick####TargetName::an invisible, deceased mime##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "hostile action": 1,
+            "opinion modifier": -10,
+        ]),
     ]),
     "kiss": ([
         "template": "##InitiatorName## ##Infinitive::kiss####TargetName::self## ##Adverb::affectionately##.",
+         "reactions": ([
+            "can be blocked": 1,
+            "romance action": 1,
+            "opinion modifier": 5,
+            "retaliation": "##TargetName## ##Infinitive::slap## ##InitiatorName## in the face ##Infinitive::back## away.",
+            "reciprocation": "##TargetName## tenderly ##Infinitive::wrap## ##TargetPossessive## arms around ##InitiatorName##."
+        ]),
     ]),
     "laugh": ([
         "template": "##InitiatorName## ##Infinitive::fall## down ##Adverb## laughing##TargetPreposition::at####TargetName##.",
@@ -729,6 +953,34 @@ private nomask void speakMessage(string messageTemplate,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string removeTargetString(string messageTemplate)
+{
+    string ret = regreplace(messageTemplate, "##TargetName::self##", " ##InitiatorReflexive##", 1);
+    ret = regreplace(ret, "##TargetName::([^#]+)*##", " \\1", 1);
+    ret = regreplace(ret, "##TargetPossessive::Name::self([^#]+)*##", " ##InitiatorPossessive##\\1", 1);
+    ret = regreplace(ret, "##TargetPossessive::Name::([^#]+)*##", " \\1", 1);
+    ret = regreplace(ret, "##TargetPreposition::[^#]+##", "", 1);
+    ret = regreplace(ret, "##Target[^#]+##", "");
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string replaceTargetDetails(string messageTemplate, string target,
+    object targetObj)
+{
+    string ret = regreplace(messageTemplate, "([^ \"])##Target", "\\1 ##Target", 1);
+    ret = regreplace(ret, "##TargetName(::[^#]+)*##", "##TargetName##", 1);
+    ret = regreplace(ret, "##TargetPossessive::Name(::[^#]+)*##", "##TargetPossessive::Name##", 1);
+    if (!targetObj)
+    {
+        ret = regreplace(ret, "##TargetName##", target);
+    }
+    ret = regreplace(ret, "##TargetPreposition::([^#]+)##", "\\1", 1);
+    ret = regreplace(ret, " ([,;.!?] )", "\\1", 1);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int execute(string command, object initiator)
 {
     int ret = 0;
@@ -768,24 +1020,11 @@ public nomask int execute(string command, object initiator)
                 command = regreplace(command, "-t(arget)* ([A-Za-z]+)", "", 1);
                 command = regreplace(command, "-t(arget)* ('[A-Za-z ]+')", "", 1);
 
-                messageTemplate = regreplace(messageTemplate, "##Target", " ##Target", 1);
-                messageTemplate = regreplace(messageTemplate, "##TargetName(::[^#]+)*##", "##TargetName##", 1);
-                messageTemplate = regreplace(messageTemplate, "##TargetPossessive::Name(::[^#]+)*##", "##TargetPossessive::Name##", 1);
-                if (!targetObj)
-                {
-                    messageTemplate = regreplace(messageTemplate, "##TargetName##", target);
-                }
-                messageTemplate = regreplace(messageTemplate, "##TargetPreposition::([^#]+)##", "\\1", 1);
-                messageTemplate = regreplace(messageTemplate, " ([,;.!?] )", "\\1", 1);
+                messageTemplate = replaceTargetDetails(messageTemplate, target, targetObj);
             }
             else
             {
-                messageTemplate = regreplace(messageTemplate, "##TargetName::self##", " ##InitiatorReflexive##", 1);
-                messageTemplate = regreplace(messageTemplate, "##TargetName::([^#]+)*##", " \\1", 1);
-                messageTemplate = regreplace(messageTemplate, "##TargetPossessive::Name::self([^#]+)*##", " ##InitiatorPossessive##\\1", 1);
-                messageTemplate = regreplace(messageTemplate, "##TargetPossessive::Name::([^#]+)*##", " \\1", 1);
-                messageTemplate = regreplace(messageTemplate, "##TargetPreposition::[^#]+##", "", 1);
-                messageTemplate = regreplace(messageTemplate, "##Target[^#]+##", "");
+                messageTemplate = removeTargetString(messageTemplate);
             }
 
             // This will kill the other flags
