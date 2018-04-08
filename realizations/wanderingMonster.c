@@ -13,3 +13,4 @@ public nomask int isRealizationOfWanderingMonster()
     return 1;
 }
 
+//TODO [224]: To, in fact, do.
