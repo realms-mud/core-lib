@@ -32,14 +32,14 @@ public nomask int isValidFaction(string faction)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int canJoinFaction(string faction, object initiator)
 {
-    //TODO [236]: Finish this 
+    //TODO [72]: Finish this 
     return 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int canLeaveFaction(string faction, object initiator)
 {
-    //TODO [236]: Finish this 
+    //TODO [72]: Finish this 
     return 1;
 }
 

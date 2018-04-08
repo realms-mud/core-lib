@@ -1197,10 +1197,9 @@ private nomask int finishOffThisPoorDeadBastard(object murderer)
     int ret = 1;
 
     object player = getService("player");
-       
     if(player)
     {
-        object logger = getService("logger");
+        object logger = getDictionary("log");
         if(logger)
         {
             logger->logDeath(player, murderer);
