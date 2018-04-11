@@ -18,5 +18,9 @@ private nosave string Enchanted = "[0;35m%s[0m";
 private nosave string Cyan = "[0;36m%s[0m";
 private nosave string BoldBlack = "[0;30;1m%s[0m";
 private nosave string Red = "[0;31m%s[0m";
+private nosave string Green = "[0;32m%s[0m";
+private nosave string Yellow = "[0;33m%s[0m";
+private nosave string Blue = "[0;34m%s[0m";
+private nosave string Magenta = "[0;35m%s[0m";
 
 #endif
