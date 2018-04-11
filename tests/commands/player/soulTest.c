@@ -2969,3 +2969,22 @@ void ZingDisplaysCorrectMessages()
     ExpectTrue(Player->executeCommand("zing -a ineptly -t earl"));
     ExpectEq("Bob holds up a finger and ineptly says, `Zing!'\n", Target->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void HostileActionsTriggerRetaliation()
+{
+    destruct(Target);
+    Target = clone_object("/lib/realizations/monster.c");
+    Target->Name("earl");
+    Target->Race("human");
+    Target->Gender(1);
+
+    object shadow = clone_object("/lib/tests/support/services/catchShadow.c");
+    shadow->beginShadow(Target);
+    move_object(Target, this_object());
+
+    ExpectTrue(Player->executeCommand("backhand earl"));
+    ExpectEq(({ "You backhand Earl.\n",
+        "Earl punches you.\n" }), Player->caughtMessages());
+    ExpectEq("You punch Bob.\n", Target->caughtMessage());
+}

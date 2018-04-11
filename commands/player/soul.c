@@ -61,7 +61,7 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "hostile action": 1,
             "opinion modifier": -10,
-            "retaliation": "##TargetName## ##Infinitive::punch####InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::punch## ##TargetName##."
         ]),
     ]),
     "baha": ([ 
@@ -110,7 +110,7 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "hostile action": 1,
             "opinion modifier": -10,
-            "retaliation": "##TargetName## ##Infinitive::punch####InitiatorName## in the jaw."
+            "retaliation": "##InitiatorName## ##Infinitive::punch## ##TargetName## in the jaw."
         ]),
     ]),
     "bootie": ([ 
@@ -122,7 +122,7 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "hostile action": 1,
             "opinion modifier": -5,
-            "retaliation": "##TargetName## ##Infinitive::bop####InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::bop## ##TargetName##."
         ]),
     ]),
     "bored": ([ 
@@ -143,7 +143,7 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "hostile action": 1,
             "opinion modifier": -1,
-            "retaliation": "##TargetName## ##Infinitive::punch####InitiatorName## in the groin and ##Infinitive::sneer##, 'Did that bug you?'"
+            "retaliation": "##InitiatorName## ##Infinitive::punch## ##TargetName## in the groin and ##Infinitive::sneer##, 'Did that bug you?'"
         ]),
     ]),
     "brb": ([
@@ -170,8 +170,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 10,
-            "retaliation": "##TargetName## ##Infinitive::push####InitiatorName## away.",
-            "reciprocation": "##TargetName## ##Infinitive::smile## at##InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::push## ##TargetName## away.",
+            "reciprocation": "##InitiatorName## ##Infinitive::smile## at ##TargetName##."
         ]),
     ]),
     "cheer": ([
@@ -239,8 +239,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 10,
-            "retaliation": "##TargetName## ##Infinitive::push####InitiatorName## away.",
-            "reciprocation": "##TargetName## ##Infinitive::kiss####InitiatorName## tenderly."
+            "retaliation": "##InitiatorName## ##Infinitive::push## ##TargetName## away.",
+            "reciprocation": "##InitiatorName## ##Infinitive::kiss## ##TargetName## tenderly."
         ]),
     ]),
     "curtsey": ([
@@ -319,8 +319,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 15,
-            "retaliation": "##TargetName## ##Infinitive::push####InitiatorName## away.",
-            "reciprocation": "##TargetName## gently ##Infinitive::kiss####InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::push## ##TargetName## away.",
+            "reciprocation": "##InitiatorName## gently ##Infinitive::kiss## ##TargetName##."
         ]),
     ]),
     "explode": ([
@@ -366,8 +366,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 5,
-            "retaliation": "##TargetName## ##Infinitive::reply## to ##InitiatorName##, `You can stop that.'",
-            "reciprocation": "##TargetName## ##Infinitive::smile## at##InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::reply## to ##TargetName##, `You can stop that.'",
+            "reciprocation": "##InitiatorName## ##Infinitive::smile## at ##TargetName##."
        ]),
     ]),
     "flog": ([
@@ -390,8 +390,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 10,
-            "retaliation": "##TargetName## ##Infinitive::knee####InitiatorName## in the groin and ##Infinitive::scream##, `How dare you?'.",
-            "reciprocation": "##TargetName## playfully ##Infinitive::moan## at ##InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::knee## ##TargetName## in the groin and ##Infinitive::scream##, `How dare you?'.",
+            "reciprocation": "##InitiatorName## playfully ##Infinitive::moan## at ##TargetName##."
         ]),
     ]),
     "freeze": ([
@@ -403,8 +403,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 20,
-            "retaliation": "##TargetName## ##Infinitive::push####InitiatorName## away and ##Infinitive::snarl##, `Stay away from me!'.",
-            "reciprocation": "##TargetName## playfully ##Infinitive::nibble## ##InitiatorPossessive::Name## tongue as they pull away."
+            "retaliation": "##InitiatorName## ##Infinitive::push## ##TargetName## away and ##Infinitive::snarl##, `Stay away from me!'.",
+            "reciprocation": "##InitiatorName## playfully ##Infinitive::nibble## ##TargetPossessive::Name## tongue as they pull away."
         ]),
     ]),
     "frown": ([
@@ -488,8 +488,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 10,
-            "retaliation": "##TargetName## ##Infinitive::knee####InitiatorName## in the groin and ##Infinitive::scream##, `Asshole!'.",
-            "reciprocation": "##TargetName## ##Infinitive::grope## ##InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::knee## ##TargetName## in the groin and ##Infinitive::scream##, `Asshole!'.",
+            "reciprocation": "##InitiatorName## ##Infinitive::grope## ##TargetName##."
         ]),
     ]),
     "grovel": ([
@@ -516,8 +516,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 5,
-            "retaliation": "##TargetName## ##Infinitive::pull## ##TargetPossessive## hand away from ##InitiatorName## and ##Infinitive::say##, `What's wrong with you?'",
-            "reciprocation": "##TargetName## ##Infinitive::blush## at ##InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::pull## ##InitiatorPossessive## hand away from ##TargetName## and ##Infinitive::say##, `What's wrong with you?'",
+            "reciprocation": "##InitiatorName## ##Infinitive::blush## at ##TargetName##."
         ]),
     ]),
     "harumph": ([
@@ -547,8 +547,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 5,
-            "retaliation": "##TargetName## ##Infinitive::knee## ##InitiatorName## in the groin ##Infinitive::snarl##, `Release me, jackwagon!'",
-            "reciprocation": "##TargetName## gently ##Infinitive::kiss## ##InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::knee## ##TargetName## in the groin ##Infinitive::snarl##, `Release me, jackwagon!'",
+            "reciprocation": "##InitiatorName## gently ##Infinitive::kiss## ##TargetName##."
         ]),
     ]),
     "hop": ([
@@ -566,8 +566,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 5,
-            "retaliation": "##TargetName## ##Infinitive::knee## ##InitiatorName## in the groin ##Infinitive::snarl##, `Back off!'",
-            "reciprocation": "##TargetName## tenderly ##Infinitive::wrap## ##TargetPossessive## arms around ##InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::knee## ##TargetName## in the groin ##Infinitive::snarl##, `Back off!'",
+            "reciprocation": "##InitiatorName## tenderly ##Infinitive::wrap## ##InitiatorPossessive## arms around ##TargetName##."
         ]),
     ]),
     "ignore": ([
@@ -598,8 +598,8 @@ mapping emoteTemplates = ([
             "can be blocked": 1,
             "romance action": 1,
             "opinion modifier": 5,
-            "retaliation": "##TargetName## ##Infinitive::slap## ##InitiatorName## in the face ##Infinitive::back## away.",
-            "reciprocation": "##TargetName## tenderly ##Infinitive::wrap## ##TargetPossessive## arms around ##InitiatorName##."
+            "retaliation": "##InitiatorName## ##Infinitive::slap## ##TargetName## in the face ##Infinitive::back## away.",
+            "reciprocation": "##InitiatorName## tenderly ##Infinitive::wrap## ##InitiatorPossessive## arms around ##TargetName##."
         ]),
     ]),
     "laugh": ([
@@ -1039,10 +1039,19 @@ public nomask int execute(string command, object initiator)
                 speakMessage(messageTemplate, initiator, targetObj);
 
                 if (targetObj && (initiator != targetObj) && 
-                    member(emoteTemplates[action], "value"))
+                    !targetObj->isRealizationOfPlayer() &&
+                    member(emoteTemplates[action], "reactions"))
                 {
-                    targetObj->alterOpinionFromEmote(initiator,
-                        emoteTemplates[action]);
+                    if (member(emoteTemplates[action]["reactions"], "retaliation"))
+                    {
+                        speakMessage(emoteTemplates[action]["reactions"]["retaliation"],
+                            targetObj, initiator);
+                    }
+                    if (member(emoteTemplates[action], "opinion modifier"))
+                    {
+                        targetObj->alterOpinionFromEmote(initiator,
+                            emoteTemplates[action]);
+                    }
                 }
             }
         }
