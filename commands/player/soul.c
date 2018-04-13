@@ -20,6 +20,7 @@ mapping emoteTemplates = ([
         "reactions": ([
             "opinion modifier": 1,
         ]),
+        "can self-target": 1,
     ]),
     "agrin": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::grin####TargetPreposition::at####TargetName## like an ass.", 
@@ -51,6 +52,7 @@ mapping emoteTemplates = ([
     ]),
     "applaud": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::give## a round of applause##TargetPreposition::to####TargetName##.", 
+        "can self-target": 1,
     ]),
     "ayt": ([ 
         "template": "##InitiatorName## ##Adverb## ##Infinitive::wave## ##InitiatorPossessive## hand back and forth##TargetPreposition::in front of####TargetName## and ##Infinitive::say##, 'Are you there?'", 
@@ -202,6 +204,7 @@ mapping emoteTemplates = ([
     ]),
     "clap": ([
         "template": "##InitiatorName## ##Infinitive::clap## ##Adverb::briefly####TargetPreposition::to####TargetName##.",
+        "can self-target": 1,
     ]),
     "comfort": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::comfort####TargetName::a small rock##.",
@@ -214,6 +217,7 @@ mapping emoteTemplates = ([
          "reactions": ([
            "opinion modifier": 1,
         ]),
+        "can self-target": 1,
     ]),
     "cough": ([
         "template": "##InitiatorName## ##Infinitive::cough## ##Adverb::noisily####TargetPreposition::at####TargetName##.",
@@ -266,6 +270,7 @@ mapping emoteTemplates = ([
             "romance action": 1,
             "opinion modifier": 2,
         ]),
+        "can self-target": 1,
     ]),
     "die": ([
         "template": "##InitiatorName## ##Infinitive::roll## over ##Adverb## and ##Infinitive::do## ##InitiatorPossessive## best to look dead.",
@@ -276,6 +281,7 @@ mapping emoteTemplates = ([
             "hostile action": 1,
             "opinion modifier": -5,
         ]),
+        "can self-target": 1,
     ]),
     "doh": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::smack## ##InitiatorPossessive## head and ##Infinitive::go##, `Doh!'",
@@ -287,6 +293,7 @@ mapping emoteTemplates = ([
             "hostile action": 1,
             "opinion modifier": -2,
         ]),
+        "can self-target": 1,
     ]),
     "duck": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::duck## out of the way.",
@@ -297,6 +304,7 @@ mapping emoteTemplates = ([
             "hostile action": 1,
             "opinion modifier": -5,
         ]),
+        "can self-target": 1,
     ]),
     "eek": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::go## 'eeeeeeeeeeeeek!'##TargetPreposition::to####TargetName##.",
@@ -393,6 +401,7 @@ mapping emoteTemplates = ([
             "retaliation": "##InitiatorName## ##Infinitive::knee## ##TargetName## in the groin and ##Infinitive::scream##, `How dare you?'.",
             "reciprocation": "##InitiatorName## playfully ##Infinitive::moan## at ##TargetName##."
         ]),
+        "can self-target": 1,
     ]),
     "freeze": ([
         "template": "##InitiatorName## ##Infinitive::freeze## ##Adverb## and ##Infinitive::turn## into a popsicle!",
@@ -433,6 +442,7 @@ mapping emoteTemplates = ([
     ]),
     "gclap": ([
         "template": "##InitiatorName## ##Adverb## golf ##Infinitive::clap####TargetPreposition::at####TargetName##.",
+        "can self-target": 1,
     ]),
     "gibber": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::gibber####TargetPreposition::at####TargetName## like a madman.",
@@ -472,7 +482,8 @@ mapping emoteTemplates = ([
             "hostile action": 1,
             "opinion modifier": -1,
         ]),
-    ]),
+         "can self-target": 1,
+   ]),
     "grimace": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::grimace####TargetPreposition::at####TargetName##.",
     ]),
@@ -572,6 +583,7 @@ mapping emoteTemplates = ([
     ]),
     "ignore": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::ignore####TargetName::the screams of the fallen##.",
+        "can self-target": 1,
     ]),
     "insult": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::mutter## something slanderous about ##TargetName####TargetPreposition::and ##horses in physically improbable acts.",
@@ -580,6 +592,7 @@ mapping emoteTemplates = ([
             "hostile action": 1,
             "opinion modifier": -5,
         ]),
+        "can self-target": 1,
     ]),
     "jump": ([
         "template": "##InitiatorName## ##Infinitive::jump## ##Adverb::up and down####TargetPreposition::on####TargetName##.",
@@ -604,6 +617,7 @@ mapping emoteTemplates = ([
     ]),
     "laugh": ([
         "template": "##InitiatorName## ##Infinitive::fall## down ##Adverb## laughing##TargetPreposition::at####TargetName##.",
+        "can self-target": 1,
     ]),
     "ld": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::get## clobbered by linkdeath - again and again.",
@@ -628,9 +642,11 @@ mapping emoteTemplates = ([
     ]),
     "mock": ([
         "template": "##InitiatorName## ##Infinitive::mock####TargetName::the accursed inanimate objects## ##Adverb::outrageously##.",
+        "can self-target": 1,
     ]),
     "mstamp": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::slap## an official `I am a moron!' sticker on##TargetPossessive::Name::self## forehead.",
+        "can self-target": 1,
     ]),
     "nibble": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::nibble####TargetPossessive::Name::a dead rabbit's## ear.",
@@ -667,6 +683,7 @@ mapping emoteTemplates = ([
     ]),
     "pinch": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::pinch####TargetName::self##.",
+        "can self-target": 1,
     ]),
     "pizza": ([
         "template": "##InitiatorName## ##Infinitive::pizza####TargetPreposition::at####TargetName## ##Adverb::hungrily##.",
@@ -676,9 +693,11 @@ mapping emoteTemplates = ([
     ]),
     "point": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::point####TargetPreposition::at####TargetName::upward##.",
+        "can self-target": 1,
     ]),
     "poke": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::poke####TargetName::an invisible dragon## in the ribs.",
+        "can self-target": 1,
     ]),
     "ponder": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::ponder####TargetName::the situation##.",
@@ -718,6 +737,7 @@ mapping emoteTemplates = ([
     ]),
     "scratch": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::scratch####TargetPossessive::Name::self## head.",
+        "can self-target": 1,
     ]),
     "scream": ([
         "template": "##InitiatorName## ##Infinitive::scream## ##Adverb::loudly####TargetPreposition::at####TargetName##!",
@@ -748,6 +768,7 @@ mapping emoteTemplates = ([
     ]),
     "slap": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::slap####TargetName::self##.",
+        "can self-target": 1,
     ]),
     "smile": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::smile####TargetPreposition::at####TargetName##.",
@@ -829,15 +850,19 @@ mapping emoteTemplates = ([
     ]),
     "taunt": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::taunt####TargetName::the world's inanimate objects##.",
+        "can self-target": 1,
     ]),
     "tease": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::tease####TargetName::cabbage for, well, being cabbage##.",
+        "can self-target": 1,
     ]),
     "thank": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::thank####TargetName::the world for every dead mime##.",
+        "can self-target": 1,
     ]),
     "think": ([
         "template": "##InitiatorName## ##Infinitive::think####TargetPreposition::about####TargetName## ##Adverb::carefully##.",
+        "can self-target": 1,
     ]),
     "thwap": ([
         "template": "##InitiatorName## ##Adverb## ##Infinitive::thwap####TargetName::self##.",
@@ -1033,6 +1058,10 @@ public nomask int execute(string command, object initiator)
             {
                 string flag = regreplace(action + command, commandList + " (-[A-Za-z]+).*", "\\2", 1);
                 tell_object(initiator, sprintf("Command failed: The '%s' flag is not valid.\n", flag));
+            }
+            else if ((initiator == targetObj) && !member(emoteTemplates[action], "can self-target"))
+            {
+                tell_object(initiator, "Command failed: You cannot target yourself.\n");
             }
             else
             {

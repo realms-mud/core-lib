@@ -28,6 +28,7 @@ void Setup()
     Bystander = clone_object("/lib/tests/support/services/mockPlayer.c");
     Bystander->Name("frank");
     Bystander->Race("human");
+    Bystander->Gender(1);
     Bystander->addCommands();
     move_object(Bystander, this_object());
 }
@@ -64,9 +65,9 @@ void AckWithoutFlagsDisplaysCorrectMessage()
 /////////////////////////////////////////////////////////////////////////////
 void AckWithFlagsDisplaysCorrectMessage()
 {
-    ExpectTrue(Player->executeCommand("ack -t bob"));
-    ExpectEq("You ack at Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob acks at Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("ack -t frank"));
+    ExpectEq("You ack at Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob acks at Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("ack -a stupidly -t earl"));
     ExpectEq("You stupidly ack at Earl.\n", Player->caughtMessage());
@@ -89,9 +90,9 @@ void AdmireDisplaysCorrectMessages()
     ExpectEq("You admire the ambiguity of admiring without a target.\n", Player->caughtMessage());
     ExpectEq("Bob admires the ambiguity of admiring without a target.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("admire -t bob"));
-    ExpectEq("You admire Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob admires Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("admire -t frank"));
+    ExpectEq("You admire Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob admires Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("admire -a inexplicably -t earl"));
     ExpectEq("You inexplicably admire Earl.\n", Player->caughtMessage());
@@ -106,9 +107,9 @@ void AgreeDisplaysCorrectMessages()
     ExpectEq("You agree.\n", Player->caughtMessage());
     ExpectEq("Bob agrees.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("agree -t bob"));
-    ExpectEq("You agree with Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob agrees with Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("agree -t frank"));
+    ExpectEq("You agree with Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob agrees with Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("agree -a inexplicably -t earl"));
     ExpectEq("You inexplicably agree with Earl.\n", Player->caughtMessage());
@@ -123,9 +124,9 @@ void AgrinDisplaysCorrectMessages()
     ExpectEq("You grin like an ass.\n", Player->caughtMessage());
     ExpectEq("Bob grins like an ass.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("agrin -t bob"));
-    ExpectEq("You grin at Bob like an ass.\n", Player->caughtMessage());
-    ExpectEq("Bob grins at Bob like an ass.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("agrin -t frank"));
+    ExpectEq("You grin at Frank like an ass.\n", Player->caughtMessage());
+    ExpectEq("Bob grins at Frank like an ass.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("agrin -a inexplicably -t earl"));
     ExpectEq("You inexplicably grin at Earl like an ass.\n", Player->caughtMessage());
@@ -140,9 +141,9 @@ void AhaDisplaysCorrectMessages()
     ExpectEq("You go 'Aha!'.\n", Player->caughtMessage());
     ExpectEq("Bob goes 'Aha!'.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("aha -t bob"));
-    ExpectEq("You go 'Aha!' at Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob goes 'Aha!' at Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("aha -t frank"));
+    ExpectEq("You go 'Aha!' at Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob goes 'Aha!' at Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("aha -a inexplicably -t earl"));
     ExpectEq("You inexplicably go 'Aha!' at Earl.\n", Player->caughtMessage());
@@ -157,9 +158,9 @@ void AhhDisplaysCorrectMessages()
     ExpectEq("You go AHHH.\n", Player->caughtMessage());
     ExpectEq("Bob goes AHHH.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("ahh -t bob"));
-    ExpectEq("You go AHHH at Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob goes AHHH at Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("ahh -t frank"));
+    ExpectEq("You go AHHH at Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob goes AHHH at Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("ahh -a inexplicably -t earl"));
     ExpectEq("You inexplicably go AHHH at Earl.\n", Player->caughtMessage());
@@ -174,9 +175,9 @@ void AmorousDisplaysCorrectMessages()
     ExpectEq("You feel amorous.\n", Player->caughtMessage());
     ExpectEq("Bob feels amorous.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("amorous -t bob"));
-    ExpectEq("You feel amorous toward Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob feels amorous toward Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("amorous -t frank"));
+    ExpectEq("You feel amorous toward Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob feels amorous toward Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("amorous -a inexplicably -t earl"));
     ExpectEq("You inexplicably feel amorous toward Earl.\n", Player->caughtMessage());
@@ -191,9 +192,9 @@ void AnnoyDisplaysCorrectMessages()
     ExpectEq("You are annoying.\n", Player->caughtMessage());
     ExpectEq("Bob is annoying.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("annoy -t bob"));
-    ExpectEq("You are annoying Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob is annoying Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("annoy -t frank"));
+    ExpectEq("You are annoying Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob is annoying Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("annoy -a inexplicably -t earl"));
     ExpectEq("You are inexplicably annoying Earl.\n", Player->caughtMessage());
@@ -208,9 +209,9 @@ void ApologizeDisplaysCorrectMessages()
     ExpectEq("You apologize.\n", Player->caughtMessage());
     ExpectEq("Bob apologizes.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("apologize -t bob"));
-    ExpectEq("You apologize to Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob apologizes to Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("apologize -t frank"));
+    ExpectEq("You apologize to Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob apologizes to Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("apologize -a inexplicably -t earl"));
     ExpectEq("You inexplicably apologize to Earl.\n", Player->caughtMessage());
@@ -225,9 +226,9 @@ void ApplaudDisplaysCorrectMessages()
     ExpectEq("You give a round of applause.\n", Player->caughtMessage());
     ExpectEq("Bob gives a round of applause.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("applaud -t bob"));
-    ExpectEq("You give a round of applause to Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob gives a round of applause to Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("applaud -t frank"));
+    ExpectEq("You give a round of applause to Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob gives a round of applause to Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("applaud -a inexplicably -t earl"));
     ExpectEq("You inexplicably give a round of applause to Earl.\n", Player->caughtMessage());
@@ -242,9 +243,9 @@ void AytDisplaysCorrectMessages()
     ExpectEq("You wave your hand back and forth and say, 'Are you there?'\n", Player->caughtMessage());
     ExpectEq("Bob waves his hand back and forth and says, 'Are you there?'\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("ayt -t bob"));
-    ExpectEq("You wave your hand back and forth in front of Bob and say, 'Are you there?'\n", Player->caughtMessage());
-    ExpectEq("Bob waves his hand back and forth in front of Bob and says, 'Are you there?'\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("ayt -t frank"));
+    ExpectEq("You wave your hand back and forth in front of Frank and say, 'Are you there?'\n", Player->caughtMessage());
+    ExpectEq("Bob waves his hand back and forth in front of Frank and says, 'Are you there?'\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("ayt -a inexplicably -t earl"));
     ExpectEq("You inexplicably wave your hand back and forth in front of Earl and say, 'Are\nyou there?'\n", Player->caughtMessage());
@@ -259,9 +260,9 @@ void BackhandDisplaysCorrectMessages()
     ExpectEq("You backhand an invisible, deceased llama.\n", Player->caughtMessage());
     ExpectEq("Bob backhands an invisible, deceased llama.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("backhand -t bob"));
-    ExpectEq("You backhand Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob backhands Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("backhand -t frank"));
+    ExpectEq("You backhand Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob backhands Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("backhand -a inexplicably -t earl"));
     ExpectEq("You inexplicably backhand Earl.\n", Player->caughtMessage());
@@ -276,9 +277,9 @@ void BahaDisplaysCorrectMessages()
     ExpectEq("You go BAHAHAHA.\n", Player->caughtMessage());
     ExpectEq("Bob goes BAHAHAHA.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("baha -t bob"));
-    ExpectEq("You go BAHAHAHA at Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob goes BAHAHAHA at Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("baha -t frank"));
+    ExpectEq("You go BAHAHAHA at Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob goes BAHAHAHA at Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("baha -a inexplicably -t earl"));
     ExpectEq("You inexplicably go BAHAHAHA at Earl.\n", Player->caughtMessage());
@@ -293,9 +294,9 @@ void BarkDisplaysCorrectMessages()
     ExpectEq("You bark like a dog.\n", Player->caughtMessage());
     ExpectEq("Bob barks like a dog.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("bark -t bob"));
-    ExpectEq("You bark like a dog at Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob barks like a dog at Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("bark -t frank"));
+    ExpectEq("You bark like a dog at Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob barks like a dog at Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("bark -a inexplicably -t earl"));
     ExpectEq("You inexplicably bark like a dog at Earl.\n", Player->caughtMessage());
@@ -310,9 +311,9 @@ void BreakdanceDisplaysCorrectMessages()
     ExpectEq("You breakdance like a madman.\n", Player->caughtMessage());
     ExpectEq("Bob breakdances like a madman.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("breakdance -t bob"));
-    ExpectEq("You breakdance like a madman around Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob breakdances like a madman around Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("breakdance -t frank"));
+    ExpectEq("You breakdance like a madman around Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob breakdances like a madman around Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("breakdance -a inexplicably -t earl"));
     ExpectEq("You inexplicably breakdance like a madman around Earl.\n", Player->caughtMessage());
@@ -341,9 +342,9 @@ void BeepDisplaysCorrectMessages()
     ExpectEq("You beep like a person mercilessly spared from the ravages of sanity.\n", Player->caughtMessage());
     ExpectEq("Bob beeps like a person mercilessly spared from the ravages of sanity.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("beep -t bob"));
-    ExpectEq("You beep Bob on the nose.\n", Player->caughtMessage());
-    ExpectEq("Bob beeps Bob on the nose.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("beep -t frank"));
+    ExpectEq("You beep Frank on the nose.\n", Player->caughtMessage());
+    ExpectEq("Bob beeps Frank on the nose.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("beep -a viciously -t earl"));
     ExpectEq("You viciously beep Earl on the nose.\n", Player->caughtMessage());
@@ -358,9 +359,9 @@ void BegDisplaysCorrectMessages()
     ExpectEq("You beg like a dog.\n", Player->caughtMessage());
     ExpectEq("Bob begs like a dog.\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("beg -t bob"));
-    ExpectEq("You beg like a dog at Bob.\n", Player->caughtMessage());
-    ExpectEq("Bob begs like a dog at Bob.\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("beg -t frank"));
+    ExpectEq("You beg like a dog at Frank.\n", Player->caughtMessage());
+    ExpectEq("Bob begs like a dog at Frank.\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("beg -a inexplicably -t earl"));
     ExpectEq("You inexplicably beg like a dog at Earl.\n", Player->caughtMessage());
@@ -427,9 +428,9 @@ void BooDisplaysCorrectMessages()
     ExpectEq("You snarl BOO! HISS!\n", Player->caughtMessage());
     ExpectEq("Bob snarls BOO! HISS!\n", Target->caughtMessage());
 
-    ExpectTrue(Player->executeCommand("boo -t bob"));
-    ExpectEq("You snarl behind Bob scaring the $%!@ out of him!\n", Player->caughtMessage());
-    ExpectEq("Bob snarls behind Bob scaring the $%!@ out of him!\n", Target->caughtMessage());
+    ExpectTrue(Player->executeCommand("boo -t frank"));
+    ExpectEq("You snarl behind Frank scaring the $%!@ out of him!\n", Player->caughtMessage());
+    ExpectEq("Bob snarls behind Frank scaring the $%!@ out of him!\n", Target->caughtMessage());
 
     ExpectTrue(Player->executeCommand("boo -a sneakily -t earl"));
     ExpectEq("You sneakily snarl behind Earl scaring the $%!@ out of him!\n", Player->caughtMessage());
@@ -2987,4 +2988,18 @@ void HostileActionsTriggerRetaliation()
     ExpectEq(({ "You backhand Earl.\n",
         "Earl punches you.\n" }), Player->caughtMessages());
     ExpectEq("You punch Bob.\n", Target->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanOnlySelfTargetForCertainCommands()
+{
+    ExpectTrue(Player->executeCommand("french -t bob"));
+    ExpectEq("Command failed: You cannot target yourself.\n", Player->caughtMessage());
+    ExpectEq(0, Target->caughtMessage());
+    ExpectEq(0, Bystander->caughtMessage());
+
+    ExpectTrue(Player->executeCommand("think -a perversely -t bob"));
+    ExpectEq("You think about Bob perversely.\n", Player->caughtMessage());
+    ExpectEq("Bob thinks about Bob perversely.\n", Target->caughtMessage());
+    ExpectEq("Bob thinks about Bob perversely.\n", Bystander->caughtMessage());
 }
