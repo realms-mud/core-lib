@@ -32,8 +32,9 @@ public nomask int getOpinionOfCharacter(string playerName,
 public nomask void setOpinionOfCharacter(string playerName,
     string targetKey, int value)
 {
-    string query = sprintf("call saveOpinionOfCharacter('%s','%s', %d);",
-        sanitizeString(playerName), sanitizeString(targetKey), value);
+    string query = sprintf("call saveOpinionOfCharacter('%s','%s', %d, %d);",
+        sanitizeString(playerName), sanitizeString(targetKey),
+        value, time());
 
     int dbHandle = connect();
     db_exec(dbHandle, query);

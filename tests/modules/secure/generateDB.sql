@@ -355,6 +355,7 @@ CREATE TABLE `opinions` (
   `playerId` int(11) NOT NULL,
   `targetKey` varchar(200) NOT NULL,
   `opinion` int(11) NOT NULL DEFAULT '0',
+  `lastInteraction` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `opinions_playerid_idx` (`playerId`)
@@ -864,7 +865,7 @@ BEGIN
 END;
 ##
 CREATE PROCEDURE `saveOpinionOfCharacter`(p_playerName varchar(40),
-p_targetKey varchar(200), p_opinion int)
+p_targetKey varchar(200), p_opinion int, p_lastInteraction bigint)
 BEGIN
     declare lplayerId int;
     declare opinionId int;
@@ -877,11 +878,12 @@ BEGIN
 		from opinions where playerId = lplayerId and targetKey = p_targetKey;
 		
 		if opinionId is not null then
-			update opinions set opinion = p_opinion
+			update opinions set opinion = p_opinion,
+                                lastInteraction = p_lastInteraction
             where id = opinionId;
 		else
-			insert into opinions (playerId, targetKey, opinion) 
-            values (lplayerId, p_targetKey, p_opinion);
+			insert into opinions (playerId, targetKey, opinion, lastInteraction) 
+            values (lplayerId, p_targetKey, p_opinion, p_lastInteraction);
 		end if;
     end if;    
 END;
