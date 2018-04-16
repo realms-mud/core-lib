@@ -8,6 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("swordsmith");
+    addAlias("shop");
+    addAlias("building");
 
     addTimeOfDayDescription("dawn", ({
         ". It has a closed sign in the window. A light is shining out from the windows"
@@ -19,7 +21,7 @@ public void Setup()
     addTimeOfDayDescription("evening", ({
         ". The open sign in the window is lit by the waning day's light" }));
     addTimeOfDayDescription("dusk", ({
-        ". A sign in the window states that it is open and a light invitingly shines out into the street from its window" }));
+        ". A sign in the window states that the shop is open and a light invitingly shines out into the street from its window" }));
     addTimeOfDayDescription("night", ({
         " with a closed sign in the window looking in upon an unlit shop" }));
     addTimeOfDayDescription("midnight", ({
