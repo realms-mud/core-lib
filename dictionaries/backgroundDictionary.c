@@ -270,3 +270,12 @@ public nomask void updateUserPersonality(object user, string *results)
         user->addTrait(sprintf("lib/modules/traits/personality/%s.c", result));
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void initiateBackground(object player)
+{
+    object background = 
+        load_object("/lib/dictionaries/backgrounds/eledhelNobleBackground.c");
+
+    background->initiateBackgroundStory(player);
+}

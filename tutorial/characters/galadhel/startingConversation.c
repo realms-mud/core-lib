@@ -2,16 +2,11 @@
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/core/thing.c";
+virtual inherit "/lib/modules/conversations/baseConversation.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *backgroundResearchTrees()
+protected void Setup()
 {
-    return ({});
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public int isBackgroundTraitOf(string background)
-{
-    return 0;
+    addTopic("character created", "");
+    addResponse("character created", "OK...", "Then let's talk.");
 }

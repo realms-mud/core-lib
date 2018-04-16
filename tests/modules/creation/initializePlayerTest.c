@@ -134,6 +134,6 @@ void PlayerSeesWelcomeMessageOnCompletion()
             "[0;32mIf you need additional information to get\nstarted or for "
             "getting around in the game, you can use the 'help' command.\nEnjoy "
             "your time here and don't hesitate to contact any of the game\n"
-            "administrators with your questions or comments.\n[0m",
+            "administrators with your questions or comments.\n[0m\n",
         User->caughtMessage(), "Final message is correct");
 }

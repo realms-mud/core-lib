@@ -7,6 +7,7 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    Name("oak stand");
     addAdjectives(({ "majestic", "towering", "tall", "ancient" }));
     addTimeOfDayDescription("dawn", ({ " that the faint dawn light is just beginning to illuminate" }));
     addTimeOfDayDescription("dusk", ({ ", the details of which the last failing light of the day barely show" }));

@@ -2,16 +2,18 @@
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/core/thing.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *backgroundResearchTrees()
+public void Setup()
 {
-    return ({});
+    setTerrain("/lib/environment/terrain/forest.c");
+    addFeature("/lib/environment/features/oakStand.c", "south");
+
+//    addObject("/lib/tutorial/characters/galadhel.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int isBackgroundTraitOf(string background)
+public void init()
 {
-    return 0;
 }
