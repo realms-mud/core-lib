@@ -3,3 +3,11 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/realizations/npc.c";
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+    Name("galadhel");
+    Gender(2);
+    addConversation("/lib/tutorial/characters/galadhel/startingConversation.c");
+}

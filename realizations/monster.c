@@ -10,6 +10,11 @@ virtual inherit "/lib/realizations/living.c";
 private nosave int EffectiveLevel;
 
 /////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfMonster()
 {
     return 1;
@@ -36,6 +41,7 @@ public void reset(int arg)
 {
     if (!arg)
     {
+        Setup();
         if (this_object()->Name() && (this_object()->Name() != ""))
         {
             set_living_name(this_object()->Name());
