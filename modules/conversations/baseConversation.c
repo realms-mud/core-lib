@@ -515,3 +515,18 @@ public nomask void triggerConversation(string trigger,
         }
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void registerConversationEvents(object owner)
+{
+    string *topicList = filter(m_indices(topics), 
+        (: member(topics[$1], "event") :));
+
+    if (sizeof(topicList))
+    {
+        foreach(string topic in topicList)
+        {
+            owner->registerEventHandler(topics[topic]["event"]);
+        }
+    }
+}

@@ -54,6 +54,8 @@ protected nomask void addConversation(string conversation)
         if (member(inherit_list(conversationObj), BaseConversation) > -1)
         {
             string *topicList = conversationObj->listTopics();
+            conversationObj->registerConversationEvents(this_object());
+
             if (sizeof(topicList))
             {
                 foreach(string topic in topicList)

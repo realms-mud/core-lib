@@ -240,6 +240,8 @@ protected nomask varargs void addTransition(string state, string newState, strin
             stateTree[state]["transitions"] = ([]);
         }
 
+        registerEventHandler(eventName);
+
         // This is a way around guards - send a different event to transition
         // to a different state.
         if (!member(stateTree[state]["transitions"], eventName))
