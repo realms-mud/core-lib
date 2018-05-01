@@ -21,5 +21,14 @@ protected void Setup()
         "and something struck Basil - sliced his neck wide open. Still, it was "
         "enough to cause them to flee. Looks like they dragged their fallen "
         "with 'em though.'");
-    addTopicTrigger("first conversation", "begin intro");
+
+    addResponse("first conversation", "I'm not dead yet...",
+        "@S@The rumor of my demise is greatly exaggerated. I hurt... everywhere, "
+        "but you'll not be rid of me so easily.");
+    addTopic("not dead", "Getting better!");
+    addResponseTopic("first conversation", "I'm not dead yet...", "not dead");
+
+    addResponse("first conversation", "[0;31m[Say nothing...][0m", 0);
+    addTopic("player will live", "Player's gonna be OK!");
+    addResponseTopic("first conversation", "[0;31m[Say nothing...][0m", "player will live");
 }

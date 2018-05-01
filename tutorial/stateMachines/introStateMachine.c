@@ -71,8 +71,7 @@ public void partThree(object player)
         "today.'[0m[0;36m Captain Basil, was never one for euphemisms.\n"
         "Poor bastard. Little did he know at the time that the blood would "
         "be his own...[0m\n");
-    receiveEvent(player, "regainConsciousness", player);
-    //call_out("receiveEvent", 4, player, "regainConsciousness", player);
+    call_out("receiveEvent", 4, player, "regainConsciousness", player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,7 +85,7 @@ public void partTwo(object player)
         "flame-red rays of the new day pierced the thin wisps of fog, "
         "you couldn't help but think of how beautiful it was, despite your "
         "mundane and lamentably never-ending task.[0m", 78));
-    partThree(player); // call_out("partThree", 4, player);
+    call_out("partThree", 4, player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -99,7 +98,7 @@ public void partOne(object player)
         "thought. Dig a ditch if you must, if for no other reason than to "
         "keep 'em busy. Another day can be spent filling the damned thing "
         "later.[0m", 78));
-    partTwo(player); //  call_out("partTwo", 4, player);
+    call_out("partTwo", 4, player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -107,7 +106,7 @@ public void displayIntroduction()
 {
     move_object(Galadhel, "/lib/tutorial/rooms/battleScene.c");
     move_object(Berenar, "/lib/tutorial/rooms/battleScene.c");
-    partOne(Player);// call_out("partOne", 2, Player);
+    call_out("partOne", 2, Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////

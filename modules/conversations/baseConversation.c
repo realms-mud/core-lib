@@ -326,6 +326,7 @@ protected nomask string parseTemplate(string template, string perspective,
     message = regreplace(message, "@S@", Speech, 1);
     message = regreplace(message, "@D@", Desc, 1);
     message = regreplace(message, "@A@((.+))@E@", Stat("\\1"), 1);
+    message = regreplace(message, "@I@(.+)@E@", Action("\\1"), 1);
     message += End;
     return message;
 }

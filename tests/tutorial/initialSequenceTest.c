@@ -10,6 +10,7 @@ object Intro;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    ToggleCallOutBypass();
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("Frank");
     Player->Gender(1);
@@ -26,12 +27,13 @@ void Setup()
 void CleanUp()
 {
     destruct(Player);
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InitialConversationCorrectlyFired()
 {
-    ExpectEq(5, sizeof(Player->caughtMessages()));
+    ExpectEq(7, sizeof(Player->caughtMessages()));
     ExpectSubStringMatch("On a long campaign, sometimes routine is", 
         Player->caughtMessages()[0]);
     ExpectSubStringMatch("Basil, your company commander, imparted these words",
@@ -42,4 +44,8 @@ void InitialConversationCorrectlyFired()
         Player->caughtMessages()[3]);
     ExpectSubStringMatch("By the gods, Galadhel, I can't find the words",
         Player->caughtMessages()[4]);
+    ExpectSubStringMatch("Say nothing",
+        Player->caughtMessages()[5]);
+    ExpectSubStringMatch("I'm not dead yet",
+        Player->caughtMessages()[6]);
 }
