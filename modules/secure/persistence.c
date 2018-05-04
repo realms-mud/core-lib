@@ -207,7 +207,7 @@ public varargs int opinionOfCharacter(object target, int modifier)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs int characterState(object target, string newState)
+public varargs string characterState(object target, string newState)
 {
     string targetKey = sprintf("%s#%s", program_name(target),
         target->Name() ? target->Name() : "any");

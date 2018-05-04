@@ -49,3 +49,20 @@ void InitialConversationCorrectlyFired()
     ExpectSubStringMatch("I'm not dead yet",
         Player->caughtMessages()[6]);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanRespondToBerenarFirstConversationNotDead()
+{
+    /*
+    Player->resetCatchList();
+    command("2", Player);
+    ExpectSubStringMatch("On a long campaign, sometimes routine is",
+        Player->caughtMessages()[0]);
+    ExpectSubStringMatch("Basil, your company commander, imparted these words",
+        Player->caughtMessages()[1]);
+    ExpectSubStringMatch("Basil was an expert in crushing hope too",
+        Player->caughtMessages()[2]);
+    ExpectSubStringMatch("Get up, damn it!",
+        Player->caughtMessages());
+        */
+}

@@ -41,6 +41,12 @@ public void testAddResponse(string id, string selection, string template)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void testAddResponseTopic(string id, string selection, string newMessage)
+{
+    return addResponseTopic(id, selection, newMessage);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void testAddResponsePrerequisite(string id, string selection, mapping prerequisite)
 {
     return addResponsePrerequisite(id, selection, prerequisite);

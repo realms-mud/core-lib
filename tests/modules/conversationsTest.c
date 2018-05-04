@@ -441,3 +441,15 @@ void ConversationFromOtherObjectReturnsToDefaultOnFirstConversationObj()
     ExpectEq(3, sizeof(Actor->caughtMessages()));
     ExpectSubStringMatch("This is the default conversation", Actor->caughtMessages()[0]);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+/*void ResponseTopicDisplayedAfterResponse()
+{
+    PrepActor(1);
+
+    Owner->addConversation("/lib/tutorial/characters/berenar/startingConversation.c");
+    command("talk", Actor);
+    command("1", Actor);
+    ExpectEq("This is another test response\n[0m", Actor->caughtMessages());
+}
+*/

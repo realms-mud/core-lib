@@ -7,7 +7,7 @@ virtual inherit "/lib/modules/conversations/baseConversation.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addTopic("first conversation", "@S@`##ActorSubjective##'s already dead. "
+    addTopic("first conversation", "@S@`@C@##ActorSubjective##'s already dead. "
         "##ActorPossessive## body just hasn't figured "
         "it out yet.', @D@interjects Berenar as he impassively stares at you. He "
         "looks rather beaten up, but is still hale. He is rather rattled and with "
@@ -23,8 +23,8 @@ protected void Setup()
         "with 'em though.'");
 
     addResponse("first conversation", "I'm not dead yet...",
-        "@S@The rumor of my demise is greatly exaggerated. I hurt... everywhere, "
-        "but you'll not be rid of me so easily.");
+        "@D@You raise your head up slightly and say, `@S@The rumor of my demise is greatly exaggerated. I hurt... everywhere, "
+        "but you'll not be rid of me so easily.'");
     addTopic("not dead", "Getting better!");
     addResponseTopic("first conversation", "I'm not dead yet...", "not dead");
 

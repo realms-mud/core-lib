@@ -26,13 +26,12 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Conversation = clone_object("/lib/tests/support/conversations/fakeConversation.c");
+    Conversation = load_object("/lib/tests/support/conversations/fakeConversation.c");
     object room = load_object("/lib/tests/support/environment/fakeEnvironment.c");
 
     Actor = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Actor->Name("Bob");
-    Actor->Gender(1);
-    Actor->Race("human");
+    Actor->Name("Gorthaur");
+    Actor->restore();
     move_object(Actor, room);
 
     Owner = clone_object("/lib/realizations/npc.c");
@@ -361,7 +360,7 @@ void AddResponseEffectAllowsAndAppliesAttack()
     ExpectEq("Nothing at all, aren't you lucky?", Owner->getHostileList());
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     Conversation->displayResponse("1", Actor, Owner);
-    ExpectEq("Bob", Owner->getHostileList());
+    ExpectEq("Gorthaur", Owner->getHostileList());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -446,7 +445,7 @@ void DisplayResponseReturnsCorrectMessage()
     ExpectSubStringMatch("I am one who wishes to complete this", Actor->caughtMessage());
 
     Conversation->displayResponse("2", Actor, Owner);
-    ExpectSubStringMatch("I am Bob and I am here to pass the trial", Actor->caughtMessage());
+    ExpectSubStringMatch("I am Gorthaur and I am here to pass the trial", Actor->caughtMessage());
 
     Conversation->displayResponse("3", Actor, Owner);
     ExpectSubStringMatch("Who I am is not your concern, wraith", Actor->caughtMessage());
@@ -457,5 +456,5 @@ void MessagesAreCorrectlyParsed()
 {
     Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## at ##InitiatorName## and ##Infinitive::snarl##, @S@`##ActorName##! That was really rude, you jerk!' @A@Annoyed@E@");
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
-    ExpectEq("[0;36mGertrude glares at you and snarls, [0;33m`Bob! That was really rude,\nyou jerk!' [0;34;1m[Annoyed][0m\n[0m", Actor->caughtMessage());
+    ExpectEq("[0;36mGertrude glares at you and snarls, [0;33m`Gorthaur! That was really\nrude, you jerk!' [0;34;1m[Annoyed][0m\n[0m", Actor->caughtMessage());
 }
