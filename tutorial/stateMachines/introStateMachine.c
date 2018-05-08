@@ -11,13 +11,19 @@ private object Berenar;
 /////////////////////////////////////////////////////////////////////////////
 private void setUpActors()
 {
-    Galadhel = clone_object("/lib/tutorial/characters/galadhel/galadhel.c");
-    registerStateActor(Galadhel);
-    Galadhel->registerEvent(this_object());
+    if (!Galadhel)
+    {
+        Galadhel = clone_object("/lib/tutorial/characters/galadhel/galadhel.c");
+        registerStateActor(Galadhel);
+        Galadhel->registerEvent(this_object());
+    }
 
-    Berenar = clone_object("/lib/tutorial/characters/berenar/berenar.c");
-    registerStateActor(Berenar);
-    Berenar->registerEvent(this_object());
+    if (!Berenar)
+    {
+        Berenar = clone_object("/lib/tutorial/characters/berenar/berenar.c");
+        registerStateActor(Berenar);
+        Berenar->registerEvent(this_object());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

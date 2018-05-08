@@ -9,8 +9,6 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/oakStand.c", "south");
-
-    addObject("/lib/tutorial/characters/galadhel/galadhel.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
