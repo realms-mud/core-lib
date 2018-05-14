@@ -214,3 +214,15 @@ public nomask string convertNumberToString(int number)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int coordinatesValidForRegion(string region, int x, int y)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getRegion(string region)
+{
+    return 0;
+}

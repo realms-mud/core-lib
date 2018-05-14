@@ -18,6 +18,9 @@ private mapping aliasesToElements = ([]);
 
 private mapping exits = ([]);
 private string State = "default";
+private string RegionPath = 0;
+private int xCoordinate = 0;
+private int yCoordinate = 0;
 
 private nosave string Description = "[0;33m%s\n[0m";
 private nosave string ShortDescription = "";
@@ -337,6 +340,22 @@ protected nomask void setInterior(string interior)
     {
         raise_error(sprintf("ERROR in environment.c: '%s' is not a "
             "valid interior.\n", interior));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setCoordinates(string region, int x, int y)
+{
+    if (environmentDictionary()->coordinatesValidForRegion(region, x, y))
+    {
+        RegionPath = region;
+        xCoordinate = x;
+        yCoordinate = y;
+    }
+    else
+    {
+        raise_error(sprintf("ERROR in environment.c: coordinates(%d,%d) are "
+            "not valid for this region: '%s'.\n", x, y, region));
     }
 }
 
@@ -751,4 +770,17 @@ public nomask int isIlluminated()
         ret = hasLight;
     }
     return ret || alwaysLight();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string overheadMap()
+{
+    string ret = 0;
+
+    object region = environmentDictionary()->getRegion(RegionPath);
+    if (region)
+    {
+        ret = region->getRelativeOverheadMap(xCoordinate, yCoordinate);
+    }
+    return ret;
 }
