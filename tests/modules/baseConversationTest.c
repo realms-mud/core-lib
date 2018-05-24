@@ -458,3 +458,9 @@ void MessagesAreCorrectlyParsed()
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq("[0;36mGertrude glares at you and snarls, [0;33m`Gorthaur! That was really\nrude, you jerk!' [0;34;1m[Annoyed][0m\n[0m", Actor->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAddConditionalTopicAddendum()
+{
+    // Task 355
+}

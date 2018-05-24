@@ -66,6 +66,13 @@ protected nomask void addTopic(string id, string template)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void addConditionalTopicAddendum(string id,
+    mapping condition, string template)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void addRepeatableTopic(string id, string template)
 {
     addTopic(id, template);
