@@ -12,6 +12,8 @@
 #include "materials/weapons.h"
 #include "materials/armor.h"
 #include "materials/instruments.h"
+#include "materials/drinks.h"
+#include "materials/food.h"
 
 private nosave string EquipmentBlueprint = "lib/items/equipment.c";
 private nosave string DetailsText = "\t[0;36m%s: [0m[0;33m%d to %d[0m\n";
@@ -156,6 +158,24 @@ public nomask int isValidInstrumentBlueprint(string type)
         member(instrumentBlueprints[type], "skill to craft") &&
         member(instrumentBlueprints[type], "type") &&
         member(instrumentBlueprints[type], "default encumberance"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidFoodBlueprint(string type)
+{
+    return (food && mappingp(food) && member(food, type) &&
+        member(food[type], "crafting prerequisites") && 
+        member(food[type], "type") &&
+        member(food[type], "crafting materials"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidDrinkBlueprint(string type)
+{
+    return (drinks && mappingp(drinks) && member(drinks, type) &&
+        member(drinks[type], "crafting prerequisites") && 
+        member(drinks[type], "type") &&
+        member(drinks[type], "crafting materials"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

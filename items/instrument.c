@@ -51,7 +51,7 @@ private nomask int checkBlueprint(string data)
     }
     else
     {
-        raise_error(sprintf("iNSTRUMENT: The 'blueprint' element must be"
+        raise_error(sprintf("Instrument: The 'blueprint' element must be"
             " a string as defined in the keys of the instrumentBlueprints"
             " mapping in %s.\n",
             MaterialsBlueprint));
