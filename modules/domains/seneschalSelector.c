@@ -14,7 +14,7 @@ public nomask void reset(int arg)
         AllowUndo = 0;
         AllowAbort = 1;
         Description = "Main Menu";
-        Type = "Domains";
+        Type = "Domain Management";
         Data = ([]);
     }
 }
@@ -28,7 +28,7 @@ protected nomask void setUpUserForSelection()
         Data = dictionary->getTopLevelDomainMenu(User);
     }
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name":"Exit",
+        "name":"Exit Domain Management Menu",
             "type" : "exit",
             "description" : "This option lets you exit the domain menu.\n",
             "canShow" : 1
