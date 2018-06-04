@@ -10,6 +10,7 @@ private string *selectors = ({
     "/lib/modules/creation/raceSelector.c",
     "/lib/modules/creation/subraceSelector.c",
     "/lib/modules/creation/hairSelector.c",
+    "/lib/modules/creation/eyeSelector.c",
     "/lib/modules/creation/attributeSelector.c",
     "/lib/modules/creation/skillsSelector.c",
     "/lib/modules/creation/traitSelector.c"
