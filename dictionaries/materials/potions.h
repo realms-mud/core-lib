@@ -203,7 +203,7 @@ private nosave mapping potions =
         "effects": ([
         ])
     ]),
-    "magical resistance":([
+    "magic resistance":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
