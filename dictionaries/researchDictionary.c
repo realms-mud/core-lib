@@ -549,7 +549,8 @@ private nomask mapping buildResearchList(string *researchList,
     mapping ret = ([]);
 
     researchList = filter(researchList,
-        (: researchObject($1)->query("source") == $2 :), type);
+        (: researchObject($1) && researchObject($1)->query("source") == $2 :),
+        type);
 
     if (sizeof(researchList))
     {

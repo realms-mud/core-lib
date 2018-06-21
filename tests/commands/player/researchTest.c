@@ -290,3 +290,15 @@ void SelectingToLearnTimedResearchDoesNotUsePointsAndInitiatesResearching()
     ExpectTrue(Player->isResearching("lib/tests/support/research/testResearchB.c"));
     ExpectEq(1, Player->researchPoints());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void InvalidResearchDoesNotInterfereWithCommand()
+{
+    Player->initiateResearch("lib/tests/support/research/doesNotExist.c");
+    Player->initiateResearch("lib/tests/support/research/mockResearch.c");
+    Selector->initiateSelector(Player);
+
+    command("2", Player);
+
+    ExpectSubStringMatch("Mock research", Player->caughtMessage());
+}
