@@ -151,7 +151,7 @@ private nomask void makeSelection(string selection)
             remove_action(1, User);
             notify("onSelectorCompleted");
         }
-        else
+        else if (!suppressMenuDisplay())
         {
             tell_object(User, displayMessage());
         }

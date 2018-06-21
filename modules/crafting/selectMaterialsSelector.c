@@ -310,7 +310,7 @@ protected nomask string additionalInstructions()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int suppressMenuDisplay()
 {
-    return objectp(SubselectorObj);
+    return objectp(SubselectorObj) || handleSpecialSelection();
 }
 
 /////////////////////////////////////////////////////////////////////////////

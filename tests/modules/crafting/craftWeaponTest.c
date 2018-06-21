@@ -244,7 +244,7 @@ void ChoosingCraftSelectedFailsWhenDisabled()
     Selector->initiateSelector(Player);
     string priorMessage = Player->caughtMessage();
 
-    command("6", Player);
+    command("8", Player);
     ExpectEq(priorMessage, Player->caughtMessage());
 }
 
@@ -267,12 +267,21 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
     object sword = Player->itemBeingCrafted();
     ExpectTrue(sword, "Crafting item has been set");
     PopulateSwordData(sword);
+
     command("6", Player);
+    ExpectEq("[0;32mPlease enter the item's new name: [0m", Player->caughtMessage());
     command("Sword of Blah", Player);
+
     command("7", Player);
+    ExpectEq("[0;32mPlease enter the item's new description. Type '**' on a line by itself\nwhen you are done.\n[0m", Player->caughtMessage());
+    Player->resetCatchList();
     command("this is a", Player);
+    ExpectEq(0, sizeof(Player->caughtMessages()));
     command("description", Player);
+    ExpectEq(0, sizeof(Player->caughtMessages()));
     command("**", Player);
+    ExpectEq(1, sizeof(Player->caughtMessages()));
+
     command("8", Player);
 
     ExpectEq("Sword of Blah", sword->query("name"));
