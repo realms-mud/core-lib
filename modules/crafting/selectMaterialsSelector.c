@@ -154,7 +154,8 @@ protected nomask int processSelection(string selection)
         if (SettingName)
         {
             SettingName = 0;
-            Item->set("name", selection);
+            Item->set("name", selection); 
+            Item->set("short", selection);
             ret = 0;
         }
         else if (SettingDescription)

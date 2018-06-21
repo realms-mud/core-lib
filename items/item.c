@@ -594,7 +594,8 @@ public varargs string long(int doNotApplyUserStatistics)
 /////////////////////////////////////////////////////////////////////////////
 public int id(string item)
 {
-    string *aliases = ({ query("name"), lower_case(query("name")) });
+    string *aliases = ({ query("name"), lower_case(query("name")), query("short"),
+        lower_case(query("short")) });
     if (pointerp(query("aliases")))
     {
         aliases += query("aliases");

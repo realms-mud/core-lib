@@ -268,14 +268,21 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
     ExpectTrue(sword, "Crafting item has been set");
     PopulateSwordData(sword);
     command("6", Player);
-    command("Blah", Player);
+    command("Sword of Blah", Player);
     command("7", Player);
     command("this is a", Player);
     command("description", Player);
     command("**", Player);
     command("8", Player);
 
-    ExpectEq("Blah", sword->query("name"));
+    ExpectEq("Sword of Blah", sword->query("name"));
+    ExpectEq("Sword of Blah", sword->query("short"));
+    ExpectEq("Sword of Blah", sword->short());
+    ExpectTrue(sword->id("Sword of Blah"));
+    ExpectTrue(sword->id("sword of blah"));
+    ExpectTrue(sword->id("sword"));
+    ExpectTrue(sword->id("long sword"));
+
     ExpectEq("this is a\ndescription\n", sword->query("long"));
 
     ExpectFalse(Player->itemBeingCrafted(), "Crafting item has been reset");
