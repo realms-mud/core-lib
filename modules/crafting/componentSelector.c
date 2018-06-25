@@ -9,6 +9,7 @@ private object SubselectorObj;
 private string CraftingComponent;
 private object CraftingItem;
 private mapping Materials;
+private mapping AdditionalMaterials;
 private string InitialMaterial;
 private string ConfirmChoice;
 
@@ -85,7 +86,9 @@ protected nomask int processSelection(string selection)
     if (User)
     {
         ret = 0;
-        if (Data[selection]["selector"] == "material")
+        if ((Data[selection]["selector"] == "material") && 
+            (!Data[selection]["is disabled"] || (AdditionalMaterials &&
+            member(AdditionalMaterials, Data[selection]["type"]))))
         {
             SubselectorObj = clone_object(sprintf("/lib/modules/crafting/%sSelector.c",
                 Data[selection]["selector"]));
@@ -114,6 +117,7 @@ protected nomask int processSelection(string selection)
         }
         else if (!Data[selection]["is disabled"])
         {
+            AdditionalMaterials = Data[selection]["materials"];
             Dictionary->selectComponent(CraftingItem, CraftingComponent,
                 Data[selection]["type"]);
             Data[ConfirmChoice]["is disabled"] = 
@@ -132,8 +136,10 @@ protected nomask string displayDetails(string choice)
     if (Data[choice]["selector"] == "material")
     {
         ret = sprintf("%-22s", sprintf("[0;35;1m%s[0m",
+            (!Data[choice]["is disabled"] || (AdditionalMaterials &&
+                member(AdditionalMaterials, Data[choice]["type"]))) ?
             Dictionary->getCraftingMaterial(CraftingItem, Data[choice]["type"],
-               CraftingComponent)));
+               CraftingComponent) : "none"));
     }
     else if (Data[choice]["type"] ==
         Dictionary->selectionForComponent(CraftingItem, CraftingComponent))
@@ -171,7 +177,9 @@ protected string choiceFormatter(string choice)
 {
     string displayFormat = "[0;32m%-20s[0m";
     if (member(Data[choice], "is disabled") &&
-        Data[choice]["is disabled"])
+        Data[choice]["is disabled"] && 
+        !(AdditionalMaterials &&
+         member(AdditionalMaterials, Data[choice]["type"])))
     {
         displayFormat = "[0;31m%-20s[0m";
     }

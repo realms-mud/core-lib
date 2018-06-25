@@ -534,6 +534,7 @@ public nomask int hasMaterialsSelected(object item, string component,
 
     string *materialsList = filter(m_indices(materialsData),
         (: ($2[$1] || ($3 && member($3, $4) && 
+            member(craftingComponents, $3[$4]["type"]) &&
             member(craftingComponents[$3[$4]["type"]], "crafting materials") &&
             member(craftingComponents[$3[$4]["type"]]["crafting materials"], $1))) :),
             materialsData, componentData, component);
@@ -567,7 +568,7 @@ public nomask mapping getMaterialsDataForItem(string type,
         {
             ret[to_string(menuItem)] = ([
                 "name": sprintf("Select %s", material),
-                "is optional": materialsData[material] == 0,
+                "is disabled": materialsData[material] == 0,
                 "selector": "material",
                 "type": material,
                 "description": sprintf("This option selects the %s you will "
@@ -588,6 +589,7 @@ public nomask mapping getMaterialsDataForItem(string type,
         ret[to_string(menuItem)] = ([
             "name": name,
             "type": component,
+            "materials": blueprintObj->query("crafting materials"),
             "is disabled": (!prerequisitesMet(blueprintObj, user) || !materialsAvailable(blueprintObj, user)),
             "description": format("This is " + craftingComponents[component]["description"] +
                 "\n" + getDescriptionDetails(blueprintObj), 78) + "\n"

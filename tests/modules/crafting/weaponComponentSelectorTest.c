@@ -539,3 +539,88 @@ void OnCraftingCompletedIsEmittedWhenCraftingIsCompleted()
 
     ExpectEq((["onCraftingCompleted":"lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void OptionalComponentsAreInitiallyDisabledAndEnabledWhenRequired()
+{
+    object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    Player->advanceSkill("gem crafting", 10);
+    Player->advanceSkill("sculpture", 15);
+
+    Selector->initiateSelector(Player);
+    command("2", Player);
+
+    ExpectSubStringMatch("31mSelect crystal",
+        Player->caughtMessage());
+
+    command("11", Player);
+
+    ExpectSubStringMatch("32mSelect crystal",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanOnlySelectOptionalMaterialWhenEnabled()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareGems.c"));
+
+    object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    Player->advanceSkill("gem crafting", 20);
+    Player->advanceSkill("chemistry", 5);
+    Player->advanceSkill("physics", 5);
+    Player->advanceSkill("sculpture", 15);
+
+    Selector->initiateSelector(Player);
+    command("2", Player);
+
+    ExpectSubStringMatch("31mSelect crystal.*none",
+        Player->caughtMessage());
+
+    command("1", Player);
+
+    ExpectSubStringMatch("31mSelect crystal.*none",
+        Player->caughtMessage());
+
+    command("11", Player);
+    command("1", Player);
+    command("25", Player);
+    ExpectSubStringMatch("32mSelect crystal.*ruby",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectingComponentThatDoesNotUseOptionalResetsOptional()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareGems.c"));
+
+    object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
+    material->set("quantity", 5);
+    move_object(material, Player);
+
+    Player->advanceSkill("gem crafting", 20);
+    Player->advanceSkill("chemistry", 5);
+    Player->advanceSkill("physics", 5);
+    Player->advanceSkill("sculpture", 15);
+
+    Selector->initiateSelector(Player);
+    command("2", Player);
+
+    command("11", Player);
+    command("1", Player);
+    command("25", Player);
+    ExpectSubStringMatch("32mSelect crystal.*ruby",
+        Player->caughtMessage());
+
+    command("5", Player);
+
+    ExpectSubStringMatch("31mSelect crystal.*none",
+        Player->caughtMessage());
+}
