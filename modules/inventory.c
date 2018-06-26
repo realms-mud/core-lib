@@ -700,15 +700,22 @@ public nomask int addMoney(int moneyToAdd)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object transferMoney(int moneyToDrop)
+public varargs nomask object transferMoney(int moneyToDrop)
 {
     object ret = 0;
+
+    if (!moneyToDrop)
+    {
+        moneyToDrop = Money();
+    }
+
     if(Money() >= moneyToDrop)
     {
-        ret = clone_object("/obj/money");
+        ret = clone_object("/lib/items/money.c");
         if(ret)
         {
-            ret->set_money(moneyToDrop);
+            move_object(ret, this_object());
+            ret->set("value", moneyToDrop);
             addMoney(-moneyToDrop);
         }
     }

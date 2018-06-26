@@ -733,8 +733,8 @@ void TransferMoneyRemovesMoneyAndReturnsMoneyObjectOfRemovedValue()
     Inventory->Money(1000);
 
     object money = Inventory->transferMoney(250);
-    ExpectEq("obj/money.c", program_name(money), "A money object was created");
-    ExpectEq(250, money->query_value(), "money object has a value of 250");
+    ExpectEq("lib/items/money.c", program_name(money), "A money object was created");
+    ExpectEq(250, money->query("value"), "money object has a value of 250");
     ExpectEq(750, Inventory->Money(), "750 money left on user");
 }
 

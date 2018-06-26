@@ -1143,7 +1143,7 @@ private nomask void generateCorpse(object murderer)
 
                 if(inventory->Money())
                 {
-                    object money = inventory->transferMoney(inventory->Money());
+                    object money = inventory->transferMoney();
                     if(money)
                     {
                         move_object(money, corpse);
