@@ -728,23 +728,80 @@ void AddMoneyWillNotSetMoneyBelowZero()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TransferMoneyRemovesMoneyAndReturnsMoneyObjectOfRemovedValue()
+void TransferMoneyFromRemovesMoneyAndReturnsMoneyObjectOfRemovedValue()
 {
     Inventory->Money(1000);
 
-    object money = Inventory->transferMoney(250);
+    object money = Inventory->transferMoneyFrom(250);
     ExpectEq("lib/items/money.c", program_name(money), "A money object was created");
     ExpectEq(250, money->query("value"), "money object has a value of 250");
     ExpectEq(750, Inventory->Money(), "750 money left on user");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TransferMoneyReturnsNullIfTransferFails()
+void TransferMoneyFromReturnsNullIfTransferFails()
 {
     Inventory->Money(100);
 
-    ExpectFalse(Inventory->transferMoney(250), "transfer money returns false");
+    ExpectFalse(Inventory->transferMoneyFrom(250), "transfer money returns false");
     ExpectEq(100, Inventory->Money(), "100 money left on user");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TransferMoneyToReturnsFalseIfMoneyNotPassed()
+{
+    ExpectFalse(Inventory->transferMoneyTo());
+    ExpectFalse(Inventory->transferMoneyTo(Inventory));
+    ExpectFalse(Inventory->transferMoneyTo(Inventory, 30));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TransferMoneyToAddsCorrectAmountAndMoneyObjectDestroyed()
+{
+    object money = clone_object("/lib/items/money.c");
+    money->set("value", 100);
+    ExpectEq(0, Inventory->Money());
+    ExpectTrue(objectp(money));
+
+    ExpectTrue(Inventory->transferMoneyTo(money));
+    ExpectEq(100, Inventory->Money());
+    ExpectFalse(objectp(money));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TransferMoneyToCanTransferPartialQuantity()
+{
+    object money = clone_object("/lib/items/money.c");
+    money->set("value", 100);
+    ExpectEq(0, Inventory->Money());
+
+    ExpectTrue(Inventory->transferMoneyTo(money, 75));
+    ExpectEq(75, Inventory->Money());
+    ExpectEq(25, money->query("value"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TransferMoneyToWillNotTransferNegativeValues()
+{
+    object money = clone_object("/lib/items/money.c");
+    money->set("value", 100);
+    ExpectEq(0, Inventory->Money());
+
+    ExpectFalse(Inventory->transferMoneyTo(money, -75));
+    ExpectEq(0, Inventory->Money());
+    ExpectEq(100, money->query("value"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TransferMoneyToWillNotExceedValueOnMoneyObject()
+{
+    object money = clone_object("/lib/items/money.c");
+    money->set("value", 100);
+    ExpectEq(0, Inventory->Money());
+
+    ExpectFalse(Inventory->transferMoneyTo(money, 200));
+    ExpectEq(0, Inventory->Money());
+    ExpectEq(100, money->query("value"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

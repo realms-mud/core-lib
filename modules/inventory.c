@@ -700,7 +700,7 @@ public nomask int addMoney(int moneyToAdd)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs nomask object transferMoney(int moneyToDrop)
+public varargs nomask object transferMoneyFrom(int moneyToDrop)
 {
     object ret = 0;
 
@@ -721,6 +721,41 @@ public varargs nomask object transferMoney(int moneyToDrop)
     }
     return ret;
 }    
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs nomask int transferMoneyTo(object money, int amount)
+{
+    int ret = objectp(money) &&
+        (member(inherit_list(money), "lib/items/money.c") > -1) &&
+        (amount >= 0);
+
+    if (ret)
+    {
+        if (amount == 0)
+        {
+            amount = money->query("value");
+        }
+
+        if (amount <= money->query("value"))
+        {
+            int newAmountOnObject = money->query("value") - amount;
+            if (newAmountOnObject > 0)
+            {
+                money->set("value", newAmountOnObject);
+            }
+            else
+            {
+                destruct(money);
+            }
+            addMoney(amount);
+        }
+        else
+        {
+            ret = 0;
+        }
+    }
+    return ret;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int transferItemsTo(object destination)

@@ -128,6 +128,11 @@ public mixed query(string element)
                 ret = member(itemData, "value") ? itemData["value"] :
                     materialsObject()->getDefaultValue(this_object());
 
+                if (ret < 0)
+                {
+                    ret = 0;
+                }
+
                 if (member(itemData, "crafting value multiplier"))
                 {
                     int increase = itemData["crafting value multiplier"];

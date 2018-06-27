@@ -35,7 +35,7 @@ public nomask int execute(string command, object initiator)
             int amount = to_int(regreplace(command, "[^0-9]*([0-9]+) (coin|coins|money).*", "\\1", 1));
             if (amount > 0)
             {
-                targets += ({ initiator->transferMoney(amount) });
+                targets += ({ initiator->transferMoneyFrom(amount) });
             }
             if (!sizeof(targets - ({ 0 })))
             {
@@ -46,7 +46,7 @@ public nomask int execute(string command, object initiator)
         else if (sizeof(regexp(({ command }), "(all|) (coin|coins|money)")) &&
             initiator->Money())
         {
-            targets += ({ initiator->transferMoney() });
+            targets += ({ initiator->transferMoneyFrom() });
         }
         else if (sizeof(regexp(({ command }), "-a")))
         {
