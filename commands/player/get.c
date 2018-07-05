@@ -125,6 +125,49 @@ private object getSource(object initiator, string command)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private varargs nomask int getMoney(object initiator, int quantity)
+{
+    int ret = 0;
+    object *inventory = filter(all_inventory(environment(initiator)),
+        (: (member(inherit_list($1), "lib/items/money.c") > -1) :));
+
+    if (!quantity)
+    {
+        foreach(object item in inventory)
+        {
+            quantity += item->query("value");
+        }
+    }
+
+    if (sizeof(inventory) && (quantity > 0))
+    {
+        int quantityLeft = quantity;
+        foreach(object item in inventory)
+        {
+            int itemQuantity = item->query("value");
+
+            if (quantityLeft > 0)
+            {
+                int amount = (itemQuantity > quantityLeft) ? quantityLeft : 0;
+                quantityLeft -= itemQuantity;
+
+                displayMessage(sprintf("##InitiatorName## ##Infinitive::pick##"
+                    " up %d coin%s.\n", amount, (amount == 1) ? "" : "s"), 
+                    initiator);
+
+                initiator->transferMoneyTo(item, amount);
+            }
+        }
+        ret = (quantityLeft <= 0);
+    }
+    else
+    {
+        notify_fail("Could not find any money to pick up.\n");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int execute(string command, object initiator)
 {
     int ret = 0;
@@ -140,11 +183,26 @@ public nomask int execute(string command, object initiator)
         {
             if (TargetString == "all")
             {
+                getMoney(initiator);
                 targets += getAll(initiator, source);
+            }
+            else if (sizeof(regexp(({ command }), "(-a|all) (money|coins)")))
+            {
+                ret = getMoney(initiator);
             }
             else if (sizeof(regexp(({ command }), "-a")))
             {
                 targets += getAllOfSpecificId(initiator, source);
+            }
+            else if (sizeof(regexp(({ command }), "([0-9]+ |)(coin|money|coins)")))
+            {
+                int amount = to_int(regreplace(command, "[^0-9]*([0-9]+) (coin|coins|money).*", "\\1", 1));
+                if (!amount && sizeof(regexp(({ command }), "coin$")))
+                {
+                    amount = 1;
+                }
+
+                ret = getMoney(initiator, amount);
             }
             else
             {
@@ -153,7 +211,7 @@ public nomask int execute(string command, object initiator)
         }
         targets -= ({ 0 });
 
-        ret = getObjects(initiator, source, targets);
+        ret ||= getObjects(initiator, source, targets);
     }
 
     return ret;

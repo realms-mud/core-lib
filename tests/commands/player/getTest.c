@@ -222,3 +222,111 @@ void CanGetFromContainerItemsWhenContainerInInventory()
     ExpectEq(2, sizeof(all_inventory(Player)));
     destruct(box);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGetPartialQuantityOfMoney()
+{
+    object money = clone_object("/lib/items/money.c");
+    money->set("value", 250);
+    move_object(money, Room);
+
+
+    ExpectEq(0, Player->Money());
+    ExpectTrue(Player->executeCommand("get 100 coins"));
+    ExpectEq(100, Player->Money());
+    ExpectEq(150, money->query("value"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGetCoins()
+{
+    object money = clone_object("/lib/items/money.c");
+    money->set("value", 250);
+    move_object(money, Room);
+
+    ExpectEq(0, Player->Money());
+    ExpectTrue(Player->executeCommand("get coins"));
+    ExpectEq(250, Player->Money());
+    ExpectFalse(objectp(money));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGetMoney()
+{
+    object money = clone_object("/lib/items/money.c");
+    money->set("value", 250);
+    move_object(money, Room);
+
+    ExpectEq(0, Player->Money());
+    ExpectTrue(Player->executeCommand("get money"));
+    ExpectEq(250, Player->Money());
+    ExpectFalse(objectp(money));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGetCoin()
+{
+    object money = clone_object("/lib/items/money.c");
+    money->set("value", 250);
+    move_object(money, Room);
+
+    ExpectEq(0, Player->Money());
+    ExpectTrue(Player->executeCommand("get coin"));
+    ExpectEq(1, Player->Money());
+    ExpectEq(249, money->query("value"));
+
+    ExpectTrue(Player->executeCommand("get 1 coin"));
+    ExpectEq(2, Player->Money());
+    ExpectEq(248, money->query("value"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGetPartialQuantityOfMoneySpanningMultipleObjects()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        object money = clone_object("/lib/items/money.c");
+        money->set("value", 25);
+        move_object(money, Room);
+    }
+
+    ExpectEq(0, Player->Money());
+    ExpectEq(14, sizeof(all_inventory(Room)));
+    ExpectTrue(Player->executeCommand("get 206 coins"));
+    ExpectEq(206, Player->Money());
+    ExpectEq(6, sizeof(all_inventory(Room)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGetAllMoneySpanningMultipleObjects()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        object money = clone_object("/lib/items/money.c");
+        money->set("value", 25);
+        move_object(money, Room);
+    }
+
+    ExpectEq(0, Player->Money());
+    ExpectEq(14, sizeof(all_inventory(Room)));
+    ExpectTrue(Player->executeCommand("get all money"));
+    ExpectEq(250, Player->Money());
+    ExpectEq(4, sizeof(all_inventory(Room)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AFlagForGetAllMoneyGetsAllMoney()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        object money = clone_object("/lib/items/money.c");
+        money->set("value", 25);
+        move_object(money, Room);
+    }
+
+    ExpectEq(0, Player->Money());
+    ExpectEq(14, sizeof(all_inventory(Room)));
+    ExpectTrue(Player->executeCommand("get -a coins"));
+    ExpectEq(250, Player->Money());
+    ExpectEq(4, sizeof(all_inventory(Room)));
+}
