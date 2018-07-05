@@ -193,6 +193,16 @@ void CanDropOneCoin()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanDropCoin()
+{
+    Player->addMoney(100);
+    ExpectTrue(Player->executeCommand("drop coin"));
+    ExpectTrue(present_clone("lib/items/money.c", Room));
+    ExpectEq(1, present_clone("lib/items/money.c", Room)->query("value"));
+    ExpectEq("You drop money.\n", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanDropSomeCoins()
 {
     Player->addMoney(100);

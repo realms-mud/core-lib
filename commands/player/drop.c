@@ -43,6 +43,10 @@ public nomask int execute(string command, object initiator)
                     amount));
             }
         }
+        else if ((command == "drop coin") && initiator->Money())
+        {
+            targets += ({ initiator->transferMoneyFrom(1) });
+        }
         else if (sizeof(regexp(({ command }), "(all|) (coin|coins|money)")) &&
             initiator->Money())
         {
