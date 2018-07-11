@@ -6,6 +6,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Wizard;
 object Room;
+object Catch;
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
@@ -24,11 +25,14 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    Catch = clone_object("/lib/tests/support/services/catchShadow.c");
+
     Room = clone_object("/lib/environment/environment.c");
 
     Wizard = clone_object("/lib/realizations/wizard.c");
     Wizard->restore("earl");
     Wizard->addCommands();
+    Catch->beginShadow(Wizard);
     setUsers(({ Wizard }));
 
     move_object(Wizard, Room);
@@ -52,6 +56,7 @@ void ExecuteRegexpIsNotGreedy()
 void CCOfExistingProgramReturnsOneWhenSuccessfullyBuilds()
 {
     ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
+    ExpectEq("Building: /lib/modules/combat.c\n", Wizard->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -115,4 +120,11 @@ void CCOfProgramWithRelativeButNoDotCSuccessfullyBuilds()
 void CCWithoutParamsCompilesEnvironment()
 {
     ExpectEq(1, Wizard->executeCommand("cc"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanRecompile()
+{
+    ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
+    ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
 }

@@ -35,10 +35,30 @@ private nomask varargs int compile(string path, object initiator, int recurse)
         (file_size(path) != -2))
     {
         ret = 1;
+
+        object existingBlueprint;
+        catch (existingBlueprint = blueprint(path); nolog);
+
+        if (objectp(existingBlueprint))
+        {
+            destruct(existingBlueprint);
+        }
+
+        string logFile = sprintf("/log/%s", initiator->RealName() || "log");
+        if (file_size(logFile))
+        {
+            rm(logFile);
+        }
         tell_object(initiator, "Building: " + path + "\n");
-        rm("/log/log");
-        string result = catch (load_object(path); nolog);
-        cat("/log/log");
+
+        string result = catch (load_object(path));
+
+        if (result)
+        {
+            result += "\n" + (read_file(logFile) || "");
+            tell_object(initiator, result);
+            rm(logFile);
+        }
     }
     else if(recurse)
     {
