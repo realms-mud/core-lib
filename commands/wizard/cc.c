@@ -14,6 +14,55 @@ public nomask void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void compileOneItem(string path, object initiator)
+{
+    object existingBlueprint;
+    catch (existingBlueprint = blueprint(path); nolog);
+
+    object *objectsToMove = ({});
+
+    if (objectp(existingBlueprint))
+    {
+        objectsToMove = filter(all_inventory(existingBlueprint),
+            (: (member(inherit_list($1), "lib/realizations/player.c") > -1) :));
+
+        foreach(object item in objectsToMove)
+        {
+            move_object(item, "/secure/master.c");
+        }
+
+        destruct(existingBlueprint);
+    }
+
+    string logFile = sprintf("/log/%s", initiator->RealName() || "log");
+    if (file_size(logFile))
+    {
+        rm(logFile);
+    }
+    tell_object(initiator, "[0;36mBuilding: " + path + "[0m\n");
+
+    string result = catch (existingBlueprint = load_object(path));
+
+    if (result)
+    {
+        result = sprintf("[0;31m%s\n[0;31;1m%s[0m", result,
+            (read_file(logFile) || ""));
+
+        tell_object(initiator, result);
+        rm(logFile);
+    }
+    else if (existingBlueprint)
+    {
+        foreach(object item in objectsToMove)
+        {
+            move_object(item, existingBlueprint);
+            tell_object(item, "[0;32;1mYour environment has been recompiled.[0m\n\n");
+            command("look", item);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask varargs int compile(string path, object initiator, int recurse)
 {
     int ret = 0;
@@ -35,30 +84,7 @@ private nomask varargs int compile(string path, object initiator, int recurse)
         (file_size(path) != -2))
     {
         ret = 1;
-
-        object existingBlueprint;
-        catch (existingBlueprint = blueprint(path); nolog);
-
-        if (objectp(existingBlueprint))
-        {
-            destruct(existingBlueprint);
-        }
-
-        string logFile = sprintf("/log/%s", initiator->RealName() || "log");
-        if (file_size(logFile))
-        {
-            rm(logFile);
-        }
-        tell_object(initiator, "Building: " + path + "\n");
-
-        string result = catch (load_object(path));
-
-        if (result)
-        {
-            result += "\n" + (read_file(logFile) || "");
-            tell_object(initiator, result);
-            rm(logFile);
-        }
+        compileOneItem(path, initiator);
     }
     else if(recurse)
     {
@@ -101,7 +127,7 @@ public nomask int execute(string command, object initiator)
             else if (environment(initiator))
             {
                 target = regreplace(object_name(environment(initiator)),
-                    "^([^#]+)#.*", "/\\1.c", 1);
+                    "^([^#]+)#*.*", "/\\1.c", 1);
             }
         }
 

@@ -56,7 +56,7 @@ void ExecuteRegexpIsNotGreedy()
 void CCOfExistingProgramReturnsOneWhenSuccessfullyBuilds()
 {
     ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
-    ExpectEq("Building: /lib/modules/combat.c\n", Wizard->caughtMessage());
+    ExpectSubStringMatch("Building: /lib/modules/combat.c", Wizard->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -127,4 +127,29 @@ void CanRecompile()
 {
     ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
     ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CompilingCurrentLocationMovesYouBackToLocationOnSuccessfulCompile()
+{
+    object room = load_object("/lib/environment/environment.c");
+    ExpectTrue(room);
+    move_object(Wizard, room);
+    ExpectEq("lib/environment/environment", object_name(environment(Wizard)));
+    ExpectEq(1, Wizard->executeCommand("cc /lib/environment/environment.c"));
+    ExpectFalse(room);
+    ExpectEq("lib/environment/environment", object_name(environment(Wizard)));
+    ExpectSubStringMatch("Your environment has been recompiled", Wizard->caughtMessages());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CompilingWithNoArgsBuildsCurrentEnvironment()
+{
+    object room = load_object("/lib/environment/environment.c");
+    move_object(Wizard, room);
+
+    ExpectEq(1, Wizard->executeCommand("cc"));
+
+    ExpectEq("lib/environment/environment", object_name(environment(Wizard)));
+    ExpectSubStringMatch("Your environment has been recompiled", Wizard->caughtMessages());
 }
