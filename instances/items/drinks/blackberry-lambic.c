@@ -1,15 +1,17 @@
 //*****************************************************************************
-// Class: monsterWithAI
-// File Name: monsterWithAI.c
-//
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/realizations/monster.c";
-virtual inherit "/lib/modules/artificialIntelligence.c";
+virtual inherit "/lib/items/drink.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isRealizationOfMonsterWithAI()
+public void reset(int arg) 
 {
-    return 1;
+    if (!arg) 
+    {
+        set("name", "Blackberry Lambic Ale");
+        set("short", "Blackberry Lambic Ale");
+        set("aliases", ({ "blackberry lambic", "beer", "lambic", "ale" }));
+        set("blueprint", "blackberry lambic ale");
+    }
 }

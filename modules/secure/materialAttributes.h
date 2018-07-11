@@ -26,6 +26,31 @@ private string whenCreated;
 private string location = DefaultStart;
 
 /////////////////////////////////////////////////////////////////////////////
+private nosave mapping genderPronouns = ([
+    1: ([ 
+        "name": "male",
+        "nominative": "he",
+        "genitive": "his",
+        "dative": "him",
+        "reflexive": "himself"
+    ]),
+    2: ([
+        "name": "female",
+        "nominative": "she",
+        "genitive": "her",
+        "dative": "her",
+        "reflexive": "herself"
+    ]),
+    0: ([
+        "name": "neuter",
+        "nominative": "it",
+        "genitive": "its",
+        "dative": "it",
+        "reflexive": "itself"
+    ])
+]);
+
+/////////////////////////////////////////////////////////////////////////////
 static nomask void loadMaterialAttributes(mapping data, object persistence)
 {
     if (isValidPersistenceObject(persistence))

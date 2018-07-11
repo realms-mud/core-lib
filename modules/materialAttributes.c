@@ -6,31 +6,6 @@ virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/materialAttributes.h"
 
 /////////////////////////////////////////////////////////////////////////////
-private nosave mapping genderPronouns = ([
-    1: ([ 
-        "name": "male",
-        "nominative": "he",
-        "genitive": "his",
-        "dative": "him",
-        "reflexive": "himself"
-    ]),
-    2: ([
-        "name": "female",
-        "nominative": "she",
-        "genitive": "her",
-        "dative": "her",
-        "reflexive": "herself"
-    ]),
-    0: ([
-        "name": "neuter",
-        "nominative": "it",
-        "genitive": "its",
-        "dative": "it",
-        "reflexive": "itself"
-    ])
-]);
-
-/////////////////////////////////////////////////////////////////////////////
 static nomask string *validMaterialAttributes()
 {
     return ({ "name", "gender", "aliases", "short", "long", "size", "title",
