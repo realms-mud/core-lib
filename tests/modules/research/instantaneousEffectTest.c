@@ -381,6 +381,51 @@ void GetTargetReturnsValidTarget()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void GetTargetWithNoneSpecifiedReturnsUser()
+{
+    object room = clone_object("/lib/environment/environment");
+    object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
+    move_object(User, room);
+    move_object(owner, room);
+
+    Effect->addCommandTemplate("throw turnip [at ##Target##]");
+
+    ExpectEq(User, Effect->testGetTarget(owner, "throw turnip"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetTargetForDamageItemWithNoneSpecifiedReturnsNullIfNotInCombat()
+{
+    object room = clone_object("/lib/environment/environment");
+    object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
+    move_object(User, room);
+    move_object(owner, room);
+
+    Effect->addCommandTemplate("throw turnip [at ##Target##]");
+    Effect->testAddInstantaneousSpecification("damage type", "fire");
+    ExpectEq(0, Effect->testGetTarget(owner, "throw turnip"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetTargetForDamageItemWithNoneSpecifiedReturnsAttackerInCombat()
+{
+    object room = clone_object("/lib/environment/environment");
+
+    object victim = clone_object("/lib/tests/support/services/combatWithMockServices");
+    victim->Name("Frank");
+    victim->addAlias("frank");
+
+    object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
+    move_object(victim, room);
+    move_object(owner, room);
+
+    owner->attack(victim);
+    Effect->addCommandTemplate("throw turnip [at ##Target##]");
+    Effect->testAddInstantaneousSpecification("damage type", "fire");
+    ExpectEq(victim, Effect->testGetTarget(owner, "throw turnip"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ExecuteOnSelfDoesNotCallApplyEffect()
 {
     Effect->ToggleApplyEffect();
@@ -423,5 +468,3 @@ void ExecuteInAreaCallsApplyEffect()
     Effect->ToggleApplyEffect();
     ExpectEq(3, Effect->testExecuteInArea(User, program_name(Effect)));
 }
-
-

@@ -140,6 +140,12 @@ protected nomask object getTarget(object owner, string command)
             }
         }
     }
+
+    if ((ret == owner) && this_object()->query("damage type"))
+    {
+        ret = owner->getTargetToAttack();
+    }
+
     return ret;
 }
 

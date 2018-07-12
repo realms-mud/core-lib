@@ -230,6 +230,7 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
 {
     int ret = 0;
     object target = getTarget(owner, unparsedCommand);
+
     if(target)
     {
         ret = applyEffect(owner, target);

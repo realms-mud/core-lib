@@ -347,4 +347,3 @@ void CallingExecuteDecreasesStaminaPointsAppropriately()
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
     ExpectEq(130, User->staminaPoints(), "stamina point total after execution");
 }
-

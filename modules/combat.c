@@ -938,7 +938,7 @@ private nomask int orderAttackers(object a, object b)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-static nomask object getTargetToAttack()
+public nomask object getTargetToAttack()
 {
     object attacker = 0;
     
