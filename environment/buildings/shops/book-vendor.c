@@ -7,7 +7,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("general store");
+    Name("bookstore");
 
     addTimeOfDayDescription("dawn", ({
         ". It has a closed sign in the window. A light is shining out from the windows"
@@ -29,5 +29,5 @@ public void Setup()
     addSeasonDescription("summer", ({ " that has ivy climbing high up its walls" }));
     addSeasonDescription("autumn", ({ " with ivy whose leaves are turning a deep red color still clinging to the walls" }));
 
-    addDescriptionTemplate("a general store in a wooden building");
+    addDescriptionTemplate("a bookstore in a quaint wooden building");
 }

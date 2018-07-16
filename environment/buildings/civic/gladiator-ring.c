@@ -3,3 +3,10 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/environment/buildings/baseBuilding.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    Name("gladiator ring");
+    addDescriptionTemplate("a wooden arena for holding gladiatorial combat");
+}

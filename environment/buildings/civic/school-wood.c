@@ -3,3 +3,10 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/environment/buildings/baseBuilding.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    Name("school wood");
+    addDescriptionTemplate("a school housed in a wooden building");
+}
