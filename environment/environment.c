@@ -220,7 +220,7 @@ protected nomask varargs void addItem(string item, string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void addShop(string shop)
+protected nomask void addShop(string shop)
 {
     object dictionary = load_object("/lib/dictionaries/shopDictionary.c");
     object shopObj = dictionary->getShopObject(shop);

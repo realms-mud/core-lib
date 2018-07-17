@@ -61,7 +61,8 @@ creating their own custom terrains and interiors.
 ##### For terrains / outdoors locations:
 call `void setTerrain(string terrain)`
 
-The pre-fabricated terrains are located in: /lib/environment/terrain. You can either
+The pre-fabricated terrains are located in: /lib/environment/terrain and any custom
+terrain must inherit from `/lib/environment/terrain/baseTerrain.c`. You can either
 specify a fully-qualified file path or the name of the terrain:
 
 `setTerrain("/lib/environment/terrain/forest.c")` is equivalent to
@@ -69,12 +70,13 @@ specify a fully-qualified file path or the name of the terrain:
 
 ##### For interior locations:
 call `void setInterior(string interior)`
-The pre-fabricated interiors are located in: /lib/environment/interiors
+The pre-fabricated interiors are located in: /lib/environment/interiors and any custom
+interior must inherit from `/lib/environment/interiors/baseInterior.c`.
 
 `setInterior("/lib/environment/interiors/library.c")` is equivalent to
 `setInterior("library")`
 
-It is implortant to note that you can only set either the terrain or the interior.
+It is important to note that you can only set either the terrain or the interior.
 If you try to set both, an exception will be thrown.
 
 Here's a complete example of a forest environment:
@@ -92,118 +94,130 @@ This will have a fully-featured forest that supports time of day and season.
 Now, I know what you're thinking: "So I use setTerrain and... magic happens? I don't
 like that. How does this really work? How can I create my own terrain/interior?"
 
-That's a fair question. Building your own terrain or interior is pretty easy. Let's
-dissect /lib/environment/terrain/forest.c:
-```
-inherit "/lib/environment/terrain/baseTerrain.c";
-```
-This sets up your terrain object to inherit/use all of the goodies that make it a terrain
-```
-public void Setup()
-{
-    Name("forest");
-```
-We've given your terrain object a name. The one caveat to this is that you must use
-a unique name (meaning that if you create a new terrain and give it the name "forest", you
-will receive a polite, but firm, error message at compile time and will not be able to
-use it.)
-```
-    addDescriptionTemplate("a ##Adjective##");
-```
-The `addDescriptionTemplate(string template, (optional) string state)` method is where
-all the magic happens. Confused about the second, optional state parameter? All of the methods I'll be
-discussing have that. We'll get back to it later. You can ignore it unless you're tying the
-environment you're putting this into to a state machine for quests or other "fancy" behavior.
+That's a fair question. Building your own terrain or interior is pretty easy. [If
+you are interested, I have dissected the creation of /lib/environment/terrain/forest.c
+here](terrain.md)
 
-When someone enters an environment or looks around, a description is generated in the following way:
+#### Features
+Once you have the terrain or interior set up for an environment, you can add features.
+The original intent was to break down each environment into a 3x3 grid and allow
+the wizard to place objects either "front-and-center" in the room (ie: location not specified),
+or a cardinal / primary intercardinal direction (ie: n, s, e, w, ne, nw, se, sw). Having
+said that, items can be placed in an arbitrary location and multiple items can be
+placed in the same general area. There is a work itm to change this to a coordinate system,
+but that is currently not implemented and may never be.
 
-1. The name of your terrain is appended to the description template.
-2. The current season's description is appended randomly from the list of available options (if any exist).
-2. The current time of day's description is appended randomly from the list of available options (if any exist).
-3. Specific weather details are then applied (rain, snow, fog, heat, etc)
-4. A description as to how you arrived in the room is prepended.
-5. If you have added adjectives and have specified `##Adjective##` in your template, this is replaced with a randomly-selected adjective that you specify.
-```
-    addAdjectives(({ "sprawling forest",
-        "forest thick with mighty trees; knotted arms rising upward",
-        "grove of many trees",
-        "towering forest",
-        "lush forest",
-        "serene forest"
-    }));
-```
-The `addAdjectives(string *adjectives, (optional) string state)` method will add a series of adjectives, metaphors,
-similies, or additional descriptive text that can be randomly added to the description template
-for the terrain.
-```
-    addTimeOfDayDescription("dawn", ({ 
-        ", the sinuous mists of the early morning caressing their limbs",
-        " just waking with the first light of dawn",
-        " wrapped in the new morn's light",
-        " shedding the shadows of its night-time slumber"
-    }));
-```
-The `addTimeOfDay(string timeFrame, string *descriptions, (optional) string state)` method will add a series
-descriptions for a given time of day to the environment's description. Adding these descriptions
-is strongly encouraged as they add a great deal of flavor to the description, but it is
-optional - you do not need to add any. You can also add time of day descriptions ONLY
-where you want to add special text instead of for all timeframes. 
+The syntax for creating features - be they buildings, features, or static items - is identical
+to that for creating terrain or interiors with the only difference being the class that you are
+inheriting from as will be discussed in each of the following sections. [Again, see how to create /lib/environment/terrain/forest.c
+here](terrain.md)
 
-The possible timeframes are specified in /lib/dictionaries/environmentDictionary.c in the `validTimesOfDay` variable.
-```
-    addSeasonDescription("winter", ({ " covered with a thick layer of snow" }));
-```
-The `addSeasonDescription(string season, string *descriptions, (optional) string state)` method will add a series
-descriptions for a given season to the environment's description. As with time of day
-descriptions, they are optional, but strongly encouraged. 
+There are three methods to add these features, the first one being for buildings:
 
-The possible seasons are specified in /lib/dictionaries/environmentDictionary.c in the `validSeasons` variable.
+###### Buildings
+`varargs void addBuilding(string building, string location, string path, string state)`
 
-Putting all of this together, a terrain might look like this:
+This method is the most interesting of the group. The only required parameter is `building`
+as this is either the name or fully-qualified path for the building file.
 ```
-inherit "/lib/environment/terrain/baseTerrain.c";
-
-/////////////////////////////////////////////////////////////////////////////
-public void Setup()
-{
-    Name("forest");
-    addAdjectives(({ "sprawling forest",
-        "forest thick with mighty trees; knotted arms rising upward",
-        "grove of many trees",
-        "towering forest",
-        "lush forest",
-        "serene forest"
-    }));
-    addTimeOfDayDescription("dawn", ({ 
-        ", the sinuous mists of the early morning caressing their limbs",
-        " just waking with the first light of dawn",
-        " wrapped in the new morn's light",
-        " shedding the shadows of its night-time slumber"
-    }));
-    addTimeOfDayDescription("morning", ({
-        " lit from rays of light piercing through the canopy",
-        " awash with the tender glow of the morning "
-    }));
-    addTimeOfDayDescription("noon", ({ 
-        " bathed in the mid-day light",
-        " lit by golden seams of light coming through the canopy"
-    }));
-    addTimeOfDayDescription("afternoon", ({
-        " lit by the fullness of the day" }));
-    addTimeOfDayDescription("evening", ({ 
-        " still lit by the waning day's light" }));
-    addTimeOfDayDescription("dusk", ({ 
-        ", the details of which the last failing light of the day barely show" }));
-    addTimeOfDayDescription("night", ({ 
-        " outlined in the dark" }));
-    addTimeOfDayDescription("midnight", ({ 
-        " scarcely outlined in eery black" }));
-    addSeasonDescription("winter", ({ " covered with a thick layer of snow" }));
-    addSeasonDescription("spring", ({ " with leaves just beginning to bud" }));
-    addSeasonDescription("summer", ({ " with branches laden with leaves" }));
-    addSeasonDescription("autumn", ({ " carpeting the ground in fallen leaves of red, yellow, and orange" }));
-
-    addDescriptionTemplate("a ##Adjective##");
-}
+addBuilding("wainwright");
+addBuilding("/lib/environment/shops/wainwright.c");
 ```
-Interiors are specified in exactly the same manner.
+
+These two calls are functionally-equivalent. It is important to note that for custom-generated
+buildings, that if you wish to use the name, the building must be registered with the
+environment dictionary at mud start-up time. You can alternatively use the fully-qualified path
+and that option is always available to you.
+
+The second parameter specifies where within the environment that the building you're adding is:
+```
+addBuilding("/lib/environment/shops/wainwright.c", "north");
+addBuilding("/lib/environment/shops/swordsmith.c", "just right of the Wainwright");
+```
+
+The third parameter is used only if the building has a door / entryway in this room. The parameter
+specifies the path of another environment this one exits into for that building.
+```
+addBuilding("/lib/environment/shops/wainwright.c", "north", "/players/maeglin/shop.c");
+```
+
+The fourth parameter specifies the state that an attached state machine must be in for an exit
+to be active.
+```
+addBuilding("/lib/environment/shops/wainwright.c", "north", "/players/maeglin/shop.c");
+addBuilding("/lib/environment/shops/wainwright.c", "north", "/players/maeglin/spiffyNewShop.c", "neat stuff");
+```
+
+The pre-fabricated buildings can be found in: `/lib/environment/buildings`. All custom buildings
+must inherit from `/lib/environment/buildings/baseBuilding.c`.
+
+###### Other Features and Static Items
+In addition to buildings, you can also add other features or static items.
+
+```
+varargs void addFeature(string building, string location);
+varargs void addItem(string item, string location);
+```
+A feature (found in `/lib/environment/features`) is any "large scale" thing that might be found in an environment such as a bluff, 
+a stand of trees, a cliff, a river, and so on. Features must inherit from `/lib/environment/features/baseFeature.c`. 
+An item is a small-scale static item (`/lib/environment/items`) and must inherit from `/lib/environment/items/baseItem.c`.
+
+As with buildings, the first parameter is either the name or fully-qualified path for the feature
+or item file. The rules for the location are the same as those for buildings.
+
+One special class of item is one that inherits from `/lib/environment/items/baseContainer.c`. These
+items provide the means to store non-static items (items a player can pick up such as a weapon
+or money, for example). 
+
+###### Shops
+If the room is a shop (meaning that you can do transactions in this location), there is a method
+for adding support for the game's shop mechanics:
+```
+void addShop(string shop);
+```
+The pre-fabricated shop inventories can be found in: `/lib/environment/shopInventories`. All custom shop
+inventories must inherit from `/lib/environment/shopInventories/baseShop.c`.
+![A shop](http://RealmsMUD.org/images/shop.gif)
+
+The above is what you would get by adding this method call to your Setup() function:
+```
+addShop("/lib/environment/shopInventories/swordsmith.c");
+```
+
+#### Adding Monsters, Equipment, and Other Cloned Items
+```
+varargs void addObject(string file, string state);
+```
+TBD
+
+#### Adding Exits
+```
+varargs void addExit(string direction, string path, string state);
+```
+TBD
+
+#### Regions
+```
+void setCoordinates(string region, int x, int y);
+```
+TBD
+
+#### Additional Descriptions
+```
+varargs void setAdditionalLongDescription(string description, string state);
+```
+This additional long description can have embedded efun calls in it as described as point #7
+in the [`addDescriptionTemplate`](terrain.md) section of the environmental element discussion. 
+TBD
+
+#### Short Descriptions
+```
+void setShortDescription(string newShort);
+```
+TBD
+
+#### Using State Machines
+```
+void setStateMachine(object newSM);
+```
+TBD
