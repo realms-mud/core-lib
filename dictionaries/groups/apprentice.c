@@ -25,6 +25,7 @@ protected nomask void applyGroupDetails()
     addCommand("cd");
     addCommand("emote");
     addCommand("goto");
+    addCommand("head");
     addCommand("light");
     addCommand("ls");
     addCommand("more");

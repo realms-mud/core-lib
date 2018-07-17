@@ -9,7 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        addCommandTemplate("tail [-n ##Lines##] ##Target##");
+        addCommandTemplate("head [-n ##Lines##] ##Target##");
     }
 }
 
@@ -20,12 +20,12 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("cat"))
     {
-        string source = regreplace(command, "^tail( -n *[0-9]+|) ([^ ]+)", "\\2");
-
-        int lines = 8;
-        if (sizeof(regexp(({ command }), "^tail -n *[0-9]+")))
+        string source = regreplace(command, "^head( -n *[0-9]+|) ([^ ]+)", "\\2");
+        
+        int lines = 5;
+        if (sizeof(regexp(({ command }), "^head -n *[0-9]+")))
         {
-            lines = to_int(regreplace(command, "^tail -n *([0-9]+).*", "\\1"));
+            lines = to_int(regreplace(command, "^head -n *([0-9]+).*", "\\1"));
         }
 
         string sourcePath = initiator->hasReadAccess(source);
@@ -35,14 +35,8 @@ public nomask int execute(string command, object initiator)
             if (file_size(sourcePath) > -1)
             {
                 ret = 1;
-                string *contents = explode(read_file(sourcePath), "\n");
-
-                if (sizeof(contents) > lines)
-                {
-                    contents = contents[(sizeof(contents) - lines)..];
-                }
-
-                tell_object(initiator, implode(contents, "\n"));
+                string contents = read_file(sourcePath, 0, lines);
+                tell_object(initiator, contents);
             }
             else
             {
