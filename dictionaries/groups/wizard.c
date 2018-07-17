@@ -20,4 +20,5 @@ protected nomask void applyGroupDetails()
     addCommand("patch");
     addCommand("mv");
     addCommand("cp");
+    addCommand("rm");
 }
