@@ -7,6 +7,7 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    Name("sugar maple stand");
     addAdjectives(({ "stout", "towering", "tall", "broad" }));
     addTimeOfDayDescription("dawn", ({ " that the faint dawn light is just beginning to illuminate" }));
     addTimeOfDayDescription("dusk", ({ ", the details of which the last failing light of the day barely show" }));

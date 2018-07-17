@@ -3,3 +3,11 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/environment/features/baseFeature.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    Name("river with bridge");
+
+    addDescriptionTemplate("a bridge going over a river");
+}

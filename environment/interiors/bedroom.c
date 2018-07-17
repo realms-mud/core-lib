@@ -3,3 +3,11 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/environment/interiors/baseInterior.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    Name("bedroom");
+
+    addDescriptionTemplate("a bedroom");
+}

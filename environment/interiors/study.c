@@ -2,12 +2,12 @@
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/terrain/baseTerrain.c";
+inherit "/lib/environment/interiors/baseInterior.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("plains");
+    Name("study");
 
-    addDescriptionTemplate("a plain");
+    addDescriptionTemplate("a study");
 }

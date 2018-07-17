@@ -3,3 +3,11 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/environment/features/baseFeature.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    Name("barrow");
+
+    addDescriptionTemplate("a barrow");
+}

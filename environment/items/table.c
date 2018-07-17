@@ -3,3 +3,11 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/environment/items/baseItem.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    Name("table");
+
+    addDescriptionTemplate("a table");
+}
