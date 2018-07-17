@@ -23,24 +23,26 @@ public nomask int execute(string command, object initiator)
         string source = regreplace(command, "^mv ([^ ]+) .*", "\\1");
         string destination = regreplace(command, "^mv [^ ]+ (.*)", "\\1");
 
-        if (initiator->hasWriteAccess(source) &&
-            initiator->hasWriteAccess(destination))
+        string sourcePath = initiator->hasWriteAccess(source);
+        string destinationPath = initiator->hasWriteAccess(destination);
+
+        if (sourcePath && destinationPath)
         {
-            if (file_size(source) != -1)
+            if (file_size(sourcePath) != -1)
             {
-                ret = (rename(source, destination) == 0);
+                ret = (rename(sourcePath, destinationPath) == 0);
             }
             else
             {
                 tell_object(initiator, format(sprintf("The file '%s' does not exist.",
-                    source), 78));
+                    sourcePath), 78));
             }
         }
         else
         {
             tell_object(initiator, format(sprintf(
                 "You do not have write access to "
-                "both '%s' and '%s'", source, destination), 78));
+                "both '%s' and '%s'", source || "???", destination || "???"), 78));
         }
     }
     return ret;

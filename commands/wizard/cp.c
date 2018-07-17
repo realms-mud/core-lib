@@ -23,28 +23,30 @@ public nomask int execute(string command, object initiator)
         string source = regreplace(command, "^cp ([^ ]+) .*", "\\1");
         string destination = regreplace(command, "^cp [^ ]+ (.*)", "\\1");
 
-        if (initiator->hasReadAccess(source) &&
-            initiator->hasWriteAccess(destination))
+        string sourcePath = initiator->hasReadAccess(source);
+        string destinationPath = initiator->hasWriteAccess(destination);
+        
+        if (sourcePath && destinationPath)
         {
-            if (file_size(source) != -1)
+            if (file_size(sourcePath) != -1)
             {
-                ret = (copy_file(source, destination) == 0);
+                ret = (copy_file(sourcePath, destinationPath) == 0);
             }
             else
             {
                 tell_object(initiator, format(sprintf("The file '%s' does not exist.",
-                    source), 78));
+                    sourcePath), 78));
             }
         }
         else if(!initiator->hasReadAccess(source))
         {
             tell_object(initiator, format(sprintf(
-                "You do not have read access to '%s'", source), 78));
+                "You do not have read access to '%s'", source || "???"), 78));
         }
         else if (!initiator->hasWriteAccess(destination))
         {
             tell_object(initiator, format(sprintf(
-                "You do not have write access to '%s'", destination), 78));
+                "You do not have write access to '%s'", destination || "???"), 78));
         }
     }
     return ret;

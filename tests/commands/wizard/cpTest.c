@@ -83,3 +83,16 @@ void CpFailsWhenUserDoesNotHaveWriteAccessToDestination()
     ExpectSubStringMatch("You do not have write access to '/secure/y'",
         Wizard->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CpProperlyHandlesRelativePaths()
+{
+    command("cd /players/earl", Wizard);
+
+    ExpectEq(0, file_size("/players/earl/blah"));
+    ExpectEq(-1, file_size("/players/earl/y"));
+    ExpectTrue(Wizard->executeCommand("cp blah y"));
+    ExpectEq(0, file_size("/players/earl/blah"));
+    ExpectEq(0, file_size("/players/earl/y"));
+    rm("/players/earl/y");
+}

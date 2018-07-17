@@ -86,3 +86,17 @@ void MvFailsWhenUserDoesNotHaveWriteAccessToDestination()
         Wizard->caughtMessage());
     rm("/players/earl/x");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void MvProperlyHandlesRelativePaths()
+{
+    copy_file("/players/earl/blah", "/players/earl/x");
+    command("cd /players/earl", Wizard);
+
+    ExpectEq(0, file_size("/players/earl/x"));
+    ExpectEq(-1, file_size("/players/earl/y"));
+    ExpectTrue(Wizard->executeCommand("mv x y"));
+    ExpectEq(-1, file_size("/players/earl/x"));
+    ExpectEq(0, file_size("/players/earl/y"));
+    rm("/players/earl/y");
+}
