@@ -14,6 +14,7 @@ virtual inherit "/lib/modules/settings.c";
 virtual inherit "/lib/modules/secure/persistence.c";
 virtual inherit "/lib/modules/conversations.c";
 virtual inherit "/lib/modules/crafting.c";
+virtual inherit "/lib/modules/configuration.c";
 
 private nosave object commandRegistry = 0;
 

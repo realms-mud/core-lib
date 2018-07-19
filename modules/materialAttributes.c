@@ -247,6 +247,7 @@ public varargs string Pretitle(string msg)
     {
         pretitle = msg;
     }
+
     return pretitle;
 }
 
