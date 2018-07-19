@@ -152,7 +152,7 @@ private varargs nomask int getMoney(object initiator, int quantity)
                 quantityLeft -= itemQuantity;
 
                 displayMessage(sprintf("##InitiatorName## ##Infinitive::pick##"
-                    " up %d coin%s.\n", amount, (amount == 1) ? "" : "s"), 
+                    " up %d coin%s.\n", amount ? amount : itemQuantity, (amount == 1) ? "" : "s"),
                     initiator);
 
                 initiator->transferMoneyTo(item, amount);

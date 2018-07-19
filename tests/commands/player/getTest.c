@@ -261,6 +261,7 @@ void CanGetMoney()
     ExpectTrue(Player->executeCommand("get money"));
     ExpectEq(250, Player->Money());
     ExpectFalse(objectp(money));
+    ExpectEq("You pick up 250 coins.\n", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
