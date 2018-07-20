@@ -58,6 +58,7 @@ void Setup()
     Players = ({});
 
     load_object("/lib/tests/support/guilds/testGuild.c")->PrepFakeGuild();
+
     int level = 1;
     foreach(string name in({ "fred", "george", "henrietta", "gertrude" }))
     {
@@ -68,7 +69,7 @@ void Setup()
         level++;
         Players += ({ player });
     }
-
+    Players[0]->Race("elf");
     setUsers(Players + ({ Wizard, Wizard2 }));
 }
 
@@ -98,4 +99,112 @@ void WhoDisplaysWhoListInCorrectOrder()
     ExpectSubStringMatch("Henrietta.*Level 3", whoList[4]);
     ExpectSubStringMatch("George.*Level 2", whoList[5]);
     ExpectSubStringMatch("Fred.*Level 1", whoList[6]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WhoWithWizardFilterDisplaysCorrectList()
+{
+    ExpectTrue(Wizard->executeCommand("who -w"));
+
+    string *whoList = explode(Wizard->caughtMessage(), "\n");
+    ExpectEq(3, sizeof(whoList));
+    ExpectSubStringMatch("Weasel Lord Earl the Doppleganger.*Elder Wizard", whoList[0]);
+    ExpectSubStringMatch("Weasel Lord Earl the title-less.*Admin Wizard", whoList[1]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WhoWithPlayerFilterDisplaysCorrectList()
+{
+    ExpectTrue(Wizard->executeCommand("who -p"));
+
+    string *whoList = explode(Wizard->caughtMessage(), "\n");
+    ExpectEq(5, sizeof(whoList));
+    ExpectSubStringMatch("Gertrude.*Level 4", whoList[0]);
+    ExpectSubStringMatch("Henrietta.*Level 3", whoList[1]);
+    ExpectSubStringMatch("George.*Level 2", whoList[2]);
+    ExpectSubStringMatch("Fred.*Level 1", whoList[3]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WhoWithRaceFilterDisplaysCorrectList()
+{
+    ExpectTrue(Wizard->executeCommand("who -r elf"));
+
+    string *whoList = explode(Wizard->caughtMessage(), "\n");
+    ExpectEq(5, sizeof(whoList));
+    ExpectSubStringMatch("Weasel Lord Earl the Doppleganger.*Elder Wizard", whoList[0]);
+    ExpectSubStringMatch("Weasel Lord Earl the title-less.*Admin Wizard", whoList[1]);
+    ExpectSubStringMatch("Fred.*Level 1", whoList[3]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WhoWithRaceAndWizardFilterDisplaysCorrectList()
+{
+    ExpectTrue(Wizard->executeCommand("who -r elf -w"));
+
+    string *whoList = explode(Wizard->caughtMessage(), "\n");
+    ExpectEq(3, sizeof(whoList));
+    ExpectSubStringMatch("Weasel Lord Earl the Doppleganger.*Elder Wizard", whoList[0]);
+    ExpectSubStringMatch("Weasel Lord Earl the title-less.*Admin Wizard", whoList[1]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WhoWithRaceAndPlayerFiltersDisplaysCorrectList()
+{
+    Wizard2->Race("high elf");
+    Players[0]->Race("high elf");
+    ExpectTrue(Wizard->executeCommand("who -r high elf -p"));
+
+    string *whoList = explode(Wizard->caughtMessage(), "\n");
+    ExpectEq(2, sizeof(whoList));
+    ExpectSubStringMatch("Fred.*Level 1", whoList[0]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WhoWithGuildFilterDisplaysCorrectList()
+{
+    load_object("/lib/tests/support/guilds/mageGuild.c");
+    Players[3]->joinGuild("mage");
+    ExpectTrue(Wizard->executeCommand("who -g mage"));
+
+    string *whoList = explode(Wizard->caughtMessage(), "\n");
+    ExpectEq(5, sizeof(whoList));
+    ExpectSubStringMatch("Weasel Lord Earl the Doppleganger.*Elder Wizard", whoList[0]);
+    ExpectSubStringMatch("Weasel Lord Earl the title-less.*Admin Wizard", whoList[1]);
+    ExpectSubStringMatch("Gertrude.*Level 5", whoList[3]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WhoWithGuildAndPlayerFilterDisplaysCorrectList()
+{
+    Players[3]->leaveGuild("test");
+    Players[0]->leaveGuild("test");
+    ExpectTrue(Wizard->executeCommand("who -p -g test"));
+
+    string *whoList = explode(Wizard->caughtMessage(), "\n");
+    ExpectEq(3, sizeof(whoList));
+    ExpectSubStringMatch("Henrietta.*Level 3", whoList[0]);
+    ExpectSubStringMatch("George.*Level 2", whoList[1]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WhoWithGuildAndWizardFilterDisplaysCorrectList()
+{
+    load_object("/lib/tests/support/guilds/mageGuild.c");
+    Wizard->leaveGuild("mage");
+
+    ExpectTrue(Wizard->executeCommand("who -w -g mage"));
+    string *whoList = explode(Wizard->caughtMessage(), "\n");
+    ExpectEq(2, sizeof(whoList));
+    ExpectSubStringMatch("Weasel Lord Earl the Doppleganger.*Elder Wizard", whoList[0]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WhoWithRaceAndGuildFilterDisplaysCorrectList()
+{
+    ExpectTrue(Wizard->executeCommand("who -r elf -g test"));
+
+    string *whoList = explode(Wizard->caughtMessage(), "\n");
+    ExpectEq(2, sizeof(whoList));
+    ExpectSubStringMatch("Fred.*Level 1", whoList[0]);
 }

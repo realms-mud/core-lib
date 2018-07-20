@@ -9,7 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        addCommandTemplate("who [-w] [-r ##Race##] [-g ##Guild##]");
+        addCommandTemplate("who [-w] [-p] [-r ##Value##] [-g ##Value##]");
     }
 }
 
@@ -50,7 +50,36 @@ public nomask int execute(string command, object initiator)
         object *wizardList = sort_array(filter(playerList,
             (: (member(inherit_list($1), "lib/realizations/wizard.c") > -1) :)),
             (: $3->getSortOrder($1) < $3->getSortOrder($2) :), wizardDictionary);
-        playerList -= wizardList;
+
+        if (sizeof(regexp(({ command }), "-w")))
+        {
+            playerList = ({});
+        }
+        else
+        {
+            playerList -= wizardList;
+        }
+
+        if (sizeof(regexp(({ command }), "-p")))
+        {
+            wizardList = ({});
+        }
+
+        if (sizeof(regexp(({ command }), "-r [^-]+( -|)")))
+        {
+            string race = regreplace(command, "who.* -r *([^-]+)( -.*|$)", "\\1");
+
+            playerList = filter(playerList, (: $1->Race() == race :), race);
+            wizardList = filter(wizardList, (: $1->Race() == race :), race);
+        }
+
+        if (sizeof(regexp(({ command }), "-g [^-]+( -|)")))
+        {
+            string guild = regreplace(command, "who.* -g *([^-]+)( -.*|$)", "\\1");
+
+            playerList = filter(playerList, (: $1->memberOfGuild($2) :), guild);
+            wizardList = filter(wizardList, (: $1->memberOfGuild($2) :), guild);
+        }
 
         string whoList = "";
         foreach(object wizard in wizardList)
@@ -61,20 +90,21 @@ public nomask int execute(string command, object initiator)
                 configDictionary->decorate(
                     wizardDictionary->getWizardTitle(wizard),
                     wizard->wizardLevel(), "wizard levels", 
-                    wizard->colorConfiguration()));
+                    initiator->colorConfiguration()));
         }
 
-        if (sizeof(whoList))
+        if (sizeof(whoList) && sizeof(playerList) && sizeof(wizardList))
         {
-            whoList += "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n";
+            whoList += configDictionary->divider(initiator->colorConfiguration());
         }
 
         foreach(object player in playerList)
         {
             string playerName = getPlayerInfo(player);
-
-            whoList += sprintf("%-55s (Level %d)\n", playerName,
-                player->effectiveLevel());
+            whoList += configDictionary->decorate(
+                sprintf("%-55s (Level %d)\n", playerName,
+                player->effectiveLevel()), "any", "player guilds",
+                initiator->colorConfiguration());
         }
 
         tell_object(initiator, whoList);

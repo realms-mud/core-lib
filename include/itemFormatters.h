@@ -24,6 +24,18 @@ private nosave string Blue = "[0;34m%s[0m";
 private nosave string Magenta = "[0;35m%s[0m";
 
 private nosave mapping decorators = ([
+    "dividers":([
+        "3-bit": "\x1b[0;31m",
+        "8-bit": "\x1b[0;38;5;124m",
+        "24-bit": "\x1b[0;38;2;100;10;0m"
+    ]),
+    "player guilds":([
+        "any":([
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;12m",
+            "24-bit": "\x1b[0;38;2;150;230;190m"
+        ]),
+    ]),
     "wizard levels":([
         "apprentice":([
             "3-bit": "\x1b[0;32m",
