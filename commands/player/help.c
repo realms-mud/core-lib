@@ -129,7 +129,7 @@ public nomask int execute(string command, object initiator)
     if (canExecuteCommand(command))
     {
         object commandRegistry = load_object("/lib/commands/commandRegistry.c");
-        mapping commandList = commandRegistry->getListOfCommands();
+        mapping commandList = commandRegistry->getListOfCommands(initiator);
         mapping flattenedCommandList = flattenCommandList(commandList);
         string message = "";
 
@@ -141,6 +141,10 @@ public nomask int execute(string command, object initiator)
         else if(member(flattenedCommandList, command))
         {
             message = displayHelpDetails(flattenedCommandList[command], command);
+        }
+        else
+        {
+            message = sprintf("No help could be found for '%s'.\n", command);
         }
         pageString(message, initiator);
         ret = 1;

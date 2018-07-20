@@ -9,6 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
+        CommandType = "Wizard";
         addCommandTemplate("patch [-t ##Target##] [-f ##Function##] [-v ##Values##] [.*]");
     }
 }

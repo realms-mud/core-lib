@@ -69,8 +69,13 @@ private nomask void registerWizardCommands()
                 if (commandObj && (member(inherit_list(commandObj), BaseCommand) > -1) &&
                     commandObj->commandRegExp(command))
                 {
-                    commands[commandObj->commandRegExp(command)] = fullyQualifiedFile;
-                    wizCommands += ({ commandObj->commandRegExp(command) });
+                    string *commandList = commandObj->commandList();
+                    foreach(string commandEntry in commandList)
+                    {
+                        commands[commandObj->commandRegExp(commandEntry)] = fullyQualifiedFile;
+                        wizCommands += ({ commandObj->commandRegExp(commandEntry) });
+                        registerCommandAsType(commandObj, fullyQualifiedFile, commandEntry);
+                    }
                 }
             }
         }
@@ -128,7 +133,13 @@ public nomask int executeCommand(string passedCommand, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getListOfCommands()
+public nomask mapping getListOfCommands(object initiator)
 {
-    return commandTypes + ([]);
+    mapping commands = commandTypes + ([]);
+    if (member(inherit_list(initiator), Wizard) < 0)
+    {
+        commands = filter(commands, (: $1 != "Wizard" :));
+    }
+
+    return commands;
 }

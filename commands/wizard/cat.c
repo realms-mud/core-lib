@@ -9,6 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
+        CommandType = "Wizard";
         addCommandTemplate("cat [-n ##Lines##] ##Target##");
     }
 }
