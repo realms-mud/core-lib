@@ -81,3 +81,9 @@ public nomask varargs int pageSize(int newSize)
     }
     return PageSize;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string colorConfiguration()
+{
+    return "3-bit";
+}

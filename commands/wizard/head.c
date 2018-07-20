@@ -21,6 +21,8 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("cat"))
     {
+        notify_fail("");
+
         string source = regreplace(command, "^head( -n *[0-9]+|) ([^ ]+)", "\\2");
         
         int lines = 5;

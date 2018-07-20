@@ -21,6 +21,8 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("cat"))
     {
+        notify_fail("");
+
         string source = regreplace(command, "^cat( -n *[0-9]+|) ([^ ]+)", "\\2");
         int lines = 0;
         if (sizeof(regexp(({ command }), "^cat -n *[0-9]+")))

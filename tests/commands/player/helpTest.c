@@ -82,6 +82,8 @@ void HelpAsWizardDisplaysMainHelpMenuWithWizardCommands()
     ExpectSubStringMatch("zing.*Interactions.*General.*save",
         wizard->caughtMessage());
     ExpectTrue(sizeof(regexp(({ wizard->caughtMessage() }), "Wizard")));
+
+    destruct(wizard);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -99,4 +101,6 @@ void HelpAsWizardDisplaysSpecificHelpForWizardCommands()
     command(" ", wizard);
     ExpectSubStringMatch("Synopsis.*Syntax.*Description.*Options.*.*Notes",
         wizard->caughtMessage());
+
+    destruct(wizard);
 }
