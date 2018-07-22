@@ -3,6 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/items/item.c";
+#include "/lib/include/itemFormatters.h"
 
 /////////////////////////////////////////////////////////////////////////////
 public int isContainer()
@@ -17,7 +18,7 @@ public int canGet(object target)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mixed query(string element)
+public mixed query(string element)
 {
     mixed ret = 0;
     switch(element)
@@ -33,5 +34,54 @@ public nomask mixed query(string element)
         }
     }
 
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string colorizeText(object item)
+{
+    string ret = "";
+
+    if (item && item->short())
+    {
+        string formatter = NormalEquipment;
+
+        if (materialsObject())
+        {
+            ret = materialsObject()->applyMaterialQualityToText(item, item->short());
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string inventoryText(object *itemList)
+{
+    string ret = "";
+
+    foreach(object equipment in itemList)
+    {
+        if (equipment->short())
+        {
+            ret += sprintf(Red, "| ") + colorizeText(equipment) + "\n";
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs string long(int doNotApplyUserStatistics)
+{
+    string ret = "item"::long(doNotApplyUserStatistics);
+
+    object *inventory = sort_array(all_inventory(), 
+        (: object_name($1) < object_name($2) :));
+
+    if (sizeof(inventory))
+    {
+        ret += "\nThis item contains the following:\n" +
+            inventoryText(inventory);
+    }
     return ret;
 }

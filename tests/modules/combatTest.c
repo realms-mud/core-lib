@@ -1487,7 +1487,7 @@ void AttackInvolvingDeathCreatesCorpseAndDestroysTarget()
     ExpectEq(2, sizeof(roomItems), "two object are in the room");
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectFalse(member(roomItems, Target) > -1, "target is in room");
-    ExpectEq("obj/corpse.c", program_name(roomItems[0]));
+    ExpectEq("lib/items/corpse.c", program_name(roomItems[0]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1512,7 +1512,7 @@ void AttackInvolvingDeathOfPlayerCreatesCorpseButDoesNotDestroyPlayer()
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectTrue(member(roomItems, Target) > -1, "target is in room");
     ExpectTrue(Attacker->isDead(), "attacker is now dead");
-    ExpectEq("obj/corpse.c", program_name(roomItems[0]));
+    ExpectEq("lib/items/corpse.c", program_name(roomItems[0]));
 }
 
 /////////////////////////////////////////////////////////////////////////////

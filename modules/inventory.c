@@ -709,7 +709,7 @@ public varargs nomask object transferMoneyFrom(int moneyToDrop)
         moneyToDrop = Money();
     }
 
-    if(Money() >= moneyToDrop)
+    if(moneyToDrop && (Money() >= moneyToDrop))
     {
         ret = clone_object("/lib/items/money.c");
         if(ret)
@@ -764,7 +764,7 @@ public nomask int transferItemsTo(object destination)
     
     if(destination && objectp(destination))
     {
-        foreach(object item : equippedByMask(AllWielded | AllWorn))
+        foreach(object item in equippedByMask(AllWielded | AllWorn))
         {
             if(item)
             {
@@ -776,10 +776,10 @@ public nomask int transferItemsTo(object destination)
         {
             if(item && objectp(item) && !item->drop(Silently))
             {
+                ret += item->query("weight");
                 move_object(item, destination);
             }
         }
-        ret = 1;
     }
     return ret;
 }

@@ -1133,31 +1133,17 @@ private nomask void generateCorpse(object murderer)
     if(materialAttributes)
     {
         materialAttributes->Ghost(1);
-        object corpse = clone_object("/obj/corpse");
+        object corpse = clone_object("/lib/items/corpse.c");
         if(corpse)
         {
-            object inventory = getService("inventory");
-            if(inventory)
-            {
-                inventory->transferItemsTo(corpse);
+            corpse->corpseSetup(this_object());
 
-                if(inventory->Money())
-                {
-                    object money = inventory->transferMoneyFrom();
-                    if(money)
-                    {
-                        move_object(money, corpse);
-                    }
-                }
-            }
             if(function_exists("isRealizationOfPlayer", murderer) &&
                function_exists("isRealizationOfPlayer", this_object()))
             {
-                corpse->set_property("pk_kill", 1);
+                corpse->set("killed by player", murderer->RealName());
             }
-            // TODO [278]: Determine which properties need to be used and
-            //             revise method calls for corpses.
-            corpse->set_name(materialAttributes->RealName());
+
             move_object(corpse, environment(this_object()));
         }
     }

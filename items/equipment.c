@@ -631,7 +631,7 @@ public varargs int unequip(string item, int silently)
 /////////////////////////////////////////////////////////////////////////////
 public varargs int drop(int silently)
 {
-    int ret = !canUnequip();
+    int ret = !canUnequip() || query("undroppable");
     
     object env = environment(this_object());
     if(env && environment(env))
