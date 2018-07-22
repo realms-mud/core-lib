@@ -628,3 +628,25 @@ void CharacterStateReturnsCorrectValue()
     ExpectEq("new state", Player->characterState(foe, "new state"));
     ExpectEq("new state", Player->characterState(foe));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void HeartBeatChecksForLinkDeathThenSavesAndDestroysTheLinkDead()
+{
+    Player->restore("gorthaur");
+    setUsers(({ Player }));
+    Player->heart_beat();
+
+    ExpectTrue(Player);
+    ExpectEq("/room/city/central_park.c", Player->savedLocation());
+
+    move_object(Player, "/lib/environment/environment.c");
+    setUsers(({ }));
+
+    Player->heart_beat();
+    ExpectFalse(Player);
+
+    Player = clone_object("/lib/realizations/player.c");
+    Player->restore("gorthaur");
+
+    ExpectEq("/lib/environment/environment", Player->savedLocation());
+}

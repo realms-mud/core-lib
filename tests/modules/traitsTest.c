@@ -23,6 +23,8 @@ void Setup()
     Traits->staminaPoints(Traits->maxStaminaPoints());
     Traits->addSkillPoints(100);
     Traits->advanceSkill("long sword", 5);
+
+    setUsers(({ Traits }));
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -13,6 +13,8 @@ void Setup()
     Character = clone_object("/lib/tests/support/services/mockPlayer");
     Character->Name("Bob");
     Character->Con(5);
+
+    setUsers(({ Character }));
 }
 
 /////////////////////////////////////////////////////////////////////////////

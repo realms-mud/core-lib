@@ -27,9 +27,11 @@ private nomask object checkIfPlayerObjectExists(string name)
 {
     object ret = 0;
 
-    if (objectp(find_player(name)))
+    object *playersWithName = filter(users(), (: $1->RealName() == $2 :), name);
+
+    if (sizeof(playersWithName))
     {
-        ret = find_player(name);
+        ret = playersWithName[0];
         if (member(inherit_list(ret), "lib/realizations/player.c") < 0)
         {
             ret = 0;

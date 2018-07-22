@@ -45,7 +45,10 @@ public nomask void save()
     if (canAccessDatabase(previous_object()))
     {
         mapping playerData = getPlayerInfo();
-        DataAccess()->savePlayerData(playerData);
+        if (sizeof(playerData))
+        {
+            DataAccess()->savePlayerData(playerData);
+        }
         this_object()->notify("onSaveSucceeded");
     }
     else

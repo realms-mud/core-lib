@@ -510,6 +510,7 @@ void CanEquipReturnsTrueIfInGuild()
     Equipment->set("prerequisites", prereqs);
 
     object owner = clone_object("/lib/tests/support/services/mockUserWithInventory.c");
+    setRestoreCaller(owner);
     move_object(Equipment, owner);
     owner->joinGuild("fighter");
 

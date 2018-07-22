@@ -16,6 +16,7 @@ virtual inherit "/lib/modules/conversations.c";
 virtual inherit "/lib/modules/crafting.c";
 
 private nosave object commandRegistry = 0;
+private nosave int timeForNextSave = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfPlayer()
@@ -59,4 +60,44 @@ public void reset(int arg)
         addCommands();
         set_heart_beat(1);
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void removeInventory(object player)
+{
+    object *items = deep_inventory(player);
+    if (sizeof(items))
+    {
+        foreach(object item in items)
+        {
+            destruct(item);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void checkForLinkDeath(object player)
+{
+    if (member(users(), player) < 0)
+    {
+        player->save();
+        removeInventory(player);
+        unshadow();
+        destruct(player);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void heart_beat()
+{
+    "living"::heart_beat();
+
+    int currentTime = time();
+    if (currentTime >= timeForNextSave)
+    {
+        timeForNextSave = currentTime + 300;
+        this_object()->save();
+    }
+
+    checkForLinkDeath(this_object());
 }

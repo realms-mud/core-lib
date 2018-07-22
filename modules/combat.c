@@ -1185,6 +1185,11 @@ private nomask int finishOffThisPoorDeadBastard(object murderer)
     object player = getService("player");
     if(player)
     {
+        object persistence = getService("secure/persistence");
+        if (persistence)
+        {
+            persistence->save();
+        }
         object logger = getDictionary("log");
         if(logger)
         {

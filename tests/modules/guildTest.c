@@ -257,6 +257,7 @@ void AdvanceLevelFiresOnAdvancedLevelOnSuccess()
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceRankAppliesNewRank()
 {
+    setUsers(({ User }));
     User->heart_beat();
     ExpectEq(0, User->guildRank("test"));
     ExpectTrue(User->joinGuild("test"));

@@ -309,6 +309,12 @@ public nomask int advanceRank(string guild)
         {
             events->notify("onAdvancedRank");
         }
+
+        object persistence = getService("secure/persistence");
+        if (persistence)
+        {
+            persistence->save();
+        }
         ret = 1;
     }
     return ret;
@@ -339,6 +345,13 @@ public nomask int demoteRank(string guild)
         {
             events->notify("onDemotedRank");
         }
+
+        object persistence = getService("secure/persistence");
+        if (persistence)
+        {
+            persistence->save();
+        }
+
         ret = 1;
     }
     return ret;
@@ -409,6 +422,12 @@ public nomask int joinGuild(string guild)
         {
             events->notify("onJoinGuild");
         }
+
+        object persistence = getService("secure/persistence");
+        if (persistence)
+        {
+            persistence->save();
+        }
     }
     return ret;    
 }
@@ -435,6 +454,12 @@ public nomask int leaveGuild(string guild)
         if(events && objectp(events))
         {
             events->notify("onLeaveGuild");
+        }
+
+        object persistence = getService("secure/persistence");
+        if (persistence)
+        {
+            persistence->save();
         }
     }    
     return ret;    
