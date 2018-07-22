@@ -19,7 +19,7 @@ public nomask int execute(string command, object initiator)
 {
     int ret = 0;
 
-    if (canExecuteCommand(command))
+    if (canExecuteCommand(command) && initiator->hasExecuteAccess("people"))
     {
         ret = 1;
     }

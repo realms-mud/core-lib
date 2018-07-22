@@ -21,4 +21,6 @@ protected nomask void applyGroupDetails()
     addCommand("mv");
     addCommand("cp");
     addCommand("rm");
+    addCommand("show");
+    addCommand("stat");
 }
