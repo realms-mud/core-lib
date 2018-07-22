@@ -17,10 +17,29 @@ private string *selectors = ({
 });
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void movePlayerToStart(object player)
+{
+    object startingLocation = 0;
+    catch (startingLocation = load_object(player->savedLocation()));
+
+    if (startingLocation)
+    {
+        move_object(player, startingLocation);
+    }
+    else
+    {
+        move_object(player, "/room/city/central_park.c");
+        tell_object(player, "Doh! The room you were last in during your "
+            "previous session is broken.\nYou have been moved to a different "
+            "location.\n");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void onRestoreSucceeded(object caller)
 {
     caller->unregisterEvent(this_object());
-    move_object(caller, caller->savedLocation());
+    movePlayerToStart(caller);
     destruct(this_object());
 }
 

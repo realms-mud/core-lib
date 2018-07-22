@@ -4,6 +4,25 @@
 //*****************************************************************************
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void movePlayerToStart(object player)
+{
+    object startingLocation = 0;
+    catch (startingLocation = load_object(player->savedLocation()));
+
+    if (startingLocation)
+    {
+        move_object(player, startingLocation);
+    }
+    else
+    {
+        move_object(player, "/room/city/central_park.c");
+        tell_object(player, "Doh! The room you were last in during your "
+            "previous session is broken.\nYou have been moved to a different "
+            "location.\n");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask object checkIfPlayerObjectExists(string name)
 {
     object ret = 0;
@@ -11,13 +30,13 @@ private nomask object checkIfPlayerObjectExists(string name)
     if (objectp(find_player(name)))
     {
         ret = find_player(name);
-        if (!query_once_interactive(ret))
+        if (member(inherit_list(ret), "lib/realizations/player.c") < 0)
         {
             ret = 0;
         }
         if (ret)
         {
-            move_object(ret, ret->savedLocation());
+            movePlayerToStart(ret);
         }
     }
     return ret;
@@ -45,7 +64,7 @@ private nomask object loadNewPlayerObject(string name)
         {
             ret = clone_object("/lib/realizations/wizard.c");
             ret->restore(name);
-            move_object(ret, ret->savedLocation());
+            movePlayerToStart(ret);
             break;
         }
         default:
