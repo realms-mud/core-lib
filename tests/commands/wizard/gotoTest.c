@@ -66,6 +66,16 @@ void CanGoToFileBasedLocationInCurrentDirectory()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanGoToFileBasedLocationWithoutDotCInCurrentDirectory()
+{
+    Wizard->pwd("/lib/tests/support/environment");
+    ExpectEq(0, environment(Wizard));
+    ExpectTrue(Wizard->executeCommand("goto toLocation"));
+    ExpectEq(load_object("/lib/tests/support/environment/toLocation.c"),
+        environment(Wizard));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanGoToPlayer()
 {
     object player = clone_object("/lib/realizations/player.c");

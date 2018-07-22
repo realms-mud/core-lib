@@ -199,7 +199,7 @@ void GhostTogglesCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void MessageInCanBeSetAndReturnsCorrectValue()
 {
-    ExpectEq("arrives", Attributes->MessageIn(), "MessageIn is 'arrives' by default");
+    ExpectEq("##Infinitive::arrive##", Attributes->MessageIn(), "MessageIn is 'arrives' by default");
     ExpectEq("lumbers in", Attributes->MessageIn("lumbers in"), "MessageIn is set");
     ExpectEq("lumbers in", Attributes->MessageIn(), "MessageIn is 'lumbers in'");
 }
@@ -207,7 +207,7 @@ void MessageInCanBeSetAndReturnsCorrectValue()
 /////////////////////////////////////////////////////////////////////////////
 void MessageOutCanBeSetAndReturnsCorrectValue()
 {
-    ExpectEq("leaves", Attributes->MessageOut(), "MessageOut is 'leaves' by default");
+    ExpectEq("##Infinitive::leave##", Attributes->MessageOut(), "MessageOut is 'leaves' by default");
     ExpectEq("lumbers out", Attributes->MessageOut("lumbers out"), "MessageOut is set");
     ExpectEq("lumbers out", Attributes->MessageOut(), "MessageOut is 'lumbers out'");
 }
@@ -215,7 +215,7 @@ void MessageOutCanBeSetAndReturnsCorrectValue()
 /////////////////////////////////////////////////////////////////////////////
 void MagicalMessageInCanBeSetAndReturnsCorrectValue()
 {
-    ExpectEq("appears in a puff of smoke", Attributes->MagicalMessageIn(), "MagicalMessageIn is 'appears in a puff of smoke' by default");
+    ExpectEq("##Infinitive::appear## in a puff of smoke", Attributes->MagicalMessageIn(), "MagicalMessageIn is '##Infinitive::appear## in a puff of smoke' by default");
     ExpectEq("blargs magically", Attributes->MagicalMessageIn("blargs magically"), "MagicalMessageIn is set");
     ExpectEq("blargs magically", Attributes->MagicalMessageIn(), "MagicalMessageIn is 'blargs magically'");
 }
@@ -223,7 +223,7 @@ void MagicalMessageInCanBeSetAndReturnsCorrectValue()
 /////////////////////////////////////////////////////////////////////////////
 void MagicalMessageOutCanBeSetAndReturnsCorrectValue()
 {
-    ExpectEq("vanishes in a puff of smoke", Attributes->MagicalMessageOut(), "MagicalMessageOut is 'vanishes in a puff of smoke' by default");
+    ExpectEq("##Infinitive::vanish## in a puff of smoke", Attributes->MagicalMessageOut(), "MagicalMessageOut is 'vanishes in a puff of smoke' by default");
     ExpectEq("deblargifies", Attributes->MagicalMessageOut("deblargifies"), "MagicalMessageOut is set");
     ExpectEq("deblargifies", Attributes->MagicalMessageOut(), "MagicalMessageOut is 'deblargifies'");
 }
@@ -231,7 +231,7 @@ void MagicalMessageOutCanBeSetAndReturnsCorrectValue()
 /////////////////////////////////////////////////////////////////////////////
 void MessageHomeCanBeSetAndReturnsCorrectValue()
 {
-    ExpectEq("goes home", Attributes->MessageHome(), "MessageHome is 'goes home' by default");
+    ExpectEq("##Infinitive::go## home", Attributes->MessageHome(), "MessageHome is 'goes home' by default");
     ExpectEq("whooshes away", Attributes->MessageHome("whooshes away"), "MessageHome is set");
     ExpectEq("whooshes away", Attributes->MessageHome(), "MessageHome is 'whooshes away'");
 }
@@ -239,7 +239,7 @@ void MessageHomeCanBeSetAndReturnsCorrectValue()
 /////////////////////////////////////////////////////////////////////////////
 void MessageCloneCanBeSetAndReturnsCorrectValue()
 {
-    ExpectEq("creates something", Attributes->MessageClone(), "MessageClone is 'creates something' by default");
+    ExpectEq("##Infinitive::create## something", Attributes->MessageClone(), "MessageClone is 'creates something' by default");
     ExpectEq("does stuff", Attributes->MessageClone("does stuff"), "MessageClone is set");
     ExpectEq("does stuff", Attributes->MessageClone(), "MessageClone is 'does stuff'");
 }

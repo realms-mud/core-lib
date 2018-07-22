@@ -65,8 +65,10 @@ public varargs nomask int move(string location, string direction)
                 !materialAttributes->Invisibility())
             {
                 say(sprintf("%s %s.\n", capitalize(materialAttributes->Name()),
-                    (direction ? sprintf("%s %s", materialAttributes->MessageOut(),
-                        direction) : materialAttributes->MagicalMessageOut())));
+                    (direction ? sprintf("%s %s", getMessageParser()->parseVerbs(
+                        materialAttributes->MessageOut()),
+                        direction) : getMessageParser()->parseVerbs(
+                            materialAttributes->MagicalMessageOut()))));
             }
 
             move_object(this_object(), newLocation);
@@ -75,8 +77,10 @@ public varargs nomask int move(string location, string direction)
                 !materialAttributes->Invisibility())
             {
                 say(sprintf("%s %s.\n", capitalize(materialAttributes->Name()),
-                    (direction ? materialAttributes->MessageIn() :
-                        materialAttributes->MagicalMessageIn())));
+                    (direction ? getMessageParser()->parseVerbs(
+                        materialAttributes->MessageIn()) :
+                        getMessageParser()->parseVerbs(
+                            materialAttributes->MagicalMessageIn()))));
             }
 
             object eventObj = getService("events");

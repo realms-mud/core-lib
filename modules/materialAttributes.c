@@ -149,7 +149,7 @@ public varargs string MessageIn(string msg)
     }
     else if(!messageIn || (messageIn == ""))
     {
-        messageIn = "arrives";
+        messageIn = "##Infinitive::arrive##";
     }
     return messageIn;
 }
@@ -163,7 +163,7 @@ public varargs string MessageOut(string msg)
     }
     else if (!messageOut || (messageOut == ""))
     {
-        messageOut = "leaves";
+        messageOut = "##Infinitive::leave##";
     }
     return messageOut;
 }
@@ -177,7 +177,7 @@ public varargs string MagicalMessageIn(string msg)
     }
     else if (!magicalMessageIn || (magicalMessageIn == ""))
     {
-        magicalMessageIn = "appears in a puff of smoke";
+        magicalMessageIn = "##Infinitive::appear## in a puff of smoke";
     }
     return magicalMessageIn;
 }
@@ -191,7 +191,7 @@ public varargs string MagicalMessageOut(string msg)
     }
     else if (!magicalMessageOut || (magicalMessageOut == ""))
     {
-        magicalMessageOut = "vanishes in a puff of smoke";
+        magicalMessageOut = "##Infinitive::vanish## in a puff of smoke";
     }
     return magicalMessageOut;
 }
@@ -205,7 +205,7 @@ public varargs string MessageHome(string msg)
     }
     else if (!messageHome || (messageHome == ""))
     {
-        messageHome = "goes home";
+        messageHome = "##Infinitive::go## home";
     }
     return messageHome;
 }
@@ -220,7 +220,7 @@ public varargs string MessageClone(string msg)
     }
     else if (!messageClone || (messageClone == ""))
     {
-        messageClone = "creates something";
+        messageClone = "##Infinitive::create## something";
     }
     return messageClone;
 }

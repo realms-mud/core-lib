@@ -22,23 +22,41 @@ public nomask int execute(string command, object initiator)
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("goto"))
     {
         string targetString = getTargetString(initiator, command);
-        object target = find_player(targetString) ||
-            find_living(targetString);
+
+        object *targets = filter(users(), (: $1->RealName() == $2 :), targetString);
+        object target = 0;
+
+        if (sizeof(targets))
+        {
+            target = targets[0];
+        }
+        else
+        {
+            target = find_living(targetString);
+        }
 
         object destination = 0;
         if (target)
         {
             destination = environment(target) || target;
         }
-        else if(file_size(targetString) > 0)
+        else
         {
-            destination = load_object(targetString);
-        }
-        else if (file_size(sprintf("%s/%s", initiator->pwd(),
-            targetString)) > 0)
-        {
-            destination = load_object(sprintf("%s/%s", initiator->pwd(),
-                targetString));
+            if (!sizeof(regexp(({ targetString }), ".+\.c$")))
+            {
+                targetString += ".c";
+            }
+
+            if (file_size(targetString) > 0)
+            {
+                destination = load_object(targetString);
+            }
+            else if (file_size(sprintf("%s/%s", initiator->pwd(),
+                targetString)) > 0)
+            {
+                destination = load_object(sprintf("%s/%s", initiator->pwd(),
+                    targetString));
+            }
         }
         if(destination)
         {
@@ -46,6 +64,7 @@ public nomask int execute(string command, object initiator)
             displayMessage(sprintf("##InitiatorName## %s\n",
                 initiator->MagicalMessageOut()), initiator);
             move_object(initiator, destination);
+            command("look", initiator);
             displayMessage(sprintf("##InitiatorName## %s\n",
                 initiator->MagicalMessageIn()), initiator);
         }

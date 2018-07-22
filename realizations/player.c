@@ -83,6 +83,12 @@ private nomask void checkForLinkDeath(object player)
         player->save();
         removeInventory(player);
         unshadow();
+
+        if (environment(player))
+        {
+            say(sprintf("Link Death arrives on his black stallion and smashes "
+                "%s into nothingness!\n", player->Name()));
+        }
         destruct(player);
     }
 }
