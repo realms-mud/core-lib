@@ -10,7 +10,8 @@ public nomask void reset(int arg)
     if (!arg)
     {
         CommandType = "Wizard";
-        addCommandTemplate("goto ##Target##");
+        addCommandTemplate("transport ##Target##");
+        addCommandTemplate("trans ##Target##");
     }
 }
 
@@ -19,7 +20,7 @@ public nomask int execute(string command, object initiator)
 {
     int ret = 0;
 
-    if (canExecuteCommand(command) && initiator->hasExecuteAccess("goto"))
+    if (canExecuteCommand(command) && initiator->hasExecuteAccess("transport"))
     {
         string targetString = getTargetString(initiator, command);
 
@@ -38,39 +39,21 @@ public nomask int execute(string command, object initiator)
         object destination = 0;
         if (target)
         {
-            destination = environment(target) || target;
-        }
-        else
-        {
-            if (!sizeof(regexp(({ targetString }), ".+\.c$")))
-            {
-                targetString += ".c";
-            }
-
-            if (file_size(targetString) > 0)
-            {
-                destination = load_object(targetString);
-            }
-            else if (file_size(sprintf("%s/%s", initiator->pwd(),
-                targetString)) > 0)
-            {
-                destination = load_object(sprintf("%s/%s", initiator->pwd(),
-                    targetString));
-            }
+            destination = environment(initiator);
         }
         if(destination)
         {
             ret = 1;
             displayMessage(sprintf("##InitiatorName## %s.\n",
-                initiator->MagicalMessageOut()), initiator);
-            move_object(initiator, destination);
-            command("look", initiator);
+                initiator->MagicalMessageOut()), target);
+            move_object(target, destination);
+            command("look", target);
             displayMessage(sprintf("##InitiatorName## %s.\n",
-                initiator->MagicalMessageIn()), initiator);
+                initiator->MagicalMessageIn()), target);
         }
         else
         {
-            notify_fail(sprintf("Could not go to '%s'.\n", targetString));
+            notify_fail(sprintf("Could not transport '%s' here.\n", targetString));
         }
     }
     return ret;

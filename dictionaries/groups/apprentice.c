@@ -33,5 +33,6 @@ protected nomask void applyGroupDetails()
     addCommand("pwd");
     addCommand("set");
     addCommand("tail");
+    addCommand("transport");
     addCommand("wiz");
 }
