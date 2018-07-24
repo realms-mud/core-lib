@@ -13,8 +13,8 @@ public nomask void reset(int arg)
     if (!arg)
     {
         CommandType = "Player Information";
-        addCommandTemplate("score");
-        addCommandTemplate("?");
+        addCommandTemplate("score [-v]");
+        addCommandTemplate("? [-v]"); 
 
         Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
     }
@@ -38,6 +38,40 @@ private nomask string raceDetails(object initiator)
     object raceDictionary = load_object("/lib/dictionaries/racialDictionary.c");
     return sprintf("[0;31m|[0m [0;36mRace:[0m [0;32m%-32s[0m",
         raceDictionary->raceDetails(initiator));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string combatStatistics(object initiator)
+{
+    mapping bestKill = initiator->getBestKill();
+    string bestKillLine;
+    if (sizeof(bestKill))
+    {
+        bestKillLine = sprintf("[0;36mBest Kill: [0m[0;33m%s [0;35m(Level %s)[0m "
+            "[0;31;1mwas killed %s times.[0m", bestKill["name"],
+            bestKill["level"], bestKill["times killed"]);
+    }
+    else
+    {
+        bestKillLine = "[0;36mBest Kill: [0m[0;33m<nobody>[0;35m[0m[0;31;1m.[0m";
+    }
+
+    mapping nemesis = initiator->getNemesis();
+    string nemesisLine;
+    if (sizeof(nemesis))
+    {
+        nemesisLine = sprintf("[0;36mNemesis: [0m[0;33m%s [0;35m(Level %s)[0m "
+            "[0;31;1mwas killed %s times.[0m", nemesis["name"],
+            nemesis["level"], nemesis["times killed"]);
+    }
+    else
+    {
+        nemesisLine  = "[0;36mNemesis: [0m[0;33m<nobody>[0;35m[0m[0;31;1m.[0m";
+    }
+
+    return Dictionary->buildBanner("Combat Statistics") +
+        sprintf("[0;31m|[0m %-117s [0;31m|[0m\n", bestKillLine) +
+        sprintf("[0;31m|[0m %-117s [0;31m|[0m\n", nemesisLine);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -176,8 +210,13 @@ public nomask int execute(string command, object initiator)
             sprintf("[0;31m|[0m [0;36m%-75s[0m [0;31m|[0m\n",
                 getBiologicalDetails(initiator)) +
             sprintf("[0;31m|[0m [0;36m%-75s[0m [0;31m|[0m\n",
-                "You can find out more via the 'skills', 'traits', and 'research' commands.") +
-            Dictionary->buildBanner("-");
+                "You can find out more via the 'skills', 'traits', and 'research' commands.");
+        
+        if (sizeof(regexp(({ command }), "-v")))
+        {
+            score += combatStatistics(initiator);
+        }
+        score += Dictionary->buildBanner("-");
         tell_object(initiator, score);
     }
     return ret;

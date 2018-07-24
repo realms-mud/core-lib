@@ -81,7 +81,7 @@ public nomask int racialKillsMeetCount(string name, string race, int timesKilled
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getBestKill(string player)
 {
-    mapping ret = 0;
+    mapping ret = ([]);
 
     string query = sprintf("select name, level, foeKey, timesKilled "
         "from combatStatistics "
@@ -109,7 +109,7 @@ public nomask mapping getBestKill(string player)
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getNemesis(string player)
 {
-    mapping ret = 0;
+    mapping ret = ([]);
 
     string query = sprintf("select name, level, foeKey, timesKilled "
         "from combatStatistics "

@@ -180,13 +180,13 @@ public nomask int racialKillsMeetCount(string race, int timesKilled)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getNemesis(string player)
+public nomask mapping getNemesis()
 {
     return DataAccess()->getNemesis(this_object()->Name()) + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getBestKill(string player)
+public nomask mapping getBestKill()
 {
     return DataAccess()->getBestKill(this_object()->Name()) + ([]);
 }

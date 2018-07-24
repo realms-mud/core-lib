@@ -223,3 +223,33 @@ void SliderForExperienceDisplaysCorrectly()
     ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
         "Experience:.*Level up")));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void VFlagDisplaysCombatStatistics()
+{
+    ExpectTrue(Player->executeCommand("? -v"));
+    ExpectSubStringMatch("Best Kill.*Nemesis", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void VFlagWithRealKillsDisplaysCombatStatistics()
+{
+    object foe = clone_object("/lib/realizations/monster");
+    foe->Name("Nukulevee");
+    foe->Race("undead horse");
+    foe->effectiveLevel(20);
+
+    Player->generateCombatStatistics(foe);
+    Player->generateCombatStatistics(foe);
+    destruct(foe);
+
+    foe = clone_object("/lib/realizations/monster");
+    foe->Name("Earl the Boorish");
+    foe->Race("orc");
+    foe->effectiveLevel(25);
+    Player->generateCombatStatistics(foe);
+    destruct(foe);
+
+    ExpectTrue(Player->executeCommand("score -v"));
+    ExpectSubStringMatch("Best Kill.*Earl.*Nemesis.*Nukulevee", Player->caughtMessage());
+}
