@@ -82,6 +82,20 @@ private nomask object loadNewPlayerObject(string name)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void reportUserLogin(object user)
+{
+    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    if (channels)
+    {
+        string address = query_ip_number(user) || "???";
+        channels->registerUser(user);
+        channels->broadcastMessage("status", sprintf("%s (%s) has joined"
+            " the game.\n", capitalize(user->RealName()), address), user);
+        user->setProperty("IP address", address);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask object getPlayerObject(string name)
 {
     object ret = checkIfPlayerObjectExists(name);
@@ -90,13 +104,6 @@ public nomask object getPlayerObject(string name)
         ret = loadNewPlayerObject(name);
     }
 
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
-    if (channels)
-    {
-        channels->registerUser(ret);
-        channels->broadcastMessage("status", sprintf("%s (%s) has joined"
-            " the game.\n", capitalize(ret->RealName()),
-            query_ip_number(ret) || "???"), ret);
-    }
+    call_out("reportUserLogin", 1, ret);
     return ret;
 }

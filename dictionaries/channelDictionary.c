@@ -46,7 +46,7 @@ public nomask void broadcastMessage(string channelName, string message,
             {
                 string header = configuration()->decorate(
                     sprintf("[ %s %s ]: ", capitalize(channelName),
-                        capitalize(sender->RealName())),
+                        ((channelName == "status") ? "" : capitalize(sender->RealName()))),
                     "header", "channel", user->colorConfiguration());
 
                 string body = configuration()->decorate(message,
@@ -152,6 +152,9 @@ public nomask void unregisterUser(object user)
             if (sizeof(channelRegistry[channel]))
             {
                 channelRegistry[channel] -= ({ user });
+            }
+            if (!sizeof(channelRegistry[channel]))
+            {
                 unregisterChannel(channel);
             }
         }

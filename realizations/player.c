@@ -91,11 +91,11 @@ private nomask void checkForLinkDeath(object player)
         }
 
         object channels = load_object("/lib/dictionaries/channelDictionary.c");
-        if (channels)
+        if (channels && (this_object()->RealName() != ""))
         {
-            channels->broadcastMessage("status", sprintf("%s (%s) has left"
-                " the game.\n", capitalize(this_object()->RealName()),
-                query_ip_number(this_object()) || "???"), this_object());
+            channels->broadcastMessage("status", sprintf("%s (%s) has gone"
+                " link dead.\n", capitalize(this_object()->RealName()),
+                this_object()->queryProperty("IP address") || "???"), this_object());
             channels->unregisterUser(this_object());
         }
         destruct(player);

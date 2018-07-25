@@ -59,7 +59,7 @@ void GoingLinkDeadSendsStatusMessage()
     setUsers(({ Wizard2 }));
 
     Wizard->heart_beat();
-    ExpectSubStringMatch("Earl.*???.*has left the game", Wizard2->caughtMessages());
+    ExpectSubStringMatch("Earl.*???.*has gone link dead", Wizard2->caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,9 @@ void QuittingSendsStatusMessage()
 /////////////////////////////////////////////////////////////////////////////
 void LoginSendsStatusMessage()
 {
+    ToggleCallOutBypass();
     object login = load_object("/lib/modules/secure/login.c");
     object player = login->getPlayerObject("earl");
     ExpectSubStringMatch("Earl.*???.*has joined the game", Wizard2->caughtMessages());
+    ToggleCallOutBypass();
 }
