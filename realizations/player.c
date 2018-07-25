@@ -89,6 +89,15 @@ private nomask void checkForLinkDeath(object player)
             say(sprintf("Link Death arrives on his black stallion and smashes "
                 "%s into nothingness!\n", player->Name()));
         }
+
+        object channels = load_object("/lib/dictionaries/channelDictionary.c");
+        if (channels)
+        {
+            channels->broadcastMessage("status", sprintf("%s (%s) has left"
+                " the game.\n", capitalize(this_object()->RealName()),
+                query_ip_number(this_object()) || "???"), this_object());
+            channels->unregisterUser(this_object());
+        }
         destruct(player);
     }
 }

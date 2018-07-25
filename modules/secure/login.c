@@ -89,5 +89,14 @@ public nomask object getPlayerObject(string name)
     {
         ret = loadNewPlayerObject(name);
     }
+
+    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    if (channels)
+    {
+        channels->registerUser(ret);
+        channels->broadcastMessage("status", sprintf("%s (%s) has joined"
+            " the game.\n", capitalize(ret->RealName()),
+            query_ip_number(ret) || "???"), ret);
+    }
     return ret;
 }
