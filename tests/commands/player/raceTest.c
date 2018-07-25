@@ -73,8 +73,10 @@ void CanNotSeeOtherRaceMessages()
 {
     object lowlyElf = clone_object("/lib/tests/support/services/mockPlayer.c");
     lowlyElf->Name("dwight");
-    lowlyElf->Race("human");
+    lowlyElf->Race("elf");
     lowlyElf->addCommands();
+    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    channels->registerUser(lowlyElf);
 
     ExpectTrue(Player->executeCommand("race Dwight is an idiot!"));
     ExpectSubStringMatch("Dwight is an idiot", Player->caughtMessage());

@@ -82,7 +82,12 @@ private nomask string *getWizardChannels(object user)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string *getGuildChannels(object user)
 {
-    return ({});
+    string *guilds = user->memberOfGuilds();
+    if (!sizeof(guilds))
+    {
+        guilds += ({ "guildless" });
+    }
+    return guilds;
 }
 
 /////////////////////////////////////////////////////////////////////////////

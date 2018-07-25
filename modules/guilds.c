@@ -82,6 +82,18 @@ public nomask varargs string *memberOfGuilds(int onlyListCombatGuilds)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs string primaryGuild()
+{
+    string ret = "guildless";
+    string *guilds = memberOfGuilds();
+    if (sizeof(guilds))
+    {
+        ret = guilds[0];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int guildLevel(string guild)
 {
     int ret = 0;
