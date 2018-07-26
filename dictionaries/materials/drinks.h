@@ -16,7 +16,8 @@ private nosave mapping drinks =
             "light malted barley": 2,
             "noble hops": 1,
             "lager yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "bock beer":([
         "type": "beer",
@@ -29,7 +30,8 @@ private nosave mapping drinks =
             "munich malted barley": 2,
             "cascade hops": 1,
             "lager yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "kolsche beer":([
         "type": "beer",
@@ -42,7 +44,8 @@ private nosave mapping drinks =
             "light malted barley": 2,
             "saaz hops": 1,
             "lager yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "amber ale":([
         "type": "beer",
@@ -55,7 +58,8 @@ private nosave mapping drinks =
             "red malted barley": 2,
             "hallertau hops": 1,
             "ale yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "milk stout beer":([
         "type": "beer",
@@ -69,7 +73,8 @@ private nosave mapping drinks =
             "cascade hops": 1,
             "milk": 1,
             "ale yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "porter beer":([
         "type": "beer",
@@ -82,7 +87,8 @@ private nosave mapping drinks =
             "dark malted barley": 3,
             "galena hops": 1,
             "ale yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "stout beer":([
         "type": "beer",
@@ -95,7 +101,8 @@ private nosave mapping drinks =
             "dark malted barley": 3,
             "cascade hops": 1,
             "ale yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "black pale ale":([
         "type": "beer",
@@ -108,7 +115,8 @@ private nosave mapping drinks =
             "dark malted barley": 2,
             "citra hops": 3,
             "ale yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "pale ale":([
         "type": "beer",
@@ -122,7 +130,8 @@ private nosave mapping drinks =
             "citra hops": 2,
             "cascade hops": 1,
             "ale yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "dubbel beer":([
         "type": "beer",
@@ -135,7 +144,8 @@ private nosave mapping drinks =
             "malted barley": 3,
             "goldings hops": 1,
             "abbey yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "trippel beer":([
         "type": "beer",
@@ -149,7 +159,8 @@ private nosave mapping drinks =
             "candied sugar": 1,
             "hallertau hops": 1,
             "abbey yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "quad beer":([
         "type": "beer",
@@ -162,7 +173,8 @@ private nosave mapping drinks =
             "malted barley": 4,
             "goldings hops": 1,
             "abbey yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "cherry lambic ale":([
         "type": "beer",
@@ -176,7 +188,8 @@ private nosave mapping drinks =
             "malted wheat": 3,
             "saaz hops": 1,
             "wild yeast": 1
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "raspberry lambic ale":([
         "type": "beer",
@@ -190,7 +203,8 @@ private nosave mapping drinks =
             "malted wheat": 3,
             "saaz hops": 1,
             "wild yeast": 1
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "blackberry lambic ale":([
         "type": "beer",
@@ -204,7 +218,8 @@ private nosave mapping drinks =
             "malted wheat": 3,
             "saaz hops": 1,
             "wild yeast": 1
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "serendipitous lambic ale":([
         "type": "beer",
@@ -220,7 +235,8 @@ private nosave mapping drinks =
             "malted wheat": 3,
             "saaz hops": 1,
             "wild yeast": 1
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "dubbel pale ale":([
         "type": "beer",
@@ -233,7 +249,8 @@ private nosave mapping drinks =
             "malted barley": 3,
             "citra hops": 2,
             "abbey yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "blueberry lager":([
         "type": "beer",
@@ -247,7 +264,8 @@ private nosave mapping drinks =
             "malted wheat": 3,
             "saaz hops": 1,
             "abbey yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "brandy barrel aged weissenbock":([
         "type": "beer",
@@ -262,6 +280,7 @@ private nosave mapping drinks =
             "dark malted barley": 2,
             "cascade hops": 1,
             "abbey yeast": 1 
-        ])
+        ]),
+        "base experience": 5,
     ])
 ]);

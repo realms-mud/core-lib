@@ -35,7 +35,8 @@ private nosave mapping weaponBlueprints = ([
         "default encumberance": 5,
         "default material": "iron",
         "default value": 200,
-        "default description": "This is a sword with a blade that is about 40 inches (100 cm) long."
+        "default description": "This is a sword with a blade that is about 40 inches (100 cm) long.",
+        "base experience": 10,
     ]),
     "broad sword": ([
         "type": "weapon",
@@ -64,7 +65,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 6,
         "default material": "iron",
         "default value": 250,
-        "default description": "This is a sword with a blade that is about 40 inches (100 cm) long and about 2 inches (5 cm) wide."
+        "default description": "This is a sword with a blade that is about 40 inches (100 cm) long and about 2 inches (5 cm) wide.",
+        "base experience": 12,
     ]),
     "rapier": ([
         "type": "weapon",
@@ -93,7 +95,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 3,
         "default material": "steel",
         "default value": 200,
-        "default description": "This is a sword with a blade that is about 42 inches (105 cm) long and slightly less than an inch (2.5 cm) wide."
+        "default description": "This is a sword with a blade that is about 42 inches (105 cm) long and slightly less than an inch (2.5 cm) wide.",
+        "base experience": 12,
     ]),
     "katana": ([
         "type": "weapon",
@@ -122,7 +125,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 4,
         "default material": "steel",
         "default value": 400,
-        "default description": "This is a sword with a gracefully-curving, highly-sharpened, single-edged blade that is about 36 inches (91 cm) long."
+        "default description": "This is a sword with a gracefully-curving, highly-sharpened, single-edged blade that is about 36 inches (91 cm) long.",
+        "base experience": 20,
     ]),
     "scimitar": ([
         "type": "weapon",
@@ -151,7 +155,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 5,
         "default material": "iron",
         "default value": 150,
-        "default description": "This is a sword with a curved, double-edged blade that is about 36 inches (91 cm) long."
+        "default description": "This is a sword with a curved, double-edged blade that is about 36 inches (91 cm) long.",
+        "base experience": 10,
     ]),
     "cutlass": ([
         "type": "weapon",
@@ -180,7 +185,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 5,
         "default material": "iron",
         "default value": 175,
-        "default description": "This is a sword with a broad, slightly curved, double-edged blade that is about 30 inches (76 cm) long."
+        "default description": "This is a sword with a broad, slightly curved, double-edged blade that is about 30 inches (76 cm) long.",
+        "base experience": 10,
     ]),
     "sabre": ([
         "type": "weapon",
@@ -209,7 +215,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 5,
         "default material": "iron",
         "default value": 200,
-        "default description": "This is a sword with a curved, double-edged blade that is about 36 inches (91 cm) long."
+        "default description": "This is a sword with a curved, double-edged blade that is about 36 inches (91 cm) long.",
+        "base experience": 10,
     ]),
     "spatha": ([
         "type": "weapon",
@@ -238,7 +245,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 6,
         "default material": "iron",
         "default value": 220,
-        "default description": "This is a sword with a blade that is about 36 inches (91 cm) long."
+        "default description": "This is a sword with a blade that is about 36 inches (91 cm) long.",
+        "base experience": 12,
     ]),
     "short sword": ([
         "type": "weapon",
@@ -267,7 +275,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 3,
         "default material": "iron",
         "default value": 100,
-        "default description": "This is a sword with a blade that is about 24 inches (60 cm) long."
+        "default description": "This is a sword with a blade that is about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "gladius": ([
         "type": "weapon",
@@ -296,7 +305,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 3,
         "default material": "iron",
         "default value": 100,
-        "default description": "This is a sword with a blade that is about 24 inches (60 cm) long and over 2 inches (5 cm) wide."
+        "default description": "This is a sword with a blade that is about 24 inches (60 cm) long and over 2 inches (5 cm) wide.",
+        "base experience": 10,
     ]),
     "harpe": ([
         "type": "weapon",
@@ -327,7 +337,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 125,
         "default description": "This is a sword with a blade that is about 24 inches (60 cm) long. "
             "About 1/3 of the way from the tip of the blade, there is a hooked fluke protruding "
-            "perpendicular to the blade."
+            "perpendicular to the blade.",
+        "base experience": 12,
     ]),
     "wakisashi": ([
         "type": "weapon",
@@ -356,7 +367,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 3,
         "default material": "steel",
         "default value": 250,
-        "default description": "This is a sword with a gracefully-curving, highly-sharpened, single-edged blade that is about 24 inches (60 cm) long."
+        "default description": "This is a sword with a gracefully-curving, highly-sharpened, single-edged blade that is about 24 inches (60 cm) long.",
+        "base experience": 15,
     ]),
     "machete": ([
         "type": "weapon",
@@ -383,7 +395,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 2,
         "default material": "iron",
         "default value": 75,
-        "default description": "This is a long cleaver with a broad, slightly curved, single-edged blade that is about 18 inches (45 cm) long."
+        "default description": "This is a long cleaver with a broad, slightly curved, single-edged blade that is about 18 inches (45 cm) long.",
+        "base experience": 5,
     ]),
     "sickle": ([
         "type": "weapon",
@@ -410,7 +423,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 3,
         "default material": "iron",
         "default value": 115,
-        "default description": "This is a long cleaver with an acutely-curved (by about 90 degrees), single-edged blade that is about 12 inches (30 cm) long."
+        "default description": "This is a long cleaver with an acutely-curved (by about 90 degrees), single-edged blade that is about 12 inches (30 cm) long.",
+        "base experience": 5,
     ]),
     "kama": ([
         "type": "weapon",
@@ -439,7 +453,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 140,
         "default description": "This is a weapon with a handle about 18 inches (45 cm) long and a "
             "broad, slightly-curved, double-edged blade at its end. The blade is perpendicular to "
-            "the handle and is about 12 inches (30 cm) long"
+            "the handle and is about 12 inches (30 cm) long",
+        "base experience": 10,
     ]),
     "knife": ([
         "type": "weapon",
@@ -466,7 +481,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 1,
         "default material": "iron",
         "default value": 25,
-        "default description": "This is a weapon with a single-edged blade that is about 6 inches (15 cm) long."
+        "default description": "This is a weapon with a single-edged blade that is about 6 inches (15 cm) long.",
+        "base experience": 5,
     ]),
     "tiger claws": ([
         "type": "weapon",
@@ -494,7 +510,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 150,
         "default description": "This is a leather glove with slightly-curved, double-edged blades about 4 "
-            "inches (10 cm) long protruding from each knuckle."
+            "inches (10 cm) long protruding from each knuckle.",
+        "base experience": 10,
     ]),
     "talon": ([
         "type": "weapon",
@@ -522,7 +539,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 175,
         "default description": "This is a leather glove with curved, slightly hooked, double-edged blades about 4 "
-            "inches (10 cm) long protruding from between each knuckle."
+            "inches (10 cm) long protruding from between each knuckle.",
+        "base experience": 10,
     ]),
     "katar": ([
         "type": "weapon",
@@ -551,7 +569,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 250,
         "default description": "This is a dagger with an H-shaped grip that places the blade atop "
             "the user's knuckles. It has an extremely wide triangular blade that is almost "
-            "3 inches (7.6 cm) wide blade at the base and about 12 inches (30 cm) long."
+            "3 inches (7.6 cm) wide blade at the base and about 12 inches (30 cm) long.",
+        "base experience": 10,
     ]),
     "dagger": ([
         "type": "weapon",
@@ -580,7 +599,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 1,
         "default material": "iron",
         "default value": 50,
-        "default description": "This is a weapon with a double-edged blade that is about 8 inches (20 cm) long."
+        "default description": "This is a weapon with a double-edged blade that is about 8 inches (20 cm) long.",
+        "base experience": 10,
     ]),
     "dirk": ([
         "type": "weapon",
@@ -609,7 +629,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 1,
         "default material": "iron",
         "default value": 75,
-        "default description": "This is a weapon with a double-edged blade that is about 8 inches (20 cm) long."
+        "default description": "This is a weapon with a double-edged blade that is about 8 inches (20 cm) long.",
+        "base experience": 10,
     ]),
     "stiletto": ([
         "type": "weapon",
@@ -638,7 +659,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 1,
         "default material": "iron",
         "default value": 65,
-        "default description": "This is a weapon with a slender, needle-like blade that is about 6 inches (15 cm) long."
+        "default description": "This is a weapon with a slender, needle-like blade that is about 6 inches (15 cm) long.",
+        "base experience": 10,
     ]),
     "claymore": ([
         "type": "weapon",
@@ -667,7 +689,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 8,
         "default material": "iron",
         "default value": 500,
-        "default description": "This is a sword with a blade that is about 50 inches (127 cm) long."
+        "default description": "This is a sword with a blade that is about 50 inches (127 cm) long.",
+        "base experience": 10,
     ]),
     "great sword": ([
         "type": "weapon",
@@ -696,7 +719,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 8,
         "default material": "iron",
         "default value": 550,
-        "default description": "This is a sword with a blade that is about 60 inches (152 cm) long."
+        "default description": "This is a sword with a blade that is about 60 inches (152 cm) long.",
+        "base experience": 15,
     ]),
     "odachi": ([
         "type": "weapon",
@@ -725,7 +749,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 8,
         "default material": "iron",
         "default value": 900,
-        "default description": "This is a sword with a gracefully-curving, highly-sharpened, single-edged blade that is about 48 inches (122 cm) long."
+        "default description": "This is a sword with a gracefully-curving, highly-sharpened, single-edged blade that is about 48 inches (122 cm) long.",
+        "base experience": 25,
     ]),
     "bastard sword": ([
         "type": "weapon",
@@ -754,7 +779,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 7,
         "default material": "iron",
         "default value": 400,
-        "default description": "This is a sword with a blade that is about 44 inches (112 cm) long."
+        "default description": "This is a sword with a blade that is about 44 inches (112 cm) long.",
+        "base experience": 15,
     ]),
     "sword staff": ([
         "type": "weapon",
@@ -782,7 +808,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 250,
         "default description": "This is a roughly 5 foot long (152 cm) staff. "
-            "attached to its end is a sword with a blade that is about 18 inches (45 cm) long."
+            "attached to its end is a sword with a blade that is about 18 inches (45 cm) long.",
+        "base experience": 15,
     ]),
     "staff": ([
         "type": "weapon",
@@ -807,7 +834,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 4,
         "default material": "pine",
         "default value": 15,
-        "default description": "This is a roughly 5 foot long (152 cm) staff."
+        "default description": "This is a roughly 5 foot long (152 cm) staff.",
+        "base experience": 5,
     ]),
     "ornate staff": ([
         "type": "weapon",
@@ -836,7 +864,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 4,
         "default material": "swamp ash",
         "default value": 350,
-        "default description": "This is a roughly 5 foot long (152 cm) staff."
+        "default description": "This is a roughly 5 foot long (152 cm) staff.",
+        "base experience": 10,
     ]),
     "quarterstaff": ([
         "type": "weapon",
@@ -861,7 +890,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 4,
         "default material": "pine",
         "default value": 35,
-        "default description": "This is a roughly 4 foot long (122 cm) staff."
+        "default description": "This is a roughly 4 foot long (122 cm) staff.",
+        "base experience": 5,
     ]),
     "brogit staff": ([
         "type": "weapon",
@@ -889,7 +919,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 115,
         "default description": "This is a roughly 5 foot long (152 cm) staff. Near its head, the wood widens "
-            "into a cudgel with a band of metal spikes protruding from it."
+            "into a cudgel with a band of metal spikes protruding from it.",
+        "base experience": 10,
     ]),
     "jeddart staff": ([
         "type": "weapon",
@@ -917,7 +948,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 200,
         "default description": "This is a roughly 5 foot long (152 cm) staff. "
-            "attached to its end is a broad cutting blade that is about 12 inches (30 cm) long."
+            "attached to its end is a broad cutting blade that is about 12 inches (30 cm) long.",
+        "base experience": 10,
     ]),
     "swordstaff": ([
         "type": "weapon",
@@ -945,7 +977,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 350,
         "default description": "This is a roughly 5 foot long (152 cm) staff. "
-            "attached to its end is a sword with a blade that is about 18 inches (45 cm) long."
+            "attached to its end is a sword with a blade that is about 18 inches (45 cm) long.",
+        "base experience": 10,
     ]),
     "shield staff": ([
         "type": "weapon",
@@ -974,7 +1007,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "pine",
         "default value": 150,
         "default description": "This is a roughly 5 foot long (152 cm) staff. "
-            "attached to its center is a round, roughly two-foot diameter buckler."
+            "attached to its center is a round, roughly two-foot diameter buckler.",
+        "base experience": 10,
     ]),
     "battle axe": ([
         "type": "weapon",
@@ -1003,7 +1037,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 200,
         "default description": "This is an axe with a cutting surface about "
-            "8 inches (20 cm) long atop a haft that is about 2.5 feet (76 cm) long."
+            "8 inches (20 cm) long atop a haft that is about 2.5 feet (76 cm) long.",
+        "base experience": 10,
     ]),
     "axe": ([
         "type": "weapon",
@@ -1032,7 +1067,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 150,
         "default description": "This is an axe with a cutting surface about "
-            "6 inches (15 cm) long atop a haft that is about 2 feet (60 cm) long."
+            "6 inches (15 cm) long atop a haft that is about 2 feet (60 cm) long.",
+        "base experience": 10,
     ]),
     "bearded axe": ([
         "type": "weapon",
@@ -1061,7 +1097,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 175,
         "default description": "This is an axe with a cutting surface about "
-            "12 inches (30 cm) long atop a haft that is about 2 feet (60 cm) long."
+            "12 inches (30 cm) long atop a haft that is about 2 feet (60 cm) long.",
+        "base experience": 10,
     ]),
     "hatchet": ([
         "type": "weapon",
@@ -1090,7 +1127,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 70,
         "default description": "This is an axe with a cutting surface about "
-            "4 inches (10 cm) long atop a haft that is about 12 inches (30 cm) long."
+            "4 inches (10 cm) long atop a haft that is about 12 inches (30 cm) long.",
+        "base experience": 10,
     ]),
     "panabas": ([
         "type": "weapon",
@@ -1119,7 +1157,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 110,
         "default description": "This is a large, forward-curved battle axe with a haft about two "
-            "feet (60 cm) long atop which a thin, curved axe head about two feet long is attached."
+            "feet (60 cm) long atop which a thin, curved axe head about two feet long is attached.",
+        "base experience": 10,
     ]),
     "danish axe": ([
         "type": "weapon",
@@ -1148,7 +1187,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 250,
         "default description": "This is a massive axe with a cutting surface about "
-            "16 inches (40 cm) long atop a haft that is about 4 feet (120 cm) long."
+            "16 inches (40 cm) long atop a haft that is about 4 feet (120 cm) long.",
+        "base experience": 10,
     ]),
     "broad axe": ([
         "type": "weapon",
@@ -1177,7 +1217,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 300,
         "default description": "This is an axe with a cutting surface about "
-            "16 inches (40 cm) long atop a haft that is about 2 feet (60 cm) long."
+            "16 inches (40 cm) long atop a haft that is about 2 feet (60 cm) long.",
+        "base experience": 10,
     ]),
     "sparth axe": ([
         "type": "weapon",
@@ -1206,7 +1247,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 400,
         "default description": "This is a double-bladed axe with a cutting surface about "
-            "12 inches (30 cm) long atop a haft that is about 3 feet (90 cm) long."
+            "12 inches (30 cm) long atop a haft that is about 3 feet (90 cm) long.",
+        "base experience": 10,
     ]),
     "lochaber axe": ([
         "type": "weapon",
@@ -1235,7 +1277,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 350,
         "default description": "This is a massive axe with a cutting surface about "
-            "18 inches (45 cm) long atop a haft that is about 5 feet (150 cm) long."
+            "18 inches (45 cm) long atop a haft that is about 5 feet (150 cm) long.",
+        "base experience": 10,
     ]),
     "double bit axe": ([
         "type": "weapon",
@@ -1264,7 +1307,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 375,
         "default description": "This is a double-bladed axe with a cutting surface about "
-            "8 inches (20 cm) long atop a haft that is about 3 feet (90 cm) long."
+            "8 inches (20 cm) long atop a haft that is about 3 feet (90 cm) long.",
+        "base experience": 15,
     ]),
     "labrys": ([
         "type": "weapon",
@@ -1293,7 +1337,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 425,
         "default description": "This is a double-bladed axe with a cutting surface about "
-            "12 inches (30 cm) long atop a haft that is about 3 feet (90 cm) long."
+            "12 inches (30 cm) long atop a haft that is about 3 feet (90 cm) long.",
+        "base experience": 15,
     ]),
    "splitting maul": ([
         "type": "weapon",
@@ -1322,7 +1367,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 300,
         "default description": "This is a massive, heavy axe with a cutting surface about "
-            "4 inches (10 cm) long atop a haft that is about 2 feet (60 cm) long."
+            "4 inches (10 cm) long atop a haft that is about 2 feet (60 cm) long.",
+        "base experience": 10,
     ]),
     "maul": ([
         "type": "weapon",
@@ -1351,7 +1397,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 280,
         "default description": "This is a massive hammer with a surface about "
-            "2 inches (5 cm) in diameter atop a haft that is about 2 feet (60 cm) long."
+            "2 inches (5 cm) in diameter atop a haft that is about 2 feet (60 cm) long.",
+        "base experience": 10,
     ]),
     "bardiche": ([
         "type": "weapon",
@@ -1380,7 +1427,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 600,
         "default description": "This is a pole arm with a shaft that is about 5 feet (150 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "bec de corbin": ([
         "type": "weapon",
@@ -1409,7 +1457,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 650,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 12 inches (30 cm) long."
+            "atop which sits a head about 12 inches (30 cm) long.",
+        "base experience": 10,
     ]),
     "bill": ([
         "type": "weapon",
@@ -1438,7 +1487,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 450,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "guisarme": ([
         "type": "weapon",
@@ -1467,7 +1517,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 475,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "brandistock": ([
         "type": "weapon",
@@ -1496,7 +1547,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 400,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "earspoon": ([
         "type": "weapon",
@@ -1525,7 +1577,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 550,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "military fork": ([
         "type": "weapon",
@@ -1554,7 +1607,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 300,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 18 inches (45 cm) long."
+            "atop which sits a head about 18 inches (45 cm) long.",
+        "base experience": 10,
     ]),
     "pitchfork": ([
         "type": "weapon",
@@ -1583,7 +1637,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 250,
         "default description": "This is a pole arm with a shaft that is about 5 feet (150 cm) long "
-            "atop which sits a head about 12 inches (30 cm) long."
+            "atop which sits a head about 12 inches (30 cm) long.",
+        "base experience": 10,
     ]),
     "trident": ([
         "type": "weapon",
@@ -1612,7 +1667,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 275,
         "default description": "This is a pole arm with a shaft that is about 4 feet (120 cm) long "
-            "atop which sits a head about 18 inches (45 cm) long."
+            "atop which sits a head about 18 inches (45 cm) long.",
+        "base experience": 10,
     ]),
     "partisan": ([
         "type": "weapon",
@@ -1641,7 +1697,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 320,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "ranseur": ([
         "type": "weapon",
@@ -1670,7 +1727,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 300,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "halberd": ([
         "type": "weapon",
@@ -1699,7 +1757,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 850,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 15,
     ]),
     "sovnya": ([
         "type": "weapon",
@@ -1728,7 +1787,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 750,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "double-blade sovnya": ([
         "type": "weapon",
@@ -1757,7 +1817,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 850,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 20,
     ]),
     "spetum": ([
         "type": "weapon",
@@ -1786,7 +1847,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 800,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 15,
     ]),
     "war scythe": ([
         "type": "weapon",
@@ -1815,7 +1877,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 550,
         "default description": "This is a pole arm with a shaft that is about 5 feet (150 cm) long "
-            "atop which sits a head about 12 inches (30 cm) long."
+            "atop which sits a head about 12 inches (30 cm) long.",
+        "base experience": 10,
     ]),
     "fauchard": ([
         "type": "weapon",
@@ -1844,7 +1907,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 400,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "pollaxe": ([
         "type": "weapon",
@@ -1873,7 +1937,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 550,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "ahlspiess": ([
         "type": "weapon",
@@ -1902,7 +1967,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 525,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 18 inches (45 cm) long."
+            "atop which sits a head about 18 inches (45 cm) long.",
+        "base experience": 10,
     ]),
     "lance": ([
         "type": "weapon",
@@ -1931,7 +1997,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 600,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 18 inches (45 cm) long."
+            "atop which sits a head about 18 inches (45 cm) long.",
+        "base experience": 10,
     ]),
     "voulge": ([
         "type": "weapon",
@@ -1960,7 +2027,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 480,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "glaive": ([
         "type": "weapon",
@@ -1989,7 +2057,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 515,
         "default description": "This is a pole arm with a shaft that is about 6 feet (182 cm) long "
-            "atop which sits a head about 24 inches (60 cm) long."
+            "atop which sits a head about 24 inches (60 cm) long.",
+        "base experience": 10,
     ]),
     "pike": ([
         "type": "weapon",
@@ -2018,7 +2087,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 375,
         "default description": "This is a pole arm with a shaft that is about 8 feet (243 cm) long "
-            "atop which sits a head about 8 inches (20 cm) long."
+            "atop which sits a head about 8 inches (20 cm) long.",
+        "base experience": 10,
     ]),
     "spear": ([
         "type": "weapon",
@@ -2047,7 +2117,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 325,
         "default description": "This is a pole arm with a shaft that is about 5 feet (150 cm) long "
-            "atop which sits a head about 8 inches (20 cm) long."
+            "atop which sits a head about 8 inches (20 cm) long.",
+        "base experience": 10,
     ]),
     "war hammer": ([
         "type": "weapon",
@@ -2076,7 +2147,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 510,
         "default description": "This is a hammer whose head sits atop a haft that is "
-            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg)."
+            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "pick axe": ([
         "type": "weapon",
@@ -2106,7 +2178,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 150,
         "default description": "This is a pick whose head sits atop a haft that is "
             "about 2 feet (60 cm) long. One side of the pick narrows into a spike "
-            "while the other flattens like the surface of an adze - an axe that has been rotated 90 degrees."
+            "while the other flattens like the surface of an adze - an axe that has been rotated 90 degrees.",
+        "base experience": 10,
     ]),
     "mattock": ([
         "type": "weapon",
@@ -2136,7 +2209,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 250,
         "default description": "This weapon's head sits atop a haft that is "
             "about 2 feet (60 cm) long. One side of the mattock is roughly "
-            "axe-like while the other is an adze - an axe that has been rotated 90 degrees."
+            "axe-like while the other is an adze - an axe that has been rotated 90 degrees.",
+        "base experience": 10,
     ]),
     "horseman's pick": ([
         "type": "weapon",
@@ -2165,7 +2239,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 525,
         "default description": "This is a hammer whose head sits atop a haft that is "
-            "about 3 feet (90 cm) long. The head weighs roughly 3 lbs (1.5 kg)."
+            "about 3 feet (90 cm) long. The head weighs roughly 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "lucerne hammer": ([
         "type": "weapon",
@@ -2194,7 +2269,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 550,
         "default description": "This is a hammer whose head sits atop a haft that is "
-            "about 5 feet (150 cm) long. The head weighs roughly 3 lbs (1.5 kg)."
+            "about 5 feet (150 cm) long. The head weighs roughly 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "club": ([
         "type": "weapon",
@@ -2219,7 +2295,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 6,
         "default material": "pine",
         "default value": 25,
-        "default description": "This club is about 2 feet (60 cm) long and weighs about 3 lbs (1.5 kg)."
+        "default description": "This club is about 2 feet (60 cm) long and weighs about 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "cudgel": ([
         "type": "weapon",
@@ -2244,7 +2321,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 6,
         "default material": "pine",
         "default value": 100,
-        "default description": "This club is about 18 inches (45 cm) long and weighs about 2 lbs (1 kg)."
+        "default description": "This club is about 18 inches (45 cm) long and weighs about 2 lbs (1 kg).",
+        "base experience": 10,
     ]),
     "mace": ([
         "type": "weapon",
@@ -2273,7 +2351,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 175,
         "default description": "This is a mace whose head sits atop a haft that is "
-            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg)."
+            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "virge": ([
         "type": "weapon",
@@ -2302,7 +2381,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 150,
         "default description": "This is a mace whose head sits atop a haft that is "
-            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg)."
+            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "pernach": ([
         "type": "weapon",
@@ -2330,7 +2410,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 200,
         "default description": "This is a flanged mace whose head sits atop a haft that is "
-            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg)."
+            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "flanged mace": ([
         "type": "weapon",
@@ -2359,7 +2440,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 250,
         "default description": "This is a mace whose head sits atop a haft that is "
-            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg)."
+            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "morning star": ([
         "type": "weapon",
@@ -2388,7 +2470,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 225,
         "default description": "This is a spiked mace whose head sits atop a haft that is "
-            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg)."
+            "about 2 feet (60 cm) long. The head weighs roughly 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "goedendag": ([
         "type": "weapon",
@@ -2417,7 +2500,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 200,
         "default description": "This is a spiked weapon whose head sits atop a haft that is "
-            "about 2 feet (60 cm) long. The head weighs roughly 2 lbs (1 kg)."
+            "about 2 feet (60 cm) long. The head weighs roughly 2 lbs (1 kg).",
+        "base experience": 10,
     ]),
     "flail": ([
         "type": "weapon",
@@ -2447,7 +2531,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 175,
         "default description": "The flail's haft is about 2 feet (60 cm) long. "
-            "Its head is attached by a foot long (30cm) chain and weighs about 2 lbs (1 kg)."
+            "Its head is attached by a foot long (30cm) chain and weighs about 2 lbs (1 kg).",
+        "base experience": 10,
     ]),
     "kusarigama": ([
         "type": "weapon",
@@ -2479,7 +2564,8 @@ private nosave mapping weaponBlueprints = ([
         "default description": "This is a weapon with a handle about 18 inches (45 cm) long and a "
             "broad, slightly-curved, double-edged blade at its end. The blade is perpendicular to "
             "the handle and is about 12 inches (30 cm) long. A foot long (30cm) chain with a flail "
-            "head is attached at the base of the blade."
+            "head is attached at the base of the blade.",
+        "base experience": 10,
     ]),
     "whip": ([
         "type": "weapon",
@@ -2504,7 +2590,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 3,
         "default material": "leather",
         "default value": 75,
-        "default description": "The whip is a roughly five foot long cord."
+        "default description": "The whip is a roughly five foot long cord.",
+        "base experience": 10,
     ]),
     "military flail": ([
         "type": "weapon",
@@ -2534,7 +2621,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 275,
         "default description": "The flail's haft is about 2 feet (60 cm) long. "
-            "Its head is attached by a foot long (30cm) chain and weighs about 2 lbs (1 kg)."
+            "Its head is attached by a foot long (30cm) chain and weighs about 2 lbs (1 kg).",
+        "base experience": 10,
     ]),
     "hinged flail": ([
         "type": "weapon",
@@ -2564,7 +2652,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 300,
         "default description": "The flail's haft is about 2 feet (60 cm) long. "
-            "Its long, slender head is attached by hinge and weighs about 3 lbs (1.5 kg)."
+            "Its long, slender head is attached by hinge and weighs about 3 lbs (1.5 kg).",
+        "base experience": 10,
     ]),
     "segmented flail": ([
         "type": "weapon",
@@ -2595,7 +2684,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 325,
         "default description": "The flail's haft is about 2 feet (60 cm) long. "
             "Its long, slender head is segmented, each segment attached by a 4 inch "
-            "(10 cm) chain."
+            "(10 cm) chain.",
+        "base experience": 10,
     ]),
     "cat of nine tails": ([
         "type": "weapon",
@@ -2625,7 +2715,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 490,
         "default description": "The flail's haft is about 2 feet (60 cm) long. "
-            "Its heads are attached by a foot long (30cm) chain and each weighs about 2 lbs (1 kg)."
+            "Its heads are attached by a foot long (30cm) chain and each weighs about 2 lbs (1 kg).",
+        "base experience": 10,
     ]),
     "crossbow": ([
         "type": "weapon",
@@ -2655,7 +2746,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "cedar",
         "default value": 250,
         "default description": "This is a ranged weapon consisting of a horizontal bow assembly "
-            "mounted on a stock."
+            "mounted on a stock.",
+        "base experience": 10,
     ]),
     "levered crossbow": ([
         "type": "weapon",
@@ -2686,7 +2778,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "cedar",
         "default value": 400,
         "default description": "This is a ranged weapon consisting of a horizontal bow assembly "
-            "mounted on a stock."
+            "mounted on a stock.",
+        "base experience": 10,
     ]),
     "cranequin crossbow": ([
         "type": "weapon",
@@ -2717,7 +2810,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "cedar",
         "default value": 750,
         "default description": "This is a ranged weapon consisting of a horizontal bow assembly "
-            "mounted on a stock."
+            "mounted on a stock.",
+        "base experience": 10,
     ]),
     "short bow": ([
         "type": "weapon",
@@ -2745,7 +2839,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 4,
         "default material": "cedar",
         "default value": 225,
-        "default description": "This bow is roughly 3 feet (90 cm) long."
+        "default description": "This bow is roughly 3 feet (90 cm) long.",
+        "base experience": 10,
     ]),
     "bow": ([
         "type": "weapon",
@@ -2773,7 +2868,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 5,
         "default material": "cedar",
         "default value": 300,
-        "default description": "This bow is roughly 4 feet (120 cm) long."
+        "default description": "This bow is roughly 4 feet (120 cm) long.",
+        "base experience": 10,
     ]),
     "long bow": ([
         "type": "weapon",
@@ -2801,7 +2897,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 6,
         "default material": "cedar",
         "default value": 350,
-        "default description": "This bow is roughly 6 feet (180 cm) long."
+        "default description": "This bow is roughly 6 feet (180 cm) long.",
+        "base experience": 10,
     ]),
     "recurve bow": ([
         "type": "weapon",
@@ -2830,7 +2927,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "cedar",
         "default value": 300,
         "default description": "This bow is roughly 4 feet (120 cm) long with limbs that "
-            "curve away from the string."
+            "curve away from the string.",
+        "base experience": 10,
     ]),
     "composite bow": ([
         "type": "weapon",
@@ -2860,7 +2958,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 800,
         "default description": "This bow is roughly 4 feet (120 cm) long with limbs that "
             "curve away from the string, shaped roughly like a ram's horns. It is made of a composite material of laminated "
-            "wood and bone."
+            "wood and bone.",
+        "base experience": 15,
     ]),
     "sling": ([
         "type": "weapon",
@@ -2886,7 +2985,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "flax",
         "default value": 25,
         "default description": "This sling is about two feet (60 cm) long. In its center is a "
-            "pocket in which its bullets are placed."
+            "pocket in which its bullets are placed.",
+        "base experience": 5,
     ]),
     "sling staff": ([
         "type": "weapon",
@@ -2915,7 +3015,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 100,
         "default description": "This is a roughly 4 foot long (120 cm) staff upon which a "
             "sling is attached. The sling is about 18 inches (45 cm) long. In its center is a "
-            "pocket in which its bullets are placed."
+            "pocket in which its bullets are placed.",
+        "base experience": 10,
     ]),
     "slingshot": ([
         "type": "weapon",
@@ -2944,7 +3045,8 @@ private nosave mapping weaponBlueprints = ([
         "default description": "This slingshot has a short, forked grip about 8 inches (20 cm) long "
             "with a sling attached to it. The sling's material is elastic and can stretch to about 2 feet "
             "(60 cm) when fully pulled back. In its center is a "
-            "pocket in which its bullets are placed."
+            "pocket in which its bullets are placed.",
+        "base experience": 5,
     ]),
     "kestros": ([
         "type": "weapon",
@@ -2970,7 +3072,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "leather",
         "default value": 175,
         "default description": "This kestros is about two feet (60 cm) long. In its center is a "
-            "pocket in which its darts are placed."
+            "pocket in which its darts are placed.",
+        "base experience": 10,
     ]),
     "throwing spear": ([
         "type": "weapon",
@@ -2996,7 +3099,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "pine",
         "default value": 100,
         "default description": "This is a spear designed for throwing with a shaft that is about 4 feet (120 cm) long "
-            "atop which sits a head about 8 inches (20 cm) long."
+            "atop which sits a head about 8 inches (20 cm) long.",
+        "base experience": 5,
     ]),
     "javelin": ([
         "type": "weapon",
@@ -3023,7 +3127,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 150,
         "default description": "This is a javelin designed for throwing with a "
             "shaft that is about 3 feet (90 cm) long "
-            "atop which sits a head about 8 inches (20 cm) long."
+            "atop which sits a head about 8 inches (20 cm) long.",
+        "base experience": 5,
     ]),
     "rock": ([
         "type": "weapon",
@@ -3045,7 +3150,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 1,
         "default material": "stone",
         "default value": 2,
-        "default description": "This is a rock."
+        "default description": "This is a rock.",
+        "base experience": 1,
     ]),
     "dart": ([
         "type": "weapon",
@@ -3071,7 +3177,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 15,
         "default description": "This dart is an 8 inch (20 cm) long shaft with feather vanes "
-            "attached to it to aid in its flight. The head is about 3 inches (7 cm) long."
+            "attached to it to aid in its flight. The head is about 3 inches (7 cm) long.",
+        "base experience": 5,
     ]),
     "pilum": ([
         "type": "weapon",
@@ -3098,7 +3205,8 @@ private nosave mapping weaponBlueprints = ([
         "default value": 85,
         "default description": "This is a javelin designed for throwing with a "
             "shaft that is about 3 feet (90 cm) long "
-            "atop which sits a head about 8 inches (20 cm) long."
+            "atop which sits a head about 8 inches (20 cm) long.",
+        "base experience": 10,
     ]),
     "throwing axe": ([
         "type": "weapon",
@@ -3125,7 +3233,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 75,
         "default description": "This is an axe designed for throwing. It has a cutting surface about "
-            "4 inches (10 cm) long atop a haft that is about 12 inches (30 cm) long."
+            "4 inches (10 cm) long atop a haft that is about 12 inches (30 cm) long.",
+        "base experience": 10,
     ]),
     "throwing hammer": ([
         "type": "weapon",
@@ -3152,7 +3261,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 75,
         "default description": "This is a hammer specifically designed for throwing. It has a "
-            "head that sits atop a haft that is about 2 feet (60 cm) long. The head weighs roughly 2 lbs (1 kg)."
+            "head that sits atop a haft that is about 2 feet (60 cm) long. The head weighs roughly 2 lbs (1 kg).",
+        "base experience": 10,
     ]),
    "shield": ([
         "type": "weapon",
@@ -3178,7 +3288,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 5,
         "default material": "pine",
         "default value": 150,
-        "default description": "This is a simple, round shield of roughly 2 feet (60 cm) in diameter."
+        "default description": "This is a simple, round shield of roughly 2 feet (60 cm) in diameter.",
+        "base experience": 10,
     ]),
    "bouche shield": ([
         "type": "weapon",
@@ -3205,7 +3316,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "pine",
         "default value": 200,
         "default description": "This is a rounded, roughly triangular shield with a notch cut out upon which "
-            "a weapon can rest."
+            "a weapon can rest.",
+        "base experience": 10,
     ]),
    "buckler": ([
         "type": "weapon",
@@ -3231,7 +3343,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 3,
         "default material": "iron",
         "default value": 95,
-        "default description": "This is a simple, round shield of roughly 1 foot (30 cm) in diameter."
+        "default description": "This is a simple, round shield of roughly 1 foot (30 cm) in diameter.",
+        "base experience": 10,
     ]),
    "heater shield": ([
         "type": "weapon",
@@ -3258,7 +3371,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "pine",
         "default value": 250,
         "default description": "This is a rounded, roughly triangular shield about two feet (60cm) wide "
-            "by three feet (90 cm) long."
+            "by three feet (90 cm) long.",
+        "base experience": 10,
     ]),
    "kite shield": ([
         "type": "weapon",
@@ -3285,7 +3399,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "pine",
         "default value": 300,
         "default description": "This is a rounded, roughly triangular shield about two feet (60cm) wide "
-            "by four feet (120 cm) long."
+            "by four feet (120 cm) long.",
+        "base experience": 10,
     ]),
    "pavise shield": ([
         "type": "weapon",
@@ -3312,7 +3427,8 @@ private nosave mapping weaponBlueprints = ([
         "default material": "pine",
         "default value": 500,
         "default description": "This is a large, convex, roughly rectangular shield about three feet (90 cm) wide "
-            "by five feet (120 cm) long."
+            "by five feet (120 cm) long.",
+        "base experience": 10,
     ]),
    "targe shield": ([
         "type": "weapon",
@@ -3338,7 +3454,8 @@ private nosave mapping weaponBlueprints = ([
         "default weight": 4,
         "default material": "pine",
         "default value": 325,
-        "default description": "This is a simple, round shield of roughly 2.5 feet (76 cm) in diameter."
+        "default description": "This is a simple, round shield of roughly 2.5 feet (76 cm) in diameter.",
+        "base experience": 10,
     ]),
    "spiked shield": ([
         "type": "weapon",
@@ -3367,6 +3484,7 @@ private nosave mapping weaponBlueprints = ([
         "default material": "iron",
         "default value": 525,
         "default description": "This is a simple, round shield of roughly 2.5 feet (76 cm) in diameter. "
-            "It has several short spikes protruding from it."
+            "It has several short spikes protruding from it.",
+        "base experience": 10,
     ]),
 ]);

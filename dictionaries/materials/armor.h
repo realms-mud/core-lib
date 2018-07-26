@@ -28,7 +28,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 500,
         "default description": "This armor consists of small metal rings linked together in a tightly-woven "
-            "mesh. A thin textile jacket that pads the user has been sewn into the interior."
+            "mesh. A thin textile jacket that pads the user has been sewn into the interior.",
+        "base experience": 10,
     ]),
     "byrnie": ([
         "type": "armor",
@@ -51,7 +52,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 1500,
         "default description": "This armor consists of small metal rings linked together in a tightly-woven "
-            "mesh. A thin textile jacket that pads the user has been sewn into the interior."
+            "mesh. A thin textile jacket that pads the user has been sewn into the interior.",
+        "base experience": 15,
     ]),
     "hauberk": ([
         "type": "armor",
@@ -74,7 +76,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 450,
         "default description": "This hauberk consists of small metal rings linked together in a tightly-woven "
-            "mesh. A thin textile jacket that pads the user has been sewn into the interior."
+            "mesh. A thin textile jacket that pads the user has been sewn into the interior.",
+        "base experience": 10,
     ]),
     "gambeson": ([
         "type": "armor",
@@ -95,7 +98,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 4,
         "default material": "linen",
         "default value": 25,
-        "default description": "This is a padded, tightly-quilted textile jacket."
+        "default description": "This is a padded, tightly-quilted textile jacket.",
+        "base experience": 5,
     ]),
     "robes": ([
         "type": "armor",
@@ -116,7 +120,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 4,
         "default material": "linen",
         "default value": 75,
-        "default description": "This is a thick textile robe."
+        "default description": "This is a thick textile robe.",
+        "base experience": 5,
     ]),
     "ornate robes": ([
         "type": "armor",
@@ -143,7 +148,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "linen",
         "default value": 475,
         "default description": "This is a thick textile robe with intricately woven threads of metal "
-            "embroidered into it and a stunning array of crystal sewn upon its surface."
+            "embroidered into it and a stunning array of crystal sewn upon its surface.",
+        "base experience": 10,
     ]),
     "dress": ([
         "type": "armor",
@@ -164,7 +170,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 2,
         "default material": "linen",
         "default value": 25,
-        "default description": "This is an exquisite textile dress."
+        "default description": "This is an exquisite textile dress.",
+        "base experience": 5,
     ]),
     "gown": ([
         "type": "armor",
@@ -185,7 +192,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 2,
         "default material": "linen",
         "default value": 25,
-        "default description": "This is a gown of textile."
+        "default description": "This is a gown of textile.",
+        "base experience": 5,
     ]),
     "shirt": ([
         "type": "armor",
@@ -206,7 +214,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 15,
-        "default description": "This is a comfortable textile shirt."
+        "default description": "This is a comfortable textile shirt.",
+        "base experience": 5,
     ]),
     "pants": ([
         "type": "armor",
@@ -227,7 +236,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 15,
-        "default description": "These are pants made out of textile."
+        "default description": "These are pants made out of textile.",
+        "base experience": 5,
     ]),
     "kilt": ([
         "type": "armor",
@@ -248,7 +258,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 15,
-        "default description": "This is a kilt made out of textile."
+        "default description": "This is a kilt made out of textile.",
+        "base experience": 5,
     ]),
     "skirt": ([
         "type": "armor",
@@ -269,7 +280,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 15,
-        "default description": "This is a skirt made out of textile."
+        "default description": "This is a skirt made out of textile.",
+        "base experience": 5,
     ]),
     "shorts": ([
         "type": "armor",
@@ -290,7 +302,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 10,
-        "default description": "These are shorts made out of textile."
+        "default description": "These are shorts made out of textile.",
+        "base experience": 5,
     ]),
     "brigandine": ([
         "type": "armor",
@@ -313,7 +326,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 700,
         "default description": "This is a garment of heavy textile lined with small, tightly-fitted metal "
-            "plates riveted to the fabric."
+            "plates riveted to the fabric.",
+        "base experience": 10,
     ]),
     "banded mail": ([
         "type": "armor",
@@ -337,7 +351,8 @@ private nosave mapping armorBlueprints = ([
         "default value": 600,
         "default description": "Thick, rigid metal bands woven into a textile surcoat protect almost the whole body of "
             "this armor's wearer. It is hinged at the joints, but is "
-            "still heavy and restrictive, but provides good protection."
+            "still heavy and restrictive, but provides good protection.",
+        "base experience": 10,
     ]),
     "splint mail": ([
         "type": "armor",
@@ -360,7 +375,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 550,
         "default description": "This is a garment of textile lined with tightly-fitted metal "
-            "bars riveted to the fabric. Where flexibility is needed, metal chainmail is used to fill the gaps."
+            "bars riveted to the fabric. Where flexibility is needed, metal chainmail is used to fill the gaps.",
+        "base experience": 10,
     ]),
     "scale armor": ([
         "type": "armor",
@@ -384,7 +400,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 585,
         "default description": "This is a garment of leather lined with small, overlapping metal "
-            "scales like those from a fish riveted to the fabric."
+            "scales like those from a fish riveted to the fabric.",
+        "base experience": 10,
     ]),
     "laminar armor": ([
         "type": "armor",
@@ -407,7 +424,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 2000,
         "default description": "This is a garment of textile lined with horizontal overlapping metal "
-            "bands riveted to the fabric."
+            "bands riveted to the fabric.",
+        "base experience": 10,
     ]),
     "plate mail": ([
         "type": "armor",
@@ -430,7 +448,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 1500,
         "default description": "A gambeson of textile upon which sits a breastplate of "
-            "solid metal. The extremeties are covered in metal chainmail."
+            "solid metal. The extremeties are covered in metal chainmail.",
+        "base experience": 10,
     ]),
     "breastplate": ([
         "type": "armor",
@@ -453,7 +472,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 1000,
         "default description": "A gambeson of textile upon which sits a breastplate of "
-            "solid metal."
+            "solid metal.",
+        "base experience": 10,
     ]),
     "plate armor": ([
         "type": "armor",
@@ -477,7 +497,8 @@ private nosave mapping armorBlueprints = ([
         "default value": 2500,
         "default description": "A gambeson of textile upon which sits a breastplate of "
             "solid metal. The extremeties are covered in segmented, overlapping bands of metal "
-            "providing some level of flexibility."
+            "providing some level of flexibility.",
+        "base experience": 15,
     ]),
     "boiled leather": ([
         "type": "armor",
@@ -501,7 +522,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "leather",
         "default value": 250,
         "default description": "This is a jacket of leather that has been treated after tanning "
-            "so that it is tough and rigid. It has had textile quilting sewn into the interior."
+            "so that it is tough and rigid. It has had textile quilting sewn into the interior.",
+        "base experience": 10,
     ]),
     "hard leather": ([
         "type": "armor",
@@ -524,7 +546,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "leather",
         "default value": 225,
         "default description": "This is a jacket of leather that has been treated as part of the tanning "
-            "process such that the resultant armor is tough and rigid. It has had textile quilting sewn into the interior."
+            "process such that the resultant armor is tough and rigid. It has had textile quilting sewn into the interior.",
+        "base experience": 10,
     ]),
     "lamellar leather": ([
         "type": "armor",
@@ -549,7 +572,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "leather",
         "default value": 310,
         "default description": "This rigid leather jacket that has had small rectangular plates of "
-            "metal sewn on its surface in horizontal rows. It has had textile quilting sewn into the interior."
+            "metal sewn on its surface in horizontal rows. It has had textile quilting sewn into the interior.",
+        "base experience": 15,
     ]),
     "soft leather": ([
         "type": "armor",
@@ -572,7 +596,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "leather",
         "default value": 100,
         "default description": "This is a vest of leather that has been treated as part of the tanning "
-            "process such that it is pliable and offers a great deal of movement. It has had textile quilting sewn into the interior."
+            "process such that it is pliable and offers a great deal of movement. It has had textile quilting sewn into the interior.",
+        "base experience": 5,
     ]),
     "leather jacket": ([
         "type": "armor",
@@ -595,7 +620,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "leather",
         "default value": 100,
         "default description": "This is a jacket of leather that has been treated as part of the tanning "
-            "process such that it is pliable and offers a great deal of movement. It has had textile quilting sewn into the interior."
+            "process such that it is pliable and offers a great deal of movement. It has had textile quilting sewn into the interior.",
+        "base experience": 5,
     ]),
     "padded armor": ([
         "type": "armor",
@@ -616,7 +642,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 4,
         "default material": "leather",
         "default value": 50,
-        "default description": "This is a padded, tightly-quilted textile jacket."
+        "default description": "This is a padded, tightly-quilted textile jacket.",
+        "base experience": 5,
     ]),
     "ring mail": ([
         "type": "armor",
@@ -641,7 +668,8 @@ private nosave mapping armorBlueprints = ([
         "default value": 300,
         "default description": "This is a vest of leather that has been treated as part of the tanning "
             "process such that it is pliable and offers a great deal of movement. It has had losely linked "
-            "rings of metal sewn on its surface."
+            "rings of metal sewn on its surface.",
+        "base experience": 10,
     ]),
    "gloves": ([
         "type": "armor",
@@ -662,7 +690,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "leather",
         "default value": 25,
         "default description": "These are leather gloves that has been treated as part of the tanning "
-            "process such that it is pliable and very flexible. It has had textile quilting sewn into the interior."
+            "process such that it is pliable and very flexible. It has had textile quilting sewn into the interior.",
+        "base experience": 5,
     ]),
    "gauntlets": ([
         "type": "armor",
@@ -682,7 +711,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 50,
         "default description": "These are leather gloves with tightly-fitted overlapping bands of "
-            "metal riveted to the surface."
+            "metal riveted to the surface.",
+        "base experience": 5,
     ]),
     "helmet": ([
         "type": "armor",
@@ -702,7 +732,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "iron",
         "default value": 50,
-        "default description": "This is a helmet made of metal and lined with leather."
+        "default description": "This is a helmet made of metal and lined with leather.",
+        "base experience": 5,
     ]),
     "helm": ([
         "type": "armor",
@@ -722,7 +753,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "iron",
         "default value": 50,
-        "default description": "This is a helm of metal. It has been lined with leather on the inside."
+        "default description": "This is a helm of metal. It has been lined with leather on the inside.",
+        "base experience": 5,
     ]),
     "coif": ([
         "type": "armor",
@@ -744,7 +776,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 100,
         "default description": "This is a coif of small metal rings linked together in a tightly-woven "
-            "mesh. A thin leather cap has been sewn into the interior to give it form."
+            "mesh. A thin leather cap has been sewn into the interior to give it form.",
+        "base experience": 5,
     ]),
     "circlet": ([
         "type": "armor",
@@ -765,7 +798,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "silver",
         "default value": 350,
-        "default description": "This is a thin circlet of metal."
+        "default description": "This is a thin circlet of metal.",
+        "base experience": 5,
     ]),
     "diadem": ([
         "type": "armor",
@@ -786,7 +820,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "silver",
         "default value": 350,
-        "default description": "This is an ornamental metal diadem."
+        "default description": "This is an ornamental metal diadem.",
+        "base experience": 10,
     ]),
     "tiara": ([
         "type": "armor",
@@ -808,7 +843,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "silver",
         "default value": 350,
-        "default description": "This is an ornamental metal tiara."
+        "default description": "This is an ornamental metal tiara.",
+        "base experience": 10,
     ]),
     "crown": ([
         "type": "armor",
@@ -830,7 +866,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "silver",
         "default value": 350,
-        "default description": "This is an ornamental metal crown."
+        "default description": "This is an ornamental metal crown.",
+        "base experience": 10,
     ]),
     "hat": ([
         "type": "armor",
@@ -850,7 +887,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 15,
-        "default description": "This is a hat made out of textile."
+        "default description": "This is a hat made out of textile.",
+        "base experience": 5,
     ]),
     "boots": ([
         "type": "armor",
@@ -870,7 +908,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "leather",
         "default value": 25,
-        "default description": "These are leather boots with textile sewn into its interior."
+        "default description": "These are leather boots with textile sewn into its interior.",
+        "base experience": 5,
     ]),
     "shoes": ([
         "type": "armor",
@@ -890,7 +929,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "leather",
         "default value": 25,
-        "default description": "These are leather shoes that have had their interior lined with textile."
+        "default description": "These are leather shoes that have had their interior lined with textile.",
+        "base experience": 5,
     ]),
     "sandals": ([
         "type": "armor",
@@ -910,7 +950,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 25,
-        "default description": "These are leather sandals that have had their surface lined with textile."
+        "default description": "These are leather sandals that have had their surface lined with textile.",
+        "base experience": 5,
     ]),
     "sabaton": ([
         "type": "armor",
@@ -931,7 +972,8 @@ private nosave mapping armorBlueprints = ([
         "default material": "iron",
         "default value": 125,
         "default description": "These are boots of overlapping bands of metal. They have had "
-            "textile woven into the interior for comfort."
+            "textile woven into the interior for comfort.",
+        "base experience": 10,
     ]),
     "ring": ([
         "type": "armor",
@@ -949,7 +991,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default material": "silver",
         "default value": 150,
-        "default description": "This is a small band of metal worn on the finger."
+        "default description": "This is a small band of metal worn on the finger.",
+        "base experience": 10,
     ]),
     "cloak": ([
         "type": "armor",
@@ -969,7 +1012,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 25,
-        "default description": "This is a cloak of textile. A small brooch of metal fastens it to the user."
+        "default description": "This is a cloak of textile. A small brooch of metal fastens it to the user.",
+        "base experience": 5,
     ]),
     "amulet": ([
         "type": "armor",
@@ -989,7 +1033,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default material": "iron",
         "default value": 75,
-        "default description": "This is an amulet made of metal."
+        "default description": "This is an amulet made of metal.",
+        "base experience": 10,
     ]),
     "necklace": ([
         "type": "armor",
@@ -1009,7 +1054,8 @@ private nosave mapping armorBlueprints = ([
         "default encumberance": 1,
         "default material": "silver",
         "default value": 125,
-        "default description": "This is necklace made of metal."
+        "default description": "This is necklace made of metal.",
+        "base experience": 10,
     ]),
     "belt": ([
         "type": "armor",
@@ -1029,7 +1075,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "leather",
         "default value": 25,
-        "default description": "This is a belt made out of leather. It has a metal buckle."
+        "default description": "This is a belt made out of leather. It has a metal buckle.",
+        "base experience": 5,
     ]),
     "sash": ([
         "type": "armor",
@@ -1048,7 +1095,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 25,
-        "default description": "This is a sash made out of textile."
+        "default description": "This is a sash made out of textile.",
+        "base experience": 5,
     ]),
     "padded arm greaves": ([
         "type":"armor",
@@ -1067,7 +1115,8 @@ private nosave mapping armorBlueprints = ([
         "default weight" : 1,
         "default material" : "linen",
         "default value" : 40,
-        "default description" : "This is a pair of padded textile arm greaves."
+        "default description" : "This is a pair of padded textile arm greaves.",
+        "base experience": 5,
     ]),
     "padded leg greaves": ([
         "type": "armor",
@@ -1086,7 +1135,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "linen",
         "default value": 40,
-        "default description": "This is a pair of padded textile leg greaves."
+        "default description": "This is a pair of padded textile leg greaves.",
+        "base experience": 5,
     ]),
     "leather arm greaves": ([
         "type":"armor",
@@ -1106,7 +1156,8 @@ private nosave mapping armorBlueprints = ([
         "default weight" : 1,
         "default material" : "leather",
         "default value" : 40,
-        "default description" : "This is a pair of leather arm greaves."
+        "default description" : "This is a pair of leather arm greaves.",
+        "base experience": 5,
     ]),
     "leather leg greaves": ([
         "type": "armor",
@@ -1126,7 +1177,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "leather",
         "default value": 40,
-        "default description": "This is a pair of leather leg greaves."
+        "default description": "This is a pair of leather leg greaves.",
+        "base experience": 5,
     ]),
     "plate arm greaves": ([
         "type":"armor",
@@ -1146,7 +1198,8 @@ private nosave mapping armorBlueprints = ([
         "default weight" : 2,
         "default material" : "iron",
         "default value" : 75,
-        "default description" : "This is a pair of metal arm greaves padded by textile."
+        "default description" : "This is a pair of metal arm greaves padded by textile.",
+        "base experience": 5,
     ]),
     "plate leg greaves": ([
         "type": "armor",
@@ -1166,7 +1219,8 @@ private nosave mapping armorBlueprints = ([
         "default weight": 2,
         "default material": "iron",
         "default value": 75,
-        "default description": "This is a pair of metal leg greaves padded by textile."
+        "default description": "This is a pair of metal leg greaves padded by textile.",
+        "base experience": 5,
     ]),
     "bracers": ([
         "type": "armor",
@@ -1190,7 +1244,8 @@ private nosave mapping armorBlueprints = ([
         "default value": 200,
         "default description": "This is a small leather bracer that covers the bearer's forearm. "
             "It has had intricately woven strands of metal sewn into it and is further adorned "
-            "an attractively-cut crystal."
+            "an attractively-cut crystal.",
+        "base experience": 10,
     ]),
     "bracelet": ([
         "type": "armor",
@@ -1212,6 +1267,7 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "leather",
         "default value": 200,
-        "default description": "This is a small metal bracelet that covers the bearer's wrist."
+        "default description": "This is a small metal bracelet that covers the bearer's wrist.",
+        "base experience": 10,
     ]),
 ]);

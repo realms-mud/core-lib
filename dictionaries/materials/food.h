@@ -17,6 +17,7 @@ private nosave mapping food =
             "garlic": 1,
             "pepper": 1,
             "paprika": 1
-        ])
+        ]),
+        "base experience": 5,
     ])
 ]);

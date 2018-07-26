@@ -14,7 +14,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "mana":([
         "type": "health",
@@ -25,7 +26,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "stamina":([
         "type": "health",
@@ -36,7 +38,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "tears of ilyrth":([
         "type": "power",
@@ -47,7 +50,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "tincture of telus":([
         "type": "power",
@@ -58,7 +62,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "nectar of echlarhol":([
         "type": "power",
@@ -69,7 +74,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "ilaina's elixir":([
         "type": "health",
@@ -80,7 +86,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "acid resistance":([
         "type": "resistance",
@@ -91,7 +98,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "air resistance":([
         "type": "resistance",
@@ -102,7 +110,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "chaos resistance":([
         "type": "resistance",
@@ -113,7 +122,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "cold resistance":([
         "type": "resistance",
@@ -124,7 +134,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "disease resistance":([
         "type": "resistance",
@@ -135,7 +146,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "earth resistance":([
         "type": "resistance",
@@ -146,7 +158,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "electricity resistance":([
         "type": "resistance",
@@ -157,7 +170,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "energy resistance":([
         "type": "resistance",
@@ -168,7 +182,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "evil resistance":([
         "type": "resistance",
@@ -179,7 +194,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "fire resistance":([
         "type": "resistance",
@@ -190,7 +206,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "good resistance":([
         "type": "resistance",
@@ -201,7 +218,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "magic resistance":([
         "type": "resistance",
@@ -212,7 +230,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "neutral resistance":([
         "type": "resistance",
@@ -223,7 +242,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "paralysis resistance":([
         "type": "resistance",
@@ -234,7 +254,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "physical resistance":([
         "type": "resistance",
@@ -245,7 +266,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "poison resistance":([
         "type": "resistance",
@@ -256,7 +278,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "psionic resistance":([
         "type": "resistance",
@@ -267,7 +290,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "sonic resistance":([
         "type": "resistance",
@@ -278,7 +302,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "undead resistance":([
         "type": "resistance",
@@ -289,7 +314,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "water resistance":([
         "type": "resistance",
@@ -300,7 +326,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "strength":([
         "type": "attributes",
@@ -311,7 +338,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "intelligence":([
         "type": "attributes",
@@ -322,7 +350,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "dexterity":([
         "type": "attributes",
@@ -333,7 +362,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "wisdom":([
         "type": "attributes",
@@ -344,7 +374,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "constitution":([
         "type": "attributes",
@@ -355,7 +386,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "charisma":([
         "type": "attributes",
@@ -366,7 +398,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "speed":([
         "type": "combat",
@@ -377,7 +410,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "fortification":([
         "type": "combat",
@@ -388,7 +422,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
     "tincture of combat prowess":([
         "type": "combat",
@@ -399,6 +434,7 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ])
+        ]),
+        "base experience": 5,
     ]),
 ]);

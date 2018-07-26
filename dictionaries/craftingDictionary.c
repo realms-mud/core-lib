@@ -659,6 +659,8 @@ public nomask void selectComponent(object item, string component, string value)
         materialSelections[component]["type"] = value;
         materialSelections[component]["value"] = 
             craftingComponents[value]["value"];
+        materialSelections[component]["experience modifier"] = 
+            craftingComponents[value]["experience modifier"];
         materialSelections[component]["description"] = 
             craftingComponents[value]["description"];
         item->set("crafting materials", materialSelections);
@@ -1151,6 +1153,7 @@ private nomask mapping generateRandomComponents(object blueprint)
                 "type": usedComponent,
                 "description": craftingComponents[usedComponent]["description"],
                 "value": craftingComponents[usedComponent]["value"],
+                "experience modifier": craftingComponents[usedComponent]["experience modifier"],
             ]);
 
             string *componentMaterials = m_indices(neededMaterials[component]);

@@ -23,7 +23,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "uilleann pipes": ([
         "type": "pipes",
@@ -46,7 +47,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": ""
+        "default description": "",
+        "base experience": 15,
     ]),
     "warpipes": ([
         "type": "pipes",
@@ -67,7 +69,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "fierabras": ([
         "type": "pipes",
@@ -88,7 +91,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "zampogna": ([
         "type": "pipes",
@@ -110,7 +114,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "surdullina": ([
         "type": "pipes",
@@ -132,7 +137,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "hummelchen": ([
         "type": "pipes",
@@ -153,7 +159,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "piffero": ([
         "type": "woodwind",
@@ -173,7 +180,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "ciaramella": ([
         "type": "woodwind",
@@ -193,7 +201,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "blaterpfeife": ([
         "type": "pipes",
@@ -213,7 +222,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "cornamuse": ([
         "type": "windcap",
@@ -233,7 +243,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 4,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "crumhorn": ([
         "type": "windcap",
@@ -253,7 +264,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "kortholt": ([
         "type": "windcap",
@@ -271,7 +283,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "recorder": ([
         "type": "windcap",
@@ -289,7 +302,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "hirtenschalmei": ([
         "type": "windcap",
@@ -307,7 +321,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "shawm": ([
         "type": "windcap",
@@ -327,7 +342,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "dulcian": ([
         "type": "windcap",
@@ -347,7 +363,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "shagbut": ([
         "type": "windcap",
@@ -367,7 +384,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "cornett": ([
         "type": "windcap",
@@ -387,7 +405,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "lyserden": ([
         "type": "windcap",
@@ -407,7 +426,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "gemshorn": ([
         "type": "windcap",
@@ -427,7 +447,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "ocarina": ([
         "type": "windcap",
@@ -446,7 +467,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "dulcimer": ([
         "type": "string instrument",
@@ -467,7 +489,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "harp": ([
         "type": "string instrument",
@@ -489,7 +512,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "alder",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "gamba": ([
         "type": "string instrument",
@@ -511,7 +535,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "bass viol": ([
         "type": "string instrument",
@@ -533,7 +558,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "hurdy-gurdy": ([
         "type": "string instrument",
@@ -557,7 +583,8 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
     "lute": ([
         "type": "string instrument",
@@ -579,6 +606,7 @@ private nosave mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 250,
-        "default description": ""
+        "default description": "",
+        "base experience": 10,
     ]),
 ]);
