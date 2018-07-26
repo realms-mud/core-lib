@@ -21,6 +21,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "kenaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "fire resistance":([
         "class": "defensive",
@@ -40,6 +41,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "kenaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "acid enchantment":([
         "class": "offensive",
@@ -56,6 +58,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "hagalaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "acid resistance":([
         "class": "defensive",
@@ -72,6 +75,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "hagalaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "air enchantment":([
         "class": "offensive",
@@ -88,6 +92,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "tiwaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "air resistance":([
         "class": "defensive",
@@ -104,6 +109,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "tiwaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "chaos enchantment":([
         "class": "offensive",
@@ -120,6 +126,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "perthro",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "chaos resistance":([
         "class": "defensive",
@@ -136,6 +143,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "perthro",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "cold enchantment":([
         "class": "offensive",
@@ -152,6 +160,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "isa",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "cold resistance":([
         "class": "defensive",
@@ -168,6 +177,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "isa",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "disease enchantment":([
         "class": "offensive",
@@ -184,6 +194,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "kenaz merkstave",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "disease resistance":([
         "class": "defensive",
@@ -200,6 +211,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "kenaz merkstave",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "earth enchantment":([
         "class": "offensive",
@@ -216,6 +228,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "ingwaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "earth resistance":([
         "class": "defensive",
@@ -232,6 +245,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "ingwaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "electricity enchantment":([
         "class": "offensive",
@@ -248,6 +262,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "ansuz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "electricity resistance":([
         "class": "defensive",
@@ -264,6 +279,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "ansuz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "energy enchantment":([
         "class": "offensive",
@@ -280,6 +296,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "fehu",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "energy resistance":([
         "class": "defensive",
@@ -296,6 +313,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "fehu",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "evil enchantment":([
         "class": "offensive",
@@ -312,6 +330,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "thurisaz merkstave",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "evil resistance":([
         "class": "defensive",
@@ -328,6 +347,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "uruz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "good enchantment":([
         "class": "offensive",
@@ -344,6 +364,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "uruz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "good resistance":([
         "class": "defensive",
@@ -360,6 +381,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "thurisaz merkstave",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "magical enchantment":([
         "class": "offensive",
@@ -376,6 +398,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "gebo",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "magical resistance":([
         "class": "defensive",
@@ -392,6 +415,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "gebo",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "neutral enchantment":([
         "class": "offensive",
@@ -408,6 +432,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "raidho",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "neutral resistance":([
         "class": "defensive",
@@ -424,6 +449,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "raidho",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "paralysis enchantment":([
         "class": "offensive",
@@ -440,6 +466,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "nauthiz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "paralysis resistance":([
         "class": "defensive",
@@ -456,6 +483,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "nauthiz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "poison enchantment":([
         "class": "offensive",
@@ -472,6 +500,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "algiz merkstave",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "poison resistance":([
         "class": "defensive",
@@ -488,6 +517,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "algiz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "psionic enchantment":([
         "class": "offensive",
@@ -504,6 +534,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "wunjo",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "psionic resistance":([
         "class": "defensive",
@@ -520,6 +551,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "wunjo",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "sonic enchantment":([
         "class": "offensive",
@@ -536,6 +568,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "sowilo",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "sonic resistance":([
         "class": "defensive",
@@ -552,6 +585,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "sowilo",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "undead enchantment":([
         "class": "offensive",
@@ -568,6 +602,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "berkano merkstave",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "undead resistance":([
         "class": "defensive",
@@ -584,6 +619,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "berkano merkstave",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "water enchantment":([
         "class": "offensive",
@@ -600,6 +636,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "laguz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "water resistance":([
         "class": "defensive",
@@ -616,6 +653,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "laguz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "weapon damage":([
         "class": "offensive",
@@ -630,6 +668,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "eihwaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "weapon attack":([
         "class": "offensive",
@@ -644,6 +683,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "jera",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "additional attack":([
         "class": "offensive",
@@ -658,6 +698,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "eihwaz",
         "description": "",
         "value multiplier": 10.0,
+        "experience modifier": 1.6
     ]),
     "weapon defense":([
         "class": "defensive",
@@ -672,6 +713,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "algiz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "damage soak":([
         "class": "defensive",
@@ -686,6 +728,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "algiz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "damage reflection":([
         "class": "defensive",
@@ -700,6 +743,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "othala",
         "description": "",
         "value multiplier": 8.0,
+        "experience modifier": 1.55
     ]),
     "hit points":([
         "class": "vitals",
@@ -714,6 +758,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "berkano",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "heal hit points amount": ([
         "class": "vitals",
@@ -728,6 +773,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "berkano",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "heal hit points rate": ([
         "class": "vitals",
@@ -742,6 +788,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "berkano",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "stamina points":([
         "class": "vitals",
@@ -756,6 +803,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "ehwaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "heal stamina points amount": ([
         "class": "vitals",
@@ -770,6 +818,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "ehwaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "heal stamina points rate": ([
         "class": "vitals",
@@ -784,6 +833,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "ehwaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "spell points":([
         "class": "vitals",
@@ -798,6 +848,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "dagaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "heal spell points amount": ([
         "class": "vitals",
@@ -812,6 +863,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "dagaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "heal spell points rate": ([
         "class": "vitals",
@@ -826,6 +878,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "dagaz",
         "description": "",
         "value multiplier": 5.0,
+        "experience modifier": 1.5
     ]),
     "enhance strength":([
         "class": "attributes",
@@ -840,6 +893,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "stregaz",
         "description": "",
         "value multiplier": 8.0,
+        "experience modifier": 1.55
     ]),
     "enhance intelligence":([
         "class": "attributes",
@@ -854,6 +908,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "inigaz",
         "description": "",
         "value multiplier": 8.0,
+        "experience modifier": 1.55
     ]),
     "enhance wisdom":([
         "class": "attributes",
@@ -868,6 +923,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "wesgaz",
         "description": "",
         "value multiplier": 8.0,
+        "experience modifier": 1.55
     ]),
     "enhance dexterity":([
         "class": "attributes",
@@ -882,6 +938,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "dezgano",
         "description": "",
         "value multiplier": 8.0,
+        "experience modifier": 1.55
     ]),
     "enhance constitution":([
         "class": "attributes",
@@ -896,6 +953,7 @@ private nosave mapping equipmentEnchantments =
         "rune": "corgaz",
         "description": "",
         "value multiplier": 8.0,
+        "experience modifier": 1.55
     ]),
     "enhance charisma":([
         "class": "attributes",
@@ -910,5 +968,6 @@ private nosave mapping equipmentEnchantments =
         "rune": "sylgaz",
         "description": "",
         "value multiplier": 8.0,
+        "experience modifier": 1.55
     ]),
 ]);

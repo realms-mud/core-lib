@@ -14,7 +14,8 @@ private nosave mapping materials =
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "This is a textile made from the tightly-woven fibers of the flax plant.",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "wool": ([
         "class": "textile",
@@ -28,7 +29,8 @@ private nosave mapping materials =
             "water": -1,
         ]),
         "description": "This is a textile made from the tightly-woven wool of sheep.",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "hemp": ([
         "class": "textile",
@@ -38,7 +40,8 @@ private nosave mapping materials =
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
         "description": "This is a textile made from the tightly-woven fibers of the hemp plant.",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "cashmere": ([
         "class": "textile",
@@ -52,7 +55,8 @@ private nosave mapping materials =
         ]),
         "description": "This is a textile made from the tightly-woven wool of cashmere goats that is finer, stronger, lighter, softer, and about three times more insulating than sheep wool.",
         "value multiplier": 2.5,
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "mohair": ([
         "class": "textile",
@@ -65,7 +69,8 @@ private nosave mapping materials =
             "cold": 2,
         ]),
         "description": "This is a textile made from the tightly-woven, silk-like hair of the angora goat.",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "qiviut": ([
         "class": "textile",
@@ -80,7 +85,8 @@ private nosave mapping materials =
         ]),
         "description": "",
         "value multiplier": 15.0,
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.5
     ]),
     "cotton": ([
         "class": "textile",
@@ -91,7 +97,8 @@ private nosave mapping materials =
         ]),
         "description": "",
         "value multiplier": 1.2,
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "ramie": ([
         "class": "textile",
@@ -102,7 +109,8 @@ private nosave mapping materials =
         ]),
         "description": "",
         "value multiplier": 1.1,
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "burlap": ([
         "class": "textile",
@@ -113,7 +121,8 @@ private nosave mapping materials =
         ]),
         "description": "",
         "value multiplier": 0.9,
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "canvas": ([
         "class": "textile",
@@ -127,7 +136,8 @@ private nosave mapping materials =
         ]),
         "encumberance": 1,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "silk": ([
         "class": "textile",
@@ -142,7 +152,8 @@ private nosave mapping materials =
         "encumberance": -1,
         "value multiplier": 2.2,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.25
     ]),
     "velvet": ([
         "class": "textile",
@@ -157,7 +168,8 @@ private nosave mapping materials =
         "encumberance": 1,
         "value multiplier": 2.0,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.25
     ]),
     "stone": ([
         "class": "stone",
@@ -171,7 +183,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 5]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "sandstone": ([
         "class": "stone",
@@ -186,7 +199,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "quartzite": ([
         "class": "stone",
@@ -203,7 +217,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 15]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "granite": ([
         "class": "stone",
@@ -217,7 +232,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "basalt": ([
         "class": "stone",
@@ -231,7 +247,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "marble": ([
         "class": "stone",
@@ -245,7 +262,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 15]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.1
     ]),
     "limestone": ([
         "class": "stone",
@@ -256,7 +274,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 8]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "slate": ([
         "class": "stone",
@@ -271,7 +290,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 6]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "chalk": ([
         "class": "stone",
@@ -284,7 +304,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 3]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "shale": ([
         "class": "stone",
@@ -297,7 +318,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 3]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "coal": ([
         "class": "stone",
@@ -310,7 +332,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 6]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "dolomite": ([
         "class": "stone",
@@ -320,7 +343,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 7]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "flint": ([
         "class": "stone",
@@ -334,7 +358,8 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "terra cotta": ([
         "class": "clay",
@@ -347,7 +372,8 @@ private nosave mapping materials =
             "pottery": (["type":"skill", "value": 3]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "earthenware": ([
         "class": "clay",
@@ -360,7 +386,8 @@ private nosave mapping materials =
             "pottery": (["type":"skill", "value": 4]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.1
     ]),
     "stoneware": ([
         "class": "clay",
@@ -370,7 +397,8 @@ private nosave mapping materials =
             "pottery": (["type":"skill", "value": 5]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.05
     ]),
     "plaster": ([
         "class": "clay",
@@ -383,7 +411,8 @@ private nosave mapping materials =
             "pottery": (["type":"skill", "value": 3]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.05
     ]),
     "ceramic slip": ([
         "class": "clay",
@@ -393,7 +422,8 @@ private nosave mapping materials =
             "pottery": (["type":"skill", "value": 5]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.1
     ]),
     "kaolin": ([
         "class": "clay",
@@ -406,7 +436,8 @@ private nosave mapping materials =
             "pottery": (["type":"skill", "value": 10]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.1
     ]),
     "pine": ([
         "class": "wood",
@@ -416,7 +447,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "poplar": ([
         "class": "wood",
@@ -426,7 +458,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "cedar": ([
         "class": "wood",
@@ -436,7 +469,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "oak": ([
         "class": "wood",
@@ -447,7 +481,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "maple": ([
         "class": "wood",
@@ -457,7 +492,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "birch": ([
         "class": "wood",
@@ -467,7 +503,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "sycamore": ([
         "class": "wood",
@@ -477,7 +514,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "beech": ([
         "class": "wood",
@@ -487,7 +525,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "ash": ([
         "class": "wood",
@@ -497,7 +536,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "hickory": ([
         "class": "wood",
@@ -507,7 +547,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "mesquite": ([
         "class": "wood",
@@ -518,7 +559,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "walnut": ([
         "class": "wood",
@@ -529,7 +571,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.2,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "pecan": ([
         "class": "wood",
@@ -540,7 +583,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.2,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.05
     ]),
     "dogwood": ([
         "class": "wood",
@@ -550,7 +594,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "cherry": ([
         "class": "wood",
@@ -561,7 +606,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.25,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.1
     ]),
     "holly": ([
         "class": "wood",
@@ -572,7 +618,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.05
     ]),
     "yew": ([
         "class": "wood",
@@ -583,7 +630,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "apple": ([
         "class": "wood",
@@ -593,7 +641,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "teak": ([
         "class": "wood",
@@ -607,7 +656,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.5,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.15
     ]),
     "cypress": ([
         "class": "wood",
@@ -617,7 +667,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "cottonwood": ([
         "class": "wood",
@@ -627,7 +678,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "hemlock": ([
         "class": "wood",
@@ -637,7 +689,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "spruce": ([
         "class": "wood",
@@ -647,7 +700,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "aspen": ([
         "class": "wood",
@@ -657,7 +711,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "swamp ash": ([
         "class": "wood",
@@ -671,7 +726,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.4,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "elm": ([
         "class": "wood",
@@ -681,7 +737,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "basswood": ([
         "class": "wood",
@@ -695,7 +752,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "bloodwood": ([
         "class": "wood",
@@ -709,7 +767,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.4,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "rosewood": ([
         "class": "wood",
@@ -720,7 +779,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.2,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "buckeye": ([
         "class": "wood",
@@ -730,7 +790,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "buckthorn": ([
         "class": "wood",
@@ -740,7 +801,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "alder": ([
         "class": "wood",
@@ -750,7 +812,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "ironwood": ([
         "class": "wood",
@@ -762,7 +825,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.1
     ]),
     "malorn": ([
         "class": "wood",
@@ -778,7 +842,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 2.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "redwood": ([
         "class": "wood",
@@ -789,7 +854,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "mahogany": ([
         "class": "wood",
@@ -803,7 +869,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.3,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "mulberry": ([
         "class": "wood",
@@ -813,7 +880,8 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "marblewood": ([
         "class": "wood",
@@ -827,7 +895,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.4,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.2
     ]),
     "purple heart": ([
         "class": "wood",
@@ -843,7 +912,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.7,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.3
     ]),
     "bubinga": ([
         "class": "wood",
@@ -856,7 +926,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.7,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.25
     ]),
     "kingwood": ([
         "class": "wood",
@@ -872,7 +943,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 2.0,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.6
     ]),
     "koa": ([
         "class": "wood",
@@ -885,7 +957,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 2.0,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.25
     ]),
     "leather": ([
         "class": "leather",
@@ -895,7 +968,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "cow leather": ([
         "class": "leather",
@@ -905,7 +979,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "deer leather": ([
         "class": "leather",
@@ -915,7 +990,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "goat leather": ([
         "class": "leather",
@@ -925,7 +1001,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "sheep leather": ([
         "class": "leather",
@@ -935,7 +1012,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "bear leather": ([
         "class": "leather",
@@ -945,7 +1023,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "boar leather": ([
         "class": "leather",
@@ -955,7 +1034,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "horse leather": ([
         "class": "leather",
@@ -965,7 +1045,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "wolf leather": ([
         "class": "leather",
@@ -975,7 +1056,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 3])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "unicorn leather": ([
         "class": "leather",
@@ -989,7 +1071,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 6.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.0
     ]),
     "pegasus leather": ([
         "class": "leather",
@@ -1004,7 +1087,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 6.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.0
     ]),
     "basilisk leather": ([
         "class": "leather",
@@ -1019,7 +1103,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 10.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.5
     ]),
     "wyvern leather": ([
         "class": "leather",
@@ -1034,7 +1119,8 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 25])
         ]),
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.25
     ]),
     "chimera leather": ([
         "class": "leather",
@@ -1049,7 +1135,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 15.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.5
     ]),
     "hydra leather": ([
         "class": "leather",
@@ -1064,7 +1151,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 20.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.75
     ]),
     "bronze": ([
         "class": "metal",
@@ -1088,7 +1176,8 @@ private nosave mapping materials =
         "encumberance": -1,
         "value multiplier": 0.95,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "copper": ([
         "class": "metal",
@@ -1107,7 +1196,8 @@ private nosave mapping materials =
         "encumberance": -1,
         "value multiplier": 0.9,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "tin": ([
         "class": "metal",
@@ -1122,7 +1212,8 @@ private nosave mapping materials =
         "attack rating": -1,
         "encumberance": -1,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "zinc": ([
         "class": "metal",
@@ -1138,7 +1229,8 @@ private nosave mapping materials =
             "acid": -1
         ]),
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "brass": ([
         "class": "metal",
@@ -1161,7 +1253,8 @@ private nosave mapping materials =
         "encumberance": 1,
         "value multiplier": 1.95,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.2
     ]),
     "gold": ([
         "class": "metal",
@@ -1183,7 +1276,8 @@ private nosave mapping materials =
         "encumberance": 2,
         "value multiplier": 8.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.2
     ]),
     "lead": ([
         "class": "metal",
@@ -1206,7 +1300,8 @@ private nosave mapping materials =
         "encumberance": 2,
         "value multiplier": 1.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1
     ]),
     "antimony": ([
         "class": "metal",
@@ -1228,7 +1323,8 @@ private nosave mapping materials =
         "encumberance": 2,
         "value multiplier": 2.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1
     ]),
     "bismuth": ([
         "class": "metal",
@@ -1249,7 +1345,8 @@ private nosave mapping materials =
         "encumberance": 1,
         "value multiplier": 1.6,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "magnesium": ([
         "class": "metal",
@@ -1269,7 +1366,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 1.5,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "graphite": ([
         "class": "metal",
@@ -1292,7 +1390,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 1.5,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.1
     ]),
     "pewter": ([
         "class": "metal",
@@ -1319,7 +1418,8 @@ private nosave mapping materials =
         "encumberance": 1,
         "value multiplier": 1.5,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1
     ]),
     "platinum": ([
         "class": "metal",
@@ -1340,7 +1440,8 @@ private nosave mapping materials =
         "encumberance": 2,
         "value multiplier": 8.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.2
     ]),
     "tantalum": ([
         "class": "metal",
@@ -1360,7 +1461,8 @@ private nosave mapping materials =
         "encumberance": 2,
         "value multiplier": 8.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.5
     ]),
     "iridium": ([
         "class": "metal",
@@ -1385,7 +1487,8 @@ private nosave mapping materials =
         "encumberance": 3,
         "value multiplier": 10.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.0
     ]),
     "osmium": ([
         "class": "metal",
@@ -1410,7 +1513,8 @@ private nosave mapping materials =
         "encumberance": 4,
         "value multiplier": 8.1,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "palladium": ([
         "class": "metal",
@@ -1432,7 +1536,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 6.1,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.2
     ]),
     "silver": ([
         "class": "metal",
@@ -1449,7 +1554,8 @@ private nosave mapping materials =
             "good": 3
         ]),        "value multiplier": 2.0,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1
     ]),
     "electrum": ([
         "class": "metal",
@@ -1475,7 +1581,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 5.0,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1
     ]),
     "aluminum": ([
         "class": "metal",
@@ -1497,7 +1604,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.2
     ]),
     "nickel": ([
         "class": "metal",
@@ -1515,7 +1623,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.3,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.75
     ]),
     "cupronickel": ([
         "class": "metal",
@@ -1540,7 +1649,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.5,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.75
     ]),
     "magnalium": ([
         "class": "metal",
@@ -1563,7 +1673,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 5.1,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.65
     ]),
     "aluminum bronze": ([
         "class": "metal",
@@ -1591,7 +1702,8 @@ private nosave mapping materials =
         "encumberance": -1,
         "value multiplier": 0.95,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "cobalt": ([
         "class": "metal",
@@ -1612,7 +1724,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.6,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1.2
     ]),
     "titanium": ([
         "class": "metal",
@@ -1633,7 +1746,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 8.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "tungsten": ([
         "class": "metal",
@@ -1655,7 +1769,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 8.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "iron": ([
         "class": "metal",
@@ -1665,7 +1780,8 @@ private nosave mapping materials =
             "blacksmithing": (["type":"skill", "value": 5])
         ]),
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "steel": ([
         "class": "metal",
@@ -1690,7 +1806,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1.2
     ]),
     "cast iron": ([
         "class": "metal",
@@ -1714,7 +1831,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "common"
+        "scarcity": "common",
+        "experience modifier": 1
     ]),
     "mithril": ([
         "class": "metal",
@@ -1737,7 +1855,8 @@ private nosave mapping materials =
         "encumberance": -4,
         "value multiplier": 20.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.5
     ]),
     "nurilium": ([
         "class": "metal",
@@ -1762,7 +1881,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 30.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3
     ]),
     "kirdarium": ([
         "class": "metal",
@@ -1788,7 +1908,8 @@ private nosave mapping materials =
         "encumberance": -1,
         "value multiplier": 45.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3
     ]),
     "admantite": ([
         "class": "metal",
@@ -1811,7 +1932,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 16.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.5
     ]),
     "galvorn": ([
         "class": "metal",
@@ -1836,7 +1958,8 @@ private nosave mapping materials =
         "encumberance": 2,
         "value multiplier": 25.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.75
     ]),
     "meteoric iron": ([
         "class": "metal",
@@ -1859,7 +1982,8 @@ private nosave mapping materials =
         "encumberance": 2,
         "value multiplier": 25.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.25
     ]),
     "special": ([]),
     "spell material": ([]),
@@ -1884,7 +2008,8 @@ private nosave mapping materials =
         "encumberance": 1,
         "value multiplier": 15.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.5
     ]),
     "magical ice": ([
         "class": "crystal",
@@ -1906,7 +2031,8 @@ private nosave mapping materials =
         "encumberance": 1,
         "value multiplier": 10.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "crystal": ([
         "class": "crystal",
@@ -1927,7 +2053,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.5,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "quartz": ([
         "class": "crystal",
@@ -1946,7 +2073,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "opal": ([
         "class": "crystal",
@@ -1965,7 +2093,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "topaz": ([
         "class": "crystal",
@@ -1984,7 +2113,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.2,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "turquoise": ([
         "class": "crystal",
@@ -2003,7 +2133,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.2,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "amethyst": ([
         "class": "crystal",
@@ -2022,7 +2153,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.1,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "garnet": ([
         "class": "crystal",
@@ -2041,7 +2173,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.5,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "florite": ([
         "class": "crystal",
@@ -2060,7 +2193,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.2,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "citrine": ([
         "class": "crystal",
@@ -2079,7 +2213,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.15,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "agate": ([
         "class": "crystal",
@@ -2098,7 +2233,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.15,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "onyx": ([
         "class": "crystal",
@@ -2117,7 +2253,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 4.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.1
     ]),
     "jade": ([
         "class": "crystal",
@@ -2136,7 +2273,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 3.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1
     ]),
     "amber": ([
         "class": "crystal",
@@ -2155,7 +2293,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 2.5,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "aquamarine": ([
         "class": "crystal",
@@ -2174,7 +2313,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.25,
         "description": "",
-        "scarcity": "rare"
+        "scarcity": "rare",
+        "experience modifier": 1
     ]),
     "emerald": ([
         "class": "crystal",
@@ -2193,7 +2333,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 11.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.1
     ]),
     "ruby": ([
         "class": "crystal",
@@ -2212,7 +2353,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 11.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.1
     ]),
     "sapphire": ([
         "class": "crystal",
@@ -2231,7 +2373,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 10.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.1
     ]),
    "bloodstone": ([
         "class": "crystal",
@@ -2250,7 +2393,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 12.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.2
     ]),
     "diamond": ([
         "class": "crystal",
@@ -2269,7 +2413,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 15.5,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.5
     ]),
     "kirluin": ([
         "class": "crystal",
@@ -2294,7 +2439,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 50.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.25
     ]),
     "gwyrluin": ([
         "class": "crystal",
@@ -2319,7 +2465,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 50.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "durluin": ([
         "class": "crystal",
@@ -2344,7 +2491,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 50.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "trynluin": ([
         "class": "crystal",
@@ -2369,7 +2517,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 50.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "rhudluin": ([
         "class": "crystal",
@@ -2394,7 +2543,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 50.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "melynuin": ([
         "class": "crystal",
@@ -2419,7 +2569,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 50.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "asurluin": ([
         "class": "crystal",
@@ -2444,7 +2595,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 50.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "marnluin": ([
         "class": "crystal",
@@ -2469,7 +2621,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 50.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2
     ]),
     "dragon scale": ([
         "class": "leather",
@@ -2487,7 +2640,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 25.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.5
     ]),
     "dragon leather": ([
         "class": "leather",
@@ -2503,7 +2657,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 25.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 2.85
     ]),
     "bone": ([
         "class": "exotic",
@@ -2516,7 +2671,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 1.5,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "horn": ([
         "class": "exotic",
@@ -2529,7 +2685,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 2.0,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.2
     ]),
     "antler": ([
         "class": "exotic",
@@ -2542,7 +2699,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 2.0,
         "description": "",
-        "scarcity": "uncommon"
+        "scarcity": "uncommon",
+        "experience modifier": 1.1
     ]),
     "ivory": ([
         "class": "exotic",
@@ -2555,7 +2713,8 @@ private nosave mapping materials =
         ]),
         "value multiplier": 5.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 1.2
     ]),
     "kirnalt": ([
         "class": "metal",
@@ -2587,7 +2746,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 70.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "gwyrnalt": ([
         "class": "metal",
@@ -2619,7 +2779,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 70.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "durnalt": ([
         "class": "metal",
@@ -2651,7 +2812,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "trynalt": ([
         "class": "metal",
@@ -2683,7 +2845,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "rhudnalt": ([
         "class": "metal",
@@ -2715,7 +2878,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 70.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "melynalt": ([
         "class": "metal",
@@ -2747,7 +2911,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 70.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "asurnalt": ([
         "class": "metal",
@@ -2779,7 +2944,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 70.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "marnalt": ([
         "class": "metal",
@@ -2811,7 +2977,8 @@ private nosave mapping materials =
         "encumberance": -3,
         "value multiplier": 70.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "kirsil": ([
         "class": "textile",
@@ -2837,7 +3004,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "gwyrsil": ([
         "class": "textile",
@@ -2863,7 +3031,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "dursil": ([
         "class": "textile",
@@ -2889,7 +3058,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "trynsil": ([
         "class": "textile",
@@ -2915,7 +3085,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "rhudsil": ([
         "class": "textile",
@@ -2941,7 +3112,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "melynsil": ([
         "class": "textile",
@@ -2967,7 +3139,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "asursil": ([
         "class": "textile",
@@ -2993,7 +3166,8 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
     "marnsil": ([
         "class": "textile",
@@ -3019,6 +3193,7 @@ private nosave mapping materials =
         "encumberance": -2,
         "value multiplier": 75.0,
         "description": "",
-        "scarcity": "very rare"
+        "scarcity": "very rare",
+        "experience modifier": 3.2
     ]),
 ]);
