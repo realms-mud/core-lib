@@ -930,29 +930,17 @@ public nomask mapping *getAttacks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int orderAttackers(object a, object b)
-{
-    // This is only used by getTargetToAttack. If hostileList is malformed, this will
-    // barf.
-    return hostileList[a]["time"] > hostileList[b]["time"];
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask object getTargetToAttack()
 {
     object attacker = 0;
     
-    object *listOfPotentialAttackers = m_indices(hostileList);
-    listOfPotentialAttackers -= ({ 0 });
+    object *listOfPotentialAttackers = sort_array(filter(m_indices(hostileList),
+            (: present($1, environment(this_object())) :)),
+            (: hostileList[$1]["time"] > hostileList[$2]["time"] :));
     
     int numPotentialAttackers = sizeof(listOfPotentialAttackers);
     if(numPotentialAttackers)
-    {
-        listOfPotentialAttackers = filter(listOfPotentialAttackers,
-            #'present, environment(this_object()));
-        listOfPotentialAttackers = sort_array(listOfPotentialAttackers,
-            #'orderAttackers);
-        
+    {        
         attacker = listOfPotentialAttackers[0];
         if(attacker && objectp(attacker) && 
           ((random(101) + attacker->calculateDefendAttack()) > 50))
@@ -1220,7 +1208,7 @@ private nomask int determineFateFromDeath(object murderer)
         object wizard = getService("wizard");
         if(wizard)
         {
-            tell_object(wizard, "Your wizardhood protects you from death");
+            tell_object(wizard, "Your wizardhood protects you from death.\n");
         }
         else if(environment() && 
                 function_exists("suppressDeath", environment()))

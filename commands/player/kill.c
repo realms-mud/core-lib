@@ -32,6 +32,7 @@ public nomask int execute(string command, object initiator)
             tell_object(initiator, sprintf("You attack %s.\n", target->Name()));
             say(sprintf("%s attacks %s.\n", initiator->Name(), target->Name()));
             initiator->attack(target);
+            target->attack(initiator);
             initiator->spellAction(1);
         }
         else

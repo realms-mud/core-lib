@@ -1936,3 +1936,39 @@ void AttackSucceedsWhenTargetEtherealAndHasNonWeaponAttackThatCanDamageEthereal(
     ExpectTrue(Attacker->attack(Target));
     ExpectTrue(Target->hitPoints() < Target->maxHitPoints());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void TargetAttacksWhenAttackerReturnsToArea()
+{
+    ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
+
+    Attacker->hitPoints(50);
+    Target->hitPoints(Target->maxHitPoints());
+    Attacker->registerAttacker(Target);
+
+    object handler = clone_object("/lib/tests/support/events/onAttackSubscriber");
+    ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
+
+    object targetHandler = clone_object("/lib/tests/support/events/onAttackSubscriber");
+    ExpectTrue(Target->registerEvent(targetHandler), "event handler registered");
+
+    Attacker->heart_beat();
+    Target->heart_beat();
+
+    ExpectEq(1, handler->TimesOnAttackReceived());
+    ExpectEq(1, targetHandler->TimesOnAttackReceived());
+
+    move_object(Attacker, this_object());
+    Attacker->heart_beat();
+    Target->heart_beat();
+
+    ExpectEq(1, handler->TimesOnAttackReceived());
+    ExpectEq(1, targetHandler->TimesOnAttackReceived());
+
+    move_object(Attacker, Room);
+    Attacker->heart_beat();
+    Target->heart_beat();
+
+    ExpectEq(2, handler->TimesOnAttackReceived());
+    ExpectEq(2, targetHandler->TimesOnAttackReceived());
+}

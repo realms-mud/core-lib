@@ -117,8 +117,8 @@ public nomask void corpseSetup(object victim)
     set("clean up message", cleanUpMessage[random(5)]);
     set("decay value", 10);
     set("short", sprintf("The corpse of %s", capitalize(victim->RealName())));
-    set("corpse", victim->Name());
-    set("aliases", ({ victim->RealName(), query("short") }));
+    set("corpse", victim->RealName());
+    set("aliases", ({ victim->RealName(), query("short"), "corpse" }));
 
     int weight = victim->transferItemsTo(this_object());
     set("weight", weight + 5);

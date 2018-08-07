@@ -146,8 +146,10 @@ void KillDoesNotInitiateCombatIfFoeButNotPlayerOnKillList()
 void KillInitiatesCombatIfFoeAndPlayerOnKillList()
 {
     destruct(Target);
-    Target = clone_object("/lib/realizations/player.c");
+    Target = clone_object("/lib/tests/support/services/mockPlayer.c");
     Target->Name("fred");
+    Target->Con(20);
+    Target->hitPoints(Target->maxHitPoints());
     Target->registerEvent(TargetEvents);
     move_object(Target, Room);
 
@@ -159,10 +161,11 @@ void KillInitiatesCombatIfFoeAndPlayerOnKillList()
 
     ExpectTrue(Player->executeCommand("kill fred"));
 
-    ExpectTrue(AttackerEvents->wasAttacker());
-    ExpectTrue(TargetEvents->wasAttacked());
-    ExpectTrue(Player->isInCombatWith(Target));
-    ExpectTrue(Target->isInCombatWith(Player));
+    ExpectTrue(AttackerEvents->wasAttacker(), "was attacker event fired");
+    ExpectTrue(TargetEvents->wasAttacked(), "was attacked event fired");
+
+    ExpectTrue(Player->isInCombatWith(Target), "player isInCombatWith target");
+    ExpectTrue(Target->isInCombatWith(Player), "target isInCombatWith player");
 }
 
 /////////////////////////////////////////////////////////////////////////////
