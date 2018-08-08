@@ -838,25 +838,47 @@ public nomask void clearAttacks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask varargs mapping *getWeaponAttacksFromBonus(int numAttacks, int addOffhand)
+{
+    mapping *attacksToReturn = ({});
+
+    object inventory = getService("inventory");
+    if (inventory)
+    {
+        int hasOffhandWeapon = objectp(inventory->equipmentInSlot("wielded offhand"));
+
+        for (int i = 0; i < numAttacks; i++)
+        {
+            attacksToReturn += ({ (["attack type":"wielded primary"]) });
+
+            if (hasOffhandWeapon && ((i % 2) || addOffhand))
+            {
+                attacksToReturn += ({ (["attack type":"wielded offhand"]) });
+            }
+        }
+    }
+    return attacksToReturn;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping *getAttacks()
 {
     mapping *attacksToReturn = attacks;
 
-    // This is a hack that forces attack() to do a weapon attack if a weapon is
-    // wielded.
     object inventory = getService("inventory");
     if (inventory)
     {
         if (inventory->equipmentInSlot("wielded primary"))
         {
-            attacksToReturn += ({ (["attack type":"weapon"]) });
+            attacksToReturn += ({ (["attack type":"wielded primary"]) });
         }
 
         object offhand = inventory->equipmentInSlot("wielded offhand");
+
         // Don't add attacks for defense-only shields.
         if (offhand && offhand->query("weapon class"))
         {
-            attacksToReturn += ({ (["attack type":"offhand weapon"]) });
+            attacksToReturn += ({ (["attack type":"wielded offhand"]) });
         }
     }
 
@@ -871,6 +893,7 @@ public nomask mapping *getAttacks()
 
     // Add attacks from external sources
     string *servicesToCheck = ({ "races", "guilds", "research", "traits", "background" });
+    int addOffhandWeapon = 0;
 
     foreach(string serviceToCheck in servicesToCheck)
     {
@@ -884,8 +907,12 @@ public nomask mapping *getAttacks()
             {
                 foreach(mapping extraAttack in extraAttacks)
                 {
-                    if (attackObject()->isValidAttack(extraAttack) ||
-                        attackObject()->isWeaponAttack(extraAttack))
+                    if (attackObject()->isWeaponAttack(extraAttack))
+                    {
+                        attacksToReturn += getWeaponAttacksFromBonus(1, addOffhandWeapon % 2);
+                        addOffhandWeapon++;
+                    }
+                    else if (attackObject()->isValidAttack(extraAttack))
                     {
                         attacksToReturn += ({ extraAttack });
                     }
@@ -917,10 +944,7 @@ public nomask mapping *getAttacks()
                 if (modifier->query("bonus weapon attack") && inventory->equipmentInSlot("wielded primary"))
                 {
                     int numAttacks = modifier->query("bonus weapon attack");
-                    for (int i = 0; i < numAttacks; i++)
-                    {
-                        attacksToReturn += ({ (["attack type":"weapon"]) });
-                    }
+                    attacksToReturn += getWeaponAttacksFromBonus(numAttacks);
                 }
             }
         }
@@ -1434,27 +1458,19 @@ public nomask int attack(object foe)
         ret = 1;
         foreach(mapping attack in getAttacks())
         {
-            // I'm going to go out on a limb and assume that 
-            // AttacksBlueprint will always exist. If not, this will puke. 
             if(attackObject()->isWeaponAttack(attack))
             {
                 object inventory = getService("inventory");
                 if(inventory)
                 {
                     object weapon = 
-                        inventory->equipmentInSlot("wielded primary");
+                        inventory->equipmentInSlot(attack["attack type"]);
                     if(!weapon)
                     {
                         weapon = attackObject()->getAttack("unarmed");
                     }
                     
                     doOneAttack(foe, weapon);
-                    
-                    weapon = inventory->equipmentInSlot("wielded offhand");
-                    if(weapon)
-                    {
-                        doOneAttack(foe, weapon);
-                    }
                 }                   
             }
             else if(attackObject()->isValidAttack(attack))

@@ -54,8 +54,8 @@ public nomask int isWeaponAttack(mapping attack)
 {
     return (attack && mappingp(attack) &&
             member(attack, "attack type") &&
-            ((attack["attack type"] == "weapon") ||
-            (attack["attack type"] == "offhand weapon")));
+            (member(({ "weapon", "wielded primary", "wielded offhand"}),
+                attack["attack type"]) > -1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -274,5 +274,3 @@ public nomask int isOutOfRange(string damageType, int value)
     }
     return ret;
 }
-
-

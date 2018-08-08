@@ -336,7 +336,7 @@ void CallingExecuteWithSelfScopeAppliesEffectsToUser()
 
     ExpectEq(5, User->getSkill("long sword"), "initial long sword skill");
     ExpectEq(22, User->Str(), "initial strength");
-    ExpectEq("({ ([ attack type: weapon, ]), ([ attack type: weapon, ]), })", User->getAttacks(), "only one attack initially");
+    ExpectEq("({ ([ attack type: wielded primary, ]), ([ attack type: wielded primary, ]), })", User->getAttacks(), "only one attack initially");
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
 
     object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
@@ -346,7 +346,7 @@ void CallingExecuteWithSelfScopeAppliesEffectsToUser()
     ExpectEq(10, User->getSkill("long sword"), "long sword skill after ability used");
     ExpectEq(27, User->Str(), "strength after ability used");
 
-    mapping *expectedAttacks = ({ (["attack type":"magical", "damage" : 10, "to hit" : 35]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]) });
+    mapping *expectedAttacks = ({ (["attack type":"magical", "damage" : 10, "to hit" : 35]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) });
     ExpectEq(expectedAttacks, User->getAttacks(), "Three weapon attacks and a magical attack are returned");
 }
 

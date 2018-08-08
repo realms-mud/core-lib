@@ -269,7 +269,7 @@ void ExecuteOnSelfAppliesEffectOnSelf()
     ExpectTrue(ResearchItem->testAddSpecification("duration", 10));
 
     ExpectEq(5, User->getSkill("long sword"), "initial long sword skill");
-    ExpectEq("({ ([ attack type: weapon, ]), })", User->getAttacks(), "only one attack initially");
+    ExpectEq("({ ([ attack type: wielded primary, ]), })", User->getAttacks(), "only one attack initially");
     ExpectTrue(ResearchItem->testExecuteOnSelf(User, program_name(ResearchItem)), "can execute command");
 
     object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
@@ -278,7 +278,7 @@ void ExecuteOnSelfAppliesEffectOnSelf()
 
     ExpectEq(15, User->getSkill("long sword"), "long sword skill after research used");
 
-    mapping *expectedAttacks = ({ (["attack type": "magical", "damage": 10, "to hit": 35]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]) });
+    mapping *expectedAttacks = ({ (["attack type": "magical", "damage": 10, "to hit": 35]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) });
     ExpectEq(expectedAttacks, User->getAttacks(), "Three weapon attacks and a magical attack are returned");
 }
 

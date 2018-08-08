@@ -232,7 +232,7 @@ void PassiveResearchAttacksApplied()
     ExpectTrue(Research->initiateResearch("lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
     ExpectTrue(Research->isResearched("lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
     ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "after research attacks");
-    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->getAttacks());
+    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) }), Research->getAttacks());
 }
 
 /////////////////////////////////////////////////////////////////////////////

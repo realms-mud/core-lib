@@ -1371,7 +1371,7 @@ void GetAttacksReturnsWeaponAttack()
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
 
     ExpectEq(1, sizeof(Attacker->getAttacks()), "1 attack returned");
-    ExpectEq("weapon", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
+    ExpectEq("wielded primary", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1384,7 +1384,7 @@ void GetAttacksDoesNotReturnWieldedNonAttackShields()
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
 
     ExpectEq(1, sizeof(Attacker->getAttacks()), "1 attack returned");
-    ExpectEq("weapon", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
+    ExpectEq("wielded primary", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1398,8 +1398,8 @@ void GetAttacksReturnsWieldedShieldsWithAttacks()
     ExpectTrue(shield->equip("shield offhand"), "shield equip called");
 
     ExpectEq(2, sizeof(Attacker->getAttacks()), "2 attack returned");
-    ExpectEq("weapon", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
-    ExpectEq("offhand weapon", Attacker->getAttacks()[1]["attack type"], "weapon attack in list");
+    ExpectEq("wielded primary", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
+    ExpectEq("wielded offhand", Attacker->getAttacks()[1]["attack type"], "shield attack in list");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1412,8 +1412,8 @@ void GetAttacksReturnDualWieldWeaponsWithAttacks()
     ExpectTrue(weapon2->equip("stuff offhand"), "second weapon equip called");
 
     ExpectEq(2, sizeof(Attacker->getAttacks()), "2 attacks returned");
-    ExpectEq("weapon", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
-    ExpectEq("offhand weapon", Attacker->getAttacks()[1]["attack type"], "weapon attack in list");
+    ExpectEq("wielded primary", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
+    ExpectEq("wielded offhand", Attacker->getAttacks()[1]["attack type"], "weapon attack in list");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1428,6 +1428,23 @@ void GetAttacksReturnsExtraAttacksFromServices()
     Attacker->ToggleMockBiological();
     Attacker->ToggleMockBackground();
     ExpectEq(5, sizeof(Attacker->getAttacks()), "5 attacks returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetAttacksWhenDualWieldedReturnsHalfExtraWeaponAttacksFromServices()
+{
+    object weapon = CreateWeapon("blah");
+    object weapon2 = CreateWeapon("stuff");
+
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectTrue(weapon2->equip("stuff offhand"), "second weapon equip called");
+
+    Attacker->ToggleMockGuilds();
+    Attacker->ToggleMockResearch();
+    Attacker->ToggleMockTrait();
+    Attacker->ToggleMockBiological();
+    Attacker->ToggleMockBackground();
+    ExpectEq(7, sizeof(Attacker->getAttacks()), "7 attacks returned");
 }
 
 /////////////////////////////////////////////////////////////////////////////
