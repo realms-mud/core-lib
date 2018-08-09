@@ -1695,7 +1695,7 @@ static nomask void combatHeartBeat()
 /////////////////////////////////////////////////////////////////////////////
 static nomask void healingHeartBeat()
 {
-    if(!timeToHealHP && (hitPoints() < maxHitPoints()))
+    if((timeToHealHP <= 0) && (hitPoints() < maxHitPoints()))
     {
         hitPoints(calculateVitalsHealRate("hit points"));
         timeToHealHP = calculateTimeToNextVitalsHeal("hit points");
@@ -1705,7 +1705,7 @@ static nomask void healingHeartBeat()
         timeToHealHP -= 2;
     }
 
-    if(!timeToHealSP && (spellPoints() < maxSpellPoints()))
+    if((timeToHealSP <= 0) && (spellPoints() < maxSpellPoints()))
     {
         spellPoints(calculateVitalsHealRate("spell points"));
         timeToHealSP = calculateTimeToNextVitalsHeal("spell points");
@@ -1715,7 +1715,7 @@ static nomask void healingHeartBeat()
         timeToHealSP -= 2;
     }
 
-    if(!timeToHealST && (staminaPoints() < maxStaminaPoints()))
+    if((timeToHealST <= 0) && (staminaPoints() < maxStaminaPoints()))
     {
         staminaPoints(calculateVitalsHealRate("stamina"));
         timeToHealST = calculateTimeToNextVitalsHeal("stamina");

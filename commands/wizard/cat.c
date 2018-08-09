@@ -37,7 +37,10 @@ public nomask int execute(string command, object initiator)
             {
                 ret = 1;
                 string contents = read_file(sourcePath, 0, lines);
-                tell_object(initiator, contents);
+                if (contents)
+                {
+                    tell_object(initiator, contents);
+                }
             }
             else
             {

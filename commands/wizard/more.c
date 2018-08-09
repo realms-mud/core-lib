@@ -17,17 +17,20 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void pageString(string message, object initiator)
 {
-    string *messageLines = explode(message, "\n");
-    int pageSize = initiator->pageSize();
-    if (sizeof(messageLines) > pageSize)
+    if (message)
     {
-        pageString(implode(messageLines[0..(pageSize - 1)], "\n"), initiator);
-        tell_object(initiator, "\n[0;35;1mMore? [q to quit][0m\n");
-        input_to("responseToPage", 1, implode(messageLines[pageSize..], "\n"), initiator);
-    }
-    else
-    {
-        tell_object(initiator, message);
+        string *messageLines = explode(message, "\n");
+        int pageSize = initiator->pageSize();
+        if (sizeof(messageLines) > pageSize)
+        {
+            pageString(implode(messageLines[0..(pageSize - 1)], "\n"), initiator);
+            tell_object(initiator, "\n[0;35;1mMore? [q to quit][0m\n");
+            input_to("responseToPage", 1, implode(messageLines[pageSize..], "\n"), initiator);
+        }
+        else
+        {
+            tell_object(initiator, message);
+        }
     }
 }
 

@@ -38,7 +38,7 @@ public nomask int execute(string command, object initiator)
             if (file_size(sourcePath) > -1)
             {
                 ret = 1;
-                string *contents = explode(read_file(sourcePath), "\n");
+                string *contents = explode(read_file(sourcePath) || "", "\n");
 
                 if (sizeof(contents) > lines)
                 {
