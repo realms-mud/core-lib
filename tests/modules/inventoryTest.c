@@ -149,6 +149,7 @@ void OnlyCorrectItemEquippedAndUnequipped()
 /////////////////////////////////////////////////////////////////////////////
 void EquipEventHandlerTriggersOnEquip()
 {
+    ToggleCallOutBypass();
     object armor = clone_object("/lib/tests/support/items/mockArmorWithEvents");
     armor->set("name", "blah");
     armor->set("equipment locations", Gloves);
@@ -157,11 +158,13 @@ void EquipEventHandlerTriggersOnEquip()
 
     string err = catch (ExpectTrue(armor->equip("blah"), "armor equip called"));
     ExpectEq("*event handler: onEquip called", err, "onEquip event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UnequipEventHandlerTriggersOnUnequip()
 {
+    ToggleCallOutBypass();
     object armor = clone_object("/lib/tests/support/items/mockArmorWithEvents");
     armor->set("name", "blah");
     armor->set("equipment locations", Gloves);
@@ -173,6 +176,7 @@ void UnequipEventHandlerTriggersOnUnequip()
     armor->set("register event handler", 1);
     string err = catch (ExpectTrue(armor->unequip("blah"), "armor unequip called"));
     ExpectEq("*event handler: onUnequip called", err, "onUnequip event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -228,17 +232,20 @@ void CanHaveMultipleRegisteredObjects()
 /////////////////////////////////////////////////////////////////////////////
 void RegisterEventHandlerTriggersOnRegister()
 {
+    ToggleCallOutBypass();
     object modifier = clone_object("/lib/tests/support/items/mockModifierObjWithEvents");
     modifier->set("register event handler", 1);
     modifier->set("fully qualified name", "blah");
 
     string err = catch (ExpectEq(1, modifier->set("registration list", ({ Inventory })), "registration list can be set"));
     ExpectEq("*event handler: onRegisterItem called", err, "onRegisterItem event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UnregisterEventHandlerTriggersOnUnregister()
 {
+    ToggleCallOutBypass();
     object modifier = clone_object("/lib/tests/support/items/mockModifierObjWithEvents");
     modifier->set("register event handler", 1);
     modifier->set("fully qualified name", "blah");
@@ -248,6 +255,7 @@ void UnregisterEventHandlerTriggersOnUnregister()
 
     string err = catch (ExpectTrue(modifier->unregisterModifierFromTargetList(), "unregister modifier"));
     ExpectEq("*event handler: onUnregisterItem called", err, "onUnregisterItem event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

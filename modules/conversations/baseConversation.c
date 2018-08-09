@@ -429,7 +429,7 @@ public nomask int displayResponse(string choice, object actor, object owner)
 
         if (member(topics[id]["responses"][key], "event"))
         {
-            owner->notify(topics[id]["responses"][key]["event"], actor);
+            owner->notifySynchronous(topics[id]["responses"][key]["event"], actor);
         }
         if (member(topics[id]["responses"][key], "effect"))
         {
@@ -500,7 +500,7 @@ public nomask int speakMessage(string key, object actor, object owner)
         }
         if (member(topics[key], "event"))
         {
-            owner->notify(topics[key]["event"], actor);
+            owner->notifySynchronous(topics[key]["event"], actor);
         }
         ret = 1;
     }

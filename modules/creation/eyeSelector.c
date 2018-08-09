@@ -40,6 +40,6 @@ protected nomask void setUpUserForSelection()
 
     if (!sizeof(Data))
     {
-        notify("onSelectorCompleted");
+        notifySynchronous("onSelectorCompleted");
     }
 }

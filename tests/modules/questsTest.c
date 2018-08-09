@@ -296,16 +296,19 @@ void DeactivateQuestReturnsFalseWhenQuestHasBeenCompleted()
 /////////////////////////////////////////////////////////////////////////////
 void BeginQuestFiresOnQuestStartedEvent()
 {
+    ToggleCallOutBypass();
     object events = clone_object("/lib/tests/support/events/questEventsSubscriber.c");
     Quests->registerEvent(events);
     ExpectTrue(Quests->beginQuest("lib/tests/support/quests/fakeQuestItem.c"));
     ExpectEq(([ "onQuestStarted":"lib/tests/support/quests/fakeQuestItem.c"]),
         events->quests());
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void BeginQuestFiresProperEventsWhenInitialStateIsCompletionState()
 {
+    ToggleCallOutBypass();
     object events = clone_object("/lib/tests/support/events/questEventsSubscriber.c");
     Quests->registerEvent(events);
     ExpectTrue(Quests->beginQuest("lib/tests/support/quests/anotherQuest.c"));
@@ -313,11 +316,13 @@ void BeginQuestFiresProperEventsWhenInitialStateIsCompletionState()
         "onQuestCompleted": "lib/tests/support/quests/anotherQuest.c",
         "onQuestSucceeded": "lib/tests/support/quests/anotherQuest.c"]),
         events->quests());
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceQuestStateFiresEachTimeStateAdvances()
 {
+    ToggleCallOutBypass();
     object events = clone_object("/lib/tests/support/events/questEventsSubscriber.c");
     Quests->registerEvent(events);
 
@@ -330,11 +335,13 @@ void AdvanceQuestStateFiresEachTimeStateAdvances()
     ExpectFalse(member(events->quests(), "onQuestAdvancedState"));
     ExpectTrue(QuestItem->receiveEvent(Quests, "ignoreTheKing"));
     ExpectTrue(member(events->quests(), "onQuestAdvancedState"));
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceQuestToFailStateFiresOnQuestCompletedAndOnQuestFailed()
 {
+    ToggleCallOutBypass();
     object events = clone_object("/lib/tests/support/events/questEventsSubscriber.c");
     Quests->registerEvent(events);
 
@@ -345,6 +352,7 @@ void AdvanceQuestToFailStateFiresOnQuestCompletedAndOnQuestFailed()
     ExpectTrue(QuestItem->receiveEvent(Quests, "ignoreTheKing"));
     ExpectTrue(member(events->quests(), "onQuestCompleted"));
     ExpectTrue(member(events->quests(), "onQuestFailed"));
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -363,6 +371,7 @@ void AdvanceQuestToFailStateDoesNotFireOnQuestSucceeded()
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceQuestToSuccessStateFiresOnQuestCompletedAndOnQuestSucceeded()
 {
+    ToggleCallOutBypass();
     object events = clone_object("/lib/tests/support/events/questEventsSubscriber.c");
     Quests->registerEvent(events);
 
@@ -374,6 +383,7 @@ void AdvanceQuestToSuccessStateFiresOnQuestCompletedAndOnQuestSucceeded()
     ExpectTrue(QuestItem->receiveEvent(Quests, "hailToTheKing"));
     ExpectTrue(member(events->quests(), "onQuestCompleted"));
     ExpectTrue(member(events->quests(), "onQuestSucceeded"));
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -393,6 +403,7 @@ void AdvanceQuestToSuccessStateDoesNotFireOnQuestFailed()
 /////////////////////////////////////////////////////////////////////////////
 void ActivateQuestFiresOnQuestActivatedWhenItSucceeds()
 {
+    ToggleCallOutBypass();
     object events = clone_object("/lib/tests/support/events/questEventsSubscriber.c");
     Quests->registerEvent(events);
 
@@ -400,6 +411,7 @@ void ActivateQuestFiresOnQuestActivatedWhenItSucceeds()
     ExpectFalse(member(events->quests(), "onQuestActivated"));
     ExpectTrue(Quests->activateQuest("lib/tests/support/quests/fakeQuestItem.c"));
     ExpectTrue(member(events->quests(), "onQuestActivated"));
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -416,6 +428,7 @@ void ActivateQuestDoesNotFireOnQuestActivatedWhenItFails()
 /////////////////////////////////////////////////////////////////////////////
 void DeactivateQuestFiresOnQuestActivatedWhenItSucceeds()
 {
+    ToggleCallOutBypass();
     object events = clone_object("/lib/tests/support/events/questEventsSubscriber.c");
     Quests->registerEvent(events);
 
@@ -423,6 +436,7 @@ void DeactivateQuestFiresOnQuestActivatedWhenItSucceeds()
     ExpectFalse(member(events->quests(), "onQuestDeactivated"));
     ExpectTrue(Quests->deactivateQuest("lib/tests/support/quests/fakeQuestItem.c"));
     ExpectTrue(member(events->quests(), "onQuestDeactivated"));
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

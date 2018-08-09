@@ -10,6 +10,7 @@ object Character;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    ToggleCallOutBypass();
     Character = clone_object("/lib/tests/support/services/mockPlayer");
     Character->Name("Bob");
     Character->Con(5);
@@ -21,6 +22,7 @@ void Setup()
 void CleanUp()
 {
     destruct(Character);
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

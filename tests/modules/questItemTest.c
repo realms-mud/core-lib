@@ -60,6 +60,7 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    ToggleCallOutBypass();
     Quester = clone_object("/lib/tests/support/services/combatWithMockServices.c");
     Quester->ToggleMockQuests();
 
@@ -72,6 +73,7 @@ void CleanUp()
     destruct(King);
     destruct(QuestItem);
     destruct(Quester);
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

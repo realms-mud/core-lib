@@ -12,7 +12,7 @@ private nomask void craftingEvent(string event)
     object eventObj = getService("events");
     if (eventObj && objectp(eventObj))
     {
-        eventObj->notify(event, CraftingItem);
+        eventObj->notifySynchronous(event, CraftingItem);
     }
 }
 

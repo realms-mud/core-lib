@@ -60,6 +60,7 @@ void ExecuteRegexpIsNotGreedy()
 /////////////////////////////////////////////////////////////////////////////
 void KillInitiatesCombat()
 {
+    ToggleCallOutBypass();
     ExpectFalse(AttackerEvents->wasAttacker());
     ExpectFalse(TargetEvents->wasAttacked());
 
@@ -69,6 +70,7 @@ void KillInitiatesCombat()
     ExpectTrue(TargetEvents->wasAttacked());
     ExpectTrue(Player->isInCombatWith(Target));
     ExpectTrue(Target->isInCombatWith(Player));
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -145,6 +147,7 @@ void KillDoesNotInitiateCombatIfFoeButNotPlayerOnKillList()
 /////////////////////////////////////////////////////////////////////////////
 void KillInitiatesCombatIfFoeAndPlayerOnKillList()
 {
+    ToggleCallOutBypass();
     destruct(Target);
     Target = clone_object("/lib/tests/support/services/mockPlayer.c");
     Target->Name("fred");
@@ -166,6 +169,7 @@ void KillInitiatesCombatIfFoeAndPlayerOnKillList()
 
     ExpectTrue(Player->isInCombatWith(Target), "player isInCombatWith target");
     ExpectTrue(Target->isInCombatWith(Player), "target isInCombatWith player");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

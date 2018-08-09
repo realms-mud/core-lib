@@ -149,7 +149,7 @@ private nomask void makeSelection(string selection)
         if (finished == 1)
         {
             remove_action(1, User);
-            notify("onSelectorCompleted");
+            notifySynchronous("onSelectorCompleted");
         }
         else if (!suppressMenuDisplay())
         {
@@ -228,7 +228,7 @@ public nomask int applySelection(string arguments)
         {
             ret = Success;
             tell_object(User, sprintf(Cyan, Type + " has been exited.\n"));
-            notify("onSelectorAborted");
+            notifySynchronous("onSelectorAborted");
         }
         else if(member(Data, arguments))
         {
@@ -276,5 +276,5 @@ public nomask varargs void initiateSelector(object user, int alreadyInitialized)
 public void onSelectorAborted(object caller)
 {
     caller->cleanUp();
-    notify("onSelectorAborted");
+    notifySynchronous("onSelectorAborted");
 }

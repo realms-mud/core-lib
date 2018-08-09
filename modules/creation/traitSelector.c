@@ -144,7 +144,7 @@ public nomask void onSelectorCompleted(object caller)
     }
     else
     {
-        notify("onSelectorCompleted");
+        notifySynchronous("onSelectorCompleted");
     }
 }
 

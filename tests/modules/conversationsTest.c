@@ -43,6 +43,7 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    ToggleCallOutBypass();
     object room = load_object("/lib/tests/support/environment/fakeEnvironment.c");
 
     Owner = clone_object("/lib/tests/support/services/mockNPC.c");
@@ -56,6 +57,7 @@ void CleanUp()
 {
     destruct(Owner);
     destruct(Actor);
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

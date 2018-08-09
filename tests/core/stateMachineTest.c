@@ -10,6 +10,7 @@ object StateMachine;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    ToggleCallOutBypass();
     StateMachine = clone_object("/lib/tests/support/core/testStateMachine.c");
 }
 
@@ -17,6 +18,7 @@ void Setup()
 void CleanUp()
 {
     destruct(StateMachine);
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

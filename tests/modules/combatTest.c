@@ -240,6 +240,7 @@ void HitPointsDoesNotDecreaseValue()
 /////////////////////////////////////////////////////////////////////////////
 void HitPointsFiresOnHitPointsChangedEvent()
 {
+    ToggleCallOutBypass();
     ExpectEq(100, Attacker->hitPoints(100));
 
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
@@ -250,6 +251,7 @@ void HitPointsFiresOnHitPointsChangedEvent()
 
     string err = catch (ExpectEq(Attacker->hitPoints(100), "hit points increased"));
     ExpectEq("*event handler: onHitPointsChanged called", err, "onHitPointsChanged event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -428,6 +430,7 @@ void SpellPointsDecreaseIncludesBonusReduceSpellPoints()
 /////////////////////////////////////////////////////////////////////////////
 void SpellPointsFiresOnSpellPointsChangedEvent()
 {
+    ToggleCallOutBypass();
     ExpectEq(100, Attacker->spellPoints(100));
 
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
@@ -440,6 +443,7 @@ void SpellPointsFiresOnSpellPointsChangedEvent()
 
     err = catch (ExpectEq(Attacker->spellPoints(100), "spell points increased"));
     ExpectEq("*event handler: onSpellPointsChanged called", err, "onSpellPointsChanged event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -515,6 +519,7 @@ void StaminaPointsDecreaseIncludesBonusReduceStaminaPoints()
 /////////////////////////////////////////////////////////////////////////////
 void StaminaPointsFiresOnStaminaPointsChangedEvent()
 {
+    ToggleCallOutBypass();
     ExpectEq(100, Attacker->staminaPoints(100));
 
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
@@ -527,6 +532,7 @@ void StaminaPointsFiresOnStaminaPointsChangedEvent()
 
     err = catch (ExpectEq(Attacker->staminaPoints(100), "stamina points increased"));
     ExpectEq("*event handler: onStaminaPointsChanged called", err, "onStaminaPointsChanged event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1463,21 +1469,25 @@ void PlayersCanToggleKillList()
 /////////////////////////////////////////////////////////////////////////////
 void AttackFiresOnAttackEvent()
 {
+    ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
     string err = catch (ExpectTrue(Attacker->attack(Target), "target attacked"));
     ExpectEq("*event handler: onAttack called", err, "onAttack event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AttackFiresOnAttackedEvent()
 {
+    ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
     string err = catch (ExpectTrue(Target->attack(Attacker), "target attacks attacker"));
     ExpectEq("*event handler: onAttacked called", err, "onAttacked event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1535,12 +1545,14 @@ void AttackInvolvingDeathOfPlayerCreatesCorpseButDoesNotDestroyPlayer()
 /////////////////////////////////////////////////////////////////////////////
 void OnHitFiresWhenLegalHitIsDone()
 {
+    ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
     string err = catch (ExpectTrue(Attacker->hit(5, "physical"), "attacker hit is called"));
     ExpectEq("*event handler: onHit called, data: physical 5, caller: lib/tests/support/services/combatWithMockServices.c", 
         err, "onHit event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1555,12 +1567,14 @@ void HitAddsCorrectExperience()
 /////////////////////////////////////////////////////////////////////////////
 void OnDeathFiresWhenKillingBlowLands()
 {
+    ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/onDeathSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
     string err = catch (ExpectTrue(Attacker->hit(500, "physical"), "attacker hit is called"));
     ExpectEq("*event handler: onDeath called: lib/tests/support/services/combatWithMockServices.c",
         err, "onDeath event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1577,6 +1591,7 @@ void SettingWimpyWorksCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
 {
+    ToggleCallOutBypass();
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
 
     Attacker->hitPoints(100);
@@ -1588,11 +1603,13 @@ void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
     
     string err = catch(Attacker->heart_beat());
     ExpectEq(0, err, "onRunAway event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
 {
+    ToggleCallOutBypass();
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
 
     Attacker->hitPoints(50);
@@ -1605,11 +1622,13 @@ void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
     string err = catch (Attacker->heart_beat());
     ExpectEq("*event handler: onRunAway called: lib/tests/support/services/combatWithMockServices.c",
         err, "onRunAway event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AttackerAttacksDuringHeartBeat()
 {
+    ToggleCallOutBypass();
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
 
@@ -1621,11 +1640,13 @@ void AttackerAttacksDuringHeartBeat()
     ExpectEq(0, handler->TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
     Attacker->heart_beat();
     ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, one onAttack event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TargetAttackedDuringHeartBeat()
 {
+    ToggleCallOutBypass();
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
 
@@ -1637,6 +1658,7 @@ void TargetAttackedDuringHeartBeat()
     string err = catch (Attacker->heart_beat());
     ExpectEq("*event handler: onAttacked called: lib/realizations/monster.c",
         err, "onAttacked event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1808,6 +1830,7 @@ void HeartBeatHealsStaminaAtDifferentRatesWhenBonusApplied()
 /////////////////////////////////////////////////////////////////////////////
 void DamageReflectionIsTriggered()
 {
+    ToggleCallOutBypass();
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
     Attacker->registerAttacker(Target);
@@ -1827,11 +1850,13 @@ void DamageReflectionIsTriggered()
     string err = catch (ExpectTrue(Target->hit(25, "physical"), "attack reflected on attacker"));
     ExpectEq("*event handler: onHit called, data: physical 3, caller: lib/tests/support/services/combatWithMockServices.c",
         err, "onHit event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SlowDoesNotAttackEveryRound()
 {
+    ToggleCallOutBypass();
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
 
@@ -1855,11 +1880,13 @@ void SlowDoesNotAttackEveryRound()
     ExpectEq(1, handler->TimesOnAttackReceived(), "after third heart_beat, one onAttack event fired");
     Attacker->heart_beat();
     ExpectEq(2, handler->TimesOnAttackReceived(), "after fourth heart_beat, two onAttack event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HasteAddsAnExtraAttack()
 {
+    ToggleCallOutBypass();
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
 
@@ -1879,6 +1906,7 @@ void HasteAddsAnExtraAttack()
     Attacker->heart_beat();
     ExpectEq(4, handler->TimesOnAttackReceived(), "after second heart_beat, four onAttack event fired");
     Attacker->heart_beat();
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1957,6 +1985,7 @@ void AttackSucceedsWhenTargetEtherealAndHasNonWeaponAttackThatCanDamageEthereal(
 /////////////////////////////////////////////////////////////////////////////
 void TargetAttacksWhenAttackerReturnsToArea()
 {
+    ToggleCallOutBypass();
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
 
     Attacker->hitPoints(50);
@@ -1988,4 +2017,5 @@ void TargetAttacksWhenAttackerReturnsToArea()
 
     ExpectEq(2, handler->TimesOnAttackReceived());
     ExpectEq(2, targetHandler->TimesOnAttackReceived());
+    ToggleCallOutBypass();
 }

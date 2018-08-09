@@ -134,11 +134,13 @@ void TraitNamesReturnsListOfTraits()
 /////////////////////////////////////////////////////////////////////////////
 void AddTraitFiresOnTraitAddedEvent()
 {
+    ToggleCallOutBypass();
     Traits->registerEvent(clone_object("/lib/tests/support/events/traitEventSubscriber.c"));
     string err = catch (Traits->addTrait("lib/tests/support/traits/testTrait.c"));
     string expectedError = "*event handler: onTraitAdded called, data: lib/tests/support/traits/testTrait.c, caller: lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -161,6 +163,7 @@ void RemoveTraitRemovesSpecifiedTrait()
 /////////////////////////////////////////////////////////////////////////////
 void RemoveTraitFiresOnTraitRemovedEvent()
 {
+    ToggleCallOutBypass();
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"));
 
     Traits->registerEvent(clone_object("/lib/tests/support/events/traitEventSubscriber.c"));
@@ -168,6 +171,7 @@ void RemoveTraitFiresOnTraitRemovedEvent()
     string expectedError = "*event handler: onTraitRemoved called, data: lib/tests/support/traits/testTrait.c, caller: lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

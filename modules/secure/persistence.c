@@ -128,12 +128,12 @@ public nomask void restore(string name)
         if (sizeof(playerData) > 1)
         {
             setPlayerInfo(playerData);
-            this_object()->notify("onRestoreSucceeded");
+            this_object()->notifySynchronous("onRestoreSucceeded");
         }
         else
         {
             this_object()->Name(name);
-            this_object()->notify("onRestoreFailed");
+            this_object()->notifySynchronous("onRestoreFailed");
         }
         set_living_name(name);
     }

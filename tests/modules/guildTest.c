@@ -66,11 +66,13 @@ void MemberOfGuildReturnsTrueWhenIfUserJoinedGuild()
 /////////////////////////////////////////////////////////////////////////////
 void JoinGuildFiresOnJoinGuildOnSuccess()
 {
+    ToggleCallOutBypass();
     User->registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
     string err = catch (User->joinGuild("test"));
     string expectedError = "*event handler: onJoinGuild called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -244,6 +246,7 @@ void GuildRankNameIsCorrectlyReturned()
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceLevelFiresOnAdvancedLevelOnSuccess()
 {
+    ToggleCallOutBypass();
     User->joinGuild("test");
     User->addExperience(1000);
 
@@ -252,6 +255,7 @@ void AdvanceLevelFiresOnAdvancedLevelOnSuccess()
     string expectedError = "*event handler: onAdvancedLevel called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -276,12 +280,14 @@ void AdvanceRankAppliesNewRank()
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceRankFiresOnAdvancedRankOnSuccess()
 {
+    ToggleCallOutBypass();
     User->joinGuild("test");
     User->registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
     string err = catch (User->advanceRank("test"));
     string expectedError = "*event handler: onAdvancedRank called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -321,6 +327,7 @@ void CanDemoteRank()
 /////////////////////////////////////////////////////////////////////////////
 void DemoteRankFiresOnDemotedRankOnSuccess()
 {
+    ToggleCallOutBypass();
     User->joinGuild("test");
     ExpectTrue(User->advanceRank("test"), "guild rank advanced");
 
@@ -329,6 +336,7 @@ void DemoteRankFiresOnDemotedRankOnSuccess()
     string expectedError = "*event handler: onDemotedRank called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -355,6 +363,7 @@ void CanLeaveGuildFailsIfLeavingIsProhibited()
 /////////////////////////////////////////////////////////////////////////////
 void LeaveGuildFiresOnLeaveGuildOnSuccess()
 {
+    ToggleCallOutBypass();
     User->joinGuild("test");
 
     User->registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
@@ -362,6 +371,7 @@ void LeaveGuildFiresOnLeaveGuildOnSuccess()
     string expectedError = "*event handler: onLeaveGuild called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

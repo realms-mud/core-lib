@@ -58,7 +58,7 @@ public nomask int registerEvent(object subscriber)
     if(subscriber && objectp(subscriber) && !member(eventList, subscriber))
     {
         string *eventsToAdd = ({ });
-        foreach(string method : functionlist(subscriber, 0x01))
+        foreach(string method in functionlist(subscriber, 0x01))
         {
             if(method && stringp(method) && 
               (member(validEventHandlers, method) > -1))
@@ -159,30 +159,66 @@ public varargs nomask int notify(string event, mixed message)
         m_delete(eventList, 0);
         
         // May want/need to limit calls of this method
-        foreach(object handler : m_indices(eventList))
+        object *filteredEvents = filter(m_indices(eventList),
+            (: (objectp($1) && 
+                (member(eventList[$1], $2) > -1) &&
+                function_exists($2, $1)) :), event);
+
+        foreach(object handler in filteredEvents)
         {
-            if(handler && objectp(handler) && 
-              (member(eventList[handler], event) > -1) &&
-              function_exists(event, handler))
-            {
-                if(message)
-                {
-                    call_other(handler, event, this_object(), message);
-                }
-                else
-                {
-                    call_other(handler, event, this_object());
-                }
-                ret = 1;
-            }
-            else if(handler && objectp(handler) &&
-                function_exists("receiveEvent", handler))
-            {
-                call_other(handler, "receiveEvent", this_object(), 
-                    event, message);
-            }
+            call_out("processEventCallOut", 0, handler, event, message);
+            ret = 1;
+        }
+
+        filteredEvents = filter(m_indices(eventList),
+            (: (objectp($1) && function_exists("receiveEvent", $1)) :));
+
+        foreach(object handler in filteredEvents)
+        {
+            call_out("processEventCallOut", 0, handler, event, message, 1);
+            ret = 1;
         }
     }
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public varargs nomask int notifySynchronous(string event, mixed message)
+{
+    int ret = 0;
+
+    if (event && stringp(event) && (member(validEventHandlers, event) > -1))
+    {
+        // delete all null handlers
+        m_delete(eventList, 0);
+
+        // May want/need to limit calls of this method
+        object *filteredEvents = filter(m_indices(eventList),
+            (: (objectp($1) &&
+            (member(eventList[$1], $2) > -1) &&
+                function_exists($2, $1)) :), event);
+
+        call_direct(filteredEvents, event, this_object(), message);
+
+        filteredEvents = filter(m_indices(eventList),
+            (: (objectp($1) && function_exists("receiveEvent", $1)) :));
+
+        call_direct(filteredEvents, "receiveEvent", this_object(), event, message);
+        ret = 1;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void processEventCallOut(object handler, string event,
+    mixed message, int isGenericHandler)
+{
+    if (isGenericHandler)
+    {
+        call_other(handler, "receiveEvent", this_object(), event, message);
+    }
+    else
+    {
+        call_other(handler, event, this_object(), message);
+    }
+}

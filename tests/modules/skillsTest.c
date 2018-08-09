@@ -10,6 +10,7 @@ object Skills;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    ToggleCallOutBypass();
     Skills = clone_object("/lib/tests/support/services/skillsWithMockServices");
     Skills->Name("Bob");
     Skills->Str(20);
@@ -23,6 +24,7 @@ void Setup()
 void CleanUp()
 {
     destruct(Skills);
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

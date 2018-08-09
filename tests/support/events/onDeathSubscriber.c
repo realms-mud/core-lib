@@ -8,5 +8,3 @@ public void onDeath(object caller)
 {
     raise_error(sprintf("event handler: onDeath called: %s", program_name(caller)));
 }
-
-

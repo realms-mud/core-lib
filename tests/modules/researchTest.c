@@ -57,6 +57,7 @@ void InitiatePointBasedResearchSucceedsWhenAllConditionsMet()
 /////////////////////////////////////////////////////////////////////////////
 void InitiatePointBasedResearchFiresOnResearchCompletedEventOnSucceess()
 {
+    ToggleCallOutBypass();
     Research->addResearchPoints(1);
     Research->advanceSkill("long sword", 10);
 
@@ -65,6 +66,7 @@ void InitiatePointBasedResearchFiresOnResearchCompletedEventOnSucceess()
     string expectedError = "*event handler: onResearchCompleted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -77,11 +79,13 @@ void InitiateGrantBasedResearchSucceedsWhenAllConditionsMet()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchFiresOnResearchCompletedEventOnSucceess()
 {
+    ToggleCallOutBypass();
     Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
     string err = catch (Research->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
     string expectedError = "*event handler: onResearchCompleted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -106,16 +110,19 @@ void InitiateTimedBasedResearchSucceedsWhenAllConditionsMet()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchFiresOnResearchStartedEventOnSucceess()
 {
+    ToggleCallOutBypass();
     Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
     string err = catch (Research->initiateResearch("lib/tests/support/research/testTimedResearchItem.c"));
     string expectedError = "*event handler: onResearchStarted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchFiresOnResearchCompletedEventWhenTimeExceeded()
 {
+    ToggleCallOutBypass();
     Research->initiateResearch("lib/tests/support/research/testTimedResearchItem.c");
     Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
 
@@ -127,6 +134,7 @@ void InitiateGrantBasedResearchFiresOnResearchCompletedEventWhenTimeExceeded()
     string expectedError = "*event handler: onResearchCompleted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -325,6 +333,7 @@ void TargetedResearchWithoutAtRunsOnResearcher()
 /////////////////////////////////////////////////////////////////////////////
 void CustomEventFiredWhenResearchUsed()
 {
+    ToggleCallOutBypass();
     // This is a laziness thing - I don't want to create a granted research 
     ExpectTrue(Research->initiateResearch("lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
     Research->heart_beat();
@@ -342,6 +351,7 @@ void CustomEventFiredWhenResearchUsed()
     ExpectEq(0, subscriber->TimesUsedResearchEventReceived(), "event not fired yet");
     Research->researchCommand("throw turnip");
     ExpectEq(1, subscriber->TimesUsedResearchEventReceived(), "custom event fired");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -353,12 +363,14 @@ void CannotAddNegativeResearchPoints()
 /////////////////////////////////////////////////////////////////////////////
 void AddingResearchPointsFiresOnResearchPointsAdded()
 {
+    ToggleCallOutBypass();
     Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
 
     string err = catch (Research->addResearchPoints(1));
     string expectedError = "*event handler: onResearchPointsAdded called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -557,6 +569,7 @@ void ResearchInProgressTransitionsToCompletedWhenCompleted()
 /////////////////////////////////////////////////////////////////////////////
 void AddResearchChoiceBroadcastsCorrectEventWithData()
 {
+    ToggleCallOutBypass();
     mapping researchChoice = ([
         "type": "research choice",
         "name": "Test name",
@@ -588,11 +601,13 @@ void AddResearchChoiceBroadcastsCorrectEventWithData()
     ]);
 
     ExpectEq(expectedChoices, subscriber->choices());
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddResearchChoiceHandlesResearchPath()
 {
+    ToggleCallOutBypass();
     mapping researchChoice = ([
         "type":"research path",
         "name" : "Test name",
@@ -624,6 +639,7 @@ void AddResearchChoiceHandlesResearchPath()
     ]);
 
     ExpectEq(expectedChoices, subscriber->choices());
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -636,6 +652,7 @@ void SelectResearchChoiceDoesNotAddResearchWhithoutChoiceSetUp()
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchChoiceFiresCorrectEvent()
 {
+    ToggleCallOutBypass();
     mapping researchChoice = ([
         "type":"research choice",
         "name" : "Test name",
@@ -652,6 +669,7 @@ void SelectResearchChoiceFiresCorrectEvent()
     string expectedError = "*event handler: onResearchChoiceChosen called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -678,6 +696,7 @@ void SelectResearchPathSelectsCorrectResearchTree()
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchPathFiresCorrectEvent()
 {
+    ToggleCallOutBypass();
     mapping researchChoice = ([
         "type":"research path",
         "name" : "Test name",
@@ -695,6 +714,7 @@ void SelectResearchPathFiresCorrectEvent()
     string expectedError = "*event handler: onResearchPathChosen called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
