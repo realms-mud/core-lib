@@ -57,7 +57,9 @@ protected nomask void setUpUserForSelection()
         Data = Dictionary->getCraftingList(CraftingType, User);
     }
 
-    NumColumns = (member(Data["1"], "show materials") && Data["1"]["show materials"]) ? 2 : 1;
+    NumColumns = (sizeof(Data) && (member(Data["1"], "show materials") && 
+        Data["1"]["show materials"])) ? 2 : 1;
+
     Data[to_string(sizeof(Data) + 1)] = ([
         "name": sprintf("Exit Craft %s Menu", capitalize(displayType)),
         "type": "exit",

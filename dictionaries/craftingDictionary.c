@@ -88,7 +88,8 @@ public nomask mapping getTopLevelCraftingMenu(object user)
             "description" : "This option lets you refine/repurpose materials, provided that you have\n"
                 "the proper equipment on hand.\n",
             "selector" : "refine materials",
-            "canShow" : 1                 
+            "canShow" : user->canApplyResearchBonus(
+                "lib/instances/research/crafting/refineMaterials.c", "blacksmithing")
         ]),
         "8":([
             "name":"Imbue with Magical Effects",

@@ -38,7 +38,7 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
         "[[0;31;1m4[0m] - [0;31mCraft Weapons                            [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m5[0m] - [0;31mBrew Potions                             [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m6[0m] - [0;31mBrew Beverages and Prepare Food          [0;35m(Missing Prerequisites)[0m\n"
-        "[[0;31;1m7[0m] - [0;32mRefine Materials[0m\n"
+        "[[0;31;1m7[0m] - [0;31mRefine Materials                         [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m8[0m] - [0;31mImbue with Magical Effects               [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m9[0m] - [0;32mExit Crafting Menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 9.\n[0m"
@@ -60,7 +60,7 @@ void TopLevelMenuWithCraftWeaponPrereqMetDisplaysCorrectly()
         "[[0;31;1m4[0m] - [0;32mCraft Weapons[0m\n"
         "[[0;31;1m5[0m] - [0;31mBrew Potions                             [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m6[0m] - [0;31mBrew Beverages and Prepare Food          [0;35m(Missing Prerequisites)[0m\n"
-        "[[0;31;1m7[0m] - [0;32mRefine Materials[0m\n"
+        "[[0;31;1m7[0m] - [0;31mRefine Materials                         [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m8[0m] - [0;31mImbue with Magical Effects               [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m9[0m] - [0;32mExit Crafting Menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 9.\n[0m"
@@ -83,7 +83,7 @@ void SelectUnavailableOptionReturnsToMainMenu()
         "[[0;31;1m4[0m] - [0;32mCraft Weapons[0m\n"
         "[[0;31;1m5[0m] - [0;31mBrew Potions                             [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m6[0m] - [0;31mBrew Beverages and Prepare Food          [0;35m(Missing Prerequisites)[0m\n"
-        "[[0;31;1m7[0m] - [0;32mRefine Materials[0m\n"
+        "[[0;31;1m7[0m] - [0;31mRefine Materials                         [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m8[0m] - [0;31mImbue with Magical Effects               [0;35m(Missing Prerequisites)[0m\n"
         "[[0;31;1m9[0m] - [0;32mExit Crafting Menu[0m\n"
         "[0;32;1mYou must select a number from 1 to 9.\n[0m"
@@ -152,6 +152,16 @@ void TopLevelMenuWithImbuePrereqMetDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectSubStringMatch("32mImbue with Magical Effects",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TopLevelMenuWithRefineMaterialPrereqMetDisplaysCorrectly()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/refineMaterials.c"), "added research");
+    Selector->initiateSelector(Player);
+
+    ExpectSubStringMatch("32mRefine Materials",
         Player->caughtMessage());
 }
 
