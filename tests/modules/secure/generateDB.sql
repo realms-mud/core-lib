@@ -272,7 +272,7 @@ CREATE TABLE `wizardTypes` (
 ##
 insert into wizardTypes (type) values ('apprentice'), ('wizard'),
 ('creator'), ('highwizard'),('senior'),('admin'),('elder'),('sage'),
-('archwizard'),('demigod'),('god'),('owner');
+('archwizard'),('demigod'),('god'),('owner'),('emeritus');
 ##
 CREATE TABLE `wizards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

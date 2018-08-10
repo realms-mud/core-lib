@@ -10,6 +10,7 @@ private nosave mapping validWizardLevels = ([
     "apprentice": "[0;31mApprentice Wizard[0m", 
     "wizard": "[0;31mTraining Wizard[0m",
     "creator": "[0;36mWizard[0m",
+    "emeritus": "[0;36mEmeritus Wizard[0m",
     "high wizard": "[0;36mHigh Wizard[0m",
     "senior": "[0;36;1mSenior Wizard[0m",
     "admin": "[0;33mAdministrative Wizard[0m", 

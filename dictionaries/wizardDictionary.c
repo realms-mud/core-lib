@@ -16,6 +16,10 @@ mapping WizardGroups = ([
         "name": "Wizard",
         "sort order": 30,
     ]),
+    "emeritus":([
+        "name": "Emeritus Wizard",
+        "sort order": 30,
+    ]),
     "high wizard":([
         "name": "High Wizard",
         "sort order": 40,

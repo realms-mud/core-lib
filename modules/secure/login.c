@@ -60,6 +60,7 @@ private nomask object loadNewPlayerObject(string name)
         case "admin":
         case "senior":
         case "highwizard":
+        case "emeritus":
         case "creator":
         case "wizard":
         case "apprentice":

@@ -116,6 +116,7 @@ public nomask string *groups()
         {
             wizardGroups = ({ "highwizard" }) + wizardGroups;
         }
+        case "emeritus":
         case "creator":
         {
             wizardGroups = ({ "creator" }) + wizardGroups;
