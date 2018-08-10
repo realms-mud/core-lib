@@ -4,11 +4,11 @@
 //*****************************************************************************
 
 private int hitPoints;
-private int maxHitPoints;
+protected int maxHitPoints;
 private int spellPoints;
-private int maxSpellPoints;
+protected int maxSpellPoints;
 private int staminaPoints;
-private int maxStaminaPoints;
+protected int maxStaminaPoints;
 private int wimpy;
 private int timeToHealHP;
 private int timeToHealSP;

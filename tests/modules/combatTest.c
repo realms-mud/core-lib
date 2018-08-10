@@ -24,7 +24,7 @@ void SetUpAttacker()
 /////////////////////////////////////////////////////////////////////////////
 void SetUpTarget()
 {
-    Target = clone_object("/lib/realizations/monster");
+    Target = clone_object("/lib/tests/support/services/testMonster.c");
     Target->Name("Nukulevee");
     Target->Race("undead horse");
     Target->effectiveLevel(20);
@@ -1656,7 +1656,7 @@ void TargetAttackedDuringHeartBeat()
     ExpectTrue(Target->registerEvent(handler), "event handler registered for attacker");
 
     string err = catch (Attacker->heart_beat());
-    ExpectEq("*event handler: onAttacked called: lib/realizations/monster.c",
+    ExpectEq("*event handler: onAttacked called: lib/tests/support/services/testMonster.c",
         err, "onAttacked event fired");
     ToggleCallOutBypass();
 }
@@ -2018,4 +2018,37 @@ void TargetAttacksWhenAttackerReturnsToArea()
     ExpectEq(2, handler->TimesOnAttackReceived());
     ExpectEq(2, targetHandler->TimesOnAttackReceived());
     ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetMaxHitPoints()
+{
+    ExpectEq(150, Target->maxHitPoints());
+    Target->testMaxHitPoints(500);
+
+    // This should include 500 for the maxHitPoints value and
+    // 120 for attribute bonuses
+    ExpectEq(620, Target->maxHitPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetMaxSpellPoints()
+{
+    ExpectEq(150, Target->maxSpellPoints());
+    Target->testMaxSpellPoints(500);
+
+    // This should include 500 for the maxSpellPoints value and
+    // 120 for attribute bonuses
+    ExpectEq(620, Target->maxSpellPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetMaxStaminaPoints()
+{
+    ExpectEq(150, Target->maxStaminaPoints());
+    Target->testMaxStaminaPoints(500);
+
+    // This should include 500 for the maxStaminaPoints value and
+    // 120 for attribute bonuses
+    ExpectEq(620, Target->maxStaminaPoints());
 }

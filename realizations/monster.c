@@ -49,3 +49,24 @@ public void reset(int arg)
         "living"::reset(arg);
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setMaxHitPoints(int value)
+{
+    maxHitPoints = value;
+    call_direct(this_object(), "hitPoints", maxHitPoints);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setMaxSpellPoints(int value)
+{
+    maxSpellPoints = value;
+    call_direct(this_object(), "spellPoints", maxSpellPoints);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setMaxStaminaPoints(int value)
+{
+    maxStaminaPoints = value;
+    call_direct(this_object(), "staminaPoints", maxStaminaPoints);
+}

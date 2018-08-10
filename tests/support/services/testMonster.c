@@ -1,39 +1,23 @@
 //*****************************************************************************
-// Class: npc
-// File Name: npc.c
-//
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/realizations/monster.c";
-virtual inherit "/lib/modules/conversations.c";
-virtual inherit "/lib/modules/crafting.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isRealizationOfNpc()
+public nomask void testMaxHitPoints(int value)
 {
-    return 1;
+    "monster"::setMaxHitPoints(value);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void init()
+public nomask void testMaxSpellPoints(int value)
 {
-    remove_action(1);
-    add_action("talk", "repeat");
-    add_action("talk", "talk");
+    "monster"::setMaxSpellPoints(value);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int talk(string who)
+public nomask void testMaxStaminaPoints(int value)
 {
-    int ret = 0;
-    if (!who || id(who))
-    {
-        object conversations = getService("conversations");
-        if (objectp(conversations))
-        {
-            ret = conversations->beginConversation(this_player());
-        }
-    }
-    return ret;
+    "monster"::setMaxStaminaPoints(value);
 }

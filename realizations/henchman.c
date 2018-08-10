@@ -13,9 +13,31 @@ virtual inherit "/lib/modules/research.c";
 virtual inherit "/lib/modules/conversations.c";
 virtual inherit "/lib/modules/crafting.c";
 
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfHenchman()
 {
     return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setMaxHitPoints(int value)
+{
+    maxHitPoints = value;
+    call_direct(this_object(), "hitPoints", maxHitPoints);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setMaxSpellPoints(int value)
+{
+    maxSpellPoints = value;
+    call_direct(this_object(), "spellPoints", maxSpellPoints);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setMaxStaminaPoints(int value)
+{
+    maxStaminaPoints = value;
+    call_direct(this_object(), "staminaPoints", maxStaminaPoints);
 }
 
 //TODO [226]: To, in fact, do.

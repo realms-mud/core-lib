@@ -36,4 +36,3 @@ public nomask object isRealizationOf(string type)
     }
     return ret;
 }
-
