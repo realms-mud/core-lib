@@ -6,6 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/realizations/living.c";
+virtual inherit "/lib/modules/personas.c";
 
 private nosave int EffectiveLevel;
 
