@@ -52,22 +52,25 @@ public void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void setMaxHitPoints(int value)
+public nomask void setMaxHitPoints(int value)
 {
     maxHitPoints = value;
-    call_direct(this_object(), "hitPoints", maxHitPoints);
+    call_direct(this_object(), "hitPoints",
+        call_direct(this_object(), "maxHitPoints"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void setMaxSpellPoints(int value)
+public nomask void setMaxSpellPoints(int value)
 {
     maxSpellPoints = value;
-    call_direct(this_object(), "spellPoints", maxSpellPoints);
+    call_direct(this_object(), "spellPoints",
+        call_direct(this_object(), "maxSpellPoints"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void setMaxStaminaPoints(int value)
+public nomask void setMaxStaminaPoints(int value)
 {
     maxStaminaPoints = value;
-    call_direct(this_object(), "staminaPoints", maxStaminaPoints);
+    call_direct(this_object(), "staminaPoints",
+        call_direct(this_object(), "maxStaminaPoints"));
 }

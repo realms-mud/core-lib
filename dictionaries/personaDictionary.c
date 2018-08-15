@@ -11,6 +11,18 @@ private nomask mapping personaBlueprints()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void SetStats(object character)
+{
+    int level = character->effectiveLevel();
+    character->Str(level);
+    character->Int(level);
+    character->Dex(level);
+    character->Wis(level);
+    character->Con(level);
+    character->Chr(level);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void SetPrimarySkills(object character, string persona)
 {
     string *primarySkills = personaBlueprints()[persona]["primary skills"];
@@ -85,6 +97,20 @@ private nomask void SetRandomTraits(object character, string persona)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void SetCombatAttributes(object character, string persona)
+{
+    int level = character->effectiveLevel();
+    character->setMaxHitPoints(
+        personaBlueprints()[persona]["base hit points"] * level);
+
+    character->setMaxSpellPoints(
+        personaBlueprints()[persona]["base spell points"] * level);
+
+    character->setMaxStaminaPoints(
+        personaBlueprints()[persona]["base stamina points"] * level);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setupPersona(string persona, object character)
 {
     if (objectp(character) &&
@@ -99,10 +125,12 @@ public nomask void setupPersona(string persona, object character)
 
         if (persona && member(personaBlueprints(), persona))
         {
+            SetStats(character);
             SetPrimarySkills(character, persona);
             SetSecondarySkills(character, persona);
             SetTraits(character, persona);
             SetRandomTraits(character, persona);
+            SetCombatAttributes(character, persona);
         }
         else
         {

@@ -14,6 +14,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "axeman":([
         "primary skills": ({ "parry", "dodge", "shield", "axe", 
@@ -24,6 +27,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "maceman":([
         "primary skills": ({ "parry", "dodge", "shield", "mace", 
@@ -34,6 +40,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "hammerman":([
         "primary skills": ({ "parry", "dodge", "shield", "hammer", 
@@ -44,6 +53,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "flail man":([
         "primary skills": ({ "parry", "dodge", "shield", "flail", 
@@ -54,6 +66,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "staff man":([
         "primary skills": ({ "parry", "dodge", "shield", "staff", 
@@ -64,6 +79,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "halberdier":([
         "primary skills": ({ "parry", "dodge", "pole arm", 
@@ -74,6 +92,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "spearman":([
         "primary skills": ({ "parry", "dodge", "pole arm", 
@@ -84,6 +105,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "guisarmier":([
         "primary skills": ({ "parry", "dodge", "pole arm", 
@@ -94,6 +118,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "brawler":([
         "primary skills": ({ "parry", "dodge", "unarmed", 
@@ -104,6 +131,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "archer":([
         "primary skills": ({ "parry", "dodge", "shield", "bow", 
@@ -114,6 +144,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "bowyer and fletcher" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "crossbowman":([
         "primary skills": ({ "parry", "dodge", "shield", "crossbow", 
@@ -124,6 +157,9 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "bowyer and fletcher" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
     "auxiliary":([
         "primary skills": ({ "parry", "dodge", "shield", "sling", 
@@ -134,5 +170,8 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "bowyer and fletcher" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
     ]),
 ]);
