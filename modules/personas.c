@@ -43,3 +43,10 @@ public nomask void SetUpPersonaOfLevel(string persona, int level)
         raise_error("Personas: Cannot set up a persona on a non-living object.\n");
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void setUpRandomEquipment(int chanceForMagicalItems)
+{
+    object *equipment = getDictionary("persona")->getRandomEquipment(this_object(),
+        chanceForMagicalItems);
+}

@@ -2716,6 +2716,17 @@ private nosave mapping materials =
         "scarcity": "very rare",
         "experience modifier": 1.2
     ]),
+    "feather": ([
+        "class": "feather",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+
     "kirnalt": ([
         "class": "metal",
         "crafting skill required": 80,

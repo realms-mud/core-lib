@@ -178,6 +178,7 @@ void UpdateShopInventoryRemovesGenericWeaponsButNotSpecialOnes()
     swordA->set("bonus attack", 5);
 
     object swordB = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    Shop->shopType("weapons");
 
     ExpectTrue(Shop->storeItem(swordA));
     ExpectTrue(Shop->storeItem(swordB));

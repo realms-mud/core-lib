@@ -142,4 +142,9 @@ public nomask void setupPersona(string persona, object character)
         raise_error("personaDictionary: Personas can only be set for NPCs.\n");
     }
 }
- 
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object *getRandomEquipment(object persona, int chanceForMagicalItems)
+{
+
+}

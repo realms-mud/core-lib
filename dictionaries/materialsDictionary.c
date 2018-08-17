@@ -1116,3 +1116,145 @@ public nomask int getRandomCraftsmanshipBonus(object item)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *bonusList(object item)
+{
+    string *bonuses = ({ "bonus strength", "bonus intelligence", "bonus dexterity",
+        "bonus wisdom", "bonus constitution", "bonus charisma", "bonus armor class",
+        "bonus defense class", "bonus attack", "bonus soak", "bonus defense",
+        "bonus spell points", "bonus stamina points", "bonus heal hit points rate",
+        "bonus heal hit points", "bonus heal spell points", "bonus hit points",
+        "bonus heal spell points rate", "bonus heal stamina",
+        "bonus heal stamina rate", "damage reflection",
+        "bonus defense class", "bonus damage", "bonus weapon attack" });
+
+    if (item->query("weapon type"))
+    {
+        bonuses += ({ item->query("weapon type") });
+    }
+    else if (item->query("armor type"))
+    {
+        bonuses += ({ item->query("armor type") });
+    }
+    else
+    {
+        bonuses +=
+            load_object("/lib/dictionaries/skillsDictionary.c")->validBonusSkills();
+    }
+    return bonuses;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int addEnchantment(object item)
+{
+    int ret = 0;
+
+    string *enchantments = ({ "acid", "air", "chaos", "cold", "earth", "electricity",
+        "energy", "fire", "magical", "poison", "water", "undead", "good", "evil" });
+
+    string enchantType = "enchantments";
+    if (item->query("armor type") ||
+        (!item->query("weapon type") && random(2)))
+    {
+        enchantType = "resistances";
+    }
+
+    if (!item->query(enchantType))
+    {
+        string enchantment = enchantments[random(sizeof(enchantments))];
+        item->set(enchantType, ([
+            enchantment:(1 + random(5))
+        ]));
+        item->set("name", sprintf("%s of %s", item->query("name"), capitalize(enchantment)));
+        item->set("short", sprintf("%s of %s", item->query("short"), capitalize(enchantment)));
+        ret = 1;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask object getRandomItemOfType(string type, string subtype)
+{
+    object item = 0;
+    string directory = sprintf("/lib/instances/items/%s%s/", type,
+        (subtype ? "/" + subtype : ""));
+
+    directory = regreplace(directory, " ", "-", 1);
+    directory = regreplace(directory, "'", "", 1);
+
+    string *itemBlueprints = get_dir(directory);
+
+    if (sizeof(itemBlueprints))
+    {
+        string blueprint = sprintf("%s%s", directory,
+            itemBlueprints[random(sizeof(itemBlueprints))]);
+
+        if (file_size(blueprint) == -2)
+        {
+            string *subList = get_dir(blueprint + "/");
+            blueprint += "/" + subList[random(sizeof(subList))];
+        }
+
+        item = clone_object(blueprint);
+    }
+    return item;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void addEnchantments(object item, int numEnchantments)
+{
+    for (int j = 0; j < numEnchantments; j++)
+    {
+        switch (random(3))
+        {
+            case 0:
+            case 1:
+            {
+                if (addEnchantment(item))
+                {
+                    break;
+                }
+            }
+            default:
+            {
+                string *bonuses = bonusList(item);
+
+                item->set(bonuses[random(sizeof(bonuses))],
+                    (1 + random(3)));
+            }
+        }
+        if (!random(4))
+        {
+            item->set("craftsmanship", getRandomCraftsmanshipBonus(item));
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object generateRandomItem(string type, string subtype, 
+    int chanceForMagicalItems)
+{
+    object item = 0;
+
+    object craftingDictionary = load_object("/lib/dictionaries/craftingDictionary.c");
+
+    item = getRandomItemOfType(type, subtype);
+    if (objectp(item))
+    {
+        craftingDictionary->getRandomCraftingMaterial(item);
+
+        string *aliases = ({ lower_case(item->query("name")) });
+        if (item->query("aliases"))
+        {
+            aliases += item->query("aliases");
+        }
+        item->set("aliases", aliases);
+
+        if (random(100) < chanceForMagicalItems)
+        {
+            addEnchantments(item, 1 + random(5));
+        }
+    }
+    return item;
+}

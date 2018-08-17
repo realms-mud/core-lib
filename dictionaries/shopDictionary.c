@@ -274,121 +274,21 @@ private nomask void generateDefaultItems(object shop)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string *bonusList(object item)
-{
-    string *bonuses = ({ "bonus strength", "bonus intelligence", "bonus dexterity",
-        "bonus wisdom", "bonus constitution", "bonus charisma", "bonus armor class",
-        "bonus defense class", "bonus attack", "bonus soak", "bonus defense",
-        "bonus spell points", "bonus stamina points", "bonus heal hit points rate",
-        "bonus heal hit points", "bonus heal spell points", "bonus hit points",
-        "bonus heal spell points rate", "bonus heal stamina",
-        "bonus heal stamina rate", "damage reflection",
-        "bonus defense class", "bonus damage", "bonus weapon attack" });
-
-    if (item->query("weapon type"))
-    {
-        bonuses += ({ item->query("weapon type") });
-    }
-    else if (item->query("armor type"))
-    {
-        bonuses += ({ item->query("armor type") });
-    }
-    else 
-    {
-        bonuses += 
-            load_object("/lib/dictionaries/skillsDictionary.c")->validBonusSkills();
-    }
-    return bonuses;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int addEnchantment(object item)
-{
-    int ret = 0;
-
-    string *enchantments = ({ "acid", "air", "chaos", "cold", "earth", "electricity",
-        "energy", "fire", "magical", "poison", "water", "undead", "good", "evil" });
-
-    string enchantType = "enchantments";
-    if (item->query("armor type") ||
-        (!item->query("weapon type") && random(2)))
-    {
-        enchantType = "resistances";
-    }
-
-    if (!item->query(enchantType))
-    {
-        string enchantment = enchantments[random(sizeof(enchantments))];
-        item->set(enchantType, ([
-            enchantment: (1 + random(5))
-        ]));
-        item->set("name", sprintf("%s of %s", item->query("name"), capitalize(enchantment)));
-        item->set("short", sprintf("%s of %s", item->query("short"), capitalize(enchantment)));
-        ret = 1;
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask void generateRandomItems(object shop)
 {
-    object craftingDictionary = load_object("/lib/dictionaries/craftingDictionary.c");
-
     int numItems = shop->randomItemsToGenerate();
-    string dir = sprintf("/lib/instances/items/%s%s/", 
-        shop->shopType(), ((shop->shopSubType() != "all") ? 
-            "/" + regreplace(shop->shopSubType(), " ", "-", 1) : ""));
 
-    string *itemBlueprints = get_dir(dir);
+    object materials = load_object("/lib/dictionaries/materialsDictionary.c");
 
-    if (sizeof(itemBlueprints))
+    for (int i = 0; i < numItems; i++)
     {
-        object materials = load_object("/lib/dictionaries/materialsDictionary.c");
+        object item = materials->generateRandomItem(shop->shopType(),
+            (shop->shopSubType() != "all") ? shop->shopSubType() : "",
+            100);
 
-        for (int i = 0; i < numItems; i++)
-        {
-            object item = clone_object(sprintf("%s%s", dir,
-                itemBlueprints[random(sizeof(itemBlueprints))]));
-            craftingDictionary->getRandomCraftingMaterial(item);
-
-            int numEnchantments = 1 + random(5);            
-            string *aliases = ({ lower_case(item->query("name")) });
-            if (item->query("aliases"))
-            {
-                aliases += item->query("aliases");
-            }
-            item->set("aliases", aliases);
-
-            for (int j = 0; j < numEnchantments; j++)
-            {
-                switch (random(3))
-                {
-                    case 0:
-                    case 1:
-                    {
-                        if(addEnchantment(item))
-                        {
-                            break;
-                        }   
-                    }
-                    default:
-                    {
-                        string *bonuses = bonusList(item);
-
-                        item->set(bonuses[random(sizeof(bonuses))],
-                            (1 + random(3)));
-                    }
-                }
-                if (!random(4))
-                {
-                    item->set("craftsmanship",
-                        materials->getRandomCraftsmanshipBonus(item));
-                }
-            }
-            item->identify();
-            shop->storeItem(item);
-            destruct(item);
-        }
+        item->identify();
+        shop->storeItem(item);
+        destruct(item);
     }
 }
 

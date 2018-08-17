@@ -2982,7 +2982,7 @@ private nosave mapping weaponBlueprints = ([
         "default attack": 6,
         "default encumberance": 2,
         "default weight": 2,
-        "default material": "flax",
+        "default material": "linen",
         "default value": 25,
         "default description": "This sling is about two feet (60 cm) long. In its center is a "
             "pocket in which its bullets are placed.",
