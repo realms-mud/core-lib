@@ -2,6 +2,7 @@
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "/lib/dictionaries/environment/locations.h"
 
 private string BaseEnvironment = "lib/environment/environment.c";
 private string BaseElement = "lib/environment/environmentalElement.c";
@@ -24,7 +25,27 @@ private mapping numbersAsString = ([ 0:"no", 1:"one", 2:"two", 3:"three",
     15:"fifteen", 16:"sixteen" ]);
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object getLocation(string location)
+public nomask int isValidLocation(mixed location)
+{
+    return mappingp(location) && member(location, "description") &&
+        member(location, "x") && member(location, "y") && 
+        member(location, "z") && member(location, "x-rotation") && 
+        member(location, "y-rotation") && member(location, "z-rotation");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getLocation(string location)
+{
+    mapping ret = 0;
+    if (member(defaultLocations, location))
+    {
+        ret = defaultLocations[location] + ([]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getEnvironment(string location)
 {
     object ret = 0;
 

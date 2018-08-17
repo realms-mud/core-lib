@@ -724,3 +724,47 @@ void InteriorsAffectedByLightSources()
     Dictionary->season("spring");
     ExpectTrue(Environment->isIlluminated());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAddCustomLocations()
+{
+    mapping location = ([
+        "description": "slightly east of north and upwardish",
+        "x": 100,
+        "y": 10,
+        "z": 125,
+        "x-rotation": 270,
+        "y-rotation": 60,
+        "z-rotation": 90
+    ]);
+
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", location);
+    ExpectSubStringMatch("To the slightly east of north and upwardish you see .*",
+        regreplace(Environment->long(), "\n", " ", 1));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddInvalidLocations()
+{
+    mapping location = ([
+        "description":"slightly east of north and upwardish",
+            "x" : 100,
+            "y" : 10,
+            "z" : 125,
+            "x-rotation" : 270,
+            "z-rotation" : 90
+    ]);
+
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string error = catch(Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", location));
+    ExpectSubStringMatch("ERROR in environment.c.*slightly east of north and upwardish", error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddUndefinedDefaultLocations()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string error = catch (Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "turnip"));
+    ExpectSubStringMatch("ERROR in environment.c.*turnip", error);
+}

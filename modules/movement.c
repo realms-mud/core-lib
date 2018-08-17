@@ -49,7 +49,7 @@ public varargs nomask int move(string location, string direction)
     object environmentDictionary = getDictionary("environment");
     if (environmentDictionary)
     {
-        object newLocation = environmentDictionary->getLocation(location);
+        object newLocation = environmentDictionary->getEnvironment(location);
         if (environmentDictionary->canMakeMove(this_object(), environment(),
             newLocation))
         {

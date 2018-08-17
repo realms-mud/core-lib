@@ -141,7 +141,28 @@ private nomask void createStateObjects()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask varargs int addEnvironmentalElement(string element, string type, string location)
+private nomask mapping getLocation(mixed location)
+{
+    mapping elementLocation = 0;
+    if (stringp(location))
+    {
+        elementLocation = environmentDictionary()->getLocation(location);
+    }
+    else if (environmentDictionary()->isValidLocation(location))
+    {
+        elementLocation = location;
+    }
+
+    if(location && !elementLocation)
+    {
+        raise_error(sprintf("ERROR in environment.c: '%O' is not a valid "
+            "location.\n", location));
+    }
+    return elementLocation;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs int addEnvironmentalElement(string element, string type, mixed location)
 {
     int ret = 1;
     if (!environmentDictionary()->isValidEnvironmentItem(element))
@@ -172,16 +193,17 @@ private nomask varargs int addEnvironmentalElement(string element, string type, 
         {
             environmentalElements[type][element] = ({});
         }
+
         environmentalElements[type][element] =
             m_indices(mkmapping(environmentalElements[type][element] +
-                ({ location }) - ({ 0 })));
+                ({ getLocation(location) }) - ({ 0 })));
         setUpAliases(element);
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void addFeature(string feature, string location)
+protected nomask varargs void addFeature(string feature, mixed location)
 {
     if (!addEnvironmentalElement(feature, "feature", location))
     {
@@ -210,7 +232,7 @@ protected nomask varargs void addLegacyItem(string item, string description)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void addItem(string item, string location)
+protected nomask varargs void addItem(string item, mixed location)
 {
     if (!addEnvironmentalElement(item, "item", location))
     {
@@ -295,7 +317,7 @@ protected nomask varargs void addExit(string direction, string path, string stat
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void addBuilding(string feature, string location, string path, string state)
+protected nomask varargs void addBuilding(string feature, mixed location, string path, string state)
 {
     if (addEnvironmentalElement(feature, "building", location) && stringp(location))
     {
@@ -456,8 +478,14 @@ private string getElementDescriptions(string type)
 
             if (sizeof(environmentalElements[type][element]))
             {
+                string *locations = ({});
+                foreach(mapping location in environmentalElements[type][element])
+                {
+                    locations += ({ location["description"] });
+                }
                 directions = " to the " + 
-                    implode(sort_array(environmentalElements[type][element], (: $1 > $2 :)), ", ");
+                    implode(sort_array(locations,
+                        (: $1 > $2 :)), ", ");
                 directions = regreplace(directions, ",([^,]+)$", " and\\1");
             }
 
