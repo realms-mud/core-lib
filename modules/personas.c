@@ -47,6 +47,16 @@ public nomask void SetUpPersonaOfLevel(string persona, int level)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void setUpRandomEquipment(int chanceForMagicalItems)
 {
-    object *equipment = getDictionary("persona")->getRandomEquipment(this_object(),
-        chanceForMagicalItems);
+    object livingObj = getService("living");
+    if (livingObj)
+    {
+        object *equipment = getDictionary("persona")->getRandomEquipment(this_object(),
+            chanceForMagicalItems);
+
+        foreach(object item in equipment)
+        {
+            move_object(item, livingObj);
+            livingObj->equip(item);
+        }
+    }
 }

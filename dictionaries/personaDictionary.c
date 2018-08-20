@@ -57,6 +57,8 @@ private nomask void SetSecondarySkills(object character, string persona)
 private nomask void SetTraits(object character, string persona)
 {
     string *traits = personaBlueprints()[persona]["traits"];
+    character->addTrait(sprintf("lib/modules/traits/personas/%s.c", persona));
+
     if (sizeof(traits))
     {
         object traitsDictionary = load_object("/lib/dictionaries/traitsDictionary.c");
@@ -117,6 +119,11 @@ public nomask void setupPersona(string persona, object character)
         ((member(inherit_list(character), "lib/realizations/monster.c") > -1) ||
         (member(inherit_list(character), "lib/realizations/henchman.c") > -1)))
     {
+        if (sizeof(character->Traits("persona")))
+        {
+            raise_error("personaDictionary: A character may only have "
+                "one persona.\n");
+        }
         if (!character->effectiveLevel())
         {
             raise_error("personaDictionary: The character's level must be set "
@@ -144,7 +151,81 @@ public nomask void setupPersona(string persona, object character)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private mapping getEquipmentList(string personaTrait)
+{
+    mapping equipmentList = 0;
+
+    object personaObj = 
+        load_object("/lib/dictionaries/traitsDictionary.c")->traitObject(personaTrait);
+
+    if(personaObj)
+    {
+        string personaName = personaObj->query("name");
+
+        if (personaName && member(personaBlueprints(), personaName) &&
+            member(personaBlueprints()[personaName], "equipment"))
+        {
+            equipmentList = personaBlueprints()[personaName]["equipment"];
+        }
+    }
+    return equipmentList;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask object *getRandomEquipment(object persona, int chanceForMagicalItems)
 {
+    object *equipment = ({});
+    if (objectp(persona))
+    {
+        string *personas = persona->Traits("persona");
+        if (!sizeof(personas))
+        {
+            raise_error("personaDictionary: A character must have a persona "
+                "before creating equipment.\n");
+        }
 
+        object materialsDictionary =
+            load_object("/lib/dictionaries/materialsDictionary.c");
+        
+        mapping equipmentList = getEquipmentList(personas[0]);
+        if (equipmentList)
+        {
+            foreach(string item in m_indices(equipmentList))
+            {
+                string type;
+                string subtype;
+                string *listOfPotentialItems = 0;
+
+                if (sizeof(regexp(({ item }), "[a-z]+/[a-z]+")))
+                {
+                    string *types = explode(item, "/");
+                    type = types[0];
+                    subtype = types[1];
+                    listOfPotentialItems = equipmentList[item];
+                }
+                else
+                {
+                    type = item;
+                    if (sizeof(regexp(({ equipmentList[item] }), "[a-z]+/[a-z]+")))
+                    {
+                    
+                        string *subtypes = explode(equipmentList[item][
+                            random(sizeof(equipmentList[item]))], "/");
+                        subtype = subtypes[0];
+                        listOfPotentialItems = ({ subtypes[1] });
+                    }
+                    else
+                    {
+                        subtype = equipmentList[item][
+                            random(sizeof(equipmentList[item]))];
+                    }
+                }
+
+                equipment += ({ materialsDictionary->generateRandomItem(
+                    type, subtype, chanceForMagicalItems, listOfPotentialItems) });
+
+            }
+        }
+    }
+    return equipment + ({});
 }

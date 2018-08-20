@@ -14,6 +14,30 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "swords" }),
+            "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
+    ]),
+    "knifeman":([
+        "primary skills": ({ "parry", "dodge", "shield", "short sword", "dagger",
+            "chainmail", "scalemail", "hard leather", "soft leather",
+            "no armor" }),
+        "secondary skills": ({ "anatomy and physiology", "perception",
+            "listen", "spot", "common", "dual wield" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "daggers" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gloves", 
+                "helmet", "ring", "sabaton" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -27,6 +51,12 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "axes" }),
+            "armor": ({ "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -40,6 +70,12 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "maces" }),
+            "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -53,6 +89,12 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "hammers" }),
+            "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -66,6 +108,12 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "flails" }),
+            "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -79,19 +127,29 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "staffs" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helmet", "ring", "sabaton" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
     ]),
     "halberdier":([
         "primary skills": ({ "parry", "dodge", "pole arm", 
-            "plate armor", "splint armor",
-            "chainmail", "scalemail", "hard leather", "soft leather",
-            "no armor" }),
+            "plate armor", "splint armor", "chainmail", "scalemail" }),
         "secondary skills": ({ "anatomy and physiology", "perception",
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "pole-arms/halberd" }),
+            "armor": ({ "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -105,6 +163,12 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "pole-arms/spear" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helmet", "ring" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -118,6 +182,12 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "pole-arms" }),
+            "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -131,6 +201,11 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -144,6 +219,12 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "bowyer and fletcher" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "bows" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gloves", 
+                "helmet", "ring" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -157,6 +238,12 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "bowyer and fletcher" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "crossbows" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gloves", 
+                "helmet", "ring" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50
@@ -170,6 +257,12 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "bowyer and fletcher" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "thrown", "slings" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gloves", 
+                "helmet", "ring" })
+        ]),
         "base hit points": 100,
         "base spell points": 10,
         "base stamina points": 50

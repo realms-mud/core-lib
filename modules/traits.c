@@ -6,8 +6,6 @@ virtual inherit "/lib/core/thing";
 #include "/lib/include/itemFormatters.h"
 #include "/lib/modules/secure/traits.h"
 
-private nosave string typeOfTrait;
-
 /////////////////////////////////////////////////////////////////////////////
 private nomask object traitDictionary()
 {
@@ -24,10 +22,8 @@ public nomask int isTraitOf(string trait)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int hasTraitOfRoot(string root)
 {
-    typeOfTrait = root;
-
     return (sizeof(filter(m_indices(traits),
-        (: traitDictionary()->traitIsOfRoot($1, typeOfTrait) :))));
+        (: traitDictionary()->traitIsOfRoot($1, $2) :), root)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -66,8 +62,14 @@ private nomask int traitAffectedByType(string trait, string rootType)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *Traits()
+public nomask varargs string *Traits(string type)
 {
+    string *traitList = m_indices(traits);
+    if (type)
+    {
+        traitList = filter(traitList,
+            (: traitDictionary()->traitIsOfType($1, $2) :), type);
+    }
     return m_indices(traits);
 }
 
@@ -399,11 +401,10 @@ private nomask string traitListForType(string type)
 {
     string ret = "";
     string traitFmt;
-    typeOfTrait = type;
 
     int columns = 0;
     string *traitList = filter(m_indices(traits),
-        (: traitDictionary()->traitIsOfType($1, typeOfTrait) :));
+        (: traitDictionary()->traitIsOfType($1, $2) :), type);
     if (type == "effect")
     {
         traitList += filter(m_indices(traits),
@@ -446,7 +447,7 @@ public nomask string traitsList(string *types)
     {
         types = ({ "health", "educational", "personality", "genetic",
             "professional", "guild", "role", "effect",
-            "sustained effect" });
+            "sustained effect", "persona" });
     }
 
     types = sort_array(types, (: $1 > $2 :));

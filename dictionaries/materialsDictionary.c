@@ -1174,21 +1174,44 @@ private nomask int addEnchantment(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object getRandomItemOfType(string type, string subtype)
+private nomask varargs string *getListOfBlueprints(string type, string subtype,
+    string *listOfPotentialItems)
+{
+    string *itemBlueprints = ({});
+    if (listOfPotentialItems)
+    {
+        foreach(string file in listOfPotentialItems)
+        {
+            itemBlueprints += ({ sprintf("/lib/instances/items/%s%s/%s.c",
+                type, (subtype && (subtype != "")) ? "/" + subtype : "",
+                file) });
+        }
+    }
+    else
+    {
+        string directory = sprintf("/lib/instances/items/%s%s/", type,
+            ((subtype && (subtype != "")) ? "/" + subtype : ""));
+
+        directory = regreplace(directory, " ", "-", 1);
+        directory = regreplace(directory, "'", "", 1);
+
+        itemBlueprints = get_dir(directory, 0x10);
+    }
+    return itemBlueprints;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs object getRandomItemOfType(string type, string subtype,
+    string *listOfPotentialItems)
 {
     object item = 0;
-    string directory = sprintf("/lib/instances/items/%s%s/", type,
-        (subtype ? "/" + subtype : ""));
 
-    directory = regreplace(directory, " ", "-", 1);
-    directory = regreplace(directory, "'", "", 1);
-
-    string *itemBlueprints = get_dir(directory);
+    string *itemBlueprints = getListOfBlueprints(type, subtype, 
+        listOfPotentialItems);
 
     if (sizeof(itemBlueprints))
     {
-        string blueprint = sprintf("%s%s", directory,
-            itemBlueprints[random(sizeof(itemBlueprints))]);
+        string blueprint = itemBlueprints[random(sizeof(itemBlueprints))];
 
         if (file_size(blueprint) == -2)
         {
@@ -1232,14 +1255,14 @@ private nomask void addEnchantments(object item, int numEnchantments)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object generateRandomItem(string type, string subtype, 
-    int chanceForMagicalItems)
+public nomask varargs object generateRandomItem(string type, string subtype, 
+    int chanceForMagicalItems, string *listOfPotentialItems)
 {
     object item = 0;
 
     object craftingDictionary = load_object("/lib/dictionaries/craftingDictionary.c");
 
-    item = getRandomItemOfType(type, subtype);
+    item = getRandomItemOfType(type, subtype, listOfPotentialItems);
     if (objectp(item))
     {
         craftingDictionary->getRandomCraftingMaterial(item);

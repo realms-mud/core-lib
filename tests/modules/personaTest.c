@@ -26,8 +26,9 @@ void SetUpPersonaOfLevelWorksForMonsters()
     ExpectEq(0, Persona->effectiveLevel());
     ExpectEq(0, Persona->Str());
     ExpectEq(0, Persona->getSkill("long sword"));
-
+    ExpectFalse(Persona->isTraitOf("lib/modules/traits/personas/swordsman.c"));
     Persona->SetUpPersonaOfLevel("swordsman", 10);
+    ExpectTrue(Persona->isTraitOf("lib/modules/traits/personas/swordsman.c"));
     ExpectEq(1060, Persona->maxHitPoints());
     ExpectEq(160, Persona->maxSpellPoints());
     ExpectEq(560, Persona->staminaPoints());
@@ -59,6 +60,21 @@ void SetUpPersonaOfLevelWorksForMonsters()
     ExpectEq(5, Persona->getSkill("spot"));
     ExpectEq(5, Persona->getSkill("common"));
     ExpectEq(5, Persona->getSkill("dual wield"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetUpPersonaOfLevelCanOnlyBeCalledOnce()
+{
+    Persona->SetUpPersonaOfLevel("swordsman", 1);
+    string error = catch (load_object("/lib/dictionaries/personaDictionary.c")->setupPersona("axeman", Persona));
+    ExpectSubStringMatch("personaDictionary: A character may only have one persona", error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSetInvalidPersona()
+{
+    string error = catch (Persona->SetUpPersonaOfLevel("blargman", 10));
+    ExpectSubStringMatch("personaDictionary: An invalid persona was selected", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -147,4 +163,43 @@ void SetUpPersonaOfLevelFailsOnNonMonsterOrHenchman()
 
     string error = catch(load_object("/lib/dictionaries/personaDictionary.c")->setupPersona("swordsman", Persona));
     ExpectSubStringMatch("personaDictionary: Personas can only be set for NPCs", error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetUpRandomEquipmentFailsWhenPersonaNotSet()
+{
+    string error = catch (Persona->setUpRandomEquipment());
+    ExpectSubStringMatch("personaDictionary: A character must have a persona before creating equipment.", error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetUpRandomEquipmentSetsUpEquipmentForPersona()
+{
+    Persona->SetUpPersonaOfLevel("swordsman", 10);
+    Persona->setUpRandomEquipment();
+
+    object *equipment = all_inventory(Persona);
+    ExpectEq(3, sizeof(equipment));
+    ExpectTrue(Persona->isEquipped(equipment[0]));
+    ExpectTrue(Persona->isEquipped(equipment[1]));
+    ExpectTrue(Persona->isEquipped(equipment[2]));
+    ExpectFalse(equipment[0]->query("enchanted"));
+    ExpectFalse(equipment[1]->query("enchanted"));
+    ExpectFalse(equipment[2]->query("enchanted"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetUpRandomEquipmentWithEnchantmentSetsUpEquipmentForPersona()
+{
+    Persona->SetUpPersonaOfLevel("swordsman", 10);
+    Persona->setUpRandomEquipment(100);
+
+    object *equipment = all_inventory(Persona);
+    ExpectEq(3, sizeof(equipment));
+    ExpectTrue(Persona->isEquipped(equipment[0]));
+    ExpectTrue(Persona->isEquipped(equipment[1]));
+    ExpectTrue(Persona->isEquipped(equipment[2]));
+    ExpectTrue(equipment[0]->query("enchanted"));
+    ExpectTrue(equipment[1]->query("enchanted"));
+    ExpectTrue(equipment[2]->query("enchanted"));
 }
