@@ -101,6 +101,23 @@ private nomask void SetRandomTraits(object character, string persona)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void SetAttacks(object character, string persona)
+{
+    if (member(personaBlueprints()[persona], "attacks"))
+    {
+        string *attacks = m_indices(personaBlueprints()[persona]["attacks"]);
+        int level = character->effectiveLevel();
+
+        foreach(string attack in attacks)
+        {
+            character->addAttack(attack,
+                personaBlueprints()[persona]["attacks"][attack] + level / 2,
+                20 + (level * 2));
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void SetCombatAttributes(object character, string persona)
 {
     int level = character->effectiveLevel();
@@ -112,6 +129,15 @@ private nomask void SetCombatAttributes(object character, string persona)
 
     character->setMaxStaminaPoints(
         personaBlueprints()[persona]["base stamina points"] * level);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int minimumLevelMet(object character, string persona)
+{
+    return (member(personaBlueprints(), persona) &&
+        (!member(personaBlueprints()[persona], "minimum level") ||
+        (personaBlueprints()[persona]["minimum level"] <=
+            character->effectiveLevel())));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -129,21 +155,29 @@ public nomask void setupPersona(string persona, object character)
         if (!character->effectiveLevel())
         {
             raise_error("personaDictionary: The character's level must be set "
-                "before a persona is selected.");
+                "before a persona is selected.\n");
         }
-
         if (persona && member(personaBlueprints(), persona))
         {
-            SetStats(character);
-            SetPrimarySkills(character, persona);
-            SetSecondarySkills(character, persona);
-            SetTraits(character, persona);
-            SetRandomTraits(character, persona);
-            SetCombatAttributes(character, persona);
+            if (minimumLevelMet(character, persona))
+            {
+                SetStats(character);
+                SetPrimarySkills(character, persona);
+                SetSecondarySkills(character, persona);
+                SetAttacks(character, persona);
+                SetTraits(character, persona);
+                SetRandomTraits(character, persona);
+                SetCombatAttributes(character, persona);
+            }
+            else
+            {
+                raise_error("personaDictionary: The character's level is lower "
+                    "than that required for this persona.\n");
+            }
         }
         else
         {
-            raise_error("personaDictionary: An invalid persona was selected.");
+            raise_error("personaDictionary: An invalid persona was selected.\n");
         }
     }
     else

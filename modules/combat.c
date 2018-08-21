@@ -876,7 +876,8 @@ public nomask mapping *getAttacks()
         object offhand = inventory->equipmentInSlot("wielded offhand");
 
         // Don't add attacks for defense-only shields.
-        if (offhand && offhand->query("weapon class"))
+        if (offhand && offhand->query("weapon class") &&
+            (offhand != inventory->equipmentInSlot("wielded primary")))
         {
             attacksToReturn += ({ (["attack type":"wielded offhand"]) });
         }

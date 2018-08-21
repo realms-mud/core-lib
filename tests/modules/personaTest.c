@@ -203,3 +203,35 @@ void SetUpRandomEquipmentWithEnchantmentSetsUpEquipmentForPersona()
     ExpectTrue(equipment[1]->query("enchanted"));
     ExpectTrue(equipment[2]->query("enchanted"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void MinimumLevelNotMetReturnsError()
+{
+    string error = catch (Persona->SetUpPersonaOfLevel("chimera", 10));
+    ExpectSubStringMatch("personaDictionary: The character's level is lower than that required for this persona", error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CreaturesGetAllAttacksSet()
+{
+    Persona->SetUpPersonaOfLevel("gorgon", 30);
+
+    ExpectEq(({ 
+        ([ "attack type": "claw", "damage": 25, "to hit": 80 ]), 
+        ([ "attack type": "fangs", "damage": 30, "to hit": 80 ]), 
+        ([ "attack type": "fire", "damage": 35, "to hit": 80 ]), 
+        }), Persona->getAttacks());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CreaturesWithWeaponsGetAllAttacksSet()
+{
+    Persona->SetUpPersonaOfLevel("skeleton", 10);
+    Persona->setUpRandomEquipment();
+
+    ExpectEq(3, sizeof(all_inventory(Persona)));
+    ExpectEq(({
+        (["attack type":"undead", "damage" : 10, "to hit" : 40]),
+        (["attack type":"wielded primary"]),
+        }), Persona->getAttacks());
+}
