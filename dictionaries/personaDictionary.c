@@ -2,12 +2,14 @@
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "personas/creatures.h"
 #include "personas/fighters.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping personaBlueprints()
 {
-    return fighterBlueprints + ([]);
+    return creatureBlueprints + 
+        fighterBlueprints + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
