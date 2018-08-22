@@ -10,13 +10,12 @@ public void reset(int arg)
     if (!arg)
     {
         addSpecification("type", "persona");
-        addSpecification("name", "skeleton");
-        addSpecification("description", "You are a skeleton.");
-        addSpecification("root", "undead persona");
-        addSpecification("bonus resist undead", 100);
-        addSpecification("bonus resist evil", 100);
-        addSpecification("bonus resist slash", 50);
-        addSpecification("bonus resist thrust", 75);
+        addSpecification("name", "air elemental");
+        addSpecification("description", "You are an air elemental.");
+        addSpecification("root", "creature persona");
+        addSpecification("bonus resist air", 100);
+        addSpecification("bonus resist electricity", 100);
+        addSpecification("bonus resist physical", 20);
         "baseTrait"::reset(arg);
     }
 }

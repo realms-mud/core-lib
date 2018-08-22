@@ -494,6 +494,7 @@ private nosave mapping creatureBlueprints = ([
             "undead": 25,
             "undead": 25,
             "cold": 35,
+            "evil": 15
         ]),
         "base hit points": 150,
         "base spell points" : 250,
@@ -830,6 +831,25 @@ private nosave mapping creatureBlueprints = ([
             "fire": 10,
         ]),
         "base hit points": 60,
+        "base spell points" : 0,
+        "base stamina points" : 150
+    ]),
+    "nukuleve":([
+        "category": "creatures",
+        "primary skills":({ "parry", "dodge", "no armor", "pole arm" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "minimum level": 10,
+        "attacks": ([
+            "hoof": 10,
+            "undead": 10,
+            "evil": 10,
+        ]),
+        "equipment": ([ 
+            "weapons":({ "pole-arms/spear" })
+        ]),
+        "base hit points": 100,
         "base spell points" : 0,
         "base stamina points" : 150
     ]),

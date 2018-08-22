@@ -10,13 +10,10 @@ public void reset(int arg)
     if (!arg)
     {
         addSpecification("type", "persona");
-        addSpecification("name", "skeleton");
-        addSpecification("description", "You are a skeleton.");
-        addSpecification("root", "undead persona");
-        addSpecification("bonus resist undead", 100);
-        addSpecification("bonus resist evil", 100);
-        addSpecification("bonus resist slash", 50);
-        addSpecification("bonus resist thrust", 75);
+        addSpecification("name", "tarrasque");
+        addSpecification("description", "You are a tarrasque.");
+        addSpecification("root", "creature persona");
+        addSpecification("bonus soak", 5);
         "baseTrait"::reset(arg);
     }
 }

@@ -2,18 +2,18 @@
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/traits/baseTrait.c";
+virtual inherit "/lib/items/weapon.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void reset(int arg) 
 {
-    if (!arg)
+    if (!arg) 
     {
-        addSpecification("type", "persona");
-        addSpecification("name", "chimera");
-        addSpecification("description", "You are a chimera.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus resist physical", 15);
-        "baseTrait"::reset(arg);
+        set("name", "Athame");
+        set("short", "Athame");
+        set("long", "It has a short blade that is only as long as the "
+            "hilt. Its blade is about six inches long (.2 meters).");
+        set("aliases", ({ "dagger" }));
+        set("blueprint", "athame");
     }
 }
