@@ -16,6 +16,7 @@ public void reset(int arg)
         addSpecification("bonus long sword", 1);
         addSpecification("bonus fire attack", 15);
         addSpecification("bonus weapon attack", 1);
+        addSpecification("bonus resist fire", 10);
         addSpecification("root", "jock");
         addSpecification("opposing root", "nerd");
         addSpecification("opinion", 5);
@@ -30,4 +31,3 @@ public int addSpecification(string type, mixed value)
 {
     return baseTrait::addSpecification(type, value);
 }
-

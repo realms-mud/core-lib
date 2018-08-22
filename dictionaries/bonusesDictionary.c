@@ -66,11 +66,12 @@ private nomask string *bonusList()
            attacksDictionary))
         {
             string *attackList = attacksDictionary->validAttackTypes();
-            foreach(string attack : attackList)
+            foreach(string attack in attackList)
             {
                 if(attack && stringp(attack))
                 {
-                    bonuses += ({ sprintf("%s attack", attack) });
+                    bonuses += ({ sprintf("%s attack", attack),
+                        sprintf("resist %s", attack) });
                 }
             }
         }

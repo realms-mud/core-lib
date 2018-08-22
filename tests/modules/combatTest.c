@@ -2052,3 +2052,37 @@ void CanSetMaxStaminaPoints()
     // 120 for attribute bonuses
     ExpectEq(620, Target->maxStaminaPoints());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DamageResistanceReducesDamageTaken()
+{
+    Target->setMaxHitPoints(880);
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectEq(1000, Target->hitPoints());
+    ExpectEq(496, Target->hit(500, "fire"));
+
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectEq(1000, Target->hitPoints());
+    Target->addTrait("lib/tests/support/traits/testTrait.c");
+
+    ExpectEq(445, Target->hit(500, "fire"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DamageResistanceWithTraitAndEquipmentReducesDamageTaken()
+{
+    Target->setMaxHitPoints(880);
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectEq(1000, Target->hitPoints());
+    ExpectEq(496, Target->hit(500, "fire"));
+
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectEq(1000, Target->hitPoints());
+    Target->addTrait("lib/tests/support/traits/testTrait.c");
+    object weapon = CreateWeapon("sword");
+    weapon->set("resistances", ([ "fire": 5 ]));
+    move_object(weapon, Target);
+    weapon->equip("sword");
+
+    ExpectEq(440, Target->hit(500, "fire"));
+}

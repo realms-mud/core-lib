@@ -76,7 +76,15 @@ static nomask string *validCombatModifiers()
         "bonus heal hit points", "bonus heal spell points", "bonus hit points",
         "bonus heal spell points rate", "bonus heal stamina",
         "bonus heal stamina rate", "damage reflection",
-        "bonus defense class", "bonus damage", "bonus weapon attack" });
+        "bonus defense class", "bonus damage", "bonus weapon attack",
+        "bonus resist bludgeon", "bonus resist fire", "bonus resist evil", 
+        "bonus resist neutral", "bonus resist physical", "bonus resist slash", 
+        "bonus resist air", "bonus resist acid", "bonus resist disease", 
+        "bonus resist good", "bonus resist magical", "bonus resist energy", 
+        "bonus resist electricity", "bonus resist thrust", "bonus resist sonic", 
+        "bonus resist chaos", "bonus resist earth", "bonus resist paralysis", 
+        "bonus resist psionic", "bonus resist poison", "bonus resist undead", 
+        "bonus resist water", "bonus resist cold" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1281,6 +1289,13 @@ private nomask int canBeHitIfEthereal(string damageType)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int calculateDamageResistance(int damage, string damageType)
+{
+    return to_int(damage *
+        calculateServiceBonuses(sprintf("resist %s", damageType)) / 100.0);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs int hit(int damage, string damageType, object foe)
 {
     int ret = 0;
@@ -1299,7 +1314,10 @@ public nomask varargs int hit(int damage, string damageType, object foe)
         registerAttacker(foe);
         // Make sure there's a heartbeat so that this can attack back
         set_heart_beat(1);
-        ret = damage - calculateSoakDamage(damageType);
+
+        int resistance = calculateDamageResistance(damage, damageType);
+        ret = damage - calculateSoakDamage(damageType) - resistance;
+
         if(ret < 0)
         {
             ret = 0;

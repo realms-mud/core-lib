@@ -460,6 +460,7 @@ void TraitDetailsDisplayTraitInformation()
         "[0;36mCost[0m: [0;34;1m+8[0m\n"
         "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
         "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
+        "[0;34;1m(+10)[0m [0;33mBonus Resist fire[0m\n"
         "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
         "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n";
     object trait = load_object("/lib/tests/support/traits/testTrait.c");
@@ -483,6 +484,7 @@ void TraitDetailsDisplayTraitPenalties()
         "[0;36mCost[0m: [0;34;1m+8[0m\n"
         "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
         "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
+        "[0;34;1m(+10)[0m [0;33mBonus Resist fire[0m\n"
         "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
         "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n"
         "[0;31m(-2)[0m [0;33mPenalty to Wisdom[0m\n";
@@ -517,6 +519,7 @@ void TraitDetailsDisplayTraitResearch()
         "[0;36mCost[0m: [0;34;1m+8[0m\n"
         "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
         "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
+        "[0;34;1m(+10)[0m [0;33mBonus Resist fire[0m\n"
         "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
         "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n"
         "[0;34;1mThis trait makes the tree of researchiness research tree available.[0m\n";
@@ -560,6 +563,7 @@ void TraitDetailsDisplayTraitLimiters()
         "[0;36mCost[0m: [0;34;1m+8[0m\n"
         "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
         "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
+        "[0;34;1m(+10)[0m [0;33mBonus Resist fire[0m\n"
         "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
         "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n"
         "[0;36mThis is only applied when opponent race is elf.[0m\n";

@@ -199,9 +199,141 @@ void WeaponAttackIsAValidBonus()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void DefenseIsAValidBonus()
+void ResistAcidIsAValidBonus()
 {
-    ExpectTrue(Dictionary->isValidBonus("defense"), "defense is a valid bonus type");
+    ExpectTrue(Dictionary->isValidBonus("resist acid"), "resist acid is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistAirIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist air"), "resist air is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistBludgeonIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist bludgeon"), "resist bludgeon is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistFireIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist fire"), "resist fire is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistEvilIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist evil"), "resist evil is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistNeutralIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist neutral"), "resist neutral is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistPhysicalIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist physical"), "resist physical is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistSlashIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist slash"), "resist slash is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistDiseaseIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist disease"), "resist disease is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistGoodIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist good"), "resist good is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistMagicalIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist magical"), "resist magical is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistEnergyIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist energy"), "resist energy is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistElectricityIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist electricity"), "resist electricity is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistThrustIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist thrust"), "resist thrust is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistSonicIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist sonic"), "resist sonic is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistChaosIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist chaos"), "resist chaos is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistEarthIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist earth"), "resist earth is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistParalysisIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist paralysis"), "resist paralysis is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistPsionicIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist psionic"), "resist psionic is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistPoisonIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist poison"), "resist poison is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistUndeadIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist undead"), "resist undead is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistWaterIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist water"), "resist water is a valid bonus type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResistColdIsAValidBonus()
+{
+    ExpectTrue(Dictionary->isValidBonus("resist cold"), "resist cold is a valid bonus type");
 }
 
 /////////////////////////////////////////////////////////////////////////////
