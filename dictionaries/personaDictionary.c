@@ -59,7 +59,8 @@ private nomask void SetSecondarySkills(object character, string persona)
 private nomask void SetTraits(object character, string persona)
 {
     string *traits = personaBlueprints()[persona]["traits"];
-    character->addTrait(sprintf("lib/modules/traits/personas/%s.c", persona));
+    character->addTrait(sprintf("lib/modules/traits/personas/%s/%s.c", 
+        personaBlueprints()[persona]["category"], persona));
 
     if (sizeof(traits))
     {

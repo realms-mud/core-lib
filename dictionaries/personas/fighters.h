@@ -5,6 +5,7 @@
 
 private nosave mapping fighterBlueprints = ([
     "swordsman":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger",
             "two-handed sword", "plate armor", "splint armor",
@@ -25,6 +26,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "knifeman":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "short sword", "dagger",
             "chainmail", "scalemail", "hard leather", "soft leather",
             "no armor" }),
@@ -43,6 +45,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "axeman":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "axe", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -62,6 +65,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "maceman":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "mace", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -81,6 +85,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "hammerman":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "hammer", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -100,6 +105,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "flail man":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "flail", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -119,6 +125,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "staff man":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "staff", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -138,6 +145,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "halberdier":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "pole arm", 
             "plate armor", "splint armor", "chainmail", "scalemail" }),
         "secondary skills": ({ "anatomy and physiology", "perception",
@@ -155,6 +163,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "spearman":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "pole arm", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -174,6 +183,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "guisarmier":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "pole arm", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -193,6 +203,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "brawler":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "unarmed", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -211,6 +222,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "archer":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "bow", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -230,6 +242,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "crossbowman":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "crossbow", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -249,6 +262,7 @@ private nosave mapping fighterBlueprints = ([
         "base stamina points": 50
     ]),
     "auxiliary":([
+        "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "sling", 
             "thrown", "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",

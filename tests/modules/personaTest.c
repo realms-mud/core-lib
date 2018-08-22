@@ -26,9 +26,9 @@ void SetUpPersonaOfLevelWorksForMonsters()
     ExpectEq(0, Persona->effectiveLevel());
     ExpectEq(0, Persona->Str());
     ExpectEq(0, Persona->getSkill("long sword"));
-    ExpectFalse(Persona->isTraitOf("lib/modules/traits/personas/swordsman.c"));
+    ExpectFalse(Persona->isTraitOf("lib/modules/traits/personas/fighters/swordsman.c"));
     Persona->SetUpPersonaOfLevel("swordsman", 10);
-    ExpectTrue(Persona->isTraitOf("lib/modules/traits/personas/swordsman.c"));
+    ExpectTrue(Persona->isTraitOf("lib/modules/traits/personas/fighters/swordsman.c"));
     ExpectEq(1060, Persona->maxHitPoints());
     ExpectEq(160, Persona->maxSpellPoints());
     ExpectEq(560, Persona->staminaPoints());
