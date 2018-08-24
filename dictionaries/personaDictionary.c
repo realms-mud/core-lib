@@ -130,6 +130,10 @@ private nomask void SetCombatAttributes(object character, string persona)
 
     character->setMaxStaminaPoints(
         personaBlueprints()[persona]["base stamina points"] * level);
+
+    character->hitPoints(character->maxHitPoints());
+    character->spellPoints(character->maxSpellPoints());
+    character->staminaPoints(character->maxStaminaPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////

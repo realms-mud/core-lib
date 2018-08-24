@@ -12,6 +12,7 @@ void Setup()
     Persona = clone_object("/lib/realizations/monster");
     Persona->Name("Bob");
     Persona->Gender(1);
+    move_object(Persona, this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -234,4 +235,42 @@ void CreaturesWithWeaponsGetAllAttacksSet()
         (["attack type":"undead", "damage" : 10, "to hit" : 40]),
         (["attack type":"wielded primary"]),
         }), Persona->getAttacks());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PersonaRaceWithSpecialAttackHasAttackApplied()
+{
+    Persona->Race("fuin-nedesar");
+    Persona->SetUpPersonaOfLevel("swordsman", 10);
+    Persona->setUpRandomEquipment();
+
+    ExpectEq(3, sizeof(all_inventory(Persona)));
+    ExpectEq(({
+        (["attack type":"electricity", "damage" : 15, "to hit" : 35]),
+        (["attack type":"wielded primary"]),
+        }), Persona->getAttacks());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PersonaRaceModifiesStatistics()
+{
+    Persona->Race("troll");
+    Persona->SetUpPersonaOfLevel("swordsman", 10);
+
+    ExpectEq(1184, Persona->maxHitPoints());
+    ExpectEq(1184, Persona->hitPoints());
+    ExpectEq(0, Persona->maxSpellPoints());
+    ExpectEq(621, Persona->maxStaminaPoints());
+    ExpectEq(10, Persona->effectiveLevel());
+    ExpectEq(18, Persona->Str());
+    ExpectEq(6, Persona->Int());
+    ExpectEq(6, Persona->Dex());
+    ExpectEq(6, Persona->Wis());
+    ExpectEq(14, Persona->Con());
+    ExpectEq(6, Persona->Chr());
+    ExpectEq(4, Persona->racesBonusTo("BonusHealHitPoints"));
+    ExpectEq(8, Persona->racesBonusTo("BonusHealHitPointsRate"));
+    ExpectEq(-8, Persona->racesBonusTo("BonusHealSpellPointsRate"));
+    ExpectEq(4, Persona->racesBonusTo("DefenseBonus"));
+    ExpectEq(-50, Persona->racesBonusTo("resist fire"));
 }

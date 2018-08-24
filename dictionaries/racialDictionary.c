@@ -10,11 +10,6 @@
 #include "/lib/dictionaries/races/hair.h"
 #include "/lib/dictionaries/races/races.h"
 
-private string *creatureRaces = ({ "orc", "troll", "gnoll", "undead", "dragon",
-    "fuin-nedesar", "giant", "goblin", "ogre", "centaur", "bugbear", "animal",
-    "changeling", "hobgoblin", "kobold", "minotaur", "satyr"
-});
-
 private string SubraceRoot = "/lib/modules/traits/racial/";
 private string TraitRoot = "/lib/modules/traits/%s/";
 
@@ -28,7 +23,8 @@ public nomask int isValidRace(string race)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isCreatureRace(string race)
 {
-    return (creatureRaces && (member(creatureRaces, race) > -1));
+    return (isValidRace(race) && (member(filter(m_indices(races),
+        (: races[$1]["playable"] == 0 :)), race) > -1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -55,6 +51,11 @@ private nomask int lookUpSkillBonus(string race, string skill)
        intp(races[race]["skills"][skill]))
     {
         ret = races[race]["skills"][skill];
+    }
+    else if (isValidRace(race) && member(races[race], skill) &&
+        intp(races[race][skill]))
+    {
+        ret = races[race][skill];
     }
     return ret;    
 }
@@ -206,7 +207,18 @@ public nomask int CharismaBonus(string race)
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping *extraAttacks(string race)
 {
-    return ({ });
+    mapping *ret = ({});
+    if (member(races, race) && member(races[race], "attacks"))
+    {
+        foreach(string attack in m_indices(races[race]["attacks"]))
+        {
+            ret += ({ ([
+                "attack type": attack,
+                "damage": races[race]["attacks"][attack], 
+                "to hit": 35 ]) });
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -293,7 +305,7 @@ private nomask string otherBonusesDescription(string race)
 {
     string ret = "";
     string *bonuses = m_indices(races[race]) -
-        ({ "strength", "intelligence", "wisdom", "dexterity",
+        ({ "strength", "intelligence", "wisdom", "dexterity", "playable",
         "constitution", "charisma", "description", "starting skill points",
         "background trait value", "skills", "research trees", "subraces" });
 
@@ -335,7 +347,9 @@ public nomask mapping characterCreationRaces()
 {
     mapping selection = ([]);
 
-    string *raceList = sort_array(m_indices(races), (: $1 > $2 :));
+    string *raceList = sort_array(filter(m_indices(races),
+        (: races[$1]["playable"] == 1 :)), (: $1 > $2 :));
+
     int i = 1;
     foreach(string race in raceList)
     {

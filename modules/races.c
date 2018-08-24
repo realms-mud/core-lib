@@ -29,7 +29,8 @@ public nomask int isValidRace(string race)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string Race(string newRace)
 {
-    if(newRace && !getService("player") || (getService("player") && isValidRace(newRace)))
+    if(newRace && !getService("player") || (getService("player") && 
+        isValidRace(newRace) && !racialDictionary()->isCreatureRace(newRace)))
     {
         race = newRace;
     }
@@ -80,4 +81,3 @@ public nomask int racesBonusTo(string bonus)
     }
     return ret;
 }
-

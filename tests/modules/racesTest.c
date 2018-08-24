@@ -94,6 +94,25 @@ void CanSetRaceToAValidRace()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanNotSetRaceToAnUnplayableRace()
+{
+    ExpectFalse(Races->Race("minotaur"), "race is not set to minotaur");
+    ExpectEq(0, Races->Race(), "race returns 0");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MonstersCanSetRaceToAnUnplayableRace()
+{
+    object monster = clone_object("/lib/realizations/monster.c");
+
+    ExpectTrue(monster->Race("fuin-nedesar"), "race is set to fuin-nedesar");
+    ExpectEq("fuin-nedesar", monster->Race());
+
+    ExpectEq(2, sizeof(monster->getAttacks()));
+    destruct(monster);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanNotSetRaceToAnInvalidRace()
 {
     ExpectFalse(Races->Race("weasel"), "race is not set to weasel");
@@ -133,4 +152,3 @@ void RacesBonusToReturnsCorrectValue()
     ExpectEq(3, Races->racesBonusTo("weapon smithing"));
     ExpectEq(50, Races->racesBonusTo("MaxSpellPoints"));
 }
-
