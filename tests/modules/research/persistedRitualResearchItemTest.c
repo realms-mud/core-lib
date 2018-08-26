@@ -277,7 +277,7 @@ void ExecuteOnSelfAppliesEffectOnSelf()
 
     ExpectEq(15, User->getSkill("long sword"), "long sword skill after research used");
 
-    mapping *expectedAttacks = ({ (["attack type": "magical", "damage": 10, "to hit": 35]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) });
+    mapping *expectedAttacks = ({ (["attack type": "magical", "damage": 10, "to hit": 60]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) });
     ExpectEq(expectedAttacks, User->getAttacks(), "Three weapon attacks and a magical attack are returned");
 }
 
@@ -326,7 +326,7 @@ void ExecuteOnSelfAppliesRitualBonusWhenRitualCompleted()
 
     ExpectEq(25, User->getSkill("long sword"), "long sword skill after research used");
 
-    mapping *expectedAttacks = ({ (["attack type": "magical", "damage": 20, "to hit": 35]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) });
+    mapping *expectedAttacks = ({ (["attack type": "magical", "damage": 20, "to hit": 70]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) });
     ExpectEq(expectedAttacks, User->getAttacks(), "Three weapon attacks and a magical attack are returned");
 }
 

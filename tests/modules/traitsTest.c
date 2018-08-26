@@ -202,7 +202,7 @@ void MultipleTraitsStackAttributeBonuses()
 /////////////////////////////////////////////////////////////////////////////
 void SetBonusAttackAddsExtraAttack()
 {
-    mapping *expectedAttacks = ({ (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"weapon"]), (["attack type":"weapon"]) });
+    mapping *expectedAttacks = ({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]) });
 
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"), "add test trait");
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"), "add trait");

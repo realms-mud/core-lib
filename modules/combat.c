@@ -895,7 +895,7 @@ public nomask mapping *getAttacks()
     {
         attacksToReturn += ({ ([
             "attack type":"unarmed",
-            "to hit" : 35,
+            "to hit" : 50,
             "damage" : 10
         ]) });
     }
@@ -946,7 +946,7 @@ public nomask mapping *getAttacks()
                 {
                     if (modifier->query(sprintf("bonus %s attack", attack)))
                         attacksToReturn += ({ (["attack type":attack,
-                            "to hit" : 35,
+                            "to hit" : 50 + modifier->query(sprintf("bonus %s attack", attack)),
                             "damage" : modifier->query(sprintf("bonus %s attack", attack))
                     ]) });
                 }
@@ -1359,11 +1359,14 @@ public nomask varargs int hit(int damage, string damageType, object foe)
             {
                 reflection = to_int(
                     (((reflection > 50) ? 50 : reflection) / 100.0) * damage);
-                
-                object victim = getTargetToAttack();
-                victim->hit(reflection, damageType, this_object());
-                attackObject()->displayMessage(this_object(), victim,
-                    damage, attackObject()->getAttack("reflection")); 
+
+                if (reflection > 1)
+                {
+                    object victim = getTargetToAttack();
+                    victim->hit(reflection, damageType, this_object());
+                    attackObject()->displayMessage(this_object(), victim,
+                        damage, attackObject()->getAttack("reflection"));
+                }
             }
         }
     }

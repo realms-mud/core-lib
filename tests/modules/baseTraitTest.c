@@ -64,7 +64,7 @@ void CanSetPenaltyToSkill()
 /////////////////////////////////////////////////////////////////////////////
 void SetBonusAttackAddsExtraAttack()
 {
-    mapping *expectedAttacks = ({ (["attack type":"fire", "damage": 15, "to hit": 35]) });
+    mapping *expectedAttacks = ({ (["attack type":"fire", "damage": 15, "to hit": 60]) });
 
     ExpectEq(1, Trait->addSpecification("bonus fire attack", 15), "set bonus fire attack");
     ExpectEq(expectedAttacks, Trait->getExtraAttacks(), "getExtraAttacks returns the correct result");
@@ -82,7 +82,7 @@ void SetBonusWeaponAttackAddsExtraAttack()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetMultipleBonusAttacks()
 {
-    mapping *expectedAttacks = ({ (["attack type":"fire", "damage": 15, "to hit": 35]), (["attack type":"weapon"]) });
+    mapping *expectedAttacks = ({ (["attack type":"fire", "damage": 15, "to hit": 60]), (["attack type":"weapon"]) });
 
     ExpectEq(1, Trait->addSpecification("bonus fire attack", 15), "set bonus fire attack");
     ExpectEq(1, Trait->addSpecification("bonus weapon attack", 1), "set bonus weapon attack");

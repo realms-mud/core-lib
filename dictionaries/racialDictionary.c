@@ -215,7 +215,7 @@ public nomask mapping *extraAttacks(string race)
             ret += ({ ([
                 "attack type": attack,
                 "damage": races[race]["attacks"][attack], 
-                "to hit": 35 ]) });
+                "to hit": 75 ]) });
         }
     }
     return ret;

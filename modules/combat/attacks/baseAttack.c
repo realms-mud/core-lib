@@ -121,10 +121,11 @@ public nomask string getMessage(int damageInflicted)
         
         if(!sizeof(messages))
         {
-            messages += ({ "##AttackerName## ##Infinitive::hit## ##TargetName##" });
+            messages += ({ "##AttackerName## ##Infinitive::hit## ##TargetName##." });
         }
     }
-    return messages[random(sizeof(messages))];            
+    return damageInflicted ? (messages[random(sizeof(messages))] + " \x1b[31m[ " +
+        damageInflicted + " ]\x1b[0m") : messages[random(sizeof(messages))];
 }
                 
 /////////////////////////////////////////////////////////////////////////////
@@ -212,5 +213,3 @@ public void reset(int arg)
         initialized = 1;
     }
 }
-
-

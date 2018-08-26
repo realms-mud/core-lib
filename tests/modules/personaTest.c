@@ -30,37 +30,37 @@ void SetUpPersonaOfLevelWorksForMonsters()
     ExpectFalse(Persona->isTraitOf("lib/modules/traits/personas/fighters/swordsman.c"));
     Persona->SetUpPersonaOfLevel("swordsman", 10);
     ExpectTrue(Persona->isTraitOf("lib/modules/traits/personas/fighters/swordsman.c"));
-    ExpectEq(1060, Persona->maxHitPoints());
-    ExpectEq(160, Persona->maxSpellPoints());
-    ExpectEq(560, Persona->staminaPoints());
+    ExpectEq(1120, Persona->maxHitPoints());
+    ExpectEq(220, Persona->maxSpellPoints());
+    ExpectEq(620, Persona->staminaPoints());
     ExpectEq(10, Persona->effectiveLevel());
-    ExpectEq(10, Persona->Str());
-    ExpectEq(10, Persona->Int());
-    ExpectEq(10, Persona->Dex());
-    ExpectEq(10, Persona->Wis());
-    ExpectEq(10, Persona->Con());
-    ExpectEq(10, Persona->Chr());
-    ExpectEq(10, Persona->getSkill("parry"));
-    ExpectEq(10, Persona->getSkill("dodge"));
-    ExpectEq(10, Persona->getSkill("shield"));
-    ExpectEq(10, Persona->getSkill("long sword"));
-    ExpectEq(10, Persona->getSkill("hand and a half sword"));
-    ExpectEq(10, Persona->getSkill("short sword"));
-    ExpectEq(10, Persona->getSkill("dagger"));
-    ExpectEq(10, Persona->getSkill("two-handed sword"));
-    ExpectEq(10, Persona->getSkill("plate armor"));
-    ExpectEq(10, Persona->getSkill("splint armor"));
-    ExpectEq(10, Persona->getSkill("chainmail"));
-    ExpectEq(10, Persona->getSkill("scalemail"));
-    ExpectEq(10, Persona->getSkill("hard leather"));
-    ExpectEq(10, Persona->getSkill("soft leather"));
-    ExpectEq(10, Persona->getSkill("no armor"));
-    ExpectEq(5, Persona->getSkill("anatomy and physiology"));
-    ExpectEq(5, Persona->getSkill("perception"));
-    ExpectEq(5, Persona->getSkill("listen"));
-    ExpectEq(5, Persona->getSkill("spot"));
-    ExpectEq(5, Persona->getSkill("common"));
-    ExpectEq(5, Persona->getSkill("dual wield"));
+    ExpectEq(20, Persona->Str());
+    ExpectEq(20, Persona->Int());
+    ExpectEq(20, Persona->Dex());
+    ExpectEq(20, Persona->Wis());
+    ExpectEq(20, Persona->Con());
+    ExpectEq(20, Persona->Chr());
+    ExpectEq(20, Persona->getSkill("parry"));
+    ExpectEq(20, Persona->getSkill("dodge"));
+    ExpectEq(20, Persona->getSkill("shield"));
+    ExpectEq(20, Persona->getSkill("long sword"));
+    ExpectEq(20, Persona->getSkill("hand and a half sword"));
+    ExpectEq(20, Persona->getSkill("short sword"));
+    ExpectEq(20, Persona->getSkill("dagger"));
+    ExpectEq(20, Persona->getSkill("two-handed sword"));
+    ExpectEq(20, Persona->getSkill("plate armor"));
+    ExpectEq(20, Persona->getSkill("splint armor"));
+    ExpectEq(20, Persona->getSkill("chainmail"));
+    ExpectEq(20, Persona->getSkill("scalemail"));
+    ExpectEq(20, Persona->getSkill("hard leather"));
+    ExpectEq(20, Persona->getSkill("soft leather"));
+    ExpectEq(20, Persona->getSkill("no armor"));
+    ExpectEq(10, Persona->getSkill("anatomy and physiology"));
+    ExpectEq(10, Persona->getSkill("perception"));
+    ExpectEq(10, Persona->getSkill("listen"));
+    ExpectEq(10, Persona->getSkill("spot"));
+    ExpectEq(10, Persona->getSkill("common"));
+    ExpectEq(10, Persona->getSkill("dual wield"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -85,9 +85,9 @@ void SetUpPersonaOfLevelWorksForHenchmen()
     Persona = clone_object("/lib/realizations/henchman.c");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
-    ExpectEq(106, Persona->maxHitPoints());
-    ExpectEq(16, Persona->maxSpellPoints());
-    ExpectEq(56, Persona->staminaPoints());
+    ExpectEq(112, Persona->maxHitPoints());
+    ExpectEq(22, Persona->maxSpellPoints());
+    ExpectEq(62, Persona->staminaPoints());
     ExpectEq(1, Persona->effectiveLevel());
 }
 
@@ -98,9 +98,9 @@ void SetUpPersonaOfLevelWorksForNPC()
     Persona = clone_object("/lib/realizations/npc.c");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
-    ExpectEq(106, Persona->maxHitPoints());
-    ExpectEq(16, Persona->maxSpellPoints());
-    ExpectEq(56, Persona->staminaPoints());
+    ExpectEq(112, Persona->maxHitPoints());
+    ExpectEq(22, Persona->maxSpellPoints());
+    ExpectEq(62, Persona->staminaPoints());
     ExpectEq(1, Persona->effectiveLevel());
 }
 
@@ -111,9 +111,9 @@ void SetUpPersonaOfLevelWorksForCompanion()
     Persona = clone_object("/lib/realizations/companion.c");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
-    ExpectEq(106, Persona->maxHitPoints());
-    ExpectEq(16, Persona->maxSpellPoints());
-    ExpectEq(56, Persona->staminaPoints());
+    ExpectEq(112, Persona->maxHitPoints());
+    ExpectEq(22, Persona->maxSpellPoints());
+    ExpectEq(62, Persona->staminaPoints());
     ExpectEq(1, Persona->effectiveLevel());
 }
 
@@ -124,9 +124,9 @@ void SetUpPersonaOfLevelWorksForAI()
     Persona = clone_object("/lib/realizations/monsterWithAI.c");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
-    ExpectEq(106, Persona->maxHitPoints());
-    ExpectEq(16, Persona->maxSpellPoints());
-    ExpectEq(56, Persona->staminaPoints());
+    ExpectEq(112, Persona->maxHitPoints());
+    ExpectEq(22, Persona->maxSpellPoints());
+    ExpectEq(62, Persona->staminaPoints());
     ExpectEq(1, Persona->effectiveLevel());
 }
 
@@ -137,9 +137,9 @@ void SetUpPersonaOfLevelWorksForSeneschal()
     Persona = clone_object("/lib/realizations/seneschal.c");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
-    ExpectEq(106, Persona->maxHitPoints());
-    ExpectEq(16, Persona->maxSpellPoints());
-    ExpectEq(56, Persona->staminaPoints());
+    ExpectEq(112, Persona->maxHitPoints());
+    ExpectEq(22, Persona->maxSpellPoints());
+    ExpectEq(62, Persona->staminaPoints());
     ExpectEq(1, Persona->effectiveLevel());
 }
 
@@ -150,9 +150,9 @@ void SetUpPersonaOfLevelWorksForWanderer()
     Persona = clone_object("/lib/realizations/wanderingMonster.c");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
-    ExpectEq(106, Persona->maxHitPoints());
-    ExpectEq(16, Persona->maxSpellPoints());
-    ExpectEq(56, Persona->staminaPoints());
+    ExpectEq(112, Persona->maxHitPoints());
+    ExpectEq(22, Persona->maxSpellPoints());
+    ExpectEq(62, Persona->staminaPoints());
     ExpectEq(1, Persona->effectiveLevel());
 }
 
@@ -218,9 +218,9 @@ void CreaturesGetAllAttacksSet()
     Persona->SetUpPersonaOfLevel("gorgon", 30);
 
     ExpectEq(({ 
-        ([ "attack type": "claw", "damage": 25, "to hit": 80 ]), 
-        ([ "attack type": "fangs", "damage": 30, "to hit": 80 ]), 
-        ([ "attack type": "fire", "damage": 35, "to hit": 80 ]), 
+        ([ "attack type": "claw", "damage": 25, "to hit": 120 ]), 
+        ([ "attack type": "fangs", "damage": 30, "to hit": 120 ]), 
+        ([ "attack type": "fire", "damage": 35, "to hit": 120 ]), 
         }), Persona->getAttacks());
 }
 
@@ -232,7 +232,7 @@ void CreaturesWithWeaponsGetAllAttacksSet()
 
     ExpectEq(3, sizeof(all_inventory(Persona)));
     ExpectEq(({
-        (["attack type":"undead", "damage" : 10, "to hit" : 40]),
+        (["attack type":"undead", "damage" : 10, "to hit" : 90]),
         (["attack type":"wielded primary"]),
         }), Persona->getAttacks());
 }
@@ -246,7 +246,7 @@ void PersonaRaceWithSpecialAttackHasAttackApplied()
 
     ExpectEq(3, sizeof(all_inventory(Persona)));
     ExpectEq(({
-        (["attack type":"electricity", "damage" : 15, "to hit" : 35]),
+        (["attack type":"electricity", "damage" : 15, "to hit" : 75]),
         (["attack type":"wielded primary"]),
         }), Persona->getAttacks());
 }
@@ -257,17 +257,17 @@ void PersonaRaceModifiesStatistics()
     Persona->Race("troll");
     Persona->SetUpPersonaOfLevel("swordsman", 10);
 
-    ExpectEq(1184, Persona->maxHitPoints());
-    ExpectEq(1184, Persona->hitPoints());
+    ExpectEq(1244, Persona->maxHitPoints());
+    ExpectEq(1244, Persona->hitPoints());
     ExpectEq(0, Persona->maxSpellPoints());
-    ExpectEq(621, Persona->maxStaminaPoints());
+    ExpectEq(681, Persona->maxStaminaPoints());
     ExpectEq(10, Persona->effectiveLevel());
-    ExpectEq(18, Persona->Str());
-    ExpectEq(6, Persona->Int());
-    ExpectEq(6, Persona->Dex());
-    ExpectEq(6, Persona->Wis());
-    ExpectEq(14, Persona->Con());
-    ExpectEq(6, Persona->Chr());
+    ExpectEq(28, Persona->Str());
+    ExpectEq(16, Persona->Int());
+    ExpectEq(16, Persona->Dex());
+    ExpectEq(16, Persona->Wis());
+    ExpectEq(24, Persona->Con());
+    ExpectEq(16, Persona->Chr());
     ExpectEq(4, Persona->racesBonusTo("BonusHealHitPoints"));
     ExpectEq(8, Persona->racesBonusTo("BonusHealHitPointsRate"));
     ExpectEq(-8, Persona->racesBonusTo("BonusHealSpellPointsRate"));

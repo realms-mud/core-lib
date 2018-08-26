@@ -228,7 +228,7 @@ public nomask mapping *getExtraAttacks()
                 mapping attackMap =
                     getDictionary("attacks")->getAttackMapping(attack, 
                     researchData[key]);
-                attackMap["to hit"] = 35;
+                attackMap["to hit"] = 60;
                 if(attackMap)
                 {
                     ret += ({ attackMap });

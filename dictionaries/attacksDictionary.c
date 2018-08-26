@@ -149,7 +149,7 @@ private nomask object getDamageType(object weapon)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string formatText(string text, int colorInfo, object viewer)
 {
-    return color(viewer->query("term"), viewer, colorInfo, format(text, 78));
+    return color(viewer->query("term"), viewer, colorInfo, format(text, 101));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -248,6 +248,15 @@ public nomask void displayMessage(object attacker, object foe,
                     {
                         message = parseTemplate(template, "other", attacker,
                                                 foe, weapon);
+                    }
+
+                    if (damageInflicted)
+                    {
+                        message = "\x1b[38;2;140;140;170m" + message + "\x1b[0m";
+                    }
+                    else
+                    {
+                        message = "\x1b[38;2;140;170;140m" + message + "\x1b[0m";
                     }
                     tell_object(person, formatText(message, colorInfo, 
                         person));

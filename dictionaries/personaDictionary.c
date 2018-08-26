@@ -15,7 +15,7 @@ private nomask mapping personaBlueprints()
 /////////////////////////////////////////////////////////////////////////////
 private nomask void SetStats(object character)
 {
-    int level = character->effectiveLevel();
+    int level = character->effectiveLevel() * 2;
     character->Str(level);
     character->Int(level);
     character->Dex(level);
@@ -28,7 +28,7 @@ private nomask void SetStats(object character)
 private nomask void SetPrimarySkills(object character, string persona)
 {
     string *primarySkills = personaBlueprints()[persona]["primary skills"];
-    int level = character->effectiveLevel();
+    int level = to_int(character->effectiveLevel() * 2);
 
     foreach(string skill in primarySkills)
     {
@@ -42,7 +42,7 @@ private nomask void SetPrimarySkills(object character, string persona)
 private nomask void SetSecondarySkills(object character, string persona)
 {
     string *secondarySkills = personaBlueprints()[persona]["secondary skills"];
-    int skillLevel = character->effectiveLevel() / 2;
+    int skillLevel = character->effectiveLevel();
 
     if (skillLevel)
     {
@@ -113,7 +113,7 @@ private nomask void SetAttacks(object character, string persona)
         {
             character->addAttack(attack,
                 personaBlueprints()[persona]["attacks"][attack] + level / 2,
-                20 + (level * 2));
+                75 + to_int(level * 1.5));
         }
     }
 }

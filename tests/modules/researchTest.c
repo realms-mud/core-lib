@@ -166,7 +166,7 @@ void LimitedByIntoxBonusesCorrectlyApplied()
     ExpectEq(20, Research->Str(), "strength after research");
 
     Research->addIntoxication(10);
-    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "attacks after research with intox");
+    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "attacks after research with intox");
     ExpectEq(3, Research->getSkill("long sword"), "long sword skill after research with intox");
     ExpectEq(22, Research->Str(), "strength after research with intox");
 }
@@ -200,7 +200,7 @@ void LimitedByOpponentBonusesCorrectlyApplied()
     ExpectEq(20, Research->Str(), "strength after research");
 
     target->Race("dwarf");
-    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "attacks after research with dwarf foe");
+    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "attacks after research with dwarf foe");
     ExpectEq(10, Research->getSkill("long sword"), "long sword skill after research with dwarf foe");
     ExpectEq(22, Research->Str(), "strength after research with dwarf foe");
 
@@ -233,14 +233,14 @@ void PassiveResearchAttacksApplied()
 
     ExpectEq(({}), Research->researchExtraAttacks(), "initial attacks");
     ExpectTrue(Research->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
-    ExpectEq(({ (["attack type": "fire", "damage": 15, "to hit": 35]), (["attack type": "weapon"]), (["attack type": "weapon"]) }), Research->researchExtraAttacks(), "after research attacks");
+    ExpectEq(({ (["attack type": "fire", "damage": 15, "to hit": 60]), (["attack type": "weapon"]), (["attack type": "weapon"]) }), Research->researchExtraAttacks(), "after research attacks");
 
     Research->addResearchPoints(1);
     Research->advanceSkill("long sword", 10);
     ExpectTrue(Research->initiateResearch("lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
     ExpectTrue(Research->isResearched("lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
-    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "after research attacks");
-    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"fire", "damage" : 15, "to hit" : 35]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) }), Research->getAttacks());
+    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "after research attacks");
+    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) }), Research->getAttacks());
 }
 
 /////////////////////////////////////////////////////////////////////////////
