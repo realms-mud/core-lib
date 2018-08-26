@@ -117,9 +117,15 @@ private nomask string parseWeatherDetails(string message, mapping data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected int suppressEntryMessage()
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string parseEntryAction(string message, mapping data)
 {
-    return environmentDictionary()->getEntryMessage() + " " +
+    return suppressEntryMessage() ? "" : environmentDictionary()->getEntryMessage() + " " +
         message + ".";
 }
 

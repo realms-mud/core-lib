@@ -19,7 +19,7 @@ private string *methodsToIgnore = ({ "__INIT", "add_clone", "add_wanderer",
     "generateItems", "generateLightMethod", "generateLongDescription", 
     "generateNewRoom", "generateObjects", "generateShortDescription", 
     "set_dest_dir", "set_items", "set_light", "set_long", "set_short", 
-    "translateFile", "reset"
+    "translateFile", "reset", "long", "set_property"
 });
 
 private mapping methodsToReplace = ([
@@ -34,6 +34,16 @@ private mapping methodsToReplace = ([
     "query_sp": "spellPoints",
     "query_level": "effectiveLevel",
     "hit_player": "hit",
+    "query_money": "Money",
+    "add_money": "addMoney",
+    "add_spell_points": "spellPoints",
+    "heal_self": "hitPoints",
+    "add_soaked": "addSoaked",
+    "drink_soft": "Soaked",
+    "set_title": "Title",
+    "set_pretitle": "Pretitle",
+    "query_title": "Title",
+    "query_pretitle": "Pretitle",
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -46,6 +56,11 @@ public void set_short(string arg)
 public void set_long(string arg)
 {
     long_desc = arg;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void long(string arg)
+{
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,6 +79,17 @@ public void set_dest_dir(string *arg)
 public void set_items(string *arg)
 {
     items = arg;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void set_property(mixed propertyToSet)
+{
+    property = propertyToSet;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void set_terrain(string terrain)
+{
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -102,6 +128,10 @@ private string translateFile(string oldFile)
     {
         oldFile = "/" + oldFile;
     }
+    if (oldFile[(sizeof(oldFile) - 2)..] != ".c")
+    {
+        oldFile += ".c";
+    }
     return regreplace(oldFile, "players", "lib\/legacy");
 }
 
@@ -125,17 +155,25 @@ private string annotateAuthor(string inputFile)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private string sanitizeString(string inputString)
+{
+    string ret = regreplace(inputString, "([&*$^])", "\\\\1", 1);
+    ret = regreplace(ret, "\"", "'", 1);
+    ret = regreplace(ret, "\n", "\\n\"\n        \"", 1);
+    ret = regreplace(ret, "\"\n +\"+$", "", 1);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private string generateShortDescription(string inputFile)
 {
-    return regreplace(inputFile, "##ShortDescription##", short_desc);
+    return regreplace(inputFile, "##ShortDescription##", sanitizeString(short_desc));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private string generateLongDescription(string inputFile)
 {
-    string longDesc = regreplace(long_desc, "\n", "\\n\"\n        \"", 1);
-    longDesc = regreplace(longDesc, "\"\n +\"+$", "", 1);
-    return regreplace(inputFile, "##LongDescription##", longDesc);
+    return regreplace(inputFile, "##LongDescription##", sanitizeString(long_desc));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -195,8 +233,19 @@ private string generateItems(string inputFile)
     int totalItemEntries = sizeof(items);
     for (int i = 0; i < totalItemEntries; i += 2)
     {
-        itemList += sprintf("    addLegacyItem(\"%s\", \"%s\");\n",
-            items[i], items[i+1]);
+        if (pointerp(items[i]))
+        {
+            foreach(string item in items[i])
+            {
+                itemList += sprintf("    addLegacyItem(\"%s\", \"%s\");\n",
+                    item, sanitizeString(items[i + 1]));
+            }
+        }
+        else
+        {
+            itemList += sprintf("    addLegacyItem(\"%s\", \"%s\");\n",
+                items[i], sanitizeString(items[i + 1]));
+        }
     }
 
     if (sizeof(itemList))

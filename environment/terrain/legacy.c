@@ -10,3 +10,9 @@ public void Setup()
     Name("legacy");
     addDescriptionTemplate("");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected int suppressEntryMessage()
+{
+    return 1;
+}
