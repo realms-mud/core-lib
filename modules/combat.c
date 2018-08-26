@@ -681,7 +681,7 @@ public nomask varargs int calculateDamage(object weapon, string damageType, int 
     
     if (attackObject()->isAttack(weapon))
     {
-        ret += weapon->attackTypeCalculateDamage();
+        ret += weapon->attackTypeCalculateDamage(this_object());
     }
 
     if(inventory)

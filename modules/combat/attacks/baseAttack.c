@@ -58,7 +58,7 @@ public nomask int attackTypeCalculateAttack()
     int ret = 0;
     if(toHit)
     {
-        ret = toHit;
+        ret = ((10 + toHit) / 2) + random(toHit);
     }
     else
     {
@@ -68,9 +68,14 @@ public nomask int attackTypeCalculateAttack()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int attackTypeCalculateDamage()
+public nomask int attackTypeCalculateDamage(object user)
 {
-    return damage;
+    int level = 10;
+    if (objectp(user))
+    {
+        level = user->effectiveLevel();
+    }
+    return damage + random(damage + level);
 }
 
 /////////////////////////////////////////////////////////////////////////////

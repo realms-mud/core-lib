@@ -1069,7 +1069,7 @@ void CalculateAttackCorrectlyAppliesAttackTypes()
 {
     object weapon = clone_object("/lib/modules/combat/attacks/clawAttack.c");
     weapon->setAttackValues(10, 10);
-    ExpectEq(10, Attacker->calculateAttack(Target, weapon, 1));
+    ExpectTrue(10 <= Attacker->calculateAttack(Target, weapon, 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1212,7 +1212,7 @@ void CalculateDamageCorrectlyAppliesAttackTypes()
 {
     object weapon = clone_object("/lib/modules/combat/attacks/clawAttack.c");
     weapon->setAttackValues(10, 10);
-    ExpectEq(14, Attacker->calculateDamage(weapon, weapon->getDamageType(), 1));
+    ExpectTrue(14 <= Attacker->calculateDamage(weapon, weapon->getDamageType(), 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1887,6 +1887,7 @@ void SlowDoesNotAttackEveryRound()
 void HasteAddsAnExtraAttack()
 {
     ToggleCallOutBypass();
+    Attacker->Con(30);
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
 
@@ -1923,12 +1924,13 @@ void HitFailsWhenTargetEtherealAndDamageTypeCannotDamageThem()
 /////////////////////////////////////////////////////////////////////////////
 void HitSucceedsWhenTargetEtherealAndDamageTypeCanDamageThem()
 {
+    Target->setMaxHitPoints(1000);
     Target->hitPoints(Target->maxHitPoints());
-    ExpectEq(150, Target->hitPoints());
+    ExpectEq(1120, Target->hitPoints());
     Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
 
     ExpectTrue(Target->hit(100, "energy", Attacker));
-    ExpectEq(54, Target->hitPoints());
+    ExpectEq(1024, Target->hitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1973,6 +1975,7 @@ void AttackSucceedsWhenTargetEtherealAndDamageTypeCanDamageThem()
 /////////////////////////////////////////////////////////////////////////////
 void AttackSucceedsWhenTargetEtherealAndHasNonWeaponAttackThatCanDamageEthereal()
 {
+    Target->setMaxHitPoints(1000);
     ExpectTrue(Attacker->addAttack("energy", 50, 500),"add attack");
     Target->hitPoints(Target->maxHitPoints());
     ExpectTrue(Target->hitPoints() == Target->maxHitPoints());
@@ -1985,10 +1988,11 @@ void AttackSucceedsWhenTargetEtherealAndHasNonWeaponAttackThatCanDamageEthereal(
 /////////////////////////////////////////////////////////////////////////////
 void TargetAttacksWhenAttackerReturnsToArea()
 {
+    Target->setMaxHitPoints(1000);
     ToggleCallOutBypass();
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
 
-    Attacker->hitPoints(50);
+    Attacker->hitPoints(80);
     Target->hitPoints(Target->maxHitPoints());
     Attacker->registerAttacker(Target);
 
