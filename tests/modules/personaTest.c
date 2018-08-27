@@ -218,9 +218,9 @@ void CreaturesGetAllAttacksSet()
     Persona->SetUpPersonaOfLevel("gorgon", 30);
 
     ExpectEq(({ 
-        ([ "attack type": "claw", "damage": 25, "to hit": 120 ]), 
-        ([ "attack type": "fangs", "damage": 30, "to hit": 120 ]), 
-        ([ "attack type": "fire", "damage": 35, "to hit": 120 ]), 
+        ([ "attack type": "claw", "damage": 40, "to hit": 120 ]), 
+        ([ "attack type": "fangs", "damage": 45, "to hit": 120 ]), 
+        ([ "attack type": "fire", "damage": 50, "to hit": 120 ]), 
         }), Persona->getAttacks());
 }
 
@@ -232,7 +232,7 @@ void CreaturesWithWeaponsGetAllAttacksSet()
 
     ExpectEq(3, sizeof(all_inventory(Persona)));
     ExpectEq(({
-        (["attack type":"undead", "damage" : 10, "to hit" : 90]),
+        (["attack type":"undead", "damage" : 15, "to hit" : 90]),
         (["attack type":"wielded primary"]),
         }), Persona->getAttacks());
 }
@@ -273,4 +273,15 @@ void PersonaRaceModifiesStatistics()
     ExpectEq(-8, Persona->racesBonusTo("BonusHealSpellPointsRate"));
     ExpectEq(4, Persona->racesBonusTo("DefenseBonus"));
     ExpectEq(-50, Persona->racesBonusTo("resist fire"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MagicUsersGetResearchAdded()
+{
+    Persona->SetUpPersonaOfLevel("aeromancer", 30);
+
+    ExpectEq(({ "lib/instances/research/personas/aeromancer/lightning.c", 
+        "lib/instances/research/personas/aeromancer/maelstrom.c", 
+        "lib/instances/research/personas/aeromancer/tempest.c" }), 
+        Persona->completedResearch());
 }

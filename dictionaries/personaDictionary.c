@@ -4,11 +4,13 @@
 //*****************************************************************************
 #include "personas/creatures.h"
 #include "personas/fighters.h"
+#include "personas/magicUsers.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping personaBlueprints()
 {
     return creatureBlueprints + 
+        magicUserBlueprints +
         fighterBlueprints + ([]);
 }
 
@@ -56,10 +58,35 @@ private nomask void SetSecondarySkills(object character, string persona)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void SetResearch(object character, string persona)
+{
+    if (member(personaBlueprints()[persona], "research"))
+    {
+        string *researchItems = m_indices(personaBlueprints()[persona]["research"]);
+
+        if (sizeof(researchItems))
+        {
+            foreach(string research in researchItems)
+            {
+                if (character->effectiveLevel() >=
+                    personaBlueprints()[persona]["research"][research])
+                {
+                    string fullyQualifiedResearch =
+                        sprintf("lib/instances/research/personas/%s/%s.c",
+                            persona, research);
+
+                    character->initiateResearch(fullyQualifiedResearch);
+                }
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void SetTraits(object character, string persona)
 {
     string *traits = personaBlueprints()[persona]["traits"];
-    character->addTrait(sprintf("lib/modules/traits/personas/%s/%s.c", 
+    character->addTrait(sprintf("lib/modules/traits/personas/%s/%s.c",
         personaBlueprints()[persona]["category"], persona));
 
     if (sizeof(traits))
@@ -112,7 +139,7 @@ private nomask void SetAttacks(object character, string persona)
         foreach(string attack in attacks)
         {
             character->addAttack(attack,
-                personaBlueprints()[persona]["attacks"][attack] + level / 2,
+                personaBlueprints()[persona]["attacks"][attack] + level,
                 75 + to_int(level * 1.5));
         }
     }
@@ -173,6 +200,7 @@ public nomask void setupPersona(string persona, object character)
                 SetTraits(character, persona);
                 SetRandomTraits(character, persona);
                 SetCombatAttributes(character, persona);
+                SetResearch(character, persona);
             }
             else
             {

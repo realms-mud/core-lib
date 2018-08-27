@@ -10,21 +10,18 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Active research");
-        addSpecification("description", "This is limited active research");
+        addSpecification("name", "Lightning");
+        addSpecification("description", "This is a persona research item.");
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
-        addSpecification("research cost", 1);
-        addSpecification("spell point cost", 1);
-        addSpecification("limited by", (["equipment":"long sword"]));
-        addSpecification("increase hit points", ({ ([
+        addSpecification("spell point cost", 5);
+        addSpecification("damage hit points", ({ ([
             "probability":100,
-            "base damage" : 25,
-            "range" : 25
+                "base damage" : 25,
+                "range" : 25
         ]) }));
         addSpecification("cooldown", 4);
-        addSpecification("event handler", "usedResearchEvent");
-        addSpecification("command template", "throw turnip at ##Target##");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::throw## a turnip at ##TargetName##.");
+        addSpecification("command template", "lightning at ##Target##");
+        addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## hand and a stream of lightning slams into ##TargetName##.");
     }
 }
