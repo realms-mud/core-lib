@@ -24,6 +24,6 @@ public void reset(int arg)
         ]) }));
         addSpecification("cooldown", 4);
         addSpecification("command template", "coldbreath at ##Target##");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::open## ##InitiatorPossessive## maw and ##Infinitive::breath## icy death on ##TargetName##.");
+        addSpecification("use ability message", "##InitiatorName## ##Infinitive::open## ##InitiatorPossessive## maw and ##Infinitive::breathe## icy death on ##TargetName##.");
     }
 }

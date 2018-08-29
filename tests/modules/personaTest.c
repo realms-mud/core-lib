@@ -334,3 +334,24 @@ void CreaturesCanExecuteBreathWeapons()
         "a ball of electrical plasma|fiery death|icy death) (on|at) you",
         target->caughtMessages());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void PersonasWithSpacesInNamesAndResearchCanExecuteResearch()
+{
+    Persona->SetUpPersonaOfLevel("keeper of the night", 20);
+
+    object target = clone_object("/lib/realizations/monster");
+    target->Name("Frank");
+    target->SetUpPersonaOfLevel("skeleton", 50);
+    target->Gender(1);
+    move_object(target, this_object());
+    object shadow = clone_object("/lib/tests/support/services/catchShadow.c");
+    shadow->beginShadow(target);
+
+    Persona->attack(target);
+    ExpectSubStringMatch("Bob (raises his arms and tendrils of dark red "
+        "lightning descend upon you|raises his hand and a dark purple "
+        "bolt imbeds itself in you|screams words of power at you, "
+        "enveloping you in a ball of dark purple)",
+        target->caughtMessages());
+}
