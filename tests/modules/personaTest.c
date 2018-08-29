@@ -285,3 +285,52 @@ void MagicUsersGetResearchAdded()
         "lib/instances/research/personas/aeromancer/tempest.c" }), 
         Persona->completedResearch());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void WillNotAddResearchIfNotHighEnoughLevel()
+{
+    Persona->SetUpPersonaOfLevel("aeromancer", 10);
+
+    ExpectEq(({ "lib/instances/research/personas/aeromancer/lightning.c",
+        "lib/instances/research/personas/aeromancer/tempest.c" }),
+        Persona->completedResearch());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanExecuteAddedResearch()
+{
+    Persona->SetUpPersonaOfLevel("aeromancer", 20);
+
+    object target = clone_object("/lib/realizations/monster");
+    target->Name("Frank");
+    target->SetUpPersonaOfLevel("skeleton", 50);
+    target->Gender(1);
+    move_object(target, this_object());
+    object shadow = clone_object("/lib/tests/support/services/catchShadow.c");
+    shadow->beginShadow(target);
+
+    Persona->attack(target);
+    ExpectSubStringMatch("Bob (screams words of power. Wind and lightning batters "
+        "you|raises his arms and tendrils of lightning descend upon you|"
+        "raises his hand and a stream of lightning slams into you)", 
+        target->caughtMessages());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CreaturesCanExecuteBreathWeapons()
+{
+    Persona->SetUpPersonaOfLevel("chimera", 25);
+
+    object target = clone_object("/lib/realizations/monster");
+    target->Name("Frank");
+    target->SetUpPersonaOfLevel("skeleton", 50);
+    target->Gender(1);
+    move_object(target, this_object());
+    object shadow = clone_object("/lib/tests/support/services/catchShadow.c");
+    shadow->beginShadow(target);
+
+    Persona->attack(target);
+    ExpectSubStringMatch("Bob opens his maw and breathes (caustic acid|"
+        "a ball of electrical plasma|fiery death|icy death) (on|at) you",
+        target->caughtMessages());
+}

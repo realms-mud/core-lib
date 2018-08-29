@@ -224,4 +224,3 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
-

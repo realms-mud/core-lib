@@ -73,7 +73,7 @@ private nomask void SetResearch(object character, string persona)
                 {
                     string fullyQualifiedResearch =
                         sprintf("lib/instances/research/personas/%s/%s.c",
-                            persona, research);
+                            persona, regreplace(research, " ", "-", 1));
 
                     character->initiateResearch(fullyQualifiedResearch);
                 }

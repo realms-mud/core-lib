@@ -12,9 +12,11 @@ public void reset(int arg)
         instantaneousActiveResearchItem::reset(arg);
         addSpecification("name", "Maelstrom");
         addSpecification("description", "This is a persona research item.");
+        addSpecification("effect", "combat");
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
         addSpecification("spell point cost", 25);
+        addSpecification("damage type", "electricity");
         addSpecification("damage hit points", ({ ([
             "probability":100,
                 "base damage" : 50,

@@ -12,9 +12,11 @@ public void reset(int arg)
         instantaneousActiveResearchItem::reset(arg);
         addSpecification("name", "Lightning");
         addSpecification("description", "This is a persona research item.");
+        addSpecification("effect", "combat");
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
         addSpecification("spell point cost", 5);
+        addSpecification("damage type", "electricity");
         addSpecification("damage hit points", ({ ([
             "probability":100,
                 "base damage" : 25,
@@ -22,6 +24,6 @@ public void reset(int arg)
         ]) }));
         addSpecification("cooldown", 4);
         addSpecification("command template", "lightning at ##Target##");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## hand and a stream of lightning slams into ##TargetName##.");
+        addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## ##InitiatorPossessive## hand and a stream of lightning slams into ##TargetName##.");
     }
 }

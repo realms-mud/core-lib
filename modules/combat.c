@@ -1504,6 +1504,12 @@ public nomask int attack(object foe)
                 doOneAttack(foe, weapon);
             }
         }
+
+        object persona = getService("personas");
+        if (objectp(persona) && objectp(foe))
+        {
+            persona->executePersonaResearch(foe->RealName());
+        }
     }
     return ret;
 }

@@ -128,14 +128,14 @@ private nosave mapping creatureBlueprints = ([
             "claw": 10,
             "fangs": 15,
         ]),
-        "breath weapons": ([
-            "fire": 25,
-            "electricity": 25,
-            "acid": 25,
-            "cold": 25,
+        "research": ([
+            "fire breath": 25,
+            "electricity breath": 25,
+            "acid breath": 25,
+            "cold breath": 25,
         ]),
         "base hit points": 250,
-        "base spell points" : 0,
+        "base spell points" : 200,
         "base stamina points" : 100
     ]),
     "cockatrice":([
@@ -495,6 +495,11 @@ private nosave mapping creatureBlueprints = ([
             "undead": 25,
             "cold": 35,
             "evil": 15
+        ]),
+        "research": ([
+            "gift of xyris": 1,
+            "hand of xyris": 10,
+            "soul scourge": 15,
         ]),
         "base hit points": 150,
         "base spell points" : 250,

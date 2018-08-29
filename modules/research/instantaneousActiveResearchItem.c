@@ -122,5 +122,3 @@ protected nomask int applyEffect(object initiator, object target)
     ret ||= applyBeneficialEffect(initiator, target);
     return ret;
 }
-
-

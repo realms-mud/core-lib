@@ -251,4 +251,3 @@ protected nomask object getModifierObject(object owner, mapping researchData)
     }
     return ret;
 }
-

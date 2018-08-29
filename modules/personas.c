@@ -60,3 +60,41 @@ public nomask varargs void setUpRandomEquipment(int chanceForMagicalItems)
         }
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void executePersonaResearch(string target)
+{
+    object research = getService("research");
+    if (objectp(research))
+    {
+        string *potentialResearchItems = filter(research->completedResearch(),
+            (: getDictionary("research")->isActiveOrSustainedAbility($1) :));
+
+        if (sizeof(potentialResearchItems))
+        {
+            object researchItem =
+                getDictionary("research")->researchObject(potentialResearchItems[
+                    random(sizeof(potentialResearchItems))]);
+            if (researchItem)
+            {
+                string *commandList = researchItem->commandList();
+                if (sizeof(commandList))
+                {
+                    string commandString = commandList[0];
+                    if (researchItem->query("effect") == "beneficial")
+                    {
+                        commandString = regreplace(commandString,
+                            "at ##Target##", sprintf("at %s",
+                                this_object()->RealName() || ""), 1);
+                    }
+                    else
+                    {
+                        commandString = regreplace(commandString,
+                            "##Target##", target, 1);
+                    }
+                    research->researchCommand(commandString);
+                }
+            }
+        }
+    }
+}

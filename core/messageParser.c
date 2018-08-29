@@ -133,7 +133,7 @@ public nomask string getSingularThirdPersonVerb(string verb)
     }
     else
     {
-        ret = regreplace(ret, "(s|ch|sh|x|z|dg|o)$", "\\1e");
+        ret = regreplace(ret, "(s|ch|sh|th|x|z|dg|o)$", "\\1e");
         ret = regreplace(ret, "([^aeiou])y$", "\\1ie");
         ret += "s";
     }
@@ -339,5 +339,3 @@ public nomask string parseEfunCall(string message)
         "##([^:]+)::(file|target|this)::([^:]+)::([a-zA-Z0-9_])+",
         #'parseEfun,1);
 }
-
-

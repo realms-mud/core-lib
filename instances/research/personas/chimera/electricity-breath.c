@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Tempest");
+        addSpecification("name", "Electricity Breath");
         addSpecification("description", "This is a persona research item.");
         addSpecification("effect", "combat");
         addSpecification("scope", "targeted");
@@ -19,21 +19,11 @@ public void reset(int arg)
         addSpecification("damage type", "electricity");
         addSpecification("damage hit points", ({ ([
             "probability":100,
-                "base damage" : 35,
-                "range" : 35
+                "base damage" : 25,
+                "range" : 25
         ]) }));
-        addSpecification("damage spell points", ({ ([
-            "probability":100,
-                "base damage" : 35,
-                "range" : 35
-        ]) }));
-        addSpecification("damage stamina points", ({ ([
-            "probability":100,
-                "base damage" : 35,
-                "range" : 35
-        ]) }));
-        addSpecification("cooldown", 20);
-        addSpecification("command template", "tempest at ##Target##");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## ##InitiatorPossessive## arms and tendrils of lightning descend upon ##TargetName##.");
+        addSpecification("cooldown", 4);
+        addSpecification("command template", "electricitybreath at ##Target##");
+        addSpecification("use ability message", "##InitiatorName## ##Infinitive::open## ##InitiatorPossessive## maw and ##Infinitive::breath## a ball of electrical plasma at ##TargetName##.");
     }
 }
