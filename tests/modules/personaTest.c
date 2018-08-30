@@ -311,7 +311,7 @@ void CanExecuteAddedResearch()
 
     Persona->attack(target);
     ExpectSubStringMatch("Bob (screams words of power. Wind and lightning batters "
-        "you|raises his arms and tendrils of lightning descend upon you|"
+        "everyone in the area|raises his arms and tendrils of lightning descend upon you|"
         "raises his hand and a stream of lightning slams into you)", 
         target->caughtMessages());
 }
@@ -354,4 +354,31 @@ void PersonasWithSpacesInNamesAndResearchCanExecuteResearch()
         "bolt imbeds itself in you|screams words of power at you, "
         "enveloping you in a ball of dark purple)",
         target->caughtMessages());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AreaEffectSpellsHitAllTargetsInArea()
+{
+    Persona->SetUpPersonaOfLevel("aeromancer", 20);
+
+    object target = clone_object("/lib/realizations/monster");
+    target->Name("Frank");
+    target->SetUpPersonaOfLevel("skeleton", 50);
+    target->Gender(1);
+    move_object(target, this_object());
+
+    object target2 = clone_object("/lib/realizations/monster");
+    target2->Name("Jim");
+    target2->SetUpPersonaOfLevel("skeleton", 50);
+    target2->Gender(2);
+    move_object(target2, this_object());
+
+    int initialTargetOneHP = target->hitPoints();
+    int initialTargetTwoHP = target2->hitPoints();
+
+    Persona->executePersonaResearch(target->RealName(),
+        "lib/instances/research/personas/aeromancer/maelstrom.c");
+
+    ExpectNotEq(initialTargetOneHP, target->hitPoints());
+    ExpectNotEq(initialTargetTwoHP, target2->hitPoints());
 }

@@ -10,13 +10,13 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Maelstrom");
+        addSpecification("name", "Tremor");
         addSpecification("description", "This is a persona research item.");
         addSpecification("effect", "combat");
-        addSpecification("scope", "area");
+        addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
         addSpecification("spell point cost", 25);
-        addSpecification("damage type", "electricity");
+        addSpecification("damage type", "earth");
         addSpecification("damage hit points", ({ ([
             "probability":100,
                 "base damage" : 50,
@@ -33,7 +33,7 @@ public void reset(int arg)
                 "range" : 50
         ]) }));
         addSpecification("cooldown", 60);
-        addSpecification("command template", "maelstrom at ##Target##");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::scream## words of power. Wind and lightning batters everyone in the area.");
+        addSpecification("command template", "tremor at ##Target##");
+        addSpecification("use ability message", "##InitiatorName## ##Infinitive::scream## words of power. The ground shakes violently as it splinters.");
     }
 }

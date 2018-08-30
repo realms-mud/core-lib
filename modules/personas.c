@@ -62,7 +62,7 @@ public nomask varargs void setUpRandomEquipment(int chanceForMagicalItems)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void executePersonaResearch(string target)
+public nomask varargs void executePersonaResearch(string target, string specificResearch)
 {
     object research = getService("research");
     if (objectp(research))
@@ -72,9 +72,12 @@ public nomask void executePersonaResearch(string target)
 
         if (sizeof(potentialResearchItems))
         {
+            string researchItemString = specificResearch ? specificResearch :
+                potentialResearchItems[random(sizeof(potentialResearchItems))];
+
             object researchItem =
-                getDictionary("research")->researchObject(potentialResearchItems[
-                    random(sizeof(potentialResearchItems))]);
+                getDictionary("research")->researchObject(researchItemString);
+
             if (researchItem)
             {
                 string *commandList = researchItem->commandList();
