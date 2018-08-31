@@ -10,13 +10,13 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Tremor");
+        addSpecification("name", "Blizzard");
         addSpecification("description", "This is a persona research item.");
         addSpecification("effect", "combat");
         addSpecification("scope", "area");
         addSpecification("research type", "granted");
         addSpecification("spell point cost", 25);
-        addSpecification("damage type", "earth");
+        addSpecification("damage type", "cold");
         addSpecification("damage hit points", ({ ([
             "probability":100,
                 "base damage" : 50,
@@ -33,7 +33,9 @@ public void reset(int arg)
                 "range" : 50
         ]) }));
         addSpecification("cooldown", 60);
-        addSpecification("command template", "tremor at ##Target##");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::scream## words of power. The ground shakes violently as it splinters.");
+        addSpecification("command template", "blizzard at ##Target##");
+        addSpecification("use ability message", "##InitiatorName## "
+            "##Infinitive::scream## words of power. A frigid whirlwind "
+            "of tiny ice shards slices into everyone in the area.");
     }
 }
