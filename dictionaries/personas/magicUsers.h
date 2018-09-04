@@ -214,4 +214,96 @@ private nosave mapping magicUserBlueprints = ([
         "base spell points": 200,
         "base stamina points": 50
     ]),
+    "necromancer": ([
+        "category": "mages",
+        "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
+            "evocation", "magical essence", "mind", "senses",
+            "transformation", "manipulation", "body", "blood" }),
+        "secondary skills": ({ "parry", "dodge", "anatomy and physiology",
+            "perception", "listen", "spot", "common", "reading",
+            "divination", "elemental earth", "elemental air", 
+            "elemental fire", "elemental water", "plant", "animal",
+            "destruction", "spirit" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "daggers", "staffs" }),
+            "armor": ({ "clothing/robes" }),
+            "armor/accessories": ({ "bracers", "boots", "gloves", 
+                "ring", "circlet", "necklace" })
+        ]),
+        "attacks": ([
+            "undead": 20
+        ]),
+        "research": ([
+            "gift of xyris": 1,
+            "hand of xyris": 10,
+            "soul scourge": 15,
+        ]),
+        "base hit points": 50,
+        "base spell points": 200,
+        "base stamina points": 50
+    ]),
+    "mage": ([
+        "category": "mages",
+        "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
+            "evocation", "magical essence", "mind", "senses",
+            "transformation", "manipulation", "destruction" }),
+        "secondary skills": ({ "parry", "dodge", "anatomy and physiology",
+            "perception", "listen", "spot", "common", "reading",
+            "divination", "elemental earth", "elemental air", 
+            "elemental fire", "elemental water", "plant", "animal",
+            "body", "blood", "spirit" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "daggers", "staffs" }),
+            "armor": ({ "clothing/robes" }),
+            "armor/accessories": ({ "bracers", "boots", "gloves", 
+                "ring", "circlet", "necklace" })
+        ]),
+        "research": ([
+            "lightning":1,
+            "earthstorm": 1,
+            "waterspear": 1,
+            "icebolt":10,
+            "fireball": 10,
+            "tremor": 15,
+        ]),
+        "base hit points": 50,
+        "base spell points": 250,
+        "base stamina points": 50
+    ]),
+    "battle mage": ([
+        "category": "mages",
+        "primary skills": ({ "parry", "dodge", "shield", "long sword",
+            "hand and a half sword", "short sword", "two-handed sword", 
+            "chainmail", "scalemail", "hard leather", "soft leather",
+            "spellcraft", "evocation", "magical essence", 
+            "transformation", "manipulation", "destruction" }),
+        "secondary skills": ({ "parry", "dodge", "anatomy and physiology",
+            "perception", "listen", "spot", "common", "reading",
+            "divination", "elemental earth", "elemental air", 
+            "elemental fire", "elemental water", "plant", "animal",
+            "body", "blood", "spirit" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "swords" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "bracers", "boots", "gloves", 
+                "ring", "circlet", "necklace" })
+        ]),
+        "research": ([
+            "lightning":1,
+            "earthstorm": 1,
+            "waterspear": 1,
+            "icebolt":10,
+            "fireball": 10,
+            "tremor": 15,
+        ]),
+        "base hit points": 120,
+        "base spell points": 150,
+        "base stamina points": 50
+    ]),
 ]);

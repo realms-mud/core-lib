@@ -300,6 +300,7 @@ void WillNotAddResearchIfNotHighEnoughLevel()
 void CanExecuteAddedResearch()
 {
     Persona->SetUpPersonaOfLevel("aeromancer", 20);
+    Persona->setResearchFrequency(100);
 
     object target = clone_object("/lib/realizations/monster");
     target->Name("Frank");
@@ -314,12 +315,14 @@ void CanExecuteAddedResearch()
         "everyone in the area|raises his arms and tendrils of lightning descend upon you|"
         "raises his hand and a stream of lightning slams into you)", 
         target->caughtMessages());
+    ExpectTrue(Persona->spellPoints() < Persona->maxSpellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CreaturesCanExecuteBreathWeapons()
 {
     Persona->SetUpPersonaOfLevel("chimera", 25);
+    Persona->setResearchFrequency(100);
 
     object target = clone_object("/lib/realizations/monster");
     target->Name("Frank");
@@ -333,12 +336,14 @@ void CreaturesCanExecuteBreathWeapons()
     ExpectSubStringMatch("Bob opens his maw and breathes (caustic acid|"
         "a ball of electrical plasma|fiery death|icy death) (on|at) you",
         target->caughtMessages());
+    ExpectTrue(Persona->spellPoints() < Persona->maxSpellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PersonasWithSpacesInNamesAndResearchCanExecuteResearch()
 {
     Persona->SetUpPersonaOfLevel("keeper of the night", 20);
+    Persona->setResearchFrequency(100);
 
     object target = clone_object("/lib/realizations/monster");
     target->Name("Frank");
@@ -354,12 +359,14 @@ void PersonasWithSpacesInNamesAndResearchCanExecuteResearch()
         "bolt imbeds itself in you|screams words of power at you, "
         "enveloping you in a ball of dark purple)",
         target->caughtMessages());
+    ExpectTrue(Persona->spellPoints() < Persona->maxSpellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AreaEffectSpellsHitAllTargetsInArea()
 {
     Persona->SetUpPersonaOfLevel("aeromancer", 20);
+    Persona->setResearchFrequency(100);
 
     object target = clone_object("/lib/realizations/monster");
     target->Name("Frank");
@@ -381,4 +388,23 @@ void AreaEffectSpellsHitAllTargetsInArea()
 
     ExpectNotEq(initialTargetOneHP, target->hitPoints());
     ExpectNotEq(initialTargetTwoHP, target2->hitPoints());
+    ExpectTrue(Persona->spellPoints() < Persona->maxSpellPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WillExecuteResearchBasedOnFrequency()
+{
+    Persona->SetUpPersonaOfLevel("aeromancer", 20);
+    Persona->setResearchFrequency(0);
+
+    object target = clone_object("/lib/realizations/monster");
+    target->Name("Frank");
+    target->SetUpPersonaOfLevel("skeleton", 50);
+    target->Gender(1);
+    move_object(target, this_object());
+
+    ExpectEq(target->hitPoints(), target->maxHitPoints());
+    Persona->attack(target);
+    ExpectEq(Persona->spellPoints(), Persona->maxSpellPoints());
+    ExpectNotEq(target->hitPoints(), target->maxHitPoints());
 }

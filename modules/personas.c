@@ -4,6 +4,8 @@
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
 
+private nosave int researchFrequency = 35;
+
 /////////////////////////////////////////////////////////////////////////////
 private void setMonsterLevel(int level)
 {
@@ -65,7 +67,7 @@ public nomask varargs void setUpRandomEquipment(int chanceForMagicalItems)
 public nomask varargs void executePersonaResearch(string target, string specificResearch)
 {
     object research = getService("research");
-    if (objectp(research))
+    if (objectp(research) && (random(100) < researchFrequency))
     {
         string *potentialResearchItems = filter(research->completedResearch(),
             (: getDictionary("research")->isActiveOrSustainedAbility($1) :));
@@ -99,5 +101,14 @@ public nomask varargs void executePersonaResearch(string target, string specific
                 }
             }
         }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setResearchFrequency(int newFrequency)
+{
+    if (intp(newFrequency) && (newFrequency >= 0) && (newFrequency <= 100))
+    {
+        researchFrequency = newFrequency;
     }
 }

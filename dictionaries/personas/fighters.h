@@ -281,4 +281,29 @@ private nosave mapping fighterBlueprints = ([
         "base spell points": 10,
         "base stamina points": 50
     ]),
+    "knight of the storm":([
+        "category": "fighters",
+        "primary skills": ({ "parry", "dodge", "shield", "long sword",
+            "hand and a half sword", "short sword", "dagger",
+            "two-handed sword", "plate armor", "splint armor",
+            "chainmail", "scalemail", "elemental air" }),
+        "secondary skills": ({ "anatomy and physiology", "perception",
+            "listen", "spot", "common", "dual wield", "magical essence",
+            "spellcraft", "evocation" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "swords" }),
+            "armor": ({ "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
+        "research": ([
+            "lightning": 1,
+        ]),
+        "base hit points": 150,
+        "base spell points": 100,
+        "base stamina points": 50
+    ]),
+
 ]);

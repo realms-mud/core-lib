@@ -22,7 +22,7 @@ public void reset(int arg)
                 "base damage" : 25,
                 "range" : 25
         ]) }));
-        addSpecification("cooldown", 4);
+        addSpecification("cooldown", 10);
         addSpecification("command template", "coldbreath at ##Target##");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::open## ##InitiatorPossessive## maw and ##Infinitive::breathe## icy death on ##TargetName##.");
     }

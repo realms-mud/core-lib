@@ -10,20 +10,30 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Electricity Breath");
+        addSpecification("name", "Soul Scourge");
         addSpecification("description", "This is a persona research item.");
         addSpecification("effect", "combat");
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
-        addSpecification("spell point cost", 15);
-        addSpecification("damage type", "electricity");
+        addSpecification("spell point cost", 25);
+        addSpecification("damage type", "evil");
         addSpecification("damage hit points", ({ ([
             "probability":100,
-                "base damage" : 25,
-                "range" : 25
+                "base damage" : 50,
+                "range" : 50
         ]) }));
-        addSpecification("cooldown", 10);
-        addSpecification("command template", "electricitybreath at ##Target##");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::open## ##InitiatorPossessive## maw and ##Infinitive::breathe## a ball of electrical plasma at ##TargetName##.");
+        addSpecification("damage spell points", ({ ([
+            "probability":100,
+                "base damage" : 100,
+                "range" : 100
+        ]) }));
+        addSpecification("damage stamina points", ({ ([
+            "probability":100,
+                "base damage" : 50,
+                "range" : 50
+        ]) }));
+        addSpecification("cooldown", 60);
+        addSpecification("command template", "soulscourge at ##Target##");
+        addSpecification("use ability message", "##InitiatorName## ##Infinitive::scream## words of power at ##TargetName##, enveloping ##TargetObjective## in a ball of dark purple energy.");
     }
 }
