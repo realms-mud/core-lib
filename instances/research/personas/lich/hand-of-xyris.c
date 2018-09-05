@@ -32,6 +32,23 @@ public void reset(int arg)
                 "base damage" : 35,
                 "range" : 35
         ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "body",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"skill",
+            "name": "blood",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 5,
+            "rate": 1.2
+        ]) }));
         addSpecification("cooldown", 20);
         addSpecification("command template", "handofxyris at ##Target##");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## ##InitiatorPossessive## arms and tendrils of dark red lightning descend upon ##TargetName##.");

@@ -22,6 +22,28 @@ public void reset(int arg)
                 "base damage" : 25,
                 "range" : 25
         ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "mind",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"skill",
+            "name": "senses",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"skill",
+            "name": "spirit",
+            "formula": "additive",
+            "rate": 1.10
+        ]),([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 5,
+            "rate": 1.2
+        ]) }));
         addSpecification("cooldown", 4);
         addSpecification("command template", "mindblade at ##Target##");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## "

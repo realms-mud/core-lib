@@ -32,6 +32,18 @@ public void reset(int arg)
                 "base damage" : 35,
                 "range" : 35
         ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 1.25
+        ]), ([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 5,
+            "rate": 1.2
+        ]) }));
         addSpecification("cooldown", 20);
         addSpecification("command template", "tempest at ##Target##");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## ##InitiatorPossessive## arms and tendrils of lightning descend upon ##TargetName##.");

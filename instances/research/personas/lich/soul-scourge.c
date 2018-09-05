@@ -32,6 +32,23 @@ public void reset(int arg)
                 "base damage" : 50,
                 "range" : 50
         ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "spirit",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"skill",
+            "name": "blood",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 5,
+            "rate": 1.2
+        ]) }));
         addSpecification("cooldown", 60);
         addSpecification("command template", "soulscourge at ##Target##");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::scream## words of power. ##TargetName## is enveloped in a ball of dark purple energy.");

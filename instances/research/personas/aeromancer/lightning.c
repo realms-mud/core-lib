@@ -19,8 +19,20 @@ public void reset(int arg)
         addSpecification("damage type", "electricity");
         addSpecification("damage hit points", ({ ([
             "probability":100,
-                "base damage" : 25,
-                "range" : 25
+            "base damage" : 25,
+            "range" : 25
+        ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 1.25
+        ]), ([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 5,
+            "rate": 1.2
         ]) }));
         addSpecification("cooldown", 4);
         addSpecification("command template", "lightning at ##Target##");

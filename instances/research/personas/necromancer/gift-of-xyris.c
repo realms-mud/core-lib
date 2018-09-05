@@ -22,6 +22,23 @@ public void reset(int arg)
                 "base damage" : 25,
                 "range" : 25
         ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "body",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"skill",
+            "name": "blood",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 5,
+            "rate": 1.2
+        ]) }));
         addSpecification("cooldown", 4);
         addSpecification("command template", "giftofxyris at ##Target##");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## ##InitiatorPossessive## hand and a dark purple bolt imbeds itself in ##TargetName##.");

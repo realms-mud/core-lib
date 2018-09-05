@@ -32,6 +32,18 @@ public void reset(int arg)
                 "base damage" : 50,
                 "range" : 50
         ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 1.25
+        ]), ([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 5,
+            "rate": 1.2
+        ]) }));
         addSpecification("cooldown", 60);
         addSpecification("command template", "maelstrom at ##Target##");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::scream## words of power. Wind and lightning batters everyone in the area.");

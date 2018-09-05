@@ -22,6 +22,18 @@ public void reset(int arg)
                 "base damage" : 25,
                 "range" : 25
         ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "elemental fire",
+            "formula": "additive",
+            "rate": 1.25
+        ]), ([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 10,
+            "rate": 1.2
+        ]) }));
         addSpecification("cooldown", 10);
         addSpecification("command template", "firebreath at ##Target##");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::open## ##InitiatorPossessive## maw and ##Infinitive::breathe## fiery death on ##TargetName##.");

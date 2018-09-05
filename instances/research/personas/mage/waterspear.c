@@ -22,6 +22,18 @@ public void reset(int arg)
                 "base damage" : 25,
                 "range" : 25
         ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "elemental water",
+            "formula": "additive",
+            "rate": 1.25
+        ]), ([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 5,
+            "rate": 1.2
+        ]) }));
         addSpecification("cooldown", 4);
         addSpecification("command template", "waterspear at ##Target##");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## "

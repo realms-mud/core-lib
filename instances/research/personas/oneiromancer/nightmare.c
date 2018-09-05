@@ -32,6 +32,28 @@ public void reset(int arg)
                 "base damage" : 50,
                 "range" : 50
         ]) }));
+        addSpecification("modifiers", ({ ([
+            "type":"skill",
+            "name": "mind",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"skill",
+            "name": "senses",
+            "formula": "additive",
+            "rate": 1.10
+        ]), ([
+            "type":"skill",
+            "name": "spirit",
+            "formula": "additive",
+            "rate": 1.10
+        ]),([
+            "type":"attribute",
+            "name": "intelligence",
+            "formula": "logarithmic",
+            "base value": 5,
+            "rate": 1.2
+        ]) }));
         addSpecification("cooldown", 60);
         addSpecification("command template", "nightmare at ##Target##");
         addSpecification("use ability message", "##InitiatorName## "
