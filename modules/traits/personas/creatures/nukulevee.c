@@ -10,8 +10,8 @@ public void reset(int arg)
     if (!arg)
     {
         addSpecification("type", "persona");
-        addSpecification("name", "nightmare");
-        addSpecification("description", "You are a nightmare.");
+        addSpecification("name", "nukulevee");
+        addSpecification("description", "You are a nukulevee.");
         addSpecification("root", "creature persona");
         addSpecification("bonus resist undead", 100);
         addSpecification("bonus resist evil", 100);

@@ -7,6 +7,7 @@
 //*****************************************************************************
 virtual inherit "/lib/realizations/living.c";
 virtual inherit "/lib/modules/personas.c";
+virtual inherit "/lib/modules/combatChatter.c";
 
 private nosave int EffectiveLevel;
 

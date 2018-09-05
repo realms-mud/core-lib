@@ -839,7 +839,7 @@ private nosave mapping creatureBlueprints = ([
         "base spell points" : 0,
         "base stamina points" : 150
     ]),
-    "nukuleve":([
+    "nukulevee":([
         "category": "creatures",
         "primary skills":({ "parry", "dodge", "no armor", "pole arm" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
@@ -852,7 +852,7 @@ private nosave mapping creatureBlueprints = ([
             "evil": 10,
         ]),
         "equipment": ([ 
-            "weapons":({ "pole-arms/spear" })
+            "weapons/pole-arms":({ "spear" })
         ]),
         "base hit points": 100,
         "base spell points" : 0,

@@ -1348,8 +1348,7 @@ public nomask varargs int hit(int damage, string damageType, object foe)
             foe->addExperience(to_int(expToGive));
         }
 
-        object inventory = getService("inventory");
-        
+        object inventory = getService("inventory");        
         if(foe && inventory)
         {
             int reflection = inventory->inventoryGetModifier("combatModifiers", 
@@ -1372,6 +1371,9 @@ public nomask varargs int hit(int damage, string damageType, object foe)
     }
     if (isDead())
     {
+        getDictionary("combatChatter")->displayCombatChatter(ret,
+            foe, this_object());
+
         say(sprintf("%s died.\n", capitalize(this_object()->RealName())));
         if (!getService("player"))
         {
@@ -1448,6 +1450,9 @@ protected nomask void doOneAttack(object foe, object weapon)
 
         if(foe && objectp(foe))
         {
+            getDictionary("combatChatter")->displayCombatChatter(damageInflicted, 
+                this_object(), foe);
+
             attackObject()->displayMessage(this_object(), foe, damageInflicted,
                 weapon);
         }

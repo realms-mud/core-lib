@@ -18,7 +18,7 @@ private nosave mapping magicUserBlueprints = ([
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
-            "armor": ({ "clothing/robes" }),
+            "armor/clothing": ({ "robes" }),
             "armor/accessories": ({ "bracers", "boots", "gloves", 
                 "ring", "circlet", "necklace" })
         ]),
@@ -48,7 +48,7 @@ private nosave mapping magicUserBlueprints = ([
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
-            "armor": ({ "clothing/robes" }),
+            "armor/clothing": ({ "robes" }),
             "armor/accessories": ({ "bracers", "boots", "gloves", 
                 "ring", "circlet", "necklace" })
         ]),
@@ -78,7 +78,7 @@ private nosave mapping magicUserBlueprints = ([
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
-            "armor": ({ "clothing/robes" }),
+            "armor/clothing": ({ "robes" }),
             "armor/accessories": ({ "bracers", "boots", "gloves", 
                 "ring", "circlet", "necklace" })
         ]),
@@ -108,7 +108,7 @@ private nosave mapping magicUserBlueprints = ([
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
-            "armor": ({ "clothing/robes" }),
+            "armor/clothing": ({ "robes" }),
             "armor/accessories": ({ "bracers", "boots", "gloves", 
                 "ring", "circlet", "necklace" })
         ]),
@@ -138,7 +138,7 @@ private nosave mapping magicUserBlueprints = ([
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
-            "armor": ({ "clothing/robes" }),
+            "armor/clothing": ({ "robes" }),
             "armor/accessories": ({ "bracers", "boots", "gloves", 
                 "ring", "circlet", "necklace" })
         ]),
@@ -168,7 +168,7 @@ private nosave mapping magicUserBlueprints = ([
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
-            "armor": ({ "clothing/robes" }),
+            "armor/clothing": ({ "robes" }),
             "armor/accessories": ({ "bracers", "boots", "gloves", 
                 "ring", "circlet", "necklace" })
         ]),
@@ -198,7 +198,7 @@ private nosave mapping magicUserBlueprints = ([
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
-            "armor": ({ "clothing/robes" }),
+            "armor/clothing": ({ "robes" }),
             "armor/accessories": ({ "bracers", "boots", "gloves", 
                 "ring", "circlet", "necklace" })
         ]),
@@ -228,7 +228,7 @@ private nosave mapping magicUserBlueprints = ([
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
-            "armor": ({ "clothing/robes" }),
+            "armor/clothing": ({ "robes" }),
             "armor/accessories": ({ "bracers", "boots", "gloves", 
                 "ring", "circlet", "necklace" })
         ]),
@@ -258,7 +258,7 @@ private nosave mapping magicUserBlueprints = ([
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
-            "armor": ({ "clothing/robes" }),
+            "armor/clothing": ({ "robes" }),
             "armor/accessories": ({ "bracers", "boots", "gloves", 
                 "ring", "circlet", "necklace" })
         ]),
