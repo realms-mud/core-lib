@@ -3,6 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 #include "personas/creatures.h"
+#include "personas/dragons.h"
 #include "personas/fighters.h"
 #include "personas/magicUsers.h"
 
@@ -10,6 +11,7 @@
 private nomask mapping personaBlueprints()
 {
     return creatureBlueprints + 
+        dragonBlueprints +
         magicUserBlueprints +
         fighterBlueprints + ([]);
 }
