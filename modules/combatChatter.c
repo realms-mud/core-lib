@@ -34,6 +34,9 @@ private nosave mapping combatChatter = ([
     "death": ([
         "any":({})
     ]),
+    "kill": ([
+        "any":({})
+    ]),
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -81,6 +84,12 @@ public nomask varargs void addDeathMessage(string message, string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs void addKillMessage(string message, string state)
+{
+    addCombatMessage(message, "kill", state);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string getMessage(string type, string state)
 {
     string message = 0;
@@ -97,7 +106,7 @@ public nomask varargs string speakCombatChatter(string type, object actor,
     int alwaysDisplay)
 {
     string message = 0;
-    if (member(({ "defensive miss", "offensive miss", "death" }), type) > -1)
+    if (member(({ "defensive miss", "offensive miss", "death", "kill" }), type) > -1)
     {
         message = getMessage(type, "any");
     }
@@ -111,5 +120,5 @@ public nomask varargs string speakCombatChatter(string type, object actor,
         message = getMessage(type, damageLevel);
     }
 
-    return  (alwaysDisplay || !random(10) || (type == "death")) ? message : 0;
+    return  (alwaysDisplay || !random(10) || (type == "death") || (type == "kill")) ? message : 0;
 }

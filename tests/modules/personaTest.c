@@ -197,12 +197,12 @@ void SetUpRandomEquipmentWithEnchantmentSetsUpEquipmentForPersona()
 
     object *equipment = all_inventory(Persona);
     ExpectEq(3, sizeof(equipment));
-    ExpectTrue(Persona->isEquipped(equipment[0]));
-    ExpectTrue(Persona->isEquipped(equipment[1]));
-    ExpectTrue(Persona->isEquipped(equipment[2]));
-    ExpectTrue(equipment[0]->query("enchanted"));
-    ExpectTrue(equipment[1]->query("enchanted"));
-    ExpectTrue(equipment[2]->query("enchanted"));
+    ExpectTrue(Persona->isEquipped(equipment[0]), "item 1");
+    ExpectTrue(Persona->isEquipped(equipment[1]), "item 2");
+    ExpectTrue(Persona->isEquipped(equipment[2]), "item 3");
+    ExpectTrue(equipment[0]->query("enchanted") ||
+        equipment[1]->query("enchanted") ||
+        equipment[2]->query("enchanted"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -1362,19 +1362,22 @@ public nomask varargs int hit(int damage, string damageType, object foe)
                 if (reflection > 1)
                 {
                     object victim = getTargetToAttack();
-                    victim->hit(reflection, damageType, this_object());
-                    attackObject()->displayMessage(this_object(), victim,
-                        damage, attackObject()->getAttack("reflection"));
+                    if (objectp(victim))
+                    {
+                        victim->hit(reflection, damageType, this_object());
+                        attackObject()->displayMessage(this_object(), victim,
+                            damage, attackObject()->getAttack("reflection"));
+                    }
                 }
             }
         }
     }
     if (isDead())
     {
+        say(sprintf("%s died.\n", capitalize(this_object()->RealName())));
         getDictionary("combatChatter")->displayCombatChatter(ret,
             foe, this_object());
 
-        say(sprintf("%s died.\n", capitalize(this_object()->RealName())));
         if (!getService("player"))
         {
             destruct(this_object());

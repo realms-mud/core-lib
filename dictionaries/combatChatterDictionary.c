@@ -109,31 +109,33 @@ private nomask varargs void displayMessage(string message, object initiator,
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void displayCombatChatter(int damage, object attacker, 
-    object defender)
+    object defender, int alwaysDisplay)
 {
     if (objectp(attacker) && objectp(defender))
     {
         if (damage)
         {
-            displayMessage(attacker->speakCombatChatter("offensive hit", attacker),
+            displayMessage(attacker->speakCombatChatter("offensive hit", defender, alwaysDisplay),
                 attacker, defender);
 
             if (!defender->isDead())
             {
-                displayMessage(defender->speakCombatChatter("defensive hit", defender),
+                displayMessage(defender->speakCombatChatter("defensive hit", defender, alwaysDisplay),
                     defender, attacker);
             }
             else
             {
-                displayMessage(defender->speakCombatChatter("death", defender),
+                displayMessage(defender->speakCombatChatter("death", defender, alwaysDisplay),
                     defender, attacker);
+                displayMessage(attacker->speakCombatChatter("kill", attacker, alwaysDisplay),
+                    attacker, defender);
             }
         }
         else
         {
-            displayMessage(attacker->speakCombatChatter("offensive miss", attacker),
+            displayMessage(attacker->speakCombatChatter("offensive miss", attacker, alwaysDisplay),
                 attacker, defender);
-            displayMessage(defender->speakCombatChatter("defensive miss", defender),
+            displayMessage(defender->speakCombatChatter("defensive miss", defender, alwaysDisplay),
                 defender, attacker);
         }
     }
