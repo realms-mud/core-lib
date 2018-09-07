@@ -122,3 +122,20 @@ public void Setup()
 }
 ```
 Interiors are specified in exactly the same manner.
+
+##### Lighting
+For terrains, lighting is tied directly to the time-of-day and weather while for interiors, the default behavior
+is to have no light by default. What that means is that either an environmental object that is a light source
+will need to be added OR you will need to set up your interior as a source of light OR those entering the room will need to supply their own light source if they
+wish to see anything.
+
+Any terrain/interior/other item can become a source of light through the use of the
+`addSourceOfLight(int magnitude, (optional) string state, (optional) string timeOfDay, (optional) string season)` method.
+The magnitude of the light source can be either positive or negative (for example, a curtain over a window or an
+item that releases a magical 'darkness' aura might be negative). If the sum of all acting sources
+of light are positive, the environment will be light and otherwise, it will be dark.
+
+The optional parameters limit the light source to specific states, times of day, and seasons respectively.
+
+##### State Machines
+TBD

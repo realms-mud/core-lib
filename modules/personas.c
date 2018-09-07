@@ -112,3 +112,9 @@ public nomask void setResearchFrequency(int newFrequency)
         researchFrequency = newFrequency;
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setPersonality(string personality)
+{
+
+}

@@ -169,6 +169,40 @@ One special class of item is one that inherits from `/lib/environment/items/base
 items provide the means to store non-static items (items a player can pick up such as a weapon
 or money, for example). 
 
+###### Lighting
+By default, environments do not have lighting set. If a terrain is added, the lighting for time of day, weather, and season
+will be taken into account. If an interior is added, there will be no lighting unless it was specifically set up for
+the interior in question. However, other environmental items (buildings, features, miscellaneous items) that are light
+sources can be added. [See the 'Lighting' section of the environmental object discussion for further details.](terrain.md)
+
+There is an override for this behavior available. If you need to always have your environment light, you can overload
+```
+protected int alwaysLight()
+{
+    return 0;
+}
+```
+
+If it returns any non-zero value, then the details of the environment will always be visible independent of any other criteria.
+
+###### Inhibiting Movement
+By default, living creatures - be they players or monsters - can freely move around in environments. If you wish to change this
+behavior, there are two hooks provided:
+```
+/////////////////////////////////////////////////////////////////////////////
+public int moveFromIsAllowed(object user, object fromLocation)
+{
+    return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int moveToIsAllowed(object user, object toLocation)
+{
+    return 1;
+}
+```
+Simply implement your own version of these functions to either prevent movement out of or into the environment in question.
+  
 ###### Shops
 If the room is a shop (meaning that you can do transactions in this location), there is a method
 for adding support for the game's shop mechanics:
@@ -188,7 +222,8 @@ addShop("/lib/environment/shopInventories/swordsmith.c");
 ```
 varargs void addObject(string file, string state);
 ```
-TBD
+This method is only intended for use with monster programs - if you wish to assemble a monster
+on the fly, you will need to do that logic using your own custom handler. [See the discussion on monsters for details.](monsters.md)
 
 #### Adding Exits
 ```
