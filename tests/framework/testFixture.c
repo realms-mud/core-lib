@@ -4,8 +4,8 @@
 //*****************************************************************************
 #include <functionlist.h>
 
-string Pass = "[0;36m[  PASSED  ][0m ";
-string Fail = "[0;31m[  FAILED  ][0m ";
+string Pass = "\x1b[0;36m[  PASSED  ]\x1b[0m ";
+string Fail = "\x1b[0;31m[  FAILED  ]\x1b[0m ";
 
 int CurrentTestPassed = 0;
 int AnyFailure = 0;

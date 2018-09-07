@@ -44,11 +44,11 @@ protected string description(string displayCommand)
 {
     return format("The vitals command displays information about your current hit "
         "points, spell points, and stamina points levels.\n\nFor example:\n> "
-        "vitals", 78) + "[0;31m|[0m  [0;36mHit Points: [0;35;1m==[0;31m........[0m"
-        "[0;36m   Spell Points: [0;35;1m========[0;31m..[0m       "
-        "[0;36mStamina: [0;35;1m==========[0m [0;31m|[0m\n[0;31m|"
-        "              [0;33m30 / 121                    122 / 152 "
-        "                96 / 96   [0;31m|[0m\n";
+        "vitals", 78) + "\x1b[0;31m|\x1b[0m  \x1b[0;36mHit Points: \x1b[0;35;1m==\x1b[0;31m........\x1b[0m"
+        "\x1b[0;36m   Spell Points: \x1b[0;35;1m========\x1b[0;31m..\x1b[0m       "
+        "\x1b[0;36mStamina: \x1b[0;35;1m==========\x1b[0m \x1b[0;31m|\x1b[0m\n\x1b[0;31m|"
+        "              \x1b[0;33m30 / 121                    122 / 152 "
+        "                96 / 96   \x1b[0;31m|\x1b[0m\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////

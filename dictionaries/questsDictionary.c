@@ -77,7 +77,7 @@ public nomask mapping questsOfType(object user, string type)
                 (capitalize(quest->name()[0..16]) + "...") :
                 capitalize(quest->name())),
             "type": source,
-            "description": format(sprintf("[0;33m%s\n%s[0m\n[0;36m%s[0m\n",
+            "description": format(sprintf("\x1b[0;33m%s\n%s\x1b[0m\n\x1b[0;36m%s\x1b[0m\n",
                 quest->name(), quest->description(), 
                 to_string(user->questStory(source))), 78)
         ]);

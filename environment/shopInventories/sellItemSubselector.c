@@ -95,21 +95,21 @@ protected nomask string displayDetails(string choice)
     if (Data[choice]["do not sell"] || 
         (member(Data[choice], "value") && (!Data[choice]["value"])))
     {
-        ret = "[0;31m (X)[0m";
+        ret = "\x1b[0;31m (X)\x1b[0m";
     }
     else if (Data[choice]["is equipped"])
     {
-        ret = "[0;34;1m (*)[0m";
+        ret = "\x1b[0;34;1m (*)\x1b[0m";
     }
     else if (member(Data[choice], "identified") &&
         !Data[choice]["identified"])
     {
-        ret = "[0;35m (?)[0m";
+        ret = "\x1b[0;35m (?)\x1b[0m";
     }
     else if (member(Data[choice], "known cursed item") &&
         Data[choice]["known cursed item"])
     {
-        ret = "[0;30;1m (C)[0m";
+        ret = "\x1b[0;30;1m (C)\x1b[0m";
     }
 
     return ret;
@@ -142,6 +142,6 @@ protected string choiceFormatter(string choice)
 {
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "\t" : "", Red,
-        padSelectionDisplay(choice), "[0;32m%-30s[0m",
+        padSelectionDisplay(choice), "\x1b[0;32m%-30s\x1b[0m",
         displayDetails(choice));
 }

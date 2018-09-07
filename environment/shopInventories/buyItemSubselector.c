@@ -29,7 +29,7 @@ public nomask void reset(int arg)
     if (!arg)
     {
         Description = "Select an item to buy:\n"
-            "[0;31m-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-[0m";
+            "\x1b[0;31m-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-\x1b[0m";
         AllowAbort = 1;
         AllowUndo = 0;
         NumColumns = 1;
@@ -123,6 +123,6 @@ protected nomask int suppressMenuDisplay()
 protected string choiceFormatter(string choice)
 {
     return sprintf("[%s]%s - %s%s", Red,
-        padSelectionDisplay(choice), "[0;32m%s[0m",
+        padSelectionDisplay(choice), "\x1b[0;32m%s\x1b[0m",
         displayDetails(choice));
 }

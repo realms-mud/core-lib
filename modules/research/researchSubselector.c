@@ -23,7 +23,7 @@ protected mapping researchMenuSetup(string type)
     if (researchObj)
     {
         SuppressColon = 1;
-        Description = "Details:[0m\n" + 
+        Description = "Details:\x1b[0m\n" + 
             Dictionary->getResearchDetails(type) +
             Dictionary->displayTreePrerequisites(type, User);
 
@@ -31,8 +31,8 @@ protected mapping researchMenuSetup(string type)
         {
             NumColumns = 1;
             Description += 
-                sprintf("[0;31;1mYou still have another %s before "
-                    "research is completed.[0m\n", researchObj->timeString(
+                sprintf("\x1b[0;31;1mYou still have another %s before "
+                    "research is completed.\x1b[0m\n", researchObj->timeString(
                         researchObj->query("research cost") -
                         User->isResearching(type)));
         }
@@ -58,7 +58,7 @@ protected mapping researchMenuSetup(string type)
     {
         SuppressColon = 1;
         NumColumns = 2;
-        Description = "Details:[0m\n" +
+        Description = "Details:\x1b[0m\n" +
             Dictionary->getResearchTreeDetails(type, User);
         menu = Dictionary->getResearchTreeChoices(type, User);
     }
@@ -143,17 +143,17 @@ protected nomask string displayDetails(string choice)
     if (User->isResearched(Data[choice]["type"]) || (member(
         User->availableResearchTrees(), Data[choice]["type"]) > -1))
     {
-        ret = "[0;34;1m (*)[0m";
+        ret = "\x1b[0;34;1m (*)\x1b[0m";
     }
     else if (User->isResearching(Data[choice]["type"]))
     {
-        ret = "[0;35m (!)[0m";
+        ret = "\x1b[0;35m (!)\x1b[0m";
     }
     else if (!User->canResearch(Data[choice]["type"]) &&
         (member(({ "Return to previous menu", "Research this item" }),
             Data[choice]["name"]) < 0))
     {
-        ret = "[0;31m (X)[0m";
+        ret = "\x1b[0;31m (X)\x1b[0m";
     }
     return ret;
 }
@@ -166,9 +166,9 @@ protected nomask string additionalInstructions()
     {
         ret += sprintf("You have %d research points left to assign.\n", TotalPoints);
     }
-    return ret + "[0;34;1m(*)[0m[0;32m denotes already-chosen research while "
-        "[0;35m(!)[0m[0;32m denotes research in progress.\nResearch denoted "
-        "[0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n";
+    return ret + "\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research while "
+        "\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress.\nResearch denoted "
+        "\x1b[0;31m(X)\x1b[0m\x1b[0;32m cannot yet be learned - view description for details.\x1b[0m\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////

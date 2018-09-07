@@ -347,9 +347,9 @@ protected string notes(string displayCommand)
 /////////////////////////////////////////////////////////////////////////////
 protected string copyright()
 {
-    return "[0;36;1mCopyright\n[0;36m\tCopyright (C) 1991-2018 Allen "
+    return "\x1b[0;36;1mCopyright\n\x1b[0;36m\tCopyright (C) 1991-2018 Allen "
         "Cummings. For additional licensing\n\tinformation, see "
-        "http://realmsmud.org/license/ [0m\n";
+        "http://realmsmud.org/license/ \x1b[0m\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -370,26 +370,26 @@ public nomask string displayUsageDetails(string displayCommand)
         {
             string currentCommand = regreplace(command, "\\[\\.\\*\\]", wildcardMeaning(), 1);
             currentCommand = format(regreplace(currentCommand, "\\|", "", 1), 78);
-            currentCommand = "[0;36m" + regreplace(currentCommand, "##([^#]+)##", "[0;33m<\\1>[0m[0;36m", 1) + "[0m";
+            currentCommand = "\x1b[0;36m" + regreplace(currentCommand, "##([^#]+)##", "\x1b[0;33m<\\1>\x1b[0m\x1b[0;36m", 1) + "\x1b[0m";
             commandText += ({ regreplace(currentCommand, "\n", "\n\t\t", 1) });
         }
         ret = "\t" + implode(commandText, "\n\t");
     }
 
-    return "\n[0;36;1mSyntax\n[0m" + ret + "\n[0m";
+    return "\n\x1b[0;36;1mSyntax\n\x1b[0m" + ret + "\n\x1b[0m";
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public string displaySynopsis(string displayCommand)
 {
-    return format(sprintf("[0;36;1mSynopsis\n[0;36m\t%s - %s\n[0m", 
+    return format(sprintf("\x1b[0;36;1mSynopsis\n\x1b[0;36m\t%s - %s\n\x1b[0m", 
         displayCommand, synopsis(displayCommand)), 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public string displayDescription(string displayCommand)
 {
-    return sprintf("[0;36;1mDescription\n[0;36m%s\n[0m\n",
+    return sprintf("\x1b[0;36;1mDescription\n\x1b[0;36m%s\n\x1b[0m\n",
         description(displayCommand));
 }
 
@@ -404,21 +404,21 @@ public string displayOptions(string displayCommand)
         string *optionList = ({});
         foreach(string option in options)
         {
-            string shorthand = "[0;36;1m" + regreplace(option, "\\[*(.+)\\([^)]+\\)([^]]*)[]]$", "\\1\\2") + "[0m";
-            string verbose = "[0;36;1m" + regreplace(option, "\\[*(.+)\\(([^|]+)\\|\\)([^]]*)[]]$", "\\1\\2\\3") + "[0m";
+            string shorthand = "\x1b[0;36;1m" + regreplace(option, "\\[*(.+)\\([^)]+\\)([^]]*)[]]$", "\\1\\2") + "\x1b[0m";
+            string verbose = "\x1b[0;36;1m" + regreplace(option, "\\[*(.+)\\(([^|]+)\\|\\)([^]]*)[]]$", "\\1\\2\\3") + "\x1b[0m";
 
             optionList += ({ "    " + regreplace(format(shorthand + ", " + verbose, 78),
-                "##([^#]+)##", "[0;33m<\\1>[0m", 1) + "[0;36m\t" +
-                regreplace(format(flagInformation(shorthand), 78), "\n", "\n\t", 1) + "[0m\n" });
+                "##([^#]+)##", "\x1b[0;33m<\\1>\x1b[0m", 1) + "\x1b[0;36m\t" +
+                regreplace(format(flagInformation(shorthand), 78), "\n", "\n\t", 1) + "\x1b[0m\n" });
         }
         ret = implode(optionList, "");
     }
-    return "[0;36;1mOptions\n" + "[0m" + ((ret != "") ? ret : "[0;36m\tThis command does not have any options.[0m\n\n");
+    return "\x1b[0;36;1mOptions\n" + "\x1b[0m" + ((ret != "") ? ret : "\x1b[0;36m\tThis command does not have any options.\x1b[0m\n\n");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public string displayNotes(string displayCommand)
 {
-    return format(sprintf("[0;36;1mNotes\n[0;36m\t%s\n[0m\n",
+    return format(sprintf("\x1b[0;36;1mNotes\n\x1b[0;36m\t%s\n\x1b[0m\n",
         notes(displayCommand)), 78) + copyright();
 }

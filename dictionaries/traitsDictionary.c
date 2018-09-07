@@ -349,8 +349,8 @@ private nomask string displayResearchTree(object trait)
             object treeObj = researchDictionary->researchTree(tree);
             if (tree)
             {
-                ret += sprintf("[0;34;1mThis trait makes the %s research "
-                    "tree available.[0m\n", tree->Name());
+                ret += sprintf("\x1b[0;34;1mThis trait makes the %s research "
+                    "tree available.\x1b[0m\n", tree->Name());
             }
         }
     }
@@ -366,7 +366,7 @@ private nomask string displayTraitBonusesAndPenalties(object trait)
     {
         foreach(string bonus in keys)
         {
-            ret += sprintf("[0;34;1m(+%d)[0m [0;33mBonus %s[0m\n",
+            ret += sprintf("\x1b[0;34;1m(+%d)\x1b[0m \x1b[0;33mBonus %s\x1b[0m\n",
                 trait->query(bonus), bonusName(bonus));
         }
     }
@@ -375,7 +375,7 @@ private nomask string displayTraitBonusesAndPenalties(object trait)
     {
         foreach(string penalty in keys)
         {
-            ret += sprintf("[0;31m(%d)[0m [0;33mPenalty to %s[0m\n",
+            ret += sprintf("\x1b[0;31m(%d)\x1b[0m \x1b[0;33mPenalty to %s\x1b[0m\n",
                 trait->query(penalty), bonusName(penalty));
         }
     }
@@ -390,7 +390,7 @@ private nomask string displayTraitComponent(object trait, string component)
     if (value)
     {
         ret = sprintf(Cyan + ": " +
-            ((value > 0) ? "[0;34;1m+%d[0m\n" : "[0;31m%d[0m\n"),
+            ((value > 0) ? "\x1b[0;34;1m+%d\x1b[0m\n" : "\x1b[0;31m%d\x1b[0m\n"),
             capitalize(component), value);
     }
     return ret;
@@ -406,7 +406,7 @@ public nomask string traitDetailsFromFile(string traitFile)
 
         ret = sprintf(FieldDisplay, "Trait Name",
             capitalize(traitObj->query("name")) +
-            (traitIsNegative(traitFile) ? "[0;31m [Negative][0m" : "")) +
+            (traitIsNegative(traitFile) ? "\x1b[0;31m [Negative]\x1b[0m" : "")) +
             sprintf(FieldDisplay, "Trait Type", capitalize(traitObj->query("type"))) +
             format(sprintf(Value, traitObj->query("description")), 78) + "\n" +
             sprintf(FieldDisplay, "Root Trait Class", capitalize(traitObj->query("root"))) +

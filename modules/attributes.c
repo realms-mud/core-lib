@@ -14,7 +14,7 @@
 virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/attributes.h"
 
-private string rowFormat = "[0;31m|[0m[0;36m%12s:[0m [0;32m%-11s[0m [0;36m%12s:[0m [0;32m%-11s[0m [0;36m%12s:[0m [0;32m%-11s[0m[0;31m|[0m\n";
+private string rowFormat = "\x1b[0;31m|\x1b[0m\x1b[0;36m%12s:\x1b[0m \x1b[0;32m%-11s\x1b[0m \x1b[0;36m%12s:\x1b[0m \x1b[0;32m%-11s\x1b[0m \x1b[0;36m%12s:\x1b[0m \x1b[0;32m%-11s\x1b[0m\x1b[0;31m|\x1b[0m\n";
 
 //-----------------------------------------------------------------------------
 // Method: validAttributes
@@ -439,7 +439,7 @@ private nomask string attributeDetails(string attribute)
     int actual = attributeValue(attribute);
     int raw = attributeValue(attribute, 1);
 
-    string format = "[0;%sm%-6s[0m[0;%sm%-5s[0m";
+    string format = "\x1b[0;%sm%-6s\x1b[0m\x1b[0;%sm%-5s\x1b[0m";
     string statColor = "32";
     string bonusColor = "32";
     string bonusDesc = "";

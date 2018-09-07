@@ -14,11 +14,11 @@ string *Slots = ({ "Primary Weapon", "Equipped Offhand", "Worn Armor", "Worn Hel
     "Worn Arm Greaves", "Worn Leg Greaves", "Worn Bracers", "Worn First Ring",
     "Worn Second Ring" });
 
-string Bar = "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n[0m";
-string EquippedItem = "[0;31m| [0m[0;36m%s:%s[0m[0;%sm%s[0m%s\n";
-string nothingEquipped = "[0;31m| [0m[0;36m%s:%s[0m[0;30;1mnothing[0m\n";
-string UnequippedItem = "[0;31m| [0m[0;37;1m%s[0m%s\n";
-string SingleDetailText = "\t[0;36m%s: [0m[0;33m%d[0m\n";
+string Bar = "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m";
+string EquippedItem = "\x1b[0;31m| \x1b[0m\x1b[0;36m%s:%s\x1b[0m\x1b[0;%sm%s\x1b[0m%s\n";
+string nothingEquipped = "\x1b[0;31m| \x1b[0m\x1b[0;36m%s:%s\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n";
+string UnequippedItem = "\x1b[0;31m| \x1b[0m\x1b[0;37;1m%s\x1b[0m%s\n";
+string SingleDetailText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m\n";
 
 /////////////////////////////////////////////////////////////////////////////
 varargs string BuildInventoryString(mapping equipped, string *unequipped, int verbose)
@@ -351,7 +351,7 @@ void LookWhenBlindFailsWithBlindMessage()
 {
     ExpectTrue(Player->addTrait("/lib/modules/traits/diseases/cataracts.c"));
     ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("[0;30;1mYou are blind.[0m\n", Player->caughtMessage());
+    ExpectEq("\x1b[0;30;1mYou are blind.\x1b[0m\n", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -360,7 +360,7 @@ void LookWhenDarkFailsWithDarkMessage()
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
     ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("[0;30;1mIt is too dark.[0m\n", Player->caughtMessage());
+    ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
     destruct(dictionary);
 }
 
@@ -396,7 +396,7 @@ void LookWhenDarkDoesNotShowEtherealSignaturesWithInfravision()
     Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
     Player->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
     ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("[0;30;1mIt is too dark.[0m\n", Player->caughtMessage());
+    ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
     destruct(dictionary);
 }
 
@@ -408,6 +408,6 @@ void LookWhenDarkDoesNotShowUndeadSignaturesWithInfravision()
     Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
     Player->addTrait("/lib/tests/support/traits/testUndeadTrait.c");
     ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("[0;30;1mIt is too dark.[0m\n", Player->caughtMessage());
+    ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
     destruct(dictionary);
 }

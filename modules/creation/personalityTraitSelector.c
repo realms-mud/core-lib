@@ -27,8 +27,8 @@ public nomask void reset(int arg)
         {
             QuestionList = sort_array(m_indices(Questionnaire), (: $1 > $2 :));
 
-            Description = "Personality Test[0m\n\n[0;36m" + 
-                Questionnaire[QuestionList[0]]["question"] + "[0m";
+            Description = "Personality Test\x1b[0m\n\n\x1b[0;36m" + 
+                Questionnaire[QuestionList[0]]["question"] + "\x1b[0m";
             Data = Questionnaire[QuestionList[0]]["answers"];
         }
         AllowUndo = 0;
@@ -46,8 +46,8 @@ protected nomask int processSelection(string selection)
     QuestionList -= ({ QuestionList[0] });
     if (sizeof(QuestionList))
     {
-        Description = "Personality Test[0m\n\n[0;36m" +
-            Questionnaire[QuestionList[0]]["question"] + "[0m";
+        Description = "Personality Test\x1b[0m\n\n\x1b[0;36m" +
+            Questionnaire[QuestionList[0]]["question"] + "\x1b[0m";
 
         Data = Questionnaire[QuestionList[0]]["answers"];
     }

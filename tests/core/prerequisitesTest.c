@@ -272,7 +272,7 @@ void DisplayPrerequisitesCorrectlyDisplaysQuestPrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("/lib/tests/support/quests/fakeQuestItem.c",
         ([ "type":"quest"])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mQuest[0m: [0;35mHail to the king, baby![0m\n", 
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mQuest\x1b[0m: \x1b[0;35mHail to the king, baby!\x1b[0m\n", 
         Prerequisite->displayPrerequisites());
 }
 
@@ -282,7 +282,7 @@ void DisplayPrerequisitesCorrectlyDisplaysResearchPrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("/lib/tests/support/research/testGrantedResearchItem.c",
         (["type":"research"])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mResearch[0m: [0;35mGranted research[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mResearch\x1b[0m: \x1b[0;35mGranted research\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -293,7 +293,7 @@ void DisplayPrerequisitesCorrectlyDisplaysTraitPrerequisites()
         "type":"trait", 
         "value" : ({ "/lib/modules/traits/personality/abrasive.c", "/lib/modules/traits/personality/charming.c" })])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mTrait[0m: [0;35mAbrasive or Charming[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mTrait\x1b[0m: \x1b[0;35mAbrasive or Charming\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -303,7 +303,7 @@ void DisplayPrerequisitesCorrectlyDisplaysAttributePrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("wisdom", ([
         "type":"attribute", "value": 10])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mAttribute[0m: [0;35mWisdom of 10[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mAttribute\x1b[0m: \x1b[0;35mWisdom of 10\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -313,7 +313,7 @@ void DisplayPrerequisitesCorrectlyDisplaysSkillPrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("long sword", ([
         "type":"skill", "value" : 10])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mSkill[0m: [0;35mLong sword of 10[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mSkill\x1b[0m: \x1b[0;35mLong sword of 10\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -323,7 +323,7 @@ void DisplayPrerequisitesCorrectlyDisplaysLevelPrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("level", ([
         "type":"level", "value": 10])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mLevel[0m: [0;35mLevel of 10[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mLevel\x1b[0m: \x1b[0;35mLevel of 10\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -333,7 +333,7 @@ void DisplayPrerequisitesCorrectlyDisplaysLevelWithGuildPrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("level", ([
         "type":"level", "value": 10, "guild":"mage"])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mLevel[0m: [0;35mLevel of 10 in Mage[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mLevel\x1b[0m: \x1b[0;35mLevel of 10 in Mage\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -343,7 +343,7 @@ void DisplayPrerequisitesCorrectlyDisplaysRacePrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("race", ([
         "type":"race", "value" : ({ "elf", "half-elf", "high elf" }) ])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mRace[0m: [0;35mElf or Half-elf or High elf[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mRace\x1b[0m: \x1b[0;35mElf or Half-elf or High elf\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -353,7 +353,7 @@ void DisplayPrerequisitesCorrectlyDisplaysGuildPrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("guild", ([
         "type":"guild", "value": ({ "fighter", "thief" })])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mGuild[0m: [0;35mFighter or Thief[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mGuild\x1b[0m: \x1b[0;35mFighter or Thief\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -363,7 +363,7 @@ void DisplayPrerequisitesCorrectlyDisplaysFactionPrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("faction", ([
         "type":"faction", "value": ({ "Llama lords" })])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mFaction[0m: [0;35mLlama lords[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mFaction\x1b[0m: \x1b[0;35mLlama lords\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -372,7 +372,7 @@ void DisplayPrerequisitesCorrectlyDisplaysCombatStatisticPrerequisites()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("orc", (["type":"combat statistic", "value" : 2])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mCombat statistic[0m: [0;35mOrc kill count of 2[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mCombat statistic\x1b[0m: \x1b[0;35mOrc kill count of 2\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -381,7 +381,7 @@ void DisplayPrerequisitesCorrectlyDisplaysBestKillPrerequisites()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("best kill", (["type":"combat statistic", "value" : 10])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mCombat statistic[0m: [0;35mBest kill level is 10[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mCombat statistic\x1b[0m: \x1b[0;35mBest kill level is 10\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }
 
@@ -391,6 +391,6 @@ void DisplayPrerequisitesCorrectlyDisplaysOpinionWithOpinionPrerequisites()
     ExpectTrue(Prerequisite->AddTestPrerequisite("opinion", ([
         "type":"opinion", "value": 10 ])));
 
-    ExpectEq("[0;36mPrerequisites:[0m\n\t[0;36mOpinion[0m: [0;35mOpinion of 10[0m\n",
+    ExpectEq("\x1b[0;36mPrerequisites:\x1b[0m\n\t\x1b[0;36mOpinion\x1b[0m: \x1b[0;35mOpinion of 10\x1b[0m\n",
         Prerequisite->displayPrerequisites());
 }

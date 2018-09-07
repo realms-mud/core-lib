@@ -72,17 +72,17 @@ private nomask string getDescription()
 
     if (!Item->query("primary crafting material"))
     {
-        ret = regreplace(ret, "(.*Material: )([^\n])*(.*)", "\\1[0;31mnone selected[0m\\3", 1);
+        ret = regreplace(ret, "(.*Material: )([^\n])*(.*)", "\\1\x1b[0;31mnone selected\x1b[0m\\3", 1);
     }
 
     mapping enchantments = Item->query("crafting enchantments");
     if (mappingp(enchantments))
     {
-        ret += "[0;32mThis item will have the following enchantments:[0m\n";
+        ret += "\x1b[0;32mThis item will have the following enchantments:\x1b[0m\n";
         string *enchantmentList = m_indices(enchantments);
         foreach(string enchantment in enchantmentList)
         {
-            ret += sprintf("[0;35;1m\t%s (x%d)[0m\n", 
+            ret += sprintf("\x1b[0;35;1m\t%s (x%d)\x1b[0m\n", 
                 capitalize(enchantment), enchantments[enchantment]);
         }
     }
@@ -182,14 +182,14 @@ protected nomask int processSelection(string selection)
             {
                 SettingName = 1;
                 OriginalName = Item->query("name");
-                tell_object(User, "[0;32mPlease enter the item's new name: [0m");
+                tell_object(User, "\x1b[0;32mPlease enter the item's new name: \x1b[0m");
             }
             else if (Data[selection]["type"] == "describe")
             {
                 SettingDescription = 1;
                 NewDescription = "";
-                tell_object(User, "[0;32mPlease enter the item's new description. "
-                    "Type '**' on a line by itself\nwhen you are done.\n[0m");
+                tell_object(User, "\x1b[0;32mPlease enter the item's new description. "
+                    "Type '**' on a line by itself\nwhen you are done.\n\x1b[0m");
             }
             else if (Data[selection]["type"] == "craft")
             {
@@ -200,8 +200,8 @@ protected nomask int processSelection(string selection)
                         Dictionary->setCraftingSkill(CraftingType, CraftingItem,
                             Item, User);
                         User->completeCrafting();
-                        tell_object(User, sprintf("[0;32;1mYou have successfully "
-                            "crafted %s.[0m\n", CraftingItem));
+                        tell_object(User, sprintf("\x1b[0;32;1mYou have successfully "
+                            "crafted %s.\x1b[0m\n", CraftingItem));
                         ret = 1;
                     }
                 }
@@ -255,17 +255,17 @@ protected nomask string displayDetails(string choice)
     }
     if (member(componentList, Data[choice]["type"]) > -1)
     {
-        ret = "[0;35;1m   (*)[0m";
+        ret = "\x1b[0;35;1m   (*)\x1b[0m";
     }
     else if ((Data[choice]["type"] == "name") && OriginalName &&
         (Item->query("name") != OriginalName))
     {
-        ret = sprintf("[0;35;1m   (%s)[0m", Item->query("name"));
+        ret = sprintf("\x1b[0;35;1m   (%s)\x1b[0m", Item->query("name"));
     }
     else if ((Data[choice]["type"] == "describe") && NewDescription &&
         Item->query("long"))
     {
-        ret = "[0;35;1m   (*)[0m";
+        ret = "\x1b[0;35;1m   (*)\x1b[0m";
     }
     return ret;
 }
@@ -273,11 +273,11 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    string displayFormat = "[0;32m%-20s[0m";
+    string displayFormat = "\x1b[0;32m%-20s\x1b[0m";
     if (member(Data[choice], "is disabled") &&
         Data[choice]["is disabled"])
     {
-        displayFormat = "[0;31m%-20s[0m";
+        displayFormat = "\x1b[0;31m%-20s\x1b[0m";
     }
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "\t" : "", Red,
@@ -304,7 +304,7 @@ public nomask void onSelectorCompleted(object caller)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return "[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n";
+    return "\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////

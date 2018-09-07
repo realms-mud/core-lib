@@ -22,11 +22,11 @@ protected void Setup()
         "enough to cause them to flee. Looks like they dragged their fallen "
         "with 'em though.'");
 
-    addResponse("first conversation", "[0;31m[Say nothing...][0m", "@D@You remain silent.");
+    addResponse("first conversation", "\x1b[0;31m[Say nothing...]\x1b[0m", "@D@You remain silent.");
     addTopic("player will live", "@S@`I may have spoken out of turn. ##ActorName## "
         "has regained consciousness and does not yet look ready to depart us.' @D@"
         "notes Berenar as he crouches down to help Galadhel tend to your wounds.");
-    addResponseTopic("first conversation", "[0;31m[Say nothing...][0m", "player will live");
+    addResponseTopic("first conversation", "\x1b[0;31m[Say nothing...]\x1b[0m", "player will live");
 
     addResponse("first conversation", "I'm not dead yet...",
         "@D@You raise your head up slightly and say, `@S@The rumor of my demise is greatly exaggerated. I hurt... everywhere, "

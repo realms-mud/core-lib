@@ -371,27 +371,27 @@ static nomask void traitsHeartBeat()
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getTraitColor(string trait)
 {
-    string ret = "[0;36m";
+    string ret = "\x1b[0;36m";
 
     if (traitDictionary()->traitIsNegative(trait))
     {
-        ret = "[0;31;1m";
+        ret = "\x1b[0;31;1m";
     }
     else if (traitDictionary()->isValidPersistedTrait(trait))
     {
-        ret = "[0;34;1m";
+        ret = "\x1b[0;34;1m";
     }
     else if(traitDictionary()->isValidSustainedTrait(trait))
     {
-        ret = "[0;35m";
+        ret = "\x1b[0;35m";
     }
     else if (traitDictionary()->traitHasResearchPath(trait))
     {
-        ret = "[0;32;1m";
+        ret = "\x1b[0;32;1m";
     }
     else if (traitDictionary()->traitIsEnhancement(trait))
     {
-        ret = "[0;33m";
+        ret = "\x1b[0;33m";
     }
     return ret;
 }
@@ -419,7 +419,7 @@ private nomask string traitListForType(string type)
         foreach(string trait in traitList)
         {
             string color = getTraitColor(trait);
-            traitFmt = sprintf(Red, "| ") + getTraitColor(trait) + "%23s[0m ";
+            traitFmt = sprintf(Red, "| ") + getTraitColor(trait) + "%23s\x1b[0m ";
             ret += sprintf(traitFmt, capitalize(traits[trait]["name"]));
             if ((columns % 3) == 2)
             {
@@ -431,7 +431,7 @@ private nomask string traitListForType(string type)
         {
             for (int i = 0; i < (3 - columns % 3); i++)
             {
-                ret += sprintf("%s%23s[0m ", sprintf(Red, "| "), "");
+                ret += sprintf("%s%23s\x1b[0m ", sprintf(Red, "| "), "");
             }
             ret += sprintf(Red, "|\n");
         }

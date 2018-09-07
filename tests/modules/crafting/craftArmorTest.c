@@ -53,23 +53,23 @@ void ChoosingClothingDisplaysClothingMenu()
     Selector->initiateSelector(Player);
     command("2", Player);
 
-    ExpectEq("[0;36mCraft Clothing - [0m[0;37;1mFrom this menu, you can craft items[0m:\n"
-        "    [[0;31;1m1[0m]  - [0;31mCloak               [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
-        "    [[0;31;1m2[0m]  - [0;31mDress               [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
-        "    [[0;31;1m3[0m]  - [0;31mGown                [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
-        "    [[0;31;1m4[0m]  - [0;31mKilt                [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
-        "    [[0;31;1m5[0m]  - [0;31mOrnate robes        [0m[0;34;1m([0;35mP,M[0;34;1m)[0m"
-        "    [[0;31;1m6[0m]  - [0;31mPants               [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
-        "    [[0;31;1m7[0m]  - [0;32mRobes               [0m     "
-        "    [[0;31;1m8[0m]  - [0;31mShirt               [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
-        "    [[0;31;1m9[0m]  - [0;31mShorts              [0m[0;34;1m([0;35mP[0;34;1m)[0m  "
-        "    [[0;31;1m10[0m] - [0;31mSkirt               [0m[0;34;1m([0;35mP[0;34;1m)[0m  \n"
-        "    [[0;31;1m11[0m] - [0;32mExit Craft Clothing Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 11.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
-        "[0;35mM[0m[0;32m denotes that proper quantities of the material requirements are missing.\n[0m",
+    ExpectEq("\x1b[0;36mCraft Clothing - \x1b[0m\x1b[0;37;1mFrom this menu, you can craft items\x1b[0m:\n"
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;31mCloak               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  "
+        "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;31mDress               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
+        "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;31mGown                \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  "
+        "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;31mKilt                \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
+        "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;31mOrnate robes        \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;31mPants               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
+        "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mRobes               \x1b[0m     "
+        "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;31mShirt               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
+        "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;31mShorts              \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  "
+        "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;31mSkirt               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
+        "    [\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mExit Craft Clothing Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 11.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
+        "\x1b[0;32;1m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
+        "\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -81,23 +81,23 @@ void ChoosingRobesDisplaysRobesMenu()
     command("2", Player);
     command("7", Player);
 
-    ExpectEq("[0;36mCraft Robes - [0m[0;37;1mFrom this menu, you will select the\n"
+    ExpectEq("\x1b[0;36mCraft Robes - \x1b[0m\x1b[0;37;1mFrom this menu, you will select the\n"
         "components that will be used to craft your robes. The relative statistics\n"
         "for the item you are creating are:\n"
-        "\t[0;36mMaterial: [0;31mnone selected[0m\n"
-        "\t[0;36mDamage Protection: [0m[0;33m1[0m\n"
-        "\t[0;36mEncumberance: [0m[0;33m6[0m\n"
-        "\t[0;36mWeight: [0m[0;33m4[0m\n[0m\n"
-        "\t[[0;31;1m1[0m] - [0;32mSelect Textile      [0m\n"
-        "\t[[0;31;1m2[0m] - [0;31mEnchant Robes       [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mGive robes a name   [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mGive robes a special description[0m\n"
-        "\t[[0;31;1m5[0m] - [0;31mCraft Selected Robes[0m\n"
-        "\t[[0;31;1m6[0m] - [0;32mExit Craft Robes Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
+        "\t\x1b[0;36mMaterial: \x1b[0;31mnone selected\x1b[0m\n"
+        "\t\x1b[0;36mDamage Protection: \x1b[0m\x1b[0;33m1\x1b[0m\n"
+        "\t\x1b[0;36mEncumberance: \x1b[0m\x1b[0;33m6\x1b[0m\n"
+        "\t\x1b[0;36mWeight: \x1b[0m\x1b[0;33m4\x1b[0m\n\x1b[0m\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Textile      \x1b[0m\n"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mEnchant Robes       \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mGive robes a name   \x1b[0m\n"
+        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mGive robes a special description\x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mCraft Selected Robes\x1b[0m\n"
+        "\t[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Craft Robes Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
+        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -128,23 +128,23 @@ void SelectingMaterialUpdatesRobesMenu()
     command("1", Player);
     command("17", Player);
 
-    ExpectEq("[0;36mCraft Robes - [0m[0;37;1mFrom this menu, you will select the\n"
+    ExpectEq("\x1b[0;36mCraft Robes - \x1b[0m\x1b[0;37;1mFrom this menu, you will select the\n"
         "components that will be used to craft your robes. The relative statistics\n"
         "for the item you are creating are:\n"
-        "\t[0;36mMaterial: [0m[0;33mSilk[0m\n"
-        "\t[0;36mDamage Protection: [0m[0;33m2[0m\n"
-        "\t[0;36mEncumberance: [0m[0;33m5[0m\n"
-        "\t[0;36mWeight: [0m[0;33m3[0m\n[0m\n"
-        "\t[[0;31;1m1[0m] - [0;32mSelect Textile      [0m[0;35;1m   (*)[0m\n"
-        "\t[[0;31;1m2[0m] - [0;31mEnchant Robes       [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mGive robes a name   [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mGive robes a special description[0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mCraft Selected Robes[0m\n"
-        "\t[[0;31;1m6[0m] - [0;32mExit Craft Robes Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 6.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1m[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n[0m",
+        "\t\x1b[0;36mMaterial: \x1b[0m\x1b[0;33mSilk\x1b[0m\n"
+        "\t\x1b[0;36mDamage Protection: \x1b[0m\x1b[0;33m2\x1b[0m\n"
+        "\t\x1b[0;36mEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
+        "\t\x1b[0;36mWeight: \x1b[0m\x1b[0;33m3\x1b[0m\n\x1b[0m\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Textile      \x1b[0m\x1b[0;35;1m   (*)\x1b[0m\n"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mEnchant Robes       \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mGive robes a name   \x1b[0m\n"
+        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mGive robes a special description\x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mCraft Selected Robes\x1b[0m\n"
+        "\t[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Craft Robes Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
+        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
         Player->caughtMessage());
 }
 

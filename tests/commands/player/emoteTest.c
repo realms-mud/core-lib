@@ -50,7 +50,7 @@ void ColonDisplaysCorrectMessage()
 /////////////////////////////////////////////////////////////////////////////
 void EmoteNukesEscapeCharacters()
 {
-    ExpectTrue(Player->executeCommand(":does stuff."));
+    ExpectTrue(Player->executeCommand(":\x1bd\x1bo\x1b\x1b\x1b\x1b\x1b\x1b\x1b\x1be\x1bs\x1b \x1bs\x1bt\x1bu\x1bf\x1bf."));
     ExpectEq("Bob does stuff.\n", Player->caughtMessage());
     ExpectEq("Bob does stuff.\n", Bystander->caughtMessage());
 }

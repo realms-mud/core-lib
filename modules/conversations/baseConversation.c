@@ -5,11 +5,11 @@
 virtual inherit "/lib/core/prerequisites.c";
 #include <mtypes.h>
 
-#define Speech "[0;33m"
-#define Desc "[0;36m"
-#define End "[0m"
-#define Stat(x) sprintf("[0;34;1m[%s][0m", x)
-#define Action(x) sprintf("[0;31m[%s][0m", x)
+#define Speech "\x1b[0;33m"
+#define Desc "\x1b[0;36m"
+#define End "\x1b[0m"
+#define Stat(x) sprintf("\x1b[0;34;1m[%s]\x1b[0m", x)
+#define Action(x) sprintf("\x1b[0;31m[%s]\x1b[0m", x)
 
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
 private int ignoreTalk = 0;

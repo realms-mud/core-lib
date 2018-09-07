@@ -11,7 +11,7 @@ virtual inherit "/lib/commands/baseCommand.c";
 #include "/lib/include/itemFormatters.h"
 
 private nosave string ResearchItemLocation = "lib/modules/research";
-protected nosave string FieldDisplay = "[0;36m%-15s[0m : [0;33m%s[0m\n";
+protected nosave string FieldDisplay = "\x1b[0;36m%-15s\x1b[0m : \x1b[0;33m%s\x1b[0m\n";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int checkValidType(string typeToCheck)
@@ -277,7 +277,7 @@ private nomask string displayExtraResearchInformation()
     {
         foreach(string bonus in keys)
         {
-            ret += sprintf("[0;34;1m(+%d)[0m [0;33mBonus %s[0m\n",
+            ret += sprintf("\x1b[0;34;1m(+%d)\x1b[0m \x1b[0;33mBonus %s\x1b[0m\n",
                 query(bonus),
                 capitalize(regreplace(bonus, "bonus (.+)", "\\1")));
         }
@@ -287,7 +287,7 @@ private nomask string displayExtraResearchInformation()
     {
         foreach(string penalty in keys)
         {
-            ret += sprintf("[0;31m(%d)[0m [0;33mPenalty to %s[0m\n",
+            ret += sprintf("\x1b[0;31m(%d)\x1b[0m \x1b[0;33mPenalty to %s\x1b[0m\n",
                 query(penalty),
                 capitalize(regreplace(penalty, "bonus (.+)", "\\1")));
         }
@@ -306,7 +306,7 @@ private nomask string displayUsageInfo()
         foreach(string command in commands)
         {
             string currentCommand = regreplace(command, "\\|", "", 1);
-            currentCommand = "[0;36m" + regreplace(currentCommand, "##([^#]+)##", "[0;33m<\\1>[0m[0;36m", 1) + "[0m";
+            currentCommand = "\x1b[0;36m" + regreplace(currentCommand, "##([^#]+)##", "\x1b[0;33m<\\1>\x1b[0m\x1b[0;36m", 1) + "\x1b[0m";
             commandText += ({ regreplace(currentCommand, "\n", "\n\t\t", 1) });
         }
         ret = implode(commandText, "\n                  ");
@@ -348,7 +348,7 @@ private nomask string displayUsageCost()
     string details = displayUsageInfo();
     if (details != "")
     {
-        ret += sprintf("[0;36m%-15s[0m : %s\n",
+        ret += sprintf("\x1b[0;36m%-15s\x1b[0m : %s\n",
             "Command syntax", details);
     }
     return ret;
@@ -385,8 +385,8 @@ private nomask string displayEffectInformationForType(string type)
             {
                 foreach(mapping modifier in modifiers)
                 {
-                    ret += sprintf("%-18s[0;32mModified -> [0;34;1m%1.2f * "
-                        "your %s %s[0m [0;31;1m(%s)[0m\n",
+                    ret += sprintf("%-18s\x1b[0;32mModified -> \x1b[0;34;1m%1.2f * "
+                        "your %s %s\x1b[0m \x1b[0;31;1m(%s)\x1b[0m\n",
                         "", modifier["rate"], modifier["name"], 
                         modifier["type"], modifier["formula"]);
                 }

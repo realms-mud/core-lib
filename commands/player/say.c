@@ -157,7 +157,7 @@ public nomask int execute(string command, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 protected string wildcardMeaning()
 {
-    return "[0;31;1m<Message to speak>[0m";
+    return "\x1b[0;31;1m<Message to speak>\x1b[0m";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -176,19 +176,19 @@ protected string flagInformation(string flag)
         case "-v":
         {
             ret = "This option will replace the verb displayed as part of "
-                "the 'say' message. For example:\n\t[0;37m> say -v grumble "
-                "I'm grumpy!\n\t[0;32mYou grumble, `I'm grumpy!'[0m\n"
-                "[0;36mOthers users would then see:\n"
-                "\t[0;32mBob grumbles, `I'm grumpy!'[0m\n";
+                "the 'say' message. For example:\n\t\x1b[0;37m> say -v grumble "
+                "I'm grumpy!\n\t\x1b[0;32mYou grumble, `I'm grumpy!'\x1b[0m\n"
+                "\x1b[0;36mOthers users would then see:\n"
+                "\t\x1b[0;32mBob grumbles, `I'm grumpy!'\x1b[0m\n";
             break;
         }
         case "-a":
         {
             ret = "This option will add an adverb to "
-                "the 'say' message. For example:\n\t[0;37m> say -a sarcastically "
-                "You're my hero!\n\t[0;32mYou sarcastically say, `You're my hero!'[0m\n"
-                "[0;36mOthers users would then see:\n"
-                "\t[0;32mBob sarcastically says, `You're my hero!'[0m\n";
+                "the 'say' message. For example:\n\t\x1b[0;37m> say -a sarcastically "
+                "You're my hero!\n\t\x1b[0;32mYou sarcastically say, `You're my hero!'\x1b[0m\n"
+                "\x1b[0;36mOthers users would then see:\n"
+                "\t\x1b[0;32mBob sarcastically says, `You're my hero!'\x1b[0m\n";
             break;
         }
         case "-l":
@@ -199,34 +199,34 @@ protected string flagInformation(string flag)
                 "translated appropriately or becomes gibberish. Those in the "
                 "environment will then use their skill to translate the message "
                 "back to English. For example if you have no skill in a "
-                "language, you might see:\n\t[0;37m> say -l orcish "
-                "I should say something nice.\n\t[0;32mYou say in complete "
+                "language, you might see:\n\t\x1b[0;37m> say -l orcish "
+                "I should say something nice.\n\t\x1b[0;32mYou say in complete "
                 "gibberish, `Blarg nukuleve zog forgla bup'\n"
-                "[0;36mOthers users would see:\n"
-                "\t[0;32mBob says in complete gibberish, `Blarg nukuleve zog "
-                "forgla bup'\n[0;36mMeanwhile, if you do know a language you might "
-                "see:\n\t[0;37m> say -l elven I should say something nice."
-                "\n\t[0;32mYou say in elven, `I should say something nice.'\n"
-                "[0;36mOthers users that have a high skill in elven would see:"
-                "\n\t[0;32mBob says in elven, `I should say something nice.'\n"
-                "[0;36mOthers users that have no skill in elven would see:"
-                "\n\t[0;32mBob says in elven, `Naur wu simildin welana loomen'\n"
-                "[0;36mIt is important to note that knowledge of a language is "
+                "\x1b[0;36mOthers users would see:\n"
+                "\t\x1b[0;32mBob says in complete gibberish, `Blarg nukuleve zog "
+                "forgla bup'\n\x1b[0;36mMeanwhile, if you do know a language you might "
+                "see:\n\t\x1b[0;37m> say -l elven I should say something nice."
+                "\n\t\x1b[0;32mYou say in elven, `I should say something nice.'\n"
+                "\x1b[0;36mOthers users that have a high skill in elven would see:"
+                "\n\t\x1b[0;32mBob says in elven, `I should say something nice.'\n"
+                "\x1b[0;36mOthers users that have no skill in elven would see:"
+                "\n\t\x1b[0;32mBob says in elven, `Naur wu simildin welana loomen'\n"
+                "\x1b[0;36mIt is important to note that knowledge of a language is "
                 "a range and, so too, is one's ability to speak and translate "
                 "it. You will go from being able to speak/understand nothing "
                 "to brokenly speaking or partially understanding all the way "
-                "through being completely fluent.[0;36m\n";
+                "through being completely fluent.\x1b[0;36m\n";
             break;
         }
         case "-t":
         {
             ret = "This option will allow you to speak a message to a specific "
-                "target. For example:\n\t[0;37m> say -t Fred "
-                "Hi Fred!\n\t[0;32mYou say to Fred, `Hi Fred!'[0m\n"
-                "[0;36mFred would then see:\n"
-                "\t[0;32mBob says to you, `Hi Fred!'[0m\n"
-                "[0;36mOthers users would then see:\n"
-                "\t[0;32mBob says to Fred, `Hi Fred!'[0m\n";
+                "target. For example:\n\t\x1b[0;37m> say -t Fred "
+                "Hi Fred!\n\t\x1b[0;32mYou say to Fred, `Hi Fred!'\x1b[0m\n"
+                "\x1b[0;36mFred would then see:\n"
+                "\t\x1b[0;32mBob says to you, `Hi Fred!'\x1b[0m\n"
+                "\x1b[0;36mOthers users would then see:\n"
+                "\t\x1b[0;32mBob says to Fred, `Hi Fred!'\x1b[0m\n";
             break;
         }
     }

@@ -10,11 +10,11 @@ private object User = 0;
 private mapping Data = 0;
 private string ResearchTitle = 0;
 
-private nosave string Cyan = "[0;36m%s[0m";
-private nosave string BoldWhite = "[0;37;1m%s[0m";
-private nosave string Red = "[0;31m%s[0m";
-private nosave string Green = "[0;32m%s[0m";
-private nosave string BoldGreen = "[0;32;1m%s[0m";
+private nosave string Cyan = "\x1b[0;36m%s\x1b[0m";
+private nosave string BoldWhite = "\x1b[0;37;1m%s\x1b[0m";
+private nosave string Red = "\x1b[0;31m%s\x1b[0m";
+private nosave string Green = "\x1b[0;32m%s\x1b[0m";
+private nosave string BoldGreen = "\x1b[0;32;1m%s\x1b[0m";
 
 /////////////////////////////////////////////////////////////////////////////
 public void init()

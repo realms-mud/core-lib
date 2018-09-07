@@ -269,11 +269,11 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
     PopulateSwordData(sword);
 
     command("6", Player);
-    ExpectEq("[0;32mPlease enter the item's new name: [0m", Player->caughtMessage());
+    ExpectEq("\x1b[0;32mPlease enter the item's new name: \x1b[0m", Player->caughtMessage());
     command("Sword of Blah", Player);
 
     command("7", Player);
-    ExpectEq("[0;32mPlease enter the item's new description. Type '**' on a line by itself\nwhen you are done.\n[0m", Player->caughtMessage());
+    ExpectEq("\x1b[0;32mPlease enter the item's new description. Type '**' on a line by itself\nwhen you are done.\n\x1b[0m", Player->caughtMessage());
     Player->resetCatchList();
     command("this is a", Player);
     ExpectEq(0, sizeof(Player->caughtMessages()));

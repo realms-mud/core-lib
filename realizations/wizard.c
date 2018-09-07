@@ -27,12 +27,12 @@ public nomask string wizardInformation()
     string ret = "";
     if (wizardLevel)
     {
-        ret = sprintf("[0;30;1m%s is a mud wizard -> %s[0m\n",
+        ret = sprintf("\x1b[0;30;1m%s is a mud wizard -> %s\x1b[0m\n",
             capitalize(this_object()->Pronoun()), validWizardLevels[wizardLevel]);
     }
     else
     {
-        ret = sprintf("[0;30;1m%s is a Player.[0m\n",
+        ret = sprintf("\x1b[0;30;1m%s is a Player.\x1b[0m\n",
             capitalize(this_object()->Pronoun()));
     }
     return ret;

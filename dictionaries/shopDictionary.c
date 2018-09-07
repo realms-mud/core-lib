@@ -132,8 +132,8 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
             value = (value < 25000) ? value : 25000;
 
             string valueStr = value ?
-                sprintf("[0;32mYou can sell this item for %d.[0m\n", value) :
-                "[0;32mThis item has no value to the merchant.[0m\n";
+                sprintf("\x1b[0;32mYou can sell this item for %d.\x1b[0m\n", value) :
+                "\x1b[0;32mThis item has no value to the merchant.\x1b[0m\n";
 
             string name = item->query("name");
 
@@ -166,9 +166,9 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
         }
 
         ret[to_string(menuItem)] = ([
-            "name": "[0;30;1mSell all" + 
+            "name": "\x1b[0;30;1mSell all" + 
                 ((member(({ "armor", "weapon", "instrument" }), type) > -1) ?
-                    " unused[0m    " : ""),
+                    " unused\x1b[0m    " : ""),
             "description": "This option will sell all of your unequipped " + type,
             "object list": filter(items, 
                 (: (!$2->isEquipped($1) && !$1->query("cursed") &&
@@ -213,7 +213,7 @@ public nomask void sellItems(object user, object store, object *items)
                 int value = to_int(item->query("value") * multiplier);
                 value = (value < 25000) ? value : 25000;
                 money += value;
-                tell_object(user, sprintf("[0;32mYou sell %s.[0m\n",
+                tell_object(user, sprintf("\x1b[0;32mYou sell %s.\x1b[0m\n",
                     item->query("name")));
                 store->storeItem(item);
                 destruct(item);
@@ -224,7 +224,7 @@ public nomask void sellItems(object user, object store, object *items)
     {
         user->addMoney(money);
     }
-    tell_object(user, sprintf("[0;37mYou received $%d for your sold items.[0m\n",
+    tell_object(user, sprintf("\x1b[0;37mYou received $%d for your sold items.\x1b[0m\n",
         money));
 }
 
@@ -344,14 +344,14 @@ public nomask mapping getBuyItemDetailsForType(object store, string type, string
         int menuItem = 1;
         foreach(string item in itemList)
         {
-            string valueStr = sprintf("[0;32mYou can buy this item for %d.[0m\n",
+            string valueStr = sprintf("\x1b[0;32mYou can buy this item for %d.\x1b[0m\n",
                 inventory[item]["value"]);
 
             string qualityFormat = regreplace(inventory[item]["quality"],
                 "(.*)%(-20|)s(.*)", "\\1%-23s\\3", 1);
 
             ret[to_string(menuItem)] = ([
-                "name": sprintf("%s [0;32m%8d[0m",
+                "name": sprintf("%s \x1b[0;32m%8d\x1b[0m",
                     sprintf(qualityFormat, 
                     ((sizeof(inventory[item]["name"]) <= 23) ? inventory[item]["name"] :
                         inventory[item]["name"][0..19] + "...")),
@@ -384,12 +384,12 @@ public nomask void buyItem(object user, object store, mapping item)
             user->addMoney(-item["value"]);
             store->buyItem(item["key"]);
             move_object(itemObj, user);
-            tell_object(user, sprintf("[0;32mYou purchased %s for $%d.[0m\n",
+            tell_object(user, sprintf("\x1b[0;32mYou purchased %s for $%d.\x1b[0m\n",
                 itemObj->query("name"), item["value"]));
         }
         else
         {
-            tell_object(user, "[0;32mYou do not have the funds for that.[0m\n");
+            tell_object(user, "\x1b[0;32mYou do not have the funds for that.\x1b[0m\n");
         }
     }
 }

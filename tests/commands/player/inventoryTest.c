@@ -11,10 +11,10 @@ string *Slots = ({ "Primary Weapon", "Equipped Offhand", "Worn Armor", "Worn Hel
     "Worn Arm Greaves", "Worn Leg Greaves", "Worn Bracers", "Worn First Ring",
     "Worn Second Ring" });
 
-string Bar = "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n[0m";
-string EquippedItem = "[0;31m| [0m[0;36m%s:%s[0m[0;%sm%s[0m%s\n";
-string nothingEquipped = "[0;31m| [0m[0;36m%s:%s[0m[0;30;1mnothing[0m\n";
-string UnequippedItem = "[0;31m| [0m[0;37;1m%s[0m%s\n";
+string Bar = "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m";
+string EquippedItem = "\x1b[0;31m| \x1b[0m\x1b[0;36m%s:%s\x1b[0m\x1b[0;%sm%s\x1b[0m%s\n";
+string nothingEquipped = "\x1b[0;31m| \x1b[0m\x1b[0;36m%s:%s\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n";
+string UnequippedItem = "\x1b[0;31m| \x1b[0m\x1b[0;37;1m%s\x1b[0m%s\n";
 
 /////////////////////////////////////////////////////////////////////////////
 varargs string BuildInventoryString(mapping equipped, string *unequipped, int verbose)
@@ -57,7 +57,7 @@ varargs string BuildInventoryString(mapping equipped, string *unequipped, int ve
         ret += Bar;
     }
 
-    ret += sprintf("[0;31m| [0;36mYou currently have [0;32m%d[0;36m in cash on hand.\n", Player->Money());
+    ret += sprintf("\x1b[0;31m| \x1b[0;36mYou currently have \x1b[0;32m%d\x1b[0;36m in cash on hand.\n", Player->Money());
     ret += Bar;
 
     return ret;

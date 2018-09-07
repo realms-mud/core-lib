@@ -17,9 +17,9 @@
 #include "materials/potions.h"
 
 private nosave string EquipmentBlueprint = "lib/items/equipment.c";
-private nosave string DetailsText = "\t[0;36m%s: [0m[0;33m%d to %d[0m\n";
-private nosave string SingleDetailText = "\t[0;36m%s: [0m[0;33m%d[0m\n";
-private nosave string DetailString = "\t[0;36m%s: [0m[0;33m%s[0m\n";
+private nosave string DetailsText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m\n";
+private nosave string SingleDetailText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m\n";
+private nosave string DetailString = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%s\x1b[0m\n";
 
 private nosave string *validBonuses = ({ "strength", "intelligence", "dexterity",
     "wisdom", "constitution", "charisma",  });
@@ -448,11 +448,11 @@ public varargs string getMaterialQualityFormatter(object equipment)
 
     if (getMaterialCraftsmanshipBonus(equipment) > 4)
     {
-        ret = "[0;32;1m%-20s[0m";
+        ret = "\x1b[0;32;1m%-20s\x1b[0m";
     }
     else if (equipment->query("enchanted") > 4)
     {
-        ret = "[0;35;1m%-20s[0m";
+        ret = "\x1b[0;35;1m%-20s\x1b[0m";
     }
     else if (getMaterialCraftsmanshipBonus(equipment))
     {
@@ -988,28 +988,28 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getItemSummary(object equipment)
 {
-    string ret = "[0;30;1mThis item has not been identified[0m";
+    string ret = "\x1b[0;30;1mThis item has not been identified\x1b[0m";
 
     if (equipment->query("identified") || canCraftBlueprintWithMaterial(0,
         equipment->query("blueprint"), equipment->query("material")))
     {
         if (equipment->query("weapon type"))
         {
-            ret = sprintf("    [0;36mAttack: [0;32m%2d[0;36m, Damage: [0;32m%2d[0;36m,"
-                " Defense: [0;32m%2d[0m", 
+            ret = sprintf("    \x1b[0;36mAttack: \x1b[0;32m%2d\x1b[0;36m, Damage: \x1b[0;32m%2d\x1b[0;36m,"
+                " Defense: \x1b[0;32m%2d\x1b[0m", 
                 getAttackData(equipment, 0),
                 getDamageData(equipment, 0), 
                 getWeaponDefenseData(equipment, 0));
         }
         else if (equipment->query("armor type"))
         {
-            ret = sprintf("    [0;36mSoak: [0;32m%2d[0;36m, Encumberance: [0;32m%2d[0m",
+            ret = sprintf("    \x1b[0;36mSoak: \x1b[0;32m%2d\x1b[0;36m, Encumberance: \x1b[0;32m%2d\x1b[0m",
                 getDamageProtectionData(equipment, 0),
                 getEncumberanceData(equipment, 0));
         }
         else
         {
-            ret = "    [0;36mView description for summary[0m";
+            ret = "    \x1b[0;36mView description for summary\x1b[0m";
         }
     }
     return ret;

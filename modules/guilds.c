@@ -548,18 +548,18 @@ public nomask int costToAdvanceSkill(string skillType)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string experienceBar(string guild)
 {
-    string format = "[0;34;1m%s[0m";
+    string format = "\x1b[0;34;1m%s\x1b[0m";
     int current = guildExperience(guild);
     int needed = guildsDictionary()->experienceToNextLevel(guild, guildLevel(guild));
 
     string bar = "==========";
     if (current >= needed)
     {
-        bar = "[0m[0;33;1m Level up ";
+        bar = "\x1b[0m\x1b[0;33;1m Level up ";
     }
     else
     {
-        bar[(10 * current) / needed..] = "[0m[0;31m";
+        bar[(10 * current) / needed..] = "\x1b[0m\x1b[0;31m";
         for (int i = ((10 * current) / needed); i < 10; i++)
         {
             bar += ".";
@@ -571,8 +571,8 @@ private nomask string experienceBar(string guild)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string guildsDetails()
 {
-    string format = "[0;31m|[0m [0;36mGuild:[0m [0;33m%-27s[0m [0;36mLevel:[0m [0;33m%-10s[0m [0;36mExperience:[0m [0;33m%-11s[0m [0;31m|[0m\n";
-    string ret = sprintf("[0;31m|[0m [0;33m%-75s[0m [0;31m|[0m\n",
+    string format = "\x1b[0;31m|\x1b[0m \x1b[0;36mGuild:\x1b[0m \x1b[0;33m%-27s\x1b[0m \x1b[0;36mLevel:\x1b[0m \x1b[0;33m%-10s\x1b[0m \x1b[0;36mExperience:\x1b[0m \x1b[0;33m%-11s\x1b[0m \x1b[0;31m|\x1b[0m\n";
+    string ret = sprintf("\x1b[0;31m|\x1b[0m \x1b[0;33m%-75s\x1b[0m \x1b[0;31m|\x1b[0m\n",
         "Currently not a member of any guilds.");
 
     string *guildList = memberOfGuilds();

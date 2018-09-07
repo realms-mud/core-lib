@@ -135,7 +135,7 @@ protected nomask string displayDetails(string choice)
 
     if (Data[choice]["selector"] == "material")
     {
-        ret = sprintf("%-22s", sprintf("[0;35;1m%s[0m",
+        ret = sprintf("%-22s", sprintf("\x1b[0;35;1m%s\x1b[0m",
             (!Data[choice]["is disabled"] || (AdditionalMaterials &&
                 member(AdditionalMaterials, Data[choice]["type"]))) ?
             Dictionary->getCraftingMaterial(CraftingItem, Data[choice]["type"],
@@ -144,7 +144,7 @@ protected nomask string displayDetails(string choice)
     else if (Data[choice]["type"] ==
         Dictionary->selectionForComponent(CraftingItem, CraftingComponent))
     {
-        ret = sprintf("%-22s", "[0;35;1m   (*)[0m");
+        ret = sprintf("%-22s", "\x1b[0;35;1m   (*)\x1b[0m");
     }
     return ret;
 }
@@ -175,13 +175,13 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    string displayFormat = "[0;32m%-20s[0m";
+    string displayFormat = "\x1b[0;32m%-20s\x1b[0m";
     if (member(Data[choice], "is disabled") &&
         Data[choice]["is disabled"] && 
         !(AdditionalMaterials &&
          member(AdditionalMaterials, Data[choice]["type"])))
     {
-        displayFormat = "[0;31m%-20s[0m";
+        displayFormat = "\x1b[0;31m%-20s\x1b[0m";
     }
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "    " : "", Red,
@@ -192,6 +192,6 @@ protected string choiceFormatter(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return "[0;35;1m<material>[0m[0;32m denotes a selected material.\n"
-        "[0;35;1m(*)[0m[0;32m denotes that a specific component type has been chosen.\n";
+    return "\x1b[0;35;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
+        "\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n";
 }

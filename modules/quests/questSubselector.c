@@ -23,8 +23,8 @@ protected mapping questMenuSetup(string type)
     if (questObj)
     {
         SuppressColon = 1;
-        Description = "Details:[0m\n" +
-            format(sprintf("[0;33mName[0m:  [0;33;1m%s[0m\n[0;36m%s[0m\n",
+        Description = "Details:\x1b[0m\n" +
+            format(sprintf("\x1b[0;33mName\x1b[0m:  \x1b[0;33;1m%s\x1b[0m\n\x1b[0;36m%s\x1b[0m\n",
                 questObj->name(), User->questStory(type)), 78);
     }
     else
@@ -101,7 +101,7 @@ protected nomask string displayDetails(string choice)
 
     if (User->questIsActive(Data[choice]["type"]))
     {
-        ret = "[0;35m (!)[0m";
+        ret = "\x1b[0;35m (!)\x1b[0m";
     }
     else if (User->questIsCompleted(Data[choice]["type"]))
     {
@@ -109,13 +109,13 @@ protected nomask string displayDetails(string choice)
 
         if (questObj && questObj->questSucceeded(User))
         {
-            ret = "[0;34;1m (*)[0m";
+            ret = "\x1b[0;34;1m (*)\x1b[0m";
         }
         else if (questObj &&
             questObj->questInCompletionState(User->questState(Data[choice]["type"])) &&
             !questObj->questSucceeded(User))
         {
-            ret = "[0;31m (X)[0m";
+            ret = "\x1b[0;31m (X)\x1b[0m";
         }
     }
     return ret;

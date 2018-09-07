@@ -137,7 +137,7 @@ void PlayerQuestsRestored()
     ExpectEq(({ "lib/tests/support/quests/fakeQuestItem.c" }), Player->activeQuests());
 
     object quest = load_object("/lib/tests/support/quests/fakeQuestItem.c");
-    ExpectEq(sprintf("[0;36m%s[0m", "I've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me!"),
+    ExpectEq(sprintf("\x1b[0;36m%s\x1b[0m", "I've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me!"),
         Player->questStory("lib/tests/support/quests/fakeQuestItem.c"));
 }
 
@@ -338,7 +338,7 @@ void PlayerQuestsSaved()
     ExpectEq(({ "lib/tests/support/quests/fakeQuestItem.c" }), Player->completedQuests());
 
     object quest = load_object("/lib/tests/support/quests/fakeQuestItem.c");
-    ExpectEq(sprintf("[0;36m%s[0m[0;31m%s[0m", "I've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me! I must lay off the sauce - and the wenches. King Tantor is dead because of my night of debauchery.", " [Failure]"),
+    ExpectEq(sprintf("\x1b[0;36m%s\x1b[0m\x1b[0;31m%s\x1b[0m", "I've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me! I must lay off the sauce - and the wenches. King Tantor is dead because of my night of debauchery.", " [Failure]"),
         Player->questStory("lib/tests/support/quests/fakeQuestItem.c"));
 }
 

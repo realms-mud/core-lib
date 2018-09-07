@@ -191,7 +191,7 @@ public nomask int decrementSkill(string skill, int amount)
 private nomask string skillListForType(string type)
 {
     string ret = "";
-    string skillFmt = sprintf(Red, "| ") + "[0;36m%24s[0m : [0;33m%3d[0m [0;34;1m%5s[0m";
+    string skillFmt = sprintf(Red, "| ") + "\x1b[0;36m%24s\x1b[0m : \x1b[0;33m%3d\x1b[0m \x1b[0;34;1m%5s\x1b[0m";
 
     int x = 1;
     string *skillList = skillsObject()->validSkillsOfType(type);

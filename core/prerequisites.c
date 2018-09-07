@@ -630,7 +630,7 @@ public nomask string displayPrerequisites()
 
     if (sizeof(prerequisites))
     {
-        ret = "[0;36mPrerequisites:[0m\n";
+        ret = "\x1b[0;36mPrerequisites:\x1b[0m\n";
         string *prereqKeys = sort_array(m_indices(prerequisites), (: $1 > $2 :));
         foreach(string key in prereqKeys)
         {
@@ -688,7 +688,7 @@ public nomask string displayPrerequisites()
                     break;
                 }
             }
-            ret += sprintf("\t[0;36m%s[0m: [0;35m%s[0m\n",
+            ret += sprintf("\t\x1b[0;36m%s\x1b[0m: \x1b[0;35m%s\x1b[0m\n",
                 capitalize(prerequisites[key]["type"]), prereq);
         }
     }

@@ -1765,7 +1765,7 @@ static nomask void healingHeartBeat()
 /////////////////////////////////////////////////////////////////////////////
 private nomask string vitalsDetails(string vital)
 {
-    string format = "[0;36m%12s:[0m [0;35;1m%s[0m ";
+    string format = "\x1b[0;36m%12s:\x1b[0m \x1b[0;35;1m%s\x1b[0m ";
     int current = call_other(this_object(), lower_case(vital) + "Points");
     int max = call_other(this_object(), "max" + capitalize(vital) + "Points");
 
@@ -1777,11 +1777,11 @@ private nomask string vitalsDetails(string vital)
     string bar = "==========";
     if (!max)
     {
-        bar = "[0m[0;31m//////////";
+        bar = "\x1b[0m\x1b[0;31m//////////";
     }
     else
     {
-        bar[(10 * current) / max..] = "[0m[0;31m";
+        bar[(10 * current) / max..] = "\x1b[0m\x1b[0;31m";
         for (int i = ((10 * current) / max); i < 10; i++)
         {
             bar += ".";
@@ -1796,10 +1796,10 @@ private nomask string vitalsDetails(string vital)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string vitals()
 {
-    return "[0;31m|[0m" + vitalsDetails("Hit") +
+    return "\x1b[0;31m|\x1b[0m" + vitalsDetails("Hit") +
         " " + vitalsDetails("Spell") +
-        " " + vitalsDetails("Stamina") + "[0;31m|[0m\n" +
-        sprintf("[0;31m|[0m%13s [0;33m%-11s[0m %13s [0;33m%-11s[0m %13s [0;33m%-11s[0m[0;31m|[0m\n",
+        " " + vitalsDetails("Stamina") + "\x1b[0;31m|\x1b[0m\n" +
+        sprintf("\x1b[0;31m|\x1b[0m%13s \x1b[0;33m%-11s\x1b[0m %13s \x1b[0;33m%-11s\x1b[0m %13s \x1b[0;33m%-11s\x1b[0m\x1b[0;31m|\x1b[0m\n",
             "", sprintf("%d/%d", hitPoints(), maxHitPoints()),
             "", sprintf("%d/%d", spellPoints(), maxSpellPoints()),
             "", sprintf("%d/%d", staminaPoints(), maxStaminaPoints()));

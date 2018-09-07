@@ -6,9 +6,9 @@ inherit "/lib/tests/framework/testFixture.c";
 #include "/lib/include/inventory.h"
 #include "/lib/include/itemFormatters.h"
 
-private nosave string DetailsText = "\t[0;36m%s: [0m[0;33m%d to %d[0m\n";
-private nosave string SingleDetailText = "\t[0;36m%s: [0m[0;33m%d[0m\n";
-private nosave string DetailString = "\t[0;36m%s: [0m[0;33m%s[0m\n";
+private nosave string DetailsText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m\n";
+private nosave string SingleDetailText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m\n";
+private nosave string DetailString = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%s\x1b[0m\n";
 
 object Weapon;
 object Player;
@@ -121,8 +121,8 @@ void WeaponStatisticsModifiedByMaterial()
     string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
         sprintf(DetailsText, "Attack", 0, 100) +
-        sprintf("\t[0;36m%s: [0m[0;33m%d to %d[0m", "Damage", 11, 14) +
-        sprintf("[0;31m [+%d %s][0m\n", 5, "magical") +
+        sprintf("\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m", "Damage", 11, 14) +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "magical") +
         sprintf(DetailsText, "Defense", -2, -3) +
         sprintf(SingleDetailText, "Encumberance", 17) +
         sprintf(SingleDetailText, "Weight", 7);
@@ -140,9 +140,9 @@ void WeaponStatisticsModifiedByEnchantment()
     string expected = sprintf(Enchanted, "This long sword is enchanted.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
         sprintf(DetailsText, "Attack", 0, 100) +
-        sprintf("\t[0;36m%s: [0m[0;33m%d to %d[0m", "Damage", 11, 14) +
-        sprintf("[0;31m [+%d %s][0m", 10, "fire") +
-        sprintf("[0;31m [+%d %s][0m\n", 7, "magical") +
+        sprintf("\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m", "Damage", 11, 14) +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 10, "fire") +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 7, "magical") +
         sprintf(DetailsText, "Defense", -2, -3) +
         sprintf(SingleDetailText, "Encumberance", 17) +
         sprintf(SingleDetailText, "Weight", 7);
@@ -278,9 +278,9 @@ void ArmorStatisticsModifiedByMaterial()
 
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
-        sprintf("\t[0;36m%s: [0m[0;33m%d[0m", "Damage Protection", 11) +
-        sprintf("[0;31m [+%d %s][0m", 3, "electricity") +
-        sprintf("[0;31m [+%d %s][0m\n", 3, "fire") +
+        sprintf("\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Damage Protection", 11) +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 3, "electricity") +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 3, "fire") +
         sprintf(SingleDetailText, "Encumberance", 32) +
         sprintf(SingleDetailText, "Weight", 10);
 
@@ -301,9 +301,9 @@ void ArmorProtectionNotModifiedBySkill()
 
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
-        sprintf("\t[0;36m%s: [0m[0;33m%d[0m", "Damage Protection", 11) +
-        sprintf("[0;31m [+%d %s][0m", 3, "electricity") +
-        sprintf("[0;31m [+%d %s][0m\n", 3, "fire") +
+        sprintf("\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Damage Protection", 11) +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 3, "electricity") +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 3, "fire") +
         sprintf(SingleDetailText, "Encumberance", 19) +
         sprintf(SingleDetailText, "Weight", 10);
 
@@ -321,10 +321,10 @@ void NonEquipmentItemsShowMagicalProperties()
 
     string expected = sprintf(Enchanted, "This item is enchanted.\n") +
         sprintf(Value, sprintf("\t%s: %s", "Enchantments", 
-        sprintf("[0;31m [+%d %s][0m", 3, "air") +
-        sprintf("[0;31m [+%d %s][0m\n", 5, "fire"))) +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 3, "air") +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "fire"))) +
         sprintf(Value, sprintf("\t%s: %s", "Resistances",
-        sprintf("[0;31m [+%d %s][0m\n", 5, "fire"))) +
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "fire"))) +
         sprintf(Value, sprintf("\t%s: %d\n", "Bonus attack", 3));
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(item, Player));

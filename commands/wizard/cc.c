@@ -40,13 +40,13 @@ private nomask void compileOneItem(string path, object initiator)
     {
         rm(logFile);
     }
-    tell_object(initiator, "[0;36mBuilding: " + path + "[0m\n");
+    tell_object(initiator, "\x1b[0;36mBuilding: " + path + "\x1b[0m\n");
 
     string result = catch (existingBlueprint = load_object(path));
 
     if (result)
     {
-        result = sprintf("[0;31m%s\n[0;31;1m%s[0m", result,
+        result = sprintf("\x1b[0;31m%s\n\x1b[0;31;1m%s\x1b[0m", result,
             (read_file(logFile) || ""));
 
         tell_object(initiator, result);
@@ -57,7 +57,7 @@ private nomask void compileOneItem(string path, object initiator)
         foreach(object item in objectsToMove)
         {
             move_object(item, existingBlueprint);
-            tell_object(item, "[0;32;1mYour environment has been recompiled.[0m\n\n");
+            tell_object(item, "\x1b[0;32;1mYour environment has been recompiled.\x1b[0m\n\n");
             command("look", item);
         }
     }

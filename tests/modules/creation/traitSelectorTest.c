@@ -44,16 +44,16 @@ void CleanUp()
 void InitialCreationDisplayIsCorrect()
 {
     Selector->initiateSelector(User);
-    ExpectEq("[0;36mCharacter creation - [0m[0;37;1mFrom this menu, you can choose your character's traits[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32mTake Personality Test[0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mEducational Traits  [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mGenetic Traits      [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mHealth Traits       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mSexuality Traits    [0m\n"
-        "\t[[0;31;1m6[0m] - [0;32mExit Trait Selection   [0;31;1m(You will lose unspent trait points!)[0m[0m\n"
-        "[0;32;1mYou must select a number from 1 to 6. You may also undo or reset.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1mYou have 6 trait points left to assign.\nYou have not yet taken the personality test.\n[0m",
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mFrom this menu, you can choose your character's traits\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mTake Personality Test\x1b[0m\n"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mEducational Traits  \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mGenetic Traits      \x1b[0m\n"
+        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mHealth Traits       \x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mSexuality Traits    \x1b[0m\n"
+        "\t[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Trait Selection   \x1b[0;31;1m(You will lose unspent trait points!)\x1b[0m\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 6. You may also undo or reset.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
+        "\x1b[0;32;1mYou have 6 trait points left to assign.\nYou have not yet taken the personality test.\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -82,16 +82,16 @@ void TakingPersonalityTestShowsThatTestIsCompleted()
     AnswerPersonalityQuestionsTakeFirstChoice(personalityTest);
     ExpectFalse(objectp(personalityTest), "The personality test was cleaned up");
 
-    ExpectEq("[0;36mCharacter creation - [0m[0;37;1mFrom this menu, you can choose your character's traits[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32mTake Personality Test[0m[0;34;1m  (Completed)[0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mEducational Traits  [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mGenetic Traits      [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mHealth Traits       [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mSexuality Traits    [0m\n"
-        "\t[[0;31;1m6[0m] - [0;32mExit Trait Selection   [0;31;1m(You will lose unspent trait points!)[0m[0m\n"
-        "[0;32;1mYou must select a number from 1 to 6. You may also undo or reset.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1mYou have 6 trait points left to assign.\n[0m",
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mFrom this menu, you can choose your character's traits\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mTake Personality Test\x1b[0m\x1b[0;34;1m  (Completed)\x1b[0m\n"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mEducational Traits  \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mGenetic Traits      \x1b[0m\n"
+        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mHealth Traits       \x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mSexuality Traits    \x1b[0m\n"
+        "\t[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Trait Selection   \x1b[0;31;1m(You will lose unspent trait points!)\x1b[0m\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 6. You may also undo or reset.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
+        "\x1b[0;32;1mYou have 6 trait points left to assign.\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -123,34 +123,34 @@ void EducationalTraitsMenuIsCorrect()
 
     ExpectTrue(objectp(educationalTraits), "The educational trait selector was added to the player");
 
-    ExpectEq("[0;36mCharacter creation - [0m[0;37;1mSelect a trait to add[0m:\n"
-        "\t[[0;31;1m1[0m]  - [0;32mArcane knowledge    [0m"
-        "\t[[0;31;1m2[0m]  - [0;32mArchitect           [0m\n"
-        "\t[[0;31;1m3[0m]  - [0;32mArticulate          [0m"
-        "\t[[0;31;1m4[0m]  - [0;32mArtisan             [0m\n"
-        "\t[[0;31;1m5[0m]  - [0;32mBotanist            [0m"
-        "\t[[0;31;1m6[0m]  - [0;32mCultured            [0m\n"
-        "\t[[0;31;1m7[0m]  - [0;32mDiplomatic          [0m"
-        "\t[[0;31;1m8[0m]  - [0;32mEducated            [0m\n"
-        "\t[[0;31;1m9[0m]  - [0;32mErudite             [0m"
-        "\t[[0;31;1m10[0m] - [0;32mHunter              [0m\n"
-        "\t[[0;31;1m11[0m] - [0;32mMagically barren    [0m"
-        "\t[[0;31;1m12[0m] - [0;32mMastermind          [0m\n"
-        "\t[[0;31;1m13[0m] - [0;32mPoetic              [0m"
-        "\t[[0;31;1m14[0m] - [0;32mPolitician          [0m\n"
-        "\t[[0;31;1m15[0m] - [0;32mPoor fighter        [0m"
-        "\t[[0;31;1m16[0m] - [0;32mSchemer             [0m\n"
-        "\t[[0;31;1m17[0m] - [0;32mScholarly           [0m"
-        "\t[[0;31;1m18[0m] - [0;32mSoldier             [0m\n"
-        "\t[[0;31;1m19[0m] - [0;32mStrategist          [0m"
-        "\t[[0;31;1m20[0m] - [0;32mTactician           [0m\n"
-        "\t[[0;31;1m21[0m] - [0;32mTheologian          [0m"
-        "\t[[0;31;1m22[0m] - [0;32mThespian            [0m\n"
-        "\t[[0;31;1m23[0m] - [0;32mUneducated          [0m"
-        "\t[[0;31;1m24[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 24.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1mYou may only select a trait once. [0;34;1m(*)[0m [0;32;1mdenotes an already-chosen trait.\n[0m",
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mSelect a trait to add\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mArcane knowledge    \x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mArchitect           \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mArticulate          \x1b[0m"
+        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mArtisan             \x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mBotanist            \x1b[0m"
+        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mCultured            \x1b[0m\n"
+        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mDiplomatic          \x1b[0m"
+        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mEducated            \x1b[0m\n"
+        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mErudite             \x1b[0m"
+        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mHunter              \x1b[0m\n"
+        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mMagically barren    \x1b[0m"
+        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mMastermind          \x1b[0m\n"
+        "\t[\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mPoetic              \x1b[0m"
+        "\t[\x1b[0;31;1m14\x1b[0m] - \x1b[0;32mPolitician          \x1b[0m\n"
+        "\t[\x1b[0;31;1m15\x1b[0m] - \x1b[0;32mPoor fighter        \x1b[0m"
+        "\t[\x1b[0;31;1m16\x1b[0m] - \x1b[0;32mSchemer             \x1b[0m\n"
+        "\t[\x1b[0;31;1m17\x1b[0m] - \x1b[0;32mScholarly           \x1b[0m"
+        "\t[\x1b[0;31;1m18\x1b[0m] - \x1b[0;32mSoldier             \x1b[0m\n"
+        "\t[\x1b[0;31;1m19\x1b[0m] - \x1b[0;32mStrategist          \x1b[0m"
+        "\t[\x1b[0;31;1m20\x1b[0m] - \x1b[0;32mTactician           \x1b[0m\n"
+        "\t[\x1b[0;31;1m21\x1b[0m] - \x1b[0;32mTheologian          \x1b[0m"
+        "\t[\x1b[0;31;1m22\x1b[0m] - \x1b[0;32mThespian            \x1b[0m\n"
+        "\t[\x1b[0;31;1m23\x1b[0m] - \x1b[0;32mUneducated          \x1b[0m"
+        "\t[\x1b[0;31;1m24\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 24.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
+        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m",
         User->caughtMessage());
 
     educationalTraits->applySelection("1");
@@ -190,30 +190,30 @@ void GeneticTraitsMenuIsCorrect()
 
     ExpectTrue(objectp(geneticTraits), "The genetic trait selector was added to the player");
 
-    ExpectEq("[0;36mCharacter creation - [0m[0;37;1mSelect a trait to add[0m:\n"
-        "\t[[0;31;1m1[0m]  - [0;32mAttractive          [0m"
-        "\t[[0;31;1m2[0m]  - [0;32mBastard             [0m\n"
-        "\t[[0;31;1m3[0m]  - [0;32mCunning             [0m"
-        "\t[[0;31;1m4[0m]  - [0;32mGenius              [0m\n"
-        "\t[[0;31;1m5[0m]  - [0;32mHomely              [0m"
-        "\t[[0;31;1m6[0m]  - [0;32mImbecile            [0m\n"
-        "\t[[0;31;1m7[0m]  - [0;32mImposing            [0m"
-        "\t[[0;31;1m8[0m]  - [0;32mInbred              [0m\n"
-        "\t[[0;31;1m9[0m]  - [0;32mKeen                [0m"
-        "\t[[0;31;1m10[0m] - [0;32mLisp                [0m\n"
-        "\t[[0;31;1m11[0m] - [0;32mMaimed              [0m"
-        "\t[[0;31;1m12[0m] - [0;32mSenile              [0m\n"
-        "\t[[0;31;1m13[0m] - [0;32mSlow                [0m"
-        "\t[[0;31;1m14[0m] - [0;32mSmart               [0m\n"
-        "\t[[0;31;1m15[0m] - [0;32mStrong              [0m"
-        "\t[[0;31;1m16[0m] - [0;32mUgly                [0m\n"
-        "\t[[0;31;1m17[0m] - [0;32mVapid               [0m"
-        "\t[[0;31;1m18[0m] - [0;32mWeak                [0m\n"
-        "\t[[0;31;1m19[0m] - [0;32mWise                [0m"
-        "\t[[0;31;1m20[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 20.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1mYou may only select a trait once. [0;34;1m(*)[0m [0;32;1mdenotes an already-chosen trait.\n[0m",
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mSelect a trait to add\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mAttractive          \x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mBastard             \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mCunning             \x1b[0m"
+        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mGenius              \x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mHomely              \x1b[0m"
+        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mImbecile            \x1b[0m\n"
+        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mImposing            \x1b[0m"
+        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mInbred              \x1b[0m\n"
+        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mKeen                \x1b[0m"
+        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mLisp                \x1b[0m\n"
+        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mMaimed              \x1b[0m"
+        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mSenile              \x1b[0m\n"
+        "\t[\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mSlow                \x1b[0m"
+        "\t[\x1b[0;31;1m14\x1b[0m] - \x1b[0;32mSmart               \x1b[0m\n"
+        "\t[\x1b[0;31;1m15\x1b[0m] - \x1b[0;32mStrong              \x1b[0m"
+        "\t[\x1b[0;31;1m16\x1b[0m] - \x1b[0;32mUgly                \x1b[0m\n"
+        "\t[\x1b[0;31;1m17\x1b[0m] - \x1b[0;32mVapid               \x1b[0m"
+        "\t[\x1b[0;31;1m18\x1b[0m] - \x1b[0;32mWeak                \x1b[0m\n"
+        "\t[\x1b[0;31;1m19\x1b[0m] - \x1b[0;32mWise                \x1b[0m"
+        "\t[\x1b[0;31;1m20\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 20.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
+        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -250,22 +250,22 @@ void HealthTraitsMenuIsCorrect()
 
     ExpectTrue(objectp(healthTraits), "The educational trait selector was added to the player");
 
-    ExpectEq("[0;36mCharacter creation - [0m[0;37;1mSelect a trait to add[0m:\n"
-        "\t[[0;31;1m1[0m]  - [0;32mClubfooted          [0m"
-        "\t[[0;31;1m2[0m]  - [0;32mDepressed           [0m\n"
-        "\t[[0;31;1m3[0m]  - [0;32mDisfigured          [0m"
-        "\t[[0;31;1m4[0m]  - [0;32mDrunkard            [0m\n"
-        "\t[[0;31;1m5[0m]  - [0;32mFrail               [0m"
-        "\t[[0;31;1m6[0m]  - [0;32mHale                [0m\n"
-        "\t[[0;31;1m7[0m]  - [0;32mHunchback           [0m"
-        "\t[[0;31;1m8[0m]  - [0;32mInsane              [0m\n"
-        "\t[[0;31;1m9[0m]  - [0;32mLeper               [0m"
-        "\t[[0;31;1m10[0m] - [0;32mOne-eyed            [0m\n"
-        "\t[[0;31;1m11[0m] - [0;32mSickly              [0m"
-        "\t[[0;31;1m12[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 12.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1mYou may only select a trait once. [0;34;1m(*)[0m [0;32;1mdenotes an already-chosen trait.\n[0m",
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mSelect a trait to add\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mClubfooted          \x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mDepressed           \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mDisfigured          \x1b[0m"
+        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mDrunkard            \x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mFrail               \x1b[0m"
+        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mHale                \x1b[0m\n"
+        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mHunchback           \x1b[0m"
+        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mInsane              \x1b[0m\n"
+        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mLeper               \x1b[0m"
+        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mOne-eyed            \x1b[0m\n"
+        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mSickly              \x1b[0m"
+        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
+        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -302,15 +302,15 @@ void SexualityTraitsMenuIsCorrect()
 
     ExpectTrue(objectp(sexualityTraits), "The sexuality trait selector was added to the player");
 
-    ExpectEq("[0;36mCharacter creation - [0m[0;37;1mSelect a trait to add[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32mAsexual             [0m"
-        "\t[[0;31;1m2[0m] - [0;32mBisexual            [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mHomosexual          [0m"
-        "\t[[0;31;1m4[0m] - [0;32mTransgender         [0m\n"
-        "\t[[0;31;1m5[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 5.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m"
-        "[0;32;1mYou may only select a trait once. [0;34;1m(*)[0m [0;32;1mdenotes an already-chosen trait.\n[0m",
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mSelect a trait to add\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mAsexual             \x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mBisexual            \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mHomosexual          \x1b[0m"
+        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mTransgender         \x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 5.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
+        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m",
         User->caughtMessage());
 }
 

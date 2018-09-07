@@ -46,14 +46,14 @@ void TopLevelMenuDisplaysCorrectly()
     Store->storeItem(clone_object("/lib/instances/items/weapons/daggers/dagger.c"));
     Selector->initiateSelector(Player);
 
-    ExpectEq("[0;36mPurchase Items - [0m[0;37;1mFrom this menu, you can view and purchase items[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32mArmors - Medium armor[0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mWeapons - Dagger    [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mWeapons - Sword     [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mExit Buy Item Menu  [0m\n"
-        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+    ExpectEq("\x1b[0;36mPurchase Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and purchase items\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mArmors - Medium armor\x1b[0m\n"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mWeapons - Dagger    \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mWeapons - Sword     \x1b[0m\n"
+        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mExit Buy Item Menu  \x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 4.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -62,12 +62,12 @@ void SelectingExitExitsTheMenu()
 {
     Selector->initiateSelector(Player);
 
-    ExpectEq("[0;36mPurchase Items - [0m[0;37;1mFrom this menu, you can view and purchase items[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32mWeapons - Sword     [0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mExit Buy Item Menu  [0m\n"
-        "[0;32;1mYou must select a number from 1 to 2.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+    ExpectEq("\x1b[0;36mPurchase Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and purchase items\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mWeapons - Sword     \x1b[0m\n"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mExit Buy Item Menu  \x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 2.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
 
     Selector->applySelection("2");

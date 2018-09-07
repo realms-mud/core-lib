@@ -248,12 +248,12 @@ private nomask string startingSkillsAndTraits(string race)
 
     if (member(races[race], "starting skill points"))
     {
-        ret += sprintf("\t[0;32mStarting skill points:[0m [0;34;1m%d[0m\n",
+        ret += sprintf("\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m%d\x1b[0m\n",
             races[race]["starting skill points"]);
     }
     if (member(races[race], "background trait value"))
     {
-        ret += sprintf("\t[0;32mBonus to trait selection:[0m [0;34;1m%d[0m\n",
+        ret += sprintf("\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m%d\x1b[0m\n",
             races[race]["background trait value"]);
     }
     return ret;
@@ -271,8 +271,8 @@ private nomask string bonusAttributeDescription(string race)
     {
         if (member(races[race], attribute))
         {
-            ret += sprintf("\t[0;32m%-12s[0m " +
-                ((races[race][attribute] > 0) ? "[0;34;1m+%d[0m\n" : "[0;31m%d[0m\n"),
+            ret += sprintf("\t\x1b[0;32m%-12s\x1b[0m " +
+                ((races[race][attribute] > 0) ? "\x1b[0;34;1m+%d\x1b[0m\n" : "\x1b[0;31m%d\x1b[0m\n"),
                 capitalize(attribute), races[race][attribute]);
         }
     }
@@ -291,9 +291,9 @@ private nomask string bonusSkillDescription(string race)
 
         foreach(string skill in skills)
         {
-            ret += sprintf("\t[0;32mBonus %s skill[0m " +
+            ret += sprintf("\t\x1b[0;32mBonus %s skill\x1b[0m " +
                 ((races[race]["skills"][skill] > 0) ? 
-                    "[0;34;1m+%d[0m\n" : "[0;31m%d[0m\n"),
+                    "\x1b[0;34;1m+%d\x1b[0m\n" : "\x1b[0;31m%d\x1b[0m\n"),
                 capitalize(skill), races[race]["skills"][skill]);
         }
     }
@@ -315,8 +315,8 @@ private nomask string otherBonusesDescription(string race)
     {
         if (member(races[race], bonus))
         {
-            ret += sprintf("\t[0;32m%-12s[0m " +
-                ((races[race][bonus] > 0) ? "[0;34;1m+%d[0m\n" : "[0;31m%d[0m\n"),
+            ret += sprintf("\t\x1b[0;32m%-12s\x1b[0m " +
+                ((races[race][bonus] > 0) ? "\x1b[0;34;1m+%d\x1b[0m\n" : "\x1b[0;31m%d\x1b[0m\n"),
                 capitalize(bonus), races[race][bonus]);
         }
     }
@@ -336,8 +336,8 @@ private nomask string racialDescription(string race)
 
     if (member(races[race], "research trees"))
     {
-        ret += "\t[0;34;1mA special research tree only available to "
-            "this race is unlocked.[0m\n";
+        ret += "\t\x1b[0;34;1mA special research tree only available to "
+            "this race is unlocked.\x1b[0m\n";
     }
     return ret;
 }

@@ -130,12 +130,12 @@ protected nomask string displayDetails(string choice)
     if ((member(enchantmentList, Data[choice]["type"]) > -1) &&
         (itemEnchantments[Data[choice]["type"]] > 0))
     {
-        ret = "[0;35;1m(";
+        ret = "\x1b[0;35;1m(";
         for (int i = 0; i < itemEnchantments[Data[choice]["type"]]; i++)
         {
             ret += "*";
         }
-        ret += ")[0m";
+        ret += ")\x1b[0m";
         for (int i = 0; i < (3 - itemEnchantments[Data[choice]["type"]]); i++)
         {
             ret += " ";
@@ -153,7 +153,7 @@ protected nomask string displayDetails(string choice)
         {
             flags += ({ "M" });
         }
-        ret = sizeof(flags) ? sprintf("[0;34;1m([0;35m%s[0;34;1m)[0m", implode(flags, ",")) : "     ";
+        ret = sizeof(flags) ? sprintf("\x1b[0;34;1m(\x1b[0;35m%s\x1b[0;34;1m)\x1b[0m", implode(flags, ",")) : "     ";
         if (sizeof(flags) == 1)
         {
             ret += "  ";
@@ -168,7 +168,7 @@ protected string choiceFormatter(string choice)
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "    " : "", Red,
         padSelectionDisplay(choice),
-        Data[choice]["canShow"] ? "[0;32m%-20s[0m" : "[0;31m%-20s[0m",
+        Data[choice]["canShow"] ? "\x1b[0;32m%-20s\x1b[0m" : "\x1b[0;31m%-20s\x1b[0m",
         displayDetails(choice));
 }
 
@@ -179,9 +179,9 @@ protected nomask string additionalInstructions()
         CraftingItem->query("possible enchantments") - CraftingItem->query("total enchantments"),
         CraftingItem->query("possible enchantments"));
 
-    string otherInfo = "[0;32mEach [0;35;1m*[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
-        "[0;35mP[0m[0;32m denotes unrealized prerequisites.\n"
-        "[0;35mM[0m[0;32m denotes that material requirements are missing.\n";
+    string otherInfo = "\x1b[0;32mEach \x1b[0;35;1m*\x1b[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
+        "\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
+        "\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that material requirements are missing.\n";
     return CraftingComponent ? ret + otherInfo : ret;
 }
 

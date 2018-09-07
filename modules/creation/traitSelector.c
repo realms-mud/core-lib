@@ -47,7 +47,7 @@ public nomask void reset(int arg)
                 "description": "Sexuality traits are those traits that deal with sexual identity.\n"
             ]),
             "6":([
-                "name": "Exit Trait Selection   [0;31;1m(You will lose unspent trait points!)[0m",
+                "name": "Exit Trait Selection   \x1b[0;31;1m(You will lose unspent trait points!)\x1b[0m",
                 "type" : "exit",
                 "description": "This option lets you exit the trait selection menu.\n"
             ]),
@@ -70,7 +70,7 @@ protected nomask string displayDetails(string choice)
 
     if ((Data[choice]["type"] == "personality") && TestTaken)
     {
-        ret = "[0;34;1m  (Completed)[0m";
+        ret = "\x1b[0;34;1m  (Completed)\x1b[0m";
     }
     return ret;
 }

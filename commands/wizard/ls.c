@@ -52,21 +52,21 @@ private nomask varargs string getFileState(string file, string displayName,
 
     if (!initiator->hasReadAccess(file) && !initiator->hasWriteAccess(file))
     {
-        format = "[0;31m" + widthFormat + "[0m";
+        format = "\x1b[0;31m" + widthFormat + "\x1b[0m";
     }
     else if ((file[sizeof(file)-2..] == ".c") && find_object(file))
     {
         displayName += "*";
-        format = "[0;33;1m" + widthFormat + "[0m";
+        format = "\x1b[0;33;1m" + widthFormat + "\x1b[0m";
     }
     else if (file_size(file) == -2)
     {
         displayName += "/";
-        format = "[0;34;1m" + widthFormat + "[0m";
+        format = "\x1b[0;34;1m" + widthFormat + "\x1b[0m";
     }
     else
     {
-        format = "[0;33m" + widthFormat + "[0m";
+        format = "\x1b[0;33m" + widthFormat + "\x1b[0m";
     }
     return sprintf(format, displayName);
 }
@@ -76,7 +76,7 @@ private nomask string getGroupInfo(string file, object initiator)
 {
     string readGroup = initiator->groupReadAccess(file);
     string writeGroup = initiator->groupWriteAccess(file);
-    return sprintf("[0;35m%s%s%s[0m", readGroup, 
+    return sprintf("\x1b[0;35m%s%s%s\x1b[0m", readGroup, 
         (((readGroup != "") && (writeGroup != "")) ? ", " : ""), writeGroup);      
 }
 
@@ -85,7 +85,7 @@ private nomask string getFileInfo(string file, object initiator)
 {
     string *fileDetails = get_dir(file, 0x07);
 
-    return sprintf("[0;32m%s%s%s[0m  %-40s%10s [0;36m%s[0m  %s\n",
+    return sprintf("\x1b[0;32m%s%s%s\x1b[0m  %-40s%10s \x1b[0;36m%s\x1b[0m  %s\n",
         ((file_size(file) == -2) ? "d" : "-"),
         (initiator->hasReadAccess(file) ? "r" : "-"),
         (initiator->hasWriteAccess(file) ? "w" : "-"),
@@ -192,7 +192,7 @@ public nomask int execute(string command, object initiator)
 
         if (newDirectory)
         {
-            tell_object(initiator, sprintf("[0;36m[%s][0m\n", 
+            tell_object(initiator, sprintf("\x1b[0;36m[%s]\x1b[0m\n", 
                 getDirectoryToCheck(command, initiator)));
             ret = listFiles(newDirectory, initiator, 1, 
                 maxWidth(newDirectory, command));

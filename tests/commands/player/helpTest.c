@@ -39,7 +39,7 @@ void PagingDisplaysBreakRequiringInput()
 {
     Player->pageSize(20);
     ExpectTrue(Player->executeCommand("help"));
-    ExpectEq("\n[0;35;1mMore? [q to quit][0m\n", Player->caughtMessage());
+    ExpectEq("\n\x1b[0;35;1mMore? [q to quit]\x1b[0m\n", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////

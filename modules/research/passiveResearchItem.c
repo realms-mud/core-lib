@@ -129,7 +129,7 @@ protected nomask string displayExtraResearchInformation()
     {
         foreach(string bonus in keys)
         {
-            ret += sprintf("[0;34;1m(+%d)[0m [0;33mBonus %s[0m\n",
+            ret += sprintf("\x1b[0;34;1m(+%d)\x1b[0m \x1b[0;33mBonus %s\x1b[0m\n",
                 query(bonus), 
                 capitalize(regreplace(bonus, "bonus (.+)", "\\1")));
         }
@@ -139,7 +139,7 @@ protected nomask string displayExtraResearchInformation()
     {
         foreach(string penalty in keys)
         {
-            ret += sprintf("[0;31m(%d)[0m [0;33mPenalty to %s[0m\n",
+            ret += sprintf("\x1b[0;31m(%d)\x1b[0m \x1b[0;33mPenalty to %s\x1b[0m\n",
                 query(penalty), 
                 capitalize(regreplace(penalty, "bonus (.+)", "\\1")));
         }

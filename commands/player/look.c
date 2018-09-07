@@ -28,11 +28,11 @@ public nomask int execute(string command, object initiator)
         ret = 1;
         if (initiator->hasTraitOfRoot("blind"))
         {
-            tell_object(initiator, "[0;30;1mYou are blind.[0m\n");
+            tell_object(initiator, "\x1b[0;30;1mYou are blind.\x1b[0m\n");
         }
         else if (!initiator->canSee())
         {
-            tell_object(initiator, "[0;30;1mIt is too dark.[0m\n");
+            tell_object(initiator, "\x1b[0;30;1mIt is too dark.\x1b[0m\n");
 
             object *environmentInventory = filter(
                 all_inventory(environment(initiator)),
@@ -44,13 +44,13 @@ public nomask int execute(string command, object initiator)
                 initiator->hasTraitOfRoot("infravision") &&
                 sizeof(environmentInventory))
             {
-                string visibleList = "[0;30;1mYou can see objects faintly glowing in red:\n[0m";
+                string visibleList = "\x1b[0;30;1mYou can see objects faintly glowing in red:\n\x1b[0m";
                 foreach(object environmentItem in environmentInventory)
                 {
                     string shortDesc = environmentItem->short();
                     if (shortDesc && (shortDesc != ""))
                     {
-                        visibleList += sprintf("[0;31m%s\n[0m", capitalize(shortDesc));
+                        visibleList += sprintf("\x1b[0;31m%s\n\x1b[0m", capitalize(shortDesc));
                     }
                 }
 

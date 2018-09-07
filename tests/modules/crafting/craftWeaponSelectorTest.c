@@ -31,24 +31,24 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
 {
     Selector->initiateSelector(Player);
 
-    ExpectEq("[0;36mCraft Weapons - [0m[0;37;1mFrom this menu, you can craft items[0m:\n"
-        "    [[0;31;1m1[0m]  - [0;32mAxe                 [0m\n"
-        "    [[0;31;1m2[0m]  - [0;32mBow                 [0m\n"
-        "    [[0;31;1m3[0m]  - [0;32mCrossbow            [0m\n"
-        "    [[0;31;1m4[0m]  - [0;32mDagger              [0m\n"
-        "    [[0;31;1m5[0m]  - [0;32mFlail               [0m\n"
-        "    [[0;31;1m6[0m]  - [0;32mHammer              [0m\n"
-        "    [[0;31;1m7[0m]  - [0;32mMace                [0m\n"
-        "    [[0;31;1m8[0m]  - [0;32mPole arm            [0m\n"
-        "    [[0;31;1m9[0m]  - [0;32mShield              [0m\n"
-        "    [[0;31;1m10[0m] - [0;32mSling               [0m\n"
-        "    [[0;31;1m11[0m] - [0;32mStaff               [0m\n"
-        "    [[0;31;1m12[0m] - [0;32mSword               [0m\n"
-        "    [[0;31;1m13[0m] - [0;32mThrown              [0m\n"
-        "    [[0;31;1m14[0m] - [0;32mExit Craft Weapons Menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 14.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+    ExpectEq("\x1b[0;36mCraft Weapons - \x1b[0m\x1b[0;37;1mFrom this menu, you can craft items\x1b[0m:\n"
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mAxe                 \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mBow                 \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mCrossbow            \x1b[0m\n"
+        "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mDagger              \x1b[0m\n"
+        "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mFlail               \x1b[0m\n"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mHammer              \x1b[0m\n"
+        "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mMace                \x1b[0m\n"
+        "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mPole arm            \x1b[0m\n"
+        "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mShield              \x1b[0m\n"
+        "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mSling               \x1b[0m\n"
+        "    [\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mStaff               \x1b[0m\n"
+        "    [\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mSword               \x1b[0m\n"
+        "    [\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mThrown              \x1b[0m\n"
+        "    [\x1b[0;31;1m14\x1b[0m] - \x1b[0;32mExit Craft Weapons Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 14.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
 }
 

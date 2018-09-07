@@ -8,7 +8,7 @@
 virtual inherit "/lib/core/prerequisites.c";
 #include "/lib/include/itemFormatters.h"
 
-protected nosave string FieldDisplay = "[0;36m%-15s[0m : [0;33m%s[0m\n";
+protected nosave string FieldDisplay = "\x1b[0;36m%-15s\x1b[0m : \x1b[0;33m%s\x1b[0m\n";
 private string ResearchDictionary = "/lib/dictionaries/researchDictionary.c";
 
 private string name;
@@ -320,20 +320,20 @@ private nomask string getNodeInfo(string element, object owner,
         object researchItem = getResearchItem(element);
         if (!tree[element]["children"])
         {
-            string displayColor = "[0;31m";
+            string displayColor = "\x1b[0;31m";
             if (owner->isResearched(element))
             {
-                displayColor = "[0;34;1m";
+                displayColor = "\x1b[0;34;1m";
             }
             else if (owner->isResearching(element))
             {
-                displayColor = "[0;35m";
+                displayColor = "\x1b[0;35m";
             }
             else if (owner->canResearch(element))
             {
-                displayColor = "[0;33m";
+                displayColor = "\x1b[0;33m";
             }
-            ret += sprintf("[0;30;1m%" + (level * 6) + "s%s%s[0m\n",
+            ret += sprintf("\x1b[0;30;1m%" + (level * 6) + "s%s%s\x1b[0m\n",
                 "|-- ", 
                 displayColor, 
                 capitalize(researchItem->query("name")));
@@ -342,21 +342,21 @@ private nomask string getNodeInfo(string element, object owner,
             sizeof(tree[element]["children"]) &&
             stringp(tree[element]["children"][0]))
         {
-            string displayColor = "[0;31m";
+            string displayColor = "\x1b[0;31m";
             if (owner->isResearched(element))
             {
-                displayColor = "[0;34;1m";
+                displayColor = "\x1b[0;34;1m";
             }
             else if (owner->isResearching(element))
             {
-                displayColor = "[0;35m";
+                displayColor = "\x1b[0;35m";
             }
             else if (owner->canResearch(element))
             {
-                displayColor = "[0;33m";
+                displayColor = "\x1b[0;33m";
             }
             researchItem = getResearchItem(element);
-            ret += sprintf("[0;30;1m%" + (level * 6) + "s%s%s[0m\n", 
+            ret += sprintf("\x1b[0;30;1m%" + (level * 6) + "s%s%s\x1b[0m\n", 
                 (level ? "|-- " : ""), 
                 displayColor,
                 capitalize(researchItem->query("name")));
@@ -375,7 +375,7 @@ public nomask string researchTreeDetails(object user)
     string ret = sprintf(FieldDisplay, "Research Tree", capitalize(Name())) +
         sprintf(Value, Description()) + "\n" +
         displayPrerequisites() + 
-        "[0;33mThe tree offers the following research items:[0m\n";
+        "\x1b[0;33mThe tree offers the following research items:\x1b[0m\n";
 
     if (treeRoot)
     {

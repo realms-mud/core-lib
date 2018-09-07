@@ -1321,15 +1321,15 @@ public nomask mapping creationListForSkillType(string type)
         foreach(string skill in skillsList)
         {
             string attribute =
-                sprintf("\t[0;32mAffecting attribute[0m: [0;34;1m%s[0m\n",
+                sprintf("\t\x1b[0;32mAffecting attribute\x1b[0m: \x1b[0;34;1m%s\x1b[0m\n",
                     capitalize(skills[skill]["attribute"]));
 
             int penalty = skills[skill]["untrained penalty"];
             ret[to_string(i)] = ([
                 "name":capitalize(skill),
-                    "description" : skills[skill]["description"] + "[0m" +
+                    "description" : skills[skill]["description"] + "\x1b[0m" +
                     attribute +
-                    (penalty ? "\t[0;31;1mAttempting to use this skill untrained will incur a penalty.\n" : "")
+                    (penalty ? "\t\x1b[0;31;1mAttempting to use this skill untrained will incur a penalty.\n" : "")
             ]);
             i++;
         }

@@ -438,7 +438,7 @@ public nomask string displayLimiters()
     if (member(researchData, "limited by") &&
         sizeof(researchData["limited by"]))
     {
-        string limiter = "[0;36mThis is only applied when %s %s %s.[0m\n";
+        string limiter = "\x1b[0;36mThis is only applied when %s %s %s.\x1b[0m\n";
         string *prereqKeys = sort_array(
             m_indices(researchData["limited by"]), (: $1 > $2 :));
 

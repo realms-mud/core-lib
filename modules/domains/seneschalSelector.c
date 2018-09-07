@@ -76,6 +76,6 @@ protected string choiceFormatter(string choice)
 {
     return sprintf("[%s]%s - %s%s", Red,
         padSelectionDisplay(choice),
-        Data[choice]["canShow"] ? "[0;32m%s[0m" : "[0;31m%-40s [0;35m(Missing Prerequisites)[0m",
+        Data[choice]["canShow"] ? "\x1b[0;32m%s\x1b[0m" : "\x1b[0;31m%-40s \x1b[0;35m(Missing Prerequisites)\x1b[0m",
         displayDetails(choice));
 }

@@ -448,7 +448,7 @@ private nomask string displayResearchBonusesAndPenalties(object research)
     {
         foreach(string bonus in keys)
         {
-            ret += sprintf("[0;34;1m(+%d)[0m [0;33mBonus %s[0m\n",
+            ret += sprintf("\x1b[0;34;1m(+%d)\x1b[0m \x1b[0;33mBonus %s\x1b[0m\n",
                 research->query(bonus), bonusName(bonus));
         }
     }
@@ -457,7 +457,7 @@ private nomask string displayResearchBonusesAndPenalties(object research)
     {
         foreach(string penalty in keys)
         {
-            ret += sprintf("[0;31m(%d)[0m [0;33mPenalty to %s[0m\n",
+            ret += sprintf("\x1b[0;31m(%d)\x1b[0m \x1b[0;33mPenalty to %s\x1b[0m\n",
                 research->query(penalty), bonusName(penalty));
         }
     }
@@ -526,14 +526,14 @@ public nomask string displayTreePrerequisites(string researchItem, object user)
                     if (research)
                     {
                         string knownTag = user->isResearched(parent) ?
-                            "[0;34;1m" : "[0;31m";
+                            "\x1b[0;34;1m" : "\x1b[0;31m";
                         prerequisites += ({ knownTag +
-                            capitalize(research->query("name")) + "[0m" });
+                            capitalize(research->query("name")) + "\x1b[0m" });
                     }
                 }
-                parentInfo = implode(prerequisites, "[0;33m, ");
+                parentInfo = implode(prerequisites, "\x1b[0;33m, ");
                 parentInfo = regreplace(parentInfo, ", ([^,]+)$", " and \\1", 1);
-                ret += sprintf("[0;36m%-15s[0m : %s\n",
+                ret += sprintf("\x1b[0;36m%-15s\x1b[0m : %s\n",
                     "Research Prereqs", parentInfo);
             }
         }

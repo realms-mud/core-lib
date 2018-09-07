@@ -103,7 +103,7 @@ protected nomask string displayDetails(string choice)
 {
     int attributeValue = User->attributeValue(lower_case(Data[choice]["name"]), 1);
 
-    return sprintf("[0;%d;1m(current %s is %s%d)[0m",
+    return sprintf("\x1b[0;%d;1m(current %s is %s%d)\x1b[0m",
         ((attributeValue >= 10) ? 31 : 35),
         Data[choice]["name"][0..2],
         ((attributeValue >= 10) ? "at maximum of " : ""),

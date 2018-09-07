@@ -452,6 +452,6 @@ void ConversationFromOtherObjectReturnsToDefaultOnFirstConversationObj()
     Owner->addConversation("/lib/tutorial/characters/berenar/startingConversation.c");
     command("talk", Actor);
     command("1", Actor);
-    ExpectEq("This is another test response\n[0m", Actor->caughtMessages());
+    ExpectEq("This is another test response\n\x1b[0m", Actor->caughtMessages());
 }
 */

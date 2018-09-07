@@ -184,7 +184,7 @@ public nomask varargs string displayNeededMaterials(string component)
         mappingp(itemData["crafting materials"]) &&
         sizeof(itemData["crafting materials"]))
     {
-        ret = "\n[0;36mMaterials:\n";
+        ret = "\n\x1b[0;36mMaterials:\n";
         mapping neededMaterials = getMaterialList(component);
 
         if (sizeof(neededMaterials))
@@ -193,10 +193,10 @@ public nomask varargs string displayNeededMaterials(string component)
             foreach(string material in materials)
             {
                 ret += (neededMaterials[material] > 0) ?
-                    sprintf("\t[0;32m%s needed: [0;35m%d[0m\n",
+                    sprintf("\t\x1b[0;32m%s needed: \x1b[0;35m%d\x1b[0m\n",
                         capitalize(material), neededMaterials[material]) :
-                    sprintf("\t[0;31;1m(Optional)[0;32m %s can be used to "
-                        "embellish the design[0m\n", material);
+                    sprintf("\t\x1b[0;31;1m(Optional)\x1b[0;32m %s can be used to "
+                        "embellish the design\x1b[0m\n", material);
             }
         }
     }

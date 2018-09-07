@@ -23,7 +23,7 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string overallLevel(object initiator)
 {
-    string format = " [0;36mOverall Level:[0m [0;32m%-22s[0m[0;31m|[0m\n";
+    string format = " \x1b[0;36mOverall Level:\x1b[0m \x1b[0;32m%-22s\x1b[0m\x1b[0;31m|\x1b[0m\n";
 
     string level = initiator->isRealizationOf("wizard") ?
         capitalize(initiator->wizardLevel()) :
@@ -36,7 +36,7 @@ private nomask string overallLevel(object initiator)
 private nomask string raceDetails(object initiator)
 {
     object raceDictionary = load_object("/lib/dictionaries/racialDictionary.c");
-    return sprintf("[0;31m|[0m [0;36mRace:[0m [0;32m%-32s[0m",
+    return sprintf("\x1b[0;31m|\x1b[0m \x1b[0;36mRace:\x1b[0m \x1b[0;32m%-32s\x1b[0m",
         raceDictionary->raceDetails(initiator));
 }
 
@@ -47,38 +47,38 @@ private nomask string combatStatistics(object initiator)
     string bestKillLine;
     if (sizeof(bestKill))
     {
-        bestKillLine = sprintf("[0;36mBest Kill: [0m[0;33m%s [0;35m(Level %s)[0m "
-            "[0;31;1mwas killed %s times.[0m", bestKill["name"],
+        bestKillLine = sprintf("\x1b[0;36mBest Kill: \x1b[0m\x1b[0;33m%s \x1b[0;35m(Level %s)\x1b[0m "
+            "\x1b[0;31;1mwas killed %s times.\x1b[0m", bestKill["name"],
             bestKill["level"], bestKill["times killed"]);
     }
     else
     {
-        bestKillLine = "[0;36mBest Kill: [0m[0;33m<nobody>[0;35m[0m[0;31;1m.[0m";
+        bestKillLine = "\x1b[0;36mBest Kill: \x1b[0m\x1b[0;33m<nobody>\x1b[0;35m\x1b[0m\x1b[0;31;1m.\x1b[0m";
     }
 
     mapping nemesis = initiator->getNemesis();
     string nemesisLine;
     if (sizeof(nemesis))
     {
-        nemesisLine = sprintf("[0;36mNemesis: [0m[0;33m%s [0;35m(Level %s)[0m "
-            "[0;31;1mwas killed %s times.[0m", nemesis["name"],
+        nemesisLine = sprintf("\x1b[0;36mNemesis: \x1b[0m\x1b[0;33m%s \x1b[0;35m(Level %s)\x1b[0m "
+            "\x1b[0;31;1mwas killed %s times.\x1b[0m", nemesis["name"],
             nemesis["level"], nemesis["times killed"]);
     }
     else
     {
-        nemesisLine  = "[0;36mNemesis: [0m[0;33m<nobody>[0;35m[0m[0;31;1m.[0m";
+        nemesisLine  = "\x1b[0;36mNemesis: \x1b[0m\x1b[0;33m<nobody>\x1b[0;35m\x1b[0m\x1b[0;31;1m.\x1b[0m";
     }
 
     return Dictionary->buildBanner("Combat Statistics") +
-        sprintf("[0;31m|[0m %-117s [0;31m|[0m\n", bestKillLine) +
-        sprintf("[0;31m|[0m %-117s [0;31m|[0m\n", nemesisLine);
+        sprintf("\x1b[0;31m|\x1b[0m %-117s \x1b[0;31m|\x1b[0m\n", bestKillLine) +
+        sprintf("\x1b[0;31m|\x1b[0m %-117s \x1b[0;31m|\x1b[0m\n", nemesisLine);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getWeaponData(object initiator, object weapon, int isPrimary)
 {
-    string format = "[0;36m%s: [0m[0;33m%d to %d[0m";
-    string row = "[0;31m|[0m [0;36m%7s Weapon:[0m [0;33m%-15s[0m %-46s %-40s [0;31m|[0m\n";
+    string format = "\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m";
+    string row = "\x1b[0;31m|\x1b[0m \x1b[0;36m%7s Weapon:\x1b[0m \x1b[0;33m%-15s\x1b[0m %-46s %-40s \x1b[0;31m|\x1b[0m\n";
 
     string location = isPrimary ? "Primary" : "Offhand";
 
@@ -104,8 +104,8 @@ private nomask string getWeaponData(object initiator, object weapon, int isPrima
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getDefensiveStats(object initiator)
 {
-    string format = "[0;36m%s: [0m[0;33m%d to %d[0m";
-    string row = "[0;31m|[0m  %-54s %-38s %-46s [0;31m|[0m\n";
+    string format = "\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m";
+    string row = "\x1b[0;31m|\x1b[0m  %-54s %-38s %-46s \x1b[0;31m|\x1b[0m\n";
 
     int defend = initiator->calculateDefendAttack();
     int soak = initiator->calculateSoakDamage("physical");
@@ -113,7 +113,7 @@ private nomask string getDefensiveStats(object initiator)
     return sprintf(row, sprintf(format, "Defend Attack",
         defend - abs(defend / 2), defend),
         sprintf(format, "Soak", soak - abs(soak / 2), soak),
-        sprintf("[0;36m%s: [0m[0;33m%d[0m", "Encumberance",
+        sprintf("\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Encumberance",
             initiator->inventoryGetEncumberance()));
 }
 
@@ -148,7 +148,7 @@ private nomask string getCombatData(object initiator)
     {
         hostiles = hostiles[0..31] + "...";
     }
-    ret += sprintf("[0;31m|[0m [0;36m%14s: [0m[0;33m%d%% [0m[0;36m%19s: [0m[0;33m%-35s[0m [0;31m|[0m\n",
+    ret += sprintf("\x1b[0;31m|\x1b[0m \x1b[0;36m%14s: \x1b[0m\x1b[0;33m%d%% \x1b[0m\x1b[0;36m%19s: \x1b[0m\x1b[0;33m%-35s\x1b[0m \x1b[0;31m|\x1b[0m\n",
         "Wimpy", initiator->Wimpy(0, 1), "Hunted by", hostiles);
 
     return ret;
@@ -192,7 +192,7 @@ public nomask int execute(string command, object initiator)
     {
         ret = 1;
 
-        string score = sprintf("[0;32m%s%s %s[0m\n",
+        string score = sprintf("\x1b[0;32m%s%s %s\x1b[0m\n",
             initiator->Pretitle() ? initiator->Pretitle() + " " : "",
             capitalize(initiator->RealName()),
             initiator->Title());
@@ -207,9 +207,9 @@ public nomask int execute(string command, object initiator)
         score += Dictionary->buildBanner("Combat Information") +
             getCombatData(initiator);
         score += Dictionary->buildBanner("Details") +
-            sprintf("[0;31m|[0m [0;36m%-75s[0m [0;31m|[0m\n",
+            sprintf("\x1b[0;31m|\x1b[0m \x1b[0;36m%-75s\x1b[0m \x1b[0;31m|\x1b[0m\n",
                 getBiologicalDetails(initiator)) +
-            sprintf("[0;31m|[0m [0;36m%-75s[0m [0;31m|[0m\n",
+            sprintf("\x1b[0;31m|\x1b[0m \x1b[0;36m%-75s\x1b[0m \x1b[0;31m|\x1b[0m\n",
                 "You can find out more via the 'skills', 'traits', and 'research' commands.");
         
         if (sizeof(regexp(({ command }), "-v")))

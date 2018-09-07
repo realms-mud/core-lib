@@ -85,7 +85,7 @@ protected nomask string displayDetails(string choice)
 
     if (User->isTraitOf(Data[choice]["file"]))
     {
-        ret = "[0;34;1m(*)[0m";
+        ret = "\x1b[0;34;1m(*)\x1b[0m";
     }
     return ret;
 }
@@ -93,6 +93,6 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return "You may only select a trait once. [0;34;1m(*)[0m [0;32;1m"
+    return "You may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1m"
         "denotes an already-chosen trait.\n";
 }

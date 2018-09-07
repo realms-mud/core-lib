@@ -7,8 +7,8 @@ inherit "/lib/tests/framework/testFixture.c";
 object Player;
 object Selector;
 
-string EndBar = "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m";
-string TraitsRow = "[0;31m| [0m%s%23s[0m [0;31m| [0m%s%23s[0m [0;31m| [0m%s%23s[0m [0;31m|\n[0m";
+string EndBar = "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m";
+string TraitsRow = "\x1b[0;31m| \x1b[0m%s%23s\x1b[0m \x1b[0;31m| \x1b[0m%s%23s\x1b[0m \x1b[0;31m| \x1b[0m%s%23s\x1b[0m \x1b[0;31m|\n\x1b[0m";
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
@@ -41,13 +41,13 @@ void TopLevelResearchMenuDisplaysCorrectly()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
     Selector->initiateSelector(Player);
 
-    ExpectEq("[0;36mResearch - [0m[0;37;1mFrom this menu, you can view your character's known research\nas well as initiate new research[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32mFighter guild       [0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mMage guild          [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mQuests              [0m\n"
-        "\t[[0;31;1m4[0m] - [0;32mExit Research Menu  [0m\n"
-        "[0;32;1mYou must select a number from 1 to 4.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+    ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mFrom this menu, you can view your character's known research\nas well as initiate new research\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mFighter guild       \x1b[0m\n"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mMage guild          \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mQuests              \x1b[0m\n"
+        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mExit Research Menu  \x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 4.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -62,26 +62,26 @@ void ResearchSubmenuDisplaysCorrectly()
 
     command("2", Player);
 
-    ExpectEq("[0;36mResearch - [0m[0;37;1mSelect a research item to view in more detail[0m:\n"
-        "\t[[0;31;1m1[0m]  - [0;32mMock research       [0m[0;35m (!)[0m"
-        "\t[[0;31;1m2[0m]  - [0;32mIntox research      [0m[0;34;1m (*)[0m\n"
-        "\t[[0;31;1m3[0m]  - [0;32mSpiffy tree root    [0m[0;34;1m (*)[0m"
-        "\t[[0;31;1m4[0m]  - [0;32mTree of researchi...[0m[0;34;1m (*)[0m\n"
-        "\t[[0;31;1m5[0m]  - [0;32mFlambe-maker        [0m[0;31m (X)[0m"
-        "\t[[0;31;1m6[0m]  - [0;32mGrebe of obstinance [0m[0;31m (X)[0m\n"
-        "\t[[0;31;1m7[0m]  - [0;32mGrog's revenge      [0m[0;31m (X)[0m"
-        "\t[[0;31;1m8[0m]  - [0;32mHand of fist        [0m\n"
-        "\t[[0;31;1m9[0m]  - [0;32mTurnip seclusion    [0m"
-        "\t[[0;31;1m10[0m] - [0;32mWeasel inversion    [0m\n"
-        "\t[[0;31;1m11[0m] - [0;32mZap thingy          [0m[0;31m (X)[0m"
-        "\t[[0;31;1m12[0m] - [0;32mZorlak's revenge    [0m\n"
-        "\t[[0;31;1m13[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 13.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m"
-        "[0;34;1m(*)[0m[0;32m denotes already-chosen research while "
-        "[0;35m(!)[0m[0;32m denotes research in progress.\nResearch denoted "
-        "[0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n[0m",
+    ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mSelect a research item to view in more detail\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mMock research       \x1b[0m\x1b[0;35m (!)\x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mIntox research      \x1b[0m\x1b[0;34;1m (*)\x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSpiffy tree root    \x1b[0m\x1b[0;34;1m (*)\x1b[0m"
+        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mTree of researchi...\x1b[0m\x1b[0;34;1m (*)\x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mFlambe-maker        \x1b[0m\x1b[0;31m (X)\x1b[0m"
+        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mGrebe of obstinance \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mGrog's revenge      \x1b[0m\x1b[0;31m (X)\x1b[0m"
+        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mHand of fist        \x1b[0m\n"
+        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mTurnip seclusion    \x1b[0m"
+        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mWeasel inversion    \x1b[0m\n"
+        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mZap thingy          \x1b[0m\x1b[0;31m (X)\x1b[0m"
+        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mZorlak's revenge    \x1b[0m\n"
+        "\t[\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 13.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m"
+        "\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research while "
+        "\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress.\nResearch denoted "
+        "\x1b[0;31m(X)\x1b[0m\x1b[0;32m cannot yet be learned - view description for details.\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -92,35 +92,35 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
     command("1", Player);
     command("12", Player);
 
-    ExpectEq("[0;36mResearch - [0m[0;37;1mDetails:[0m\n"
-        "[0;36mResearch Name  [0m : [0;33mZorlak's revenge[0m\n"
-        "[0;33mThis is limited active research[0m\n"
-        "[0;33mLearning this costs 1 research points.\n"
-        "[0m[0;36mResearch Type  [0m : [0;33mActive[0m\n"
-        "[0;36mScope          [0m : [0;33mTargeted[0m\n"
-        "[0;36mCost to use    [0m : [0;33m1 spell points[0m\n"
-        "[0;36mUsage cooldown [0m : [0;33m4 seconds[0m\n"
-        "[0;36mCommand syntax [0m : [0;36mthrow turnip [at [0;33m<Target>[0m[0;36m][0m\n"
-        "                  [0;36mhurl turnip [at [0;33m<Target>[0m[0;36m][0m\n"
-        "[0;36mUsage effect   [0m : [0;33m80% chance to increase hit points 25 - 50[0m\n"
-        "                  [0;32mModified -> [0;34;1m1.25 * your long sword skill[0m [0;31;1m(additive)[0m\n"
-        "                  [0;32mModified -> [0;34;1m0.25 * your strength attribute[0m [0;31;1m(subtractive)[0m\n"
-        "[0;36mUsage effect   [0m : [0;33m20% chance to increase hit points 35 - 60[0m\n"
-        "                  [0;32mModified -> [0;34;1m1.25 * your long sword skill[0m [0;31;1m(additive)[0m\n"
-        "                  [0;32mModified -> [0;34;1m0.25 * your strength attribute[0m [0;31;1m(subtractive)[0m\n"
-        "[0;36mThis is only applied when you're using: long sword.[0m\n"
-        "[0;36mPrerequisites:[0m\n"
-        "	[0;36mSkill[0m: [0;35mLong sword of 10[0m\n"
-        "[0;36mResearch Prereqs[0m : [0;34;1mSpiffy tree root[0m\n"
-        "[0m\n"
-        "	[[0;31;1m1[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 1.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
+    ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\x1b[0m\n"
+        "\x1b[0;36mResearch Name  \x1b[0m : \x1b[0;33mZorlak's revenge\x1b[0m\n"
+        "\x1b[0;33mThis is limited active research\x1b[0m\n"
+        "\x1b[0;33mLearning this costs 1 research points.\n"
+        "\x1b[0m\x1b[0;36mResearch Type  \x1b[0m : \x1b[0;33mActive\x1b[0m\n"
+        "\x1b[0;36mScope          \x1b[0m : \x1b[0;33mTargeted\x1b[0m\n"
+        "\x1b[0;36mCost to use    \x1b[0m : \x1b[0;33m1 spell points\x1b[0m\n"
+        "\x1b[0;36mUsage cooldown \x1b[0m : \x1b[0;33m4 seconds\x1b[0m\n"
+        "\x1b[0;36mCommand syntax \x1b[0m : \x1b[0;36mthrow turnip [at \x1b[0;33m<Target>\x1b[0m\x1b[0;36m]\x1b[0m\n"
+        "                  \x1b[0;36mhurl turnip [at \x1b[0;33m<Target>\x1b[0m\x1b[0;36m]\x1b[0m\n"
+        "\x1b[0;36mUsage effect   \x1b[0m : \x1b[0;33m80% chance to increase hit points 25 - 50\x1b[0m\n"
+        "                  \x1b[0;32mModified -> \x1b[0;34;1m1.25 * your long sword skill\x1b[0m \x1b[0;31;1m(additive)\x1b[0m\n"
+        "                  \x1b[0;32mModified -> \x1b[0;34;1m0.25 * your strength attribute\x1b[0m \x1b[0;31;1m(subtractive)\x1b[0m\n"
+        "\x1b[0;36mUsage effect   \x1b[0m : \x1b[0;33m20% chance to increase hit points 35 - 60\x1b[0m\n"
+        "                  \x1b[0;32mModified -> \x1b[0;34;1m1.25 * your long sword skill\x1b[0m \x1b[0;31;1m(additive)\x1b[0m\n"
+        "                  \x1b[0;32mModified -> \x1b[0;34;1m0.25 * your strength attribute\x1b[0m \x1b[0;31;1m(subtractive)\x1b[0m\n"
+        "\x1b[0;36mThis is only applied when you're using: long sword.\x1b[0m\n"
+        "\x1b[0;36mPrerequisites:\x1b[0m\n"
+        "	\x1b[0;36mSkill\x1b[0m: \x1b[0;35mLong sword of 10\x1b[0m\n"
+        "\x1b[0;36mResearch Prereqs\x1b[0m : \x1b[0;34;1mSpiffy tree root\x1b[0m\n"
+        "\x1b[0m\n"
+        "	[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
-        "[0m[0;32;1m[0;34;1m(*)[0m[0;32m denotes already-chosen research while [0;35m(!)[0m[0;32m denotes research in progress.\n"
-        "Research denoted [0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n"
-        "[0m", Player->caughtMessage());
+        "\x1b[0m\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research while \x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress.\n"
+        "Research denoted \x1b[0;31m(X)\x1b[0m\x1b[0;32m cannot yet be learned - view description for details.\x1b[0m\n"
+        "\x1b[0m", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -142,25 +142,25 @@ void DescribeAsQuestionMarkShowsResearchDetails()
     command("1", Player);
     command("? 12", Player);
 
-    ExpectEq("[0;36m[0;36mResearch Name  [0m : [0;33mZorlak's revenge[0m\n"
-        "[0;33mThis is limited active research[0m\n"
-        "[0;33mLearning this costs 1 research points.\n"
-        "[0m[0;36mResearch Type  [0m : [0;33mActive[0m\n"
-        "[0;36mScope          [0m : [0;33mTargeted[0m\n"
-        "[0;36mCost to use    [0m : [0;33m1 spell points[0m\n"
-        "[0;36mUsage cooldown [0m : [0;33m4 seconds[0m\n"
-        "[0;36mCommand syntax [0m : [0;36mthrow turnip [at [0;33m<Target>[0m[0;36m][0m\n"
-        "                  [0;36mhurl turnip [at [0;33m<Target>[0m[0;36m][0m\n"
-        "[0;36mUsage effect   [0m : [0;33m80% chance to increase hit points 25 - 50[0m\n"
-        "                  [0;32mModified -> [0;34;1m1.25 * your long sword skill[0m [0;31;1m(additive)[0m\n"
-        "                  [0;32mModified -> [0;34;1m0.25 * your strength attribute[0m [0;31;1m(subtractive)[0m\n"
-        "[0;36mUsage effect   [0m : [0;33m20% chance to increase hit points 35 - 60[0m\n"
-        "                  [0;32mModified -> [0;34;1m1.25 * your long sword skill[0m [0;31;1m(additive)[0m\n"
-        "                  [0;32mModified -> [0;34;1m0.25 * your strength attribute[0m [0;31;1m(subtractive)[0m\n"
-        "[0;36mThis is only applied when you're using: long sword.[0m\n"
-        "[0;36mPrerequisites:[0m\n"
-        "	[0;36mSkill[0m: [0;35mLong sword of 10[0m\n"
-        "[0;36mResearch Prereqs[0m : [0;34;1mSpiffy tree root[0m\n[0m",
+    ExpectEq("\x1b[0;36m\x1b[0;36mResearch Name  \x1b[0m : \x1b[0;33mZorlak's revenge\x1b[0m\n"
+        "\x1b[0;33mThis is limited active research\x1b[0m\n"
+        "\x1b[0;33mLearning this costs 1 research points.\n"
+        "\x1b[0m\x1b[0;36mResearch Type  \x1b[0m : \x1b[0;33mActive\x1b[0m\n"
+        "\x1b[0;36mScope          \x1b[0m : \x1b[0;33mTargeted\x1b[0m\n"
+        "\x1b[0;36mCost to use    \x1b[0m : \x1b[0;33m1 spell points\x1b[0m\n"
+        "\x1b[0;36mUsage cooldown \x1b[0m : \x1b[0;33m4 seconds\x1b[0m\n"
+        "\x1b[0;36mCommand syntax \x1b[0m : \x1b[0;36mthrow turnip [at \x1b[0;33m<Target>\x1b[0m\x1b[0;36m]\x1b[0m\n"
+        "                  \x1b[0;36mhurl turnip [at \x1b[0;33m<Target>\x1b[0m\x1b[0;36m]\x1b[0m\n"
+        "\x1b[0;36mUsage effect   \x1b[0m : \x1b[0;33m80% chance to increase hit points 25 - 50\x1b[0m\n"
+        "                  \x1b[0;32mModified -> \x1b[0;34;1m1.25 * your long sword skill\x1b[0m \x1b[0;31;1m(additive)\x1b[0m\n"
+        "                  \x1b[0;32mModified -> \x1b[0;34;1m0.25 * your strength attribute\x1b[0m \x1b[0;31;1m(subtractive)\x1b[0m\n"
+        "\x1b[0;36mUsage effect   \x1b[0m : \x1b[0;33m20% chance to increase hit points 35 - 60\x1b[0m\n"
+        "                  \x1b[0;32mModified -> \x1b[0;34;1m1.25 * your long sword skill\x1b[0m \x1b[0;31;1m(additive)\x1b[0m\n"
+        "                  \x1b[0;32mModified -> \x1b[0;34;1m0.25 * your strength attribute\x1b[0m \x1b[0;31;1m(subtractive)\x1b[0m\n"
+        "\x1b[0;36mThis is only applied when you're using: long sword.\x1b[0m\n"
+        "\x1b[0;36mPrerequisites:\x1b[0m\n"
+        "	\x1b[0;36mSkill\x1b[0m: \x1b[0;35mLong sword of 10\x1b[0m\n"
+        "\x1b[0;36mResearch Prereqs\x1b[0m : \x1b[0;34;1mSpiffy tree root\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -171,23 +171,23 @@ void DescribeShowsResearchDetails()
     command("1", Player);
     command("5", Player);
 
-    ExpectEq("[0;36mResearch - [0m[0;37;1mDetails:[0m\n"
-        "[0;36mResearch Name  [0m : [0;33mGrog's revenge[0m\n"
-        "[0;33mThis is a description[0m\n"
-        "[0;33mLearning this costs 1 research points.\n"
-        "[0m[0;36mResearch Type  [0m : [0;33mPassive[0m\n"
-        "[0;36mScope          [0m : [0;33mSelf[0m\n"
-        "[0;34;1m(+2)[0m [0;33mBonus Long sword[0m\n"
-        "[0;36mResearch Prereqs[0m : [0;31mZap thingy[0m[0;33m and [0;31mGrebe of obstinance[0m\n"
-        "[0m\n"
-        "	[[0;31;1m1[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 1.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
+    ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\x1b[0m\n"
+        "\x1b[0;36mResearch Name  \x1b[0m : \x1b[0;33mGrog's revenge\x1b[0m\n"
+        "\x1b[0;33mThis is a description\x1b[0m\n"
+        "\x1b[0;33mLearning this costs 1 research points.\n"
+        "\x1b[0m\x1b[0;36mResearch Type  \x1b[0m : \x1b[0;33mPassive\x1b[0m\n"
+        "\x1b[0;36mScope          \x1b[0m : \x1b[0;33mSelf\x1b[0m\n"
+        "\x1b[0;34;1m(+2)\x1b[0m \x1b[0;33mBonus Long sword\x1b[0m\n"
+        "\x1b[0;36mResearch Prereqs\x1b[0m : \x1b[0;31mZap thingy\x1b[0m\x1b[0;33m and \x1b[0;31mGrebe of obstinance\x1b[0m\n"
+        "\x1b[0m\n"
+        "	[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
-        "[0m[0;32;1m[0;34;1m(*)[0m[0;32m denotes already-chosen research while [0;35m(!)[0m[0;32m denotes research in progress.\n"
-        "Research denoted [0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n"
-        "[0m", Player->caughtMessage());
+        "\x1b[0m\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research while \x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress.\n"
+        "Research denoted \x1b[0;31m(X)\x1b[0m\x1b[0;32m cannot yet be learned - view description for details.\x1b[0m\n"
+        "\x1b[0m", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -212,38 +212,38 @@ void ResearchTreesAreProperlyDisplayed()
     command("1", Player);
     command("4", Player);
 
-    ExpectEq("[0;36mResearch - [0m[0;37;1mDetails:[0m\n"
-        "[0;36mResearch Tree  [0m : [0;33mTree of researchiness[0m\n"
-        "[0;33mthis is the land-loving mother pigeon of all research trees[0m\n"
-        "[0;33mThe tree offers the following research items:[0m\n"
-        "[0;30;1m[0;34;1mSpiffy tree root[0m\n"
-        "[0;30;1m  |-- [0;33mIntox research[0m\n"
-        "[0;30;1m        |-- [0;31mHand of fist[0m\n"
-        "[0;30;1m        |-- [0;31mGrebe of obstinance[0m\n"
-        "[0;30;1m              |-- [0;31mGrog's revenge[0m\n"
-        "[0;30;1m  |-- [0;34;1mZorlak's revenge[0m\n"
-        "[0;30;1m  |-- [0;35mMock research[0m\n"
-        "[0;30;1m  |-- [0;33mWeasel inversion[0m\n"
-        "[0;30;1m  |-- [0;33mTurnip seclusion[0m\n"
-        "[0;30;1m        |-- [0;31mGrebe of obstinance[0m\n"
-        "[0;30;1m              |-- [0;31mGrog's revenge[0m\n"
-        "[0;30;1m        |-- [0;31mZap thingy[0m\n"
-        "[0;30;1m              |-- [0;31mFlambe-maker[0m\n"
-        "[0;30;1m              |-- [0;31mGrog's revenge[0m\n"
-        "[0m\n"
-        "	[[0;31;1m1[0m]  - [0;32mSpiffy tree root    [0m[0;34;1m (*)[0m	[[0;31;1m2[0m]  - [0;32mFlambe-maker        [0m[0;31m (X)[0m\n"
-        "	[[0;31;1m3[0m]  - [0;32mGrebe of obstinance [0m[0;31m (X)[0m	[[0;31;1m4[0m]  - [0;32mGrog's revenge      [0m[0;31m (X)[0m\n"
-        "	[[0;31;1m5[0m]  - [0;32mHand of fist        [0m[0;31m (X)[0m	[[0;31;1m6[0m]  - [0;32mIntox research      [0m\n"
-        "	[[0;31;1m7[0m]  - [0;32mMock research       [0m[0;35m (!)[0m	[[0;31;1m8[0m]  - [0;32mTurnip seclusion    [0m\n"
-        "	[[0;31;1m9[0m]  - [0;32mWeasel inversion    [0m	[[0;31;1m10[0m] - [0;32mZap thingy          [0m[0;31m (X)[0m\n"
-        "	[[0;31;1m11[0m] - [0;32mZorlak's revenge    [0m[0;34;1m (*)[0m	[[0;31;1m12[0m] - [0;32mReturn to previous menu[0m\n"
-        "[0;32;1mYou must select a number from 1 to 12.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
+    ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\x1b[0m\n"
+        "\x1b[0;36mResearch Tree  \x1b[0m : \x1b[0;33mTree of researchiness\x1b[0m\n"
+        "\x1b[0;33mthis is the land-loving mother pigeon of all research trees\x1b[0m\n"
+        "\x1b[0;33mThe tree offers the following research items:\x1b[0m\n"
+        "\x1b[0;30;1m\x1b[0;34;1mSpiffy tree root\x1b[0m\n"
+        "\x1b[0;30;1m  |-- \x1b[0;33mIntox research\x1b[0m\n"
+        "\x1b[0;30;1m        |-- \x1b[0;31mHand of fist\x1b[0m\n"
+        "\x1b[0;30;1m        |-- \x1b[0;31mGrebe of obstinance\x1b[0m\n"
+        "\x1b[0;30;1m              |-- \x1b[0;31mGrog's revenge\x1b[0m\n"
+        "\x1b[0;30;1m  |-- \x1b[0;34;1mZorlak's revenge\x1b[0m\n"
+        "\x1b[0;30;1m  |-- \x1b[0;35mMock research\x1b[0m\n"
+        "\x1b[0;30;1m  |-- \x1b[0;33mWeasel inversion\x1b[0m\n"
+        "\x1b[0;30;1m  |-- \x1b[0;33mTurnip seclusion\x1b[0m\n"
+        "\x1b[0;30;1m        |-- \x1b[0;31mGrebe of obstinance\x1b[0m\n"
+        "\x1b[0;30;1m              |-- \x1b[0;31mGrog's revenge\x1b[0m\n"
+        "\x1b[0;30;1m        |-- \x1b[0;31mZap thingy\x1b[0m\n"
+        "\x1b[0;30;1m              |-- \x1b[0;31mFlambe-maker\x1b[0m\n"
+        "\x1b[0;30;1m              |-- \x1b[0;31mGrog's revenge\x1b[0m\n"
+        "\x1b[0m\n"
+        "	[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSpiffy tree root    \x1b[0m\x1b[0;34;1m (*)\x1b[0m	[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlambe-maker        \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "	[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mGrebe of obstinance \x1b[0m\x1b[0;31m (X)\x1b[0m	[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mGrog's revenge      \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "	[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mHand of fist        \x1b[0m\x1b[0;31m (X)\x1b[0m	[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mIntox research      \x1b[0m\n"
+        "	[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mMock research       \x1b[0m\x1b[0;35m (!)\x1b[0m	[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mTurnip seclusion    \x1b[0m\n"
+        "	[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mWeasel inversion    \x1b[0m	[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mZap thingy          \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "	[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mZorlak's revenge    \x1b[0m\x1b[0;34;1m (*)\x1b[0m	[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
-        "[0m[0;32;1m[0;34;1m(*)[0m[0;32m denotes already-chosen research while [0;35m(!)[0m[0;32m denotes research in progress.\n"
-        "Research denoted [0;31m(X)[0m[0;32m cannot yet be learned - view description for details.[0m\n"
-        "[0m",
+        "\x1b[0m\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research while \x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress.\n"
+        "Research denoted \x1b[0;31m(X)\x1b[0m\x1b[0;32m cannot yet be learned - view description for details.\x1b[0m\n"
+        "\x1b[0m",
         Player->caughtMessage());
 }
 

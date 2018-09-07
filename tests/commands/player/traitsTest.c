@@ -6,8 +6,8 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 
-string EndBar = "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m";
-string TraitsRow = "[0;31m| [0m%s%23s[0m [0;31m| [0m%s%23s[0m [0;31m| [0m%s%23s[0m [0;31m|\n[0m";
+string EndBar = "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m";
+string TraitsRow = "\x1b[0;31m| \x1b[0m%s%23s\x1b[0m \x1b[0;31m| \x1b[0m%s%23s\x1b[0m \x1b[0;31m| \x1b[0m%s%23s\x1b[0m \x1b[0;31m|\n\x1b[0m";
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
@@ -47,7 +47,7 @@ void ExecuteRegexpFailsIfInvalidFlagsPassed()
 void TraitsWithNoneLoadedReturnsNoTraitsMessage()
 {
     ExpectTrue(Player->executeCommand("traits"));
-    ExpectEq("\n[0;36mYou currently do not have any tracked traits.\n[0m", 
+    ExpectEq("\n\x1b[0;36mYou currently do not have any tracked traits.\n\x1b[0m", 
         Player->caughtMessage());
 }
 
@@ -57,8 +57,8 @@ void SectionWithOneTraitCorrectlyPadsEmptyColumns()
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait.c");
 
     ExpectTrue(Player->executeCommand("traits"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;31;1m", "Test 1", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;31;1m", "Test 1", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -69,8 +69,8 @@ void SectionWithTwoTraitsCorrectlyPadsEmptyColumn()
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait2.c");
 
     ExpectTrue(Player->executeCommand("traits"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;31;1m", "Test 1", "[0;36m", "Test 2", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;31;1m", "Test 1", "\x1b[0;36m", "Test 2", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -82,8 +82,8 @@ void SectionWithThreeTraitsHasNoEmptyColumns()
     Player->addTrait("/lib/modules/traits/personality/abrasive.c");
 
     ExpectTrue(Player->executeCommand("traits"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Abrasive", "[0;31;1m", "Test 1", "[0;36m", "Test 2") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Abrasive", "\x1b[0;31;1m", "Test 1", "\x1b[0;36m", "Test 2") + EndBar,
         Player->caughtMessage());
 }
 
@@ -96,9 +96,9 @@ void SectionWithMoreThanThreeTraitsCorrectlyDisplays()
     Player->addTrait("/lib/modules/traits/personality/charming.c");
 
     ExpectTrue(Player->executeCommand("traits"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Abrasive", "[0;33m", "Charming", "[0;31;1m", "Test 1") +
-        sprintf(TraitsRow, "[0;36m", "Test 2", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Abrasive", "\x1b[0;33m", "Charming", "\x1b[0;31;1m", "Test 1") +
+        sprintf(TraitsRow, "\x1b[0;36m", "Test 2", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -109,8 +109,8 @@ void PersonalityFlagDisplaysOnlyPersonalityTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitWithDuration.c");
 
     ExpectTrue(Player->executeCommand("traits -personality"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;31;1m", "Test 1", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;31;1m", "Test 1", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -121,8 +121,8 @@ void PeFlagDisplaysOnlyPersonalityTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitWithDuration.c");
 
     ExpectTrue(Player->executeCommand("traits -pe"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;31;1m", "Test 1", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;31;1m", "Test 1", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -133,8 +133,8 @@ void EducationalFlagDisplaysOnlyEducationalTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c");
 
     ExpectTrue(Player->executeCommand("traits -educational"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;32;1m", "Duelist", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;32;1m", "Duelist", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -145,8 +145,8 @@ void EdFlagDisplaysOnlyEducationalTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c");
 
     ExpectTrue(Player->executeCommand("traits -ed"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;32;1m", "Duelist", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;32;1m", "Duelist", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -158,8 +158,8 @@ void EffectFlagDisplaysPersistedAndSustainedTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     ExpectTrue(Player->executeCommand("traits -effect"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;35m", "Sustained Jerk", "[0;34;1m", "Temporary Jerk", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;35m", "Sustained Jerk", "\x1b[0;34;1m", "Temporary Jerk", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -171,8 +171,8 @@ void EfFlagDisplaysPersistedAndSustainedTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     ExpectTrue(Player->executeCommand("traits -ef"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;35m", "Sustained Jerk", "[0;34;1m", "Temporary Jerk", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;35m", "Sustained Jerk", "\x1b[0;34;1m", "Temporary Jerk", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -183,8 +183,8 @@ void GeneticFlagDisplaysGeneticTraits()
     Player->addTrait("/lib/tests/support/traits/testGeneticTrait.c");
 
     ExpectTrue(Player->executeCommand("traits -genetic"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Hunchback", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Hunchback", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -195,8 +195,8 @@ void GeFlagDisplaysGeneticTraits()
     Player->addTrait("/lib/tests/support/traits/testGeneticTrait.c");
 
     ExpectTrue(Player->executeCommand("traits -ge"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Hunchback", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Hunchback", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -207,8 +207,8 @@ void GuildFlagDisplaysGuildTraits()
     Player->addTrait("/lib/tests/support/traits/testGeneticTrait.c");
 
     ExpectTrue(Player->executeCommand("traits -guild"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Sword Dude", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -219,8 +219,8 @@ void GFlagDisplaysGuildTraits()
     Player->addTrait("/lib/tests/support/traits/testGeneticTrait.c");
 
     ExpectTrue(Player->executeCommand("traits -g"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Sword Dude", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -231,8 +231,8 @@ void HealthFlagDisplaysHealthTraits()
     Player->addTrait("/lib/tests/support/traits/testGeneticTrait.c");
 
     ExpectTrue(Player->executeCommand("traits -health"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Leprosy", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Leprosy", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -243,8 +243,8 @@ void HFlagDisplaysHealthTraits()
     Player->addTrait("/lib/tests/support/traits/testGeneticTrait.c");
 
     ExpectTrue(Player->executeCommand("traits -h"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Leprosy", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Leprosy", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -255,8 +255,8 @@ void ProfessionalFlagDisplaysProfessionalTraits()
     Player->addTrait("/lib/tests/support/traits/testProfessionalTrait.c");
 
     ExpectTrue(Player->executeCommand("traits -professional"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Engineer", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Engineer", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -267,8 +267,8 @@ void PrFlagDisplaysProfessionalTraits()
     Player->addTrait("/lib/tests/support/traits/testProfessionalTrait.c");
 
     ExpectTrue(Player->executeCommand("traits -pr"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Engineer", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Engineer", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -280,8 +280,8 @@ void RoleFlagDisplaysRoleTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitOnlyOpinion.c");
 
     ExpectTrue(Player->executeCommand("traits -role"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -293,8 +293,8 @@ void RFlagDisplaysRoleTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitOnlyOpinion.c");
 
     ExpectTrue(Player->executeCommand("traits -ro"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -304,8 +304,8 @@ void RacialFlagDisplaysRacialTraits()
     Player->addTrait("/lib/modules/traits/racial/hillgarathElf.c");
 
     ExpectTrue(Player->executeCommand("traits -racial"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Racial Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Hillgarathi Elf", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Racial Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Hillgarathi Elf", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -315,8 +315,8 @@ void RaFlagDisplaysRaTraits()
     Player->addTrait("/lib/modules/traits/racial/hillgarathElf.c");
 
     ExpectTrue(Player->executeCommand("traits -ra"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Racial Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Hillgarathi Elf", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Racial Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Hillgarathi Elf", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -334,22 +334,22 @@ void AllFlagDisplaysAllTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c");
 
     ExpectTrue(Player->executeCommand("traits -all"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;32;1m", "Duelist", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;35m", "Sustained Jerk", "[0;34;1m", "Temporary Jerk", "", "") + 
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Hunchback", "", "", "", "") + 
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Leprosy", "", "", "", "") + 
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;31;1m", "Test 1", "", "", "", "") + 
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Engineer", "", "", "", "") + 
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;32;1m", "Duelist", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;35m", "Sustained Jerk", "\x1b[0;34;1m", "Temporary Jerk", "", "") + 
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Hunchback", "", "", "", "") + 
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Sword Dude", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Leprosy", "", "", "", "") + 
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;31;1m", "Test 1", "", "", "", "") + 
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Engineer", "", "", "", "") + 
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -367,22 +367,22 @@ void AFlagDisplaysAllTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c");
 
     ExpectTrue(Player->executeCommand("traits -a"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;32;1m", "Duelist", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;35m", "Sustained Jerk", "[0;34;1m", "Temporary Jerk", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Hunchback", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Leprosy", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;31;1m", "Test 1", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Engineer", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;32;1m", "Duelist", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;35m", "Sustained Jerk", "\x1b[0;34;1m", "Temporary Jerk", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Hunchback", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Sword Dude", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Leprosy", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;31;1m", "Test 1", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Engineer", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -400,22 +400,22 @@ void NoFlagDisplaysAllTraits()
     Player->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c");
 
     ExpectTrue(Player->executeCommand("traits"));
-    ExpectEq("\n[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;32;1m", "Duelist", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;35m", "Sustained Jerk", "[0;34;1m", "Temporary Jerk", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Hunchback", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Sword Dude", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Leprosy", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;31;1m", "Test 1", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Engineer", "", "", "", "") +
-        "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n[0m" +
-        sprintf(TraitsRow, "[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
+    ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Educational Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;32;1m", "Duelist", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Effect Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;35m", "Sustained Jerk", "\x1b[0;34;1m", "Temporary Jerk", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Genetic Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Hunchback", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Guild Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Sword Dude", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Health Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Leprosy", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;31;1m", "Test 1", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Professional Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Engineer", "", "", "", "") +
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Role Traits +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
+        sprintf(TraitsRow, "\x1b[0;36m", "Weasel Lord", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }
 
@@ -450,19 +450,19 @@ void TraitDetailsForInvalidTraitReturnsCorrectMessage()
 /////////////////////////////////////////////////////////////////////////////
 void TraitDetailsDisplayTraitInformation()
 {
-    string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
-        "[0;36mTrait Type[0m: [0;33mRole[0m\n"
-        "[0;33mblah blah blah\n[0m\n"
-        "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
-        "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
-        "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
-        "[0;36mOpposing opinion[0m: [0;31m-5[0m\n"
-        "[0;36mCost[0m: [0;34;1m+8[0m\n"
-        "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
-        "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
-        "[0;34;1m(+10)[0m [0;33mBonus Resist fire[0m\n"
-        "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
-        "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n";
+    string message = "\x1b[0;36mTrait Name\x1b[0m: \x1b[0;33mSword Boy\x1b[0m\n"
+        "\x1b[0;36mTrait Type\x1b[0m: \x1b[0;33mRole\x1b[0m\n"
+        "\x1b[0;33mblah blah blah\n\x1b[0m\n"
+        "\x1b[0;36mRoot Trait Class\x1b[0m: \x1b[0;33mJock\x1b[0m\n"
+        "\x1b[0;36mOpposing Trait Class\x1b[0m: \x1b[0;33mNerd\x1b[0m\n"
+        "\x1b[0;36mOpinion\x1b[0m: \x1b[0;34;1m+5\x1b[0m\n"
+        "\x1b[0;36mOpposing opinion\x1b[0m: \x1b[0;31m-5\x1b[0m\n"
+        "\x1b[0;36mCost\x1b[0m: \x1b[0;34;1m+8\x1b[0m\n"
+        "\x1b[0;34;1m(+15)\x1b[0m \x1b[0;33mBonus Fire attack\x1b[0m\n"
+        "\x1b[0;34;1m(+1)\x1b[0m \x1b[0;33mBonus Long sword\x1b[0m\n"
+        "\x1b[0;34;1m(+10)\x1b[0m \x1b[0;33mBonus Resist fire\x1b[0m\n"
+        "\x1b[0;34;1m(+2)\x1b[0m \x1b[0;33mBonus Strength\x1b[0m\n"
+        "\x1b[0;34;1m(+1)\x1b[0m \x1b[0;33mBonus Weapon attack\x1b[0m\n";
     object trait = load_object("/lib/tests/support/traits/testTrait.c");
     trait->init();
 
@@ -474,20 +474,20 @@ void TraitDetailsDisplayTraitInformation()
 /////////////////////////////////////////////////////////////////////////////
 void TraitDetailsDisplayTraitPenalties()
 {
-    string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
-        "[0;36mTrait Type[0m: [0;33mRole[0m\n"
-        "[0;33mblah blah blah\n[0m\n"
-        "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
-        "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
-        "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
-        "[0;36mOpposing opinion[0m: [0;31m-5[0m\n"
-        "[0;36mCost[0m: [0;34;1m+8[0m\n"
-        "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
-        "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
-        "[0;34;1m(+10)[0m [0;33mBonus Resist fire[0m\n"
-        "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
-        "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n"
-        "[0;31m(-2)[0m [0;33mPenalty to Wisdom[0m\n";
+    string message = "\x1b[0;36mTrait Name\x1b[0m: \x1b[0;33mSword Boy\x1b[0m\n"
+        "\x1b[0;36mTrait Type\x1b[0m: \x1b[0;33mRole\x1b[0m\n"
+        "\x1b[0;33mblah blah blah\n\x1b[0m\n"
+        "\x1b[0;36mRoot Trait Class\x1b[0m: \x1b[0;33mJock\x1b[0m\n"
+        "\x1b[0;36mOpposing Trait Class\x1b[0m: \x1b[0;33mNerd\x1b[0m\n"
+        "\x1b[0;36mOpinion\x1b[0m: \x1b[0;34;1m+5\x1b[0m\n"
+        "\x1b[0;36mOpposing opinion\x1b[0m: \x1b[0;31m-5\x1b[0m\n"
+        "\x1b[0;36mCost\x1b[0m: \x1b[0;34;1m+8\x1b[0m\n"
+        "\x1b[0;34;1m(+15)\x1b[0m \x1b[0;33mBonus Fire attack\x1b[0m\n"
+        "\x1b[0;34;1m(+1)\x1b[0m \x1b[0;33mBonus Long sword\x1b[0m\n"
+        "\x1b[0;34;1m(+10)\x1b[0m \x1b[0;33mBonus Resist fire\x1b[0m\n"
+        "\x1b[0;34;1m(+2)\x1b[0m \x1b[0;33mBonus Strength\x1b[0m\n"
+        "\x1b[0;34;1m(+1)\x1b[0m \x1b[0;33mBonus Weapon attack\x1b[0m\n"
+        "\x1b[0;31m(-2)\x1b[0m \x1b[0;33mPenalty to Wisdom\x1b[0m\n";
     object trait = load_object("/lib/tests/support/traits/testTrait.c");
     trait->init();
 
@@ -509,20 +509,20 @@ void NegativeTraitDetailsDisplayNegativeIdentifier()
 /////////////////////////////////////////////////////////////////////////////
 void TraitDetailsDisplayTraitResearch()
 {
-    string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
-        "[0;36mTrait Type[0m: [0;33mRole[0m\n"
-        "[0;33mblah blah blah\n[0m\n"
-        "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
-        "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
-        "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
-        "[0;36mOpposing opinion[0m: [0;31m-5[0m\n"
-        "[0;36mCost[0m: [0;34;1m+8[0m\n"
-        "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
-        "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
-        "[0;34;1m(+10)[0m [0;33mBonus Resist fire[0m\n"
-        "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
-        "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n"
-        "[0;34;1mThis trait makes the tree of researchiness research tree available.[0m\n";
+    string message = "\x1b[0;36mTrait Name\x1b[0m: \x1b[0;33mSword Boy\x1b[0m\n"
+        "\x1b[0;36mTrait Type\x1b[0m: \x1b[0;33mRole\x1b[0m\n"
+        "\x1b[0;33mblah blah blah\n\x1b[0m\n"
+        "\x1b[0;36mRoot Trait Class\x1b[0m: \x1b[0;33mJock\x1b[0m\n"
+        "\x1b[0;36mOpposing Trait Class\x1b[0m: \x1b[0;33mNerd\x1b[0m\n"
+        "\x1b[0;36mOpinion\x1b[0m: \x1b[0;34;1m+5\x1b[0m\n"
+        "\x1b[0;36mOpposing opinion\x1b[0m: \x1b[0;31m-5\x1b[0m\n"
+        "\x1b[0;36mCost\x1b[0m: \x1b[0;34;1m+8\x1b[0m\n"
+        "\x1b[0;34;1m(+15)\x1b[0m \x1b[0;33mBonus Fire attack\x1b[0m\n"
+        "\x1b[0;34;1m(+1)\x1b[0m \x1b[0;33mBonus Long sword\x1b[0m\n"
+        "\x1b[0;34;1m(+10)\x1b[0m \x1b[0;33mBonus Resist fire\x1b[0m\n"
+        "\x1b[0;34;1m(+2)\x1b[0m \x1b[0;33mBonus Strength\x1b[0m\n"
+        "\x1b[0;34;1m(+1)\x1b[0m \x1b[0;33mBonus Weapon attack\x1b[0m\n"
+        "\x1b[0;34;1mThis trait makes the tree of researchiness research tree available.\x1b[0m\n";
     object trait = load_object("/lib/tests/support/traits/testTrait.c");
     trait->init();
 
@@ -536,13 +536,13 @@ void TraitDetailsDisplayTraitResearch()
 /////////////////////////////////////////////////////////////////////////////
 void TraitDetailsDisplayTraitPrerequisites()
 {
-    string message = "[0;36mTrait Name[0m: [0;33mFreak[0m\n"
-        "[0;36mTrait Type[0m: [0;33mGenetic[0m\n"
-        "[0;33mblah blah blah\n[0m\n"
-        "[0;36mRoot Trait Class[0m: [0;33mDisfigured[0m\n"
-        "[0;36mOpposing Trait Class[0m: [0;33mNormal[0m\n"
-        "[0;36mPrerequisites:[0m\n"
-        "\t[0;36mSkill[0m: [0;35mLong sword of 10[0m\n";
+    string message = "\x1b[0;36mTrait Name\x1b[0m: \x1b[0;33mFreak\x1b[0m\n"
+        "\x1b[0;36mTrait Type\x1b[0m: \x1b[0;33mGenetic\x1b[0m\n"
+        "\x1b[0;33mblah blah blah\n\x1b[0m\n"
+        "\x1b[0;36mRoot Trait Class\x1b[0m: \x1b[0;33mDisfigured\x1b[0m\n"
+        "\x1b[0;36mOpposing Trait Class\x1b[0m: \x1b[0;33mNormal\x1b[0m\n"
+        "\x1b[0;36mPrerequisites:\x1b[0m\n"
+        "\t\x1b[0;36mSkill\x1b[0m: \x1b[0;35mLong sword of 10\x1b[0m\n";
     object trait = load_object("/lib/tests/support/traits/testTraitWithPrerequisites.c");
     trait->init();
 
@@ -553,20 +553,20 @@ void TraitDetailsDisplayTraitPrerequisites()
 /////////////////////////////////////////////////////////////////////////////
 void TraitDetailsDisplayTraitLimiters()
 {
-    string message = "[0;36mTrait Name[0m: [0;33mSword Boy[0m\n"
-        "[0;36mTrait Type[0m: [0;33mRole[0m\n"
-        "[0;33mblah blah blah\n[0m\n"
-        "[0;36mRoot Trait Class[0m: [0;33mJock[0m\n"
-        "[0;36mOpposing Trait Class[0m: [0;33mNerd[0m\n"
-        "[0;36mOpinion[0m: [0;34;1m+5[0m\n"
-        "[0;36mOpposing opinion[0m: [0;31m-5[0m\n"
-        "[0;36mCost[0m: [0;34;1m+8[0m\n"
-        "[0;34;1m(+15)[0m [0;33mBonus Fire attack[0m\n"
-        "[0;34;1m(+1)[0m [0;33mBonus Long sword[0m\n"
-        "[0;34;1m(+10)[0m [0;33mBonus Resist fire[0m\n"
-        "[0;34;1m(+2)[0m [0;33mBonus Strength[0m\n"
-        "[0;34;1m(+1)[0m [0;33mBonus Weapon attack[0m\n"
-        "[0;36mThis is only applied when opponent race is elf.[0m\n";
+    string message = "\x1b[0;36mTrait Name\x1b[0m: \x1b[0;33mSword Boy\x1b[0m\n"
+        "\x1b[0;36mTrait Type\x1b[0m: \x1b[0;33mRole\x1b[0m\n"
+        "\x1b[0;33mblah blah blah\n\x1b[0m\n"
+        "\x1b[0;36mRoot Trait Class\x1b[0m: \x1b[0;33mJock\x1b[0m\n"
+        "\x1b[0;36mOpposing Trait Class\x1b[0m: \x1b[0;33mNerd\x1b[0m\n"
+        "\x1b[0;36mOpinion\x1b[0m: \x1b[0;34;1m+5\x1b[0m\n"
+        "\x1b[0;36mOpposing opinion\x1b[0m: \x1b[0;31m-5\x1b[0m\n"
+        "\x1b[0;36mCost\x1b[0m: \x1b[0;34;1m+8\x1b[0m\n"
+        "\x1b[0;34;1m(+15)\x1b[0m \x1b[0;33mBonus Fire attack\x1b[0m\n"
+        "\x1b[0;34;1m(+1)\x1b[0m \x1b[0;33mBonus Long sword\x1b[0m\n"
+        "\x1b[0;34;1m(+10)\x1b[0m \x1b[0;33mBonus Resist fire\x1b[0m\n"
+        "\x1b[0;34;1m(+2)\x1b[0m \x1b[0;33mBonus Strength\x1b[0m\n"
+        "\x1b[0;34;1m(+1)\x1b[0m \x1b[0;33mBonus Weapon attack\x1b[0m\n"
+        "\x1b[0;36mThis is only applied when opponent race is elf.\x1b[0m\n";
     object trait = load_object("/lib/tests/support/traits/testTrait.c");
     trait->init();
 

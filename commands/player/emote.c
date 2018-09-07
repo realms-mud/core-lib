@@ -26,7 +26,7 @@ public nomask int execute(string command, object initiator)
         // This is stripping out escape characters and the command.
         string message = initiator->Name() + " " + 
             regreplace(command, "^(emote|:) ", "", 1);
-        message -= "";
+        message -= "\x1b";
 
         if (environment(initiator))
         {

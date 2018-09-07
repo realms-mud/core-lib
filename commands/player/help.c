@@ -54,9 +54,9 @@ private nomask string topLevelHelpMessage(mapping commandList)
                 {
                     if (count)
                     {
-                        message += " [0;31m|[0m\n";
+                        message += " \x1b[0;31m|\x1b[0m\n";
                     }
-                    message += "[0;31m| [0;37m";
+                    message += "\x1b[0;31m| \x1b[0;37m";
                 }
                 message += sprintf("%-15s", commandEntry);
                 count++;
@@ -69,7 +69,7 @@ private nomask string topLevelHelpMessage(mapping commandList)
                     message += sprintf("%-15s", "");
                 }
             }
-            message += " [0;31m|[0m\n";
+            message += " \x1b[0;31m|\x1b[0m\n";
         }
         message += Dictionary->buildBanner("", "");
     }
@@ -84,8 +84,8 @@ private nomask void pageString(string message, object initiator)
     if (sizeof(messageLines) > pageSize)
     {
         pageString(implode(messageLines[0..(pageSize - 1)], "\n"), initiator);
-        tell_object(initiator, "\n[0;35;1mMore? [q to quit][0m\n");
-        input_to("responseToPage", 1, "[0;36m" + implode(messageLines[pageSize..], "\n"), initiator);
+        tell_object(initiator, "\n\x1b[0;35;1mMore? [q to quit]\x1b[0m\n");
+        input_to("responseToPage", 1, "\x1b[0;36m" + implode(messageLines[pageSize..], "\n"), initiator);
     }
     else
     {

@@ -27,8 +27,8 @@ public nomask int execute(string command, object initiator)
 
         int verbose = sizeof(regexp(({ command }), "-v"));
         tell_object(initiator, initiator->inventoryText(verbose) +
-            sprintf("[0;31m| [0;36mYou currently have [0;32m%d[0;36m in cash on hand.\n", initiator->Money()) +
-            "[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n[0m");
+            sprintf("\x1b[0;31m| \x1b[0;36mYou currently have \x1b[0;32m%d\x1b[0;36m in cash on hand.\n", initiator->Money()) +
+            "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m");
     }
     return ret;
 }

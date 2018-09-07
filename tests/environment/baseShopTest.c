@@ -158,13 +158,13 @@ void InitiateShopInteractionShowsShopMenu()
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
 
     Shop->initiateShopInteraction(player);
-    ExpectEq("[0;36mShop - [0m[0;37;1mWelcome[0m:\n"
-        "\t[[0;31;1m1[0m] - [0;32mPurchase Items      [0m\n"
-        "\t[[0;31;1m2[0m] - [0;32mSell Items          [0m\n"
-        "\t[[0;31;1m3[0m] - [0;32mExit Shop Menu      [0m\n"
-        "[0;32;1mYou must select a number from 1 to 3.\n[0m"
-        "[0;32mType 'exit' if you do not wish to make a selection at this time.\n[0m"
-        "[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n[0m[0;32;1m[0m",
+    ExpectEq("\x1b[0;36mShop - \x1b[0m\x1b[0;37;1mWelcome\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mPurchase Items      \x1b[0m\n"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mSell Items          \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mExit Shop Menu      \x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         player->caughtMessage());
     destruct(player);
 }
