@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         addSpecification("type", "educational");
         addSpecification("name", "artisan");
-        addSpecification("description", "You are very highly skilled at creating works works of craft.");
+        addSpecification("description", "You are very highly skilled at creating works of craft.");
         addSpecification("root", "educated");
         addSpecification("opposing root", "uneducated");
         addSpecification("opinion", 5);
@@ -34,4 +34,3 @@ public void reset(int arg)
         "baseTrait"::reset(arg);
     }
 }
-
