@@ -253,6 +253,17 @@ void TitleCanBeSetAndReturnsCorrectValue()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void NonPlayersDoNotHaveTitleAppenededUnlessTitleIsSet()
+{
+    object someMonster = clone_object("/lib/realizations/monster.c");
+    someMonster->Name("Bob");
+    ExpectEq("", someMonster->Title(), "Title is empty string");
+    ExpectEq("is neat", someMonster->Title("is neat"), "Title is set");
+    ExpectEq("is neat", someMonster->Title(), "Title is 'is neat'");
+    destruct(someMonster);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void PretitleCanBeSetAndReturnsCorrectValue()
 {
     ExpectEq(0, Attributes->Pretitle(), "Pretitle is nothing by default");

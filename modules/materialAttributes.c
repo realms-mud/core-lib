@@ -232,9 +232,13 @@ public varargs string Title(string msg)
     {
         title = msg;
     }
-    else if (!title || (title == ""))
+    else if ((!title || (title == "")) && getService("player"))
     {
         title = "the title-less";
+    }
+    else if(!title)
+    {
+        title = "";
     }
 
     return title;
