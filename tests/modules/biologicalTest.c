@@ -416,7 +416,7 @@ void ConsumeDrugIncreasesDrugged()
 {
     ExpectEq(0, Character->Drugged());
 
-    ExpectTrue(Character->consumeDrug(5));
+    ExpectTrue(Character->consumeDrug("opiate", 5));
     ExpectEq(5, Character->Drugged());
 }
 
@@ -425,9 +425,9 @@ void CanConsumeDrugToWasted()
 {
     ExpectEq(0, Character->Drugged());
 
-    ExpectTrue(Character->consumeDrug(5));
+    ExpectTrue(Character->consumeDrug("opiate", 5));
     ExpectEq(5, Character->Drugged());
-    ExpectTrue(Character->consumeDrug(15));
+    ExpectTrue(Character->consumeDrug("opiate", 15));
     ExpectEq(20, Character->Drugged());
     ExpectEq("You feel completely wasted.\n", Character->caughtMessage());
 }
@@ -440,7 +440,7 @@ void ConsumeDrugFiresOnWastedOnDrugsWhenWasted()
 
     string expected = "*event handler: onWastedOnDrugs called, caller: lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character->consumeDrug(20));
+    string err = catch (Character->consumeDrug("opiate", 20));
     ExpectEq(expected, err, "onWastedOnDrugs called on subscriber");
 }
 
@@ -449,11 +449,11 @@ void ConsumeDrugAfterWastedFails()
 {
     ExpectEq(0, Character->Drugged());
 
-    ExpectTrue(Character->consumeDrug(5));
+    ExpectTrue(Character->consumeDrug("opiate", 5));
     ExpectEq(5, Character->Drugged());
-    ExpectTrue(Character->consumeDrug(15));
+    ExpectTrue(Character->consumeDrug("opiate", 15));
     ExpectEq(20, Character->Drugged());
-    ExpectFalse(Character->consumeDrug(15));
+    ExpectFalse(Character->consumeDrug("opiate", 15));
     ExpectEq("You fail to reach your mouth.\n", Character->caughtMessage());
 }
 
@@ -462,9 +462,9 @@ void HealthReturnsWhenDruggedIsZero()
 {
     ExpectEq(0, Character->Drugged());
 
-    ExpectTrue(Character->consumeDrug(5));
+    ExpectTrue(Character->consumeDrug("opiate", 5));
     ExpectEq(5, Character->Drugged());
-    ExpectTrue(Character->consumeDrug(-15));
+    ExpectTrue(Character->consumeDrug("opiate", -15));
     ExpectEq(0, Character->Drugged());
     ExpectEq("You are completely free of drugs.\n", Character->caughtMessage());
 }
@@ -477,7 +477,7 @@ void ConsumeDrugFiresOnNoLongerDruggedWhenNoLongerDrugged()
 
     string expected = "*event handler: onNoLongerDrugged called, caller: lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character->consumeDrug(-20));
+    string err = catch (Character->consumeDrug("opiate", -20));
     ExpectEq(expected, err, "onNoLongerDrugged called on subscriber");
 }
 
@@ -486,7 +486,7 @@ void DetoxBeginsAfterDrugged()
 {
     ExpectEq(0, Character->Drugged());
 
-    ExpectTrue(Character->consumeDrug(1));
+    ExpectTrue(Character->consumeDrug("opiate", 1));
     Character->heart_beat();
     ExpectEq("You suddenly without reason get a bad headache.\n", Character->caughtMessage());
 }
@@ -494,7 +494,7 @@ void DetoxBeginsAfterDrugged()
 /////////////////////////////////////////////////////////////////////////////
 void DetoxFromDrugsFiresOnBeginDetox()
 {
-    ExpectTrue(Character->consumeDrug(1));
+    ExpectTrue(Character->consumeDrug("opiate", 1));
 
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);

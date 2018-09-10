@@ -318,7 +318,7 @@ public nomask int drinkAlcohol(int strengthOfDrink)
 //
 // Returns: true if the item can be consumed.
 //-----------------------------------------------------------------------------
-public nomask int consumeDrug(int strengthOfDrug)
+public nomask int consumeDrug(string drug, int strengthOfDrug)
 {
     int ret = 0;
     int maxDrugged = getMaximumBiologicalLevel("drugged");
@@ -484,7 +484,7 @@ private nomask void determineIfIntoxicationCausesAction()
 //-----------------------------------------------------------------------------
 private nomask void determineIfDruggedCausesAction()
 {
-    if(intoxicated && !random(20))
+    if(drugged && !random(20))
     {
         string *actions = ({ "stumble", "stagger", "lurch", "dither",
                              "falter", "pitch", "teeter", "sway", "wobble", 

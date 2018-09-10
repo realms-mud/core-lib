@@ -7,6 +7,70 @@
 //*****************************************************************************
 
 /////////////////////////////////////////////////////////////////////////////
+private mapping drugEffects = ([
+    "alcohol":([
+        "trait": "lib/modules/traits/biological/drunk.c",
+        "toxicity": 3,
+        "bonus heal spell points": 10,
+        "defend attack": -3,
+        "wisdom": -1,
+        "dexterity": -1,
+    ]),
+    "opiate": ([
+        "trait": "lib/modules/traits/biological/wasted-on-opiates.c",
+        "toxicity": 10,
+    ]),
+    "salicylate": ([
+        "trait": "lib/modules/traits/biological/salicylate.c",
+        "toxicity": 1,
+    ]),
+    "psychedelic": ([
+        "trait": "lib/modules/traits/biological/stoned.c",
+        "toxicity": 4,
+    ]),
+    "dissociative": ([
+        "trait": "lib/modules/traits/biological/hallucinating.c",
+        "toxicity": 5,
+    ]),
+    "dileriant": ([
+        "trait": "lib/modules/traits/biological/drug-dilerious.c",
+        "toxicity": 5,
+    ]),
+    "steroid": ([
+        "trait": "lib/modules/traits/biological/steroids.c",
+        "toxicity": 4,
+    ]),
+    "barbituate": ([
+        "trait": "lib/modules/traits/biological/barbituates.c",
+        "toxicity": 4,
+    ]),
+    "benzodiazepine": ([
+    ]),
+    "phenethylamine": ([
+    ]),
+    "xanthine": ([
+    ]),
+    "adrenaline": ([
+    ]),
+    "sympathomimetic amine": ([
+    ]),
+    "euphoriant": ([
+    ]),
+    "empathogen": ([
+    ]),
+    "neurotoxin": ([
+    ]),
+    "cycloalkylamine": ([
+    ]),
+    "neuroleptic": ([
+    ]),
+    "nootropic": ([
+    ]),
+    "analeptic": ([
+    ]),
+]);
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int lookUpBonus(object livingToModify, string bonus)
 {
     int ret = 0;
@@ -121,4 +185,3 @@ public nomask int BonusSkillModifier(object livingToModify, string skill)
 {
     return lookUpBonus(livingToModify, skill);
 }
-
