@@ -11,6 +11,8 @@ public void reset(int arg)
     {
         set("name", "Kolsche Beer");
         set("short", "Kolsche Beer");
+        set("biological effect", "alcohol");
+        set("biological strength", 1);
         set("aliases", ({ "kolsche", "beer" }));
         set("blueprint", "kolsche beer");
     }

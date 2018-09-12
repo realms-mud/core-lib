@@ -13,12 +13,6 @@ public void ToggleMockBiological()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int biologicalBonusTo(string bonus)
-{
-    return useBiological * -2;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask int Intoxicated()
 {
     return useBiological * 10;
@@ -29,4 +23,3 @@ public nomask int Drugged()
 {
     return useBiological * 10;
 }
-

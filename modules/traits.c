@@ -133,6 +133,18 @@ public nomask int addTrait(string trait)
         }
         ret = 1;
     }
+    else if (isTraitOf(trait) && isValidTrait(trait))
+    {
+        object materialAttributes = getService("materialAttributes");
+        object addedTrait = traitDictionary()->traitObject(trait);
+        if (addedTrait && objectp(addedTrait))
+        {
+            if (materialAttributes && addedTrait->query("duration"))
+            {
+                traits[trait]["end time"] += addedTrait->query("duration");
+            }
+        }
+    }
     return ret;
 }
 

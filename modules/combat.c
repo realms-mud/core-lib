@@ -136,7 +136,7 @@ private nomask int calculateServiceBonuses(string methodToCheck)
     int ret = 0;
     
     string *servicesToCheck = ({ "races", "guilds", "research", "traits",
-                                 "biological", "background" });
+                                 "background" });
     
     foreach(string serviceToCheck in servicesToCheck)
     {

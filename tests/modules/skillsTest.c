@@ -128,16 +128,14 @@ void GetSkillIsModifiedByServices()
     ExpectEq(4, Skills->getSkill("long sword"), "skill is 4");
     Skills->ToggleMockTrait();
     ExpectEq(6, Skills->getSkill("long sword"), "skill is 6");
-    Skills->ToggleMockBiological();
-    ExpectEq(4, Skills->getSkill("long sword"), "skill is 4");
     Skills->ToggleMockBackground();
-    ExpectEq(6, Skills->getSkill("long sword"), "skill is 6");
+    ExpectEq(8, Skills->getSkill("long sword"), "skill is 8");
     Skills->Race("high elf");
-    ExpectEq(11, Skills->getSkill("long sword"), "skill is 11");
+    ExpectEq(13, Skills->getSkill("long sword"), "skill is 13");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetSkillDoesNotModifyUntrainedSkillsForResearchBiologicalInventoryOrEnvironment()
+void GetSkillDoesNotModifyUntrainedSkillsForResearchInventoryOrEnvironment()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
@@ -161,7 +159,6 @@ void GetSkillDoesNotModifyUntrainedSkillsForResearchBiologicalInventoryOrEnviron
     modifier->set("fully qualified name", "blah");
     modifier->set("bonus long sword", 3);
     Skills->ToggleMockResearch();
-    Skills->ToggleMockBiological();
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectTrue(armor->equip("stuff"), "armor equip called");
@@ -201,9 +198,6 @@ void GetSkillDoesModifyUntrainedSkillsForRaceTraitsAndBackground()
 
     Skills->ToggleMockTrait();
     ExpectEq(2, Skills->getSkill("long sword"), "traits add");
-
-    Skills->ToggleMockBiological();
-    ExpectEq(2, Skills->getSkill("long sword"), "biological does not add");
 
     Skills->ToggleMockBackground();
     ExpectEq(4, Skills->getSkill("long sword"), "background adds");
@@ -256,7 +250,6 @@ void GetSkillModifierUsesInventoryAndServices()
     modifier->set("bonus long sword", 3);
     Skills->ToggleMockResearch();
     Skills->ToggleMockTrait();
-    Skills->ToggleMockBiological();
     Skills->ToggleMockBackground();
     Skills->Race("high elf");
 
@@ -266,7 +259,7 @@ void GetSkillModifierUsesInventoryAndServices()
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectTrue(armor->equip("stuff"), "armor equip called");
     ExpectEq(1, modifier->set("registration list", ({ Skills })), "registration list can be set");
-    ExpectEq(10, Skills->getSkillModifier("long sword"), "skill modifier is 10");
+    ExpectEq(11, Skills->getSkillModifier("long sword"), "skill modifier is 11");
 }
 
 /////////////////////////////////////////////////////////////////////////////

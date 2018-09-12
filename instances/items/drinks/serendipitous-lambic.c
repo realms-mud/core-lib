@@ -11,6 +11,8 @@ public void reset(int arg)
     {
         set("name", "Serendipitous Lambic Ale");
         set("short", "Serendipitous Lambic Ale");
+        set("biological effect", "alcohol");
+        set("biological strength", 1);
         set("aliases", ({ "serendipitous lambic", "beer", "lambic", "ale" }));
         set("blueprint", "serendipitous lambic ale");
     }

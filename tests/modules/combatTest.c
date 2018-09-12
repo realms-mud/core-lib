@@ -167,14 +167,6 @@ void MaxHitPointsCorrectlyAppliesTraitsModifiers()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void MaxHitPointsCorrectlyAppliesBiologicalModifiers()
-{
-    ExpectEq(150, Attacker->maxHitPoints());
-    Attacker->ToggleMockBiological();
-    ExpectEq(148, Attacker->maxHitPoints());
-}
-
-/////////////////////////////////////////////////////////////////////////////
 void MaxHitPointsCorrectlyAppliesBackgroundModifiers()
 {
     ExpectEq(150, Attacker->maxHitPoints());
@@ -203,9 +195,8 @@ void MaxHitPointsCorrectlyAppliesAllModifiers()
     Attacker->ToggleMockGuilds();
     Attacker->ToggleMockResearch();
     Attacker->ToggleMockTrait();
-    Attacker->ToggleMockBiological();
     Attacker->ToggleMockBackground();
-    ExpectEq(244, Attacker->maxHitPoints());
+    ExpectEq(246, Attacker->maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -324,10 +315,8 @@ void MaxSpellPointsCorrectlyAppliesAllModifiers()
     ExpectEq(216, Attacker->maxSpellPoints());
     Attacker->ToggleMockTrait();
     ExpectEq(224, Attacker->maxSpellPoints());
-    Attacker->ToggleMockBiological();
-    ExpectEq(222, Attacker->maxSpellPoints());
     Attacker->ToggleMockBackground();
-    ExpectEq(224, Attacker->maxSpellPoints());
+    ExpectEq(226, Attacker->maxSpellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -351,10 +340,8 @@ void MaxStaminaPointsCorrectlyAppliesAllModifiers()
     ExpectEq(217, Attacker->maxStaminaPoints());
     Attacker->ToggleMockTrait();
     ExpectEq(225, Attacker->maxStaminaPoints());
-    Attacker->ToggleMockBiological();
-    ExpectEq(223, Attacker->maxStaminaPoints());
     Attacker->ToggleMockBackground();
-    ExpectEq(225, Attacker->maxStaminaPoints());
+    ExpectEq(227, Attacker->maxStaminaPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -386,7 +373,6 @@ void SpellPointsIncreaseIncludesBonusRecoverSpellPoints()
     Attacker->ToggleMockGuilds();
     Attacker->ToggleMockResearch();
     Attacker->ToggleMockTrait();
-    Attacker->ToggleMockBiological();
     Attacker->ToggleMockBackground();
 
     object armor = CreateArmor("stuff");
@@ -399,7 +385,7 @@ void SpellPointsIncreaseIncludesBonusRecoverSpellPoints()
     ExpectTrue(armor->equip("stuff"), "armor equip called");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
 
-    ExpectEq(64, Attacker->spellPoints(50));
+    ExpectEq(66, Attacker->spellPoints(50));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -411,7 +397,6 @@ void SpellPointsDecreaseIncludesBonusReduceSpellPoints()
     Attacker->ToggleMockGuilds();
     Attacker->ToggleMockResearch();
     Attacker->ToggleMockTrait();
-    Attacker->ToggleMockBiological();
     Attacker->ToggleMockBackground();
 
     object armor = CreateArmor("stuff");
@@ -424,7 +409,7 @@ void SpellPointsDecreaseIncludesBonusReduceSpellPoints()
     ExpectTrue(armor->equip("stuff"), "armor equip called");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
 
-    ExpectEq(95, Attacker->spellPoints(-20));
+    ExpectEq(97, Attacker->spellPoints(-20));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -475,7 +460,6 @@ void StaminaPointsIncreaseIncludesBonusRecoverStaminaPoints()
     Attacker->ToggleMockGuilds();
     Attacker->ToggleMockResearch();
     Attacker->ToggleMockTrait();
-    Attacker->ToggleMockBiological();
     Attacker->ToggleMockBackground();
 
     object armor = CreateArmor("stuff");
@@ -488,7 +472,7 @@ void StaminaPointsIncreaseIncludesBonusRecoverStaminaPoints()
     ExpectTrue(armor->equip("stuff"), "armor equip called");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
 
-    ExpectEq(64, Attacker->staminaPoints(50));
+    ExpectEq(66, Attacker->staminaPoints(50));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -500,7 +484,6 @@ void StaminaPointsDecreaseIncludesBonusReduceStaminaPoints()
     Attacker->ToggleMockGuilds();
     Attacker->ToggleMockResearch();
     Attacker->ToggleMockTrait();
-    Attacker->ToggleMockBiological();
     Attacker->ToggleMockBackground();
 
     object armor = CreateArmor("stuff");
@@ -513,7 +496,7 @@ void StaminaPointsDecreaseIncludesBonusReduceStaminaPoints()
     ExpectTrue(armor->equip("stuff"), "armor equip called");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
 
-    ExpectEq(95, Attacker->staminaPoints(-20));
+    ExpectEq(97, Attacker->staminaPoints(-20));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -728,10 +711,8 @@ void CalculateDefendAttackUsesCorrectServiceBonuses()
     ExpectEq(13, Attacker->calculateDefendAttack(), "research modifier is active");
     Attacker->ToggleMockTrait();
     ExpectEq(15, Attacker->calculateDefendAttack(), "trait modifier is active");
-    Attacker->ToggleMockBiological();
-    ExpectEq(13, Attacker->calculateDefendAttack(), "biological modifier is active");
     Attacker->ToggleMockBackground();
-    ExpectEq(15, Attacker->calculateDefendAttack(), "background modifier is active");
+    ExpectEq(17, Attacker->calculateDefendAttack(), "background modifier is active");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -960,10 +941,8 @@ void CalculateAttackUsesCorrectServiceBonuses()
     ExpectEq(29, Attacker->calculateAttack(Target, weapon, 1), "research modifier is active");
     Attacker->ToggleMockTrait();
     ExpectEq(32, Attacker->calculateAttack(Target, weapon, 1), "trait modifier is active");
-    Attacker->ToggleMockBiological();
-    ExpectEq(29, Attacker->calculateAttack(Target, weapon, 1), "biological modifier is active");
     Attacker->ToggleMockBackground();
-    ExpectEq(32, Attacker->calculateAttack(Target, weapon, 1), "background modifier is active");
+    ExpectEq(35, Attacker->calculateAttack(Target, weapon, 1), "background modifier is active");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1140,10 +1119,8 @@ void CalculateSoakDamageCorrectlyAppliesServiceBonuses()
     ExpectEq(13, Attacker->calculateSoakDamage("physical"), "research modifier is active");
     Attacker->ToggleMockTrait();
     ExpectEq(15, Attacker->calculateSoakDamage("physical"), "trait modifier is active");
-    Attacker->ToggleMockBiological();
-    ExpectEq(13, Attacker->calculateSoakDamage("physical"), "biological modifier is active");
     Attacker->ToggleMockBackground();
-    ExpectEq(15, Attacker->calculateSoakDamage("physical"), "background modifier is active");
+    ExpectEq(17, Attacker->calculateSoakDamage("physical"), "background modifier is active");
 }
 
 /////////////////////////////////////////////////////////////////////////////

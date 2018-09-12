@@ -282,8 +282,17 @@ void DrinkAlcoholIncreasesIntoxication()
 {
     ExpectEq(0, Character->Intoxicated());
 
-    ExpectTrue(Character->drinkAlcohol(5));
-    ExpectEq(5, Character->Intoxicated());
+    ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectEq(3, Character->Intoxicated());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DrinkAlcoholAddsDrunkTrait()
+{
+    ExpectFalse(Character->isTraitOf("lib/modules/traits/biological/drunk.c"));
+
+    ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character->isTraitOf("lib/modules/traits/biological/drunk.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -291,11 +300,17 @@ void CanDrinkAlcoholToDunkedness()
 {
     ExpectEq(0, Character->Intoxicated());
 
-    ExpectTrue(Character->drinkAlcohol(5));
-    ExpectEq(5, Character->Intoxicated());
-    ExpectTrue(Character->drinkAlcohol(15));
+    ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectEq(3, Character->Intoxicated());
+
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", 17);
+    ExpectTrue(Character->drinkAlcohol(drink));
+
     ExpectEq(20, Character->Intoxicated());
     ExpectEq("You feel completely inebriated.\n", Character->caughtMessage());
+
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -304,10 +319,15 @@ void DrinkAlcoholFiresOnDrunkWhenInebriated()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", 20);
+
     string expected = "*event handler: onDrunk called, caller: lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character->drinkAlcohol(20));
+    string err = catch (Character->drinkAlcohol(drink));
     ExpectEq(expected, err, "onDrunk called on subscriber");
+
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -315,12 +335,18 @@ void DrinkAlcoholAfterDrunkFails()
 {
     ExpectEq(0, Character->Intoxicated());
 
-    ExpectTrue(Character->drinkAlcohol(5));
-    ExpectEq(5, Character->Intoxicated());
-    ExpectTrue(Character->drinkAlcohol(15));
+    ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectEq(3, Character->Intoxicated());
+
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", 17);
+    ExpectTrue(Character->drinkAlcohol(drink));
+
     ExpectEq(20, Character->Intoxicated());
-    ExpectFalse(Character->drinkAlcohol(15));
+
+    ExpectFalse(Character->drinkAlcohol(drink));
     ExpectEq("You fail to reach the drink with your mouth.\n", Character->caughtMessage());
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -328,11 +354,16 @@ void SobrietyReturnsWhenIntoxIsZero()
 {
     ExpectEq(0, Character->Intoxicated());
 
-    ExpectTrue(Character->drinkAlcohol(5));
-    ExpectEq(5, Character->Intoxicated());
-    ExpectTrue(Character->drinkAlcohol(-15));
+    ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectEq(3, Character->Intoxicated());
+
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", -5);
+    ExpectTrue(Character->drinkAlcohol(drink));
+
     ExpectEq(0, Character->Intoxicated());
     ExpectEq("You are completely sober.\n", Character->caughtMessage());
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -342,9 +373,12 @@ void DrinkAlcoholFiresOnSoberWhenNoLongerInebriated()
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onSober called, caller: lib/tests/support/services/mockPlayer.c";
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", -5);
 
-    string err = catch (Character->drinkAlcohol(-20));
+    string err = catch (Character->drinkAlcohol(drink));
     ExpectEq(expected, err, "onSober called on subscriber");
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -352,7 +386,7 @@ void DetoxBeginsAfterIntox()
 {
     ExpectEq(0, Character->Intoxicated());
 
-    ExpectTrue(Character->drinkAlcohol(1));
+    ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/kolsche.c")));
     Character->heart_beat();
     ExpectEq("You suddenly without reason get a bad headache.\n", Character->caughtMessage());
 }
@@ -360,7 +394,7 @@ void DetoxBeginsAfterIntox()
 /////////////////////////////////////////////////////////////////////////////
 void DetoxFromAlcoholFiresOnBeginDetox()
 {
-    ExpectTrue(Character->drinkAlcohol(1));
+    ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/kolsche.c")));
 
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
@@ -376,7 +410,7 @@ void HeadacheEndsAfterDetox()
 {
     ExpectEq(0, Character->Intoxicated());
 
-    ExpectTrue(Character->drinkAlcohol(1));
+    ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/kolsche.c")));
     Character->heart_beat();
     Character->catch_tell("");
     for(int i = 0; i < 29; i++)
@@ -394,7 +428,7 @@ void OnDetoxifiedFiresAfterDetox()
 {
     ExpectEq(0, Character->Intoxicated());
 
-    ExpectTrue(Character->drinkAlcohol(1));
+    ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/kolsche.c")));
     Character->heart_beat();
     for (int i = 0; i < 29; i++)
     {
@@ -416,8 +450,14 @@ void ConsumeDrugIncreasesDrugged()
 {
     ExpectEq(0, Character->Drugged());
 
-    ExpectTrue(Character->consumeDrug("opiate", 5));
+    object drug = clone_object("/lib/items/food.c");
+    drug->set("biological effect", "opiate");
+    drug->set("biological strength", 5);
+
+    ExpectTrue(Character->consumeDrug(drug));
     ExpectEq(5, Character->Drugged());
+
+    destruct(drug);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -425,11 +465,34 @@ void CanConsumeDrugToWasted()
 {
     ExpectEq(0, Character->Drugged());
 
-    ExpectTrue(Character->consumeDrug("opiate", 5));
+    object drug = clone_object("/lib/items/food.c");
+    drug->set("biological effect", "opiate");
+    drug->set("biological strength", 5);
+
+    ExpectTrue(Character->consumeDrug(drug));
     ExpectEq(5, Character->Drugged());
-    ExpectTrue(Character->consumeDrug("opiate", 15));
+
+    drug->set("biological strength", 15);
+
+    ExpectTrue(Character->consumeDrug(drug));
     ExpectEq(20, Character->Drugged());
     ExpectEq("You feel completely wasted.\n", Character->caughtMessage());
+
+    destruct(drug);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ConsumeDrugAddsCorrectDruggedTrait()
+{
+    ExpectFalse(Character->isTraitOf("lib/modules/traits/biological/wasted-on-opiates.c"));
+
+    object drug = clone_object("/lib/items/food.c");
+    drug->set("biological effect", "opiate");
+    drug->set("biological strength", 5);
+
+    ExpectTrue(Character->consumeDrug(drug));   
+    ExpectTrue(Character->isTraitOf("lib/modules/traits/biological/wasted-on-opiates.c"));
+    destruct(drug);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -439,34 +502,50 @@ void ConsumeDrugFiresOnWastedOnDrugsWhenWasted()
     Character->registerEvent(subscriber);
 
     string expected = "*event handler: onWastedOnDrugs called, caller: lib/tests/support/services/mockPlayer.c";
+    object drug = clone_object("/lib/items/food.c");
+    drug->set("biological effect", "opiate");
+    drug->set("biological strength", 20);
 
-    string err = catch (Character->consumeDrug("opiate", 20));
+    string err = catch (Character->consumeDrug(drug));
     ExpectEq(expected, err, "onWastedOnDrugs called on subscriber");
+    destruct(drug);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ConsumeDrugAfterWastedFails()
 {
     ExpectEq(0, Character->Drugged());
+    object drug = clone_object("/lib/items/food.c");
+    drug->set("biological effect", "opiate");
+    drug->set("biological strength", 5);
 
-    ExpectTrue(Character->consumeDrug("opiate", 5));
+    ExpectTrue(Character->consumeDrug(drug));
     ExpectEq(5, Character->Drugged());
-    ExpectTrue(Character->consumeDrug("opiate", 15));
+
+    drug->set("biological strength", 15);
+    ExpectTrue(Character->consumeDrug(drug));
     ExpectEq(20, Character->Drugged());
-    ExpectFalse(Character->consumeDrug("opiate", 15));
+    ExpectFalse(Character->consumeDrug(drug));
     ExpectEq("You fail to reach your mouth.\n", Character->caughtMessage());
+    destruct(drug);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HealthReturnsWhenDruggedIsZero()
 {
     ExpectEq(0, Character->Drugged());
+    object drug = clone_object("/lib/items/food.c");
+    drug->set("biological effect", "opiate");
+    drug->set("biological strength", 5);
 
-    ExpectTrue(Character->consumeDrug("opiate", 5));
+    ExpectTrue(Character->consumeDrug(drug));
     ExpectEq(5, Character->Drugged());
-    ExpectTrue(Character->consumeDrug("opiate", -15));
+
+    drug->set("biological strength", -15);
+    ExpectTrue(Character->consumeDrug(drug));
     ExpectEq(0, Character->Drugged());
     ExpectEq("You are completely free of drugs.\n", Character->caughtMessage());
+    destruct(drug);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -477,24 +556,37 @@ void ConsumeDrugFiresOnNoLongerDruggedWhenNoLongerDrugged()
 
     string expected = "*event handler: onNoLongerDrugged called, caller: lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character->consumeDrug("opiate", -20));
+    object drug = clone_object("/lib/items/food.c");
+    drug->set("biological effect", "opiate");
+    drug->set("biological strength", -5);
+
+    string err = catch (Character->consumeDrug(drug));
     ExpectEq(expected, err, "onNoLongerDrugged called on subscriber");
+    destruct(drug);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DetoxBeginsAfterDrugged()
 {
     ExpectEq(0, Character->Drugged());
+    object drug = clone_object("/lib/items/food.c");
+    drug->set("biological effect", "opiate");
+    drug->set("biological strength", 1);
 
-    ExpectTrue(Character->consumeDrug("opiate", 1));
+    ExpectTrue(Character->consumeDrug(drug));
     Character->heart_beat();
     ExpectEq("You suddenly without reason get a bad headache.\n", Character->caughtMessage());
+    destruct(drug);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DetoxFromDrugsFiresOnBeginDetox()
 {
-    ExpectTrue(Character->consumeDrug("opiate", 1));
+    object drug = clone_object("/lib/items/food.c");
+    drug->set("biological effect", "opiate");
+    drug->set("biological strength", 1);
+
+    ExpectTrue(Character->consumeDrug(drug));
 
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
@@ -503,6 +595,7 @@ void DetoxFromDrugsFiresOnBeginDetox()
 
     string err = catch (Character->heart_beat());
     ExpectEq(expected, err, "onBeginDetox called on subscriber");
+    destruct(drug);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -510,8 +603,8 @@ void DrinkIncreasesSoaked()
 {
     ExpectEq(0, Character->Soaked());
 
-    ExpectTrue(Character->drink(5));
-    ExpectEq(5, Character->Soaked());
+    ExpectTrue(Character->drink(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectEq(3, Character->Soaked());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -519,11 +612,16 @@ void CanDrinkToSoaked()
 {
     ExpectEq(0, Character->Soaked());
 
-    ExpectTrue(Character->drink(5));
-    ExpectEq(5, Character->Soaked());
-    ExpectTrue(Character->drink(15));
+    ExpectTrue(Character->drink(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectEq(3, Character->Soaked());
+
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", 17);
+    ExpectTrue(Character->drink(drink));
+
     ExpectEq(20, Character->Soaked());
     ExpectEq("You feel like your bladder is going to explode.\n", Character->caughtMessage());
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -534,8 +632,12 @@ void DrinkFiresOnSoakedWhenTooMuchHasBeenDrunk()
 
     string expected = "*event handler: onSoaked called, caller: lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character->drink(20));
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", 17);
+
+    string err = catch (Character->drink(drink));
     ExpectEq(expected, err, "onSoaked called on subscriber");
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -543,13 +645,19 @@ void DrinkAfterSoakedFails()
 {
     ExpectEq(0, Character->Soaked());
 
-    ExpectTrue(Character->drink(5));
-    ExpectEq(5, Character->Soaked());
-    ExpectTrue(Character->drink(15));
+    ExpectTrue(Character->drink(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectEq(3, Character->Soaked());
+
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", 17);
+
+    ExpectTrue(Character->drink(drink));
     ExpectEq(20, Character->Soaked());
-    ExpectFalse(Character->drink(15));
+    ExpectFalse(Character->drink(drink));
     ExpectEq("You can't possibly drink that much right now!\nYou feel crosslegged enough as it is.\n",
         Character->caughtMessage());
+
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -557,11 +665,16 @@ void ThirstReturnsWhenSoakedIsZero()
 {
     ExpectEq(0, Character->Soaked());
 
-    ExpectTrue(Character->drink(5));
-    ExpectEq(5, Character->Soaked());
-    ExpectTrue(Character->drink(-15));
+    ExpectTrue(Character->drink(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectEq(3, Character->Soaked());
+
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", -10);
+
+    ExpectTrue(Character->drink(drink));
     ExpectEq(0, Character->Soaked());
     ExpectEq("You feel a bit dry in the mouth.\n", Character->caughtMessage());
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -572,8 +685,12 @@ void DrinkFiresOnNoLongerSoakedWhenNoLongerSoaked()
 
     string expected = "*event handler: onNoLongerSoaked called, caller: lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character->drink(-20));
+    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    drink->set("biological strength", -10);
+
+    string err = catch (Character->drink(drink));
     ExpectEq(expected, err, "onNoLongerSoaked called on subscriber");
+    destruct(drink);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -581,7 +698,7 @@ void ThirstBeginsAfterSoaked()
 {
     ExpectEq(0, Character->Soaked());
 
-    ExpectTrue(Character->drink(1));
+    ExpectTrue(Character->drink(load_object("/lib/instances/items/drinks/kolsche.c")));
     Character->heart_beat();
     ExpectEq("You feel a bit dry in the mouth.\n", Character->caughtMessage());
 }
@@ -589,7 +706,7 @@ void ThirstBeginsAfterSoaked()
 /////////////////////////////////////////////////////////////////////////////
 void NoLongerSoakedFiresOnNoLongerSoaked()
 {
-    ExpectTrue(Character->drink(1));
+    ExpectTrue(Character->drink(load_object("/lib/instances/items/drinks/kolsche.c")));
 
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
@@ -605,8 +722,12 @@ void EatIncreasesStuffed()
 {
     ExpectEq(0, Character->Stuffed());
 
-    ExpectTrue(Character->eat(5));
+    object food = clone_object("/lib/items/food.c");
+    food->set("biological strength", 5);
+
+    ExpectTrue(Character->eat(food));
     ExpectEq(5, Character->Stuffed());
+    destruct(food);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -614,11 +735,18 @@ void CanEatToStuffed()
 {
     ExpectEq(0, Character->Stuffed());
 
-    ExpectTrue(Character->eat(5));
+    object food = clone_object("/lib/items/food.c");
+    food->set("biological strength", 5);
+
+    ExpectTrue(Character->eat(food));
     ExpectEq(5, Character->Stuffed());
-    ExpectTrue(Character->eat(15));
+
+    food->set("biological strength", 15);
+
+    ExpectTrue(Character->eat(food));
     ExpectEq(20, Character->Stuffed());
     ExpectEq("You feel full.\n", Character->caughtMessage());
+    destruct(food);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -629,34 +757,50 @@ void EatFiresOnStuffedWhenTooMuchHasBeenEaten()
 
     string expected = "*event handler: onCannotEatMore called, caller: lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character->eat(20));
+    object food = clone_object("/lib/items/food.c");
+    food->set("biological strength", 20);
+
+    string err = catch (Character->eat(food));
     ExpectEq(expected, err, "onCannotEatMore called on subscriber");
+    destruct(food);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EatAfterStuffedFails()
 {
     ExpectEq(0, Character->Stuffed());
+    object food = clone_object("/lib/items/food.c");
+    food->set("biological strength", 5);
 
-    ExpectTrue(Character->eat(5));
+    ExpectTrue(Character->eat(food));
     ExpectEq(5, Character->Stuffed());
-    ExpectTrue(Character->eat(15));
+
+    food->set("biological strength", 15);
+
+    ExpectTrue(Character->eat(food));
     ExpectEq(20, Character->Stuffed());
-    ExpectFalse(Character->eat(15));
+    ExpectFalse(Character->eat(food));
     ExpectEq("This is much too rich for you right now! Perhaps something lighter?\n",
         Character->caughtMessage());
+    destruct(food);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HealthReturnsWhenStuffedIsZero()
 {
     ExpectEq(0, Character->Stuffed());
+    object food = clone_object("/lib/items/food.c");
+    food->set("biological strength", 5);
 
-    ExpectTrue(Character->eat(5));
+    ExpectTrue(Character->eat(food));
     ExpectEq(5, Character->Stuffed());
-    ExpectTrue(Character->eat(-15));
+
+    food->set("biological strength", -10);
+
+    ExpectTrue(Character->eat(food));
     ExpectEq(0, Character->Stuffed());
     ExpectEq("Your stomach makes a rumbling sound.\n", Character->caughtMessage());
+    destruct(food);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -667,22 +811,32 @@ void EatFiresOnHungryWhenNoLongerStuffed()
 
     string expected = "*event handler: onHungry called, caller: lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character->eat(-20));
+    object food = clone_object("/lib/items/food.c");
+    food->set("biological strength", -5);
+
+    string err = catch (Character->eat(food));
     ExpectEq(expected, err, "onHungry called on subscriber");
+    destruct(food);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HungerBeginsAfterStuffed()
 {
-    ExpectTrue(Character->eat(1));
+    object food = clone_object("/lib/items/food.c");
+    food->set("biological strength", 1);
+    ExpectTrue(Character->eat(food));
     Character->heart_beat();
     ExpectEq("Your stomach makes a rumbling sound.\n", Character->caughtMessage());
+    destruct(food);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NoLongerStuffedFiresOnHungry()
 {
-    ExpectTrue(Character->eat(1));
+    object food = clone_object("/lib/items/food.c");
+    food->set("biological strength", 1);
+    ExpectTrue(Character->eat(food));
+
 
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
@@ -691,4 +845,5 @@ void NoLongerStuffedFiresOnHungry()
 
     string err = catch (Character->heart_beat());
     ExpectEq(expected, err, "onHungry called on subscriber");
+    destruct(food);
 }

@@ -11,10 +11,6 @@ private mapping drugEffects = ([
     "alcohol":([
         "trait": "lib/modules/traits/biological/drunk.c",
         "toxicity": 3,
-        "bonus heal spell points": 10,
-        "defend attack": -3,
-        "wisdom": -1,
-        "dexterity": -1,
     ]),
     "opiate": ([
         "trait": "lib/modules/traits/biological/wasted-on-opiates.c",
@@ -55,14 +51,10 @@ private mapping drugEffects = ([
     "xanthine": ([
         "trait": "lib/modules/traits/biological/caffeinated.c",
         "toxicity": 1,
-        "bonus stamina points": 25,
-        "bonus heal stamina points": 5,
     ]),
     "adrenaline": ([
         "trait": "lib/modules/traits/biological/adrenaline.c",
         "toxicity": 1,
-        "bonus stamina points": 100,
-        "bonus heal stamina points": 10,
     ]),
     "sympathomimetic amine": ([
     ]),
@@ -83,117 +75,36 @@ private mapping drugEffects = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int lookUpBonus(object livingToModify, string bonus)
+public nomask int applyBiologicalEffect(object livingToModify, object item)
 {
     int ret = 0;
-    //TODO Finish me
+    if (objectp(livingToModify) && objectp(item))
+    {
+        string *typeOfItem = filter(inherit_list(item),
+            (: (member(({ "lib/items/drink.c", "lib/items/food.c",
+                "lib/items/potion.c" }), $1) > -1) :));
+
+        string type = item->query("biological effect");
+        if (sizeof(typeOfItem) && member(drugEffects, type))
+        {
+            livingToModify->addToxicity(drugEffects[type]["toxicity"]);
+            livingToModify->addTrait(drugEffects[type]["trait"]);
+        }
+    }
     return ret;
 }
     
 /////////////////////////////////////////////////////////////////////////////
-public nomask int MaxHitPoints(object livingToModify)
+public nomask int removeBiologicalEffect(object livingToModify, string effect)
 {
-    return lookUpBonus(livingToModify, "hit points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int MaxSpellPoints(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "spell points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int MaxStaminaPoints(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "stamina points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int DefendAttackBonus(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "defend attack");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int AttackBonus(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "attack");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int DefenseBonus(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "defense");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int DamageBonus(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "damage");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int BonusHealHitPoints(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "bonus heal hit points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int BonusHealSpellPoints(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "bonus heal spell points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int BonusHealStamina(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "bonus heal stamina points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int BonusHealHitPointsRate(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "bonus heal hit points rate");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int BonusHealSpellPointsRate(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "bonus heal spell points rate");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int BonusHealStaminaRate(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "bonus heal stamina rate");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int RecoverSpellPoints(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "recover spell points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int ReduceSpellPoints(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "reduce spell points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int RecoverStaminaPoints(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "recover stamina points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int ReduceStaminaPoints(object livingToModify)
-{
-    return lookUpBonus(livingToModify, "reduce stamina points");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int BonusSkillModifier(object livingToModify, string skill)
-{
-    return lookUpBonus(livingToModify, skill);
+    int ret = 0;
+    if (objectp(livingToModify) && stringp(effect))
+    {
+        if (member(drugEffects, effect))
+        {
+            livingToModify->addToxicity(0 - drugEffects[effect]["toxicity"]);
+            livingToModify->removeTrait(drugEffects[effect]["trait"]);
+        }
+    }
+    return ret;
 }

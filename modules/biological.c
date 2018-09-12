@@ -274,11 +274,11 @@ private nomask int getMaximumBiologicalLevel(string type)
 //              be consumed based on attribute and equipment bonuses. It will
 //              also handle the resolution of headache for intox/drug usage.
 //
-// Parameters: strengthOfDrink - the strength of the consumed item.
+// Parameters: drink - the consumed item.
 //
 // Returns: true if the item can be consumed.
 //-----------------------------------------------------------------------------
-public nomask int drinkAlcohol(int strengthOfDrink)
+public nomask int drinkAlcohol(object drink)
 {
     int ret = 0;
     int maxIntox = getMaximumBiologicalLevel("intoxication");
@@ -287,10 +287,10 @@ public nomask int drinkAlcohol(int strengthOfDrink)
     {
         tell_object(this_object(), "You fail to reach the drink with your mouth.\n");
     }
-    else
+    else if (objectp(drink) && (member(inherit_list(drink), "lib/items/drink.c") > -1))
     {
         ret = 1;
-        intoxicated += strengthOfDrink;
+        intoxicated += drink->query("biological strength");
         if (intoxicated >= maxIntox)
         {
             tell_object(this_object(), "You feel completely inebriated.\n");
@@ -302,7 +302,9 @@ public nomask int drinkAlcohol(int strengthOfDrink)
             tell_object(this_object(), "You are completely sober.\n");
             biologicalNotification("onSober");
         }
-    }    
+        getDictionary("biological")->applyBiologicalEffect(this_object(), 
+            drink);
+   }    
     return ret;
 }
 
@@ -314,11 +316,11 @@ public nomask int drinkAlcohol(int strengthOfDrink)
 //              be consumed based on attribute and equipment bonuses. It will
 //              also handle the resolution of headache for intox/drug usage.
 //
-// Parameters: strengthOfDrug - the strength of the consumed item.
+// Parameters: drug - the consumed item.
 //
 // Returns: true if the item can be consumed.
 //-----------------------------------------------------------------------------
-public nomask int consumeDrug(string drug, int strengthOfDrug)
+public nomask int consumeDrug(object drug)
 {
     int ret = 0;
     int maxDrugged = getMaximumBiologicalLevel("drugged");
@@ -327,10 +329,10 @@ public nomask int consumeDrug(string drug, int strengthOfDrug)
     {
         tell_object(this_object(), "You fail to reach your mouth.\n");
     }
-    else
+    else if (objectp(drug) && (member(inherit_list(drug), "lib/items/food.c") > -1))
     {
         ret = 1;
-        drugged += strengthOfDrug;
+        drugged += drug->query("biological strength");
         if (drugged >= maxDrugged)
         {
             tell_object(this_object(), "You feel completely wasted.\n");
@@ -342,6 +344,8 @@ public nomask int consumeDrug(string drug, int strengthOfDrug)
             tell_object(this_object(), "You are completely free of drugs.\n");
             biologicalNotification("onNoLongerDrugged");
         }
+        getDictionary("biological")->applyBiologicalEffect(this_object(), 
+            drug);
     }    
     return ret;
 }
@@ -353,11 +357,11 @@ public nomask int consumeDrug(string drug, int strengthOfDrug)
 //              When this occurs, it will determine whether or not the item can
 //              be consumed based on attribute and equipment bonuses. 
 //
-// Parameters: strengthOfDrink - the strength of the consumed item.
+// Parameters: drink - the consumed item.
 //
 // Returns: true if the item can be consumed.
 //-----------------------------------------------------------------------------
-public nomask int drink(int strengthOfDrink)
+public nomask int drink(object drink)
 {
     int ret = 0;
     int maxSoak = getMaximumBiologicalLevel("soaked");
@@ -367,10 +371,10 @@ public nomask int drink(int strengthOfDrink)
         tell_object(this_object(), "You can't possibly drink that much right now!\n"
             "You feel crosslegged enough as it is.\n");
     }
-    else
+    else if(objectp(drink) && (member(inherit_list(drink), "lib/items/drink.c") > -1))
     {
         ret = 1;
-        soaked += strengthOfDrink;
+        soaked += drink->query("biological strength");
         if (soaked >= maxSoak)
         {
             tell_object(this_object(), "You feel like your bladder is going to explode.\n");
@@ -382,7 +386,9 @@ public nomask int drink(int strengthOfDrink)
             tell_object(this_object(), "You feel a bit dry in the mouth.\n");
             biologicalNotification("onNoLongerSoaked");
         }
-    }    
+        getDictionary("biological")->applyBiologicalEffect(this_object(), 
+            drink);
+    }
     return ret;
 }
 
@@ -393,11 +399,11 @@ public nomask int drink(int strengthOfDrink)
 //              When this occurs, it will determine whether or not the item can
 //              be consumed based on attribute and equipment bonuses. 
 //
-// Parameters: strengthOfFood - the strength of the consumed item.
+// Parameters: food - the consumed item.
 //
 // Returns: true if the item can be consumed.
 //-----------------------------------------------------------------------------
-public nomask int eat(int strengthOfFood)
+public nomask int eat(object food)
 {
     int ret = 0;
     int maxStuffed = getMaximumBiologicalLevel("stuffed");
@@ -407,10 +413,10 @@ public nomask int eat(int strengthOfFood)
         tell_object(this_object(), "This is much too rich for you right now! "
             "Perhaps something lighter?\n");
     }
-    else
+    else if (objectp(food) && (member(inherit_list(food), "lib/items/food.c") > -1))
     {
         ret = 1;
-        stuffed += strengthOfFood;
+        stuffed += food->query("biological strength");
         if (stuffed >= maxStuffed)
         {
             tell_object(this_object(), "You feel full.\n");
@@ -422,8 +428,22 @@ public nomask int eat(int strengthOfFood)
             tell_object(this_object(), "Your stomach makes a rumbling sound.\n");
             biologicalNotification("onHungry");
         }
+        getDictionary("biological")->applyBiologicalEffect(this_object(), 
+            food);
     }    
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void addToxicity(int value)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int Toxicity()
+{
+    return 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -595,35 +615,4 @@ static nomask void biologicalHeartBeat()
     {
         stuffed = 0;
     }       
-}
-
-//-----------------------------------------------------------------------------
-// Method: biologicalBonusTo
-// Description: This method applies bonuses or penalties to game-affecting 
-//              attributes such as hit points and various combat-related 
-//              elements as the living object's biological factors might alter
-//              them.
-//
-// Parameters: bonus - the bonus type to apply
-//
-// Returns: the value of the bonus/penalty
-//-----------------------------------------------------------------------------
-public nomask int biologicalBonusTo(string bonus)
-{
-    int ret = 0;
-
-    object biologicalDictionary = getDictionary("biological");
-    if(biologicalDictionary)
-    {
-        if(function_exists(bonus, biologicalDictionary))
-        {
-            ret = call_other(biologicalDictionary, bonus, this_object());
-        }
-        else if(function_exists("BonusSkillModifier", biologicalDictionary))
-        {
-            ret = call_other(biologicalDictionary, 
-                "BonusSkillModifier", bonus, this_object());
-        }
-    }
-    return ret;
 }
