@@ -41,16 +41,28 @@ private mapping drugEffects = ([
         "toxicity": 4,
     ]),
     "barbituate": ([
-        "trait": "lib/modules/traits/biological/barbituates.c",
-        "toxicity": 4,
+        "trait": "lib/modules/traits/biological/impaired-barbituates.c",
+        "toxicity": 5,
     ]),
     "benzodiazepine": ([
+        "trait": "lib/modules/traits/biological/on-benzodiazepine.c",
+        "toxicity": 3,
     ]),
-    "phenethylamine": ([
+    "antidepressant": ([
+        "trait": "lib/modules/traits/biological/antidepressant.c",
+        "toxicity": 4,
     ]),
     "xanthine": ([
+        "trait": "lib/modules/traits/biological/caffeinated.c",
+        "toxicity": 1,
+        "bonus stamina points": 25,
+        "bonus heal stamina points": 5,
     ]),
     "adrenaline": ([
+        "trait": "lib/modules/traits/biological/adrenaline.c",
+        "toxicity": 1,
+        "bonus stamina points": 100,
+        "bonus heal stamina points": 10,
     ]),
     "sympathomimetic amine": ([
     ]),

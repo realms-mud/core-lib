@@ -656,4 +656,3 @@ public void init()
     add_action("unequip", "unequip");
     item::init();
 }
-

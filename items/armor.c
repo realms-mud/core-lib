@@ -133,4 +133,3 @@ public void init()
     add_action("unequip", "remove");
     "equipment"::init();
 }
-

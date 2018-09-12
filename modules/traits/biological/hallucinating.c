@@ -10,16 +10,12 @@ public void reset(int arg)
     if (!arg)
     {
         addSpecification("type", "health");
-        addSpecification("name", "Inconsequential Boy");
-        addSpecification("description", "blah blah blah");
-        addSpecification("bonus energy attack", 15);
-        addSpecification("root", "ethereal");
+        addSpecification("name", "hallucinating");
+        addSpecification("description", "You are under the influence of hallucinogens.");
+        addSpecification("root", "biological");
+        addSpecification("opinion", -75);
+        addSpecification("duration", 300);
+        addSpecification("expire message", "You are no longer hallucinating.");
         "baseTrait"::reset(arg);
     }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public int addSpecification(string type, mixed value)
-{
-    return baseTrait::addSpecification(type, value);
 }
