@@ -158,3 +158,11 @@ void StateAliasesDisplayCorrectly()
     ExpectEq(({ "charred stumps", "fake feature", "stumps", "tree stumps" }),
         Element->aliases("deadified"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SuppressEntryMessageSetsFlag()
+{
+    ExpectTrue(Element->displayActionText());
+    Element->testSuppressEntryMessage();
+    ExpectFalse(Element->displayActionText());
+}

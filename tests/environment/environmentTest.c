@@ -62,6 +62,17 @@ void BuildingWithExitDisplaysCorrectly()
     ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign. To the north you see a building.*one obvious exit: north",
         regreplace(Environment->long(), "\n", " ", 1));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SuppressMessageHidesYouSeeFromFeature()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/suppressEntryFeature.c", "south");
+
+    ExpectSubStringMatch("a forest. To the south a stand of majestic oak",
+        regreplace(Environment->long(), "\n", " ", 1));
+}
+
 /////////////////////////////////////////////////////////////////////////////
 void DefaultDescriptionDisplaysCorrectlyForInteriors()
 {

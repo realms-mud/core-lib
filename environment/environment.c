@@ -493,7 +493,8 @@ private string getElementDescriptions(string type)
                 environmentDictionary()->environmentalObject(element);
             if (elementObj)
             {
-                ret += directions + " you see " +
+                ret += directions + 
+                    (elementObj->displayActionText() ? " you see " : " ") +
                     elementObj->description(currentState()) + ".";
             }
         }

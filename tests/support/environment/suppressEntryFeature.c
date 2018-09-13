@@ -7,7 +7,9 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("fake feature");
+    Name("suppress feature");
+    suppressEntryMessage();
+
     addAdjectives(({ "majestic" }));
     addTimeOfDayDescription("dawn", ({ " that the faint dawn light is just beginning to illuminate" }));
     addTimeOfDayDescription("morning", ({ " lit from a ray of sunshine piercing through the canopy" }), "default", "autumn");
@@ -42,10 +44,4 @@ public void Setup()
     addAlias("charred stumps", "deadified");
     addAlias("tree stumps", "deadified");
     addAlias("stumps", "deadified");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public void testSuppressEntryMessage()
-{
-    suppressEntryMessage();
 }

@@ -5,6 +5,7 @@
 
 protected mapping descriptionData = ([ ]);
 protected int isLegacy = 0;
+protected int suppressAction = 0; 
 private string elementName = 0;
 private string State = "default";
 
@@ -117,15 +118,21 @@ private nomask string parseWeatherDetails(string message, mapping data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int suppressEntryMessage()
+protected nomask void suppressEntryMessage()
 {
-    return 0;
+    suppressAction = 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int displayActionText()
+{
+    return !suppressAction;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string parseEntryAction(string message, mapping data)
 {
-    return suppressEntryMessage() ? "" : environmentDictionary()->getEntryMessage() + " " +
+    return !displayActionText() ? "" : environmentDictionary()->getEntryMessage() + " " +
         message + ".";
 }
 
