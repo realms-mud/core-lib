@@ -25,4 +25,5 @@ public void Setup()
     addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x4.c", "seventh test");
 
     setCoordinates("temple of obedience", 23, 25);
+    setStateMachine(load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c"));
 }

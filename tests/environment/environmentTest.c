@@ -595,7 +595,8 @@ void ResetWillRecreateOnlyObjectsThatAreNotPresent()
 /////////////////////////////////////////////////////////////////////////////
 void OnlyObjectsForProperStateArePresent()
 {
-    object stateMachine = load_object("/lib/core/stateMachine.c");
+    ToggleCallOutBypass();
+    object stateMachine = clone_object("/lib/tests/support/core/simpleStateMachine.c");
     Environment->setStateMachine(stateMachine);
     Environment->testAddObject("/lib/items/weapon.c");
     Environment->testAddObject("/lib/items/armor.c", "blah");
@@ -605,21 +606,25 @@ void OnlyObjectsForProperStateArePresent()
     ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible for default state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
 
-    Environment->onStateChanged(stateMachine, "blah");
+    stateMachine->receiveEvent(Environment, "blahTransition");
     ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah' state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
     ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor present");
 
-    Environment->onStateChanged(stateMachine, "blah2");
+    stateMachine->receiveEvent(Environment, "blahTwoTransition");
     ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah2' state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
     ExpectTrue(present_clone("/lib/items/item.c", Environment), "item present");
+    
+    destruct(stateMachine);
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CallerForOnStateChangedMustBeCurrentlySetStateMachine()
 {
-    object stateMachine = load_object("/lib/core/stateMachine.c");
+    ToggleCallOutBypass();
+    object stateMachine = clone_object("/lib/tests/support/core/simpleStateMachine.c");
     Environment->setStateMachine(stateMachine);
     Environment->testAddObject("/lib/items/weapon.c");
     Environment->testAddObject("/lib/items/armor.c", "blah");
@@ -629,6 +634,7 @@ void CallerForOnStateChangedMustBeCurrentlySetStateMachine()
     ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible for default state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
 
+    stateMachine->testOverrideCurrentState("blah");
     Environment->onStateChanged(this_object(), "blah");
     ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible if state machine not initiator");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
@@ -638,6 +644,9 @@ void CallerForOnStateChangedMustBeCurrentlySetStateMachine()
     ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah2' state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
     ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor present");
+
+    destruct(stateMachine);
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

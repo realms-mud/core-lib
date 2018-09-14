@@ -48,4 +48,5 @@ public void Setup()
     addObject("/lib/tutorial/temple/objects/rune-doom.c", "seventh test");
 
     setCoordinates("temple of obedience", 23, 23);
+    setStateMachine(load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c"));
 }

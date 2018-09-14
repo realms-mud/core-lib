@@ -429,7 +429,8 @@ public nomask varargs int isSourceOfLight(string state)
 {
     int ret = 0;
 
-    if (!state)
+    if (!state || (member(descriptionData, "light") &&
+        !member(descriptionData["light"], state)))
     {
         state = "default";
     }

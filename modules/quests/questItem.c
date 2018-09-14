@@ -76,7 +76,8 @@ public void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 public varargs string getCurrentState(object caller)
 {
-    return caller->questState(program_name(this_object()));;
+    return caller ? caller->questState(program_name(this_object())) :
+        "stateMachine"::getCurrentState(caller);
 }
 
 /////////////////////////////////////////////////////////////////////////////

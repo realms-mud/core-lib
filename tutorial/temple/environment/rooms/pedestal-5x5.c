@@ -25,4 +25,5 @@ public void Setup()
     addExit("south", "/lib/tutorial/temple/environment/rooms/chamber-of-kings.c", "seventh test");
 
     setCoordinates("temple of obedience", 25, 21);
+    setStateMachine(load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c"));
 }

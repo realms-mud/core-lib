@@ -791,18 +791,21 @@ public nomask int canCarry(object item)
     int maxWeight = 0;
     int attemptedLoad = 0;
     object *items = all_inventory();
-    if (objectp(item))
+    if (objectp(item) && item->query("weight"))
     {
-        items += ({ item });
-    }
-    foreach(object itemInInventory in items)
-    {
-        attemptedLoad += itemInInventory->query("weight");
+        if (objectp(item))
+        {
+            items += ({ item });
+        }
+        foreach(object itemInInventory in items)
+        {
+            attemptedLoad += itemInInventory->query("weight");
+        }
     }
     object attributes = getService("attributes");
     if (attributes)
     {
-        maxWeight = 2 * attributes->Str() + 10;
+        maxWeight = 2 * attributes->Str() + 20;
     }
     ret = maxWeight - attemptedLoad;
     return (maxWeight >= attemptedLoad) ? (ret + 1) : 0;

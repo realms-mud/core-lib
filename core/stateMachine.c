@@ -64,7 +64,7 @@ protected nomask varargs void startStateMachine()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected varargs string getCurrentState(object caller)
+public varargs string getCurrentState(object caller)
 {
     return CurrentState;
 }

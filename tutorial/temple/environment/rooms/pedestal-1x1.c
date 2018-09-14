@@ -13,4 +13,5 @@ public void Setup()
     addFeature("lib/tutorial/temple/environment/features/purple-liquid.c");
 
     setCoordinates("temple of obedience", 21, 25);
+    setStateMachine(load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c"));
 }

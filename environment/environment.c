@@ -47,21 +47,6 @@ public nomask varargs string currentState(string newState)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs void setStateMachine(object newSM)
-{
-    if (newSM && objectp(newSM) &&
-        (member(inherit_list(newSM), BaseStateMachine) > -1))
-    {
-        if (StateMachine)
-        {
-            StateMachine->unregisterStateActor(this_object());
-        }
-        StateMachine = newSM;
-        StateMachine->registerStateActor(this_object());
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask string capitalizeSentences(string message)
 {
     string ret = regreplace(message, "^[a-z]", #'upper_case, 1);
@@ -749,6 +734,24 @@ public nomask void onStateChanged(object caller, string newState)
         pruneStateObjects();
         currentState(newState);
         init();
+        createStateObjects();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void setStateMachine(object newSM)
+{
+    if (newSM && objectp(newSM) &&
+        (member(inherit_list(newSM), BaseStateMachine) > -1))
+    {
+        if (StateMachine)
+        {
+            StateMachine->unregisterStateActor(this_object());
+        }
+        StateMachine = newSM;
+        StateMachine->registerStateActor(this_object());
+        pruneStateObjects();
+        currentState(StateMachine->getCurrentState());
         createStateObjects();
     }
 }
