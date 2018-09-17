@@ -56,7 +56,7 @@ private nomask object getQuestObject(string questItem)
 
         if(file_size(questItem) > 0)
         { 
-            ret = load_object("/" + questItem);
+            ret = load_object(questItem);
             if(!ret || (member(inherit_list(ret), BaseQuest) < 0))
             {
                 ret = 0;
@@ -228,5 +228,3 @@ public nomask int beginQuest(string questItem)
     }
     return ret;
 }
-
-

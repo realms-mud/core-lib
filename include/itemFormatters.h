@@ -164,5 +164,12 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;200;230;10m"
         ]),
     ]),
+    "tutorial": ([
+        "rune wall":([
+            "3-bit": "\x1b[0;35m",
+            "8-bit": "\x1b[0;38;5;20m",
+            "24-bit": "\x1b[0;38;2;00;05;abm"
+        ]),
+    ]),
 ]);
 #endif

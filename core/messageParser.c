@@ -339,3 +339,104 @@ public nomask string parseEfunCall(string message)
         "##([^:]+)::(file|target|this)::([^:]+)::([a-zA-Z0-9_])+",
         #'parseEfun,1);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int isValidLiving(object livingCheck)
+{
+    return (livingCheck && objectp(livingCheck) &&
+        (member(inherit_list(livingCheck), MaterialAttributes) > -1));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string parseTemplate(string template, string perspective,
+    object initiator, object target)
+{
+    string message = template;
+    // ##Infinitive::verb##
+    // ##InitiatorName## - Initiator's name
+    // ##InitiatorPossessive[::Name]## - Initiator possessive / your / Name's
+    // ##InitiatorObjective## - Initiator's objective / you
+    // ##InitiatorReflexive## - Initiator's reflexive pronoun / yourself
+    // ##InitiatorSubjective## - Initiator's subjective pronoun / you
+    // ##Target[NPOS]## - Target's (one of above 4)
+    // ##HitDictionary## - random word from the hit dictionary (slash/slashes,
+    //   chop/chops)
+    // ##SimileDictionary## - random word from the simile dictionary
+
+    // dictionary calls must be done first!
+    int isSecondPerson = (perspective == "initiator");
+
+    if (initiator && objectp(initiator))
+    {
+        message = parseSimileDictionary(message, initiator);
+        message = parseVerbDictionary(message,
+            "HitDictionary", initiator);
+
+        message = parseVerbs(message, isSecondPerson);
+    }
+
+    if (isValidLiving(initiator))
+    {
+        message = parseTargetInfo(message, "Initiator",
+            initiator, isSecondPerson);
+    }
+
+    if (isValidLiving(target))
+    {
+        isSecondPerson = (perspective == "target");
+        message = parseTargetInfo(message, "Target",
+            target, isSecondPerson);
+    }
+
+    message = capitalizeSentences(message);
+    return message;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void displayMessage(string message, object initiator,
+    object target)
+{
+    // This annoying loop handles the fact that everyone has different
+    // setting for color.
+    if (environment(initiator))
+    {
+        foreach(object person in all_inventory(environment(initiator)))
+        {
+            if (person && objectp(person))
+            {
+                string parsedMessage;
+
+                if (person == initiator)
+                {
+                    parsedMessage = parseTemplate(message, "initiator", initiator,
+                        target);
+                }
+                else if (person == target)
+                {
+                    parsedMessage = parseTemplate(message, "target",
+                        initiator, target);
+                }
+                else
+                {
+                    parsedMessage = parseTemplate(message, "other",
+                        initiator, target);
+                }
+                tell_object(person, format(parsedMessage, 78));
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void displayMessageToSelf(string message, object initiator)
+{
+    if (initiator && objectp(initiator))
+    {
+        string parsedMessage;
+
+        parsedMessage = parseTemplate(message, "initiator", initiator,
+            initiator);
+
+        tell_object(initiator, format(parsedMessage, 78));
+    }
+}

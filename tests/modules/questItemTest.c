@@ -168,6 +168,7 @@ void AddStateSilentlySucceedsWhenFinalStateResultIsFailure()
     // If anything were to go amiss, this would throw.
     QuestItem->testAddState("meet the king", "I've been asked to meet the king!", "killTheKing", "failure");
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void InitialStateThrowsWhenStateNotPresent()
 {

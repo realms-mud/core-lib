@@ -15,27 +15,29 @@ void reset(int arg)
         addState("starting the test", "I found a strange rune on the floor in "
             "a room that appears to have been hewn out of solid amethyst.");
 
-        addState("endurance rune placed", "I was able to decipher a poem on a "
+        addState("resistance rune placed", "I was able to decipher a poem on a "
             "wall of runes. Several phrases are missing from it. The rune I "
             "found fit perfectly in one of the gaps.");
-        addTransition("starting the test", "endurance rune placed", "enduranceRunePlaced");
-        addEntryAction("endurance rune placed", "spawnUhrdalen");
-        addExitAction("endurance rune placed", "removeUhrdalen");
+        addTransition("starting the test", "resistance rune placed", "resistanceRunePlaced");
+        addEntryAction("resistance rune placed", "spawnUhrdalen");
+        addExitAction("resistance rune placed", "removeUhrdalen");
 
         addState("first test", "When I placed the rune, an ethereal being "
             "named 'Uhrdalen' spoke to me and assigned me the task of "
             "completing the poem on the wall of runes.");
-        addTransition("endurance rune placed", "first test", "startFirstTest");
+        addTransition("resistance rune placed", "first test", "startFirstTest");
 
-        setInitialState("first test");
+        setInitialState("starting the test");
         startStateMachine();
+
+        registerEventHandler("spawnUhrdalen");
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void spawnUhrdalen()
 {
-
+    notify("spawnUhrdalen", this_player());
 }
 
 /////////////////////////////////////////////////////////////////////////////
