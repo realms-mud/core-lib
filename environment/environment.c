@@ -396,7 +396,7 @@ private nomask string parseEfunCall(string match)
     // function is a method on the called object. That method MUST return a
     // string. 
     string *arguments = explode(match, "::");
-    if (sizeof(arguments) == 4)
+    if (sizeof(arguments) >= 4)
     {
         switch (arguments[0])
         {
@@ -409,7 +409,7 @@ private nomask string parseEfunCall(string match)
                         object stateObj = present_clone(arguments[2]);
                         if (stateObj)
                         {
-                            ret = call_other(stateObj, arguments[3]);
+                            ret = call_other(stateObj, arguments[3]) + "\x1b[0;33m";
                         }
                         else
                         {
@@ -421,13 +421,13 @@ private nomask string parseEfunCall(string match)
                     {
                         if (file_size(arguments[2]) > 0)
                         {
-                            ret = call_other(arguments[2], arguments[3]);
+                            ret = call_other(arguments[2], arguments[3]) + "\x1b[0;33m";
                         }
                         break;
                     }
                     case "room":
                     {
-                        ret = call_other(this_object(), arguments[3]);
+                        ret = call_other(this_object(), arguments[3]) + "\x1b[0;33m";
                         break;
                     }
                     default:
@@ -587,7 +587,7 @@ public varargs string long(string item)
             ret += " " + environmentalElements["description"][currentState()];
         }
         ret = regreplace(ret,
-            "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_])+",
+            "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_]+)::",
             #'parseEfunCall,1);
     }
     else

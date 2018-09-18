@@ -83,7 +83,21 @@ public nomask varargs int pageSize(int newSize)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string colorConfiguration()
+public nomask varargs string colorConfiguration(string newColorSetting)
 {
-    return "3-bit";
+    if(member(({ "none", "3-bit", "8-bit", "24-bit" }), newColorSetting) > -1)
+    {
+        colorSetting = newColorSetting;
+    }
+    return colorSetting;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string charsetConfiguration(string newCharSet)
+{
+    if (member(({ "ascii", "unicode" }), newCharSet) > -1)
+    {
+        characterSet = newCharSet;
+    }
+    return characterSet;
 }

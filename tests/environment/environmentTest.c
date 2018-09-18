@@ -678,7 +678,7 @@ void ParseEfunCallForCallOtherWithKeyDisplaysInLong()
 {
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddObject("/lib/tests/support/items/testSword.c");
-    Environment->testSetAdditionalLongDescription("##call_other::key::/lib/tests/support/items/testSword.c::swordMessage");
+    Environment->testSetAdditionalLongDescription("##call_other::key::/lib/tests/support/items/testSword.c::swordMessage::");
     Environment->reset();
 
     ExpectTrue(present_clone("/lib/tests/support/items/testSword.c", Environment), "weapon present");

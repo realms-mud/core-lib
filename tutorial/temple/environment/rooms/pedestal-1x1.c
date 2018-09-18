@@ -11,11 +11,37 @@ public void Setup()
     addFeature("lib/tutorial/temple/environment/features/amethyst-floor.c");
     addFeature("lib/tutorial/temple/environment/features/amethyst-ceiling.c");
     addFeature("lib/tutorial/temple/environment/features/purple-liquid.c");
+    addFeature("lib/tutorial/temple/environment/features/pedestal.c");
+
+    addExit("north", "/lib/tutorial/temple/environment/rooms/pedestal-entry.c");
 
     addObject("/lib/tutorial/temple/objects/rune-wall.c");
+    addObject("/lib/tutorial/temple/objects/pedestal.c");
+
     addObject("/lib/tutorial/temple/objects/rune-resistance.c", "starting the test");
     setCoordinates("temple of obedience", 21, 25);
     setStateMachine(load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c"));
+
+    // First test
+    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-1x2.c", "first test");
+
+    // Second test
+    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x1.c", "second test");
+
+    // Third test
+    addExit("southeast", "/lib/tutorial/temple/environment/rooms/pedestal-2x2.c", "third test");
+
+    // Fourth test
+    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-1x2.c", "fourth test");
+
+    // Fifth test
+    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-1x2.c", "fifth test");
+
+    // Sixth test
+    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x1.c", "sixth test");
+
+    // Seventh test
+    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x1.c", "seventh test");
 }
 
 /////////////////////////////////////////////////////////////////////////////
