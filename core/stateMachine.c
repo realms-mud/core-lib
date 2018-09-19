@@ -22,11 +22,11 @@ public void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void onEnter(string state)
+protected nomask varargs void onEnter(string state, object initiator)
 {
     if (member(stateTree[state], "entry action"))
     {
-        call_other(this_object(), stateTree[state]["entry action"]);
+        call_other(this_object(), stateTree[state]["entry action"], initiator);
     }
     if (member(stateTree[state], "event"))
     {
@@ -35,11 +35,11 @@ protected nomask void onEnter(string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void onExit(string state)
+protected nomask varargs void onExit(string state, object initiator)
 {
     if (member(stateTree[state], "exit action"))
     {
-        call_other(this_object(), stateTree[state]["exit action"]);
+        call_other(this_object(), stateTree[state]["exit action"], initiator);
     }
 }
 
@@ -95,11 +95,11 @@ public nomask varargs int receiveEvent(object caller, string eventName, object i
 
             if (ret)
             {
-                onExit(currentState);
+                onExit(currentState, initiator);
                 currentState = transition["transition"];
                 notify("onStateChanged", currentState);
                 advanceState(caller, currentState);
-                onEnter(currentState);
+                onEnter(currentState, initiator);
             }
         }
     }

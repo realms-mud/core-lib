@@ -93,6 +93,12 @@ public nomask void updateConversationState(object caller, string newState)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void resetConversationState()
+{
+    this_player()->characterState(this_object(), "first conversation");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void initializeResponses()
 {
     string *responses = CurrentTopic->responses();

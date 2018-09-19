@@ -202,7 +202,7 @@ protected nomask void addResponseEvent(string id, string selection, string event
 private int isValidEffect(mapping effectMap)
 {
     int ret = 0;
-    string *validEffects = ({ "opinion", "attack", "move", "give" });
+    string *validEffects = ({ "opinion", "attack", "move", "give", "vanish" });
     string *effects = m_indices(effectMap);
     if (sizeof(effects))
     {
@@ -218,6 +218,7 @@ private int isValidEffect(mapping effectMap)
                     ret &&= intp(effectMap[effect]);
                     break;
                 }
+                case "vanish":
                 case "move":
                 case "give":
                 {
@@ -280,12 +281,6 @@ private nomask int isValidLiving(object livingCheck)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string formatText(string text, int colorInfo, object viewer)
-{
-    return color(viewer->query("term"), viewer, colorInfo, format(text, 78));
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask string parseTemplate(string template, string perspective,
     object initiator, object target)
 {
@@ -303,13 +298,15 @@ protected nomask string parseTemplate(string template, string perspective,
     // dictionary calls must be done first!
     int isSecondPerson = (perspective == "initiator");
 
+    message = messageParser()->parseVerbs(message, perspective == "target");
+    message = regreplace(message, "##ResponseInfinitive::([^#]+)##", "##Infinitive::\\1##", 1);
+    message = messageParser()->parseVerbs(message, isSecondPerson);
+
     if (initiator && objectp(initiator))
     {
         message = messageParser()->parseSimileDictionary(message, target);
         message = messageParser()->parseVerbDictionary(message,
             "HitDictionary", target);
-
-        message = messageParser()->parseVerbs(message, perspective == "target");
     }
 
     if (isValidLiving(initiator))
@@ -329,15 +326,19 @@ protected nomask string parseTemplate(string template, string perspective,
 
     message = messageParser()->capitalizeSentences(message);
 
+    while (sizeof(regexp(({ message }), "@C@")))
+    {
+        string firstCharacter = capitalize(regreplace(message, ".*@C@(.).*", "\\1"));
+        message = regreplace(message, "@C@(.)", firstCharacter);
+    }
+    message = format(message, 78);
+
     // Apply colors
     message = regreplace(message, "@S@", Speech, 1);
     message = regreplace(message, "@D@", Desc, 1);
     message = regreplace(message, "@A@((.+))@E@", Stat("\\1"), 1);
     message = regreplace(message, "@I@(.+)@E@", Action("\\1"), 1);
-
-    string firstCharacter = capitalize(regreplace(message, ".*@C@(.).*", "\\1", 1));
-    message = regreplace(message, "@C@(.)", firstCharacter);
-    
+  
     message += End;
     return message;
 }
@@ -371,8 +372,7 @@ protected nomask void displayMessage(string message, object initiator,
                     parsedMessage = parseTemplate(message, "other",
                         initiator, target);
                 }
-                tell_object(person, formatText(parsedMessage, colorInfo,
-                    person));
+                tell_object(person, parsedMessage);
             }
         }
     }
@@ -393,6 +393,10 @@ private nomask void executeResponseEffect(mapping effects,
     if (member(effects, "move"))
     {
         tell_room(environment(owner), sprintf("%s leaves.\n", owner->Name()));
+        move_object(owner, effects["move"]);
+    }
+    if (member(effects, "vanish"))
+    {
         move_object(owner, effects["move"]);
     }
     if (member(effects, "give"))
@@ -424,8 +428,9 @@ public nomask int displayResponse(string choice, object actor, object owner)
         ret = 1;
         string key = responseKeys[choice];
         string id = regexplode(key, "#")[0];
-        displayMessage(topics[id]["responses"][key]["template"],
-            actor, owner);
+
+        displayMessage("\n" + topics[id]["responses"][key]["template"] + 
+            "\n\n", actor, owner);
 
         if (member(topics[id]["responses"][key], "event"))
         {
@@ -464,9 +469,13 @@ private nomask void displayResponses(string id, object actor, object owner)
                 string choice = to_string(sizeof(responseKeys) + 1);
                 responseKeys[choice] = id + "#" + 
                     topics[id]["responses"][response]["selection"];
+
+                string message = topics[id]["responses"][response]["selection"];
+                message = regreplace(message, "@A@((.+))@E@", Stat("\\1"), 1);
+                message = regreplace(message, "@I@(.+)@E@", Action("\\1"), 1);
+
                 tell_object(actor, format(Action(choice) + ": " +
-                    Speech + topics[id]["responses"][response]["selection"] +
-                    End, 78));
+                    Speech + message + End, 78));
             }
         }
     }

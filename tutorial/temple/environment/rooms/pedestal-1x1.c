@@ -47,7 +47,10 @@ public void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void spawnUhrdalen(object player)
 {
-    
+    object uhrdalen = clone_object("/lib/tutorial/temple/characters/uhrdalen/uhrdalen.c");
+    move_object(uhrdalen, this_object());
+    write(player);
+    command("talk uhrdalen", player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
