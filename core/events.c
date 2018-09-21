@@ -213,12 +213,15 @@ public varargs nomask int notifySynchronous(string event, mixed message)
 public nomask varargs void processEventCallOut(object handler, string event,
     mixed message, int isGenericHandler)
 {
-    if (isGenericHandler)
+    if (objectp(handler))
     {
-        call_other(handler, "receiveEvent", this_object(), event, message);
-    }
-    else
-    {
-        call_other(handler, event, this_object(), message);
+        if (isGenericHandler)
+        {
+            call_other(handler, "receiveEvent", this_object(), event, message);
+        }
+        else
+        {
+            call_other(handler, event, this_object(), message);
+        }
     }
 }

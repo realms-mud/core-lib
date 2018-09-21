@@ -213,12 +213,12 @@ private int isValidEffect(mapping effectMap)
 
             switch (effect)
             {
+                case "vanish":
                 case "opinion": 
                 {
                     ret &&= intp(effectMap[effect]);
                     break;
                 }
-                case "vanish":
                 case "move":
                 case "give":
                 {
@@ -395,10 +395,6 @@ private nomask void executeResponseEffect(mapping effects,
         tell_room(environment(owner), sprintf("%s leaves.\n", owner->Name()));
         move_object(owner, effects["move"]);
     }
-    if (member(effects, "vanish"))
-    {
-        move_object(owner, effects["move"]);
-    }
     if (member(effects, "give"))
     {
         object gift = present_clone(effects["give"], owner);
@@ -417,13 +413,25 @@ private nomask void executeResponseEffect(mapping effects,
             owner->Name(), gift->query("name"), actor->Name()));
         move_object(gift, actor);
     }
+    if (member(effects, "vanish"))
+    {
+        object *items = deep_inventory(owner);
+        if (sizeof(items))
+        {
+            foreach(object item in items)
+            {
+                destruct(item);
+            }
+        }
+        destruct(owner);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int displayResponse(string choice, object actor, object owner)
 {
     int ret = 0;
-    if (member(responseKeys, choice))
+    if (objectp(owner) && member(responseKeys, choice))
     {
         ret = 1;
         string key = responseKeys[choice];
@@ -431,6 +439,16 @@ public nomask int displayResponse(string choice, object actor, object owner)
 
         displayMessage("\n" + topics[id]["responses"][key]["template"] + 
             "\n\n", actor, owner);
+
+        if (member(topics[id]["responses"][key], "topic"))
+        {
+            owner->responseFromConversation(actor,
+                topics[id]["responses"][key]["topic"]);
+        }
+        else
+        {
+            owner->responseFromConversation(actor, "default");
+        }
 
         if (member(topics[id]["responses"][key], "event"))
         {
@@ -440,15 +458,6 @@ public nomask int displayResponse(string choice, object actor, object owner)
         {
             executeResponseEffect(topics[id]["responses"][key]["effect"],
                 actor, owner);
-        }
-        if (member(topics[id]["responses"][key], "topic"))
-        {
-            owner->responseFromConversation(actor,
-                topics[id]["responses"][key]["topic"]);
-        }
-        else
-        {
-            owner->responseFromConversation(actor, "default");
         }
     }
     return ret;

@@ -30,7 +30,7 @@ protected nomask varargs void onEnter(string state, object initiator)
     }
     if (member(stateTree[state], "event"))
     {
-        filter_objects(stateActors, "notify", stateTree[state]["event"]);
+        filter_objects(stateActors, "notify", stateTree[state]["event"], initiator);
     }
 }
 
@@ -44,7 +44,7 @@ protected nomask varargs void onExit(string state, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void startStateMachine()
+public nomask varargs void startStateMachine()
 {
     if (sizeof(stateTree))
     {
@@ -95,11 +95,11 @@ public nomask varargs int receiveEvent(object caller, string eventName, object i
 
             if (ret)
             {
-                onExit(currentState, initiator);
+                onExit(currentState, caller);
                 currentState = transition["transition"];
                 notify("onStateChanged", currentState);
                 advanceState(caller, currentState);
-                onEnter(currentState, initiator);
+                onEnter(currentState, caller);
             }
         }
     }

@@ -181,6 +181,8 @@ public int placeRune(string rune)
     if (runeToAdd && runeToAdd->isObedienceRune())
     {
         string whichRune = runeToAdd->getRuneType();
+        destruct(runeToAdd);
+ 
         if (member(wall, whichRune) && member(verses, whichRune))
         {
             wall[whichRune, 0] = verses[whichRune];
@@ -196,8 +198,6 @@ public int placeRune(string rune)
                 sprintf(msg, whichRune),
                 "rune wall", "tutorial", this_player()->colorConfiguration()),
                 this_player());
-
-            destruct(runeToAdd);
 
             if (whichRune == "resistance")
             {
@@ -280,4 +280,12 @@ public string long()
         (missing == "") ? "" : "If you find some runes, perhaps you can place"
         " them...");
     return format(long, 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void resetEverything()
+{
+    this_player()->resetQuest("lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+    load_object("/lib/tutorial/temple/characters/uhrdalen/uhrdalen.c")->resetConversationState();
+    load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c")->startStateMachine();
 }

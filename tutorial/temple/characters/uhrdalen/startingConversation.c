@@ -5,7 +5,7 @@
 virtual inherit "/lib/modules/conversations/baseConversation.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private void thePlayerAndTheirName()
+private void ThePlayerAndTheirName()
 {
     addTopic("first conversation", "@D@A wispy figure appears. It is largely "
         "skeletal in nature, though ethereal and without substance. A bitterly "
@@ -55,16 +55,17 @@ private void thePlayerAndTheirName()
     addResponse("wrong answer", "I think not...", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::state##, @S@'You may not have my name.' @D@The "
         "wispy figure shrugs and vanishes.");
-
+    addResponseEffect("wrong answer", "I think not...", (["opinion":-25, "vanish" : 1]));
+    addResponseEvent("wrong answer", "I think not...", "uhrdalenLeft");
     addResponse("wrong answer", "Leave...", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::turn## away. The wispy figure shrugs and vanishes.");
+    addResponseEffect("wrong answer", "Leave...", (["opinion":-25, "vanish" : 1]));
+    addResponseEvent("wrong answer", "Leave...", "uhrdalenLeft");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+private void WhoAreYou()
 {
-    thePlayerAndTheirName();
-
     addTopic("who are you", "@D@The figure shrugs, @S@'You may ask, but be "
         "prepared to be ignored until I am satisfied... To my question "
         "regarding who you are, you gave me your name. That is simply what "
@@ -73,24 +74,28 @@ protected void Setup()
         "not respond next with your title. As for why you are here, you are "
         "very clever... We would not be having this conversation if you were "
         "not here for the trial. What is your motivation for wanting to pass the trial?'");
- 
+
     addResponseTopic("first conversation", "My name is...", "who are you");
     addResponseTopic("wrong answer", "My name is...", "who are you");
-    addResponse("who are you", "Fine. I'll spill my guts...", "@D@@C@##InitiatorName## "
-        "##ResponseInfinitive::say##, @S@'Very well. I do not wish to speak in "
-        "riddles. I am one of the Chosen of The Lord of Waters and by the "
+
+    string overallRespose = "I am one of the Chosen of The Lord of Waters and by the "
         "good grace, blessing and gifts of the aforementioned, I am here on "
         "a mission to restore balance to this world.' @D@@C@##InitiatorName## "
         "##ResponseInfinitive::gesture## in the direction one might suppose the Heart "
         "of Obedience artifact would lie. @S@'That thing is in my way. I have "
-        "answered you, now who might you be?'");
-    addResponse("who are you", "I will offer up a little...", "@D@@C@##InitiatorName## "
-        "##ResponseInfinitive::say##, @S@'Very well. I do not wish to speak in "
-        "riddles. I am here on a mission to restore balance to this world.' "
-        "@D@@C@##InitiatorName## ##ResponseInfinitive::gesture## in the direction one "
-        "might suppose the Heart of Obedience artifact would lie. @S@'That thing is "
-        "in my way. I have answered you, now who might you be?'");
+        "answered you, now who might you be?'";
 
+    addResponse("who are you", "Fine. I'll be blunt...", "@D@@C@##InitiatorName## "
+        "##ResponseInfinitive::say##, @S@'Very well. I do not wish to speak in "
+        "riddles. " + overallRespose);
+    addResponse("who are you", "I'll humor you...", "@D@@C@##InitiatorName## "
+        "##ResponseInfinitive::reply##, @S@'I was the protector of the one I have "
+        "failed. Yet " + overallRespose);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void AndWhoMightYouBe()
+{
     addTopic("who might you be", "@S@'Who might I be? That is a tale in and "
         "of itself - a tale that deviates considerably from the topic at hand. "
         "I am weak. I am strong. Burning. Freezing. Hiding behind "
@@ -98,11 +103,17 @@ protected void Setup()
         "I was beloved, but now forgotten. I am a thrall to the desires of "
         "others. Most importantly, I may well be an example to all of what "
         "not to do as you go through your life. ' @D@The being chuckles at this.");
-    addResponseTopic("who are you", "Fine. I'll spill my guts...", "who might you be");
-    addResponseTopic("who are you", "I will offer up a little...", "who might you be");
+    addResponseTopic("who are you", "Fine. I'll be blunt...", "who might you be");
+    addResponseTopic("who are you", "I'll humor you...", "who might you be");
 
     addResponse("who might you be", "@I@Say nothing@E@", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::make## no response.");
+    addResponse("who might you be", "That's a mouthful...", "@D@@C@##InitiatorName## "
+        "##ResponseInfinitive::say##, @S@'Repeating that without tripping up is "
+        "my greatest fear... Can I just call you... Bob?'");
+    addResponse("who might you be", "Let's be friends...", "@D@@C@##InitiatorName## "
+        "##ResponseInfinitive::ask##, @S@'And what do your friends call you? You "
+        "still have them, yes?'");
 
     addTopic("who might you be PT2", "@D@After a short yet uncomfortable pause, "
         "the being continues. @S@'That can be a mouthful. You may call me "
@@ -113,6 +124,16 @@ protected void Setup()
         "judge your worth by the company you keep and not by what is within "
         "you. I did not ask you of any but yourself. Be that as it may, I do "
         "not believe you know and I shan't press.'");
+    addTopicEvent("who might you be PT2", "revealName");
     addResponseTopic("who might you be", "@I@Say nothing@E@", "who might you be PT2");
+    addResponseTopic("who might you be", "That's a mouthful...", "who might you be PT2");
+    addResponseTopic("who might you be", "Let's be friends...", "who might you be PT2");
+}
 
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+    ThePlayerAndTheirName();
+    WhoAreYou();
+    AndWhoMightYouBe();
 }

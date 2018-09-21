@@ -45,6 +45,12 @@ void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void testSetName(string name)
+{
+    return questItem::setName(name);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public varargs string testSetInitialState(string state)
 {
     return questItem::setInitialState(state);

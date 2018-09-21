@@ -18,8 +18,9 @@ public void Setup()
     addObject("/lib/tutorial/temple/objects/rune-wall.c");
     addObject("/lib/tutorial/temple/objects/pedestal.c");
 
-    addObject("/lib/tutorial/temple/objects/rune-resistance.c", "starting the test");
+    addObject("/lib/tutorial/temple/objects/rune-resistance.c", "entered room");
     setCoordinates("temple of obedience", 21, 25);
+
     setStateMachine(load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c"));
 
     // First test
@@ -45,11 +46,11 @@ public void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void spawnUhrdalen(object player)
+public void spawnUhrdalen(object stateMachine, object player)
 {
     object uhrdalen = clone_object("/lib/tutorial/temple/characters/uhrdalen/uhrdalen.c");
+    uhrdalen->registerEvent(this_object());
     move_object(uhrdalen, this_object());
-    write(player);
     command("talk uhrdalen", player);
 }
 
@@ -61,7 +62,24 @@ public int canGet(object target)
         if (this_player())
         {
             this_player()->beginQuest("lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+
+            object stateMachine =
+                load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+
+            if (stateMachine)
+            {
+                stateMachine->receiveEvent(this_player(), "gotRuneFromFloor");
+            }
         }
     }
     return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void uhrdalenLeft(object uhrdalen, object player)
+{
+    object stateMachine =
+        load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+
+    stateMachine->receiveEvent(player, "uhrdalenLeft");
 }

@@ -233,22 +233,10 @@ public nomask int beginQuest(string questItem)
 public nomask int resetQuest(string questItem)
 {
     int ret = 0;
-    object questObj = getQuestObject(questItem);
-
-    if (member(quests, questItem) && questObj && objectp(questObj))
+    if (member(quests, questItem))
     {
         ret = 1;
-        quests[questItem] = ([
-            "name": questObj->name(),
-            "state": questObj->initialState(),
-            "states completed": ({}),
-            "is active": 1,
-            "is completed": 0
-        ]);
-        questNotification("onQuestStarted", questItem);
-        checkQuestCompletion(questItem, questObj);
-
-        questObj->beginQuest(this_object());
+        m_delete(quests, questItem);
     }
     return ret;
 }

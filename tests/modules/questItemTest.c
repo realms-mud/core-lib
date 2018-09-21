@@ -12,6 +12,7 @@ object Quester;
 /////////////////////////////////////////////////////////////////////////////
 void SetUpQuestItem()
 {
+    QuestItem->testSetName("Hail to the king, baby!");
     QuestItem->testAddState("meet the king", "I've been asked to meet the king!");
 
     QuestItem->testAddState("met the king", 

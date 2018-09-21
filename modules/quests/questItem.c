@@ -14,6 +14,19 @@ private string Name = 0;
 private string Description = 0;
 private string Type = "secondary";
 
+private nosave mapping colors = ([
+    "success":([
+        "3-bit": "\x1b[0;32;1m",
+        "8-bit": "\x1b[0;38;5;28;1m",
+        "24-bit": "\x1b[0;38;2;0;180;0;1m"
+    ]),
+    "failure":([
+        "3-bit": "\x1b[0;31;1m",
+        "8-bit": "\x1b[0;38;5;124;1m",
+        "24-bit": "\x1b[0;38;2;180;0;0;1m"
+    ])
+]);
+
     // "<state>" : ([
     //     "description": <some text>
     //     "is final state": if it exists, it can be either "success" or
@@ -81,17 +94,33 @@ public varargs string getCurrentState(object caller)
         "stateMachine"::getCurrentState(caller);
 }
 
-/////////////////////////////////////////////////////////////////////////////
-protected void advanceState(object caller, string newState)
-{
-    "stateMachine"::advanceState(caller, newState);
-    caller->advanceQuestState(program_name(this_object()), newState);
-}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidQuest()
 {
     return Name && (InitialState != "");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected void advanceState(object caller, string newState)
+{
+    "stateMachine"::advanceState(caller, newState);
+    caller->advanceQuestState(program_name(this_object()), newState);
+
+    if (isValidQuest() && member(stateTree[newState], "is final state"))
+    {
+        string colorConfig = (objectp(caller) && caller->colorConfiguration()) ?
+            caller->colorConfiguration() : "none";
+
+        string questFinish = stateTree[newState]["is final state"];
+        string message = sprintf("[ Quest %s ]: %s.\n", questFinish, Name);
+
+        if (member(colors[questFinish], colorConfig))
+        {
+            message = colors[questFinish][colorConfig] + message + "\x1b[0m";
+        }
+        tell_object(caller, message);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

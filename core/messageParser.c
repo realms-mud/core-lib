@@ -250,9 +250,9 @@ public nomask string parseTargetWeapon(string message, string typeOfTarget,
 /////////////////////////////////////////////////////////////////////////////
 public nomask string capitalizeSentences(string message)
 {
-    string ret = regreplace(message, "^[a-z]", #'upper_case, 1);
+    string ret = regreplace(message, ".", #'upper_case);
     ret = regreplace(ret, "[.!?] [a-z]", #'upper_case, 1);
-    ret = regreplace(ret, "  ", " ");
+    ret = regreplace(ret, "  ", " ", 1);
     return ret;
 }
 

@@ -21,4 +21,12 @@ protected void Setup()
     SetUpPersonaOfLevel("wraith", 20);
 
     addConversation("/lib/tutorial/temple/characters/uhrdalen/startingConversation.c");
+
+    registerEventHandler("uhrdalenLeft");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void revealName()
+{
+    short("Uhrdalen");
 }
