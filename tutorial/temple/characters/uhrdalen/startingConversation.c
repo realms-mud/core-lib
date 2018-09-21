@@ -128,6 +128,118 @@ private void AndWhoMightYouBe()
     addResponseTopic("who might you be", "@I@Say nothing@E@", "who might you be PT2");
     addResponseTopic("who might you be", "That's a mouthful...", "who might you be PT2");
     addResponseTopic("who might you be", "Let's be friends...", "who might you be PT2");
+
+    addResponse("who might you be PT2", "@I@Continue@E@", "@I@Continue@E@");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void KnowThyself()
+{
+    addTopic("know thyself", "@S@'The only comment you made that is relevant "
+        "to our conversation is the discussion of your purpose.' @D@Uhrdalen "
+        "continues. @S@'You cannot hope to recover that thing until you "
+        "understand yourself. Do not fear to seek those answers. At the end of "
+        "this path that has opened up before you, you will find two things: "
+        "one you wish for and one that is quite the opposite. You will find "
+        "that the demon you face is you - and your prejudices.");
+    addResponseTopic("who might you be PT2", "@I@Continue@E@", "know thyself");
+
+    addResponse("know thyself", "Fair enough... @A@Wisdom@E@", "@D@@C@##InitiatorName## "
+        "carefully ##ResponseInfinitive::respond##, @S@'Fair enough, my Lord "
+        "Uhrdalen, Let me then say this: I do not know who I am. I have not "
+        "the wisdom nor the years to be so certain. No, the things I spoke of "
+        "are not who I am, but they are the vehicles by which I shall become "
+        "who I must.'");
+
+    addResponse("know thyself", "I understand... @A@Diplomacy@E@", "@D@@C@##InitiatorName## "
+        "thoughtfully ##ResponseInfinitive::reply##, @S@'What I do understand "
+        "is that there are terrible things happening and I am in a position "
+        "to change them. I may fail, but I must try nonetheless.'");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void OnToTheTrial()
+{
+    addTopic("on to the trial", "@D@Uhrdalen nods at this, @S@'Well spoken, "
+        "##ActorName##.  Now on to your trial. I am here, caretaker of the "
+        "trial. Clearly, I must either be one of the wretched creatures bent "
+        "toward Xyris's wickedness or I must be a thrall to his desires, "
+        "unable to leave?'");
+    addResponseTopic("know thyself", "Fair enough... @A@Wisdom@E@",
+        "on to the trial");
+    addResponseTopic("know thyself", "I understand... @A@Diplomacy@E@",
+        "on to the trial");
+
+    addResponse("on to the trial", "@I@Say nothing@E@", "@D@@C@##InitiatorName## "
+        "##ResponseInfinitive::say## nothing, encouraging Uhrdalen to continue.");
+    addResponse("on to the trial", "Do you need my help?", "@D@@C@##InitiatorName## "
+        "##ResponseInfinitive::frown## and ##ResponseInfinitive::ask##, @S@'Do "
+        "you need help?'");
+
+    addTopic("no bonds hold me", "@S@'Nay, if I wished to leave this place, I "
+        "am quite capable of doing so,' @D@Uhrdalen continues, @S@'No bonds "
+        "force me to walk these lonely halls. As I did say, however, I am a "
+        "thrall, a fool, and a thousand other colorful things. If I could "
+        "break my bondage, perhaps I would... perhaps I am too much the "
+        "craven to try. It is not a place so much as another's will that "
+        "guides my ties to this place. I choose to be here because it is the "
+        "path of least resistance. I am the opportunity missed, the lamb "
+        "being guided by wolves. Nevertheless, my banter wastes your time "
+        "when such things mean life itself. I would now encourage you to face "
+        "the challenge.'");
+    addResponseTopic("on to the trial", "@I@Say nothing@E@", "no bonds hold me");
+    addResponseTopic("on to the trial", "Do you need my help?", "no bonds hold me");
+
+    addResponse("no bonds hold me", "About that...", "@D@@C@##InitiatorName## "
+        "##ResponseInfinitive::clear## ##InitiatorPossessive## throat and "
+        "##ResponseInfinitive::say##, @S@'So, about this challenge...'");
+    addResponse("no bonds hold me", "The pedestals... @A@#Spellcraft@E@", 
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at the pulsating "
+        "pedestals and ##ResponseInfinitive::ask##, @S@'I suspect that those "
+        "have something to do with the challenge?'");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void ThePedestals()
+{
+    addTopic("the pedestals", "@D@Uhrdalen gestures at the pedestals and states, "
+        "@S@'Look to the pedestals. Each light pulses in the colors of sorrow, "
+        "envy, wrath, and fear, each intermingled one with the other. Touch the "
+        "plate of sorrow and the lights to the north, south, and east shall "
+        "change, cycling first to sorrow, then wrath, envy, and finally fear.'");
+    addResponseTopic("no bonds hold me", "About that...", "the pedestals");
+    addResponseTopic("no bonds hold me", "The pedestals... @A@#Spellcraft@E@", 
+        "the pedestals");
+
+    addResponse("the pedestals", "@I@Continue@E@", "@I@Continue@E@");
+
+    addTopic("the pedestals PT2", "@S@'Touch the plate of envy and the west, "
+        "north, and east shall change. Touch the plate of fear and the west, "
+        "east, and south do change. Touch the plate of wrath and the west, "
+        "north, and south shall change. Place your hand on the plate of death "
+        "and the colors shall revert to the union. Learn well this verse, for "
+        "it is the key:\n\n@H@\tTo the north lies winter eternal.\n \tTo the "
+        "south the green pastures beckon.\n\tTo the east the calming embrace "
+        "of the sea.\n\tTo the west the fires of war embrace the lands.\n@E@");
+    addResponseTopic("the pedestals", "@I@Continue@E@", "the pedestals PT2");
+
+    addResponse("the pedestals PT2", "Say what?", "@D@@C@##InitiatorName## "
+        "##ResponseInfinitive::mutter## in consternation, @S@'And here I "
+        "though we would not be speaking in riddles...'");
+    addResponse("the pedestals PT2", "Got it. @A@Mathematics@E@", "@D@@C@##InitiatorName## "
+        "##ResponseInfinitive::nod##, @S@'I think I understand. This verse tells "
+        "me what the pattern needs to be.'");
+
+    addTopic("the pedestals PT3", "@S@'The objective is clearly spelled out "
+        "in the verse I have given you. Certainly, you need further guidance, "
+        "but you must use your own wit and that failing, random luck to "
+        "complete this. As to the choice of plates, you do not want to misjudge "
+        "them lest they be your death.' @D@As these ominous words are spoken, "
+        "Uhrdalen fades from view.");
+    addResponseTopic("the pedestals PT2", "Say what?", "the pedestals PT3");
+    addResponseTopic("the pedestals PT2", "Got it. @A@Mathematics@E@", 
+        "the pedestals PT3");
+    addTopicEvent("the pedestals PT3", "startFirstTest");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -136,4 +248,7 @@ protected void Setup()
     ThePlayerAndTheirName();
     WhoAreYou();
     AndWhoMightYouBe();
+    KnowThyself();
+    OnToTheTrial();
+    ThePedestals();
 }

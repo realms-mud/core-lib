@@ -113,7 +113,7 @@ private string orb(string color)
 /////////////////////////////////////////////////////////////////////////////
 public int id(string item)
 {
-    return item == "pedestal";
+    return item == "pedestal-hidden";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -275,9 +275,9 @@ public void finishPress()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private int blockMove(string str)
+public int allowMove()
 {
-    int ret = 0;
+    int ret = 1;
 
     if (!isValidPattern())
     {
@@ -285,10 +285,8 @@ private int blockMove(string str)
             "lightning crosses your path. You decide against "
             "proceeding.", 78);
 
-        write(format("\x1b[0;35mAs you approach the liquid, a brilliant arc of "
-            "lightning crosses your path. You decide against "
-            "proceeding.\x1b[0m\n", 78));
-        ret = 1;
+        write("\x1b[0;35m" + message + "\x1b[0m\n");
+        ret = 0;
     }
     return ret;
 }

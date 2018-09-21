@@ -23,6 +23,7 @@ protected void Setup()
     addConversation("/lib/tutorial/temple/characters/uhrdalen/startingConversation.c");
 
     registerEventHandler("uhrdalenLeft");
+    registerEventHandler("startFirstTest");
 }
 
 /////////////////////////////////////////////////////////////////////////////

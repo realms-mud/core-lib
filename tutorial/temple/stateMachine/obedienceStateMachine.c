@@ -43,6 +43,7 @@ void reset(int arg)
         startStateMachine();
 
         registerEventHandler("spawnUhrdalen");
+        registerEventHandler("startFirstTest");
     }
 }
 

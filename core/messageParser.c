@@ -212,6 +212,8 @@ public nomask varargs string parseTargetInfo(string message, string typeOfTarget
         // What this lacks in elegance, it more than makes up for in laziness
         ret = regreplace(ret, sprintf("##%sName3rd##", typeOfTarget),
             getName(target, 0), 1);
+        ret = regreplace(ret, sprintf("##%sName::capitalize##", typeOfTarget),
+            capitalize(getName(target, isSecondPerson)), 1);
         ret = regreplace(ret, sprintf("##%sName##", typeOfTarget),
             getName(target, isSecondPerson), 1);
         ret = regreplace(ret, sprintf("##%sObjective##", typeOfTarget), 
@@ -250,7 +252,7 @@ public nomask string parseTargetWeapon(string message, string typeOfTarget,
 /////////////////////////////////////////////////////////////////////////////
 public nomask string capitalizeSentences(string message)
 {
-    string ret = regreplace(message, ".", #'upper_case);
+    string ret = regreplace(message, "^[a-z]", #'upper_case);
     ret = regreplace(ret, "[.!?] [a-z]", #'upper_case, 1);
     ret = regreplace(ret, "  ", " ", 1);
     return ret;

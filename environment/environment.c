@@ -661,30 +661,33 @@ public nomask int move(string str)
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
-    if (objectp(StateMachine))
+    if (objectp(this_player()) && present(this_player()))
     {
-        currentState(StateMachine->getCurrentState());
-    }
-    if (this_player())
-    {
-        remove_action(1);
-    }
-    string *directions = ({});
-    if (member(exits, currentState()) && sizeof(exits[currentState()]))
-    {
-        directions += m_indices(exits[currentState()]);
-    }
-    if (member(exits, "default") && sizeof(exits["default"]))
-    {
-        directions += m_indices(exits["default"]);
-    }
-
-    if (sizeof(directions))
-    {
-        directions = m_indices(mkmapping(directions));
-        foreach(string direction in directions)
+        if (objectp(StateMachine))
         {
-            add_action("move", direction);
+            currentState(StateMachine->getCurrentState());
+        }
+        if (this_player())
+        {
+            remove_action(1);
+        }
+        string *directions = ({});
+        if (member(exits, currentState()) && sizeof(exits[currentState()]))
+        {
+            directions += m_indices(exits[currentState()]);
+        }
+        if (member(exits, "default") && sizeof(exits["default"]))
+        {
+            directions += m_indices(exits["default"]);
+        }
+
+        if (sizeof(directions))
+        {
+            directions = m_indices(mkmapping(directions));
+            foreach(string direction in directions)
+            {
+                add_action("move", direction);
+            }
         }
     }
 }

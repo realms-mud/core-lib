@@ -4,6 +4,9 @@
 //*****************************************************************************
 inherit "/lib/environment/environment.c";
 
+object Uhrdalen;
+object StateMachine;
+
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
@@ -13,7 +16,7 @@ public void Setup()
     addFeature("lib/tutorial/temple/environment/features/purple-liquid.c");
     addFeature("lib/tutorial/temple/environment/features/pedestal.c");
 
-    addExit("north", "/lib/tutorial/temple/environment/rooms/pedestal-entry.c");
+    addExit("north", "/lib/tutorial/temple/environment/rooms/entry-to-pedestal.c");
 
     addObject("/lib/tutorial/temple/objects/rune-wall.c");
     addObject("/lib/tutorial/temple/objects/pedestal.c");
@@ -21,7 +24,8 @@ public void Setup()
     addObject("/lib/tutorial/temple/objects/rune-resistance.c", "entered room");
     setCoordinates("temple of obedience", 21, 25);
 
-    setStateMachine(load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c"));
+    StateMachine = load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+    setStateMachine(StateMachine);
 
     // First test
     addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-1x2.c", "first test");
@@ -48,9 +52,9 @@ public void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void spawnUhrdalen(object stateMachine, object player)
 {
-    object uhrdalen = clone_object("/lib/tutorial/temple/characters/uhrdalen/uhrdalen.c");
-    uhrdalen->registerEvent(this_object());
-    move_object(uhrdalen, this_object());
+    Uhrdalen = clone_object("/lib/tutorial/temple/characters/uhrdalen/uhrdalen.c");
+    Uhrdalen->registerEvent(this_object());
+    move_object(Uhrdalen, this_object());
     command("talk uhrdalen", player);
 }
 
@@ -63,12 +67,9 @@ public int canGet(object target)
         {
             this_player()->beginQuest("lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
 
-            object stateMachine =
-                load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
-
-            if (stateMachine)
+            if (StateMachine)
             {
-                stateMachine->receiveEvent(this_player(), "gotRuneFromFloor");
+                StateMachine->receiveEvent(this_player(), "gotRuneFromFloor");
             }
         }
     }
@@ -76,10 +77,55 @@ public int canGet(object target)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void uhrdalenLeft(object uhrdalen, object player)
+public void uhrdalenLeft(object uhrdalen, object player)
 {
-    object stateMachine =
-        load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+    if (StateMachine)
+    {
+        StateMachine->receiveEvent(player, "uhrdalenLeft");
+    }
+}
 
-    stateMachine->receiveEvent(player, "uhrdalenLeft");
+/////////////////////////////////////////////////////////////////////////////
+private object pedestal()
+{
+    return present("pedestal-hidden", this_object());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void startFirstTest(object uhrdalen, object player)
+{
+    if (pedestal())
+    {
+        pedestal()->startFirstTest();
+    }
+
+    if (objectp(Uhrdalen))
+    {
+        object *items = deep_inventory(Uhrdalen);
+        if (sizeof(items))
+        {
+            foreach(object item in items)
+            {
+                destruct(item);
+            }
+        }
+        destruct(Uhrdalen);
+    }
+    if (StateMachine)
+    {
+        StateMachine->receiveEvent(player, "startFirstTest");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int moveToIsAllowed(object user, object toLocation)
+{
+    int ret = 1;
+
+    if (pedestal() && sizeof(regexp(({ object_name(toLocation) }), 
+        "pedestal-[0-9]+x[0-9]+")))
+    {
+        ret = pedestal()->allowMove();
+    }
+    return ret;
 }

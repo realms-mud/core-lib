@@ -187,7 +187,7 @@ public int placeRune(string rune)
         {
             wall[whichRune, 0] = verses[whichRune];
             wall[whichRune, 1] = 0;
-            string msg = "##InitiatorName## ##Infinitive::locate## a gap that "
+            string msg = "##InitiatorName::capitalize## ##Infinitive::locate## a gap that "
                 "fits and ##Infinitive::place## the rune of %s on the wall.\n";
 
             object configuration =

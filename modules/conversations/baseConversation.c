@@ -10,6 +10,7 @@ virtual inherit "/lib/core/prerequisites.c";
 #define End "\x1b[0m"
 #define Stat(x) sprintf("\x1b[0;34;1m[%s]\x1b[0m", x)
 #define Action(x) sprintf("\x1b[0;31m[%s]\x1b[0m", x)
+#define Highlight(x) sprintf("\x1b[0;35m%s\x1b[0m", x)
 
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
 private int ignoreTalk = 0;
@@ -338,7 +339,8 @@ protected nomask string parseTemplate(string template, string perspective,
     message = regreplace(message, "@D@", Desc, 1);
     message = regreplace(message, "@A@((.+))@E@", Stat("\\1"), 1);
     message = regreplace(message, "@I@(.+)@E@", Action("\\1"), 1);
-  
+    message = regreplace(message, "@H@(.+)@E@", Highlight("\\1"), 1);
+
     message += End;
     return message;
 }
