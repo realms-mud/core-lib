@@ -46,6 +46,8 @@ drop procedure if exists saveOpinionOfCharacter;
 ##
 drop procedure if exists saveCharacterState;
 ##
+drop procedure if exists updateLoginTime;
+##
 drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
@@ -109,6 +111,7 @@ CREATE TABLE `players` (
   `charisma` int(11) NOT NULL DEFAULT '0',
   `invisible` tinyint NOT NULL DEFAULT '0',
   `whenCreated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `LastLogin` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `location` varchar(200) NOT NULL,
   `attributePoints` smallint NOT NULL DEFAULT '0',
   `skillPoints` smallint NOT NULL DEFAULT '0',
@@ -371,11 +374,66 @@ CREATE TABLE `characterStates` (
   KEY `characterStates_playerid_idx` (`playerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
-CREATE VIEW `basicPlayerData` AS select `players`.`name` AS `name`,`players`.`race` AS `race`,`players`.`age` AS `age`,`players`.`gender` AS `gender`,`players`.`ghost` AS `ghost`,`players`.`strength` AS `strength`,`players`.`intelligence` AS `intelligence`,`players`.`dexterity` AS `dexterity`,`players`.`wisdom` AS `wisdom`,`players`.`constitution` AS `constitution`,`players`.`charisma` AS `charisma`,`players`.`invisible` AS `invisible`,`biological`.`intoxicated` AS `intoxicated`,`biological`.`stuffed` AS `stuffed`,`biological`.`drugged` AS `drugged`,`biological`.`soaked` AS `soaked`,`biological`.`headache` AS `headache`,`playerCombatData`.`hitPoints` AS `hitPoints`,`playerCombatData`.`maxHitPoints` AS `maxHitPoints`,`playerCombatData`.`spellPoints` AS `spellPoints`,`playerCombatData`.`maxSpellPoints` AS `maxSpellPoints`,`playerCombatData`.`staminaPoints` AS `staminaPoints`,`playerCombatData`.`maxStaminaPoints` AS `maxStaminaPoints`,`playerCombatData`.`wimpy` AS `wimpy`,`playerCombatData`.`onKillList` AS `onKillList`,`playerCombatData`.`timeToHealHP` AS `timeToHealHP`,`playerCombatData`.`timeToHealSP` AS `timeToHealSP`,`playerCombatData`.`timeToHealST` AS `timeToHealST`,`players`.`whenCreated` AS `whenCreated`,`players`.`location` AS `location`,`players`.`attributePoints` AS `availableAttributePoints`,`players`.`skillPoints` AS `availableSkillPoints`,`players`.`researchPoints` AS `availableResearchPoints`,`players`.`unassignedExperience` AS `unassignedExperience`,`players`.`playerMoney` AS `playerMoney`,`players`.`id` AS `playerId` from ((`players` join `biological` on((`players`.`id` = `biological`.`playerid`))) join `playerCombatData` on((`players`.`id` = `playerCombatData`.`playerid`)));
+CREATE VIEW `basicPlayerData` AS select `players`.`name` AS `name`,
+                                        `players`.`race` AS `race`,
+                                        `players`.`age` AS `age`,
+                                        `players`.`gender` AS `gender`,
+                                        `players`.`ghost` AS `ghost`,
+                                        `players`.`strength` AS `strength`,
+                                        `players`.`intelligence` AS `intelligence`,
+                                        `players`.`dexterity` AS `dexterity`,
+                                        `players`.`wisdom` AS `wisdom`,
+                                        `players`.`constitution` AS `constitution`,
+                                        `players`.`charisma` AS `charisma`,
+                                        `players`.`invisible` AS `invisible`,
+                                        `biological`.`intoxicated` AS `intoxicated`,
+                                        `biological`.`stuffed` AS `stuffed`,
+                                        `biological`.`drugged` AS `drugged`,
+                                        `biological`.`soaked` AS `soaked`,
+                                        `biological`.`headache` AS `headache`,
+                                        `playerCombatData`.`hitPoints` AS `hitPoints`,
+                                        `playerCombatData`.`maxHitPoints` AS `maxHitPoints`,
+                                        `playerCombatData`.`spellPoints` AS `spellPoints`,
+                                        `playerCombatData`.`maxSpellPoints` AS `maxSpellPoints`,
+                                        `playerCombatData`.`staminaPoints` AS `staminaPoints`,
+                                        `playerCombatData`.`maxStaminaPoints` AS `maxStaminaPoints`,
+                                        `playerCombatData`.`wimpy` AS `wimpy`,
+                                        `playerCombatData`.`onKillList` AS `onKillList`,
+                                        `playerCombatData`.`timeToHealHP` AS `timeToHealHP`,
+                                        `playerCombatData`.`timeToHealSP` AS `timeToHealSP`,
+                                        `playerCombatData`.`timeToHealST` AS `timeToHealST`,
+                                        `players`.`whenCreated` AS `whenCreated`,
+                                        `players`.`LastLogin` AS `LastLogin`,
+                                        `players`.`location` AS `location`,
+                                        `players`.`attributePoints` AS `availableAttributePoints`,
+                                        `players`.`skillPoints` AS `availableSkillPoints`,
+                                        `players`.`researchPoints` AS `availableResearchPoints`,
+                                        `players`.`unassignedExperience` AS `unassignedExperience`,
+                                        `players`.`playerMoney` AS `playerMoney`,
+                                        `players`.`id` AS `playerId` 
+                               from ((`players` 
+                               join `biological` on((`players`.`id` = `biological`.`playerid`))) 
+                               join `playerCombatData` on((`players`.`id` = `playerCombatData`.`playerid`)));
 ##
-CREATE VIEW `researchChoicesView` AS select `researchChoices`.`playerId` AS `playerId`,`researchChoices`.`name` AS `Choice`,`researchChoiceItems`.`selectionNumber` AS `selectionNumber`,`researchChoiceItems`.`type` AS `type`,`researchChoiceItems`.`name` AS `name`,`researchChoiceItems`.`description` AS `description`,`researchChoiceItems`.`key` AS `key` from (`researchChoices` join `researchChoiceItems` on((`researchChoices`.`id` = `researchChoiceItems`.`researchChoiceId`)));
+CREATE VIEW `researchChoicesView` AS select `researchChoices`.`playerId` AS `playerId`,
+                                            `researchChoices`.`name` AS `Choice`,
+                                            `researchChoiceItems`.`selectionNumber` AS `selectionNumber`,
+                                            `researchChoiceItems`.`type` AS `type`,
+                                            `researchChoiceItems`.`name` AS `name`,
+                                            `researchChoiceItems`.`description` AS `description`,
+                                            `researchChoiceItems`.`key` AS `key` 
+                                     from (`researchChoices` 
+                                     join `researchChoiceItems` on((`researchChoices`.`id` = `researchChoiceItems`.`researchChoiceId`)));
 ##
-CREATE VIEW `traitsView` AS select `traits`.`playerid` AS `playerid`,`traits`.`path` AS `path`,`traits`.`name` AS `name`,`traits`.`added` AS `added`,`timedtraits`.`endTime` AS `endTime`,`timedtraits`.`expireMessage` AS `expireMessage`,`timedtraits`.`triggeringResearch` AS `triggeringResearch` from (`traits` left join `timedtraits` on((`traits`.`id` = `timedtraits`.`traitid`)));
+CREATE VIEW `traitsView` AS select `traits`.`playerid` AS `playerid`,
+                                   `traits`.`path` AS `path`,
+                                   `traits`.`name` AS `name`,
+                                   `traits`.`added` AS `added`,
+                                   `timedtraits`.`endTime` AS `endTime`,
+                                   `timedtraits`.`expireMessage` AS `expireMessage`,
+                                   `timedtraits`.`triggeringResearch` AS `triggeringResearch` 
+                            from (`traits` 
+                            left join `timedtraits` on((`traits`.`id` = `timedtraits`.`traitid`)));
 ##
 CREATE FUNCTION `saveBasicPlayerInformation`(p_name varchar(40),
 p_race varchar(20), p_age int, p_gender int, p_ghost int, p_strength int,
@@ -405,16 +463,17 @@ BEGIN
                            researchPoints = p_research,
                            unassignedExperience = p_unassigned,
                            location = p_location,
-                           playerMoney = p_money
+                           playerMoney = p_money,
+                           LastLogin = now()
 		where id = pid;
 	else
 		insert into players (name, race, age, gender, ghost, strength,
         intelligence, dexterity, wisdom, constitution, charisma, invisible,
         attributePoints, skillPoints, researchPoints, unassignedExperience, 
-        whenCreated, location, playerMoney)
+        whenCreated, LastLogin, location, playerMoney)
         values (p_name, p_race, p_age, p_gender, p_ghost, p_strength, 
         p_intelligence, p_dexterity, p_wisdom, p_constitution, p_charisma, 
-        p_invisible, p_attributes, p_skill, p_research, p_unassigned, now(), p_location, p_money);
+        p_invisible, p_attributes, p_skill, p_research, p_unassigned, now(), now(), p_location, p_money);
     
         select id into pid from players where name = p_name;
     end if;
@@ -910,6 +969,11 @@ BEGIN
             values (lplayerId, p_targetKey, p_state);
 		end if;
     end if;    
+END;
+##
+CREATE PROCEDURE `updateLoginTime` (p_playerName varchar(40))
+BEGIN
+    update players set LastLogin = now() where name = p_playerName;
 END;
 ##
 insert into players (id,name,race,age,gender) values (1,'maeglin','high elf',1,1);

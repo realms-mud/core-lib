@@ -167,6 +167,12 @@ public nomask void saveCombatStatistics(object player, object foe)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void updateLoginTime()
+{
+    DataAccess()->updateLoginTime(this_object()->Name());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int bestKillMeetsLevel(int level)
 {
     return DataAccess()->bestKillMeetsLevel(this_object()->Name(), level);

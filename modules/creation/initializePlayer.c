@@ -39,6 +39,7 @@ private nomask void movePlayerToStart(object player)
 public nomask void onRestoreSucceeded(object caller)
 {
     caller->unregisterEvent(this_object());
+    caller->updateLoginTime();
     movePlayerToStart(caller);
     destruct(this_object());
 }

@@ -47,13 +47,14 @@ protected nomask mapping getBasicPlayerData(string name, int dbHandle)
         ret["timeToHealSP"] = to_int(result[26]);
         ret["timeToHealST"] = to_int(result[27]);
         ret["whenCreated"] = result[28];
-        ret["location"] = result[29];
-        ret["availableAttributePoints"] = to_int(result[30]);
-        ret["availableSkillPoints"] = to_int(result[31]);
-        ret["availableResearchPoints"] = to_int(result[32]);
-        ret["unassignedExperience"] = to_int(result[33]);
-        ret["money"] = to_int(result[34]);
-        ret["playerId"] = to_int(result[35]);
+        ret["LastLogin"] = result[29];
+        ret["location"] = result[30];
+        ret["availableAttributePoints"] = to_int(result[31]);
+        ret["availableSkillPoints"] = to_int(result[32]);
+        ret["availableResearchPoints"] = to_int(result[33]);
+        ret["unassignedExperience"] = to_int(result[34]);
+        ret["money"] = to_int(result[35]);
+        ret["playerId"] = to_int(result[36]);
     }
 
     return ret;
@@ -130,4 +131,19 @@ protected nomask void saveCombatData(int dbHandle, int playerId, mapping playerD
 
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void updateLoginTime(string name)
+{
+    if (stringp(name) && (name != ""))
+    {
+        string query = sprintf("call updateLoginTime('%s');",
+            sanitizeString(name));
+
+        int dbHandle = connect();
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+        disconnect(dbHandle);
+    }
 }

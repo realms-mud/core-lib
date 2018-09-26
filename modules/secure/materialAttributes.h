@@ -23,6 +23,7 @@ private string pretitle;
 private int invisibility;
 private mapping properties = ([]);
 private string whenCreated;
+private string LastLogin;
 private string location = DefaultStart;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -71,6 +72,7 @@ static nomask void loadMaterialAttributes(mapping data, object persistence)
         pretitle = persistence->extractSaveData("pretitle", data);
         invisibility = persistence->extractSaveData("invisible", data);
         whenCreated = persistence->extractSaveData("whenCreated", data);
+        LastLogin = persistence->extractSaveData("LastLogin", data);
         location = persistence->extractSaveData("location", data);
     }
 }

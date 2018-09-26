@@ -67,6 +67,7 @@ private nomask object loadNewPlayerObject(string name)
         {
             ret = clone_object("/lib/realizations/wizard.c");
             ret->restore(name);
+            ret->updateLoginTime();
             movePlayerToStart(ret);
             break;
         }

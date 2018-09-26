@@ -55,9 +55,11 @@ void GetPlayerDataReturnsDataFromDatabase()
 
     // whenCreated uses "now()" and it's not feasible (without adding a test-only hack)
     // to add a static, testable value. For now, simply test its existance and
-    // remove it before testing the rest of the mapping.
+    // remove it before testing the rest of the mapping. Same for LastLogin.
     ExpectTrue(member(result, "whenCreated"));
+    ExpectTrue(member(result, "LastLogin"));
     m_delete(result, "whenCreated");
+    m_delete(result, "LastLogin");
 
     ExpectEq(expected, result);
 }
@@ -72,9 +74,11 @@ void GetPlayerDataForWizardReturnsDataFromDatabase()
 
     // whenCreated uses "now()" and it's not feasible (without adding a test-only hack)
     // to add a static, testable value. For now, simply test its existance and
-    // remove it before testing the rest of the mapping.
+    // remove it before testing the rest of the mapping. Same for LastLogin.
     ExpectTrue(member(result, "whenCreated"));
+    ExpectTrue(member(result, "LastLogin"));
     m_delete(result, "whenCreated");
+    m_delete(result, "LastLogin");
 
     ExpectEq(expected, result);
 }
