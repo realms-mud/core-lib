@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
-#include <mtypes.h>
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
@@ -34,6 +33,8 @@ private nomask void speakMessage(string message, string messageTemplate,
     // setting for color.
     if (environment(initiator))
     {
+        object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+
         foreach(object person in all_inventory(environment(initiator)))
         {
             if (person && objectp(person))
@@ -46,7 +47,6 @@ private nomask void speakMessage(string message, string messageTemplate,
                 }
                 string parsedMessage = regreplace(messageTemplate, "##Message##", newMessage);
 
-                int colorInfo = C_SAYS;
                 if (person == initiator)
                 {
                     parsedMessage = parseTemplate(parsedMessage, "initiator", initiator,
@@ -62,8 +62,9 @@ private nomask void speakMessage(string message, string messageTemplate,
                     parsedMessage = parseTemplate(parsedMessage, "other",
                         initiator, target);
                 }
-                tell_object(person, formatText(parsedMessage, colorInfo,
-                    person));
+                tell_object(person, configuration->decorate(
+                    format(parsedMessage, 78), "message", "say",
+                    person->colorConfiguration()));
             }
         }
     }

@@ -12,7 +12,7 @@ virtual inherit "/lib/core/thing.c";
 /////////////////////////////////////////////////////////////////////////////
 public int blocked(object target)
 {
-    return member(blockedUsers, target->RealName());
+    return objectp(target) && member(blocks, target->RealName());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -46,7 +46,7 @@ public nomask void clearReplyTo()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int receiveMessage(object initiator, string message)
+public nomask varargs int receiveMessage(string message, object initiator)
 {
     int ret = MessageSent;
     if (blocked(initiator))
@@ -60,7 +60,10 @@ public nomask int receiveMessage(object initiator, string message)
     }
     else
     {
-        ReplyTo = initiator;
+        if (initiator)
+        {
+            ReplyTo = initiator;
+        }
         tell_object(this_object(), message);
     }
     return ret;

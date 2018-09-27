@@ -44,15 +44,20 @@ public nomask void broadcastMessage(string channelName, string message,
         {
             if (objectp(user))
             {
+                string headerText = sprintf("[ %s %s ]: ", capitalize(channelName),
+                    ((channelName == "status") ? "" : capitalize(sender->RealName())));
+
                 string header = configuration()->decorate(
                     sprintf("[ %s %s ]: ", capitalize(channelName),
                         ((channelName == "status") ? "" : capitalize(sender->RealName()))),
                     "header", "channel", user->colorConfiguration());
 
-                string body = configuration()->decorate(message,
+                string body = configuration()->decorate(
+                    regreplace(format(headerText + message, 78), 
+                        headerText + "(.*)", "\\1"),
                     "body", "channel", user->colorConfiguration());
 
-                tell_object(user, header + body + "\n");             
+                user->receiveMessage(header + body);
             }
             else
             {

@@ -15,16 +15,19 @@ void Setup()
     Player->Name("bob");
     Player->Race("human");
     Player->reset();
+    Player->colorConfiguration("none");
 
     Target = clone_object("/lib/tests/support/services/mockPlayer.c");
     Target->Name("earl");
     Target->Race("human");
     Target->reset();
+    Target->colorConfiguration("none");
 
     Bystander = clone_object("/lib/tests/support/services/mockPlayer.c");
     Bystander->Name("frank");
     Bystander->Race("human");
     Bystander->reset();
+    Bystander->colorConfiguration("none");
 
     setUsers(({ Player, Target, Bystander }));
 }
@@ -177,4 +180,43 @@ void LanguageWithSpaceInNameCorrectlyParsed()
     ExpectTrue(Player->executeCommand("shout -l high elven This is a long message that will test how garbled stuff should get when a message is entered"));
     ExpectEq("You shout in high elven, `This is a long message that will test how garbled\nstuff should get when a message is entered'\n",
         Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NoneColorIsSupported()
+{
+    Player->colorConfiguration("3-bit");
+    ExpectTrue(Player->executeCommand("shout Hello"));
+    ExpectEq("\x1b[0;35mYou shout, `Hello'\n\x1b[0m", Player->caughtMessage());
+    ExpectEq("Bob shouts, `Hello'\n", Target->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ThreeBitColorIsSupported()
+{
+    Target->colorConfiguration("3-bit");
+    Player->colorConfiguration("3-bit");
+    ExpectTrue(Player->executeCommand("shout Hello"));
+    ExpectEq("\x1b[0;35mYou shout, `Hello'\n\x1b[0m", Player->caughtMessage());
+    ExpectEq("\x1b[0;35mBob shouts, `Hello'\n\x1b[0m", Target->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EightBitColorIsSupported()
+{
+    Target->colorConfiguration("8-bit");
+    Player->colorConfiguration("3-bit");
+    ExpectTrue(Player->executeCommand("shout Hello"));
+    ExpectEq("\x1b[0;35mYou shout, `Hello'\n\x1b[0m", Player->caughtMessage());
+    ExpectEq("\x1b[0;38;5;112mBob shouts, `Hello'\n\x1b[0m", Target->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TwentyFourBitColorIsSupported()
+{
+    Target->colorConfiguration("24-bit");
+    Player->colorConfiguration("3-bit");
+    ExpectTrue(Player->executeCommand("shout Hello"));
+    ExpectEq("\x1b[0;35mYou shout, `Hello'\n\x1b[0m", Player->caughtMessage());
+    ExpectEq("\x1b[0;38;2;190;90;190mBob shouts, `Hello'\n\x1b[0m", Target->caughtMessage());
 }

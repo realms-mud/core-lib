@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
-#include <mtypes.h>
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
@@ -35,6 +34,8 @@ private nomask void shoutMessage(string message, string messageTemplate,
         targets += ({ initiator });
     }
 
+    object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+
     foreach(object target in targets)
     {
         string newMessage = message;
@@ -55,7 +56,9 @@ private nomask void shoutMessage(string message, string messageTemplate,
             parsedMessage = parseTemplate(parsedMessage, "other",
                 initiator, target);
         }
-        tell_object(target, formatText(parsedMessage, C_SHOUT, target));
+        tell_object(target, configuration->decorate(
+            format(parsedMessage, 78), "message", "shout",
+            target->colorConfiguration()));
     }
 }
 

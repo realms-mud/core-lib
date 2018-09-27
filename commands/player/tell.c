@@ -4,7 +4,6 @@
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
 #include "/lib/include/settings.h"
-#include <mtypes.h>
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
@@ -61,28 +60,36 @@ public nomask int execute(string command, object initiator)
             "(tell [^ ]+|reply) (.*)", "\\2", 1) + "'\n", verb,
                 (verb == "reply") ? "## to" : "##");
 
-        string targetMessage = formatText(parseTemplate(message, "target",
-            initiator, target), C_TELL, target);
+        object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
-        ret = target->receiveMessage(initiator, targetMessage);
+        string targetMessage = configuration->decorate(
+            format(parseTemplate(message, "target", initiator, target), 78),
+            "message", "tell", target->colorConfiguration());
+
+        ret = target->receiveMessage(targetMessage, initiator);
 
         if (ret == Blocked)
         {
-            tell_object(initiator, sprintf("Your message was not sent. You "
-                "have been blocked by %s.\n", capitalize(target->RealName()), 
-                C_REPORT, initiator));
+            tell_object(initiator, configuration->decorate(
+                format(sprintf("Your message was not sent. You "
+                "have been blocked by %s.\n", 
+                    capitalize(target->RealName())), 78), 
+                "block", "tell", initiator->colorConfiguration()));
         }
         else if (ret == Busy)
         {
-            tell_object(initiator, sprintf("Your message was not sent. %s "
-                "is busy.\n", capitalize(target->RealName()),
-                C_REPORT, initiator));
+            tell_object(initiator, configuration->decorate(
+                format(sprintf("Your message was not sent. %s "
+                "has their status set to busy.\n",
+                    capitalize(target->RealName())), 78),
+                "busy", "tell", initiator->colorConfiguration()));
         }
         else
         {
             initiator->clearReplyTo();
-            tell_object(initiator, formatText(parseTemplate(message,
-                "initiator", initiator, target), C_TELL, initiator));
+            tell_object(initiator, configuration->decorate(
+                format(parseTemplate(message, "initiator", initiator, target), 78),
+                "message", "tell", initiator->colorConfiguration()));
         }
     }
     return ret;
