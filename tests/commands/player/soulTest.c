@@ -15,6 +15,7 @@ void Setup()
     Player->Name("bob");
     Player->Race("human");
     Player->Gender(1);
+    Player->colorConfiguration("none");
     Player->addCommands();
     move_object(Player, this_object());
 
@@ -22,6 +23,7 @@ void Setup()
     Target->Name("earl");
     Target->Race("human");
     Target->Gender(1);
+    Target->colorConfiguration("none");
     Target->addCommands();
     move_object(Target, this_object());
 
@@ -29,6 +31,7 @@ void Setup()
     Bystander->Name("frank");
     Bystander->Race("human");
     Bystander->Gender(1);
+    Bystander->colorConfiguration("none");
     Bystander->addCommands();
     move_object(Bystander, this_object());
 }
@@ -3002,4 +3005,44 @@ void CanOnlySelfTargetForCertainCommands()
     ExpectEq("You think about Bob perversely.\n", Player->caughtMessage());
     ExpectEq("Bob thinks about Bob perversely.\n", Target->caughtMessage());
     ExpectEq("Bob thinks about Bob perversely.\n", Bystander->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NoneColorIsSupported()
+{
+    Player->colorConfiguration("3-bit");
+    Bystander->colorConfiguration("none");
+    ExpectTrue(Player->executeCommand("burp"));
+    ExpectEq("\x1b[0;36mYou burp rudely.\n\x1b[0m", Player->caughtMessage());
+    ExpectEq("Bob burps rudely.\n", Bystander->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ThreeBitColorIsSupported()
+{
+    Player->colorConfiguration("8-bit");
+    Bystander->colorConfiguration("3-bit");
+    ExpectTrue(Player->executeCommand("burp"));
+    ExpectEq("\x1b[0;38;5;92mYou burp rudely.\n\x1b[0m", Player->caughtMessage());
+    ExpectEq("\x1b[0;36mBob burps rudely.\n\x1b[0m", Bystander->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EightBitColorIsSupported()
+{
+    Player->colorConfiguration("none");
+    Bystander->colorConfiguration("8-bit");
+    ExpectTrue(Player->executeCommand("burp"));
+    ExpectEq("You burp rudely.\n", Player->caughtMessage());
+    ExpectEq("\x1b[0;38;5;92mBob burps rudely.\n\x1b[0m", Bystander->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TwentyFourBitColorIsSupported()
+{
+    Player->colorConfiguration("24-bit");
+    Bystander->colorConfiguration("24-bit");
+    ExpectTrue(Player->executeCommand("burp"));
+    ExpectEq("\x1b[0;38;2;180;180;190mYou burp rudely.\n\x1b[0m", Player->caughtMessage());
+    ExpectEq("\x1b[0;38;2;180;180;190mBob burps rudely.\n\x1b[0m", Bystander->caughtMessage());
 }

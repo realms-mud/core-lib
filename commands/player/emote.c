@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
-#include <mtypes.h>
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
@@ -30,12 +29,17 @@ public nomask int execute(string command, object initiator)
 
         if (environment(initiator))
         {
+            object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
             foreach(object person in all_inventory(environment(initiator)))
             {
                 if (person && objectp(person))
                 {
-                    tell_object(person, formatText(message, C_EMOTES,
-                        person));
+                    if (!person->blocked(initiator))
+                    {
+                        tell_object(person, configuration->decorate(
+                            format(message, 78), "message", "soul",
+                            person->colorConfiguration()));
+                    }
                 }
             }
         }

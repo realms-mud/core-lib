@@ -62,9 +62,12 @@ private nomask void speakMessage(string message, string messageTemplate,
                     parsedMessage = parseTemplate(parsedMessage, "other",
                         initiator, target);
                 }
-                tell_object(person, configuration->decorate(
-                    format(parsedMessage, 78), "message", "say",
-                    person->colorConfiguration()));
+                if (!person->blocked(initiator))
+                {
+                    tell_object(person, configuration->decorate(
+                        format(parsedMessage, 78), "message", "say",
+                        person->colorConfiguration()));
+                }
             }
         }
     }

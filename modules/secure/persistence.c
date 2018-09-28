@@ -230,3 +230,9 @@ public varargs string characterState(object target, string newState)
     return DataAccess()->getCharacterState(this_object()->Name(),
         targetKey);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public int playerExists(string name)
+{
+    return DataAccess()->playerExists(name);
+}

@@ -42,7 +42,7 @@ public nomask void broadcastMessage(string channelName, string message,
     {
         foreach(object user in channelRegistry[channelName])
         {
-            if (objectp(user))
+            if (objectp(user) && !user->blocked(sender))
             {
                 string headerText = sprintf("[ %s %s ]: ", capitalize(channelName),
                     ((channelName == "status") ? "" : capitalize(sender->RealName())));
@@ -52,14 +52,12 @@ public nomask void broadcastMessage(string channelName, string message,
                         ((channelName == "status") ? "" : capitalize(sender->RealName()))),
                     "header", "channel", user->colorConfiguration());
 
-                string body = configuration()->decorate(
-                    regreplace(format(headerText + message, 78), 
-                        headerText + "(.*)", "\\1"),
-                    "body", "channel", user->colorConfiguration());
-
+                string body = explode(format(headerText + message, 78), headerText)[1];
+                body = configuration()->decorate(body, "body", "channel", 
+                    user->colorConfiguration());
                 user->receiveMessage(header + body);
             }
-            else
+            else if(!objectp(user))
             {
                 channelRegistry[channelName] -= ({ user });
             }

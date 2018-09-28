@@ -16,6 +16,28 @@ public int blocked(object target)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public int block(string name)
+{
+    int ret = 0;
+
+    if (name && stringp(name) && this_object()->playerExists(name))
+    {
+        ret = 1;
+        blocks[name] = 1;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void unblock(string name)
+{
+    if (member(blocks, name))
+    {
+        m_delete(blocks, name);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isBusy()
 {
     return IsBusy;

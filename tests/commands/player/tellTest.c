@@ -92,10 +92,10 @@ void TellBeforeResponseClearsReplyTo()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerCannotSendTellWhenBlocked()
 {
-    Target->toggleBlockPlayer();
-    ExpectTrue(Player->executeCommand("tell earl Hello"));
-    ExpectEq("\x1b[0;31;1mYour message was not sent. You have been blocked by Earl.\n\x1b[0m", Player->caughtMessage());
-    ExpectFalse(Target->caughtMessage());
+    ExpectTrue(Player->block("earl"));
+    ExpectTrue(Target->executeCommand("tell bob Hello"));
+    ExpectEq("\x1b[0;31;1mYour message was not sent. You have been blocked by Bob.\n\x1b[0m", Target->caughtMessage());
+    ExpectFalse(Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ void PlayerCannotSendTellWhenTargetBusy()
 {
     Target->toggleBusy();
     ExpectTrue(Player->executeCommand("tell earl Hello"));
-    ExpectEq("\x1b[0;31;1mYour message was not sent. Earl has their status set to busy.\n\x1b[0m", Player->caughtMessage());
+    ExpectEq("\x1b[0;31;1mYour message was not sent. Earl has its status set to busy.\n\x1b[0m", Player->caughtMessage());
     ExpectFalse(Target->caughtMessage());
 }
 

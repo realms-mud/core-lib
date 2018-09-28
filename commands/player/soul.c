@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
-#include <mtypes.h>
 
 mapping emoteTemplates = ([
     "ack": ([ 
@@ -1084,30 +1083,46 @@ private nomask void speakMessage(string messageTemplate,
 {
     if (environment(initiator))
     {
-        foreach(object person in all_inventory(environment(initiator)))
+        object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+        if (objectp(target) && target->blocked(initiator))
         {
-            if (person && objectp(person))
+            tell_object(initiator, configuration->decorate(
+                format(sprintf("Command failed: You have been blocked "
+                    "by %s and cannot target %s.\n",
+                    capitalize(target->RealName()), target->Objective()), 78),
+                "block", "soul", initiator->colorConfiguration()));
+        }
+        else
+        {
+            foreach(object person in all_inventory(environment(initiator)))
             {
-                string parsedMessage = messageTemplate;
+                if (person && objectp(person))
+                {
+                    string parsedMessage = messageTemplate;
 
-                int colorInfo = C_SAYS;
-                if (person == initiator)
-                {
-                    parsedMessage = parseTemplate(parsedMessage, "initiator", initiator,
-                        target);
+                    if (person == initiator)
+                    {
+                        parsedMessage = parseTemplate(parsedMessage, "initiator", initiator,
+                            target);
+                    }
+                    else if (person == target)
+                    {
+                        parsedMessage = parseTemplate(parsedMessage, "target",
+                            initiator, target);
+                    }
+                    else
+                    {
+                        parsedMessage = parseTemplate(parsedMessage, "other",
+                            initiator, target);
+                    }
+
+                    if (!person->blocked(initiator))
+                    {
+                        tell_object(person, configuration->decorate(
+                            format(parsedMessage, 78), "message", "soul",
+                            person->colorConfiguration()));
+                    }
                 }
-                else if (person == target)
-                {
-                    parsedMessage = parseTemplate(parsedMessage, "target",
-                        initiator, target);
-                }
-                else
-                {
-                    parsedMessage = parseTemplate(parsedMessage, "other",
-                        initiator, target);
-                }
-                tell_object(person, formatText(parsedMessage, colorInfo,
-                    person));
             }
         }
     }

@@ -56,9 +56,12 @@ private nomask void shoutMessage(string message, string messageTemplate,
             parsedMessage = parseTemplate(parsedMessage, "other",
                 initiator, target);
         }
-        tell_object(target, configuration->decorate(
-            format(parsedMessage, 78), "message", "shout",
-            target->colorConfiguration()));
+        if (!target->blocked(initiator))
+        {
+            tell_object(target, configuration->decorate(
+                format(parsedMessage, 78), "message", "shout",
+                target->colorConfiguration()));
+        }
     }
 }
 

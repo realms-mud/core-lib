@@ -80,8 +80,8 @@ public nomask int execute(string command, object initiator)
         {
             tell_object(initiator, configuration->decorate(
                 format(sprintf("Your message was not sent. %s "
-                "has their status set to busy.\n",
-                    capitalize(target->RealName())), 78),
+                "has %s status set to busy.\n",
+                    capitalize(target->RealName()), target->Possessive()), 78),
                 "busy", "tell", initiator->colorConfiguration()));
         }
         else

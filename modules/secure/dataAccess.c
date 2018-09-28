@@ -108,3 +108,25 @@ public nomask string playerType(string name)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int playerExists(string name)
+{
+    int ret = 0;
+
+    string query = sprintf("select players.id from players "
+        "where players.name = '%s'", sanitizeString(name));
+
+    int dbHandle = connect();
+
+    db_exec(dbHandle, query);
+
+    mixed result = db_fetch(dbHandle);
+    disconnect(dbHandle);
+
+    if (result)
+    {
+        ret = 1;
+    }
+    return ret;
+}
