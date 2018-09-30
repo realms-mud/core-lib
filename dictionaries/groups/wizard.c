@@ -23,4 +23,5 @@ protected nomask void applyGroupDetails()
     addCommand("rm");
     addCommand("show");
     addCommand("stat");
+    addCommand("mkdir");
 }
