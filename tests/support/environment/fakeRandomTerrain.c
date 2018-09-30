@@ -7,9 +7,10 @@ inherit "/lib/environment/terrain/baseTerrain.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("fake forest");
+    Name("fake forest2");
 
-    addAdjectives(({ "deciduous" }));
+    addAdjectives(({ "a cedar grotto" }));
 
-    addDescriptionTemplate("a ##Adjective## forest");
+    addDescriptionTemplate("##Adjective##");
+    suppressEntryMessage();
 }

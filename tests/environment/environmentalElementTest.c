@@ -166,3 +166,13 @@ void SuppressEntryMessageSetsFlag()
     Element->testSuppressEntryMessage();
     ExpectFalse(Element->displayActionText());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void FullyRandomDescriptionsCanBeDisplayed()
+{
+    object randomTerrain = clone_object(
+        "/lib/tests/support/environment/fakeRandomTerrain.c");
+
+    ExpectEq("a cedar grotto", randomTerrain->description());
+    destruct(randomTerrain);
+}

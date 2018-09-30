@@ -31,7 +31,7 @@ void DefaultDescriptionDisplaysCorrectlyForTerrain()
     Environment->testAddFeature("fake feature", "east");
     Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
-    ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east, north and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign.",
+    ExpectSubStringMatch("a deciduous forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east, north and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign.",
         regreplace(Environment->long(), "\n", " ", 1));
 }
 
@@ -45,7 +45,7 @@ void BuildingWithoutExitDisplaysCorrectly()
     Environment->testAddFeature("fake feature", "east");
     Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
-    ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign. To the north you see a building.*no obvious exits",
+    ExpectSubStringMatch("a deciduous forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign. To the north you see a building.*no obvious exits",
         regreplace(Environment->long(), "\n", " ", 1));
 }
 
@@ -59,7 +59,7 @@ void BuildingWithExitDisplaysCorrectly()
     Environment->testAddFeature("fake feature", "east");
     Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
-    ExpectSubStringMatch("a forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign. To the north you see a building.*one obvious exit: north",
+    ExpectSubStringMatch("a deciduous forest. To the south you see a dark and foreboding cave largely obscured by foliage.*To the east and west you see a stand of majestic oak trees with branches laden with acorns.*To the north you see a sign. To the north you see a building.*one obvious exit: north",
         regreplace(Environment->long(), "\n", " ", 1));
 }
 
@@ -69,7 +69,7 @@ void SuppressMessageHidesYouSeeFromFeature()
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddFeature("/lib/tests/support/environment/suppressEntryFeature.c", "south");
 
-    ExpectSubStringMatch("a forest. To the south a stand of majestic oak",
+    ExpectSubStringMatch("a deciduous forest. To the south a stand of majestic oak",
         regreplace(Environment->long(), "\n", " ", 1));
 }
 
@@ -655,7 +655,7 @@ void SetAdditionalLongDescriptionAddsCustomLong()
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment->testSetAdditionalLongDescription("This is an extra message");
-    ExpectSubStringMatch("a forest. To the north you see a stand of majestic oak trees with branches laden with acorns.*This is an extra message",
+    ExpectSubStringMatch("a deciduous forest. To the north you see a stand of majestic oak trees with branches laden with acorns.*This is an extra message",
         regreplace(Environment->long(), "\n", " ", 1));
 }
 
@@ -665,7 +665,7 @@ void AdditionalLongDescriptionAddsCustomLongOnlyToCorrectState()
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment->testSetAdditionalLongDescription("This is an extra message", "blah");
-    ExpectSubStringMatch("a forest. To the north you see a stand of majestic oak trees with branches laden with acorns.*",
+    ExpectSubStringMatch("a deciduous forest. To the north you see a stand of majestic oak trees with branches laden with acorns.*",
         regreplace(Environment->long(), "\n", " ", 1));
 
     Environment->currentState("blah");
@@ -682,7 +682,7 @@ void ParseEfunCallForCallOtherWithKeyDisplaysInLong()
     Environment->reset();
 
     ExpectTrue(present_clone("/lib/tests/support/items/testSword.c", Environment), "weapon present");
-    ExpectSubStringMatch("a forest. You can feel a weaselish buzz in the air",
+    ExpectSubStringMatch("a deciduous forest. You can feel a weaselish buzz in the air",
         regreplace(Environment->long(), "\n", " ", 1));
 
 }

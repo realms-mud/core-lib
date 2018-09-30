@@ -321,7 +321,7 @@ void LookAtNonexistentThingReturnsFailureMessage()
 void LookWithoutArgsShowsEnvironment()
 {
     ExpectTrue(Player->executeCommand("look"));
-    ExpectSubStringMatch("a forest. To the north.*Bob",
+    ExpectSubStringMatch("a deciduous forest. To the north.*Bob",
         Player->caughtMessage());
 }
 

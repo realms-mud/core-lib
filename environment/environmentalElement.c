@@ -132,7 +132,7 @@ public nomask int displayActionText()
 /////////////////////////////////////////////////////////////////////////////
 private nomask string parseEntryAction(string message, mapping data)
 {
-    return !displayActionText() ? "" : environmentDictionary()->getEntryMessage() + " " +
+    return !displayActionText() ? message : environmentDictionary()->getEntryMessage() + " " +
         message + ".";
 }
 
@@ -144,9 +144,9 @@ private nomask string parseAdjectives(string message, mapping data)
     if (member(data, "adjectives") && sizeof(data["adjectives"]) &&
         sizeof(regexp(({ message}), "##Adjective##")))
     {
-        ret = regreplace(ret, "##Adjective## ", 
+        ret = regreplace(ret, "##Adjective##( *)", 
             environmentDictionary()->sunlightIsVisible() ?
-            data["adjectives"][random(sizeof(data["adjectives"]))] + " " : "", 1);
+            data["adjectives"][random(sizeof(data["adjectives"]))] + "\\1" : "", 1);
     }
     return ret;
 }
