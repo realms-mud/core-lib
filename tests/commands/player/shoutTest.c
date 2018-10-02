@@ -51,7 +51,7 @@ void ShoutSendsMessageToAllPeople()
 /////////////////////////////////////////////////////////////////////////////
 void ShoutSendsToInitiatorEvenWhenEarmuffed()
 {
-    Player->toggleEarmuffs();
+    Player->executeCommand("set -p earmuffs -v on");
     ExpectTrue(Player->executeCommand("shout Hello"));
     ExpectEq("You shout, `Hello'\n", Player->caughtMessage());
     ExpectEq("Bob shouts, `Hello'\n", Target->caughtMessage());
@@ -60,7 +60,8 @@ void ShoutSendsToInitiatorEvenWhenEarmuffed()
 /////////////////////////////////////////////////////////////////////////////
 void ShoutDoesNotSendToEarmuffedUser()
 {
-    Target->toggleEarmuffs();
+    Target->executeCommand("set -p earmuffs -v on");
+    Target->resetCatchList();
     ExpectTrue(Player->executeCommand("shout Hello"));
     ExpectEq("You shout, `Hello'\n", Player->caughtMessage());
     ExpectFalse(Target->caughtMessage());

@@ -16,6 +16,7 @@ void Setup()
     Player->Race("human");
     Player->Gender(1);
     Player->colorConfiguration("none");
+    Player->resetCatchList();
     Player->addCommands();
     move_object(Player, this_object());
 
@@ -24,6 +25,7 @@ void Setup()
     Target->Race("human");
     Target->Gender(1);
     Target->colorConfiguration("none");
+    Target->resetCatchList();
     Target->addCommands();
     move_object(Target, this_object());
 
@@ -32,6 +34,7 @@ void Setup()
     Bystander->Race("human");
     Bystander->Gender(1);
     Bystander->colorConfiguration("none");
+    Bystander->resetCatchList();
     Bystander->addCommands();
     move_object(Bystander, this_object());
 }

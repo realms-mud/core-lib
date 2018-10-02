@@ -235,7 +235,8 @@ protected nomask void addPermission(string path, int permission)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void addCommand(string command)
 {
-    if ((member(get_dir("/lib/commands/wizard/"), command + ".c") > -1))
+    if ((member(get_dir("/lib/commands/wizard/"), command + ".c") > -1) ||
+        (member(get_dir("/lib/commands/player/"), command + ".c") > -1))
     {
         commands = m_indices(mkmapping(commands + ({ command })));
     }

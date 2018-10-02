@@ -20,10 +20,24 @@ public int block(string name)
 {
     int ret = 0;
 
-    if (name && stringp(name) && this_object()->playerExists(name))
+    if (name && stringp(name))
     {
-        ret = 1;
-        blocks[name] = 1;
+        if (this_object()->playerExists(name))
+        {
+            ret = 1;
+            blocks[name] = 1;
+            tell_object(this_object(), format(sprintf("You are now blocking %s. You "
+                "will no longer see communication (say, tell, shout, channels, "
+                "emotes, or soul actions) from this person. All attempted "
+                "interactions by them will be logged in the event you need "
+                "to escalate a harassment claim.\n",
+                capitalize(name)), 78));
+        }
+        else
+        {
+            tell_object(this_object(), format(sprintf("Blocking %s failed. That "
+                "player does not exist.\n", capitalize(name)), 78));
+        }
     }
     return ret;
 }
@@ -34,6 +48,8 @@ public void unblock(string name)
     if (member(blocks, name))
     {
         m_delete(blocks, name);
+        tell_object(this_object(), sprintf("You are no longer blocking %s.\n",
+            capitalize(name)));
     }
 }
 
@@ -50,15 +66,19 @@ public nomask int isEarmuffed()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void toggleBusy()
+public nomask void setBusy(string state)
 {
-    IsBusy = !IsBusy;
+    IsBusy = (state == "on");
+    tell_object(this_object(), sprintf("You have set your busy flag to '%s'.\n",
+        IsBusy ? "on" : "off"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void toggleEarmuffs()
+public nomask void setEarmuffs(string state)
 {
-    Earmuffs = !Earmuffs;
+    Earmuffs = (state == "on");
+    tell_object(this_object(), sprintf("You have set your earmuffs to '%s'.\n",
+        Earmuffs ? "on" : "off"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -75,7 +95,7 @@ public nomask varargs int receiveMessage(string message, object initiator)
     {
         ret = Blocked;
     }
-    // TODO: 47 - Need to allow higher level wizards to bypass busy flag
+
     else if (isBusy())
     {
         ret = Busy;
@@ -102,7 +122,10 @@ public nomask varargs int pageSize(int newSize)
 {
     if (newSize)
     {
-        PageSize = newSize;
+        PageSize = to_int(newSize);
+        tell_object(this_object(), sprintf("You have set your page size to %d.\n",
+            PageSize));
+
     }
     return PageSize;
 }
@@ -113,6 +136,8 @@ public nomask varargs string colorConfiguration(string newColorSetting)
     if(member(({ "none", "3-bit", "8-bit", "24-bit" }), newColorSetting) > -1)
     {
         colorSetting = newColorSetting;
+        tell_object(this_object(), sprintf("You have set your color to '%s'.\n",
+            colorSetting));
     }
     return colorSetting;
 }
@@ -123,6 +148,8 @@ public nomask varargs string charsetConfiguration(string newCharSet)
     if (member(({ "ascii", "unicode" }), newCharSet) > -1)
     {
         characterSet = newCharSet;
+        tell_object(this_object(), sprintf("You have set your character set to '%s'.\n",
+            characterSet));
     }
     return characterSet;
 }
