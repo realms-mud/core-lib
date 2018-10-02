@@ -155,7 +155,14 @@ private nomask varargs int addEnvironmentalElement(string element, string type, 
         ret = environmentDictionary()->registerElement(element, type);
         if (ret)
         {
-            element = load_object(element)->Name();
+            object elementObj = load_object(element);
+            element = elementObj->Name();
+
+            if (location && !elementObj->description())
+            {
+                raise_error(sprintf("ERROR in environment.c: You cannot specify a "
+                    "direction for '%s' as it has no description.\n", element));
+            }
         }
         else if((file_size(element) > 0) &&
             environmentDictionary()->isValidEnvironmentItem(load_object(element)->Name(), type))
@@ -478,9 +485,15 @@ private string getElementDescriptions(string type)
                 environmentDictionary()->environmentalObject(element);
             if (elementObj)
             {
-                ret += directions + 
-                    (elementObj->displayActionText() ? " you see " : " ") +
-                    elementObj->description(currentState()) + ".";
+                string elementDescription =
+                    elementObj->description(currentState());
+
+                if (elementDescription && (elementDescription != ""))
+                {
+                    ret += directions +
+                        (elementObj->displayActionText() ? " you see " : " ") +
+                        elementDescription + ".";
+                }
             }
         }
     }

@@ -788,3 +788,35 @@ void CannotAddUndefinedDefaultLocations()
     string error = catch (Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "turnip"));
     ExpectSubStringMatch("ERROR in environment.c.*turnip", error);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DescriptionDisplaysCorrectlyForObjectsWithoutDescriptions()
+{
+    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    Environment->testAddItem("/lib/tests/support/environment/itemWithoutDescription.c");
+
+    ExpectEq("a stone hallway.\n\x1b[0m\x1b[0;30;1m -=-=- There are no obvious exits.\n\x1b[0m",
+        regreplace(Environment->long(), ".+ (a stone.+)", "\\1"));
+    ExpectTrue(Environment->id("descriptionless sign"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DescriptionDisplaysCorrectlyForObjectsWithEmptyDescriptions()
+{
+    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    Environment->testAddItem("/lib/tests/support/environment/itemWithEmptyDescription.c");
+
+    ExpectEq("a stone hallway.\n\x1b[0m\x1b[0;30;1m -=-=- There are no obvious exits.\n\x1b[0m",
+        regreplace(Environment->long(), ".+ (a stone.+)", "\\1"));
+    ExpectTrue(Environment->id("descriptionless sign"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ObjectsWithoutDescriptionsCannotHaveDirection()
+{
+    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    string error = catch (Environment->testAddItem("/lib/tests/support/environment/itemWithoutDescription.c", "north"));
+
+    ExpectEq("*ERROR in environment.c: You cannot specify a direction for "
+        "'descriptionless sign' as it has no description.\n", error);
+}

@@ -176,3 +176,13 @@ void FullyRandomDescriptionsCanBeDisplayed()
     ExpectEq("a cedar grotto", randomTerrain->description());
     destruct(randomTerrain);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void WhenMessagesAreSuppressedDescriptionCanBeNull()
+{
+    object itemWithoutDescription = clone_object(
+        "/lib/tests/support/environment/itemWithoutDescription.c");
+
+    ExpectFalse(itemWithoutDescription->description());
+    destruct(itemWithoutDescription);
+}

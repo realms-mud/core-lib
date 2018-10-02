@@ -203,7 +203,7 @@ public nomask varargs string description(string state)
             descriptionData["default"]);
     }
 
-    if (!ret)
+    if (displayActionText() && !ret)
     {
         raise_error(sprintf("ERROR in baseFeature.c: The description for "
             "the %s state does not exist.\n", state));

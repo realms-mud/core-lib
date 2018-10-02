@@ -7,6 +7,7 @@ inherit "/lib/environment/items/baseItem.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("fake sign");
-    addDescriptionTemplate("a sign");
+    Name("descriptionless sign");
+    suppressEntryMessage();
+    addItemTemplate("a sign");
 }
