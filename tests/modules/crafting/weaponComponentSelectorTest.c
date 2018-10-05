@@ -98,7 +98,7 @@ void SpecificWeaponMenuDisplaysCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 9.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -119,7 +119,7 @@ void SelectingComponentDisplaysComponentMenu()
     command("1", Player);
 
     ExpectEq("\x1b[0;36mCraft Blade - \x1b[0m\x1b[0;37;1mSelect materials and the type of blade you will craft\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;35;1mnone\x1b[0m     "
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;34;1mnone\x1b[0m     "
         "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlamberge           \x1b[0m         \n"
         "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSerrated            \x1b[0m         "
         "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mType X              \x1b[0m         \n"
@@ -148,8 +148,8 @@ void SelectingComponentDisplaysComponentMenu()
         "\x1b[0;32;1mYou must select a number from 1 to 26.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
-        "\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
+        "\x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -168,7 +168,7 @@ void SelectingMaterialChangesSelectedComponentInMenu()
     command("1", Player);
 
     ExpectEq("\x1b[0;36mCraft Blade - \x1b[0m\x1b[0;37;1mSelect materials and the type of blade you will craft\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;35;1madmantite\x1b[0m"
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;34;1madmantite\x1b[0m"
         "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlamberge           \x1b[0m         \n"
         "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSerrated            \x1b[0m         "
         "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mType X              \x1b[0m         \n"
@@ -197,8 +197,8 @@ void SelectingMaterialChangesSelectedComponentInMenu()
         "\x1b[0;32;1mYou must select a number from 1 to 26.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
-        "\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
+        "\x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -210,12 +210,12 @@ void SelectingTypeFlagsChosenTypeInComponentMenu()
     command("6", Player);
 
     ExpectEq("\x1b[0;36mCraft Blade - \x1b[0m\x1b[0;37;1mSelect materials and the type of blade you will craft\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;35;1mnone\x1b[0m     "
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;34;1mnone\x1b[0m     "
         "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlamberge           \x1b[0m         \n"
         "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSerrated            \x1b[0m         "
         "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mType X              \x1b[0m         \n"
         "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mType XI             \x1b[0m         "
-        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mType XIII           \x1b[0m\x1b[0;35;1m   (*)\x1b[0m   \n"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mType XIII           \x1b[0m\x1b[0;34;1m   (*)\x1b[0m   \n"
         "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mType XIIa           \x1b[0m         "
         "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mType XIV            \x1b[0m         \n"
         "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mType XIX            \x1b[0m         "
@@ -239,8 +239,8 @@ void SelectingTypeFlagsChosenTypeInComponentMenu()
         "\x1b[0;32;1mYou must select a number from 1 to 26.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
-        "\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
+        "\x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -260,12 +260,12 @@ void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
     command("6", Player);
 
     ExpectEq("\x1b[0;36mCraft Blade - \x1b[0m\x1b[0;37;1mSelect materials and the type of blade you will craft\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;35;1madmantite\x1b[0m"
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;34;1madmantite\x1b[0m"
         "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlamberge           \x1b[0m         \n"
         "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSerrated            \x1b[0m         "
         "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mType X              \x1b[0m         \n"
         "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mType XI             \x1b[0m         "
-        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mType XIII           \x1b[0m\x1b[0;35;1m   (*)\x1b[0m   \n"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mType XIII           \x1b[0m\x1b[0;34;1m   (*)\x1b[0m   \n"
         "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mType XIIa           \x1b[0m         "
         "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mType XIV            \x1b[0m         \n"
         "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mType XIX            \x1b[0m         "
@@ -289,8 +289,8 @@ void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
         "\x1b[0;32;1mYou must select a number from 1 to 26.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
-        "\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
+        "\x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -331,7 +331,7 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
         "\x1b[0;32;1mYou must select a number from 1 to 9.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -372,7 +372,7 @@ void ConfirmSetsValuesForWeaponCraftingMenu()
         "\x1b[0;32;1mYou must select a number from 1 to 9.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 

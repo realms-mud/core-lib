@@ -199,7 +199,7 @@ void SelectionDisabledWhenMaterialAndPrerequisiteChecksFail()
     Selector->initiateSelector(Player);
     command("12", Player);
 
-    ExpectSubStringMatch("31mLong sword.*34;1m.*35mP,M",
+    ExpectSubStringMatch("31mLong sword.*35m.P,M",
         Player->caughtMessage());
 }
 
@@ -218,7 +218,7 @@ void SelectionDisabledWhenMaterialCheckFailsButPrerequisitesPass()
     Selector->initiateSelector(Player);
     command("12", Player);
 
-    ExpectSubStringMatch("31mLong sword.*34;1m.*35mM",
+    ExpectSubStringMatch("31mLong sword.*35m.M",
         Player->caughtMessage());
 }
 
@@ -255,7 +255,7 @@ void SelectionEnabledWhenMaterialCheckPassesButPrerequisitesFail()
     Selector->initiateSelector(Player);
     command("12", Player);
 
-    ExpectSubStringMatch("31mLong sword.*34;1m.*35mP",
+    ExpectSubStringMatch("31mLong sword.*35m.P",
         Player->caughtMessage());
 }
 

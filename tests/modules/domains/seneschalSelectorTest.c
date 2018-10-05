@@ -32,11 +32,11 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
-        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -51,11 +51,11 @@ void SelectUnavailableOptionReturnsToMainMenu()
     command("2", Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
-        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -71,10 +71,10 @@ void TopLevelMenuWithAdministrationProjectPrereqMetDisplaysCorrectly()
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
         "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mAdministration Projects\x1b[0m\n"
-        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -89,11 +89,11 @@ void TopLevelMenuWithBuildingProjectPrereqMetDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
-        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mBuilding Projects\x1b[0m\n"
-        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -108,11 +108,11 @@ void TopLevelMenuWithHiringPrereqMetDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
-        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mHire New Henchmen\x1b[0m\n"
-        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -127,11 +127,11 @@ void TopLevelMenuWithHoldingsPrereqMetDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
-        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mResources and Holdings\x1b[0m\n"
-        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -146,10 +146,10 @@ void TopLevelMenuWithTaskPrereqMetDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
-        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mManage Tasks\x1b[0m\n"
         "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
@@ -219,7 +219,7 @@ void DescriptionsAreDisplayed()
     Selector->initiateSelector(Player);
     command("? 1", Player);
     ExpectSubStringMatch("This option lets you administer to your realm - "
-        "be it the taxation of your subjects or the assigning of workers to "
+        "be it the taxation of your\nsubjects or the assigning of workers to "
         "the various projects in your domain.",
         Player->caughtMessage());
 }

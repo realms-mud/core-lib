@@ -130,12 +130,14 @@ protected nomask string displayDetails(string choice)
     if ((member(enchantmentList, Data[choice]["type"]) > -1) &&
         (itemEnchantments[Data[choice]["type"]] > 0))
     {
-        ret = "\x1b[0;35;1m(";
+        ret = "(";
         for (int i = 0; i < itemEnchantments[Data[choice]["type"]]; i++)
         {
             ret += "*";
         }
-        ret += ")\x1b[0m";
+        ret += ")";
+        ret = configuration->decorate(ret, "selected", "selector", colorConfiguration);
+
         for (int i = 0; i < (3 - itemEnchantments[Data[choice]["type"]]); i++)
         {
             ret += " ";
@@ -153,7 +155,9 @@ protected nomask string displayDetails(string choice)
         {
             flags += ({ "M" });
         }
-        ret = sizeof(flags) ? sprintf("\x1b[0;34;1m(\x1b[0;35m%s\x1b[0;34;1m)\x1b[0m", implode(flags, ",")) : "     ";
+        ret = sizeof(flags) ? configuration->decorate(sprintf("(%s)",
+            implode(flags, ",")), "note", "selector", colorConfiguration) : "     ";
+
         if (sizeof(flags) == 1)
         {
             ret += "  ";
@@ -165,10 +169,13 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
+    string displayType = Data[choice]["canShow"] ? "choice enabled" : "choice disabled";
+
     return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "    " : "", Red,
+        (NumColumns < 3) ? "    " : "",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        Data[choice]["canShow"] ? "\x1b[0;32m%-20s\x1b[0m" : "\x1b[0;31m%-20s\x1b[0m",
+        configuration->decorate("%-20s", displayType, "selector", colorConfiguration),
         displayDetails(choice));
 }
 
@@ -176,12 +183,23 @@ protected string choiceFormatter(string choice)
 protected nomask string additionalInstructions()
 {
     string ret = sprintf("You can imbue this item with %d more (out of %d) enchantments.\n",
-        CraftingItem->query("possible enchantments") - CraftingItem->query("total enchantments"),
+        CraftingItem->query("possible enchantments") - 
+        CraftingItem->query("total enchantments"),
         CraftingItem->query("possible enchantments"));
 
-    string otherInfo = "\x1b[0;32mEach \x1b[0;35;1m*\x1b[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
-        "\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
-        "\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that material requirements are missing.\n";
+    string otherInfo = configuration->decorate("Each ", "details", "selector", 
+        colorConfiguration) + 
+        configuration->decorate("*", "selected", "selector", colorConfiguration) + 
+        configuration->decorate(" denotes that an enchantment has been "
+            "chosen once (max 3 per option).\n", "details", "selector",
+            colorConfiguration) +
+        configuration->decorate("P", "note", "selector", colorConfiguration) +
+        configuration->decorate(" denotes unrealized prerequisites.\n",
+            "details", "selector", colorConfiguration) +
+        configuration->decorate("M", "note", "selector", colorConfiguration) +
+        configuration->decorate(" denotes that proper quantities of the "
+            "material requirements are missing.\n",
+            "details", "selector", colorConfiguration);
     return CraftingComponent ? ret + otherInfo : ret;
 }
 

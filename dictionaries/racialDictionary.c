@@ -326,7 +326,7 @@ private nomask string otherBonusesDescription(string race)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string racialDescription(string race)
 {
-    string ret = races[race]["description"] +
+    string ret = races[race]["description"] + "\n" +
         sprintf("\nThe %s race incurs the following in-game bonuses/penalties:\n",
             race) +
         startingSkillsAndTraits(race) + 

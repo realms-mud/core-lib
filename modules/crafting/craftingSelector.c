@@ -74,8 +74,17 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    return sprintf("[%s]%s - %s%s", Red,
-        padSelectionDisplay(choice),
-        Data[choice]["canShow"] ? "\x1b[0;32m%s\x1b[0m" : "\x1b[0;31m%-40s \x1b[0;35m(Missing Prerequisites)\x1b[0m",
-        displayDetails(choice));
+    string displayText = configuration->decorate("%s", "choice enabled",
+        "selector", colorConfiguration);
+    if (!Data[choice]["canShow"])
+    {
+        displayText = configuration->decorate("%-40s ", "choice disabled",
+            "selector", colorConfiguration) +
+            configuration->decorate("(Missing Prerequisites)", "note", "selector",
+                colorConfiguration);
+    }
+
+    return sprintf("[%s]%s - %s%s",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        padSelectionDisplay(choice), displayText, displayDetails(choice));
 }

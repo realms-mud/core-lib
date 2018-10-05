@@ -46,7 +46,8 @@ void InitialCreationDisplayIsCorrect()
         "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mHuman               \x1b[0m\n"
         "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mMaegenstryd         \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
-        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') "
+        "where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         User->caughtMessage());
 }
 
@@ -163,7 +164,7 @@ void DescribeDraconidDisplaysDraconidDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 1");
-    ExpectEq("\x1b[0;36m\n"
+    ExpectEq("\x1b[0;36m\n\n"
         "The draconid race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m8\x1b[0m\n"
         "\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m4\x1b[0m\n"
@@ -191,10 +192,10 @@ void DescribeDwarfDisplaysDwarfDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 2");
-    ExpectEq("\x1b[0;36mThe dwarves are a short, stocky race of people. They generally\n"
-        "live in hilly or mountainous areas, usually inside caves or\n"
-        "similar dwellings. Dwarven craftsmanship is world renowned\n"
-        "for it's durability and functionality. Dwarven structures are\n"
+    ExpectEq("\x1b[0;36mThe dwarves are a short, stocky race of people. They generally "
+        "live in hilly\nor mountainous areas, usually inside caves or "
+        "similar dwellings. Dwarven\ncraftsmanship is world renowned "
+        "for it's durability and functionality. Dwarven\nstructures are "
         "built to last through war and the elements.\n\n"
         "The dwarf race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m8\x1b[0m\n"
@@ -220,15 +221,15 @@ void DescribeElfDisplaysElfDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 3");
-    ExpectEq("\x1b[0;36mIn appearance, elves typically have grey or blue eyes and blond\n"
-        "hair. They are fair to look upon and typically stand taller than\n"
-        "humans. In all ways, their bearing is majestic and sight of them\n"
-        "demands attention. Elves, while they can be slain in battle or by\n"
-        "mishap, do not age in the way that most races do - in fact, some\n"
+    ExpectEq("\x1b[0;36mIn appearance, elves typically have grey or blue eyes and blond "
+        "hair. They are\nfair to look upon and typically stand taller than "
+        "humans. In all ways, their\nbearing is majestic and sight of them "
+        "demands attention. Elves, while they can\nbe slain in battle or by "
+        "mishap, do not age in the way that most races do - in\nfact, some "
         "consider them 'immortal'. The elves also tend to be aloof and\n"
-        "somewhat detached from the outside world, seemingly only interested\n"
-        "in their own lives. Elves also favor nature and natural beauty,\n"
-        "their buildings and art reflect this.\n\n"
+        "somewhat detached from the outside world, seemingly only interested "
+        "in their\nown lives. Elves also favor nature and natural beauty, "
+        "their buildings and art\nreflect this.\n\n"
         "The elf race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m10\x1b[0m\n"
         "\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m4\x1b[0m\n"
@@ -252,12 +253,12 @@ void DescribeFaerieDisplaysFaerieDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 4");
-    ExpectEq("\x1b[0;36mThe faeries are a magical race of winged humanoids. They are\n"
-        "smaller than humans, and are generally friendly to all. The\n"
-        "faeries enjoy conversation, and enjoy companionship. They\n"
-        "tend to have their own personal agendas, that they keep to\n"
-        "themselves, faeries like secrets. The faeries tend to reside\n"
-        "in forests or prairies, though they hide their existence well.\n\n"
+    ExpectEq("\x1b[0;36mThe faeries are a magical race of winged humanoids. They are "
+        "smaller than\nhumans, and are generally friendly to all. The "
+        "faeries enjoy conversation, and\nenjoy companionship. They "
+        "tend to have their own personal agendas, that they\nkeep to "
+        "themselves, faeries like secrets. The faeries tend to reside "
+        "in\nforests or prairies, though they hide their existence well.\n\n"
         "The faerie race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m10\x1b[0m\n"
         "\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m5\x1b[0m\n"
@@ -283,12 +284,12 @@ void DescribeGnomeDisplaysGnomeDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 5");
-    ExpectEq("\x1b[0;36mThe gnomes are an intelligent race of beings closely related\n"
-        "to the dwarves. They are short, but less stocky than their\n"
-        "dwarven cousins, They tend to have dark skin and light colored\n"
-        "hair and are well-known for their rather large noses. The gnomes\n"
+    ExpectEq("\x1b[0;36mThe gnomes are an intelligent race of beings closely related "
+        "to the dwarves.\nThey are short, but less stocky than their "
+        "dwarven cousins, They tend to have\ndark skin and light colored "
+        "hair and are well-known for their rather large\nnoses. The gnomes "
         "are a playful race, and they love to play jokes on others.\n"
-        "They generally reside in tunnels burrowed into mountains or\n"
+        "They generally reside in tunnels burrowed into mountains or "
         "hills.\n\n"
         "The gnome race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m10\x1b[0m\n"
@@ -310,7 +311,7 @@ void DescribeHalfElfDisplaysHalfElfDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 6");
-    ExpectEq("\x1b[0;36m\n"
+    ExpectEq("\x1b[0;36m\n\n"
         "The half elf race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m10\x1b[0m\n"
         "\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m5\x1b[0m\n"
@@ -329,11 +330,11 @@ void DescribeHalfOrcDisplaysHalfOrcDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 7");
-    ExpectEq("\x1b[0;36mHalf-orcs are people that have both human and orcish parents.\n"
-        "Like most crossbreeds, they are shunned by both of their races,\n"
-        "they gain the physical strength of their orcish heritage, along\n"
-        "with the incredible stamina of the orcs. From their human side,\n"
-        "they gain intelligence and dexterity that the orcs lack.\n\n"
+    ExpectEq("\x1b[0;36mHalf-orcs are people that have both human and orcish parents. "
+        "Like most\ncrossbreeds, they are shunned by both of their races, "
+        "they gain the physical\nstrength of their orcish heritage, along "
+        "with the incredible stamina of the\norcs. From their human side, "
+        "they gain intelligence and dexterity that the\norcs lack.\n\n"
         "The half orc race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m8\x1b[0m\n"
         "\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m5\x1b[0m\n"
@@ -353,11 +354,11 @@ void DescribeHalfTrollDisplaysHalfTrollDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 8");
-    ExpectEq("\x1b[0;36mHalf-trolls are people that have both human and troll parents.\n"
-        "Half trolls are often seen by other trolls in much the same light as\n"
-        "pure-blood trolls - trolls simply don't seem to care if half-trolls\n"
-        "have a human parent. Half-trolls generally live with trolls, which\n"
-        "is wherever they feel like living.\n\n"
+    ExpectEq("\x1b[0;36mHalf-trolls are people that have both human and troll parents. "
+        "Half trolls are\noften seen by other trolls in much the same light as "
+        "pure-blood trolls -\ntrolls simply don't seem to care if half-trolls "
+        "have a human parent.\nHalf-trolls generally live with trolls, which "
+        "is wherever they feel like\nliving.\n\n"
         "The half troll race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m6\x1b[0m\n"
         "\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m5\x1b[0m\n"
@@ -384,11 +385,11 @@ void DescribeHalflingDisplaysHalflingDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 9");
-    ExpectEq("\x1b[0;36mHalflings are a very small people that tend to look like\n"
-        "miniaturized humans.The halflings are a fairly peaceful race:\n"
-        "they don't start wars amongst themselves or others, they prefer\n"
-        "to spend their time telling stories at gatherings... Halfling\n"
-        "families are quite large. Halflings live in above ground homes\n"
+    ExpectEq("\x1b[0;36mHalflings are a very small people that tend to look like "
+        "miniaturized humans.\nThe halflings are a fairly peaceful race: "
+        "they don't start wars amongst\nthemselves or others, they prefer "
+        "to spend their time telling stories at\ngatherings... Halfling "
+        "families are quite large. Halflings live in above\nground homes "
         "made from materials in the surrounding forests.\n\n"
         "The halfling race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m10\x1b[0m\n"
@@ -410,15 +411,15 @@ void DescribeHighElfDisplaysHighElfDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 10");
-    ExpectEq("\x1b[0;36mIn the crafting of items of wonder, in strength, in keen intelligence,\n"
-        "and in the learning of knowledge, few surpass the high elves. Indeed,\n"
-        "written language was first used by them. Industrious, no other race did\n"
-        "more to beautify the lands of the world. So honored were they that the once\n"
-        "lived with the very gods of the world. Little is here recorded of their deeds\n"
-        "in those times save that many high elves left the blessed lands on the heels\n"
-        "of a great enemy and that a darkness, both of deeds and of the soul, enshrouds\n"
-        "them. In appearance, high elves typically have grey or blue eyes and black hair.\n"
-        "They are fair to look upon and stand nigh on 7 feet tall. In all ways, their\n"
+    ExpectEq("\x1b[0;36mIn the crafting of items of wonder, in strength, in keen intelligence, "
+        "and in\nthe learning of knowledge, few surpass the high elves. Indeed, "
+        "written\nlanguage was first used by them. Industrious, no other race did "
+        "more to\nbeautify the lands of the world. So honored were they that the once "
+        "lived with\nthe very gods of the world. Little is here recorded of their deeds "
+        "in those\ntimes save that many high elves left the blessed lands on the heels "
+        "of a great\nenemy and that a darkness, both of deeds and of the soul, enshrouds "
+        "them. In\nappearance, high elves typically have grey or blue eyes and black hair. "
+        "They\nare fair to look upon and stand nigh on 7 feet tall. In all ways, their\n"
         "bearing is majestic and sight of them demands attention.\n\n"
         "The high elf race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m6\x1b[0m\n"
@@ -449,12 +450,12 @@ void DescribeHumanDisplaysHumanDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 11");
-    ExpectEq("\x1b[0;36mHumans are the most common race on RealmsMUD. They don't have any\n"
-        "real preferences on where they live, except that they prefer tropical\n"
-        "or temperate regions. They live in above ground dwellings, and tend\n"
-        "to admire the elaborate, elegant architecture of the elves and dwarves.\n"
-        "Humans gain no advantages or disadvantages on RealmsMUD, they are the\n"
-        "happy medium... and they like it that way.\n\n"
+    ExpectEq("\x1b[0;36mHumans are the most common race on RealmsMUD. They don't have any "
+        "real\npreferences on where they live, except that they prefer tropical "
+        "or temperate\nregions. They live in above ground dwellings, and tend "
+        "to admire the\nelaborate, elegant architecture of the elves and dwarves. "
+        "Humans gain no\nadvantages or disadvantages on RealmsMUD, they are the "
+        "happy medium... and\nthey like it that way.\n\n"
         "The human race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m14\x1b[0m\n"
         "\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m6\x1b[0m\n"
@@ -468,18 +469,18 @@ void DescribeMaegenstrydDisplaysMaegenstrydDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 12");
-    ExpectEq("\x1b[0;36mThe Maegenstryd are the descendants of the union of high elves,\n"
-        "humans, and the gods themselves. It is said that Aronath - son of Aradran,\n"
-        "the high king of the elves and Eadwyn, a goddess of hope and the mistress\n"
-        "of desires - fell in love with Maerwena, the daughter of the human king of\n"
-        "Tirnen. While the ensuing millenia have diluted their blood as they mate\n"
-        "most often with humans, the touch of the gods and the elves is ever-present.\n"
-        "In appearance, they typically have grey or blue eyes and black hair, much\n"
-        "like their elven and human forbears did. They are typically taller than\n"
-        "humans - few, indeed are less than six feet tall. About three thousand years\n"
-        "ago after a great war shattered their realms to the far west, the remnants of\n"
-        "their 'race' established the Kingdom of Eledhel and most of that land's\n"
-        "nobility are of this race.\n\n"
+    ExpectEq("\x1b[0;36mThe Maegenstryd are the descendants of the union of high elves, "
+        "humans, and\nthe gods themselves. It is said that Aronath - son of Aradran, "
+        "the high king\nof the elves and Eadwyn, a goddess of hope and the mistress "
+        "of desires - fell\nin love with Maerwena, the daughter of the human king of "
+        "Tirnen. While the\nensuing millenia have diluted their blood as they mate "
+        "most often with humans,\nthe touch of the gods and the elves is ever-present. "
+        "In appearance, they\ntypically have grey or blue eyes and black hair, much "
+        "like their elven and\nhuman forbears did. They are typically taller than "
+        "humans - few, indeed are\nless than six feet tall. About three thousand years "
+        "ago after a great war\nshattered their realms to the far west, the remnants of "
+        "their 'race'\nestablished the Kingdom of Eledhel and most of that land's "
+        "nobility are of\nthis race.\n\n"
         "The maegenstryd race incurs the following in-game bonuses/penalties:\n"
         "\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m8\x1b[0m\n"
         "\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m4\x1b[0m\n"
@@ -514,4 +515,78 @@ void SelectorFiresOnSelectorCompletedWhenRaceChosen()
     ExpectEq(0, subscriber->TimesEventReceived());
     Selector->applySelection("10");
     ExpectEq(1, subscriber->TimesEventReceived());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NoneColorConfigurationDisplaysCorrectly()
+{
+    User->colorConfiguration("none");
+    Selector->initiateSelector(User);
+    ExpectEq("Character creation - Choose your race:\n"
+        "\t[1]  - Draconid            \n"
+        "\t[2]  - Dwarf               \n"
+        "\t[3]  - Elf                 \n"
+        "\t[4]  - Faerie              \n"
+        "\t[5]  - Gnome               \n"
+        "\t[6]  - Half elf            \n"
+        "\t[7]  - Half orc            \n"
+        "\t[8]  - Half troll          \n"
+        "\t[9]  - Halfling            \n"
+        "\t[10] - High elf            \n"
+        "\t[11] - Human               \n"
+        "\t[12] - Maegenstryd         \n"
+        "You must select a number from 1 to 12.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EightBitColorConfigurationDisplaysCorrectly()
+{
+    User->colorConfiguration("8-bit");
+    Selector->initiateSelector(User);
+    ExpectEq("\x1b[0;38;5;80mCharacter creation - \x1b[0m\x1b[0;38;5;15;1mChoose your race\x1b[0m:\n"
+        "\t[\x1b[0;38;5;9;1m1\x1b[0m]  - \x1b[0;38;5;2mDraconid            \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m2\x1b[0m]  - \x1b[0;38;5;2mDwarf               \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m3\x1b[0m]  - \x1b[0;38;5;2mElf                 \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m4\x1b[0m]  - \x1b[0;38;5;2mFaerie              \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m5\x1b[0m]  - \x1b[0;38;5;2mGnome               \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m6\x1b[0m]  - \x1b[0;38;5;2mHalf elf            \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m7\x1b[0m]  - \x1b[0;38;5;2mHalf orc            \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m8\x1b[0m]  - \x1b[0;38;5;2mHalf troll          \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m9\x1b[0m]  - \x1b[0;38;5;2mHalfling            \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m10\x1b[0m] - \x1b[0;38;5;2mHigh elf            \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m11\x1b[0m] - \x1b[0;38;5;2mHuman               \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m12\x1b[0m] - \x1b[0;38;5;2mMaegenstryd         \x1b[0m\n"
+        "\x1b[0;38;5;2;1mYou must select a number from 1 to 12.\n\x1b[0m"
+        "\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') "
+        "where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TwentyFourBitColorConfigurationDisplaysCorrectly()
+{
+    User->colorConfiguration("24-bit");
+    Selector->initiateSelector(User);
+    ExpectEq("\x1b[0;38;2;180;180;190mCharacter creation - \x1b[0m"
+        "\x1b[0;38;2;255;255;255;1mChoose your race\x1b[0m:\n"
+        "\t[\x1b[0;38;2;220;40;0;1m1\x1b[0m]  - \x1b[0;38;2;170;180;110mDraconid            \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m2\x1b[0m]  - \x1b[0;38;2;170;180;110mDwarf               \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m3\x1b[0m]  - \x1b[0;38;2;170;180;110mElf                 \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m4\x1b[0m]  - \x1b[0;38;2;170;180;110mFaerie              \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m5\x1b[0m]  - \x1b[0;38;2;170;180;110mGnome               \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m6\x1b[0m]  - \x1b[0;38;2;170;180;110mHalf elf            \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m7\x1b[0m]  - \x1b[0;38;2;170;180;110mHalf orc            \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m8\x1b[0m]  - \x1b[0;38;2;170;180;110mHalf troll          \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m9\x1b[0m]  - \x1b[0;38;2;170;180;110mHalfling            \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m10\x1b[0m] - \x1b[0;38;2;170;180;110mHigh elf            \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m11\x1b[0m] - \x1b[0;38;2;170;180;110mHuman               \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m12\x1b[0m] - \x1b[0;38;2;170;180;110mMaegenstryd         \x1b[0m\n"
+        "\x1b[0;38;2;160;220;60;1mYou must select a number from 1 to 12.\n\x1b[0m"
+        "\x1b[0;38;2;100;180;150mFor details on a given choice, type 'describe X' "
+        "(or '? X') where\nX is the option about which you would like further "
+        "details.\n\x1b[0m\x1b[0;38;2;160;220;60;1m\x1b[0m",
+        User->caughtMessage());
 }

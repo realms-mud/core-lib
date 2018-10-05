@@ -17,14 +17,10 @@ protected int NumColumns = 1;
 protected int HasDescription = 1;
 protected int SuppressColon = 0;
 protected string Type = "Character creation";
+protected object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+protected string colorConfiguration = "none";
 
 private string *UndoLog = ({ });
-
-protected nosave string Cyan = "\x1b[0;36m%s\x1b[0m";
-protected nosave string BoldWhite = "\x1b[0;37;1m%s\x1b[0m";
-protected nosave string Red = "\x1b[0;31;1m%s\x1b[0m";
-protected nosave string Green = "\x1b[0;32m%s\x1b[0m";
-protected nosave string BoldGreen = "\x1b[0;32;1m%s\x1b[0m";
 
 /////////////////////////////////////////////////////////////////////////////
 public void init()
@@ -74,8 +70,10 @@ protected string padSelectionDisplay(string selection)
 protected string choiceFormatter(string choice)
 {
     return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "\t" : "", Red,
-        padSelectionDisplay(choice), "\x1b[0;32m%-20s\x1b[0m",
+        (NumColumns < 3) ? "\t" : "",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        padSelectionDisplay(choice),
+        configuration->decorate("%-20s", "choice enabled", "selector", colorConfiguration),
         displayDetails(choice));
 }
 
@@ -86,7 +84,10 @@ public nomask string displayMessage()
     
     if(Data && sizeof(Data))
     {
-        ret = sprintf(Cyan + BoldWhite + "%s", 
+        ret = sprintf(
+            configuration->decorate("%s", "title", "selector", colorConfiguration) + 
+            configuration->decorate("%s", "menu name", "selector", colorConfiguration) +
+            "%s",
             sprintf("%s - ", Type), Description,
             (!SuppressColon ? ":\n" : "\n"));
 
@@ -109,16 +110,25 @@ public nomask string displayMessage()
         {
             ret += "\n";
         }
-        ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.%s\n", sizeof(choices), AllowUndo ? " You may also undo or reset." : ""));
+        ret += configuration->decorate(sprintf("You must select a number from "
+            "1 to %d.%s\n", sizeof(choices), AllowUndo ? " You may also undo "
+            "or reset." : ""), "instructions", "selector", colorConfiguration);
         if (AllowAbort)
         {
-            ret += sprintf(Green, "Type 'exit' if you do not wish to make a selection at this time.\n");
+            ret += configuration->decorate("Type 'exit' if you do not wish "
+                "to make a selection at this time.\n", "details", "selector", 
+                colorConfiguration);
         }
         if (HasDescription)
         {
-            ret += sprintf(Green, "For details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n");
+            ret += configuration->decorate("For details on a given "
+                "choice, type 'describe X' (or '? X') where\nX is the option "
+                "about which you would like further details.\n", 
+                "details", "selector", colorConfiguration); 
         }
-        ret += sprintf(BoldGreen, additionalInstructions());
+
+        ret += configuration->decorate(additionalInstructions(), "instructions",
+            "selector", colorConfiguration);
     }
     return ret;
 }
@@ -188,7 +198,10 @@ public nomask int applySelection(string arguments)
         {
             ret = Describe;
             tell_object(User, displayMessage() + "\n");
-            tell_object(User, sprintf(Cyan, Data[element]["description"]));
+            tell_object(User, configuration->decorate(
+                member(Data[element],"do not format") ? Data[element]["description"] :
+                format(Data[element]["description"], 78),
+                "description", "selector", colorConfiguration));
         }
         else if (handleSpecialSelection())
         {
@@ -199,8 +212,9 @@ public nomask int applySelection(string arguments)
             ret = Success;
             undoSelection(UndoLog[sizeof(UndoLog) - 1]);
 
-            tell_object(User, sprintf(Cyan,
-                "You have reverted your previous selection.\n") +
+            tell_object(User, configuration->decorate(
+                "You have reverted your previous selection.\n",
+                "action", "selector", colorConfiguration) +
                 displayMessage());
             
             if (sizeof(UndoLog) > 1)
@@ -219,15 +233,19 @@ public nomask int applySelection(string arguments)
             {
                 undoSelection(selection);
             }
-            tell_object(User, sprintf(Cyan,
-                "You have reset your selections.\n") + displayMessage());
+            tell_object(User, configuration->decorate(
+                "You have reset your selections.\n",
+                "action", "selector", colorConfiguration) +
+                displayMessage());
 
             UndoLog = ({});
         }
         else if ((arguments == "exit") && AllowAbort)
         {
             ret = Success;
-            tell_object(User, sprintf(Cyan, Type + " has been exited.\n"));
+            tell_object(User, configuration->decorate(
+                Type + " has been exited.\n",
+                "action", "selector", colorConfiguration));
             notifySynchronous("onSelectorAborted");
         }
         else if(member(Data, arguments))
@@ -238,8 +256,9 @@ public nomask int applySelection(string arguments)
             {
                 choice = choice[0..48] + "...";
             }
-            tell_object(User, sprintf(Cyan, sprintf("You have selected '%s'.\n",
-                choice)));
+            tell_object(User, configuration->decorate(
+                sprintf("You have selected '%s'.\n", choice),
+                "action", "selector", colorConfiguration)); 
 
             makeSelection(arguments);
         }
@@ -260,6 +279,7 @@ protected void setUpUserForSelection()
 public nomask varargs void initiateSelector(object user, int alreadyInitialized)
 {
     User = user;
+    colorConfiguration = User->colorConfiguration();
 
     if (!alreadyInitialized)
     {
@@ -275,6 +295,6 @@ public nomask varargs void initiateSelector(object user, int alreadyInitialized)
 /////////////////////////////////////////////////////////////////////////////
 public void onSelectorAborted(object caller)
 {
-    caller->cleanUp();
     notifySynchronous("onSelectorAborted");
+    caller->cleanUp();
 }

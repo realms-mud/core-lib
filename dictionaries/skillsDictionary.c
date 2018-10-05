@@ -11,38 +11,43 @@ private mapping skills = ([
         "attribute": "dexterity",
         "bonus calculator": "one for two",
         "untrained penalty": 0,
-        "description": "This skill provides proficiency in using one's weapon to block an attack.\n"
+        "description": "This skill provides proficiency in using one's weapon "
+            "to block an attack.\n"
     ]),
     "blind fighting": ([
         "type": "combat",
         "attribute": "wisdom",
         "bonus calculator": "one for two",
         "untrained penalty": -15,
-        "description": "This skill provides proficiency in attacking and defending when you cannot see.\n"
+        "description": "This skill provides proficiency in attacking and "
+            "defending when you cannot see.\n"
     ]),
     "dodge": ([
         "type": "combat",
         "attribute": "dexterity",
         "bonus calculator": "one for two",
         "untrained penalty": 0,        
-        "description": "This skill provides proficiency in avoiding an opponent's attack.\n"
+        "description": "This skill provides proficiency in avoiding an "
+            "opponent's attack.\n"
     ]),
     "dual wield": ([
         "type": "combat",
         "attribute": "dexterity",
         "bonus calculator": "one for two",
         "untrained penalty": -5,        
-        "description": "This skill provides proficiency in attacking with an offhand weapon.\n"
+        "description": "This skill provides proficiency in attacking with an "
+            "offhand weapon.\n"
     ]),
     "shield": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of shields as both an\n"
-            "offensive and defensive weapon, though the use of shields much larger than a\n"
-            "kite shield have very limited usefulness offensively. This skill encompasses\n"
-            "shields with attached blades and spikes as well as those without any overt\n"
+        "description": "This skill provides proficiency in the use of shields "
+            "as both an offensive and defensive weapon, though the use of "
+            "shields much larger than a kite shield have very limited "
+            "usefulness offensively. This skill encompasses shields with "
+            "attached blades and spikes as well as those without any overt "
             "signs of offensive capabilities.\n"
     ]),
     "axe": ([
@@ -50,91 +55,98 @@ private mapping skills = ([
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of axes of any nature, barring\n"
-            "those axes mounted to pole arms. This skill encompasses skill with battle\n"
-            "axes, hand axes, crescent axes, war axes, and other weapons of that\n"
-            "nature - weapons that can be wielded with one or two hands.\n"
+        "description": "This skill provides proficiency in the use of axes of "
+            "any nature, barring those axes mounted to pole arms. This skill "
+            "encompasses skill with battle axes, hand axes, crescent axes, "
+            "war axes, and other weapons of that nature - weapons that can "
+            "be wielded with one or two hands.\n"
     ]),
     "long sword": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of most swords ranging from\n"
-            "two-and-a-half foot long swords to about four-and-a-half foot long swords with\n"
-            "respect to an average 5'6\" human. This includes (but is not limited to) long\n"
-            "swords, scimitars, cutlasses, rapiers, katanas, broadswords, and sabres.\n"
+        "description": "This skill provides proficiency in the use of most "
+            "swords ranging from two-and-a-half foot long swords to about "
+            "four-and-a-half foot long swords with respect to an average "
+            "5'6\" human. This includes (but is not limited to) long swords, "
+            "scimitars, cutlasses, rapiers, katanas, broadswords, and sabres.\n"
     ]),
     "hand and a half sword": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of larger swords (upper end\n"
-            "of long swords and larger) that could be wielded with either one or two hands.\n"
-            "Using two hands with a weapon of this type provides a bonus on attack and damage\n"
-            "rolls. Swords of this type include bastard swords and claymores.\n"
+        "description": "This skill provides proficiency in the use of larger "
+            "swords (upper end of long swords and larger) that could be "
+            "wielded with either one or two hands. Using two hands with a "
+            "weapon of this type provides a bonus on attack and damage "
+            "attempts. Swords of this type include bastard swords and claymores.\n"
     ]),    
     "short sword": ([
         "type": "combat",
         "attribute": "dexterity",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of short swords -- swords\n"
-            "typically ranging from two-and-a-half feet and under for a typical human (5'6\").\n"
-            "This would include short swords, any form of gladus, machettes, etc.\n"
+        "description": "This skill provides proficiency in the use of short "
+            "swords -- swords typically ranging from two-and-a-half feet and "
+            "under for a typical human (5'6\"). This would include short "
+            "swords, any form of gladus, machettes, etc.\n"
     ]),
     "dagger": ([
         "type": "combat",
         "attribute": "dexterity",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of bladed weapons that are\n"
-            "typically less than 18\" long. This includes daggers, knives, dirks, stilletos,\n"
-            "and other weapons of this nature.\n"
+        "description": "This skill provides proficiency in the use of bladed "
+            "weapons that are typically less than 18\" long. This includes "
+            "daggers, knives, dirks, stilletos, and other weapons of this nature.\n"
     ]),
     "bow": ([
         "type": "combat",
         "attribute": "dexterity",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in all arm-drawn bows. This includes short\n"
-            "bows, long bows, composite bows, recurves, and compound bows.\n"
+        "description": "This skill provides proficiency in all arm-drawn "
+            "bows. This includes short bows, long bows, composite bows, "
+            "recurves, and compound bows.\n"
     ]),
     "crossbow": ([
         "type": "combat",
         "attribute": "dexterity",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in all mechanically drawn/held bows. This\n"
-            "includes all crossbows, ballista, etc.\n"
+        "description": "This skill provides proficiency in all mechanically "
+            "drawn/held bows. This includes all crossbows, ballista, etc.\n"
     ]), 
     "sling": ([
         "type": "combat",
         "attribute": "dexterity",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in all sling and slinglike weapons (such\n"
-            "as slingshots and staff slings).\n"
+        "description": "This skill provides proficiency in all sling and "
+            "slinglike weapons (such as slingshots and staff slings).\n"
     ]), 
     "thrown": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in all thrown weapons. This includes rocks,\n"
-            "bolos, hand axes, swords, daggers, hammers, javelins, as well as those weapons\n"
-            "thrown with the aid of some other device such as a spear thrower.\n"
+        "description": "This skill provides proficiency in all thrown "
+            "weapons. This includes rocks, bolos, hand axes, swords, daggers, "
+            "hammers, javelins, as well as those weapons thrown with the aid "
+            "of some other device such as a spear thrower.\n"
     ]), 
     "two-handed sword": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of large (roughly the length of\n"
-            "the wielder's body) swords such as great swords or those swords known as\n"
-            "'two-handed swords' They are weapons that could only be wielded by its user\n"
-            "one-handed with great difficulty. If this isn't the case, the sword in question\n"
+        "description": "This skill provides proficiency in the use of large "
+            "(roughly the length of the wielder's body) swords such as great "
+            "swords or those swords known as 'two-handed swords' They are "
+            "weapons that could only be wielded by its user one-handed with "
+            "great difficulty. If this isn't the case, the sword in question "
             "is likely a hand & a half sword.\n"
     ]), 
     "pole arm": ([
@@ -142,116 +154,124 @@ private mapping skills = ([
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of pole arms -- any weapon with\n"
-            "a metal head attached to a long pole. This includes halberds, spears, pikes,\n"
-            "glaives, bardiches, pole axes, bills, etc.\n"
+        "description": "This skill provides proficiency in the use of pole "
+            "arms -- any weapon with a metal head attached to a long pole. "
+            "This includes halberds, spears, pikes, glaives, bardiches, pole "
+            "axes, bills, etc.\n"
     ]),  
     "mace": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "The mace skill is used for any one-handed bludgeoning weapon crafted more or\n"
-            "less entirely of a single material. This includes maces, clubs, and morning\nstars.\n"
+        "description": "The mace skill is used for any one-handed bludgeoning "
+            "weapon crafted more or less entirely of a single material. This "
+            "includes maces, clubs, and morning stars.\n"
     ]),  
     "hammer": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of all of the various types of\n"
-            "hammers including war hammers, mauls, luscerne hammers, and other weapons of\n"
-            "that nature.\n"
+        "description": "This skill provides proficiency in the use of all of "
+            "the various types of hammers including war hammers, mauls, "
+            "luscerne hammers, and other weapons of that nature.\n"
     ]),
     "flail": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of the more exotic 'jointed'\n"
-            "style weapons. This includes weapons such as flails, whips, chains, and other\n"
-            "such weapons.\n"
+        "description": "This skill provides proficiency in the use of the "
+            "more exotic 'jointed' style weapons. This includes weapons such "
+            "as flails, whips, chains, and other such weapons.\n"
     ]),  
     "staff": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of all staves and other\n"
-            "'blunt' pole arms such as a quarterstaff.\n"
+        "description": "This skill provides proficiency in the use of all "
+            "staves and other 'blunt' pole arms such as a quarterstaff.\n"
     ]),
     "plate armor": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for three",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of heavy armors made of\n"
-            "plates of material, typically, but not exclusively, of metal. Armors of this\n"
-            "family include full plate, field plate, plate mail, and breastplates.\n"
+        "description": "This skill provides proficiency in the use of heavy "
+            "armors made of plates of material, typically, but not "
+            "exclusively, of metal. Armors of this family include full plate, "
+            "field plate, plate mail, and breastplates.\n"
     ]),
     "splint armor": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for three",
         "untrained penalty": -10,
-        "description": "Splint armor allows for more flexibility than plate armor. Splint armors\n"
-            "are typically fashioned out of long bands - or splints - of metal attached to a\n"
-            "substrate of leather, cloth, or chain.\n"
+        "description": "Splint armor allows for more flexibility than plate "
+            "armor. Splint armors are typically fashioned out of long bands - "
+            "or splints - of metal attached to a substrate of leather, cloth, "
+            "or chain.\n"
     ]),  
     "chainmail": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for three",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of chain-type armors such as\n"
-            "chain mail and any other armor fashioned of interlocking or interwoven rings of\n"
-            "material. This allows for good mobility in a fairly heavy/strong armor.\n"
+        "description": "This skill provides proficiency in the use of "
+            "chain-type armors such as chain mail and any other armor "
+            "fashioned of interlocking or interwoven rings of material. This "
+            "allows for good mobility in a fairly heavy/strong armor.\n"
     ]), 
     "scalemail": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for three",
         "untrained penalty": -10,
-        "description": "Scale armor represents those armors fashioned of some substrate such as\n"
-            "chain armor or leather with small metal (or other rigid substance) plates woven\n"
-            "through the substrate (typically layered in a fashion similar to a fish's\n"
-            "scales.) Armors of this nature typically afford decent protection at the cost\n"
-            "of mobility.\n"
+        "description": "Scale armor represents those armors fashioned of some "
+            "substrate such as chain armor or leather with small metal (or "
+            "other rigid substance) plates woven through the substrate "
+            "(typically layered in a fashion similar to a fish's scales.) "
+            "Armors of this nature typically afford decent protection at the "
+            "cost of mobility.\n"
     ]), 
     "hard leather": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for three",
         "untrained penalty": -10,
-        "description": "Hard leather is leather treated in a manner above and beyond simple\n"
-            "tanning. The leather is fairly rigid and offers better protection than usual\n"
-            "leather, but at the sacrifice of mobility. Often times, studs are sewn into the\n"
-            "armor to provide extra protection against weapons.\n"
+        "description": "Hard leather is leather treated in a manner above and "
+            "beyond simple tanning. The leather is fairly rigid and offers "
+            "better protection than usual leather, but at the sacrifice of "
+            "mobility. Often times, studs are sewn into the armor to provide "
+            "extra protection against weapons.\n"
     ]),
     "soft leather": ([
         "type": "combat",
         "attribute": "dexterity",
         "bonus calculator": "one for three",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in the use of untreated or tanned leather\n"
-            "armors. The armor offers a great deal of mobility but offers only modest\n"
-            "protection from harm.\n"
+        "description": "This skill provides proficiency in the use of "
+            "untreated or tanned leather armors. The armor offers a great "
+            "deal of mobility but offers only modest protection from harm.\n"
     ]),    
     "no armor": ([
         "type": "combat",
         "attribute": "dexterity",
         "bonus calculator": "one for three",
         "untrained penalty": -10,
-        "description": "Armors that fall in this category are padded armors made of cloth, robes,\n"
-            "and every day clothing.\n"
+        "description": "Armors that fall in this category are padded armors "
+            "made of cloth, robes, and every day clothing.\n"
     ]),
     "unarmed": ([
         "type": "combat",
         "attribute": "strength",
         "bonus calculator": "one for two",
         "untrained penalty": -10,
-        "description": "This skill provides proficiency in unarmed combat. This includes punching\n"
-            "wrestling, kicking, and other tactics of this nature.\n"
+        "description": "This skill provides proficiency in unarmed combat. "
+            "This includes punching wrestling, kicking, and other tactics of "
+            "this nature.\n"
     ]),
     "armorer": ([
         "type": "crafting",

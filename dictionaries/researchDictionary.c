@@ -567,6 +567,7 @@ private nomask mapping buildResearchList(string *researchList,
                 ret[to_string(index)] = ([
                     "name":capitalize(name),
                     "type": research,
+                    "do not format": 1,
                     "description": getResearchDetails(research) +
                         displayTreePrerequisites(research, user)
                 ]);

@@ -132,19 +132,21 @@ protected nomask int processSelection(string selection)
 protected nomask string displayDetails(string choice)
 {
     string ret = sprintf("%9s", "");
-
     if (Data[choice]["selector"] == "material")
     {
-        ret = sprintf("%-22s", sprintf("\x1b[0;35;1m%s\x1b[0m",
+        ret = sprintf("%-22s", configuration->decorate(
             (!Data[choice]["is disabled"] || (AdditionalMaterials &&
                 member(AdditionalMaterials, Data[choice]["type"]))) ?
             Dictionary->getCraftingMaterial(CraftingItem, Data[choice]["type"],
-               CraftingComponent) : "none"));
+                CraftingComponent) : "none",
+            "selected", "selector", colorConfiguration));
     }
     else if (Data[choice]["type"] ==
         Dictionary->selectionForComponent(CraftingItem, CraftingComponent))
     {
-        ret = sprintf("%-22s", "\x1b[0;35;1m   (*)\x1b[0m");
+        ret = sprintf("%-22s", configuration->decorate(
+            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x80\xa0)" : "   (*)",
+            "selected", "selector", colorConfiguration)); 
     }
     return ret;
 }
@@ -175,23 +177,28 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    string displayFormat = "\x1b[0;32m%-20s\x1b[0m";
-    if (member(Data[choice], "is disabled") &&
-        Data[choice]["is disabled"] && 
-        !(AdditionalMaterials &&
-         member(AdditionalMaterials, Data[choice]["type"])))
-    {
-        displayFormat = "\x1b[0;31m%-20s\x1b[0m";
-    }
+    string displayType = (member(Data[choice], "is disabled") &&
+        Data[choice]["is disabled"] && !(AdditionalMaterials &&
+        member(AdditionalMaterials, Data[choice]["type"]))) ? 
+        "choice disabled" : "choice enabled";
+
     return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "    " : "", Red,
-        padSelectionDisplay(choice), displayFormat,
+        (NumColumns < 3) ? "    " : "",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        padSelectionDisplay(choice),
+        configuration->decorate("%-20s", displayType, "selector", colorConfiguration),
         displayDetails(choice));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return "\x1b[0;35;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
-        "\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n";
+    return configuration->decorate("<material>", "selected", "selector",
+        colorConfiguration) +
+        configuration->decorate(" denotes a selected material.\n", "details",
+            "selector", colorConfiguration) +
+        configuration->decorate((User->charsetConfiguration() == "unicode") ?
+            "   (\xe2\x80\xa0)" : "(*)", "selected", "selector", colorConfiguration) +
+        configuration->decorate(" denotes that a specific component type has been chosen.\n", 
+            "details", "selector", colorConfiguration);
 }

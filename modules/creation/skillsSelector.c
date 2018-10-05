@@ -105,7 +105,6 @@ public nomask void onSelectorCompleted(object caller)
         UndoDetails += ({ caller->selection() });
         TotalSkills--;
     }
-    caller->cleanUp();
 
     if (TotalSkills)
     {
@@ -115,6 +114,7 @@ public nomask void onSelectorCompleted(object caller)
     {
         notifySynchronous("onSelectorCompleted");
     }
+    caller->cleanUp();
 }
 
 /////////////////////////////////////////////////////////////////////////////

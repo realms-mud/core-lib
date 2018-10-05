@@ -74,32 +74,32 @@ void ChoosingClothingDisplaysClothingMenu()
 
     ExpectEq("\x1b[0;36mCraft Accessory - \x1b[0m\x1b[0;37;1mFrom this menu, you can craft items\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mAmulet              \x1b[0m     "
-        "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;31mBelt                \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m\n"
-        "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;31mBoots               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m"
-        "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;31mBracelet            \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
-        "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;31mBracers             \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m"
+        "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;31mBelt                \x1b[0m\x1b[0;35m(P,M)\x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;31mBoots               \x1b[0m\x1b[0;35m(P,M)\x1b[0m"
+        "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;31mBracelet            \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
+        "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;31mBracers             \x1b[0m\x1b[0;35m(P,M)\x1b[0m"
         "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mCirclet             \x1b[0m     \n"
-        "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;31mCoif                \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m"
+        "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;31mCoif                \x1b[0m\x1b[0;35m(P,M)\x1b[0m"
         "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mCrown               \x1b[0m     \n"
         "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mDiadem              \x1b[0m     "
-        "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;31mGauntlets           \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m\n"
-        "    [\x1b[0;31;1m11\x1b[0m] - \x1b[0;31mGloves              \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m"
-        "    [\x1b[0;31;1m12\x1b[0m] - \x1b[0;31mHat                 \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
-        "    [\x1b[0;31;1m13\x1b[0m] - \x1b[0;31mHelm                \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m"
-        "    [\x1b[0;31;1m14\x1b[0m] - \x1b[0;31mHelmet              \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m\n"
+        "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;31mGauntlets           \x1b[0m\x1b[0;35m(P,M)\x1b[0m\n"
+        "    [\x1b[0;31;1m11\x1b[0m] - \x1b[0;31mGloves              \x1b[0m\x1b[0;35m(P,M)\x1b[0m"
+        "    [\x1b[0;31;1m12\x1b[0m] - \x1b[0;31mHat                 \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
+        "    [\x1b[0;31;1m13\x1b[0m] - \x1b[0;31mHelm                \x1b[0m\x1b[0;35m(P,M)\x1b[0m"
+        "    [\x1b[0;31;1m14\x1b[0m] - \x1b[0;31mHelmet              \x1b[0m\x1b[0;35m(P,M)\x1b[0m\n"
         "    [\x1b[0;31;1m15\x1b[0m] - \x1b[0;32mNecklace            \x1b[0m     "
         "    [\x1b[0;31;1m16\x1b[0m] - \x1b[0;32mRing                \x1b[0m     \n"
-        "    [\x1b[0;31;1m17\x1b[0m] - \x1b[0;31mSabaton             \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  "
-        "    [\x1b[0;31;1m18\x1b[0m] - \x1b[0;31mSandals             \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m\n"
-        "    [\x1b[0;31;1m19\x1b[0m] - \x1b[0;31mSash                \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  "
-        "    [\x1b[0;31;1m20\x1b[0m] - \x1b[0;31mShoes               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m\n"
+        "    [\x1b[0;31;1m17\x1b[0m] - \x1b[0;31mSabaton             \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m18\x1b[0m] - \x1b[0;31mSandals             \x1b[0m\x1b[0;35m(P,M)\x1b[0m\n"
+        "    [\x1b[0;31;1m19\x1b[0m] - \x1b[0;31mSash                \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m20\x1b[0m] - \x1b[0;31mShoes               \x1b[0m\x1b[0;35m(P,M)\x1b[0m\n"
         "    [\x1b[0;31;1m21\x1b[0m] - \x1b[0;32mTiara               \x1b[0m     "
         "    [\x1b[0;31;1m22\x1b[0m] - \x1b[0;32mExit Craft Accessory Menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 22.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
-        "\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m",
+        "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -125,7 +125,7 @@ void ChoosingRingDisplaysRingMenu()
         "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -167,7 +167,7 @@ void SelectingMaterialUpdatesRingMenu()
         "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -195,7 +195,7 @@ void CanAddComponentThatDoesNotModifyMaterials()
         "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 

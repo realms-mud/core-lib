@@ -154,6 +154,22 @@ void SelectSubMenuDisplaysSellListWithUnidentifiedItemsDenotedCorrectly()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void UnicodeDisplaysSellListWithUnidentifiedItemsDenotedCorrectly()
+{
+    Player->charsetConfiguration("unicode");    
+    Selector->initiateSelector(Player);
+    Selector->applySelection("1");
+
+    ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels\x1b[0m   \x1b[0m\x1b[0;35m (\xe2\x81\x87)\x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m\x1b[0;30;1mSell all unused\x1b[0m    \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mReturn to previous menu       \x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
+        Player->caughtMessage());
+}
+/////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithIdentifiedItemsDenotedCorrectly()
 {
     Weapon->identify();
@@ -189,8 +205,45 @@ void SelectSubMenuDisplaysSellListWithEquippedItemsDenotedCorrectly()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void UnicodeDisplaysSellListWithEquippedItemsDenotedCorrectly()
+{
+    Player->charsetConfiguration("unicode");
+    Weapon->identify();
+    Weapon->equip("sword");
+    Selector->initiateSelector(Player);
+    Selector->applySelection("1");
+
+    ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels\x1b[0m   \x1b[0m\x1b[0;34;1m (\xe2\x80\xa0)\x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m\x1b[0;30;1mSell all unused\x1b[0m    \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mReturn to previous menu       \x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithUnsellableItemsDenotedCorrectly()
 {
+    Weapon->set("no sell", 1);
+    Selector->initiateSelector(Player);
+    Selector->applySelection("1");
+
+    ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels\x1b[0m   \x1b[0m\x1b[0;31m (X)\x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m\x1b[0;30;1mSell all unused\x1b[0m    \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mReturn to previous menu       \x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnicodeDisplaysSellListWithUnsellableItemsDenotedCorrectly()
+{
+    Player->charsetConfiguration("unicode");
     Weapon->set("no sell", 1);
     Selector->initiateSelector(Player);
     Selector->applySelection("1");
@@ -218,6 +271,28 @@ void SelectSubMenuDisplaysSellListWithKnownCursedtemsDenotedCorrectly()
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels\x1b[0m   \x1b[0m\x1b[0;30;1m (C)\x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m\x1b[0;30;1mSell all unused\x1b[0m    \x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mReturn to previous menu       \x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnicodeDisplaysSellListWithKnownCursedtemsDenotedCorrectly()
+{
+    Player->charsetConfiguration("unicode");
+    Weapon->set("cursed", ([
+        "equip message":"blah",
+        "failed unequip message" : "halb"
+    ]));
+    Weapon->identify();
+    Selector->initiateSelector(Player);
+    Selector->applySelection("1");
+
+    ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels\x1b[0m   \x1b[0m\x1b[0;30;1m (\xe2\x98\xa0)\x1b[0m"
         "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m\x1b[0;30;1mSell all unused\x1b[0m    \x1b[0m\n"
         "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mReturn to previous menu       \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"

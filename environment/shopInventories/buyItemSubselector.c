@@ -28,8 +28,10 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        Description = "Select an item to buy:\n"
-            "\x1b[0;31m-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-\x1b[0m";
+        Description = "Select an item to buy:\n" + configuration->decorate(
+            "-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-",
+            "decorator", "selector", colorConfiguration);
+
         AllowAbort = 1;
         AllowUndo = 0;
         NumColumns = 1;
@@ -122,7 +124,9 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    return sprintf("[%s]%s - %s%s", Red,
-        padSelectionDisplay(choice), "\x1b[0;32m%s\x1b[0m",
+    return sprintf("[%s]%s - %s%s",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        padSelectionDisplay(choice),
+        configuration->decorate("%s", "choice enabled", "selector", colorConfiguration),
         displayDetails(choice));
 }

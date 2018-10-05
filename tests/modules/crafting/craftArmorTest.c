@@ -54,22 +54,22 @@ void ChoosingClothingDisplaysClothingMenu()
     command("2", Player);
 
     ExpectEq("\x1b[0;36mCraft Clothing - \x1b[0m\x1b[0;37;1mFrom this menu, you can craft items\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;31mCloak               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  "
-        "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;31mDress               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
-        "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;31mGown                \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  "
-        "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;31mKilt                \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
-        "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;31mOrnate robes        \x1b[0m\x1b[0;34;1m(\x1b[0;35mP,M\x1b[0;34;1m)\x1b[0m"
-        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;31mPants               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;31mCloak               \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;31mDress               \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
+        "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;31mGown                \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;31mKilt                \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
+        "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;31mOrnate robes        \x1b[0m\x1b[0;35m(P,M)\x1b[0m"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;31mPants               \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
         "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mRobes               \x1b[0m     "
-        "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;31mShirt               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
-        "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;31mShorts              \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  "
-        "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;31mSkirt               \x1b[0m\x1b[0;34;1m(\x1b[0;35mP\x1b[0;34;1m)\x1b[0m  \n"
+        "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;31mShirt               \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
+        "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;31mShorts              \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;31mSkirt               \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
         "    [\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mExit Craft Clothing Menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 11.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
-        "\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m",
+        "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -97,7 +97,7 @@ void ChoosingRobesDisplaysRobesMenu()
         "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -144,7 +144,7 @@ void SelectingMaterialUpdatesRobesMenu()
         "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1m\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
 }
 

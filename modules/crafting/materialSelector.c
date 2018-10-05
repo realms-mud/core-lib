@@ -108,7 +108,9 @@ protected nomask string displayDetails(string choice)
     {
         flags += ({ "M" });
     }
-    string ret = sizeof(flags) ? sprintf("\x1b[0;34;1m(\x1b[0;35m%s\x1b[0;34;1m)\x1b[0m", implode(flags, ",")) : "     ";
+    string ret = sizeof(flags) ? configuration->decorate(sprintf("(%s)", 
+        implode(flags, ",")), "note", "selector", colorConfiguration) : "     ";
+        
     if (sizeof(flags) == 1)
     {
         ret += "  ";
@@ -119,18 +121,26 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
+    string displayType = Data[choice]["canShow"] ? "choice enabled" : "choice disabled";
+
     return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "    " : "", Red,
+        (NumColumns < 3) ? "    " : "",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        Data[choice]["canShow"] ? "\x1b[0;32m%-20s\x1b[0m" : "\x1b[0;31m%-20s\x1b[0m",
+        configuration->decorate("%-20s", displayType, "selector", colorConfiguration),
         displayDetails(choice));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return "\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
-        "\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n";
+    return configuration->decorate("P", "note", "selector", colorConfiguration) +
+        configuration->decorate(" denotes unrealized prerequisites.\n",
+            "details", "selector", colorConfiguration) +
+        configuration->decorate("M", "note", "selector", colorConfiguration) +
+        configuration->decorate(" denotes that proper quantities of the "
+            "material requirements are missing.\n",
+            "details", "selector", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////

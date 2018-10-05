@@ -136,7 +136,6 @@ public nomask void onSelectorCompleted(object caller)
             TestTaken = caller->testTaken();
         }
     }
-    caller->cleanUp();
 
     if (TotalPoints || !TestTaken)
     {
@@ -146,6 +145,7 @@ public nomask void onSelectorCompleted(object caller)
     {
         notifySynchronous("onSelectorCompleted");
     }
+    caller->cleanUp();
 }
 
 /////////////////////////////////////////////////////////////////////////////

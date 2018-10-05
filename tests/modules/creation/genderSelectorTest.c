@@ -55,7 +55,7 @@ void DescribeMaleDisplaysMaleDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 1");
-    ExpectEq("\x1b[0;36mDo you really need a description?\x1b[0m",
+    ExpectEq("\x1b[0;36mDo you really need a description?\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -73,7 +73,7 @@ void DescribeFemaleDisplaysFemaleDescription()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("describe 2");
-    ExpectEq("\x1b[0;36mDo you really need a description?\x1b[0m",
+    ExpectEq("\x1b[0;36mDo you really need a description?\n\x1b[0m",
         User->caughtMessage());
 }
 

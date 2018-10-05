@@ -273,15 +273,14 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    string displayFormat = "\x1b[0;32m%-20s\x1b[0m";
-    if (member(Data[choice], "is disabled") &&
-        Data[choice]["is disabled"])
-    {
-        displayFormat = "\x1b[0;31m%-20s\x1b[0m";
-    }
+    string displayType = (member(Data[choice], "is disabled") &&
+        Data[choice]["is disabled"]) ? "choice disabled" : "choice enabled";
+
     return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "\t" : "", Red,
-        padSelectionDisplay(choice), displayFormat,
+        (NumColumns < 3) ? "\t" : "",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        padSelectionDisplay(choice),
+        configuration->decorate("%-20s", displayType, "selector", colorConfiguration),
         displayDetails(choice));
 }
 
@@ -304,7 +303,10 @@ public nomask void onSelectorCompleted(object caller)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return "\x1b[0;35;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n";
+    return configuration->decorate((User->charsetConfiguration() == "unicode") ?
+            "   (\xe2\x80\xa0)" : "(*)", "selected", "selector", colorConfiguration) +
+        configuration->decorate(" denotes that a specific component type has been chosen.\n",
+            "details", "selector", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////

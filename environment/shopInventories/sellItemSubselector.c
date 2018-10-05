@@ -92,24 +92,30 @@ protected nomask string displayDetails(string choice)
 {
     string ret = "";
 
+    int showUnicode = User->charsetConfiguration() == "unicode";
+
     if (Data[choice]["do not sell"] || 
         (member(Data[choice], "value") && (!Data[choice]["value"])))
     {
-        ret = "\x1b[0;31m (X)\x1b[0m";
+        ret = configuration->decorate(showUnicode ?  " (X)": " (X)", 
+            "failure", "selector", colorConfiguration);
     }
     else if (Data[choice]["is equipped"])
     {
-        ret = "\x1b[0;34;1m (*)\x1b[0m";
+        ret = configuration->decorate(showUnicode ? " (\xe2\x80\xa0)" : " (*)", 
+            "selected", "selector", colorConfiguration);
     }
     else if (member(Data[choice], "identified") &&
         !Data[choice]["identified"])
     {
-        ret = "\x1b[0;35m (?)\x1b[0m";
+        ret = configuration->decorate(showUnicode ? " (\xe2\x81\x87)" : " (?)", 
+            "note", "selector", colorConfiguration);
     }
     else if (member(Data[choice], "known cursed item") &&
         Data[choice]["known cursed item"])
     {
-        ret = "\x1b[0;30;1m (C)\x1b[0m";
+        ret = configuration->decorate(showUnicode ? " (\xe2\x98\xa0)" : " (C)", 
+            "warning", "selector", colorConfiguration);
     }
 
     return ret;
@@ -141,7 +147,9 @@ protected nomask int suppressMenuDisplay()
 protected string choiceFormatter(string choice)
 {
     return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "\t" : "", Red,
-        padSelectionDisplay(choice), "\x1b[0;32m%-30s\x1b[0m",
+        (NumColumns < 3) ? "\t" : "",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        padSelectionDisplay(choice),
+        configuration->decorate("%-30s", "choice enabled", "selector", colorConfiguration),
         displayDetails(choice));
 }
