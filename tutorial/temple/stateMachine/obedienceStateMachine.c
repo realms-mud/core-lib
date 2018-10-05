@@ -12,7 +12,7 @@ void reset(int arg)
         questItem::reset(arg);
         setName("The Test of Obedience");
         setType("primary");
-        setDescription("In order to retrieve the Orb of Obedience, I have been "
+        setDescription("In order to retrieve the Heart of Decay, I have been "
             "tasked with completing something called the 'Test of Obedience'");
 
         addState("entered room", "I entered a room that appears to have "

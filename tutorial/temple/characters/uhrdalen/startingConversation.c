@@ -193,7 +193,7 @@ private void OnToTheTrial()
     addResponse("no bonds hold me", "About that...", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::clear## ##InitiatorPossessive## throat and "
         "##ResponseInfinitive::say##, @S@'So, about this challenge...'");
-    addResponse("no bonds hold me", "The pedestals... @A@#Spellcraft@E@", 
+    addResponse("no bonds hold me", "The pedestals... @A@Spellcraft@E@", 
         "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at the pulsating "
         "pedestals and ##ResponseInfinitive::ask##, @S@'I suspect that those "
         "have something to do with the challenge?'");
@@ -208,7 +208,7 @@ private void ThePedestals()
         "plate of sorrow and the lights to the north, south, and east shall "
         "change, cycling first to sorrow, then wrath, envy, and finally fear.'");
     addResponseTopic("no bonds hold me", "About that...", "the pedestals");
-    addResponseTopic("no bonds hold me", "The pedestals... @A@#Spellcraft@E@", 
+    addResponseTopic("no bonds hold me", "The pedestals... @A@Spellcraft@E@", 
         "the pedestals");
 
     addResponse("the pedestals", "@I@Continue@E@", "@I@Continue@E@");
