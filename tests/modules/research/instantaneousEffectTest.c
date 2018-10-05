@@ -460,8 +460,12 @@ void ExecuteOnTargetMustHaveAValidTarget()
 void ExecuteInAreaCallsApplyEffect()
 {
     object room = clone_object("/lib/environment/environment");
-    object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
-    move_object(owner, room);
+    object creature = clone_object("/lib/tests/support/services/combatWithMockServices");
+    move_object(creature, room);
+
+    creature = clone_object("/lib/tests/support/services/combatWithMockServices");
+    move_object(creature, room);
+
     move_object(User, room);
 
     ExpectEq(1, Effect->testExecuteInArea(User, program_name(Effect)));

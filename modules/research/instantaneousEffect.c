@@ -250,7 +250,9 @@ protected nomask int executeInArea(object owner, string researchName)
 {
     int ret = 1;
 
-    object *environmentObjects = all_inventory(environment(owner));
+    object *environmentObjects = filter(all_inventory(environment(owner)),
+        (: $1 != $2 :), owner);
+
     foreach(object target in environmentObjects)
     {
         if(function_exists("has", target) && target->has("combat"))

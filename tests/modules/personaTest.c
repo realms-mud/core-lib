@@ -363,7 +363,7 @@ void PersonasWithSpacesInNamesAndResearchCanExecuteResearch()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void AreaEffectSpellsHitAllTargetsInArea()
+void AreaEffectSpellsHitAllTargetsButCasterInArea()
 {
     Persona->SetUpPersonaOfLevel("aeromancer", 20);
     Persona->setResearchFrequency(100);
@@ -382,10 +382,12 @@ void AreaEffectSpellsHitAllTargetsInArea()
 
     int initialTargetOneHP = target->hitPoints();
     int initialTargetTwoHP = target2->hitPoints();
+    int initialCasterHP = Persona->hitPoints();
 
     Persona->executePersonaResearch(target->RealName(),
         "lib/instances/research/personas/aeromancer/maelstrom.c");
 
+    ExpectEq(initialCasterHP, Persona->hitPoints());
     ExpectNotEq(initialTargetOneHP, target->hitPoints());
     ExpectNotEq(initialTargetTwoHP, target2->hitPoints());
     ExpectTrue(Persona->spellPoints() < Persona->maxSpellPoints());
