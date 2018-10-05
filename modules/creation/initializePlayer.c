@@ -7,6 +7,7 @@ private object Player = 0;
 
 private string *selectors = ({
     "/lib/modules/creation/colorSelector.c",
+    "/lib/modules/creation/charsetSelector.c",
     "/lib/modules/creation/genderSelector.c",
     "/lib/modules/creation/raceSelector.c",
     "/lib/modules/creation/subraceSelector.c",

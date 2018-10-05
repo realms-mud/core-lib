@@ -72,7 +72,7 @@ void OnSelectorCompletedCleansUpCurrentSelectorAndTransitionsToNextState()
     selector->applySelection("1");
     ExpectFalse(objectp(selector));
 
-    ExpectEq(({ "lib/modules/creation/genderSelector.c" }),
+    ExpectEq(({ "lib/modules/creation/charsetSelector.c" }),
         all_inventory(User));
 }
 
@@ -135,5 +135,5 @@ void PlayerSeesWelcomeMessageOnCompletion()
             "getting around in the game, you can use the 'help' command.\nEnjoy "
             "your time here and don't hesitate to contact any of the game\n"
             "administrators with your questions or comments.\n\x1b[0m\n",
-        User->caughtMessages()[9], "Final message is correct");
+        User->caughtMessages()[10], "Final message is correct");
 }
