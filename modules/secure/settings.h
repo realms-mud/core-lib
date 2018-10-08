@@ -17,6 +17,12 @@ static nomask void loadSettings(mapping data, object persistence)
 {
     if (isValidPersistenceObject(persistence))
     {
+        IsBusy = to_int(persistence->extractSaveData("busy", data));
+        Earmuffs = to_int(persistence->extractSaveData("earmuffs", data));
+        PageSize = to_int(persistence->extractSaveData("page size", data));
+        colorSetting = persistence->extractSaveData("color setting", data);
+        characterSet = persistence->extractSaveData("character set", data);
+        blocks = persistence->extractSaveData("blocks", data);
     }
 }
 
@@ -24,6 +30,11 @@ static nomask void loadSettings(mapping data, object persistence)
 static nomask mapping sendSettings()
 {
     return ([
-
+        "blocks": blocks,
+        "busy": to_string(IsBusy),
+        "earmuffs": to_string(Earmuffs),
+        "page size": to_string(PageSize),
+        "color setting": colorSetting,
+        "character set": characterSet
     ]);
 }

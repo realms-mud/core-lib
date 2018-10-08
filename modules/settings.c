@@ -12,7 +12,8 @@ virtual inherit "/lib/core/thing.c";
 /////////////////////////////////////////////////////////////////////////////
 public int blocked(object target)
 {
-    return objectp(target) && member(blocks, target->RealName());
+    return objectp(target) && member(blocks, target->RealName()) &&
+        (blocks[target->RealName()] == "block");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -25,7 +26,7 @@ public int block(string name)
         if (this_object()->playerExists(name))
         {
             ret = 1;
-            blocks[name] = 1;
+            blocks[name] = "block";
             tell_object(this_object(), format(sprintf("You are now blocking %s. You "
                 "will no longer see communication (say, tell, shout, channels, "
                 "emotes, or soul actions) from this person. All attempted "
@@ -47,7 +48,7 @@ public void unblock(string name)
 {
     if (member(blocks, name))
     {
-        m_delete(blocks, name);
+        blocks[name] = "unblock";
         tell_object(this_object(), sprintf("You are no longer blocking %s.\n",
             capitalize(name)));
     }

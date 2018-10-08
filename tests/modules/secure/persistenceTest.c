@@ -650,3 +650,47 @@ void HeartBeatChecksForLinkDeathThenSavesAndDestroysTheLinkDead()
 
     ExpectEq("/lib/environment/environment", Player->savedLocation());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerSettingsSaved()
+{
+    Player->restore("gorthaur");
+    Player->setBusy("on");
+    Player->setEarmuffs("on");
+    Player->pageSize(35);
+    Player->colorConfiguration("24-bit");
+    Player->charsetConfiguration("unicode");
+    Player->save();
+
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    Player->restore("gorthaur");
+
+    ExpectTrue(Player->isBusy());
+    ExpectTrue(Player->isEarmuffed());
+    ExpectEq(35, Player->pageSize());
+    ExpectEq("24-bit", Player->colorConfiguration());
+    ExpectEq("unicode", Player->charsetConfiguration());
+    ExpectEq(5, Player->attributePoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerBlockSettingsSaved()
+{
+    Player->restore("gorthaur");
+    Player->block("gorthaur");
+    Player->save();
+
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    Player->restore("gorthaur");
+    ExpectTrue(Player->blocked(Player));
+
+    Player->unblock("gorthaur");
+    Player->save();
+
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    Player->restore("gorthaur");
+    ExpectFalse(Player->blocked(Player));
+}

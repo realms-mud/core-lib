@@ -46,11 +46,19 @@ drop procedure if exists saveOpinionOfCharacter;
 ##
 drop procedure if exists saveCharacterState;
 ##
+drop procedure if exists saveSetting;
+##
+drop procedure if exists saveBlockedUser;
+##
 drop procedure if exists updateLoginTime;
 ##
 drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
+##
+drop table if exists settings;
+##
+drop table if exists blockedUsers;
 ##
 drop table if exists opinions;
 ##
@@ -373,6 +381,26 @@ CREATE TABLE `characterStates` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `characterStates_playerid_idx` (`playerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `playerid` int(11) NOT NULL,
+  `setting` varchar(20) NOT NULL,
+  `value` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  CONSTRAINT `settingsplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `blockedUsers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `playerid` int(11) NOT NULL,
+  `blockedPlayerId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  CONSTRAINT `blockingplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `blockedplayersid` FOREIGN KEY (`blockedPlayerId`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE VIEW `basicPlayerData` AS select `players`.`name` AS `name`,
                                         `players`.`race` AS `race`,
@@ -974,6 +1002,57 @@ END;
 CREATE PROCEDURE `updateLoginTime` (p_playerName varchar(40))
 BEGIN
     update players set LastLogin = now() where name = p_playerName;
+END;
+##
+CREATE PROCEDURE `saveSetting`(p_playerName varchar(40),
+p_setting varchar(20), p_value varchar(20))
+BEGIN
+    declare lplayerId int;
+    declare lSettingId int;
+
+    select id into lplayerId
+    from players where name = p_playerName;
+    
+    if lplayerId is not null then
+		select id into lSettingId
+		from settings 
+        where playerId = lplayerId and setting = p_setting;
+		
+		if lSettingId is not null then
+			update settings set value = p_value
+            where id = lSettingId;
+		else
+			insert into settings (playerId, setting, value) 
+            values (lplayerId, p_setting, p_value);
+		end if;
+    end if;    
+END;
+##
+CREATE PROCEDURE `saveBlockedUser`(p_playerName varchar(40),
+p_blockedPlayer varchar(40), actionType varchar(10))
+BEGIN
+    declare lplayerId int;
+    declare lBlockedId int;
+    declare lBlockId int;
+
+    select id into lplayerId
+    from players where name = p_playerName;
+    
+    select id into lBlockedId
+    from players where name = p_blockedPlayer;
+
+    if lplayerId is not null and lBlockedId is not null then
+		select id into lBlockId
+		from blockedUsers 
+        where playerId = lplayerId and blockedPlayerId = lBlockedId;
+		
+		if lBlockId is null and actionType = 'block' then
+			insert into blockedUsers (playerId, blockedPlayerId) 
+            values (lplayerId, lBlockedId);
+		elseif lBlockId is not null and actionType = 'unblock' then
+			delete from blockedUsers where id = lBlockId;
+        end if;
+    end if;    
 END;
 ##
 insert into players (id,name,race,age,gender) values (1,'maeglin','high elf',1,1);

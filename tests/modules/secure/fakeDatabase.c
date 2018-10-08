@@ -11,10 +11,15 @@ public nomask mapping Gorthaur()
         "availableAttributePoints": 1,
         "availableResearchPoints": 3,
         "availableSkillPoints": 2,
+        "blocks": ([]),
+        "busy": 0,
+        "character set": "ascii",
         "charisma": 15,
+        "color setting": "3-bit",
         "constitution": 14,
         "dexterity": 12,
         "drugged": 3,
+        "earmuffs": 0,
         "factions": ([
             "/lib/tests/support/factions/goodGuys.c":([
                 "disposition": "fearful",
@@ -80,6 +85,7 @@ public nomask mapping Gorthaur()
         "name": "gorthaur",
         "onKillList": 1,
         "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
+        "page size": 20,
         "playerId": 3,
         "pretitle": "Weasel Lord",
         "quests": ([ 
@@ -179,10 +185,15 @@ public nomask varargs mapping GetWizardOfLevel(string level, string *groups)
         "availableAttributePoints": 1,
         "availableResearchPoints": 3,
         "availableSkillPoints": 2,
+        "blocks": ([]),
+        "busy": 0,
+        "character set": "ascii",
         "charisma": 15,
+        "color setting": "3-bit",
         "constitution": 14,
         "dexterity": 12,
         "drugged": 3,
+        "earmuffs": 0,
         "factions": ([
             "/lib/tests/support/factions/goodGuys.c":([
                 "disposition": "fearful",
@@ -248,6 +259,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string *groups)
         "name": "earl",
         "onKillList": 1,
         "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
+        "page size": 20,
         "playerId": 4,
         "pretitle": "Weasel Lord",
         "quests": ([ 
