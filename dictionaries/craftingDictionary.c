@@ -499,6 +499,10 @@ public nomask mapping getMaterialsOfType(string type, object user,
     {
         int menuItem = 1;
         string currentMaterial = craftingItem->query("material");
+
+        object materialDictionary = 
+            load_object("/lib/dictionaries/materialsDictionary.c");
+
         foreach(string material in materialsOfType)
         {
             int hasMaterials = (member(materialsOnHand, material) &&
@@ -514,7 +518,7 @@ public nomask mapping getMaterialsOfType(string type, object user,
                 "name": capitalize(material),
                 "type": material,
                 "description": sprintf("This option lets you craft using: %s\n%s\n", 
-                    material, load_object("/lib/dictionaries/materialsDictionary.c")->getEquipmentStatistics(craftingItem)),
+                    material, materialDictionary->getEquipmentStatistics(craftingItem, user)),
                 "has materials": hasMaterials,
                 "prerequisites met": prerequisites,
                 "canShow": (hasMaterials && prerequisites)
@@ -592,8 +596,8 @@ public nomask mapping getMaterialsDataForItem(string type,
             "type": component,
             "materials": blueprintObj->query("crafting materials"),
             "is disabled": (!prerequisitesMet(blueprintObj, user) || !materialsAvailable(blueprintObj, user)),
-            "description": format("This is " + craftingComponents[component]["description"] +
-                "\n" + getDescriptionDetails(blueprintObj), 78) + "\n"
+            "description": "This is " + craftingComponents[component]["description"] +
+                "\n" + getDescriptionDetails(blueprintObj) + "\n"
         ]);
         destruct(blueprintObj);
         menuItem++;

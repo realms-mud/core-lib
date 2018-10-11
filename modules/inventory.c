@@ -828,7 +828,8 @@ private nomask string colorizeText(object item, int verbose)
 
         if (materialsObject())
         {
-            ret = materialsObject()->applyMaterialQualityToText(item, item->short());
+            ret = materialsObject()->applyMaterialQualityToText(item, 
+                item->short(), this_object());
         }
 
         if (verbose)
@@ -928,5 +929,3 @@ public nomask varargs string inventoryText(int verbose)
     }
     return ret;
 }
-
-

@@ -660,7 +660,8 @@ void LongReturnsCorrectMessageBeforeIdentification()
     Item->set("long", "Blah blah blah");
     Item->set("additional long", "even more blah");
 
-    ExpectEq("Blah blah blah\n\x1b[0;37;1mThis item is typical for its type.\n\x1b[0m\x1b[0;36mThis item has not been identified.\n\x1b[0m\n", Item->long(), "long() returns correct value");
+    ExpectEq("Blah blah blah\nThis item is typical for its type.\nThis item "
+        "has not been identified.\n\n", Item->long(), "long() returns correct value");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -670,7 +671,8 @@ void LongReturnsCorrectMessageAfterIdentification()
     Item->set("additional long", "even more blah");
 
     ExpectTrue(Item->identify());
-    ExpectEq("Blah blah blah even more blah\n\x1b[0;37;1mThis item is typical for its type.\n\x1b[0m\n", Item->long(), "long() returns correct value after ID");
+    ExpectEq("Blah blah blah even more blah\nThis item is typical for its "
+        "type.\n\n", Item->long(), "long() returns correct value after ID");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -17,9 +17,6 @@
 #include "materials/potions.h"
 
 private nosave string EquipmentBlueprint = "lib/items/equipment.c";
-private nosave string DetailsText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m\n";
-private nosave string SingleDetailText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m\n";
-private nosave string DetailString = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%s\x1b[0m\n";
 
 private nosave string *validBonuses = ({ "strength", "intelligence", "dexterity",
     "wisdom", "constitution", "charisma",  });
@@ -33,6 +30,7 @@ private nosave string *validWeaponTypes = ({ "shield", "axe", "long sword",
     "hand and a half sword", "short sword", "dagger", "bow", "crossbow", "sling",
     "thrown", "two-handed sword", "pole arm", "mace", "hammer", "flail", "staff" });
 private nosave string *validDamageTypes = ({ "slash", "bludgeon", "thrust" });
+private nosave object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int isValidItem(object item)
@@ -442,39 +440,61 @@ public nomask string getMaterialDetails(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs string getMaterialQualityFormatter(object equipment)
+private nomask varargs string colorConfiguration(object initiator)
 {
-    string ret = Cyan;
+    string ret = "none";
 
-    if (getMaterialCraftsmanshipBonus(equipment) > 4)
+    if (objectp(initiator))
     {
-        ret = "\x1b[0;32;1m%-20s\x1b[0m";
+        ret = initiator->colorConfiguration();
     }
-    else if (equipment->query("enchanted") > 4)
+    else if (this_player())
     {
-        ret = "\x1b[0;35;1m%-20s\x1b[0m";
+        ret = this_player()->colorConfiguration();
     }
-    else if (getMaterialCraftsmanshipBonus(equipment))
-    {
-        ret = WellCrafted;
-    }
-    else if (equipment->query("enchanted"))
-    {
-        ret = Enchanted;
-    }
-
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs string applyMaterialQualityToText(object equipment, string text)
+public nomask varargs string getMaterialQualityFormatter(object equipment, 
+    object initiator)
 {
-    string ret = NormalEquipment;
+    string colorConfiguration = colorConfiguration(initiator);
+
+    string qualityFormat = "normal quality";
+
+    if (getMaterialCraftsmanshipBonus(equipment) > 4)
+    {
+        qualityFormat = "masterwork";
+    }
+    else if (equipment->query("enchanted") > 4)
+    {
+        qualityFormat = "powerful enchantment";
+    }
+    else if (getMaterialCraftsmanshipBonus(equipment))
+    {
+        qualityFormat = "well-crafted";
+    }
+    else if (equipment->query("enchanted"))
+    {
+        qualityFormat = "enchanted";
+    }
+
+    return (colorConfiguration == "none") ? sprintf("%s (%s)", "%s", qualityFormat) :
+        configuration->decorate("%s", qualityFormat, "equipment",
+            colorConfiguration);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs string applyMaterialQualityToText(object equipment, 
+    string text, object initiator)
+{
+    string qualityFormat = "normal quality";
     string qualityText = "typical for its type";
 
     if (getMaterialCraftsmanshipBonus(equipment) > 4)
     {
-        ret = Masterwork;
+        qualityFormat = "masterwork";
         if(!text)
         {
             qualityText = "a masterwork item";
@@ -482,7 +502,7 @@ public varargs string applyMaterialQualityToText(object equipment, string text)
     }
     else if (equipment->query("enchanted") > 4)
     {
-        ret = StrongEnchantment;
+        qualityFormat = "powerful enchantment";
         if (!text)
         {
             qualityText = "enchanted with a powerful aura";
@@ -490,7 +510,7 @@ public varargs string applyMaterialQualityToText(object equipment, string text)
     }
     else if (equipment->query("enchanted"))
     {
-        ret = Enchanted;
+        qualityFormat = "enchanted";
         if (!text)
         {
             qualityText = "enchanted";
@@ -498,7 +518,7 @@ public varargs string applyMaterialQualityToText(object equipment, string text)
     }
     else if (getMaterialCraftsmanshipBonus(equipment))
     {
-        ret = WellCrafted;
+        qualityFormat = "well-crafted";
         if (!text)
         {
             qualityText = "a well-crafted item";
@@ -511,7 +531,8 @@ public varargs string applyMaterialQualityToText(object equipment, string text)
             equipment->query("blueprint") || "item",
             qualityText);
     }
-    return sprintf(ret, text);
+    return configuration->decorate(text, qualityFormat, "equipment",
+        colorConfiguration(initiator));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -612,7 +633,7 @@ private nomask int getAttackData(object weapon, object initiator)
     int baseAttack = weapon->query("weapon attack") +
         getMaterialAttack(weapon);
 
-    if (initiator)
+    if (initiator && (weapon != initiator->itemBeingCrafted()))
     {
         baseAttack += initiator->magicalAttackBonus() +
             calculateServiceBonuses("AttackBonus", initiator) +
@@ -632,15 +653,37 @@ private nomask int getAttackData(object weapon, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask varargs string detailsText(string colorConfiguration, 
+    string name, string value, string range)
+{
+    string ret = configuration->decorate(sprintf("\t%s: ", name),
+        "field", "equipment", colorConfiguration);
+
+    if (value && stringp(value))
+    {
+        ret += configuration->decorate(value, "value", "equipment", colorConfiguration);
+    }
+    if (range && stringp(range))
+    {
+        ret += configuration->decorate(sprintf(" to %s", range), 
+            "value", "equipment", colorConfiguration);
+    }
+
+    return ret + "\n";
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string getWeaponAttackInformation(object weapon, object initiator)
 {
     int baseAttack = getAttackData(weapon, initiator);
 
-    return sprintf(DetailsText, "Attack", baseAttack, baseAttack + 100);
+    return detailsText(colorConfiguration(initiator), "Attack",
+        to_string(baseAttack), to_string(baseAttack + 100));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string convertDamageMappingToString(mapping damages)
+private nomask string convertDamageMappingToString(mapping damages, 
+    object initiator)
 {
     string ret = 0;
 
@@ -650,10 +693,12 @@ private nomask string convertDamageMappingToString(mapping damages)
         string *damagetKeys = sort_array(m_indices(damages),
             (: return $1 > $2; :));
 
+        string colorConfiguration = colorConfiguration(initiator);
+
         foreach(string damage in damagetKeys)
         {
-            ret += sprintf(SpecialAttack, sprintf(" [+%d %s]",
-                damages[damage], damage));
+            ret += configuration->decorate(sprintf(" [+%d %s]", 
+                damages[damage], damage), "bonus", "equipment", colorConfiguration);
         }
         ret += "\n";
     }
@@ -661,7 +706,7 @@ private nomask string convertDamageMappingToString(mapping damages)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyEnchantments(object weapon)
+private nomask string applyEnchantments(object weapon, object initiator)
 {
     string ret = 0;
 
@@ -682,11 +727,11 @@ private nomask string applyEnchantments(object weapon)
         }
     }
 
-    return convertDamageMappingToString(enchantments);
+    return convertDamageMappingToString(enchantments, initiator);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyResistances(object item)
+private nomask string applyResistances(object item, object initiator)
 {
     string ret = 0;
 
@@ -718,7 +763,7 @@ private nomask string applyResistances(object item)
         }
     }
 
-    return convertDamageMappingToString(resistances);
+    return convertDamageMappingToString(resistances, initiator);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -727,7 +772,7 @@ private nomask int getDamageData(object weapon, object initiator)
     int baseDamage = weapon->query("weapon class") +
         getMaterialDamage(weapon, "physical");
 
-    if (initiator)
+    if (initiator && (weapon != initiator->itemBeingCrafted()))
     {
         baseDamage += initiator->magicalDamageBonus() +
             calculateServiceBonuses("DamageBonus", initiator) +
@@ -753,10 +798,11 @@ public nomask string getWeaponDamageInformation(object weapon, object initiator)
     int baseDamage = getDamageData(weapon, initiator);
 
     float modifier = baseDamage / 8.0;
-    ret = sprintf(DetailsText, "Damage", 
-        to_int(baseDamage - modifier), to_int(baseDamage + modifier));
+    ret = detailsText(colorConfiguration(initiator), "Damage",
+        to_string(to_int(baseDamage - modifier)), 
+        to_string(to_int(baseDamage + modifier)));
 
-    string enchantments = applyEnchantments(weapon);
+    string enchantments = applyEnchantments(weapon, initiator);
     if (enchantments)
     {
         ret -= "\n";
@@ -772,7 +818,7 @@ private nomask int getWeaponDefenseData(object weapon, object initiator)
     int baseDefense = weapon->query("defense class") +
         getMaterialDefendAttack(weapon);
 
-    if (initiator)
+    if (initiator && (weapon != initiator->itemBeingCrafted()))
     {
         baseDefense += initiator->magicalDefendAttackBonus() +
             calculateServiceBonuses("DefendAttackBonus", initiator) +
@@ -796,8 +842,9 @@ public nomask string getWeaponDefenseInformation(object weapon, object initiator
     int baseDefense = getWeaponDefenseData(weapon, initiator);
 
     float modifier = baseDefense / 8.0;
-    return sprintf(DetailsText, "Defense",
-        to_int(baseDefense - modifier), to_int(baseDefense + modifier));
+    return detailsText(colorConfiguration(initiator), "Defense",
+        to_string(to_int(baseDefense - modifier)),
+        to_string(to_int(baseDefense + modifier)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -806,7 +853,7 @@ private nomask int getEncumberanceData(object item, object initiator)
     int encumberance = item->query("encumberance") +
         getMaterialEncumberance(item);
 
-    if (initiator)
+    if (initiator && (item != initiator->itemBeingCrafted()))
     {
         string skillToUse = item->query("weapon type") ||
             item->query("armor type");
@@ -825,11 +872,12 @@ public nomask string getEncumberance(object item, object initiator)
 {
     int encumberance = getEncumberanceData(item, initiator);
 
-    return sprintf(SingleDetailText, "Encumberance", encumberance);
+    return detailsText(colorConfiguration(initiator), "Encumberance",
+        to_string(encumberance));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyBonusDetails(object item)
+private nomask string applyBonusDetails(object item, object initiator)
 {
     string ret = "";
     string *bonuses = sort_array(item->query("bonuses"),
@@ -837,23 +885,27 @@ private nomask string applyBonusDetails(object item)
 
     if (sizeof(bonuses))
     {
+        string colorConfiguration = colorConfiguration(initiator);
+
         foreach(string bonus in bonuses)
         {
-            ret += sprintf(Value,
-                sprintf("\t%s: %d\n", capitalize(bonus), item->query(bonus)));
+            ret += configuration->decorate(sprintf("\t%s: %d\n",
+                capitalize(bonus), item->query(bonus)), "value", "equipment",
+                colorConfiguration);
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyMaterialDetails(object item)
+private nomask string applyMaterialDetails(object item, string colorConfiguration)
 {
     string ret = "";
     string material = item->query("material");
     if (material)
     {
-        ret += sprintf(DetailString, "Material", capitalize(material));
+        ret += detailsText(colorConfiguration, "Material",
+            capitalize(material));
     }
     return ret;
 }
@@ -861,7 +913,7 @@ private nomask string applyMaterialDetails(object item)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string applyWeaponDetails(object weapon, object initiator)
 {
-    return applyMaterialDetails(weapon) +
+    return applyMaterialDetails(weapon, colorConfiguration(initiator)) +
         getWeaponAttackInformation(weapon, initiator) +
         getWeaponDamageInformation(weapon, initiator) +
         getWeaponDefenseInformation(weapon, initiator) +
@@ -874,7 +926,7 @@ private nomask int getDamageProtectionData(object armor, object initiator)
     int baseAC = armor->query("armor class") +
         getMaterialDefense(armor, "physical");
 
-    if (initiator)
+    if (initiator && (armor != initiator->itemBeingCrafted()))
     {
         baseAC += initiator->magicalDefenseBonus() +
             calculateServiceBonuses("DefenseBonus", initiator) +
@@ -889,7 +941,8 @@ public nomask string getDamageProtection(object armor, object initiator)
 {
     int baseAC = getDamageProtectionData(armor, initiator);
 
-    return sprintf(SingleDetailText, "Damage Protection", baseAC);
+    return detailsText(colorConfiguration(initiator), "Damage Protection",
+        to_string(baseAC));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -897,31 +950,35 @@ private nomask string applyArmorDetails(object armor, object initiator)
 {
     string ret = getDamageProtection(armor, initiator);
     
-    string resistances = applyResistances(armor);
+    string resistances = applyResistances(armor, initiator);
     if (resistances)
     {
         ret -= "\n";
         ret += resistances;
     }
-    return applyMaterialDetails(armor) + 
+    return applyMaterialDetails(armor, colorConfiguration(initiator)) +
         ret + 
         getEncumberance(armor, initiator);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string applyNonEquipmentDetails(object item)
+private nomask string applyNonEquipmentDetails(object item, object initiator)
 {
-    string ret = applyMaterialDetails(item);
+    string colorConfiguration = colorConfiguration(initiator);
 
-    string enchantments = applyEnchantments(item);
+    string ret = applyMaterialDetails(item, colorConfiguration);
+
+    string enchantments = applyEnchantments(item, initiator);
     if (enchantments)
     {
-        ret += sprintf(Value, sprintf("\tEnchantments: %s", enchantments));
+        ret += configuration->decorate("\tEnchantments: ", "value",
+            "equipment", colorConfiguration) + enchantments;
     }
-    string resistances = applyResistances(item);
+    string resistances = applyResistances(item, initiator);
     if (resistances)
     {
-        ret += sprintf(Value, sprintf("\tResistances: %s", resistances));
+        ret += configuration->decorate("\tResistances: ", "value",
+            "equipment", colorConfiguration) + resistances;
     }
     return ret;
 }
@@ -934,12 +991,22 @@ private int spellcraftCanIdentifyItem(object item, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getEquipmentStatistics(object equipment, object initiator)
+public nomask varargs string getEquipmentStatistics(object equipment, object initiator)
 {
-    string ret = applyMaterialQualityToText(equipment);
+    string ret = applyMaterialQualityToText(equipment, 0, initiator);
 
-    if(equipment->query("identified") || canCraftBlueprintWithMaterial(initiator,
-        equipment->query("blueprint"), equipment->query("material")))
+    int canCraft = canCraftBlueprintWithMaterial(initiator,
+        equipment->query("blueprint"), equipment->query("material"));
+
+    int spellcraftCanIdentify = 
+        spellcraftCanIdentifyItem(equipment, initiator);
+
+    if (spellcraftCanIdentify && canCraft)
+    {
+        equipment->identify();
+    }
+
+    if(equipment->query("identified") || canCraft)
     {
         if (equipment->query("weapon type"))
         {
@@ -951,36 +1018,31 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
         }
         else
         {
-            ret += applyNonEquipmentDetails(equipment);
+            ret += applyNonEquipmentDetails(equipment, initiator);
         }
     }
 
-    if (equipment->query("identified") ||
-        spellcraftCanIdentifyItem(equipment, initiator))
+    if (equipment->query("identified") || spellcraftCanIdentify)
     {
-        ret += applyBonusDetails(equipment);
+        ret += applyBonusDetails(equipment, initiator);
     }
 
     if (equipment->query("weight"))
     {
-        ret += sprintf(SingleDetailText, "Weight", equipment->query("weight"));
-    }
-
-    if (spellcraftCanIdentifyItem(equipment, initiator) &&
-        canCraftBlueprintWithMaterial(initiator,
-            equipment->query("blueprint"), equipment->query("material")))
-    {
-        equipment->identify();
+        ret += detailsText(colorConfiguration(initiator),
+            "Weight", to_string(equipment->query("weight")));
     }
 
     if (equipment->query("identified") && equipment->query("cursed"))
     {
-        ret += sprintf(BoldBlack, "This item is cursed!\n");
+        ret += configuration->decorate("This item is cursed!\n",
+            "cursed", "equipment", colorConfiguration(initiator));
     }
 
     if (!equipment->query("identified"))
     {
-        ret += sprintf(Unidentified, "This item has not been identified.\n");
+        ret += configuration->decorate("This item has not been identified.\n",
+            "unidentified", "equipment", colorConfiguration(initiator)); 
     }
     return ret;
 }
@@ -988,28 +1050,48 @@ public nomask string getEquipmentStatistics(object equipment, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getItemSummary(object equipment)
 {
-    string ret = "\x1b[0;30;1mThis item has not been identified\x1b[0m";
+    string colorConfiguration = colorConfiguration();
 
-    if (equipment->query("identified") || canCraftBlueprintWithMaterial(0,
-        equipment->query("blueprint"), equipment->query("material")))
+    string ret = configuration->decorate("This item has not been identified",
+        "unidentified", "shop", colorConfiguration);
+
+    if (equipment->query("identified"))
     {
         if (equipment->query("weapon type"))
         {
-            ret = sprintf("    \x1b[0;36mAttack: \x1b[0;32m%2d\x1b[0;36m, Damage: \x1b[0;32m%2d\x1b[0;36m,"
-                " Defense: \x1b[0;32m%2d\x1b[0m", 
-                getAttackData(equipment, 0),
-                getDamageData(equipment, 0), 
-                getWeaponDefenseData(equipment, 0));
+            ret = configuration->decorate("    Attack: ", "field", "equipment",
+                colorConfiguration) +
+                configuration->decorate(
+                    sprintf("%2d", getAttackData(equipment, 0)), "value",
+                    "equipment", colorConfiguration) +
+                configuration->decorate(", Damage: ", "field", "equipment",
+                    colorConfiguration) +
+                configuration->decorate(
+                    sprintf("%2d", getDamageData(equipment, 0)), "value",
+                    "equipment", colorConfiguration) +
+                configuration->decorate(", Defense: ", "field", "equipment",
+                    colorConfiguration) +
+                configuration->decorate(
+                    sprintf("%2d", getWeaponDefenseData(equipment, 0)), "value",
+                    "equipment", colorConfiguration);
         }
         else if (equipment->query("armor type"))
         {
-            ret = sprintf("    \x1b[0;36mSoak: \x1b[0;32m%2d\x1b[0;36m, Encumberance: \x1b[0;32m%2d\x1b[0m",
-                getDamageProtectionData(equipment, 0),
-                getEncumberanceData(equipment, 0));
+            ret = configuration->decorate("    Soak: ", "field", "equipment",
+                colorConfiguration) +
+                configuration->decorate(
+                    sprintf("%2d", getDamageProtectionData(equipment, 0)), "value",
+                    "equipment", colorConfiguration) +
+                configuration->decorate(", Encumberance: ", "field", "equipment",
+                    colorConfiguration) +
+                configuration->decorate(
+                    sprintf("%2d", getEncumberanceData(equipment, 0)), "value",
+                    "equipment", colorConfiguration);
         }
         else
         {
-            ret = "    \x1b[0;36mView description for summary\x1b[0m";
+            ret = configuration->decorate("    View description for summary",
+                "field", "equipment", colorConfiguration);        
         }
     }
     return ret;

@@ -4,11 +4,17 @@
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
 #include "/lib/include/inventory.h"
-#include "/lib/include/itemFormatters.h"
 
-private nosave string DetailsText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m\n";
-private nosave string SingleDetailText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m\n";
-private nosave string DetailString = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%s\x1b[0m\n";
+private nosave string DetailsText = "\x1b[0;36m\t%s: \x1b[0m\x1b[0;33m%d\x1b[0m\x1b[0;33m to %d\x1b[0m\n";
+private nosave string SingleDetailText = "\x1b[0;36m\t%s: \x1b[0m\x1b[0;33m%d\x1b[0m\n";
+private nosave string DetailString = "\x1b[0;36m\t%s: \x1b[0m\x1b[0;33m%s\x1b[0m\n";
+private nosave string NormalEquipment = "\x1b[0;37;1m%s\x1b[0m";
+private nosave string StrongEnchantment = "\x1b[0;35;1m%s\x1b[0m";
+private nosave string WellCrafted = "\x1b[0;32m%s\x1b[0m";
+private nosave string Value = "\x1b[0;33m%s\x1b[0m";
+private nosave string Masterwork = "\x1b[0;32;1m%s\x1b[0m";
+private nosave string Enchanted = "\x1b[0;35m%s\x1b[0m";
+private nosave string Unidentified = "\x1b[0;36m%s\x1b[0m";
 
 object Weapon;
 object Player;
@@ -26,6 +32,7 @@ void Setup()
     Player->Con(10);
     Player->Int(10);
     Player->Wis(10);
+    Player->colorConfiguration("3-bit");
 
     Weapon = clone_object("/lib/items/weapon");
     Weapon->set("weapon type", "long sword");
@@ -121,7 +128,7 @@ void WeaponStatisticsModifiedByMaterial()
     string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
         sprintf(DetailsText, "Attack", 0, 100) +
-        sprintf("\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m", "Damage", 11, 14) +
+        sprintf("\x1b[0;36m\t%s: \x1b[0m\x1b[0;33m%d\x1b[0m\x1b[0;33m to %d\x1b[0m", "Damage", 11, 14) +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "magical") +
         sprintf(DetailsText, "Defense", -2, -3) +
         sprintf(SingleDetailText, "Encumberance", 17) +
@@ -140,7 +147,7 @@ void WeaponStatisticsModifiedByEnchantment()
     string expected = sprintf(Enchanted, "This long sword is enchanted.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
         sprintf(DetailsText, "Attack", 0, 100) +
-        sprintf("\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m", "Damage", 11, 14) +
+        sprintf("\x1b[0;36m\t%s: \x1b[0m\x1b[0;33m%d\x1b[0m\x1b[0;33m to %d\x1b[0m", "Damage", 11, 14) +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 10, "fire") +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 7, "magical") +
         sprintf(DetailsText, "Defense", -2, -3) +
@@ -278,7 +285,7 @@ void ArmorStatisticsModifiedByMaterial()
 
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
-        sprintf("\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Damage Protection", 11) +
+        sprintf("\x1b[0;36m\t%s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Damage Protection", 11) +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 3, "electricity") +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 3, "fire") +
         sprintf(SingleDetailText, "Encumberance", 32) +
@@ -301,7 +308,7 @@ void ArmorProtectionNotModifiedBySkill()
 
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
-        sprintf("\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Damage Protection", 11) +
+        sprintf("\x1b[0;36m\t%s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Damage Protection", 11) +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 3, "electricity") +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 3, "fire") +
         sprintf(SingleDetailText, "Encumberance", 19) +
@@ -320,12 +327,12 @@ void NonEquipmentItemsShowMagicalProperties()
     item->set("bonus attack", 3);
 
     string expected = sprintf(Enchanted, "This item is enchanted.\n") +
-        sprintf(Value, sprintf("\t%s: %s", "Enchantments", 
+        sprintf("\x1b[0;33m\t%s: \x1b[0m%s", "Enchantments", 
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 3, "air") +
-        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "fire"))) +
-        sprintf(Value, sprintf("\t%s: %s", "Resistances",
-        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "fire"))) +
-        sprintf(Value, sprintf("\t%s: %d\n", "Bonus attack", 3));
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "fire")) +
+        sprintf("\x1b[0;33m\t%s: \x1b[0m%s", "Resistances",
+        sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "fire")) +
+        sprintf("\x1b[0;33m\t%s: %d\n\x1b[0m", "Bonus attack", 3);
 
     ExpectEq(expected, Statistics->getEquipmentStatistics(item, Player));
 }

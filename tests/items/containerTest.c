@@ -24,7 +24,8 @@ void LongReturnsCorrectMessageWhenEmpty()
     Container->set("long", "Blah blah blah");
     Container->set("additional long", "even more blah");
 
-    ExpectEq("Blah blah blah\n\x1b[0;37;1mThis item is typical for its type.\n\x1b[0m\x1b[0;36mThis item has not been identified.\n\x1b[0m\n", 
+    ExpectEq("Blah blah blah\nThis item is typical for its type.\nThis item "
+        "has not been identified.\n\n", 
         Container->long(), "long() returns correct value");
 }
 

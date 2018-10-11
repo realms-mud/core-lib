@@ -358,7 +358,29 @@ void LongReturnsInventoryBasedUserDescriptions()
     Attributes->Name("Tantor");
     Attributes->Gender(1);
 
-    string expected = "Tantor the title-less (male)\nHe is in good shape.\nTantor has a shiny blah!\n\tCarrying:\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0m\x1b[0;36mPrimary Weapon:\t\x1b[0m\x1b[0;37;1mA Sword\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mEquipped Offhand:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Armor:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Helmet:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Gloves:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Boots:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Cloak:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Amulet:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Belt:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Arm Greaves:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Leg Greaves:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Bracers:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn First Ring:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Second Ring:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m";
+    string expected = "Tantor the title-less (male)\nHe is in good shape.\n"
+        "Tantor has a shiny blah!\n\tCarrying:\n"
+        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        "=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0m\x1b[0;36mPrimary "
+        "Weapon:\t\x1b[0m\x1b[0;37;1mA Sword\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36m"
+        "Equipped Offhand:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m+-=-=-"
+        "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+        "=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Armor:\t\t\x1b[0m"
+        "\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Helmet:"
+        "\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36m"
+        "Worn Gloves:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m"
+        "\x1b[0;36mWorn Boots:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m"
+        "| \x1b[0m\x1b[0;36mWorn Cloak:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n"
+        "\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Amulet:\t\t\x1b[0m\x1b[0;30;1mnothing"
+        "\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Belt:\t\t\x1b[0m\x1b[0;30;1m"
+        "nothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Arm Greaves:\t\x1b[0m"
+        "\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Leg "
+        "Greaves:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m"
+        "\x1b[0;36mWorn Bracers:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n"
+        "\x1b[0;31m| \x1b[0m\x1b[0;36mWorn First Ring:\t\x1b[0m\x1b[0;30;1mnothi"
+        "ng\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Second Ring:\t\x1b[0m"
+        "\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+        "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m";
     ExpectEq(expected, Attributes->long());
 }
 

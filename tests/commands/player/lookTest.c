@@ -18,7 +18,7 @@ string Bar = "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 string EquippedItem = "\x1b[0;31m| \x1b[0m\x1b[0;36m%s:%s\x1b[0m\x1b[0;%sm%s\x1b[0m%s\n";
 string nothingEquipped = "\x1b[0;31m| \x1b[0m\x1b[0;36m%s:%s\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n";
 string UnequippedItem = "\x1b[0;31m| \x1b[0m\x1b[0;37;1m%s\x1b[0m%s\n";
-string SingleDetailText = "\t\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m\n";
+string SingleDetailText = "\x1b[0;36m\t%s: \x1b[0m\x1b[0;33m%d\x1b[0m\n";
 
 /////////////////////////////////////////////////////////////////////////////
 varargs string BuildInventoryString(mapping equipped, string *unequipped, int verbose)
@@ -301,7 +301,7 @@ void LookAtItemShowsDetails()
     Player->addSkillPoints(100);
     Player->advanceSkill("long sword", 6);
 
-    ExpectTrue(Player->executeCommand("look at blah"));
+    ExpectTrue(command("look at blah", Player));
     ExpectEq("This is a sword with a blade that is about 40 inches (100 cm) long.\n" + 
         sprintf(NormalEquipment, "This long sword is typical for its type.\n") + 
         sprintf(SingleDetailText, "Weight", 5) + 

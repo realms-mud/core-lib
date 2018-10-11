@@ -128,7 +128,7 @@ public nomask varargs int pageSize(int newSize)
             PageSize));
 
     }
-    return PageSize;
+    return PageSize ? PageSize : 1000;
 }
 
 /////////////////////////////////////////////////////////////////////////////

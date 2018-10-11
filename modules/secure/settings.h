@@ -24,6 +24,21 @@ static nomask void loadSettings(mapping data, object persistence)
         characterSet = persistence->extractSaveData("character set", data);
         blocks = persistence->extractSaveData("blocks", data);
     }
+
+    if (!PageSize)
+    {
+        PageSize = 20;
+    }
+
+    if (member(({ "none", "3-bit", "8-bit", "24-bit" }), colorSetting) < 0)
+    {
+        colorSetting = "3-bit";
+    }
+
+    if (member(({ "ascii", "unicode" }), characterSet) < 0)
+    {
+        characterSet = "ascii";
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

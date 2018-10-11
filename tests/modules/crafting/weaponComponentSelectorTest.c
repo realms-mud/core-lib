@@ -80,12 +80,12 @@ void SpecificWeaponMenuDisplaysCorrectly()
     ExpectEq("\x1b[0;36mCraft Long sword - \x1b[0m\x1b[0;37;1mFrom this menu, you will select the\n"
         "components that will be used to craft your long sword. The relative statistics\n"
         "for the item you are creating are:\n"
-        "\t\x1b[0;36mMaterial: \x1b[0;31mnone selected\x1b[0m\n"
-        "\t\x1b[0;36mAttack: \x1b[0m\x1b[0;33m5 to 105\x1b[0m\n"
-        "\t\x1b[0;36mDamage: \x1b[0m\x1b[0;33m8 to 11\x1b[0m\n"
-        "\t\x1b[0;36mDefense: \x1b[0m\x1b[0;33m1 to 2\x1b[0m\n"
-        "\t\x1b[0;36mEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
-        "\t\x1b[0;36mWeight: \x1b[0m\x1b[0;33m5\x1b[0m\n\x1b[0m\n"
+        "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0;31mnone selected\x1b[0m\n"
+        "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m5\x1b[0m\x1b[0;33m to 105\x1b[0m\n"
+        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m8\x1b[0m\x1b[0;33m to 11\x1b[0m\n"
+        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"
+        "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
+        "\x1b[0;36m\tWeight: \x1b[0m\x1b[0;33m5\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Blade        \x1b[0m\n"
         "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mSelect Crossguard   \x1b[0m\n"
         "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mSelect Hilt         \x1b[0m\n"
@@ -313,12 +313,12 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
     ExpectEq("\x1b[0;36mCraft Long sword - \x1b[0m\x1b[0;37;1mFrom this menu, you will select the\n"
         "components that will be used to craft your long sword. The relative statistics\n"
         "for the item you are creating are:\n"
-        "\t\x1b[0;36mMaterial: \x1b[0;31mnone selected\x1b[0m\n"
-        "\t\x1b[0;36mAttack: \x1b[0m\x1b[0;33m5 to 105\x1b[0m\n"
-        "\t\x1b[0;36mDamage: \x1b[0m\x1b[0;33m8 to 11\x1b[0m\n"
-        "\t\x1b[0;36mDefense: \x1b[0m\x1b[0;33m1 to 2\x1b[0m\n"
-        "\t\x1b[0;36mEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
-        "\t\x1b[0;36mWeight: \x1b[0m\x1b[0;33m5\x1b[0m\n\x1b[0m\n"
+        "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0;31mnone selected\x1b[0m\n"
+        "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m5\x1b[0m\x1b[0;33m to 105\x1b[0m\n"
+        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m8\x1b[0m\x1b[0;33m to 11\x1b[0m\n"
+        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"
+        "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
+        "\x1b[0;36m\tWeight: \x1b[0m\x1b[0;33m5\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Blade        \x1b[0m\n"
         "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mSelect Crossguard   \x1b[0m\n"
         "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mSelect Hilt         \x1b[0m\n"
@@ -354,13 +354,13 @@ void ConfirmSetsValuesForWeaponCraftingMenu()
     ExpectEq("\x1b[0;36mCraft Long sword - \x1b[0m\x1b[0;37;1mFrom this menu, you will select the\n"
         "components that will be used to craft your long sword. The relative statistics\n"
         "for the item you are creating are:\n"
-        "\t\x1b[0;36mMaterial: \x1b[0m\x1b[0;33mAdmantite\x1b[0m\n"
-        "\t\x1b[0;36mAttack: \x1b[0m\x1b[0;33m8 to 108\x1b[0m\n"
-        "\t\x1b[0;36mDamage: \x1b[0m\x1b[0;33m13 to 16\x1b[0m\x1b[0;31m [+2 magical]\x1b[0m\n"
-        "\t\x1b[0;36mDefense: \x1b[0m\x1b[0;33m1 to 2\x1b[0m\n"
-        "\t\x1b[0;36mEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
-        "\t\x1b[0;36mWeight: \x1b[0m\x1b[0;33m5\x1b[0m\n\x1b[0m\n"
-        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Blade        \x1b[0m\x1b[0;35;1m   (*)\x1b[0m\n"
+        "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0m\x1b[0;33mAdmantite\x1b[0m\n"
+        "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m8\x1b[0m\x1b[0;33m to 108\x1b[0m\n"
+        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m13\x1b[0m\x1b[0;33m to 16\x1b[0m\x1b[0;31m [+2 magical]\x1b[0m\n"
+        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"
+        "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
+        "\x1b[0;36m\tWeight: \x1b[0m\x1b[0;33m5\x1b[0m\n\x1b[0m\n"
+        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Blade        \x1b[0m\x1b[0;34;1m   (*)\x1b[0m\n"
         "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mSelect Crossguard   \x1b[0m\n"
         "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mSelect Hilt         \x1b[0m\n"
         "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mSelect Pommel       \x1b[0m\n"
@@ -622,5 +622,36 @@ void SelectingComponentThatDoesNotUseOptionalResetsOptional()
     command("5", Player);
 
     ExpectSubStringMatch("31mSelect crystal.*none",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TurningOffColorDisplaysCorrectly()
+{
+    Player->colorConfiguration("none");
+    Selector->initiateSelector(Player);
+
+    ExpectEq("Craft Long sword - From this menu, you will select the\n"
+        "components that will be used to craft your long sword. The relative statistics\n"
+        "for the item you are creating are:\n"
+        "\tMaterial: none selected\n"
+        "\tAttack: 5 to 105\n"
+        "\tDamage: 8 to 11\n"
+        "\tDefense: 1 to 2\n"
+        "\tEncumberance: 5\n"
+        "\tWeight: 5\n\n"
+        "\t[1] - Select Blade        \n"
+        "\t[2] - Select Crossguard   \n"
+        "\t[3] - Select Hilt         \n"
+        "\t[4] - Select Pommel       \n"
+        "\t[5] - Enchant Long sword  \n"
+        "\t[6] - Give long sword a name\n"
+        "\t[7] - Give long sword a special description\n"
+        "\t[8] - Craft Selected Long sword\n"
+        "\t[9] - Exit Craft Long sword Menu\n"
+        "You must select a number from 1 to 9.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n"
+        "(*) denotes that a specific component type has been chosen.\n",
         Player->caughtMessage());
 }

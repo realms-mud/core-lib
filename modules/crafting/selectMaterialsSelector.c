@@ -64,26 +64,31 @@ private nomask void getItemToCraft()
 private nomask string getDescription()
 {
     string ret = load_object("/lib/dictionaries/materialsDictionary.c")->
-        getEquipmentStatistics(Item, 0);
+        getEquipmentStatistics(Item, User);
 
-    ret = regreplace(ret, "[^\t]*(\t.*Mater.*)", "\n\\1", 1);
+    ret = regreplace(ret, "[^\n]*(.*Mater.*)", "\\1", 1);
 
     mapping craftingMaterials = Item->query("crafting materials");
 
     if (!Item->query("primary crafting material"))
     {
-        ret = regreplace(ret, "(.*Material: )([^\n])*(.*)", "\\1\x1b[0;31mnone selected\x1b[0m\\3", 1);
+        ret = regreplace(ret, "(.*Material: )([^\n])*(.*)",
+            sprintf("\\1%s\\3", configuration->decorate("none selected",
+                "failure", "selector", colorConfiguration)));
     }
 
     mapping enchantments = Item->query("crafting enchantments");
     if (mappingp(enchantments))
     {
-        ret += "\x1b[0;32mThis item will have the following enchantments:\x1b[0m\n";
+        ret += configuration->decorate("This item will have the following "
+            "enchantments:\n", "details", "selector", colorConfiguration);
+
         string *enchantmentList = m_indices(enchantments);
         foreach(string enchantment in enchantmentList)
         {
-            ret += sprintf("\x1b[0;35;1m\t%s (x%d)\x1b[0m\n", 
-                capitalize(enchantment), enchantments[enchantment]);
+            ret += configuration->decorate(sprintf("\t%s (x%d)\n", 
+                capitalize(enchantment), enchantments[enchantment]),
+                "information", "selector", colorConfiguration); 
         }
     }
     return sprintf("From this menu, you will select the\ncomponents that "
@@ -182,14 +187,18 @@ protected nomask int processSelection(string selection)
             {
                 SettingName = 1;
                 OriginalName = Item->query("name");
-                tell_object(User, "\x1b[0;32mPlease enter the item's new name: \x1b[0m");
+                tell_object(User, configuration->decorate(
+                    "Please enter the item's new name: ", "details",
+                    "selector", colorConfiguration));
             }
             else if (Data[selection]["type"] == "describe")
             {
                 SettingDescription = 1;
                 NewDescription = "";
-                tell_object(User, "\x1b[0;32mPlease enter the item's new description. "
-                    "Type '**' on a line by itself\nwhen you are done.\n\x1b[0m");
+                tell_object(User, configuration->decorate("Please enter the "
+                    "item's new description. Type '**' on a line by "
+                    "itself\nwhen you are done.\n", "details",
+                    "selector", colorConfiguration)); 
             }
             else if (Data[selection]["type"] == "craft")
             {
@@ -200,8 +209,10 @@ protected nomask int processSelection(string selection)
                         Dictionary->setCraftingSkill(CraftingType, CraftingItem,
                             Item, User);
                         User->completeCrafting();
-                        tell_object(User, sprintf("\x1b[0;32;1mYou have successfully "
-                            "crafted %s.\x1b[0m\n", CraftingItem));
+                        tell_object(User, configuration->decorate(sprintf(
+                            "You have successfully crafted %s.\n", 
+                            CraftingItem), "details",  "selector", 
+                            colorConfiguration));
                         ret = 1;
                     }
                 }
@@ -255,17 +266,20 @@ protected nomask string displayDetails(string choice)
     }
     if (member(componentList, Data[choice]["type"]) > -1)
     {
-        ret = "\x1b[0;35;1m   (*)\x1b[0m";
+        ret = configuration->decorate("   (*)", "selected", "selector", 
+            colorConfiguration);
     }
     else if ((Data[choice]["type"] == "name") && OriginalName &&
         (Item->query("name") != OriginalName))
     {
-        ret = sprintf("\x1b[0;35;1m   (%s)\x1b[0m", Item->query("name"));
+        ret = configuration->decorate(sprintf("   (%s)", Item->query("name")), 
+            "selected", "selector", colorConfiguration); 
     }
     else if ((Data[choice]["type"] == "describe") && NewDescription &&
         Item->query("long"))
     {
-        ret = "\x1b[0;35;1m   (*)\x1b[0m";
+        ret = configuration->decorate("   (*)", "selected", "selector",
+            colorConfiguration);
     }
     return ret;
 }
@@ -305,8 +319,8 @@ protected nomask string additionalInstructions()
 {
     return configuration->decorate((User->charsetConfiguration() == "unicode") ?
             "   (\xe2\x80\xa0)" : "(*)", "selected", "selector", colorConfiguration) +
-        configuration->decorate(" denotes that a specific component type has been chosen.\n",
-            "details", "selector", colorConfiguration);
+        configuration->decorate(" denotes that a specific component type has "
+            "been chosen.\n", "details", "selector", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -320,9 +334,4 @@ public void onSelectorAborted(object caller)
 {
     User->abortCrafting();
     "baseSelector"::onSelectorAborted(caller);
-}
-
-public object blah()
-{
-    return Item;
 }

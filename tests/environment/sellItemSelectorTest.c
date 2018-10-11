@@ -16,6 +16,7 @@ void Setup()
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
+    Player->colorConfiguration("3-bit");
     Player->addCommands();
 
     Weapon = clone_object("/lib/tests/support/items/testSword.c");
@@ -316,13 +317,13 @@ void ItemDetailsShowLongPlusValue()
     command("? 1", Player);
     ExpectEq("\x1b[0;36mThis is the sword of weasels. It's neat.\n"
         "\x1b[0;35mThis long sword is enchanted.\n"
-        "\x1b[0m\t\x1b[0;36mMaterial: \x1b[0m\x1b[0;33mGalvorn\x1b[0m\n"
-        "\t\x1b[0;36mAttack: \x1b[0m\x1b[0;33m10 to 110\x1b[0m\n"
-        "\t\x1b[0;36mDamage: \x1b[0m\x1b[0;33m15 to 20\x1b[0m\x1b[0;31m [+5 magical]\x1b[0m\n"
-        "\t\x1b[0;36mDefense: \x1b[0m\x1b[0;33m1 to 2\x1b[0m\n"
-        "\t\x1b[0;36mEncumberance: \x1b[0m\x1b[0;33m7\x1b[0m\n"
+        "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0m\x1b[0;33mGalvorn\x1b[0m\n"
+        "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m10\x1b[0m\x1b[0;33m to 110\x1b[0m\n"
+        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m15\x1b[0m\x1b[0;33m to 20\x1b[0m\x1b[0;31m [+5 magical]\x1b[0m\n"
+        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"
+        "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m7\x1b[0m\n"
         "\x1b[0;33m\tBonus armor class: 5\n"
-        "\x1b[0m\t\x1b[0;36mWeight: \x1b[0m\x1b[0;33m7\x1b[0m\n\n"
+        "\x1b[0m\x1b[0;36m\tWeight: \x1b[0m\x1b[0;33m7\x1b[0m\n\n"
         "\x1b[0;32mYou can sell this item for 42.\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }

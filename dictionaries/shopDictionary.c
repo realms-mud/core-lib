@@ -138,7 +138,7 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
             string name = item->query("name");
 
             ret[to_string(menuItem)] = ([
-                "name": sprintf(materials->getMaterialQualityFormatter(item),
+                "name": sprintf(materials->getMaterialQualityFormatter(item, user),
                     ((sizeof(name) > 20) ? name[0..16] + "..." : name)),
                 "identified": item->query("identified"),
                 "object list": ({ item }),

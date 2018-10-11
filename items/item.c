@@ -58,6 +58,12 @@ protected mapping itemData = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
+private string *prohibitedKeys = ({ "armor class", "defense class",
+    "weapon class", "hit method", "armor type", "weapon type", "offhand",
+    "equip message", "equip method", "equipment locations", "prerequisites",
+    "unequip message", "unequip method", "cursed" });
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask object loadBlueprint(string blueprint)
 {
     object ret = 0;
@@ -73,12 +79,6 @@ protected nomask object materialsObject()
 {
     return load_object(MaterialsBlueprint);
 }
-
-/////////////////////////////////////////////////////////////////////////////
-private string *prohibitedKeys = ({ "armor class", "defense class",
-    "weapon class", "hit method", "armor type", "weapon type", "offhand",
-    "equip message", "equip method", "equipment locations", "prerequisites",
-    "unequip message", "unequip method", "cursed" });
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int isValidBonus(string bonus, int amount)
