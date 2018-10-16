@@ -21,14 +21,12 @@ private string State = "default";
 private string RegionPath = 0;
 private int xCoordinate = 0;
 private int yCoordinate = 0;
-
-private nosave string Description = "\x1b[0;33m%s\n\x1b[0m";
 private nosave string ShortDescription = "";
-private nosave string Exits = "\x1b[0;30;1m -=-=- %s\n\x1b[0m";
-private nosave string InventoryItem = "\x1b[0;36m%s\n\x1b[0m";
+
 private nosave object StateMachine = 0;
 private nosave string BaseStateMachine = "lib/core/stateMachine.c";
 private nosave int SetupCompleted = 0;
+private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
 private object environmentDictionary()
@@ -538,19 +536,21 @@ private string getExitDescription()
     }
     exitList = sort_array(m_indices(mkmapping(exitList)), (: $1 > $2 :));
 
+    int showUnicode = this_player() ? 
+        this_player()->charsetConfiguration() == "unicode" : 0;
+    string colorConfiguration = this_player() ?
+        this_player()->colorConfiguration() : "none";
+
     int numExits = sizeof(exitList);
-    if(numExits)
-    {
-        ret = sprintf(Exits, sprintf("There %s %s obvious exit%s: %s",
-            numExits == 1 ? "is" : "are",
-            environmentDictionary()->convertNumberToString(numExits),
-            numExits == 1 ? "" : "s",
-            implode(exitList, ", ")));
-    }
-    else
-    {
-        ret = sprintf(Exits, "There are no obvious exits.");
-    }
+
+    ret = configuration->decorate(sprintf(" %s There %s %s obvious exit%s%s %s\n",
+        (showUnicode ? "\xe2\x95\x98\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9b" : 
+            "-=-=-"), numExits == 1 ? "is" : "are",
+        environmentDictionary()->convertNumberToString(numExits),
+        (numExits == 1 ? "" : "s"), (numExits ? ":" : "."),
+        implode(exitList, ", ")),
+        "exits", "environment", colorConfiguration);
+
     return ret;
 }
 
@@ -561,13 +561,17 @@ private string getInventoryDescription()
     object *environmentInventory = all_inventory(this_object());
     if (sizeof(environmentInventory))
     {
+        string colorConfiguration = this_player() ?
+            this_player()->colorConfiguration() : "none";
+
         foreach(object environmentItem in environmentInventory)
         {
             string shortDesc = environmentItem->short();
             if (shortDesc && (shortDesc != "") && 
                 (environmentItem != this_player()))
             {
-                ret += sprintf(InventoryItem, capitalize(shortDesc));
+                ret += configuration->decorate(capitalize(shortDesc),
+                    "inventory", "environment", colorConfiguration);
             }
         }
     }
@@ -608,8 +612,13 @@ public varargs string long(string item)
         raise_error("ERROR in environment.c: Either a valid terrain or "
             "interior must be set.\n");
     }
-    return format(sprintf(Description, capitalizeSentences(ret)), 78) + 
-        getExitDescription() + getInventoryDescription();
+
+    string colorConfiguration = this_player() ?
+        this_player()->colorConfiguration() : "none";
+
+    return configuration->decorate(format(capitalizeSentences(ret), 78),
+        "description", "environment", colorConfiguration) +
+        getExitDescription() + getInventoryDescription() + "\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////

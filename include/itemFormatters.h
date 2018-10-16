@@ -390,6 +390,23 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;170;180;110m"
         ]),
     ]),
+    "environment":([
+        "description":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;190m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+        "exits":([
+            "3-bit": "\x1b[0;35m",
+            "8-bit": "\x1b[0;38;5;238;1m",
+            "24-bit": "\x1b[0;38;2;60;60;70;1m"
+        ]),
+        "inventory": ([
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;80m",
+            "24-bit": "\x1b[0;38;2;180;180;190m"
+        ]),
+    ]),
  ]);
 
 #endif

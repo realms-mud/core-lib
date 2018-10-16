@@ -795,7 +795,7 @@ void DescriptionDisplaysCorrectlyForObjectsWithoutDescriptions()
     Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
     Environment->testAddItem("/lib/tests/support/environment/itemWithoutDescription.c");
 
-    ExpectEq("a stone hallway.\n\x1b[0m\x1b[0;30;1m -=-=- There are no obvious exits.\n\x1b[0m",
+    ExpectEq("a stone hallway.\n -=-=- There are no obvious exits. \n\n",
         regreplace(Environment->long(), ".+ (a stone.+)", "\\1"));
     ExpectTrue(Environment->id("descriptionless sign"));
 }
@@ -806,7 +806,7 @@ void DescriptionDisplaysCorrectlyForObjectsWithEmptyDescriptions()
     Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
     Environment->testAddItem("/lib/tests/support/environment/itemWithEmptyDescription.c");
 
-    ExpectEq("a stone hallway.\n\x1b[0m\x1b[0;30;1m -=-=- There are no obvious exits.\n\x1b[0m",
+    ExpectEq("a stone hallway.\n -=-=- There are no obvious exits. \n\n",
         regreplace(Environment->long(), ".+ (a stone.+)", "\\1"));
     ExpectTrue(Environment->id("descriptionless sign"));
 }
@@ -819,4 +819,131 @@ void ObjectsWithoutDescriptionsCannotHaveDirection()
 
     ExpectEq("*ERROR in environment.c: You cannot specify a direction for "
         "'descriptionless sign' as it has no description.\n", error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NoColorCorrectlyDisplayed()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("none");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("a deciduous forest. To the north.*trees.*"
+        "laden with acorns.*glowing.\n"
+        " -=-=- There is one obvious exit: north\n"
+        "Sword of Blah\n",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ThreeBitColorCorrectlyDisplayed()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("3-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("0;33m.*a deciduous forest. To the north.*"
+        "trees.*laden with acorns.*glowing.*"
+        "0m..0;35m -=-=- There is one obvious exit: north\n"
+        "..0m..0;36mSword of Blah..0m\n",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EightBitColorCorrectlyDisplayed()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("0;38;5;190m.*a deciduous forest. To the north.*"
+        "trees.*laden with acorns.*glowing.*"
+        "0m..0;38;5;238;1m -=-=- There is one obvious exit: north\n"
+        "..0m..0;38;5;80mSword of Blah..0m\n",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TwentyFourBitColorCorrectlyDisplayed()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("24-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("0;38;2;200;200;0m.*a deciduous forest. To the north.*"
+        "trees.*laden with acorns.*glowing.*"
+        "0m..0;38;2;60;60;70;1m -=-=- There is one obvious exit: north\n"
+        "..0m..0;38;2;180;180;190mSword of Blah..0m\n",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnicodeCorrectlyDisplayed()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->charsetConfiguration("unicode");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("\xe2\x95\x98\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9b",
+        person->caughtMessage());
 }
