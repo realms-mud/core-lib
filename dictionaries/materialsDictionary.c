@@ -456,33 +456,33 @@ private nomask varargs string colorConfiguration(object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs string getMaterialQualityFormatter(object equipment, 
-    object initiator)
+public nomask varargs string getMaterialQualityFormatter(object equipment)
 {
-    string colorConfiguration = colorConfiguration(initiator);
-
     string qualityFormat = "normal quality";
+    string qualityMessage = "   ";
 
     if (getMaterialCraftsmanshipBonus(equipment) > 4)
     {
         qualityFormat = "masterwork";
+        qualityMessage = "(M)";
     }
     else if (equipment->query("enchanted") > 4)
     {
         qualityFormat = "powerful enchantment";
+        qualityMessage = "(P)";
     }
     else if (getMaterialCraftsmanshipBonus(equipment))
     {
         qualityFormat = "well-crafted";
+        qualityMessage = "(C)";
     }
     else if (equipment->query("enchanted"))
     {
         qualityFormat = "enchanted";
+        qualityMessage = "(E)";
     }
 
-    return (colorConfiguration == "none") ? sprintf("%s (%s)", "%s", qualityFormat) :
-        configuration->decorate("%s", qualityFormat, "equipment",
-            colorConfiguration);
+    return sprintf("%s %s", "%s", qualityMessage);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1048,52 +1048,28 @@ public nomask varargs string getEquipmentStatistics(object equipment, object ini
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getItemSummary(object equipment)
+public nomask mapping getItemSummary(object equipment)
 {
-    string colorConfiguration = colorConfiguration();
+    mapping ret = ([
+        "identified": equipment->query("identified")
+    ]);
 
-    string ret = configuration->decorate("This item has not been identified",
-        "unidentified", "shop", colorConfiguration);
-
-    if (equipment->query("identified"))
+    if (equipment->query("weapon type"))
     {
-        if (equipment->query("weapon type"))
-        {
-            ret = configuration->decorate("    Attack: ", "field", "equipment",
-                colorConfiguration) +
-                configuration->decorate(
-                    sprintf("%2d", getAttackData(equipment, 0)), "value",
-                    "equipment", colorConfiguration) +
-                configuration->decorate(", Damage: ", "field", "equipment",
-                    colorConfiguration) +
-                configuration->decorate(
-                    sprintf("%2d", getDamageData(equipment, 0)), "value",
-                    "equipment", colorConfiguration) +
-                configuration->decorate(", Defense: ", "field", "equipment",
-                    colorConfiguration) +
-                configuration->decorate(
-                    sprintf("%2d", getWeaponDefenseData(equipment, 0)), "value",
-                    "equipment", colorConfiguration);
-        }
-        else if (equipment->query("armor type"))
-        {
-            ret = configuration->decorate("    Soak: ", "field", "equipment",
-                colorConfiguration) +
-                configuration->decorate(
-                    sprintf("%2d", getDamageProtectionData(equipment, 0)), "value",
-                    "equipment", colorConfiguration) +
-                configuration->decorate(", Encumberance: ", "field", "equipment",
-                    colorConfiguration) +
-                configuration->decorate(
-                    sprintf("%2d", getEncumberanceData(equipment, 0)), "value",
-                    "equipment", colorConfiguration);
-        }
-        else
-        {
-            ret = configuration->decorate("    View description for summary",
-                "field", "equipment", colorConfiguration);        
-        }
+        ret["Attack"] = getAttackData(equipment, 0);
+        ret["Damage"] = getDamageData(equipment, 0);
+        ret["Defense"] = getWeaponDefenseData(equipment, 0);
     }
+    else if (equipment->query("armor type"))
+    {
+        ret["Soak"] = getDamageProtectionData(equipment, 0);
+        ret["Encumberance"] = getEncumberanceData(equipment, 0);
+    }
+    else
+    {
+        ret["No data"] = 0;
+    }
+
     return ret;
 }
 

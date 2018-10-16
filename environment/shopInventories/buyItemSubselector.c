@@ -28,10 +28,6 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        Description = "Select an item to buy:\n" + configuration->decorate(
-            "-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-",
-            "decorator", "selector", colorConfiguration);
-
         AllowAbort = 1;
         AllowUndo = 0;
         NumColumns = 1;
@@ -46,6 +42,10 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
+    Description = "Select an item to buy:\n" + configuration->decorate(
+        "-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-",
+        "decorator", "selector", colorConfiguration);
+
     if (!BuyType)
     {
         raise_error("ERROR: buyItemSubselector.c - The type has not been "
@@ -56,7 +56,7 @@ protected nomask void setUpUserForSelection()
         raise_error("ERROR: buyItemSubselector.c - The store has not been "
             "set.\n");
     }
-    Data = Dictionary->getBuyItemDetailsForType(Store, BuyType, BuySubType);
+    Data = Dictionary->getBuyItemDetailsForType(User, Store, BuyType, BuySubType);
 
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Return to previous menu",
@@ -129,4 +129,14 @@ protected string choiceFormatter(string choice)
         padSelectionDisplay(choice),
         configuration->decorate("%s", "choice enabled", "selector", colorConfiguration),
         displayDetails(choice));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string additionalInstructions()
+{
+    return (User->colorConfiguration() == "none") ? 
+        "Items with a (C) to the right of their name are particularly well-crafted.\n"
+        "Items with a (M) to the right of their name are masterwork items.\n"
+        "Items with a (E) to the right of their name are enchanted.\n"
+        "Items with a (P) to the right of their name are enchanted with powerful magic.\n" : "";
 }

@@ -117,6 +117,10 @@ protected nomask string displayDetails(string choice)
         ret = configuration->decorate(showUnicode ? " (\xe2\x98\xa0)" : " (C)", 
             "warning", "selector", colorConfiguration);
     }
+    else
+    {
+        ret = "    ";
+    }
 
     return ret;
 }
@@ -147,9 +151,19 @@ protected nomask int suppressMenuDisplay()
 protected string choiceFormatter(string choice)
 {
     return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "\t" : "",
+        (NumColumns < 3) ? "    " : "",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        configuration->decorate("%-30s", "choice enabled", "selector", colorConfiguration),
+        configuration->decorate("%s", "choice enabled", "selector", colorConfiguration),
         displayDetails(choice));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string additionalInstructions()
+{
+    return (User->colorConfiguration() == "none") ?
+        "Items with a (C) to the right of their name are particularly well-crafted.\n"
+        "Items with a (M) to the right of their name are masterwork items.\n"
+        "Items with a (E) to the right of their name are enchanted.\n"
+        "Items with a (P) to the right of their name are enchanted with powerful magic.\n" : "";
 }

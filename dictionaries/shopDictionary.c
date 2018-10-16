@@ -5,6 +5,7 @@
 #include "/lib/include/itemFormatters.h"
 
 private string BaseShop = "lib/environment/shopInventories/baseShop.c";
+private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
 private mapping alwaysGenerate = ([
     "weapons":([
@@ -112,6 +113,48 @@ public nomask varargs float valueModifier(object user, int selling)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private string materialQualityFormatter(string formatter,
+    string colorConfiguration)
+{
+    string type = regreplace(formatter, "%s [(](C|E|M|P)[)]", "\\1");
+    string decoration = "";
+    switch (type)
+    {
+        case "C":
+        {
+            decoration = "well-crafted";
+            break;
+        }
+        case "E":
+        {
+            decoration = "enchanted";
+            break;
+        }
+        case "M":
+        {
+            decoration = "masterwork";
+            break;
+        }
+        case "P":
+        {
+            decoration = "powerful enchantment";
+            break;
+        }
+        default:
+        {
+            decoration = "normal quality";
+            break;
+        }
+    }
+
+    string formatString = (colorConfiguration == "none") ? 
+        regreplace(formatter, "(.*)%s(.*)", "\\1%-20s\\2", 1) : "%-23s";
+
+    return configuration->decorate(formatString, decoration, "equipment",
+        colorConfiguration);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getSellItemDetailsForType(object user, string type, object store)
 {
     mapping ret = ([]);
@@ -125,6 +168,9 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
     object materials = load_object("/lib/dictionaries/materialsDictionary.c");
     if (sizeof(items))
     {
+        string colorConfiguration = user->colorConfiguration() ?
+            user->colorConfiguration() : "none";
+
         float multiplier = valueModifier(user, 1);
         foreach(object item in items)
         {
@@ -132,17 +178,23 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
             value = (value < 25000) ? value : 25000;
 
             string valueStr = value ?
-                sprintf("\x1b[0;32mYou can sell this item for %d.\x1b[0m\n", value) :
-                "\x1b[0;32mThis item has no value to the merchant.\x1b[0m\n";
+                sprintf("You can sell this item for %d.\n", value) :
+                "This item has no value to the merchant.\n";
 
             string name = item->query("name");
 
+            string materialFormat = regreplace(materialQualityFormatter(
+                materials->getMaterialQualityFormatter(item),
+                colorConfiguration), "%-23s", "%-19s", 1);
+
             ret[to_string(menuItem)] = ([
-                "name": sprintf(materials->getMaterialQualityFormatter(item, user),
-                    ((sizeof(name) > 20) ? name[0..16] + "..." : name)),
+                "name": sprintf(materialFormat,
+                    ((sizeof(name) > 19) ? name[0..15] + "..." : name)),
                 "identified": item->query("identified"),
                 "object list": ({ item }),
-                "description": item->long(1) + valueStr,
+                "description": item->long(1) + 
+                    configuration->decorate(valueStr, "message", "shop",
+                    colorConfiguration),
                 "value": value
             ]);
 
@@ -166,9 +218,10 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
         }
 
         ret[to_string(menuItem)] = ([
-            "name": "\x1b[0;30;1mSell all" + 
+            "name": configuration->decorate("Sell all" +
                 ((member(({ "armor", "weapon", "instrument" }), type) > -1) ?
-                    " unused\x1b[0m    " : ""),
+                    " unused    " : ""), "sell all", "shop", 
+                colorConfiguration), 
             "description": "This option will sell all of your unequipped " + type,
             "object list": filter(items, 
                 (: (!$2->isEquipped($1) && !$1->query("cursed") &&
@@ -195,8 +248,12 @@ private nomask void moveNestedItemsToUser(object user, object item)
 public nomask void sellItems(object user, object store, object *items)
 {
     int money = 0;
+    string colorConfiguration = user->colorConfiguration() ?
+        user->colorConfiguration() : "none";
+
     if (sizeof(items))
     {
+
         float multiplier = valueModifier(user, 1);
         foreach(object item in items)
         {
@@ -213,8 +270,9 @@ public nomask void sellItems(object user, object store, object *items)
                 int value = to_int(item->query("value") * multiplier);
                 value = (value < 25000) ? value : 25000;
                 money += value;
-                tell_object(user, sprintf("\x1b[0;32mYou sell %s.\x1b[0m\n",
-                    item->query("name")));
+                tell_object(user, configuration->decorate(
+                    sprintf("You sell %s.\n", item->query("name")),
+                    "message", "shop", colorConfiguration));
                 store->storeItem(item);
                 destruct(item);
             }
@@ -223,9 +281,10 @@ public nomask void sellItems(object user, object store, object *items)
     if (money)
     {
         user->addMoney(money);
+        tell_object(user, configuration->decorate(
+            sprintf("You received $%d for your sold items.\n", money),
+            "accounting", "shop", colorConfiguration)); 
     }
-    tell_object(user, sprintf("\x1b[0;37mYou received $%d for your sold items.\x1b[0m\n",
-        money));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -330,7 +389,40 @@ public nomask string *getBuyItemTypes(object store)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getBuyItemDetailsForType(object store, string type, string subtype)
+private string generateItemSummary(mapping summary, string colorConfiguration)
+{
+    string ret = "";
+
+    if (!summary["identified"])
+    {
+        ret = configuration->decorate("This item has not been identified",
+            "unidentified", "shop", colorConfiguration);
+    }
+    else if (member(summary, "No data"))
+    {
+        ret = configuration->decorate("View description for summary",
+            "field", "shop", colorConfiguration);
+    }
+    else if (sizeof(summary))
+    {
+        string *output = ({});
+        foreach(string key in (m_indices(summary) - ({"identified", "No data"})))
+        {
+            output += ({
+                configuration->decorate(sprintf("%s: ", key), 
+                    "field", "shop", colorConfiguration) +
+                configuration->decorate(sprintf("%2d", summary[key]), 
+                    "value", "shop", colorConfiguration)
+            });
+        }
+        ret = implode(output, ", ");
+    }
+    return "    " + ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getBuyItemDetailsForType(object user, object store, 
+    string type, string subtype)
 {
     mapping inventory = store->storeInventory();
     string *itemList = m_indices(filter_indices(inventory,
@@ -338,28 +430,36 @@ public nomask mapping getBuyItemDetailsForType(object store, string type, string
            (($4 == "all") || ($2[$1]["subType"] == $4))) :), 
             inventory, type, subtype));
     mapping ret = ([]);
+
     if (sizeof(itemList))
     {
         itemList = sort_array(itemList, (: $1 > $2 :));
         int menuItem = 1;
+
+        string colorConfiguration = user->colorConfiguration();
+        object materials = load_object("/lib/dictionaries/materialsDictionary.c");
+
         foreach(string item in itemList)
         {
-            string valueStr = sprintf("\x1b[0;32mYou can buy this item for %d.\x1b[0m\n",
-                inventory[item]["value"]);
+            string valueStr = configuration->decorate(
+                sprintf("You can buy this item for %d.",
+                    inventory[item]["value"]), "message", "shop",
+                colorConfiguration);
 
-            string qualityFormat = regreplace(inventory[item]["quality"],
-                "(.*)%(-20|)s(.*)", "\\1%-23s\\3", 1);
+            string qualityFormat = materialQualityFormatter(
+                inventory[item]["quality"], colorConfiguration);
 
             ret[to_string(menuItem)] = ([
-                "name": sprintf("%s \x1b[0;32m%8d\x1b[0m",
-                    sprintf(qualityFormat, 
-                    ((sizeof(inventory[item]["name"]) <= 23) ? inventory[item]["name"] :
-                        inventory[item]["name"][0..19] + "...")),
-                    inventory[item]["value"]),
+                "name" : sprintf(qualityFormat,
+                    ((sizeof(inventory[item]["name"]) <= 20) ? inventory[item]["name"] :
+                        inventory[item]["name"][0..16] + "...")) +
+                    configuration->decorate(sprintf(" %8d", inventory[item]["value"]),
+                        "cost", "shop", colorConfiguration),
                 "description": inventory[item]["description"] + valueStr,
                 "data": inventory[item]["data"],
                 "value": inventory[item]["value"],
-                "summary": inventory[item]["summary"],
+                "summary": generateItemSummary(inventory[item]["summary"],
+                    colorConfiguration),
                 "blueprint": regreplace(item, "([^#]+)#.*", "/\\1.c", 1),
                 "key": item
             ]);
@@ -384,12 +484,16 @@ public nomask void buyItem(object user, object store, mapping item)
             user->addMoney(-item["value"]);
             store->buyItem(item["key"]);
             move_object(itemObj, user);
-            tell_object(user, sprintf("\x1b[0;32mYou purchased %s for $%d.\x1b[0m\n",
-                itemObj->query("name"), item["value"]));
+            tell_object(user, configuration->decorate(
+                sprintf("You purchased %s for $%d.\n", itemObj->query("name"),
+                    item["value"]), "message", "shop",
+                user->colorConfiguration()));
         }
         else
         {
-            tell_object(user, "\x1b[0;32mYou do not have the funds for that.\x1b[0m\n");
+            tell_object(user, configuration->decorate("You do not have the "
+                "funds for that.\n", "message", "shop",
+                user->colorConfiguration()));
         }
     }
 }
