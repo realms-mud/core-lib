@@ -10,6 +10,7 @@ private string MessageParser = "/lib/core/messageParser.c";
 protected string *commands = ({});
 protected int SplitCommands;
 protected string CommandType = "general";
+protected object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *commandList()
@@ -359,7 +360,8 @@ protected string wildcardMeaning()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayUsageDetails(string displayCommand)
+public nomask string displayUsageDetails(string displayCommand,
+    string colorConfiguration, int useUnicode)
 {
     string ret = "";
 
@@ -380,21 +382,24 @@ public nomask string displayUsageDetails(string displayCommand)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string displaySynopsis(string displayCommand)
+public string displaySynopsis(string displayCommand,
+    string colorConfiguration, int useUnicode)
 {
     return format(sprintf("\x1b[0;36;1mSynopsis\n\x1b[0;36m\t%s - %s\n\x1b[0m", 
         displayCommand, synopsis(displayCommand)), 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string displayDescription(string displayCommand)
+public string displayDescription(string displayCommand,
+    string colorConfiguration, int useUnicode)
 {
     return sprintf("\x1b[0;36;1mDescription\n\x1b[0;36m%s\n\x1b[0m\n",
         description(displayCommand));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string displayOptions(string displayCommand)
+public string displayOptions(string displayCommand,
+    string colorConfiguration, int useUnicode)
 {
     string ret = "";
     if (sizeof(commands) && sizeof(regexp(({ commands[0] }), " [[]*-[a-zA-Z]")))
@@ -417,7 +422,8 @@ public string displayOptions(string displayCommand)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string displayNotes(string displayCommand)
+public string displayNotes(string displayCommand,
+    string colorConfiguration, int useUnicode)
 {
     return format(sprintf("\x1b[0;36;1mNotes\n\x1b[0;36m\t%s\n\x1b[0m\n",
         notes(displayCommand)), 78) + copyright();

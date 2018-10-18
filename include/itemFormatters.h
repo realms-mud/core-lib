@@ -25,9 +25,11 @@ private nosave string Magenta = "\x1b[0;35m%s\x1b[0m";
 
 private nosave mapping decorators = ([
     "dividers":([
-        "3-bit": "\x1b[0;31m",
-        "8-bit": "\x1b[0;38;5;124m",
-        "24-bit": "\x1b[0;38;2;100;10;0m"
+        "any": ([
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;124m",
+            "24-bit": "\x1b[0;38;2;100;10;0m"
+        ]),
     ]),
     "player guilds":([
         "any":([
@@ -407,6 +409,28 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;180;180;190m"
         ]),
     ]),
- ]);
+     "score":([
+        "character":([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;144m",
+            "24-bit": "\x1b[0;38;2;100;180;150m"  
+        ]),
+        "value":([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;2m",
+            "24-bit": "\x1b[0;38;2;170;180;110m"
+        ]),
+        "content": ([
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;80m",
+            "24-bit": "\x1b[0;38;2;180;180;190m"
+        ]),
+        "weapon":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;190m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+    ]),
+]);
 
 #endif

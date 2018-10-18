@@ -36,7 +36,8 @@ private nomask varargs mapping flattenCommandList(mapping commandList, string ca
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string topLevelHelpMessage(mapping commandList)
+private nomask string topLevelHelpMessage(mapping commandList,
+    string colorConfiguration, int useUnicode)
 {
     string message = "";
     if (sizeof(commandList))
@@ -44,7 +45,9 @@ private nomask string topLevelHelpMessage(mapping commandList)
         string *commandCategories = sort_array(m_indices(commandList), (: $1 > $2 :));
         foreach(string commandCategory in commandCategories)
         {
-            message += Dictionary->buildBanner(capitalize(commandCategory), "Help");
+            message += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+                "top", capitalize(commandCategory), "Help");
+
             string *commandEntries = sort_array(m_indices(
                 commandList[commandCategory]), (: $1 > $2 :));
             int count = 0;
@@ -71,21 +74,24 @@ private nomask string topLevelHelpMessage(mapping commandList)
             }
             message += " \x1b[0;31m|\x1b[0m\n";
         }
-        message += Dictionary->buildBanner("", "");
+        message += Dictionary->buildBanner(colorConfiguration, useUnicode, "center", "", "");
     }
     return message;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void pageString(string message, object initiator)
+private nomask void pageString(string message, object initiator,
+    string colorConfiguration, int useUnicode)
 {
     string *messageLines = explode(message, "\n");
     int pageSize = initiator->pageSize();
     if (sizeof(messageLines) > pageSize)
     {
-        pageString(implode(messageLines[0..(pageSize - 1)], "\n"), initiator);
+        pageString(implode(messageLines[0..(pageSize - 1)], "\n"), initiator, 
+            colorConfiguration, useUnicode);
         tell_object(initiator, "\n\x1b[0;35;1mMore? [q to quit]\x1b[0m\n");
-        input_to("responseToPage", 1, "\x1b[0;36m" + implode(messageLines[pageSize..], "\n"), initiator);
+        input_to("responseToPage", 1, "\x1b[0;36m" + implode(messageLines[pageSize..], "\n"), 
+            initiator, colorConfiguration, useUnicode);
     }
     else
     {
@@ -94,29 +100,31 @@ private nomask void pageString(string message, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-static nomask void responseToPage(string response, string message, object initiator)
+static nomask void responseToPage(string response, string message, 
+    object initiator, string colorConfiguration, int useUnicode)
 {
     if (stringp(response) && (lower_case(response[0..0]) != "q"))
     {
-        pageString(message, initiator);
+        pageString(message, initiator, colorConfiguration, useUnicode);
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string displayHelpDetails(string commandFile, string command)
+private nomask string displayHelpDetails(string commandFile, string command,
+    string colorConfiguration, int useUnicode)
 {
     string ret = "";
     object commandObj = load_object(commandFile);
 
     if (commandObj)
     {
-        ret += Dictionary->buildBanner("Help for", command) +
-            commandObj->displaySynopsis(command);
+        ret += Dictionary->buildBanner(colorConfiguration, useUnicode, "top", "Help for", command) +
+            commandObj->displaySynopsis(command, colorConfiguration, useUnicode);
 
-        ret += commandObj->displayUsageDetails(command) +
-            commandObj->displayDescription(command) +
-            commandObj->displayOptions(command) +
-            commandObj->displayNotes(command);
+        ret += commandObj->displayUsageDetails(command, colorConfiguration, useUnicode) +
+            commandObj->displayDescription(command, colorConfiguration, useUnicode) +
+            commandObj->displayOptions(command, colorConfiguration, useUnicode) +
+            commandObj->displayNotes(command, colorConfiguration, useUnicode);
     }
     return ret;
 }
@@ -133,20 +141,24 @@ public nomask int execute(string command, object initiator)
         mapping flattenedCommandList = flattenCommandList(commandList);
         string message = "";
 
+        string colorConfiguration = initiator->colorConfiguration();
+        int useUnicode = initiator->charsetConfiguration() == "unicode";
+
         command = regreplace(command, "^(help *)(.*)", "\\2");
         if (!sizeof(command))
         {
-            message = topLevelHelpMessage(commandList);
+            message = topLevelHelpMessage(commandList, colorConfiguration, useUnicode);
         }
         else if(member(flattenedCommandList, command))
         {
-            message = displayHelpDetails(flattenedCommandList[command], command);
+            message = displayHelpDetails(flattenedCommandList[command], command,
+                colorConfiguration, useUnicode);
         }
         else
         {
             message = sprintf("No help could be found for '%s'.\n", command);
         }
-        pageString(message, initiator);
+        pageString(message, initiator, colorConfiguration, useUnicode);
         ret = 1;
     }
     return ret;

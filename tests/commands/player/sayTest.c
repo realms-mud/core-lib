@@ -215,6 +215,8 @@ void LanguageWithSpaceInNameCorrectlyParsed()
 void HelpForSayDisplaysProperInfo()
 {
     Player->pageSize(200);
+    Player->colorConfiguration("3-bit");
+
     ExpectTrue(Player->executeCommand("help say"));
     ExpectEq("\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Help for Say +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;36;1mSynopsis\n"

@@ -232,11 +232,20 @@ public nomask string skillsList(string *types)
             "magic", "language" });
     }
 
+    object settings = getService("settings");
+    string colorConfiguration = "none";
+    int useUnicode = 0;
+    if (objectp(settings))
+    {
+        colorConfiguration = settings->colorConfiguration();
+        useUnicode = settings->charsetConfiguration() == "unicode";
+    }
+
     types = sort_array(types, (: $1 > $2 :));
     foreach(string type in types)
     {
-        ret += getDictionary("commands")->buildBanner(type, "Skills") +
-            skillListForType(type);
+        ret += getDictionary("commands")->buildBanner(colorConfiguration, useUnicode, "center", 
+            type, "Skills") + skillListForType(type);
     }
 
     ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");

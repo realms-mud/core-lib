@@ -21,7 +21,8 @@ public nomask void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string overallLevel(object initiator)
+private nomask string overallLevel(object initiator,
+    string colorConfiguration, int useUnicode)
 {
     string format = " \x1b[0;36mOverall Level:\x1b[0m \x1b[0;32m%-22s\x1b[0m\x1b[0;31m|\x1b[0m\n";
 
@@ -29,19 +30,27 @@ private nomask string overallLevel(object initiator)
         capitalize(initiator->wizardLevel()) :
         to_string(initiator->effectiveLevel());
 
-    return sprintf(format, level);
+    return configuration->decorate("Overall Level: ", "content", "score",
+            colorConfiguration) +
+        configuration->decorate(sprintf("%-21s", level), "value", "score",
+            colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string raceDetails(object initiator)
+private nomask string raceDetails(object initiator,
+    string colorConfiguration, int useUnicode)
 {
     object raceDictionary = load_object("/lib/dictionaries/racialDictionary.c");
-    return sprintf("\x1b[0;31m|\x1b[0m \x1b[0;36mRace:\x1b[0m \x1b[0;32m%-32s\x1b[0m",
-        raceDictionary->raceDetails(initiator));
+    return configuration->decorate("Race: ", "content", "score",
+            colorConfiguration) +
+        configuration->decorate(sprintf("%-33s",
+            raceDictionary->raceDetails(initiator)), "value", "score",
+            colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string combatStatistics(object initiator)
+private nomask string combatStatistics(object initiator,
+    string colorConfiguration, int useUnicode)
 {
     mapping bestKill = initiator->getBestKill();
     string bestKillLine;
@@ -69,17 +78,15 @@ private nomask string combatStatistics(object initiator)
         nemesisLine  = "\x1b[0;36mNemesis: \x1b[0m\x1b[0;33m<nobody>\x1b[0;35m\x1b[0m\x1b[0;31;1m.\x1b[0m";
     }
 
-    return Dictionary->buildBanner("Combat Statistics") +
+    return Dictionary->buildBanner(initiator->colorConfiguration(), initiator->charsetConfiguration() == "unicode", "center", "Combat Statistics") +
         sprintf("\x1b[0;31m|\x1b[0m %-117s \x1b[0;31m|\x1b[0m\n", bestKillLine) +
         sprintf("\x1b[0;31m|\x1b[0m %-117s \x1b[0;31m|\x1b[0m\n", nemesisLine);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string getWeaponData(object initiator, object weapon, int isPrimary)
+private nomask string getWeaponData(object initiator, object weapon, 
+    int isPrimary, string colorConfiguration, int useUnicode)
 {
-    string format = "\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m";
-    string row = "\x1b[0;31m|\x1b[0m \x1b[0;36m%7s Weapon:\x1b[0m \x1b[0;33m%-15s\x1b[0m %-46s %-40s \x1b[0;31m|\x1b[0m\n";
-
     string location = isPrimary ? "Primary" : "Offhand";
 
     string name = weapon->query("short");
@@ -94,15 +101,26 @@ private nomask string getWeaponData(object initiator, object weapon, int isPrima
         damage = 1;
     }
 
-    return sprintf(row, location,
-        weapon->query("short") ? name : "No Weapon",
-        sprintf(format, "Attack", attack - 25, attack + 75),
-        sprintf(format, "Damage", to_int(damage * 7.0 / 8.0),
-            to_int(damage * 9.0 / 8.0)));
+    return Dictionary->banneredContent(colorConfiguration, useUnicode, 
+        configuration->decorate(sprintf("%s Weapon: ", location),
+            "content", "score", colorConfiguration) +
+        configuration->decorate(sprintf("%-15s",
+            weapon->query("short") ? name : "No Weapon"), "weapon", "score",
+            colorConfiguration) +
+        configuration->decorate(" Attack: ", "content", "score",
+            colorConfiguration) +
+        configuration->decorate(sprintf("%3d to %-4d", attack - 25, attack + 75),
+            "weapon", "score", colorConfiguration) +
+        configuration->decorate("      Damage: ", "content", "score",
+            colorConfiguration) +
+        configuration->decorate(sprintf("%3d to %-3d", 
+            to_int(damage * 7.0 / 8.0), to_int(damage * 9.0 / 8.0)),
+            "weapon", "score", colorConfiguration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string getDefensiveStats(object initiator)
+private nomask string getDefensiveStats(object initiator,
+    string colorConfiguration, int useUnicode)
 {
     string format = "\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m";
     string row = "\x1b[0;31m|\x1b[0m  %-54s %-38s %-46s \x1b[0;31m|\x1b[0m\n";
@@ -110,15 +128,27 @@ private nomask string getDefensiveStats(object initiator)
     int defend = initiator->calculateDefendAttack();
     int soak = initiator->calculateSoakDamage("physical");
 
-    return sprintf(row, sprintf(format, "Defend Attack",
-        defend - abs(defend / 2), defend),
-        sprintf(format, "Soak", soak - abs(soak / 2), soak),
-        sprintf("\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Encumberance",
-            initiator->inventoryGetEncumberance()));
+    return Dictionary->banneredContent(colorConfiguration, useUnicode,
+        configuration->decorate(" Defend Attack: ",
+            "content", "score", colorConfiguration) +
+        configuration->decorate(sprintf("%3d to %-4d",
+            defend - abs(defend / 2), defend),
+            "weapon", "score", colorConfiguration) +
+        configuration->decorate("       Soak: ",
+            "content", "score", colorConfiguration) +
+        configuration->decorate(sprintf("%3d to %-4d",
+            soak - abs(soak / 2), soak),
+            "weapon", "score", colorConfiguration) +
+        configuration->decorate("Encumberance: ",
+            "content", "score", colorConfiguration) +
+        configuration->decorate(sprintf("%3d%7s",
+            initiator->inventoryGetEncumberance(), ""),
+            "weapon", "score", colorConfiguration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string getCombatData(object initiator)
+private nomask string getCombatData(object initiator,
+    string colorConfiguration, int useUnicode)
 {
     string ret = "";
 
@@ -135,27 +165,39 @@ private nomask string getCombatData(object initiator)
     }
     object offhandWeapon = initiator->equipmentInSlot("wielded offhand");
 
-    ret += getWeaponData(initiator, primaryWeapon, 1);
+    ret += getWeaponData(initiator, primaryWeapon, 1, colorConfiguration, 
+        useUnicode);
+
     if (offhandWeapon)
     {
-        ret += getWeaponData(initiator, offhandWeapon, 0);
+        ret += getWeaponData(initiator, offhandWeapon, 0, colorConfiguration, 
+            useUnicode);
     }
 
-    ret += getDefensiveStats(initiator);
+    ret += getDefensiveStats(initiator, colorConfiguration, useUnicode);
 
     string hostiles = initiator->getHostileList();
     if (sizeof(hostiles) > 35)
     {
         hostiles = hostiles[0..31] + "...";
     }
-    ret += sprintf("\x1b[0;31m|\x1b[0m \x1b[0;36m%14s: \x1b[0m\x1b[0;33m%d%% \x1b[0m\x1b[0;36m%19s: \x1b[0m\x1b[0;33m%-35s\x1b[0m \x1b[0;31m|\x1b[0m\n",
-        "Wimpy", initiator->Wimpy(0, 1), "Hunted by", hostiles);
+    ret += Dictionary->banneredContent(colorConfiguration, useUnicode,
+        configuration->decorate(sprintf("%14s: ", "Wimpy"),
+            "content", "score", colorConfiguration) +
+        configuration->decorate(sprintf("%3d%%",
+            initiator->Wimpy(0, 1)),
+            "weapon", "score", colorConfiguration) +
+        configuration->decorate(sprintf("%18s: ","Hunted by"),
+            "content", "score", colorConfiguration) +
+        configuration->decorate(sprintf("%-35s", hostiles),
+            "weapon", "score", colorConfiguration)); 
 
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string getBiologicalDetails(object initiator)
+private nomask string getBiologicalDetails(object initiator,
+    string colorConfiguration, int useUnicode)
 {
     string ret = "normal.  (Yeah, right)";
     string *factors = ({});
@@ -180,7 +222,8 @@ private nomask string getBiologicalDetails(object initiator)
     {
         ret = implode(factors, ", ");
     }
-    return "You are " + ret;
+    return configuration->decorate(sprintf("You are %-67s", ret), "content",
+        "score", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -192,31 +235,45 @@ public nomask int execute(string command, object initiator)
     {
         ret = 1;
 
-        string score = sprintf("\x1b[0;32m%s%s %s\x1b[0m\n",
+        string colorConfiguration = initiator->colorConfiguration();
+        int useUnicode = initiator->charsetConfiguration() == "unicode";
+
+        string score = configuration->decorate(sprintf("%s%s %s\n",
             initiator->Pretitle() ? initiator->Pretitle() + " " : "",
             capitalize(initiator->RealName()),
-            initiator->Title());
-        score += Dictionary->buildBanner("General") +
-            raceDetails(initiator) + overallLevel(initiator);
-        score += Dictionary->buildBanner("Vitals") + initiator->vitals();
-        score += Dictionary->buildBanner("Attributes") +
+            initiator->Title()), "character", "score", colorConfiguration);
+
+        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+            "top", "General") + 
+            Dictionary->banneredContent(colorConfiguration, useUnicode,
+            raceDetails(initiator, colorConfiguration, useUnicode) +
+            overallLevel(initiator, colorConfiguration, useUnicode));
+        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+            "center", "Vitals") + initiator->vitals();
+        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+            "center", "Attributes") +
             initiator->attributes();
-        score += Dictionary->buildBanner("Guilds") +
+        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+            "center", "Guilds") +
             initiator->guildsDetails();
 
-        score += Dictionary->buildBanner("Combat Information") +
-            getCombatData(initiator);
-        score += Dictionary->buildBanner("Details") +
-            sprintf("\x1b[0;31m|\x1b[0m \x1b[0;36m%-75s\x1b[0m \x1b[0;31m|\x1b[0m\n",
-                getBiologicalDetails(initiator)) +
-            sprintf("\x1b[0;31m|\x1b[0m \x1b[0;36m%-75s\x1b[0m \x1b[0;31m|\x1b[0m\n",
-                "You can find out more via the 'skills', 'traits', and 'research' commands.");
+        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+            "center", "Combat Information") +
+            getCombatData(initiator, colorConfiguration, useUnicode);
+        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+            "center", "Details") +
+            Dictionary->banneredContent(colorConfiguration, useUnicode,
+                getBiologicalDetails(initiator, colorConfiguration, useUnicode)) +
+            Dictionary->banneredContent(colorConfiguration, useUnicode,
+                configuration->decorate(sprintf("%-75s", "You can find out "
+                    "more via the 'skills', 'traits', and 'research' "
+                    "commands."), "content", "score", colorConfiguration));
         
         if (sizeof(regexp(({ command }), "-v")))
         {
-            score += combatStatistics(initiator);
+            score += combatStatistics(initiator, colorConfiguration, useUnicode);
         }
-        score += Dictionary->buildBanner("-");
+        score += Dictionary->buildBanner(colorConfiguration, useUnicode, "bottom", "-");
         tell_object(initiator, score);
     }
     return ret;
