@@ -410,7 +410,7 @@ private nomask string getTraitColor(string trait)
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string traitListForType(string type, string colorConfiguration,
-    int useUnicode)
+    string charset)
 {
     string ret = "";
     string traitFmt;
@@ -429,7 +429,7 @@ private nomask string traitListForType(string type, string colorConfiguration,
         traitList = sort_array(traitList, (: $1 > $2 :));
 
         ret += getDictionary("commands")->buildBanner(colorConfiguration, 
-            useUnicode, "center", type, "Traits");
+            charset, "center", type, "Traits");
         foreach(string trait in traitList)
         {
             string color = getTraitColor(trait);
@@ -467,17 +467,17 @@ public nomask string traitsList(string *types)
 
     object settings = getService("settings");
     string colorConfiguration = "none";
-    int useUnicode = 0;
+    string charset = "ascii";
     if (objectp(settings))
     {
         colorConfiguration = settings->colorConfiguration();
-        useUnicode = settings->charsetConfiguration() == "unicode";
+        charset = settings->charsetConfiguration();
     }
 
     types = sort_array(types, (: $1 > $2 :));
     foreach(string type in types)
     {
-        ret += traitListForType(type, colorConfiguration, useUnicode);
+        ret += traitListForType(type, colorConfiguration, charset);
     }
     if (ret == "")
     {

@@ -472,3 +472,59 @@ void ScoreDisplaysTwentyFourBitColorCorrectly()
         "\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m", Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void ScoreDisplaysScreenReaderCorrectly()
+{
+    Player->colorConfiguration("none");
+    Player->charsetConfiguration("screen reader");
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah Really Long Name");
+    move_object(weapon, Player);
+    weapon->equip("blah");
+
+    object shield = clone_object("/lib/items/weapon");
+    shield->set("name", "weasels");
+    shield->set("short", "Shield of Weasels");
+    shield->set("defense class", 1);
+    shield->set("material", "steel");
+    shield->set("weapon type", "shield");
+    move_object(shield, Player);
+    shield->equip("weasels");
+
+    object armor = clone_object("/lib/items/armor");
+    armor->set("name", "stuff");
+    armor->set("bonus hit points", 4);
+    armor->set("armor class", 5);
+    armor->set("armor type", "chainmail");
+    armor->set("equipment locations", 0x00000200);
+    move_object(armor, Player);
+    armor->equip("stuff");
+
+    ExpectTrue(Player->executeCommand("?"));
+    ExpectEq("Rob the title-less\n"
+        "                                     General                                    \n"
+        "  Race: High elf (Hillgarathi elf)       Overall Level: 3                      \n"
+        "                                     Vitals                                     \n"
+        "    Hit Points:  24%       Spell Points: 100%            Stamina: 100%         \n"
+        "                30/125                   152/152                  96/96        \n"
+        "                                   Attributes                                   \n"
+        "      Strength: 11    (+1) Intelligence: 14    (+4)       Wisdom: 10           \n"
+        "     Dexterity: 10         Constitution: 11    (+1)     Charisma: 12    (+2)   \n"
+        "                                     Guilds                                     \n"
+        "  Guild: Fighter (Neophyte)          Level: 1          Experience:     66%     \n"
+        "  Guild: Mage                        Level: 2          Experience:  Level up   \n"
+        "                               Combat Information                               \n"
+        "  Primary Weapon: Sword of Bla... Attack: -65 to 35        Damage:   9 to 12   \n"
+        "  Offhand Weapon: Shield of We... Attack: -81 to 19        Damage:   0 to 1    \n"
+        "   Defend Attack: -96 to -64        Soak:   3 to 5   Encumberance:  48         \n"
+        "           Wimpy:   0%         Hunted by: Nothing at all, aren't you lucky?    \n"
+        "                                     Details                                    \n"
+        "  You are normal.  (Yeah, right)                                               \n"
+        "  You can find out more via the 'skills', 'traits', and 'research' commands.   \n"
+        "                                                                                \n"
+        "", Player->caughtMessage());
+}

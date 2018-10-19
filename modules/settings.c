@@ -146,7 +146,7 @@ public nomask varargs string colorConfiguration(string newColorSetting)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string charsetConfiguration(string newCharSet)
 {
-    if (member(({ "ascii", "unicode" }), newCharSet) > -1)
+    if (member(({ "ascii", "unicode", "screen reader" }), newCharSet) > -1)
     {
         characterSet = newCharSet;
         tell_object(this_object(), sprintf("You have set your character set to '%s'.\n",

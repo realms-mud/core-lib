@@ -22,10 +22,8 @@ public nomask void reset(int arg)
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string overallLevel(object initiator,
-    string colorConfiguration, int useUnicode)
+    string colorConfiguration)
 {
-    string format = " \x1b[0;36mOverall Level:\x1b[0m \x1b[0;32m%-22s\x1b[0m\x1b[0;31m|\x1b[0m\n";
-
     string level = initiator->isRealizationOf("wizard") ?
         capitalize(initiator->wizardLevel()) :
         to_string(initiator->effectiveLevel());
@@ -38,7 +36,7 @@ private nomask string overallLevel(object initiator,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string raceDetails(object initiator,
-    string colorConfiguration, int useUnicode)
+    string colorConfiguration)
 {
     object raceDictionary = load_object("/lib/dictionaries/racialDictionary.c");
     return configuration->decorate("Race: ", "content", "score",
@@ -50,7 +48,7 @@ private nomask string raceDetails(object initiator,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string combatStatistics(object initiator,
-    string colorConfiguration, int useUnicode)
+    string colorConfiguration, string charset)
 {
     mapping bestKill = initiator->getBestKill();
     string bestKillLine;
@@ -78,14 +76,15 @@ private nomask string combatStatistics(object initiator,
         nemesisLine  = "\x1b[0;36mNemesis: \x1b[0m\x1b[0;33m<nobody>\x1b[0;35m\x1b[0m\x1b[0;31;1m.\x1b[0m";
     }
 
-    return Dictionary->buildBanner(initiator->colorConfiguration(), initiator->charsetConfiguration() == "unicode", "center", "Combat Statistics") +
+    return Dictionary->buildBanner(colorConfiguration, charset, "center", 
+        "Combat Statistics") +
         sprintf("\x1b[0;31m|\x1b[0m %-117s \x1b[0;31m|\x1b[0m\n", bestKillLine) +
         sprintf("\x1b[0;31m|\x1b[0m %-117s \x1b[0;31m|\x1b[0m\n", nemesisLine);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getWeaponData(object initiator, object weapon, 
-    int isPrimary, string colorConfiguration, int useUnicode)
+    int isPrimary, string colorConfiguration, string charset)
 {
     string location = isPrimary ? "Primary" : "Offhand";
 
@@ -101,7 +100,7 @@ private nomask string getWeaponData(object initiator, object weapon,
         damage = 1;
     }
 
-    return Dictionary->banneredContent(colorConfiguration, useUnicode, 
+    return Dictionary->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%s Weapon: ", location),
             "content", "score", colorConfiguration) +
         configuration->decorate(sprintf("%-15s",
@@ -120,7 +119,7 @@ private nomask string getWeaponData(object initiator, object weapon,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getDefensiveStats(object initiator,
-    string colorConfiguration, int useUnicode)
+    string colorConfiguration, string charset)
 {
     string format = "\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m";
     string row = "\x1b[0;31m|\x1b[0m  %-54s %-38s %-46s \x1b[0;31m|\x1b[0m\n";
@@ -128,7 +127,7 @@ private nomask string getDefensiveStats(object initiator,
     int defend = initiator->calculateDefendAttack();
     int soak = initiator->calculateSoakDamage("physical");
 
-    return Dictionary->banneredContent(colorConfiguration, useUnicode,
+    return Dictionary->banneredContent(colorConfiguration, charset,
         configuration->decorate(" Defend Attack: ",
             "content", "score", colorConfiguration) +
         configuration->decorate(sprintf("%3d to %-4d",
@@ -148,7 +147,7 @@ private nomask string getDefensiveStats(object initiator,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getCombatData(object initiator,
-    string colorConfiguration, int useUnicode)
+    string colorConfiguration, string charset)
 {
     string ret = "";
 
@@ -166,22 +165,22 @@ private nomask string getCombatData(object initiator,
     object offhandWeapon = initiator->equipmentInSlot("wielded offhand");
 
     ret += getWeaponData(initiator, primaryWeapon, 1, colorConfiguration, 
-        useUnicode);
+        charset);
 
     if (offhandWeapon)
     {
         ret += getWeaponData(initiator, offhandWeapon, 0, colorConfiguration, 
-            useUnicode);
+            charset);
     }
 
-    ret += getDefensiveStats(initiator, colorConfiguration, useUnicode);
+    ret += getDefensiveStats(initiator, colorConfiguration, charset);
 
     string hostiles = initiator->getHostileList();
     if (sizeof(hostiles) > 35)
     {
         hostiles = hostiles[0..31] + "...";
     }
-    ret += Dictionary->banneredContent(colorConfiguration, useUnicode,
+    ret += Dictionary->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%14s: ", "Wimpy"),
             "content", "score", colorConfiguration) +
         configuration->decorate(sprintf("%3d%%",
@@ -197,7 +196,7 @@ private nomask string getCombatData(object initiator,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getBiologicalDetails(object initiator,
-    string colorConfiguration, int useUnicode)
+    string colorConfiguration)
 {
     string ret = "normal.  (Yeah, right)";
     string *factors = ({});
@@ -236,44 +235,45 @@ public nomask int execute(string command, object initiator)
         ret = 1;
 
         string colorConfiguration = initiator->colorConfiguration();
-        int useUnicode = initiator->charsetConfiguration() == "unicode";
+        string charset = initiator->charsetConfiguration();
 
         string score = configuration->decorate(sprintf("%s%s %s\n",
             initiator->Pretitle() ? initiator->Pretitle() + " " : "",
             capitalize(initiator->RealName()),
             initiator->Title()), "character", "score", colorConfiguration);
 
-        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+        score += Dictionary->buildBanner(colorConfiguration, charset,
             "top", "General") + 
-            Dictionary->banneredContent(colorConfiguration, useUnicode,
-            raceDetails(initiator, colorConfiguration, useUnicode) +
-            overallLevel(initiator, colorConfiguration, useUnicode));
-        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+            Dictionary->banneredContent(colorConfiguration, charset,
+            raceDetails(initiator, colorConfiguration) +
+            overallLevel(initiator, colorConfiguration));
+        score += Dictionary->buildBanner(colorConfiguration, charset,
             "center", "Vitals") + initiator->vitals();
-        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+        score += Dictionary->buildBanner(colorConfiguration, charset,
             "center", "Attributes") +
             initiator->attributes();
-        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+        score += Dictionary->buildBanner(colorConfiguration, charset,
             "center", "Guilds") +
             initiator->guildsDetails();
 
-        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+        score += Dictionary->buildBanner(colorConfiguration, charset,
             "center", "Combat Information") +
-            getCombatData(initiator, colorConfiguration, useUnicode);
-        score += Dictionary->buildBanner(colorConfiguration, useUnicode, 
+            getCombatData(initiator, colorConfiguration, charset);
+        score += Dictionary->buildBanner(colorConfiguration, charset,
             "center", "Details") +
-            Dictionary->banneredContent(colorConfiguration, useUnicode,
-                getBiologicalDetails(initiator, colorConfiguration, useUnicode)) +
-            Dictionary->banneredContent(colorConfiguration, useUnicode,
+            Dictionary->banneredContent(colorConfiguration, charset,
+                getBiologicalDetails(initiator, colorConfiguration)) +
+            Dictionary->banneredContent(colorConfiguration, charset,
                 configuration->decorate(sprintf("%-75s", "You can find out "
                     "more via the 'skills', 'traits', and 'research' "
                     "commands."), "content", "score", colorConfiguration));
         
         if (sizeof(regexp(({ command }), "-v")))
         {
-            score += combatStatistics(initiator, colorConfiguration, useUnicode);
+            score += combatStatistics(initiator, colorConfiguration, charset);
         }
-        score += Dictionary->buildBanner(colorConfiguration, useUnicode, "bottom", "-");
+        score += Dictionary->buildBanner(colorConfiguration, charset, "bottom", 
+            (charset != "screen reader" ? "-" : ""));
         tell_object(initiator, score);
     }
     return ret;

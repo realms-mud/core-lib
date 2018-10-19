@@ -464,17 +464,17 @@ private nomask string attributeDetails(string attribute,
 public nomask string attributes()
 {
     string colorConfiguration = "none";
-    int useUnicode = 0;
+    string charset = "ascii";
     object settings = getService("settings");
     if (objectp(settings))
     {
         colorConfiguration = settings->colorConfiguration();
-        useUnicode = settings->charsetConfiguration() == "unicode";
+        charset = settings->charsetConfiguration();
     }
     object commandDictionary = getDictionary("commands");
     object configuration = getDictionary("configuration");
 
-    return commandDictionary->banneredContent(colorConfiguration, useUnicode,
+    return commandDictionary->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%12s: ", "Strength"), "content",
             "score", colorConfiguration) + 
             attributeDetails("strength", colorConfiguration, configuration) +
@@ -484,7 +484,7 @@ public nomask string attributes()
         configuration->decorate(sprintf("%12s: ", "Wisdom"), "content",
             "score", colorConfiguration) + 
             attributeDetails("wisdom", colorConfiguration, configuration)) +
-        commandDictionary->banneredContent(colorConfiguration, useUnicode,
+        commandDictionary->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%12s: ", "Dexterity"), "content",
             "score", colorConfiguration) + 
             attributeDetails("dexterity", colorConfiguration, configuration) +

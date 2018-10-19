@@ -1766,18 +1766,17 @@ static nomask void healingHeartBeat()
 private nomask string vitalsDetails(string vital)
 {
     string colorConfiguration = "none";
-    int useUnicode = 0;
+    string charset = "ascii";
     object settings = getService("settings");
     if (objectp(settings))
     {
         colorConfiguration = settings->colorConfiguration();
-        useUnicode = settings->charsetConfiguration() == "unicode";
+        charset = settings->charsetConfiguration();
     }
 
     object configuration = getDictionary("configuration");
     object commandDictionary = getDictionary("commands");
 
-    string format = "\x1b[0;36m%12s:\x1b[0m \x1b[0;35;1m%s\x1b[0m ";
     int current = call_other(this_object(), lower_case(vital) + "Points");
     int max = call_other(this_object(), "max" + capitalize(vital) + "Points");
 
@@ -1788,23 +1787,31 @@ private nomask string vitalsDetails(string vital)
 
     string bar = "==========";
     string emptyBar = "";
-    if (!max)
+
+    if (charset != "screen reader")
     {
-        bar = "//////////";
+        if (!max)
+        {
+            bar = "//////////";
+        }
+        else
+        {
+            bar[(10 * current) / max..] = "";
+            for (int i = ((10 * current) / max); i < 10; i++)
+            {
+                emptyBar += ".";
+            }
+        }
+
+        if (charset == "unicode")
+        {
+            bar = regreplace(bar, "=", "\xe2\x96\xac", 1);
+            emptyBar = regreplace(emptyBar, "[.]", "\xe2\x88\xb7", 1);
+        }
     }
     else
     {
-        bar[(10 * current) / max..] = "";
-        for (int i = ((10 * current) / max); i < 10; i++)
-        {
-            emptyBar += ".";
-        }
-    }
-
-    if (useUnicode)
-    {
-        bar = regreplace(bar, "=", "\xe2\x96\xac", 1);
-        emptyBar = regreplace(emptyBar, "[.]", "\xe2\x88\xb7", 1);
+        bar = sprintf("%3d%%      ", to_int(100 * (1.0 * current / max)));
     }
 
     string extra = (vital != "Stamina") ? " Points" : "";
@@ -1821,21 +1828,21 @@ private nomask string vitalsDetails(string vital)
 public nomask string vitals()
 {
     string colorConfiguration = "none";
-    int useUnicode = 0;
+    string charset = "ascii";
     object settings = getService("settings");
     if (objectp(settings))
     {
         colorConfiguration = settings->colorConfiguration();
-        useUnicode = settings->charsetConfiguration() == "unicode";
+        charset = settings->charsetConfiguration();
     }
 
     object configuration = getDictionary("configuration");
     object commandDictionary = getDictionary("commands");
 
-    return commandDictionary->banneredContent(colorConfiguration, useUnicode,
+    return commandDictionary->banneredContent(colorConfiguration, charset,
             vitalsDetails("Hit") + vitalsDetails("Spell") + 
             vitalsDetails("Stamina")) +
-        commandDictionary->banneredContent(colorConfiguration, useUnicode,
+        commandDictionary->banneredContent(colorConfiguration, charset,
             configuration->decorate(sprintf("%16d/%-5d", hitPoints(), 
                 maxHitPoints()), "information", "score", colorConfiguration) +
             configuration->decorate(sprintf("%20d/%-5d", spellPoints(), 

@@ -546,7 +546,7 @@ public nomask int costToAdvanceSkill(string skillType)
 }    
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string experienceBar(string guild, int useUnicode,
+private nomask string experienceBar(string guild, string charset,
     string colorConfiguration, object configuration)
 {
     string ret = "";
@@ -563,18 +563,25 @@ private nomask string experienceBar(string guild, int useUnicode,
         string bar = "==========";
         string emptyBar = "";
 
-        bar[(10 * current) / needed..] = "";
-        for (int i = ((10 * current) / needed); i < 10; i++)
+        if (charset != "screen reader")
         {
-            emptyBar += ".";
+            bar[(10 * current) / needed..] = "";
+            for (int i = ((10 * current) / needed); i < 10; i++)
+            {
+                emptyBar += ".";
+            }
+
+            if (charset == "unicode")
+            {
+                bar = regreplace(bar, "=", "\xe2\x96\xac", 1);
+                emptyBar = regreplace(emptyBar, "[.]", "\xe2\x88\xb7", 1);
+            }
+        }
+        else
+        {
+            bar = sprintf("   %3d%%   ", to_int(100 * (1.0 * current / needed)));
         }
 
-        if (useUnicode)
-        {
-            bar = regreplace(bar, "=", "\xe2\x96\xac", 1);
-            emptyBar = regreplace(emptyBar, "[.]", "\xe2\x88\xb7", 1);
-        }
-        
         ret = configuration->decorate(sprintf("%s", bar),
                 "bar", "score", colorConfiguration) +
             configuration->decorate(sprintf("%s", emptyBar),
@@ -587,18 +594,18 @@ private nomask string experienceBar(string guild, int useUnicode,
 public nomask string guildsDetails()
 {
     string colorConfiguration = "none";
-    int useUnicode = 0;
+    string charset = "ascii";
     object settings = getService("settings");
     if (objectp(settings))
     {
         colorConfiguration = settings->colorConfiguration();
-        useUnicode = settings->charsetConfiguration() == "unicode";
+        charset = settings->charsetConfiguration();
     }
 
     object configuration = getDictionary("configuration");
     object commandDictionary = getDictionary("commands");
 
-    string ret = commandDictionary->banneredContent(colorConfiguration, useUnicode,
+    string ret = commandDictionary->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%-75s",
             "Currently not a member of any guilds."), "information", "score",
             colorConfiguration));
@@ -610,7 +617,7 @@ public nomask string guildsDetails()
         ret = "";
         foreach(string guild in guildList)
         {
-            ret += commandDictionary->banneredContent(colorConfiguration, useUnicode, 
+            ret += commandDictionary->banneredContent(colorConfiguration, charset,
                 configuration->decorate("Guild: ", "content", "score", 
                     colorConfiguration) +
                 configuration->decorate(sprintf("%-27s ", capitalize(guild) +
@@ -623,7 +630,7 @@ public nomask string guildsDetails()
                     "information", "score", colorConfiguration) +
                 configuration->decorate("Experience: ", "content", "score",
                     colorConfiguration) +
-                experienceBar(guild, useUnicode, colorConfiguration, configuration));
+                experienceBar(guild, charset, colorConfiguration, configuration));
         }
     }
     return ret;

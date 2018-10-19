@@ -19,7 +19,7 @@ public nomask varargs string decorate(string text, string textClass, string type
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string divider(string configuration)
+public nomask string divider(string configuration, string charset)
 {
     string ret = 0;
     if (member(decorators["dividers"], configuration))
@@ -27,7 +27,16 @@ public nomask string divider(string configuration)
         ret = decorators["dividers"][configuration];
     }
 
-    string lineDivider = "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n";
+    string lineDivider = "";
+    if (charset == "screen reader")
+    {
+        lineDivider = sprintf("%78s\n", "");
+    }
+    else
+    {
+        lineDivider = "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n";
+    }
+
     ret = ret ? (ret + lineDivider + "\x1b[0m") : lineDivider;
     return ret;
 }

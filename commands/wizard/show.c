@@ -48,8 +48,9 @@ private string objectDetails(object target, object initiator)
 {
     object dictionary = load_object("/lib/dictionaries/configurationDictionary.c");
     string configuration = initiator->colorConfiguration();
+    string charset = initiator->charsetConfiguration();
 
-    string ret = dictionary->divider(configuration);
+    string ret = dictionary->divider(configuration, charset);
 
     ret += decorateObject(target, initiator);
 
@@ -60,7 +61,7 @@ private string objectDetails(object target, object initiator)
             dictionary->decorate(object_name(targetEnvironment) + "\n", "environment", "show", configuration);
     }
 
-    ret += dictionary->divider(configuration);
+    ret += dictionary->divider(configuration, charset);
 
     object *targetInventory = all_inventory(target);
     foreach(object item in targetInventory)

@@ -95,7 +95,8 @@ public nomask int execute(string command, object initiator)
 
         if (sizeof(whoList) && sizeof(playerList) && sizeof(wizardList))
         {
-            whoList += configDictionary->divider(initiator->colorConfiguration());
+            whoList += configDictionary->divider(initiator->colorConfiguration(),
+                initiator->charsetConfiguration());
         }
 
         foreach(object player in playerList)
