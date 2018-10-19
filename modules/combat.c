@@ -1765,6 +1765,18 @@ static nomask void healingHeartBeat()
 /////////////////////////////////////////////////////////////////////////////
 private nomask string vitalsDetails(string vital)
 {
+    string colorConfiguration = "none";
+    int useUnicode = 0;
+    object settings = getService("settings");
+    if (objectp(settings))
+    {
+        colorConfiguration = settings->colorConfiguration();
+        useUnicode = settings->charsetConfiguration() == "unicode";
+    }
+
+    object configuration = getDictionary("configuration");
+    object commandDictionary = getDictionary("commands");
+
     string format = "\x1b[0;36m%12s:\x1b[0m \x1b[0;35;1m%s\x1b[0m ";
     int current = call_other(this_object(), lower_case(vital) + "Points");
     int max = call_other(this_object(), "max" + capitalize(vital) + "Points");
@@ -1775,32 +1787,59 @@ private nomask string vitalsDetails(string vital)
     }
 
     string bar = "==========";
+    string emptyBar = "";
     if (!max)
     {
-        bar = "\x1b[0m\x1b[0;31m//////////";
+        bar = "//////////";
     }
     else
     {
-        bar[(10 * current) / max..] = "\x1b[0m\x1b[0;31m";
+        bar[(10 * current) / max..] = "";
         for (int i = ((10 * current) / max); i < 10; i++)
         {
-            bar += ".";
+            emptyBar += ".";
         }
+    }
+
+    if (useUnicode)
+    {
+        bar = regreplace(bar, "=", "\xe2\x96\xac", 1);
+        emptyBar = regreplace(emptyBar, "[.]", "\xe2\x88\xb7", 1);
     }
 
     string extra = (vital != "Stamina") ? " Points" : "";
 
-    return sprintf(format, vital + extra, bar);
+    return configuration->decorate(sprintf("%12s: ", vital + extra), 
+            "content", "score", colorConfiguration) + 
+        configuration->decorate(sprintf("%s", bar),
+            "bar", "score", colorConfiguration) +
+        configuration->decorate(sprintf("%s ", emptyBar),
+            "empty bar", "score", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string vitals()
 {
-    return "\x1b[0;31m|\x1b[0m" + vitalsDetails("Hit") +
-        " " + vitalsDetails("Spell") +
-        " " + vitalsDetails("Stamina") + "\x1b[0;31m|\x1b[0m\n" +
-        sprintf("\x1b[0;31m|\x1b[0m%13s \x1b[0;33m%-11s\x1b[0m %13s \x1b[0;33m%-11s\x1b[0m %13s \x1b[0;33m%-11s\x1b[0m\x1b[0;31m|\x1b[0m\n",
-            "", sprintf("%d/%d", hitPoints(), maxHitPoints()),
-            "", sprintf("%d/%d", spellPoints(), maxSpellPoints()),
-            "", sprintf("%d/%d", staminaPoints(), maxStaminaPoints()));
+    string colorConfiguration = "none";
+    int useUnicode = 0;
+    object settings = getService("settings");
+    if (objectp(settings))
+    {
+        colorConfiguration = settings->colorConfiguration();
+        useUnicode = settings->charsetConfiguration() == "unicode";
+    }
+
+    object configuration = getDictionary("configuration");
+    object commandDictionary = getDictionary("commands");
+
+    return commandDictionary->banneredContent(colorConfiguration, useUnicode,
+            vitalsDetails("Hit") + vitalsDetails("Spell") + 
+            vitalsDetails("Stamina")) +
+        commandDictionary->banneredContent(colorConfiguration, useUnicode,
+            configuration->decorate(sprintf("%16d/%-5d", hitPoints(), 
+                maxHitPoints()), "information", "score", colorConfiguration) +
+            configuration->decorate(sprintf("%20d/%-5d", spellPoints(), 
+                maxSpellPoints()), "information", "score", colorConfiguration) + 
+            configuration->decorate(sprintf("%18d/%-8d", staminaPoints(), 
+                maxStaminaPoints()), "information", "score", colorConfiguration));
 }

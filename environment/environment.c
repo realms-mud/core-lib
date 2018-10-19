@@ -571,7 +571,7 @@ private string getInventoryDescription()
                 (environmentItem != this_player()))
             {
                 ret += configuration->decorate(capitalize(shortDesc),
-                    "inventory", "environment", colorConfiguration);
+                    "inventory", "environment", colorConfiguration) + "\n";
             }
         }
     }

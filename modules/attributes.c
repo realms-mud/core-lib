@@ -14,8 +14,6 @@
 virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/attributes.h"
 
-private string rowFormat = "\x1b[0;31m|\x1b[0m\x1b[0;36m%12s:\x1b[0m \x1b[0;32m%-11s\x1b[0m \x1b[0;36m%12s:\x1b[0m \x1b[0;32m%-11s\x1b[0m \x1b[0;36m%12s:\x1b[0m \x1b[0;32m%-11s\x1b[0m\x1b[0;31m|\x1b[0m\n";
-
 //-----------------------------------------------------------------------------
 // Method: validAttributes
 // Description: The valid* methods are admittedly a bit of a misnomer. The real
@@ -434,39 +432,66 @@ public nomask int attributePoints()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string attributeDetails(string attribute)
+private nomask string attributeDetails(string attribute, 
+    string colorConfiguration, object configuration)
 {
     int actual = attributeValue(attribute);
     int raw = attributeValue(attribute, 1);
 
-    string format = "\x1b[0;%sm%-6s\x1b[0m\x1b[0;%sm%-5s\x1b[0m";
-    string statColor = "32";
-    string bonusColor = "32";
+    string statColor = "attribute";
+    string bonusColor = "attribute";
     string bonusDesc = "";
     if (actual > raw)
     {
-        statColor = "33;1";
-        bonusColor = "34;1";
+        statColor = "attribute bonus";
+        bonusColor = "positive modifier";
         bonusDesc = "(+" + (actual - raw) + ")";
     }
     else if (actual < raw)
     {
-        statColor = "31;1";
-        bonusColor = "31";
+        statColor = "attribute penalty";
+        bonusColor = "negative modifier";
         bonusDesc = "(" + (actual - raw) + ")";
     }
 
-    return sprintf(format, statColor, to_string(actual), bonusColor,
-        bonusDesc);
+    return configuration->decorate(sprintf("%-6d", actual), statColor,
+            "score", colorConfiguration) +
+        configuration->decorate(sprintf("%-5s", bonusDesc), bonusColor,
+            "score", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string attributes()
 {
-    return sprintf(rowFormat, "Strength", attributeDetails("strength"),
-            "Intelligence", attributeDetails("intelligence"),
-            "Wisdom", attributeDetails("wisdom")) +
-        sprintf(rowFormat, "Dexterity", attributeDetails("dexterity"),
-            "Constitution", attributeDetails("constitution"),
-            "Charisma", attributeDetails("charisma"));
+    string colorConfiguration = "none";
+    int useUnicode = 0;
+    object settings = getService("settings");
+    if (objectp(settings))
+    {
+        colorConfiguration = settings->colorConfiguration();
+        useUnicode = settings->charsetConfiguration() == "unicode";
+    }
+    object commandDictionary = getDictionary("commands");
+    object configuration = getDictionary("configuration");
+
+    return commandDictionary->banneredContent(colorConfiguration, useUnicode,
+        configuration->decorate(sprintf("%12s: ", "Strength"), "content",
+            "score", colorConfiguration) + 
+            attributeDetails("strength", colorConfiguration, configuration) +
+        configuration->decorate(sprintf("%12s: ", "Intelligence"), "content",
+            "score", colorConfiguration) + 
+            attributeDetails("intelligence", colorConfiguration, configuration) +
+        configuration->decorate(sprintf("%12s: ", "Wisdom"), "content",
+            "score", colorConfiguration) + 
+            attributeDetails("wisdom", colorConfiguration, configuration)) +
+        commandDictionary->banneredContent(colorConfiguration, useUnicode,
+        configuration->decorate(sprintf("%12s: ", "Dexterity"), "content",
+            "score", colorConfiguration) + 
+            attributeDetails("dexterity", colorConfiguration, configuration) +
+        configuration->decorate(sprintf("%12s: ", "Constitution"), "content",
+            "score", colorConfiguration) + 
+            attributeDetails("constitution", colorConfiguration, configuration) +
+        configuration->decorate(sprintf("%12s: ", "Charisma"), "content",
+            "score", colorConfiguration) + 
+            attributeDetails("charisma", colorConfiguration, configuration));
 }

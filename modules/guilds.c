@@ -546,34 +546,62 @@ public nomask int costToAdvanceSkill(string skillType)
 }    
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string experienceBar(string guild)
+private nomask string experienceBar(string guild, int useUnicode,
+    string colorConfiguration, object configuration)
 {
-    string format = "\x1b[0;34;1m%s\x1b[0m";
+    string ret = "";
     int current = guildExperience(guild);
     int needed = guildsDictionary()->experienceToNextLevel(guild, guildLevel(guild));
 
-    string bar = "==========";
     if (current >= needed)
     {
-        bar = "\x1b[0m\x1b[0;33;1m Level up ";
+        ret = configuration->decorate(" Level up ", "level up", "score",
+            colorConfiguration);
     }
     else
     {
-        bar[(10 * current) / needed..] = "\x1b[0m\x1b[0;31m";
+        string bar = "==========";
+        string emptyBar = "";
+
+        bar[(10 * current) / needed..] = "";
         for (int i = ((10 * current) / needed); i < 10; i++)
         {
-            bar += ".";
+            emptyBar += ".";
         }
+
+        if (useUnicode)
+        {
+            bar = regreplace(bar, "=", "\xe2\x96\xac", 1);
+            emptyBar = regreplace(emptyBar, "[.]", "\xe2\x88\xb7", 1);
+        }
+        
+        ret = configuration->decorate(sprintf("%s", bar),
+                "bar", "score", colorConfiguration) +
+            configuration->decorate(sprintf("%s", emptyBar),
+                "empty bar", "score", colorConfiguration);
     }
-    return sprintf(format, bar);
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string guildsDetails()
 {
-    string format = "\x1b[0;31m|\x1b[0m \x1b[0;36mGuild:\x1b[0m \x1b[0;33m%-27s\x1b[0m \x1b[0;36mLevel:\x1b[0m \x1b[0;33m%-10s\x1b[0m \x1b[0;36mExperience:\x1b[0m \x1b[0;33m%-11s\x1b[0m \x1b[0;31m|\x1b[0m\n";
-    string ret = sprintf("\x1b[0;31m|\x1b[0m \x1b[0;33m%-75s\x1b[0m \x1b[0;31m|\x1b[0m\n",
-        "Currently not a member of any guilds.");
+    string colorConfiguration = "none";
+    int useUnicode = 0;
+    object settings = getService("settings");
+    if (objectp(settings))
+    {
+        colorConfiguration = settings->colorConfiguration();
+        useUnicode = settings->charsetConfiguration() == "unicode";
+    }
+
+    object configuration = getDictionary("configuration");
+    object commandDictionary = getDictionary("commands");
+
+    string ret = commandDictionary->banneredContent(colorConfiguration, useUnicode,
+        configuration->decorate(sprintf("%-75s",
+            "Currently not a member of any guilds."), "information", "score",
+            colorConfiguration));
 
     string *guildList = memberOfGuilds();
 
@@ -582,11 +610,20 @@ public nomask string guildsDetails()
         ret = "";
         foreach(string guild in guildList)
         {
-            ret += sprintf(format, capitalize(guild) +
-                (guildRankName(guild) ? " (" + 
-                    capitalize(guildRankName(guild)) + ")" : ""),
-                to_string(guildLevel(guild)),
-                experienceBar(guild));
+            ret += commandDictionary->banneredContent(colorConfiguration, useUnicode, 
+                configuration->decorate("Guild: ", "content", "score", 
+                    colorConfiguration) +
+                configuration->decorate(sprintf("%-27s ", capitalize(guild) +
+                    (guildRankName(guild) ? " (" +
+                        capitalize(guildRankName(guild)) + ")" : "")),
+                    "information", "score", colorConfiguration) +
+                configuration->decorate("Level: ", "content", "score",
+                    colorConfiguration) +
+                configuration->decorate(sprintf("%-10d ", guildLevel(guild)),
+                    "information", "score", colorConfiguration) +
+                configuration->decorate("Experience: ", "content", "score",
+                    colorConfiguration) +
+                experienceBar(guild, useUnicode, colorConfiguration, configuration));
         }
     }
     return ret;
