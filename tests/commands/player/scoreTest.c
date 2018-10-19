@@ -307,3 +307,168 @@ void ScoreDisplaysUnicodeCharset()
         "\x1b[0;31m\xe2\x95\x9a\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\xa1 \xe2\x95\x90 \xe2\x95\x9e\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9d\n"
         "\x1b[0m", Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void ScoreDisplaysNoColorCorrectly()
+{
+    Player->colorConfiguration("none");
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah Really Long Name");
+    move_object(weapon, Player);
+    weapon->equip("blah");
+
+    object shield = clone_object("/lib/items/weapon");
+    shield->set("name", "weasels");
+    shield->set("short", "Shield of Weasels");
+    shield->set("defense class", 1);
+    shield->set("material", "steel");
+    shield->set("weapon type", "shield");
+    move_object(shield, Player);
+    shield->equip("weasels");
+
+    object armor = clone_object("/lib/items/armor");
+    armor->set("name", "stuff");
+    armor->set("bonus hit points", 4);
+    armor->set("armor class", 5);
+    armor->set("armor type", "chainmail");
+    armor->set("equipment locations", 0x00000200);
+    move_object(armor, Player);
+    armor->equip("stuff");
+
+    ExpectTrue(Player->executeCommand("?"));
+    ExpectEq("Rob the title-less\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Race: High elf (Hillgarathi elf)       Overall Level: 3                     |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "|   Hit Points: ==........ Spell Points: ==========      Stamina: ==========  |\n"
+        "|               30/125                   152/152                  96/96       |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Attributes +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "|     Strength: 11    (+1) Intelligence: 14    (+4)       Wisdom: 10          |\n"
+        "|    Dexterity: 10         Constitution: 11    (+1)     Charisma: 12    (+2)  |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Guild: Fighter (Neophyte)          Level: 1          Experience: ======.... |\n"
+        "| Guild: Mage                        Level: 2          Experience:  Level up  |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Primary Weapon: Sword of Bla... Attack: -65 to 35        Damage:   9 to 12  |\n"
+        "| Offhand Weapon: Shield of We... Attack: -81 to 19        Damage:   0 to 1   |\n"
+        "|  Defend Attack: -96 to -64        Soak:   3 to 5   Encumberance:  48        |\n"
+        "|          Wimpy:   0%         Hunted by: Nothing at all, aren't you lucky?   |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Details +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| You are normal.  (Yeah, right)                                              |\n"
+        "| You can find out more via the 'skills', 'traits', and 'research' commands.  |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ScoreDisplaysEightBitColorCorrectly()
+{
+    Player->colorConfiguration("8-bit");
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah Really Long Name");
+    move_object(weapon, Player);
+    weapon->equip("blah");
+
+    object shield = clone_object("/lib/items/weapon");
+    shield->set("name", "weasels");
+    shield->set("short", "Shield of Weasels");
+    shield->set("defense class", 1);
+    shield->set("material", "steel");
+    shield->set("weapon type", "shield");
+    move_object(shield, Player);
+    shield->equip("weasels");
+
+    object armor = clone_object("/lib/items/armor");
+    armor->set("name", "stuff");
+    armor->set("bonus hit points", 4);
+    armor->set("armor class", 5);
+    armor->set("armor type", "chainmail");
+    armor->set("equipment locations", 0x00000200);
+    move_object(armor, Player);
+    armor->equip("stuff");
+
+    ExpectTrue(Player->executeCommand("?"));
+    ExpectEq("\x1b[0;38;5;144mRob the title-less\n"
+        "\x1b[0m\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mRace: \x1b[0m\x1b[0;38;5;2mHigh elf (Hillgarathi elf)       \x1b[0m\x1b[0;38;5;80mOverall Level: \x1b[0m\x1b[0;38;5;2m3                    \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80m  Hit Points: \x1b[0m\x1b[0;38;5;238;1m==\x1b[0m\x1b[0;38;5;9m........ \x1b[0m\x1b[0;38;5;80mSpell Points: \x1b[0m\x1b[0;38;5;238;1m==========\x1b[0m\x1b[0;38;5;9m \x1b[0m\x1b[0;38;5;80m     Stamina: \x1b[0m\x1b[0;38;5;238;1m==========\x1b[0m\x1b[0;38;5;9m \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;190m              30/125  \x1b[0m\x1b[0;38;5;190m                 152/152  \x1b[0m\x1b[0;38;5;190m                96/96      \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Attributes +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80m    Strength: \x1b[0m\x1b[0;38;5;190;1m11    \x1b[0m\x1b[0;38;5;20;1m(+1) \x1b[0m\x1b[0;38;5;80mIntelligence: \x1b[0m\x1b[0;38;5;190;1m14    \x1b[0m\x1b[0;38;5;20;1m(+4) \x1b[0m\x1b[0;38;5;80m      Wisdom: \x1b[0m\x1b[0;38;5;2m10    \x1b[0m\x1b[0;38;5;2m     \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80m   Dexterity: \x1b[0m\x1b[0;38;5;2m10    \x1b[0m\x1b[0;38;5;2m     \x1b[0m\x1b[0;38;5;80mConstitution: \x1b[0m\x1b[0;38;5;190;1m11    \x1b[0m\x1b[0;38;5;20;1m(+1) \x1b[0m\x1b[0;38;5;80m    Charisma: \x1b[0m\x1b[0;38;5;190;1m12    \x1b[0m\x1b[0;38;5;20;1m(+2) \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mGuild: \x1b[0m\x1b[0;38;5;190mFighter (Neophyte)          \x1b[0m\x1b[0;38;5;80mLevel: \x1b[0m\x1b[0;38;5;190m1          \x1b[0m\x1b[0;38;5;80mExperience: \x1b[0m\x1b[0;38;5;238;1m======\x1b[0m\x1b[0;38;5;9m....\x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mGuild: \x1b[0m\x1b[0;38;5;190mMage                        \x1b[0m\x1b[0;38;5;80mLevel: \x1b[0m\x1b[0;38;5;190m2          \x1b[0m\x1b[0;38;5;80mExperience: \x1b[0m\x1b[0;38;5;190;1m Level up \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mPrimary Weapon: \x1b[0m\x1b[0;38;5;190mSword of Bla...\x1b[0m\x1b[0;38;5;80m Attack: \x1b[0m\x1b[0;38;5;190m-65 to 35  \x1b[0m\x1b[0;38;5;80m      Damage: \x1b[0m\x1b[0;38;5;190m  9 to 12 \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mOffhand Weapon: \x1b[0m\x1b[0;38;5;190mShield of We...\x1b[0m\x1b[0;38;5;80m Attack: \x1b[0m\x1b[0;38;5;190m-81 to 19  \x1b[0m\x1b[0;38;5;80m      Damage: \x1b[0m\x1b[0;38;5;190m  0 to 1  \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80m Defend Attack: \x1b[0m\x1b[0;38;5;190m-96 to -64 \x1b[0m\x1b[0;38;5;80m       Soak: \x1b[0m\x1b[0;38;5;190m  3 to 5   \x1b[0m\x1b[0;38;5;80mEncumberance: \x1b[0m\x1b[0;38;5;190m 48       \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80m         Wimpy: \x1b[0m\x1b[0;38;5;190m  0%\x1b[0m\x1b[0;38;5;80m         Hunted by: \x1b[0m\x1b[0;38;5;190mNothing at all, aren't you lucky?  \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Details +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mYou are normal.  (Yeah, right)                                             \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mYou can find out more via the 'skills', 'traits', and 'research' commands. \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ScoreDisplaysTwentyFourBitColorCorrectly()
+{
+    Player->colorConfiguration("24-bit");
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah Really Long Name");
+    move_object(weapon, Player);
+    weapon->equip("blah");
+
+    object shield = clone_object("/lib/items/weapon");
+    shield->set("name", "weasels");
+    shield->set("short", "Shield of Weasels");
+    shield->set("defense class", 1);
+    shield->set("material", "steel");
+    shield->set("weapon type", "shield");
+    move_object(shield, Player);
+    shield->equip("weasels");
+
+    object armor = clone_object("/lib/items/armor");
+    armor->set("name", "stuff");
+    armor->set("bonus hit points", 4);
+    armor->set("armor class", 5);
+    armor->set("armor type", "chainmail");
+    armor->set("equipment locations", 0x00000200);
+    move_object(armor, Player);
+    armor->equip("stuff");
+
+    ExpectTrue(Player->executeCommand("?"));
+    ExpectEq("\x1b[0;38;2;100;180;150mRob the title-less\n"
+        "\x1b[0m\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mRace: \x1b[0m\x1b[0;38;2;170;180;110mHigh elf (Hillgarathi elf)       \x1b[0m\x1b[0;38;2;180;180;190mOverall Level: \x1b[0m\x1b[0;38;2;170;180;110m3                    \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190m  Hit Points: \x1b[0m\x1b[0;38;2;60;60;70;1m==\x1b[0m\x1b[0;38;2;200;0;0m........ \x1b[0m\x1b[0;38;2;180;180;190mSpell Points: \x1b[0m\x1b[0;38;2;60;60;70;1m==========\x1b[0m\x1b[0;38;2;200;0;0m \x1b[0m\x1b[0;38;2;180;180;190m     Stamina: \x1b[0m\x1b[0;38;2;60;60;70;1m==========\x1b[0m\x1b[0;38;2;200;0;0m \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;200;200;0m              30/125  \x1b[0m\x1b[0;38;2;200;200;0m                 152/152  \x1b[0m\x1b[0;38;2;200;200;0m                96/96      \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Attributes +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190m    Strength: \x1b[0m\x1b[0;38;2;200;200;0;1m11    \x1b[0m\x1b[0;38;2;0;0;220;1m(+1) \x1b[0m\x1b[0;38;2;180;180;190mIntelligence: \x1b[0m\x1b[0;38;2;200;200;0;1m14    \x1b[0m\x1b[0;38;2;0;0;220;1m(+4) \x1b[0m\x1b[0;38;2;180;180;190m      Wisdom: \x1b[0m\x1b[0;38;2;170;180;110m10    \x1b[0m\x1b[0;38;2;170;180;110m     \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190m   Dexterity: \x1b[0m\x1b[0;38;2;170;180;110m10    \x1b[0m\x1b[0;38;2;170;180;110m     \x1b[0m\x1b[0;38;2;180;180;190mConstitution: \x1b[0m\x1b[0;38;2;200;200;0;1m11    \x1b[0m\x1b[0;38;2;0;0;220;1m(+1) \x1b[0m\x1b[0;38;2;180;180;190m    Charisma: \x1b[0m\x1b[0;38;2;200;200;0;1m12    \x1b[0m\x1b[0;38;2;0;0;220;1m(+2) \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mGuild: \x1b[0m\x1b[0;38;2;200;200;0mFighter (Neophyte)          \x1b[0m\x1b[0;38;2;180;180;190mLevel: \x1b[0m\x1b[0;38;2;200;200;0m1          \x1b[0m\x1b[0;38;2;180;180;190mExperience: \x1b[0m\x1b[0;38;2;60;60;70;1m======\x1b[0m\x1b[0;38;2;200;0;0m....\x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mGuild: \x1b[0m\x1b[0;38;2;200;200;0mMage                        \x1b[0m\x1b[0;38;2;180;180;190mLevel: \x1b[0m\x1b[0;38;2;200;200;0m2          \x1b[0m\x1b[0;38;2;180;180;190mExperience: \x1b[0m\x1b[0;38;2;200;200;0;1m Level up \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mPrimary Weapon: \x1b[0m\x1b[0;38;2;200;200;0mSword of Bla...\x1b[0m\x1b[0;38;2;180;180;190m Attack: \x1b[0m\x1b[0;38;2;200;200;0m-65 to 35  \x1b[0m\x1b[0;38;2;180;180;190m      Damage: \x1b[0m\x1b[0;38;2;200;200;0m  9 to 12 \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mOffhand Weapon: \x1b[0m\x1b[0;38;2;200;200;0mShield of We...\x1b[0m\x1b[0;38;2;180;180;190m Attack: \x1b[0m\x1b[0;38;2;200;200;0m-81 to 19  \x1b[0m\x1b[0;38;2;180;180;190m      Damage: \x1b[0m\x1b[0;38;2;200;200;0m  0 to 1  \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190m Defend Attack: \x1b[0m\x1b[0;38;2;200;200;0m-96 to -64 \x1b[0m\x1b[0;38;2;180;180;190m       Soak: \x1b[0m\x1b[0;38;2;200;200;0m  3 to 5   \x1b[0m\x1b[0;38;2;180;180;190mEncumberance: \x1b[0m\x1b[0;38;2;200;200;0m 48       \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190m         Wimpy: \x1b[0m\x1b[0;38;2;200;200;0m  0%\x1b[0m\x1b[0;38;2;180;180;190m         Hunted by: \x1b[0m\x1b[0;38;2;200;200;0mNothing at all, aren't you lucky?  \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Details +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mYou are normal.  (Yeah, right)                                             \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mYou can find out more via the 'skills', 'traits', and 'research' commands. \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "\x1b[0m", Player->caughtMessage());
+}
