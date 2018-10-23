@@ -730,11 +730,11 @@ public void reset(int arg)
             SetupCompleted = 1;
         }
 
-        object shopObj = getShop();
-        if (objectp(shopObj))
-        {
-            shopObj->updateShopInventory();
-        }
+    }
+    object shopObj = getShop();
+    if (objectp(shopObj))
+    {
+        shopObj->updateShopInventory();
     }
     createStateObjects();
 }

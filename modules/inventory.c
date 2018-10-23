@@ -913,7 +913,8 @@ public nomask varargs string inventoryText(int verbose)
         ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
     }
 
-    object *allItems = all_inventory(this_object());
+    object *allItems = filter(all_inventory(this_object()), 
+        (: (member(inherit_list($1), "lib/items/modifierObject.c") < 0) :));
     int addFooter = 0;
     foreach(object equipment in allItems)
     {

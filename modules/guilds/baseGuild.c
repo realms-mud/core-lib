@@ -746,6 +746,7 @@ private nomask int applyResearchChoiceCriterion(mapping criterion, object guildM
     {
         ret = 1;
         object chooser = clone_object("/lib/modules/guilds/researchChooser.c");
+        chooser->setResearchTitle(criterion["name"]);
         guildMember->registerEvent(chooser);
         move_object(chooser, guildMember);
         guildMember->addResearchChoice(criterion);

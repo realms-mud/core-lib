@@ -128,3 +128,9 @@ public nomask string fullyQualifiedName()
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public string short()
+{
+    return "";
+}

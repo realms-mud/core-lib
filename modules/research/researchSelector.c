@@ -74,7 +74,7 @@ protected nomask int processSelection(string selection)
         {
             SubselectorObj = clone_object("/lib/modules/research/researchSubselector.c");
             move_object(SubselectorObj, User);
-            SubselectorObj->setSource(lower_case(Data[selection]["type"]));
+            SubselectorObj->setSource(Data[selection]["type"]);
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->setPointsRemaining(TotalPoints);
             SubselectorObj->initiateSelector(User);

@@ -94,7 +94,11 @@ static nomask mapping sendInventory()
         }
     }
 
-    object *inventoryObjects = all_inventory() - registeredObjects;
+    object *inventoryObjects = filter(all_inventory(),
+        (: ((member(inherit_list($1), "lib/core/baseSelector.c") < 0) &&
+           (member(inherit_list($1), "lib/modules/guilds/researchChooser.c") < 0) &&
+           (member(inherit_list($1), "lib/items/modifierObject.c") < 0)) :))
+        - registeredObjects;
     {
         foreach(object inventoryObject in inventoryObjects)
         {

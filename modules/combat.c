@@ -1323,6 +1323,22 @@ public nomask varargs int hit(int damage, string damageType, object foe)
             ret = 0;
         }
         
+        object traits = getService("traits");
+        if (traits && traits->hasTraitOfRoot("mana shield"))
+        {
+            int remainingDamage = ret - spellPoints;
+            if (remainingDamage > 0)
+            {
+                ret = remainingDamage;
+                spellPoints = 0;
+            }
+            else
+            {
+                spellPoints -= ret;
+                ret = 0;
+            }
+        }
+
         if(ret > hitPoints)
         {
             ret = hitPoints;

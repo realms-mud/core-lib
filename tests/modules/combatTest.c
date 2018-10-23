@@ -2067,3 +2067,39 @@ void DamageResistanceWithTraitAndEquipmentReducesDamageTaken()
 
     ExpectEq(440, Target->hit(500, "fire"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void HitSubtractsFromManaWhenManaShieldIsActive()
+{
+    Target->setMaxHitPoints(1000);
+    Target->hitPoints(Target->maxHitPoints());
+    Target->setMaxSpellPoints(100);
+    Target->spellPoints(Target->maxSpellPoints());
+
+    ExpectEq(1120, Target->hitPoints());
+    ExpectEq(220, Target->spellPoints());
+
+    Target->addTrait("/lib/tests/support/traits/testManaShieldTrait.c");
+
+    Target->hit(100, "physical", Attacker);
+    ExpectEq(1120, Target->hitPoints());
+    ExpectEq(124, Target->spellPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DamageTransitionsToHitPointsWhenManaIsDepleted()
+{
+    Target->setMaxHitPoints(1000);
+    Target->hitPoints(Target->maxHitPoints());
+    Target->setMaxSpellPoints(100);
+    Target->spellPoints(Target->maxSpellPoints());
+
+    ExpectEq(1120, Target->hitPoints());
+    ExpectEq(220, Target->spellPoints());
+
+    Target->addTrait("/lib/tests/support/traits/testManaShieldTrait.c");
+
+    Target->hit(500, "physical", Attacker);
+    ExpectEq(844, Target->hitPoints());
+    ExpectEq(0, Target->spellPoints());
+}
