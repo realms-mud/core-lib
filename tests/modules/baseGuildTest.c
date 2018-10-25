@@ -188,7 +188,7 @@ void ModifierCriteriaWithXEveryLevelWithoutRangesGoesFromOneToMaxLevel()
 {
     mapping criteria = ([
         "type":"modifier",
-        "apply" : "5 every level",
+        "apply": "5 every level",
     ]);
     ExpectTrue(Guild->testAddCriteria("hit points", criteria));
     ExpectEq(5, Guild->queryBonus("bonus hit points", 1, ""));
@@ -196,7 +196,6 @@ void ModifierCriteriaWithXEveryLevelWithoutRangesGoesFromOneToMaxLevel()
     ExpectEq(500, Guild->queryBonus("bonus hit points", 100, ""));
     ExpectEq(2500, Guild->queryBonus("bonus hit points", 500, ""));
     ExpectEq(5000, Guild->queryBonus("bonus hit points", 1000, ""));
-    ExpectEq(5000, Guild->queryBonus("bonus hit points", 1001, ""));
 }
 
 /////////////////////////////////////////////////////////////////////////////

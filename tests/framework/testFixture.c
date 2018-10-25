@@ -5,6 +5,7 @@
 #include <functionlist.h>
 
 string Pass = "\x1b[0;36m[  PASSED  ]\x1b[0m ";
+string Warning = "\x1b[0;33m[  WARNING  ]\x1b[0m ";
 string Fail = "\x1b[0;31m[  FAILED  ]\x1b[0m ";
 
 int CurrentTestPassed = 0;
@@ -33,15 +34,32 @@ public int executeTests()
     mixed *tests = functionlist(this_object(), RETURN_FUNCTION_NAME | NAME_INHERITED);
     tests -= ignoreList;
 
+    int *timeStruct;
+
     debug_message(sprintf("\nTesting %s\n", object_name()), 0x5);
     foreach(string test in tests)
     {
+        timeStruct = rusage();
+        int timeBeforeExecution = timeStruct[0] + timeStruct[1];
         Setup();
         CurrentTestPassed = 1;
 
         call_other(this_object(), test);
-        debug_message(sprintf("%s %s\n", CurrentTestPassed ? Pass : Fail, test),
-            0x5);
+
+        timeStruct = rusage();
+        int timeOfExecution = timeStruct[0] + timeStruct[1] - timeBeforeExecution;
+
+        if (timeOfExecution > 100)
+        {
+            debug_message(sprintf("%s %s (%dms)\n", Pass, test,
+                timeOfExecution), 0x5);
+        }
+        else
+        {
+            debug_message(sprintf("%s %s (%dms)\n", CurrentTestPassed ? Pass : Fail, test,
+                timeOfExecution), 0x5);
+        }
+
         CleanUp();
     }
     debug_message(sprintf("Test executed: %s -> %s\n", object_name(),

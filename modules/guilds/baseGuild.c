@@ -12,9 +12,9 @@ private float ExperienceMultiplier = 1.0;
 private string PrerequisiteObject = "lib/core/prerequisites.c";
 private string guildName = "BaseGuild";
 private string *preferredSkills = ({ "general", "erudite", "language" });
-private int CanLeaveGuild = 1;
-private string *ProhibitedGuilds = ({ });
-private mapping prohibitedEquipment = ([]);
+protected int CanLeaveGuild = 1;
+protected string *ProhibitedGuilds = ({ });
+protected mapping prohibitedEquipment = ([]);
 private int IsNonCombatGuild = 0;
 
 private mapping ranks = ([ 
@@ -394,20 +394,29 @@ private nomask int addEveryLevelCriteria(string key, mapping criteria, string ra
     int amount;
     int frequency = 1;
     sscanf(criteria["apply"], "%d every %d", amount, frequency);
+    insertBonusItem(0, rank, key, criteria["type"], 0);
+    int valueAtEnd = 0;
 
-    for (int level = beginAt; level <= endAt; level++)
+    for (int level = 1; level <= MaxLevel; level++)
     {
-        if (!(level % frequency))
+        if ((level >= beginAt) && (level <= endAt))
         {
             if (member(({ "modifier", "skill", "attack" }),
                 criteria["type"]) > -1)
             {
-                ret &&= insertBonusItem(level, rank, key, criteria["type"], amount);
+                ret &&= insertBonusItem(level, rank, key, criteria["type"], 
+                    amount * ((1 + level - beginAt) / frequency));
+                valueAtEnd = amount * ((1 + level - beginAt)/ frequency);
             }
             else
             {
                 ret &&= insertAdvancementItem(level, key);
             }
+        }
+        else if (member(({ "modifier", "skill", "attack" }),
+                criteria["type"]) > -1)
+        {
+            insertBonusItem(level, rank, key, criteria["type"], valueAtEnd);
         }
     }
     return ret;
@@ -423,6 +432,10 @@ private nomask int addAtLevelCriteria(string key, mapping criteria, string rank)
         criteria["type"]) > -1)
     {
         ret &&= insertBonusItem(level, rank, key, criteria["type"], 1);
+        for (int i = level + 1; i <= 20; i++)
+        {
+            bonusGrid[key][rank][i] = bonusGrid[key][rank][i - 1];
+        }
     }
     else
     {
@@ -580,20 +593,18 @@ public nomask int queryBonus(string bonus, int level, string rank)
            getDictionary("bonuses")->isValidBonus(bonusToCheck) &&
            member(bonusGrid, bonusToCheck))
         {
-            for(int levelToApply = 1; levelToApply <= level; levelToApply++)
+            if (rank != "default" &&
+                member(bonusGrid[bonusToCheck], "default") &&
+                member(bonusGrid[bonusToCheck]["default"], level))
             {
-                if (rank != "default" &&
-                    member(bonusGrid[bonusToCheck], "default") &&
-                    member(bonusGrid[bonusToCheck]["default"], levelToApply))
-                {
-                    ret += bonusGrid[bonusToCheck]["default"][levelToApply];
-                }
-                if(member(bonusGrid[bonusToCheck], rank) &&
-                    member(bonusGrid[bonusToCheck][rank], levelToApply))
-                {
-                    ret += bonusGrid[bonusToCheck][rank][levelToApply];
-                }
+                ret += bonusGrid[bonusToCheck]["default"][level];
             }
+            if(member(bonusGrid[bonusToCheck], rank) &&
+                member(bonusGrid[bonusToCheck][rank], level))
+            {
+                ret += bonusGrid[bonusToCheck][rank][level];
+            }
+
             if(!member(criteriaMap[bonusToCheck], "begin at level") &&
                 member(criteriaMap[bonusToCheck], "begin at rank") && 
                 member(bonusGrid[bonusToCheck], rank))
@@ -915,17 +926,14 @@ public nomask mapping *getExtraAttacks(int level, string rank)
 
                 foreach(string checkRank in ranks)
                 {
-                    for(int levelToApply = 1; levelToApply <= level; levelToApply++)
+                    if(member(bonusGrid[key], checkRank) &&
+                        member(bonusGrid[key][checkRank], level))
                     {
-                        if(member(bonusGrid[key], checkRank) &&
-                           member(bonusGrid[key][checkRank], levelToApply))
+                        for(int numAttacks = 1; 
+                            numAttacks <= bonusGrid[key][checkRank][level];
+                            numAttacks++)
                         {
-                            for(int numAttacks = 1; 
-                                numAttacks <= bonusGrid[key][checkRank][levelToApply];
-                                numAttacks++)
-                            {
-                                ret += ({ attackMap });
-                            }
+                            ret += ({ attackMap });
                         }
                     }
                 }
@@ -1185,4 +1193,3 @@ public nomask int isProhibitedEquipment(object equipment)
         materialTypeInProhibitedList(equipment->query("material")) ||
         damageTypeInProhibitedList(equipment);
 }
-

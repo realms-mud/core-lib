@@ -7,6 +7,14 @@ inherit "/lib/tests/framework/testFixture.c";
 object Player;
 
 /////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    load_object("/lib/dictionaries/guildsDictionary.c");
+    load_object("/lib/tests/support/guilds/mageGuild.c");
+    load_object("/lib/tests/support/guilds/fighterGuild.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
@@ -26,15 +34,11 @@ void Setup()
     Player->addTrait("/lib/modules/traits/genetic/smart.c");
     Player->spellPoints(Player->maxSpellPoints());
     Player->staminaPoints(Player->maxStaminaPoints());
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
-    object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
-    guild->init();
+
     Player->joinGuild("mage");
     Player->addExperience(1700);
     Player->advanceLevel("mage");
 
-    guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    guild->init();
     Player->joinGuild("fighter");
     Player->addExperience(2000);
 

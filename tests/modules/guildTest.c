@@ -24,16 +24,16 @@ int AdvanceToLevel(int level, string guild)
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
+    destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
+    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    Guild = load_object("/lib/tests/support/guilds/testGuild.c");
+
     ignoreList += ({ "AdvanceToLevel" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
-    Guild = load_object("/lib/tests/support/guilds/testGuild.c");
-    Guild->PrepFakeGuild();
-
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User->Name("Bob");
     User->Str(20);
@@ -47,7 +47,7 @@ void Setup()
 void CleanUp()
 {
     destruct(User);
-    destruct(Guild);
+   //destruct(Guild);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -358,6 +358,7 @@ void CanLeaveGuildFailsIfLeavingIsProhibited()
     User->joinGuild("test");
     Guild->testProhibitLeavingGuild();
     ExpectFalse(User->leaveGuild("test"));
+    Guild->resetProhibitions();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -610,6 +611,7 @@ void CanUseEquipmentOfTypeAffectedByArmorLocation()
 /////////////////////////////////////////////////////////////////////////////
 void CanUseEquipmentOfTypeAllowsArmorLocationNotOfBlockedLocation()
 {
+    Guild->resetProhibitions();
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "blah");
     armor->set("material", "galvorn");
@@ -620,6 +622,7 @@ void CanUseEquipmentOfTypeAllowsArmorLocationNotOfBlockedLocation()
     ExpectTrue(Guild->testAddEquipmentProhibition("armor location", ({ "leg greaves" })));
     User->joinGuild("test");
     ExpectTrue(armor->equip("blah"));
+    Guild->resetProhibitions();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -754,6 +757,7 @@ void CanUseEquipmentOfTypeAffectedByMaterialType()
 /////////////////////////////////////////////////////////////////////////////
 void CanUseEquipmentOfTypentDoesNotBlockMaterialNotOfTypeSpecified()
 {
+    Guild->resetProhibitions();
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
     weapon->set("material", "galvorn");
@@ -764,6 +768,7 @@ void CanUseEquipmentOfTypentDoesNotBlockMaterialNotOfTypeSpecified()
     ExpectTrue(Guild->testAddEquipmentProhibition("material type", ({ "crystal" })));
     User->joinGuild("test");
     ExpectTrue(weapon->equip("blah"));
+    Guild->resetProhibitions();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -802,6 +807,8 @@ void CanUseEquipmentOfTypeAffectedByMaterial()
 /////////////////////////////////////////////////////////////////////////////
 void CanUseEquipmentOfTypentDoesNotBlockMaterialNotSpecified()
 {
+    Guild->resetProhibitions();
+
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
     weapon->set("material", "galvorn");
@@ -812,6 +819,7 @@ void CanUseEquipmentOfTypentDoesNotBlockMaterialNotSpecified()
     ExpectTrue(Guild->testAddEquipmentProhibition("material", ({ "iron" })));
     User->joinGuild("test");
     ExpectTrue(weapon->equip("blah"));
+    Guild->resetProhibitions();
 }
 
 /////////////////////////////////////////////////////////////////////////////

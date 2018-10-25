@@ -43,6 +43,8 @@ void Init()
 
     destruct(dataAccess);
     destruct(database);
+
+    load_object("/lib/tests/support/guilds/testGuild.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -56,8 +58,6 @@ void Setup()
     Catch->beginShadow(Wizard);
 
     Players = ({});
-
-    load_object("/lib/tests/support/guilds/testGuild.c")->PrepFakeGuild();
 
     int level = 1;
     foreach(string name in({ "fred", "george", "henrietta", "gertrude" }))

@@ -7,13 +7,10 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object ResearchItem;
 object Attacker;
-object Guild;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Guild = load_object("/lib/tests/support/guilds/testGuild.c");
- 
     ResearchItem = clone_object("/lib/tests/support/research/testResearchItem");
     Attacker = clone_object("/lib/tests/support/services/combatWithMockServices");
     Attacker->Name("Earl");
@@ -30,7 +27,6 @@ void CleanUp()
 {
     destruct(ResearchItem);
     destruct(Attacker);
-    destruct(Guild);
 }
 
 /////////////////////////////////////////////////////////////////////////////

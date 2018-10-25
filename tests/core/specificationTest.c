@@ -7,13 +7,18 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Specification;
 object Attacker;
-object Guild;
+
+/////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
+    load_object("/lib/dictionaries/guildsDictionary.c");
+    load_object("/lib/tests/support/guilds/testGuild.c");
+}
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Guild = load_object("/lib/tests/support/guilds/testGuild.c");
-
     Specification = clone_object("/lib/tests/support/research/testSpecification");
     Attacker = clone_object("/lib/tests/support/services/combatWithMockServices");
     Attacker->Name("Earl");
@@ -30,7 +35,6 @@ void CleanUp()
 {
     destruct(Specification);
     destruct(Attacker);
-    destruct(Guild);
 }
 
 /////////////////////////////////////////////////////////////////////////////

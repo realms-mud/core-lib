@@ -29,7 +29,8 @@ public void SetupGuild()
     ]));
     addCriteria("attribute points", ([
         "type": "attribute points",
-        "apply": "1 every 2 levels"
+        "apply": "1 every 2 levels",
+        "begin at level" : 2,
     ]));
     addCriteria("skill points", ([
         "type":"skill points",
@@ -109,6 +110,14 @@ public int testAddCriteria(string key, mapping criteria)
 public void testProhibitLeavingGuild()
 {
     return baseGuild::prohibitLeavingGuild();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void resetProhibitions()
+{
+    CanLeaveGuild = 1;
+    ProhibitedGuilds = ({});
+    prohibitedEquipment = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
