@@ -71,7 +71,9 @@ private nomask string *bonusList()
                 if(attack && stringp(attack))
                 {
                     bonuses += ({ sprintf("%s attack", attack),
-                        sprintf("resist %s", attack) });
+                        sprintf("resist %s", attack), 
+                        sprintf("%s enchantment", attack) 
+                    });
                 }
             }
         }
