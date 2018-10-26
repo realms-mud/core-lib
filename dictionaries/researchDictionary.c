@@ -8,6 +8,39 @@
 
 private string BaseResearch = "lib/modules/research/researchItem.c";
 private string BaseResearchTree = "lib/modules/research/researchTree.c";
+private mapping researchCache = ([]);
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs int valueIsCached(string research, string element, 
+    string subElement)
+{
+    return member(researchCache, research) &&
+        member(researchCache[research], element) &&
+        (!subElement || member(researchCache[research][element], subElement));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs void cacheValue(mixed value, string research, 
+    string element, string subElement)
+{
+    if (!member(researchCache, research))
+    {
+        researchCache[research] = ([]);
+    }
+
+    if (!subElement)
+    {
+        researchCache[research][element] = value;
+    }
+    else
+    {
+        if (!member(researchCache[research], element))
+        {
+            researchCache[research][element] = ([]);
+        }
+        researchCache[research][element][subElement] = value;
+    }
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object researchObject(string researchItem)
@@ -29,6 +62,10 @@ public nomask object researchObject(string researchItem)
            !ret->isValidResearchItem())
         {
             ret = 0;
+        }
+        else
+        {
+            researchCache[researchItem] = ([]);
         }
     }
     return ret;
@@ -55,6 +92,10 @@ public nomask object researchTree(string tree)
         {
             ret = 0;
         }
+        else
+        {
+            researchCache[tree] = ([]);
+        }
     }
     return ret;
 }
@@ -62,8 +103,14 @@ public nomask object researchTree(string tree)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int validResearch(string researchItem)
 {
-    object researchObj = researchObject(researchItem);
-    return (researchObj && objectp(researchObj));
+    int ret = member(researchCache, researchItem);
+
+    if (!ret)
+    {
+        object researchObj = researchObject(researchItem);
+        ret = (researchObj && objectp(researchObj));
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -71,13 +118,21 @@ public nomask int isSustainedResearchItem(string researchItem)
 {
     int ret = 0;
 
-    if(researchItem && stringp(researchItem))
+    if (researchItem && stringp(researchItem))
     {
-        researchItem = (researchItem[0] == '/') ? researchItem : 
-            "/" + researchItem;
-        ret = (file_size(researchItem) > 0) && 
-        (member(inherit_list(load_object(researchItem)), 
-            "lib/modules/research/sustainedResearchItem.c") > -1);
+        if (valueIsCached(researchItem, "sustained research"))
+        {
+            ret = researchCache[researchItem]["sustained research"];
+        }
+        else
+        {
+            researchItem = (researchItem[0] == '/') ? researchItem :
+                "/" + researchItem;
+            ret = (file_size(researchItem) > 0) &&
+                (member(inherit_list(load_object(researchItem)),
+                    "lib/modules/research/sustainedResearchItem.c") > -1);
+            cacheValue(ret, researchItem, "sustained research");
+        }
     }
     return ret;
 }
@@ -86,11 +141,20 @@ public nomask int isSustainedResearchItem(string researchItem)
 public nomask int isSustainedAbility(string researchItem)
 {
     int ret = 0;
-    object researchObj = researchObject(researchItem);
-    if(researchObj)
+
+    if (valueIsCached(researchItem, "sustained ability"))
     {
-        ret = (researchObj->query("type") == "sustained") ||
-              (researchObj->query("type") == "ritual");
+        ret = researchCache[researchItem]["sustained ability"];
+    }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = (researchObj->query("type") == "sustained") ||
+                (researchObj->query("type") == "ritual");
+            cacheValue(ret, researchItem, "sustained ability");
+        }
     }
     return ret;
 }
@@ -99,11 +163,21 @@ public nomask int isSustainedAbility(string researchItem)
 public nomask int isActiveAbility(string researchItem)
 {
     int ret = 0;
-    object researchObj = researchObject(researchItem);
-    if(researchObj)
+
+    if (valueIsCached(researchItem, "active ability"))
     {
-        ret = (researchObj->query("type") == "active");
+        ret = researchCache[researchItem]["active ability"];
     }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = (researchObj->query("type") == "active");
+            cacheValue(ret, researchItem, "active ability");
+        }
+    }
+
     return ret;
 }
 
@@ -111,13 +185,24 @@ public nomask int isActiveAbility(string researchItem)
 public nomask int isActiveOrSustainedAbility(string researchItem)
 {
     int ret = 0;
-    object researchObj = researchObject(researchItem);
-    if(researchObj)
+
+    if (valueIsCached(researchItem, "active or sustained ability"))
     {
-        ret = (researchObj->query("type") == "active") ||
-              (researchObj->query("type") == "ritual") ||
-              (researchObj->query("type") == "sustained");
+        ret = researchCache[researchItem]["active or sustained ability"];
     }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = (researchObj->query("type") == "active") ||
+                (researchObj->query("type") == "ritual") ||
+                (researchObj->query("type") == "sustained");
+
+            cacheValue(ret, researchItem, "active or sustained ability");
+        }
+    }
+
     return ret;
 }
 
@@ -125,11 +210,22 @@ public nomask int isActiveOrSustainedAbility(string researchItem)
 public nomask mapping getResearchPrerequisites(string researchItem)
 {
     mapping ret = 0;
-    object researchObj = researchObject(researchItem);
-    if(researchObj)
+
+    if (valueIsCached(researchItem, "prerequisites"))
     {
-        ret = researchObj->getPrerequisites();
+        ret = researchCache[researchItem]["prerequisites"];
     }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = researchObj->getPrerequisites();
+
+            cacheValue(ret, researchItem, "prerequisites");
+        }
+    }
+
     return ret;
 }
 
@@ -149,11 +245,22 @@ public nomask int checkResearchPrerequisites(string researchItem, object owner)
 public nomask string getResearchType(string researchItem)
 {
     string ret = 0;
-    object researchObj = researchObject(researchItem);
-    if(researchObj)
+
+    if (valueIsCached(researchItem, "research type"))
     {
-        ret = researchObj->query("research type");
+        ret = researchCache[researchItem]["research type"];
     }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = researchObj->query("research type");
+
+            cacheValue(ret, researchItem, "research type");
+        }
+    }
+
     return ret;
 }
 
@@ -161,10 +268,19 @@ public nomask string getResearchType(string researchItem)
 public nomask int getResearchCost(string researchItem)
 {
     int ret = 0;
-    object researchObj = researchObject(researchItem);
-    if(researchObj)
+    if (valueIsCached(researchItem, "research cost"))
     {
-        ret = researchObj->query("research cost");
+        ret = researchCache[researchItem]["research cost"];
+    }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = researchObj->query("research cost");
+
+            cacheValue(ret, researchItem, "research cost");
+        }
     }
     return ret;
 }
@@ -173,11 +289,22 @@ public nomask int getResearchCost(string researchItem)
 public nomask int researchEffectIsLimited(string researchItem)
 {
     int ret = 0;
-    object researchObj = researchObject(researchItem);
-    if(researchObj)
+
+    if (valueIsCached(researchItem, "effect is limited"))
     {
-        ret = researchObj->EffectIsLimited();
+        ret = researchCache[researchItem]["effect is limited"];
     }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = researchObj->EffectIsLimited();
+
+            cacheValue(ret, researchItem, "effect is limited");
+        }
+    }
+
     return ret;
 }
 
@@ -185,14 +312,23 @@ public nomask int researchEffectIsLimited(string researchItem)
 public nomask mapping *extraAttacks(string researchItem, object owner)
 {
     mapping *ret = 0;
-    
-    object researchObj = researchObject(researchItem);
-    if(researchObj && objectp(researchObj) &&
-       function_exists("getExtraAttacks", researchObj))
+   
+    if (valueIsCached(researchItem, "extra attacks"))
     {
-        ret = researchObj->getExtraAttacks();
+        ret = researchCache[researchItem]["extra attacks"];
     }
-    ret -= ({ 0 });
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = function_exists("getExtraAttacks", researchObj) ?
+                researchObj->getExtraAttacks() : ({});
+            ret -= ({ 0 });
+
+            cacheValue(ret, researchItem, "extra attacks");
+        }
+    }
     
     return ret + ({ });
 }
@@ -215,12 +351,21 @@ public nomask int applySustainedCostTo(string researchItem, string bonus)
 {
     int ret = 0;
     
-    object researchObj = researchObject(researchItem);
-    if(researchObj && objectp(researchObj) && 
-       function_exists("applySustainedCost", researchObj))
+    if (valueIsCached(researchItem, "sustained cost", bonus))
     {
-        ret = researchObj->applySustainedCost(bonus);
+        ret = researchCache[researchItem]["sustained cost"][bonus];
     }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = researchObj->applySustainedCost(bonus);
+
+            cacheValue(ret, researchItem, "sustained cost", bonus);
+        }
+    }
+
     return ret;
 }
 
@@ -228,13 +373,22 @@ public nomask int applySustainedCostTo(string researchItem, string bonus)
 private nomask int lookUpBonus(string researchItem, string bonus)
 {
     int ret = 0;
-    
-    object researchObj = researchObject(researchItem);
-    if(researchObj && objectp(researchObj) && 
-       function_exists("queryBonus", researchObj))
+   
+    if (valueIsCached(researchItem, bonus))
     {
-        ret = researchObj->queryBonus(bonus);
+        ret = researchCache[researchItem][bonus];
     }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = researchObj->queryBonus(bonus);
+
+            cacheValue(ret, researchItem, bonus);
+        }
+    }
+
     return ret;
 }
 
