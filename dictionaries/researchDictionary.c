@@ -385,8 +385,8 @@ private nomask int lookUpBonus(string researchItem, string bonus)
         {
             ret = researchObj->queryBonus(bonus);
 
-            cacheValue(ret, researchItem, bonus);
         }
+        cacheValue(ret, researchItem, bonus);
     }
 
     return ret;
@@ -824,10 +824,21 @@ public mapping getResearchTreeChoices(string type, object user)
 public nomask string *getResearchBonuses(string researchItem)
 {
     string *ret = ({});
-    object researchObj = researchObject(researchItem);
-    if (researchObj)
+
+    if (valueIsCached(researchItem, "raw bonuses"))
     {
-        ret = researchObj->query("raw bonuses");
+        ret = researchCache[researchItem]["raw bonuses"];
     }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = researchObj->query("raw bonuses");
+        }
+
+        cacheValue(ret, researchItem, "raw bonuses");
+    }
+
     return ret + ({});
 }

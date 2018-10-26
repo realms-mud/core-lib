@@ -150,8 +150,8 @@ private nomask int lookUpBonus(string guild, string bonus, int level,
         if (guildObj && objectp(guildObj))
         {
             ret = guildObj->queryBonus(bonus, level, rank);
-            cacheValue(ret, guild, bonus, level, rank);
         }
+        cacheValue(ret, guild, bonus, level, rank);
     }
     return ret;
 }

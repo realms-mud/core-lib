@@ -15,6 +15,39 @@ private string *validTraitTypes = ({ "health", "educational", "personality",
 private mapping traits = ([]);
 
 private nosave string FieldDisplay = Cyan + ": " + Value + "\n";
+private mapping traitCache = ([]);
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs int valueIsCached(string trait, string element,
+    string subElement)
+{
+    return member(traitCache, trait) &&
+        member(traitCache[trait], element) &&
+        (!subElement || member(traitCache[trait][element], subElement));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs void cacheValue(mixed value, string trait,
+    string element, string subElement)
+{
+    if (!member(traitCache, trait))
+    {
+        traitCache[trait] = ([]);
+    }
+
+    if (!subElement)
+    {
+        traitCache[trait][element] = value;
+    }
+    else
+    {
+        if (!member(traitCache[trait], element))
+        {
+            traitCache[trait][element] = ([]);
+        }
+        traitCache[trait][element][subElement] = value;
+    }
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object traitObject(string trait)
@@ -70,6 +103,7 @@ public nomask int registerTrait(object trait)
         {
             ret = 1;
             traits[lower_case(trait->query("name"))] = program_name(trait);
+            traitCache[program_name(trait)] = ([]);
         }
     }
 
@@ -85,71 +119,182 @@ public nomask int isValidTraitType(string type)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int traitIsOfType(string trait, string type)
 {
-    object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj) && (traitObj->query("type") == type));
+    int ret = 0;
+
+    if (valueIsCached(trait, "type"))
+    {
+        ret = traitCache[trait]["type"] == type;
+    }
+    else
+    {
+        object traitObj = traitObject(trait);
+        if (traitObj)
+        {
+            string traitType = traitObj->query("type");
+            ret = traitType == type;
+            cacheValue(traitType, trait, "type");
+        }
+    }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int traitIsOfRoot(string trait, string root)
 {
-    object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj) && (traitObj->query("root") == root));
+    int ret = 0;
+
+    if (valueIsCached(trait, "root"))
+    {
+        ret = traitCache[trait]["root"] == root;
+    }
+    else
+    {
+        object traitObj = traitObject(trait);
+        if (traitObj)
+        {
+            string traitRoot = traitObj->query("root");
+            ret = traitRoot == root;
+            cacheValue(traitRoot, trait, "root");
+        }
+    }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int traitIsNegative(string trait)
 {
-    object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj) && !traitObj->query("enhanced") &&
-        traitObj->query("negative"));
+    int ret = 0;
+
+    if (valueIsCached(trait, "is negative"))
+    {
+        ret = traitCache[trait]["is negative"];
+    }
+    else
+    {
+        object traitObj = traitObject(trait);
+        if (traitObj)
+        {
+            ret = !traitObj->query("enhanced") && traitObj->query("negative");
+            cacheValue(ret, trait, "is negative");
+        }
+    }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int traitHasResearchPath(string trait)
 {
-    object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj) && traitObj->query("research tree"));
+    int ret = 0;
+
+    if (valueIsCached(trait, "has research path"))
+    {
+        ret = traitCache[trait]["has research path"];
+    }
+    else
+    {
+        object traitObj = traitObject(trait);
+        ret = traitObj && traitObj->query("research tree");
+        cacheValue(ret, trait, "has research path");
+    }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int traitIsEnhancement(string trait)
 {
-    object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj) && traitObj->query("enhanced"));
+    int ret = 0;
+
+    if (valueIsCached(trait, "is enhancement"))
+    {
+        ret = traitCache[trait]["is enhancement"];
+    }
+    else
+    {
+        object traitObj = traitObject(trait);
+        ret = traitObj && traitObj->query("enhanced");
+        cacheValue(ret, trait, "is enhancement");
+    }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int validTrait(string trait)
 {
-    object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj) && traitObj->isValidTrait());
+    int ret = 0;
+
+    if (valueIsCached(trait, "is valid"))
+    {
+        ret = traitCache[trait]["is valid"];
+    }
+    else
+    {
+        object traitObj = traitObject(trait);
+        ret = traitObj && traitObj->isValidTrait();
+        cacheValue(ret, trait, "is valid");
+    }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidPersistedTrait(string trait)
 {
-    object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj) &&
-        (traitObj->query("type") == "effect"));
+    int ret = 0;
+
+    if (valueIsCached(trait, "is valid persisted"))
+    {
+        ret = traitCache[trait]["is valid persisted"];
+    }
+    else
+    {
+        object traitObj = traitObject(trait);
+        ret = traitObj && (traitObj->query("type") == "effect");
+        cacheValue(ret, trait, "is valid persisted");
+    }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidSustainedTrait(string trait)
 {
-    object traitObj = traitObject(trait);
-    return (traitObj && objectp(traitObj) &&
-        (traitObj->query("type") == "sustained effect"));
+    int ret = 0;
+
+    if (valueIsCached(trait, "is valid sustained"))
+    {
+        ret = traitCache[trait]["is valid sustained"];
+    }
+    else
+    {
+        object traitObj = traitObject(trait);
+        ret = traitObj && (traitObj->query("type") == "sustained effect");
+        cacheValue(ret, trait, "is valid sustained");
+    }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int traitEffectIsLimited(string trait)
 {
     int ret = 0;
-    object traitObj = traitObject(trait);
-    if(traitObj)
+
+    if (valueIsCached(trait, "is limited"))
     {
-        ret = traitObj->EffectIsLimited();
+        ret = traitCache[trait]["is limited"];
     }
+    else
+    {
+        object traitObj = traitObject(trait);
+        ret = traitObj && traitObj->EffectIsLimited();
+        cacheValue(ret, trait, "is limited");
+    }
+
     return ret;
 }
 
@@ -157,14 +302,23 @@ public nomask int traitEffectIsLimited(string trait)
 public nomask mapping *extraAttacks(string trait, object owner)
 {
     mapping *ret = 0;
-    
-    object traitObj = traitObject(trait);
-    if(traitObj && objectp(traitObj) &&
-       function_exists("getExtraAttacks", traitObj))
+   
+    if (valueIsCached(trait, "extra attacks"))
     {
-        ret = traitObj->getExtraAttacks();
+        ret = traitCache[trait]["extra attacks"];
     }
-    ret -= ({ 0 });
+    else
+    {
+        object traitObj = traitObject(trait);
+        if (traitObj)
+        {
+            ret = function_exists("getExtraAttacks", traitObj) ?
+                traitObj->getExtraAttacks() : ({});
+            ret -= ({ 0 });
+
+            cacheValue(ret, trait, "extra attacks");
+        }
+    }
     
     return ret + ({ });
 }
@@ -174,12 +328,22 @@ private nomask int lookUpBonus(string trait, string bonus)
 {
     int ret = 0;
     
-    object traitObj = traitObject(trait);
-    if(traitObj && objectp(traitObj) && 
-       function_exists("queryBonus", traitObj))
+    if (valueIsCached(trait, bonus))
     {
-        ret = traitObj->queryBonus(bonus);
+        ret = traitCache[trait][bonus];
     }
+    else
+    {
+        object traitObj = traitObject(trait);
+        if(traitObj && objectp(traitObj) && 
+            function_exists("queryBonus", traitObj))
+        {
+            ret = traitObj->queryBonus(bonus);
+        }
+
+        cacheValue(ret, trait, bonus);
+    }
+
     return ret;
 }
 
@@ -470,10 +634,20 @@ public nomask mapping creationListForTraitType(string type)
 public nomask string *getTraitBonuses(string trait)
 {
     string *ret = ({});
-    object traitObj = traitObject(trait);
-    if (traitObj)
+
+    if (valueIsCached(trait, "raw bonuses"))
     {
-        ret = traitObj->query("raw bonuses");
+        ret = traitCache[trait]["raw bonuses"];
     }
+    else
+    {
+        object traitObj = traitObject(trait);
+        if (traitObj)
+        {
+            ret = traitObj->query("raw bonuses");
+            cacheValue(ret, trait, "raw bonuses");
+        }
+    }
+
     return ret + ({});
 }
