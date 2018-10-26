@@ -7,6 +7,7 @@
 //*****************************************************************************
 private string BaseGuild = "lib/modules/guilds/baseGuild.c";
 private mapping guildList = ([]);
+private mapping guildBonusCache = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object guildObject(string guild)
@@ -56,6 +57,7 @@ public nomask int registerGuild(string location)
         {
             ret = 1;
             guildList[guild->guildName()] = location;
+            guildBonusCache[guild->guildName()] = ([]);
         }
     }
 
@@ -109,15 +111,47 @@ public nomask int canAdvanceRank(object guildMember, string guild, string rank)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int valueIsCached(string guild, string bonus, int level,
+    string rank)
+{
+    return member(guildBonusCache[guild], level) &&
+        member(guildBonusCache[guild][level], rank) &&
+        member(guildBonusCache[guild][level][rank], bonus);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void cacheValue(mixed value, string guild, string bonus,
+    int level, string rank)
+{
+    if (!member(guildBonusCache[guild], level))
+    {
+        guildBonusCache[guild][level] = ([]);
+    }
+    if (!member(guildBonusCache[guild][level], rank))
+    {
+        guildBonusCache[guild][level][rank] = ([]);
+    }
+    guildBonusCache[guild][level][rank][bonus] = value;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int lookUpBonus(string guild, string bonus, int level,
     string rank)
 {
     int ret = 0;
     
-    object guildObj = guildObject(guild);
-    if(guildObj && objectp(guildObj))
+    if (valueIsCached(guild, bonus, level, rank))
     {
-        ret = guildObj->queryBonus(bonus, level, rank);
+        ret = guildBonusCache[guild][level][rank][bonus];
+    }
+    else
+    {
+        object guildObj = guildObject(guild);
+        if (guildObj && objectp(guildObj))
+        {
+            ret = guildObj->queryBonus(bonus, level, rank);
+            cacheValue(ret, guild, bonus, level, rank);
+        }
     }
     return ret;
 }
@@ -236,12 +270,21 @@ public nomask int BonusSkillModifier(string guild, string skill, int level,
 public nomask mapping *extraAttacks(string guild, int level, string rank)
 {
     mapping *ret = 0;
-    
-    object guildObj = guildObject(guild);
-    if(guildObj && objectp(guildObj))
+
+    if (valueIsCached(guild, "extra attacks", level, rank))
     {
-        ret = guildObj->getExtraAttacks(level, rank);
+        ret = guildBonusCache[guild][level][rank]["extra attacks"];
     }
+    else
+    {
+        object guildObj = guildObject(guild);
+        if (guildObj && objectp(guildObj))
+        {
+            ret = guildObj->getExtraAttacks(level, rank);
+            cacheValue(ret, guild, "extra attacks", level, rank);
+        }
+    }
+
     return ret + ({ });
 }
 
@@ -278,12 +321,21 @@ public nomask int canUseEquipmentOfType(object actor, object equipment)
 public nomask string title(string guild, int level, string rank)
 {
     string ret = 0;
-    
-    object guildObj = guildObject(guild);
-    if(guildObj && objectp(guildObj))
+ 
+    if (valueIsCached(guild, "title", level, rank))
     {
-        ret = guildObj->title(level, rank);
+        ret = guildBonusCache[guild][level][rank]["title"];
     }
+    else
+    {
+        object guildObj = guildObject(guild);
+        if (guildObj && objectp(guildObj))
+        {
+            ret = guildObj->title(level, rank);
+            cacheValue(ret, guild, "title", level, rank);
+        }
+    }
+
     return ret;
 }           
 
@@ -291,12 +343,21 @@ public nomask string title(string guild, int level, string rank)
 public nomask string rankName(string guild, string rank)
 {
     string ret = 0;
-    
-    object guildObj = guildObject(guild);
-    if(guildObj && objectp(guildObj))
+
+    if (valueIsCached(guild, "rank name", 1, rank))
     {
-        ret = guildObj->rankName(rank);
+        ret = guildBonusCache[guild][1][rank]["rank name"];
     }
+    else
+    {
+        object guildObj = guildObject(guild);
+        if (guildObj && objectp(guildObj))
+        {
+            ret = guildObj->rankName(rank);
+            cacheValue(ret, guild, "rank name", 1, rank);
+        }
+    }
+
     return ret;
 }    
 
@@ -305,10 +366,18 @@ public nomask string pretitle(string guild, int level, string rank)
 {
     string ret = 0;
     
-    object guildObj = guildObject(guild);
-    if(guildObj && objectp(guildObj))
+    if (valueIsCached(guild, "pretitle", level, rank))
     {
-        ret = guildObj->pretitle(level, rank);
+        ret = guildBonusCache[guild][level][rank]["pretitle"];
+    }
+    else
+    {
+        object guildObj = guildObject(guild);
+        if (guildObj && objectp(guildObj))
+        {
+            ret = guildObj->pretitle(level, rank);
+            cacheValue(ret, guild, "pretitle", level, rank);
+        }
     }
     return ret;
 }    
@@ -317,12 +386,21 @@ public nomask string pretitle(string guild, int level, string rank)
 public nomask int experienceToNextLevel(string guild, int level)
 {
     int ret = 0;
-    
-    object guildObj = guildObject(guild);
-    if(guildObj && objectp(guildObj))
+
+    if (valueIsCached(guild, "experience needed", level, "default"))
     {
-        ret = guildObj->experienceToNextLevel(level);
+        ret = guildBonusCache[guild][level]["default"]["experience needed"];
     }
+    else
+    {
+        object guildObj = guildObject(guild);
+        if (guildObj && objectp(guildObj))
+        {
+            ret = guildObj->experienceToNextLevel(level);
+            cacheValue(ret, guild, "experience needed", level, "default");
+        }
+    }
+
     return ret;
 }       
 
