@@ -338,6 +338,7 @@ public nomask varargs int unequip(object itemToUnequip, int silently)
             }
         }
         removeItemFromCache(itemToUnequip);
+        m_delete(inventoryCache["totals"], "enchantments");
     }    
     return ret;
 }
@@ -384,6 +385,7 @@ public nomask int equip(object itemToEquip)
     }
     if(ret)
     {
+        m_delete(inventoryCache["totals"], "enchantments");
         addItemToCache(itemToEquip);
 
         if(itemToEquip->query("register event handler"))
@@ -472,6 +474,7 @@ public nomask int registerObjectAsInventory(object item)
     }
     if(ret)
     {
+        m_delete(inventoryCache["totals"], "enchantments");
         addItemToCache(item);
 
         if(item->query("register event handler"))
@@ -511,6 +514,7 @@ public nomask int unregisterObjectAsInventory(object item)
             }
         }
         removeItemFromCache(item);
+        m_delete(inventoryCache["totals"], "enchantments");
     }      
     return ret;
 }
@@ -591,19 +595,15 @@ public nomask int inventoryGetDefenseBonus(string damageType)
 
         foreach(object item in equippedItems)
         {
-            if (item && objectp(item) && (isEquipment(item) || isModifierItem(item)))
+            if (objectp(item))
             {
                 mapping resistances = item->query("resistances");
-                if (resistances && mappingp(resistances) &&
-                    member(resistances, damageType) &&
-                    resistances[damageType] &&
-                    intp(resistances[damageType]))
+                if (resistances && member(resistances, damageType))
                 {
                     ret += addValueToCache(item, resistBonus, resistances[damageType]);
                 }
 
-                ret += addValueToCache(item, "armor class", item->query("armor class"));
-                   
+                ret += addValueToCache(item, "armor class", item->query("armor class"));     
             }
         }
     }
@@ -700,11 +700,8 @@ public nomask int inventoryGetDefendAttackBonus()
                     call_other(this_object(), "getSkillModifier",
                         weaponType));
             }
-            if (validModifier("combatModifiers", "skill penalty"))
-            {
-                ret -= addValueToCache(offhand, "skill penalty", 
-                    offhand->query("skill penalty"));
-            }
+
+            ret -= getSkillPenalty(offhand);
 
             ret += addValueToCache(offhand, "material defend attack",
                 materialsObject()->getMaterialDefendAttack(offhand));
@@ -754,52 +751,57 @@ public nomask int inventoryGetAttackBonus(object weapon)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int inventoryGetDamageBonus(object weapon, string damageType)
 {
-    int ret = 0;
-    object *equippedItems = equippedByMask(AllWorn) + 
-        registeredInventoryObjects();
+    int ret = (damageType == "physical") ?
+        inventoryGetModifier("combatModifiers", "bonus damage") : 0;
+
     string skillToUse = 0;
     
     if(isEquipped(weapon))
     {
-        equippedItems += ({ weapon });
-        skillToUse = weapon->query("weapon type");   
-        if (skillToUse && stringp(skillToUse) && has("skills") && (damageType == "physical"))
-        {
-            ret += (call_other(this_object(), "getSkillModifier", skillToUse) / 2) + 
-                weapon->query("weapon class");
-        }
+        string weaponKey = object_name(weapon);
+        skillToUse = weapon->query("weapon type");
 
-        if (validModifier("combatModifiers", "skill penalty"))
+        if (damageType == "physical")
         {
-            ret -= weapon->query("skill penalty");
-        }
-
-        if(materialsObject())
-        {
-            ret += materialsObject()->getMaterialDamage(weapon, damageType);
-        }
-    }
-    
-    foreach(object item in equippedItems)
-    {
-        if(item && objectp(item) && (isEquipment(item) || isModifierItem(item)))
-        {
-            mapping enchantments = item->query("enchantments");
-            if(enchantments && mappingp(enchantments) && 
-               member(enchantments, damageType) && 
-               enchantments[damageType] && 
-               intp(enchantments[damageType]))
+            if (member(inventoryCache[weaponKey], "weapon class"))
             {
-                ret += enchantments[damageType];
+                ret += inventoryCache[weaponKey]["weapon class"];
+            }
+            else
+            {
+                ret += addValueToCache(weapon, "weapon attack",
+                    weapon->query("weapon class"));
+            }
+
+            if (skillToUse)
+            {
+                ret += (call_other(this_object(), "getSkillModifier", skillToUse) / 2);
             }
         }
-        if (item && objectp(item) && (isEquipment(item) || isModifierItem(item)) &&
-            validModifier("combatModifiers", "bonus damage") && (damageType == "physical"))
+
+        ret += materialsObject()->getMaterialDamage(weapon, damageType) - 
+            getSkillPenalty(weapon);
+    }
+    
+    string enchantment = sprintf("%s enchantment", damageType);
+    if (member(inventoryCache["totals"], enchantment))
+    {
+        ret += inventoryCache["totals"][enchantment];
+    }
+    else
+    {
+        object *equippedItems = equippedByMask(AllWorn) + ({ weapon }) +
+            registeredInventoryObjects();
+
+        foreach(object item in equippedItems)
         {
-            int itemBonus = item->query("bonus damage");
-            if (intp(itemBonus))
+            if (objectp(item))
             {
-                ret += itemBonus;
+                mapping enchantments = item->query("enchantments");
+                if (enchantments && member(enchantments, damageType))
+                {
+                    ret += addValueToCache(item, enchantment, enchantments[damageType]);
+                }
             }
         }
     }
@@ -814,28 +816,36 @@ public nomask string *getExtraDamageTypes(object weapon)
     if(isEquipped(weapon))
     {
         types += ({ "physical" });
-        mapping enchantments = weapon->query("enchantments");
-        if(enchantments && mappingp(enchantments))
+        if (member(inventoryCache["totals"], "enchantments"))
         {
-            foreach(string enchantment in m_indices(enchantments))
+            types += inventoryCache["totals"]["enchantments"];
+        }
+        else
+        {
+            object *equippedItems = equippedByMask(AllWorn) + ({ weapon }) +
+                registeredInventoryObjects();
+
+            foreach(object item in equippedItems)
             {
-                if(enchantment && stringp(enchantment))
+                if (objectp(item))
                 {
-                    types += ({ enchantment });
+                    mapping enchantments = item->query("enchantments");
+                    if (sizeof(enchantments))
+                    {
+                        types += m_indices(enchantments);
+                    }
                 }
             }
         }
-        object materialsObj = materialsObject();
-        if(materialsObj)
+
+        string *extraDamages = materialsObject()->hasExtraAttackTypes(weapon);
+        if(sizeof(extraDamages))
         {
-            string *extraDamages = materialsObj->hasExtraAttackTypes(weapon);
-            if(sizeof(extraDamages))
-            {
-                types += extraDamages;
-            }
+            types += extraDamages;
         }
 
         types = m_indices(mkmapping(types));
+        inventoryCache["totals"]["enchantments"] = types + ({});
     }
     return types;
 }

@@ -690,7 +690,9 @@ void GetExtraDamageTypesReturnsCorrectValue()
     ExpectTrue((member(damageTypes, "electricity") > -1), "electricity is one of the damage types");
     ExpectTrue((member(damageTypes, "cold") > -1), "cold is one of the damage types");
 
+    ExpectTrue(weapon->unequip("blah"), "weapon equip called");
     weapon->set("enchantments", (["fire": 10, "cold": 10 ]));
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
     damageTypes = Inventory->getExtraDamageTypes(weapon);
     // Though cold is both default and an enchantment, it should not get counted twice
     ExpectEq(5, sizeof(damageTypes), "5 damage types");
