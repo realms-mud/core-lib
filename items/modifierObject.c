@@ -22,9 +22,9 @@ public int registerModifierWithTargetList(object *targetList)
     {
         itemData["registration list"] = ({ });
         
-        foreach(object target : targetList)
+        foreach(object target in targetList)
         {                     
-            if(target && function_exists("registerObjectAsInventory", target))
+            if(objectp(target))
             {
                 itemData["registration list"] += ({ target });
                 target->registerObjectAsInventory(this_object());
@@ -39,14 +39,13 @@ public int registerModifierWithTargetList(object *targetList)
 public int unregisterModifierFromTargetList()
 {
     int ret = 0;
-    if(member(itemData, "registration list") && 
-       pointerp(itemData["registration list"]) && 
+    if(member(itemData, "registration list") &&
        sizeof(itemData["registration list"]))
     {
         object *targetList = itemData["registration list"];
-        foreach(object target : targetList)
+        foreach(object target in targetList)
         {                     
-            if(target && function_exists("unregisterObjectAsInventory", target))
+            if(objectp(target))
             {
                 target->unregisterObjectAsInventory(this_object());
             }
@@ -105,6 +104,19 @@ public nomask varargs int set(string element, mixed data)
                     }
                 }
                 ret = "item"::set(element, data);
+
+                object *targetList = itemData["registration list"];
+                if (ret && sizeof(targetList))
+                {
+                    foreach(object target in targetList)
+                    {
+                        if (objectp(target))
+                        {
+                            target->updateInventoryCache(this_object(), 
+                                element);
+                        }
+                    }
+                }
             }
         }
     }

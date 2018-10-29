@@ -125,6 +125,8 @@ public nomask varargs int activateSustainedResearch(object researchObj,
         {
             research[researchItem]["active modifier object"] = modifierObject;
         }
+
+        inventory->resetInventoryCache();
     }
     return ret;
 }
@@ -155,6 +157,12 @@ public nomask int deactivateSustainedResearch(string researchItem)
         if(researchObj && researchObj->query("cooldown"))
         {
             research[researchItem]["cooldown"] = researchObj->query("cooldown");
+        }
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
         }
     }
     return ret;
@@ -384,6 +392,12 @@ public nomask varargs int initiateResearch(string researchItem)
             research[researchItem]["bonuses"] = bonuses;
         }
         registerResearchEvents();
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
+        }
     }
     return ret;
 }

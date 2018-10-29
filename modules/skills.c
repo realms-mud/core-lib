@@ -162,6 +162,12 @@ public nomask int advanceSkill(string skill, int amount)
             availableSkillPoints -= costToAdvance;
             skillsNotification("onSkillAdvanced", skill);
             skillsNotification("onSkillPointsUsed", to_string(costToAdvance));
+
+            object inventory = getService("inventory");
+            if (inventory)
+            {
+                inventory->resetInventoryCache();
+            }
             ret = 1;
         }
     }
@@ -182,6 +188,12 @@ public nomask int decrementSkill(string skill, int amount)
         availableSkillPoints += costToAdvance;
         skillsNotification("onSkillDecreased", skill);
         skillsNotification("onSkillPointsIncreased", to_string(costToAdvance));
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
+        }
         ret = 1;
     }
     return ret;

@@ -259,6 +259,12 @@ public nomask int advanceLevel(string guild)
         {
             events->notify("onAdvancedLevel");
         }
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
+        }
         ret = 1;
     }
     return ret;
@@ -327,6 +333,12 @@ public nomask int advanceRank(string guild)
         {
             persistence->save();
         }
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
+        }
         ret = 1;
     }
     return ret;
@@ -364,6 +376,11 @@ public nomask int demoteRank(string guild)
             persistence->save();
         }
 
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
+        }
         ret = 1;
     }
     return ret;
@@ -440,6 +457,12 @@ public nomask int joinGuild(string guild)
         {
             persistence->save();
         }
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
+        }
     }
     return ret;    
 }
@@ -472,6 +495,12 @@ public nomask int leaveGuild(string guild)
         if (persistence)
         {
             persistence->save();
+        }
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
         }
     }    
     return ret;    

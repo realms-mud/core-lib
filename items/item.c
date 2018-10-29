@@ -425,6 +425,11 @@ public varargs int set(string element, mixed data)
         {
             itemData[element] = data;
         }
+        object owner = environment();
+        if (objectp(owner) && owner->isRealizationOfLiving())
+        {
+            owner->updateInventoryCache(this_object(), element);
+        }
     }
     return ret;
 }

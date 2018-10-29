@@ -133,3 +133,9 @@ public int experience()
 {
     return Experience;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isRealizationOfLiving()
+{
+    return 1;
+}

@@ -131,6 +131,12 @@ public nomask int addTrait(string trait)
         {
             events->notify("onTraitAdded", trait);
         }
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
+        }
         ret = 1;
     }
     else if (isTraitOf(trait) && isValidTrait(trait))
@@ -166,6 +172,12 @@ public nomask int removeTrait(string trait)
         if(events && objectp(events))
         {
             events->notify("onTraitRemoved", trait);
+        }
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            inventory->resetInventoryCache();
         }
         ret = 1;
     }

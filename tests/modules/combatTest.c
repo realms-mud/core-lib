@@ -1131,6 +1131,7 @@ void CalculateSoakDamageCorrectlyAppliesForInventory()
 
     object armor = CreateArmor("stuff");
     armor->set("material", "steel");
+    armor->set("craftsmanship", 30);
 
     object gloves = clone_object("/lib/items/armor");
     gloves->set("name", "gloves");
@@ -1149,11 +1150,8 @@ void CalculateSoakDamageCorrectlyAppliesForInventory()
     Attacker->addSkillPoints(100);
     ExpectEq(4, Attacker->calculateSoakDamage("physical"), "armor not equipped");
 
-    // +5 for AC and +1 for being made out of steel
+    // +5 for AC, +1 for being made out of steel, and +1 for craftsmanship
     ExpectTrue(armor->equip("stuff"), "armor equip called");
-    ExpectEq(10, Attacker->calculateSoakDamage("physical"), "armor equipped");
-
-    armor->set("craftsmanship", 30);
     ExpectEq(11, Attacker->calculateSoakDamage("physical"), "craftsmanship bonus");
 
     ExpectTrue(gloves->equip("gloves"), "glove equip called");
