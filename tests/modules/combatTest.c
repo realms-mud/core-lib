@@ -305,8 +305,10 @@ void MaxSpellPointsCorrectlyAppliesAllModifiers()
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
     ExpectEq(166, Attacker->maxSpellPoints());
     modifier->set("bonus wisdom", 1);
+    Attacker->resetCaches();
     ExpectEq(169, Attacker->maxSpellPoints());
     Attacker->Race("elf");
+    Attacker->resetCaches();
     // 25 for elf plus 3 for int
     ExpectEq(197, Attacker->maxSpellPoints());
     Attacker->ToggleMockGuilds();
@@ -330,8 +332,12 @@ void MaxStaminaPointsCorrectlyAppliesAllModifiers()
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
     ExpectEq(161, Attacker->maxStaminaPoints());
     modifier->set("bonus constitution", 1);
+    Attacker->resetCaches();
+
     ExpectEq(164, Attacker->maxStaminaPoints());
     Attacker->Race("dwarf");
+    Attacker->resetCaches();
+
     // 25 for dwarf plus 3 for strength plus 6 for con
     ExpectEq(198, Attacker->maxStaminaPoints());
     Attacker->ToggleMockGuilds();
@@ -690,6 +696,7 @@ void CalculateDefendAttackCorrectlyAppliesDisease()
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
     ExpectEq(14, Attacker->calculateDefendAttack(), "before disease is applied");
     modifier->set("disease", 1);
+    ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
     ExpectEq(13, Attacker->calculateDefendAttack(), "disease applied");
 }
 
@@ -781,10 +788,14 @@ void CalculateAttackWithWeaponCorrectlyAppliesWeaponData()
     Attacker->advanceSkill("long sword", 10);
     ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "trained to 10 attack");
 
+    ExpectTrue(weapon->unequip("blah"), "weapon equip called");
     weapon->set("bonus attack", 3);
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectEq(18, Attacker->calculateAttack(Target, weapon, 1), "bonus attack applied");
 
+    ExpectTrue(weapon->unequip("blah"), "weapon equip called");
     weapon->set("bonus dexterity", 2);
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1), "bonus dexterity applied");
 }
 
@@ -843,11 +854,15 @@ void CalculateAttackWithDualWieldWeaponCorrectlyAppliesWeaponData()
     ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "trained to 10 attack");
     ExpectEq(10, Attacker->calculateAttack(Target, offhand, 1), "trained to 10 attack - offhand");
 
+    ExpectTrue(weapon->unequip("blah"), "weapon equip called");
     weapon->set("bonus attack", 3);
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectEq(18, Attacker->calculateAttack(Target, weapon, 1), "bonus attack applied");
     ExpectEq(10, Attacker->calculateAttack(Target, offhand, 1), "bonus has no effect on offhand");
 
+    ExpectTrue(weapon->unequip("blah"), "weapon equip called");
     weapon->set("bonus dexterity", 2);
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1), "bonus dexterity applied");
     ExpectEq(11, Attacker->calculateAttack(Target, offhand, 1), "bonus dexterity applied offhand");
 }
@@ -1038,7 +1053,6 @@ void CalculateAttackCorrectlyAppliesMagicalAttackBonus()
     
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
 
-    ExpectEq(15, Attacker->calculateAttack(Target, weapon, 1), "nothing is equipped");
     Attacker->ToggleMagicalAttackBonus();
     ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1), "magical attack method called");
 }
@@ -1213,7 +1227,10 @@ void CalculateDamageCorrectlyAppliesSkillPenalty()
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectEq(22, Attacker->calculateDamage(weapon, "physical", 1), "no skill penalty applied");
+
+    ExpectTrue(weapon->unequip("blah"), "weapon equip called");
     weapon->set("skill penalty", 2);
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectEq(20, Attacker->calculateDamage(weapon, "physical", 1), "skill penalty applied");
 }
 
@@ -1280,7 +1297,7 @@ void CalculateDamageCorrectlyEnfeebles()
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectEq(24, Attacker->calculateDamage(weapon, "physical", 1), "weapon equipped");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(19, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
+    ExpectEq(18, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1298,7 +1315,7 @@ void CalculateDamageCorrectlyFortifies()
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
     ExpectEq(24, Attacker->calculateDamage(weapon, "physical", 1), "weapon equipped");
     ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
-    ExpectEq(29, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
+    ExpectEq(30, Attacker->calculateDamage(weapon, "physical", 1), "total physical damage");
 }
 
 /////////////////////////////////////////////////////////////////////////////

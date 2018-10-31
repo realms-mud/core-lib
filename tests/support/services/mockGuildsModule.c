@@ -14,6 +14,7 @@ private object guildObj = 0;
 public void ToggleMockGuilds()
 {
     useGuilds = !useGuilds;
+    this_object()->resetCaches();
 }
 
 /////////////////////////////////////////////////////////////////////////////

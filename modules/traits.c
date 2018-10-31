@@ -132,10 +132,10 @@ public nomask int addTrait(string trait)
             events->notify("onTraitAdded", trait);
         }
 
-        object inventory = getService("inventory");
-        if (inventory)
+        object state = getService("state");
+        if (state)
         {
-            inventory->resetInventoryCache();
+            state->resetCaches();
         }
         ret = 1;
     }
@@ -174,10 +174,10 @@ public nomask int removeTrait(string trait)
             events->notify("onTraitRemoved", trait);
         }
 
-        object inventory = getService("inventory");
-        if (inventory)
+        object state = getService("state");
+        if (state)
         {
-            inventory->resetInventoryCache();
+            state->resetCaches();
         }
         ret = 1;
     }

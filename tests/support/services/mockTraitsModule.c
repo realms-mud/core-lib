@@ -11,6 +11,7 @@ private string *traits = ({});
 public void ToggleMockTrait()
 {
     useTrait = !useTrait;
+    this_object()->resetCaches();
 }
 
 /////////////////////////////////////////////////////////////////////////////

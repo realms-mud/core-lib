@@ -477,6 +477,10 @@ public nomask int execute(string command, object initiator)
                 displayMessage(researchData["use ability fail message"], 
                     initiator, initiator);
             }
+            else
+            {
+                initiator->resetCaches();
+            }
         }
     }
     return ret;

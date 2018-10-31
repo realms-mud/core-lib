@@ -94,7 +94,7 @@ public nomask void decayCorpse()
 
         call_out("decayCorpse", 30 + random(15));
     }
-    else
+    else if(environment(this_object()))
     {
         destruct(this_object());
     }

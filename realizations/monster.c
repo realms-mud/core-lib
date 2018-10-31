@@ -56,6 +56,7 @@ public void reset(int arg)
 public nomask void setMaxHitPoints(int value)
 {
     maxHitPoints = value;
+    call_direct(this_object(), "resetCaches");
     call_direct(this_object(), "hitPoints",
         call_direct(this_object(), "maxHitPoints"));
 }
@@ -64,6 +65,7 @@ public nomask void setMaxHitPoints(int value)
 public nomask void setMaxSpellPoints(int value)
 {
     maxSpellPoints = value;
+    call_direct(this_object(), "resetCaches");
     call_direct(this_object(), "spellPoints",
         call_direct(this_object(), "maxSpellPoints"));
 }
@@ -72,6 +74,7 @@ public nomask void setMaxSpellPoints(int value)
 public nomask void setMaxStaminaPoints(int value)
 {
     maxStaminaPoints = value;
+    call_direct(this_object(), "resetCaches");
     call_direct(this_object(), "staminaPoints",
         call_direct(this_object(), "maxStaminaPoints"));
 }

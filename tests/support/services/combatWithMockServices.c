@@ -10,6 +10,7 @@ virtual inherit "/lib/modules/attributes.c";
 virtual inherit "/lib/modules/skills.c";
 virtual inherit "/lib/modules/races.c";
 virtual inherit "/lib/modules/movement.c";
+virtual inherit "/lib/modules/state.c";
 
 virtual inherit "/lib/tests/support/services/mockBackgroundModule.c";
 virtual inherit "/lib/tests/support/services/mockBiologicalModule.c";

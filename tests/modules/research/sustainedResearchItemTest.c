@@ -257,7 +257,7 @@ void DeactivatingWithHitPointCostReturnsHPToOriginalValue()
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
     ExpectEq(144, User->maxHitPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "second execution");
-    ExpectEq(164, User->maxHitPoints());
+    ExpectEq(164, User->maxHitPoints(), "value returned to 164");
 }
 
 /////////////////////////////////////////////////////////////////////////////

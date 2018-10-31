@@ -8,6 +8,8 @@
 virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/combat.h"
 
+private mapping combatCache = ([]);
+
 //-----------------------------------------------------------------------------
 // Method: combatDelay
 // Description: This property is used to determine if an interactive object can
@@ -172,33 +174,42 @@ private nomask int calculateServiceBonuses(string methodToCheck)
 //-----------------------------------------------------------------------------
 public nomask int maxHitPoints()
 {
-    if (!maxHitPoints)
+    int ret = 0;
+    if (member(combatCache, "max hit points"))
     {
-        maxHitPoints = 30;
+        ret = combatCache["max hit points"];
     }
-    int ret = maxHitPoints;
-    
-    object inventory = getService("inventory");
-    if(inventory)
+    else
     {
-        ret += inventory->inventoryGetModifier("combatModifiers",
-            "bonus hit points");
-    }
-    
-    ret += calculateServiceBonuses("MaxHitPoints");
-    
-    object attributes = getService("attributes");
-    if(attributes)
-    {
-        ret += attributes->Con() * 6;
-    }
-    
-    // This case will never happen with properly cloned living things. However,
-    // the improperly done is possible. This removes the chance for division by
-    // zero.
-    if (ret < 1)
-    {
-        ret = 1;
+        if (!maxHitPoints)
+        {
+            maxHitPoints = 30;
+        }
+        ret = maxHitPoints;
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            ret += inventory->inventoryGetModifier("combatModifiers",
+                "bonus hit points");
+        }
+
+        ret += calculateServiceBonuses("MaxHitPoints");
+
+        object attributes = getService("attributes");
+        if (attributes)
+        {
+            ret += attributes->Con() * 6;
+        }
+
+        // This case will never happen with properly cloned living things. However,
+        // the improperly done is possible. This removes the chance for division by
+        // zero.
+        if (ret < 1)
+        {
+            ret = 1;
+        }
+        combatCache["max hit points"] = ret;
     }
 
     return ret;
@@ -285,29 +296,39 @@ public nomask varargs string healthDescription()
 //-----------------------------------------------------------------------------
 public nomask int maxSpellPoints()
 {
-    if (!maxSpellPoints)
+    int ret = 0;
+
+    if (member(combatCache, "max spell points"))
     {
-        maxSpellPoints = 30;
+        ret = combatCache["max spell points"];
     }
-    int ret = maxSpellPoints;
-    
-    object inventory = getService("inventory");
-    if(inventory)
+    else
     {
-        ret += inventory->inventoryGetModifier("combatModifiers",
-            "bonus spell points");
-    }
-    
-    ret += calculateServiceBonuses("MaxSpellPoints");
-    
-    object attributes = getService("attributes");    
-    if(attributes)
-    {
-        ret += (attributes->Int() * 3) + (attributes->Wis() * 3);
-    }
-    if (ret < 0)
-    {
-        ret = 0;
+        if (!maxSpellPoints)
+        {
+            maxSpellPoints = 30;
+        }
+        ret = maxSpellPoints;
+
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            ret += inventory->inventoryGetModifier("combatModifiers",
+                "bonus spell points");
+        }
+
+        ret += calculateServiceBonuses("MaxSpellPoints");
+
+        object attributes = getService("attributes");
+        if (attributes)
+        {
+            ret += (attributes->Int() * 3) + (attributes->Wis() * 3);
+        }
+        if (ret < 0)
+        {
+            ret = 0;
+        }
+        combatCache["max spell points"] = ret;
     }
     return ret;
 }
@@ -378,30 +399,40 @@ public nomask varargs int spellPoints(int increase)
 //-----------------------------------------------------------------------------
 public nomask int maxStaminaPoints()
 {
-    if (!maxStaminaPoints)
-    {
-        maxStaminaPoints = 30;
-    }
-    int ret = maxStaminaPoints;
-    
-    object inventory = getService("inventory");
-    if(inventory)
-    {
-        ret += inventory->inventoryGetModifier("combatModifiers",
-            "bonus stamina points");
-    }
-    
-    ret += calculateServiceBonuses("MaxStaminaPoints");
+    int ret = 0;
 
-    object attributes = getService("attributes");  
-    if(attributes)
+    if (member(combatCache, "max stamina points"))
     {
-        ret += (attributes->Str() * 3) + (attributes->Con() * 3);
-    }    
+        ret = combatCache["max stamina points"];
+    }
+    else
+    {
+        if (!maxStaminaPoints)
+        {
+            maxStaminaPoints = 30;
+        }
+        ret = maxStaminaPoints;
 
-    if (ret < 0)
-    {
-        ret = 0;
+        object inventory = getService("inventory");
+        if (inventory)
+        {
+            ret += inventory->inventoryGetModifier("combatModifiers",
+                "bonus stamina points");
+        }
+
+        ret += calculateServiceBonuses("MaxStaminaPoints");
+
+        object attributes = getService("attributes");
+        if (attributes)
+        {
+            ret += (attributes->Str() * 3) + (attributes->Con() * 3);
+        }
+
+        if (ret < 0)
+        {
+            ret = 0;
+        }
+        combatCache["max stamina points"] = ret;
     }
     return ret;
 }
@@ -482,73 +513,89 @@ public nomask varargs int staminaPoints(int increase)
 public nomask int calculateDefendAttack()
 {
     int ret = 0;
-    object inventory = getService("inventory");
     object skills = getService("skills");
     
-    if(inventory)
+    if (member(combatCache, "defend attack"))
     {
-        ret += inventory->inventoryGetDefendAttackBonus() -
-               inventory->inventoryGetEncumberance();
-
-        object primary = inventory->equipmentInSlot("wielded primary");
-        if (inventory->isEquipped(primary) && skills)
-        {
-            string weaponType = primary->query("weapon type");
-            if (weaponType)
-            {
-                ret += (skills->getSkillModifier(weaponType) > 0) ? skills->getSkillModifier(weaponType) / 4 : 0;
-            }
-        }
-
-        object offhand = inventory->equipmentInSlot("wielded offhand");
-        if(inventory->isEquipped(offhand) && skills)
-        {
-            string weaponType = offhand->query("weapon type");
-            // Give a bonus for one's shield skill if using a shield
-            if(weaponType && (weaponType == "shield"))
-            {
-                ret += (skills->getSkillModifier(weaponType) > 0) ? skills->getSkillModifier(weaponType) : 0;
-            }
-            else if (weaponType)
-            {
-                ret += (skills->getSkillModifier(weaponType) > 0) ? skills->getSkillModifier(weaponType) / 4 : 0;
-            }
-        }
-    
-        // Apply the armor skill bonus
-        object armor = inventory->equipmentInSlot("armor");
-        if(armor && skills)
-        {
-            string armorType = armor->query("armor type");
-            
-            if(armorType && stringp(armorType))
-            {
-                ret += skills->getSkillModifier(armorType) -
-                    armor->query("skill penalty");
-            }            
-        }
-        
-        if(inventory->inventoryGetModifier("combatModifiers", "disease"))
-        {
-            ret = to_int(ret * 0.9);
-        }
+        ret = combatCache["defend attack"];
     }
-    
-    ret += calculateServiceBonuses("DefendAttackBonus");
-   
+    else
+    {
+        object inventory = getService("inventory");
+
+        if (inventory)
+        {
+            ret += inventory->inventoryGetDefendAttackBonus() -
+                inventory->inventoryGetEncumberance();
+
+            object primary = inventory->equipmentInSlot("wielded primary");
+            if (inventory->isEquipped(primary) && skills)
+            {
+                string weaponType = primary->query("weapon type");
+                if (weaponType)
+                {
+                    ret += (skills->getSkillModifier(weaponType) > 0) ? skills->getSkillModifier(weaponType) / 4 : 0;
+                }
+            }
+
+            object offhand = inventory->equipmentInSlot("wielded offhand");
+            if (inventory->isEquipped(offhand) && skills)
+            {
+                string weaponType = offhand->query("weapon type");
+                // Give a bonus for one's shield skill if using a shield
+                if (weaponType && (weaponType == "shield"))
+                {
+                    ret += (skills->getSkillModifier(weaponType) > 0) ? skills->getSkillModifier(weaponType) : 0;
+                }
+                else if (weaponType)
+                {
+                    ret += (skills->getSkillModifier(weaponType) > 0) ? skills->getSkillModifier(weaponType) / 4 : 0;
+                }
+            }
+
+            // Apply the armor skill bonus
+            object armor = inventory->equipmentInSlot("armor");
+            if (armor && skills)
+            {
+                string armorType = armor->query("armor type");
+
+                if (armorType && stringp(armorType))
+                {
+                    ret += skills->getSkillModifier(armorType) -
+                        armor->query("skill penalty");
+                }
+            }
+
+            if (inventory->inventoryGetModifier("combatModifiers", "disease"))
+            {
+                ret = to_int(ret * 0.9);
+            }
+        }
+
+        ret += calculateServiceBonuses("DefendAttackBonus");
+
+        object attributes = getService("attributes");
+        if (attributes)
+        {
+            ret += (attributes->dexterityBonus() / 2) +
+                (attributes->wisdomBonus() / 2);
+        }
+
+        combatCache["defend attack"] = ret;
+    }
+    ret += this_object()->magicalDefendAttackBonus();
+
     object materialAttributes = getService("materialAttributes");
     if (materialAttributes && skills && !materialAttributes->canSee())
     {
-        ret += skills->getSkillModifier("blind fighting") - 10;
+        if (!member(combatCache, "defend attack blind"))
+        {
+            combatCache["defend attack blind"] =
+                skills->getSkillModifier("blind fighting") - 10;
+        }
+        ret += combatCache["defend attack blind"];
     }
-    object attributes = getService("attributes");
-    if(attributes)
-    {
-        ret += (attributes->dexterityBonus() / 2) +
-               (attributes->wisdomBonus() / 2);
-    }
-    
-    ret += this_object()->magicalDefendAttackBonus();
+
     return ret;
 }
 
@@ -582,11 +629,6 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
 {
     int toHit = this_object()->magicalAttackBonus();
 
-    if (!doNotRandomize)
-    {
-        toHit += random(101) - 25;
-    }
-
     if(attacker && objectp(attacker) && 
        function_exists("calculateDefendAttack", attacker))
     {
@@ -594,10 +636,14 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
     }
 
     object inventory = getService("inventory");
-    object skills = getService("skills");
-    
-    if(inventory)
+    string attackKey = sprintf("attack %s", object_name(weapon));
+    if (member(combatCache, attackKey))
     {
+        toHit += combatCache[attackKey];
+    }
+    else
+    {
+        object skills = getService("skills");
         toHit -= inventory->inventoryGetEncumberance();
 
         if(inventory->isEquipped(weapon))
@@ -610,7 +656,7 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
             // This is a special case - weapon is an AttackType
             toHit += weapon->attackTypeCalculateAttack();
         }
-        
+
         if(inventory->inventoryGetModifier("combatModifiers", "disease"))
         {
             toHit = to_int(toHit * 0.9);
@@ -622,22 +668,28 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
         if(inventory->inventoryGetModifier("combatModifiers", "fortified"))
         {
             toHit = to_int(toHit * 1.15);
-        }        
-    }
-    
-    toHit += calculateServiceBonuses("AttackBonus");
+        }
 
-    object materialAttributes = getService("materialAttributes");
-    if (materialAttributes && skills && !materialAttributes->canSee())
-    {
-        toHit += skills->getSkillModifier("blind fighting") - 10;
+        toHit += calculateServiceBonuses("AttackBonus");
+
+        object materialAttributes = getService("materialAttributes");
+        if (materialAttributes && skills && !materialAttributes->canSee())
+        {
+            toHit += skills->getSkillModifier("blind fighting") - 10;
+        }
+
+        object attributes = getService("attributes");
+        if(attributes)
+        {
+            toHit += (attributes->dexterityBonus() / 2) +
+                     (attributes->intelligenceBonus() / 2);
+        }
+        combatCache[attackKey] = toHit;
     }
 
-    object attributes = getService("attributes");
-    if(attributes)
+    if (!doNotRandomize)
     {
-        toHit += (attributes->dexterityBonus() / 2) +
-                 (attributes->intelligenceBonus() / 2);
+        toHit += random(101) - 25;
     }
 
     return ((toHit < -100) ? -101 : toHit);
@@ -648,72 +700,85 @@ public nomask int calculateSoakDamage(string damageType)
 {
    int ret = 0;
     object inventory = getService("inventory");
-    
-    if(inventory)
+       
+    string soakKey = sprintf("soak %s", damageType);
+    if (member(combatCache, soakKey))
+    {
+        ret += combatCache[soakKey];
+    }
+    else
     {
         ret += inventory->inventoryGetDefenseBonus(damageType);
-        
-        if(inventory->inventoryGetModifier("combatModifiers", "paralysis"))
+        ret += calculateServiceBonuses("DefenseBonus");
+
+        object attributes = getService("attributes");
+        if (attributes)
         {
-            ret = to_int(ret * 0.9);
-        }        
+            ret += (attributes->constitutionBonus() / 2) +
+                (attributes->strengthBonus() / 2);
+        }
+        combatCache[soakKey] = ret;
     }
-    
-    ret += calculateServiceBonuses("DefenseBonus");
-    
-    object attributes = getService("attributes");
-    if(attributes)
+
+    if (inventory->inventoryGetModifier("combatModifiers", "paralysis"))
     {
-        ret += (attributes->constitutionBonus() / 2) +
-               (attributes->strengthBonus() / 2);
+        ret = to_int(ret * 0.9);
     }
-    
+
     ret += this_object()->magicalDefenseBonus();
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs int calculateDamage(object weapon, string damageType, int doNotRandomize)
+public nomask varargs int calculateDamage(object weapon, string damageType, 
+    int doNotRandomize)
 {
     int ret = 0;
     
     object inventory = getService("inventory");
-    
-    if (attackObject()->isAttack(weapon))
+    string damageKey = sprintf("damage %s for %s", damageType, 
+        object_name(weapon));
+
+    if (member(combatCache, damageKey))
     {
-        ret += weapon->attackTypeCalculateDamage(this_object());
+        ret += combatCache[damageKey];
+    }
+    else
+    {
+        if (attackObject()->isAttack(weapon))
+        {
+            ret += weapon->attackTypeCalculateDamage(this_object());
+        }
+
+        ret += inventory->inventoryGetDamageBonus(weapon, damageType);
+
+        ret += calculateServiceBonuses("DamageBonus");
+
+        object attributes = getService("attributes");
+        if (attributes)
+        {
+            if ((damageType == "physical") || attackObject()->isAttack(weapon))
+            {
+                ret += attributes->strengthBonus() / 2;
+            }
+            if (ret)
+            {
+                ret += (attributes->intelligenceBonus() / 4) +
+                    (attributes->wisdomBonus() / 4);
+            }
+        }
+        combatCache[damageKey] = ret;
     }
 
-    if(inventory)
+    if (inventory->inventoryGetModifier("combatModifiers", "enfeebled"))
     {
-        ret += inventory->inventoryGetDamageBonus(weapon, damageType);
-        
-        if(inventory->inventoryGetModifier("combatModifiers", "enfeebled"))
-        {
-            ret = to_int(ret * 0.75);
-        }
-        if(inventory->inventoryGetModifier("combatModifiers", "fortified"))
-        {
-            ret = to_int(ret * 1.25);
-        }        
+        ret = to_int(ret * 0.75);
     }
-    
-    ret += calculateServiceBonuses("DamageBonus");
-    
-    object attributes = getService("attributes");
-    if(attributes)
+    if (inventory->inventoryGetModifier("combatModifiers", "fortified"))
     {
-        if ((damageType == "physical") || attackObject()->isAttack(weapon))
-        {
-            ret += attributes->strengthBonus() / 2;
-        }
-        if(ret)
-        {
-            ret += (attributes->intelligenceBonus() / 4) +
-                (attributes->wisdomBonus() / 4);
-        }
+        ret = to_int(ret * 1.25);
     }
-    
+
     ret += this_object()->magicalDamageBonus();
 
     if (!doNotRandomize)
@@ -843,6 +908,7 @@ public nomask varargs int addAttack(string attackToAdd, int damage, int toHit)
 public nomask void clearAttacks()
 {
     attacks = ({ });
+    m_delete(combatCache, "attacks");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -871,11 +937,16 @@ private nomask varargs mapping *getWeaponAttacksFromBonus(int numAttacks, int ad
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping *getAttacks()
 {
-    mapping *attacksToReturn = attacks;
+    mapping *attacksToReturn = ({});
 
-    object inventory = getService("inventory");
-    if (inventory)
+    if (member(combatCache, "attacks"))
     {
+        attacksToReturn += combatCache["attacks"];
+    }
+    else
+    {
+        attacksToReturn = attacks;
+        object inventory = getService("inventory");
         if (inventory->equipmentInSlot("wielded primary"))
         {
             attacksToReturn += ({ (["attack type":"wielded primary"]) });
@@ -889,76 +960,76 @@ public nomask mapping *getAttacks()
         {
             attacksToReturn += ({ (["attack type":"wielded offhand"]) });
         }
-    }
 
-    if (!sizeof(attacksToReturn))
-    {
-        attacksToReturn += ({ ([
-            "attack type":"unarmed",
-            "to hit" : 50,
-            "damage" : 10
-        ]) });
-    }
-
-    // Add attacks from external sources
-    string *servicesToCheck = ({ "races", "guilds", "research", "traits", "background" });
-    int addOffhandWeapon = 0;
-
-    foreach(string serviceToCheck in servicesToCheck)
-    {
-        object service = getService(serviceToCheck);
-        if(service)
+        if (!sizeof(attacksToReturn))
         {
-            mapping *extraAttacks = 
-                call_other(service, sprintf("%sExtraAttacks", serviceToCheck));
-            
-            if (sizeof(extraAttacks))
+            attacksToReturn += ({ ([
+                "attack type":"unarmed",
+                "to hit" : 50,
+                "damage" : 10
+            ]) });
+        }
+
+        // Add attacks from external sources
+        string *servicesToCheck = ({ "races", "guilds", "research", "traits", "background" });
+        int addOffhandWeapon = 0;
+
+        foreach(string serviceToCheck in servicesToCheck)
+        {
+            object service = getService(serviceToCheck);
+            if (service)
             {
-                foreach(mapping extraAttack in extraAttacks)
+                mapping *extraAttacks =
+                    call_other(service, sprintf("%sExtraAttacks", serviceToCheck));
+
+                if (sizeof(extraAttacks))
                 {
-                    if (attackObject()->isWeaponAttack(extraAttack))
+                    foreach(mapping extraAttack in extraAttacks)
                     {
-                        attacksToReturn += getWeaponAttacksFromBonus(1, addOffhandWeapon % 2);
-                        addOffhandWeapon++;
-                    }
-                    else if (attackObject()->isValidAttack(extraAttack))
-                    {
-                        attacksToReturn += ({ extraAttack });
+                        if (attackObject()->isWeaponAttack(extraAttack))
+                        {
+                            attacksToReturn += getWeaponAttacksFromBonus(1, addOffhandWeapon % 2);
+                            addOffhandWeapon++;
+                        }
+                        else if (attackObject()->isValidAttack(extraAttack))
+                        {
+                            attacksToReturn += ({ extraAttack });
+                        }
                     }
                 }
             }
         }
-    }
 
-    object *modifiers = inventory->registeredInventoryObjects();
+        object *modifiers = inventory->registeredInventoryObjects();
 
-    if (modifiers && pointerp(modifiers) && sizeof(modifiers))
-    {
-        object attacksDictionary = getDictionary("attacks");
-        if (attacksDictionary && function_exists("validAttackTypes",
-            attacksDictionary))
+        if (modifiers && pointerp(modifiers) && sizeof(modifiers))
         {
-            string *attackList = attacksDictionary->validAttackTypes();
-                
-            foreach(object modifier in modifiers)
+            object attacksDictionary = getDictionary("attacks");
+            if (attacksDictionary && function_exists("validAttackTypes",
+                attacksDictionary))
             {
-                foreach(string attack in attackList)
+                string *attackList = attacksDictionary->validAttackTypes();
+
+                foreach(object modifier in modifiers)
                 {
-                    if (modifier->query(sprintf("bonus %s attack", attack)))
-                        attacksToReturn += ({ (["attack type":attack,
-                            "to hit" : 50 + modifier->query(sprintf("bonus %s attack", attack)),
-                            "damage" : modifier->query(sprintf("bonus %s attack", attack))
-                    ]) });
-                }
-                if (modifier->query("bonus weapon attack") && inventory->equipmentInSlot("wielded primary"))
-                {
-                    int numAttacks = modifier->query("bonus weapon attack");
-                    attacksToReturn += getWeaponAttacksFromBonus(numAttacks);
+                    foreach(string attack in attackList)
+                    {
+                        if (modifier->query(sprintf("bonus %s attack", attack)))
+                            attacksToReturn += ({ (["attack type":attack,
+                                "to hit" : 50 + modifier->query(sprintf("bonus %s attack", attack)),
+                                "damage" : modifier->query(sprintf("bonus %s attack", attack))
+                        ]) });
+                    }
+                    if (modifier->query("bonus weapon attack") && inventory->equipmentInSlot("wielded primary"))
+                    {
+                        int numAttacks = modifier->query("bonus weapon attack");
+                        attacksToReturn += getWeaponAttacksFromBonus(numAttacks);
+                    }
                 }
             }
         }
+        combatCache["attacks"] = attacksToReturn;
     }
-    
     return attacksToReturn + ({ });
 }
 
@@ -1594,37 +1665,61 @@ private nomask int calculateVitalsHealRate(string vital)
 {
     int ret = 0;
     object attributes = getService("attributes");
-    
-    if(vital && stringp(vital) && attributes)
+    object inventory = getService("inventory");
+
+    if(vital && attributes)
     {
         switch(vital)
         {
             case "hit points":
             {
-                ret = 1 + (attributes->Con() / 10) +
-                       calculateServiceBonuses("BonusHealHitPoints");
+                if (member(combatCache, "heal hit points"))
+                {
+                    ret = combatCache["heal hit points"];
+                }
+                else
+                {
+                    ret = 1 + (attributes->Con() / 10) +
+                        calculateServiceBonuses("BonusHealHitPoints") +
+                        inventory->inventoryGetModifier("combatModifiers",
+                            "bonus heal hit points");
+                    combatCache["heal hit points"] = ret;
+                }
                 break;
             }
             case "spell points":
             {
-                ret = 1 + ((attributes->Int() + attributes->Wis()) / 12) +
-                      calculateServiceBonuses("BonusHealSpellPoints");
+                if (member(combatCache, "heal spell points"))
+                {
+                    ret = combatCache["heal spell points"];
+                }
+                else
+                {
+                    ret = 1 + ((attributes->Int() + attributes->Wis()) / 12) +
+                        calculateServiceBonuses("BonusHealSpellPoints") +
+                        inventory->inventoryGetModifier("combatModifiers",
+                            "bonus heal spell points");
+                    combatCache["heal spell points"] = ret;
+                }
                 break;
             }
             case "stamina":
             {
-                ret = 1 + (attributes->Con() / 10) + (attributes->Dex() / 15) + 
-                      calculateServiceBonuses("BonusHealStamina");
+                if (member(combatCache, "heal stamina points"))
+                {
+                    ret = combatCache["heal stamina points"];
+                }
+                else
+                {
+                    ret = 1 + (attributes->Con() / 10) + (attributes->Dex() / 15) +
+                        calculateServiceBonuses("BonusHealStamina") +
+                        inventory->inventoryGetModifier("combatModifiers",
+                            "bonus heal stamina");
+                    combatCache["heal stamina points"] = ret;
+                }
                 break;
             }
         }
-        
-        object inventory = getService("inventory");
-        if(inventory)
-        {
-            ret += inventory->inventoryGetModifier("combatModifiers",
-                sprintf("bonus heal %s", vital));
-        }  
     }
     return ret;
 }
@@ -1634,34 +1729,49 @@ private nomask int calculateTimeToNextVitalsHeal(string vital)
 {
     int ret = IntervalBetweenHealing;
     object attributes = getService("attributes");
-    
+    object inventory = getService("inventory");
+
     if(vital && stringp(vital) && attributes)
     {
         switch(vital)
         {
             case "hit points":
             {
-                ret -= calculateServiceBonuses("BonusHealHitPointsRate");
+                if (!member(combatCache, "heal hit points rate"))
+                {
+                    combatCache["heal hit points rate"] =
+                        calculateServiceBonuses("BonusHealHitPointsRate") +
+                        inventory->inventoryGetModifier("combatModifiers", 
+                            "bonus heal hit points rate");
+                }
+                ret -= combatCache["heal hit points rate"];
                 break;
             }
             case "spell points":
             {
-                ret -= calculateServiceBonuses("BonusHealSpellPointsRate");
+                if (!member(combatCache, "heal spell points rate"))
+                {
+                    combatCache["heal spell points rate"] =
+                        calculateServiceBonuses("BonusHealSpellPointsRate") +
+                        inventory->inventoryGetModifier("combatModifiers",
+                            "bonus heal spell points rate");
+                }
+                ret -= combatCache["heal spell points rate"];
                 break;
             }
             case "stamina":
             {
-                ret -= calculateServiceBonuses("BonusHealStaminaRate");
+                if (!member(combatCache, "heal stamina rate"))
+                {
+                    combatCache["heal stamina rate"] =
+                        calculateServiceBonuses("BonusHealStaminaRate") +
+                        inventory->inventoryGetModifier("combatModifiers",
+                            "bonus heal stamina rate");
+                }
+                ret -= combatCache["heal stamina rate"];
                 break;
             }
         }
-        
-        object inventory = getService("inventory");
-        if(inventory)
-        {
-            ret -= inventory->inventoryGetModifier("combatModifiers",
-                sprintf("bonus heal %s rate", vital));
-        }  
     }
     if (ret < 4)
     {
@@ -1865,4 +1975,14 @@ public nomask string vitals()
                 maxSpellPoints()), "information", "score", colorConfiguration) + 
             configuration->decorate(sprintf("%18d/%-8d", staminaPoints(), 
                 maxStaminaPoints()), "information", "score", colorConfiguration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+static nomask void resetCombatCache()
+{
+    combatCache = ([]);
+    call_out("maxHitPoints", 0);
+    call_out("maxSpellPoints", 0);
+    call_out("maxStaminaPoints", 0);
+    call_out("calculateDefendAttack", 0);
 }

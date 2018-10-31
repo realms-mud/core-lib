@@ -145,7 +145,7 @@ public nomask object equipmentInSlot(string slot)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void resetInventoryCache()
+static nomask void resetInventoryCache()
 {
     inventoryCache = ([
         "totals":([])
@@ -211,6 +211,8 @@ private nomask void removeItemFromCache(object item)
             }
         }
         m_delete(inventoryCache, key);
+        
+        getService("combat")->resetCombatCache();
     }
 }
 
@@ -286,6 +288,7 @@ private nomask varargs void addItemToCache(object item)
         addValueToCache(item, "material encumberance",
             materialsObject()->getMaterialEncumberance(item));
     }
+    getService("combat")->resetCombatCache();
 }
 
 /////////////////////////////////////////////////////////////////////////////

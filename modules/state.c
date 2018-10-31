@@ -62,3 +62,19 @@ public nomask string stateFor(object caller)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void resetCaches()
+{
+    object inventory = getService("inventory");
+    if (inventory)
+    {
+        inventory->resetInventoryCache();
+    }
+
+    object combat = getService("combat");
+    if (combat)
+    {
+        combat->resetCombatCache();
+    }
+}

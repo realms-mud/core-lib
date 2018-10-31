@@ -13,6 +13,7 @@ private string researchName = "";
 public void ToggleMockResearch()
 {
     useResearch = !useResearch;
+    this_object()->resetCaches();
 }
 
 /////////////////////////////////////////////////////////////////////////////

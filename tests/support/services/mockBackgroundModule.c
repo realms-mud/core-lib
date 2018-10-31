@@ -10,6 +10,7 @@ private int useBackground = 0;
 public void ToggleMockBackground()
 {
     useBackground = !useBackground;
+    this_object()->resetCaches();
 }
 
 /////////////////////////////////////////////////////////////////////////////
