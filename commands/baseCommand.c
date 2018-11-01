@@ -139,14 +139,19 @@ protected nomask object getTarget(object owner, string command)
             {
                 ret = environment(owner)->getEnvironmentalElement(targetId[2]);
             }
+            else if(!ret && (this_object()->query("scope") == "targeted") &&
+                (targetId[2] == ""))
+            {
+                ret = owner;
+            }
         }
     }
 
-    if ((ret == owner) && this_object()->query("damage type"))
+    if ((ret == owner) && this_object()->query("damage type") &&
+        !this_object()->query("is beneficial"))
     {
         ret = owner->getTargetToAttack();
     }
-
     return ret;
 }
 

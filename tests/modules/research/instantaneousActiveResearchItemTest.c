@@ -14,7 +14,7 @@ object Room;
 void Setup()
 {
     Effect = clone_object("/lib/tests/support/research/testInstantaneousActiveResearchItem");
-    Effect->testAddSpecification("command template", "throw turnip at ##Target##");
+    Effect->testAddSpecification("command template", "throw turnip [at ##Target##]");
     Effect->testAddSpecification("scope", "targeted");
     Effect->testAddSpecification("damage type", "magical");
 
@@ -406,3 +406,47 @@ void DecreaseStuffedWillNotExecuteAttack()
     ExpectFalse(Target->unregisterAttacker(User));
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void NotSpecifyingTargetWillTargetCurrentForDamageResearch()
+{
+    Target->hitPoints(100);
+    mapping formula = ([
+        "probability":100,
+        "base damage" : 25,
+        "range" : 0
+    ]);
+
+    ExpectTrue(Effect->testAddSpecification("damage hit points", ({ formula })));
+
+    // This proves that Bob is not one of Frank's attackers
+    ExpectFalse(Target->unregisterAttacker(User));
+
+    ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
+    ExpectTrue(Effect->execute("throw turnip at frank", User));
+    ExpectEq(129, Target->hitPoints(), "Frank has taken damage");
+
+    // Proof that Bob and Frank are now fighting
+    ExpectTrue(Target->unregisterAttacker(User));
+    User->heart_beat();
+    Target->hitPoints(100);
+    ExpectEq(150, Target->hitPoints(), "Frank has taken damage");
+    ExpectTrue(Effect->execute("throw turnip", User));
+    ExpectEq(129, Target->hitPoints(), "Frank has taken damage");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NotSpecifyingTargetWillTargetOwnerForBeneficialResearch()
+{
+    mapping formula = ([
+        "probability":100,
+        "base damage": 25,
+        "range": 0
+    ]);
+
+    User->hit(110);
+    ExpectTrue(Effect->testAddSpecification("increase hit points", ({ formula })));
+
+    ExpectEq(50, User->hitPoints(), "Bob's initial HP");
+    ExpectTrue(Effect->execute("throw turnip", User));
+    ExpectEq(75, User->hitPoints(), "Bob has been healed");
+}

@@ -116,9 +116,6 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
 
     switch(type)
     {
-        case "damage hit points":
-        case "damage spell points":
-        case "damage stamina points":        
         case "increase hit points":
         case "increase spell points":
         case "increase stamina points":
@@ -126,6 +123,13 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
         case "decrease druggedness":
         case "decrease soaked":
         case "decrease stuffed":
+        {
+            researchData["is beneficial"] = 1;
+            // This should fall through to the next session.
+        }
+        case "damage hit points":
+        case "damage spell points":
+        case "damage stamina points":        
         case "increase intoxication":
         case "increase druggedness":
         case "increase soaked":
