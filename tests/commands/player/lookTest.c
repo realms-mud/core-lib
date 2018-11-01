@@ -154,7 +154,9 @@ void LookAtLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("look at bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" + 
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" + 
         expectedInventory, Player->caughtMessage());
 }
 
@@ -164,7 +166,9 @@ void LookAtLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("look -b at bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
 
@@ -174,7 +178,9 @@ void LookInLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("look in bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -184,7 +190,9 @@ void LookInLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("look -b in bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
 
@@ -194,7 +202,9 @@ void LAtLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("l at bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -204,7 +214,9 @@ void LAtLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("l -b at bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
 
@@ -214,7 +226,9 @@ void LInLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("l in bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -224,7 +238,9 @@ void LInLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("l -b in bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
 
@@ -234,7 +250,9 @@ void ExaLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("exa bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -244,7 +262,9 @@ void ExaLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("exa -b bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
 
@@ -254,7 +274,9 @@ void ExamineLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("examine bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n\tCarrying:\n" +
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -264,7 +286,9 @@ void ExamineLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("examine -b bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
 
@@ -274,7 +298,9 @@ void GlanceAtDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("glance at bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
 
@@ -284,7 +310,9 @@ void GlanceInDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("glance in bob"));
-    ExpectEq("Bob the title-less (male) (elf)\nHe is in good shape.\nBob has a shiny blah!\n",
+    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
+        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+        "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
 

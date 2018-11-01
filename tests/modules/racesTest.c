@@ -152,3 +152,23 @@ void RacesBonusToReturnsCorrectValue()
     ExpectEq(3, Races->racesBonusTo("weapon smithing"));
     ExpectEq(50, Races->racesBonusTo("MaxSpellPoints"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void ApparentRaceCannotBeSetOnPlayer()
+{
+    Races->Race("high elf");
+    ExpectSubStringMatch("high elf", Races->long());
+    Races->apparentRace("human");
+    ExpectSubStringMatch("high elf", Races->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ApparentRaceCanBeSetOnNPC()
+{
+    object monster = clone_object("/lib/realizations/monster.c");
+
+    monster->Race("high elf");
+    ExpectSubStringMatch("high elf", monster->long());
+    monster->apparentRace("human");
+    ExpectSubStringMatch("human", monster->long());
+}

@@ -27,6 +27,16 @@ public nomask int isValidRace(string race)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs string apparentRace(string newRace)
+{
+    if (newRace && !getService("player"))
+    {
+        apparentRace = newRace;
+    }
+    return apparentRace;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs string Race(string newRace)
 {
     if(newRace && !getService("player") || (getService("player") && 

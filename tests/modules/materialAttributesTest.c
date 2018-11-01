@@ -13,7 +13,7 @@ void Setup()
     Attributes = clone_object("/lib/realizations/player");
     Attributes->Name("Bob");
     Attributes->hitPoints(500);
-
+    Attributes->colorConfiguration("none");
     setUsers(({ Attributes }));
 }
 
@@ -362,7 +362,7 @@ void LongReturnsInventoryBasedUserDescriptions()
         "Tantor has a shiny blah!\n\tCarrying:\n"
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
         "=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0m\x1b[0;36mPrimary "
-        "Weapon:\t\x1b[0m\x1b[0;37;1mA Sword\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36m"
+        "Weapon:\t\x1b[0mA Sword\n\x1b[0;31m| \x1b[0m\x1b[0;36m"
         "Equipped Offhand:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m+-=-=-"
         "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
         "=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Armor:\t\t\x1b[0m"
@@ -396,7 +396,7 @@ void LongReturnsInventoryWithDetails()
 
     Attributes->Name("Tantor");
     Attributes->Gender(1);
-    ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n\tCarrying:\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0m\x1b[0;37;1mA Sword\x1b[0m\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m",
+    ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n\tCarrying:\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0mA Sword\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m",
         Attributes->long());
 }
 
@@ -550,4 +550,95 @@ void CanSeeReturnsTrueWhenItemWithLightPresent()
     move_object(weapon, Attributes);
     ExpectTrue(Attributes->canSee());
     destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongDescriptionCorrectlyDisplaysNoColor()
+{
+    Attributes->colorConfiguration("none");
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    Attributes->Race("elf");
+    Attributes->hitPoints(200);
+    Attributes->description("This is a really long description. I mean, "
+        "it's the land-loving mother pigeon of all long descriptions. A "
+        "description to end all descriptions. Why, if my description were "
+        "even HALF as impressive as this one, I'd gladly donate my lymph "
+        "nodes to the Sisterhood of the Five Wounds.");
+    ExpectEq("Tantor the title-less (male) (elf)\nThis is a really long "
+        "description. I mean, it's the land-loving mother pigeon\nof all "
+        "long descriptions. A description to end all descriptions. Why, if "
+        "my\ndescription were even HALF as impressive as this one, I'd "
+        "gladly donate my\nlymph nodes to the Sisterhood of the Five "
+        "Wounds.\nHe is in good shape.\n",
+        Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongDescriptionCorrectlyDisplaysThreeBitColor()
+{
+    Attributes->colorConfiguration("3-bit");
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    Attributes->Race("elf");
+    Attributes->hitPoints(200);
+    Attributes->description("This is a really long description. I mean, "
+        "it's the land-loving mother pigeon of all long descriptions. A "
+        "description to end all descriptions. Why, if my description were "
+        "even HALF as impressive as this one, I'd gladly donate my lymph "
+        "nodes to the Sisterhood of the Five Wounds.");
+    ExpectEq("\x1b[0;33mTantor the title-less\x1b[0m\x1b[0;35m (male)"
+        "\x1b[0m\x1b[0;32m (elf)\x1b[0m\n\x1b[0;36mThis is a really long "
+        "description. I mean, it's the land-loving mother pigeon\nof all "
+        "long descriptions. A description to end all descriptions. Why, if "
+        "my\ndescription were even HALF as impressive as this one, I'd "
+        "gladly donate my\nlymph nodes to the Sisterhood of the Five "
+        "Wounds.\n\x1b[0m\x1b[0;31;1mHe is in good shape.\n\x1b[0m",
+        Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongDescriptionCorrectlyDisplaysEightBitColor()
+{
+    Attributes->colorConfiguration("8-bit");
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    Attributes->Race("elf");
+    Attributes->hitPoints(200);
+    Attributes->description("This is a really long description. I mean, "
+        "it's the land-loving mother pigeon of all long descriptions. A "
+        "description to end all descriptions. Why, if my description were "
+        "even HALF as impressive as this one, I'd gladly donate my lymph "
+        "nodes to the Sisterhood of the Five Wounds.");
+    ExpectEq("\x1b[0;38;5;190mTantor the title-less\x1b[0m\x1b[0;38;5;238m (male)"
+        "\x1b[0m\x1b[0;38;5;2m (elf)\x1b[0m\n\x1b[0;38;5;80mThis is a really long "
+        "description. I mean, it's the land-loving mother pigeon\nof all "
+        "long descriptions. A description to end all descriptions. Why, if "
+        "my\ndescription were even HALF as impressive as this one, I'd "
+        "gladly donate my\nlymph nodes to the Sisterhood of the Five "
+        "Wounds.\n\x1b[0m\x1b[0;38;5;9;1mHe is in good shape.\n\x1b[0m",
+        Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongDescriptionCorrectlyDisplaysTwentyFourBitColor()
+{
+    Attributes->colorConfiguration("24-bit");
+    Attributes->Name("Tantor");
+    Attributes->Gender(1);
+    Attributes->Race("elf");
+    Attributes->hitPoints(200);
+    Attributes->description("This is a really long description. I mean, "
+        "it's the land-loving mother pigeon of all long descriptions. A "
+        "description to end all descriptions. Why, if my description were "
+        "even HALF as impressive as this one, I'd gladly donate my lymph "
+        "nodes to the Sisterhood of the Five Wounds.");
+    ExpectEq("\x1b[0;38;2;200;200;0mTantor the title-less\x1b[0m\x1b[0;38;2;90;60;160m (male)"
+        "\x1b[0m\x1b[0;38;2;170;180;110m (elf)\x1b[0m\n\x1b[0;38;2;180;180;190mThis is a really long "
+        "description. I mean, it's the land-loving mother pigeon\nof all "
+        "long descriptions. A description to end all descriptions. Why, if "
+        "my\ndescription were even HALF as impressive as this one, I'd "
+        "gladly donate my\nlymph nodes to the Sisterhood of the Five "
+        "Wounds.\n\x1b[0m\x1b[0;38;2;200;0;0;1mHe is in good shape.\n\x1b[0m",
+        Attributes->long());
 }

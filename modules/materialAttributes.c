@@ -385,7 +385,8 @@ public varargs string description(string msg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string basicLongDescription()
+private string basicLongDescription(object configuration, 
+    string colorConfiguration)
 {
     string ret = capitalize(name);
 
@@ -398,23 +399,33 @@ private string basicLongDescription()
     {
         ret += " " + Title();
     }
-    ret += sprintf(" (%s)", GenderDesc());
+
+    ret = configuration->decorate(ret, "name", "long description", 
+        colorConfiguration);
+
+    ret += configuration->decorate(sprintf(" (%s)", GenderDesc()),
+        "gender", "long description", colorConfiguration);
 
     object race = getService("races");
     if (race && race->Race())
     {
-        ret += sprintf(" (%s)", race->Race());
+        ret += configuration->decorate(sprintf(" (%s)",
+            race->apparentRace() ? race->apparentRace() : race->Race()),
+            "race", "long description", colorConfiguration);
     }
     ret += "\n";
+
     if (longDescription && (longDescription != ""))
     {
-        ret += longDescription + "\n";
+        ret += configuration->decorate(format(longDescription, 78),
+            "description", "long description", colorConfiguration);
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string inventoryLongDescription(int brief)
+private string inventoryLongDescription(int brief, object configuration,
+    string colorConfiguration)
 {
     string ret = "";
     object inventory = getService("inventory");
@@ -428,7 +439,9 @@ private string inventoryLongDescription(int brief)
 
             if(inventoryText && inventoryText != "")
             {
-                ret += "\tCarrying:\n" + inventoryText;
+                ret += configuration->decorate("\tCarrying:\n",
+                    "carry header", "long description", colorConfiguration) +
+                    inventoryText;
             }
         }
     }
@@ -438,7 +451,10 @@ private string inventoryLongDescription(int brief)
 /////////////////////////////////////////////////////////////////////////////
 public varargs string long(int brief)
 {
-    string ret = basicLongDescription();
+    string colorConfiguration = this_object()->colorConfiguration();
+    object configuration = getDictionary("configuration");
+
+    string ret = basicLongDescription(configuration, colorConfiguration);
 
     object wizard = call_other(this_object(), "isRealizationOf", "wizard");
     if(wizard)
@@ -449,11 +465,12 @@ public varargs string long(int brief)
     object combat = getService("combat");
     if(combat)
     {
-        ret += sprintf("%s %s\n", capitalize(Pronoun()),
-            combat->healthDescription());
+        ret += configuration->decorate(sprintf("%s %s\n", capitalize(Pronoun()),
+            combat->healthDescription()), "health", "long description",
+            colorConfiguration);
     }
 
-    ret += inventoryLongDescription(brief);
+    ret += inventoryLongDescription(brief, configuration, colorConfiguration);
 
     return ret;
 }

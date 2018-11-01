@@ -4,6 +4,7 @@
 //*****************************************************************************
 
 private string race;
+private string apparentRace;
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask void loadRaces(mapping data, object persistence)
