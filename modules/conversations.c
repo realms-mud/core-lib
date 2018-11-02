@@ -114,6 +114,20 @@ private nomask void initializeResponses()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int canConverse(object actor)
+{
+    int ret = 0;
+    if (objectp(actor))
+    {
+        string actorState = actor->stateFor(this_object());
+        string topic = actorState ? actorState : "first conversation";
+
+        ret = member(topics, topic);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int beginConversation(object actor)
 {
     int ret = 0;
@@ -149,6 +163,7 @@ public nomask void responseFromConversation(object actor, string response)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int respondToConversation(string choice)
 {
+    remove_action(1);
     return CurrentTopic && CurrentTopic->displayResponse(query_command(),
         this_player(), this_object());
 }

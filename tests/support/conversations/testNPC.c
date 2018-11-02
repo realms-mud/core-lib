@@ -1,16 +1,13 @@
 //*****************************************************************************
-// Class: npc
-// File Name: npc.c
-//
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/realizations/monster.c";
-virtual inherit "/lib/modules/conversations.c";
-virtual inherit "/lib/modules/crafting.c";
+virtual inherit "/lib/realizations/npc.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isRealizationOfNpc()
+protected void Setup()
 {
-    return 1;
+    Name("fred");
+    Gender(1);
+    addConversation("/lib/tests/support/conversations/testConversation.c");
 }

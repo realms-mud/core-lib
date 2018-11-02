@@ -7,6 +7,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Actor;
 object Owner;
+object Room;
 object Conversation;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -22,7 +23,7 @@ varargs void PrepActor(int useMock)
         Actor = clone_object("/lib/realizations/player.c");
         Actor->restore("gorthaur");
     }
-    move_object(Actor, "/lib/tests/support/environment/fakeEnvironment.c");
+    move_object(Actor, Room);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -44,12 +45,13 @@ void Init()
 void Setup()
 {
     ToggleCallOutBypass();
-    object room = load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    Room = clone_object("/lib/tests/support/environment/fakeEnvironment.c");
 
     Owner = clone_object("/lib/tests/support/services/mockNPC.c");
     Owner->Name("Gertrude");
     Owner->Gender(2);
-    move_object(Owner, room);
+
+    move_object(Owner, Room);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -57,6 +59,7 @@ void CleanUp()
 {
     destruct(Owner);
     destruct(Actor);
+    destruct(Room);
     ToggleCallOutBypass();
 }
 
@@ -97,7 +100,8 @@ void InitialWithCharacterInitiatesFirstConversation()
     PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
-    command("talk", Actor);
+    Actor->characterState(Owner, "first conversation");
+    ExpectTrue(command("talk gertrude", Actor));
     ExpectEq(2, sizeof(Actor->caughtMessages()));
     ExpectSubStringMatch("We start talking for the first time.", Actor->caughtMessages()[0]);
     ExpectSubStringMatch("OK...", Actor->caughtMessages()[1]);
@@ -109,7 +113,7 @@ void TalkTwiceRepeatsCurrentTopic()
     PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
-    command("talk", Actor);
+    command("talk to gertrude", Actor);
     ExpectEq(2, sizeof(Actor->caughtMessages()));
     ExpectSubStringMatch("We start talking for the first time.", Actor->caughtMessages()[0]);
     ExpectSubStringMatch("OK...", Actor->caughtMessages()[1]);

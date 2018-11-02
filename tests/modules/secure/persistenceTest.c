@@ -474,12 +474,14 @@ void ModifierObjectsAreSavedAndRestored()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerInventoryMaintainsWieldedAndWornStateWhenEquippedAtSave()
 {
+    ToggleCallOutBypass();
     Player->restore("gorthaur");
 
-    object weapon = clone_object("/lib/tests/support/items/testSword.c");
+    object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    weapon->set("name", "Sword of Weasels");
     move_object(weapon, Player);
-    ExpectTrue(weapon->equip("Sword of Weasels"));
-    ExpectTrue(Player->isEquipped(weapon));
+    ExpectTrue(weapon->equip("Sword of Weasels"), "sword equip succeeded");
+    ExpectTrue(Player->isEquipped(weapon), "sword equipped");
 
     object shield = clone_object("/lib/items/weapon");
     shield->set("name", "Shield of Weasels");
@@ -488,8 +490,8 @@ void PlayerInventoryMaintainsWieldedAndWornStateWhenEquippedAtSave()
     shield->set("craftsmanship", 20);
     shield->set("weapon type", "shield");
     move_object(shield, Player);
-    ExpectTrue(shield->equip("Shield of Weasels"));
-    ExpectTrue(Player->isEquipped(shield));
+    ExpectTrue(shield->equip("Shield of Weasels"), "shield equip succeeded");
+    ExpectTrue(Player->isEquipped(shield), "shield equipped");
 
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "Armor of Weasels");
@@ -497,8 +499,8 @@ void PlayerInventoryMaintainsWieldedAndWornStateWhenEquippedAtSave()
     armor->set("armor class", 5);
     armor->set("armor type", "chainmail");
     move_object(armor, Player);
-    ExpectTrue(armor->equip("Armor of Weasels"));
-    ExpectTrue(Player->isEquipped(armor));
+    ExpectTrue(armor->equip("Armor of Weasels"), "armor equip succeeded");
+    ExpectTrue(Player->isEquipped(armor), "armor equipped");
 
     Player->save();
 
@@ -507,21 +509,22 @@ void PlayerInventoryMaintainsWieldedAndWornStateWhenEquippedAtSave()
     destruct(shield);
     destruct(Player);
     Player = clone_object("/lib/realizations/player.c");
-    ExpectFalse(present("Sword of Weasels", Player));
+    ExpectFalse(present("Sword of Weasels", Player), "sword not present after re-clone");
     Player->restore("gorthaur");
-    ExpectTrue(present("Sword of Weasels", Player));
-    ExpectEq("lib/tests/support/items/testSword.c",
-        Player->equipmentInSlot("wielded primary"));
+    ExpectTrue(present("Sword of Weasels", Player), "sword equip after re-clone");
+    ExpectEq("lib/instances/items/weapons/swords/long-sword.c",
+        Player->equipmentInSlot("wielded primary"), "sword wielded after re-clone");
 
     shield = Player->equipmentInSlot("wielded offhand");
-    ExpectEq("lib/items/weapon.c", shield);
+    ExpectEq("lib/items/weapon.c", shield, "shield still in slot");
     // It's also important that the "generic" items maintain set data!
     ExpectEq("Shield of Weasels", shield->query("name"));
 
     armor = Player->equipmentInSlot("armor");
-    ExpectEq("lib/items/armor.c", armor);
+    ExpectEq("lib/items/armor.c", armor, "armor still in slot");
     // It's also important that the "generic" items maintain set data!
     ExpectEq("Armor of Weasels", armor->query("name"));
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////

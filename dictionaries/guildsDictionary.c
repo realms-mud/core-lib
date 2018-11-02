@@ -114,7 +114,8 @@ public nomask int canAdvanceRank(object guildMember, string guild, string rank)
 private nomask int valueIsCached(string guild, string bonus, int level,
     string rank)
 {
-    return member(guildBonusCache[guild], level) &&
+    return member(guildBonusCache, guild) &&
+        member(guildBonusCache[guild], level) &&
         member(guildBonusCache[guild][level], rank) &&
         member(guildBonusCache[guild][level][rank], bonus);
 }
@@ -123,6 +124,10 @@ private nomask int valueIsCached(string guild, string bonus, int level,
 private nomask void cacheValue(mixed value, string guild, string bonus,
     int level, string rank)
 {
+    if (!member(guildBonusCache, guild))
+    {
+        guildBonusCache[guild] = ([]);
+    }
     if (!member(guildBonusCache[guild], level))
     {
         guildBonusCache[guild][level] = ([]);
