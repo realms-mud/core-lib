@@ -50,7 +50,6 @@ void CanSetPenaltyAttributes()
     ExpectEq(-2, ResearchItem->queryBonus("bonus strength"), "queryBonus returns the correct result");
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 void CanSetBonusSkill()
 {
@@ -93,4 +92,13 @@ void CanSetMultipleBonusAttacks()
     ExpectEq(1, ResearchItem->addSpecification("bonus fire attack", 15), "set bonus fire attack");
     ExpectEq(1, ResearchItem->addSpecification("bonus weapon attack", 1), "set bonus weapon attack");
     ExpectEq(expectedAttacks, ResearchItem->getExtraAttacks(), "getExtraAttacks returns the correct result");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAddEnchantments()
+{
+    ExpectTrue(ResearchItem->addSpecification("bonus fire enchantment", 3), "set bonus fire enchantment to 3");
+    ExpectTrue(ResearchItem->addSpecification("bonus electricity enchantment", 5), "set bonus fire enchantment to 3");
+    ExpectEq(3, ResearchItem->query("bonus fire enchantment"), "can query the bonus");
+    ExpectEq(([ "fire": 3, "electricity": 5 ]), ResearchItem->query("enchantments"), "query enchantments returns the correct result");
 }

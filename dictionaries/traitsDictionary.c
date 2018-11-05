@@ -324,6 +324,29 @@ public nomask mapping *extraAttacks(string trait, object owner)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping enchantments(string trait)
+{
+    mapping ret = ([]);
+
+    if (valueIsCached(trait, "enchantments"))
+    {
+        ret = traitCache[trait]["enchantments"];
+    }
+    else
+    {
+        object traitObj = traitObject(trait);
+        if (traitObj)
+        {
+            ret = traitObj->query("enchantments");
+
+            cacheValue(ret, trait, "enchantments");
+        }
+    }
+
+    return ret + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int lookUpBonus(string trait, string bonus)
 {
     int ret = 0;

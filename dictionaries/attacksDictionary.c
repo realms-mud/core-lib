@@ -88,7 +88,7 @@ public nomask string *validAttackTypes()
     string *ret = ({ });
     string *attackFiles = get_dir(sprintf("%s/*Attack.c", AttacksDir));
     attackFiles -= ({ AttackBlueprint });
-    foreach(string attack : attackFiles)
+    foreach(string attack in attackFiles)
     {
         object attackObj = getAttack(regreplace(attack, "Attack.c", ""));
         if(attackObj)

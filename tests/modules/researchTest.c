@@ -758,3 +758,15 @@ void ResearchSustainedCommandReducesByCost()
     ExpectTrue(Research->sustainedResearchIsActive("lib/tests/support/research/testSustainedTraitResearch.c"), "research is active");
     ExpectTrue(target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "trait is active");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectEnchantmentsReturned()
+{
+    ExpectTrue(Research->initiateResearch("lib/tests/support/research/testEnchantmentResearchItem.c"), "initiate research");
+    ExpectEq((["electricity":5, "fire": 2, "magical": 1 ]), 
+        Research->researchEnchantments());
+
+    ExpectTrue(Research->initiateResearch("lib/tests/support/research/anotherEnchantmentResearch.c"), "initiate research");
+    ExpectEq((["electricity":5, "fire" : 5, "magical" : 1]),
+        Research->researchEnchantments());
+}

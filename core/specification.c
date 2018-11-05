@@ -425,6 +425,24 @@ public mixed query(string element)
                     (: $1 > $2 :));
                 break;
             }
+            case "enchantments":
+            {
+                ret = ([]);
+                string *enchantments = filter(m_indices(researchData),
+                    (: ((sizeof(regexp(({ $1 }), "bonus .* enchantment")) > 0) &&
+                    (researchData[$1] > 0)) :));
+
+                if (sizeof(enchantments))
+                {
+                    foreach(string enchantment in enchantments)
+                    {
+                        ret[regreplace(enchantment,
+                            "bonus (.*) enchantment", "\\1")] =
+                            researchData[enchantment];
+                    }
+                }
+                break;
+            }
         }
     }
     return ret;

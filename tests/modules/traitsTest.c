@@ -439,3 +439,15 @@ void TraitsWithSustainedEffectsAreRemovedAfterResearchInactivated()
     Traits->heart_beat();
     ExpectFalse(Traits->isTraitOf(trait), "trait has been removed");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectEnchantmentsReturned()
+{
+    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testEnchantmentTrait.c"), "initiate research");
+    ExpectEq((["electricity":5, "fire" : 2, "magical" : 1]),
+        Traits->traitsEnchantments());
+
+    ExpectTrue(Traits->addTrait("lib/tests/support/traits/anotherEnchantmentTrait.c"), "initiate research");
+    ExpectEq((["electricity":5, "fire" : 6, "magical" : 1]),
+        Traits->traitsEnchantments());
+}

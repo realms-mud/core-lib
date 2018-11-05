@@ -219,6 +219,43 @@ public nomask mapping *traitsExtraAttacks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping traitsEnchantments()
+{
+    mapping enchantments = ([]);
+    string *traitItems = filter(m_indices(traits),
+        (: (member(traits[$1], "bonuses") &&
+            !sizeof(regexp(traits[$1]["bonuses"], "crafting")) &&
+            sizeof(regexp(traits[$1]["bonuses"],
+                "bonus [^ ]+ enchantment$"))) :));
+
+    foreach(string trait in traitItems)
+    {
+        if (canApplyLimitedTrait(trait))
+        {
+            mapping itemEnchantment = 
+                traitDictionary()->enchantments(trait);
+
+            string *keys = m_indices(itemEnchantment);
+            if (sizeof(keys))
+            {
+                foreach(string key in keys)
+                {
+                    if (!member(enchantments, key))
+                    {
+                        enchantments[key] = itemEnchantment[key];
+                    }
+                    else
+                    {
+                        enchantments[key] += itemEnchantment[key];
+                    }
+                }
+            }
+        }
+    }
+    return enchantments + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int traitsAttributeBonus(string attribute)
 {
     int ret = 0;

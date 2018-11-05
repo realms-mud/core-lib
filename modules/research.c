@@ -562,6 +562,43 @@ public nomask mapping *researchExtraAttacks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping researchEnchantments()
+{
+    mapping enchantments = ([]);
+    string *researchItems = filter(m_indices(research),
+        (: (member(research[$1], "bonuses") &&
+            !sizeof(regexp(research[$1]["bonuses"], "crafting")) &&
+            sizeof(regexp(research[$1]["bonuses"], 
+                "bonus [^ ]+ enchantment$"))) :));
+
+    foreach(string researchItem in researchItems)
+    {
+        if (canApplyResearchBonus(researchItem))
+        {
+            mapping itemEnchantment = 
+                researchDictionary()->enchantments(researchItem);
+
+            string *keys = m_indices(itemEnchantment);
+            if (sizeof(keys))
+            {
+                foreach(string key in keys)
+                {
+                    if (!member(enchantments, key))
+                    {
+                        enchantments[key] = itemEnchantment[key];
+                    }
+                    else
+                    {
+                        enchantments[key] += itemEnchantment[key];
+                    }
+                }
+            }
+        }
+    }
+    return enchantments + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int researchAttributeBonus(string attribute)
 {
     int ret = 0;

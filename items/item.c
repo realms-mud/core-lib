@@ -99,7 +99,36 @@ protected nomask int isValidBonus(string bonus, int amount)
     }    
     return ret;
 }
-    
+  
+private mapping addServiceEnchantments(mapping enchantments, string service)
+{
+    mapping ret = enchantments ? enchantments + ([]) : ([]);
+    object user = environment();
+
+    if (user && function_exists(sprintf("%sEnchantments", service), user))
+    {
+        mapping itemEnchantments = call_direct(user,
+            sprintf("%sEnchantments", service));
+
+        string *keys = m_indices(itemEnchantments);
+        if (sizeof(keys))
+        {
+            foreach(string key in keys)
+            {
+                if (!member(ret, key))
+                {
+                    ret[key] = itemEnchantments[key];
+                }
+                else
+                {
+                    ret[key] += itemEnchantments[key];
+                }
+            }
+        }
+    }
+    return ret;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public mixed query(string element)
 {
@@ -166,6 +195,13 @@ public mixed query(string element)
                     (: return sizeof(regexp(({ $1 }), "bonus")) > 0; :));
                 break;
             }
+            case "enchantments":
+            {
+                ret = addServiceEnchantments(
+                    addServiceEnchantments(
+                        itemData["enchantments"], "research"), "traits");
+                break;
+            }
             case "all":
             {
                 ret = save_value(itemData);
@@ -216,7 +252,7 @@ private nomask int checkDamageType(string element, mapping data)
         object damageType = loadBlueprint(AttacksBlueprint);
         if(damageType)
         {
-            foreach(string dmgType : m_indices(data))
+            foreach(string dmgType in m_indices(data))
             {
                 if(!damageType->isValidDamageType(dmgType) ||
                     damageType->isOutOfRange(dmgType, 

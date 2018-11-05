@@ -5,7 +5,16 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public int addSpecification(string type, mixed value)
+public void reset(int arg)
 {
-    return passiveResearchItem::addSpecification(type, value);
+    if (!arg)
+    {
+        passiveResearchItem::reset(arg);
+        addSpecification("name", "Enchantment research");
+        addSpecification("source", "mage guild");
+        addSpecification("description", "This is enchantment research");
+        addSpecification("scope", "self");
+        addSpecification("research type", "granted");
+        addSpecification("bonus fire enchantment", 3);
+    }
 }

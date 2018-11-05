@@ -334,6 +334,29 @@ public nomask mapping *extraAttacks(string researchItem, object owner)
 }
                 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping enchantments(string researchItem)
+{
+    mapping ret = ([]);
+
+    if (valueIsCached(researchItem, "enchantments"))
+    {
+        ret = researchCache[researchItem]["enchantments"];
+    }
+    else
+    {
+        object researchObj = researchObject(researchItem);
+        if (researchObj)
+        {
+            ret = researchObj->query("enchantments");
+
+            cacheValue(ret, researchItem, "enchantments");
+        }
+    }
+
+    return ret + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int researchCommand(string commandToExecute, string typedCommand,
     object initiator)
 {

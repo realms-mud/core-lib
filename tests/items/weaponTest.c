@@ -310,3 +310,36 @@ void CanDamageEtherealReturnsFalseIfEnchantmentCannotDamageEthereal()
     Weapon->set("enchantments", (["cold":20]));
     ExpectFalse(Weapon->canDamageEthereal());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void EnchantmentsAddItemResearchAndTraitEnchantments()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Str(20);
+    player->Int(20);
+    player->Wis(20);
+    player->Dex(20);
+    player->Con(20);
+    player->Chr(20);
+
+    move_object(Weapon, player);
+
+    ExpectTrue(Weapon->set("enchantments", (["fire":1, "chaos":1 ])), "enchantments can be set");
+    ExpectEq((["fire":1, "chaos":1]), Weapon->query("enchantments"), "item enchantments displayed");
+
+    ExpectTrue(player->initiateResearch("lib/tests/support/research/testEnchantmentResearchItem.c"), "initiate research");
+    ExpectEq((["fire":3, "chaos": 1, "magical": 1, "electricity": 5]), Weapon->query("enchantments"), "item enchantments displayed");
+
+    ExpectTrue(player->initiateResearch("lib/tests/support/research/anotherEnchantmentResearch.c"), "initiate research");
+    ExpectEq((["fire":6, "chaos" : 1, "magical" : 1, "electricity" : 5]), Weapon->query("enchantments"), "item enchantments displayed");
+
+    ExpectTrue(player->addTrait("lib/tests/support/traits/testEnchantmentTrait.c"), "initiate research");
+    ExpectEq((["fire":8, "chaos" : 1, "magical" : 2, "electricity" : 10]),
+        Weapon->query("enchantments"));
+
+    ExpectTrue(player->addTrait("lib/tests/support/traits/anotherEnchantmentTrait.c"), "initiate research");
+    ExpectEq((["fire":12, "chaos" : 1, "magical" : 2, "electricity" : 10]),
+        Weapon->query("enchantments"));
+
+    destruct(player);
+}
