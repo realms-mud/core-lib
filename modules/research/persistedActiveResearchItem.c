@@ -58,7 +58,7 @@ protected int addSpecification(string type, mixed value)
                 "specification must be a positive integer.\n");
         }
     }
-    else if(type == "modifier")
+    else if(type == "modifiers")
     {
         if(value && pointerp(value) && sizeof(value) && mappingp(value[0]))
         {

@@ -26,6 +26,8 @@ void Init()
 {
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    dict->resetCache();
+
     Guild = load_object("/lib/tests/support/guilds/testGuild.c");
 
     ignoreList += ({ "AdvanceToLevel" });
@@ -47,7 +49,6 @@ void Setup()
 void CleanUp()
 {
     destruct(User);
-   //destruct(Guild);
 }
 
 /////////////////////////////////////////////////////////////////////////////

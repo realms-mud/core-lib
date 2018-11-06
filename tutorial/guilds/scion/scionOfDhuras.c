@@ -15,17 +15,17 @@ public void SetupGuild()
     setDefaultRank("neophyte");
 
     addCriteria("hit points", ([
-        "type":"modifier",
+        "type": "modifier",
         "apply" : "3 every level",
         "begin at level" : 1
     ]));
     addCriteria("spell points", ([
-        "type":"modifier",
+        "type": "modifier",
         "apply" : "3 every level",
         "begin at level" : 1
     ]));
     addCriteria("stamina points", ([
-        "type":"modifier",
+        "type": "modifier",
         "apply" : "1 every level",
         "begin at level" : 1
     ]));

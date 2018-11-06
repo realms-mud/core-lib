@@ -5,6 +5,90 @@
 inherit "/lib/modules/research/researchTree.c";
 
 /////////////////////////////////////////////////////////////////////////////
+private void SwordFocus()
+{
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/forms/stabbing.c");
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/forms/from-the-roof.c");
+
+    addChild("lib/tutorial/guilds/scion/paths/sword/forms/stabbing.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+    addChild("lib/tutorial/guilds/scion/paths/sword/forms/from-the-roof.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void PathOfBlood()
+{
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/blood/soulspike.c");
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/blood/soulblade.c");
+
+    addChild("lib/tutorial/guilds/scion/paths/sword/blood/soulspike.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+    addChild("lib/tutorial/guilds/scion/paths/sword/blood/soulblade.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void PathOfTheBolt()
+{
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/electricity/sparks.c");
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/electricity/shockblade.c");
+
+    addChild("lib/tutorial/guilds/scion/paths/sword/electricity/sparks.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+    addChild("lib/tutorial/guilds/scion/paths/sword/electricity/shockblade.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void PathOfEvocation()
+{
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/evocation/mysticspike.c");
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/evocation/energyblade.c");
+
+    addChild("lib/tutorial/guilds/scion/paths/sword/evocation/mysticspike.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+    addChild("lib/tutorial/guilds/scion/paths/sword/evocation/energyblade.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void PathOfFlame()
+{
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/flame/flames.c");
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/flame/flameblade.c");
+
+    addChild("lib/tutorial/guilds/scion/paths/sword/flame/flames.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+    addChild("lib/tutorial/guilds/scion/paths/sword/flame/flameblade.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void PathOfWinter()
+{
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/ice/frost.c");
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/ice/frostblade.c");
+
+    addChild("lib/tutorial/guilds/scion/paths/sword/ice/frost.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+    addChild("lib/tutorial/guilds/scion/paths/sword/ice/frostblade.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void PathOfSpirit()
+{
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/spirit/chill.c");
+    addResearchElement("lib/tutorial/guilds/scion/paths/sword/spirit/phantasmalblade.c");
+
+    addChild("lib/tutorial/guilds/scion/paths/sword/spirit/chill.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+    addChild("lib/tutorial/guilds/scion/paths/sword/spirit/phantasmalblade.c",
+        "lib/tutorial/guilds/scion/paths/sword/root.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -14,48 +98,14 @@ public void reset(int arg)
         Description("");
         Source("Scion of Dhuras Guild");
         addResearchElement("lib/tutorial/guilds/scion/paths/sword/root.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/soulspike.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/sparks.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/flames.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/frost.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/mysticspike.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/chill.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/soulblade.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/shockblade.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/flameblade.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/frostblade.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/phantasmalblade.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/energyblade.c");        addResearchElement("lib/tutorial/guilds/scion/paths/sword/stabbing.c");
-        addResearchElement("lib/tutorial/guilds/scion/paths/sword/from-the-roof.c");
         TreeRoot("lib/tutorial/guilds/scion/paths/sword/root.c");
 
-        addChild("lib/tutorial/guilds/scion/paths/sword/soulspike.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/sparks.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/flames.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/frost.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/mysticspike.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/chill.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/soulblade.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/shockblade.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/flameblade.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/frostblade.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/phantasmalblade.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/energyblade.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/stabbing.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
-        addChild("lib/tutorial/guilds/scion/paths/sword/from-the-roof.c",
-            "lib/tutorial/guilds/scion/paths/sword/root.c");
+        SwordFocus();
+        PathOfBlood();
+        PathOfTheBolt();
+        PathOfEvocation();
+        PathOfFlame();
+        PathOfWinter();
+        PathOfSpirit();
     }
 }

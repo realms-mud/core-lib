@@ -508,6 +508,18 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;200;0;0;1m"
         ]),
     ]),
+    "research":([
+        "bonus text":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;190m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+        "bonus modifier":([
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;20;1m",
+            "24-bit": "\x1b[0;38;2;10;20;100;1m"
+        ]),
+    ]),
 ]);
 
 #endif

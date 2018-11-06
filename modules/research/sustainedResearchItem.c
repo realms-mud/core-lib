@@ -94,7 +94,7 @@ protected nomask int addSpecification(string type, mixed value)
                 }
                 break;
             }
-            case "modifier":
+            case "modifiers":
             {
                 if (value && pointerp(value) && sizeof(value) && mappingp(value[0]))
                 {

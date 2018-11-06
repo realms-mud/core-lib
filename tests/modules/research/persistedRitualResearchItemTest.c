@@ -188,7 +188,7 @@ void AddSpecificationAllowsValidModifierToBeSet()
         "rate": 0.25
     ]) });
 
-    ExpectTrue(ResearchItem->testAddSpecification("modifier", modifiers));
+    ExpectTrue(ResearchItem->testAddSpecification("modifiers", modifiers));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -206,8 +206,8 @@ void AddSpecificationDoesNotAllowInvalidModifierToBeSet()
         "rate": 0.25
     ]) });
 
-    string err = catch (ResearchItem->testAddSpecification("modifier", modifiers));
-    string expectedError = "*ERROR - persistedRitualResearchItem: the 'modifier' specification must be a properly formatted modifier.\n";
+    string err = catch (ResearchItem->testAddSpecification("modifiers", modifiers));
+    string expectedError = "*ERROR - persistedRitualResearchItem: the 'modifiers' specification must be a properly formatted modifier.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 
@@ -216,8 +216,8 @@ void AddSpecificationDoesNotAllowInvalidModifierToBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationDoesNotAllowMalformedModifierToBeSet()
 {
-    string err = catch (ResearchItem->testAddSpecification("modifier", "blah"));
-    string expectedError = "*ERROR - persistedRitualResearchItem: the 'modifier' specification must be a properly formatted modifier.\n";
+    string err = catch (ResearchItem->testAddSpecification("modifiers", "blah"));
+    string expectedError = "*ERROR - persistedRitualResearchItem: the 'modifiers' specification must be a properly formatted modifier.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }

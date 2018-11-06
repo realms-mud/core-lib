@@ -37,3 +37,13 @@ void EffectIsStrategic()
     ExpectEq("strategic", ResearchItem->query("effect"), "query the research effect");
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void DisplaysResearchDetailsForResearchWithAffectingSet()
+{
+    object research = clone_object("/lib/tests/support/research/affectedResearchItem.c");
+
+    ExpectSubStringMatch("This research enhances 'Flame Blade' by [+]2", 
+        research->researchDetails(), "query the research details");
+
+    destruct(research);
+}

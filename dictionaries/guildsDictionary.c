@@ -561,3 +561,9 @@ public nomask int isNonCombatGuild(string guild)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void resetCache()
+{
+    guildBonusCache = ([]);
+}

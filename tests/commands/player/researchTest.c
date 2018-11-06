@@ -94,8 +94,8 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\x1b[0m\n"
         "\x1b[0;36mResearch Name  \x1b[0m : \x1b[0;33mZorlak's revenge\x1b[0m\n"
-        "\x1b[0;33mThis is limited active research\x1b[0m\n"
-        "\x1b[0;33mLearning this costs 1 research points.\n"
+        "\x1b[0;33mThis is limited active research\n"
+        "\x1b[0m\x1b[0;33mLearning this costs 1 research points.\n"
         "\x1b[0m\x1b[0;36mResearch Type  \x1b[0m : \x1b[0;33mActive\x1b[0m\n"
         "\x1b[0;36mScope          \x1b[0m : \x1b[0;33mTargeted\x1b[0m\n"
         "\x1b[0;36mCost to use    \x1b[0m : \x1b[0;33m1 spell points\x1b[0m\n"
@@ -143,8 +143,8 @@ void DescribeAsQuestionMarkShowsResearchDetails()
     command("? 12", Player);
 
     ExpectEq("\x1b[0;36m\x1b[0;36mResearch Name  \x1b[0m : \x1b[0;33mZorlak's revenge\x1b[0m\n"
-        "\x1b[0;33mThis is limited active research\x1b[0m\n"
-        "\x1b[0;33mLearning this costs 1 research points.\n"
+        "\x1b[0;33mThis is limited active research\n"
+        "\x1b[0m\x1b[0;33mLearning this costs 1 research points.\n"
         "\x1b[0m\x1b[0;36mResearch Type  \x1b[0m : \x1b[0;33mActive\x1b[0m\n"
         "\x1b[0;36mScope          \x1b[0m : \x1b[0;33mTargeted\x1b[0m\n"
         "\x1b[0;36mCost to use    \x1b[0m : \x1b[0;33m1 spell points\x1b[0m\n"
@@ -173,8 +173,8 @@ void DescribeShowsResearchDetails()
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\x1b[0m\n"
         "\x1b[0;36mResearch Name  \x1b[0m : \x1b[0;33mGrog's revenge\x1b[0m\n"
-        "\x1b[0;33mThis is a description\x1b[0m\n"
-        "\x1b[0;33mLearning this costs 1 research points.\n"
+        "\x1b[0;33mThis is a description\n"
+        "\x1b[0m\x1b[0;33mLearning this costs 1 research points.\n"
         "\x1b[0m\x1b[0;36mResearch Type  \x1b[0m : \x1b[0;33mPassive\x1b[0m\n"
         "\x1b[0;36mScope          \x1b[0m : \x1b[0;33mSelf\x1b[0m\n"
         "\x1b[0;34;1m(+2)\x1b[0m \x1b[0;33mBonus Long sword\x1b[0m\n"

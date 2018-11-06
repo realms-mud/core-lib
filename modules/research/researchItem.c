@@ -269,6 +269,33 @@ private nomask string displayCost()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string displayAffectedResearch()
+{
+    string ret = "";
+
+    mapping affectedResearch = query("affected research");
+    if (mappingp(affectedResearch) && sizeof(affectedResearch))
+    {
+        string colorConfiguration = this_player() ?
+            this_player()->colorConfiguration() : "none";
+        object configuration = 
+            load_object("/lib/dictionaries/configurationDictionary.c");
+
+        foreach(string key in m_indices(affectedResearch))
+        {
+            ret += configuration->decorate(
+                sprintf("This research enhances '%s' by %s\n", key,
+                    configuration->decorate((affectedResearch[key] > 0) ?
+                        "+" + to_string(affectedResearch[key]) :
+                        to_string(affectedResearch[key]), "bonus modifier",
+                        "research", colorConfiguration)),
+                "bonus text", "research", colorConfiguration);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string displayExtraResearchInformation()
 {
     string ret = "";
@@ -282,6 +309,7 @@ private nomask string displayExtraResearchInformation()
                 capitalize(regreplace(bonus, "bonus (.+)", "\\1")));
         }
     }
+
     keys = query("penalties");
     if (sizeof(keys))
     {
@@ -292,6 +320,8 @@ private nomask string displayExtraResearchInformation()
                 capitalize(regreplace(penalty, "bonus (.+)", "\\1")));
         }
     }
+
+    ret += displayAffectedResearch();
     return ret;
 }
 
@@ -419,7 +449,7 @@ private nomask string displayEffectInformation()
 public nomask string researchDetails()
 {
     return sprintf(FieldDisplay, "Research Name", capitalize(query("name"))) +
-        sprintf(Value, query("description")) + "\n" +
+        sprintf(Value, format(query("description"), 78)) +
         displayCost() +
         sprintf(FieldDisplay, "Research Type", capitalize(query("type"))) +
         sprintf(FieldDisplay, "Scope", capitalize(query("scope"))) +

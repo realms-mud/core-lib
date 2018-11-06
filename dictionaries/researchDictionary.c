@@ -617,31 +617,6 @@ private nomask string bonusName(string bonus)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string displayResearchBonusesAndPenalties(object research)
-{
-    string ret = "";
-    string *keys = research->query("bonuses");
-    if (sizeof(keys))
-    {
-        foreach(string bonus in keys)
-        {
-            ret += sprintf("\x1b[0;34;1m(+%d)\x1b[0m \x1b[0;33mBonus %s\x1b[0m\n",
-                research->query(bonus), bonusName(bonus));
-        }
-    }
-    keys = research->query("penalties");
-    if (sizeof(keys))
-    {
-        foreach(string penalty in keys)
-        {
-            ret += sprintf("\x1b[0;31m(%d)\x1b[0m \x1b[0;33mPenalty to %s\x1b[0m\n",
-                research->query(penalty), bonusName(penalty));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask string getResearchDetails(string research)
 {
     string ret = "";

@@ -8,6 +8,20 @@ object Player;
 object Target;
 
 /////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    setRestoreCaller(this_object());
+    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    database->PrepDatabase();
+
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    dataAccess->savePlayerData(database->Gorthaur());
+
+    destruct(dataAccess);
+    destruct(database);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");

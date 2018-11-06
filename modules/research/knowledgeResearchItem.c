@@ -8,6 +8,50 @@
 virtual inherit "/lib/modules/research/researchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask int addSpecification(string type, mixed value)
+{
+    int ret = 0;
+
+    switch(type)
+    {
+        case "affected research":
+        {
+            if(mappingp(value))
+            {
+                int validModifier = 1;
+                foreach(mixed key in m_indices(value))
+                {
+                    validModifier &&= stringp(key) && intp(value[key]);
+                }
+                if(validModifier)
+                {
+                    researchData[type] = value;
+                    ret = 1;
+                }
+                else
+                {
+                    raise_error(sprintf("ERROR - knowledgeResearchItem: "
+                        "the '%s' specification must be a properly formatted "
+                        "modifier.\n" , type));
+                }                
+            }
+            else
+            {
+                raise_error(sprintf("ERROR - knowledgeResearchItem: "
+                    "the '%s' specification must be a properly formatted "
+                    "modifier.\n" , type));
+            }
+            break;
+        }      
+        default:
+        {
+            ret = "researchItem"::addSpecification(type, value);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)

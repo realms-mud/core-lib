@@ -2,31 +2,29 @@
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/sustainedResearchItem.c";
+inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
     {
-        sustainedResearchItem::reset(arg);
-        addSpecification("name", "Flame Blade");
+        passiveResearchItem::reset(arg);
+        addSpecification("name", "The Ox");
         addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "");
+        addSpecification("description", "This skill provides the user with the "
+            "knowledge of a basic defensive maneuver where the blade is "
+            "held to the side of the head, tip pointed at the foe's face.");
+        addSpecification("limited by", (["equipment":({
+            "long sword", "hand and a half sword", "two-handed sword" })]));
 
         addPrerequisite("lib/tutorial/guilds/scion/paths/sword/root.c",
-            (["type":"research"]));
-        addPrerequisite("lib/tutorial/guilds/scion/paths/flame.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("cooldown", 4);
-        addSpecification("spell point cost", 10);
-        addSpecification("stamina point cost", 50);
-        addSpecification("command template", "flame blade");
-        addSpecification("bonus fire attack", 3);
-        addSpecification("bonus resist fire", 3);
+        addSpecification("bonus defense", 1);
+        addSpecification("bonus parry", 2);
     }
 }
