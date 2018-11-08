@@ -31,5 +31,3 @@ void ResearchObjectReturnsObjectIfValid()
 {
     ExpectTrue(Dictionary->researchObject("/lib/modules/research/activeResearchItem.c"));
 }
-
-

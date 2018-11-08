@@ -25,7 +25,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/flame/sweepingFlames.c",
+                "research item": "lib/guilds/scion/paths/sword/flame/sweeping-flames.c",
                 "name" : "sweeping flames",
                 "formula" : "additive",
                 "base value" : 2,
@@ -33,7 +33,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/flame/flameBrand.c",
+                "research item": "lib/guilds/scion/paths/sword/flame/flame-brand.c",
                 "name" : "flame brand",
                 "formula" : "additive",
                 "base value" : 2,
@@ -41,7 +41,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/flame/searingBlade.c",
+                "research item": "lib/guilds/scion/paths/sword/flame/searing-blade.c",
                 "name" : "searing blade",
                 "formula" : "additive",
                 "base value" : 2,
@@ -49,7 +49,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/flame/flamingEdge.c",
+                "research item": "lib/guilds/scion/paths/sword/flame/flaming-edge.c",
                 "name" : "flaming edge",
                 "formula" : "additive",
                 "base value" : 2,
@@ -57,7 +57,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/flame/ferianthsPommel.c",
+                "research item": "lib/guilds/scion/paths/sword/flame/ferianths-pommel.c",
                 "name" : "Ferianth's Pommel",
                 "formula" : "additive",
                 "base value" : 5,

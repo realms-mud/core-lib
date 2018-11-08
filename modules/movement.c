@@ -103,4 +103,3 @@ public varargs nomask int move(string location, string direction)
     }
     return ret;
 }
-

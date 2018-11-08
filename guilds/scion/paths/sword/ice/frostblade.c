@@ -25,7 +25,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/spirit/sweepingFreeze.c",
+                "research item": "lib/guilds/scion/paths/sword/spirit/sweeping-freeze.c",
                 "name" : "sweeping freeze",
                 "formula" : "additive",
                 "base value" : 2,
@@ -33,7 +33,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/spirit/iceBrand.c",
+                "research item": "lib/guilds/scion/paths/sword/spirit/ice-brand.c",
                 "name" : "ice brand",
                 "formula" : "additive",
                 "base value" : 2,
@@ -41,7 +41,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/spirit/chillBlade.c",
+                "research item": "lib/guilds/scion/paths/sword/spirit/chill-blade.c",
                 "name" : "chill blade",
                 "formula" : "additive",
                 "base value" : 2,
@@ -49,7 +49,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/spirit/icyEdge.c",
+                "research item": "lib/guilds/scion/paths/sword/spirit/icy-edge.c",
                 "name" : "icy edge",
                 "formula" : "additive",
                 "base value" : 2,
@@ -57,7 +57,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/spirit/glaciersPommel.c",
+                "research item": "lib/guilds/scion/paths/sword/spirit/glaciers-pommel.c",
                 "name" : "Glacier's Pommel",
                 "formula" : "additive",
                 "base value" : 5,

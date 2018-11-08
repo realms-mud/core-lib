@@ -17,6 +17,51 @@ private void FirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void ThirdLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/ice/sweeping-freeze.c");
+
+    addChild("lib/guilds/scion/paths/sword/ice/sweeping-freeze.c",
+        "lib/guilds/scion/paths/sword/ice/frostblade.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SeventhLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/ice/ice-brand.c");
+
+    addChild("lib/guilds/scion/paths/sword/ice/ice-brand.c",
+        "lib/guilds/scion/paths/sword/ice/sweeping-freeze.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void EleventhLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/ice/chill-blade.c");
+
+    addChild("lib/guilds/scion/paths/sword/ice/chill-blade.c",
+        "lib/guilds/scion/paths/sword/ice/ice-brand.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FifteenthLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/ice/icy-edge.c");
+
+    addChild("lib/guilds/scion/paths/sword/ice/icy-edge.c",
+        "lib/guilds/scion/paths/sword/ice/chill-blade.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void TwentyFirstLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/ice/glaciers-pommel.c");
+
+    addChild("lib/guilds/scion/paths/sword/ice/glaciers-pommel.c",
+        "lib/guilds/scion/paths/sword/ice/icy-edge.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -31,5 +76,10 @@ public void reset(int arg)
         TreeRoot("lib/guilds/scion/paths/sword/ice/root.c");
 
         FirstLevel();
+        ThirdLevel();
+        SeventhLevel();
+        EleventhLevel();
+        FifteenthLevel();
+        TwentyFirstLevel();
     }
 }

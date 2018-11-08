@@ -17,6 +17,51 @@ private void FirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void ThirdLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/blood/sweeping-torment.c");
+
+    addChild("lib/guilds/scion/paths/sword/blood/sweeping-torment.c",
+        "lib/guilds/scion/paths/sword/blood/soulblade.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SeventhLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/blood/soul-brand.c");
+
+    addChild("lib/guilds/scion/paths/sword/blood/soul-brand.c",
+        "lib/guilds/scion/paths/sword/blood/sweeping-torment.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void EleventhLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/blood/scourge-blade.c");
+
+    addChild("lib/guilds/scion/paths/sword/blood/scourge-blade.c",
+        "lib/guilds/scion/paths/sword/blood/soul-brand.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FifteenthLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/blood/wicked-edge.c");
+
+    addChild("lib/guilds/scion/paths/sword/blood/wicked-edge.c",
+        "lib/guilds/scion/paths/sword/blood/scourge-blade.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void TwentyFirstLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/blood/tortured-pommel.c");
+
+    addChild("lib/guilds/scion/paths/sword/blood/tortured-pommel.c",
+        "lib/guilds/scion/paths/sword/blood/wicked-edge.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -31,5 +76,10 @@ public void reset(int arg)
         TreeRoot("lib/guilds/scion/paths/sword/blood/root.c");
 
         FirstLevel();
+        ThirdLevel();
+        SeventhLevel();
+        EleventhLevel();
+        FifteenthLevel();
+        TwentyFirstLevel();
     }
 }

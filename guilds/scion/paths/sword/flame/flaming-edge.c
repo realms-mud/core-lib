@@ -10,17 +10,17 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Sweeping Flames");
+        addSpecification("name", "Flaming Edge");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of the sweeping flames technique. This form enhances "
+            "knowledge of the flaming edge technique. This form enhances "
             "the scion's flameblade.");
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 3 ]));
-        addPrerequisite("lib/guilds/scion/paths/sword/flame/flameblade.c",
+        addPrerequisite("level",
+            (["type":"level",
+                "guild" : "Scion of Dhuras",
+                "value" : 15]));
+        addPrerequisite("lib/guilds/scion/paths/sword/flame/searing-blade.c",
             (["type":"research"]));
 
         addSpecification("limited by", (["equipment":({

@@ -363,5 +363,3 @@ void StrengthOfFiveIsAValidBonusModifier()
 {
     ExpectTrue(Dictionary->isValidBonusModifier("strength", 5), "Strength of 5 is a valid bonus modifier");
 }
-
-

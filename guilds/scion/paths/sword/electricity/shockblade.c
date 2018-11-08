@@ -25,7 +25,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/sweepingFlames.c",
+                "research item": "lib/guilds/scion/paths/sword/electricity/sweeping-shock.c",
                 "name" : "sweeping flames",
                 "formula" : "additive",
                 "base value" : 2,
@@ -33,7 +33,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/flameBrand.c",
+                "research item": "lib/guilds/scion/paths/sword/electricity/shock-brand.c",
                 "name" : "flame brand",
                 "formula" : "additive",
                 "base value" : 2,
@@ -41,7 +41,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/searingBlade.c",
+                "research item": "lib/guilds/scion/paths/sword/electricity/energized-blade.c",
                 "name" : "searing blade",
                 "formula" : "additive",
                 "base value" : 2,
@@ -49,7 +49,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/flamingEdge.c",
+                "research item": "lib/guilds/scion/paths/sword/electricity/shocking-edge.c",
                 "name" : "flaming edge",
                 "formula" : "additive",
                 "base value" : 2,
@@ -57,8 +57,8 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/ferianthsPommel.c",
-                "name" : "Ferianth's Pommel",
+                "research item": "lib/guilds/scion/paths/sword/electricity/thunders-pommel.c",
+                "name" : "Thunder's Pommel",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0

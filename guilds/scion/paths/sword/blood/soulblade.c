@@ -25,7 +25,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/blood/sweepingTorment.c",
+                "research item": "lib/guilds/scion/paths/sword/blood/sweeping-torment.c",
                 "name" : "sweeping torment",
                 "formula" : "additive",
                 "base value" : 2,
@@ -33,7 +33,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/blood/soulBrand.c",
+                "research item": "lib/guilds/scion/paths/sword/blood/soul-brand.c",
                 "name" : "soul brand",
                 "formula" : "additive",
                 "base value" : 2,
@@ -41,7 +41,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/blood/scourgeBlade.c",
+                "research item": "lib/guilds/scion/paths/sword/blood/scourge-blade.c",
                 "name" : "scourge blade",
                 "formula" : "additive",
                 "base value" : 2,
@@ -49,7 +49,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/blood/wickedEdge.c",
+                "research item": "lib/guilds/scion/paths/sword/blood/wicked-edge.c",
                 "name" : "wicked edge",
                 "formula" : "additive",
                 "base value" : 2,
@@ -57,7 +57,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/blood/torturedPommel.c",
+                "research item": "lib/guilds/scion/paths/sword/blood/tortured-pommel.c",
                 "name" : "tortured pommel",
                 "formula" : "additive",
                 "base value" : 5,

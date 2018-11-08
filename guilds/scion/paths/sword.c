@@ -17,6 +17,42 @@ private void FirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void SecondLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/forms/the-ox.c");
+
+    addChild("lib/guilds/scion/paths/sword/forms/the-ox.c",
+        "lib/guilds/scion/paths/sword/forms/from-the-roof.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FourthLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/forms/the-plough.c");
+
+    addChild("lib/guilds/scion/paths/sword/forms/the-plough.c",
+        "lib/guilds/scion/paths/sword/forms/the-ox.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SixthLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/forms/the-fool.c");
+
+    addChild("lib/guilds/scion/paths/sword/forms/the-fool.c",
+        "lib/guilds/scion/paths/sword/forms/the-plough.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void EighthLevel()
+{
+    addResearchElement("lib/guilds/scion/paths/sword/forms/hanging-parry.c");
+
+    addChild("lib/guilds/scion/paths/sword/forms/hanging-parry.c",
+        "lib/guilds/scion/paths/sword/forms/the-fool.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -29,5 +65,9 @@ public void reset(int arg)
         TreeRoot("lib/guilds/scion/paths/sword/root.c");
 
         FirstLevel();
+        SecondLevel();
+        FourthLevel();
+        SixthLevel();
+        EighthLevel();
     }
 }

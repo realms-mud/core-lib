@@ -1376,5 +1376,3 @@ void CanAdvanceSkillReturnsCorrectly()
     ExpectTrue(Dictionary->canAdvanceSkill(skillOwner, "dodge", 10), "can advance when skill lower than attribute");
     ExpectFalse(Dictionary->canAdvanceSkill(skillOwner, "dodge", 31), "cannot advance when skill higher than attribute+10");
 }
-
-

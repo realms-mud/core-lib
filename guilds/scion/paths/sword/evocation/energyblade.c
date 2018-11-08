@@ -25,7 +25,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/evocation/sweepingBlast.c",
+                "research item": "lib/guilds/scion/paths/sword/evocation/sweeping-blast.c",
                 "name" : "sweeping flames",
                 "formula" : "additive",
                 "base value" : 2,
@@ -33,7 +33,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/evocation/energyBrand.c",
+                "research item": "lib/guilds/scion/paths/sword/evocation/energy-brand.c",
                 "name" : "flame brand",
                 "formula" : "additive",
                 "base value" : 2,
@@ -41,7 +41,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/evocation/scintilatingBlade.c",
+                "research item": "lib/guilds/scion/paths/sword/evocation/scintillating-blade.c",
                 "name" : "scintilating blade",
                 "formula" : "additive",
                 "base value" : 2,
@@ -49,7 +49,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/evocation/magicalEdge.c",
+                "research item": "lib/guilds/scion/paths/sword/evocation/magical-edge.c",
                 "name" : "magical edge",
                 "formula" : "additive",
                 "base value" : 2,
@@ -57,7 +57,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/evocation/dhurassPommel.c",
+                "research item": "lib/guilds/scion/paths/sword/evocation/dhurass-pommel.c",
                 "name" : "Dhuras's Pommel",
                 "formula" : "additive",
                 "base value" : 5,
