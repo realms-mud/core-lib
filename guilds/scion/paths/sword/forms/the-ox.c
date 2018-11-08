@@ -18,6 +18,11 @@ public void reset(int arg)
         addSpecification("limited by", (["equipment":({
             "long sword", "hand and a half sword", "two-handed sword" })]));
 
+        addPrerequisite("level", 
+            (["type":"level", 
+              "guild": "Scion of Dhuras",
+              "value": 3 ]));
+
         addPrerequisite("lib/guilds/scion/paths/sword/forms/from-the-roof.c",
             (["type":"research"]));
 

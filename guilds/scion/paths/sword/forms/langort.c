@@ -10,11 +10,12 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "The Hanging Parry");
+        addSpecification("name", "Langort");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of a defensive maneuver while in the fool guard wherein "
-            "the hilt of the sword is quickly raised into a parry.");
+            "knowledge of an offensive maneuver feigning a defensive stance "
+            "where the blade is held to the side of the head, tip pointed at "
+            "the foe's face.");
         addSpecification("limited by", (["equipment":({
             "long sword", "hand and a half sword", "two-handed sword" })]));
 
@@ -29,6 +30,7 @@ public void reset(int arg)
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("bonus parry", 2);
+        addSpecification("bonus defense", 1);
+        addSpecification("bonus attack", 1);
     }
 }
