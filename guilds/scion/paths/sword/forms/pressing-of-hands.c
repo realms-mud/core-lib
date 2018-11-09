@@ -10,22 +10,22 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "The Fool");
+        addSpecification("name", "Pressing of Hands");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of an offensive maneuver where the blade is "
-            "lowered toward the ground, appearing to expose the upper body to "
-            "an attack. It provides excellent lower defense and opens up a series "
-            "of vicious counter-attacks.");
+            "knowledge of an advanced technique wherein the combatant first "
+            "executes and undercut and then an overcut on an opponent's "
+            "hands such that the wrists are sliced all the way around.");
+
         addSpecification("limited by", (["equipment":({
             "long sword", "hand and a half sword", "two-handed sword" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 6 ]));
+              "value": 30 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/sword/forms/the-plough.c",
+        addPrerequisite("lib/guilds/scion/paths/sword/forms/changing-through.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
@@ -34,6 +34,6 @@ public void reset(int arg)
         addSpecification("bonus long sword", 1);
         addSpecification("bonus hand and a half sword", 1);
         addSpecification("bonus two-handed sword", 1);
-        addSpecification("bonus defense", 1);
+        addSpecification("bonus attack", 4);
     }
 }

@@ -10,30 +10,31 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "The Fool");
+        addSpecification("name", "Off-setting");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of an offensive maneuver where the blade is "
-            "lowered toward the ground, appearing to expose the upper body to "
-            "an attack. It provides excellent lower defense and opens up a series "
-            "of vicious counter-attacks.");
+            "knowledge of a maneuver wherein a hew or thrust is "
+            "deflected at the same time as a counter-stab is initiated.");
+        
         addSpecification("limited by", (["equipment":({
             "long sword", "hand and a half sword", "two-handed sword" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 6 ]));
+              "value": 17 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/sword/forms/the-plough.c",
+        addPrerequisite("lib/guilds/scion/paths/sword/forms/stabbing.c",
+            (["type":"research"]));
+        addPrerequisite("lib/guilds/scion/paths/sword/forms/over-hew.c",
+            (["type":"research"]));
+        addPrerequisite("lib/guilds/scion/paths/sword/forms/dance-of-death.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("bonus long sword", 1);
-        addSpecification("bonus hand and a half sword", 1);
-        addSpecification("bonus two-handed sword", 1);
-        addSpecification("bonus defense", 1);
+        addSpecification("bonus dodge", 4);
+        addSpecification("bonus attack", 1);
     }
 }

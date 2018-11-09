@@ -34,6 +34,6 @@ public void reset(int arg)
         addSpecification("bonus long sword", 1);
         addSpecification("bonus hand and a half sword", 1);
         addSpecification("bonus two-handed sword", 1);
-        addSpecification("bonus attack", 3);
+        addSpecification("bonus attack", 2);
     }
 }

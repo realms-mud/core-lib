@@ -25,6 +25,8 @@ public void reset(int arg)
 
         addPrerequisite("lib/guilds/scion/paths/sword/forms/the-boar.c",
             (["type":"research"]));
+        addPrerequisite("lib/guilds/scion/paths/sword/forms/thrusting.c",
+            (["type":"research"]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");

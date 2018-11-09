@@ -27,6 +27,8 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 20 ]));
 
+        addPrerequisite("lib/guilds/scion/paths/sword/forms/thrusting.c",
+            (["type":"research"]));
         addPrerequisite("lib/guilds/scion/paths/sword/forms/langort.c",
             (["type":"research"]));
         addPrerequisite("lib/guilds/scion/paths/sword/forms/over-hew.c",
