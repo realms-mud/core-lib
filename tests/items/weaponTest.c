@@ -312,7 +312,7 @@ void CanDamageEtherealReturnsFalseIfEnchantmentCannotDamageEthereal()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void EnchantmentsAddItemResearchAndTraitEnchantments()
+void EnchantmentsAddModifiersItemResearchAndTraitEnchantments()
 {
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
     player->Str(20);
@@ -341,5 +341,14 @@ void EnchantmentsAddItemResearchAndTraitEnchantments()
     ExpectEq((["fire":12, "chaos" : 1, "magical" : 2, "electricity" : 10]),
         Weapon->query("enchantments"));
 
+    object modifier = clone_object("/lib/items/modifierObject");
+    modifier->set("fully qualified name", "blah");
+    modifier->set("bonus fire enchantment", 3);
+    modifier->set("bonus crafting air enchantment", 3);
+    ExpectEq(1, modifier->set("registration list", ({ player })), "registration list can be set");
+    ExpectEq((["fire":15, "chaos" : 1, "magical" : 2, "electricity" : 10]),
+        Weapon->query("enchantments"));
+
+    destruct(modifier);
     destruct(player);
 }

@@ -478,6 +478,16 @@ public nomask int registerObjectAsInventory(object item)
     if(ret)
     {
         m_delete(inventoryCache["totals"], "enchantments");
+        object *equippedItems = equippedByMask(AllWielded);
+        foreach(object equippedItem in equippedItems)
+        {
+            string key = object_name(equippedItem);
+            if (member(inventoryCache, key) &&
+                member(inventoryCache[key], "enchantments"))
+            {
+                m_delete(inventoryCache[key], "enchantments");
+            }
+        }
         addItemToCache(item);
 
         if(item->query("register event handler"))
@@ -618,7 +628,8 @@ public nomask int inventoryGetDefenseBonus(string damageType)
 private nomask int getSkillPenalty(object item)
 {
     string itemKey = object_name(item);
-    return member(inventoryCache[itemKey], "skill penalty") ?
+    return (member(inventoryCache, itemKey) &&
+        member(inventoryCache[itemKey], "skill penalty")) ?
         inventoryCache[itemKey]["skill penalty"] :
         addValueToCache(item, "skill penalty", item->query("skill penalty"));
 }

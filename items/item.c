@@ -100,7 +100,8 @@ protected nomask int isValidBonus(string bonus, int amount)
     return ret;
 }
   
-private mapping addServiceEnchantments(mapping enchantments, string service)
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping addServiceEnchantments(mapping enchantments, string service)
 {
     mapping ret = enchantments ? enchantments + ([]) : ([]);
     object user = environment();
@@ -122,6 +123,48 @@ private mapping addServiceEnchantments(mapping enchantments, string service)
                 else
                 {
                     ret[key] += itemEnchantments[key];
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getModifierEnchantments(mapping enchantments)
+{
+    mapping ret = enchantments ? enchantments + ([]) : ([]);
+    object user = environment();
+    if (user)
+    {
+        object *modifiers = user->registeredInventoryObjects();
+        if (sizeof(modifiers))
+        {
+            foreach(object modifier in modifiers)
+            {
+                string *bonuses = modifier->query("bonuses");
+                if (sizeof(bonuses))
+                {
+                    bonuses = filter(bonuses,
+                        (: !sizeof(regexp(({ $1 }) , "crafting")) &&
+                            sizeof(regexp(({ $1 }), 
+                                "bonus [^ ]+ enchantment$")) :));
+                    if (sizeof(bonuses))
+                    {
+                        foreach(string bonus in bonuses)
+                        {
+                            string enchantment = regreplace(bonus,
+                                "bonus ([^ ]+) enchantment$", "\\1");
+                            if (!member(ret, enchantment))
+                            {
+                                ret[enchantment] = modifier->query(bonus);
+                            }
+                            else
+                            {
+                                ret[enchantment] += modifier->query(bonus);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -199,7 +242,9 @@ public mixed query(string element)
             {
                 ret = addServiceEnchantments(
                     addServiceEnchantments(
-                        itemData["enchantments"], "research"), "traits");
+                        getModifierEnchantments(itemData["enchantments"]), 
+                        "research"), "traits");
+               
                 break;
             }
             case "all":
