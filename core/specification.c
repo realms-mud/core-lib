@@ -238,6 +238,7 @@ protected int blockSkillApplication(string skill, object owner, object target)
 public nomask varargs int canApplySkill(string skill, object owner, object target, int verbose)
 {
     int ret = 1;
+    notify_fail("");
 
     if (member(researchData, "limited by") && owner && objectp(owner))
     {
@@ -375,7 +376,9 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
             if (!ret && verbose)
             {
                 printf("You must be using the proper equipment for that (%s).\n",
-                    researchData["limited by"]["equipment"]);
+                    stringp(researchData["limited by"]["equipment"]) ? 
+                        researchData["limited by"]["equipment"] :
+                        implode(researchData["limited by"]["equipment"], ", "));
             }
         }
     }

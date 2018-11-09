@@ -381,6 +381,23 @@ void CanApplySkillReturnsFalseWithLimitorForWeaponNotMet()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanApplySkillReturnsFalseWithMultipleLimitorForWeaponNotMet()
+{
+    mapping limitor = (["equipment":({ "long sword", "short sword" })]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "axe");
+    weapon->set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Attacker);
+
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanApplySkillReturnsTrueWithLimitorForArmor()
 {
     mapping limitor = (["equipment":"chainmail"]);
