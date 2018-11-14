@@ -176,7 +176,7 @@ public nomask varargs int addExperience(int amount, string selectedGuild)
         {
             // Since to_int truncates, the 0.5 is added to handle rounding issues.
             addExperienceToGuild(to_int(0.5 + amount *
-                (guildLevel(guild) / guildLevels)), guild);
+                (guildLevel(guild) / (guildLevels > 0 ? guildLevels : 1))), guild);
         }
         ret = amount;
     }

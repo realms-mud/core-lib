@@ -36,7 +36,7 @@ public void SetupGuild()
     ]));
     addCriteria("attribute points", ([
         "type":"attribute points",
-            "apply" : "1 every 5 levels"
+        "apply": "1 every 5 levels"
     ]));
     addCriteria("skill points", ([
         "type":"skill points",
@@ -65,9 +65,9 @@ public void SetupGuild()
             "lib/guilds/scion/paths/staff.c" })
     ]));
 
-    addCriteria("magical path", ([
+    addCriteria("magical sword path", ([
         "type": "research choice",
-        "name": "The Path",
+        "name": "The Path (Sword)",
         "description": "Choose your magical path",
         "apply": "at level 1",
         "apply if chosen": ({ "lib/guilds/scion/paths/sword.c" }),
@@ -77,5 +77,19 @@ public void SetupGuild()
             "lib/guilds/scion/paths/sword/blood.c",
             "lib/guilds/scion/paths/sword/evocation.c",
             "lib/guilds/scion/paths/sword/spirit.c" })
-    ]));
+    ])); 
+
+    addCriteria("magical axe path", ([
+        "type": "research choice",
+        "name": "The Path (Axe)",
+        "description": "Choose your magical path",
+        "apply": "at level 1",
+        "apply if chosen": ({ "lib/guilds/scion/paths/axe.c" }),
+        "research objects": ({ "lib/guilds/scion/paths/axe/flame.c",
+            "lib/guilds/scion/paths/axe/electricity.c",
+            "lib/guilds/scion/paths/axe/ice.c",
+            "lib/guilds/scion/paths/axe/blood.c",
+            "lib/guilds/scion/paths/axe/evocation.c",
+            "lib/guilds/scion/paths/axe/spirit.c" })
+    ])); 
 }

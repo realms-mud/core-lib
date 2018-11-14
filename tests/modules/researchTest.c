@@ -627,6 +627,7 @@ void AddResearchChoiceHandlesResearchPath()
             "type" : "research tree",
             "name" : "tree of guild researchiness",
             "description" : "this is the land-loving mother pigeon of all research trees",
+            "obsoletes": ({ "lib/tests/support/research/testSecondResearchTree.c" }),
             "key" : "lib/tests/support/guilds/testGuildResearchTree.c"
         ]),
         "2": ([
@@ -634,6 +635,7 @@ void AddResearchChoiceHandlesResearchPath()
             "type" : "research tree",
             "name" : "tree of guild researchiness",
             "description" : "this is the land-loving mother pigeon of all research trees",
+            "obsoletes": ({ "lib/tests/support/guilds/testGuildResearchTree.c" }),
             "key" : "lib/tests/support/research/testSecondResearchTree.c"
         ])
     ]);
@@ -645,7 +647,7 @@ void AddResearchChoiceHandlesResearchPath()
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchChoiceDoesNotAddResearchWhithoutChoiceSetUp()
 {
-    ExpectFalse(Research->selectResearchChoice("lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name"));
+    ExpectFalse(Research->selectResearchChoice("lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name", "1"));
     ExpectFalse(Research->isResearched("lib/tests/support/research/testLimitedActiveResearchItem.c"));
 }
 
@@ -665,7 +667,7 @@ void SelectResearchChoiceFiresCorrectEvent()
     ExpectTrue(Research->addResearchChoice(researchChoice));
 
     Research->registerEvent(clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c"));
-    string err = catch (Research->selectResearchChoice("lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name"));
+    string err = catch (Research->selectResearchChoice("lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name", "1"));
     string expectedError = "*event handler: onResearchChoiceChosen called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -688,7 +690,7 @@ void SelectResearchPathSelectsCorrectResearchTree()
     ExpectTrue(Research->addResearchChoice(researchChoice));
     ExpectFalse(Research->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"));
     ExpectFalse(member(Research->availableResearchTrees(), "lib/tests/support/research/testSecondResearchTree.c") > -1);
-    ExpectTrue(Research->selectResearchPath("lib/tests/support/research/testSecondResearchTree.c", "Test name"));
+    ExpectTrue(Research->selectResearchPath("lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
     ExpectTrue(Research->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"));
     ExpectTrue(member(Research->availableResearchTrees(), "lib/tests/support/research/testSecondResearchTree.c") > -1);
 }
@@ -710,7 +712,7 @@ void SelectResearchPathFiresCorrectEvent()
     ExpectTrue(Research->addResearchChoice(researchChoice));
 
     Research->registerEvent(clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c"));
-    string err = catch (Research->selectResearchPath("lib/tests/support/research/testSecondResearchTree.c", "Test name"));
+    string err = catch (Research->selectResearchPath("lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
     string expectedError = "*event handler: onResearchPathChosen called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -720,7 +722,7 @@ void SelectResearchPathFiresCorrectEvent()
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchPathDoesNotAddResearchWhithoutChoiceSetUp()
 {
-    ExpectFalse(Research->selectResearchChoice("lib/tests/support/research/testSecondResearchTree.c", "Test name"));
+    ExpectFalse(Research->selectResearchChoice("lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
     ExpectFalse(Research->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"));
 }
 

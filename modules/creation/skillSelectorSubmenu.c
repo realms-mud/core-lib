@@ -5,7 +5,16 @@
 inherit "/lib/core/baseSelector.c";
 
 protected object SkillDictionary;
-private string ChosenSkill = 0;
+private string *ChosenSkills = ({});
+private int isLevelAdvance = 0;
+private int PossibleSkills = 0;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void advanceLevel(int numSelections)
+{
+    isLevelAdvance = 1;
+    PossibleSkills = numSelections;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 protected mapping skillMenuSetup()
@@ -31,8 +40,17 @@ public nomask void reset(int arg)
 
         Data[to_string(sizeof(Data) + 1)] = ([
             "name":"Return to previous menu",
-                "description" : "Return to the main skill selection menu.\n"
+            "description" : "Return to the main skill selection menu.\n"
         ]);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setUpUserForSelection()
+{
+    if (isLevelAdvance)
+    {
+        Type = "Level up";
     }
 }
 
@@ -42,10 +60,21 @@ protected nomask int processSelection(string selection)
     int ret = 1;
     if (Data[selection]["name"] != "Return to previous menu")
     {
-        ChosenSkill = lower_case(Data[selection]["name"]);
-        if (!User->getSkill(ChosenSkill, 1))
+        string chosenSkill = lower_case(Data[selection]["skill"]);
+        if (isLevelAdvance && (PossibleSkills > 0))
         {
-            ret = User->advanceSkill(ChosenSkill, 1) ? 1 : -1;
+            PossibleSkills--;
+            User->advanceSkill(chosenSkill, 1);
+            ChosenSkills += ({ chosenSkill });
+            ret = (PossibleSkills <= 0);
+        }
+        else if (!User->getSkill(chosenSkill, 1))
+        {
+            ret = User->advanceSkill(chosenSkill, 1) ? 1 : -1;
+            if (ret == 1)
+            {
+                ChosenSkills += ({ chosenSkill });
+            }
         }
         else
         {
@@ -56,9 +85,9 @@ protected nomask int processSelection(string selection)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string selection()
+public nomask string *selection()
 {
-    return ChosenSkill;
+    return ChosenSkills + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -66,9 +95,16 @@ protected nomask string displayDetails(string choice)
 {
     string ret = "";
 
-    if (User->getSkill(lower_case(Data[choice]["name"]), 1))
+    int skillLevel = User->getSkill(lower_case(Data[choice]["skill"]), 1);
+    if (isLevelAdvance && skillLevel)
     {
-        ret = "\x1b[0;34;1m(*)\x1b[0m";
+        ret = configuration->decorate(sprintf("(%2d)", skillLevel),
+            "selected", "selector", colorConfiguration);
+    }
+    else if (skillLevel)
+    {
+        ret = configuration->decorate("(*)",
+            "selected", "selector", colorConfiguration);
     }
     return ret;
 }
@@ -76,6 +112,25 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return "You may only select a skill once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1m"
-        "denotes an already-chosen skill.\n";
+    string extraInfo = "";
+    if (!isLevelAdvance)
+    {
+        extraInfo =
+            configuration->decorate("You may only select a skill once. ",
+                "instructions", "selector", colorConfiguration) +
+            configuration->decorate("(*)", "selected", "selector",
+                colorConfiguration) +
+            configuration->decorate(" denotes an already-chosen skill.\n",
+                "instructions", "selector", colorConfiguration);
+    }
+    else
+    {
+        extraInfo = 
+            configuration->decorate("(##)", "selected", "selector",
+                colorConfiguration) +
+            configuration->decorate(sprintf(" denotes current skill level. "
+                "You have %d points to spend.\n", PossibleSkills),
+                "instructions", "selector", colorConfiguration); 
+    }
+    return extraInfo;
 }

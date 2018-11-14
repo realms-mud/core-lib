@@ -277,6 +277,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;20;1m",
             "24-bit": "\x1b[0;38;2;0;0;220;1m"
         ]),
+        "blocked":([
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;9;1m",
+            "24-bit": "\x1b[0;38;2;220;40;0;1m"
+        ]),
         "information":([
             "3-bit": "\x1b[0;35;1m",
             "8-bit": "\x1b[0;38;5;20;1m",

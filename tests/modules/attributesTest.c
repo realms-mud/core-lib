@@ -386,9 +386,9 @@ void SpendAttributesFailsWhenAdvancementExceedsLevelForLevelGreaterThan10()
     Attributes = clone_object("/lib/realizations/monster.c");
 
     Attributes->effectiveLevel(16);
-    ExpectEq(15, Attributes->Chr(15), "initial charisma is 15");
+    ExpectEq(25, Attributes->Chr(25), "initial charisma is 25");
 
     ExpectEq(2, Attributes->addAttributePointsToSpend(2));
     ExpectFalse(Attributes->spendAttributePoints("charisma", 2), "spendAttributePoints fails");
-    ExpectEq(15, Attributes->Chr(), "charisma is still 15");
+    ExpectEq(25, Attributes->Chr(), "charisma is still 25");
 }

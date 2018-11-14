@@ -4,12 +4,19 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
+private int isLevelAdvance = 0;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void advanceLevel()
+{
+    isLevelAdvance = 1;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
     if(!arg)
     {
-        Description = "Choose your starting attributes";
         Data = ([
             "1":([
                 "name": "Strength",
@@ -89,6 +96,14 @@ protected nomask void setUpUserForSelection()
         User->Chr(2);
         User->addAttributePointsToSpend(18);
     }
+
+    Description = isLevelAdvance ? "Advance your attributes" :
+        "Choose your starting attributes";
+
+    if (isLevelAdvance)
+    {
+        Type = "Level up";
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -102,18 +117,21 @@ protected nomask string additionalInstructions()
 protected nomask string displayDetails(string choice)
 {
     int attributeValue = User->attributeValue(lower_case(Data[choice]["name"]), 1);
+    int max = 9 + User->effectiveLevel();
 
-    return sprintf("\x1b[0;%d;1m(current %s is %s%d)\x1b[0m",
-        ((attributeValue >= 10) ? 31 : 35),
+    return configuration->decorate(sprintf("(current %s is %s%d)",
         Data[choice]["name"][0..2],
-        ((attributeValue >= 10) ? "at maximum of " : ""),
-        attributeValue);
+        ((attributeValue >= max) ? "at maximum of " : ""),
+        attributeValue),
+        ((attributeValue >= max) ? "blocked" : "selected"),
+        "selector", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int processSelection(string selection)
 {
     int ret = -1;
+
     if (User)
     {
         if (User->spendAttributePoints(lower_case(Data[selection]["name"]), 1))

@@ -752,14 +752,9 @@ private nomask int applyResearchChoiceCriterion(mapping criterion, object guildM
 {
     int ret = 0;
     if(guildMember->has("research") && member(criterion, "research objects") &&
-        pointerp(criterion["research objects"]) && getDictionary("research") &&
-        checkApplyIfChosenCriteria(criterion, guildMember))
+        pointerp(criterion["research objects"]) && getDictionary("research"))
     {
         ret = 1;
-        object chooser = clone_object("/lib/modules/guilds/researchChooser.c");
-        chooser->setResearchTitle(criterion["name"]);
-        guildMember->registerEvent(chooser);
-        move_object(chooser, guildMember);
         guildMember->addResearchChoice(criterion);
     }
     return ret;

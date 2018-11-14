@@ -7,6 +7,13 @@ inherit "/lib/core/baseSelector.c";
 private int TotalSkills;
 private string *UndoDetails = ({ });
 private object SubselectorObj;
+private int isLevelAdvance = 0;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void advanceLevel()
+{
+    isLevelAdvance = 1;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
@@ -62,12 +69,23 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object racialDictionary = load_object("/lib/dictionaries/racialDictionary.c");
+    Description = isLevelAdvance ? "Advance your skills" :
+        "Choose a class of skills to advance";
 
-    TotalSkills = (User->Int() / 2) +
-        racialDictionary->startingSkillPoints(User->Race());
+    if (isLevelAdvance)
+    {
+        Type = "Level up";
+        TotalSkills = User->AvailableSkillPoints();
+    }
+    else
+    {
+        object racialDictionary = load_object("/lib/dictionaries/racialDictionary.c");
 
-    User->addSkillPoints(TotalSkills * 2);
+        TotalSkills = (User->Int() / 2) +
+            racialDictionary->startingSkillPoints(User->Race());
+
+        User->addSkillPoints(TotalSkills * 2);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -89,6 +107,11 @@ protected nomask int processSelection(string selection)
                 lower_case(Data[selection]["name"]));
 
             SubselectorObj = clone_object(selector);
+
+            if (isLevelAdvance)
+            {
+                SubselectorObj->advanceLevel(TotalSkills);
+            }
             move_object(SubselectorObj, User);
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->initiateSelector(User);
@@ -102,8 +125,8 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (caller->selection())
     {
-        UndoDetails += ({ caller->selection() });
-        TotalSkills--;
+        UndoDetails += caller->selection();
+        TotalSkills -= sizeof(caller->selection());
     }
 
     if (TotalSkills)

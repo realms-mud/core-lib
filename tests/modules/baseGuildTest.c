@@ -774,9 +774,24 @@ void ResearchChoiceCriteriaAppliedCorrectly()
     ExpectTrue(Guild->testAddCriteria("research choice", criteria), "criteria added");
     Guild->guildName("mage");
 
-    ExpectEq(({}), all_inventory(User));
+    ExpectEq(([]), User->getResearchChoices());
     ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
-    ExpectEq(({ "lib/modules/guilds/researchChooser.c"}), all_inventory(User));
+    ExpectEq(([ "blah": ([ 
+        "1": ([ 
+            "choice": "blah", 
+            "description": "This is limited active research", 
+            "key": "lib/tests/support/research/testLimitedActiveResearchItem.c", 
+            "name": "Active research", 
+            "type": "research object"
+        ]), 
+        "2": ([ 
+            "choice": "blah", 
+            "description": "This is granted research", 
+            "key": "lib/tests/support/research/testGrantedResearchItem.c", 
+            "name": "Granted research", 
+            "type": "research object"
+        ])
+    ])]), User->getResearchChoices());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -797,9 +812,26 @@ void ResearchPathCriteriaAppliedCorrectly()
     ExpectTrue(Guild->testAddCriteria("research choice", criteria), "criteria added");
     Guild->guildName("mage");
 
-    ExpectEq(({}), all_inventory(User));
+    ExpectEq(([]), User->getResearchChoices());
     ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
-    ExpectEq(({ "lib/modules/guilds/researchChooser.c"}), all_inventory(User));
+    ExpectEq(([ "blah": ([ 
+        "1": ([ 
+            "choice": "blah", 
+            "description": "this is the land-loving mother pigeon of all research trees", 
+            "key": "lib/tests/support/guilds/testGuildResearchTree.c", 
+            "name": "tree of guild researchiness",
+            "obsoletes": ({ "lib/tests/support/research/testSecondResearchTree.c" }),
+            "type": "research tree"
+        ]), 
+        "2": ([ 
+            "choice": "blah", 
+            "description": "this is the land-loving mother pigeon of all research trees", 
+            "key": "lib/tests/support/research/testSecondResearchTree.c", 
+            "name": "tree of guild researchiness", 
+            "obsoletes": ({ "lib/tests/support/guilds/testGuildResearchTree.c" }),
+            "type": "research tree"
+        ])
+    ])]), User->getResearchChoices());
 }
 
 /////////////////////////////////////////////////////////////////////////////

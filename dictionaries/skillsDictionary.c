@@ -1398,9 +1398,16 @@ public nomask mapping creationListForSkillType(string type)
                     capitalize(skills[skill]["attribute"]));
 
             int penalty = skills[skill]["untrained penalty"];
+
+            string name = capitalize(skill);
+            if (sizeof(name) > 20)
+            {
+                name = name[0..16] + "...";
+            }
             ret[to_string(i)] = ([
-                "name":capitalize(skill),
-                    "description" : skills[skill]["description"] + "\x1b[0m" +
+                "name": name,
+                "skill": skill,
+                "description": skills[skill]["description"] + "\x1b[0m" +
                     attribute +
                     (penalty ? "\t\x1b[0;31;1mAttempting to use this skill untrained will incur a penalty.\n" : "")
             ]);

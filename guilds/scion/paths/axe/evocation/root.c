@@ -10,10 +10,16 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addPrerequisite("long sword", (["type":"skill", "value" : 10]));
-        addSpecification("name", "Spiffy guild tree root");
+        addSpecification("name", "The Power");
+        addSpecification("source", "Scion of Dhuras Guild");
+        addSpecification("description", "This skill provides the user with the"
+            " knowledge to express their raw magical energy as pure magical "
+            "essence given form.");
+
+        addSpecification("limited by", (["equipment":({ "axe" })]));
+
         addSpecification("scope", "self");
         addSpecification("research type", "tree root");
-        addSpecification("bonus long sword", 2);
+        addSpecification("bonus magical essence", 1);
     }
 }

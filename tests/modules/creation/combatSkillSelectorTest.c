@@ -40,7 +40,7 @@ void InitialCreationDisplayIsCorrect()
         "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mDual wield          \x1b[0m\n"
         "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mFlail               \x1b[0m"
         "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mHammer              \x1b[0m\n"
-        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mHand and a half sword\x1b[0m"
+        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mHand and a half s...\x1b[0m"
         "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mHard leather        \x1b[0m\n"
         "\t[\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mLong sword          \x1b[0m"
         "\t[\x1b[0;31;1m14\x1b[0m] - \x1b[0;32mMace                \x1b[0m\n"
@@ -61,7 +61,7 @@ void InitialCreationDisplayIsCorrect()
         "\t[\x1b[0;31;1m29\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 29.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1mYou may only select a skill once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen skill.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;32;1mYou may only select a skill once. \x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32;1m denotes an already-chosen skill.\n\x1b[0m\x1b[0m",
         User->caughtMessage());
 }
 
@@ -81,7 +81,7 @@ void CreationDisplayShowsChosenSkills()
         "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mDual wield          \x1b[0m\n"
         "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mFlail               \x1b[0m"
         "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mHammer              \x1b[0m\n"
-        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mHand and a half sword\x1b[0m"
+        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mHand and a half s...\x1b[0m"
         "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mHard leather        \x1b[0m\n"
         "\t[\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mLong sword          \x1b[0m"
         "\t[\x1b[0;31;1m14\x1b[0m] - \x1b[0;32mMace                \x1b[0m\n"
@@ -102,7 +102,7 @@ void CreationDisplayShowsChosenSkills()
         "\t[\x1b[0;31;1m29\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 29.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1mYou may only select a skill once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen skill.\n\x1b[0m",
+        "\x1b[0;32;1m\x1b[0;32;1mYou may only select a skill once. \x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32;1m denotes an already-chosen skill.\n\x1b[0m\x1b[0m",
         User->caughtMessage());
 }
 
@@ -113,12 +113,12 @@ void SelectingItemSetsSelectionAndFiresOnSelectorCompleted()
     Selector->registerEvent(subscriber);
     Selector->initiateSelector(User);
 
-    ExpectFalse(Selector->selection());
+    ExpectEq(({}), Selector->selection());
     ExpectEq(0, subscriber->TimesEventReceived());
     Selector->applySelection("1");
 
     ExpectEq(1, subscriber->TimesEventReceived(), "event received");
-    ExpectEq("axe", Selector->selection());
+    ExpectEq(({ "axe" }), Selector->selection());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -128,12 +128,12 @@ void SelectingReturnToPreviousSetsSelectionToNullAndFiresOnSelectorCompleted()
     Selector->registerEvent(subscriber);
     Selector->initiateSelector(User);
 
-    ExpectFalse(Selector->selection());
+    ExpectEq(({}), Selector->selection());
     ExpectEq(0, subscriber->TimesEventReceived());
     Selector->applySelection("29");
 
     ExpectEq(1, subscriber->TimesEventReceived(), "event received");
-    ExpectFalse(Selector->selection());
+    ExpectEq(({}), Selector->selection());
 }
 
 /////////////////////////////////////////////////////////////////////////////

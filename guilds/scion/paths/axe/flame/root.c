@@ -10,10 +10,15 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addPrerequisite("long sword", (["type":"skill", "value" : 10]));
-        addSpecification("name", "Spiffy guild tree root");
+        addSpecification("name", "The Flame");
+        addSpecification("source", "Scion of Dhuras Guild");
+        addSpecification("description", "This skill provides the user with the"
+            " knowledge to express their raw magical energy as flame.");
+
+        addSpecification("limited by", (["equipment":({ "axe" })]));
+
         addSpecification("scope", "self");
         addSpecification("research type", "tree root");
-        addSpecification("bonus long sword", 2);
+        addSpecification("bonus elemental fire", 1);
     }
 }

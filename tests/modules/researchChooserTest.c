@@ -18,7 +18,7 @@ void Setup()
     ToggleCallOutBypass();
     ResearchChooser = clone_object("/lib/modules/guilds/researchChooser.c");
 
-    User = clone_object("/lib/tests/support/services/researchWithMockServices");
+    User = clone_object("/lib/tests/support/services/researchWithMockServices.c");
     User->Name("Bob");
     User->Str(20);
     User->Dex(20);
@@ -30,6 +30,7 @@ void Setup()
     User->SetLevel(10);
     User->addSkillPoints(100);
     User->advanceSkill("long sword", 10);
+    User->colorConfiguration("3-bit");
 
     mapping researchChoice = ([
         "type": "research choice",
@@ -89,7 +90,7 @@ void OnResearchChoiceAvailableSetsUpObjectWhenResearchTitleSet()
 {
     ResearchChooser->setResearchTitle("test choice");
     ResearchChooser->onResearchChoiceAvailable(User, Data);
-    ExpectEq("\x1b[0;36mA new research choice is available: \x1b[0m\x1b[0;37;1mtest choice\x1b[0m\n\t[\x1b[0;31m1\x1b[0m] - \x1b[0;32mfirst option\x1b[0m\n\t[\x1b[0;31m2\x1b[0m] - \x1b[0;32msecond option\x1b[0m\n\x1b[0;32;1mYou must select a number from 1 to 2.\n\x1b[0m\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m",
+    ExpectEq("\x1b[0;36mA new research choice is available: \x1b[0m\x1b[0;37;1mtest choice\n\x1b[0m\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mfirst option\x1b[0m\n\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32msecond option\x1b[0m\n\x1b[0;32;1mYou must select a number from 1 to 2.\n\x1b[0m\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m",
         ResearchChooser->displayMessage());
 }
 

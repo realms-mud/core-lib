@@ -407,6 +407,12 @@ public nomask varargs int initiateResearch(string researchItem)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping getResearchChoices()
+{
+    return researchChoices + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int addResearchChoice(mapping researchChoice)
 {
     int ret = researchChoice && mappingp(researchChoice) &&
@@ -438,6 +444,12 @@ public nomask int addResearchChoice(mapping researchChoice)
                         "description": researchObj->query("description"),
                         "key": researchItem
                     ]);
+
+                    if (member(researchChoice, "apply if chosen"))
+                    {
+                        choices[to_string(selection)]["dependency"] =
+                            researchChoice["apply if chosen"];
+                    }
                     selection++;
                 }
             }
@@ -449,8 +461,15 @@ public nomask int addResearchChoice(mapping researchChoice)
                     "type": "research tree",
                     "name": researchTree->Name(),
                     "description": researchTree->Description(),
-                    "key": researchItem
+                    "key": researchItem,
+                    "obsoletes": availableChoices - ({ researchItem })
                 ]);
+
+                if (member(researchChoice, "apply if chosen"))
+                {
+                    choices[to_string(selection)]["dependency"] =
+                        researchChoice["apply if chosen"];
+                }
                 selection++;                
             }
             else
@@ -474,8 +493,27 @@ public nomask int addResearchChoice(mapping researchChoice)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void processResearchChoice(string researchItem, string choice, string event)
+private void processResearchChoice(string researchItem, string choice, 
+    string selection, string event)
 {
+    string *choicesToObsolete = member(researchChoices[choice][selection], "obsoletes") ?
+        researchChoices[choice][selection]["obsoletes"] : ({});
+
+    foreach(string potentialRemoval in m_indices(researchChoices))
+    {
+        if (member(researchChoices[potentialRemoval]["1"], "dependency"))
+        {
+            foreach(string element in
+                researchChoices[potentialRemoval]["1"]["dependency"])
+            {
+                if (member(choicesToObsolete, element) > -1)
+                {
+                    m_delete(researchChoices, potentialRemoval);
+                }
+            }
+        }
+    }
+
     m_delete(researchChoices, choice);
 
     object events = getService("events");
@@ -486,7 +524,8 @@ private void processResearchChoice(string researchItem, string choice, string ev
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int selectResearchChoice(string researchItem, string choice)
+public nomask int selectResearchChoice(string researchItem, string choice,
+    string selection)
 {
 
     int ret = member(researchChoices, choice) &&
@@ -494,7 +533,8 @@ public nomask int selectResearchChoice(string researchItem, string choice)
 
     if(ret)
     {
-        processResearchChoice(researchItem, choice, "onResearchChoiceChosen");
+        processResearchChoice(researchItem, choice, selection,
+            "onResearchChoiceChosen");
     }
     return ret;
 }
@@ -526,14 +566,16 @@ public nomask int addResearchTree(string researchTree)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int selectResearchPath(string researchTree, string choice)
+public nomask int selectResearchPath(string researchTree, string choice,
+    string selection)
 {
     int ret = member(researchChoices, choice) && 
         addResearchTree(researchTree);
 
     if (ret)
     {
-        processResearchChoice(researchTree, choice, "onResearchPathChosen");
+        processResearchChoice(researchTree, choice, selection,
+            "onResearchPathChosen");
     }
     return ret;
 }

@@ -2,6 +2,8 @@
 // Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+inherit "/lib/core/events.c"; 
+
 #define Block 1
 #define Describe 2
 #define Success 3
@@ -9,12 +11,9 @@
 private object User = 0;
 private mapping Data = 0;
 private string ResearchTitle = 0;
-
-private nosave string Cyan = "\x1b[0;36m%s\x1b[0m";
-private nosave string BoldWhite = "\x1b[0;37;1m%s\x1b[0m";
-private nosave string Red = "\x1b[0;31m%s\x1b[0m";
-private nosave string Green = "\x1b[0;32m%s\x1b[0m";
-private nosave string BoldGreen = "\x1b[0;32;1m%s\x1b[0m";
+private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+private string colorConfiguration = "none";
+private object Parent = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public void init()
@@ -29,18 +28,25 @@ public void cleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void setResearchTitle(string title)
+public void setResearchTitle(string title, object parent)
 {
     if(stringp(title))
     {
         ResearchTitle = title;
     }
+    Parent = parent;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int sortMethod(string a, string b)
+private string padSelectionDisplay(string selection)
 {
-    return to_int(a) > to_int(b);
+    string ret = "";
+    if ((sizeof(Data) > 9) && (member(({ "1", "2", "3", "4", "5", "6",
+        "7", "8", "9" }), selection) > -1))
+    {
+        ret = " ";
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -50,19 +56,30 @@ public string displayMessage()
     
     if(Data)
     {
-        ret = sprintf(Cyan + BoldWhite + "\n", "A new research choice is available: ",
-            Data["1"]["choice"]);
+        ret = configuration->decorate("A new research choice is available: ",
+                "title", "selector", colorConfiguration) +
+            configuration->decorate(Data["1"]["choice"] + "\n",
+                "menu name", "selector", colorConfiguration);
 
-        string *choices = sort_array(m_indices(Data), "sortMethod");
+        string *choices = sort_array(m_indices(Data), (: $1 > $2 :));
         foreach(string choice in choices)
         {
-            string format = sprintf("\t[%s] - %s\n", Red, Green);
-            ret += sprintf(format, choice, Data[choice]["name"]);
+            ret += sprintf("\t[%s]%s - %s\n",
+                configuration->decorate(choice, "number", "selector", colorConfiguration),
+                padSelectionDisplay(choice),
+                configuration->decorate(Data[choice]["name"],
+                    "choice enabled", "selector", colorConfiguration));
         }
 
-        ret += sprintf(BoldGreen, sprintf("You must select a number from 1 to %d.\n", sizeof(choices)));
-        ret += sprintf(Green, "For details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n");
-    }
+        ret += configuration->decorate(sprintf("You must select a number from "
+            "1 to %d.\n", sizeof(choices)), 
+            "instructions", "selector", colorConfiguration);
+
+        ret += configuration->decorate("For details on a given "
+            "choice, type 'describe X' (or '? X') where\nX is the option "
+            "about which you would like further details.\n",
+            "details", "selector", colorConfiguration);
+        }
     return ret;
 }
 
@@ -74,13 +91,13 @@ private void makeSelection(string selection)
         case "research object":
         {
             User->selectResearchChoice(Data[selection]["key"],
-                Data[selection]["choice"]);
+                Data[selection]["choice"], selection);
             break;
         }
         case "research tree":
         {
             User->selectResearchPath(Data[selection]["key"],
-                Data[selection]["choice"]);
+                Data[selection]["choice"], selection);
             break;
         }
     }
@@ -89,7 +106,16 @@ private void makeSelection(string selection)
     User = 0;
     Data = 0;
     ResearchTitle = 0;
-    call_out("cleanUp", 1);
+
+    if (objectp(Parent))
+    {
+        Parent->onSelectorCompleted(this_object());
+    }
+    else
+    {
+        notifySynchronous("onSelectorCompleted");
+        call_out("cleanUp", 1);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -101,7 +127,7 @@ public void onResearchChoiceAvailable(object user, mapping data)
     {
         User = user;
         Data = data;
-
+        colorConfiguration = User->colorConfiguration();
         User->unregisterEvent(this_object());
 
         if(sizeof(data) == 1)
@@ -134,8 +160,8 @@ public int applyResearchChoice(string arguments)
         else if(member(Data, arguments))
         {
             ret = Success;
-            tell_object(User, sprintf(Cyan, sprintf("You have selected '%s'.\n",
-                Data[arguments]["name"])));
+            tell_object(User, configuration->decorate(
+                sprintf("You have selected '%s'.\n", Data[arguments]["name"])));
 
             makeSelection(arguments);
         }
