@@ -463,6 +463,14 @@ public nomask int joinGuild(string guild)
         {
             state->resetCaches();
         }
+
+        object selector =
+            clone_object("/lib/modules/guilds/advanceLevelSelector.c");
+        selector->setGuild(guild);
+        move_object(selector, this_object());
+        selector->registerEvent(
+            load_object("/lib/modules/guilds/levelSelector.c"));
+        selector->initiateSelector(this_object());
     }
     return ret;    
 }

@@ -296,6 +296,8 @@ void PlayerCannotSeeGuildMessageOfBlockedPlayer()
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/tests/support/guilds/mageGuild.c");
     Player->joinGuild("mage");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
     channels->registerUser(Player);
     channels->registerUser(Wizard);
@@ -413,6 +415,8 @@ void PlayerCanSeeGuildMessageOfUnblockedPlayer()
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/tests/support/guilds/mageGuild.c");
     Player->joinGuild("mage");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    Player->resetCatchList();
 
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
     channels->registerUser(Player);
@@ -886,4 +890,3 @@ void WizardHelpDisplaysCorrectly()
         "	information, see http://realmsmud.org/license/ \x1b[0m\n", 
         Wizard->caughtMessage());
 }
-

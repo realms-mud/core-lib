@@ -63,6 +63,8 @@ void GuildAdvancementLevelNotDisplayedIfYouAreNotInGuild()
 void TopLevelGuildMenuDisplaysCorrectly()
 {
     Player->joinGuild("Scion of Dhuras");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+
     Player->addExperience(2000);
     command("level up", Player);
     ExpectEq("Advancement - Main Menu:\n"
@@ -79,8 +81,11 @@ void TopLevelGuildMenuDisplaysCorrectly()
 void DoesNotAllowForGuildsNotReadyForAdvancement()
 {
     Player->joinGuild("Scion of Dhuras");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->addExperience(2000);
     Player->joinGuild("fighter");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+
     command("level up", Player);
     ExpectEq("Advancement - Main Menu:\n"
         "[1] - Advance fighter level                    (Need More Experience)\n"
@@ -97,7 +102,10 @@ void DoesNotAllowForGuildsNotReadyForAdvancement()
 void CanAdvanceMultipleGuilds()
 {
     Player->joinGuild("Scion of Dhuras");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->joinGuild("fighter");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+
     Player->addExperience(5000);
     command("level up", Player);
     ExpectEq("Advancement - Main Menu:\n"
@@ -115,6 +123,7 @@ void CanAdvanceMultipleGuilds()
 void CanAdvanceInGuild()
 {
     Player->joinGuild("Scion of Dhuras");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->addExperience(2000);
     command("level up", Player);
     command("1", Player);
@@ -138,6 +147,7 @@ void CanAdvanceInGuild()
 void CanUpdateAttributes()
 {
     Player->joinGuild("Scion of Dhuras");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->addExperience(2000);
     command("level up", Player);
     command("1", Player);
@@ -174,6 +184,7 @@ void CanUpdateAttributes()
 void CanUpdateSkills()
 {
     Player->joinGuild("Scion of Dhuras");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->advanceSkill("long sword", 5);
     Player->addExperience(2000);
     command("level up", Player);
@@ -242,6 +253,7 @@ void CanUpdateSkills()
 void CanSelectResearchChoice()
 {
     Player->joinGuild("Scion of Dhuras");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->advanceSkill("long sword", 5);
     Player->addExperience(2000);
     command("level up", Player);
@@ -286,6 +298,7 @@ void CanSelectResearchChoice()
 void CanSelectResearchWhenAllChoicesMade()
 {
     Player->joinGuild("Scion of Dhuras");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->advanceSkill("long sword", 5);
     Player->addExperience(2000);
     command("level up", Player);
@@ -317,6 +330,7 @@ void CanSelectResearchWhenAllChoicesMade()
 void CanSelectResearch()
 {
     Player->joinGuild("Scion of Dhuras");
+    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->advanceSkill("long sword", 5);
     Player->addExperience(2000);
     command("level up", Player);

@@ -67,6 +67,7 @@ void CanNotSeeOtherGuildMessages()
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
     guild->init();
     lowlyMage->joinGuild("mage");
+    lowlyMage->resetCatchList();
 
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
     channels->registerUser(lowlyMage);

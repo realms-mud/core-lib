@@ -65,6 +65,15 @@ void MemberOfGuildReturnsTrueWhenIfUserJoinedGuild()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void JoinGuildAddsAdvancementSelector()
+{
+    ExpectTrue(User->joinGuild("test"));
+    ExpectTrue(present_clone("lib/modules/guilds/advanceLevelSelector.c", User));
+    command("3", User);
+    ExpectFalse(present_clone("lib/modules/guilds/advanceLevelSelector.c", User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void JoinGuildFiresOnJoinGuildOnSuccess()
 {
     ToggleCallOutBypass();

@@ -173,7 +173,6 @@ protected nomask int processSelection(string selection)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
-    printf("onSelectorCompleted -> %O\n", caller);
     if (User)
     {
         setUpUserForSelection();
