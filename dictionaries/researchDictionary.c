@@ -656,6 +656,10 @@ public nomask string displayTreePrerequisites(string researchItem, object user)
     object researchObj = researchObject(researchItem);
     if (objectp(user) && objectp(researchObj))
     {
+        string colorConfiguration = user->colorConfiguration();
+        object configuration = 
+            load_object("/lib/dictionaries/configurationDictionary.c");
+
         string parentInfo = "";
         string *trees = user->availableResearchTrees();
         if (sizeof(trees))
@@ -677,16 +681,21 @@ public nomask string displayTreePrerequisites(string researchItem, object user)
                     object research = researchObject(parent);
                     if (research)
                     {
-                        string knownTag = user->isResearched(parent) ?
-                            "\x1b[0;34;1m" : "\x1b[0;31m";
-                        prerequisites += ({ knownTag +
-                            capitalize(research->query("name")) + "\x1b[0m" });
+                        prerequisites += ({ configuration->decorate(
+                            capitalize(research->query("name")), 
+                            (user->isResearched(parent) ? "known" : 
+                                "missing prerequisites"), "research", 
+                            colorConfiguration) });
                     }
                 }
-                parentInfo = implode(prerequisites, "\x1b[0;33m, ");
+                parentInfo = implode(prerequisites, 
+                    configuration->decorate(", ", "data", "selector",
+                        colorConfiguration));
                 parentInfo = regreplace(parentInfo, ", ([^,]+)$", " and \\1", 1);
-                ret += sprintf("\x1b[0;36m%-15s\x1b[0m : %s\n",
-                    "Research Prereqs", parentInfo);
+
+                ret += configuration->decorate(sprintf("%-15s : %s\n",
+                    "Research Prereqs", parentInfo), "description", "selector",
+                    colorConfiguration);
             }
         }
     }

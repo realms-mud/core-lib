@@ -72,7 +72,6 @@ protected nomask int processSelection(string selection)
         ret = (Data[selection]["type"] == "exit");
         if (!ret)
         {
-            printf("%O\n", Data[selection]["type"]);
             SubselectorObj = clone_object("/lib/modules/research/researchSubselector.c");
             move_object(SubselectorObj, User);
             SubselectorObj->setSource(Data[selection]["type"]);

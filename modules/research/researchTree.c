@@ -6,9 +6,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/prerequisites.c";
-#include "/lib/include/itemFormatters.h"
-
-protected nosave string FieldDisplay = "\x1b[0;36m%-15s\x1b[0m : \x1b[0;33m%s\x1b[0m\n";
 private string ResearchDictionary = "/lib/dictionaries/researchDictionary.c";
 
 private string name;
@@ -310,7 +307,7 @@ public nomask string *getParents(string researchItem)
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getNodeInfo(string element, object owner,
-    int level)
+    int level, string colorConfiguration, object configuration)
 {
     string ret = "";
 
@@ -318,51 +315,38 @@ private nomask string getNodeInfo(string element, object owner,
         researchDictionary()->researchObject(element))
     {
         object researchItem = getResearchItem(element);
-        if (!tree[element]["children"])
+        string displayColor = "missing prerequisites";
+
+        if (owner->isResearched(element))
         {
-            string displayColor = "\x1b[0;31m";
-            if (owner->isResearched(element))
-            {
-                displayColor = "\x1b[0;34;1m";
-            }
-            else if (owner->isResearching(element))
-            {
-                displayColor = "\x1b[0;35m";
-            }
-            else if (owner->canResearch(element))
-            {
-                displayColor = "\x1b[0;33m";
-            }
-            ret += sprintf("\x1b[0;30;1m%" + (level * 6) + "s%s%s\x1b[0m\n",
-                "|-- ", 
-                displayColor, 
-                capitalize(researchItem->query("name")));
+            displayColor = "known";
         }
-        else if (pointerp(tree[element]["children"]) &&
+        else if (owner->isResearching(element))
+        {
+            displayColor = "in progress";
+        }
+        else if (owner->canResearch(element))
+        {
+            displayColor = "field data";
+        }
+
+        ret += configuration->decorate(
+            sprintf("%" + (level * 6) + "s", level ? 
+            ((owner->charsetConfiguration() == "unicode") ?
+                "\xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 " : "|-- ") : ""),
+            "tree indentation", "research", colorConfiguration) +
+            configuration->decorate(
+                capitalize(researchItem->query("name")) + "\n",
+                displayColor, "research", colorConfiguration);
+
+        if (pointerp(tree[element]["children"]) &&
             sizeof(tree[element]["children"]) &&
             stringp(tree[element]["children"][0]))
         {
-            string displayColor = "\x1b[0;31m";
-            if (owner->isResearched(element))
-            {
-                displayColor = "\x1b[0;34;1m";
-            }
-            else if (owner->isResearching(element))
-            {
-                displayColor = "\x1b[0;35m";
-            }
-            else if (owner->canResearch(element))
-            {
-                displayColor = "\x1b[0;33m";
-            }
-            researchItem = getResearchItem(element);
-            ret += sprintf("\x1b[0;30;1m%" + (level * 6) + "s%s%s\x1b[0m\n", 
-                (level ? "|-- " : ""), 
-                displayColor,
-                capitalize(researchItem->query("name")));
             foreach(string child in tree[element]["children"])
             {
-                ret += getNodeInfo(child, owner, level + 1);
+                ret += getNodeInfo(child, owner, level + 1, colorConfiguration,
+                    configuration);
             }
         }
     }
@@ -372,14 +356,23 @@ private nomask string getNodeInfo(string element, object owner,
 /////////////////////////////////////////////////////////////////////////////
 public nomask string researchTreeDetails(object user)
 {
-    string ret = sprintf(FieldDisplay, "Research Tree", capitalize(Name())) +
-        sprintf(Value, Description()) + "\n" +
-        displayPrerequisites() + 
-        "\x1b[0;33mThe tree offers the following research items:\x1b[0m\n";
+    string colorConfiguration = user->colorConfiguration();
+    object configuration = 
+        load_object("/lib/dictionaries/configurationDictionary.c");
+
+    string ret = configuration->decorate(sprintf("%-15s : ", "Research Tree"),
+        "field header", "research", colorConfiguration) +
+        configuration->decorate(capitalize(Name()) + "\n",
+            "field data", "research", colorConfiguration) +
+        configuration->decorate(Description() + "\n",
+            "field data", "research", colorConfiguration) +
+        displayPrerequisites() +
+        configuration->decorate("The tree offers the following research "
+            "items:\n", "field data", "research", colorConfiguration);
 
     if (treeRoot)
     {
-        ret += getNodeInfo(treeRoot, user, 0);
+        ret += getNodeInfo(treeRoot, user, 0, colorConfiguration, configuration);
     }
     return ret;
 }
