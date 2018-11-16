@@ -34,7 +34,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": "lib/guilds/scion/paths/sword/evocation/energy-brand.c",
-                "name" : "flame brand",
+                "name" : "energy brand",
                 "formula" : "additive",
                 "base value" : 2,
                 "rate": 1.0

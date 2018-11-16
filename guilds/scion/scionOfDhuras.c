@@ -52,6 +52,12 @@ public void SetupGuild()
         "apply" : "1 every 2 levels"
     ]));
 
+    addCriteria("mana shield tree", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "lib/guilds/scion/common/mana-shield/mana-shield.c"
+    ]));
+
     addCriteria("weapon focus", ([
         "type": "research path",
         "name": "The Focus",

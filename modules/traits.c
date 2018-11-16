@@ -394,7 +394,8 @@ public nomask int opinionModifier(object target)
 /////////////////////////////////////////////////////////////////////////////
 private void removeTemporaryTrait(string trait)
 {
-    if (member(traits[trait], "expire message"))
+    if (member(traits[trait], "expire message") && 
+        stringp(traits[trait]["expire message"]))
     {
         tell_object(this_object(), traits[trait]["expire message"]);
     }
@@ -411,12 +412,14 @@ static nomask void traitsHeartBeat()
         foreach(string trait in temporaryTraits)
         {
             object materialAttributes = getService("materialAttributes");
-            if(materialAttributes && member(traits[trait], "end time") &&
+            if(materialAttributes && member(traits, trait) &&
+                member(traits[trait], "end time") &&
                 (traits[trait]["end time"] <= materialAttributes->Age()))
             {
                 removeTemporaryTrait(trait);
             }
-            else if(member(traits[trait], "triggering research"))
+            else if(member(traits, trait) &&
+                member(traits[trait], "triggering research"))
             {
                 object research = getService("research");
                 if(research && !research->sustainedResearchIsActive(
@@ -424,6 +427,10 @@ static nomask void traitsHeartBeat()
                 {
                     removeTemporaryTrait(trait);
                 }
+            }
+            else if (!member(traits, trait))
+            {
+                temporaryTraits -= ({ trait });
             }
         }
     }

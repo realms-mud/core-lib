@@ -39,10 +39,12 @@ static nomask mapping sendTraits()
 {
     mapping ret = ([
         "traits":([]),
-        "temporaryTraits": implode(temporaryTraits, "##")
+        "temporaryTraits": implode(m_indices(mkmapping(temporaryTraits)), "##")
     ]);
 
-    string *list = m_indices(traits);
+    string *list = filter(m_indices(traits),
+        (: (member(temporaryTraits, $1) < 0) :));
+
     foreach(string trait in list)
     {
         string *keys = m_indices(traits[trait]);

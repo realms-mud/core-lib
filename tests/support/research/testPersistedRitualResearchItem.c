@@ -48,6 +48,3 @@ public int testExecuteInArea(object owner, string researchName)
 {
     return persistedRitualResearchItem::executeInArea(owner, researchName);
 }
-
-
-
