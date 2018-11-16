@@ -159,7 +159,8 @@ void CanUpdateAttributes()
         "\t[4] - Wisdom              (current Wis is 10)\n"
         "\t[5] - Constitution        (current Con is 10)\n"
         "\t[6] - Charisma            (current Cha is 10)\n"
-        "You must select a number from 1 to 6. You may also undo or reset.\n"
+        "\t[7] - Exit Attribute Menu \n"
+        "You must select a number from 1 to 7. You may also undo or reset.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 2 points left to spend on attributes.\n", 
@@ -173,7 +174,8 @@ void CanUpdateAttributes()
         "\t[4] - Wisdom              (current Wis is 10)\n"
         "\t[5] - Constitution        (current Con is 10)\n"
         "\t[6] - Charisma            (current Cha is 10)\n"
-        "You must select a number from 1 to 6. You may also undo or reset.\n"
+        "\t[7] - Exit Attribute Menu \n"
+        "You must select a number from 1 to 7. You may also undo or reset.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 1 points left to spend on attributes.\n",
@@ -198,7 +200,8 @@ void CanUpdateSkills()
         "\t[5] - Language            \n"
         "\t[6] - Magic               \n"
         "\t[7] - Subterfuge          \n"
-        "You must select a number from 1 to 7. You may also undo or reset.\n"
+        "\t[8] - Exit Skill Menu     \n"
+        "You must select a number from 1 to 8. You may also undo or reset.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 5 skills left to assign.\n",
@@ -242,7 +245,8 @@ void CanUpdateSkills()
         "\t[5] - Language            \n"
         "\t[6] - Magic               \n"
         "\t[7] - Subterfuge          \n"
-        "You must select a number from 1 to 7. You may also undo or reset.\n"
+        "\t[8] - Exit Skill Menu     \n"
+        "You must select a number from 1 to 8. You may also undo or reset.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 2 skills left to assign.\n",

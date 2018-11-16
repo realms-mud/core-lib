@@ -265,7 +265,7 @@ void UndoDoesNotCacheFailedActions()
 {
     Selector->initiateSelector(User);
 
-    // Try to add beyond the 10 thresshold ans make sure that you cannot undo
+    // Try to add beyond the 10 thresshold and make sure that you cannot undo
     // more than 8.
     for(int i = 1; i < 12; i++)
     { 
