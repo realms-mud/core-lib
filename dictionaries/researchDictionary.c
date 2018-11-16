@@ -740,6 +740,23 @@ private nomask mapping buildResearchList(string *researchList,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask mapping getTreeMenuItem(object tree, int index)
+{
+    mapping ret = ([]);
+    string name = tree->Name() || "UNDEFINED";
+    if (sizeof(name) > 20)
+    {
+        name = name[0..16] + "...";
+    }
+    ret[to_string(index)] = ([
+        "name":capitalize(name),
+        "description": tree->Description(),
+        "type": program_name(tree)
+    ]);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask varargs mapping buildResearchTreeList(string *trees, 
     string type, object user, int startIndex, int hideTree)
 {
@@ -754,16 +771,7 @@ private nomask varargs mapping buildResearchTreeList(string *trees,
 
             if (!hideTree)
             {
-                string name = treeObj->Name() || "UNDEFINED";
-                if (sizeof(name) > 20)
-                {
-                    name = name[0..16] + "...";
-                }
-                ret[to_string(index)] = ([
-                    "name":capitalize(name),
-                        "description" : treeObj->Description(),
-                        "type" : tree
-                ]);
+                ret += getTreeMenuItem(treeObj, index);
                 index++;
             }
             object *researchList = sort_array(
@@ -792,20 +800,43 @@ private nomask varargs mapping buildResearchTreeList(string *trees,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getResearchOfType(string type, object user)
+public nomask mapping getResearchOfType(string type, object user, int showTreeElements)
 {
     mapping ret = ([]);
 
     if (stringp(type) && objectp(user))
     {
-        ret = buildResearchList(sort_array(user->completedResearch() +
-            user->researchInProgress(), (: $1 > $2 :)), sizeof(ret) + 1, 
-            user, type);
+        string *trees = filter(user->availableResearchTrees(),
+            (: $1->Source() == $2 :), type);
 
-        ret += buildResearchTreeList(
-            filter(user->availableResearchTrees(),
-            (: $1->Source() == $2 :), type),
-            type, user, sizeof(ret) + 1);
+        string *research = user->completedResearch() +
+            user->researchInProgress();
+
+        if (showTreeElements)
+        {
+            ret += buildResearchTreeList(
+                filter(user->availableResearchTrees(),
+                (: $1->Source() == $2 :), type),
+                type, user, sizeof(ret) + 1);
+        }
+        else
+        {
+            int index = 1;
+            foreach(string tree in trees)
+            {
+                object treeObj = researchTree(tree);
+                if (treeObj)
+                {
+                    research = filter(research,
+                        (: !$2->isMemberOfResearchTree($1) :), treeObj);
+                }
+                ret += getTreeMenuItem(treeObj, index);
+                index++;
+            }
+        }
+        ret += buildResearchList(sort_array(research, 
+            (: $1 > $2 :)), sizeof(ret) + 1,
+            user, type);
     }
     return ret;
 }

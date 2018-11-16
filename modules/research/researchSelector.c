@@ -7,6 +7,13 @@ inherit "/lib/core/baseSelector.c";
 private int TotalPoints;
 private object SubselectorObj;
 private object Dictionary;
+private int ShowTreeElements;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void showTreeElements()
+{
+    ShowTreeElements = 1;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
@@ -75,6 +82,12 @@ protected nomask int processSelection(string selection)
             SubselectorObj = clone_object("/lib/modules/research/researchSubselector.c");
             move_object(SubselectorObj, User);
             SubselectorObj->setSource(Data[selection]["type"]);
+
+            if (ShowTreeElements)
+            {
+                SubselectorObj->showTreeElements();
+            }
+
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->setPointsRemaining(TotalPoints);
             SubselectorObj->initiateSelector(User);

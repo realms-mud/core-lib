@@ -55,23 +55,24 @@ void ResearchSubmenuDisplaysCorrectly()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
     command("2", Player);
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mSelect a research item to view in more detail\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mMock research       \x1b[0m\x1b[0;35m (!)\x1b[0m"
-        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mIntox research      \x1b[0m\x1b[0;34;1m (*)\x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSpiffy tree root    \x1b[0m\x1b[0;34;1m (*)\x1b[0m"
-        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mTree of researchi...\x1b[0m\x1b[0;32;1m (T)\x1b[0m\n"
-        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mFlambe-maker        \x1b[0m\x1b[0;31m (X)\x1b[0m"
-        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mGrebe of obstinance \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
-        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mGrog's revenge      \x1b[0m\x1b[0;31m (X)\x1b[0m"
-        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mHand of fist        \x1b[0m\n"
-        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mTurnip seclusion    \x1b[0m"
-        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mWeasel inversion    \x1b[0m\n"
-        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mZap thingy          \x1b[0m\x1b[0;31m (X)\x1b[0m"
-        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mZorlak's revenge    \x1b[0m\n"
+        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mTree of researchi...\x1b[0m\x1b[0;32;1m (T)\x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlambe-maker        \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mGrebe of obstinance \x1b[0m\x1b[0;31m (X)\x1b[0m"
+        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mGrog's revenge      \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mHand of fist        \x1b[0m"
+        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mTurnip seclusion    \x1b[0m\n"
+        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mWeasel inversion    \x1b[0m"
+        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mZap thingy          \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mZorlak's revenge    \x1b[0m"
+        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mMock research       \x1b[0m\x1b[0;35m (!)\x1b[0m\n"
+        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mIntox research      \x1b[0m\x1b[0;34;1m (*)\x1b[0m"
+        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mSpiffy tree root    \x1b[0m\x1b[0;34;1m (*)\x1b[0m\n"
         "\t[\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 13.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -89,7 +90,8 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
 {
     Selector->initiateSelector(Player);
     command("1", Player);
-    command("12", Player);
+    command("1", Player);
+    command("11", Player);
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\n"
         "\x1b[0;36mResearch Name   : \x1b[0m\x1b[0;33mZorlak's revenge\n"
@@ -143,7 +145,8 @@ void DescribeAsQuestionMarkShowsResearchDetails()
 {
     Selector->initiateSelector(Player);
     command("1", Player);
-    command("? 12", Player);
+    command("1", Player);
+    command("? 11", Player);
 
     ExpectEq("\x1b[0;36m\x1b[0;36mResearch Name   : \x1b[0m\x1b[0;33mZorlak's revenge\n"
         "\x1b[0m\x1b[0;33mThis is limited active research\n"
@@ -173,7 +176,8 @@ void DescribeShowsResearchDetails()
 {
     Selector->initiateSelector(Player);
     command("1", Player);
-    command("5", Player);
+    command("1", Player);
+    command("4", Player);
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\n"
         "\x1b[0;36mResearch Name   : \x1b[0m\x1b[0;33mGrog's revenge\n"
@@ -205,6 +209,7 @@ void ResearchInProcessOfBeingResearchedShowsTimeLeft()
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);
+    command("7", Player);
 
     ExpectSubStringMatch("You still have another 9 seconds before research is completed.",
         Player->caughtMessage());
@@ -219,7 +224,7 @@ void ResearchTreesAreProperlyDisplayed()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/itemWithModifier.c"), "d");
     Selector->initiateSelector(Player);
     command("1", Player);
-    command("4", Player);
+    command("1", Player);
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\n"
         "\x1b[0;36mResearch Tree   : \x1b[0m\x1b[0;33mTree of researchiness\n"
@@ -265,7 +270,8 @@ void SelectingToLearnResearchWhenPointsAvailableResearchesItem()
     Player->addResearchPoints(1);
     Selector->initiateSelector(Player);
     command("1", Player);
-    command("12", Player);
+    command("1", Player);
+    command("11", Player);
     ExpectFalse(Player->isResearched("lib/tests/support/research/itemWithModifier.c"));
     ExpectEq(1, Player->researchPoints());
     command("1", Player);
@@ -293,7 +299,8 @@ void SelectingToLearnTimedResearchDoesNotUsePointsAndInitiatesResearching()
     Player->addResearchPoints(1);
     Selector->initiateSelector(Player);
     command("1", Player);
-    command("9", Player);
+    command("1", Player);
+    command("8", Player);
     ExpectFalse(Player->isResearched("lib/tests/support/research/testResearchB.c"));
     ExpectFalse(Player->isResearching("lib/tests/support/research/testResearchB.c"));
     ExpectEq(1, Player->researchPoints());
@@ -310,7 +317,8 @@ void InvalidResearchDoesNotInterfereWithCommand()
     Player->initiateResearch("lib/tests/support/research/mockResearch.c");
     Selector->initiateSelector(Player);
 
-    command("2", Player);
+    command("1", Player);
+    command("1", Player);
 
     ExpectSubStringMatch("Mock research", Player->caughtMessage());
 }
@@ -323,23 +331,24 @@ void ResearchDisplaysNoColorCorrectly()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
     command("2", Player);
 
     ExpectEq("Research - Select a research item to view in more detail:\n"
-        "\t[1]  - Mock research        (!)"
-        "\t[2]  - Intox research       (*)\n"
-        "\t[3]  - Spiffy tree root     (*)"
-        "\t[4]  - Tree of researchi... (T)\n"
-        "\t[5]  - Flambe-maker         (X)"
-        "\t[6]  - Grebe of obstinance  (X)\n"
-        "\t[7]  - Grog's revenge       (X)"
-        "\t[8]  - Hand of fist        \n"
-        "\t[9]  - Turnip seclusion    "
-        "\t[10] - Weasel inversion    \n"
-        "\t[11] - Zap thingy           (X)"
-        "\t[12] - Zorlak's revenge    \n"
+        "\t[1]  - Tree of researchi... (T)"
+        "\t[2]  - Flambe-maker         (X)\n"
+        "\t[3]  - Grebe of obstinance  (X)"
+        "\t[4]  - Grog's revenge       (X)\n"
+        "\t[5]  - Hand of fist        "
+        "\t[6]  - Turnip seclusion    \n"
+        "\t[7]  - Weasel inversion    "
+        "\t[8]  - Zap thingy           (X)\n"
+        "\t[9]  - Zorlak's revenge    "
+        "\t[10] - Mock research        (!)\n"
+        "\t[11] - Intox research       (*)"
+        "\t[12] - Spiffy tree root     (*)\n"
         "\t[13] - Return to previous menu\n"
         "You must select a number from 1 to 13.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
@@ -353,30 +362,31 @@ void ResearchDisplaysNoColorCorrectly()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ResearchDisplaysThreetBitColorCorrectly()
+void ResearchDisplaysThreeBitColorCorrectly()
 {
     Player->colorConfiguration("3-bit");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
     command("2", Player);
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mSelect a research item to view in more detail\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mMock research       \x1b[0m\x1b[0;35m (!)\x1b[0m"
-        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mIntox research      \x1b[0m\x1b[0;34;1m (*)\x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSpiffy tree root    \x1b[0m\x1b[0;34;1m (*)\x1b[0m"
-        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mTree of researchi...\x1b[0m\x1b[0;32;1m (T)\x1b[0m\n"
-        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mFlambe-maker        \x1b[0m\x1b[0;31m (X)\x1b[0m"
-        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mGrebe of obstinance \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
-        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mGrog's revenge      \x1b[0m\x1b[0;31m (X)\x1b[0m"
-        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mHand of fist        \x1b[0m\n"
-        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mTurnip seclusion    \x1b[0m"
-        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mWeasel inversion    \x1b[0m\n"
-        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mZap thingy          \x1b[0m\x1b[0;31m (X)\x1b[0m"
-        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mZorlak's revenge    \x1b[0m\n"
+        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mTree of researchi...\x1b[0m\x1b[0;32;1m (T)\x1b[0m"
+        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlambe-maker        \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mGrebe of obstinance \x1b[0m\x1b[0;31m (X)\x1b[0m"
+        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mGrog's revenge      \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mHand of fist        \x1b[0m"
+        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mTurnip seclusion    \x1b[0m\n"
+        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mWeasel inversion    \x1b[0m"
+        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mZap thingy          \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mZorlak's revenge    \x1b[0m"
+        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mMock research       \x1b[0m\x1b[0;35m (!)\x1b[0m\n"
+        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mIntox research      \x1b[0m\x1b[0;34;1m (*)\x1b[0m"
+        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mSpiffy tree root    \x1b[0m\x1b[0;34;1m (*)\x1b[0m\n"
         "\t[\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 13.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -397,23 +407,24 @@ void ResearchDisplaysEightBitColorCorrectly()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
     command("2", Player);
 
     ExpectEq("\x1b[0;38;5;80mResearch - \x1b[0m\x1b[0;38;5;15;1mSelect a research item to view in more detail\x1b[0m:\n"
-        "\t[\x1b[0;38;5;9;1m1\x1b[0m]  - \x1b[0;38;5;2mMock research       \x1b[0m\x1b[0;38;5;31m (!)\x1b[0m"
-        "\t[\x1b[0;38;5;9;1m2\x1b[0m]  - \x1b[0;38;5;2mIntox research      \x1b[0m\x1b[0;38;5;20;1m (*)\x1b[0m\n"
-        "\t[\x1b[0;38;5;9;1m3\x1b[0m]  - \x1b[0;38;5;2mSpiffy tree root    \x1b[0m\x1b[0;38;5;20;1m (*)\x1b[0m"
-        "\t[\x1b[0;38;5;9;1m4\x1b[0m]  - \x1b[0;38;5;2mTree of researchi...\x1b[0m\x1b[0;38;5;149;1m (T)\x1b[0m\n"
-        "\t[\x1b[0;38;5;9;1m5\x1b[0m]  - \x1b[0;38;5;2mFlambe-maker        \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m"
-        "\t[\x1b[0;38;5;9;1m6\x1b[0m]  - \x1b[0;38;5;2mGrebe of obstinance \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m\n"
-        "\t[\x1b[0;38;5;9;1m7\x1b[0m]  - \x1b[0;38;5;2mGrog's revenge      \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m"
-        "\t[\x1b[0;38;5;9;1m8\x1b[0m]  - \x1b[0;38;5;2mHand of fist        \x1b[0m\n"
-        "\t[\x1b[0;38;5;9;1m9\x1b[0m]  - \x1b[0;38;5;2mTurnip seclusion    \x1b[0m"
-        "\t[\x1b[0;38;5;9;1m10\x1b[0m] - \x1b[0;38;5;2mWeasel inversion    \x1b[0m\n"
-        "\t[\x1b[0;38;5;9;1m11\x1b[0m] - \x1b[0;38;5;2mZap thingy          \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m"
-        "\t[\x1b[0;38;5;9;1m12\x1b[0m] - \x1b[0;38;5;2mZorlak's revenge    \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m1\x1b[0m]  - \x1b[0;38;5;2mTree of researchi...\x1b[0m\x1b[0;38;5;149;1m (T)\x1b[0m"
+        "\t[\x1b[0;38;5;9;1m2\x1b[0m]  - \x1b[0;38;5;2mFlambe-maker        \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m3\x1b[0m]  - \x1b[0;38;5;2mGrebe of obstinance \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m"
+        "\t[\x1b[0;38;5;9;1m4\x1b[0m]  - \x1b[0;38;5;2mGrog's revenge      \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m5\x1b[0m]  - \x1b[0;38;5;2mHand of fist        \x1b[0m"
+        "\t[\x1b[0;38;5;9;1m6\x1b[0m]  - \x1b[0;38;5;2mTurnip seclusion    \x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m7\x1b[0m]  - \x1b[0;38;5;2mWeasel inversion    \x1b[0m"
+        "\t[\x1b[0;38;5;9;1m8\x1b[0m]  - \x1b[0;38;5;2mZap thingy          \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m9\x1b[0m]  - \x1b[0;38;5;2mZorlak's revenge    \x1b[0m"
+        "\t[\x1b[0;38;5;9;1m10\x1b[0m] - \x1b[0;38;5;2mMock research       \x1b[0m\x1b[0;38;5;31m (!)\x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m11\x1b[0m] - \x1b[0;38;5;2mIntox research      \x1b[0m\x1b[0;38;5;20;1m (*)\x1b[0m"
+        "\t[\x1b[0;38;5;9;1m12\x1b[0m] - \x1b[0;38;5;2mSpiffy tree root    \x1b[0m\x1b[0;38;5;20;1m (*)\x1b[0m\n"
         "\t[\x1b[0;38;5;9;1m13\x1b[0m] - \x1b[0;38;5;2mReturn to previous menu\x1b[0m\n"
         "\x1b[0;38;5;2;1mYou must select a number from 1 to 13.\n\x1b[0m"
         "\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -434,23 +445,24 @@ void ResearchDisplaysTwentyFourBitColorCorrectly()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
     command("2", Player);
 
     ExpectEq("\x1b[0;38;2;180;180;190mResearch - \x1b[0m\x1b[0;38;2;255;255;255;1mSelect a research item to view in more detail\x1b[0m:\n"
-        "\t[\x1b[0;38;2;220;40;0;1m1\x1b[0m]  - \x1b[0;38;2;170;180;110mMock research       \x1b[0m\x1b[0;38;2;80;155;175m (!)\x1b[0m"
-        "\t[\x1b[0;38;2;220;40;0;1m2\x1b[0m]  - \x1b[0;38;2;170;180;110mIntox research      \x1b[0m\x1b[0;38;2;0;0;220;1m (*)\x1b[0m\n"
-        "\t[\x1b[0;38;2;220;40;0;1m3\x1b[0m]  - \x1b[0;38;2;170;180;110mSpiffy tree root    \x1b[0m\x1b[0;38;2;0;0;220;1m (*)\x1b[0m"
-        "\t[\x1b[0;38;2;220;40;0;1m4\x1b[0m]  - \x1b[0;38;2;170;180;110mTree of researchi...\x1b[0m\x1b[0;38;2;100;220;150;1m (T)\x1b[0m\n"
-        "\t[\x1b[0;38;2;220;40;0;1m5\x1b[0m]  - \x1b[0;38;2;170;180;110mFlambe-maker        \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m"
-        "\t[\x1b[0;38;2;220;40;0;1m6\x1b[0m]  - \x1b[0;38;2;170;180;110mGrebe of obstinance \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m\n"
-        "\t[\x1b[0;38;2;220;40;0;1m7\x1b[0m]  - \x1b[0;38;2;170;180;110mGrog's revenge      \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m"
-        "\t[\x1b[0;38;2;220;40;0;1m8\x1b[0m]  - \x1b[0;38;2;170;180;110mHand of fist        \x1b[0m\n"
-        "\t[\x1b[0;38;2;220;40;0;1m9\x1b[0m]  - \x1b[0;38;2;170;180;110mTurnip seclusion    \x1b[0m"
-        "\t[\x1b[0;38;2;220;40;0;1m10\x1b[0m] - \x1b[0;38;2;170;180;110mWeasel inversion    \x1b[0m\n"
-        "\t[\x1b[0;38;2;220;40;0;1m11\x1b[0m] - \x1b[0;38;2;170;180;110mZap thingy          \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m"
-        "\t[\x1b[0;38;2;220;40;0;1m12\x1b[0m] - \x1b[0;38;2;170;180;110mZorlak's revenge    \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m1\x1b[0m]  - \x1b[0;38;2;170;180;110mTree of researchi...\x1b[0m\x1b[0;38;2;100;220;150;1m (T)\x1b[0m"
+        "\t[\x1b[0;38;2;220;40;0;1m2\x1b[0m]  - \x1b[0;38;2;170;180;110mFlambe-maker        \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m3\x1b[0m]  - \x1b[0;38;2;170;180;110mGrebe of obstinance \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m"
+        "\t[\x1b[0;38;2;220;40;0;1m4\x1b[0m]  - \x1b[0;38;2;170;180;110mGrog's revenge      \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m5\x1b[0m]  - \x1b[0;38;2;170;180;110mHand of fist        \x1b[0m"
+        "\t[\x1b[0;38;2;220;40;0;1m6\x1b[0m]  - \x1b[0;38;2;170;180;110mTurnip seclusion    \x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m7\x1b[0m]  - \x1b[0;38;2;170;180;110mWeasel inversion    \x1b[0m"
+        "\t[\x1b[0;38;2;220;40;0;1m8\x1b[0m]  - \x1b[0;38;2;170;180;110mZap thingy          \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m9\x1b[0m]  - \x1b[0;38;2;170;180;110mZorlak's revenge    \x1b[0m"
+        "\t[\x1b[0;38;2;220;40;0;1m10\x1b[0m] - \x1b[0;38;2;170;180;110mMock research       \x1b[0m\x1b[0;38;2;80;155;175m (!)\x1b[0m\n"
+        "\t[\x1b[0;38;2;220;40;0;1m11\x1b[0m] - \x1b[0;38;2;170;180;110mIntox research      \x1b[0m\x1b[0;38;2;0;0;220;1m (*)\x1b[0m"
+        "\t[\x1b[0;38;2;220;40;0;1m12\x1b[0m] - \x1b[0;38;2;170;180;110mSpiffy tree root    \x1b[0m\x1b[0;38;2;0;0;220;1m (*)\x1b[0m\n"
         "\t[\x1b[0;38;2;220;40;0;1m13\x1b[0m] - \x1b[0;38;2;170;180;110mReturn to previous menu\x1b[0m\n"
         "\x1b[0;38;2;160;220;60;1mYou must select a number from 1 to 13.\n\x1b[0m"
         "\x1b[0;38;2;100;180;150mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"

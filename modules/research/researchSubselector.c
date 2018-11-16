@@ -8,11 +8,18 @@ private object Dictionary;
 private string Source;
 private object SubselectorObj;
 private int TotalPoints;
+private int ShowTreeElements;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setSource(string source)
 {
     Source = source;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void showTreeElements()
+{
+    ShowTreeElements = 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -65,7 +72,7 @@ protected mapping researchMenuSetup(string type)
     else if (!sizeof(menu))
     {
         NumColumns = 2;
-        menu = Dictionary->getResearchOfType(type, User);
+        menu = Dictionary->getResearchOfType(type, User, ShowTreeElements);
     }
     return menu + ([]);
 }
