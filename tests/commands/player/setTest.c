@@ -710,6 +710,10 @@ void PlayerHelpDisplaysCorrectly()
         "	page size            - Sets the number of lines the pager will\n"
         "	                       display at a time\n"
         "	                       \n"
+        "	primary guild        - Sets the primary / shown guild for a player\n"
+        "	                       in lists and other commands that identify\n"
+        "	                       the player with 'what they do'\n"
+        "	                       \n"
         "	silence              - This parameter will allow you 'turn off' the\n"
         "	                       specified channel. For example, if your\n"
         "	                       fighter guild is too chatty for your tastes\n"
@@ -854,6 +858,10 @@ void WizardHelpDisplaysCorrectly()
         "	                       \n"
         "	pretitle             - Sets the user's pretitle\n"
         "	                       \n"
+        "	primary guild        - Sets the primary / shown guild for a player\n"
+        "	                       in lists and other commands that identify\n"
+        "	                       the player with 'what they do'\n"
+        "	                       \n"
         "	short                - Sets the user's short description\n"
         "	                       \n"
         "	short description    - Sets the user's short description\n"
@@ -889,4 +897,31 @@ void WizardHelpDisplaysCorrectly()
         "\x1b[0;36m	Copyright (C) 1991-2018 Allen Cummings. For additional licensing\n"
         "	information, see http://realmsmud.org/license/ \x1b[0m\n", 
         Wizard->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerCanSetPrimaryGuild()
+{
+    load_object("/lib/dictionaries/guildsDictionary.c");
+    load_object("/lib/tests/support/guilds/fighterGuild.c");
+    load_object("/lib/tests/support/guilds/mageGuild.c");
+    Player->joinGuild("fighter");
+    Player->joinGuild("mage");
+
+    ExpectEq("mage", Player->primaryGuild());
+
+    Player->executeCommand("set -p primary guild -v fighter");
+    ExpectSubStringMatch("You have set your primary guild to 'fighter'", 
+        Player->caughtMessage());
+    ExpectEq("fighter", Player->primaryGuild());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerCannotSetPrimaryGuildIfNotMember()
+{
+    Player->executeCommand("set -p primary guild -v weasels");
+    ExpectSubStringMatch("You can only set your primary guild to a guild to which "
+        "you belong",
+        Player->caughtMessage());
+    ExpectEq("guildless", Player->primaryGuild());
 }

@@ -126,7 +126,6 @@ public nomask varargs int pageSize(int newSize)
         PageSize = to_int(newSize);
         tell_object(this_object(), sprintf("You have set your page size to %d.\n",
             PageSize));
-
     }
     return PageSize ? PageSize : 1000;
 }
@@ -153,4 +152,37 @@ public nomask varargs string charsetConfiguration(string newCharSet)
             characterSet));
     }
     return characterSet;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string primaryGuildSetting(string displayGuild)
+{
+    string ret = PrimaryGuild;
+
+    if (stringp(displayGuild))
+    {
+        if (this_object()->memberOfGuild(displayGuild))
+        {
+            PrimaryGuild = displayGuild;
+            ret = PrimaryGuild;
+            tell_object(this_object(), sprintf("You have set your primary "
+                "guild to '%s'.\n", PrimaryGuild));
+        }
+        else
+        {
+            ret = 0;
+            tell_object(this_object(), "You can only set your primary guild "
+                "to a guild to which you belong.\n");
+        }
+    }
+
+    if (!ret)
+    {
+        string *guilds = this_object()->memberOfGuilds();
+        if (sizeof(guilds))
+        {
+            ret = guilds[0];
+        }
+    }
+    return ret;
 }

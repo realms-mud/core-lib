@@ -6,6 +6,7 @@
 private int IsBusy = 0;
 private int Earmuffs = 0;
 private int PageSize = 20;
+private string PrimaryGuild = 0;
 private mapping blocks = ([ ]);
 private string colorSetting = "3-bit";
 private string characterSet = "ascii";
@@ -22,6 +23,7 @@ static nomask void loadSettings(mapping data, object persistence)
         PageSize = to_int(persistence->extractSaveData("page size", data));
         colorSetting = persistence->extractSaveData("color setting", data);
         characterSet = persistence->extractSaveData("character set", data);
+        PrimaryGuild = persistence->extractSaveData("primary guild", data);
         blocks = persistence->extractSaveData("blocks", data);
     }
 
@@ -50,6 +52,7 @@ static nomask mapping sendSettings()
         "earmuffs": to_string(Earmuffs),
         "page size": to_string(PageSize),
         "color setting": colorSetting,
-        "character set": characterSet
+        "character set": characterSet,
+        "primary guild": PrimaryGuild
     ]);
 }

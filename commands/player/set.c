@@ -109,6 +109,13 @@ private mapping parametersToFunction = ([
         "description": "Sets the user's detailed character description",
         "wizard only": 0
     ]),
+     "primary guild": ([
+        "method": "primaryGuildSetting",
+        "description": "Sets the primary / shown guild for a player in lists and "
+            "other commands that identify the player with 'what they do'",
+        "suppress message" : 1,
+        "wizard only": 0
+    ]),
     "page size": ([
         "method": "pageSize",
         "description": "Sets the number of lines the pager will display at a time",
