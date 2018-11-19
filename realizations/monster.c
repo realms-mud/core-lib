@@ -10,6 +10,8 @@ virtual inherit "/lib/modules/personas.c";
 virtual inherit "/lib/modules/combatChatter.c";
 
 private nosave int EffectiveLevel;
+private nosave float ExperiencePerHitPoint = 0;
+private nosave int ExperiencePerHitPointSet = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
@@ -53,12 +55,42 @@ public void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void calculateExperiencePerHitPoint(int totalHP)
+{
+    ExperiencePerHitPoint = (1.0 * effectiveExperience()) / 
+        (totalHP * 125.0);
+
+    ExperiencePerHitPointSet = 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void getExperienceFromHit(int damage, object foe)
+{
+    if (damage && objectp(foe))
+    {
+        if (!ExperiencePerHitPointSet)
+        {
+            calculateExperiencePerHitPoint(
+                call_direct(this_object(), "maxHitPoints"));
+        }
+
+        int experienceToAdd = to_int(ExperiencePerHitPoint * damage /
+            foe->effectiveLevel());
+
+        foe->addExperience(experienceToAdd ? experienceToAdd : 1);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setMaxHitPoints(int value)
 {
     maxHitPoints = value;
     call_direct(this_object(), "resetCaches");
-    call_direct(this_object(), "hitPoints",
-        call_direct(this_object(), "maxHitPoints"));
+
+    int totalHitPoints = call_direct(this_object(), "maxHitPoints");
+
+    call_direct(this_object(), "hitPoints", totalHitPoints);
+    calculateExperiencePerHitPoint(totalHitPoints);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -1415,6 +1415,12 @@ public nomask varargs int hit(int damage, string damageType, object foe)
             ret = hitPoints;
         }
 
+        if(ret && foe && function_exists("addExperience", foe) &&
+            function_exists("getExperienceFromHit", this_object()))
+        {
+            call_direct(this_object(), "getExperienceFromHit", ret, foe);
+        }
+
         hitPoints -= ret;
         combatNotification("onHit", ([ "type": damageType, 
                                        "damage": damage ]));
@@ -1424,16 +1430,6 @@ public nomask varargs int hit(int damage, string damageType, object foe)
             determineFateFromDeath(foe);
         }
         
-        if(foe && function_exists("addExperience", foe) &&
-            function_exists("effectiveExperience", this_object()))
-        {
-            float levelModifier = to_float(this_object()->effectiveLevel()) /
-                (foe->effectiveLevel() * 200.0);
-
-            float expToGive = this_object()->effectiveExperience() * 
-                (to_float(ret) / to_float(maxHitPoints())) * levelModifier;
-            foe->addExperience(to_int(expToGive));
-        }
 
         object inventory = getService("inventory");        
         if(foe && inventory)

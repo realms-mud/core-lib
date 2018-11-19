@@ -1551,9 +1551,8 @@ void OnHitFiresWhenLegalHitIsDone()
 void HitAddsCorrectExperience()
 {
     Target->hitPoints(Target->maxHitPoints());
-
-    Target->hit(100, "physical", Attacker);
-    ExpectEq(2700, Attacker->experience());
+    Target->hit(10000, "physical", Attacker);
+    ExpectEq(337, Attacker->experience());
 }
 
 /////////////////////////////////////////////////////////////////////////////
