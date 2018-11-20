@@ -24,6 +24,11 @@ public void reset(int arg)
             (["type":"research"]));
         addPrerequisite("lib/guilds/scion/paths/sword/electricity/shocking-tendrils.c",
             (["type":"research"]));
+        addPrerequisite("level",
+            (["type":"level",
+                "guild": "Scion of Dhuras",
+                "value": 13
+            ]));
 
         addSpecification("modifiers", ({ 
             ([
