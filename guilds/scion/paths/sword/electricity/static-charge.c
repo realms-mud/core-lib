@@ -10,17 +10,17 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Thunder's Pommel");
+        addSpecification("name", "Static Charge");
         addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of the Thunder's Pommel technique. This form enhances "
-            "the scion's shockblade.");
+        addSpecification("description", "This research provides the user with the "
+            "knowledge of the static charge technique. This form enhances "
+            "the Scion's offensive spells.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild" : "Scion of Dhuras",
-                "value" : 21]));
-        addPrerequisite("lib/guilds/scion/paths/sword/electricity/shocking-edge.c",
+        addPrerequisite("level", 
+            (["type":"level", 
+              "guild": "Scion of Dhuras",
+              "value": 5 ]));
+        addPrerequisite("lib/guilds/scion/paths/sword/electricity/sparks.c",
             (["type":"research"]));
 
         addSpecification("limited by", (["equipment":({
@@ -28,7 +28,11 @@ public void reset(int arg)
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("affected research", (["Shock Blade":5,
-            "Lightning Blade" : 6]));
+        addSpecification("affected research", (["Sparks":5,
+            "Lightning": 5,
+            "Lightning Blast": 5,
+            "Maelstrom": 5,
+            "Plasma Ball": 10
+        ]));
     }
 }

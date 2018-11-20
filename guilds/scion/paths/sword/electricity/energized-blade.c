@@ -12,7 +12,7 @@ public void reset(int arg)
         knowledgeResearchItem::reset(arg);
         addSpecification("name", "Energized Blade");
         addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
+        addSpecification("description", "This research provides the user with the "
             "knowledge of the energized blade technique. This form enhances "
             "the scion's shockblade.");
 
@@ -28,6 +28,7 @@ public void reset(int arg)
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("affected research", (["Shock Blade":2]));
+        addSpecification("affected research", (["Shock Blade":2,
+            "Lightning Blade": 3 ]));
     }
 }

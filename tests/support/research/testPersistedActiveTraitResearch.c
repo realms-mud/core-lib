@@ -3,6 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
+
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {

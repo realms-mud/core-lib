@@ -10,37 +10,38 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Sparks");
+        addSpecification("name", "Lightning Bolt");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of the sparks technique. By means of this, the "
-            "Scion is able to use their sword as a conduit for emitting a static "
-            "discharge at a foe.");
+            "knowledge of the lightning bolt technique. By means of this, the "
+            "Scion is able to use their sword as a conduit for emitting a bolt "
+            "of lightning at a foe.");
 
         addSpecification("limited by", (["equipment":({
             "long sword", "hand and a half sword", "two-handed sword" })]));
 
         addPrerequisite("lib/guilds/scion/paths/sword/root.c",
             (["type":"research"]));
-        addPrerequisite("lib/guilds/scion/paths/sword/electricity/root.c",
+        addPrerequisite("lib/guilds/scion/paths/sword/electricity/sparks.c",
             (["type":"research"]));
 
         addSpecification("scope", "targeted");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("spell point cost", 15);
+        addSpecification("spell point cost", 100);
 
         addSpecification("damage hit points", ({ ([
-                "probability":80,
-                "base damage" : 5,
-                "range" : 5
+                "probability":90,
+                "base damage" : 25,
+                "range" : 50
             ]),
             ([
-                "probability":20,
-                "base damage" : 10,
-                "range" : 10
+                "probability": 10,
+                "base damage": 50,
+                "range" : 100
             ])
         }));
+
         addSpecification("damage type", "electricity");
 
         addSpecification("modifiers", ({ 
@@ -61,6 +62,30 @@ public void reset(int arg)
                 "rate": 1.0
             ]),
             ([
+                "type":"research",
+                "research item": "lib/guilds/scion/paths/sword/electricity/ionization.c",
+                "name" : "Ionization",
+                "formula" : "additive",
+                "base value" : 5,
+                "rate": 1.0
+            ]),
+            ([
+                "type":"research",
+                "research item": "lib/guilds/scion/paths/sword/electricity/enhanced-discharge.c",
+                "name" : "Enhanced Discharge",
+                "formula" : "additive",
+                "base value" : 10,
+                "rate": 1.0
+            ]),
+            ([
+                "type":"research",
+                "research item": "lib/guilds/scion/paths/sword/electricity/plasma-eruption.c",
+                "name" : "Plasma Eruption",
+                "formula" : "additive",
+                "base value" : 10,
+                "rate": 1.0
+            ]),
+            ([
                 "type":"skill",
                 "name" : "long sword",
                 "formula" : "additive",
@@ -73,6 +98,18 @@ public void reset(int arg)
                 "rate" : 1.10
             ]),
             ([
+                "type":"skill",
+                "name" : "spellcraft",
+                "formula" : "logarithmic",
+                "rate" : 1.05
+            ]),
+            ([
+                "type":"level",
+                "name" : "level",
+                "formula" : "logarithmic",
+                "rate" : 1.05
+            ]),
+            ([
                 "type":"attribute",
                 "name" : "intelligence",
                 "formula" : "additive",
@@ -80,10 +117,10 @@ public void reset(int arg)
             ]) 
         }));
 
-        addSpecification("cooldown", 6);
-        addSpecification("event handler", "sparksEvent");
-        addSpecification("command template", "sparks [at ##Target##]");
-        addSpecification("use ability message",  "Small tendrils of electricity "
-            "fly from ##InitiatorPossessive::Name## sword into ##TargetName##.");
+        addSpecification("cooldown", 60);
+        addSpecification("event handler", "lightningEvent");
+        addSpecification("command template", "lightning [at ##Target##]");
+        addSpecification("use ability message",  "An intense bolt of lightning "
+            "flies from ##InitiatorPossessive::Name## sword into ##TargetName##.");
     }
 }

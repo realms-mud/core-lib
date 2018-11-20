@@ -17,5 +17,3 @@ public void reset(int arg)
                                                     // weapon attack
     }
 }
-
-
