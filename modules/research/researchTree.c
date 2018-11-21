@@ -366,7 +366,7 @@ public nomask string researchTreeDetails(object user)
             "field data", "research", colorConfiguration) +
         configuration->decorate(Description() + "\n",
             "field data", "research", colorConfiguration) +
-        displayPrerequisites() +
+        displayPrerequisites(colorConfiguration, configuration) +
         configuration->decorate("The tree offers the following research "
             "items:\n", "field data", "research", colorConfiguration);
 

@@ -529,6 +529,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;9m",
             "24-bit": "\x1b[0;38;2;200;0;0m"
         ]),
+        "apply modifier":([
+            "3-bit": "\x1b[0;35;1m",
+            "8-bit": "\x1b[0;38;5;31;1m",
+            "24-bit": "\x1b[0;38;2;80;155;175;1m"
+        ]), 
         "time left":([
             "3-bit": "\x1b[0;31;1m",
             "8-bit": "\x1b[0;38;5;9;1m",
@@ -539,6 +544,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;9m",
             "24-bit": "\x1b[0;38;2;200;0;0m"
         ]),
+        "prerequisite":([
+            "3-bit": "\x1b[0;35m",
+            "8-bit": "\x1b[0;38;5;31m",
+            "24-bit": "\x1b[0;38;2;80;155;175m"
+        ]), 
         "known":([
             "3-bit": "\x1b[0;34;1m",
             "8-bit": "\x1b[0;38;5;20;1m",

@@ -301,8 +301,9 @@ private nomask string displayExtraResearchInformation(string colorConfiguration,
     {
         foreach(string bonus in keys)
         {
-            ret += configuration->decorate(sprintf("(+%d) ", query(bonus)),
-                    "bonus modifier", "research", colorConfiguration) +
+            ret += configuration->decorate(sprintf("%18s(+%d) ", "", 
+                query(bonus)), "bonus modifier", "research", 
+                colorConfiguration) +
                 configuration->decorate(capitalize(
                     regreplace(bonus, "bonus (.+)", "Bonus \\1\n")),
                     "bonus text", "research", colorConfiguration);
@@ -314,14 +315,26 @@ private nomask string displayExtraResearchInformation(string colorConfiguration,
     {
         foreach(string penalty in keys)
         {
-            ret += configuration->decorate(sprintf("(%d) ", query(penalty)),
+            ret += configuration->decorate(sprintf("%18s(%d) ", "", 
+                query(penalty)),
                 "penalty modifier", "research", colorConfiguration) +
                 configuration->decorate(capitalize(
-                    regreplace(penalty, "bonus (.+)", "Penalty to \\1\n")),
-                    "bonus text", "research", colorConfiguration); 
+                    regreplace(penalty, "penalty to (.+)", "Penalty to \\1\n")),
+                    "penalty modifier", "research", colorConfiguration); 
         }
     }
 
+    keys = query("apply to");
+    if (sizeof(keys))
+    {
+        foreach(string apply in keys)
+        {
+            ret += configuration->decorate(sprintf("%18s%s", "",
+                capitalize(regreplace(apply, "apply (.+)", 
+                    "\\1 is applied to target\n"))),
+                "apply modifier", "research", colorConfiguration); 
+        }
+    }
     ret += displayAffectedResearch(colorConfiguration, configuration);
     return ret;
 }
@@ -430,24 +443,7 @@ private nomask string displayEffectInformationForType(string type,
             ret += configuration->decorate(sprintf("%-15s : ", "Usage effect"),
                 "field header", "research", colorConfiguration) +
                 configuration->decorate(effect + "\n",
-                    "field data", "research", colorConfiguration); 
-            
-            mapping *modifiers = query("modifiers");
-            if (modifiers && sizeof(modifiers))
-            {
-                foreach(mapping modifier in modifiers)
-                {
-                    ret += configuration->decorate(sprintf("%-18sModified -> ",
-                        ""), "field data", "research", colorConfiguration) +
-                        configuration->decorate(sprintf("%1.2f * your %s %s ",
-                            modifier["rate"], modifier["name"],
-                            modifier["type"]), "formula", "research",
-                            colorConfiguration) +
-                        configuration->decorate(sprintf("(%s)\n",
-                            modifier["formula"]), "formula type", "research",
-                            colorConfiguration);
-                }
-            }
+                    "field data", "research", colorConfiguration);
         }
     }
     return ret;
@@ -457,8 +453,28 @@ private nomask string displayEffectInformationForType(string type,
 private nomask string displayEffectInformation(string colorConfiguration, 
     object configuration)
 {
+    string ret = "";
+    mapping *modifiers = query("modifiers");
+    if (modifiers && sizeof(modifiers))
+    {
+        foreach(mapping modifier in modifiers)
+        {
+            float rate = modifier["rate"];
+            ret += configuration->decorate(sprintf("%-18sModified -> ",
+                ""), "field data", "research", colorConfiguration) +
+                configuration->decorate(((rate > 1.00 || rate < 1.00) ? 
+                    sprintf("%1.2f * ", rate) : "by ") + 
+                    sprintf("your %s %s ", modifier["name"],
+                    modifier["type"]), "formula", "research",
+                    colorConfiguration) +
+                configuration->decorate(sprintf("(%s)\n",
+                    modifier["formula"]), "formula type", "research",
+                    colorConfiguration);
+        }
+    }
+
     return displayEffectInformationForType("damage hit points",
-            colorConfiguration, configuration) +
+        colorConfiguration, configuration) +
         displayEffectInformationForType("damage spell points",
             colorConfiguration, configuration) +
         displayEffectInformationForType("damage stamina points",
@@ -484,7 +500,7 @@ private nomask string displayEffectInformation(string colorConfiguration,
         displayEffectInformationForType("increase soaked",
             colorConfiguration, configuration) +
         displayEffectInformationForType("increase stuffed",
-            colorConfiguration, configuration);
+            colorConfiguration, configuration) + ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -507,7 +523,7 @@ public nomask string researchDetails()
 
     return researchRow("Research Name", capitalize(query("name")),
         colorConfiguration, configuration) +
-        configuration->decorate(format(query("description"), 78),
+        configuration->decorate(format(query("description"), 78) + "\n",
             "field data", "research", colorConfiguration) +
         displayCost(colorConfiguration, configuration) +
         researchRow("Research Type", capitalize(query("type")),

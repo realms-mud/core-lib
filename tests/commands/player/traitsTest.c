@@ -153,6 +153,7 @@ void EdFlagDisplaysOnlyEducationalTraits()
 /////////////////////////////////////////////////////////////////////////////
 void EffectFlagDisplaysPersistedAndSustainedTraits()
 {
+    load_object("/lib/tests/support/research/testSustainedTraitResearch.c");
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait.c");
     Player->addTrait("/lib/tests/support/traits/testTraitWithDuration.c");
     Player->addTrait("/lib/tests/support/traits/testTraitForSustainedResearch.c");
@@ -541,8 +542,8 @@ void TraitDetailsDisplayTraitPrerequisites()
         "\x1b[0;33mblah blah blah\n\x1b[0m\n"
         "\x1b[0;36mRoot Trait Class\x1b[0m: \x1b[0;33mDisfigured\x1b[0m\n"
         "\x1b[0;36mOpposing Trait Class\x1b[0m: \x1b[0;33mNormal\x1b[0m\n"
-        "\x1b[0;36mPrerequisites:\x1b[0m\n"
-        "\t\x1b[0;36mSkill\x1b[0m: \x1b[0;35mLong sword of 10\x1b[0m\n";
+        "\x1b[0;36mPrerequisites:\n\x1b[0m"
+        "\x1b[0;36m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m";
     object trait = load_object("/lib/tests/support/traits/testTraitWithPrerequisites.c");
     trait->init();
 
@@ -566,7 +567,7 @@ void TraitDetailsDisplayTraitLimiters()
         "\x1b[0;34;1m(+10)\x1b[0m \x1b[0;33mBonus Resist fire\x1b[0m\n"
         "\x1b[0;34;1m(+2)\x1b[0m \x1b[0;33mBonus Strength\x1b[0m\n"
         "\x1b[0;34;1m(+1)\x1b[0m \x1b[0;33mBonus Weapon attack\x1b[0m\n"
-        "\x1b[0;36mThis is only applied when opponent race is elf.\x1b[0m\n";
+        "\x1b[0;36mThis is only applied when opponent race is elf.\n\x1b[0m";
     object trait = load_object("/lib/tests/support/traits/testTrait.c");
     trait->init();
 

@@ -591,6 +591,11 @@ public nomask string traitDetailsFromFile(string traitFile)
     {
         object traitObj = traitObject(traitFile);
 
+        string colorConfiguration = this_player() ?
+            this_player()->colorConfiguration() : "3-bit";
+        object configuration =
+            load_object("/lib/dictionaries/configurationDictionary.c");
+
         ret = sprintf(FieldDisplay, "Trait Name",
             capitalize(traitObj->query("name")) +
             (traitIsNegative(traitFile) ? "\x1b[0;31m [Negative]\x1b[0m" : "")) +
@@ -604,8 +609,8 @@ public nomask string traitDetailsFromFile(string traitFile)
             displayTraitComponent(traitObj, "cost") +
             displayTraitBonusesAndPenalties(traitObj) +
             displayResearchTree(traitObj) +
-            traitObj->displayPrerequisites() +
-            traitObj->displayLimiters();
+            traitObj->displayPrerequisites(colorConfiguration, configuration) +
+            traitObj->displayLimiters(colorConfiguration, configuration);
     }
     return ret;
 }

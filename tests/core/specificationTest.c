@@ -7,6 +7,8 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Specification;
 object Attacker;
+object Configuration;
+string colorConfiguration;
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
@@ -14,6 +16,9 @@ void Init()
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
     load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/tests/support/guilds/testGuild.c");
+
+    colorConfiguration = "3-bit";
+    Configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -464,7 +469,7 @@ void DisplayLimitersStringCorrectWithLimitorForOpponentRace()
 {
     mapping limitor = (["opponent race":"elf"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when opponent race is elf.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when opponent race is elf.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -472,7 +477,7 @@ void  DisplayLimitersStringCorrectWithLimitorForOpponentGuild()
 {
     mapping limitor = (["opponent guild":"test"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when opponent guild is test.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when opponent guild is test.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -480,7 +485,7 @@ void  DisplayLimitersStringCorrectWithLimitorForOpponentFaction()
 {
     mapping limitor = (["opponent faction":"/lib/tests/support/factions/goodGuys.c"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when opponent faction is good guys.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when opponent faction is good guys.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -488,7 +493,7 @@ void  DisplayLimitersStringCorrectWithLimitorForEnvironment()
 {
     mapping limitor = (["environment":"forest"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when environment is forest.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when environment is forest.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -496,7 +501,7 @@ void DisplayLimitersStringCorrectWithLimitorForIntoxication()
 {
     mapping limitor = (["intoxicated":1]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when you are intoxicated.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when you are intoxicated.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -504,7 +509,7 @@ void DisplayLimitersStringCorrectWithLimitorForDrugged()
 {
     mapping limitor = (["drugged":1]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when you are drugged.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when you are drugged.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -512,7 +517,7 @@ void DisplayLimitersStringCorrectWithLimitorForNearDeath()
 {
     mapping limitor = (["near death":50]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when you are near death.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when you are near death.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -520,7 +525,7 @@ void DisplayLimitersStringCorrectWithLimitorForWeapon()
 {
     mapping limitor = (["equipment":"long sword"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when you're using: long sword.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when you're using: long sword.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -528,7 +533,7 @@ void DisplayLimitersStringCorrectWithLimitorForWeaponInList()
 {
     mapping limitor = (["equipment":({ "long sword", "short sword" })]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when you're using: long sword or short sword.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when you're using: long sword or short sword.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -536,7 +541,7 @@ void DisplayLimitersStringCorrectWithLimitorForStaminaDrained()
 {
     mapping limitor = (["stamina drained":50]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when you are stamina drained.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when you are stamina drained.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -544,5 +549,5 @@ void DisplayLimitersStringCorrectWithLimitorForSpellPointsDrained()
 {
     mapping limitor = (["spell points drained":50]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when you are spell points drained.\x1b[0m\n", Specification->displayLimiters());
+    ExpectEq("\x1b[0;36mThis is only applied when you are spell points drained.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }

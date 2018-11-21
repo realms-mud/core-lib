@@ -255,5 +255,3 @@ public nomask int queryBonus(string bonus)
     }
     return ret;
 }
-
-

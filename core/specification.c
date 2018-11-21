@@ -417,8 +417,17 @@ public mixed query(string element)
             case "penalties":
             {
                 ret = sort_array(filter(m_indices(researchData),
-                    (: return (sizeof(regexp(({ $1 }), "bonus")) > 0) &&
-                    (researchData[$1] < 0); :)), (: $1 > $2 :));
+                    (: (sizeof(regexp(({ $1 }), "penalty to")) ||
+                        (sizeof(regexp(({ $1 }), "bonus")) > 0) &&
+                        (researchData[$1] < 0)) :)),
+                    (: $1 > $2 :));
+                break;
+            }
+            case "apply to":
+            {
+                ret = sort_array(filter(m_indices(researchData),
+                    (: (sizeof(regexp(({ $1 }), "apply")) > 0) :)),
+                    (: $1 > $2 :));
                 break;
             }
             case "raw bonuses":
@@ -452,65 +461,71 @@ public mixed query(string element)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayLimiters()
+public nomask string displayLimiters(string colorConfiguration, object configuration)
 {
     string ret = "";
 
     if (member(researchData, "limited by") &&
         sizeof(researchData["limited by"]))
     {
-        string limiter = "\x1b[0;36mThis is only applied when %s %s %s.\x1b[0m\n";
+        string limiter = "This is only applied when %s %s %s.";
         string *prereqKeys = sort_array(
             m_indices(researchData["limited by"]), (: $1 > $2 :));
 
         foreach(string key in prereqKeys)
         {
-            switch(key)
+            switch (key)
             {
-                case "opponent race":
-                case "opponent guild":
-                case "crafting type":
-                case "environment":
+            case "opponent race":
+            case "opponent guild":
+            case "crafting type":
+            case "environment":
+            {
+                ret += sprintf(limiter, key, "is", researchData["limited by"][key]);
+                break;
+            }
+            case "opponent faction":
+            {
+                object faction = getDictionary("factions")->factionObject(
+                    researchData["limited by"][key]);
+                if (faction)
                 {
-                    ret += sprintf(limiter, key, "is", researchData["limited by"][key]);
-                    break;
+                    ret += sprintf(limiter, key, "is", faction->name());
                 }
-                case "opponent faction":
+                break;
+            }
+            case "intoxicated":
+            case "drugged":
+            case "near death":
+            case "stamina drained":
+            case "spell points drained":
+            {
+                ret += sprintf(limiter, "you", "are", key);
+                break;
+            }
+            case "equipment":
+            {
+                string equipment = "";
+                if (pointerp(researchData["limited by"][key]) &&
+                    sizeof(researchData["limited by"][key]))
                 {
-                    object faction = getDictionary("factions")->factionObject(
-                        researchData["limited by"][key]);
-                    if (faction)
-                    {
-                        ret += sprintf(limiter, key, "is", faction->name());
-                    }
-                    break;
+                    equipment = implode(researchData["limited by"][key], " or ");
                 }
-                case "intoxicated":
-                case "drugged":
-                case "near death":
-                case "stamina drained":
-                case "spell points drained":
+                else
                 {
-                    ret += sprintf(limiter, "you", "are", key);
-                    break;
-                }               
-                case "equipment":
-                {
-                    string equipment = "";
-                    if(pointerp(researchData["limited by"][key]) && 
-                        sizeof(researchData["limited by"][key]))
-                    {
-                        equipment = implode(researchData["limited by"][key], " or ");
-                    }
-                    else
-                    {
-                        equipment = researchData["limited by"][key];
-                    }
-                    ret += sprintf(limiter, "you're", "using:", equipment);
-                    break;
+                    equipment = researchData["limited by"][key];
                 }
+                ret += sprintf(limiter, "you're", "using:", equipment);
+                break;
+            }
             }
         }
+    }
+
+    if (ret != "")
+    {
+        ret = configuration->decorate(format(ret, 78),
+            "field header", "research", colorConfiguration);
     }
     return ret;
 }

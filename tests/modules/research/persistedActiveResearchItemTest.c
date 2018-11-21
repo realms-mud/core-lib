@@ -677,3 +677,40 @@ void ExecuteInAreaAppliesTraitOnCorrectTargets()
     ExpectFalse(badguy->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
     ExpectTrue(bystander->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayDetailsShowCorrectInformation()
+{
+    object research = load_object("/lib/guilds/scion/paths/sword/electricity/tempest.c");
+    ExpectEq("Research Name   : Tempest\n"
+        "This research provides the user with the knowledge of the tempest technique.\n"
+        "By means of this, the Scion is able to use their sword as a conduit for\n"
+        "emitting a powerful storm that harries a foe.\n"
+        "\n"
+        "Learning this costs 1 research points.\n"
+        "Research Type   : Active\n"
+        "Scope           : Targeted\n"
+        "Duration        : 1 minute 30 seconds\n"
+        "Cost to use     : 175 spell points\n"
+        "Usage cooldown  : 4 minutes 0 seconds\n"
+        "Command syntax  : tempest [at <Target>]\n"
+        "                  (15) Penalty to resist electricity\n"
+        "                  (15) Penalty to resist physical\n"
+        "                  Enfeebled is applied to target\n"
+        "                  Slow is applied to target\n"
+        "                  Modified -> by your Static Charge research (additive)\n"
+        "                  Modified -> by your Ionization research (additive)\n"
+        "                  Modified -> by your Plasma Eruption research (additive)\n"
+        "                  Modified -> 1.05 * your long sword skill (additive)\n"
+        "                  Modified -> 1.10 * your elemental air skill (additive)\n"
+        "                  Modified -> 1.10 * your spellcraft skill (logarithmic)\n"
+        "                  Modified -> 1.10 * your level level (logarithmic)\n"
+        "                  Modified -> 1.05 * your intelligence attribute (additive)\n"
+        "This is only applied when you're using: long sword or hand and a half sword or\n"
+        "two-handed sword.\n"
+        "Prerequisites:\n"
+        "          Level: Level of 33 in Scion of Dhuras\n"
+        "       Research: Shocking Barrier\n"
+        "       Research: The Way of the Sword\n", research->researchDetails());
+    destruct(research);
+}

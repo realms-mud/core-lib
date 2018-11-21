@@ -624,13 +624,15 @@ private nomask string displayTraitPrerequsite(string *traits)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayPrerequisites()
+public nomask string displayPrerequisites(string colorConfiguration, object configuration)
 {
     string ret = "";
 
-    if (sizeof(prerequisites))
+    if (sizeof(prerequisites) && objectp(configuration))
     {
-        ret = "\x1b[0;36mPrerequisites:\x1b[0m\n";
+        ret = configuration->decorate("Prerequisites:\n",
+            "field header", "research", colorConfiguration);
+
         string *prereqKeys = sort_array(m_indices(prerequisites), (: $1 > $2 :));
         foreach(string key in prereqKeys)
         {
@@ -688,8 +690,11 @@ public nomask string displayPrerequisites()
                     break;
                 }
             }
-            ret += sprintf("\t\x1b[0;36m%s\x1b[0m: \x1b[0;35m%s\x1b[0m\n",
-                capitalize(prerequisites[key]["type"]), prereq);
+            ret += configuration->decorate(sprintf("%15s: ",
+                capitalize(prerequisites[key]["type"])),
+                "field header", "research", colorConfiguration) +
+                configuration->decorate(prereq + "\n",
+                    "prerequisite", "research", colorConfiguration);
         }
     }
     return ret;

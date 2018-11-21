@@ -259,7 +259,12 @@ private nomask int materialsAvailable(object blueprintObj, object user)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getDescriptionDetails(object blueprintObj)
 {
-    return blueprintObj->displayPrerequisites() +
+    string colorConfiguration = this_player() ?
+        this_player()->colorConfiguration() : "none";
+    object configuration =
+        load_object("/lib/dictionaries/configurationDictionary.c");
+
+    return blueprintObj->displayPrerequisites(colorConfiguration, configuration) +
         blueprintObj->displayNeededMaterials();
 }
 
