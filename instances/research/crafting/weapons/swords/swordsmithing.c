@@ -117,7 +117,7 @@ public void Techniques()
 
     addResearchElement("lib/instances/research/crafting/weapons/swords/maeliths-tradition.c");
     addChild("lib/instances/research/crafting/weapons/swords/maeliths-tradition.c",
-        "lib/instances/research/crafting/weapons/common/mystic-wrapping.c");
+        "lib/instances/research/crafting/weapons/common/folding.c");
 
     addResearchElement("lib/instances/research/crafting/weapons/swords/maeliths-way.c");
     addChild("lib/instances/research/crafting/weapons/swords/maeliths-way.c",
@@ -149,7 +149,7 @@ public void Techniques()
 
     addResearchElement("lib/instances/research/crafting/weapons/swords/daedruns-gift.c");
     addChild("lib/instances/research/crafting/weapons/swords/daedruns-gift.c",
-        "lib/instances/research/crafting/weapons/swords/impart-the-essence.c");
+        "lib/instances/research/crafting/weapons/swords/enhance-the-essence.c");
 
 }
 

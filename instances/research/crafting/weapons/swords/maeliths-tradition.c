@@ -19,7 +19,7 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/swords/craftLongSwords.c", 
             (["type":"research"]));
-        addPrerequisite("lib/instances/research/crafting/weapons/common/mystic-wrapping.c",
+        addPrerequisite("lib/instances/research/crafting/weapons/common/folding.c",
             (["type":"research"]));
         addPrerequisite("lib/instances/research/crafting/weapons/common/austempering.c",
             (["type":"research"]));

@@ -17,7 +17,7 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addPrerequisite("lib/instances/research/crafting/weapons/swords/maeliths-way.c", 
+        addPrerequisite("lib/instances/research/crafting/weapons/swords/maeliths-tradition.c", 
             (["type":"research"]));
 
         addSpecification("limited by", (["crafting type":"sword"]));

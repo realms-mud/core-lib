@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Maelith's Legacy");
+        addSpecification("name", "Daedrun's Legacy");
         addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
             "arcane techniques mastered by the great smith Daedrun.");
