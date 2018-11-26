@@ -101,6 +101,60 @@ public void CraftSwordResearch()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void Techniques()
+{
+    addResearchElement("lib/instances/research/crafting/weapons/swords/rengils-tradition.c");
+    addChild("lib/instances/research/crafting/weapons/swords/rengils-tradition.c",
+        "lib/instances/research/crafting/weapons/common/folding.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/rengils-way.c");
+    addChild("lib/instances/research/crafting/weapons/swords/rengils-way.c",
+        "lib/instances/research/crafting/weapons/swords/rengils-tradition.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/rengils-legacy.c");
+    addChild("lib/instances/research/crafting/weapons/swords/rengils-legacy.c",
+        "lib/instances/research/crafting/weapons/swords/rengils-way.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/maeliths-tradition.c");
+    addChild("lib/instances/research/crafting/weapons/swords/maeliths-tradition.c",
+        "lib/instances/research/crafting/weapons/common/mystic-wrapping.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/maeliths-way.c");
+    addChild("lib/instances/research/crafting/weapons/swords/maeliths-way.c",
+        "lib/instances/research/crafting/weapons/swords/maeliths-tradition.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/maeliths-legacy.c");
+    addChild("lib/instances/research/crafting/weapons/swords/maeliths-legacy.c",
+        "lib/instances/research/crafting/weapons/swords/maeliths-way.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/daedruns-tradition.c");
+    addChild("lib/instances/research/crafting/weapons/swords/daedruns-tradition.c",
+        "lib/instances/research/crafting/weapons/swords/maeliths-legacy.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/daedruns-way.c");
+    addChild("lib/instances/research/crafting/weapons/swords/daedruns-way.c",
+        "lib/instances/research/crafting/weapons/swords/daedruns-tradition.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/daedruns-legacy.c");
+    addChild("lib/instances/research/crafting/weapons/swords/daedruns-legacy.c",
+        "lib/instances/research/crafting/weapons/swords/daedruns-way.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/impart-the-essence.c");
+    addChild("lib/instances/research/crafting/weapons/swords/impart-the-essence.c",
+        "lib/instances/research/crafting/weapons/swords/daedruns-legacy.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/enhance-the-essence.c");
+    addChild("lib/instances/research/crafting/weapons/swords/enhance-the-essence.c",
+        "lib/instances/research/crafting/weapons/swords/impart-the-essence.c");
+
+    addResearchElement("lib/instances/research/crafting/weapons/swords/daedruns-gift.c");
+    addChild("lib/instances/research/crafting/weapons/swords/daedruns-gift.c",
+        "lib/instances/research/crafting/weapons/swords/impart-the-essence.c");
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -118,5 +172,6 @@ public void reset(int arg)
 
         CommonResearch();
         CraftSwordResearch();
+        Techniques();
     }
 }
