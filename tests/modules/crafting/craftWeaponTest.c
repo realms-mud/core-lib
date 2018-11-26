@@ -11,7 +11,7 @@ object Selector;
 void Init()
 {
     ignoreList += ({ "SetUpSkills", "SetUpInventory", "SetUpResearch",
-        "CraftSword", "PopulateSwordData", "getMaterialsOnHand", "__inline_lib_tests_modules_crafting_craftWeaponTest_c_180_#0000" });
+        "CraftSword", "PopulateSwordData", "getMaterialsOnHand", "__inline_lib_tests_modules_crafting_craftWeaponTest_c_181_#0000" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,8 @@ void SetUpResearch()
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonWood.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareWood.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c"));
+    ExpectTrue(Player->addResearchTree("lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/common/annealing.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
 }
 
@@ -341,8 +342,8 @@ void CraftingItemIsNotAffectedByCraftingBonusesWhenOfDifferentType()
     object dagger = Player->itemBeingCrafted();
     PopulateSwordData(dagger);
 
-    ExpectEq(4, dagger->query("weapon class"));
-    ExpectEq(2, dagger->query("defense class"));
+    ExpectEq(3, dagger->query("weapon class"));
+    ExpectEq(1, dagger->query("defense class"));
     ExpectEq(5, dagger->query("weapon attack"));
 }
 
@@ -359,8 +360,8 @@ void CraftingItemIsAffectedByCraftingBonusesWhenOfType()
     object sword = Player->itemBeingCrafted();
     PopulateSwordData(sword);
 
-    ExpectEq(11, sword->query("weapon class"));
-    ExpectEq(3, sword->query("defense class"));
+    ExpectEq(10, sword->query("weapon class"));
+    ExpectEq(2, sword->query("defense class"));
     ExpectEq(6, sword->query("weapon attack"));
 }
 

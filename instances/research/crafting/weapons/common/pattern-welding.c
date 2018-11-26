@@ -10,21 +10,23 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Craft Swords");
+        addSpecification("name", "Pattern Welding - Weapons");
         addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft knives, daggers, and swords out of "
-            "typical bladed weapon materials such as iron, bronze, and steel.");
-        addSpecification("research type", "granted");
-        addSpecification("limited by", (["crafting type":"sword"]));
-        addSpecification("bonus crafting value multiplier", 30);
-        addSpecification("bonus crafting encumberance reduction", 50);
-        addSpecification("bonus crafting weight reduction", 25);
+            "knowledge of pattern welding metal - a treatment wherein multiple "
+            "different metals are hammered thin and welded together with an "
+            "acidic flux. The resultant lamellar metal is extremely hard and "
+            "can maintain a tremendously sharp edge. It often has beautiful "
+            "and much-sought surface texturing.");
+        addSpecification("research type", "points");
+        addSpecification("research cost", 1);
+
+        addPrerequisite("lib/instances/research/crafting/weapons/common/folding.c",
+            (["type":"research"]));
+
+        addSpecification("bonus crafting value multiplier", 150);
         addSpecification("bonus crafting weapon class", 1);
         addSpecification("bonus crafting defense class", 1);
         addSpecification("bonus crafting attack", 1);
-        addSpecification("bonus crafting armor class", 1);
-        addSpecification("bonus crafting enchantments", 3);
-        addSpecification("bonus crafting fire enchantment", 1);
     }
 }

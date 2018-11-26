@@ -59,7 +59,8 @@ void Setup()
     move_object(material, Player);
 
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c"));
+    ExpectTrue(Player->addResearchTree("lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/common/annealing.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
 
     move_object(Selector, Player);
@@ -82,8 +83,8 @@ void SpecificWeaponMenuDisplaysCorrectly()
         "for the item you are creating are:\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0;31mnone selected\x1b[0m\n"
         "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m5\x1b[0m\x1b[0;33m to 105\x1b[0m\n"
-        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m8\x1b[0m\x1b[0;33m to 11\x1b[0m\n"
-        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"
+        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m7\x1b[0m\x1b[0;33m to 10\x1b[0m\n"
+        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m0\x1b[0m\x1b[0;33m to 1\x1b[0m\n"
         "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
         "\x1b[0;36m\tWeight: \x1b[0m\x1b[0;33m5\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Blade        \x1b[0m\n"
@@ -315,8 +316,8 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
         "for the item you are creating are:\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0;31mnone selected\x1b[0m\n"
         "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m5\x1b[0m\x1b[0;33m to 105\x1b[0m\n"
-        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m8\x1b[0m\x1b[0;33m to 11\x1b[0m\n"
-        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"
+        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m7\x1b[0m\x1b[0;33m to 10\x1b[0m\n"
+        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m0\x1b[0m\x1b[0;33m to 1\x1b[0m\n"
         "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
         "\x1b[0;36m\tWeight: \x1b[0m\x1b[0;33m5\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Blade        \x1b[0m\n"
@@ -356,8 +357,8 @@ void ConfirmSetsValuesForWeaponCraftingMenu()
         "for the item you are creating are:\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0m\x1b[0;33mAdmantite\x1b[0m\n"
         "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m8\x1b[0m\x1b[0;33m to 108\x1b[0m\n"
-        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m13\x1b[0m\x1b[0;33m to 16\x1b[0m\x1b[0;31m [+2 magical]\x1b[0m\n"
-        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"
+        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m12\x1b[0m\x1b[0;33m to 15\x1b[0m\x1b[0;31m [+2 magical]\x1b[0m\n"
+        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m0\x1b[0m\x1b[0;33m to 1\x1b[0m\n"
         "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"
         "\x1b[0;36m\tWeight: \x1b[0m\x1b[0;33m5\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Blade        \x1b[0m\x1b[0;34;1m   (*)\x1b[0m\n"
@@ -636,8 +637,8 @@ void TurningOffColorDisplaysCorrectly()
         "for the item you are creating are:\n"
         "\tMaterial: none selected\n"
         "\tAttack: 5 to 105\n"
-        "\tDamage: 8 to 11\n"
-        "\tDefense: 1 to 2\n"
+        "\tDamage: 7 to 10\n"
+        "\tDefense: 0 to 1\n"
         "\tEncumberance: 5\n"
         "\tWeight: 5\n\n"
         "\t[1] - Select Blade        \n"

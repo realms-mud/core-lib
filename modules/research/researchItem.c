@@ -528,7 +528,7 @@ public nomask string researchDetails()
         displayCost(colorConfiguration, configuration) +
         researchRow("Research Type", capitalize(query("type")),
             colorConfiguration, configuration) + 
-        researchRow("Scope", capitalize(query("scope")),
+        researchRow("Scope", query("scope") ? capitalize(query("scope")) : "N/A",
                 colorConfiguration, configuration) +
         (query("effect") ? researchRow("Effect", capitalize(query("effect")),
             colorConfiguration, configuration) : "") +
