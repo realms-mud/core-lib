@@ -224,7 +224,7 @@ void ResearchTreesAreProperlyDisplayed()
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\n"
         "\x1b[0;36mResearch Tree   : \x1b[0m\x1b[0;33mTree of researchiness\n"
-        "\x1b[0m\x1b[0;33mthis is the land-loving mother pigeon of all research trees\n"
+        "\x1b[0m\x1b[0;33mthis is the land-loving mother pigeon of all research trees\n\n"
         "\x1b[0m\x1b[0;33mThe tree offers the following research items:\n"
         "\x1b[0m\x1b[0;30;1m\x1b[0m\x1b[0;34;1mSpiffy tree root\n"
         "\x1b[0m\x1b[0;30;1m\xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;33mIntox research\n"

@@ -119,30 +119,3 @@ public nomask int queryBonus(string bonus)
     }
     return ret;
 }
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask string displayExtraResearchInformation()
-{
-    string ret = "\n";
-    string *keys = query("bonuses");
-    if (sizeof(keys))
-    {
-        foreach(string bonus in keys)
-        {
-            ret += sprintf("\x1b[0;34;1m(+%d)\x1b[0m \x1b[0;33mBonus %s\x1b[0m\n",
-                query(bonus), 
-                capitalize(regreplace(bonus, "bonus (.+)", "\\1")));
-        }
-    }
-    keys = query("penalties");
-    if (sizeof(keys))
-    {
-        foreach(string penalty in keys)
-        {
-            ret += sprintf("\x1b[0;31m(%d)\x1b[0m \x1b[0;33mPenalty to %s\x1b[0m\n",
-                query(penalty), 
-                capitalize(regreplace(penalty, "bonus (.+)", "\\1")));
-        }
-    }
-    return ret;
-}

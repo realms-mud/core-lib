@@ -410,15 +410,15 @@ public mixed query(string element)
             case "bonuses":
             {
                 ret = sort_array(filter(m_indices(researchData),
-                    (: return (sizeof(regexp(({ $1 }), "bonus")) > 0) &&
-                        (researchData[$1] > 0); :)), (: $1 > $2 :));
+                    (: sizeof(regexp(({ $1 }), "bonus")) &&
+                        (researchData[$1] > 0) :)), (: $1 > $2 :));
                 break;
             }
             case "penalties":
             {
                 ret = sort_array(filter(m_indices(researchData),
-                    (: (sizeof(regexp(({ $1 }), "penalty to")) ||
-                        (sizeof(regexp(({ $1 }), "bonus")) > 0) &&
+                    (: sizeof(regexp(({ $1 }), "penalty to")) ||
+                        (sizeof(regexp(({ $1 }), "bonus")) &&
                         (researchData[$1] < 0)) :)),
                     (: $1 > $2 :));
                 break;

@@ -315,11 +315,11 @@ private nomask string displayExtraResearchInformation(string colorConfiguration,
     {
         foreach(string penalty in keys)
         {
-            ret += configuration->decorate(sprintf("%18s(%d) ", "", 
-                query(penalty)),
+            ret += configuration->decorate(sprintf("%18s(-%d) ", "", 
+                abs(query(penalty))),
                 "penalty modifier", "research", colorConfiguration) +
                 configuration->decorate(capitalize(
-                    regreplace(penalty, "penalty to (.+)", "Penalty to \\1\n")),
+                    regreplace(penalty, "(bonus|penalty to) (.+)", "Penalty to \\2\n")),
                     "penalty modifier", "research", colorConfiguration); 
         }
     }
