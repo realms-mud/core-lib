@@ -15,6 +15,7 @@ public void reset(int arg)
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to craft basic axes.");
         addSpecification("research type", "granted");
-        addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c", 
+            (["type":"research"]));
     }
 }
