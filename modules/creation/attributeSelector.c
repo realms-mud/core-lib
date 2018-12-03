@@ -107,8 +107,9 @@ protected nomask void setUpUserForSelection()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return sprintf("You have %d points left to spend on attributes.\n",
-        User ? User->attributePoints() : 0);
+    return sprintf("You have %d point%s left to spend on attributes.\n",
+        User ? User->attributePoints() : 0,
+        (User && User->attributePoints() == 1) ? "" : "s");
 }
 
 /////////////////////////////////////////////////////////////////////////////

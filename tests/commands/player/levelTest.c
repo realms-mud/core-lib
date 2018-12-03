@@ -149,6 +149,7 @@ void CanUpdateAttributes()
     Player->joinGuild("Scion of Dhuras");
     destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->addExperience(2000);
+    Player->addAttributePointsToSpend(1);
     command("level up", Player);
     command("1", Player);
     command("1", Player);
@@ -178,7 +179,7 @@ void CanUpdateAttributes()
         "You must select a number from 1 to 7. You may also undo or reset.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
-        "You have 1 points left to spend on attributes.\n",
+        "You have 1 point left to spend on attributes.\n",
         Player->caughtMessage());
 }
 
@@ -349,6 +350,6 @@ void CanSelectResearch()
     command("3", Player);
 
     ExpectSubStringMatch("Research - Select a research item to view in more.*"
-        "Way of the Sword.*Path of the Flame",
+        "Way of the Sword.*Path of the Flame.*3 research points",
         Player->caughtMessage());
 }

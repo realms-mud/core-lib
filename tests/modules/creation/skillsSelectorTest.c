@@ -133,7 +133,7 @@ void SelectAllAvailableSkillsFiresOnSelectorCompleted()
         if (i < 14)
         {
             ExpectTrue(sizeof(regexp(({ User->caughtMessage() }),
-                sprintf("You have %d skills left", 14 - i))));
+                sprintf("You have %d skills* left", 14 - i))));
         }
     }
     ExpectEq(1, subscriber->TimesEventReceived(), "event received once");

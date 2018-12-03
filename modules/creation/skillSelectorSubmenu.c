@@ -129,7 +129,8 @@ protected nomask string additionalInstructions()
             configuration->decorate("(##)", "selected", "selector",
                 colorConfiguration) +
             configuration->decorate(sprintf(" denotes current skill level. "
-                "You have %d points to spend.\n", PossibleSkills),
+                "You have %d point%s to spend.\n", PossibleSkills,
+                PossibleSkills == 1 ? "" : "s"),
                 "instructions", "selector", colorConfiguration); 
     }
     return extraInfo;

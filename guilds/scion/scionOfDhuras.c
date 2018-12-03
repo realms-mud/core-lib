@@ -46,10 +46,15 @@ public void SetupGuild()
         "type":"research points",
         "apply" : "1 every level"
     ]));
+    addCriteria("additional research", ([
+        "type":"research points",
+        "apply": "2 every 5 levels" ,
+        "begin at level": 1
+    ]));
 
     addCriteria("spellcraft", ([
         "type":"skill",
-        "apply" : "1 every 2 levels"
+        "apply": "1 every 2 levels"
     ]));
 
     addCriteria("mana shield tree", ([

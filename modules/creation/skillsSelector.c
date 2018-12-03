@@ -88,7 +88,8 @@ protected nomask void setUpUserForSelection()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return sprintf("You have %d skills left to assign.\n", TotalSkills);
+    return sprintf("You have %d skill%s left to assign.\n", TotalSkills,
+        TotalSkills == 1 ? "" : "s");
 }
 
 /////////////////////////////////////////////////////////////////////////////

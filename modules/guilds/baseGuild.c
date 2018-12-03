@@ -408,7 +408,7 @@ private nomask int addEveryLevelCriteria(string key, mapping criteria, string ra
                     amount * ((1 + level - beginAt) / frequency));
                 valueAtEnd = amount * ((1 + level - beginAt)/ frequency);
             }
-            else
+            else if(((level - beginAt) % frequency) == 0)
             {
                 ret &&= insertAdvancementItem(level, key);
             }
@@ -815,6 +815,7 @@ private nomask int applyAdvancementCriteria(int newLevel, object guildMember)
     int ret = 1;
 
     string *criteriaToApply = ({ });
+
     if(member(advancementGrid, newLevel) && advancementGrid[newLevel] && 
        mappingp(advancementGrid[newLevel]))
     {

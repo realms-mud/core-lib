@@ -23,7 +23,7 @@ void Setup()
     User->ToggleMockGuilds();
     User->SetGuild("mage");
     User->SetLevel(1);
-    User->SetExperience(5000);
+    User->SetExperience(35000);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -354,6 +354,66 @@ void AttributePointsCriteriaAppliedCorrectly()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void MultipleAttributePointCriteriaWithBeginAtLevelAddedCumulatively()
+{
+    mapping criteria = ([
+        "type":"attribute points",
+        "apply": "1 every level",
+        "begin at level": 2,
+        "end at level": 5
+    ]);
+    ExpectTrue(Guild->testAddCriteria("attribute points", criteria), "criteria added");
+
+    criteria = ([
+        "type":"attribute points",
+        "apply": "2 every 3 levels"
+    ]);
+    ExpectTrue(Guild->testAddCriteria("more attribute points", criteria), "more criteria added");
+
+    criteria = ([
+        "type":"attribute points",
+        "apply": "3 every 5 levels",
+        "begin at level": 4
+    ]);
+    ExpectTrue(Guild->testAddCriteria("yet more attribute points", criteria), "more criteria added");
+
+    Guild->guildName("mage");
+
+    User->SetLevel(0);
+    ExpectFalse(User->attributePoints());
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 1");
+    ExpectEq(2, User->attributePoints(), "level 1");
+
+    User->SetLevel(1);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
+    ExpectEq(3, User->attributePoints(), "level 2");
+
+    User->SetLevel(2);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 3");
+    ExpectEq(4, User->attributePoints(), "level 3");
+
+    User->SetLevel(3);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 4");
+    ExpectEq(10, User->attributePoints(), "level 4");
+
+    User->SetLevel(4);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
+    ExpectEq(11, User->attributePoints(), "level 5");
+
+    User->SetLevel(5);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 6");
+    ExpectEq(11, User->attributePoints(), "level 6");
+
+    User->SetLevel(6);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 7");
+    ExpectEq(13, User->attributePoints(), "level 7");
+
+    User->SetLevel(7);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 8");
+    ExpectEq(13, User->attributePoints(), "level 8");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AttributePointsForRankCriteriaAppliedCorrectly()
 {
     mapping rank = ([
@@ -407,6 +467,66 @@ void SkillPointsCriteriaAppliedCorrectly()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void MultipleSkillPointCriteriaWithBeginAtLevelAddedCumulatively()
+{
+    mapping criteria = ([
+        "type":"skill points",
+        "apply": "1 every level",
+        "begin at level": 2,
+        "end at level": 5
+    ]);
+    ExpectTrue(Guild->testAddCriteria("skill points", criteria), "criteria added");
+
+    criteria = ([
+        "type":"skill points",
+        "apply": "2 every 3 levels"
+    ]);
+    ExpectTrue(Guild->testAddCriteria("more skill points", criteria), "more criteria added");
+
+    criteria = ([
+        "type":"skill points",
+        "apply": "3 every 5 levels",
+        "begin at level": 4
+    ]);
+    ExpectTrue(Guild->testAddCriteria("yet more skill points", criteria), "more criteria added");
+
+    Guild->guildName("mage");
+
+    User->SetLevel(0);
+    ExpectFalse(User->AvailableSkillPoints());
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 1");
+    ExpectEq(2, User->AvailableSkillPoints(), "level 1");
+
+    User->SetLevel(1);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
+    ExpectEq(3, User->AvailableSkillPoints(), "level 2");
+
+    User->SetLevel(2);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 3");
+    ExpectEq(4, User->AvailableSkillPoints(), "level 3");
+
+    User->SetLevel(3);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 4");
+    ExpectEq(10, User->AvailableSkillPoints(), "level 4");
+
+    User->SetLevel(4);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
+    ExpectEq(11, User->AvailableSkillPoints(), "level 5");
+
+    User->SetLevel(5);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 6");
+    ExpectEq(11, User->AvailableSkillPoints(), "level 6");
+
+    User->SetLevel(6);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 7");
+    ExpectEq(13, User->AvailableSkillPoints(), "level 7");
+
+    User->SetLevel(7);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 8");
+    ExpectEq(13, User->AvailableSkillPoints(), "level 8");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ResearchPointsCriteriaAppliedCorrectly()
 {
     User->addSkillPoints(100);
@@ -425,6 +545,117 @@ void ResearchPointsCriteriaAppliedCorrectly()
 
     ExpectTrue(User->initiateResearch("lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
     ExpectTrue(User->isResearched("lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MultipleResearchPointCriteriaAddedCumulatively()
+{
+    mapping criteria = ([
+        "type":"research points",
+        "apply": "1 every level"
+    ]);
+    ExpectTrue(Guild->testAddCriteria("research points", criteria), "criteria added");
+
+    criteria = ([
+        "type":"research points",
+        "apply": "2 every 3 levels"
+    ]);
+    ExpectTrue(Guild->testAddCriteria("more research points", criteria), "more criteria added");
+
+    Guild->guildName("mage");
+
+    User->SetLevel(0);
+    ExpectFalse(User->researchPoints());
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 1");
+    ExpectEq(3, User->researchPoints(), "level 1");
+
+    User->SetLevel(1);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
+    ExpectEq(4, User->researchPoints(), "level 2");
+
+    User->SetLevel(2);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 3");
+    ExpectEq(5, User->researchPoints(), "level 3");
+
+    User->SetLevel(3);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 4");
+    ExpectEq(8, User->researchPoints(), "level 4");
+
+    User->SetLevel(4);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
+    ExpectEq(9, User->researchPoints(), "level 5");
+
+    User->SetLevel(5);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 6");
+    ExpectEq(10, User->researchPoints(), "level 6");
+
+    User->SetLevel(6);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 7");
+    ExpectEq(13, User->researchPoints(), "level 7");
+
+    User->SetLevel(7);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 8");
+    ExpectEq(14, User->researchPoints(), "level 8");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MultipleResearchPointCriteriaWithBeginAtLevelAddedCumulatively()
+{
+    mapping criteria = ([
+        "type":"research points",
+        "apply": "1 every level",
+        "begin at level": 2,
+        "end at level": 5
+    ]);
+    ExpectTrue(Guild->testAddCriteria("research points", criteria), "criteria added");
+
+    criteria = ([
+        "type":"research points",
+        "apply": "2 every 3 levels"
+    ]);
+    ExpectTrue(Guild->testAddCriteria("more research points", criteria), "more criteria added");
+
+    criteria = ([
+        "type":"research points",
+        "apply": "3 every 5 levels",
+        "begin at level": 4
+    ]);
+    ExpectTrue(Guild->testAddCriteria("yet more research points", criteria), "more criteria added");
+
+    Guild->guildName("mage");
+
+    User->SetLevel(0);
+    ExpectFalse(User->researchPoints());
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 1");
+    ExpectEq(2, User->researchPoints(), "level 1");
+
+    User->SetLevel(1);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
+    ExpectEq(3, User->researchPoints(), "level 2");
+
+    User->SetLevel(2);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 3");
+    ExpectEq(4, User->researchPoints(), "level 3");
+
+    User->SetLevel(3);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 4");
+    ExpectEq(10, User->researchPoints(), "level 4");
+
+    User->SetLevel(4);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
+    ExpectEq(11, User->researchPoints(), "level 5");
+
+    User->SetLevel(5);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 6");
+    ExpectEq(11, User->researchPoints(), "level 6");
+
+    User->SetLevel(6);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 7");
+    ExpectEq(13, User->researchPoints(), "level 7");
+
+    User->SetLevel(7);
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 8");
+    ExpectEq(13, User->researchPoints(), "level 8");
 }
 
 /////////////////////////////////////////////////////////////////////////////
