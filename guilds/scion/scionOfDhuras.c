@@ -42,14 +42,20 @@ public void SetupGuild()
         "type":"skill points",
         "apply" : "5 every level"
     ]));
+
+    addCriteria("initial research points", ([
+        "type":"research points",
+        "apply": "at level 1"
+    ]));
+
     addCriteria("research points", ([
         "type":"research points",
-        "apply" : "1 every level"
+        "apply": "1 every level"
     ]));
-    addCriteria("additional research", ([
+
+    addCriteria("supplemental research points", ([
         "type":"research points",
-        "apply": "2 every 5 levels" ,
-        "begin at level": 1
+        "apply": "2 every 5 levels"
     ]));
 
     addCriteria("spellcraft", ([

@@ -350,6 +350,6 @@ void CanSelectResearch()
     command("3", Player);
 
     ExpectSubStringMatch("Research - Select a research item to view in more.*"
-        "Way of the Sword.*Path of the Flame.*3 research points",
+        "Way of the Sword.*Path of the Flame.*4 research points",
         Player->caughtMessage());
 }

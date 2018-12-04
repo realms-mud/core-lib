@@ -180,7 +180,7 @@ protected nomask string additionalInstructions()
     string ret = "";
     if (TotalPoints > 0)
     {
-        ret += sprintf("You have %d research point%ss left to assign.\n", 
+        ret += sprintf("You have %d research point%s left to assign.\n", 
             TotalPoints, TotalPoints == 1 ? "" : "s");
     }
 

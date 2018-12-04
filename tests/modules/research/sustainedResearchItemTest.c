@@ -11,6 +11,12 @@ object Target;
 object Room;
 
 /////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    load_object("/lib/tests/support/research/testSustainedTraitResearch.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     ResearchItem = clone_object("/lib/tests/support/research/testSustainedResearchItem");
@@ -302,12 +308,12 @@ void CallingExecuteWithSustainedStaminaCostWillDecreaseStamina()
 void DeactivatingWithStaminaPointCostReturnsStaminaToOriginalValue()
 {
     ResearchItem->addTestSpecification("scope", "self");
-    ResearchItem->addTestSpecification("stamina point cost", 20);
+    ResearchItem->addTestSpecification("stamina point cost", 150);
 
     User->ToggleMockResearch();
     ExpectEq(164, User->maxStaminaPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
-    ExpectEq(144, User->maxStaminaPoints());
+    ExpectEq(14, User->maxStaminaPoints());
     ExpectTrue(ResearchItem->execute("the command", User), "second execution");
     ExpectEq(164, User->maxStaminaPoints());
 }

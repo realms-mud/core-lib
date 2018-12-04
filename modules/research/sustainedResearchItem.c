@@ -454,7 +454,8 @@ public nomask int execute(string command, object initiator)
             displayMessage(coolDownMessage, initiator, initiator);
             ret = 0;
         }
-        if(ret && ((member(researchData, "hit point cost") &&
+        if(ret && !initiator->sustainedResearchIsActive(researchName) &&
+           ((member(researchData, "hit point cost") &&
            (researchData["hit point cost"] > initiator->maxHitPoints())) ||
            (member(researchData, "spell point cost") &&
            (researchData["spell point cost"] > initiator->maxSpellPoints())) ||
