@@ -132,15 +132,16 @@ protected nomask object getTarget(object owner, string command)
 
         if (sizeof(targetId) == 3)
         {
-            ret = present(targetId[2], environment(owner)) ||
-                present(targetId[2], owner);
+            string target = lower_case(targetId[2]);
+            ret = present(target, environment(owner)) ||
+                present(target, owner);
 
-            if (!ret && environment(owner)->isEnvironmentalElement(targetId[2]))
+            if (!ret && environment(owner)->isEnvironmentalElement(target))
             {
-                ret = environment(owner)->getEnvironmentalElement(targetId[2]);
+                ret = environment(owner)->getEnvironmentalElement(target);
             }
             else if(!ret && (this_object()->query("scope") == "targeted") &&
-                (targetId[2] == ""))
+                (target == ""))
             {
                 ret = owner;
             }

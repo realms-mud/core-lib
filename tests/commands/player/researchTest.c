@@ -96,7 +96,7 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\n"
         "\x1b[0;36mResearch Name   : \x1b[0m\x1b[0;33mZorlak's revenge\n"
         "\x1b[0m\x1b[0;33mThis is limited active research\n\n"
-        "\x1b[0m\x1b[0;33mLearning this costs 1 research points.\n"
+        "\x1b[0m\x1b[0;33mLearning this costs 1 research point.\n"
         "\x1b[0m\x1b[0;36mResearch Type   : \x1b[0m\x1b[0;33mActive\n"
         "\x1b[0m\x1b[0;36mScope           : \x1b[0m\x1b[0;33mTargeted\n"
         "\x1b[0m\x1b[0;36mCost to use     : \x1b[0m\x1b[0;33m1 spell points\n"
@@ -134,7 +134,7 @@ void OptionToBeginResearchShownWhenLearningIsPossible()
     command("1", Player);
     command("12", Player);
 
-    ExpectSubStringMatch("You have 1 research points left to assign.",
+    ExpectSubStringMatch("You have 1 research point left to assign.",
         Player->caughtMessage());
 }
 
@@ -148,7 +148,7 @@ void DescribeAsQuestionMarkShowsResearchDetails()
 
     ExpectEq("\x1b[0;36m\x1b[0;36mResearch Name   : \x1b[0m\x1b[0;33mZorlak's revenge\n"
         "\x1b[0m\x1b[0;33mThis is limited active research\n\n"
-        "\x1b[0m\x1b[0;33mLearning this costs 1 research points.\n"
+        "\x1b[0m\x1b[0;33mLearning this costs 1 research point.\n"
         "\x1b[0m\x1b[0;36mResearch Type   : \x1b[0m\x1b[0;33mActive\n"
         "\x1b[0m\x1b[0;36mScope           : \x1b[0m\x1b[0;33mTargeted\n"
         "\x1b[0m\x1b[0;36mCost to use     : \x1b[0m\x1b[0;33m1 spell points\n"
@@ -178,7 +178,7 @@ void DescribeShowsResearchDetails()
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mDetails:\n"
         "\x1b[0;36mResearch Name   : \x1b[0m\x1b[0;33mGrog's revenge\n"
         "\x1b[0m\x1b[0;33mThis is a description\n\n"
-        "\x1b[0m\x1b[0;33mLearning this costs 1 research points.\n"
+        "\x1b[0m\x1b[0;33mLearning this costs 1 research point.\n"
         "\x1b[0m\x1b[0;36mResearch Type   : \x1b[0m\x1b[0;33mPassive\n"
         "\x1b[0m\x1b[0;36mScope           : \x1b[0m\x1b[0;33mSelf\n"
         "\x1b[0m\x1b[0;34;1m                  (+2) \x1b[0m\x1b[0;33mBonus long sword\n"

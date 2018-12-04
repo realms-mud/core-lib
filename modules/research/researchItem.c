@@ -256,8 +256,9 @@ private nomask string displayCost(string colorConfiguration,
     string ret = "This research item is granted to the user at a pre-defined time.\n";
     if (query("research type") == "points")
     {
-        ret = sprintf("Learning this costs %d research points.\n",
-            query("research cost"));
+        ret = sprintf("Learning this costs %d research point%s.\n",
+            query("research cost"), 
+            query("research cost") == 1 ? "" : "s");
     }
     else if (query("research type") == "timed")
     {

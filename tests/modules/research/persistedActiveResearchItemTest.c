@@ -687,7 +687,7 @@ void DisplayDetailsShowCorrectInformation()
         "By means of this, the Scion is able to use their sword as a conduit for\n"
         "emitting a powerful storm that harries a foe.\n"
         "\n"
-        "Learning this costs 1 research points.\n"
+        "Learning this costs 1 research point.\n"
         "Research Type   : Active\n"
         "Scope           : Targeted\n"
         "Duration        : 1 minute 30 seconds\n"

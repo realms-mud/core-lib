@@ -311,7 +311,7 @@ public nomask int addAlias(string newAlias)
 /////////////////////////////////////////////////////////////////////////////
 public int id(string item)
 {
-    string *aliasCheck = Aliases() + ({ RealName() });
+    string *aliasCheck = Aliases() + ({ RealName(), lower_case(RealName()) });
     
     return (item && stringp(item) && aliasCheck && (member(aliasCheck, item) > -1));
 }

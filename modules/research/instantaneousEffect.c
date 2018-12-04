@@ -246,6 +246,10 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
                 owner, target);
         }
     }
+    else
+    {
+        displayMessageToSelf("You must specify a target.\n", owner);
+    }
     return ret;
 }
 
