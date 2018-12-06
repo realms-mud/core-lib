@@ -129,6 +129,41 @@ protected nomask void addTopicTrigger(string id, string event)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void addTopicInterjection(string id, string actor,
+    string actorTopic)
+{
+    if (member(topics, id))
+    {
+        if (file_size(actor) > 0)
+        {
+            object actorObj = load_object(actor);
+            if (actorObj && actorObj->hasTopic(actorTopic))
+            {
+                topics[id]["interjection"] = ([ 
+                    "actor": actor,
+                    "topic": actorTopic
+                ]);
+            }
+            else
+            {
+                raise_error(sprintf("ERROR - baseConversation.c, addTopicInterjection: "
+                    "Topic '%s' does not exist on actor.\n", actorTopic));
+            }
+        }
+        else
+        {
+            raise_error(sprintf("ERROR - baseConversation.c, addTopicInterjection: "
+                "Actor '%s' does not exist.\n", actor));
+        }
+    }
+    else
+    {
+        raise_error(sprintf("ERROR - baseConversation.c, addTopicInterjection: "
+            "Topic '%s' does not exist.\n", id));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void addResponse(string id, string selection, string template)
 {
     if (member(topics, id))
@@ -510,6 +545,19 @@ public nomask int speakMessage(string key, object actor, object owner)
     {
         displayMessage(topics[key]["template"], actor, owner);
 
+        if (member(topics[key], "interjection") && environment(owner))
+        {
+            object interloper = present_clone(
+                topics[key]["interjection"]["actor"],
+                environment(owner));
+
+            if (objectp(interloper))
+            {
+                interloper->onTriggerConversation(actor,
+                    topics[key]["interjection"]["topic"]);
+            }
+        }
+
         if (member(topics[key], "responses"))
         {
             displayResponses(key, actor, owner);
@@ -522,6 +570,7 @@ public nomask int speakMessage(string key, object actor, object owner)
         {
             owner->notifySynchronous(topics[key]["event"], actor);
         }
+
         ret = 1;
     }
     return ret;

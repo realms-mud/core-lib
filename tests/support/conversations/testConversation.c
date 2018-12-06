@@ -44,4 +44,6 @@ protected void Setup()
     addTopic("block by opinion", "Opinion not blocked topic");
 
     addTopic("serve the king", "You are serving the king");
+
+    addTopic("interjected comment", "You bore me, dunderhead.");
 }

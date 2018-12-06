@@ -314,11 +314,3 @@ void CanSeeTwentyFourBitColors()
         "0;38;2;0;0;220;1mB.*0;38;2;180;0;0;1mR",
         Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
 }
-
-/*
-/////////////////////////////////////////////////////////////////////////////
-void DisplayStuff()
-{
-    ExpectEq("\x1b[0;38;2;0;180;0;1m\xe2\x8a\x9b\x1b[0m", "\xe2\x98\xa0 \xe2\x8a\x9b \xe2\x9c\xb8 \xe2\x9a\x89 \xe2\x98\x80 \xe1\x9a\xa1 \xe1\x9a\xa2");
-}
-*/

@@ -206,6 +206,76 @@ void CannotAddResponseIfTopicDoesNotExist()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void AddTopicInterjectionAddsInterjection()
+{
+    efun::set_this_player(Actor);
+
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddTopicInterjection("test",
+        "/lib/tests/support/conversations/testNPC.c",
+        "interjected comment");
+    Conversation->testAddResponse("test", "Test response", "This is a test response");
+
+    object interloper = clone_object("/lib/tests/support/conversations/testNPC.c");
+    move_object(interloper, environment(Owner));
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq(3, sizeof(Actor->caughtMessages()));
+    ExpectSubStringMatch("This is a test message", Actor->caughtMessages()[0]);
+    ExpectSubStringMatch("You bore me, dunderhead", Actor->caughtMessages()[1]);
+    ExpectSubStringMatch("Test response", Actor->caughtMessages()[2]);
+    destruct(interloper);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddTopicInterjectionDoesNotInterjectiWhenInterloperNotPresent()
+{
+    efun::set_this_player(Actor);
+
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddTopicInterjection("test",
+        "/lib/tests/support/conversations/testNPC.c",
+        "interjected comment");
+    Conversation->testAddResponse("test", "Test response", "This is a test response");
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq(2, sizeof(Actor->caughtMessages()));
+    ExpectSubStringMatch("This is a test message", Actor->caughtMessages()[0]);
+    ExpectSubStringMatch("Test response", Actor->caughtMessages()[1]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddInterjectionIfTopicDoesNotExist()
+{
+    ExpectEq("*ERROR - baseConversation.c, addTopicInterjection: Topic 'test' does not exist.\n",
+        catch (Conversation->testAddTopicInterjection("test", 
+            "/lib/tests/support/conversations/testNPC.c", 
+            "missing response")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddInterjectionIfActorDoesNotExist()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+
+    ExpectEq("*ERROR - baseConversation.c, addTopicInterjection: Actor '/lib/tests/support/conversations/badActor.c' does not exist.\n",
+        catch (Conversation->testAddTopicInterjection("test",
+            "/lib/tests/support/conversations/badActor.c",
+            "missing response")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddInterjectionIfActorDoesButTopicDoesNotExist()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+
+    ExpectEq("*ERROR - baseConversation.c, addTopicInterjection: Topic 'missing response' does not exist on actor.\n",
+        catch (Conversation->testAddTopicInterjection("test",
+            "/lib/tests/support/conversations/testNPC.c",
+            "missing response")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CannotAddResponseIfItAlreadyExists()
 {
     Conversation->testAddTopic("test", "This is a test message");

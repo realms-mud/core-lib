@@ -35,6 +35,13 @@ public void testAddTopicTrigger(string id, string event)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void testAddTopicInterjection(string id, string actor,
+    string actorTopic)
+{
+    return addTopicInterjection(id, actor, actorTopic);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void testAddResponse(string id, string selection, string template)
 {
     return addResponse(id, selection, template);

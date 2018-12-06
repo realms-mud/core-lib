@@ -7,8 +7,9 @@ virtual inherit "/lib/modules/conversations/baseConversation.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addTopic("galadhel awakens player", "@S@`Get up, damn it!' @D@says Galadhel through clenched "
-        "teeth, the anger - or fear - apparent on her face. @S@`I swear... if "
-        "you're dead, ##ActorName##, I will kill you!'");
-    addTopicEvent("galadhel awakens player", "berenarInterjects");
+    addTopic("talk to me", "This is a conversation");
+    addTopicInterjection("talk to me",
+        "/lib/tests/support/conversations/testNPC.c",
+        "interjected comment");
+    addResponse("talk to me", "Response", "@S@'Bite me'");
 }

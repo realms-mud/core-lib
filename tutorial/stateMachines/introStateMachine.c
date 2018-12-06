@@ -59,13 +59,13 @@ public void beginIntroduction(object player)
 /////////////////////////////////////////////////////////////////////////////
 public void galadhelAwakensPlayer()
 {
-    command("talk galadhel", Player);
+    notify("onTriggerConversation", "galadhel awakens player");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void berenarBeginsConversation()
 {
-    command("talk berenar", Player);
+    notify("onTriggerConversation", "berenar interjects");
 }
 
 /////////////////////////////////////////////////////////////////////////////

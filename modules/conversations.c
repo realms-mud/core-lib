@@ -84,6 +84,12 @@ protected nomask void addConversation(string conversation)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int hasTopic(string topic)
+{
+    return member(topics, topic);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void updateConversationState(object caller, string newState)
 {
     if ((caller != this_object()) && this_player() && member(topics, newState))
@@ -166,4 +172,15 @@ public nomask int respondToConversation(string choice)
     remove_action(1);
     return CurrentTopic && CurrentTopic->displayResponse(query_command(),
         this_player(), this_object());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void onTriggerConversation(object caller,
+    string conversation)
+{
+    if (member(topics, conversation) && this_player())
+    {
+        call_direct(this_player(), "onStateChanged", this_object(), conversation);
+        beginConversation(this_player());
+    }
 }
