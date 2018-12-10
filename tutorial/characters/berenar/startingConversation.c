@@ -27,6 +27,7 @@ protected void Setup()
         "has regained consciousness and does not yet look ready to depart us.' @D@"
         "notes Berenar as he crouches down to help Galadhel tend to your wounds.");
     addResponseTopic("berenar interjects", "\x1b[0;31m[Say nothing...]\x1b[0m", "player will live");
+    addTopicEvent("player will live", "playerAgainLosesConsciousness");
 
     addResponse("berenar interjects", "I'm not dead yet...",
         "@D@You raise your head up slightly and say, `@S@The rumor of my demise is greatly exaggerated. I hurt... everywhere, "
@@ -35,4 +36,5 @@ protected void Setup()
         "and let me tend to you. I marvel that you are alive at all...' @D@says "
         "Berenar and he crouches down to help Galadhel tend your wounds.");
     addResponseTopic("berenar interjects", "I'm not dead yet...", "not dead");
+    addTopicEvent("not dead", "playerAgainLosesConsciousness");
 }

@@ -468,6 +468,7 @@ private nomask void executeResponseEffect(mapping effects,
 public nomask int displayResponse(string choice, object actor, object owner)
 {
     int ret = 0;
+
     if (objectp(owner) && member(responseKeys, choice))
     {
         ret = 1;
@@ -476,6 +477,7 @@ public nomask int displayResponse(string choice, object actor, object owner)
 
         displayMessage("\n" + topics[id]["responses"][key]["template"] + 
             "\n\n", actor, owner);
+        responseKeys = ([]);
 
         if (member(topics[id]["responses"][key], "topic"))
         {

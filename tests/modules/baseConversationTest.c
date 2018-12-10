@@ -514,9 +514,11 @@ void DisplayResponseReturnsCorrectMessage()
     Conversation->displayResponse("1", Actor, Owner);
     ExpectSubStringMatch("I am one who wishes to complete this", Actor->caughtMessage());
 
+    Conversation->speakMessage("start quest", Actor, Owner);
     Conversation->displayResponse("2", Actor, Owner);
     ExpectSubStringMatch("I am Gorthaur and I am here to pass the trial", Actor->caughtMessage());
 
+    Conversation->speakMessage("start quest", Actor, Owner);
     Conversation->displayResponse("3", Actor, Owner);
     ExpectSubStringMatch("Who I am is not your concern, wraith", Actor->caughtMessage());
 }
@@ -533,4 +535,19 @@ void MessagesAreCorrectlyParsed()
 void CanAddConditionalTopicAddendum()
 {
     // Task 355
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResponsesAreClearedAfterChosen()
+{
+    destruct(Conversation);
+    Conversation = clone_object("/lib/tests/support/conversations/testConversation.c");
+
+    Conversation->speakMessage("start quest", Actor, Owner);
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectSubStringMatch("I am one who wishes to complete this", Actor->caughtMessage());
+    Actor->resetCatchList();
+
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectFalse(Actor->caughtMessage());
 }

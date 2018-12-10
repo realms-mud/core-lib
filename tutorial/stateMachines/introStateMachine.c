@@ -43,6 +43,10 @@ public void reset(int arg)
         addEntryAction("berenar interjects", "berenarBeginsConversation");
         addTransition("regain consciousness", "berenar interjects", "berenarInterjects");
 
+        addState("background story", "");
+        addEntryAction("background story", "playerTransitionsToBackgroundStory");
+        addTransition("berenar interjects", "background story", "playerAgainLosesConsciousness");
+
         setInitialState("initiate story");
 
         setUpActors();
@@ -76,7 +80,7 @@ public void partThree(object player)
         "omen...'\x1b[0m\x1b[0;36m muttered Basil.\n\x1b[0;32m`Blood will be spilled "
         "today.'\x1b[0m\x1b[0;36m Captain Basil, was never one for euphemisms.\n"
         "Poor bastard. Little did he know at the time that the blood would "
-        "be his own...\x1b[0m\n");
+        "be his own...\x1b[0m\n\n");
     call_out("receiveEvent", 4, player, "regainConsciousness", player);
 }
 
@@ -113,6 +117,28 @@ public void displayIntroduction()
     move_object(Galadhel, "/lib/tutorial/rooms/battleScene.c");
     move_object(Berenar, "/lib/tutorial/rooms/battleScene.c");
     call_out("partOne", 2, Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void slipIntoUnconsciousness()
+{
+    tell_object(Player, format(
+        "\x1b[0;36mAs Berenar and Galadhel tend to your injuries, it hurts "
+        "like nothing you've felt before. Unbidden, the thought comes to your "
+        "mind, \x1b[0;32m`So this is what it feels like to die.'\x1b[0;36m "
+        "Angry that those thoughts came so easily... angry that you're lying "
+        "in a pool of your own damned blood, you shake your head. That act "
+        "proves to be most unwise as a wave of lightheadedness overtakes "
+        "you and your eyesight goes blurry.\n\nWith crystal clarity, the "
+        "fog in your mind clears. You are back in time... that very day "
+        "you made the decisions that started the chain of events "
+        "leading you to your current, sorry state.\x1b[0m", 78));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void playerTransitionsToBackgroundStory()
+{
+    call_out("slipIntoUnconsciousness", 4);
 }
 
 /////////////////////////////////////////////////////////////////////////////

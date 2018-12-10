@@ -659,13 +659,26 @@ public nomask string guildsDetails()
         ret = "";
         foreach(string guild in guildList)
         {
-            ret += commandDictionary->banneredContent(colorConfiguration, charset,
-                configuration->decorate("Guild: ", "content", "score", 
-                    colorConfiguration) +
-                configuration->decorate(sprintf("%-27s ", capitalize(guild) +
+            string guildInfo = "";
+            if (guild == "background")
+            {
+                guildInfo = configuration->decorate(sprintf("%-35s", 
+                    "Developing your background story"), "information", 
+                    "score", colorConfiguration);
+            }
+            else
+            {
+                guildInfo =
+                    configuration->decorate("Guild: ", "content", "score",
+                        colorConfiguration) +
+                    configuration->decorate(sprintf("%-27s ", capitalize(guild) +
                     (guildRankName(guild) ? " (" +
                         capitalize(guildRankName(guild)) + ")" : "")),
-                    "information", "score", colorConfiguration) +
+                        "information", "score", colorConfiguration);
+            }
+
+            ret += commandDictionary->banneredContent(colorConfiguration, 
+                charset, guildInfo +
                 configuration->decorate("Level: ", "content", "score",
                     colorConfiguration) +
                 configuration->decorate(sprintf("%-10d ", guildLevel(guild)),

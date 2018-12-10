@@ -35,7 +35,8 @@ private nomask void compileOneItem(string path, object initiator)
         destruct(existingBlueprint);
     }
 
-    string logFile = sprintf("/log/%s", initiator->RealName() || "log");
+    string logFile = "/log/log"; 
+
     if (file_size(logFile))
     {
         rm(logFile);
@@ -47,7 +48,7 @@ private nomask void compileOneItem(string path, object initiator)
     if (result)
     {
         result = sprintf("\x1b[0;31m%s\n\x1b[0;31;1m%s\x1b[0m", result,
-            (read_file(logFile) || ""));
+            (read_file(logFile) || driver_info(-42)));
 
         tell_object(initiator, result);
         rm(logFile);
