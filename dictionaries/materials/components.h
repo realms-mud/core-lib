@@ -3105,6 +3105,20 @@ private nosave mapping craftingComponents =
         ]),
         "experience modifier": 1.4
     ]),
+    "Runed Fillet with Jewel": ([
+        "class": "fillet design",
+        "value": 85,
+        "description": "a fillet of PrimaryMaterial that has been exquisitely carved with metal runes of power embossed along its course. There is a crystal setting.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 5]),
+        ]),
+        "crafting materials": ([
+            "crystal": 1,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.4
+    ]),
     "Simple Tiara": ([
         "class": "tiara design",
         "value": 5,

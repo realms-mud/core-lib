@@ -123,7 +123,7 @@ public void displayIntroduction()
 public void slipIntoUnconsciousness()
 {
     tell_object(Player, format(
-        "\x1b[0;36mAs Berenar and Galadhel tend to your injuries, it hurts "
+        "\n\x1b[0;36mAs Berenar and Galadhel tend to your injuries, it hurts "
         "like nothing you've felt before. Unbidden, the thought comes to your "
         "mind, \x1b[0;32m`So this is what it feels like to die.'\x1b[0;36m "
         "Angry that those thoughts came so easily... angry that you're lying "
@@ -138,7 +138,7 @@ public void slipIntoUnconsciousness()
 /////////////////////////////////////////////////////////////////////////////
 public void playerTransitionsToBackgroundStory()
 {
-    call_out("slipIntoUnconsciousness", 4);
+    call_out("slipIntoUnconsciousness", 6);
 }
 
 /////////////////////////////////////////////////////////////////////////////

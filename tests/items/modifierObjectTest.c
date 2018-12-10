@@ -133,5 +133,3 @@ void DropAlwaysReturnsOne()
 {
     ExpectEq(1, Modifier->drop(), "drop returns 1");
 }
-
-
