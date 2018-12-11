@@ -7,6 +7,7 @@ private nosave mapping food =
 ([
     "tomato": ([
         "type": "vegetable",
+        "subtype": "tomato",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -17,6 +18,7 @@ private nosave mapping food =
     ]),
     "cherry tomato": ([
         "type": "vegetable",
+        "subtype": "tomato",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -27,6 +29,7 @@ private nosave mapping food =
     ]),
     "grape tomato": ([
         "type": "vegetable",
+        "subtype": "tomato",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -37,6 +40,7 @@ private nosave mapping food =
     ]),
     "yellow tomato": ([
         "type": "vegetable",
+        "subtype": "tomato",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -47,6 +51,7 @@ private nosave mapping food =
     ]),
     "roma tomato": ([
         "type": "vegetable",
+        "subtype": "tomato",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -57,6 +62,7 @@ private nosave mapping food =
     ]),
     "purple tomato": ([
         "type": "vegetable",
+        "subtype": "tomato",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -67,6 +73,7 @@ private nosave mapping food =
     ]),
     "green tomato": ([
         "type": "vegetable",
+        "subtype": "tomato",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -77,6 +84,7 @@ private nosave mapping food =
     ]),
     "striped tomato": ([
         "type": "vegetable",
+        "subtype": "tomato",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -87,6 +95,7 @@ private nosave mapping food =
     ]),
     "potato": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -97,6 +106,7 @@ private nosave mapping food =
     ]),
      "russet potato": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -107,6 +117,7 @@ private nosave mapping food =
     ]),
     "red potato": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -117,6 +128,7 @@ private nosave mapping food =
     ]),
     "white potato": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -127,6 +139,7 @@ private nosave mapping food =
     ]),
     "yellow potato": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -137,6 +150,7 @@ private nosave mapping food =
     ]),
     "purple potato": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -147,6 +161,7 @@ private nosave mapping food =
     ]),
     "fingerling potato": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -157,6 +172,7 @@ private nosave mapping food =
     ]),
     "petite potato": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -198,6 +214,7 @@ private nosave mapping food =
     ]),
     "onion": ([
         "type": "vegetable",
+        "subtype": "bulb",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -206,8 +223,86 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
+    "yellow onion": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "yellow onion seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "red onion": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "red onion seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "white onion": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "white onion seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "sweet onion": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "sweet onion seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+     "scallion": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "scallion seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "hardneck garlic": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "hardneck garlic seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "silverskin garlic": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "silverskin garlic seed": 1
+        ]),
+        "base experience": 1,
+    ]),
     "garlic": ([
         "type": "vegetable",
+        "subtype": "bulb",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -216,8 +311,86 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
+    "burgundy garlic": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "burgondy garlic seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "red garlic": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "red garlic seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "black garlic": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "black garlic seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "scape": ([
+        "type": "vegetable",
+        "subtype": "green",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "hardneck garlic seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "ramp": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "ramp seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "wild garlic": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "wild garlic seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "elephant garlic": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "elephant garlic seed": 1
+        ]),
+        "base experience": 1,
+    ]),
     "daylily": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -228,6 +401,7 @@ private nosave mapping food =
     ]),
     "radish": ([
         "type": "vegetable",
+        "subtype": "stem",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -238,6 +412,7 @@ private nosave mapping food =
     ]),
     "horseradish": ([
         "type": "vegetable",
+        "subtype": "root",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -248,6 +423,7 @@ private nosave mapping food =
     ]),
     "shalot": ([
         "type": "vegetable",
+        "subtype": "bulb",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -258,6 +434,7 @@ private nosave mapping food =
     ]),
     "kohlrabi": ([
         "type": "vegetable",
+        "subtype": "stem",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -268,6 +445,7 @@ private nosave mapping food =
     ]),
     "beet": ([
         "type": "vegetable",
+        "subtype": "root",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -278,6 +456,7 @@ private nosave mapping food =
     ]),
     "sweet potato": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -286,8 +465,9 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
-    "rutabeaga": ([
+    "rutabaga": ([
         "type": "vegetable",
+        "subtype": "root",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -298,6 +478,7 @@ private nosave mapping food =
     ]),
     "ginger": ([
         "type": "vegetable",
+        "subtype": "root",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -308,6 +489,7 @@ private nosave mapping food =
     ]),
     "yam": ([
         "type": "vegetable",
+        "subtype": "tuber",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -318,6 +500,7 @@ private nosave mapping food =
     ]),
     "chive": ([
         "type": "vegetable",
+        "subtype": "green",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -328,6 +511,7 @@ private nosave mapping food =
     ]),
     "celery": ([
         "type": "vegetable",
+        "subtype": "stem",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -336,13 +520,47 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
+    "asparagus": ([
+        "type": "vegetable",
+        "subtype": "stem",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "asparagus seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "rhubarb": ([
+        "type": "vegetable",
+        "subtype": "stem",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "rhubarb seed": 1
+        ]),
+        "base experience": 1,
+    ]),
     "leek": ([
         "type": "vegetable",
+        "subtype": "bulb",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
             "leek seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "fennel": ([
+        "type": "vegetable",
+        "subtype": "bulb",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "fennel seed": 1
         ]),
         "base experience": 1,
     ]),
@@ -636,6 +854,16 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
+    "sweet orange pepper": ([
+        "type": "vegetable",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "sweet orange pepper seed": 1
+        ]),
+        "base experience": 1,
+    ]),
     "sweet red pepper": ([
         "type": "vegetable",
         "crafting prerequisites": ([
@@ -653,6 +881,248 @@ private nosave mapping food =
         ]),        
         "crafting materials": ([
             "green pepper seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "artichoke": ([
+        "type": "vegetable",
+        "subtype": "flower",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "artichoke seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "broccoli": ([
+        "type": "vegetable",
+        "subtype": "flower",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "broccoli seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "cauliflower": ([
+        "type": "vegetable",
+        "subtype": "flower",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "cauliflower seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "cucumber": ([
+        "type": "vegetable",
+        "subtype": "fruit",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "cucumber seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "eggplant": ([
+        "type": "vegetable",
+        "subtype": "fruit",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "eggplant seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "okra": ([
+        "type": "vegetable",
+        "subtype": "fruit",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "okra seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "buttercup squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "buttercup squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "acorn squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "acorn squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "butternut squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "butternut squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "spaghetti squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "spaghetti squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "ambercup squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "ambercup squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "autumn cup squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "autumn cup squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "banana squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "banana squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "carnival squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "carnival squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "delicata squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "delicata squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "musquee de provence squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "musquee de provence squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "gold nugget squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "gold nugget squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "hubbard squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "hubbard squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "sweet dumpling squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "sweet dumpling squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "turban squash": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "turban squash seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "zucchini": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "zucchini seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "pumpkin": ([
+        "type": "vegetable",
+        "subtype": "squash",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "pumpkin seed": 1
         ]),
         "base experience": 1,
     ]),
