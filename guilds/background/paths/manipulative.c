@@ -43,8 +43,8 @@ public void reset(int arg)
         Name("A Manipulative Little Shit");
         Description("");
         Source("background");
-        addResearchElement("lib/guilds/background/paths/manipulate/root.c");
-        TreeRoot("lib/guilds/background/paths/manipulate/root.c");
+        addResearchElement("lib/guilds/background/paths/manipulative/root.c");
+        TreeRoot("lib/guilds/background/paths/manipulative/root.c");
 
         FirstLevel();
         SecondLevel();
