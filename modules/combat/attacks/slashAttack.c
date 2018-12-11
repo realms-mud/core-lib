@@ -47,6 +47,6 @@ public void reset(int arg)
             "weapon into ##TargetName## ##SimileDictionary##.", "10-50");
         addHitMessage("##AttackerName## ##HitDictionary## ##AttackerPossessive## "
             "weapon into ##TargetName##. ##TargetSubjective## whines like a "
-            "little girl.", "51-90");
+            "little girl.", "51-190");
     }
 }

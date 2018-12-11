@@ -22,7 +22,7 @@ public void reset(int arg)
             "##AttackerPossessive## pants are on fire!");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-50");
+            "##SimileDictionary##.", "1-150");
     }
 }
 

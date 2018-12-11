@@ -919,7 +919,9 @@ private nomask varargs mapping *getWeaponAttacksFromBonus(int numAttacks, int ad
     object inventory = getService("inventory");
     if (inventory)
     {
-        int hasOffhandWeapon = objectp(inventory->equipmentInSlot("wielded offhand"));
+        int hasOffhandWeapon = objectp(inventory->equipmentInSlot("wielded offhand")) &&
+            (inventory->equipmentInSlot("wielded offhand") != 
+            inventory->equipmentInSlot("wielded primary"));
 
         for (int i = 0; i < numAttacks; i++)
         {

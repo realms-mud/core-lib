@@ -25,7 +25,7 @@ public void reset(int arg)
             "with acid ##SimileDictionary##.", "default");
         addHitMessage("##AttackerName## ##Infinitive::splash## ##TargetName## right "
             "in the ##BodyPart## with a jet of acid.",
-            "51-100");
+            "51-150");
     }
 }
 

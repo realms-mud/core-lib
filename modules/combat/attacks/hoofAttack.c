@@ -22,7 +22,7 @@ public void reset(int arg)
             "##Infinitive::paw## at the air with ##AttackerPossessive## hooves.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## hooves.", "1-50");
+            "##SimileDictionary## with ##AttackerPossessive## hooves.", "1-150");
     }
 }
 

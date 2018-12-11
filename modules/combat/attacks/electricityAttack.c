@@ -27,7 +27,7 @@ public void reset(int arg)
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
             "##SimileDictionary##.", "1-50");
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName##, "
-            "scorching ##TargetPossessive## ##BodyPart##.", "51-90");
+            "scorching ##TargetPossessive## ##BodyPart##.", "51-190");
     }
 }
 

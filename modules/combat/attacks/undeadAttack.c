@@ -22,9 +22,6 @@ public void reset(int arg)
 
         addHitMessage("##AttackerName## ##Infinitive::intone## menacing words "
             "of death and ##HitDictionary## ##TargetName## ##SimileDictionary##.",
-            "1-50");
+            "1-150");
     }
 }
-
-
-

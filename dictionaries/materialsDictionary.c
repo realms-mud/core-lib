@@ -334,7 +334,11 @@ public nomask string *getMaterialDamageType(object weapon)
     if (isValidItem(weapon))
     {
         string weaponType = weapon->query("blueprint");
-        if (isValidWeaponBlueprint(weaponType))
+        if (weapon->query("primary damage type"))
+        {
+            ret = ({ weapon->query("primary damage type") });
+        }
+        else if (isValidWeaponBlueprint(weaponType))
         {
             ret = ({ weaponBlueprints[weaponType]["damage type"] });
         }

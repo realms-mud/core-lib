@@ -51,7 +51,12 @@ public void SetupGuild()
             "in during your childhood?",
         "apply": "at level 1",
         "research objects": ({ 
-            "lib/guilds/background/paths/learning.c"
+            "lib/guilds/background/paths/learning.c",
+            "lib/guilds/background/paths/manipulative.c",
+            "lib/guilds/background/paths/athletic.c",
+            "lib/guilds/background/paths/martial.c",
+            "lib/guilds/background/paths/dutiful.c",
+            "lib/guilds/background/paths/miscreant.c",
         })
     ]));
 }

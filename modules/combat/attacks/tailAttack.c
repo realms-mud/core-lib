@@ -23,7 +23,7 @@ public void reset(int arg)
             " tail at nothing.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## tail.", "1-50");
+            "##SimileDictionary## with ##AttackerPossessive## tail.", "1-150");
     }
 }
 

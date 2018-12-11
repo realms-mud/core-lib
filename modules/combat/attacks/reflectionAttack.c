@@ -14,7 +14,7 @@ public void reset(int arg)
 
         addMissMessage("##AttackerName## ##Infinitive::reflect## the attack, but fails to do any damage.");
 
-        addHitMessage("##AttackerName## ##Infinitive::reflect## the attack back to ##TargetName##.", "1-50");
+        addHitMessage("##AttackerName## ##Infinitive::reflect## the attack back to ##TargetName##.", "1-150");
     }
 }
 

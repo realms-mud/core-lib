@@ -25,10 +25,6 @@ public void reset(int arg)
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
             "##SimileDictionary## with ##AttackerPossessive## tentacles.",
-            "1-50");
+            "1-150");
     }
 }
-
-
-
-

@@ -22,10 +22,6 @@ public void reset(int arg)
             " raspberry sound with ##AttackerPossessive## tongue.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## tongue.", "1-50");
+            "##SimileDictionary## with ##AttackerPossessive## tongue.", "1-150");
     }
 }
-
-
-
-

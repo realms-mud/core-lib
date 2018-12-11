@@ -22,7 +22,7 @@ public void reset(int arg)
             " claws and ##Infinitive::swat## at the air.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## claws.", "1-50");
+            "##SimileDictionary## with ##AttackerPossessive## claws.", "1-150");
     }
 }
 

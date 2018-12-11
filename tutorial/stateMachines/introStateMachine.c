@@ -120,6 +120,27 @@ public void displayIntroduction()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void slipIntoUnconsciousnessPartThree()
+{
+    load_object("/lib/dictionaries/guildsDictionary.c");
+    load_object("/lib/guilds/background/background.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void slipIntoUnconsciousnessPartTwo()
+{
+    tell_object(Player, format(
+        "\n\x1b[0;36mWith crystal clarity, the "
+        "fog in your mind clears. You are back in time... that very day "
+        "you made the decisions that started the chain of events "
+        "leading you to your current, sorry state.\n\n"
+        "\x1b[0;33;1mThis is where the background quest stuff would "
+        "normally get triggered. Since I don't have any here, we will "
+        "short-circuit that right now.\x1b[0m", 78));
+    call_out("slipIntoUnconsciousnessPartThree", 4);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void slipIntoUnconsciousness()
 {
     tell_object(Player, format(
@@ -129,10 +150,8 @@ public void slipIntoUnconsciousness()
         "Angry that those thoughts came so easily... angry that you're lying "
         "in a pool of your own damned blood, you shake your head. That act "
         "proves to be most unwise as a wave of lightheadedness overtakes "
-        "you and your eyesight goes blurry.\n\nWith crystal clarity, the "
-        "fog in your mind clears. You are back in time... that very day "
-        "you made the decisions that started the chain of events "
-        "leading you to your current, sorry state.\x1b[0m", 78));
+        "you and your eyesight goes blurry.\n\x1b[0m", 78));
+    call_out("slipIntoUnconsciousnessPartTwo", 4);
 }
 
 /////////////////////////////////////////////////////////////////////////////

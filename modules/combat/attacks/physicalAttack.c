@@ -22,7 +22,7 @@ public void reset(int arg)
         addMissMessage("##AttackerName## ##Infinitive::flail## wildly! Very theatric.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-50");
+            "##SimileDictionary##.", "1-150");
     }
 }
 

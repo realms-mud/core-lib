@@ -40,11 +40,11 @@ public void reset(int arg)
     if (!arg)
     {
         researchTree::reset(arg);
-        Name("A Studious Childhood");
+        Name("A Miscreant");
         Description("");
         Source("background");
-        addResearchElement("lib/guilds/background/paths/learning/root.c");
-        TreeRoot("lib/guilds/background/paths/learning/root.c");
+        addResearchElement("lib/guilds/background/paths/miscreant/root.c");
+        TreeRoot("lib/guilds/background/paths/miscreant/root.c");
 
         FirstLevel();
         SecondLevel();

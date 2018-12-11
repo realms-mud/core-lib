@@ -24,7 +24,7 @@ public void reset(int arg)
             "that's about it.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## " +
-            "##SimileDictionary##.", "1-50");
+            "##SimileDictionary##.", "1-150");
     }
 }
 

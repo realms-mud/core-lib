@@ -23,7 +23,7 @@ public void reset(int arg)
             "##Infinitive::produce## little more than street theater.");
 
         addHitMessage("##AttackerName## ##Infinitive::summon## the powers of earth"
-            " and ##HitDictionary## ##TargetName## ##SimileDictionary##.", "1-50");
+            " and ##HitDictionary## ##TargetName## ##SimileDictionary##.", "1-150");
     }
 }
 

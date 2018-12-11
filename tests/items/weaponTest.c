@@ -257,6 +257,15 @@ void CorrectDamageTypeReturnedForQueryDamageType()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CorrectDamageTypeReturnedWhenNonPhysicalDamageSet()
+{
+    ExpectTrue(Weapon->set("material", "galvorn"), "type set to galvorn");
+    ExpectTrue(Weapon->set("primary damage type", "fire"));
+    ExpectEq("fire", Weapon->getDamageType());
+    ExpectEq(({ "fire", "magical" }), Weapon->query("damage type"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void BlueprintCanBeSet()
 {
     ExpectTrue(Weapon->set("blueprint", "long sword"), "blueprint can be set");

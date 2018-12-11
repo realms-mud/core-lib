@@ -25,7 +25,7 @@ public void reset(int arg)
             "motes of light encircle ##AttackerPossessive## head.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-50");
+            "##SimileDictionary##.", "1-150");
     }
 }
 

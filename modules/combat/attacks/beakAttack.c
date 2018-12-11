@@ -22,7 +22,7 @@ public void reset(int arg)
             " beak menacingly, but harmlessly.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## beak.", "1-50");
+            "##SimileDictionary## with ##AttackerPossessive## beak.", "1-150");
     }
 }
 

@@ -23,6 +23,6 @@ public void reset(int arg)
             " wings wildly!");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## wings.", "1-50");
+            "##SimileDictionary## with ##AttackerPossessive## wings.", "1-150");
     }
 }

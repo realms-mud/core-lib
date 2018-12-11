@@ -25,7 +25,7 @@ public void reset(int arg)
 
         addHitMessage("##AttackerName## ##HitDictionary## at ##TargetName##"
             " and ##Infinitive::slam## ##TargetSubjective## with "
-            "##SimileDictionary##.", "1-50");
+            "##SimileDictionary##.", "1-150");
     }
 }
 

@@ -22,10 +22,6 @@ public void reset(int arg)
             " beautifully manicured talons.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## talons.", "1-50");
+            "##SimileDictionary## with ##AttackerPossessive## talons.", "1-150");
     }
 }
-
-
-
-

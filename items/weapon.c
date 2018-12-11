@@ -109,6 +109,23 @@ public nomask varargs int set(string element, mixed data)
     {
         switch(element)
         {
+            case "primary damage type":
+            {
+                object attacks = 
+                    load_object("/lib/dictionaries/attacksDictionary.c");
+                if(attacks && member(attacks->validAttackTypes(),
+                    data) > -1)
+                {
+                    itemData[element] = data;
+                    ret = 1;
+                }
+                else
+                {
+                    raise_error(sprintf("Weapon: The passed '%s' "
+                        "must be a valid attack type.\n", element));
+                }
+                break;
+            }
             case "defense class":
             case "weapon class":
             case "weapon attack":
@@ -262,4 +279,10 @@ public nomask int canDamageEthereal()
         }
     }
     return canDamage;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getDamageType()
+{
+    return query("primary damage type");
 }

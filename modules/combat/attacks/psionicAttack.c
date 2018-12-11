@@ -22,7 +22,7 @@ public void reset(int arg)
             "##TargetName##. Everyone is impressed.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName##"
-            " ##SimileDictionary##.", "1-50");
+            " ##SimileDictionary##.", "1-150");
     }
 }
 

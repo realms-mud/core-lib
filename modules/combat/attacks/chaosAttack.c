@@ -29,7 +29,7 @@ public void reset(int arg)
             "< 10");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##SimileDictionary## and "
-            "suddenly ##Infinitive::obsolete## ##TargetName##!", "< 20");
+            "suddenly ##Infinitive::obsolete## ##TargetName##!", "< 120");
     }
 }
 

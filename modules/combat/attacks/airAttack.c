@@ -27,7 +27,7 @@ public void reset(int arg)
             "1-50");
         addHitMessage("##AttackerName## ##Infinitive::slam## ##TargetName## "
             "backwards with a violent blast of wind.",
-            "51-90");
+            "51-150");
     }
 }
 

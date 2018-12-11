@@ -22,7 +22,7 @@ public void reset(int arg)
             " fangs at the empty air.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## using ##AttackerPossessive## fangs.", "1-50");
+            "##SimileDictionary## using ##AttackerPossessive## fangs.", "1-150");
     }
 }
 

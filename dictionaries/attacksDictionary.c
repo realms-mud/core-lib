@@ -133,10 +133,14 @@ private nomask object getDamageType(object weapon)
     object ret = 0;
     if(isValidWeapon(weapon))
     {
-        if((member(inherit_list(weapon), WeaponBlueprint) > -1) &&
-            (sizeof(weapon->query("damage type")) > 0))
+        if ((member(inherit_list(weapon), WeaponBlueprint) > -1))
         {
-            ret = getAttack(weapon->query("damage type")[0]);
+            string type = weapon->getDamageType();
+            if (!type && sizeof(weapon->query("damage type")) > 0)
+            {
+                type = weapon->query("damage type")[0];
+            }
+            ret = getAttack(type);
         }
         else if(member(inherit_list(weapon), AttackBlueprint) > -1)
         {
@@ -176,6 +180,11 @@ private nomask string parseTemplate(string template, string perspective,
     object attackType = getDamageType(weapon);
 
     int isSecondPerson = (perspective == "attacker");
+    if(isValidWeapon(weapon))
+    {
+        message = messageParser()->parseTargetWeapon(message, "Attacker",
+            weapon);
+    }
     if(attackType && objectp(attackType))
     {
         message = messageParser()->parseSimileDictionary(message, attackType);
@@ -189,12 +198,6 @@ private nomask string parseTemplate(string template, string perspective,
     {
         message = messageParser()->parseTargetInfo(message, "Attacker", 
             attacker, isSecondPerson);
-    }
-
-    if(isValidWeapon(weapon))
-    {
-        message = messageParser()->parseTargetWeapon(message, "Attacker",
-            weapon);
     }
 
     if(isValidAttacker(foe))

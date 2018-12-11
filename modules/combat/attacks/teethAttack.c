@@ -22,10 +22,6 @@ public void reset(int arg)
             " teeth obnoxiously.");
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## using ##AttackerPossessive## teeth.", "1-50");
+            "##SimileDictionary## using ##AttackerPossessive## teeth.", "1-150");
     }
 }
-
-
-
-

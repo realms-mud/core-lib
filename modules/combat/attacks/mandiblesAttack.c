@@ -23,7 +23,7 @@ public void reset(int arg)
 
         addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
             "##SimileDictionary## with ##AttackerPossessive## mandibles.",
-            "1-50");
+            "1-150");
     }
 }
 
