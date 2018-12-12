@@ -259,12 +259,6 @@ public nomask int advanceLevel(string guild)
         guilds[guild]["pretitle"] = guildsDictionary()->pretitle(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
 
-        object events = getService("events");
-        if(events && objectp(events))
-        {
-            events->notify("onAdvancedLevel");
-        }
-
         object state = getService("state");
         if (state)
         {
@@ -451,12 +445,6 @@ public nomask int joinGuild(string guild)
         // Trigger distribution of unassigned experience points
         addExperience(0);
 
-        object events = getService("events");
-        if(events && objectp(events))
-        {
-            events->notify("onJoinGuild");
-        }
-
         object persistence = getService("secure/persistence");
         if (persistence)
         {
@@ -473,6 +461,7 @@ public nomask int joinGuild(string guild)
             clone_object("/lib/modules/guilds/advanceLevelSelector.c");
         selector->setGuild(guild);
         move_object(selector, this_object());
+        selector->registerCompletionEvent(this_object(), "onJoinGuild");
         selector->registerEvent(
             load_object("/lib/modules/guilds/levelSelector.c"));
         selector->initiateSelector(this_object());

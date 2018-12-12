@@ -56,6 +56,7 @@ public nomask int execute(string command, object initiator)
         {
             object selector = clone_object("/lib/modules/guilds/levelSelector.c");
             move_object(selector, initiator);
+            selector->registerCompletionEvent(initiator, "onAdvancedLevel");
             selector->registerEvent(this_object());
             selector->guildsToAdvance(guilds, initiator);
             selector->initiateSelector(initiator);

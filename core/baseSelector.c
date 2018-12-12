@@ -19,6 +19,8 @@ protected int SuppressColon = 0;
 protected string Type = "Character creation";
 protected object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 protected string colorConfiguration = "none";
+protected object CompletionHandler;
+protected string CompletionEvent;
 
 private string *UndoLog = ({ });
 
@@ -151,6 +153,22 @@ protected void undoSelection(string selection)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void registerCompletionEvent(object handler, string event)
+{
+    CompletionHandler = handler;
+    CompletionEvent = event;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void emitCompletionEvent()
+{
+    if (objectp(CompletionHandler) && stringp(CompletionEvent))
+    {
+        CompletionHandler->notify(CompletionEvent);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void makeSelection(string selection)
 {
     int finished = processSelection(selection);
@@ -159,6 +177,7 @@ private nomask void makeSelection(string selection)
         if (finished == 1)
         {
             remove_action(1, User);
+            emitCompletionEvent();
             notifySynchronous("onSelectorCompleted");
         }
         else if (!suppressMenuDisplay())
@@ -246,6 +265,7 @@ public nomask int applySelection(string arguments)
             tell_object(User, configuration->decorate(
                 Type + " has been exited.\n",
                 "action", "selector", colorConfiguration));
+            emitCompletionEvent();
             notifySynchronous("onSelectorAborted");
         }
         else if(member(Data, arguments))
@@ -296,5 +316,6 @@ public nomask varargs void initiateSelector(object user, int alreadyInitialized)
 public void onSelectorAborted(object caller)
 {
     caller->cleanUp();
+    emitCompletionEvent();
     notifySynchronous("onSelectorAborted");
 }

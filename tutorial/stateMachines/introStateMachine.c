@@ -124,6 +124,8 @@ public void slipIntoUnconsciousnessPartThree()
 {
     load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/guilds/background/background.c");
+
+    Player->joinGuild("background");
 }
 
 /////////////////////////////////////////////////////////////////////////////

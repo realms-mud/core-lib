@@ -78,7 +78,8 @@ void JoinGuildFiresOnJoinGuildOnSuccess()
 {
     ToggleCallOutBypass();
     User->registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
-    string err = catch (User->joinGuild("test"));
+    User->joinGuild("test");
+    string err = catch (command("3", User));
     string expectedError = "*event handler: onJoinGuild called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -258,10 +259,12 @@ void AdvanceLevelFiresOnAdvancedLevelOnSuccess()
 {
     ToggleCallOutBypass();
     User->joinGuild("test");
+    command("3", User);
     User->addExperience(1000);
 
     User->registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
-    string err = catch (User->advanceLevel("test"));
+    command("level up", User);
+    string err = catch (command("2", User));
     string expectedError = "*event handler: onAdvancedLevel called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
