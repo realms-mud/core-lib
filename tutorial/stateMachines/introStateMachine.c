@@ -47,6 +47,10 @@ public void reset(int arg)
         addEntryAction("background story", "playerTransitionsToBackgroundStory");
         addTransition("berenar interjects", "background story", "playerAgainLosesConsciousness");
 
+        addState("first fight", "");
+        addEntryAction("first fight", "firstFight");
+        addTransition("background story", "first fight", "onJoinGuild");
+
         setInitialState("initiate story");
 
         setUpActors();
@@ -56,7 +60,14 @@ public void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 public void beginIntroduction(object player)
 {
+    if (objectp(Player))
+    {
+        unregisterStateActor(Player);
+        Player->unregisterEvent(this_object());
+    }
     Player = player;
+    registerStateActor(Player);
+    Player->registerEvent(this_object());
     startStateMachine();
 }
 
@@ -160,6 +171,38 @@ public void slipIntoUnconsciousness()
 public void playerTransitionsToBackgroundStory()
 {
     call_out("slipIntoUnconsciousness", 6);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void firstFight()
+{
+    tell_object(Player, format(
+        "\n\x1b[0;36mAlmost as soon as Galadhel and Berenar finish "
+        "administering to your wounds, a black-robed figure enters "
+        "the clearing, several... walking corpses... in tow.\n\x1b[0m", 78));
+
+    if (!Player->equipmentInSlot("wielded primary"))
+    {
+        tell_object(Player, format(
+            "\n\x1b[0;36mBerenar thrusts a sword into your hands and "
+            "shouts, \x1b[0;32m`Take this! The enemy is upon us!'\x1b[0;36m"
+            " Without another word, he lunges into the fray.\n\x1b[0m", 78));
+
+        object equipment = clone_object("/lib/instances/items/weapons/swords/short-sword.c");
+        equipment->set("identified", 1); 
+        equipment->set("craftsmanship", 50);
+        equipment->set("material", "steel");
+        move_object(equipment, Player);
+        Player->equip(equipment, 1);
+    }
+
+    object monster = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(monster, "/lib/tutorial/rooms/battleScene.c");
+    monster->attack(Galadhel);
+
+    monster = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(monster, "/lib/tutorial/rooms/battleScene.c");
+    monster->attack(Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
