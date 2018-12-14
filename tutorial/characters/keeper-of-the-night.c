@@ -7,10 +7,12 @@ virtual inherit "/lib/realizations/monster.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    Name("keeper of the night");
+    Name("Black-robed figure");
     short("Black-robed figure");
     addAlias("figure");
     addAlias("black-robed figure");
+    addAlias("keeper");
+    addAlias("keeper of the night");
 
     Gender(1);
     Race("human");

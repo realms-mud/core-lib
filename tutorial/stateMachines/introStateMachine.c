@@ -5,24 +5,23 @@
 inherit "/lib/core/stateMachine.c";
 
 private object Player;
-private object Galadhel;
-private object Berenar;
+private mapping actors = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 private void setUpActors()
 {
-    if (!Galadhel)
+    if (!actors["galadhel"])
     {
-        Galadhel = clone_object("/lib/tutorial/characters/galadhel/galadhel.c");
-        registerStateActor(Galadhel);
-        Galadhel->registerEvent(this_object());
+        actors["galadhel"] = clone_object("/lib/tutorial/characters/galadhel/galadhel.c");
+        registerStateActor(actors["galadhel"]);
+        actors["galadhel"]->registerEvent(this_object());
     }
 
-    if (!Berenar)
+    if (!actors["berenar"])
     {
-        Berenar = clone_object("/lib/tutorial/characters/berenar/berenar.c");
-        registerStateActor(Berenar);
-        Berenar->registerEvent(this_object());
+        actors["berenar"] = clone_object("/lib/tutorial/characters/berenar/berenar.c");
+        registerStateActor(actors["berenar"]);
+        actors["berenar"]->registerEvent(this_object());
     }
 }
 
@@ -106,7 +105,7 @@ public void partTwo(object player)
         "flame-red rays of the new day pierced the thin wisps of fog, "
         "you couldn't help but think of how beautiful it was, despite your "
         "mundane and lamentably never-ending task.\x1b[0m", 78));
-    call_out("partThree", 4, player);
+    call_out("partThree", 8, player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -119,15 +118,15 @@ public void partOne(object player)
         "thought. Dig a ditch if you must, if for no other reason than to "
         "keep 'em busy. Another day can be spent filling the damned thing "
         "later.\x1b[0m", 78));
-    call_out("partTwo", 4, player);
+    call_out("partTwo", 8, player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void displayIntroduction()
 {
-    move_object(Galadhel, "/lib/tutorial/rooms/battleScene.c");
-    move_object(Berenar, "/lib/tutorial/rooms/battleScene.c");
-    call_out("partOne", 2, Player);
+    move_object(actors["galadhel"], "/lib/tutorial/rooms/battleScene.c");
+    move_object(actors["berenar"], "/lib/tutorial/rooms/battleScene.c");
+    call_out("partOne", 0, Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -157,7 +156,7 @@ public void slipIntoUnconsciousnessPartTwo()
         "\x1b[0;33;1mThis is where the background quest stuff would "
         "normally get triggered. Since I don't have any here, we will "
         "short-circuit that right now.\x1b[0m", 78));
-    call_out("slipIntoUnconsciousnessPartThree", 4);
+    call_out("slipIntoUnconsciousnessPartThree", 8);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -171,13 +170,13 @@ public void slipIntoUnconsciousness()
         "in a pool of your own damned blood, you shake your head. That act "
         "proves to be most unwise as a wave of lightheadedness overtakes "
         "you and your eyesight goes blurry.\n\x1b[0m", 78));
-    call_out("slipIntoUnconsciousnessPartTwo", 4);
+    call_out("slipIntoUnconsciousnessPartTwo", 8);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void playerTransitionsToBackgroundStory()
 {
-    call_out("slipIntoUnconsciousness", 6);
+    call_out("slipIntoUnconsciousness", 8);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -203,22 +202,75 @@ public void firstFight()
         Player->equip(equipment, 1);
     }
 
-
-    object keeper = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
-    move_object(keeper, "/lib/tutorial/rooms/battleScene.c");
+    actors["keeper"] = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
+    move_object(actors["keeper"], "/lib/tutorial/rooms/battleScene.c");
+    actors["keeper"]->registerEvent(this_object());
 
     object jerith = clone_object("/lib/tutorial/characters/jerith.c");
     move_object(jerith, "/lib/tutorial/rooms/battleScene.c");
-    jerith->registerEvent(Galadhel);
-    keeper->attack(jerith);
+    jerith->hit(140, "physical");
+    jerith->registerEvent(actors["galadhel"]);
+    jerith->registerEvent(this_object());
 
-    object monster = clone_object("/lib/tutorial/characters/animated-corpse.c");
-    move_object(monster, "/lib/tutorial/rooms/battleScene.c");
-    monster->attack(Galadhel);
+    actors["zombie 1"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(actors["zombie 1"], "/lib/tutorial/rooms/battleScene.c");
+    actors["zombie 1"]->attack(actors["galadhel"]);
+    actors["berenar"]->attack(actors["zombie 1"]);
+    jerith->attack(actors["zombie 1"]);
+    actors["keeper"]->attack(jerith);
 
-    monster = clone_object("/lib/tutorial/characters/animated-corpse.c");
-    move_object(monster, "/lib/tutorial/rooms/battleScene.c");
-    //monster->attack(Player);
+    actors["zombie 1"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(actors["zombie 1"], "/lib/tutorial/rooms/battleScene.c");
+    actors["zombie 1"]->attack(Player);
+    actors["berenar"]->attack(actors["zombie 1"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onDeath(object caller)
+{
+    tell_room(environment(Player), sprintf("This guy => %O\n", program_name(caller)));
+
+    if (caller && (program_name(caller) == "lib/tutorial/characters/jerith.c"))
+    {
+        tell_room(environment(Player),
+            sprintf("Hearing the ongoing commotion, several additional Aegis "
+                "Guardsmen rush into the fray.\n"));
+        actors["berenar"]->attack(actors["keeper"]);
+
+        actors["alberich"] = clone_object("/lib/tutorial/characters/alberich/alberich.c");
+        move_object(actors["alberich"], "/lib/tutorial/rooms/battleScene.c");
+        actors["alberich"]->attack(actors["keeper"]);
+
+        actors["donald"] = clone_object("/lib/tutorial/characters/donald/donald.c");
+        move_object(actors["donald"], "/lib/tutorial/rooms/battleScene.c");
+        actors["donald"]->attack(actors["keeper"]);
+
+        actors["halgaladh"] = clone_object("/lib/tutorial/characters/halgaladh/halgaladh.c");
+        move_object(actors["halgaladh"], "/lib/tutorial/rooms/battleScene.c");
+        actors["halgaladh"]->attack(actors["keeper"]);
+
+        actors["thomas"] = clone_object("/lib/tutorial/characters/halgaladh/halgaladh.c");
+        move_object(actors["thomas"], "/lib/tutorial/rooms/battleScene.c");
+
+        if (actors["zombie 1"])
+        {
+            actors["zombie 1"]->attack(actors["halgaladh"]);
+            actors["zombie 1"]->attack(actors["alberich"]);
+            actors["zombie 1"]->attack(actors["thomas"]);
+        }
+        if (actors["zombie 2"])
+        {
+            actors["zombie 2"]->attack(actors["halgaladh"]);
+            actors["zombie 2"]->attack(actors["thomas"]);
+            actors["zombie 2"]->attack(actors["donald"]);
+        }
+    }
+
+    else if (caller && (program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c"))
+    {
+        tell_room(environment(Player),
+            sprintf("Yay! the keeper bought the farm!\n"));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
