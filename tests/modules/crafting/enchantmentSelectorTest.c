@@ -57,13 +57,14 @@ void SelectingEnchantDisplaysEnchantmentTypeMenu()
 
     ExpectEq("\x1b[0;36mSelect Enchantment type - \x1b[0m\x1b[0;37;1mchoose the enchantment type with which to craft\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mAbilities           \x1b[0m     \n"
-        "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mAttributes          \x1b[0m     \n"
-        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mDefensive           \x1b[0m     \n"
-        "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mOffensive           \x1b[0m     \n"
-        "    [\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mSkills              \x1b[0m     \n"
-        "    [\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mVitals              \x1b[0m     \n"
-        "    [\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mExit Select Enchantment type Menu\x1b[0m     \n"
-        "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
+        "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mAttack mutations    \x1b[0m     \n"
+        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mAttributes          \x1b[0m     \n"
+        "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mDefensive           \x1b[0m     \n"
+        "    [\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mOffensive           \x1b[0m     \n"
+        "    [\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mSkills              \x1b[0m     \n"
+        "    [\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mVitals              \x1b[0m     \n"
+        "    [\x1b[0;31;1m8\x1b[0m] - \x1b[0;32mExit Select Enchantment type Menu\x1b[0m     \n"
+        "\x1b[0;32;1mYou must select a number from 1 to 8.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n\x1b[0m",
@@ -94,7 +95,7 @@ void SelectingEnchantAttributesDisplaysAttributesMenu()
 {
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("2", Player);
+    command("3", Player);
 
     ExpectEq("\x1b[0;36mSelect Enchant attributes - \x1b[0m\x1b[0;37;1mchoose the enchant attributes with which to craft\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mEnhance charisma    \x1b[0m\x1b[0;35m(P)\x1b[0m  "
@@ -119,7 +120,7 @@ void SelectingDefensiveEnchantmentDisplaysDefensiveMenu()
 {
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("3", Player);
+    command("4", Player);
 
     ExpectEq("\x1b[0;36mSelect Enchant defensive - \x1b[0m\x1b[0;37;1mchoose the enchant defensive with which to craft\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;31mAcid resistance     \x1b[0m\x1b[0;35m(P)\x1b[0m  "
@@ -160,7 +161,7 @@ void SelectingOffensiveEnchantmentDisplaysOffensiveMenu()
 {
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("4", Player);
+    command("5", Player);
 
     ExpectEq("\x1b[0;36mSelect Enchant offensive - \x1b[0m\x1b[0;37;1mchoose the enchant offensive with which to craft\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;31mAcid enchantment    \x1b[0m\x1b[0;35m(P)\x1b[0m  "
@@ -201,7 +202,7 @@ void SelectingSkillsEnchantmentDisplaysSkillsMenu()
 {
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("5", Player);
+    command("6", Player);
 
     ExpectEq("\x1b[0;36mSelect Enchant skills - \x1b[0m\x1b[0;37;1mchoose the enchant skills with which to craft\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mExit Select Enchant skills Menu\x1b[0m     \n"
@@ -220,7 +221,7 @@ void SelectingVitalsEnchantmentDisplaysVitalsMenu()
 {
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("6", Player);
+    command("7", Player);
 
     ExpectEq("\x1b[0;36mSelect Enchant vitals - \x1b[0m\x1b[0;37;1mchoose the enchant vitals with which to craft\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;31mHeal hit points a...\x1b[0m\x1b[0;35m(P)\x1b[0m  "
@@ -248,7 +249,7 @@ void SelectingExitReturnsToPreviousMenu()
 {
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("7", Player);
+    command("8", Player);
 
     ExpectSubStringMatch("Exit Craft Long sword Menu",
         Player->caughtMessage());
@@ -260,7 +261,7 @@ void CanNotAddMoreThanMaximumEnchantmentsAllowed()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("4", Player);
+    command("5", Player);
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more", Player->caughtMessage());
     command("11", Player);
     ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)].*3 more", Player->caughtMessage());
@@ -278,7 +279,7 @@ void SelectionCanBeZeroToThreeEntriesAndDoesNotIncreaseBeyondThree()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("4", Player);
+    command("5", Player);
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more", Player->caughtMessage());
     command("11", Player);
     ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)].*3 more", Player->caughtMessage());
@@ -296,7 +297,7 @@ void CanUndoSelection()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("4", Player);
+    command("5", Player);
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m", Player->caughtMessage());
     command("11", Player);
     ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)]", Player->caughtMessage());
@@ -312,7 +313,7 @@ void ChangesToEnchantmentSelectionIsPropegatedToOtherMenus()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
-    command("4", Player);
+    command("5", Player);
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player->caughtMessage());
     command("11", Player);
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*3 more.*out of 4", Player->caughtMessage());
@@ -320,4 +321,52 @@ void ChangesToEnchantmentSelectionIsPropegatedToOtherMenus()
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*2 more.*out of 4", Player->caughtMessage());
     command("23", Player);
     ExpectSubStringMatch("Select Enchantment type.*2 more.*out of 4", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSelectEnchantmentWithMissingPrerequisites()
+{
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector->initiateSelector(Player);
+    command("5", Player);
+    command("5", Player);
+
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player->caughtMessage());
+    command("13", Player);
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player->caughtMessage());
+    command("23", Player);
+    ExpectSubStringMatch("Select Enchantment type.*4 more.*out of 4", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSelectEnchantmentLimitedByTypeNotBeingCrafted()
+{
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
+    Selector->initiateSelector(Player);
+    command("5", Player);
+    command("2", Player);
+
+    ExpectSubStringMatch("31mFire attack", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSelectEnchantmentLimitedByTypeBeingCraftedOnlyOnceWhenMutation()
+{
+    Selector->setItem("staff");
+    Selector->setType("weapons");
+    Selector->setSubType("staffs");
+
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c"));
+    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
+    Selector->initiateSelector(Player);
+    command("3", Player);
+    command("2", Player);
+    ExpectSubStringMatch("32mFire attack", Player->caughtMessage());
+
+    command("9", Player);
+    ExpectSubStringMatch("31mFire attack", Player->caughtMessage());
 }

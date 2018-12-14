@@ -25,16 +25,18 @@ protected void Setup()
     addResponse("berenar interjects", "\x1b[0;31m[Say nothing...]\x1b[0m", "@D@You remain silent.");
     addTopic("player will live", "@S@`I may have spoken out of turn. ##ActorName## "
         "has regained consciousness and does not yet look ready to depart us.' @D@"
-        "notes Berenar as he crouches down to help Galadhel tend to your wounds.");
+        "notes Berenar as he crouches down to help Galadhel tend to ##InitiatorPossessive## wounds.");
     addResponseTopic("berenar interjects", "\x1b[0;31m[Say nothing...]\x1b[0m", "player will live");
     addTopicEvent("player will live", "playerAgainLosesConsciousness");
 
     addResponse("berenar interjects", "I'm not dead yet...",
-        "@D@You raise your head up slightly and say, `@S@The rumor of my demise is greatly exaggerated. I hurt... everywhere, "
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::raise## ##InitiatorPossessive## "
+        " head up slightly and ##ResponseInfinitive::say##, `@S@The rumor of my "
+        "demise is greatly exaggerated. I hurt... everywhere, "
         "but you'll not be rid of me so easily.'");
     addTopic("not dead", "@S@`You have my apologies, ##ActorName##. Nay, stay down "
         "and let me tend to you. I marvel that you are alive at all...' @D@says "
-        "Berenar and he crouches down to help Galadhel tend your wounds.");
+        "Berenar and he crouches down to help Galadhel tend ##InitiatorPossessive## wounds.");
     addResponseTopic("berenar interjects", "I'm not dead yet...", "not dead");
     addTopicEvent("not dead", "playerAgainLosesConsciousness");
 }

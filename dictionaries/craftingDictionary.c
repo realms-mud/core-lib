@@ -247,7 +247,8 @@ private nomask object getBlueprintItem(string type, string item)
 /////////////////////////////////////////////////////////////////////////////
 private nomask int prerequisitesMet(object blueprintObj, object user)
 {
-    return blueprintObj->checkPrerequisites(user);
+    return blueprintObj->checkPrerequisites(user) && 
+        blueprintObj->checkResearch(user);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -901,6 +902,10 @@ private nomask int applyEffects(string enchantment, object user, object item,
                     (effects[effect][element] + bonus) * count;
             }
         }
+        else if (effect == "damage type")
+        {
+            printf("Effects = %O\n", effects);
+        }
         else
         {
             effects[effect] = (effects[effect] + bonus) * count;
@@ -1032,6 +1037,7 @@ public nomask mapping getEnchantmentsOfType(string type, object user,
             menuItem++;
         }
     }
+
     return ret;
 }
 
@@ -1056,7 +1062,11 @@ public nomask varargs int addEnchantment(object item, string enchantment, int de
             newLevel = 0;
         }
 
-        if (newLevel < 4)
+        if (!newLevel)
+        {
+            m_delete(craftingEnchantments, enchantment);
+        }
+        else if (newLevel < 4)
         {
             craftingEnchantments[enchantment] = newLevel;
         }

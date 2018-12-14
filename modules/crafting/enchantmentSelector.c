@@ -93,7 +93,10 @@ protected nomask int processSelection(string selection)
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->initiateSelector(User);
         }
-        else if (!ret && CraftingComponent && 
+        else if (!ret && CraftingComponent && Data[selection]["canShow"] &&
+            ((CraftingComponent != "attack mutations") ||
+            ((CraftingComponent == "attack mutations") &&
+                !CraftingItem->query("crafting attack mutation"))) &&
             (CraftingItem->query("total enchantments") < 
                 CraftingItem->query("possible enchantments")))
         {
@@ -102,6 +105,10 @@ protected nomask int processSelection(string selection)
             {
                 CraftingItem->set("total enchantments",
                     CraftingItem->query("total enchantments") + 1);
+                if (CraftingComponent == "attack mutations")
+                {
+                    CraftingItem->set("crafting attack mutation", 1);
+                }
             }
         }
     }
@@ -169,7 +176,12 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    string displayType = Data[choice]["canShow"] ? "choice enabled" : "choice disabled";
+    string displayType = (Data[choice]["canShow"] && 
+        ((Data[choice]["type"] == "exit") || 
+        (CraftingComponent != "attack mutations") ||
+            ((CraftingComponent == "attack mutations") &&
+            !CraftingItem->query("crafting attack mutation")))) ?
+        "choice enabled" : "choice disabled";
 
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "    " : "",
@@ -187,19 +199,28 @@ protected nomask string additionalInstructions()
         CraftingItem->query("total enchantments"),
         CraftingItem->query("possible enchantments"));
 
-    string otherInfo = configuration->decorate("Each ", "details", "selector", 
-        colorConfiguration) + 
-        configuration->decorate("*", "selected", "selector", colorConfiguration) + 
-        configuration->decorate(" denotes that an enchantment has been "
-            "chosen once (max 3 per option).\n", "details", "selector",
+    string otherInfo = "";
+    if ((CraftingComponent == "attack mutations") &&
+        CraftingItem->query("crafting attack mutation"))
+    {
+        otherInfo = "Only one attack mutation can be set.\n";
+    }
+    else
+    {
+        otherInfo = configuration->decorate("Each ", "details", "selector",
             colorConfiguration) +
-        configuration->decorate("P", "note", "selector", colorConfiguration) +
-        configuration->decorate(" denotes unrealized prerequisites.\n",
-            "details", "selector", colorConfiguration) +
-        configuration->decorate("M", "note", "selector", colorConfiguration) +
-        configuration->decorate(" denotes that proper quantities of the "
-            "material requirements are missing.\n",
-            "details", "selector", colorConfiguration);
+            configuration->decorate("*", "selected", "selector", colorConfiguration) +
+            configuration->decorate(" denotes that an enchantment has been "
+                "chosen once (max 3 per option).\n", "details", "selector",
+                colorConfiguration) +
+            configuration->decorate("P", "note", "selector", colorConfiguration) +
+            configuration->decorate(" denotes unrealized prerequisites.\n",
+                "details", "selector", colorConfiguration) +
+            configuration->decorate("M", "note", "selector", colorConfiguration) +
+            configuration->decorate(" denotes that proper quantities of the "
+                "material requirements are missing.\n",
+                "details", "selector", colorConfiguration);
+    }
     return CraftingComponent ? ret + otherInfo : ret;
 }
 
@@ -215,8 +236,20 @@ protected nomask void undoSelection(string selection)
     if (User)
     {
         Dictionary->addEnchantment(CraftingItem, Data[selection]["type"], 1);
-        CraftingItem->set("total enchantments",
-            CraftingItem->query("total enchantments") - 1);
+        if (CraftingItem->query("total enchantments") == 1)
+        {
+            CraftingItem->unset("total enchantments");
+        }
+        else
+        {
+            CraftingItem->set("total enchantments",
+                CraftingItem->query("total enchantments") - 1);
+        }
+
+        if (CraftingComponent == "attack mutations")
+        {
+            CraftingItem->unset("crafting attack mutation");
+        }
     }
 }
 

@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private nosave string *enchantmentClasses = ({ "offensive", "defensive", "vitals", "attributes", "skills", "abilities" });
+private nosave string *enchantmentClasses = ({ "offensive", "defensive", "vitals", "attributes", "skills", "abilities", "attack mutations" });
 private nosave mapping equipmentEnchantments =
 ([
     "fire enchantment":([
@@ -37,6 +37,21 @@ private nosave mapping equipmentEnchantments =
             "resistances": ([
                 "fire": 2,
             ]),
+        ]),
+        "rune": "kenaz",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "fire attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/fire/craftFireAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "elemental fire": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "fire",
         ]),
         "rune": "kenaz",
         "description": "",
@@ -77,6 +92,21 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
+    "acid attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/acid/craftAcidAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "destruction": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "acid",
+        ]),
+        "rune": "hagalaz",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
     "air enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
@@ -105,6 +135,21 @@ private nosave mapping equipmentEnchantments =
             "resistances": ([
                 "air":2,
             ]),
+        ]),
+        "rune": "tiwaz",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "air attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/air/craftAirAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "elemental air": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "air",
         ]),
         "rune": "tiwaz",
         "description": "",
@@ -145,6 +190,21 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
+    "chaos attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/chaos/craftChaosAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "transformation": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "chaos",
+        ]),
+        "rune": "perthro",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
     "cold enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
@@ -173,6 +233,21 @@ private nosave mapping equipmentEnchantments =
             "resistances": ([
                 "cold":2,
             ]),
+        ]),
+        "rune": "isa",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "cold attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/cold/craftColdAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "elemental water": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "cold",
         ]),
         "rune": "isa",
         "description": "",
@@ -247,6 +322,21 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
+    "earth attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/earth/craftEarthAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "elemental earth": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "fire",
+        ]),
+        "rune": "ingwaz",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
     "electricity enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
@@ -275,6 +365,21 @@ private nosave mapping equipmentEnchantments =
             "resistances": ([
                 "electricity":2,
             ]),
+        ]),
+        "rune": "ansuz",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "electricity attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/electricity/craftElectricityAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "elemental air": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "electricity",
         ]),
         "rune": "ansuz",
         "description": "",
@@ -315,6 +420,21 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
+    "energy attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/energy/craftEnergyAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "evocation": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "energy",
+        ]),
+        "rune": "fehu",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
     "evil enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
@@ -345,6 +465,21 @@ private nosave mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "uruz",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "evil attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/evil/craftEvilAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "blood": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "evil",
+        ]),
+        "rune": "thurisaz merkstave",
         "description": "",
         "value multiplier": 5.0,
         "experience modifier": 1.5
@@ -383,6 +518,21 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
+    "good attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/good/craftGoodAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "spirit": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "good",
+        ]),
+        "rune": "uruz",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
     "magical enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
@@ -417,6 +567,21 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
+    "magical attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/magical/craftMagicalAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "magical essence": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "magical",
+        ]),
+        "rune": "gebo",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
     "neutral enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
@@ -445,6 +610,21 @@ private nosave mapping equipmentEnchantments =
             "resistances": ([
                 "neutral":2,
             ]),
+        ]),
+        "rune": "raidho",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "neutral attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/neutral/craftNeutralAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "magical essence": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "neutral",
         ]),
         "rune": "raidho",
         "description": "",
@@ -553,6 +733,21 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
+    "psionic attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/psionic/craftPsionicAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "mind": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "psionic",
+        ]),
+        "rune": "wunjo",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
     "sonic enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
@@ -581,6 +776,21 @@ private nosave mapping equipmentEnchantments =
             "resistances": ([
                 "sonic":2,
             ]),
+        ]),
+        "rune": "sowilo",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "sonic attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/sonic/craftSonicAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "senses": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "sonic",
         ]),
         "rune": "sowilo",
         "description": "",
@@ -621,6 +831,21 @@ private nosave mapping equipmentEnchantments =
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
+    "undead attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/undead/craftUndeadAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "blood": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "undead",
+        ]),
+        "rune": "berkano merkstave",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
     "water enchantment":([
         "class": "offensive",
         "crafting prerequisites": ([
@@ -649,6 +874,21 @@ private nosave mapping equipmentEnchantments =
             "resistances": ([
                 "water":2,
             ]),
+        ]),
+        "rune": "laguz",
+        "description": "",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "water attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/enchantments/water/craftWaterAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "elemental water": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "water",
         ]),
         "rune": "laguz",
         "description": "",

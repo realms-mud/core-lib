@@ -77,7 +77,10 @@ protected nomask int processSelection(string selection)
         ret = (Data[selection]["type"] == "exit");
         if (!ret && ((member(Data[selection], "prerequisites met") &&
             Data[selection]["prerequisites met"]) ||
-            !member(Data[selection], "prerequisites met")))
+            !member(Data[selection], "prerequisites met")) &&
+            ((member(Data[selection], "have materials") &&
+                Data[selection]["have materials"]) ||
+                !member(Data[selection], "have materials")))
         {
             if(member(Data[selection], "show materials"))
             {

@@ -7,12 +7,12 @@ virtual inherit "/lib/realizations/npc.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    Name("berenar");
+    Name("thomas");
     Gender(1);
     Race("maegenstryd");
     SetUpPersonaOfLevel("swordsman", 3);
-
-    addTrait("lib/modules/traits/educational/tactician.c");
+    addTrait("lib/modules/traits/educational/soldier.c");
+    addTrait("lib/modules/traits/background/human/eledhelean/noble/aladain.c");
 
     object equipment = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     equipment->set("craftsmanship", 70);

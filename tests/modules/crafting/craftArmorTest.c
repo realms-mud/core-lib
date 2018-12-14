@@ -171,10 +171,10 @@ void CraftingArmorMovesArmorToUserAndConsumesMaterials()
     command("1", Player);
     command("17", Player);
     command("2", Player);
-    command("3", Player);
+    command("4", Player);
     command("12", Player);
     command("23", Player);
-    command("7", Player);
+    command("8", Player);
 
     ExpectSubStringMatch("Fire resistance .x1", Player->caughtMessage());
     command("5", Player);
@@ -210,10 +210,10 @@ void CanSetNameAndDescription()
     command("1", Player);
     command("17", Player);
     command("2", Player);
-    command("3", Player);
+    command("4", Player);
     command("12", Player);
     command("23", Player);
-    command("7", Player);
+    command("8", Player);
     ExpectSubStringMatch("Give robes a name +..0m", Player->caughtMessage());
     ExpectSubStringMatch("Give robes a special description..0m", Player->caughtMessage());
     command("3", Player);

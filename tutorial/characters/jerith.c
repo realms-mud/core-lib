@@ -7,11 +7,17 @@ virtual inherit "/lib/realizations/npc.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    Name("brendan");
+    Name("jerith");
     Gender(1);
     Race("maegenstryd");
-    SetUpPersonaOfLevel("keeper of the night", 3);
-    addTrait("lib/modules/traits/educational/educated.c");
+    SetUpPersonaOfLevel("swordsman", 1);
 
-    addConversation("/lib/tutorial/characters/brendan/startingConversation.c");
+    object equipment = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    equipment->set("craftsmanship", 25);
+    equipment->set("material", "iron");
+    move_object(equipment, this_object());
+    this_object()->equip(equipment);
+
+    object generator = load_object("/lib/tutorial/characters/aegis-equipment.c");
+    generator->CreateAegisEquipment(this_object());
 }

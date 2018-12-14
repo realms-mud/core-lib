@@ -8,7 +8,7 @@ virtual inherit "/lib/realizations/npc.c";
 protected void Setup()
 {
     Name("galadhel");
-    description("Galadhel is one of the youngest members of the Aegis Guard. "
+    description("Galadhel Marannuminas is one of the youngest members of the Aegis Guard. "
         "She is just shy of six feet tall and athletic. She has piercing gray "
         "eyes and raven black hair.\n\nHer father, one Bregolas, is a "
         "well-known retired general of the Eledhel army who now serves as "
@@ -32,6 +32,8 @@ protected void Setup()
     Gender(2);
     Race("maegenstryd");
     SetUpPersonaOfLevel("archer", 3);
+    addTrait("lib/modules/traits/background/human/eledhelean/noble/marannuminas.c");
+    addTrait("lib/modules/traits/educational/hunter.c");
 
     object equipment = clone_object("/lib/instances/items/weapons/bows/bow.c");
     equipment->set("craftsmanship", 50);
@@ -39,39 +41,18 @@ protected void Setup()
     move_object(equipment, this_object());
     this_object()->equip(equipment);
 
-    equipment = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
-    equipment->set("craftsmanship", 50);
-    equipment->set("name", "aegis chainmail");
-    equipment->set("short", "Aegis Chainmail");
-    equipment->set("material", "steel");
-    move_object(equipment, this_object());
-    this_object()->equip(equipment);
-
-    equipment = clone_object("/lib/instances/items/armor/accessories/boots.c");
-    equipment->set("craftsmanship", 50);
-    equipment->set("armor class", 1);
-    move_object(equipment, this_object());
-    this_object()->equip(equipment);
-
-    equipment = clone_object("/lib/instances/items/armor/clothing/cloak.c");
-    equipment->set("name", "aegis cloak");
-    equipment->set("short", "Aegis Cloak");
-    equipment->set("craftsmanship", 50);
-    equipment->set("armor class", 1);
-    move_object(equipment, this_object());
-    this_object()->equip(equipment);
-
-    equipment = clone_object("/lib/instances/items/armor/light-armor/leather-arm-greave.c");
-    equipment->set("craftsmanship", 50);
-    equipment->set("armor class", 1);
-    move_object(equipment, this_object());
-    this_object()->equip(equipment);
-
-    equipment = clone_object("/lib/instances/items/armor/light-armor/leather-leg-greaves.c");
-    equipment->set("craftsmanship", 50);
-    equipment->set("armor class", 1);
-    move_object(equipment, this_object());
-    this_object()->equip(equipment);
+    object generator = load_object("/lib/tutorial/characters/aegis-equipment.c");
+    generator->CreateAegisEquipment(this_object());
 
     addConversation("/lib/tutorial/characters/galadhel/startingConversation.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onDeath(object caller)
+{
+    if (caller && (program_name(caller) == "lib/tutorial/characters/jerith.c"))
+    {
+        tell_room(environment(this_object()), 
+            sprintf("Aww shit! Jerith croaked!\n"));
+    }
 }

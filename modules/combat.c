@@ -110,13 +110,20 @@ public nomask int isNegativeCombatModifier(string modifier)
 //
 // Parameters: event - the event that has occured. 
 //-----------------------------------------------------------------------------
-private nomask varargs void combatNotification(string event, mixed message)
+private nomask varargs void combatNotification(string event, mixed message, int synchronous)
 {
     object eventObj = getService("events");
     
     if(event && stringp(event) && eventObj && objectp(eventObj))
     {
-        eventObj->notify(event, message);
+        if (synchronous)
+        {
+            eventObj->notifySynchronous(event, message);
+        }
+        else
+        {
+            eventObj->notify(event, message);
+        }
     }
 }
 
@@ -1339,7 +1346,7 @@ private nomask int determineFateFromDeath(object murderer)
     
     if(killMe)
     {
-        combatNotification("onDeath");
+        combatNotification("onDeath", 1, 1);
         updateFactionDispositionsFromCombat(murderer);
         killMe = finishOffThisPoorDeadBastard(murderer);
     }

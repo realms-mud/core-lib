@@ -136,7 +136,14 @@ public void slipIntoUnconsciousnessPartThree()
     load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/guilds/background/background.c");
 
-    Player->joinGuild("background");
+    if (!Player->memberOfGuild("background"))
+    {
+        Player->joinGuild("background");
+    }
+    else
+    {
+        Player->notify("onJoinGuild");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -196,13 +203,22 @@ public void firstFight()
         Player->equip(equipment, 1);
     }
 
+
+    object keeper = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
+    move_object(keeper, "/lib/tutorial/rooms/battleScene.c");
+
+    object jerith = clone_object("/lib/tutorial/characters/jerith.c");
+    move_object(jerith, "/lib/tutorial/rooms/battleScene.c");
+    jerith->registerEvent(Galadhel);
+    keeper->attack(jerith);
+
     object monster = clone_object("/lib/tutorial/characters/animated-corpse.c");
     move_object(monster, "/lib/tutorial/rooms/battleScene.c");
     monster->attack(Galadhel);
 
     monster = clone_object("/lib/tutorial/characters/animated-corpse.c");
     move_object(monster, "/lib/tutorial/rooms/battleScene.c");
-    monster->attack(Player);
+    //monster->attack(Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////

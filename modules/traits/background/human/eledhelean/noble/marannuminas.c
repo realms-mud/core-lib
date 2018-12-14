@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         addSpecification("type", "racial");
-        addSpecification("name", "Eledhelean");
+        addSpecification("name", "House Marannuminas");
         addSpecification("description", "");
         addSpecification("root", "human");
         addSpecification("opposing root", "orc");
@@ -19,4 +19,3 @@ public void reset(int arg)
         "baseTrait"::reset(arg);
     }
 }
-

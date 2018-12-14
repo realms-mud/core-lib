@@ -380,11 +380,11 @@ void CraftingSetsEnchantments()
     PopulateSwordData(sword);
     sword->set("crafting enchantments", (["spell points":1]));
     command("5", Player);
-    command("4", Player);
+    command("5", Player);
     command("11", Player);
     command("11", Player);
     command("23", Player);
-    command("7", Player);
+    command("8", Player);
 
     ExpectSubStringMatch("Spell points .x1.*Fire enchantment .x2", 
         Player->caughtMessage());

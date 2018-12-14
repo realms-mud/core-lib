@@ -16,6 +16,8 @@ private nomask int setPrerequisiteData(mapping data)
         if (sizeof(prereqList))
         {
             itemData["crafting skills"] = ({});
+            itemData["crafting research"] = ({});
+
             foreach(string prereq in prereqList)
             {
                 addPrerequisite(prereq, prereqs[prereq]);
@@ -23,6 +25,10 @@ private nomask int setPrerequisiteData(mapping data)
                 if (prereqs[prereq]["type"] == "skill")
                 {
                     itemData["crafting skills"] += ({ prereq });
+                }
+                if (prereqs[prereq]["type"] == "research")
+                {
+                    itemData["crafting research"] += ({ prereq });
                 }
             }
         }
@@ -140,6 +146,22 @@ private nomask mapping getMaterialsOnHand(object user)
             {
                 ret[type]["top"] = material;
             }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int checkResearch(object user)
+{
+    int ret = 1;
+
+    string *research = itemData["crafting research"];
+    if (sizeof(research))
+    {
+        foreach(string item in research)
+        {
+            ret &&= user->canApplyResearchBonus(item);
         }
     }
     return ret;
