@@ -23,5 +23,5 @@ protected void Setup()
     object generator = load_object("/lib/tutorial/characters/aegis-equipment.c");
     generator->CreateAegisEquipment(this_object());
 
-    addConversation("/lib/tutorial/characters/berenar/startingConversation.c");
+    addConversation("/lib/tutorial/characters/thomas/startingConversation.c");
 }
