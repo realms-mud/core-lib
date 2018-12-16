@@ -7,7 +7,7 @@ virtual inherit "/lib/modules/conversations/baseConversation.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addTopic("berenar interjects", "@S@`@C@##ActorSubjective##'s already dead. "
+    addTopic("berenar interjects", "\n@S@`@C@##ActorSubjective##'s already dead. "
         "##ActorPossessive## body just hasn't figured "
         "it out yet.', @D@interjects Berenar as he impassively stares at you. He "
         "looks rather beaten up, but is still hale. He is rather rattled and with "
@@ -39,4 +39,13 @@ protected void Setup()
         "Berenar and he crouches down to help Galadhel tend ##InitiatorPossessive## wounds.");
     addResponseTopic("berenar interjects", "I'm not dead yet...", "not dead");
     addTopicEvent("not dead", "playerAgainLosesConsciousness");
+
+    addTopic("on the trail", "@S@`Belathon!' @D@bellows Berenar as he "
+        "glances at the recent carnage. @S@`Take ##ActorName## and the rest "
+        "of your squad and hunt these bastards down.'");
+    addTopicInterjection("on the trail",
+        "/lib/tutorial/characters/donald/donald.c",
+        "you heard the man");
+
+    addTopic("default", "@D@Berenar points to the west and says, @S@`Go!'");
 }

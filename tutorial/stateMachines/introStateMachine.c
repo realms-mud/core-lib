@@ -23,6 +23,34 @@ private void setUpActors()
         registerStateActor(actors["berenar"]);
         actors["berenar"]->registerEvent(this_object());
     }
+
+    if (!actors["alberich"])
+    {
+        actors["alberich"] = clone_object("/lib/tutorial/characters/alberich/alberich.c");
+//        registerStateActor(actors["alberich"]);
+        actors["alberich"]->registerEvent(this_object());
+    }
+
+    if (!actors["donald"])
+    {
+        actors["donald"] = clone_object("/lib/tutorial/characters/donald/donald.c");
+//        registerStateActor(actors["donald"]);
+        actors["donald"]->registerEvent(this_object());
+    }
+
+    if (!actors["halgaladh"])
+    {
+        actors["halgaladh"] = clone_object("/lib/tutorial/characters/halgaladh/halgaladh.c");
+//        registerStateActor(actors["halgaladh"]);
+        actors["halgaladh"]->registerEvent(this_object());
+    }
+
+    if (!actors["thomas"])
+    {
+        actors["thomas"] = clone_object("/lib/tutorial/characters/thomas/thomas.c");
+//        registerStateActor(actors["thomas"]);
+        actors["thomas"]->registerEvent(this_object());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -50,15 +78,18 @@ public void reset(int arg)
         addEntryAction("first fight", "firstFight");
         addTransition("background story", "first fight", "onJoinGuild");
 
-        setInitialState("initiate story");
+        addState("on the trail", "");
+        addEntryAction("on the trail", "onTheTrail");
+        addTransition("first fight", "on the trail", "first fight is over");
 
-        setUpActors();
+        setInitialState("initiate story");
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void beginIntroduction(object player)
 {
+    setUpActors();
     if (objectp(Player))
     {
         unregisterStateActor(Player);
@@ -209,7 +240,6 @@ public void firstFight()
     object jerith = clone_object("/lib/tutorial/characters/jerith.c");
     move_object(jerith, "/lib/tutorial/rooms/battleScene.c");
     jerith->hit(140, "physical");
-    jerith->registerEvent(actors["galadhel"]);
     jerith->registerEvent(this_object());
 
     actors["zombie 1"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
@@ -219,17 +249,22 @@ public void firstFight()
     jerith->attack(actors["zombie 1"]);
     actors["keeper"]->attack(jerith);
 
-    actors["zombie 1"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
-    move_object(actors["zombie 1"], "/lib/tutorial/rooms/battleScene.c");
-    actors["zombie 1"]->attack(Player);
-    actors["berenar"]->attack(actors["zombie 1"]);
+    actors["zombie 2"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(actors["zombie 2"], "/lib/tutorial/rooms/battleScene.c");
+    actors["zombie 2"]->attack(Player);
+    actors["keeper"]->registerEvent(actors["zombie 1"]);
+    actors["keeper"]->registerEvent(actors["zombie 2"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void galadhelExclaims()
+{
+    notify("onTriggerConversation", "jerith dies");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
-    tell_room(environment(Player), sprintf("This guy => %O\n", program_name(caller)));
-
     if (caller && (program_name(caller) == "lib/tutorial/characters/jerith.c"))
     {
         tell_room(environment(Player),
@@ -237,19 +272,15 @@ public void onDeath(object caller)
                 "Guardsmen rush into the fray.\n"));
         actors["berenar"]->attack(actors["keeper"]);
 
-        actors["alberich"] = clone_object("/lib/tutorial/characters/alberich/alberich.c");
         move_object(actors["alberich"], "/lib/tutorial/rooms/battleScene.c");
         actors["alberich"]->attack(actors["keeper"]);
 
-        actors["donald"] = clone_object("/lib/tutorial/characters/donald/donald.c");
         move_object(actors["donald"], "/lib/tutorial/rooms/battleScene.c");
         actors["donald"]->attack(actors["keeper"]);
 
-        actors["halgaladh"] = clone_object("/lib/tutorial/characters/halgaladh/halgaladh.c");
         move_object(actors["halgaladh"], "/lib/tutorial/rooms/battleScene.c");
         actors["halgaladh"]->attack(actors["keeper"]);
 
-        actors["thomas"] = clone_object("/lib/tutorial/characters/halgaladh/halgaladh.c");
         move_object(actors["thomas"], "/lib/tutorial/rooms/battleScene.c");
 
         if (actors["zombie 1"])
@@ -257,6 +288,7 @@ public void onDeath(object caller)
             actors["zombie 1"]->attack(actors["halgaladh"]);
             actors["zombie 1"]->attack(actors["alberich"]);
             actors["zombie 1"]->attack(actors["thomas"]);
+            actors["thomas"]->attack(actors["zombie 1"]);
         }
         if (actors["zombie 2"])
         {
@@ -264,17 +296,45 @@ public void onDeath(object caller)
             actors["zombie 2"]->attack(actors["thomas"]);
             actors["zombie 2"]->attack(actors["donald"]);
         }
+        call_out("galadhelExclaims", 0);
     }
 
     else if (caller && (program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c"))
     {
-        tell_room(environment(Player),
-            sprintf("Yay! the keeper bought the farm!\n"));
+        object *corpses = filter(all_inventory(environment(Player)),
+            (: (member(inherit_list($1), "lib/items/corpse.c") > -1) :));
+
+        foreach(object corpse in corpses)
+        {
+            object *equipment = all_inventory(corpse);
+            foreach(object item in equipment)
+            {
+                destruct(item);
+            }
+        }
+        receiveEvent(this_object(), "first fight is over", Player);
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void finishBackgroundStory()
+public void onTheTrailPartTwo()
 {
-    // introductionCompleted(Player);
+    if (actors["berenar"])
+    {
+        actors["berenar"]->onTriggerConversation(Player, "on the trail");
+        tell_room(environment(Player), "Alberich, Halgaladh, Thomas, "
+            "Donald, and Galadhel leave to the west.\n");
+        move_object(Player, "/lib/tutorial/rooms/battleScene.c");
+        move_object(actors["alberich"], "/lib/tutorial/rooms/onTheTrailPart1.c");
+        move_object(actors["thomas"], "/lib/tutorial/rooms/onTheTrailPart1.c");
+        move_object(actors["donald"], "/lib/tutorial/rooms/onTheTrailPart1.c");
+        move_object(actors["halgaladh"], "/lib/tutorial/rooms/onTheTrailPart1.c");
+        move_object(actors["galadhel"], "/lib/tutorial/rooms/onTheTrailPart1.c");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onTheTrail()
+{
+    call_out("onTheTrailPartTwo", 2);
 }

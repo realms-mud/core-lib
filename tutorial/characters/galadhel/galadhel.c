@@ -46,13 +46,3 @@ protected void Setup()
 
     addConversation("/lib/tutorial/characters/galadhel/startingConversation.c");
 }
-
-/////////////////////////////////////////////////////////////////////////////
-public void onDeath(object caller)
-{
-    if (caller && (program_name(caller) == "lib/tutorial/characters/jerith.c"))
-    {
-        tell_room(environment(this_object()), 
-            sprintf("Aww shit! Jerith croaked!\n"));
-    }
-}

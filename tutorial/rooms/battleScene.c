@@ -10,13 +10,16 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/oakStand.c", "south");
 
-    // First test
     addExit("west", "/lib/tutorial/rooms/onTheTrailPart1.c", "on the trail");
+
+    object stateMachine = load_object("/lib/tutorial/stateMachines/introStateMachine.c");
+    setStateMachine(stateMachine);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
+    "environment"::init();
     add_action("resetEverything", "resetEverything");
 }
 

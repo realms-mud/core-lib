@@ -237,14 +237,14 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
 
     if(target)
     {
-        ret = applyEffect(owner, target);
     
-        if(ret && member(researchData, "use ability message") &&
+        if(member(researchData, "use ability message") &&
            stringp(researchData["use ability message"]))
         {
             displayMessage(researchData["use ability message"],
                 owner, target);
         }
+        ret = applyEffect(owner, target);
     }
     else
     {

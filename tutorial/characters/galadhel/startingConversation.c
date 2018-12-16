@@ -11,4 +11,6 @@ protected void Setup()
         "teeth, the anger - or fear - apparent on her face. @S@`I swear... if "
         "you're dead, ##ActorName##, I will kill you!'");
     addTopicEvent("galadhel awakens player", "berenarInterjects");
+
+    addTopic("jerith dies", "@S@`Damn it!' @D@Galadhel growls. @S@`Jerith's down!'");
 }

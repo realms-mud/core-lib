@@ -111,7 +111,7 @@ protected nomask int applyEffect(object initiator, object target)
             ret = 1;
         }
 
-        if(ret)
+        if(ret && target)
         {
             // Trigger combat
             target->registerAttacker(initiator);

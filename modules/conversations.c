@@ -178,9 +178,15 @@ public nomask int respondToConversation(string choice)
 public nomask void onTriggerConversation(object caller,
     string conversation)
 {
-    if (member(topics, conversation) && this_player())
+    if (member(topics, conversation))
     {
-        call_direct(this_player(), "onStateChanged", this_object(), conversation);
-        beginConversation(this_player());
+        object actor = caller->isRealizationOfPlayer() ? caller : this_player();
+
+        CurrentTopic = load_object(topics[conversation]);
+        CurrentTopic->speakMessage(conversation, actor, this_object());
+        if (present(this_object(), environment(caller)))
+        {
+            initializeResponses();
+        }
     }
 }
