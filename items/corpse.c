@@ -77,9 +77,9 @@ public nomask void decayCorpse()
     }
     if ((decayValue >= 0) && corpseName)
     {
-        if (query("short") != shortDescription)
+        if ((query("short") != shortDescription) && environment(this_object()))
         {
-            say(shortDescription + "\n");
+            tell_room(environment(this_object()), shortDescription + "\n");
         }
 
         set("short", shortDescription);
