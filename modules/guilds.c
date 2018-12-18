@@ -128,12 +128,13 @@ public nomask int effectiveExperience()
 /////////////////////////////////////////////////////////////////////////////
 public nomask int experienceToNextLevel(string guild)
 {
-    int ret = 0;
+    int ret = 1;
     if (memberOfGuild(guild) && intp(guilds[guild]["experience"]))
     {
         ret = guildsDictionary()->experienceToNextLevel(guild, guildLevel(guild)) -
-            guilds[guild]["experience"];
+        ((guilds[guild]["experience"] > 0) ? guilds[guild]["experience"] : 0);
     }
+
     return ret;
 }
 

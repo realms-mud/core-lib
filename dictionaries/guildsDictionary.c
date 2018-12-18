@@ -390,7 +390,7 @@ public nomask string pretitle(string guild, int level, string rank)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int experienceToNextLevel(string guild, int level)
 {
-    int ret = 0;
+    int ret = 1;
 
     if (valueIsCached(guild, "experience needed", level, "default"))
     {

@@ -171,6 +171,12 @@ void AddExperienceCapsExperienceToTwiceTheCostForNextLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ExperienceToNextLevelDoesNotReturnZeroIfGuildUnknown()
+{
+    ExpectTrue(User->experienceToNextLevel("test"), "initial experience to next level");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AdvanceLevelAdvancesLevelAndAppliesGuildCriteria()
 {
     ExpectTrue(User->joinGuild("test"));
