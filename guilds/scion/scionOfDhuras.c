@@ -109,4 +109,18 @@ public void SetupGuild()
             "lib/guilds/scion/paths/axe/evocation.c",
             "lib/guilds/scion/paths/axe/spirit.c" })
     ])); 
+
+    addCriteria("magical dagger path", ([
+        "type": "research choice",
+        "name": "The Path (Dagger)",
+        "description": "Choose your magical path",
+        "apply": "at level 1",
+        "apply if chosen": ({ "lib/guilds/scion/paths/dagger.c" }),
+        "research objects": ({ "lib/guilds/scion/paths/dagger/flame.c",
+            "lib/guilds/scion/paths/dagger/electricity.c",
+            "lib/guilds/scion/paths/dagger/ice.c",
+            "lib/guilds/scion/paths/dagger/blood.c",
+            "lib/guilds/scion/paths/dagger/evocation.c",
+            "lib/guilds/scion/paths/dagger/spirit.c" })
+    ])); 
 }
