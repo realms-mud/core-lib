@@ -11,7 +11,8 @@ private mapping environmentalElements = ([
     "item": ([]),
     "objects": ([]),
     "shop": 0,
-    "description": ([])
+    "description": ([]),
+    "location text": ({ " is " })
 ]);
 
 private mapping aliasesToElements = ([]);
@@ -453,6 +454,13 @@ private nomask string parseEfunCall(string match)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private string getlocationText()
+{
+    return environmentalElements["location text"][
+        random(sizeof(environmentalElements["location text"]))];
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private string getElementDescriptions(string type)
 {
     string ret = "";
@@ -489,7 +497,7 @@ private string getElementDescriptions(string type)
                 if (elementDescription && (elementDescription != ""))
                 {
                     ret += directions +
-                        (elementObj->displayActionText() ? " you see " : " ") +
+                        (elementObj->displayActionText() ? getlocationText() : " ") +
                         elementDescription + ".";
                 }
             }

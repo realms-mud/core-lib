@@ -1302,11 +1302,15 @@ private nomask int finishOffThisPoorDeadBastard(object murderer)
     {
         murderer->generateCombatStatistics(this_object());
     }
-    generateCorpse(murderer);
     
     if(function_exists("secondLife", this_object()))
     {
         ret = !this_object()->secondLife();
+    }
+
+    if (ret)
+    {
+        generateCorpse(murderer);
     }
     return ret;
 }

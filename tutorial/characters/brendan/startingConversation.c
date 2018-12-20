@@ -8,9 +8,10 @@ virtual inherit "/lib/modules/conversations/baseConversation.c";
 protected void Setup()
 {
     // First conversation
-    addTopic("first conversation", "@D@As you turn to talk to the black-robed figure, you "
+    addTopic("first conversation", "@S@`Stop! I yield!', @D@the black-robed figure "
+        "whines and throws its hands in the air. You "
         "note that it is a man in his early thirties. It is clear that he is of noble "
-        "background. He eyes you balefully.");
+        "background. He eyes you balefully, but looks wholly defeated.");
 
     addResponse("first conversation", "Who are you?", "As you look at the figure, you note "
         "an amulet that makes you feel very uneasy. @S@`And what say you my little villain?");

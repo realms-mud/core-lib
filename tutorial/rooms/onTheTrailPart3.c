@@ -10,30 +10,25 @@ object StateMachine;
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/cottonwoodStand.c", "west");
-    addFeature("/lib/environment/features/cottonwoodStand.c", "south");
+    addFeature("/lib/environment/features/oakStand.c", "east");
+    addFeature("/lib/environment/features/sycamoreStand.c", "south");
 
     // First test
-    addExit("east", "/lib/tutorial/rooms/battleScene.c", "on the trail");
-    addExit("north", "/lib/tutorial/rooms/onTheTrailPart2.c", "on the trail");
-    addExit("south", "/lib/tutorial/rooms/onTheTrailPart1b.c", "on the trail");
+    addExit("north", "/lib/tutorial/rooms/onTheTrailPart3b.c", "on the trail");
+    addExit("southeast", "/lib/tutorial/rooms/onTheTrailPart2.c", "on the trail");
+    addExit("west", "/lib/tutorial/rooms/onTheTrailPart4.c", "on the trail");
 
     StateMachine = load_object("/lib/tutorial/stateMachines/introStateMachine.c");
     setStateMachine(StateMachine);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void continueOnTrailPart2()
-{
-    StateMachine->moveSquad("north",
-        "/lib/tutorial/rooms/onTheTrailPart2.c");
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public void continueOnTrail()
 {
-    StateMachine->beginConversation("baddies went north");
-    call_out("continueOnTrailPart2", 1);
+    tell_room(this_object(),
+        "A flash of black can be seen to the west.\n");
+    StateMachine->moveSquad("west",
+        "/lib/tutorial/rooms/onTheTrailPart4.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -45,6 +40,6 @@ public void init()
         (StateMachine->getCurrentState() == "on the trail") &&
         present("alberich"))
     {
-        call_out("continueOnTrail", 2);
+        call_out("continueOnTrail", 1);
     }
 }
