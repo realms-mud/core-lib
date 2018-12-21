@@ -27,6 +27,14 @@ public void init()
 public int resetEverything(string command)
 {
     write("Resetting all the things!\n");
+
+    object *items = filter(all_inventory(this_object()),
+        (: !$1->isRealizationOfLiving() :));
+    foreach(object item in items)
+    {
+        destruct(item);
+    }
+
     this_player()->resetQuest("lib/tutorial/stateMachines/introStateMachine.c");
     load_object("/lib/tutorial/characters/galadhel/galadhel.c")->resetConversationState();
     load_object("/lib/tutorial/characters/berenar/berenar.c")->resetConversationState();

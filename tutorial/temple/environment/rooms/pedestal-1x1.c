@@ -129,3 +129,22 @@ public int moveToIsAllowed(object user, object toLocation)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void init()
+{
+    "environment"::init();
+    add_action("resetEverything", "resetEverything");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int resetEverything(string command)
+{
+    write("Resetting all the things!\n");
+
+    pedestal()->pressPlateOfDeath();
+    this_player()->resetQuest("lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+    load_object("/lib/tutorial/temple/characters/uhrdalen/uhrdalen.c")->resetConversationState();
+    load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c")->startStateMachine();
+    return 1;
+}

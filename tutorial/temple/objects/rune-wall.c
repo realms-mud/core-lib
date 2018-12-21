@@ -281,11 +281,3 @@ public string long()
         " them...");
     return format(long, 78);
 }
-
-/////////////////////////////////////////////////////////////////////////////
-public void resetEverything()
-{
-    this_player()->resetQuest("lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
-    load_object("/lib/tutorial/temple/characters/uhrdalen/uhrdalen.c")->resetConversationState();
-    load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c")->startStateMachine();
-}

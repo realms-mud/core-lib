@@ -32,7 +32,7 @@ public void init()
             (: $1->isRealizationOfLiving() && ($1 != $2) :), brendan);
         foreach(object character in characters)
         {
-            character->attack(brendan);
+            brendan->attack(character);
         }
     }
 }
