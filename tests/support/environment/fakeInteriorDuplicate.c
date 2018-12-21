@@ -7,6 +7,6 @@ inherit "/lib/environment/interiors/baseInterior.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("hallway");
+    Name("fake hallway");
     addDescriptionTemplate("a stone hallway");
 }

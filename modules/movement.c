@@ -43,6 +43,48 @@ public nomask void runAway()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private int checkForImpairedVision(object player)
+{
+    int ret = 0;
+    if (player->hasTraitOfRoot("blind"))
+    {
+        tell_object(player, "\x1b[0;30;1mYou are blind.\x1b[0m\n");
+        ret = 1;
+    }
+    else if (!player->canSee())
+    {
+        ret = 1;
+        tell_object(player, "\x1b[0;30;1mIt is too dark.\x1b[0m\n");
+
+        object *environmentInventory = filter(
+            all_inventory(environment(player)),
+            (: $1->isRealizationOfLiving() &&
+                !$1->hasTraitOfRoot("ethereal") &&
+                !$1->hasTraitOfRoot("undead") :));
+
+        if (player->hasTraitOfRoot("infravision") &&
+            sizeof(environmentInventory))
+        {
+            string visibleList = "\x1b[0;30;1mYou can see objects faintly glowing in red:\n\x1b[0m";
+            foreach(object environmentItem in environmentInventory)
+            {
+                string shortDesc = environmentItem->short();
+                if (shortDesc && (shortDesc != ""))
+                {
+                    visibleList += sprintf("\x1b[0;31m%s\n\x1b[0m", capitalize(shortDesc));
+                }
+            }
+
+            if (visibleList != "")
+            {
+                tell_object(player, visibleList);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public varargs nomask int move(string location, string direction)
 {
     int ret = 0;
@@ -93,7 +135,10 @@ public varargs nomask int move(string location, string direction)
             object player = getService("player");
             if (player && environment())
             {
-                tell_object(this_object(), environment()->long(player->brief()));
+                if(!checkForImpairedVision(player))
+                {
+                    tell_object(this_object(), environment()->long(player->brief()));
+                }
             }
         }
     }

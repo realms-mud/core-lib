@@ -323,6 +323,53 @@ void DefaultMoveLocationsStillAvailableWhenInDifferentStateAndNotOverridden()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void MoveToLocationShowsDarkMessageWhenEnteringDarkArea()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    move_object(player, "/lib/tests/support/environment/startingRoom.c");
+
+    command("south", player);
+    ExpectSubStringMatch("It is too dark", player->caughtMessage());
+
+    destruct(player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MoveToLocationShowsCorrectMessageForTimeAndSeason()
+{
+    destruct(load_object("/lib/tests/support/environment/darkRoom.c"));
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    move_object(player, "/lib/tests/support/environment/startingRoom.c");
+
+    command("south", player);
+    ExpectSubStringMatch("It is too dark", player->caughtMessage());
+
+    Dictionary->timeOfDay("night");
+    Dictionary->season("spring");
+    move_object(player, "/lib/tests/support/environment/startingRoom.c");
+
+    command("south", player);
+    ExpectSubStringMatch("a stone hallway.*There is one obvious exit: "
+        "north.*Black-robed figure", player->caughtMessage());
+
+    destruct(player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MoveToLocationShowsDescriptionWhenEnteringArtificiallyLightedArea()
+{
+    destruct(load_object("/lib/tests/support/environment/not-so-dark-room.c"));
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    move_object(player, "/lib/tests/support/environment/startingRoom.c");
+
+    command("west", player);
+    ExpectSubStringMatch("a stone hallway.*There is one obvious exit: "
+        "east.*Black-robed figure", player->caughtMessage());
+
+    destruct(player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AddFeatureRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
