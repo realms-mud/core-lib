@@ -2,7 +2,7 @@
 // Class: thing
 // File Name: thing.c
 //
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: Thing is the base object for all basic lib objects contained

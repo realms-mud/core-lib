@@ -2,7 +2,7 @@
 // Class: bonusesDictionary
 // File Name: bonusesDictionary.c
 //
-// Copyright (c) 2018 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 private nosave string LibDirectory = "lib/dictionaries";
