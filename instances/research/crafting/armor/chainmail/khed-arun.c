@@ -10,23 +10,20 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Case Hardening - Weapons");
+        addSpecification("name", "Khed-arun");
         addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of case hardening metal for use in weapons. The metal "
-            "is flash-heated and quenched such that only the outermost "
-            "layer of the metal has been hardened. This outside layer is "
-            "somewhat brittle, but the core is soft and pliable.");
-
+            "arcane techniques of imbuing the chainmail with their own essence. "
+            "This is a skill mastered by the great smiths of Khazurath.");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addPrerequisite("lib/instances/research/crafting/weapons/common/quenching.c",
+        addPrerequisite("lib/instances/research/crafting/armor/chainmail/khazuraths-legacy.c", 
             (["type":"research"]));
-        addSpecification("limited by", (["crafting type":({ "sword", "dagger",
-            "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
-            "bow", "sling", "thrown", "shield" })]));
 
-        addSpecification("bonus crafting attack", 1);
+        addSpecification("limited by", (["crafting type":"chainmail"]));
+
+        addSpecification("bonus crafting value multiplier", 10);
+        addSpecification("bonus crafting magical enchantment", 3);
     }
 }

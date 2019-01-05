@@ -22,17 +22,16 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addPrerequisite("lib/instances/research/crafting/weapons/common/folding.c",
+        addPrerequisite("lib/instances/research/crafting/armor/common/folding.c",
             (["type":"research"]));
-        addPrerequisite("lib/instances/research/crafting/weapons/common/forge-welding.c",
+        addPrerequisite("lib/instances/research/crafting/armor/common/forge-welding.c",
             (["type":"research"]));
-        addSpecification("limited by", (["crafting type":({ "sword", "dagger",
-            "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
-            "bow", "sling", "thrown", "shield" })]));
+        addSpecification("limited by", (["crafting type":({ "chainmail",
+            "plate armor", "splint armor", "scale armor", "helmet" })]));
 
         addSpecification("bonus crafting value multiplier", 10);
-        addSpecification("bonus crafting attack", 1);
-        addSpecification("bonus crafting defense class", 1);
+        addSpecification("bonus crafting armor class", 1);
+        addSpecification("bonus crafting encumberance reduction", 5);
         addSpecification("bonus crafting enchantments", 1);
     }
 }

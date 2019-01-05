@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Mystic Welding - Weapons");
+        addSpecification("name", "Mystic Welding - Armor");
         addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
             "knowledge of mystic welding metal - a treatment wherein multiple "
@@ -22,16 +22,15 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addPrerequisite("lib/instances/research/crafting/weapons/common/mystic-wrapping.c",
+        addPrerequisite("lib/instances/research/crafting/armor/common/mystic-wrapping.c",
             (["type":"research"]));
-        addSpecification("limited by", (["crafting type":({ "sword", "dagger",
-            "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
-            "bow", "sling", "thrown", "shield" })]));
+        addSpecification("limited by", (["crafting type":({ "chainmail",
+            "plate armor", "splint armor", "scale armor", "helmet" })]));
 
         addSpecification("bonus crafting value multiplier", 500);
         addSpecification("bonus crafting enchantments", 1);
-        addSpecification("bonus crafting weapon class", 1);
-        addSpecification("bonus crafting defense class", 1);
-        addSpecification("bonus crafting attack", 1);
+        addSpecification("bonus crafting armor class", 1);
+        addSpecification("bonus crafting weight reduction", 1);
+        addSpecification("bonus crafting encumberance reduction", 5);
     }
 }

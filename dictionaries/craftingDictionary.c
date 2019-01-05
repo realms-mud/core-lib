@@ -11,9 +11,24 @@
 #include "materials/enchantments.h"
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isValidType(string type)
+public nomask int isValidType(mixed type)
 {
-    return (member(weaponSubTypes + armorCategories, type) > -1);
+    int ret = 0;
+
+    string *types = weaponSubTypes + armorCategories;
+    if (stringp(type))
+    {
+        ret = member(types, type) > -1;
+    }
+    else if (pointerp(type) && sizeof(type))
+    {
+        ret = 1;
+        foreach(string key in type)
+        {
+            ret &&= member(types, key) > -1;
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

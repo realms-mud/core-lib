@@ -285,8 +285,24 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
         }
         if (member(researchData["limited by"], "crafting type"))
         {
-            ret &&= target && (target->query("crafting type") ==
+            ret &&= objectp(target);
+
+            if (stringp(researchData["limited by"]["crafting type"]) &&
+                target)
+            {
+                ret &&= (target->query("crafting type") ==
                     researchData["limited by"]["crafting type"]);
+            }
+            else if (pointerp(researchData["limited by"]["crafting type"]) &&
+                target)
+            {
+                int checkList = 0;
+                foreach(string key in researchData["limited by"]["crafting type"])
+                {
+                    checkList += (target->query("crafting type") == key);
+                }
+                ret &&= checkList;
+            }
             if (!ret && verbose)
             {
                 printf("The item is of the wrong type to be affected by this research.\n");

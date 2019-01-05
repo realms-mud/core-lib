@@ -23,6 +23,9 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/common/quenching.c",
             (["type":"research"]));
+        addSpecification("limited by", (["crafting type":({ "sword", "dagger",
+            "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
+            "bow", "sling", "thrown", "shield" })]));
 
         addSpecification("bonus crafting attack", 1);
         addSpecification("penalty to crafting weapon class", 1);

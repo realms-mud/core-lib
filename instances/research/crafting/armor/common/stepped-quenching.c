@@ -10,10 +10,10 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Stepped Quenching - Weapons");
+        addSpecification("name", "Stepped Quenching - Armor");
         addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of stepped quenching metal for use in weapons. The metal "
+            "knowledge of stepped quenching metal for use in armor. The metal "
             "is first cooled in a metallic bath - liquified lead or another "
             "metal with an extremely low melting point (at around 200 to 300 "
             "degrees C). After the metal has come to a uniform temperature, "
@@ -24,14 +24,11 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addPrerequisite("lib/instances/research/crafting/weapons/common/quenching.c",
+        addPrerequisite("lib/instances/research/crafting/armor/common/quenching.c",
             (["type":"research"]));
-        addSpecification("limited by", (["crafting type":({ "sword", "dagger",
-            "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
-            "bow", "sling", "thrown", "shield" })]));
+        addSpecification("limited by", (["crafting type":({ "chainmail",
+            "plate armor", "splint armor", "scale armor", "helmet" })]));
 
-        addSpecification("bonus crafting weapon class", 1);
-        addSpecification("bonus crafting defense class", 1);
-        addSpecification("bonus crafting attack", 1);
+        addSpecification("bonus crafting armor class", 1);
     }
 }

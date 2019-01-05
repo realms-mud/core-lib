@@ -23,6 +23,9 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/common/stepped-tempering.c",
             (["type":"research"]));
+        addSpecification("limited by", (["crafting type":({ "sword", "dagger",
+            "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
+            "bow", "sling", "thrown", "shield" })]));
 
         addSpecification("bonus crafting weapon class", 1);
         addSpecification("bonus crafting defense class", 1);

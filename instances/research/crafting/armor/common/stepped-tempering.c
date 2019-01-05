@@ -10,23 +10,23 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Case Hardening - Weapons");
+        addSpecification("name", "Stepped Tempering - Armor");
         addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of case hardening metal for use in weapons. The metal "
-            "is flash-heated and quenched such that only the outermost "
-            "layer of the metal has been hardened. This outside layer is "
-            "somewhat brittle, but the core is soft and pliable.");
+            "knowledge of stepped tempering metal for use in armor. The metal "
+            "is repeatedly heated to a low temperature and then allowed to "
+            "slowly cool. This will reduce the metal's brittleness without "
+            "sacrificing the hardness .");
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addPrerequisite("lib/instances/research/crafting/weapons/common/quenching.c",
+        addPrerequisite("lib/instances/research/crafting/armor/common/tempering.c",
             (["type":"research"]));
-        addSpecification("limited by", (["crafting type":({ "sword", "dagger",
-            "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
-            "bow", "sling", "thrown", "shield" })]));
+        addSpecification("limited by", (["crafting type":({ "chainmail",
+            "plate armor", "splint armor", "scale armor", "helmet" })]));
 
-        addSpecification("bonus crafting attack", 1);
+        addSpecification("bonus crafting value multiplier", 15);
+        addSpecification("bonus crafting armor class", 1);
     }
 }

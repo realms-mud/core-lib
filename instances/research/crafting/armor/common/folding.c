@@ -10,24 +10,24 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Stepped Tempering - Weapons");
+        addSpecification("name", "Folding - Armor");
         addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of stepped tempering metal for use in weapons. The metal "
-            "is repeatedly heated to a low temperature and then allowed to "
-            "slowly cool. This will reduce the metal's brittleness without "
-            "sacrificing the hardness .");
-
+            "knowledge of folding metal - a treatment wherein the metal is "
+            "hammered thin folded upon itself - typically with a thin dusting "
+            "of a powdered strengthening agent such as carbon or saltpeter "
+            "placed between the layers. This is done multiple times; the "
+            "resultant lamellar metal being much stronger than non-folded "
+            "metal.");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addPrerequisite("lib/instances/research/crafting/weapons/common/tempering.c",
+        addPrerequisite("lib/instances/research/crafting/armor/common/annealing.c",
             (["type":"research"]));
-        addSpecification("limited by", (["crafting type":({ "sword", "dagger",
-            "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
-            "bow", "sling", "thrown", "shield" })]));
+        addSpecification("limited by", (["crafting type":({ "plate armor", 
+            "splint armor", "scale armor", "helmet" })]));
 
         addSpecification("bonus crafting value multiplier", 15);
-        addSpecification("bonus crafting attack", 1);
+        addSpecification("bonus crafting armor class", 1);
     }
 }
