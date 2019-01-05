@@ -13,7 +13,7 @@
 *.dylib
 *.dll
 
-# Fortran module files
+# Module files
 *.mod
 *.smod
 
