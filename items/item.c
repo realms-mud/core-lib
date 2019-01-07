@@ -14,7 +14,7 @@ virtual inherit "/lib/core/thing.c";
 private nosave string AttacksBlueprint = "/lib/dictionaries/attacksDictionary.c";
 protected nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDictionary.c";
 private nosave string CraftingDictionary = "/lib/dictionaries/craftingDictionary.c";
-private nosave string MessageParser = "/lib/core/messageParser.c";
+protected nosave string MessageParser = "/lib/core/messageParser.c";
 private nosave string BonusesBlueprint = "/lib/dictionaries/bonusesDictionary.c";
 
 protected mapping itemData = ([ 
