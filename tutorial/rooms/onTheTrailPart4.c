@@ -26,7 +26,8 @@ public void init()
     environment::init();
 
     object brendan = present("brendan");
-    if (brendan)
+    if (brendan && this_player() && this_player()->isRealizationOfPlayer() &&
+        present(this_player()))
     {
         object *characters = filter(all_inventory(this_object()),
             (: $1->isRealizationOfLiving() && ($1 != $2) :), brendan);

@@ -129,22 +129,22 @@ protected nomask void addTopicTrigger(string id, string event)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void addTopicInterjection(string id, string actor,
-    string actorTopic)
+protected nomask varargs void addTopicInterjection(string id, string actor,
+    string actorTopic, int ignoreDependency)
 {
     if (member(topics, id))
     {
         if (file_size(actor) > 0)
         {
             object actorObj = load_object(actor);
-            if (actorObj && actorObj->hasTopic(actorTopic))
+            if ((actorObj && actorObj->hasTopic(actorTopic)) || ignoreDependency)
             {
                 topics[id]["interjection"] = ([ 
                     "actor": actor,
                     "topic": actorTopic
                 ]);
             }
-            else
+            else if(!ignoreDependency)
             {
                 raise_error(sprintf("ERROR - baseConversation.c, addTopicInterjection: "
                     "Topic '%s' does not exist on actor.\n", actorTopic));
@@ -545,7 +545,7 @@ public nomask int speakMessage(string key, object actor, object owner)
         member(topics[key], "template") &&
         checkPrerequisites(actor, key, owner))
     {
-        displayMessage(topics[key]["template"], actor, owner);
+        displayMessage("\n" + topics[key]["template"], actor, owner);
 
         if (member(topics[key], "interjection") && environment(owner))
         {

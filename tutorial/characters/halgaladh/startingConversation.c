@@ -7,5 +7,9 @@ virtual inherit "/lib/modules/conversations/baseConversation.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addTopic("tbd", "");
+    addTopic("aye but how", "@S@`Aye, but how?' @D@asks "
+        "Halgaladh as he steps up next to Galadhel.");
+    addTopicInterjection("aye but how",
+        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "I do not know", 1);
 }

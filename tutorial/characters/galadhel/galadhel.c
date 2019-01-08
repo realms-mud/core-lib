@@ -45,4 +45,5 @@ protected void Setup()
     generator->CreateAegisEquipment(this_object());
 
     addConversation("/lib/tutorial/characters/galadhel/startingConversation.c");
+    addConversation("/lib/tutorial/characters/galadhel/brendanOeldhenConversation.c");
 }
