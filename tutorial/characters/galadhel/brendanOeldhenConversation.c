@@ -8,20 +8,21 @@ virtual inherit "/lib/modules/conversations/baseConversation.c";
 private void FindingHaldor()
 {
     addTopic("haldor is dead", "@D@Galadhel crouches down beside the corpse. @S@`"
-        "Haldor has fallen.' She intently examines an arrow that is protruding "
-        "from Haldor's temple.");
+        "Haldor has fallen.' @D@She intently examines an arrow that is "
+        "protruding from Haldor's temple.");
     addTopicInterjection("haldor is dead",
         "/lib/tutorial/characters/halgaladh/halgaladh.c",
         "aye but how", 1);
 
-    addTopic("I do not know", "@D@Galadhel grimaces, @S@`I do not know. That "
-        "arrow was not fired from a bow.'");
+    addTopic("I do not know", "@D@Galadhel grimaces, @S@`Good question. Given "
+        "the signs here, that arrow was fired from the west.'");
     addTopicInterjection("I do not know",
         "/lib/tutorial/characters/donald/donald.c",
         "Does it matter", 1);
 
-    addTopic("look over there", "@D@Galadhel points to the north and hisses, "
-        "@S@`Look. Over there.'");
+    addTopic("look over there", "@D@Galadhel points to the west and hisses, "
+        "@S@`Look! Over there.'");
+    addTopicEvent("look over there", "moveCharactersToOnTheTrailPartOne");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -41,4 +42,6 @@ protected void Setup()
     addTopicInterjection("threaten brendan",
         "/lib/tutorial/characters/brendan/brendan.c",
         "slow down, Sparky", 1);
+
+    FindingHaldor();
 }

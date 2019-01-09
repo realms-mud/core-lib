@@ -83,7 +83,8 @@ private void BadHost()
         "and foolhardy to assume that I am defenseless.' @D@He abruptly stops his "
         "outburst, well-aware of the danger he currently faces.");
 
-    addResponse("bad host", "Are you keeping score?", "@D@You impassively reply, "
+    addResponse("bad host", "Are you keeping score?", "@D@@C@##InitiatorName## "
+        "impassively ##ResponseInfinitive::reply##, "
         "@S@`Assess your situation. You are currently under my foot and "
         "the recipient of my ire because you look quite similar "
         "to the one we saw flee the scene of our massacre. I will ask one "

@@ -10,7 +10,7 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/oakStand.c", "south");
 
-    addExit("west", "/lib/tutorial/rooms/onTheTrailPart1.c", "on the trail");
+    addExit("west", "/lib/tutorial/rooms/fallenAegis.c", "on the trail");
 
     object stateMachine = load_object("/lib/tutorial/stateMachines/introStateMachine.c");
     setStateMachine(stateMachine);

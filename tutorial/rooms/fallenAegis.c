@@ -10,30 +10,30 @@ object StateMachine;
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/cottonwoodStand.c", "west");
+    addFeature("/lib/environment/features/oakStand.c", "north");
     addFeature("/lib/environment/features/cottonwoodStand.c", "south");
 
     // First test
-    addExit("east", "/lib/tutorial/rooms/fallenAegis.c", "on the trail");
-    addExit("north", "/lib/tutorial/rooms/onTheTrailPart2.c", "on the trail");
-    addExit("south", "/lib/tutorial/rooms/onTheTrailPart1b.c", "on the trail");
+    addExit("east", "/lib/tutorial/rooms/battleScene.c", "on the trail");
+    addExit("west", "/lib/tutorial/rooms/onTheTrailPart1.c", "on the trail");
+
+    addObject("/lib/tutorial/characters/haldor.c", "on the trail");
 
     StateMachine = load_object("/lib/tutorial/stateMachines/introStateMachine.c");
     setStateMachine(StateMachine);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void continueOnTrailPart2()
+public void moveCharactersToOnTheTrailPartOne()
 {
-    StateMachine->moveSquad("north",
-        "/lib/tutorial/rooms/onTheTrailPart2.c");
+    StateMachine->moveSquad("west",
+        "/lib/tutorial/rooms/onTheTrailPart1.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void continueOnTrail()
 {
-    StateMachine->beginConversation("baddies went north");
-    call_out("continueOnTrailPart2", 1);
+    StateMachine->beginConversation("haldor is dead");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,8 +43,9 @@ public void init()
 
     if (this_player()->isRealizationOfPlayer() &&
         (StateMachine->getCurrentState() == "on the trail") &&
-        present("alberich"))
+        present("galadhel"))
     {
-        call_out("continueOnTrail", 2);
+        present("galadhel")->registerEvent(this_object());
+        call_out("continueOnTrail", 1);
     }
 }

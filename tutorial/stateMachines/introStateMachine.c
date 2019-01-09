@@ -155,7 +155,7 @@ public void onTheTrailPartTwo()
     {
         actors["berenar"]->onTriggerConversation(Player, "on the trail");
         move_object(Player, "/lib/tutorial/rooms/battleScene.c");
-        moveSquad("west", "/lib/tutorial/rooms/onTheTrailPart1.c");
+        moveSquad("west", "/lib/tutorial/rooms/fallenAegis.c");
     }
 }
 
