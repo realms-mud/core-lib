@@ -21,7 +21,6 @@ protected void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
-    printf("%O died - checked by %O\n", caller, this_object());
     if (caller && (program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c"))
     {
         tell_room(environment(this_object()),

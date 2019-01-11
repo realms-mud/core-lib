@@ -87,6 +87,15 @@ private nomask void pruneStateObjects()
                 {
                     StateMachine->unregisterStateActor(stateObject);
                 }
+
+                object *stateObjectItems = deep_inventory(stateObject);
+                if (sizeof(stateObjectItems))
+                {
+                    foreach(object item in stateObjectItems)
+                    {
+                        destruct(item);
+                    }
+                }
                 destruct(stateObject);
             }
         }
@@ -683,8 +692,13 @@ public nomask int move(string str)
     }
     if (destination)
     {
-        this_player()->move(destination, direction);
+        if (!this_player()->move(destination, direction))
+        {
+            raise_error(sprintf("Unable to move to %O.\n",
+                destination));
+        }
     }
+
     return destination && stringp(destination);
 }
 

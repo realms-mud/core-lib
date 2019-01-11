@@ -12,4 +12,8 @@ protected void Setup()
         "@S@``Get that stupid shit ##ActorName## back here! We have enemies "
         "at hand!' Seriously, ##ActorName##.... what the hell are you doing?' "
         "@D@Without waiting for a response, Thomas runs off.");
+
+    addTopic("donald is a dipshit", "@S@`Enthusiastic?' @D@Thomas mutters "
+        "grimly. @S@`That dipshit is rushing headlong into a trap. Bah. "
+        "Nothing for it but to join him, yes?'");
 }

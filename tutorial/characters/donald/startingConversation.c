@@ -36,4 +36,28 @@ protected void Setup()
     addTopicInterjection("how can he be dead",
         "/lib/tutorial/characters/halgaladh/halgaladh.c",
         "stinks too", 1);
+
+    addTopic("the enemy is upon us", "\n@D@Donald jumps up as he hears "
+        "rustling branches to the west, @S@`Damn it! This mystery can wait. "
+        "The enemy is upon us!'");
+
+    addTopic("let's get these bastards", "@D@Donald snarls, @S@`Enough of "
+        "this! Let's get these bastards!' @D@Donald rushes off to the west.");
+    addTopicInterjection("let's get these bastards",
+        "/lib/tutorial/characters/alberich/alberich.c",
+        "donald is enthusiatic", 1);
+
+    addTopic("take him out", "@D@Donald nods and perhaps a bit too "
+        "loudly says, @S@`Aye, take 'im down but leave him able to talk. The "
+        "rest of you, with me.' @D@Donald prepares to attack.");
+    addTopicInterjection("take him out",
+        "/lib/tutorial/characters/alberich/alberich.c",
+        "wait you ninny", 1);
+
+    addTopic("ignore and attack", "@D@Donald seems to not notice "
+        "Alberich. At the top of his lungs, he bellows, @S@`Charge!' @D@He "
+        "lunges out of the cover and rushes the enemy.");
+    addTopicInterjection("ignore and attack",
+        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "I guess I'll just kill this guy", 1);
 }

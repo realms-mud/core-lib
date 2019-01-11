@@ -15,9 +15,73 @@ public void Setup()
 
     // First test
     addExit("east", "/lib/tutorial/rooms/onTheTrailPart3.c", "on the trail");
-    addObject("/lib/tutorial/characters/brendan/brendan.c");
+    addExit("west", "/lib/tutorial/rooms/onTheTrailPart5.c", "on the trail");
+    addObject("/lib/tutorial/characters/not-so-animated-corpse.c", "on the trail");
+
     StateMachine = load_object("/lib/tutorial/stateMachines/introStateMachine.c");
     setStateMachine(StateMachine);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void initiateAmbush()
+{
+    object keeper = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
+    move_object(keeper, this_object());
+    keeper->registerEvent(this_object());
+
+    object zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(zombie, this_object());
+    keeper->registerEvent(zombie);
+
+    this_player()->attack(zombie);
+
+    zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(zombie, this_object());
+    keeper->registerEvent(zombie);
+    if (present("alberich"))
+    {
+        present("alberich")->attack(zombie);
+    }
+
+    zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(zombie, this_object());
+    keeper->registerEvent(zombie);
+    if (present("thomas"))
+    {
+        present("thomas")->attack(zombie);
+    }
+
+    if (present("galadhel"))
+    {
+        present("galadhel")->attack(keeper);
+    }
+    if (present("halgaladh"))
+    {
+        present("halgaladh")->attack(keeper);
+    }
+    if (present("donald"))
+    {
+        present("donald")->attack(keeper);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void ambush()
+{
+    StateMachine->beginConversation("the enemy is upon us");
+    call_out("initiateAmbush", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void moveCharactersToOnTheTrailPartFour()
+{
+    call_out("ambush", 3);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void continueOnTrail()
+{
+    StateMachine->beginConversation("how can he be dead");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -25,15 +89,36 @@ public void init()
 {
     environment::init();
 
-    object brendan = present("brendan");
-    if (brendan && this_player() && this_player()->isRealizationOfPlayer() &&
-        present(this_player()))
+    if (this_player()->isRealizationOfPlayer() &&
+        (StateMachine->getCurrentState() == "on the trail") &&
+        present("galadhel"))
     {
-        object *characters = filter(all_inventory(this_object()),
-            (: $1->isRealizationOfLiving() && ($1 != $2) :), brendan);
-        foreach(object character in characters)
-        {
-            brendan->attack(character);
-        }
+        present("galadhel")->registerEvent(this_object());
+        call_out("continueOnTrail", 1);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void runHeadlongIntoTrap()
+{
+    tell_room(this_object(), "Halgaladh, Thomas, and Galadhel leave west.\n");
+
+    object *allies = filter(all_inventory(this_object()),
+        (: member(inherit_list($1), "lib/realizations/npc.c") > -1 :));
+
+    foreach(object ally in allies)
+    {
+        ally->hitPoints(ally->maxHitPoints());
+        move_object(ally, "/lib/tutorial/rooms/onTheTrailPart5.c");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onDeath(object caller)
+{
+    if (caller && (program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c"))
+    {
+        StateMachine->beginConversation("the corpse is human");
+        call_out("runHeadlongIntoTrap", 0);
     }
 }

@@ -10,7 +10,7 @@ int CallingYield;
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    Name("brendan");
+    Name("black-robed figure");
     addAlias("black-robed figure");
     addAlias("figure");
     short("Black-robed figure");

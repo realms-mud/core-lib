@@ -23,6 +23,35 @@ private void FindingHaldor()
     addTopic("look over there", "@D@Galadhel points to the west and hisses, "
         "@S@`Look! Over there.'");
     addTopicEvent("look over there", "moveCharactersToOnTheTrailPartOne");
+
+    addTopic("What are we missing", "@D@Galadhel frowns as she looks at the "
+        "corpse, @S@`What are we missing?'");
+    addTopicEvent("What are we missing", "moveCharactersToOnTheTrailPartFour");
+
+    addTopic("the corpse is human", "@D@Galadhel goes over to the fallen robed "
+        "figure and investigates. She looks at Donald and says, @S@`Sir, the "
+        "corpse is human. Male. Seems to have a taste for sinister-looking "
+        "accessories.'");
+    addTopicInterjection("the corpse is human",
+        "/lib/tutorial/characters/donald/donald.c",
+        "let's get these bastards", 1);
+
+    addTopic("whisper about dead to Donald", "@D@Galadhel crouches beside "
+        "Donald and whispers, @S@`Do we still want any alive? Certainly "
+        "the dead are worthless. There are the robed ones, however.'");
+    addTopicInterjection("whisper about dead to Donald",
+        "/lib/tutorial/characters/donald/donald.c",
+        "take him out", 1);
+
+    addTopic("I guess I'll just kill this guy", "@D@Galadhel sighs in "
+        "frustration, clearly annoyed that Donald chose to give their position "
+        "away. She knocks an arrow and looses it, embedding it into the "
+        "throat of one of the black-robed figures. As it falls to its death, "
+        "one of the walking corpses falls to the ground as though it were "
+        "a marionette whoses strings had been cut.");
+    addTopicInterjection("I guess I'll just kill this guy",
+        "/lib/tutorial/characters/alberich/alberich.c",
+        "daft bastard", 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
