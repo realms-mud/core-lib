@@ -3,14 +3,9 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/prerequisites.c";
-#include <mtypes.h>
 
-#define Speech "\x1b[0;33m"
-#define Desc "\x1b[0;36m"
-#define End "\x1b[0m"
-#define Stat(x) sprintf("\x1b[0;34;1m[%s]\x1b[0m", x)
-#define Action(x) sprintf("\x1b[0;31m[%s]\x1b[0m", x)
-#define Highlight(x) sprintf("\x1b[0;35m%s\x1b[0m", x)
+protected object Configuration = 
+    load_object("/lib/dictionaries/configurationDictionary.c");
 
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
 private int ignoreTalk = 0;
@@ -318,7 +313,7 @@ private nomask int isValidLiving(object livingCheck)
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string parseTemplate(string template, string perspective,
-    object initiator, object target)
+    object initiator, object target, string colorConfiguration)
 {
     string message = template;
     // ##Infinitive::verb##
@@ -370,13 +365,25 @@ protected nomask string parseTemplate(string template, string perspective,
     message = format(message, 78);
 
     // Apply colors
-    message = regreplace(message, "@S@", Speech, 1);
-    message = regreplace(message, "@D@", Desc, 1);
-    message = regreplace(message, "@A@((.+))@E@", Stat("\\1"), 1);
-    message = regreplace(message, "@I@(.+)@E@", Action("\\1"), 1);
-    message = regreplace(message, "@H@(.+)@E@", Highlight("\\1"), 1);
+    message = regreplace(message, "@S@([^@\x1b]*)", 
+        Configuration->decorate("\\1", "speech", "conversation", 
+            colorConfiguration), 1);
 
-    message += End;
+    message = regreplace(message, "@D@([^@\x1b]*)",
+        Configuration->decorate("\\1", "description", "conversation",
+            colorConfiguration), 1);
+
+    message = regreplace(message, "@A@((.+))@E@",
+        Configuration->decorate("[\\1]", "condition", "conversation",
+            colorConfiguration), 1);
+
+    message = regreplace(message, "@I@(.+)@E@",
+        Configuration->decorate("[\\1]", "action", "conversation",
+            colorConfiguration), 1);
+
+    message = regreplace(message, "@H@(.+)@E@",
+        Configuration->decorate("\\1", "highlight", "conversation",
+            colorConfiguration), 1);
     return message;
 }
 
@@ -392,22 +399,24 @@ protected nomask void displayMessage(string message, object initiator,
         {
             if (person && objectp(person))// && interactive(person))
             {
+                string colorConfiguration = person->colorConfiguration() ?
+                    person->colorConfiguration() : "3-bit";
+
                 string parsedMessage;
-                int colorInfo = C_EMOTES;
                 if (person == initiator)
                 {
                     parsedMessage = parseTemplate(message, "initiator", initiator,
-                        target);
+                        target, colorConfiguration);
                 }
                 else if (person == target)
                 {
                     parsedMessage = parseTemplate(message, "target",
-                        initiator, target);
+                        initiator, target, colorConfiguration);
                 }
                 else
                 {
                     parsedMessage = parseTemplate(message, "other",
-                        initiator, target);
+                        initiator, target, colorConfiguration);
                 }
                 tell_object(person, parsedMessage);
             }
@@ -519,11 +528,21 @@ private nomask void displayResponses(string id, object actor, object owner)
                     topics[id]["responses"][response]["selection"];
 
                 string message = topics[id]["responses"][response]["selection"];
-                message = regreplace(message, "@A@((.+))@E@", Stat("\\1"), 1);
-                message = regreplace(message, "@I@(.+)@E@", Action("\\1"), 1);
+                
+                string colorConfiguration = actor->colorConfiguration();
 
-                tell_object(actor, format(Action(choice) + ": " +
-                    Speech + message + End, 78));
+                message = regreplace(message, "@A@((.+))@E@",
+                    Configuration->decorate("[\\1]", "condition", "conversation",
+                        colorConfiguration), 1);
+                message = regreplace(message, "@I@(.+)@E@",
+                    Configuration->decorate("[\\1]", "action", "conversation",
+                        colorConfiguration), 1);
+
+                tell_object(actor,
+                    Configuration->decorate(sprintf("[%s]: ", choice),
+                        "action", "conversation", colorConfiguration) +
+                    Configuration->decorate(format(message, 72),
+                        "speech", "conversation", colorConfiguration));
             }
         }
     }

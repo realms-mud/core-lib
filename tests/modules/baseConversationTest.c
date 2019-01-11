@@ -164,7 +164,7 @@ void AddTopicTriggerAddsTrigger()
     Conversation->testAddTopicTrigger("test", "conversationEventHappened");
 
     Conversation->triggerConversation("conversationEventHappened", Actor, Owner);
-    ExpectEq("\nThis is a test message\n\x1b[0m", Actor->caughtMessage());
+    ExpectEq("\nThis is a test message\n", Actor->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -181,8 +181,8 @@ void AddResponseShowsAvailableResponsesWhenMessageSpoken()
     Conversation->testAddResponse("test", "Test response", "This is a test response");
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(2, sizeof(Actor->caughtMessages()));
-    ExpectEq("\nThis is a test message\n\x1b[0m", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]\x1b[0m: \x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
+    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -193,9 +193,9 @@ void AddMultipleResponsesShowsAvailableResponsesInSortedOrder()
     Conversation->testAddResponse("test", "Another", "This is another test response");
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(3, sizeof(Actor->caughtMessages()));
-    ExpectEq("\nThis is a test message\n\x1b[0m", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]\x1b[0m: \x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
-    ExpectEq("\x1b[0;31m[2]\x1b[0m: \x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
+    ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
+    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\x1b[0;31m[2]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -302,7 +302,7 @@ void CanRespondToMessage()
 
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     Conversation->displayResponse("1", Actor, Owner);
-    ExpectEq("\nThis is another test response\n\n\x1b[0m", Actor->caughtMessage());
+    ExpectEq("\nThis is another test response\n\n", Actor->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -315,8 +315,8 @@ void AddResponsePrerequisiteAddsPrerequisiteToDisplayOfMessage()
 
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(2, sizeof(Actor->caughtMessages()));
-    ExpectEq("\nThis is a test message\n\x1b[0m", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]\x1b[0m: \x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
+    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -329,16 +329,16 @@ void ResponsesAllDisplayedWhenPrerequisitesMet()
 
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(2, sizeof(Actor->caughtMessages()));
-    ExpectEq("\nThis is a test message\n\x1b[0m", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]\x1b[0m: \x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
+    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
 
     Actor->resetCatchList();
     Actor->Race("elf");
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(3, sizeof(Actor->caughtMessages()));
-    ExpectEq("\nThis is a test message\n\x1b[0m", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]\x1b[0m: \x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
-    ExpectEq("\x1b[0;31m[2]\x1b[0m: \x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
+    ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
+    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\x1b[0;31m[2]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -526,9 +526,79 @@ void DisplayResponseReturnsCorrectMessage()
 /////////////////////////////////////////////////////////////////////////////
 void MessagesAreCorrectlyParsed()
 {
-    Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## at ##InitiatorName## and ##Infinitive::snarl##, @S@`##ActorName##! That was really rude, you jerk!' @D@You ##ResponseInfinitive::laugh##. @A@Annoyed@E@");
+    Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## "
+        "at ##InitiatorName## and ##Infinitive::snarl##, @S@`##ActorName##! "
+        "That was really rude, you jerk!' @D@You ##ResponseInfinitive::laugh##. "
+        "@A@Annoyed@E@");
+
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
-    ExpectEq("\n\x1b[0;36mGertrude glares at you and snarls, \x1b[0;33m`Gorthaur! That was really rude, you\njerk!' \x1b[0;36mYou laugh. \x1b[0;34;1m[Annoyed]\x1b[0m\n\x1b[0m", Actor->caughtMessage());
+    ExpectEq("\n\x1b[0;36mGertrude glares at you and snarls, \x1b[0m\x1b[0;33m"
+        "`Gorthaur! That was really rude, you\njerk!' \x1b[0m\x1b[0;36mYou "
+        "laugh. \x1b[0m\x1b[0;34;1m[Annoyed]\x1b[0m\n", 
+        Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MessagesAreCorrectlyDisplayedWithNoneColorConfiguration()
+{
+    Actor->colorConfiguration("none");
+    Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## "
+        "at ##InitiatorName## and ##Infinitive::snarl##, @S@`##ActorName##! "
+        "That was really rude, you jerk!' @D@You ##ResponseInfinitive::laugh##. "
+        "@A@Annoyed@E@");
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq("\nGertrude glares at you and snarls, `Gorthaur! That was really "
+        "rude, you\njerk!' You laugh. [Annoyed]\n", Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MessagesAreCorrectlyDisplayedWithThreeBitColorConfiguration()
+{
+    Actor->colorConfiguration("3-bit");
+    Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## "
+        "at ##InitiatorName## and ##Infinitive::snarl##, @S@`##ActorName##! "
+        "That was really rude, you jerk!' @D@You ##ResponseInfinitive::laugh##. "
+        "@A@Annoyed@E@");
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq("\n\x1b[0;36mGertrude glares at you and snarls, \x1b[0m\x1b[0;33m"
+        "`Gorthaur! That was really rude, you\njerk!' \x1b[0m\x1b[0;36mYou "
+        "laugh. \x1b[0m\x1b[0;34;1m[Annoyed]\x1b[0m\n",
+        Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MessagesAreCorrectlyDisplayedWithEightBitColorConfiguration()
+{
+    Actor->colorConfiguration("8-bit");
+    Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## "
+        "at ##InitiatorName## and ##Infinitive::snarl##, @S@`##ActorName##! "
+        "That was really rude, you jerk!' @D@You ##ResponseInfinitive::laugh##. "
+        "@A@Annoyed@E@");
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq("\n\x1b[0;38;5;80mGertrude glares at you and snarls, \x1b[0m\x1b[0;38;5;190m"
+        "`Gorthaur! That was really rude, you\njerk!' \x1b[0m\x1b[0;38;5;80mYou "
+        "laugh. \x1b[0m\x1b[0;38;5;20;1m[Annoyed]\x1b[0m\n",
+        Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MessagesAreCorrectlyDisplayedWithTwentyFourBitColorConfiguration()
+{
+    Actor->colorConfiguration("24-bit");
+    Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## "
+        "at ##InitiatorName## and ##Infinitive::snarl##, @S@`##ActorName##! "
+        "That was really rude, you jerk!' @D@You ##ResponseInfinitive::laugh##. "
+        "@A@Annoyed@E@");
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq("\n\x1b[0;38;2;180;180;190mGertrude glares at you and snarls, "
+        "\x1b[0m\x1b[0;38;2;200;200;0m`Gorthaur! That was really rude, "
+        "you\njerk!' \x1b[0m\x1b[0;38;2;180;180;190mYou "
+        "laugh. \x1b[0m\x1b[0;38;2;60;20;190;1m[Annoyed]\x1b[0m\n",
+        Actor->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
