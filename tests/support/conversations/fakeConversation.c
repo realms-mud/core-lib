@@ -61,9 +61,10 @@ public void testAddResponseTopic(string id, string selection, string newMessage)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void testAddResponsePrerequisite(string id, string selection, mapping prerequisite)
+public varargs void testAddResponsePrerequisite(string id, string selection, 
+    mapping prerequisite, int alwaysShow)
 {
-    return addResponsePrerequisite(id, selection, prerequisite);
+    return addResponsePrerequisite(id, selection, prerequisite, alwaysShow);
 }
 
 /////////////////////////////////////////////////////////////////////////////

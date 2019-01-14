@@ -26,11 +26,16 @@ private void WhoAreYou()
         "Why do you force us to fell our own comrades? What is the meaning of your "
         "little decorative but rather unfashionably macabre trinkets? And just "
         "what was that horrid smoking thunderclap?'");
+    addResponsePrerequisite("villain", "Speak @A@Intimidation@E@",
+        (["intimidation":(["type":"skill", "value": 5 ])]), 1);
+
     addResponse("villain", "Speak @A@Diplomacy@E@", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::chuckle## at the figure and ##ResponseInfinitive::say##,"
         " @S@`In the civilized world, one begging for clemency is typically less haughty. "
         "What is going on here? Why do you force us to fell our own comrades? And just "
         "what was that horrid smoking thunderclap?'");
+    addResponsePrerequisite("villain", "Speak @A@Diplomacy@E@",
+        (["diplomacy":(["type":"skill", "value" : 21])]), 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -61,6 +66,8 @@ private void YouAreABitSimple()
         "##InitiatorPossessive##, @S@`This is how you want to end? Seriously?' "
         "It'd be a pity if your simpering whines came to naught. Perhaps you'd "
         "rather we converse?'");
+    addResponsePrerequisite("you are a simpleton", "Is this how you end? @A@Persuasion@E@",
+        (["persuasion":(["type":"skill", "value" : 1])]), 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////

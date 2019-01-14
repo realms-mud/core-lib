@@ -216,7 +216,8 @@ protected nomask void addResponse(string id, string selection, string template)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void addResponsePrerequisite(string id, string selection, mapping prerequisite)
+protected nomask varargs void addResponsePrerequisite(string id, string selection, 
+    mapping prerequisite, int alwaysShow)
 {
     string response = sprintf("%s#%s", id, selection);
 
@@ -224,6 +225,11 @@ protected nomask void addResponsePrerequisite(string id, string selection, mappi
         member(topics[id]["responses"], response) &&
         (mappingp(prerequisite)))
     {
+        if (alwaysShow)
+        {
+            topics[id]["responses"][response]["always show"] = 1;
+        }
+
         foreach(string key in m_indices(prerequisite))
         {
             if (!addPrerequisite(key, prerequisite[key], response))
@@ -548,30 +554,44 @@ private nomask void displayResponses(string id, object actor, object owner)
         responseKeys = ([]);
         string *responses = sort_array(m_indices(topics[id]["responses"]),
             (: $1 > $2 :));
+
+        int elements = 0;
         foreach(string response in responses)
         {
-            if (checkPrerequisites(actor, response, owner))
+            int disabled = member(topics[id]["responses"][response], 
+                "always show") && 
+                !checkPrerequisites(actor, response, owner);
+
+            if (checkPrerequisites(actor, response, owner) || disabled)
             {
-                string choice = to_string(sizeof(responseKeys) + 1);
-                responseKeys[choice] = id + "#" + 
-                    topics[id]["responses"][response]["selection"];
+                elements++;
+                string choice = to_string(elements);
+                if (!disabled)
+                {
+                    responseKeys[choice] = id + "#" +
+                        topics[id]["responses"][response]["selection"];
+                }
 
                 string message = topics[id]["responses"][response]["selection"];
                 
                 string colorConfiguration = actor->colorConfiguration();
 
                 message = regreplace(message, "@A@((.+))@E@",
-                    Configuration->decorate("[\\1]", "condition", "conversation",
+                    Configuration->decorate("[\\1]", 
+                        disabled ? "disabled" : "condition", "conversation",
                         colorConfiguration), 1);
                 message = regreplace(message, "@I@(.+)@E@",
-                    Configuration->decorate("[\\1]", "action", "conversation",
+                    Configuration->decorate("[\\1]", 
+                        disabled ? "disabled" : "action", "conversation",
                         colorConfiguration), 1);
 
                 tell_object(actor,
                     Configuration->decorate(sprintf("[%s]: ", choice),
-                        "action", "conversation", colorConfiguration) +
+                        disabled ? "disabled" : "action", "conversation", 
+                        colorConfiguration) +
                     Configuration->decorate(format(message, 72),
-                        "speech", "conversation", colorConfiguration));
+                        disabled ? "disabled" : "speech", "conversation", 
+                        colorConfiguration));
             }
         }
     }

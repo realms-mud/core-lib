@@ -464,3 +464,36 @@ void ConversationInterjectionsAreCorrect()
 
     destruct(interloper);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DisablesResponseWhenStatePrerequisiteNotMet()
+{
+    PrepActor(1);
+
+    Owner->testAddConversation("/lib/tests/support/conversations/testConversationShowDisabled.c");
+
+    object stateMachine = load_object("/lib/tests/support/core/testStateMachine.c");
+    stateMachine->testStartStateMachine();
+    stateMachine->registerEvent(Actor);
+    ExpectEq("meet the king", stateMachine->getCurrentState());
+    stateMachine->receiveEvent(Owner, "meetTheKing", Actor);
+    ExpectEq("met the king", stateMachine->getCurrentState());
+
+    command("talk", Actor);
+    ExpectEq("\x1b[0;31;1m[4]: \x1b[0m\x1b[0;33mState Prerequisite\n\x1b[0m", 
+        Actor->caughtMessages()[4]);
+
+    Actor->resetCatchList();
+    command("4", Actor);
+    ExpectSubStringMatch("block by state", Actor->caughtMessage());
+
+    Actor->resetCatchList();
+    stateMachine->receiveEvent(Owner, "serveTheKing", Actor);
+    command("talk", Actor);
+    ExpectEq("\x1b[0;31m[4]: \x1b[0m\x1b[0;31mState Prerequisite\n\x1b[0m",
+        Actor->caughtMessages()[4]);
+
+    Actor->resetCatchList();
+    command("4", Actor);
+    ExpectSubStringMatch("What?", Actor->caughtMessage());
+}

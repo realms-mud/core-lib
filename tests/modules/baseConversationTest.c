@@ -182,7 +182,7 @@ void AddResponseShowsAvailableResponsesWhenMessageSpoken()
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(2, sizeof(Actor->caughtMessages()));
     ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\x1b[0;31;1m[1]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -194,8 +194,8 @@ void AddMultipleResponsesShowsAvailableResponsesInSortedOrder()
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(3, sizeof(Actor->caughtMessages()));
     ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
-    ExpectEq("\x1b[0;31m[2]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
+    ExpectEq("\x1b[0;31;1m[1]: \x1b[0m\x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\x1b[0;31;1m[2]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -316,7 +316,7 @@ void AddResponsePrerequisiteAddsPrerequisiteToDisplayOfMessage()
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(2, sizeof(Actor->caughtMessages()));
     ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\x1b[0;31;1m[1]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -330,15 +330,15 @@ void ResponsesAllDisplayedWhenPrerequisitesMet()
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(2, sizeof(Actor->caughtMessages()));
     ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\x1b[0;31;1m[1]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[1]);
 
     Actor->resetCatchList();
     Actor->Race("elf");
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectEq(3, sizeof(Actor->caughtMessages()));
     ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
-    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
-    ExpectEq("\x1b[0;31m[2]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
+    ExpectEq("\x1b[0;31;1m[1]: \x1b[0m\x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\x1b[0;31;1m[2]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -653,4 +653,28 @@ void ResponsesAreClearedAfterChosen()
 
     Conversation->displayResponse("1", Actor, Owner);
     ExpectFalse(Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisabledResponsesAreCorrectlyDisplayed()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Test response", "This is a test response");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponsePrerequisite("test", "Another", 
+        (["race":(["type":"race", "value": ({ "elf", "high elf", "half elf" })])]), 1);
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq(3, sizeof(Actor->caughtMessages()));
+    ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
+    ExpectEq("\x1b[0;31m[1]: \x1b[0m\x1b[0;31mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\x1b[0;31;1m[2]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
+
+    Actor->resetCatchList();
+    Actor->Race("elf");
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq(3, sizeof(Actor->caughtMessages()));
+    ExpectEq("\nThis is a test message\n", Actor->caughtMessages()[0]);
+    ExpectEq("\x1b[0;31;1m[1]: \x1b[0m\x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
+    ExpectEq("\x1b[0;31;1m[2]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
 }
