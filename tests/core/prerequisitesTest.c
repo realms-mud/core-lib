@@ -272,6 +272,25 @@ void CheckPrerequsistesCorrectlyHandlesOpinionChecks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CheckPrerequsistesCorrectlyHandlesPresenceChecks()
+{
+    object owner = clone_object("/lib/realizations/npc.c");
+    owner->Name("Fred");
+    destruct(Researcher);
+    Researcher = clone_object("/lib/realizations/player.c");
+    Researcher->Name("Bob");
+
+    move_object(Researcher, this_object());
+
+    ExpectTrue(Prerequisite->AddTestPrerequisite("presence", (["type":"presence", "value" : ({ "Fred" }) ]), "group a"));
+    move_object(owner, this_object());
+    ExpectTrue(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check passes when present");
+
+    destruct(owner);
+    ExpectFalse(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check fails when not present");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DisplayPrerequisitesCorrectlyDisplaysQuestPrerequisites()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("/lib/tests/support/quests/fakeQuestItem.c",
@@ -401,5 +420,15 @@ void DisplayPrerequisitesCorrectlyDisplaysOpinionWithOpinionPrerequisites()
         "type":"opinion", "value": 10 ])));
 
     ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;36m        Opinion: \x1b[0m\x1b[0;35mOpinion of 10\n\x1b[0m",
+        Prerequisite->displayPrerequisites(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayPrerequisitesCorrectlyDisplaysPresenceWithPresencePrerequisites()
+{
+    ExpectTrue(Prerequisite->AddTestPrerequisite("presence", 
+        (["type": "presence", "value" : ({ "Fred" })])));
+
+    ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;36m       Presence: \x1b[0m\x1b[0;35mFred\n\x1b[0m",
         Prerequisite->displayPrerequisites(colorConfiguration, Configuration));
 }

@@ -17,6 +17,13 @@ public void testAddRepeatableTopic(string id, string template)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void testAddConditionalTopicAddendum(string id, string addendumID,
+    mapping prerequisite, string template)
+{
+    return addConditionalTopicAddendum(id, addendumID, prerequisite, template);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void testAddTopicPrerequisite(string id, mapping prerequisite)
 {
     return addTopicPrerequisite(id, prerequisite);

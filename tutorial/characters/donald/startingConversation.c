@@ -5,13 +5,8 @@
 virtual inherit "/lib/modules/conversations/baseConversation.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+private void Haldor()
 {
-    addTopic("you heard the man", "\n@D@Donald nods and looks at Halgaladh, "
-        "@S@`Well you heard the man! Get yer arse moving!' @D@He nods "
-        "at ##InitiatorName## and adds, @S@`Move out! Alberich, you're on "
-        "point.'");
-
     addTopic("Does it matter", "@D@Donald grumbles, @S@`Does it matter? He's "
         "dead just the same.'");
     addResponse("Does it matter", "It matters", "@D@@C@##InitiatorName## "
@@ -29,7 +24,11 @@ protected void Setup()
     addTopicInterjection("what are we dealing with",
         "/lib/tutorial/characters/galadhel/galadhel.c",
         "look over there", 1);
+}
 
+/////////////////////////////////////////////////////////////////////////////
+private void LetsGetTheseBastards()
+{
     addTopic("how can he be dead", "\n@D@Donald looks at the corpse lying in "
         "his path, @S@`What the hell is going on? How can...' @D@he places "
         "emphasis on his next word, @S@`HE be dead?'");
@@ -60,4 +59,31 @@ protected void Setup()
     addTopicInterjection("ignore and attack",
         "/lib/tutorial/characters/galadhel/galadhel.c",
         "I guess I'll just kill this guy", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void BrendanOeldhen()
+{
+    addTopic("not communicative", "\n@D@Donald lumbers over and glowers at "
+        "the man. @S@`He's obviously not feeling communicative enough. "
+        "Perhaps he doubts our resolve?' @D@Donald pulls out his sword and "
+        "thrusts it into the meaty part of the man's thigh. With a twist of "
+        "his blade, he snarls, @S@`Are your memories becoming clearer now?'");
+
+    addTopicInterjection("not communicative",
+        "/lib/tutorial/characters/brendan/brendan.c",
+        "besotted fool", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+    addTopic("you heard the man", "\n@D@Donald nods and looks at Halgaladh, "
+        "@S@`Well you heard the man! Get yer arse moving!' @D@He nods "
+        "at ##InitiatorName## and adds, @S@`Move out! Alberich, you're on "
+        "point.'");
+
+    Haldor();
+    LetsGetTheseBastards();
+    BrendanOeldhen();
 }

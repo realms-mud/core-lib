@@ -604,7 +604,40 @@ void MessagesAreCorrectlyDisplayedWithTwentyFourBitColorConfiguration()
 /////////////////////////////////////////////////////////////////////////////
 void CanAddConditionalTopicAddendum()
 {
-    // Task 355
+    Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## "
+        "at ##InitiatorName## and ##Infinitive::snarl##, @S@`##ActorName##! "
+        "That was really rude, you jerk!' @D@You ##ResponseInfinitive::laugh##. "
+        "@A@Annoyed@E@");
+
+    Conversation->testAddConditionalTopicAddendum("test", "fredIsAJerkToo",
+        (["presence":(["type":"presence", "value" : ({ "fred" })])]),
+        " @S@`And you, Fred. Bite me!'");
+
+    Conversation->testAddConditionalTopicAddendum("test", "lameGortyCheck",
+        (["presence":(["type":"presence", "value" : ({ "gorthaur" })])]),
+        " @D@##TargetName## ##Infinitive::knee## ##ActorName## in the groin.");
+
+    move_object(Actor, this_object());
+    move_object(Owner, this_object());
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq("\n\x1b[0;36mGertrude glares at you and snarls, \x1b[0m\x1b[0;33m"
+        "`Gorthaur! That was really rude, you\njerk!' \x1b[0m\x1b[0;36mYou "
+        "laugh. \x1b[0m\x1b[0;34;1m[Annoyed]\x1b[0m \x1b[0;36mGertrude knees "
+        "Gorthaur in the groin.\n\x1b[0m",
+        Actor->caughtMessage());
+    
+    object fred = clone_object("/lib/realizations/npc.c");
+    fred->Name("fred");
+    move_object(fred, this_object());
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq("\n\x1b[0;36mGertrude glares at you and snarls, \x1b[0m\x1b[0;33m"
+        "`Gorthaur! That was really rude, you\njerk!' \x1b[0m\x1b[0;36mYou "
+        "laugh. \x1b[0m\x1b[0;34;1m[Annoyed]\x1b[0m \x1b[0;36mGertrude knees "
+        "Gorthaur in the groin.\n\x1b[0m\x1b[0;33m`And you, Fred. "
+        "Bite me!'\n\x1b[0m",
+        Actor->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////

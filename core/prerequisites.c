@@ -69,7 +69,7 @@ private nomask int isValidPrerequisiteType(string type)
 {
     return (member(({ "research", "attribute", "skill", "quest", "guild",
         "race", "faction", "trait", "background", "combat statistic", "level",
-        "opinion", "state" }), type) > -1);
+        "opinion", "state", "presence" }), type) > -1);
 }
 
 //-----------------------------------------------------------------------------
@@ -458,6 +458,23 @@ private nomask int checkCombatStats(object researcher, string type, int value)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkPresence(object researcher, string *characters)
+{
+    int ret = 0;
+    if (sizeof(characters))
+    {
+        object location = environment(researcher);
+        ret = objectp(location);
+
+        foreach(string character in characters)
+        {
+            ret &&= present(character, location);
+        }
+    }
+    return ret;
+}
+
 //-----------------------------------------------------------------------------
 // Method: checkPrerequisites
 // Description: This method will check whether or not the passed researcher
@@ -558,6 +575,11 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
                         ret &&= researcher && member(prerequisiteData, "state key") &&
                             (researcher->stateFor(load_object(prerequisiteData["state key"])) ==
                             prerequisiteData["value"]);
+                        break;
+                    }
+                    case "presence":
+                    {
+                        ret &&= checkPresence(researcher, prerequisiteData["value"]);
                         break;
                     }
                     default:
@@ -676,6 +698,7 @@ public nomask string displayPrerequisites(string colorConfiguration, object conf
                 }
                 case "guild":
                 case "race":
+                case "presence":
                 case "faction":
                 {
                     if (pointerp(prerequisites[key]["value"]) &&

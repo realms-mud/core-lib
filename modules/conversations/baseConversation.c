@@ -62,10 +62,34 @@ protected nomask void addTopic(string id, string template)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void addConditionalTopicAddendum(string id,
-    mapping condition, string template)
+protected nomask void addConditionalTopicAddendum(string id, string addendumID,
+    mapping prerequisite, string template)
 {
+    if (member(topics, id) && mappingp(prerequisite))
+    {
+        if (!member(topics[id], "addendum"))
+        {
+            topics[id]["addendum"] = ([]);
+        }
 
+        topics[id]["addendum"][addendumID] = template;
+        foreach(string key in m_indices(prerequisite))
+        {
+            if (!addPrerequisite(key, prerequisite[key], addendumID))
+            {
+                raise_error(sprintf("ERROR - baseConversation.c, "
+                    "addConditionalTopicAddendum:"
+                    " The passed prerequisite to '%s' is invalid.\n", id));
+            }
+        }
+    }
+    else
+    {
+        raise_error(sprintf("ERROR - baseConversation.c, "
+            "addConditionalTopicAddendum:"
+            " Could not add the addendum to '%s'. Make sure that "
+            "the topic exists.\n", id));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -78,13 +102,15 @@ protected nomask void addRepeatableTopic(string id, string template)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void addTopicPrerequisite(string id, mapping prerequisite)
 {
-    if (member(topics, id) && (sizeof(prerequisite) == 1))
+    if (member(topics, id) && mappingp(prerequisite))
     {
-        if (!addPrerequisite(m_indices(prerequisite)[0],
-            prerequisite[m_indices(prerequisite)[0]], id))
+        foreach(string key in m_indices(prerequisite))
         {
-            raise_error(sprintf("ERROR - baseConversation.c, addTopicPrerequisite:"
-                " The passed prerequisite to '%s' is invalid.\n", id));
+            if (!addPrerequisite(key, prerequisite[key], id))
+            {
+                raise_error(sprintf("ERROR - baseConversation.c, addTopicPrerequisite:"
+                    " The passed prerequisite to '%s' is invalid.\n", id));
+            }
         }
     }
     else
@@ -193,15 +219,18 @@ protected nomask void addResponse(string id, string selection, string template)
 protected nomask void addResponsePrerequisite(string id, string selection, mapping prerequisite)
 {
     string response = sprintf("%s#%s", id, selection);
+
     if (member(topics, id) && member(topics[id], "responses") &&
         member(topics[id]["responses"], response) &&
-        (sizeof(prerequisite) == 1))
+        (mappingp(prerequisite)))
     {
-        if (!addPrerequisite(m_indices(prerequisite)[0],
-            prerequisite[m_indices(prerequisite)[0]], response))
+        foreach(string key in m_indices(prerequisite))
         {
-            raise_error(sprintf("ERROR - baseConversation.c, addResponsePrerequisite:"
-                " The passed prerequisite to '%s' is invalid.\n", selection));
+            if (!addPrerequisite(key, prerequisite[key], response))
+            {
+                raise_error(sprintf("ERROR - baseConversation.c, addResponsePrerequisite:"
+                    " The passed prerequisite to '%s' is invalid.\n", selection));
+            }
         }
     }
     else
@@ -556,6 +585,28 @@ public nomask string *responses()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string getTopicTemplate(string key, object actor, object owner)
+{
+    string ret = topics[key]["template"];
+
+    if (member(topics[key], "addendum"))
+    {
+        string *addenda = m_indices(topics[key]["addendum"]);
+        if (sizeof(addenda))
+        {
+            foreach(string addendum in addenda)
+            {
+                if (checkPrerequisites(actor, addendum, owner))
+                {
+                    ret += topics[key]["addendum"][addendum];
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int speakMessage(string key, object actor, object owner)
 {
     int ret = 0;
@@ -564,7 +615,7 @@ public nomask int speakMessage(string key, object actor, object owner)
         member(topics[key], "template") &&
         checkPrerequisites(actor, key, owner))
     {
-        displayMessage("\n" + topics[key]["template"], actor, owner);
+        displayMessage("\n" + getTopicTemplate(key, actor, owner), actor, owner);
 
         if (member(topics[key], "interjection") && environment(owner))
         {

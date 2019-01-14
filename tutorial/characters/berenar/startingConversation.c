@@ -45,7 +45,7 @@ protected void Setup()
         "of your squad and hunt these bastards down.'");
     addTopicInterjection("on the trail",
         "/lib/tutorial/characters/donald/donald.c",
-        "you heard the man");
+        "you heard the man", 1);
 
     addTopic("default", "@D@Berenar points to the west and says, @S@`Go!'");
 }

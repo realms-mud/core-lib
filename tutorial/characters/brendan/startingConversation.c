@@ -110,8 +110,48 @@ private void IAmAFarmer()
     addResponseTopic("bad host", "Patience is not one of my virtues", "I'm a farmer");
     addResponseTopic("bad host", "Are you keeping score?", "I'm a farmer");
 
-    // This is a Donald event (354)
-    addTopicEvent("I'm a farmer", "brendan - communicative");
+    addTopicInterjection("I'm a farmer",
+        "/lib/tutorial/characters/donald/donald.c",
+        "not communicative", 1);
+
+    addTopic("besotted fool", "@D@The figure gasps in pain. @S@`My memories? "
+        "What is this besotted fool speaking of?'");
+
+    addTopic("my death is nigh", "@D@The figure seems disinclined to speak. "
+        "@S@`Nay, I know that my death is nigh. Do the deed and be done. Ere "
+        "I die, I console myself with the knowledge that you shall soon "
+        "follow me. But take these words with you: the honor of the Guard is "
+        "tarnished since the days of old. You have an enemy unarmed at your "
+        "feet and you would resort to petty torture. Aye, my brothers are no "
+        "better, but one would expect that from.... mushroom farmers.'");
+
+    addConditionalTopicAddendum("my death is nigh", "blessed daughter",
+        (["presence":(["type":"presence", "value": ({ "galadhel" })])]),
+        "@D@The robed one looks directly at Galadhel and adds, @S@`Now, if you "
+        "would be so kind, blessed daughter and sister of the damned, I "
+        "would prefer to leave this world.'");
+
+    addResponse("I'm a farmer", "What the hell, Donald?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::sigh##, "
+        "@S@`I have this under control, Donald. Brutish actions like that "
+        "are decidedly not helpful.' @D@@C@##InitiatorName## "
+        "##ResponseInfinitive::turn## back to the black-robed man "
+        "and ##ResponseInfinitive::add##, @S@`However, he has a point. "
+        "No more games. What are you doing here?'");
+    addResponsePrerequisite("I'm a farmer", "What the hell, Donald?",
+        (["presence": (["type":"presence", "value": ({ "donald" })])]));
+
+    addResponseTopic("I'm a farmer", "What the hell, Donald?", "my death is nigh");
+
+    addResponse("I'm a farmer", "Stop the games...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::ask##, "
+        "@S@`And? No more games. What are you doing here?'");
+    addResponseTopic("I'm a farmer", "Stop the games...", "my death is nigh");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void KillMe()
+{
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -131,20 +171,5 @@ protected void Setup()
     YouAreABitSimple();
     BadHost();
     IAmAFarmer();
-
-    // I'm a farmer
-    addTopic("my death is nigh", "@D@The robed gasps in agony, @S@"
-        "`My memories? What is this besotted fool speaking of? Nay, I "
-        "know that my death is nigh. Do the deed and be done. Ere I die, "
-        "I console myself with the knowledge that you shall soon follow me. "
-        "But take these words with you: the honor of the Guard is tarnished "
-        "since the days of old. You have an enemy unarmed at your feet and "
-        "you would resort to petty torture. Aye, my brothers are no better, "
-        "but one would expect that from... mushroom farmers.'");
-        
-    addConditionalTopicAddendum("my death is nigh", ([ "present": "galadhel" ]),
-        "@D@The robed one looks directly at Galadhel and adds, @S@`Now, if you "
-        "would be so kind, blessed daughter and sister of the damned, I "
-        "would prefer to leave this world.'");
-
+    KillMe();
 }
