@@ -17,6 +17,7 @@ protected nomask void applyGroupDetails()
     addPermission("/open", Read | Write);
     addCommand("cc");
     addCommand("clone");
+    addCommand("destruct");
     addCommand("patch");
     addCommand("mv");
     addCommand("cp");
