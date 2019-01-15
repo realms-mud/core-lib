@@ -132,12 +132,6 @@ private void IAmAFarmer()
         "feet and you would resort to petty torture. Aye, my brothers are no "
         "better, but one would expect that from.... mushroom farmers.'");
 
-    addConditionalTopicAddendum("my death is nigh", "blessed daughter",
-        (["presence":(["type":"presence", "value": ({ "galadhel" })])]),
-        "@D@The robed one looks directly at Galadhel and adds, @S@`Now, if you "
-        "would be so kind, blessed daughter and sister of the damned, I "
-        "would prefer to leave this world.'");
-
     addResponse("I'm a farmer", "What the hell, Donald?",
         "@D@@C@##InitiatorName## ##ResponseInfinitive::sigh##, "
         "@S@`I have this under control, Donald. Brutish actions like that "
@@ -157,8 +151,39 @@ private void IAmAFarmer()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void KillMe()
+private void YouKnowMe()
 {
+    addConditionalTopicAddendum("my death is nigh", "blessed daughter",
+        (["presence":(["type":"presence", "value" : ({ "galadhel" })])]),
+        "@D@The robed one looks directly at Galadhel and adds, @S@`Now, if you "
+        "would be so kind, blessed daughter and sister of the damned, I "
+        "would prefer to leave this world.'");
+
+    addTopicInterjection("my death is nigh",
+        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "you know me?", 1);
+
+    addTopic("yes, I know you", "@D@The figure shrugs, @S@`Yes, I left "
+        "your brother's command. I was Phaedra stationed with your "
+        "brother in Helcarion... until the back of "
+        "our forces was resoundingly broken.'");
+
+    addResponse("yes, I know you", "Galadhel?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at Galadhel "
+        "in shock and ##ResponseInfinitive::ask##, @S@`Galadhel?'");
+    addResponsePrerequisite("yes, I know you", "Galadhel?",
+        (["presence":(["type":"presence", "value" : ({ "galadhel" })])]));
+
+    addResponse("yes, I know you", "You were Phaedra?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at the figure "
+        "in shock and ##ResponseInfinitive::ask##, @S@`Helcarion? Whose "
+        "command were you under?'");
+
+    addTopic("stop interrupting", "@D@The figure smirks and wryly says, "
+        "@S@`My tale is much better if I am not constantly interrupted. "
+        "Do you wish to hear it or no?'");
+    addResponseTopic("yes, I know you", "Galadhel?", "stop interrupting");
+    addResponseTopic("yes, I know you", "You were Phaedra?", "stop interrupting");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -178,5 +203,5 @@ protected void Setup()
     YouAreABitSimple();
     BadHost();
     IAmAFarmer();
-    KillMe();
+    YouKnowMe();
 }

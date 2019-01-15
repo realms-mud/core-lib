@@ -55,6 +55,20 @@ private void FindingHaldor()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void YouKnowMe()
+{
+    addTopic("you know me?", "@D@Galadhel tilts her head, curious now and "
+        "uses the tip of the arrow in her hand to ease aside the fabric "
+        "of the hood of his robe. Her features register recognition after "
+        "a moment and she says softly, @S@`Brendan Oeldhen? What brings you "
+        "to this end? How did you come to par...'");
+
+    addTopicInterjection("you know me?",
+        "/lib/tutorial/characters/brendan/brendan.c",
+        "yes, I know you", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     addTopic("brendan - need a decorator", "@D@Galadhel chuckles, @S@`Home? You are "
@@ -73,4 +87,5 @@ protected void Setup()
         "slow down, Sparky", 1);
 
     FindingHaldor();
+    YouKnowMe();
 }

@@ -65,3 +65,5 @@ The method `setPersonality(string personality)` sets the personality traits, com
 generic conversation trees that a humanoid or dragon will have. See `/lib/dictionaries/personalities/`
 for details. 
 
+[Adding conversations to the creatures you make is discussed here.](conversations.md)
+
