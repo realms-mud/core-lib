@@ -55,17 +55,16 @@ private void YouAreABitSimple()
         "brendan - need a decorator", 1);
 
     addResponse("you are a simpleton", "Seriously?", "@D@@C@##InitiatorName## "
-        "##ResponseInfinitive::reply## ##InitiatorPossessive##, "
+        "##ResponseInfinitive::reply##, "
         "@S@`This is how you want to end? Seriously?' @D@@C@##InitiatorName## "
         "##ResponseInfinitive::clear## ##InitiatorPossessive## throat and "
         "##ResponseInfinitive::mock## the black-robed figure, @S@`\"Stop! I "
         "yield! Please don't kill me!\" It'd be a pity if your simpering whines "
         "came to naught. Perhaps you'd rather we converse?'");
     addResponse("you are a simpleton", "Is this how you end? @A@Persuasion@E@",
-        "@D@@C@##InitiatorName## ##ResponseInfinitive::reply## "
-        "##InitiatorPossessive##, @S@`This is how you want to end? Seriously?' "
-        "It'd be a pity if your simpering whines came to naught. Perhaps you'd "
-        "rather we converse?'");
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::reply##, @S@`This is "
+        "how you want to end? Seriously? It'd be a pity if your simpering "
+        "whines came to naught. Perhaps you'd rather we converse?'");
     addResponsePrerequisite("you are a simpleton", "Is this how you end? @A@Persuasion@E@",
         (["persuasion":(["type":"skill", "value" : 2])]), 1);
 }

@@ -48,7 +48,7 @@ private void FindingHaldor()
         "away. She knocks an arrow and looses it, embedding it into the "
         "throat of one of the black-robed figures. As it falls to its death, "
         "one of the walking corpses falls to the ground as though it were "
-        "a marionette whoses strings had been cut.");
+        "a marionette whose strings had been cut.");
     addTopicInterjection("I guess I'll just kill this guy",
         "/lib/tutorial/characters/alberich/alberich.c",
         "daft bastard", 1);
@@ -90,13 +90,13 @@ private void DidItMeanAnythingToMe()
         "She hisses softly in return, @S@`Did it mean anything to me?' @D@ "
         "She blinks. Once. Her voice raises as she steps toward Donald. @S@ "
         "`Did it mean anything to me?' @D@Without hesitation, she takes "
-        "advantage of Donald's recent injury and casual conversational "
+        "advantage of Donald's recent injuries and casual conversational "
         "attitude to quickly and precisely offer a left hook to his temple. "
         "After he falls, she says politely to his unconscious form, @S@"
         "`As a matter of fact it was very meaningful. He knew my brother. "
         "That means this man was Phaedra. It means he had access to some of "
         "our country's best intelligence. It also means that this group of "
-        "black-robed bad-tasted hoodlums may have some connection to our own "
+        "black-robed, bad-tasted hoodlums may have some connection to our own "
         "government.'");
     addResponse("did it mean anything to me?", "@I@Continue@E@", "");
 
@@ -108,7 +108,7 @@ private void DidItMeanAnythingToMe()
         "against here and why his group wantonly slayed so many of our "
         "cherished friends. It's not every day close to fifteen percent of "
         "the Aegis is murdered.' @D@She lets her words trail off, a litany "
-        "of colourful anecdotes that no noble lady of the realm ought to "
+        "of colorful anecdotes that no noble lady of the realm ought to "
         "have heard in her day, nevermind uttered. As she disappears into the "
         "woods, she can be heard to say, @S@`I'll give you meaning, you "
         "stupid son of a ...'");

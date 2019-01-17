@@ -654,11 +654,11 @@ public nomask int speakMessage(string key, object actor, object owner)
         {
             displayResponses(key, actor, owner);
         }
-        else if(!member(topics[key], "is repeatable"))
+        else if(owner && !member(topics[key], "is repeatable"))
         {
             owner->responseFromConversation(actor, "default");
         }
-        if (member(topics[key], "event"))
+        if (owner && member(topics[key], "event"))
         {
             owner->notifySynchronous(topics[key]["event"], actor);
         }
