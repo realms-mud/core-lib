@@ -60,12 +60,60 @@ private void YouKnowMe()
     addTopic("you know me?", "@D@Galadhel tilts her head, curious now and "
         "uses the tip of the arrow in her hand to ease aside the fabric "
         "of the hood of his robe. Her features register recognition after "
-        "a moment and she says softly, @S@`Brendan Oeldhen? What brings you "
-        "to this end? How did you come to par...'");
+        "a moment and she says softly, @S@`You know me? Who are you?'");
 
     addTopicInterjection("you know me?",
         "/lib/tutorial/characters/brendan/brendan.c",
         "yes, I know you", 1);
+
+    addTopic("Interruptions aren't your only concern", 
+        "@D@Galadhel offers a small smile to "
+        "the robed figure now, eerily sincere. Her voice, however, lowers "
+        "to a whisper as she stretches back her bow string, arrow at the "
+        "ready and aimed right between the legs of her prey. @S@`Speak now.'");
+
+    addTopicInterjection("Interruptions aren't your only concern", 
+        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "no more mushroom farmers", 1);
+
+    addTopicInterjection("Interruptions aren't your only concern",
+        "/lib/tutorial/characters/brendan/brendan.c",
+        "I was Phaedra", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void DidItMeanAnythingToMe()
+{
+    addTopic("did it mean anything to me?", "@D@Galadhel looks something "
+        "between shocked and murderous at this point. When Donald asks his "
+        "questions, she is prodded out of her moment of evil contemplation. "
+        "She hisses softly in return, @S@`Did it mean anything to me?' @D@ "
+        "She blinks. Once. Her voice raises as she steps toward Donald. @S@ "
+        "`Did it mean anything to me?' @D@Without hesitation, she takes "
+        "advantage of Donald's recent injury and casual conversational "
+        "attitude to quickly and precisely offer a left hook to his temple. "
+        "After he falls, she says politely to his unconscious form, @S@"
+        "`As a matter of fact it was very meaningful. He knew my brother. "
+        "That means this man was Phaedra. It means he had access to some of "
+        "our country's best intelligence. It also means that this group of "
+        "black-robed bad-tasted hoodlums may have some connection to our own "
+        "government.'");
+    addResponse("did it mean anything to me?", "@I@Continue@E@", "");
+
+    addTopic("did it mean anything to me part 2", "@D@Galadhel leans closer, "
+        "looking as though she is listening to something Donald is obviously "
+        "in no position to utter. @S@`Oh yes! I'm so glad you asked, esteemed "
+        "commander. I am still searching for my brother. This man not only "
+        "could have shed some light on that, but more about what we're up "
+        "against here and why his group wantonly slayed so many of our "
+        "cherished friends. It's not every day close to fifteen percent of "
+        "the Aegis is murdered.' @D@She lets her words trail off, a litany "
+        "of colourful anecdotes that no noble lady of the realm ought to "
+        "have heard in her day, nevermind uttered. As she disappears into the "
+        "woods, she can be heard to say, @S@`I'll give you meaning, you "
+        "stupid son of a ...'");
+    addResponseTopic("did it mean anything to me?", "@I@Continue@E@", 
+        "did it mean anything to me part 2");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -88,4 +136,5 @@ protected void Setup()
 
     FindingHaldor();
     YouKnowMe();
+    DidItMeanAnythingToMe();
 }

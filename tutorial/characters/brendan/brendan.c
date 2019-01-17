@@ -6,6 +6,7 @@ virtual inherit "/lib/realizations/npc.c";
 
 object player;
 int CallingYield;
+int DoNotKillMe = 1;
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
@@ -13,6 +14,7 @@ protected void Setup()
     Name("black-robed figure");
     addAlias("black-robed figure");
     addAlias("figure");
+    addAlias("brendan");
     short("Black-robed figure");
     Gender(1);
     Race("maegenstryd");
@@ -28,6 +30,7 @@ public void IYield(object player)
     this_object()->onTriggerConversation(player, "first conversation");
     player = 0;
     CallingYield = 0;
+    DoNotKillMe = 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -48,5 +51,5 @@ public int secondLife()
         CallingYield = 1;
         call_out("IYield", 1, player);
     }
-    return 1;
+    return DoNotKillMe;
 }

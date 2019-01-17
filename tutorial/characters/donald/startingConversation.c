@@ -76,6 +76,23 @@ private void BrendanOeldhen()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void WeWasteTime()
+{
+    addTopic("we waste time on this bastard", "\n@D@Donald tears his sword "
+        "from the black-robed figure's leg and shoves the blade through the "
+        "his throat. Donald gives the now severed head of the man a swift "
+        "kick into the bushes, separating it from it's body by many feet "
+        "@S@`We waste time! Did anything he said mean anything to you? "
+        "Does it shine any light on why they attacked our camp?");
+
+    addTopicEvent("we waste time on this bastard", "killPoorBrendan");
+
+    addTopicInterjection("we waste time on this bastard",
+        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "did it mean anything to me?", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     addTopic("you heard the man", "\n@D@Donald nods and looks at Halgaladh, "
@@ -86,4 +103,5 @@ protected void Setup()
     Haldor();
     LetsGetTheseBastards();
     BrendanOeldhen();
+    WeWasteTime();
 }

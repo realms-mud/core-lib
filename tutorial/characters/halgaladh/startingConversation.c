@@ -34,4 +34,10 @@ protected void Setup()
     addTopicInterjection("stinks part two",
         "/lib/tutorial/characters/galadhel/galadhel.c",
         "What are we missing", 1);
+
+    addTopic("no more mushroom farmers", "@D@As Halgaladh sees Galadhel train "
+        "her bow on her target, he snickers and adds, @S@`Galadhel, what "
+        "you're 'aiming' to do doesn't look like a bad plan of action. At "
+        "least we won't have to worry about him siring more mushroom "
+        "farmers.");
 }

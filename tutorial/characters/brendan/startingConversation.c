@@ -35,7 +35,7 @@ private void WhoAreYou()
         "What is going on here? Why do you force us to fell our own comrades? And just "
         "what was that horrid smoking thunderclap?'");
     addResponsePrerequisite("villain", "Speak @A@Diplomacy@E@",
-        (["diplomacy":(["type":"skill", "value" : 21])]), 1);
+        (["diplomacy":(["type":"skill", "value" : 5])]), 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@ private void YouAreABitSimple()
         "It'd be a pity if your simpering whines came to naught. Perhaps you'd "
         "rather we converse?'");
     addResponsePrerequisite("you are a simpleton", "Is this how you end? @A@Persuasion@E@",
-        (["persuasion":(["type":"skill", "value" : 1])]), 1);
+        (["persuasion":(["type":"skill", "value" : 2])]), 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@ private void YouKnowMe()
 {
     addConditionalTopicAddendum("my death is nigh", "blessed daughter",
         (["presence":(["type":"presence", "value" : ({ "galadhel" })])]),
-        "@D@The robed one looks directly at Galadhel and adds, @S@`Now, if you "
+        " @D@The robed one looks directly at Galadhel and adds, @S@`Now, if you "
         "would be so kind, blessed daughter and sister of the damned, I "
         "would prefer to leave this world.'");
 
@@ -163,27 +163,97 @@ private void YouKnowMe()
         "/lib/tutorial/characters/galadhel/galadhel.c",
         "you know me?", 1);
 
-    addTopic("yes, I know you", "@D@The figure shrugs, @S@`Yes, I left "
-        "your brother's command. I was Phaedra stationed with your "
-        "brother in Helcarion... until the back of "
-        "our forces was resoundingly broken.'");
+    addTopic("yes, I know you", "@D@The figure shrugs, @S@`Your resemblance to "
+        "your brother is unmistakable.' @D@The black-robed looks quite "
+        "pleased with himself.");
 
     addResponse("yes, I know you", "Galadhel?",
         "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at Galadhel "
         "in shock and ##ResponseInfinitive::ask##, @S@`Galadhel?'");
+    addResponse("yes, I know you", "Who are you?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at Galadhel "
+        "in shock and ##ResponseInfinitive::return## ##InitiatorPossessive## "
+        "gaze to the black-robed figure. @C@##InitiatorName## "
+        "##ResponseInfinitive::ask##, @S@`Who are you?'");
+
     addResponsePrerequisite("yes, I know you", "Galadhel?",
         (["presence":(["type":"presence", "value" : ({ "galadhel" })])]));
+}
 
-    addResponse("yes, I know you", "You were Phaedra?",
-        "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at the figure "
-        "in shock and ##ResponseInfinitive::ask##, @S@`Helcarion? Whose "
-        "command were you under?'");
-
+/////////////////////////////////////////////////////////////////////////////
+private void StopInterrupting()
+{
     addTopic("stop interrupting", "@D@The figure smirks and wryly says, "
         "@S@`My tale is much better if I am not constantly interrupted. "
         "Do you wish to hear it or no?'");
+
+    addTopicInterjection("stop interrupting",
+        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "Interruptions aren't your only concern", 1);
+
     addResponseTopic("yes, I know you", "Galadhel?", "stop interrupting");
-    addResponseTopic("yes, I know you", "You were Phaedra?", "stop interrupting");
+    addResponseTopic("yes, I know you", "Who are you?", "stop interrupting");
+
+    addTopic("I was Phaedra", "@D@The figure shrugs, apparently not at all "
+        "opposed to spilling his guts. It's almost as if he enjoys telling "
+        "how deeply rooted his associates are in Eledhel's politics. @S@`"
+        "I was Phaedra. We were stationed in Helcarion... Your brother's "
+        "command. That is, until the back of our forces was resoundingly "
+        "broken.'");
+
+    addResponse("I was Phaedra", "Wait. What?",
+        "@D@Stunned, ##InitiatorName## ##ResponseInfinitive::look## at the figure "
+        "and ##ResponseInfinitive::ask##, @S@`Helcarion? What "
+        "happened?'");
+    addResponse("I was Phaedra", "And?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at the figure "
+        "and ##ResponseInfinitive::say##, @S@`And?'");
+
+    addTopic("We fought but lost", "@S@`We fought until but five of us were "
+        "left. It was obvious that we were to be captured, for they would not "
+        "kill us though the corpses of our foes piled up in walls before us.' "
+        "@D@The black-robed figure glances at Galadhel and adds, @S@`Finally, "
+        "weariness and the unabated attack of our foes overwhelmed us. We "
+        "were taken. It was not a difficult choice to lay aside my allegiance "
+        "after I saw what they did to Mendros. That aside, they paid me very "
+        "well.'");
+    addResponseTopic("I was Phaedra", "Wait. What?", "We fought but lost");
+    addResponseTopic("I was Phaedra", "And?", "We fought but lost");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SoThenWhat()
+{
+    addResponse("We fought but lost", "Galadhel's brother...", 
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::frown## slightly and "
+        "##ResponseInfinitive::ask##, @S@`And what of Galadhel's brother?'");
+    addResponse("We fought but lost", "Who are you people?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::frown## slightly and "
+        "##ResponseInfinitive::ask##, @S@`Who, no what, are you people? What "
+        "is your purpose here? And don't you dare continue with the mushroom "
+        "farmer story.'");
+    addResponse("We fought but lost", "What did they do to Mendros?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::frown## slightly and "
+        "##ResponseInfinitive::ask##, @S@`What did they do to Mendros?'");
+    addResponse("We fought but lost", "What are you doing?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::frown## slightly and "
+        "##ResponseInfinitive::ask##, @S@`What are you and your fellows doing "
+        "here? And don't you dare continue with the mushroom "
+        "farmer story.'");
+
+    addTopic("so then what", "@D@The figure begins, @S@`Very well, I su..'");
+    addResponseTopic("We fought but lost", "Galadhel's brother...", 
+        "so then what");
+    addResponseTopic("We fought but lost", "Who are you people?",
+        "so then what");
+    addResponseTopic("We fought but lost", "What did they do to Mendros?",
+        "so then what");
+    addResponseTopic("We fought but lost", "What are you doing?",
+        "so then what");
+
+    addTopicInterjection("so then what",
+        "/lib/tutorial/characters/donald/donald.c",
+        "we waste time on this bastard", 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -204,4 +274,6 @@ protected void Setup()
     BadHost();
     IAmAFarmer();
     YouKnowMe();
+    StopInterrupting();
+    SoThenWhat();
 }

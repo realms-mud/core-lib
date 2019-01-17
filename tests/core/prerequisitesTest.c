@@ -291,6 +291,27 @@ void CheckPrerequsistesCorrectlyHandlesPresenceChecks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CheckPrerequsistesCorrectlyHandlesNotPresentChecks()
+{
+    object owner = clone_object("/lib/realizations/npc.c");
+    owner->Name("Fred");
+    destruct(Researcher);
+    Researcher = clone_object("/lib/realizations/player.c");
+    Researcher->Name("Bob");
+
+    move_object(Researcher, this_object());
+
+    ExpectTrue(Prerequisite->AddTestPrerequisite("not present", 
+        (["type":"not present", "value" : ({ "Fred" })]), "group a"));
+
+    move_object(owner, this_object());
+    ExpectFalse(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check fails when present");
+
+    destruct(owner);
+    ExpectTrue(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check passes when not present");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DisplayPrerequisitesCorrectlyDisplaysQuestPrerequisites()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("/lib/tests/support/quests/fakeQuestItem.c",

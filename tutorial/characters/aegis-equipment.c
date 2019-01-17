@@ -30,7 +30,7 @@ public void CreateAegisEquipment(object user)
         move_object(equipment, user);
         user->equip(equipment, 1);
 
-        equipment = clone_object("/lib/instances/items/armor/light-armor/leather-arm-greave.c");
+        equipment = clone_object("/lib/instances/items/armor/light-armor/leather-arm-greaves.c");
         equipment->set("craftsmanship", 50);
         equipment->set("armor class", 1);
         move_object(equipment, user);

@@ -69,7 +69,7 @@ private nomask int isValidPrerequisiteType(string type)
 {
     return (member(({ "research", "attribute", "skill", "quest", "guild",
         "race", "faction", "trait", "background", "combat statistic", "level",
-        "opinion", "state", "presence" }), type) > -1);
+        "opinion", "state", "presence", "not present" }), type) > -1);
 }
 
 //-----------------------------------------------------------------------------
@@ -582,6 +582,11 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
                         ret &&= checkPresence(researcher, prerequisiteData["value"]);
                         break;
                     }
+                    case "not present":
+                    {
+                        ret &&= !checkPresence(researcher, prerequisiteData["value"]);
+                        break;
+                    }
                     default:
                     {
                         ret = 0;
@@ -699,6 +704,7 @@ public nomask string displayPrerequisites(string colorConfiguration, object conf
                 case "guild":
                 case "race":
                 case "presence":
+                case "not present":
                 case "faction":
                 {
                     if (pointerp(prerequisites[key]["value"]) &&

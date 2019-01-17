@@ -73,6 +73,17 @@ public void init()
         if (present("donald"))
         {
             present("donald")->attack(keeper);
+            present("donald")->registerEvent(this_object());
         }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void killPoorBrendan()
+{
+    object brendan = present("brendan");
+    if (brendan)
+    {
+        brendan->hit(1000, "physical");
     }
 }
