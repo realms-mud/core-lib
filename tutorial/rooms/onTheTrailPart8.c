@@ -30,15 +30,9 @@ public void init()
     if (brendan && this_player() && this_player()->isRealizationOfPlayer() &&
         present(this_player()) && !present("zombie"))
     {
-        object *characters = filter(all_inventory(this_object()),
-            (: $1->isRealizationOfNpc() && ($1 != $2) :), brendan);
-        foreach(object character in characters)
-        {
-            brendan->attack(character);
-        }
-
         object keeper = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
         move_object(keeper, this_object());
+        keeper->registerEvent(brendan);
 
         object zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
         move_object(zombie, this_object());
@@ -59,7 +53,7 @@ public void init()
         keeper->registerEvent(zombie);
         if (present("thomas"))
         {
-            present("thomas")->attack(zombie);
+            present("thomas")->attack(keeper);
         }
 
         if (present("galadhel"))

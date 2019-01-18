@@ -79,7 +79,7 @@ private void BrendanOeldhen()
 private void WeWasteTime()
 {
     addTopic("we waste time on this bastard", "\n@D@Donald tears his sword "
-        "from the black-robed figure's leg and shoves the blade through the "
+        "from the black-robed figure's leg and shoves the blade through "
         "his throat. Donald gives the now severed head of the man a swift "
         "kick into the bushes, separating it from it's body by many feet "
         "@S@`We waste time! Did anything he said mean anything to you? "

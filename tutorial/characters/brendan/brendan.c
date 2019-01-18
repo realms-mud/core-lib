@@ -27,7 +27,8 @@ protected void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void IYield(object player)
 {
-    this_object()->onTriggerConversation(player, "first conversation");
+//    this_object()->onTriggerConversation(player, "first conversation");
+    command("talk brendan", player);
     player = 0;
     CallingYield = 0;
     DoNotKillMe = 0;
@@ -36,13 +37,17 @@ public void IYield(object player)
 /////////////////////////////////////////////////////////////////////////////
 public int secondLife()
 {
+    object *players = filter(all_inventory(environment(this_object())),
+        (: $1->isRealizationOfPlayer() :));
+
+    if (sizeof(players))
+    {
+        player = players[0];
+    }
+
     object attacker;
     while (attacker = getTargetToAttack())
     {
-        if (attacker->isRealizationOfPlayer() && !player)
-        {
-            player = attacker;
-        }
         stopFight(attacker);
     }
 
@@ -52,4 +57,19 @@ public int secondLife()
         call_out("IYield", 1, player);
     }
     return DoNotKillMe;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onDeath(object caller)
+{
+    if (caller && (program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c"))
+    {
+        object *npcs = filter(all_inventory(environment(this_object())),
+            (: $1->isRealizationOfNpc() :));
+
+        foreach(object npc in npcs)
+        {
+            npc->attack(this_object());
+        }
+    }
 }

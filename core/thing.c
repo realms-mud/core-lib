@@ -26,12 +26,14 @@ public int has(string service)
 {
     int ret = 0;
     
-    if(service && stringp(service) && (member(inherit_list(this_object()),
-       sprintf("%s/modules/%s.c", LibDirectory, service)) > -1))
+    if(this_object() && service && stringp(service) && 
+        (member(inherit_list(this_object()), 
+            sprintf("%s/modules/%s.c", LibDirectory, service)) > -1))
     {
         ret = 1;
     }
-    else if (service && stringp(service) && (member(inherit_list(this_object()),
+    else if (this_object() && service && stringp(service) && 
+        (member(inherit_list(this_object()),
         sprintf("%s/core/%s.c", LibDirectory, service)) > -1))
     {
         ret = 1;
