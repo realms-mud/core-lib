@@ -85,7 +85,7 @@ private int checkForImpairedVision(object player)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs nomask int move(string location, string direction)
+public varargs nomask int move(string location, string direction, int silently)
 {
     int ret = 0;
     object environmentDictionary = getDictionary("environment");
@@ -104,7 +104,7 @@ public varargs nomask int move(string location, string direction)
 
             object materialAttributes = getService("materialAttributes");
             if (materialAttributes->canSee() &&
-                !materialAttributes->Invisibility())
+                !materialAttributes->Invisibility() && !silently)
             {
                 say(sprintf("%s %s.\n", capitalize(materialAttributes->Name()),
                     (direction ? sprintf("%s %s", getMessageParser()->parseVerbs(
@@ -113,10 +113,11 @@ public varargs nomask int move(string location, string direction)
                             materialAttributes->MagicalMessageOut()))));
             }
 
-            move_object(this_object(), newLocation);
+            newLocation->enterEnvironment(this_object(), 
+                this_object()->getParty());
 
             if (materialAttributes->canSee() && 
-                !materialAttributes->Invisibility())
+                !materialAttributes->Invisibility() && !silently)
             {
                 say(sprintf("%s %s.\n", capitalize(materialAttributes->Name()),
                     (direction ? getMessageParser()->parseVerbs(

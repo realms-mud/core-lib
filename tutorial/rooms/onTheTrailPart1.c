@@ -9,6 +9,7 @@ object StateMachine;
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    cloneEnvironment();
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/cottonwoodStand.c", "west");
     addFeature("/lib/environment/features/cottonwoodStand.c", "south");

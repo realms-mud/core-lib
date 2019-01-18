@@ -11,11 +11,13 @@ private nomask void movePlayerToStart(object player)
 
     if (startingLocation)
     {
-        move_object(player, startingLocation);
+        startingLocation->enterEnvironment(player);
     }
     else
     {
-        move_object(player, "/room/city/central_park.c");
+        startingLocation = load_object("/room/city/central_park.c");
+        startingLocation->enterEnvironment(player);
+
         tell_object(player, "Doh! The room you were last in during your "
             "previous session is broken.\nYou have been moved to a different "
             "location.\n");

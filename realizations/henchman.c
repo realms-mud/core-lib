@@ -12,6 +12,8 @@ virtual inherit "/lib/modules/crafting.c";
 virtual inherit "/lib/modules/personas.c";
 virtual inherit "/lib/modules/combatChatter.c";
 
+private object leader;
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfHenchman()
 {
@@ -43,6 +45,34 @@ public nomask void setMaxStaminaPoints(int value)
     call_direct(this_object(), "resetCaches");
     call_direct(this_object(), "staminaPoints",
         call_direct(this_object(), "maxStaminaPoints"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setLeader(object player)
+{
+    leader = player;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string partyName()
+{
+    string ret = 0;
+    if (leader)
+    {
+        ret = leader->RealName();
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getParty()
+{
+    object ret = this_object();
+    if (leader && leader->getParty())
+    {
+        ret = leader->getParty();
+    }
+    return ret;
 }
 
 //TODO [226]: To, in fact, do.

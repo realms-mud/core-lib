@@ -9,6 +9,7 @@ object StateMachine;
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    cloneEnvironment();
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/cottonwoodStand.c", "west");
     addFeature("/lib/environment/features/cottonwoodStand.c", "south");
@@ -109,7 +110,7 @@ public void runHeadlongIntoTrap()
     foreach(object ally in allies)
     {
         ally->hitPoints(ally->maxHitPoints());
-        move_object(ally, "/lib/tutorial/rooms/onTheTrailPart5.c");
+        ally->move("/lib/tutorial/rooms/onTheTrailPart5.c", "", 1);
     }
 }
 

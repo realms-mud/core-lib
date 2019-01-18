@@ -11,6 +11,7 @@ private mapping environmentalElements = ([
     "item": ([]),
     "objects": ([]),
     "shop": 0,
+    "cloned": 0,
     "description": ([]),
     "location text": ({ " is " })
 ]);
@@ -28,6 +29,8 @@ private nosave object StateMachine = 0;
 private nosave string BaseStateMachine = "lib/core/stateMachine.c";
 private nosave int SetupCompleted = 0;
 private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+
+private mapping instances = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 private object environmentDictionary()
@@ -210,6 +213,26 @@ protected nomask varargs void addFeature(string feature, mixed location)
         raise_error(sprintf("ERROR in environment.c: '%s' is not a "
             "valid feature.\n", feature));
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string environmentName()
+{
+    return regreplace(object_name(this_object()), "([^#]*)(#[0-9]+|)",
+        "/\\1");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void cloneEnvironment()
+{
+    environmentalElements["cloned"] = 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string cloneOwner()
+{
+    return member(environmentalElements, "clone owner") ?
+        environmentalElements["clone owner"] : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -771,6 +794,38 @@ public int moveFromIsAllowed(object user, object fromLocation)
 public int moveToIsAllowed(object user, object toLocation)
 {
     return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getCloneOwner(object actor, object party)
+{
+    string owner = cloneOwner();
+    if (!owner)
+    {
+        owner = party ? party->partyName() : actor->RealName();
+    }
+    return owner;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void enterEnvironment(object actor, object party)
+{
+    object location = this_object();
+    if (environmentalElements["cloned"])
+    {
+        string owner = getCloneOwner(actor, party);
+        if (member(instances, owner))
+        {
+            location = instances[owner];
+        }
+        else if(!clonep(this_object()))
+        {
+            environmentalElements["clone owner"] = owner;
+            location = clone_object(object_name(this_object()));
+            instances[owner] = location;
+        }
+    }
+    move_object(actor, location);
 }
 
 /////////////////////////////////////////////////////////////////////////////

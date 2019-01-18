@@ -81,22 +81,22 @@ protected void handleJerithDeath(object location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected void addBattleSceneBadGuys()
+protected void addBattleSceneBadGuys(object location)
 {
     actors["keeper"] = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
-    move_object(actors["keeper"], "/lib/tutorial/rooms/battleScene.c");
+    move_object(actors["keeper"], location);
     actors["keeper"]->registerEvent(this_object());
 
     actors["jerith"] = clone_object("/lib/tutorial/characters/jerith.c");
-    move_object(actors["jerith"], "/lib/tutorial/rooms/battleScene.c");
+    move_object(actors["jerith"], location);
     actors["jerith"]->hit(140, "physical");
     actors["jerith"]->registerEvent(this_object());
 
     actors["zombie 1"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
-    move_object(actors["zombie 1"], "/lib/tutorial/rooms/battleScene.c");
+    move_object(actors["zombie 1"], location);
 
     actors["zombie 2"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
-    move_object(actors["zombie 2"], "/lib/tutorial/rooms/battleScene.c");
+    move_object(actors["zombie 2"], location);
     actors["keeper"]->registerEvent(actors["zombie 1"]);
     actors["keeper"]->registerEvent(actors["zombie 2"]);
 }
@@ -127,11 +127,11 @@ public void moveSquad(string direction, string location)
         sprintf("Alberich, Halgaladh, Thomas, "
             "Donald, and Galadhel leave to the %s.\n", direction));
 
-    move_object(actors["alberich"], location);
-    move_object(actors["thomas"], location);
-    move_object(actors["donald"], location);
-    move_object(actors["halgaladh"], location);
-    move_object(actors["galadhel"], location);
+    actors["alberich"]->move(location, direction, 1);
+    actors["thomas"]->move(location, direction, 1);
+    actors["donald"]->move(location, direction, 1);
+    actors["halgaladh"]->move(location, direction, 1);
+    actors["galadhel"]->move(location, direction, 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////

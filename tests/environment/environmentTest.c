@@ -994,3 +994,62 @@ void UnicodeCorrectlyDisplayed()
     ExpectSubStringMatch("\xe2\x95\x98\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9b",
         person->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void EnvironmentNameReturnsProperValue()
+{
+    object environment = 
+        load_object("/lib/tests/support/environment/startingRoom.c");
+
+    ExpectEq("/lib/tests/support/environment/startingRoom",
+        environment->environmentName());
+
+    environment = clone_object("/lib/tests/support/environment/startingRoom.c");
+
+    ExpectEq("/lib/tests/support/environment/startingRoom",
+        environment->environmentName());
+
+    destruct(environment);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyMoveToCloneWhenCloneEnvironmentSet()
+{
+    object environment =
+        load_object("/lib/tests/support/environment/clonedRoom.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+
+    environment->enterEnvironment(person);
+
+    ExpectFalse(clonep(environment));
+    ExpectTrue(clonep(environment(person)));
+    ExpectEq(environment->environmentName(),
+        environment(person)->environmentName());
+
+    destruct(person);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanReEnterSameClone()
+{
+    object environment =
+        load_object("/lib/tests/support/environment/clonedRoom.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+
+    environment->enterEnvironment(person);
+
+    ExpectEq("/lib/tests/support/environment/clonedRoom",
+        environment(person)->environmentName());
+
+    object firstEntry = environment(person);
+
+    environment->enterEnvironment(person);
+
+    ExpectEq(firstEntry, environment(person));
+
+    destruct(person);
+}

@@ -57,7 +57,7 @@ protected object getService(string service)
     {
         ret = this_object();
     }
-    else if(function_exists("isRealizationOf", this_object()))
+    else if(this_object() && function_exists("isRealizationOf", this_object()))
     {
         ret = call_other(this_object(), "isRealizationOf", service);
     }

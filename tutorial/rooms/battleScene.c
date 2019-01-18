@@ -7,10 +7,12 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    cloneEnvironment();
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/oakStand.c", "south");
 
     addExit("west", "/lib/tutorial/rooms/fallenAegis.c", "on the trail");
+    addExit("south", "/lib/tutorial/rooms/entryPoint.c");
 
     object stateMachine = load_object("/lib/tutorial/stateMachines/introStateMachine.c");
     setStateMachine(stateMachine);
@@ -20,7 +22,8 @@ public void Setup()
 public void init()
 {
     "environment"::init();
-    add_action("resetEverything", "resetEverything");
+
+     catch(add_action("resetEverything", "resetEverything"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

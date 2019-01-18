@@ -147,3 +147,71 @@ void MoveIsPreventedWhenAllowToIsProhibited()
     FromPlace->toggleAllowTo();
     ExpectFalse(Movement->move(program_name(ToPlace), "north"), "move called");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void MovingIntoClonedEnvironmentCreatesClone()
+{
+    object initialRoom = load_object("/lib/tests/support/environment/clonedRoom.c");
+
+    ExpectTrue(Movement->move("/lib/tests/support/environment/clonedRoom.c"), "move called");
+
+    ExpectTrue(clonep(environment(Movement)));
+    ExpectEq(initialRoom->environmentName(),
+        environment(Movement)->environmentName());
+    ExpectSubStringMatch("deciduous forest.*There are two obvious exits: south, west",
+        Movement->caughtMessage());
+
+    destruct(initialRoom);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyMovesFromCloneToClone()
+{
+    object initialRoom = load_object("/lib/tests/support/environment/clonedRoom.c");
+
+    ExpectTrue(Movement->move("/lib/tests/support/environment/clonedRoom.c"), "move called");
+    ExpectTrue(clonep(environment(Movement)));
+    command("west", Movement);
+
+    ExpectTrue(clonep(environment(Movement)));
+    ExpectEq("/lib/tests/support/environment/secondClonedRoom",
+        environment(Movement)->environmentName());
+
+    ExpectSubStringMatch("deciduous forest.*There is one obvious exit: east",
+        Movement->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyMovesFromCloneToNotClonedRoom()
+{
+    object initialRoom = load_object("/lib/tests/support/environment/clonedRoom.c");
+
+    ExpectTrue(Movement->move("/lib/tests/support/environment/clonedRoom.c"), "move called");
+    ExpectTrue(clonep(environment(Movement)));
+    command("south", Movement);
+
+    ExpectFalse(clonep(environment(Movement)));
+    ExpectEq("/lib/tests/support/environment/notClonedRoom",
+        environment(Movement)->environmentName());
+
+    ExpectSubStringMatch("deciduous forest.*There is one obvious exit: north",
+        Movement->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyMovesFromNotClonedToCloneRoom()
+{
+    object initialRoom = load_object("/lib/tests/support/environment/notClonedRoom.c");
+
+    ExpectTrue(Movement->move("/lib/tests/support/environment/notClonedRoom.c"), "move called");
+    ExpectFalse(clonep(environment(Movement)));
+
+    command("north", Movement);
+
+    ExpectTrue(clonep(environment(Movement)));
+    ExpectEq("/lib/tests/support/environment/clonedRoom",
+        environment(Movement)->environmentName());
+
+    ExpectSubStringMatch("deciduous forest.*There are two obvious exits: south, west",
+        Movement->caughtMessage());
+}

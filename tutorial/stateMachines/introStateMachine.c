@@ -47,11 +47,6 @@ public void beginIntroduction(object player)
 {
     setUpActors();
 
-    foreach(string actor in m_indices(actors))
-    {
-        registerStateActor(actors[actor]);
-    }
-
     if (objectp(Player))
     {
         unregisterStateActor(Player);
@@ -60,6 +55,13 @@ public void beginIntroduction(object player)
     Player = player;
     registerStateActor(Player);
     Player->registerEvent(this_object());
+
+    foreach(string actor in m_indices(actors))
+    {
+        registerStateActor(actors[actor]);
+        actors[actor]->setLeader(Player);
+    }
+
     startStateMachine();
 }
 
@@ -78,8 +80,8 @@ public void berenarBeginsConversation()
 /////////////////////////////////////////////////////////////////////////////
 public void displayIntroduction()
 {
-    move_object(actors["galadhel"], "/lib/tutorial/rooms/battleScene.c");
-    move_object(actors["berenar"], "/lib/tutorial/rooms/battleScene.c");
+    actors["galadhel"]->move("/lib/tutorial/rooms/battleScene.c", "", 1);
+    actors["berenar"]->move("/lib/tutorial/rooms/battleScene.c", "", 1);
     call_out("partOne", 0, Player);
 }
 
@@ -98,7 +100,7 @@ public void firstFight()
         "the clearing, several... walking corpses... in tow.\n\x1b[0m", 78));
 
     armPlayer(Player);
-    addBattleSceneBadGuys();
+    addBattleSceneBadGuys(environment(Player));
 
     actors["zombie 1"]->attack(actors["galadhel"]);
     actors["berenar"]->attack(actors["zombie 1"]);
@@ -154,7 +156,7 @@ public void onTheTrailPartTwo()
     if (actors["berenar"])
     {
         actors["berenar"]->onTriggerConversation(Player, "on the trail");
-        move_object(Player, "/lib/tutorial/rooms/battleScene.c");
+        move_object(Player, environment(Player));
         moveSquad("west", "/lib/tutorial/rooms/fallenAegis.c");
     }
 }
