@@ -176,6 +176,10 @@ public int placeRune(string rune)
     if (rune)
     {
         runeToAdd = present(rune) || present(rune, this_player());
+        if (present(rune))
+        {
+            environment()->canGet(runeToAdd);
+        }
     }
 
     if (runeToAdd && runeToAdd->isObedienceRune())
@@ -201,8 +205,15 @@ public int placeRune(string rune)
 
             if (whichRune == "resistance")
             {
-                object stateMachine =
-                    load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+                object stateMachineDictionary =
+                    load_object("/lib/dictionaries/stateMachineDictionary.c");
+
+                object party = this_player()->getParty();
+                string owner = party ? party->partyName() : this_player()->RealName();
+
+                object stateMachine = stateMachineDictionary->getStateMachine(
+                    "/lib/tutorial/temple/stateMachine/obedienceStateMachine.c",
+                    owner);
 
                 if (stateMachine)
                 {

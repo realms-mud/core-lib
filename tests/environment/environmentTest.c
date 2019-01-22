@@ -643,8 +643,11 @@ void ResetWillRecreateOnlyObjectsThatAreNotPresent()
 void OnlyObjectsForProperStateArePresent()
 {
     ToggleCallOutBypass();
-    object stateMachine = clone_object("/lib/tests/support/core/simpleStateMachine.c");
-    Environment->setStateMachine(stateMachine);
+    object stateMachine = 
+        load_object("/lib/dictionaries/stateMachineDictionary.c")->getStateMachine(
+            "/lib/tests/support/core/simpleStateMachine.c");
+
+    Environment->setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
     Environment->testAddObject("/lib/items/weapon.c");
     Environment->testAddObject("/lib/items/armor.c", "blah");
     Environment->testAddObject("/lib/items/item.c", "blah2");
@@ -671,8 +674,11 @@ void OnlyObjectsForProperStateArePresent()
 void CallerForOnStateChangedMustBeCurrentlySetStateMachine()
 {
     ToggleCallOutBypass();
-    object stateMachine = clone_object("/lib/tests/support/core/simpleStateMachine.c");
-    Environment->setStateMachine(stateMachine);
+    object stateMachine =
+        load_object("/lib/dictionaries/stateMachineDictionary.c")->getStateMachine(
+            "/lib/tests/support/core/simpleStateMachine.c");
+
+    Environment->setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
     Environment->testAddObject("/lib/items/weapon.c");
     Environment->testAddObject("/lib/items/armor.c", "blah");
     Environment->testAddObject("/lib/items/item.c", "blah2");
@@ -1052,4 +1058,49 @@ void CanReEnterSameClone()
     ExpectEq(firstEntry, environment(person));
 
     destruct(person);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DifferentPeopleMoveToDifferentClonedEnvironments()
+{
+    object environment =
+        load_object("/lib/tests/support/environment/clonedRoom.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+
+    object person2 = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person2->Name("fred");
+
+    environment->enterEnvironment(person);
+    environment->enterEnvironment(person2);
+
+    ExpectNotEq(object_name(environment(person2)),
+        object_name(environment(person)));
+
+    destruct(person);
+    destruct(person2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HenchmenMoveToSameClonedEnvironment()
+{
+    object environment =
+        load_object("/lib/tests/support/environment/clonedRoom.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+
+    object person2 = clone_object("/lib/realizations/henchman.c");
+    person2->Name("fred");
+    person2->setLeader(person);
+
+    environment->enterEnvironment(person);
+    environment->enterEnvironment(person2);
+
+    ExpectEq(environment(person2)->environmentName(),
+        environment(person)->environmentName());
+
+    destruct(person);
+    destruct(person2);
 }

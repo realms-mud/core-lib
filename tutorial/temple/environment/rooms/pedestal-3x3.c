@@ -7,6 +7,7 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    cloneEnvironment();
     setInterior("/lib/tutorial/temple/environment/interiors/pedestal-chamber.c");
     addFeature("lib/tutorial/temple/environment/features/amethyst-floor.c");
     addFeature("lib/tutorial/temple/environment/features/amethyst-ceiling.c");
@@ -48,5 +49,5 @@ public void Setup()
     addObject("/lib/tutorial/temple/objects/rune-doom.c", "seventh test");
 
     setCoordinates("temple of obedience", 23, 23);
-    setStateMachine(load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c"));
+    setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }

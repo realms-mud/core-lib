@@ -14,8 +14,7 @@ public void Setup()
     addExit("west", "/lib/tutorial/rooms/fallenAegis.c", "on the trail");
     addExit("south", "/lib/tutorial/rooms/entryPoint.c");
 
-    object stateMachine = load_object("/lib/tutorial/stateMachines/introStateMachine.c");
-    setStateMachine(stateMachine);
+    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -42,6 +41,6 @@ public int resetEverything(string command)
     load_object("/lib/tutorial/characters/galadhel/galadhel.c")->resetConversationState();
     load_object("/lib/tutorial/characters/berenar/berenar.c")->resetConversationState();
     load_object("/lib/tutorial/characters/brendan/brendan.c")->resetConversationState();
-    load_object("lib/tutorial/stateMachines/introStateMachine.c")->beginIntroduction(this_player());
+    StateMachine->beginIntroduction(this_player());
     return 1;
 }

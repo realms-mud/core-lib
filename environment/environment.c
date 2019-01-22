@@ -25,10 +25,16 @@ private int xCoordinate = 0;
 private int yCoordinate = 0;
 private nosave string ShortDescription = "";
 
-private nosave object StateMachine = 0;
-private nosave string BaseStateMachine = "lib/core/stateMachine.c";
+protected nosave object StateMachine = 0;
+protected nosave string StateMachinePath = 0;
+
 private nosave int SetupCompleted = 0;
-private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+private object configuration = 
+    load_object("/lib/dictionaries/configurationDictionary.c");
+
+protected object StateMachineDictionary = 
+    load_object("/lib/dictionaries/stateMachineDictionary.c");
+
 
 private mapping instances = ([]);
 
@@ -715,11 +721,7 @@ public nomask int move(string str)
     }
     if (destination)
     {
-        if (!this_player()->move(destination, direction))
-        {
-            raise_error(sprintf("Unable to move to %O.\n",
-                destination));
-        }
+        this_player()->move(destination, direction);
     }
 
     return destination && stringp(destination);
@@ -799,22 +801,43 @@ public int moveToIsAllowed(object user, object toLocation)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getCloneOwner(object actor, object party)
 {
-    string owner = cloneOwner();
+    string owner = party ? party->partyName() : actor->RealName();
     if (!owner)
     {
-        owner = party ? party->partyName() : actor->RealName();
+        owner = "default";
     }
     return owner;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void setupStateMachine(string owner)
+{
+    object newSM = StateMachineDictionary->getStateMachine(
+        StateMachinePath, owner);
+
+    if (objectp(newSM) && (newSM != StateMachine))
+    {
+        if (StateMachine)
+        {
+            StateMachine->unregisterStateActor(this_object());
+        }
+        StateMachine = newSM;
+        StateMachine->registerStateActor(this_object());
+        pruneStateObjects();
+        currentState(StateMachine->getCurrentState());
+        createStateObjects();
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void enterEnvironment(object actor, object party)
 {
     object location = this_object();
+
+    string owner = getCloneOwner(actor, party);
     if (environmentalElements["cloned"])
     {
-        string owner = getCloneOwner(actor, party);
-        if (member(instances, owner))
+        if (member(instances, owner) && objectp(instances[owner]))
         {
             location = instances[owner];
         }
@@ -824,7 +847,14 @@ public nomask varargs void enterEnvironment(object actor, object party)
             location = clone_object(object_name(this_object()));
             instances[owner] = location;
         }
+
     }
+
+    if (StateMachinePath)
+    {
+        location->setupStateMachine(owner);
+    }
+
     move_object(actor, location);
 }
 
@@ -841,20 +871,14 @@ public nomask void onStateChanged(object caller, string newState)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs void setStateMachine(object newSM)
+public nomask varargs void setStateMachine(string machinePath, 
+    int useSingleStateMachine)
 {
-    if (newSM && objectp(newSM) &&
-        (member(inherit_list(newSM), BaseStateMachine) > -1))
+    StateMachinePath = machinePath;
+
+    if (useSingleStateMachine)
     {
-        if (StateMachine)
-        {
-            StateMachine->unregisterStateActor(this_object());
-        }
-        StateMachine = newSM;
-        StateMachine->registerStateActor(this_object());
-        pruneStateObjects();
-        currentState(StateMachine->getCurrentState());
-        createStateObjects();
+        setupStateMachine();
     }
 }
 

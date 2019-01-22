@@ -4,8 +4,6 @@
 //*****************************************************************************
 inherit "/lib/environment/environment.c";
 
-object StateMachine;
-
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
@@ -19,8 +17,7 @@ public void Setup()
     addExit("west", "/lib/tutorial/rooms/onTheTrailPart5.c", "on the trail");
     addObject("/lib/tutorial/characters/not-so-animated-corpse.c", "on the trail");
 
-    StateMachine = load_object("/lib/tutorial/stateMachines/introStateMachine.c");
-    setStateMachine(StateMachine);
+    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -90,7 +87,7 @@ public void init()
 {
     environment::init();
 
-    if (this_player()->isRealizationOfPlayer() &&
+    if (this_player()->isRealizationOfPlayer() && StateMachine && 
         (StateMachine->getCurrentState() == "on the trail") &&
         present("galadhel"))
     {

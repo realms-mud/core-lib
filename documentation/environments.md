@@ -253,6 +253,6 @@ TBD
 
 #### Using State Machines
 ```
-void setStateMachine(object newSM);
+void setStateMachine(string newSM);
 ```
 TBD

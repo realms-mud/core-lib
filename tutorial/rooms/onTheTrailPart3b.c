@@ -4,8 +4,6 @@
 //*****************************************************************************
 inherit "/lib/environment/environment.c";
 
-object StateMachine;
-
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
@@ -18,8 +16,7 @@ public void Setup()
     // First test
     addExit("south", "/lib/tutorial/rooms/onTheTrailPart3.c", "on the trail");
 
-    StateMachine = load_object("/lib/tutorial/stateMachines/introStateMachine.c");
-    setStateMachine(StateMachine);
+    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

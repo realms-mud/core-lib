@@ -85,8 +85,6 @@ private mapping validSequences = ([
         "stealth" : (["north":2, "south" : 0, "east" : 3, "west" : 1]),
 ]);
 
-private object ObedienceSM = load_object("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
-
 /////////////////////////////////////////////////////////////////////////////
 private string orb(string color)
 {
@@ -197,9 +195,9 @@ public void pressPlateOfFear()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void pressPlateOfDeath()
+public varargs void pressPlateOfDeath(int fullReset)
 {
-    if (platesCanBePressed)
+    if (platesCanBePressed || fullReset)
     {
         orbs["north"] = -1;
         orbs["south"] = -1;
@@ -264,7 +262,17 @@ public void finishPress()
                 "\x1b[0;34mThe liquid surrounding the passage way "
                 "widens, allowing safe passage\x1b[0m", 78));
 
-            ObedienceSM->receiveEvent(this_player(),
+            object stateMachineDictionary =
+                load_object("/lib/dictionaries/stateMachineDictionary.c");
+
+            object party = this_player()->getParty();
+            string owner = party ? party->partyName() : this_player()->RealName();
+
+            object stateMachine = stateMachineDictionary->getStateMachine(
+                "/lib/tutorial/temple/stateMachine/obedienceStateMachine.c",
+                owner);
+
+            stateMachine->receiveEvent(this_player(),
                 sprintf("%sPassageOpened", currentTest));
         }
     }

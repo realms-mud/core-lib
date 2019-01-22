@@ -16,6 +16,7 @@ private void setMonsterLevel(int level)
 private void setHenchmanLevel(int level)
 {
     // Need to implement in task 226
+    call_direct(this_object(), "effectiveLevel", level);
 }
 
 /////////////////////////////////////////////////////////////////////////////
