@@ -50,7 +50,7 @@ protected nomask void addConversation(string conversation)
 {
     if (file_size(conversation) > 0)
     {
-        object conversationObj = load_object(conversation);
+        object conversationObj = clone_object(conversation);
         if (member(inherit_list(conversationObj), BaseConversation) > -1)
         {
             string *topicList = conversationObj->listTopics();
@@ -60,7 +60,7 @@ protected nomask void addConversation(string conversation)
             {
                 foreach(string topic in topicList)
                 {
-                    topics[topic] = conversation;
+                    topics[topic] = conversationObj;
                 }
             }
             else
@@ -145,7 +145,7 @@ public nomask int beginConversation(object actor)
 
         if (member(topics, topic))
         {
-            CurrentTopic = load_object(topics[topic]);
+            CurrentTopic = topics[topic];
             ret = CurrentTopic->speakMessage(topic, actor, this_object());
             initializeResponses();
         }
@@ -181,8 +181,8 @@ public nomask void onTriggerConversation(object caller,
     if (member(topics, conversation))
     {
         object actor = caller->isRealizationOfPlayer() ? caller : this_player();
+        CurrentTopic = topics[conversation];
 
-        CurrentTopic = load_object(topics[conversation]);
         CurrentTopic->speakMessage(conversation, actor, this_object());
         if (present(this_object(), environment(caller)))
         {

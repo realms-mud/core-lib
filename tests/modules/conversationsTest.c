@@ -11,19 +11,28 @@ object Room;
 object Conversation;
 
 /////////////////////////////////////////////////////////////////////////////
-varargs void PrepActor(int useMock)
+varargs object PrepActor(int useMock, string characterName)
 {
+    object actor;
+
+    if (!characterName)
+    {
+        characterName = "gorthaur";
+    }
+
     if (useMock)
     {
-        Actor = clone_object("/lib/tests/support/services/mockPlayer.c");
-        Actor->Name("Gorthaur");
+        actor = clone_object("/lib/tests/support/services/mockPlayer.c");
+        actor->Name("Gorthaur");
     }
     else
     {
-        Actor = clone_object("/lib/realizations/player.c");
-        Actor->restore("gorthaur");
+        actor = clone_object("/lib/realizations/player.c");
+        actor->restore(characterName);
     }
-    move_object(Actor, Room);
+    move_object(actor, Room);
+
+    return actor;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +75,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void AlterOpinionOfUpdatesOpinionOfTarget()
 {
-    PrepActor();
+    Actor = PrepActor();
     Actor->addTrait("/lib/tests/support/traits/testNoOpposingRootTrait.c");
     ExpectEq(10, Owner->opinionOf(Actor));
     ExpectEq(5, Owner->alterOpinionOf(Actor, 5));
@@ -97,7 +106,7 @@ void AddConversationFailsIfFileHasNoTopics()
 /////////////////////////////////////////////////////////////////////////////
 void InitialWithCharacterInitiatesFirstConversation()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     Actor->characterState(Owner, "first conversation");
@@ -110,7 +119,7 @@ void InitialWithCharacterInitiatesFirstConversation()
 /////////////////////////////////////////////////////////////////////////////
 void TalkTwiceRepeatsCurrentTopic()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     command("talk to gertrude", Actor);
@@ -128,7 +137,7 @@ void TalkTwiceRepeatsCurrentTopic()
 /////////////////////////////////////////////////////////////////////////////
 void RepeatRepeatsCurrentTopic()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     command("talk", Actor);
@@ -153,7 +162,7 @@ void RepeatRepeatsCurrentTopic()
 /////////////////////////////////////////////////////////////////////////////
 void CannotRespondToConversationWithInvalidResponse()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     command("talk", Actor);
@@ -167,7 +176,7 @@ void CannotRespondToConversationWithInvalidResponse()
 /////////////////////////////////////////////////////////////////////////////
 void CanRespondToConversationWithValidResponse()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     command("talk", Actor);
@@ -181,7 +190,7 @@ void CanRespondToConversationWithValidResponse()
 /////////////////////////////////////////////////////////////////////////////
 void AfterFirstConversationIsCompleteNextTalkTriggersDefaultConversation()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     command("talk", Actor);
@@ -194,7 +203,7 @@ void AfterFirstConversationIsCompleteNextTalkTriggersDefaultConversation()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingTerminalTopicDoesHaveResponses()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     command("talk", Actor);
@@ -210,7 +219,7 @@ void SelectingTerminalTopicDoesHaveResponses()
 /////////////////////////////////////////////////////////////////////////////
 void TalkingAgainReturnsToDefaultConversation()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     command("talk", Actor);
@@ -227,7 +236,7 @@ void TalkingAgainReturnsToDefaultConversation()
 /////////////////////////////////////////////////////////////////////////////
 void ShowsAdditionalResponseWhenStatePrerequisiteMet()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
 
@@ -250,7 +259,7 @@ void ShowsAdditionalResponseWhenStatePrerequisiteMet()
 /////////////////////////////////////////////////////////////////////////////
 void RemovesResponseWhenStatePrerequisiteNoLongerMet()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
 
@@ -274,7 +283,7 @@ void RemovesResponseWhenStatePrerequisiteNoLongerMet()
 /////////////////////////////////////////////////////////////////////////////
 void ShowsAdditionalResponseWhenOpinionPrerequisiteMet()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     Owner->alterOpinionOf(Actor, 50);
@@ -291,7 +300,7 @@ void ShowsAdditionalResponseWhenOpinionPrerequisiteMet()
 /////////////////////////////////////////////////////////////////////////////
 void CanChainTopicsIntoMultiPartConversation()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     Owner->alterOpinionOf(Actor, -25);
@@ -320,7 +329,7 @@ void CanChainTopicsIntoMultiPartConversation()
 /////////////////////////////////////////////////////////////////////////////
 void ExternalStateChangeWillReplaceDefaultConversationOnlyOnce()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     object stateMachine = load_object("/lib/tests/support/core/testStateMachine.c");
@@ -352,7 +361,7 @@ void ExternalStateChangeWillReplaceDefaultConversationOnlyOnce()
 /////////////////////////////////////////////////////////////////////////////
 void CanHaveMultipleConversationObjectsAdded()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     Owner->testAddConversation("/lib/tests/support/conversations/secondConversation.c");
@@ -380,7 +389,7 @@ void CanHaveMultipleConversationObjectsAdded()
 /////////////////////////////////////////////////////////////////////////////
 void RepeatableTopicsAreRepeatedWhenTalkTriggered()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     Owner->testAddConversation("/lib/tests/support/conversations/secondConversation.c");
@@ -415,7 +424,7 @@ void RepeatableTopicsAreRepeatedWhenTalkTriggered()
 /////////////////////////////////////////////////////////////////////////////
 void ConversationFromOtherObjectReturnsToDefaultOnFirstConversationObj()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversation.c");
     Owner->testAddConversation("/lib/tests/support/conversations/secondConversation.c");
@@ -451,14 +460,14 @@ void ConversationFromOtherObjectReturnsToDefaultOnFirstConversationObj()
 /////////////////////////////////////////////////////////////////////////////
 void ConversationInterjectionsAreCorrect()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
     object interloper = clone_object("/lib/tests/support/conversations/testNPC.c");
     move_object(interloper, Room);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testInterjection.c");
 
     efun::set_this_player(Actor);
-    Owner->onTriggerConversation(this_object(), "talk to me");
+    Owner->onTriggerConversation(Actor, "talk to me");
     ExpectSubStringMatch("This is a conversation.*You bore me, dunderhead.*Response", 
         implode(Actor->caughtMessages(), "\n"));
 
@@ -468,7 +477,7 @@ void ConversationInterjectionsAreCorrect()
 /////////////////////////////////////////////////////////////////////////////
 void DisablesResponseWhenStatePrerequisiteNotMet()
 {
-    PrepActor(1);
+    Actor = PrepActor(1);
 
     Owner->testAddConversation("/lib/tests/support/conversations/testConversationShowDisabled.c");
 
@@ -496,4 +505,44 @@ void DisablesResponseWhenStatePrerequisiteNotMet()
     Actor->resetCatchList();
     command("4", Actor);
     ExpectSubStringMatch("What?", Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UniqueCharacterInstancesHaveDistinctConversations()
+{
+    Actor = PrepActor();
+    object Catch = clone_object("/lib/tests/support/services/catchShadow.c");
+    Catch->beginShadow(Actor);
+
+    object actor2 = PrepActor(0, "maeglin");
+    Catch = clone_object("/lib/tests/support/services/catchShadow.c");
+    Catch->beginShadow(actor2);
+    move_object(actor2, "/lib/tests/support/environment/startingRoom.c");
+
+    object brendan = clone_object("/lib/tutorial/characters/brendan/brendan.c");
+    move_object(brendan, Room);
+
+    object brendan2 = clone_object("/lib/tutorial/characters/brendan/brendan.c");
+    move_object(brendan2, "/lib/tests/support/environment/startingRoom.c");
+
+    command("talk brendan", Actor);
+    command("talk brendan", actor2);
+    ExpectEq("0", Actor->stateFor(brendan), "initial brendan conversation");
+    ExpectEq("0", actor2->stateFor(brendan2), "initial brendan2 conversation");
+    command("1", Actor);
+    ExpectEq("villain", Actor->stateFor(brendan), "brendan villain advanced");
+    ExpectEq("0", actor2->stateFor(brendan2), "brendan2 villain not advanced");
+    command("1", actor2);
+    ExpectEq("villain", Actor->stateFor(brendan), "brendan villain not advanced");
+    ExpectEq("villain", actor2->stateFor(brendan2), "brendan2 villain advanced");
+    command("1", actor2);
+    ExpectEq("villain", Actor->stateFor(brendan));
+    ExpectEq("you are a simpleton", actor2->stateFor(brendan2));
+    command("1", Actor);
+    ExpectEq("you are a simpleton", Actor->stateFor(brendan));
+    ExpectEq("you are a simpleton", actor2->stateFor(brendan2));
+
+    destruct(actor2);
+    destruct(brendan);
+    destruct(brendan2);
 }
