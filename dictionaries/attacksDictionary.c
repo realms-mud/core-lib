@@ -192,6 +192,8 @@ private nomask string parseTemplate(string template, string perspective,
             "HitDictionary", attackType);
 
         message = messageParser()->parseVerbs(message, isSecondPerson);
+        message = regreplace(message, "##ResponseInfinitive::([^#]+)##", "##Infinitive::\\1##", 1);
+        message = messageParser()->parseVerbs(message, !isSecondPerson);
     }
 
     if(isValidAttacker(attacker))
@@ -223,9 +225,29 @@ public nomask void displayMessage(object attacker, object foe,
         {
             // This can only happen if damageType is of type baseAttack
             string template = damageType->getMessage(damageInflicted);
+
             if ((damageInflicted < 1) && foe->hasTraitOfRoot("ethereal"))
             {
                 template = "##AttackerPossessive[::Name]## attack harmlessly passes through ##TargetName##.";
+            }
+            else if ((damageInflicted < 1) && 
+                (member(({ "physical", "slash", "bludgeon", "unarmed", "thrust" }),
+                    damageType->getDamageType()) > -1))
+            {
+                int missType = random(51);
+                int parryRange = foe->getSkill("parry");
+                int dodgeRange = foe->getSkill("dodge") + parryRange;
+
+                if ((missType <= parryRange) && !random(2))
+                {
+                    template = regreplace(template, "##Infinitive::miss##", "##TargetSubjective## "
+                        "##ResponseInfinitive::parry## the attack", 1);
+                }
+                else if (missType <= dodgeRange)
+                {
+                    template = regreplace(template, "##Infinitive::miss##", "##TargetSubjective## "
+                        "##ResponseInfinitive::dodge## the attack", 1);
+                }
             }
             // This annoying loop handles the fact that everyone has different
             // setting for color.
