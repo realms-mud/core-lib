@@ -164,8 +164,8 @@ void WhoWithRaceAndPlayerFiltersDisplaysCorrectList()
 void WhoWithGuildFilterDisplaysCorrectList()
 {
     load_object("/lib/tests/support/guilds/mageGuild.c");
-    Players[3]->joinGuild("mage");
-    ExpectTrue(Wizard->executeCommand("who -g mage"));
+    Players[3]->joinGuild("fake mage");
+    ExpectTrue(Wizard->executeCommand("who -g fake mage"));
 
     string *whoList = explode(Wizard->caughtMessage(), "\n");
     ExpectEq(5, sizeof(whoList));
@@ -191,9 +191,9 @@ void WhoWithGuildAndPlayerFilterDisplaysCorrectList()
 void WhoWithGuildAndWizardFilterDisplaysCorrectList()
 {
     load_object("/lib/tests/support/guilds/mageGuild.c");
-    Wizard->leaveGuild("mage");
+    Wizard->leaveGuild("fake mage");
 
-    ExpectTrue(Wizard->executeCommand("who -w -g mage"));
+    ExpectTrue(Wizard->executeCommand("who -w -g fake mage"));
     string *whoList = explode(Wizard->caughtMessage(), "\n");
     ExpectEq(2, sizeof(whoList));
     ExpectSubStringMatch("Weasel Lord Earl the Doppleganger.*Elder Wizard", whoList[0]);
