@@ -4,25 +4,30 @@
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
 
+protected string WeaponType = "ERROR";
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
     {
         sustainedResearchItem::reset(arg);
-        addSpecification("name", "Shock Blade");
+        addSpecification("name", "Lightning Strike");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of the lightning blade technique. By means of this, the "
+            "knowledge of the lightning strike technique. By means of this, the "
             "Scion is able to emit a strong, constant electrical current from their "
-            "sword. Doing so is wearying and will decrease available stamina.");
+            "weapon. Doing so is wearying and will decrease available stamina.");
+        Setup();
 
-        addSpecification("limited by", (["equipment":({
-            "long sword", "hand and a half sword", "two-handed sword" })]));
-
-        addPrerequisite("lib/guilds/scion/paths/sword/root.c",
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite("lib/guilds/scion/paths/sword/electricity/shockblade.c",
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/shockblade.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -33,7 +38,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/sweeping-shock.c",
+                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/sweeping-shock.c", WeaponType),
                 "name" : "sweeping shock",
                 "formula" : "additive",
                 "base value" : 3,
@@ -41,7 +46,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/shock-brand.c",
+                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/shock-brand.c", WeaponType),
                 "name" : "shock brand",
                 "formula" : "additive",
                 "base value" : 3,
@@ -49,7 +54,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/energized-blade.c",
+                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/energized-blade.c", WeaponType),
                 "name" : "energized blade",
                 "formula" : "additive",
                 "base value" : 3,
@@ -57,7 +62,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/shocking-edge.c",
+                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/shocking-edge.c", WeaponType),
                 "name" : "shocking edge",
                 "formula" : "additive",
                 "base value" : 3,
@@ -65,7 +70,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/sword/electricity/thunders-pommel.c",
+                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/thunders-pommel.c", WeaponType),
                 "name" : "Thunder's Pommel",
                 "formula" : "additive",
                 "base value" : 6,
@@ -79,13 +84,13 @@ public void reset(int arg)
         addSpecification("cooldown", 180);
         addSpecification("spell point cost", 50);
         addSpecification("stamina point cost", 200);
-        addSpecification("command template", "lightning blade");
+        addSpecification("command template", "lightning strike");
         addSpecification("bonus electricity enchantment", 10);
         addSpecification("bonus resist electricity", 25);
 
         addSpecification("use ability activate message", "Crawling tendrils of "
-            "lightning wrap around ##InitiatorPossessive::Name## sword.");
+            "lightning wrap around ##InitiatorPossessive::Name## ##InitiatorWeapon##.");
         addSpecification("use ability deactivate message", "The tendrils of "
-            "lightning around ##InitiatorPossessive::Name## sword subside.");
+            "lightning around ##InitiatorPossessive::Name## ##InitiatorWeapon## subside.");
     }
 }

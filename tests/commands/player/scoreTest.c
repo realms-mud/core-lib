@@ -35,11 +35,11 @@ void Setup()
     Player->spellPoints(Player->maxSpellPoints());
     Player->staminaPoints(Player->maxStaminaPoints());
 
-    Player->joinGuild("mage");
+    Player->joinGuild("fake mage");
     Player->addExperience(1700);
-    Player->advanceLevel("mage");
+    Player->advanceLevel("fake mage");
 
-    Player->joinGuild("fighter");
+    Player->joinGuild("fake fighter");
     Player->addExperience(2000);
 
     move_object(Player, load_object("/lib/tests/support/environment/fakeEnvironment.c"));
@@ -99,8 +99,8 @@ void ScoreDisplaysCorrectInformationWithWeaponEquipped()
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36m    Strength: \x1b[0m\x1b[0;33;1m11    \x1b[0m\x1b[0;34;1m(+1) \x1b[0m\x1b[0;36mIntelligence: \x1b[0m\x1b[0;33;1m14    \x1b[0m\x1b[0;34;1m(+4) \x1b[0m\x1b[0;36m      Wisdom: \x1b[0m\x1b[0;32m10    \x1b[0m\x1b[0;32m     \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m|\x1b[0m \x1b[0;36m   Dexterity: \x1b[0m\x1b[0;32m10    \x1b[0m\x1b[0;32m     \x1b[0m\x1b[0;36mConstitution: \x1b[0m\x1b[0;33;1m11    \x1b[0m\x1b[0;34;1m(+1) \x1b[0m\x1b[0;36m    Charisma: \x1b[0m\x1b[0;33;1m12    \x1b[0m\x1b[0;34;1m(+2) \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mFighter (Neophyte)          \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m1          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;35;1m======\x1b[0m\x1b[0;31m....\x1b[0m \x1b[0;31m|\x1b[0m\n"
-        "\x1b[0;31m|\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mMage                        \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m2          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;33;1m Level up \x1b[0m \x1b[0;31m|\x1b[0m\n"
+        "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mFake fighter (Neophyte)     \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m1          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;35;1m======\x1b[0m\x1b[0;31m....\x1b[0m \x1b[0;31m|\x1b[0m\n"
+        "\x1b[0;31m|\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mFake mage                   \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m2          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;33;1m Level up \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mPrimary Weapon: \x1b[0m\x1b[0;33mSword of Bla...\x1b[0m\x1b[0;36m Attack: \x1b[0m\x1b[0;33m-20 to 80  \x1b[0m\x1b[0;36m      Damage: \x1b[0m\x1b[0;33m  9 to 12 \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m|\x1b[0m \x1b[0;36m Defend Attack: \x1b[0m\x1b[0;33m  0 to 0   \x1b[0m\x1b[0;36m       Soak: \x1b[0m\x1b[0;33m  0 to 0   \x1b[0m\x1b[0;36mEncumberance: \x1b[0m\x1b[0;33m  3       \x1b[0m \x1b[0;31m|\x1b[0m\n"
@@ -151,8 +151,8 @@ void ScoreDisplaysCorrectInformationWithWeaponShieldAndArmorEquipped()
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36m    Strength: \x1b[0m\x1b[0;33;1m11    \x1b[0m\x1b[0;34;1m(+1) \x1b[0m\x1b[0;36mIntelligence: \x1b[0m\x1b[0;33;1m14    \x1b[0m\x1b[0;34;1m(+4) \x1b[0m\x1b[0;36m      Wisdom: \x1b[0m\x1b[0;32m10    \x1b[0m\x1b[0;32m     \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m|\x1b[0m \x1b[0;36m   Dexterity: \x1b[0m\x1b[0;32m10    \x1b[0m\x1b[0;32m     \x1b[0m\x1b[0;36mConstitution: \x1b[0m\x1b[0;33;1m11    \x1b[0m\x1b[0;34;1m(+1) \x1b[0m\x1b[0;36m    Charisma: \x1b[0m\x1b[0;33;1m12    \x1b[0m\x1b[0;34;1m(+2) \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mFighter (Neophyte)          \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m1          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;35;1m======\x1b[0m\x1b[0;31m....\x1b[0m \x1b[0;31m|\x1b[0m\n"
-        "\x1b[0;31m|\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mMage                        \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m2          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;33;1m Level up \x1b[0m \x1b[0;31m|\x1b[0m\n"
+        "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mFake fighter (Neophyte)     \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m1          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;35;1m======\x1b[0m\x1b[0;31m....\x1b[0m \x1b[0;31m|\x1b[0m\n"
+        "\x1b[0;31m|\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mFake mage                   \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m2          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;33;1m Level up \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mPrimary Weapon: \x1b[0m\x1b[0;33mSword of Bla...\x1b[0m\x1b[0;36m Attack: \x1b[0m\x1b[0;33m-65 to 35  \x1b[0m\x1b[0;36m      Damage: \x1b[0m\x1b[0;33m  9 to 12 \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m|\x1b[0m \x1b[0;36mOffhand Weapon: \x1b[0m\x1b[0;33mShield of We...\x1b[0m\x1b[0;36m Attack: \x1b[0m\x1b[0;33m-81 to 19  \x1b[0m\x1b[0;36m      Damage: \x1b[0m\x1b[0;33m  0 to 1  \x1b[0m \x1b[0;31m|\x1b[0m\n"
@@ -298,8 +298,8 @@ void ScoreDisplaysUnicodeCharset()
         "\x1b[0m\x1b[0;31m\xe2\x95\x91\x1b[0m \x1b[0;36m    Strength: \x1b[0m\x1b[0;33;1m11    \x1b[0m\x1b[0;34;1m(+1) \x1b[0m\x1b[0;36mIntelligence: \x1b[0m\x1b[0;33;1m14    \x1b[0m\x1b[0;34;1m(+4) \x1b[0m\x1b[0;36m      Wisdom: \x1b[0m\x1b[0;32m10    \x1b[0m\x1b[0;32m     \x1b[0m \x1b[0;31m\xe2\x95\x91\x1b[0m\n"
         "\x1b[0;31m\xe2\x95\x91\x1b[0m \x1b[0;36m   Dexterity: \x1b[0m\x1b[0;32m10    \x1b[0m\x1b[0;32m     \x1b[0m\x1b[0;36mConstitution: \x1b[0m\x1b[0;33;1m11    \x1b[0m\x1b[0;34;1m(+1) \x1b[0m\x1b[0;36m    Charisma: \x1b[0m\x1b[0;33;1m12    \x1b[0m\x1b[0;34;1m(+2) \x1b[0m \x1b[0;31m\xe2\x95\x91\x1b[0m\n"
         "\x1b[0;31m\xe2\x95\xa0\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\xa1 Guilds \xe2\x95\x9e\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\xa3\n"
-        "\x1b[0m\x1b[0;31m\xe2\x95\x91\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mFighter (Neophyte)          \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m1          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;35;1m\xe2\x96\xac\xe2\x96\xac\xe2\x96\xac\xe2\x96\xac\xe2\x96\xac\xe2\x96\xac\x1b[0m\x1b[0;31m\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\x1b[0m \x1b[0;31m\xe2\x95\x91\x1b[0m\n"
-        "\x1b[0;31m\xe2\x95\x91\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mMage                        \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m2          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;33;1m Level up \x1b[0m \x1b[0;31m\xe2\x95\x91\x1b[0m\n"
+        "\x1b[0m\x1b[0;31m\xe2\x95\x91\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mFake fighter (Neophyte)     \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m1          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;35;1m\xe2\x96\xac\xe2\x96\xac\xe2\x96\xac\xe2\x96\xac\xe2\x96\xac\xe2\x96\xac\x1b[0m\x1b[0;31m\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\x1b[0m \x1b[0;31m\xe2\x95\x91\x1b[0m\n"
+        "\x1b[0;31m\xe2\x95\x91\x1b[0m \x1b[0;36mGuild: \x1b[0m\x1b[0;33mFake mage                   \x1b[0m\x1b[0;36mLevel: \x1b[0m\x1b[0;33m2          \x1b[0m\x1b[0;36mExperience: \x1b[0m\x1b[0;33;1m Level up \x1b[0m \x1b[0;31m\xe2\x95\x91\x1b[0m\n"
         "\x1b[0;31m\xe2\x95\xa0\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\xa1 Combat Information \xe2\x95\x9e\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\xa3\n"
         "\x1b[0m\x1b[0;31m\xe2\x95\x91\x1b[0m \x1b[0;36mPrimary Weapon: \x1b[0m\x1b[0;33mSword of Bla...\x1b[0m\x1b[0;36m Attack: \x1b[0m\x1b[0;33m-65 to 35  \x1b[0m\x1b[0;36m      Damage: \x1b[0m\x1b[0;33m  9 to 12 \x1b[0m \x1b[0;31m\xe2\x95\x91\x1b[0m\n"
         "\x1b[0;31m\xe2\x95\x91\x1b[0m \x1b[0;36mOffhand Weapon: \x1b[0m\x1b[0;33mShield of We...\x1b[0m\x1b[0;36m Attack: \x1b[0m\x1b[0;33m-81 to 19  \x1b[0m\x1b[0;36m      Damage: \x1b[0m\x1b[0;33m  0 to 1  \x1b[0m \x1b[0;31m\xe2\x95\x91\x1b[0m\n"
@@ -353,8 +353,8 @@ void ScoreDisplaysNoColorCorrectly()
         "|     Strength: 11    (+1) Intelligence: 14    (+4)       Wisdom: 10          |\n"
         "|    Dexterity: 10         Constitution: 11    (+1)     Charisma: 12    (+2)  |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "| Guild: Fighter (Neophyte)          Level: 1          Experience: ======.... |\n"
-        "| Guild: Mage                        Level: 2          Experience:  Level up  |\n"
+        "| Guild: Fake fighter (Neophyte)     Level: 1          Experience: ======.... |\n"
+        "| Guild: Fake mage                   Level: 2          Experience:  Level up  |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Primary Weapon: Sword of Bla... Attack: -65 to 35        Damage:   9 to 12  |\n"
         "| Offhand Weapon: Shield of We... Attack: -81 to 19        Damage:   0 to 1   |\n"
@@ -408,8 +408,8 @@ void ScoreDisplaysEightBitColorCorrectly()
         "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80m    Strength: \x1b[0m\x1b[0;38;5;190;1m11    \x1b[0m\x1b[0;38;5;20;1m(+1) \x1b[0m\x1b[0;38;5;80mIntelligence: \x1b[0m\x1b[0;38;5;190;1m14    \x1b[0m\x1b[0;38;5;20;1m(+4) \x1b[0m\x1b[0;38;5;80m      Wisdom: \x1b[0m\x1b[0;38;5;2m10    \x1b[0m\x1b[0;38;5;2m     \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
         "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80m   Dexterity: \x1b[0m\x1b[0;38;5;2m10    \x1b[0m\x1b[0;38;5;2m     \x1b[0m\x1b[0;38;5;80mConstitution: \x1b[0m\x1b[0;38;5;190;1m11    \x1b[0m\x1b[0;38;5;20;1m(+1) \x1b[0m\x1b[0;38;5;80m    Charisma: \x1b[0m\x1b[0;38;5;190;1m12    \x1b[0m\x1b[0;38;5;20;1m(+2) \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
         "\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mGuild: \x1b[0m\x1b[0;38;5;190mFighter (Neophyte)          \x1b[0m\x1b[0;38;5;80mLevel: \x1b[0m\x1b[0;38;5;190m1          \x1b[0m\x1b[0;38;5;80mExperience: \x1b[0m\x1b[0;38;5;238;1m======\x1b[0m\x1b[0;38;5;9m....\x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
-        "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mGuild: \x1b[0m\x1b[0;38;5;190mMage                        \x1b[0m\x1b[0;38;5;80mLevel: \x1b[0m\x1b[0;38;5;190m2          \x1b[0m\x1b[0;38;5;80mExperience: \x1b[0m\x1b[0;38;5;190;1m Level up \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mGuild: \x1b[0m\x1b[0;38;5;190mFake fighter (Neophyte)     \x1b[0m\x1b[0;38;5;80mLevel: \x1b[0m\x1b[0;38;5;190m1          \x1b[0m\x1b[0;38;5;80mExperience: \x1b[0m\x1b[0;38;5;238;1m======\x1b[0m\x1b[0;38;5;9m....\x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
+        "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mGuild: \x1b[0m\x1b[0;38;5;190mFake mage                   \x1b[0m\x1b[0;38;5;80mLevel: \x1b[0m\x1b[0;38;5;190m2          \x1b[0m\x1b[0;38;5;80mExperience: \x1b[0m\x1b[0;38;5;190;1m Level up \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
         "\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mPrimary Weapon: \x1b[0m\x1b[0;38;5;190mSword of Bla...\x1b[0m\x1b[0;38;5;80m Attack: \x1b[0m\x1b[0;38;5;190m-65 to 35  \x1b[0m\x1b[0;38;5;80m      Damage: \x1b[0m\x1b[0;38;5;190m  9 to 12 \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
         "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mOffhand Weapon: \x1b[0m\x1b[0;38;5;190mShield of We...\x1b[0m\x1b[0;38;5;80m Attack: \x1b[0m\x1b[0;38;5;190m-81 to 19  \x1b[0m\x1b[0;38;5;80m      Damage: \x1b[0m\x1b[0;38;5;190m  0 to 1  \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
@@ -463,8 +463,8 @@ void ScoreDisplaysTwentyFourBitColorCorrectly()
         "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190m    Strength: \x1b[0m\x1b[0;38;2;200;200;0;1m11    \x1b[0m\x1b[0;38;2;0;0;220;1m(+1) \x1b[0m\x1b[0;38;2;180;180;190mIntelligence: \x1b[0m\x1b[0;38;2;200;200;0;1m14    \x1b[0m\x1b[0;38;2;0;0;220;1m(+4) \x1b[0m\x1b[0;38;2;180;180;190m      Wisdom: \x1b[0m\x1b[0;38;2;170;180;110m10    \x1b[0m\x1b[0;38;2;170;180;110m     \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
         "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190m   Dexterity: \x1b[0m\x1b[0;38;2;170;180;110m10    \x1b[0m\x1b[0;38;2;170;180;110m     \x1b[0m\x1b[0;38;2;180;180;190mConstitution: \x1b[0m\x1b[0;38;2;200;200;0;1m11    \x1b[0m\x1b[0;38;2;0;0;220;1m(+1) \x1b[0m\x1b[0;38;2;180;180;190m    Charisma: \x1b[0m\x1b[0;38;2;200;200;0;1m12    \x1b[0m\x1b[0;38;2;0;0;220;1m(+2) \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
         "\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mGuild: \x1b[0m\x1b[0;38;2;200;200;0mFighter (Neophyte)          \x1b[0m\x1b[0;38;2;180;180;190mLevel: \x1b[0m\x1b[0;38;2;200;200;0m1          \x1b[0m\x1b[0;38;2;180;180;190mExperience: \x1b[0m\x1b[0;38;2;60;60;70;1m======\x1b[0m\x1b[0;38;2;200;0;0m....\x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
-        "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mGuild: \x1b[0m\x1b[0;38;2;200;200;0mMage                        \x1b[0m\x1b[0;38;2;180;180;190mLevel: \x1b[0m\x1b[0;38;2;200;200;0m2          \x1b[0m\x1b[0;38;2;180;180;190mExperience: \x1b[0m\x1b[0;38;2;200;200;0;1m Level up \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mGuild: \x1b[0m\x1b[0;38;2;200;200;0mFake fighter (Neophyte)     \x1b[0m\x1b[0;38;2;180;180;190mLevel: \x1b[0m\x1b[0;38;2;200;200;0m1          \x1b[0m\x1b[0;38;2;180;180;190mExperience: \x1b[0m\x1b[0;38;2;60;60;70;1m======\x1b[0m\x1b[0;38;2;200;0;0m....\x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
+        "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mGuild: \x1b[0m\x1b[0;38;2;200;200;0mFake mage                   \x1b[0m\x1b[0;38;2;180;180;190mLevel: \x1b[0m\x1b[0;38;2;200;200;0m2          \x1b[0m\x1b[0;38;2;180;180;190mExperience: \x1b[0m\x1b[0;38;2;200;200;0;1m Level up \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
         "\x1b[0;38;2;100;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mPrimary Weapon: \x1b[0m\x1b[0;38;2;200;200;0mSword of Bla...\x1b[0m\x1b[0;38;2;180;180;190m Attack: \x1b[0m\x1b[0;38;2;200;200;0m-65 to 35  \x1b[0m\x1b[0;38;2;180;180;190m      Damage: \x1b[0m\x1b[0;38;2;200;200;0m  9 to 12 \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
         "\x1b[0;38;2;100;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mOffhand Weapon: \x1b[0m\x1b[0;38;2;200;200;0mShield of We...\x1b[0m\x1b[0;38;2;180;180;190m Attack: \x1b[0m\x1b[0;38;2;200;200;0m-81 to 19  \x1b[0m\x1b[0;38;2;180;180;190m      Damage: \x1b[0m\x1b[0;38;2;200;200;0m  0 to 1  \x1b[0m \x1b[0;38;2;100;10;0m|\x1b[0m\n"
@@ -519,8 +519,8 @@ void ScoreDisplaysScreenReaderCorrectly()
         "      Strength: 11    (+1) Intelligence: 14    (+4)       Wisdom: 10           \n"
         "     Dexterity: 10         Constitution: 11    (+1)     Charisma: 12    (+2)   \n"
         "                                     Guilds                                     \n"
-        "  Guild: Fighter (Neophyte)          Level: 1          Experience:     66%     \n"
-        "  Guild: Mage                        Level: 2          Experience:  Level up   \n"
+        "  Guild: Fake fighter (Neophyte)     Level: 1          Experience:     66%     \n"
+        "  Guild: Fake mage                   Level: 2          Experience:  Level up   \n"
         "                               Combat Information                               \n"
         "  Primary Weapon: Sword of Bla... Attack: -65 to 35        Damage:   9 to 12   \n"
         "  Offhand Weapon: Shield of We... Attack: -81 to 19        Damage:   0 to 1    \n"

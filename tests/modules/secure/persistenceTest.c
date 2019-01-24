@@ -113,21 +113,21 @@ void PlayerCombatAttributesRestored()
 void PlayerGuildsRestored()
 {
     Player->restore("gorthaur");
-    ExpectEq(({ "mage" }), Player->memberOfGuilds());
+    ExpectEq(({ "fake mage" }), Player->memberOfGuilds());
     ExpectEq(21, Player->effectiveLevel());
     ExpectEq(120133, Player->effectiveExperience());
-    ExpectEq(16, Player->guildLevel("mage"));
-    ExpectEq(133, Player->guildExperience("mage"));
-    ExpectEq("acolyte", Player->guildRank("mage"));
-    ExpectEq("the blah blah", Player->guildTitle("mage"));
-    ExpectEq("Mage", Player->guildPretitle("mage"));
-    ExpectFalse(Player->isAnathema("mage"));
-    ExpectEq(2333, Player->ageWhenRankAdvanced("mage"));
+    ExpectEq(16, Player->guildLevel("fake mage"));
+    ExpectEq(133, Player->guildExperience("fake mage"));
+    ExpectEq("acolyte", Player->guildRank("fake mage"));
+    ExpectEq("the blah blah", Player->guildTitle("fake mage"));
+    ExpectEq("Mage", Player->guildPretitle("fake mage"));
+    ExpectFalse(Player->isAnathema("fake mage"));
+    ExpectEq(2333, Player->ageWhenRankAdvanced("fake mage"));
 
     // Even though the guild level for fighter is 5, since they left,
     // it's effectively 0.
-    ExpectEq(0, Player->guildLevel("fighter"));
-    ExpectTrue(Player->isAnathema("fighter"));
+    ExpectEq(0, Player->guildLevel("fake fighter"));
+    ExpectTrue(Player->isAnathema("fake fighter"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

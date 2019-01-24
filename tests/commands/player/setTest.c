@@ -295,7 +295,7 @@ void PlayerCannotSeeGuildMessageOfBlockedPlayer()
 {
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/tests/support/guilds/mageGuild.c");
-    Player->joinGuild("mage");
+    Player->joinGuild("fake mage");
     destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
 
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
@@ -414,7 +414,7 @@ void PlayerCanSeeGuildMessageOfUnblockedPlayer()
     Player->resetCatchList();
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/tests/support/guilds/mageGuild.c");
-    Player->joinGuild("mage");
+    Player->joinGuild("fake mage");
     destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->resetCatchList();
 
@@ -905,15 +905,15 @@ void PlayerCanSetPrimaryGuild()
     load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/tests/support/guilds/fighterGuild.c");
     load_object("/lib/tests/support/guilds/mageGuild.c");
-    Player->joinGuild("fighter");
-    Player->joinGuild("mage");
+    Player->joinGuild("fake fighter");
+    Player->joinGuild("fake mage");
 
-    ExpectEq("mage", Player->primaryGuild());
+    ExpectEq("fake mage", Player->primaryGuild());
 
-    Player->executeCommand("set -p primary guild -v fighter");
-    ExpectSubStringMatch("You have set your primary guild to 'fighter'", 
+    Player->executeCommand("set -p primary guild -v fake fighter");
+    ExpectSubStringMatch("You have set your primary guild to 'fake fighter'", 
         Player->caughtMessage());
-    ExpectEq("fighter", Player->primaryGuild());
+    ExpectEq("fake fighter", Player->primaryGuild());
 }
 
 /////////////////////////////////////////////////////////////////////////////

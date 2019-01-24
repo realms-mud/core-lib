@@ -2,32 +2,13 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/knowledgeResearchItem.c";
+inherit "/lib/guilds/scion/common/electricity/static-shield.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Static Shield");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This research provides the user with the "
-            "knowledge of the static shield technique. This form enhances "
-            "the Scion's defensive spells.");
+    WeaponType = "dagger";
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 31 ]));
-        addPrerequisite("lib/guilds/scion/paths/dagger/electricity/electric-shroud.c",
-            (["type":"research"]));
-
-        addSpecification("limited by", (["equipment":({
-            "dagger", "short sword" })]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", (["Electric Shroud": 5 ]));
-    }
+    addSpecification("limited by", (["equipment":({
+        "dagger", "short sword" })]));
 }

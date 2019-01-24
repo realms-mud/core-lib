@@ -7,7 +7,7 @@ inherit "/lib/modules/guilds/baseGuild.c";
 /////////////////////////////////////////////////////////////////////////////
 public void SetupGuild()
 {
-    guildName("smith");
+    guildName("fake smith");
     nonCombatGuild();
     addRank("neophyte", (["name":"neophyte", "title" : "the title of titliness", "pretitle" : "Neophyte", "next rank" : "acolyte"]));
     addRank("acolyte", (["name":"acolyte", "title" : "the title of titliness", "pretitle" : "Acolyte", "previous rank" : "neophyte", "next rank" : "blargyte", "delay for next promotion" : 1]));

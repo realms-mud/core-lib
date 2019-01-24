@@ -7,6 +7,6 @@ inherit "/lib/modules/guilds/baseGuild.c";
 /////////////////////////////////////////////////////////////////////////////
 public void SetupGuild()
 {
-    guildName("mage");
+    guildName("fake mage");
     addPreferredSkillType("magic");
 }

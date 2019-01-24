@@ -26,7 +26,7 @@ void Setup()
     User->Int(20);
     User->Wis(20);
     User->ToggleMockGuilds();
-    User->SetGuild("mage");
+    User->SetGuild("fake mage");
     User->SetLevel(10);
     User->addSkillPoints(100);
     User->advanceSkill("long sword", 10);

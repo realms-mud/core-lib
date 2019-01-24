@@ -684,7 +684,7 @@ void DisplayDetailsShowCorrectInformation()
     object research = load_object("/lib/guilds/scion/paths/sword/electricity/tempest.c");
     ExpectEq("Research Name   : Tempest\n"
         "This research provides the user with the knowledge of the tempest technique.\n"
-        "By means of this, the Scion is able to use their sword as a conduit for\n"
+        "By means of this, the Scion is able to use their weapon as a conduit for\n"
         "emitting a powerful storm that harries a foe.\n"
         "\n"
         "Learning this costs 1 research point.\n"

@@ -4,31 +4,37 @@
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
+protected string WeaponType = "ERROR";
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Energized Blade");
+        addSpecification("name", "Energized Strike");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
             "knowledge of the energized blade technique. This form enhances "
-            "the scion's shockblade.");
+            "the scion's Shock Strike and Lightning Strike abilities.");
+        Setup();
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
               "value": 11 ]));
-        addPrerequisite("lib/guilds/scion/paths/sword/electricity/shock-brand.c",
+        addPrerequisite(
+            sprintf("lib/guilds/scion/paths/%s/electricity/shock-brand.c", WeaponType),
             (["type":"research"]));
-
-        addSpecification("limited by", (["equipment":({
-            "long sword", "hand and a half sword", "two-handed sword" })]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("affected research", (["Shock Blade":2,
-            "Lightning Blade": 3 ]));
+        addSpecification("affected research", (["Shock Strike":2,
+            "Lightning Strike": 3 ]));
     }
 }

@@ -4,31 +4,36 @@
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
+protected string WeaponType = "ERROR";
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Thunder's Pommel");
+        addSpecification("name", "Thunder's Boon");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of the Thunder's Pommel technique. This form enhances "
-            "the scion's shockblade.");
+            "knowledge of the Thunder's Boon technique. This form enhances "
+            "the scion's Shock Strike and Lightning Strike abilities.");
+        Setup();
 
         addPrerequisite("level",
             (["type":"level",
                 "guild" : "Scion of Dhuras",
                 "value" : 21]));
-        addPrerequisite("lib/guilds/scion/paths/sword/electricity/shocking-edge.c",
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/shocking-edge.c", WeaponType),
             (["type":"research"]));
-
-        addSpecification("limited by", (["equipment":({
-            "long sword", "hand and a half sword", "two-handed sword" })]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("affected research", (["Shock Blade":5,
-            "Lightning Blade" : 6]));
+        addSpecification("affected research", (["Shock Strike":5,
+            "Lightning Strike" : 6]));
     }
 }

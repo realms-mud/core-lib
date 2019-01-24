@@ -2,33 +2,13 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/knowledgeResearchItem.c";
+inherit "/lib/guilds/scion/common/electricity/shocking-edge.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Shocking Edge");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of the shocking edge technique. This form enhances "
-            "the scion's shockblade.");
+    WeaponType = "dagger";
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild" : "Scion of Dhuras",
-                "value" : 15]));
-        addPrerequisite("lib/guilds/scion/paths/dagger/electricity/energized-blade.c",
-            (["type":"research"]));
-
-        addSpecification("limited by", (["equipment":({
-            "dagger", "short sword" })]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", (["Shock Blade":2,
-            "Lightning Blade" : 3]));
-    }
+    addSpecification("limited by", (["equipment":({
+        "dagger", "short sword" })]));
 }

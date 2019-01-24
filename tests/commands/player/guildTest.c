@@ -66,7 +66,7 @@ void CanNotSeeOtherGuildMessages()
     lowlyMage->addCommands();
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
     guild->init();
-    lowlyMage->joinGuild("mage");
+    lowlyMage->joinGuild("fake mage");
     lowlyMage->resetCatchList();
 
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
@@ -95,12 +95,12 @@ void CanSpecifyGuildToSendMessageTo()
     lowlyMage->addCommands();
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
     guild->init();
-    lowlyMage->joinGuild("mage");
+    lowlyMage->joinGuild("fake mage");
 
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
     channels->registerUser(lowlyMage);
 
-    Player->joinGuild("mage");
+    Player->joinGuild("fake mage");
     channels->registerUser(Player);
 
     ExpectTrue(Player->executeCommand("guild -g mage Frank is an idiot!"));
@@ -123,7 +123,7 @@ void CanSpecifyLongGuildNameToSendMessageTo()
 
     guild = load_object("/lib/tests/support/guilds/mageGuild.c");
     guild->init();
-    lowlyMage->joinGuild("mage");
+    lowlyMage->joinGuild("fake mage");
 
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
     channels->registerUser(lowlyMage);

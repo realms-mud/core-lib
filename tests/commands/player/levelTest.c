@@ -83,12 +83,12 @@ void DoesNotAllowForGuildsNotReadyForAdvancement()
     Player->joinGuild("Scion of Dhuras");
     destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->addExperience(2000);
-    Player->joinGuild("fighter");
+    Player->joinGuild("fake fighter");
     destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
 
     command("level up", Player);
     ExpectEq("Advancement - Main Menu:\n"
-        "[1] - Advance fighter level                    (Need More Experience)\n"
+        "[1] - Advance fake fighter level               (Need More Experience)\n"
         "[2] - Advance Scion of Dhuras level\n"
         "[3] - Exit Advancement Menu\n"
         "You must select a number from 1 to 3.\n"
@@ -103,13 +103,13 @@ void CanAdvanceMultipleGuilds()
 {
     Player->joinGuild("Scion of Dhuras");
     destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
-    Player->joinGuild("fighter");
+    Player->joinGuild("fake fighter");
     destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
 
     Player->addExperience(5000);
     command("level up", Player);
     ExpectEq("Advancement - Main Menu:\n"
-        "[1] - Advance fighter level\n"
+        "[1] - Advance fake fighter level\n"
         "[2] - Advance Scion of Dhuras level\n"
         "[3] - Exit Advancement Menu\n"
         "You must select a number from 1 to 3.\n"

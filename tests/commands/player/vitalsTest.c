@@ -30,13 +30,13 @@ void Setup()
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
     guild->init();
-    Player->joinGuild("mage");
+    Player->joinGuild("fake mage");
     Player->addExperience(1700);
-    Player->advanceLevel("mage");
+    Player->advanceLevel("fake mage");
 
     guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
     guild->init();
-    Player->joinGuild("fighter");
+    Player->joinGuild("fake fighter");
     Player->addExperience(2000);
 
     move_object(Player, load_object("/lib/tests/support/environment/fakeEnvironment.c"));

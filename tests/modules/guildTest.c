@@ -111,7 +111,7 @@ void EffectiveLevelReturnsLevelOfAllJoinedGuilds()
     ExpectEq(1, User->effectiveLevel());
 
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
-    ExpectTrue(User->joinGuild("mage"));
+    ExpectTrue(User->joinGuild("fake mage"));
     ExpectEq(2, User->effectiveLevel());
 }
 
@@ -129,8 +129,8 @@ void MemberOfGuildsReturnsListOfJoinedGuilds()
 
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
 
-    ExpectTrue(User->joinGuild("mage"), "Joined mage guild");
-    ExpectEq(({ "test", "mage" }), User->memberOfGuilds(), "list when member of test and mage guild");
+    ExpectTrue(User->joinGuild("fake mage"), "Joined mage guild");
+    ExpectEq(({ "test", "fake mage" }), User->memberOfGuilds(), "list when member of test and mage guild");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -201,14 +201,14 @@ void AddExperienceCorrectlyHandlesMultipleGuilds()
     ExpectTrue(User->joinGuild("test"));
     ExpectTrue(User->addExperience(1000), "experience added");
     ExpectTrue(User->advanceLevel("test"), "level advanced");
-    ExpectTrue(User->joinGuild("mage"));
+    ExpectTrue(User->joinGuild("fake mage"));
 
     ExpectEq(0, User->guildExperience("test"), "initial test guild experience");
-    ExpectEq(0, User->guildExperience("mage"), "initial mage guild experience");
+    ExpectEq(0, User->guildExperience("fake mage"), "initial mage guild experience");
 
     ExpectTrue(User->addExperience(300), "experience added");
     ExpectEq(200, User->guildExperience("test"), "new test guild experience");
-    ExpectEq(100, User->guildExperience("mage"), "new mage guild experience");
+    ExpectEq(100, User->guildExperience("fake mage"), "new mage guild experience");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -217,31 +217,31 @@ void AddExperienceToSpecificGuildCorrectlyHandled()
     ExpectTrue(User->joinGuild("test"));
     ExpectTrue(User->addExperience(1000), "experience added");
     ExpectTrue(User->advanceLevel("test"), "level advanced");
-    ExpectTrue(User->joinGuild("mage"));
+    ExpectTrue(User->joinGuild("fake mage"));
 
     ExpectEq(0, User->guildExperience("test"), "initial test guild experience");
-    ExpectEq(0, User->guildExperience("mage"), "initial mage guild experience");
+    ExpectEq(0, User->guildExperience("fake mage"), "initial mage guild experience");
 
-    ExpectTrue(User->addExperience(300, "mage"), "experience added");
+    ExpectTrue(User->addExperience(300, "fake mage"), "experience added");
     ExpectEq(0, User->guildExperience("test"), "new test guild experience");
-    ExpectEq(300, User->guildExperience("mage"), "new mage guild experience");
+    ExpectEq(300, User->guildExperience("fake mage"), "new mage guild experience");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddExperienceToCombatGuildsDoesNotAddToNonCombatGuilds()
 {
     object guild = load_object("/lib/tests/support/guilds/nonCombatGuild.c");
-    ExpectTrue(User->joinGuild("smith"));
-    ExpectTrue(User->addExperience(1000, "smith"), "experience added");
-    ExpectTrue(User->advanceLevel("smith"), "level advanced");
-    ExpectTrue(User->joinGuild("mage"));
+    ExpectTrue(User->joinGuild("fake smith"));
+    ExpectTrue(User->addExperience(1000, "fake smith"), "experience added");
+    ExpectTrue(User->advanceLevel("fake smith"), "level advanced");
+    ExpectTrue(User->joinGuild("fake mage"));
 
-    ExpectEq(0, User->guildExperience("smith"), "initial test guild experience");
-    ExpectEq(0, User->guildExperience("mage"), "initial mage guild experience");
+    ExpectEq(0, User->guildExperience("fake smith"), "initial test guild experience");
+    ExpectEq(0, User->guildExperience("fake mage"), "initial mage guild experience");
 
     ExpectTrue(User->addExperience(300), "experience added");
-    ExpectEq(0, User->guildExperience("smith"), "new test guild experience");
-    ExpectEq(300, User->guildExperience("mage"), "new mage guild experience");
+    ExpectEq(0, User->guildExperience("fake smith"), "new test guild experience");
+    ExpectEq(300, User->guildExperience("fake mage"), "new mage guild experience");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -530,7 +530,7 @@ void JoiningGuildAppliesGuildCostForSkills()
     ExpectEq(2, User->costToAdvanceSkill("magic"), "test guild cost for magic skills");
     ExpectEq(1, User->costToAdvanceSkill("general"), "test guild cost for general skills");
 
-    User->joinGuild("mage");
+    User->joinGuild("fake mage");
     ExpectEq(1, User->costToAdvanceSkill("combat"), "both guild cost for combat skills");
     ExpectEq(1, User->costToAdvanceSkill("magic"), "both guild cost for magic skills");
     ExpectEq(1, User->costToAdvanceSkill("general"), "both guild cost for general skills");
@@ -544,17 +544,17 @@ void JoiningGuildAppliesGuildCostForSkills()
 /////////////////////////////////////////////////////////////////////////////
 void CannotJoinIfMemberOfProhibitedGuild()
 {
-    Guild->testProhibitedGuildCombinations(({ "mage" }));
-    User->joinGuild("mage");
+    Guild->testProhibitedGuildCombinations(({ "fake mage" }));
+    User->joinGuild("fake mage");
     ExpectFalse(User->joinGuild("test"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ProhibitedGuildCheckAlsoChecksCurrentGuildsForMembership()
 {
-    Guild->testProhibitedGuildCombinations(({ "mage" }));
+    Guild->testProhibitedGuildCombinations(({ "fake mage" }));
     User->joinGuild("test");
-    ExpectFalse(User->joinGuild("mage"));
+    ExpectFalse(User->joinGuild("fake mage"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -608,7 +608,7 @@ void CanUseEquipmentOfTypeAllowsArmorTypeIfAnyJoinedGuildDoes()
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
     guild->init();
-    User->joinGuild("fighter");
+    User->joinGuild("fake fighter");
     ExpectTrue(armor->equip("blah"));
 }
 
@@ -658,7 +658,7 @@ void CanUseEquipmentOfTypeAllowsArmorLocationIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    User->joinGuild("fighter");
+    User->joinGuild("fake fighter");
     ExpectTrue(armor->equip("blah"));
 }
 
@@ -706,7 +706,7 @@ void CanUseEquipmentOfTypeAllowsWeaponTypeIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    User->joinGuild("fighter");
+    User->joinGuild("fake fighter");
     ExpectTrue(weapon->equip("blah"));
 }
 
@@ -754,7 +754,7 @@ void CanUseEquipmentOfTypeDoesNotAllowDamageTypeEvenIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    User->joinGuild("fighter");
+    User->joinGuild("fake fighter");
     ExpectFalse(weapon->equip("blah"));
 }
 
@@ -804,7 +804,7 @@ void CanUseEquipmentOfTypeDoesNotAllowMaterialTypeEvenIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    User->joinGuild("fighter");
+    User->joinGuild("fake fighter");
     ExpectFalse(weapon->equip("blah"));
 }
 
@@ -855,6 +855,6 @@ void CanUseEquipmentOfTypeDoesNotAllowMaterialEvenIfAnyJoinedGuildDoes()
     User->joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    User->joinGuild("fighter");
+    User->joinGuild("fake fighter");
     ExpectFalse(weapon->equip("blah"));
 }

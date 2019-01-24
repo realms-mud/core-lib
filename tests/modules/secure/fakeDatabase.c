@@ -41,7 +41,7 @@ public nomask mapping Gorthaur()
         "gender": 1,
         "ghost": 0,
         "guilds": ([ 
-            "fighter": ([ 
+            "fake fighter": ([ 
                 "anathema": 2222,
                 "experience": 0,
                 "left guild": 1111,
@@ -51,7 +51,7 @@ public nomask mapping Gorthaur()
                 "rank advanced at": 0,
                 "title": "",
             ]),
-            "mage": ([ 
+            "fake mage": ([ 
                 "anathema": 0,
                 "experience": 133,
                 "left guild": 0,
@@ -215,7 +215,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string *groups)
         "gender": 1,
         "ghost": 0,
         "guilds": ([ 
-            "fighter": ([ 
+            "fake fighter": ([ 
                 "anathema": 2222,
                 "experience": 0,
                 "left guild": 1111,
@@ -225,7 +225,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string *groups)
                 "rank advanced at": 0,
                 "title": "",
             ]),
-            "mage": ([ 
+            "fake mage": ([ 
                 "anathema": 0,
                 "experience": 133,
                 "left guild": 0,

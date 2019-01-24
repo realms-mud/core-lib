@@ -21,7 +21,7 @@ void Setup()
     User->Int(20);
     User->Wis(20);
     User->ToggleMockGuilds();
-    User->SetGuild("mage");
+    User->SetGuild("fake mage");
     User->SetLevel(1);
     User->SetExperience(35000);
 }
@@ -37,8 +37,8 @@ void CleanUp()
 void GuildNameSetsAndGetsNameOfGuild()
 {
     ExpectEq("BaseGuild", Guild->guildName(), "initial name is 'BaseGuild'");
-    ExpectEq("mage", Guild->guildName("mage"), "name set to mage");
-    ExpectEq("mage", Guild->guildName(), "subsequent queries return 'mage'");
+    ExpectEq("fake mage", Guild->guildName("fake mage"), "name set to mage");
+    ExpectEq("fake mage", Guild->guildName(), "subsequent queries return 'mage'");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -323,7 +323,7 @@ void RecurringAttributePointsCriteriaAppliedCorrectly()
 
     ExpectTrue(Guild->testAddCriteria("attribute points", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
     ExpectEq(1, User->attributePoints());
@@ -342,7 +342,7 @@ void AttributePointsCriteriaAppliedCorrectly()
 
     ExpectTrue(Guild->testAddCriteria("attribute points", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
     ExpectEq(0, User->attributePoints());
@@ -377,7 +377,7 @@ void MultipleAttributePointCriteriaWithBeginAtLevelAddedCumulatively()
     ]);
     ExpectTrue(Guild->testAddCriteria("yet more attribute points", criteria), "more criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     User->SetLevel(0);
     ExpectFalse(User->attributePoints());
@@ -441,7 +441,7 @@ void AttributePointsForRankCriteriaAppliedCorrectly()
 
     ExpectTrue(Guild->testAddCriteria("attribute points", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectTrue(Guild->advanceRank(User, "lesser squid"), "advance to new rank");
     ExpectEq(1, User->attributePoints());
@@ -457,7 +457,7 @@ void SkillPointsCriteriaAppliedCorrectly()
 
     ExpectTrue(Guild->testAddCriteria("skill points", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
     ExpectEq(3, User->AvailableSkillPoints());
@@ -490,7 +490,7 @@ void MultipleSkillPointCriteriaWithBeginAtLevelAddedCumulatively()
     ]);
     ExpectTrue(Guild->testAddCriteria("yet more skill points", criteria), "more criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     User->SetLevel(0);
     ExpectFalse(User->AvailableSkillPoints());
@@ -538,7 +538,7 @@ void ResearchPointsCriteriaAppliedCorrectly()
 
     ExpectTrue(Guild->testAddCriteria("research points", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectFalse(User->initiateResearch("lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
@@ -562,7 +562,7 @@ void MultipleResearchPointCriteriaAddedCumulatively()
     ]);
     ExpectTrue(Guild->testAddCriteria("more research points", criteria), "more criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     User->SetLevel(0);
     ExpectFalse(User->researchPoints());
@@ -622,7 +622,7 @@ void MultipleResearchPointCriteriaWithBeginAtLevelAddedCumulatively()
     ]);
     ExpectTrue(Guild->testAddCriteria("yet more research points", criteria), "more criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     User->SetLevel(0);
     ExpectFalse(User->researchPoints());
@@ -672,7 +672,7 @@ void ResearchCriteriaAppliedCorrectly()
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("research", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
@@ -694,7 +694,7 @@ void ResearchTreeCriteriaAppliedCorrectly()
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("research tree", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
     ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
@@ -716,7 +716,7 @@ void TraitCriteriaAppliedCorrectly()
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("abrasive", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectFalse(User->isTraitOf("lib/modules/traits/personality/abrasive.c"), "user does not have the trait");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
@@ -739,7 +739,7 @@ void ApplyIfChosenResearchTreeCriteriaNotAppliedIfCriteriaNotMet()
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("research tree", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
     ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
@@ -764,7 +764,7 @@ void ApplyIfChosenResearchTreeCriteriaAppliedIfCriteriaMet()
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("research tree", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
     User->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c");
     ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
     ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
@@ -789,7 +789,7 @@ void ApplyIfChosenResearchCriteriaNotAppliedIfCriteriaNotMet()
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("research", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
@@ -813,7 +813,7 @@ void ApplyIfChosenResearchCriteriaAppliedIfCriteriaMet()
     ExpectTrue(Guild->testAddCriteria("research", criteria), "criteria added");
     User->addResearchTree("lib/tests/support/guilds/testGuildResearchTree.c");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
@@ -849,7 +849,7 @@ void DemoteRankCorrectlyPlacesMemberAtPreviousRank()
     ExpectTrue(Guild->testAddRank("grand master squid", rank));
     ExpectTrue(Guild->testAddCriteria("attribute points", criteria), "criteria added");
 
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectEq("grand master squid", Guild->advanceRank(User, "lesser squid"), "advance to new rank");
     ExpectEq("lesser squid", Guild->demoteRank(User, "grand master squid"), "advance to grand master squid rank");
@@ -871,7 +871,7 @@ void RankNameReturnsTheNameDefinedInRank()
 /////////////////////////////////////////////////////////////////////////////
 void DefaultRankCanBeSet()
 {
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
     mapping rank = ([
         "name":"lesser squidling",
         "title" : "the title of titliness",
@@ -893,7 +893,7 @@ void DefaultRankCanBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void SkillCostsAppliedCorrectlyForEruditeSkills()
 {
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
     User->SetGuildObject(Guild);
     User->addSkillPoints(100);
 
@@ -904,7 +904,7 @@ void SkillCostsAppliedCorrectlyForEruditeSkills()
 /////////////////////////////////////////////////////////////////////////////
 void SkillCostsAppliedCorrectlyForGeneralSkills()
 {
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
     User->SetGuildObject(Guild);
     User->addSkillPoints(100);
 
@@ -915,7 +915,7 @@ void SkillCostsAppliedCorrectlyForGeneralSkills()
 /////////////////////////////////////////////////////////////////////////////
 void SkillCostsAppliedCorrectlyForLanguageSkills()
 {
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
     User->SetGuildObject(Guild);
     User->addSkillPoints(100);
 
@@ -926,7 +926,7 @@ void SkillCostsAppliedCorrectlyForLanguageSkills()
 /////////////////////////////////////////////////////////////////////////////
 void SkillCostsAppliedCorrectlyForCombatSkills()
 {
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
     User->SetGuildObject(Guild);
     User->addSkillPoints(100);
 
@@ -942,7 +942,7 @@ void SkillCostsAppliedCorrectlyForCombatSkills()
 /////////////////////////////////////////////////////////////////////////////
 void SkillCostsAppliedCorrectlyForCraftingSkills()
 {
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
     User->SetGuildObject(Guild);
     User->addSkillPoints(100);
 
@@ -958,7 +958,7 @@ void SkillCostsAppliedCorrectlyForCraftingSkills()
 /////////////////////////////////////////////////////////////////////////////
 void SkillCostsAppliedCorrectlyForSubterfugeSkills()
 {
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
     User->SetGuildObject(Guild);
     User->addSkillPoints(100);
 
@@ -974,7 +974,7 @@ void SkillCostsAppliedCorrectlyForSubterfugeSkills()
 /////////////////////////////////////////////////////////////////////////////
 void SkillCostsAppliedCorrectlyForMagicSkills()
 {
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
     User->SetGuildObject(Guild);
     User->addSkillPoints(100);
 
@@ -1003,7 +1003,7 @@ void ResearchChoiceCriteriaAppliedCorrectly()
     ]);
 
     ExpectTrue(Guild->testAddCriteria("research choice", criteria), "criteria added");
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectEq(([]), User->getResearchChoices());
     ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
@@ -1041,7 +1041,7 @@ void ResearchPathCriteriaAppliedCorrectly()
     ]);
 
     ExpectTrue(Guild->testAddCriteria("research choice", criteria), "criteria added");
-    Guild->guildName("mage");
+    Guild->guildName("fake mage");
 
     ExpectEq(([]), User->getResearchChoices());
     ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
@@ -1088,8 +1088,8 @@ void InvalidGuildsPrunedFromProhibitionList()
     object mageGuild = clone_object("/lib/tests/support/guilds/mageGuild.c");
     object fighterGuild = clone_object("/lib/tests/support/guilds/fighterGuild.c");
 
-    Guild->testProhibitedGuildCombinations(({ "fighter", "mage", "blarg", "blumfrub", "fake" }));
-    ExpectEq(({ "mage", "fighter" }), Guild->prohibitedGuilds());
+    Guild->testProhibitedGuildCombinations(({ "fake fighter", "fake mage", "blarg", "blumfrub", "fake" }));
+    ExpectEq(({ "fake mage", "fake fighter" }), Guild->prohibitedGuilds());
 }
 
 /////////////////////////////////////////////////////////////////////////////
