@@ -27,7 +27,7 @@ public void reset(int arg)
 
         addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/shockblade.c", WeaponType),
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/shockstrike.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",

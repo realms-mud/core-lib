@@ -102,6 +102,16 @@ void WhoDisplaysWhoListInCorrectOrder()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void WhoHandlesNullPlayers()
+{
+    Players += ({ clone_object("/lib/modules/secure/login.c") });
+    setUsers(Players);
+    ExpectTrue(Wizard->executeCommand("who"));
+
+    ExpectSubStringMatch("Player logging in", Wizard->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void WhoWithWizardFilterDisplaysCorrectList()
 {
     ExpectTrue(Wizard->executeCommand("who -w"));

@@ -17,14 +17,14 @@ public nomask void reset(int arg)
 private string getPlayerInfo(object player)
 {
     string pretitle = player->Pretitle() || "";
-    string title = player->Title();
+    string title = player->Title() || "";
     if (sizeof(pretitle) > 20)
     {
         pretitle = pretitle[0..16] + "...";
     }
     string ret = sprintf("%s%s%s",
         ((pretitle != "") ? pretitle + " " : ""),
-        capitalize(player->RealName()),
+        capitalize(player->RealName() || "Player logging in"),
         ((title != "") ? " " + title : ""));
 
     if (sizeof(ret) > 55)

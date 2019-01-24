@@ -250,6 +250,15 @@ protected nomask string parseTemplate(string template, string perspective,
     {
         message = messageParser()->parseTargetInfo(message, "Initiator", 
             initiator, isSecondPerson);
+
+        object weapon =
+            initiator->equipmentInSlot("wielded primary");
+
+        if (weapon)
+        {
+            message = messageParser()->parseTargetWeapon(message, "Initiator",
+                weapon);
+        }
     }
 
     if(isValidLiving(target))

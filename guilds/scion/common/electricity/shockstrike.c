@@ -80,6 +80,7 @@ public void reset(int arg)
         addSpecification("spell point cost", 10);
         addSpecification("stamina point cost", 50);
         addSpecification("command template", "shock strike");
+
         addSpecification("bonus electricity enchantment", 3);
         addSpecification("bonus resist electricity", 3);
 

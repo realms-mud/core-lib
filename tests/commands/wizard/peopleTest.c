@@ -135,3 +135,13 @@ void PeopleDisplaysCorrectLocation()
     string *peopleList = explode(Wizard->caughtMessage(), "\n");
     ExpectSubStringMatch("Earl.*Admin.*lib/environment/environment", peopleList[3]);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void PeopleHandlesNullPlayers()
+{
+    Players += ({ clone_object("/lib/modules/secure/login.c") });
+    setUsers(Players + ({ Wizard, Wizard2 }));
+    ExpectTrue(Wizard->executeCommand("people"));
+
+    ExpectSubStringMatch("Player logging in", Wizard->caughtMessage());
+}

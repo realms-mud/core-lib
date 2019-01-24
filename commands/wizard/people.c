@@ -54,7 +54,7 @@ private string getPlayerInfo(object player, object initiator)
         "ip address", "people", colorConfiguration);
 
     string name = Configuration->decorate(
-        sprintf("%-20s", capitalize(player->RealName())),
+        sprintf("%-20s", capitalize(player->RealName() || "Player logging in")),
         "name", "people", colorConfiguration);
 
     string level = Configuration->decorate(getPlayerLevel(player),

@@ -62,7 +62,7 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("cooldown", 4);
-        addSpecification("stamina point cost", 100);
+        addSpecification("stamina point cost", 50);
         addSpecification("command template", "mana shield");
  
         addSpecification("bonus resist acid", 1);

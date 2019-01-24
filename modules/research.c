@@ -742,22 +742,25 @@ public nomask int researchCommand(string command)
     object researchObj = 0;
 
     string *researchAbilities = activeAndSustainedResearchAbilities();
+
     foreach(string researchItem in researchAbilities)
     {
         researchObj = researchDictionary()->researchObject(researchItem);
-        
+        string tempCommand = command;
+
         if(researchObj)
         {
             if ((researchObj->query("scope") == "targeted") &&
                 !sizeof(regexp(({ command }), "at [A-Za-z]+")))
             {
-                command += " at " + this_object()->Name();
+                tempCommand += " at " + this_object()->Name();
             }
 
-            if(researchObj->canExecuteCommand(command))
+            if(researchObj->canExecuteCommand(tempCommand))
             {
                 customEvent = researchObj->query("event handler");
                 commandToExecute = researchItem;
+                command = tempCommand;
                 break;
             }
         }
