@@ -2,12 +2,15 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/guilds/scion/common/electricity/root.c";
+inherit "/lib/guilds/scion/common/electricity/electricity.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    WeaponType = "axe";
+    WeaponType = "mace";
+}
 
-    addSpecification("limited by", (["equipment":({ "axe" })]));
+/////////////////////////////////////////////////////////////////////////////
+protected void AdditionalResearch()
+{
 }

@@ -7,7 +7,7 @@ inherit "/lib/guilds/scion/common/electricity/root.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    WeaponType = "axe";
+    WeaponType = "mace";
 
-    addSpecification("limited by", (["equipment":({ "axe" })]));
+    addSpecification("limited by", (["equipment":({ "mace", "flail" })]));
 }

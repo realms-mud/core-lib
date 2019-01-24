@@ -2,20 +2,15 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/researchTree.c";
+inherit "/lib/guilds/scion/common/electricity/electricity.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Path of the Bolt");
-        Source("Scion of Dhuras Guild");
-        Description("This skill provides the user with the "
-            "knowledge to express their raw magical energy as electrical power.");
+    WeaponType = "axe";
+}
 
-        addResearchElement("lib/guilds/scion/paths/axe/electricity/root.c");
-        TreeRoot("lib/guilds/scion/paths/axe/electricity/root.c");
-    }
+/////////////////////////////////////////////////////////////////////////////
+protected void AdditionalResearch()
+{
 }
