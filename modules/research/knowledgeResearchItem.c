@@ -13,7 +13,7 @@ protected nomask int addSpecification(string type, mixed value)
     int ret = 0;
 
     switch(type)
-    {
+    { 
         case "affected research":
         {
             if(mappingp(value))

@@ -69,6 +69,16 @@ protected nomask int checkValidType(string typeToCheck)
                 }
                 break;
             }                
+            case "domain":
+            {
+                if(member(inherit_list(this_object()), 
+                   "lib/modules/domains/domainResearchItem.c")
+                   < 0)
+                {
+                    ret = 0;
+                }
+                break;
+            }   
             default:
             {
                 ret = 0;
@@ -119,7 +129,7 @@ protected int addSpecification(string type, mixed value)
                     researchData["type"] = value;
                 }
                 else if(stringp(value) && (member(({ "active", "passive", 
-                    "sustained", "ritual", "knowledge" }), value) > -1))
+                    "sustained", "ritual", "knowledge", "domain" }), value) > -1))
                 {
                 
                     raise_error(sprintf("ERROR - researchItem: A '%s' type "
@@ -137,7 +147,7 @@ protected int addSpecification(string type, mixed value)
             case "scope":
             {
                 if(value && stringp(value) && (member(({ "self", "targeted",
-                   "area", "environmental", "region", "global" }),value) > -1))
+                   "area", "environmental", "region", "global", "domain" }),value) > -1))
                 {
                     ret = 1;
                     researchData["scope"] = value;

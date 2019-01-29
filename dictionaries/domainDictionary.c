@@ -3,6 +3,10 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 #include "/lib/include/itemFormatters.h"
+#include "domains/buildings.h"
+#include "domains/buildingEffects.h"
+#include "domains/troops.h"
+#include "domains/troopEffects.h"
 
 private string DomainSelectorBase = "/lib/modules/domains/%sSelector.c";
 
@@ -91,4 +95,45 @@ public nomask mapping getBuildingMenu(object user)
 public nomask mapping getAdministrationMenu(object user)
 {
     return ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validBuildings(mixed buildings)
+{
+    int ret = 0;
+
+    string *buildingList = ({});
+    if (stringp(buildings))
+    {
+        buildingList += ({ buildings });
+    }
+    else if(pointerp(buildings) && sizeof(buildings) &&
+        stringp(buildings[0]))
+    {
+        buildingList += buildings;
+    }
+
+    if (sizeof(buildingList))
+    {
+        ret = 1;
+
+        string *blueprints = m_indices(BuildingBlueprints);
+        foreach(string building in buildingList)
+        {
+            ret &&= (member(blueprints, building) > -1);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validBuildingEffects(mapping effects)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validTroopEffects(mapping effects)
+{
+    return 0;
 }
