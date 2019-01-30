@@ -4,28 +4,36 @@
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
 
+protected string WeaponType = "ERROR";
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
     {
         sustainedResearchItem::reset(arg);
-        addSpecification("name", "Soul Blade");
+        addSpecification("name", "Soul Strike");
         addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "");
+        addSpecification("description", "This research provides the user with the "
+            "knowledge of the soul strike technique. By means of this, the "
+            "Scion is able to emit constant negative energy from their "
+            "weapon. Doing so is wearying and will decrease available stamina.");
+        Setup();
 
-        addSpecification("limited by", (["equipment":({
-            "dagger", "short sword" })]));
-
-        addPrerequisite("lib/guilds/scion/paths/dagger/root.c",
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite("lib/guilds/scion/paths/dagger/blood/root.c",
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/blood/root.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/dagger/blood/sweeping-torment.c",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/sweeping-torment.c", WeaponType),
                 "name" : "sweeping torment",
                 "formula" : "additive",
                 "base value" : 2,
@@ -33,7 +41,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/dagger/blood/soul-brand.c",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/soul-brand.c", WeaponType),
                 "name" : "soul brand",
                 "formula" : "additive",
                 "base value" : 2,
@@ -41,15 +49,15 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/dagger/blood/scourge-blade.c",
-                "name" : "scourge blade",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/scourge-strike.c", WeaponType),
+                "name" : "scourge strike",
                 "formula" : "additive",
                 "base value" : 2,
                 "rate": 1.0
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/dagger/blood/wicked-edge.c",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/wicked-edge.c", WeaponType),
                 "name" : "wicked edge",
                 "formula" : "additive",
                 "base value" : 2,
@@ -57,8 +65,8 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": "lib/guilds/scion/paths/dagger/blood/tortured-pommel.c",
-                "name" : "tortured pommel",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/tortured-curse.c", WeaponType),
+                "name" : "tortured curse",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0
@@ -71,13 +79,15 @@ public void reset(int arg)
         addSpecification("cooldown", 4);
         addSpecification("spell point cost", 10);
         addSpecification("stamina point cost", 50);
-        addSpecification("command template", "soul blade");
+        addSpecification("command template", "soul strike");
         addSpecification("bonus undead enchantment", 3);
         addSpecification("bonus resist magical", 3);
 
-        addSpecification("use ability activate message", "Thin tendrils of crimson "
-            "energy wrap around ##InitiatorPossessive::Name## dagger.");
-        addSpecification("use ability deactivate message", "Thin tendrils of crimson "
-            "energy around ##InitiatorPossessive::Name## dagger subside.");
+        addSpecification("use ability activate message", "Thin tendrils of "
+            "crimson energy wrap around ##InitiatorPossessive::Name## "
+            "##InitiatorWeapon##.");
+        addSpecification("use ability deactivate message", "Thin tendrils of "
+            "crimson energy around ##InitiatorPossessive::Name## "
+            "##InitiatorWeapon## subside.");
     }
 }

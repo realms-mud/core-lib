@@ -4,30 +4,35 @@
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
+protected string WeaponType = "ERROR";
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Scourge Blade");
+        addSpecification("name", "Wicked Edge");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of the scourge blade technique. This form enhances "
-            "the scion's soulblade.");
+            "knowledge of the wicked edge technique. This form enhances "
+            "the scion's soul strike.");
+        Setup();
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 11 ]));
-        addPrerequisite("lib/guilds/scion/paths/dagger/blood/soul-brand.c",
+              "value": 15 ]));
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/blood/scourge-strike.c", WeaponType),
             (["type":"research"]));
-
-        addSpecification("limited by", (["equipment":({
-            "dagger", "short sword" })]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("affected research", (["Soul Blade":2]));
+        addSpecification("affected research", (["Soul Strike":2]));
     }
 }
