@@ -5,6 +5,7 @@
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
 
 protected string WeaponType = "ERROR";
+protected string WeaponSkill = "unarmed";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
@@ -47,7 +48,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": sprintf("lib/guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType),
-                "name" : "Ionization",
+                "name" : "Ionized Barrier",
                 "formula" : "additive",
                 "base value" : 2,
                 "rate": 1.0
@@ -55,14 +56,14 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": sprintf("lib/guilds/scion/paths/%s/electricity/plasma-barrier.c", WeaponType),
-                "name" : "Plasma Eruption",
+                "name" : "Plasma Barrier",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0
             ]),
             ([
                 "type":"skill",
-                "name" : "long sword",
+                "name" : WeaponSkill,
                 "formula" : "additive",
                 "rate" : 1.05
             ]),

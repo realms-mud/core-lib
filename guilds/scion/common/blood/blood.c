@@ -38,6 +38,18 @@ private void ThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FifthLevel()
+{
+    addResearchElement(sprintf("lib/guilds/scion/paths/%s/blood/choking-tendrils.c", WeaponType));
+    addResearchElement(sprintf("lib/guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType));
+
+    addChild(sprintf("lib/guilds/scion/paths/%s/blood/choking-tendrils.c", WeaponType),
+        sprintf("lib/guilds/scion/paths/%s/blood/soulstrike.c", WeaponType));
+    addChild(sprintf("lib/guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
+        sprintf("lib/guilds/scion/paths/%s/blood/soulspike.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
     addResearchElement(sprintf("lib/guilds/scion/paths/%s/blood/soul-brand.c", WeaponType));

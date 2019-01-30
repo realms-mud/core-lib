@@ -18,45 +18,45 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Shocking Barrier");
+        addSpecification("name", "Choking Tendrils");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of the shocking barrier technique. By means of this, the "
-            "Scion is able to use their weapon as a conduit for emitting electric "
-            "energy that swarms around and harries a foe.");
+            "knowledge of the choking tendrils technique. By means of this, the "
+            "Scion is able to use their weapon as a conduit for emitting negative energy "
+            "energy that swarms around a foe.");
         Setup();
 
         addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/shocking-tendrils.c", WeaponType),
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/blood/soulstrike.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Scion of Dhuras",
-                "value": 13
+                "value": 5
             ]));
 
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType),
-                "name" : "Static Barrier",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/wicked-barrier.c", WeaponType),
+                "name" : "Wicked Barrier",
                 "formula" : "additive",
                 "base value" : 2,
                 "rate": 1.0
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType),
-                "name" : "Ionized Barrier",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/scourge-barrier.c", WeaponType),
+                "name" : "Scourge Barrier",
                 "formula" : "additive",
                 "base value" : 2,
                 "rate": 1.0
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/plasma-barrier.c", WeaponType),
-                "name" : "Plasma Barrier",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/tortured-barrier.c", WeaponType),
+                "name" : "Tortured Barrier",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0
@@ -69,7 +69,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"skill",
-                "name" : "elemental air",
+                "name" : "blood",
                 "formula" : "additive",
                 "rate" : 1.10
             ]),
@@ -98,15 +98,14 @@ public void reset(int arg)
         addSpecification("research cost", 1);
         addSpecification("cooldown", 120);
         addSpecification("duration", 60);
-        addSpecification("spell point cost", 75);
-        addSpecification("event handler", "shockingBarrierEvent");
-        addSpecification("command template", "shocking barrier [at ##Target##]");
-        addSpecification("penalty to resist electricity", 10);
-        addSpecification("penalty to resist physical", 10);
-        addSpecification("apply enfeebled", 1);
+        addSpecification("spell point cost", 35);
+        addSpecification("event handler", "chokingTendrilsEvent");
+        addSpecification("command template", "choking tendrils [at ##Target##]");
+        addSpecification("penalty to resist evil", 10);
+        addSpecification("penalty to resist physical", 5);
 
-        addSpecification("use ability message", "A wave of electricity flies "
-            "from ##InitiatorPossessive::Name## ##InitiatorWeapon## and engulfs "
-            "##TargetName##.");
+        addSpecification("use ability message", "Sinuous tendrils of "
+            "black energy spray from ##InitiatorPossessive::Name## "
+            "##InitiatorWeapon##, engulfing ##TargetName##.");
     }
 }

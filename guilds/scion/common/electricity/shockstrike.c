@@ -49,8 +49,8 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/energized-blade.c", WeaponType),
-                "name" : "energized blade",
+                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
+                "name" : "energized strike",
                 "formula" : "additive",
                 "base value" : 2,
                 "rate": 1.0
@@ -65,8 +65,8 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/thunders-pommel.c", WeaponType),
-                "name" : "Thunder's Pommel",
+                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/thunders-boon.c", WeaponType),
+                "name" : "Thunder's Boon",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0

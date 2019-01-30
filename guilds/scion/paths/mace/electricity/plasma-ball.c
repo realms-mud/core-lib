@@ -8,6 +8,7 @@ inherit "/lib/guilds/scion/common/electricity/plasma-ball.c";
 protected void Setup()
 {
     WeaponType = "mace";
+    WeaponSkill = "mace";
 
     addSpecification("limited by", (["equipment":({ "mace", "flail" })]));
 }

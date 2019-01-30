@@ -8,6 +8,7 @@ inherit "/lib/guilds/scion/common/electricity/maelstrom.c";
 protected void Setup()
 {
     WeaponType = "sword";
+    WeaponSkill = "long sword";
 
     addSpecification("limited by", (["equipment":({
         "long sword", "hand and a half sword", "two-handed sword" })]));

@@ -17,23 +17,27 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Shocking Edge");
+        addSpecification("name", "Parasitic Charge");
         addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of the shocking edge technique. This form enhances "
-            "the scion's Shock Strike and Lightning Strike abilities.");
+        addSpecification("description", "This research provides the user with the "
+            "knowledge of the parasitic charge technique. This form enhances "
+            "the Scion's offensive spells.");
         Setup();
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild" : "Scion of Dhuras",
-                "value" : 15]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
+        addPrerequisite("level", 
+            (["type":"level", 
+              "guild": "Scion of Dhuras",
+              "value": 5 ]));
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/blood/soulspike.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("affected research", (["Shock Strike":2,
-            "Lightning Strike" : 3]));
+        addSpecification("affected research", (["Soul Spike":5,
+            "Soul Shear": 5,
+            "Sanguine Blast": 5,
+            "Carnage": 5,
+            "Destruction": 10
+        ]));
     }
 }

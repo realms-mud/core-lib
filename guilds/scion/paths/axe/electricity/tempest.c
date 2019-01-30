@@ -8,6 +8,7 @@ inherit "/lib/guilds/scion/common/electricity/tempest.c";
 protected void Setup()
 {
     WeaponType = "axe";
+    WeaponSkill = "axe";
 
     addSpecification("limited by", (["equipment":({ "axe" })]));
 }

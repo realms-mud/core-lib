@@ -8,6 +8,7 @@ inherit "/lib/guilds/scion/common/electricity/lightning.c";
 protected void Setup()
 {
     WeaponType = "hammer";
+    WeaponSkill = "hammer";
 
     addSpecification("limited by", (["equipment":({ "hammer" })]));
 }

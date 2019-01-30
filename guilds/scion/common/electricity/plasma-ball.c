@@ -5,6 +5,7 @@
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 
 protected string WeaponType = "ERROR";
+protected string WeaponSkill = "unarmed";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
@@ -108,7 +109,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"skill",
-                "name" : "long sword",
+                "name" : WeaponSkill,
                 "formula" : "additive",
                 "rate" : 1.05
             ]),

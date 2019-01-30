@@ -8,6 +8,7 @@ inherit "/lib/guilds/scion/common/electricity/lightning-blast.c";
 protected void Setup()
 {
     WeaponType = "staff";
+    WeaponSkill = "staff";
 
     addSpecification("limited by", (["equipment":({ "staff" })]));
 }

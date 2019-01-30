@@ -8,6 +8,7 @@ inherit "/lib/guilds/scion/common/electricity/shocking-tendrils.c";
 protected void Setup()
 {
     WeaponType = "axe";
+    WeaponSkill = "axe";
 
     addSpecification("limited by", (["equipment":({ "axe" })]));
 }
