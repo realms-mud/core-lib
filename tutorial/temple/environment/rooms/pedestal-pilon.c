@@ -13,18 +13,30 @@ public void Setup()
     addFeature("lib/tutorial/temple/environment/features/amethyst-ceiling.c");
     addFeature("lib/tutorial/temple/environment/features/purple-liquid.c");
 
-    // First test
-    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-square.c", "first test");
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x5.c", "first test");
+    // Second test
+    addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-2x5.c", "second test");
+    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-exit-2.c", "second test");
 
-    // Fourth test
-    addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-1x4.c", "fourth test");
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x5.c", "fourth test");
+    addObject("/lib/tutorial/temple/objects/pilon.c");
 
-    // Seventh test
-    addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-1x4.c", "seventh test");
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x5.c", "seventh test");
-
-    setCoordinates("temple of obedience", 25, 25);
+    setCoordinates("temple of obedience", 26, 24);
     setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private object pilon()
+{
+    return present("pilon-hidden", this_object());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int moveToIsAllowed(object user, object toLocation)
+{
+    int ret = 1;
+
+    if (pilon())
+    {
+        ret = pilon()->allowMove();
+    }
+    return ret;
 }

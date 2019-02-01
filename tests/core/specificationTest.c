@@ -223,6 +223,19 @@ void CanSetLimitorForEquipmentThatIsValidListType()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorThatIsAList()
+{
+    mapping limitor = ([
+        "crafting type":({ "sword", "dagger", "pole arm", "staff",
+                           "axe", "hammer", "mace", "flail", "crossbow",
+                           "bow", "sling", "thrown", "shield" })
+    ]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanSetMultipleLimitors()
 {
     mapping limitor = (["spell points drained":1, "opponent guild":"test"]);
@@ -526,6 +539,24 @@ void DisplayLimitersStringCorrectWithLimitorForWeapon()
     mapping limitor = (["equipment":"long sword"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("\x1b[0;36mThis is only applied when you're using: long sword.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitorsCorrectWithMultipleCraftingItems()
+{
+    mapping limitor = ([
+        "crafting type":({ "sword", "dagger", "pole arm", "staff",
+                           "axe", "hammer", "mace", "flail", "crossbow",
+                           "bow", "sling", "thrown", "shield" })
+    ]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), 
+        "set the limitor");
+
+    ExpectEq("\x1b[0;36mThis is only applied when crafting type is sword, "
+        "dagger, pole arm, staff,\naxe, hammer, mace, flail, crossbow, bow, "
+        "sling, thrown, shield.\n\x1b[0m", 
+        Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////

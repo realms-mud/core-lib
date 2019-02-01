@@ -497,7 +497,11 @@ public nomask string displayLimiters(string colorConfiguration, object configura
             case "crafting type":
             case "environment":
             {
-                ret += sprintf(limiter, key, "is", researchData["limited by"][key]);
+                string types = stringp(researchData["limited by"][key]) ?
+                    researchData["limited by"][key] :
+                    implode(researchData["limited by"][key], ", ");
+
+                ret += sprintf(limiter, key, "is", types);
                 break;
             }
             case "opponent faction":

@@ -5,6 +5,19 @@
 inherit "/lib/modules/quests/questItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
+private void registerEventHandlers()
+{
+    registerEventHandler("spawnUhrdalen");
+    registerEventHandler("startFirstTest");
+    registerEventHandler("startSecondTest");
+    registerEventHandler("startThirdTest");
+    registerEventHandler("startFourthTest");
+    registerEventHandler("startFifthTest");
+    registerEventHandler("startSixthTest");
+    registerEventHandler("startSeventhTest");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void reset(int arg)
 {
     if (!arg)
@@ -39,11 +52,13 @@ void reset(int arg)
             "completing the poem on the wall of runes.");
         addTransition("resistance rune placed", "first test", "startFirstTest");
 
+        addState("second test", "When I did more stuff, other things happened.");
+        addTransition("first test", "second test", "startSecondTest");
+
         setInitialState("entered room");
         startStateMachine();
 
-        registerEventHandler("spawnUhrdalen");
-        registerEventHandler("startFirstTest");
+        registerEventHandlers();
     }
 }
 

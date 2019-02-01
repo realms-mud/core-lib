@@ -439,6 +439,8 @@ private nomask string parseEfunCall(string match)
     // obj is either this OR a file path.
     // function is a method on the called object. That method MUST return a
     // string. 
+    match = regreplace(match, "\n", "", 1);
+
     string *arguments = explode(match, "::");
     if (sizeof(arguments) >= 4)
     {
@@ -649,8 +651,9 @@ public varargs string long(string item)
         {
             ret += " " + environmentalElements["description"][currentState()];
         }
+        ret = format(ret, 78);
         ret = regreplace(ret,
-            "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_]+)::",
+            "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
             #'parseEfunCall,1);
     }
     else
@@ -662,7 +665,7 @@ public varargs string long(string item)
     string colorConfiguration = this_player() ?
         this_player()->colorConfiguration() : "none";
 
-    return configuration->decorate(format(capitalizeSentences(ret), 78),
+    return configuration->decorate(capitalizeSentences(ret),
         "description", "environment", colorConfiguration) +
         getExitDescription() + getInventoryDescription() + "\n";
 }
