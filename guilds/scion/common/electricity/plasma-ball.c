@@ -28,7 +28,7 @@ public void reset(int arg)
 
         addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/lightning.c", WeaponType),
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/lightning-blast.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -43,24 +43,24 @@ public void reset(int arg)
 
         addSpecification("damage hit points", ({ ([
                 "probability":90,
-                "base damage" : 35,
-                "range" : 65
+                "base damage" : 100,
+                "range" : 200
             ]),
             ([
                 "probability":10,
-                "base damage" : 75,
-                "range" : 125
+                "base damage" : 200,
+                "range" : 500
             ])
         }));
         addSpecification("damage spell points", ({ ([
                 "probability":90,
-                "base damage" : 25,
-                "range" : 50
+                "base damage" : 50,
+                "range" : 100
             ]),
             ([
                 "probability": 10,
-                "base damage": 50,
-                "range" : 100
+                "base damage": 100,
+                "range" : 200
             ])
         }));
 

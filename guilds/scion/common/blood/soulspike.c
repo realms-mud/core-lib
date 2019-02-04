@@ -51,6 +51,22 @@ public void reset(int arg)
 
         addSpecification("modifiers", ({ 
             ([
+                "type":"research",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
+                "name" : "Parasitic Charge",
+                "formula" : "additive",
+                "base value" : 5,
+                "rate": 1.0
+            ]),
+            ([
+                "type":"research",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/leechs-promise.c", WeaponType),
+                "name" : "The Leech's Promise",
+                "formula" : "additive",
+                "base value" : 5,
+                "rate": 1.0
+            ]),
+            ([
                 "type":"skill",
                 "name" : WeaponSkill,
                 "formula" : "additive",

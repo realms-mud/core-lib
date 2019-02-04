@@ -18,92 +18,92 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Lightning Blast");
+        addSpecification("name", "Destruction");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of the lightning blast technique. By means of this, the "
-            "Scion is able to use their weapon as a conduit for emitting bolts "
-            "of lightning at all foes in the area.");
+            "knowledge of the destruction technique. By means of this, the "
+            "Scion is able to use their weapon as a conduit for sending waves "
+            "of negative energy at all foes in the area.");
         Setup();
 
         addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/lightning.c", WeaponType),
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/blood/sanguine-blast.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Scion of Dhuras",
-                "value": 17
+                "value": 37
             ]));
 
         addSpecification("scope", "area");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("spell point cost", 150);
+        addSpecification("spell point cost", 250);
 
         addSpecification("damage hit points", ({ ([
                 "probability":90,
-                "base damage" : 25,
-                "range" : 50
+                "base damage" : 100,
+                "range" : 200
             ]),
             ([
-                "probability": 10,
-                "base damage": 50,
-                "range" : 100
+                "probability":10,
+                "base damage" : 200,
+                "range" : 500
             ])
         }));
         addSpecification("damage spell points", ({ ([
                 "probability":90,
-                "base damage" : 10,
-                "range" : 25
+                "base damage" : 50,
+                "range" : 100
             ]),
             ([
                 "probability": 10,
-                "base damage": 25,
-                "range" : 50
+                "base damage": 100,
+                "range" : 200
             ])
         }));
-        addSpecification("damage type", "electricity");
+        addSpecification("damage type", "undead");
 
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
-                "name" : "Static Charge",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
-            ]),
-            ([
-                "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
-                "name" : "Electrostatic Induction",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
-            ]),
-            ([
-                "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/ionization.c", WeaponType),
-                "name" : "Ionization",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
-            ]),
-            ([
-                "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/enhanced-discharge.c", WeaponType),
-                "name" : "Enhanced Discharge",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
+                "name" : "Parasitic Charge",
                 "formula" : "additive",
                 "base value" : 10,
                 "rate": 1.0
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/plasma-eruption.c", WeaponType),
-                "name" : "Plasma Eruption",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/leechs-promise.c", WeaponType),
+                "name" : "The Leech's Promise",
                 "formula" : "additive",
                 "base value" : 10,
+                "rate": 1.0
+            ]),
+            ([
+                "type":"research",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/enervation.c", WeaponType),
+                "name" : "Enervation",
+                "formula" : "additive",
+                "base value" : 10,
+                "rate": 1.0
+            ]),
+            ([
+                "type":"research",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/malefic-discharge.c", WeaponType),
+                "name" : "Malefic Discharge",
+                "formula" : "additive",
+                "base value" : 20,
+                "rate": 1.0
+            ]),
+            ([
+                "type":"research",
+                "research item": sprintf("lib/guilds/scion/paths/%s/blood/crimson-eruption.c", WeaponType),
+                "name" : "Crimson Eruption",
+                "formula" : "additive",
+                "base value" : 30,
                 "rate": 1.0
             ]),
             ([
@@ -114,7 +114,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"skill",
-                "name" : "elemental air",
+                "name" : "blood",
                 "formula" : "additive",
                 "rate" : 1.10
             ]),
@@ -138,10 +138,10 @@ public void reset(int arg)
             ]) 
         }));
 
-        addSpecification("cooldown", 100);
-        addSpecification("event handler", "lightningBlastEvent");
-        addSpecification("command template", "lightning blast");
-        addSpecification("use ability message",  "Intense bolts of lightning "
-            "erupt from ##InitiatorPossessive::Name## ##InitiatorWeapon##.");
+        addSpecification("cooldown", 180);
+        addSpecification("event handler", "destructionEvent");
+        addSpecification("command template", "destruction");
+        addSpecification("use ability message",  "Intense waves of purple "
+            "negative energy erupt from ##InitiatorPossessive::Name## ##InitiatorWeapon##.");
     }
 }

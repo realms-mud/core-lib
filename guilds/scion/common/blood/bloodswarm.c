@@ -18,22 +18,22 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Choking Tendrils");
+        addSpecification("name", "Bloodswarm");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of the choking tendrils technique. By means of this, the "
-            "Scion is able to use their weapon as a conduit for emitting negative energy "
-            "energy that swarms around a foe.");
+            "knowledge of the bloodswarm technique. By means of this, the "
+            "Scion is able to use their weapon as a conduit for emitting a "
+            "powerful negative energy storm that harries a foe.");
         Setup();
 
         addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/blood/soulstrike.c", WeaponType),
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/blood/enervating-barrier.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Scion of Dhuras",
-                "value": 5
+                "value": 33
             ]));
 
         addSpecification("modifiers", ({ 
@@ -96,16 +96,18 @@ public void reset(int arg)
         addSpecification("scope", "targeted");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("cooldown", 120);
-        addSpecification("duration", 60);
-        addSpecification("spell point cost", 35);
-        addSpecification("event handler", "chokingTendrilsEvent");
-        addSpecification("command template", "choking tendrils [at ##Target##]");
-        addSpecification("penalty to resist evil", 10);
-        addSpecification("penalty to resist physical", 5);
+        addSpecification("cooldown", 240);
+        addSpecification("spell point cost", 175);
+        addSpecification("duration", 90);
+        addSpecification("event handler", "bloodswarmEvent");
+        addSpecification("command template", "bloodswarm [at ##Target##]");
+        addSpecification("penalty to resist undead", 15);
+        addSpecification("penalty to resist physical", 15);
+        addSpecification("apply enfeebled", 1);
+        addSpecification("apply slow", 1);
 
-        addSpecification("use ability message", "Sinuous tendrils of "
-            "black energy spray from ##InitiatorPossessive::Name## "
-            "##InitiatorWeapon##, engulfing ##TargetName##.");
+        addSpecification("use ability message", "A wave of garish negative energy erupts "
+            "from ##InitiatorPossessive::Name## ##InitiatorWeapon## and engulfs "
+            "##TargetName##.");
     }
 }
