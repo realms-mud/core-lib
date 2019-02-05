@@ -14,6 +14,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "increase hit points": 100,
+            "biological": "analeptic",
         ]),
         "base experience": 5,
     ]),
@@ -26,6 +28,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "increase spell points": 100,
+            "biological": "analeptic",
         ]),
         "base experience": 5,
     ]),
@@ -38,6 +42,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "increase stamina points": 100,
+            "biological": "adrenaline",
         ]),
         "base experience": 5,
     ]),
@@ -45,13 +51,17 @@ private nosave mapping potions =
         "type": "power",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewEpicPotions.c":(["type":"research"]),
-            "brewing": (["type":"skill", "value": 15]),
+            "brewing": (["type":"skill", "value": 35]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/tears-of-ilyrth.c",
+            "increase hit points": 100,
+            "increase spell points": 100,
+            "biological": "magical",
         ]),
-        "base experience": 5,
+        "base experience": 10,
     ]),
     "tincture of telus":([
         "type": "power",
@@ -62,6 +72,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/tincture-of-telus.c",
+            "biological": "magical",
         ]),
         "base experience": 5,
     ]),
@@ -74,6 +86,10 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/nectar-of-echlarhol.c",
+            "increase hit points": 100,
+            "increase spell points": 200,
+            "biological": "magical",
         ]),
         "base experience": 5,
     ]),
@@ -86,6 +102,9 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/ilainas-elixir.c",
+            "increase spell points": 500,
+            "biological": "magical",
         ]),
         "base experience": 5,
     ]),
@@ -98,6 +117,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/acid-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -110,6 +131,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/air-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -122,6 +145,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/chaos-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -134,6 +159,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/cold-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -146,6 +173,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/disease-resistance.c",
+            "biological": "salicylate",
         ]),
         "base experience": 5,
     ]),
@@ -158,6 +187,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/earth-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -170,6 +201,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/electricity-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -182,6 +215,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/energy-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -194,6 +229,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/evil-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -206,6 +243,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/fire-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -218,6 +257,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/good-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -230,6 +271,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/magic-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -242,6 +285,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/neutral-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -254,6 +299,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/paralysis-resistance.c",
+            "biological": "neurotoxin",
         ]),
         "base experience": 5,
     ]),
@@ -266,6 +313,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/physical-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -278,6 +327,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/poison-resistance.c",
+            "biological": "adrenaline",
         ]),
         "base experience": 5,
     ]),
@@ -290,6 +341,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/magic-resistance.c",
+            "biological": "empathogen",
         ]),
         "base experience": 5,
     ]),
@@ -302,6 +355,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/sonic-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -314,6 +369,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/undead-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -326,6 +383,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/water-resistance.c",
+            "biological": "neuroleptic",
         ]),
         "base experience": 5,
     ]),
@@ -338,6 +397,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/strength.c",
+            "biological": "steroid",
         ]),
         "base experience": 5,
     ]),
@@ -350,6 +411,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/intelligence.c",
+            "biological": "magical",
         ]),
         "base experience": 5,
     ]),
@@ -362,6 +425,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/dexterity.c",
+            "biological": "xanthine",
         ]),
         "base experience": 5,
     ]),
@@ -374,6 +439,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/wisdom.c",
+            "biological": "magical",
         ]),
         "base experience": 5,
     ]),
@@ -386,6 +453,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/constitution.c",
+            "biological": "adrenaline",
         ]),
         "base experience": 5,
     ]),
@@ -398,6 +467,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/charisma.c",
+            "biological": "magical",
         ]),
         "base experience": 5,
     ]),
@@ -410,6 +481,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/speed.c",
+            "biological": "xanthine",
         ]),
         "base experience": 5,
     ]),
@@ -422,6 +495,8 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
+            "apply trait": "lib/instances/items/potions/traits/fortification.c",
+            "biological": "steroids",
         ]),
         "base experience": 5,
     ]),
@@ -434,7 +509,9 @@ private nosave mapping potions =
         "crafting materials": ([
         ]),
         "effects": ([
-        ]),
+            "apply trait": "lib/instances/items/potions/traits/tincture-of-combat-prowess.c",
+            "biological": "steroids",
+       ]),
         "base experience": 5,
     ]),
 ]);

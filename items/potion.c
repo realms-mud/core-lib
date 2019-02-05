@@ -27,6 +27,18 @@ public nomask mixed query(string element)
                 materialsObject()->getBlueprintModifier(this_object(), "skill to use");
             break;
         }
+        case "biological effect":
+        {
+            if (!member(itemData, "biological effect"))
+            {
+                object dictionary =
+                    load_object("/lib/dictionaries/biologicalDictionary.c");
+                itemData["biological effect"] =
+                    dictionary->getBiologicalEffect(this_object());
+            }
+            ret = itemData["biological effect"];
+            break;
+        }
         default:
         {
             ret = "item"::query(element);
@@ -80,4 +92,35 @@ public nomask varargs int set(string element, mixed data)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int consume(string name)
+{
+    int ret = 0;
+
+    if (id(name) && present(name, this_player()))
+    {
+        object dictionary = 
+            load_object("/lib/dictionaries/biologicalDictionary.c");
+
+        ret = dictionary->consumeItem(this_player(), this_object());
+        if (ret)
+        {
+            outputMessageFromTemplate(
+                sprintf("##UserName## ##Infinitive::%s## %s.\n",
+                    query_verb(), query("name")));
+            destruct(this_object());
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void init()
+{
+    add_action("consume", "quaff");
+    add_action("consume", "drink");
+    add_action("consume", "consume");
+    item::init();
 }

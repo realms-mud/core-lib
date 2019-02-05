@@ -30,7 +30,11 @@ public nomask int execute(string command, object initiator)
         if (environment(initiator))
         {
             object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
-            foreach(object person in all_inventory(environment(initiator)))
+
+            object *characters = filter(all_inventory(environment(initiator)),
+                (: $1->isRealizationOfLiving() :));
+
+            foreach(object person in characters)
             {
                 if (person && objectp(person))
                 {

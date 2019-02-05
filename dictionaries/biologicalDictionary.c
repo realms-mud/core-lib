@@ -5,6 +5,9 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "materials/potions.h"
+#include "materials/drinks.h"
+#include "materials/food.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private mapping drugEffects = ([
@@ -72,6 +75,8 @@ private mapping drugEffects = ([
     ]),
     "analeptic": ([
     ]),
+    "magical": ([
+    ]),
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -87,8 +92,15 @@ public nomask int applyBiologicalEffect(object livingToModify, object item)
         string type = item->query("biological effect");
         if (sizeof(typeOfItem) && member(drugEffects, type))
         {
-            livingToModify->addToxicity(drugEffects[type]["toxicity"]);
-            livingToModify->addTrait(drugEffects[type]["trait"]);
+            ret = 1;
+            if (member(drugEffects[type], "toxicity"))
+            {
+                livingToModify->addToxicity(drugEffects[type]["toxicity"]);
+            }
+            if (member(drugEffects[type], "trait"))
+            {
+                livingToModify->addTrait(drugEffects[type]["trait"]);
+            }
         }
     }
     return ret;
@@ -104,6 +116,82 @@ public nomask int removeBiologicalEffect(object livingToModify, string effect)
         {
             livingToModify->addToxicity(0 - drugEffects[effect]["toxicity"]);
             livingToModify->removeTrait(drugEffects[effect]["trait"]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int applyPotionEffects(object actor, mapping effects)
+{
+    int ret = 0;
+    if (sizeof(effects))
+    {
+        ret = 1;
+        foreach(string key in m_indices(effects))
+        {
+            switch (key)
+            {
+                case "increase hit points":
+                {
+                    ret &&= actor->hitPoints(effects["increase hit points"]);
+                    break;
+                }
+                case "increase spell points":
+                {
+                    ret &&= actor->spellPoints(effects["increase spell points"]);
+                    break;
+                }
+                case "increase stamina points":
+                {
+                    ret &&= actor->staminaPoints(effects["increase stamina points"]);
+                    break;
+                }
+                case "apply trait":
+                {
+                    ret &&= actor->addTrait(effects["apply trait"]);
+                    break;
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int consumeItem(object actor, object item)
+{
+    int ret = 0;
+    string blueprint = item->query("blueprint");
+
+    mapping effects = 0;
+    if ((item->query("type") == "potion") && member(potions, blueprint))
+    {
+        effects = potions[blueprint]["effects"];
+
+        ret = applyPotionEffects(actor, effects);
+    }
+
+    if (ret || !sizeof(effects))
+    {
+        ret = applyBiologicalEffect(actor, item);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getBiologicalEffect(object item)
+{
+    string ret = 0;
+
+    string blueprint = item->query("blueprint");
+    if ((item->query("type") == "potion") &&  member(potions, blueprint))
+    {
+        mapping effects = potions[blueprint]["effects"];
+
+        if (member(effects, "biological"))
+        {
+            ret = effects["biological"];
         }
     }
     return ret;

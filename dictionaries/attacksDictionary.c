@@ -251,7 +251,10 @@ public nomask void displayMessage(object attacker, object foe,
             }
             // This annoying loop handles the fact that everyone has different
             // setting for color.
-            foreach(object person in all_inventory(environment(attacker)))
+            object *characters = filter(all_inventory(environment(attacker)),
+                (: $1->isRealizationOfLiving() :));
+
+            foreach(object person in characters)
             {
                 if(person && objectp(person))// && interactive(person))
                 {

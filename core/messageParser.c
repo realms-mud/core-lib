@@ -402,7 +402,10 @@ public nomask varargs void displayMessage(string message, object initiator,
     // setting for color.
     if (environment(initiator))
     {
-        foreach(object person in all_inventory(environment(initiator)))
+        object *characters = filter(all_inventory(environment(initiator)),
+            (: $1->isRealizationOfLiving() :));
+
+        foreach(object person in characters)
         {
             if (person && objectp(person))
             {
