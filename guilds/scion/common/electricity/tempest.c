@@ -101,8 +101,8 @@ public void reset(int arg)
         addSpecification("duration", 90);
         addSpecification("event handler", "tempestEvent");
         addSpecification("command template", "tempest [at ##Target##]");
-        addSpecification("penalty to resist electricity", 15);
-        addSpecification("penalty to resist physical", 15);
+        addSpecification("penalty to resist electricity", 50);
+        addSpecification("penalty to resist physical", 25);
         addSpecification("apply enfeebled", 1);
         addSpecification("apply slow", 1);
 

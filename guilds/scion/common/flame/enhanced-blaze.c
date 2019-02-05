@@ -17,26 +17,27 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Static Barrier");
+        addSpecification("name", "Enhanced Blaze");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of the static barrier technique. This form enhances "
-            "the Scion's defense degradation spells.");
+            "knowledge of the enhanced blaze technique. This form enhances "
+            "the Scion's offensive spells.");
         Setup();
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 11 ]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/shocking-tendrils.c", WeaponType),
+              "value": 27 ]));
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/flame/stoking-rage.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Shocking Tendrils": 2,
-            "Shocking Barrier": 2,
-            "Tempest": 2
+            "Fire Bolt": 10,
+            "Fireball": 10,
+            "Conflagration": 10,
+            "Inferno Spear": 20
         ]));
     }
 }

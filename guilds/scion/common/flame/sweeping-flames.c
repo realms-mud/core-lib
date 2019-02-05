@@ -17,26 +17,25 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Static Barrier");
+        addSpecification("name", "Sweeping Flames");
         addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This research provides the user with the "
-            "knowledge of the static barrier technique. This form enhances "
-            "the Scion's defense degradation spells.");
+        addSpecification("description", "This skill provides the user with the "
+            "knowledge of the sweeping flames technique. This form enhances "
+            "the scion's Fire Brand and Searing Brand abilities.");
         Setup();
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 11 ]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/shocking-tendrils.c", WeaponType),
+              "value": 3 ]));
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/flame/fire-brand.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Shocking Tendrils": 2,
-            "Shocking Barrier": 2,
-            "Tempest": 2
+            "Fire Brand":2,
+            "Searing Brand" : 3
         ]));
     }
 }

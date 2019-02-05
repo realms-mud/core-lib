@@ -311,6 +311,7 @@ private nomask int checkDamageType(string element, mapping data)
         {
             ret = 0;
         }
+
         if(!ret)
         {
             raise_error(sprintf("Item: The %s element must be"

@@ -40,7 +40,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": sprintf("lib/guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType),
-                "name" : "Static Charge",
+                "name" : "Static Barrier",
                 "formula" : "additive",
                 "base value" : 2,
                 "rate": 1.0
