@@ -220,10 +220,10 @@ public void reset(int arg)
     if (!arg)
     {
         researchTree::reset(arg);
-        Name("Path of the Bolt");
+        Name("Path of the Flame");
         Source("Scion of Dhuras Guild");
         Description("This skill provides the user with the "
-            "knowledge to express their raw magical energy as electrical power.");
+            "knowledge to express their raw magical energy as flames.");
         Setup();
 
         if (WeaponType)

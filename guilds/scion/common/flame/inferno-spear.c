@@ -141,10 +141,10 @@ public void reset(int arg)
         }));
 
         addSpecification("cooldown", 100);
-        addSpecification("event handler", "plasmaBallEvent");
-        addSpecification("command template", "plasma ball [at ##Target##]");
-        addSpecification("use ability message",  "A large, churning ball "
-            "of plasma erupts from ##InitiatorPossessive::Name## "
+        addSpecification("event handler", "infernoSpearEvent");
+        addSpecification("command template", "inferno spear [at ##Target##]");
+        addSpecification("use ability message",  "A large, pulsating spear "
+            "of fire erupts from ##InitiatorPossessive::Name## "
             "##InitiatorWeapon## and flies into ##TargetName##.");
     }
 }

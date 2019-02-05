@@ -17,10 +17,10 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "The Bolt");
+        addSpecification("name", "The Flame");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge to express their raw magical energy as electrical power.");
+            "knowledge to express their raw magical energy as flames.");
         Setup();
 
         addSpecification("scope", "self");

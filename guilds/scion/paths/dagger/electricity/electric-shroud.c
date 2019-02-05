@@ -9,6 +9,5 @@ protected void Setup()
 {
     WeaponType = "dagger";
 
-    addSpecification("limited by", (["equipment":({
-        "dagger", "short sword" })]));
+    addSpecification("limited by", (["equipment":({ "dagger", "short sword" })]));
 }
