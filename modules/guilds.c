@@ -112,7 +112,7 @@ public nomask int guildLevel(string guild)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int effectiveExperience()
 {
-    int ret = 0;
+    int ret = unassignedExperience;
 
     if (sizeof(guilds))
     {
@@ -169,6 +169,7 @@ public nomask varargs int addExperience(int amount, string selectedGuild)
 {
     int ret = 0;
     int displayMessage = 0;
+
     if (selectedGuild && member(guilds, selectedGuild))
     {
         addExperienceToGuild(amount, selectedGuild);

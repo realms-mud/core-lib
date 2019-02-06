@@ -268,7 +268,8 @@ protected nomask void addResponseEvent(string id, string selection, string event
 private int isValidEffect(mapping effectMap)
 {
     int ret = 0;
-    string *validEffects = ({ "opinion", "attack", "move", "give", "vanish" });
+    string *validEffects = ({ "opinion", "attack", "move", "give", "vanish",
+        "experience" });
     string *effects = m_indices(effectMap);
     if (sizeof(effects))
     {
@@ -279,6 +280,14 @@ private int isValidEffect(mapping effectMap)
 
             switch (effect)
             {
+                case "experience":
+                {
+                    ret &&= (intp(effectMap[effect]) ||
+                        (mappingp(effectMap[effect]) &&
+                            member(effectMap[effect], "amount") &&
+                            member(effectMap[effect], "guild")));
+                    break;
+                }
                 case "vanish":
                 case "opinion": 
                 {
@@ -508,6 +517,29 @@ private nomask void executeResponseEffect(mapping effects,
             }
         }
         destruct(owner);
+    }
+    if (member(effects, "experience"))
+    {
+        string colorConfiguration = actor->colorConfiguration();
+
+        if (mappingp(effects["experience"]))
+        {
+            actor->addExperience(effects["experience"]["amount"],
+                effects["experience"]["guild"]);
+            tell_object(actor, Configuration->decorate(
+                sprintf("You have gained %d experience (%s only).\n",
+                    effects["experience"]["amount"],
+                    effects["experience"]["guild"]), "level up", "score",
+                colorConfiguration));
+        }
+        else
+        {
+            actor->addExperience(effects["experience"]);
+            tell_object(actor, Configuration->decorate(
+                sprintf("You have gained %d experience.\n", 
+                    effects["experience"]), "level up", "score", 
+                colorConfiguration));
+        }
     }
 }
 

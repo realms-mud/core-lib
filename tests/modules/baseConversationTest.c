@@ -678,3 +678,45 @@ void DisabledResponsesAreCorrectlyDisplayed()
     ExpectEq("\x1b[0;31;1m[1]: \x1b[0m\x1b[0;33mAnother\n\x1b[0m", Actor->caughtMessages()[1]);
     ExpectEq("\x1b[0;31;1m[2]: \x1b[0m\x1b[0;33mTest response\n\x1b[0m", Actor->caughtMessages()[2]);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEffectAllowsAndAppliesExperience()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponseEffect("test", "Another", (["experience": 1000]));
+
+    object room = load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    ExpectEq(0, Actor->effectiveExperience());
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectEq(1000, Actor->effectiveExperience());
+    ExpectSubStringMatch("You have gained 1000 experience", Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEffectAllowsAndAppliesExperienceToSpecificGuild()
+{
+    load_object("/lib/tests/support/guilds/testGuild.c");
+    load_object("/lib/tests/support/guilds/mageGuild.c");
+    Actor->joinGuild("test");
+    Actor->joinGuild("fake mage");
+
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponseEffect("test", "Another", (["experience": ([
+            "amount": 500,
+            "guild": "fake mage"])]));
+
+    object room = load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    ExpectEq(0, Actor->effectiveExperience());
+    ExpectEq(0, Actor->guildExperience("test"));
+    ExpectEq(0, Actor->guildExperience("fake mage"));
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectEq(500, Actor->effectiveExperience());
+    ExpectEq(0, Actor->guildExperience("test"));
+    ExpectEq(500, Actor->guildExperience("fake mage"));
+    ExpectSubStringMatch("You have gained 500 experience.*fake mage only", 
+        Actor->caughtMessage());
+}
