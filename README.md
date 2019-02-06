@@ -12,7 +12,7 @@ worlds. Some of the highlights include:
 - Faction support: Players/monsters can belong to factions, allowing for complex interactions.
 
 ![A quest](http://RealmsMUD.org/images/intro.gif)
-# Getting Started
+# Getting Started 
 The mudlib has been broken down into what I felt was a sensible directory structure:
 
 - /commands is the area where player and wizard actions/commands have been implemented. Commands all inherit from baseCommand.c and consist of one or more command templates (one or more regular expression-like definitions that show what a user types to execute the command) and the execution action. For those commands that are limited in scope of who can use them, there is a role-based access control system integrated.
