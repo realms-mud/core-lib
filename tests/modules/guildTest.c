@@ -858,3 +858,12 @@ void CanUseEquipmentOfTypeDoesNotAllowMaterialEvenIfAnyJoinedGuildDoes()
     User->joinGuild("fake fighter");
     ExpectFalse(weapon->equip("blah"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void LevelUpMessageDisplayedWhenEnoughExperienceToLevelIsAdded()
+{
+    ExpectTrue(User->joinGuild("test"));
+    ExpectTrue(User->addExperience(1000), "experience added");
+    ExpectSubStringMatch("You have enough experience to level up", 
+        User->caughtMessage());
+}

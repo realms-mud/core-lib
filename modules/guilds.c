@@ -168,9 +168,15 @@ private nomask void addExperienceToGuild(int amount, string guild)
 public nomask varargs int addExperience(int amount, string selectedGuild)
 {
     int ret = 0;
+    int displayMessage = 0;
     if (selectedGuild && member(guilds, selectedGuild))
     {
         addExperienceToGuild(amount, selectedGuild);
+
+        if (experienceToNextLevel(selectedGuild) <= 0)
+        {
+            displayMessage = 1;
+        }
         ret = amount;
     }
     else if (sizeof(guilds))
@@ -183,6 +189,11 @@ public nomask varargs int addExperience(int amount, string selectedGuild)
             // Since to_int truncates, the 0.5 is added to handle rounding issues.
             addExperienceToGuild(to_int(0.5 + amount *
                 (guildLevel(guild) / (guildLevels > 0 ? guildLevels : 1))), guild);
+
+            if (experienceToNextLevel(guild) <= 0)
+            {
+                displayMessage ||= 1;
+            }
         }
         ret = amount;
     }
@@ -190,6 +201,20 @@ public nomask varargs int addExperience(int amount, string selectedGuild)
     {
         unassignedExperience += amount;
         ret = unassignedExperience;
+    }
+
+    if (displayMessage)
+    {
+        string colorConfiguration = "none";
+        object settings = getService("settings");
+        if (objectp(settings))
+        {
+            colorConfiguration = settings->colorConfiguration();
+        }
+
+        tell_object(this_object(), getDictionary("configuration")->decorate(
+            "You have enough experience to level up.\n",
+            "level up", "score", colorConfiguration));
     }
     return ret;
 }
