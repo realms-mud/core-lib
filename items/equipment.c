@@ -523,6 +523,17 @@ public int equip(string item)
 {
     int ret = 0;
     
+    if (regexp(({ item }), "(first|second) .*") &&
+        (query("blueprint") == "ring"))
+    {
+        string ringLocation = regreplace(item, "(first|second).*", "\\1");
+        item = regreplace(item, "(first|second) (.*)", "\\2");
+        if (id(item) && (ringLocation == "second"))
+        {
+            itemData["equipment locations"] = Ring2;
+        }
+    }
+
     object env = environment(this_object());
     if(item && id(item) && env && function_exists("equip", env) &&
        !env->isEquipped(this_object()))
@@ -616,6 +627,10 @@ public varargs int unequip(string item, int silently)
                    function_exists(query("unequip method"), this_object()))
                 {
                     call_other(this_object(), query("unequip method"));
+                }
+                if (query("equipment locations") == Ring2)
+                {
+                    itemData["equipment locations"] = Ring;
                 }
             }
         }

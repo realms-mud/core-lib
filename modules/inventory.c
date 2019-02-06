@@ -369,7 +369,6 @@ public nomask int equip(object itemToEquip)
             }
                         
             string *slotsToEquip = materialsObject()->slotsUsedByItemMask(itemMask);
-            
             if(equipOK && !itemToEquip->isEquipped())
             {
                 ret = itemToEquip->canEquip(this_object());

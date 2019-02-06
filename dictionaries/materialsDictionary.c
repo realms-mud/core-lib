@@ -100,9 +100,13 @@ public nomask string *slotsUsedByItemMask(int mask)
     {
         items += ({ "boots" });
     }
-    if (mask & Ring)
+    if (mask & Ring1)
     {
-        items += ({ "ring 1", "ring 2" });
+        items += ({ "ring 1" });
+    }
+    if (mask & Ring2)
+    {
+        items += ({ "ring 2" });
     }
     if (mask & PrimaryWeapon)
     {

@@ -23,7 +23,7 @@
 #define Bracers       0x00000080
 #define Boots         0x00000100
 #define Armor         0x00000200
-#define Ring          0x00003000
+#define Ring          0x00001000
 #define Ring1         0x00001000
 #define Ring2         0x00002000
 

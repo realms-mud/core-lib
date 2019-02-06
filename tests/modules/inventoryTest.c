@@ -10,9 +10,10 @@ object Inventory;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Inventory = clone_object("/lib/realizations/player");
+    Inventory = clone_object("/lib/tests/support/services/mockPlayer.c");
     Inventory->Name("Bob");
     Inventory->Gender(1);
+    move_object(Inventory, this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1117,7 +1118,7 @@ void InventoryDescriptionReturnsCorrectListOfDescriptions()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void EquippingSecondItemOfTypeUnequipsFirstItemANdEquipsSecond()
+void EquippingSecondItemOfTypeUnequipsFirstItemAndEquipsSecond()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("blueprint", "long sword");
@@ -1137,4 +1138,46 @@ void EquippingSecondItemOfTypeUnequipsFirstItemANdEquipsSecond()
     ExpectTrue(weapon2->equip("blah2"), "weapon2 equip called");
     ExpectFalse(Inventory->isEquipped(weapon), "weapon unequipped after weapon2 equip called");
     ExpectTrue(Inventory->isEquipped(weapon2), "weapon2 equipped after weapon2 equip called");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanEquipTwoRings()
+{
+    object ring = clone_object("/lib/instances/items/armor/accessories/ring.c");
+    ring->set("name", "Ring of Weasels");
+    move_object(ring, Inventory);
+
+    object ring2 = clone_object("/lib/instances/items/armor/accessories/ring.c");
+    ring2->set("name", "Ring of Spiffiness");
+    move_object(ring2, Inventory);
+
+    ExpectFalse(Inventory->isEquipped(ring), "first initially unequipped");
+    ExpectFalse(Inventory->isEquipped(ring2), "second initially unequipped");
+    ExpectEq(0x00001000, ring->query("equipment locations"));
+    ExpectEq(0x00001000, ring2->query("equipment locations"));
+    command("wear first Ring of Weasels", Inventory);
+    ExpectTrue(Inventory->isEquipped(ring), "first ring is equipped");
+    ExpectFalse(Inventory->isEquipped(ring2), "second ring unequipped");
+    command("wear second Ring of Spiffiness", Inventory);
+    ExpectEq(0x00001000, ring->query("equipment locations"));
+    ExpectEq(0x00002000, ring2->query("equipment locations"));
+    ExpectTrue(Inventory->isEquipped(ring), "first ring still equipped");
+    ExpectTrue(Inventory->isEquipped(ring2), "second ring is equipped");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnequippingSecondRingResetsTheMaskToRing()
+{
+    object ring = clone_object("/lib/instances/items/armor/accessories/ring.c");
+    ring->set("name", "Ring of Weasels");
+    move_object(ring, Inventory);
+
+    ExpectEq(0x00001000, ring->query("equipment locations"));
+    ExpectFalse(Inventory->isEquipped(ring), "first ring is equipped");
+    command("wear second ring", Inventory);
+    ExpectTrue(Inventory->isEquipped(ring), "first ring is equipped");
+    ExpectEq(0x00002000, ring->query("equipment locations"));
+    command("remove ring", Inventory);
+    ExpectEq(0x00001000, ring->query("equipment locations"));
+    ExpectFalse(Inventory->isEquipped(ring), "first ring is equipped");
 }
