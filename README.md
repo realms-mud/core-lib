@@ -11,7 +11,7 @@ worlds. Some of the highlights include:
 - Crafting: Full support for players creating their own objects is supported
 - Faction support: Players/monsters can belong to factions, allowing for complex interactions.
 
-![A quest](http://RealmsMUD.org/images/intro.gif)
+![A quest](http://RealmsMUD.org/images/intro_new.gif)
 # Getting Started 
 The mudlib has been broken down into what I felt was a sensible directory structure:
 
