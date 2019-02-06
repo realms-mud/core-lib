@@ -22,6 +22,9 @@ protected void Setup()
         "##ResponseInfinitive::say##, @S@`Yet I would bet Halgaladh's meal "
         "tonight that this was the killer. All of the signs point to it - "
         "the bow and arrows, the trail we've followed...'");
+    addResponseEffect("stinks too", "@I@Examine corpse@E@", 
+        (["experience": ([ "guild": "background", "amount": 25 ])]));
+
     addResponse("stinks too", "It does stink...", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::wrinkle## ##InitiatorPossessive## nose and "
         "##ResponseInfinitive::say##, @S@`Yet I would bet Halgaladh's meal "

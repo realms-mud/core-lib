@@ -115,7 +115,7 @@ void PlayerGuildsRestored()
     Player->restore("gorthaur");
     ExpectEq(({ "fake mage" }), Player->memberOfGuilds());
     ExpectEq(21, Player->effectiveLevel());
-    ExpectEq(120133, Player->effectiveExperience());
+    ExpectEq(120454, Player->effectiveExperience());
     ExpectEq(16, Player->guildLevel("fake mage"));
     ExpectEq(133, Player->guildExperience("fake mage"));
     ExpectEq("acolyte", Player->guildRank("fake mage"));

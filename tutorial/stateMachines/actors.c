@@ -107,7 +107,7 @@ protected void armPlayer(object player)
     if (!player->equipmentInSlot("wielded primary"))
     {
         tell_object(player, format(
-            "\n\x1b[0;36mBerenar thrusts a sword into your hands and "
+            "\n\x1b[0;36mBerenar thrusts a sword and several potions into your hands and "
             "shouts, \x1b[0;32m`Take this! The enemy is upon us!'\x1b[0;36m"
             " Without another word, he lunges into the fray.\n\x1b[0m", 78));
 
@@ -117,6 +117,13 @@ protected void armPlayer(object player)
         equipment->set("material", "steel");
         move_object(equipment, player);
         player->equip(equipment, 1);
+
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        object potion = clone_object("/lib/instances/items/potions/healing.c");
+        move_object(potion, player);
     }
 }
 
