@@ -61,7 +61,7 @@ public nomask int execute(string command, object initiator)
         }
         else
         {
-            targets += ({ getTarget(initiator, command) });
+            targets += ({ getTarget(initiator, command, TargetInventory) });
         }
         targets -= ({ 0 });
 

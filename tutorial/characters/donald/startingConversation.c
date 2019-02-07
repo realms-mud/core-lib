@@ -93,6 +93,57 @@ private void WeWasteTime()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void WakeUp()
+{
+    addTopic("you hit me", "\n@D@Donald looks very groggy as he tries to "
+        "sit up. He loudly states, @S@`Just so we're clear: we're not taking any "
+        "more of these forked-tongued bastards alive. I don't care if they "
+        "once were Phaedra or not, they obviously mean us harm and are the "
+        "ones who attacked our camp.'");
+    addResponse("you hit me", "What next?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::say##, @S@`What now, "
+        "sir?'");
+    addResponse("you hit me", "But it was valuable...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::say##, @S@`I disagree, "
+        "sir. What he said was important. What he might have said, maybe "
+        "moreso. You ended that possibility.'");
+
+    addTopic("donald regains consciousness", "\n@D@Donald looks very groggy "
+        "as he tries to sit up. Halgaladh offers his support, but Donald "
+        "brushes it aside. @S@`Just so we're clear: we're not taking any "
+        "more of these forked-tongued bastards alive. I don't care if they "
+        "once were Phaedra or not, they obviously mean us harm and are the "
+        "ones who attacked our camp.'"); 
+    addResponse("donald regains consciousness", "What next?", 
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::say##, @S@`What now, "
+        "sir?'");
+    addResponse("donald regains consciousness", "But it was valuable...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::say##, @S@`I disagree, "
+        "sir. What he said was important. What he might have said, maybe "
+        "moreso. You ended that possibility.'");
+
+    addTopic("donald regains consciousness part two", "@D@Donald ignores "
+        "##InitiatorName## and instead turns to Galadhel and angrily "
+        "growls, @S@`If you have personal issues with that, remember that "
+        "you swore an oath. Our duty is to defend the empire, not indulge "
+        "in personal pursuits! @D@He unexpectedly turns jovial and, after "
+        "letting out a laugh, adds, @S@`Now let's show the enemy what a "
+        "real warrior can do!'");
+    addResponseTopic("donald regains consciousness", "What next?", 
+        "donald regains consciousness part two");
+    addResponseTopic("donald regains consciousness", "But it was valuable...",
+        "donald regains consciousness part two");
+    addResponseTopic("you hit me", "What next?",
+        "donald regains consciousness part two");
+    addResponseTopic("you hit me", "But it was valuable...",
+        "donald regains consciousness part two");
+
+    addTopicInterjection("donald regains consciousness part two",
+        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "think before you leap", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     addTopic("you heard the man", "\n@D@Donald nods and looks at Halgaladh, "
@@ -104,4 +155,5 @@ protected void Setup()
     LetsGetTheseBastards();
     BrendanOeldhen();
     WeWasteTime();
+    WakeUp();
 }

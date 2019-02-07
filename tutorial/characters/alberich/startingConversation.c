@@ -30,4 +30,8 @@ protected void Setup()
         "tactics, orcs?'");
     addTopicEvent("daft bastard", "followDonaldIntoTheFray");
 
+    addTopic("good. a blissful interlude", "@D@Alberich mumbles loudly to "
+        "himself, @S@`Aye! No sense getting us all killed because our "
+        "commander has his head so far up... Ahh hell! We've got company!'");
+    addTopicEvent("good. a blissful interlude", "fightAtTheEntrance");
 }

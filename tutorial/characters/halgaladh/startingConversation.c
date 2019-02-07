@@ -43,4 +43,21 @@ protected void Setup()
         "you're 'aiming' to do doesn't look like a bad plan of action. At "
         "least we won't have to worry about him siring more mushroom "
         "farmers.");
+
+    addTopic("wake up sir", "@D@Halgaladh stares at Donald's inert form, torn "
+        "between anger and the need to move on before the enemy renews their "
+        "attack. He walks over to Donald and shakes him. @S@`Sir?'");
+    addTopicInterjection("wake up sir",
+        "/lib/tutorial/characters/donald/donald.c",
+        "donald regains consciousness", 1);
+
+    addTopic("think before you leap", "@D@Halgaladh grabs hold of Donald's "
+        "shoulder, firmly restraining him from getting up. @S@`Sir! You're a "
+        "bit muddled and not thinking straight. We need a plan first!' @D@He "
+        "turns to Galadhel and states, @S@`Based on what I heard just now, "
+        "you have every right to be angry, but keep your anger focused on "
+        "our foes! You and Donald can discuss this later.'");
+    addTopicInterjection("think before you leap",
+        "/lib/tutorial/characters/alberich/alberich.c",
+        "good. a blissful interlude", 1);
 }

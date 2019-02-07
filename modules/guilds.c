@@ -8,6 +8,8 @@
 virtual inherit "/lib/core/organizations.c";
 #include "/lib/modules/secure/guilds.h"
 
+private int SuppressLevelUpMessage = 0;
+
 //-----------------------------------------------------------------------------
 // Method: validGuildModifiers
 // Description: The valid* methods are admittedly a bit of a misnomer. The real
@@ -165,6 +167,12 @@ private nomask void addExperienceToGuild(int amount, string guild)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void clearLevelUpSuppression()
+{
+    SuppressLevelUpMessage = 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs int addExperience(int amount, string selectedGuild)
 {
     int ret = 0;
@@ -204,7 +212,7 @@ public nomask varargs int addExperience(int amount, string selectedGuild)
         ret = unassignedExperience;
     }
 
-    if (displayMessage)
+    if (displayMessage && !SuppressLevelUpMessage)
     {
         string colorConfiguration = "none";
         object settings = getService("settings");
@@ -216,6 +224,8 @@ public nomask varargs int addExperience(int amount, string selectedGuild)
         tell_object(this_object(), getDictionary("configuration")->decorate(
             "You have enough experience to level up.\n",
             "level up", "score", colorConfiguration));
+        SuppressLevelUpMessage = 1;
+        call_out("clearLevelUpSuppression", 30);
     }
     return ret;
 }

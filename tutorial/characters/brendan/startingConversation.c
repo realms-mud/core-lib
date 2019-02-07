@@ -210,9 +210,14 @@ private void StopInterrupting()
         "@D@Stunned, ##InitiatorName## ##ResponseInfinitive::look## at the figure "
         "and ##ResponseInfinitive::ask##, @S@`Helcarion? What "
         "happened?'");
+    addResponseEffect("I was Phaedra", "Wait. What?",
+        (["experience":(["guild":"background", "amount" : 500])]));
+
     addResponse("I was Phaedra", "And?",
         "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at the figure "
         "and ##ResponseInfinitive::say##, @S@`And?'");
+    addResponseEffect("I was Phaedra", "And?",
+        (["experience":(["guild":"background", "amount" : 500])]));
 
     addTopic("We fought but lost", "@S@`We fought until but five of us were "
         "left. It was obvious that we were to be captured, for they would not "

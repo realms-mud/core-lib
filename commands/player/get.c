@@ -48,7 +48,7 @@ private nomask object *getSpecificItem(object initiator, object source, string t
 {
     object *targets = ({});
     object target = present(targetString, source) ||
-        present(targetString, initiator);
+        present(targetString, environment(initiator));
 
     if (target)
     {

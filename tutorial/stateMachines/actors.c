@@ -102,6 +102,34 @@ protected void addBattleSceneBadGuys(object location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected void addEntranceBadGuys(object location, object player)
+{
+    actors["keeper"] = clone_object("/lib/tutorial/characters/bregar/bregar.c");
+    move_object(actors["keeper"], location);
+    actors["keeper"]->registerEvent(this_object());
+
+    actors["alberich"]->attack(actors["keeper"]);
+    actors["donald"]->attack(actors["keeper"]);
+    actors["halgaladh"]->attack(actors["keeper"]);
+
+    actors["zombie 1"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(actors["zombie 1"], location);
+    actors["galadhel"]->attack(actors["zombie 1"]);
+
+    actors["zombie 2"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(actors["zombie 2"], location);
+    actors["thomas"]->attack(actors["zombie 2"]);
+
+    actors["zombie 3"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    move_object(actors["zombie 3"], location);
+    player->attack(actors["zombie 3"]);
+
+    actors["keeper"]->registerEvent(actors["zombie 1"]);
+    actors["keeper"]->registerEvent(actors["zombie 2"]);
+    actors["keeper"]->registerEvent(actors["zombie 3"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void armPlayer(object player)
 {
     if (!player->equipmentInSlot("wielded primary"))

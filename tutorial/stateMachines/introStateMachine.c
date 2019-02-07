@@ -38,6 +38,17 @@ public void reset(int arg)
         addEntryAction("on the trail", "onTheTrail");
         addTransition("first fight", "on the trail", "first fight is over");
 
+        addState("wake up, Donald", "");
+        addEntryAction("wake up, Donald", "wakeDonald");
+        addTransition("on the trail", "wake up, Donald", "halgaladhAwakensDonald");
+
+        addState("fight at the entrance", "");
+        addEntryAction("fight at the entrance", "setupFightAtTheEntrance");
+        addTransition("wake up, Donald", "fight at the entrance", "fightAtTheEntrance");
+
+        addState("enter the lair", "");
+        addTransition("fight at the entrance", "enter the lair", "enterTheLair");
+
         setInitialState("initiate story");
     }
 }
@@ -45,6 +56,20 @@ public void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 public void beginIntroduction(object player)
 {
+
+    foreach(string actor in m_indices(actors))
+    {
+        if (objectp(actors[actor]))
+        {
+            foreach(object item in deep_inventory(actors[actor]))
+            {
+                destruct(item);
+            }
+            destruct(actors[actor]);
+        }
+        m_delete(actors, actor);
+    }
+
     setUpActors();
 
     if (objectp(Player))
@@ -165,4 +190,29 @@ public void onTheTrailPartTwo()
 public void onTheTrail()
 {
     call_out("onTheTrailPartTwo", 2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void wakeUpSir()
+{
+    if (actors["halgaladh"])
+    {
+        actors["halgaladh"]->onTriggerConversation(Player, "wake up sir");
+    }
+    else if (actors["donald"])
+    {
+        actors["donald"]->onTriggerConversation(Player, "you hit me");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void wakeDonald()
+{
+    call_out("wakeUpSir", 8);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void setupFightAtTheEntrance()
+{
+    addEntranceBadGuys(environment(Player), Player);
 }

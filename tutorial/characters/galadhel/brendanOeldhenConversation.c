@@ -114,6 +114,8 @@ private void DidItMeanAnythingToMe()
         "stupid son of a ...'");
     addResponseTopic("did it mean anything to me?", "@I@Continue@E@", 
         "did it mean anything to me part 2");
+    addTopicEvent("did it mean anything to me part 2", 
+        "halgaladhAwakensDonald");
 }
 
 /////////////////////////////////////////////////////////////////////////////

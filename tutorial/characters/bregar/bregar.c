@@ -11,23 +11,27 @@ int DoNotKillMe = 1;
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    Name("black-robed figure");
-    addAlias("black-robed figure");
-    addAlias("figure");
-    addAlias("brendan");
+    Name("Black-robed figure");
     short("Black-robed figure");
+    addAlias("figure");
+    addAlias("black-robed figure");
+    addAlias("keeper");
+    addAlias("keeper of the night");
+
     Gender(1);
-    Race("maegenstryd");
-    SetUpPersonaOfLevel("keeper of the night", 5);
+    Race("human");
+    SetUpPersonaOfLevel("keeper of the night", 3);
     addTrait("lib/modules/traits/educational/educated.c");
 
-    addConversation("/lib/tutorial/characters/brendan/startingConversation.c");
+    setUpRandomEquipment(0);
+
+    addConversation("/lib/tutorial/characters/bregar/startingConversation.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void IYield(object player)
 {
-    command("talk brendan", player);
+    player->onTriggerConversation(player, "first conversation");
     player = 0;
     CallingYield = 0;
     DoNotKillMe = 0;
@@ -56,19 +60,4 @@ public int secondLife()
         call_out("IYield", 1, player);
     }
     return DoNotKillMe;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public void onDeath(object caller)
-{
-    if (caller && (program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c"))
-    {
-        object *npcs = filter(all_inventory(environment(this_object())),
-            (: $1->isRealizationOfNpc() :));
-
-        foreach(object npc in npcs)
-        {
-            npc->attack(this_object());
-        }
-    }
 }

@@ -12,6 +12,10 @@ protected int SplitCommands;
 protected string CommandType = "general";
 protected object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
+protected int TargetEnvironment = 2;
+protected int TargetInventory = 1;
+protected int TargetBoth = 3;
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *commandList()
 {
@@ -120,10 +124,16 @@ protected nomask string commandString(string passedCommand)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask object getTarget(object owner, string command)
+protected nomask varargs object getTarget(object owner, string command, 
+    int flags)
 {
     object ret = 0;
     string template = commandString(command);
+
+    if (!flags)
+    {
+        flags = TargetBoth;
+    }
 
     if (command && stringp(command) && template && stringp(template) &&
         environment(owner))
@@ -133,8 +143,9 @@ protected nomask object getTarget(object owner, string command)
         if (sizeof(targetId) == 3)
         {
             string target = lower_case(targetId[2]);
-            ret = present(target, environment(owner)) ||
-                present(target, owner);
+            ret = ((flags & TargetEnvironment) ? 
+                present(target, environment(owner)) : 0) || 
+                ((flags & TargetInventory) ? present(target, owner) : 0);
 
             if (!ret && environment(owner)->isEnvironmentalElement(target))
             {
