@@ -28,6 +28,8 @@ private void WhoAreYou()
         "what was that horrid smoking thunderclap?'");
     addResponsePrerequisite("villain", "Speak @A@Intimidation@E@",
         (["intimidation":(["type":"skill", "value": 5 ])]), 1);
+    addResponseEffect("villain", "Speak @A@Intimidation@E@",
+        (["experience":(["guild":"background", "amount" : 25])]));
 
     addResponse("villain", "Speak @A@Diplomacy@E@", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::chuckle## at the figure and ##ResponseInfinitive::say##,"
@@ -36,6 +38,8 @@ private void WhoAreYou()
         "what was that horrid smoking thunderclap?'");
     addResponsePrerequisite("villain", "Speak @A@Diplomacy@E@",
         (["diplomacy":(["type":"skill", "value" : 5])]), 1);
+    addResponseEffect("villain", "Speak @A@Diplomacy@E@",
+        (["experience":(["guild":"background", "amount" : 25])]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,6 +71,8 @@ private void YouAreABitSimple()
         "whines came to naught. Perhaps you'd rather we converse?'");
     addResponsePrerequisite("you are a simpleton", "Is this how you end? @A@Persuasion@E@",
         (["persuasion":(["type":"skill", "value" : 2])]), 1);
+    addResponseEffect("you are a simpleton", "Is this how you end? @A@Persuasion@E@",
+        (["experience":(["guild":"background", "amount" : 25])]));
 }
 
 /////////////////////////////////////////////////////////////////////////////

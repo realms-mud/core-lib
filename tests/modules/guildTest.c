@@ -414,6 +414,17 @@ void CanLeaveGuildFailsIfMemberIsAnathema()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CannotReJoinGuildsThatHaveDoNotAllowReJoinOfGuildSet()
+{
+    object guild = load_object("/lib/guilds/background/background.c");
+
+    ExpectTrue(User->joinGuild("background"));
+    ExpectTrue(User->leaveGuild("background"));
+    User->agePlayer(10000000);
+    ExpectFalse(User->joinGuild("background"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void LeavingGuildDoesNotRemoveLearnedGuildSkills()
 {
     ExpectEq(150, User->maxHitPoints(), "maxHitPoints is 150 when not a member of the guild");

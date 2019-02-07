@@ -489,14 +489,16 @@ private int joiningGuildProhibited(string guildToCheck, string guildToJoin)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int canJoinGuild(object guildMember, string guild)
+public nomask varargs int canJoinGuild(object guildMember, string guild, 
+    int previouslyLeftGuild)
 {
     int ret = 0;
     
     object guildObj = guildObject(guild);
     if(guildMember && objectp(guildMember) && guildObj && objectp(guildObj))
     {
-        ret = 1;
+        ret = !previouslyLeftGuild || guildObj->reJoinIsAllowed();
+
         string *prohibitedList = guildObj->prohibitedGuilds();
 
         // We can't rely on guild masters not being sloppy...
@@ -518,7 +520,7 @@ public nomask int canReJoinGuild(object guildMember, string guild, int ageWhenLe
     if (guildMember && objectp(guildMember) && function_exists("Age", guildMember))
     {
         ret = guildMember->Age() >= (ageWhenLeftGuild + outcastUntilDelay(guild)) &&
-            canJoinGuild(guildMember, guild);
+            canJoinGuild(guildMember, guild, 1);
     }
     return ret;
 }

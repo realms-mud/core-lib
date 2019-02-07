@@ -13,6 +13,7 @@ private string PrerequisiteObject = "lib/core/prerequisites.c";
 private string guildName = "BaseGuild";
 private string *preferredSkills = ({ "general", "erudite", "language" });
 protected int CanLeaveGuild = 1;
+protected int CanReJoinGuild = 1;
 protected string *ProhibitedGuilds = ({ });
 protected mapping prohibitedEquipment = ([]);
 private int IsNonCombatGuild = 0;
@@ -1188,4 +1189,16 @@ public nomask int isProhibitedEquipment(object equipment)
     return materialInProhibitedList(equipment->query("material")) ||
         materialTypeInProhibitedList(equipment->query("material")) ||
         damageTypeInProhibitedList(equipment);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void DoNotAllowReJoinOfGuild()
+{
+    CanReJoinGuild = 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int reJoinIsAllowed()
+{
+    return CanReJoinGuild;
 }

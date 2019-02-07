@@ -9,6 +9,7 @@ public void SetupGuild()
 {
     guildName("background");
     addPreferredSkillType("combat");
+    DoNotAllowReJoinOfGuild();
 
     addCriteria("hit points", ([
         "type": "modifier",

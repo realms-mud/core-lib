@@ -522,7 +522,8 @@ private nomask void executeResponseEffect(mapping effects,
     {
         string colorConfiguration = actor->colorConfiguration();
 
-        if (mappingp(effects["experience"]))
+        if (mappingp(effects["experience"]) && 
+            actor->memberOfGuild(effects["experience"]["guild"]))
         {
             actor->addExperience(effects["experience"]["amount"],
                 effects["experience"]["guild"]);
