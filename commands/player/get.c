@@ -82,6 +82,14 @@ private nomask int getObjects(object initiator, object source, object *targets)
             {
                 tell_object(initiator, "You cannot get that.\n");
             }
+            else if (member(inherit_list(target), "lib/items/money.c") > -1)
+            {
+                displayMessage(sprintf("##InitiatorName## ##Infinitive::pick##"
+                    " up %d coin%s.\n", target->query("value"),
+                    (target->query("value") == 1) ? "" : "s"),
+                    initiator);
+                initiator->transferMoneyTo(target);
+            }
             else if (initiator->canCarry(target))
             {
                 move_object(target, initiator);
@@ -179,7 +187,11 @@ public nomask int execute(string command, object initiator)
 
         object source = getSource(initiator, command);
 
-        if (source)
+        if (initiator->isDead())
+        {
+            notify_fail("You're a bit too dead to do that.\n");
+        }
+        else if (source)
         {
             if (TargetString == "all")
             {

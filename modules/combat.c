@@ -1320,21 +1320,35 @@ private nomask int determineFateFromDeath(object murderer)
 {
     int killMe = 0;
     
+    string colorConfiguration = this_object()->colorConfiguration() ?
+        this_object()->colorConfiguration() : "none";
+
     if(!isDead())
     {
+
         object wizard = getService("wizard");
         if(wizard)
         {
-            tell_object(wizard, "Your wizardhood protects you from death.\n");
+            tell_object(wizard, getDictionary("configuration")->decorate(
+                "Your wizardhood protects you from death.\n",
+                "death", "combat", colorConfiguration)); 
         }
         else if(environment() && 
                 function_exists("suppressDeath", environment()))
         {
-            object player = getService("player");
             string notDeadMessage = environment()->suppressDeath();
-            if(player && notDeadMessage)
+
+            if (notDeadMessage)
             {
-                tell_object(this_object(), notDeadMessage);
+                object attacker;
+                while (attacker = getTargetToAttack())
+                {
+                    stopFight(attacker);
+                }
+
+                tell_object(this_object(), 
+                    getDictionary("configuration")->decorate(
+                    notDeadMessage, "death", "combat", colorConfiguration));
             }
             else
             {
@@ -1342,6 +1356,7 @@ private nomask int determineFateFromDeath(object murderer)
                 killMe = 1;
             }
         }
+
         else
         {
             killMe = 1;
@@ -1350,6 +1365,21 @@ private nomask int determineFateFromDeath(object murderer)
     
     if(killMe)
     {
+        object player = getService("player");
+        if (player)
+        {
+            object attacker;
+            while (attacker = getTargetToAttack())
+            {
+                stopFight(attacker);
+            }
+
+            tell_object(this_object(),
+                getDictionary("configuration")->decorate("\nYou die.\nYou "
+                    "have a strange feeling.\nYou can see your own dead "
+                    "body from above.\n\n",
+                    "death", "combat", colorConfiguration));
+        }
         combatNotification("onDeath", 1, 1);
         updateFactionDispositionsFromCombat(murderer);
         killMe = finishOffThisPoorDeadBastard(murderer);
@@ -1625,8 +1655,13 @@ static void handleMoveFromCombat()
 
     if (getTargetToAttack())
     {
-        tell_object(this_object(), 
-            "You have fled the scene of battle! Your enemies shan't forget you.\n");
+        string colorConfiguration = this_object()->colorConfiguration() ?
+            this_object()->colorConfiguration() : "none";
+
+        tell_object(this_object(),
+            getDictionary("configuration")->decorate("You have fled the scene "
+                "of battle! Your enemies shan't forget you.\n",
+                "flee", "combat", colorConfiguration));
     }
 }
 

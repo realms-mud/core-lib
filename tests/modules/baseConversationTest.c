@@ -32,11 +32,14 @@ void Setup()
     Actor = clone_object("/lib/tests/support/services/mockPlayer.c");
     Actor->Name("Gorthaur");
     Actor->restore();
+    Actor->hitPoints(Actor->maxHitPoints());
     move_object(Actor, room);
 
     Owner = clone_object("/lib/realizations/npc.c");
     Owner->Name("Gertrude");
     Owner->Gender(2);
+    Owner->Con(20);
+    Owner->hitPoints(Owner->maxHitPoints());
     move_object(Owner, room);
 }
 

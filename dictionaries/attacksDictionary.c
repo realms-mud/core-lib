@@ -5,7 +5,6 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#include <mtypes.h>
 
 private string WeaponBlueprint = "lib/items/weapon.c";
 private string AttacksDir = "/lib/modules/combat/attacks";
@@ -151,12 +150,6 @@ private nomask object getDamageType(object weapon)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string formatText(string text, int colorInfo, object viewer)
-{
-    return color(viewer->query("term"), viewer, colorInfo, format(text, 101));
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask string parseTemplate(string template, string perspective,
                                     object attacker, object foe, object weapon)
 {
@@ -214,6 +207,41 @@ private nomask string parseTemplate(string template, string perspective,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string getColorForDamage(int damageInflicted)
+{
+    string ret;
+    switch (damageInflicted)
+    {
+        case 0:
+        {
+            ret = "miss";
+            break;
+        }
+        case 1..15:
+        {
+            ret = "light hit";
+            break;
+        }
+        case 16..50:
+        {
+            ret = "hit";
+            break;
+        }
+        case 51..100:
+        {
+            ret = "heavy hit";
+            break;
+        }
+        default:
+        {
+            ret = "extreme hit";
+            break;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void displayMessage(object attacker, object foe,
                                   int damageInflicted, object weapon)
 {
@@ -228,7 +256,8 @@ public nomask void displayMessage(object attacker, object foe,
 
             if ((damageInflicted < 1) && foe->hasTraitOfRoot("ethereal"))
             {
-                template = "##AttackerPossessive[::Name]## attack harmlessly passes through ##TargetName##.";
+                template = "##AttackerPossessive[::Name]## attack harmlessly "
+                    "passes through ##TargetName##.";
             }
             else if ((damageInflicted < 1) && 
                 (member(({ "physical", "slash", "bludgeon", "unarmed", "thrust" }),
@@ -240,13 +269,15 @@ public nomask void displayMessage(object attacker, object foe,
 
                 if ((missType <= parryRange) && !random(2))
                 {
-                    template = regreplace(template, "##Infinitive::miss##", "##TargetSubjective## "
-                        "##ResponseInfinitive::parry## the attack", 1);
+                    template = regreplace(template, "##Infinitive::miss##", 
+                        "##TargetSubjective## ##ResponseInfinitive::parry## "
+                        "the attack", 1);
                 }
                 else if (missType <= dodgeRange)
                 {
-                    template = regreplace(template, "##Infinitive::miss##", "##TargetSubjective## "
-                        "##ResponseInfinitive::dodge## the attack", 1);
+                    template = regreplace(template, "##Infinitive::miss##", 
+                        "##TargetSubjective## ##ResponseInfinitive::dodge## "
+                        "the attack", 1);
                 }
             }
             // This annoying loop handles the fact that everyone has different
@@ -254,18 +285,20 @@ public nomask void displayMessage(object attacker, object foe,
             object *characters = filter(all_inventory(environment(attacker)),
                 (: $1->isRealizationOfLiving() :));
 
+            object configuration = 
+                load_object("/lib/dictionaries/configurationDictionary.c");
+
+            string damageLevel = getColorForDamage(damageInflicted);
+
             foreach(object person in characters)
             {
                 if(person && objectp(person))// && interactive(person))
                 {
                     string message;
-                    int colorInfo = damageInflicted ? C_COMBAT_6 : C_COMBAT_7;
                     if(person == attacker)
                     {
                         message = parseTemplate(template, "attacker", attacker,
                                                 foe, weapon);
-                        colorInfo = damageInflicted ? C_COMBAT_HITS : 
-                                                      C_COMBAT_MISSES;
                     }
                     else if(person == foe)
                     {
@@ -280,14 +313,21 @@ public nomask void displayMessage(object attacker, object foe,
 
                     if (damageInflicted)
                     {
-                        message = "\x1b[38;2;140;140;170m" + message + "\x1b[0m";
+                        message = format(message, 78);
+                        
+                        message = configuration->decorate(
+                            message[0..sizeof(message) - 2],
+                            damageLevel, "combat", person->colorConfiguration()) +
+                            configuration->decorate(
+                                sprintf(" [ %d ]\n", damageInflicted),
+                                "damage", "combat", person->colorConfiguration());
                     }
                     else
                     {
-                        message = "\x1b[38;2;140;170;140m" + message + "\x1b[0m";
+                        message = configuration->decorate(format(message, 78),
+                            "miss", "combat", person->colorConfiguration());
                     }
-                    tell_object(person, formatText(message, colorInfo, 
-                        person));
+                    tell_object(person, message);
                 }
             }
         }

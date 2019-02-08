@@ -22,7 +22,8 @@ public nomask int execute(string command, object initiator)
     object target = getTarget(initiator, command);
 
     if (target && canExecuteCommand(command) && 
-        !initiator->spellAction() && !initiator->isInCombatWith(target))
+        !initiator->spellAction() && !initiator->isInCombatWith(target)
+        && !initiator->isDead())
     {
         if ((target->onKillList() && !target->isRealizationOf("player")) ||
             (target->isRealizationOf("player") && initiator->isRealizationOf("player") &&

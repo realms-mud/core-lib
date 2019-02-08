@@ -517,7 +517,7 @@ void SelectSubMenuDisplaysSellListWithTwentyFourBitColorCorrectly()
     Selector->applySelection("1");
 
     ExpectEq("\x1b[0;38;2;180;180;190mSell Items - \x1b[0m\x1b[0;38;2;255;255;255;1mSelect an item to sell\x1b[0m:\n"
-        "    [\x1b[0;38;2;220;40;0;1m1\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;80;155;175mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;38;2;80;155;175m (?)\x1b[0m"
+        "    [\x1b[0;38;2;220;40;0;1m1\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;50;75;195mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;38;2;80;155;175m (?)\x1b[0m"
         "    [\x1b[0;38;2;220;40;0;1m2\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;70;60;60;1mSell all unused    \x1b[0m\x1b[0m    \n"
         "    [\x1b[0;38;2;220;40;0;1m3\x1b[0m] - \x1b[0;38;2;170;180;110mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;38;2;160;220;60;1mYou must select a number from 1 to 3.\n\x1b[0m"

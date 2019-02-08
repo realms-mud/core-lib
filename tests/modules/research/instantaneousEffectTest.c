@@ -414,8 +414,12 @@ void GetTargetForDamageItemWithNoneSpecifiedReturnsAttackerInCombat()
     object victim = clone_object("/lib/tests/support/services/combatWithMockServices");
     victim->Name("Frank");
     victim->addAlias("frank");
+    victim->Con(20);
+    victim->hitPoints(victim->maxHitPoints());
 
     object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
+    owner->Con(20);
+    owner->hitPoints(owner->maxHitPoints());
     move_object(victim, room);
     move_object(owner, room);
 
