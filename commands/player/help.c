@@ -163,3 +163,17 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Displays usage information about a given command.";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("Help will display detailed usage information about the "
+        "specified command. If no command is given, help will display "
+        "the list of commands available to the player.", 78);
+}

@@ -42,3 +42,26 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Enter the crafting subsystem menu";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The crafting command is used to create items - be they "
+        "armor, weapons, potions, or other tangible items. A menu is "
+        "displayed through which the player can navigate to create "
+        "any item they wish - so long as they have the materials to "
+        "make it, have the requisite skills, and have researched the "
+        "proper knowledge.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: research";
+}

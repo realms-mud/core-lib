@@ -50,20 +50,20 @@ public nomask int execute(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string synopsis(string displayCommand)
+protected string synopsis(string displayCommand, string colorConfiguration)
 {
     return "Move/rename a file.";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string description(string displayCommand)
+protected string description(string displayCommand, string colorConfiguration)
 {
     return format("The mv command will move the source file to the destination "
         "file provided that the user has write access to both locations.", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string notes(string displayCommand)
+protected string notes(string displayCommand, string colorConfiguration)
 {
     return "See also: cp and rm";
 }

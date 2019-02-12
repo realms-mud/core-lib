@@ -1695,7 +1695,7 @@ public nomask varargs int Wimpy(string newWimpyVal, int suppressDisplay)
 /////////////////////////////////////////////////////////////////////////////
 static nomask int triggerWimpy()
 {
-    int ret = hitPoints() < (maxHitPoints() * (wimpy / 100.0));
+    int ret = hitPoints() < to_int((maxHitPoints() * (wimpy / 100.0)));
     
     if(ret)
     {

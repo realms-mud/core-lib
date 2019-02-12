@@ -34,13 +34,13 @@ public nomask int execute(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string synopsis(string displayCommand)
+protected string synopsis(string displayCommand, string colorConfiguration)
 {
     return "Display a character's vitals";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string description(string displayCommand)
+protected string description(string displayCommand, string colorConfiguration)
 {
     return format("The vitals command displays information about your current hit "
         "points, spell points, and stamina points levels.\n\nFor example:\n> "
@@ -52,7 +52,7 @@ protected string description(string displayCommand)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string notes(string displayCommand)
+protected string notes(string displayCommand, string colorConfiguration)
 {
     return "See also: score";
 }

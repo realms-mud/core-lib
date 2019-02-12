@@ -249,13 +249,13 @@ public nomask int execute(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string synopsis(string displayCommand)
+protected string synopsis(string displayCommand, string colorConfiguration)
 {
     return "Set various player-controlled game parameters.";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string flagInformation(string flag)
+protected string flagInformation(string flag, string colorConfiguration)
 {
     string ret = "";
     string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
@@ -265,7 +265,7 @@ protected string flagInformation(string flag)
         case "-p":
         {
             ret = "This flag allows a user to specify the parameter "
-                "they wish to set.\nIt must be used in conjunction with the -v"
+                "they wish to set.\nIt must be used in conjunction with the -v "
                 "flag. Possible parameters are:\n\n";
 
             string *parameters = sort_array(m_indices(parametersToFunction), 
@@ -307,7 +307,7 @@ protected string flagInformation(string flag)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string description(string displayCommand)
+protected string description(string displayCommand, string colorConfiguration)
 {
     return format("Set allows a player to set various configuration parameters "
         "for their character. This includes color support, unicode support, "
@@ -318,7 +318,7 @@ protected string description(string displayCommand)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string notes(string displayCommand)
+protected string notes(string displayCommand, string colorConfiguration)
 {
     return "See also: tell, reply, guild, and shout";
 }

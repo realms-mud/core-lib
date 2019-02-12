@@ -54,13 +54,13 @@ public nomask int execute(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string synopsis(string displayCommand)
+protected string synopsis(string displayCommand, string colorConfiguration)
 {
     return "Copy a file.";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string description(string displayCommand)
+protected string description(string displayCommand, string colorConfiguration)
 {
     return format("The cp command will copy the source file to the destination "
         "file provided that the user has read access to the source file "
@@ -68,7 +68,7 @@ protected string description(string displayCommand)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string notes(string displayCommand)
+protected string notes(string displayCommand, string colorConfiguration)
 {
     return "See also: mv and rm";
 }

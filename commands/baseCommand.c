@@ -2,7 +2,6 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#include <mtypes.h>
 
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
 private string MessageParser = "/lib/core/messageParser.c";
@@ -224,12 +223,6 @@ private nomask int isValidLiving(object livingCheck)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string formatText(string text, int colorInfo, object viewer)
-{
-    return color(viewer->query("term"), viewer, colorInfo, format(text, 78));
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask string parseTemplate(string template, string perspective,
                                     object initiator, object target)
 {
@@ -299,7 +292,6 @@ protected nomask varargs void displayMessage(string message, object initiator,
             if (person && objectp(person))// && interactive(person))
             {
                 string parsedMessage;
-                int colorInfo = C_EMOTES;
                 if (person == initiator)
                 {
                     parsedMessage = parseTemplate(message, "initiator", initiator,
@@ -315,8 +307,9 @@ protected nomask varargs void displayMessage(string message, object initiator,
                     parsedMessage = parseTemplate(message, "other",
                         initiator, target);
                 }
-                tell_object(person, formatText(parsedMessage, colorInfo,
-                    person));
+                tell_object(person, configuration->decorate(
+                    format(parsedMessage, 78), "text", "command",
+                    person->colorConfiguration()));
             }
         }
     }
@@ -328,62 +321,66 @@ protected nomask void displayMessageToSelf(string message, object initiator)
     if (initiator && objectp(initiator))
     {
         string parsedMessage;
-        int colorInfo = C_EMOTES;
 
         parsedMessage = parseTemplate(message, "initiator", initiator,
             initiator);
 
-        tell_object(initiator, formatText(message, colorInfo,
-            initiator));
+        tell_object(initiator, configuration->decorate(
+            format(parsedMessage, 78), "text", "command",
+            initiator->colorConfiguration()));
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string flagInformation(string flag)
+protected string flagInformation(string flag, string colorConfiguration)
 {
     return "";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string usageDetails(string displayCommand)
+protected string usageDetails(string displayCommand, string colorConfiguration)
 {
     return "";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string synopsis(string displayCommand)
+protected string synopsis(string displayCommand, string colorConfiguration)
 {
     return "";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string description(string displayCommand)
+protected string description(string displayCommand, string colorConfiguration)
 {
     return "";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string options(string displayCommand)
+protected string options(string displayCommand, string colorConfiguration)
 {
     return "";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string notes(string displayCommand)
+protected string notes(string displayCommand, string colorConfiguration)
 {
     return "";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string copyright()
+protected string copyright(string colorConfiguration)
 {
-    return "\x1b[0;36;1mCopyright\n\x1b[0;36m\tCopyright (C) 1991-2018 Allen "
-        "Cummings. For additional licensing\n\tinformation, see "
-        "http://realmsmud.org/license/ \x1b[0m\n";
+    return configuration->decorate("\n\nCopyright\n", "heading", "help",
+            colorConfiguration) +
+        configuration->decorate("\tCopyright (C) 1991-2018 Allen "
+            "Cummings. For additional licensing\n\tinformation, see ",
+            "text", "help", colorConfiguration) +
+        configuration->decorate("http://realmsmud.org/license/\n",
+            "url", "help", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string wildcardMeaning()
+protected string wildcardMeaning(string colorConfiguration)
 {
     return "";
 }
@@ -399,31 +396,58 @@ public nomask string displayUsageDetails(string displayCommand,
         string *commandText = ({});
         foreach(string command in commands)
         {
-            string currentCommand = regreplace(command, "\\[\\.\\*\\]", wildcardMeaning(), 1);
+            string currentCommand = regreplace(command, "\\[\\.\\*\\]", 
+                wildcardMeaning(colorConfiguration), 1);
+
+            currentCommand = regreplace(currentCommand, "[[][(]([^|]+)[|]([^]]+)[)][+]", "[\\1] [\\2", 1);
             currentCommand = format(regreplace(currentCommand, "\\|", "", 1), 78);
-            currentCommand = "\x1b[0;36m" + regreplace(currentCommand, "##([^#]+)##", "\x1b[0;33m<\\1>\x1b[0m\x1b[0;36m", 1) + "\x1b[0m";
+            currentCommand = regreplace(currentCommand, "([^#]*)##([^#]+)##([^#]*)", 
+                configuration->decorate("\\1", "text", "help", colorConfiguration) +
+                configuration->decorate("<\\2>", "parameter", "help", colorConfiguration) +
+                configuration->decorate("\\3", "text", "help", colorConfiguration), 1);
+            if (!sizeof(regexp(({ currentCommand }), "\x1b")))
+            {
+                currentCommand = configuration->decorate(currentCommand,
+                    "text", "help", colorConfiguration);
+            }
             commandText += ({ regreplace(currentCommand, "\n", "\n\t\t", 1) });
         }
-        ret = "\t" + implode(commandText, "\n\t");
+        ret = "\t" + implode(commandText, "\n\t") + "\n";
     }
 
-    return "\n\x1b[0;36;1mSyntax\n\x1b[0m" + ret + "\n\x1b[0m";
+    return configuration->decorate("\nSyntax\n", "heading", "help", 
+        colorConfiguration) + ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public string displaySynopsis(string displayCommand,
     string colorConfiguration, int useUnicode)
 {
-    return format(sprintf("\x1b[0;36;1mSynopsis\n\x1b[0;36m\t%s - %s\n\x1b[0m", 
-        displayCommand, synopsis(displayCommand)), 78);
+    return configuration->decorate("Synopsis\n", "heading", "help",
+            colorConfiguration) +
+        configuration->decorate(format(sprintf("\t%s - %s\n", displayCommand,
+            synopsis(displayCommand, colorConfiguration)), 75),
+            "text", "help", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public string displayDescription(string displayCommand,
     string colorConfiguration, int useUnicode)
 {
-    return sprintf("\x1b[0;36;1mDescription\n\x1b[0;36m%s\n\x1b[0m\n",
-        description(displayCommand));
+    return configuration->decorate("Description\n", "heading", "help",
+            colorConfiguration) +
+        configuration->decorate(description(displayCommand + "\n", 
+            colorConfiguration), "text", "help", colorConfiguration); 
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string formatFlag(string flag, string colorConfiguration)
+{
+    string ret = regreplace(flag, "[[()]*\\]*", "", 1);
+    return regreplace(ret, "(.*)##([^#]+)##(.*)",
+        configuration->decorate("\\1", "heading", "help", colorConfiguration) +
+        configuration->decorate("<\\2>", "parameter", "help", colorConfiguration) +
+        configuration->decorate("\\3", "heading", "help", colorConfiguration), 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -431,29 +455,59 @@ public string displayOptions(string displayCommand,
     string colorConfiguration, int useUnicode)
 {
     string ret = "";
-    if (sizeof(commands) && sizeof(regexp(({ commands[0] }), " [[]*-[a-zA-Z]")))
+    if (sizeof(commands) && sizeof(regexp(({ commands[0] }), " [[]*[(-]+[a-zA-Z]")))
     {
         string commandBlueprint = regreplace(commands[0], "^([^-[]+ +)(.*)", "\\2");
+        commandBlueprint = regreplace(commandBlueprint, "[[][(]([^|]+)[|]([^]]+)[)][+]", "[\\1] [\\2", 1);
         string *options = explode(commandBlueprint, " [") - ({ ".*]" });
+
         string *optionList = ({});
         foreach(string option in options)
         {
-            string shorthand = "\x1b[0;36;1m" + regreplace(option, "\\[*(.+)\\([^)]+\\)([^]]*)[]]$", "\\1\\2") + "\x1b[0m";
-            string verbose = "\x1b[0;36;1m" + regreplace(option, "\\[*(.+)\\(([^|]+)\\|\\)([^]]*)[]]$", "\\1\\2\\3") + "\x1b[0m";
+            string shorthand = formatFlag(regreplace(option, 
+                "\\[*(.+)\\([^)]+\\)([^]]*)[]]$", "\\1\\2"), 
+                colorConfiguration);
 
-            optionList += ({ "    " + regreplace(format(shorthand + ", " + verbose, 78),
-                "##([^#]+)##", "\x1b[0;33m<\\1>\x1b[0m", 1) + "\x1b[0;36m\t" +
-                regreplace(format(flagInformation(shorthand), 78), "\n", "\n\t", 1) + "\x1b[0m\n" });
+            string verbose = formatFlag(regreplace(option, 
+                "\\[*(.+)\\(([^|]+)\\|\\)([^]]*)[]]$", "\\1\\2\\3"), 
+                colorConfiguration);
+
+            string displayFlag = shorthand;
+            if (shorthand != verbose)
+            {
+                displayFlag += ", " + verbose;
+            }
+            displayFlag = "    " + displayFlag;
+
+            if (sizeof(regexp(({ displayFlag }),  "-")))
+            {
+                optionList += ({ "\n" + displayFlag + "\n\t" + 
+                    configuration->decorate(regreplace(format(
+                        flagInformation(shorthand, colorConfiguration), 78), 
+                        "\n", "\n\t", 1),
+                        "text", "help", colorConfiguration) });
+            }
         }
         ret = implode(optionList, "");
     }
-    return "\x1b[0;36;1mOptions\n" + "\x1b[0m" + ((ret != "") ? ret : "\x1b[0;36m\tThis command does not have any options.\x1b[0m\n\n");
+    else
+    {
+        ret = configuration->decorate(
+            "\tThis command does not have any options.\n",
+            "text", "help", colorConfiguration);
+    }
+
+    return configuration->decorate("\nOptions\n", "heading", "help",
+            colorConfiguration) + ret + "\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public string displayNotes(string displayCommand,
     string colorConfiguration, int useUnicode)
 {
-    return format(sprintf("\x1b[0;36;1mNotes\n\x1b[0;36m\t%s\n\x1b[0m\n",
-        notes(displayCommand)), 78) + copyright();
+    return configuration->decorate("Notes\n\t", "heading", "help",
+            colorConfiguration) +
+        configuration->decorate(notes(displayCommand + "\n",
+            colorConfiguration), "text", "help", colorConfiguration) +
+        copyright(colorConfiguration);
 }

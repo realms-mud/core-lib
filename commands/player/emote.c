@@ -51,3 +51,24 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Display a custom action/emote by the player";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("This command allows the user to display a custom "
+        "message to those in their environment. As with other forms of "
+        "communication, be mindful of those you interact with and adhere "
+        "to the 'don't be a jerk' policy.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: The various soul commands";
+}

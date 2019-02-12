@@ -1243,7 +1243,7 @@ public nomask int execute(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string usageDetails(string displayCommand)
+protected nomask string usageDetails(string displayCommand, string colorConfiguration)
 {
     string ret = "";
 

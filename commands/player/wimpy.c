@@ -9,10 +9,8 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        CommandType = "Player Information";
-        addCommandTemplate("inventory [-v]");
-        addCommandTemplate("i [-v]");
-        addCommandTemplate("inven [-v]");
+        CommandType = "General";
+        addCommandTemplate("wimpy [-v ##Value##]");
     }
 }
 
@@ -21,14 +19,18 @@ public nomask int execute(string command, object initiator)
 {
     int ret = 0;
 
-    if(canExecuteCommand(command) && initiator->has("inventory"))
+    if (canExecuteCommand(command))
     {
         ret = 1;
-
-        int verbose = sizeof(regexp(({ command }), "-v"));
-        tell_object(initiator, initiator->inventoryText(verbose) +
-            sprintf("\x1b[0;31m| \x1b[0;36mYou currently have \x1b[0;32m%d\x1b[0;36m in cash on hand.\n", initiator->Money()) +
-            "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m");
+        if (sizeof(regexp(({ command }), "-v")))
+        {
+            string value = regreplace(command, ".*-v ([-0-9]+)", "\\1");
+            initiator->Wimpy(value);       
+        }
+        else
+        {
+            initiator->Wimpy();
+        }
     }
     return ret;
 }
@@ -36,7 +38,7 @@ public nomask int execute(string command, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 protected string synopsis(string displayCommand, string colorConfiguration)
 {
-    return "Displays the player's inventory";
+    return "Sets the 'run away' threshhold for the user";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,8 +51,8 @@ protected string flagInformation(string flag, string colorConfiguration)
     {
         case "-v":
         {
-            ret = "This option will display verbose information about "
-                "items in the player's inventory.";
+            ret = "This option will change the hit point percentage "
+                "threshhold (expressed as a value from 0 to 70).";
             break;
         }
     }
@@ -60,14 +62,17 @@ protected string flagInformation(string flag, string colorConfiguration)
 /////////////////////////////////////////////////////////////////////////////
 protected string description(string displayCommand, string colorConfiguration)
 {
-    return format("Inventory will display all items that a player is "
-        "currently carrying. Those items that are equipped/worn are "
-        "shown with information about the particular slot that they "
-        "are being used in.", 78);
+    return format("Wimpy allows the user to set a value at which their "
+        "character will automatically run away from active combat. This "
+        "threshhold is the point where their current hit points fall below "
+        "the percentage of their maximum hit points. When this happens, "
+        "their valor will take backseat to their thoughts of "
+        "self-preservation and they will run away to an adjacent "
+        "environment", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected string notes(string displayCommand, string colorConfiguration)
 {
-    return "See also: score";
+    return "See also: kill";
 }

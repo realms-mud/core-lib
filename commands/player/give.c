@@ -102,3 +102,54 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Give the chosen item(s) to another character.";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-*[a-zA-Z]+).*", "\\1");
+
+    switch (parsedFlag)
+    {
+        case "-a":
+        {
+            ret = "This option will attempt to give everything in the player's "
+                "inventory that matches the criteria following the -a flag. "
+                "For example:\n\t> give -a potion to george\nThis would "
+                "give every potion in the player's possession to George.";
+            break;
+        }
+        case "-f":
+        {
+            ret = "This option will attempt to force-give an item in the "
+                "player's inventory. By default, give will not give equipped "
+                "items and this flag will override that behavior.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("Give will move the specified item from the player's "
+        "inventory to another character. There are a few keywords that can "
+        "affect this command's behavior. In order to give "
+        "money, the syntax is slightly different and can take any of the "
+        "following forms:\n\t> give coin to fred\n\t> give 2 coins to fred\n\t"
+        "> give all coins to fred\n\t> give money to fred\nThese will get one "
+        "coin, two coins or all coins to Fred.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: drop, get";
+}

@@ -49,26 +49,26 @@ public nomask int execute(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string wildcardMeaning()
+protected string wildcardMeaning(string colorConfiguration)
 {
     return "\x1b[0;31;1m<Message to speak>\x1b[0m";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string synopsis(string displayCommand)
+protected string synopsis(string displayCommand, string colorConfiguration)
 {
     return "Send a message to every logged-in player of your race";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string description(string displayCommand)
+protected string description(string displayCommand, string colorConfiguration)
 {
     return format("Race allows a player to display a message to all players "
         "of their race who are currently logged on.", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string notes(string displayCommand)
+protected string notes(string displayCommand, string colorConfiguration)
 {
     return "See also: tell, whisper, reply, say, guild, faction, party, "
         "and shout";

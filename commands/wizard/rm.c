@@ -93,7 +93,7 @@ public nomask int execute(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string flagInformation(string flag)
+protected string flagInformation(string flag, string colorConfiguration)
 {
     string ret = "";
     string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
@@ -106,20 +106,20 @@ protected string flagInformation(string flag)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string synopsis(string displayCommand)
+protected string synopsis(string displayCommand, string colorConfiguration)
 {
     return "Remove/delete a file.";
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string description(string displayCommand)
+protected string description(string displayCommand, string colorConfiguration)
 {
     return format("The rm command will remove the specified file provided the "
         "user has write access.", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string notes(string displayCommand)
+protected string notes(string displayCommand, string colorConfiguration)
 {
     return "See also: cp and mv";
 }
