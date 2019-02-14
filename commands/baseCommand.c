@@ -340,7 +340,7 @@ protected string flagInformation(string flag, string colorConfiguration)
 /////////////////////////////////////////////////////////////////////////////
 protected string usageDetails(string displayCommand, string colorConfiguration)
 {
-    return "";
+    return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -391,7 +391,13 @@ public nomask string displayUsageDetails(string displayCommand,
 {
     string ret = "";
 
-    if (sizeof(commands))
+    string details = usageDetails(displayCommand, colorConfiguration);
+
+    if (details)
+    {
+        ret = details;
+    }
+    else if (sizeof(commands))
     {
         string *commandText = ({});
         foreach(string command in commands)
@@ -400,7 +406,7 @@ public nomask string displayUsageDetails(string displayCommand,
                 wildcardMeaning(colorConfiguration), 1);
 
             currentCommand = regreplace(currentCommand, "[[][(]([^|]+)[|]([^]]+)[)][+]", "[\\1] [\\2", 1);
-            currentCommand = format(regreplace(currentCommand, "\\|", "", 1), 78);
+            currentCommand = format(regreplace(currentCommand, "\\|", "", 1), 66);
             currentCommand = regreplace(currentCommand, "([^#]*)##([^#]+)##([^#]*)", 
                 configuration->decorate("\\1", "text", "help", colorConfiguration) +
                 configuration->decorate("<\\2>", "parameter", "help", colorConfiguration) +

@@ -128,3 +128,99 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Display skill information or advance skills.";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-*[a-zA-Z]+).*", "\\1");
+
+    switch (parsedFlag)
+    {
+        case "-co":
+        {
+            ret = "This option will filter the list of skills to "
+                "include combat skills.";
+            break;
+        }
+        case "-cr":
+        {
+            ret = "This option will filter the list of skills to "
+                "include crafting skills.";
+            break;
+        }
+        case "-e":
+        {
+            ret = "This option will filter the list of skills to "
+                "include erudite skills.";
+            break;
+        }
+        case "-g":
+        {
+            ret = "This option will filter the list of skills to "
+                "include general skills.";
+            break;
+        }
+        case "-l":
+        {
+            ret = "This option will filter the list of skills to "
+                "include language skills.";
+            break;
+        }
+        case "-m":
+        {
+            ret = "This option will filter the list of skills to "
+                "include magic skills.";
+            break;
+        }
+        case "-s":
+        {
+            ret = "This option will filter the list of skills to "
+                "include subterfuge skills.";
+            break;
+        }
+        case "-a":
+        {
+            ret = "This option will filter the list of skills to "
+                "include all skills.";
+            break;
+        }
+        case "-advance":
+        {
+            ret = "This option is used to advance the skill passed as its "
+                "parameter. By default, it will advance the skill by one "
+                "point. However, if it is used in conjunction with the -by "
+                "flag, a different amount can be specified.";
+            break;
+        }
+        case "-by":
+        {
+            ret = "This option can only be used in conjunction with the "
+                "-advance flag. It will override the default behavior of "
+                "only incrementing the skill by one and will instead "
+                "increment the skill by the value specified.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The skills command is used to either display a player's "
+        "knowledge level in all skills, a set of skills, or allow a skill "
+        "to be advanced.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: score";
+}

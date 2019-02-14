@@ -1247,12 +1247,86 @@ protected nomask string usageDetails(string displayCommand, string colorConfigur
 {
     string ret = "";
 
-    if (sizeof(commands) && member(emoteTemplates, displayCommand))
+    string *command = filter(commands,
+        (: sizeof(regexp(({ $1 }), "^" + displayCommand + " ")) :));
+
+    printf("commad = %O\n", command);
+    if (sizeof(command) && member(emoteTemplates, displayCommand))
     {
         string *commandText = ({});
-        commandText += ({ regreplace(displayCommand, "##([^#]+)##", "<\\1>", 1) });
-        ret = implode(commandText, "\n                  ");
+        foreach(string commandItem in command)
+        {
+            string currentCommand = regreplace(commandItem, "\\[\\.\\*\\]",
+                wildcardMeaning(colorConfiguration), 1);
+
+            currentCommand = regreplace(currentCommand, "[[][(]([^|]+)[|]([^]]+)[)][+]", "[\\1] [\\2", 1);
+            currentCommand = format(regreplace(currentCommand, "\\|", "", 1), 78);
+            currentCommand = regreplace(currentCommand, "([^#]*)##([^#]+)##([^#]*)",
+                configuration->decorate("\\1", "text", "help", colorConfiguration) +
+                configuration->decorate("<\\2>", "parameter", "help", colorConfiguration) +
+                configuration->decorate("\\3", "text", "help", colorConfiguration), 1);
+            if (!sizeof(regexp(({ currentCommand }), "\x1b")))
+            {
+                currentCommand = configuration->decorate(currentCommand,
+                    "text", "help", colorConfiguration);
+            }
+            commandText += ({ regreplace(currentCommand, "\n", "\n\t\t", 1) });
+        }
+        ret = "\t" + implode(commandText, "\n\t") + "\n";
     }
 
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Execute a soul command";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-*[a-zA-Z]+).*", "\\1");
+
+    switch (parsedFlag)
+    {
+        case "-a":
+        {
+            ret = "This option will add or replace the soul command's adverb "
+                "with the supplied value. For example:\n> laugh -a raucously\n"
+                "You laugh raucously.";
+            break;
+        }
+        case "-t":
+        {
+            ret = "This option will target the supplied character with the "
+                "soul command. For example:\n> laugh -t earl\nYou laugh "
+                "at Earl.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The various soul commands are a series of canned emotes "
+        "that can be used to interact with other players and characters "
+        "in the game. For non-player characters, many of these commands "
+        "will have an affect on their opinion of the player and can "
+        "lead to reciprocation, be it friendly, rude, or romantic. Much of "
+        "these reciprocations are directly tied to the character's "
+        "personality traits. If you abuse an NPC, don't be surprised if "
+        "they abuse you back!\n\nPlayers can block other players from "
+        "using these commands against them via the 'block player' setting. "
+        "that can be modified via the set command.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: soul, emote, and set";
 }

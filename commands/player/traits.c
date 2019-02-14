@@ -116,3 +116,102 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Display trait information.";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-*[a-zA-Z]+).*", "\\1");
+
+    switch (parsedFlag)
+    {
+        case "-b":
+        {
+            ret = "This option will filter the list of traits to display "
+                "background traits.";
+            break;
+        }
+        case "-d":
+        {
+            ret = "This option will display details about the specified "
+                "trait.";
+            break;
+        }
+        case "-ed":
+        {
+            ret = "This option will filter the list of traits to display "
+                "educational traits.";
+            break;
+        }
+        case "-ef":
+        {
+            ret = "This option will filter the list of traits to display "
+                "traits that the character has due to an active magical "
+                "or biological trait.";
+            break;
+        }
+        case "-ge":
+        {
+            ret = "This option will filter the list of traits to display "
+                "genetic traits.";
+            break;
+        }
+        case "-g":
+        {
+            ret = "This option will filter the list of traits to display "
+                "guild traits.";
+            break;
+        }
+        case "-h":
+        {
+            ret = "This option will filter the list of traits to display "
+                "health traits.";
+            break;
+        }
+        case "-pe":
+        {
+            ret = "This option will filter the list of traits to display "
+                "personality traits.";
+            break;
+        }
+        case "-pr":
+        {
+            ret = "This option will filter the list of traits to display "
+                "professional traits.";
+            break;
+        }
+        case "-ra":
+        {
+            ret = "This option will filter the list of traits to display "
+                "racial traits.";
+            break;
+        }
+        case "-ro":
+        {
+            ret = "This option will filter the list of traits to display "
+                "traits gained through one of the player's roles.";
+            break;
+        }
+    }
+
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The traits command is used to display a player's traits "
+        "or details about the specified trait.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: score";
+}

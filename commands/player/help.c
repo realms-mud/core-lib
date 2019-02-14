@@ -36,45 +36,58 @@ private nomask varargs mapping flattenCommandList(mapping commandList, string ca
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string categoriesHelpList(string *commandCategories,
+    mapping commandList, string colorConfiguration, string charset)
+{
+    string message = "";
+    foreach(string commandCategory in commandCategories)
+    {
+        message += Dictionary->buildBanner(colorConfiguration, charset,
+            "top", capitalize(commandCategory), "Help");
+
+        string *commandEntries = sort_array(m_indices(
+            commandList[commandCategory]), (: $1 > $2 :));
+        int count = 0;
+        foreach(string commandEntry in commandEntries)
+        {
+            if (!(count % 5))
+            {
+                if (count)
+                {
+                    message += " \x1b[0;31m|\x1b[0m\n";
+                }
+                message += "\x1b[0;31m| \x1b[0;37m";
+            }
+            message += sprintf("%-15s", commandEntry);
+            count++;
+        }
+        int spacesLeft = count % 5;
+        if (spacesLeft)
+        {
+            for (int i = spacesLeft; i < 5; i++)
+            {
+                message += sprintf("%-15s", "");
+            }
+        }
+        message += " \x1b[0;31m|\x1b[0m\n";
+    }
+    message += Dictionary->buildBanner(colorConfiguration, charset, "center", "", "");
+
+    return message;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string topLevelHelpMessage(mapping commandList,
     string colorConfiguration, string charset)
 {
     string message = "";
     if (sizeof(commandList))
     {
-        string *commandCategories = sort_array(m_indices(commandList), (: $1 > $2 :));
-        foreach(string commandCategory in commandCategories)
-        {
-            message += Dictionary->buildBanner(colorConfiguration, charset,
-                "top", capitalize(commandCategory), "Help");
+        string *commandCategories = sort_array(m_indices(commandList), 
+            (: $1 > $2 :));
 
-            string *commandEntries = sort_array(m_indices(
-                commandList[commandCategory]), (: $1 > $2 :));
-            int count = 0;
-            foreach(string commandEntry in commandEntries)
-            {
-                if (!(count % 5))
-                {
-                    if (count)
-                    {
-                        message += " \x1b[0;31m|\x1b[0m\n";
-                    }
-                    message += "\x1b[0;31m| \x1b[0;37m";
-                }
-                message += sprintf("%-15s", commandEntry);
-                count++;
-            }
-            int spacesLeft = count % 5;
-            if (spacesLeft)
-            {
-                for (int i = spacesLeft; i < 5; i++)
-                {
-                    message += sprintf("%-15s", "");
-                }
-            }
-            message += " \x1b[0;31m|\x1b[0m\n";
-        }
-        message += Dictionary->buildBanner(colorConfiguration, charset, "center", "", "");
+        message += categoriesHelpList(commandCategories, commandList,
+            colorConfiguration, charset);
     }
     return message;
 }
@@ -148,6 +161,16 @@ public nomask int execute(string command, object initiator)
         if (!sizeof(command))
         {
             message = topLevelHelpMessage(commandList, colorConfiguration, charset);
+        }
+        else if (command == "soul")
+        {
+            message = configuration->decorate(format(
+                "The following is a list of the available soul "
+                "commands. Type 'help <command>' for further details "
+                "about a specific soul command.\n", 78), 
+                "text", "help", colorConfiguration) + 
+                categoriesHelpList(({ "Emote / Soul" }), commandList,
+                colorConfiguration, charset);
         }
         else if(member(flattenedCommandList, command))
         {
