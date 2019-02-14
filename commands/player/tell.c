@@ -94,3 +94,24 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Send a message to a specific person on the mud";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("Tell will send a message to a specific person on the "
+        "mud. During a conversation such as this, the 'reply' "
+        "command can be used to direct a message back to the last "
+        "person who has sent a 'tell' to you.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: tell, whisper, reply, say, and set";
+}

@@ -232,7 +232,8 @@ void HelpForSayDisplaysProperInfo()
         "\x1b[0;36;1mDescription\n"
         "\x1b[0m\x1b[0;36mSay allows a player to display a message to all players located in the same\n"
         "room where he or she is standing. The character ' can be used as an\n"
-        "abbreviation for say to save time.\n"
+        "abbreviation for say to save time. Interactions with players can be blocked\n"
+        "using the 'block player' setting.\n"
         "\x1b[0m\x1b[0;36;1m\n"
         "Options\n"
         "\x1b[0m\n"
@@ -286,10 +287,10 @@ void HelpForSayDisplaysProperInfo()
         "		\x1b[0;32mBob says to Fred, `Hi Fred!'\x1b[0m\n"
         "	\x1b[0m\n"
         "\x1b[0;36;1mNotes\n"
-        "	\x1b[0m\x1b[0;36mSee also: tell, whisper, reply, and shout\x1b[0m\x1b[0;36;1m\n"
+        "	\x1b[0m\x1b[0;36mSee also: tell, whisper, reply, shout, and set\x1b[0m\x1b[0;36;1m\n"
         "\n"
         "Copyright\n"
-        "\x1b[0m\x1b[0;36m	Copyright (C) 1991-2018 Allen Cummings. For additional licensing\n"
+        "\x1b[0m\x1b[0;36m	Copyright (C) 1991-2019 Allen Cummings. For additional licensing\n"
         "	information, see \x1b[0m\x1b[0;36mhttp://realmsmud.org/license/\n"
         "\x1b[0m",
         Player->caughtMessage());

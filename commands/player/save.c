@@ -26,3 +26,24 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Save your current progress";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The save command is rather straightforward: It allows one "
+        "to save the current state of their character. It should be noted "
+        "that many events trigger a character save - such as death, key "
+        "plot points, going link dead, dying, and others.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: quit";
+}

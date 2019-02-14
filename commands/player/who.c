@@ -113,3 +113,57 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Display a list of currently logged-in users.";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-*[a-zA-Z]+).*", "\\1");
+
+    switch (parsedFlag)
+    {
+        case "-w":
+        {
+            ret = "This option will filter the who list to only show wizards.";
+            break;
+        }
+        case "-p":
+        {
+            ret = "This option will filter the who list to only show players.";
+            break;
+        }
+        case "-r":
+        {
+            ret = "This option will filter the who list to only show "
+                "members of the specified race.";
+            break;
+        }
+        case "-g":
+        {
+            ret = "This option will filter the who list to only show "
+                "members of the specified guild.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("Who will display a list of all players currently "
+        "on-line.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: tell, shout, say";
+}

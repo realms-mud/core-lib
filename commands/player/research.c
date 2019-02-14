@@ -41,3 +41,26 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Enter the research subsystem menu";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The research command is used to browse your various "
+        "learned research items and open research trees.\n\nResearch is "
+        "the means by which you can learn crafting methods, domain "
+        "management / world building skills, new guild abilities, racial "
+        "and background abilities, trades, and many other player "
+        "improvement 'things'.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: level up";
+}

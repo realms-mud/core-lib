@@ -129,3 +129,85 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string wildcardMeaning(string colorConfiguration)
+{
+    return "\x1b[0;31;1m<Message to speak>\x1b[0m";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Send a message to everyone on the mud";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+    switch (parsedFlag)
+    {
+        case "-v":
+        {
+            ret = "This option will replace the verb displayed as part of "
+                "the 'shout' message. For example:\n\t\x1b[0;37m> shout -v grumble "
+                "I'm grumpy!\n\t\x1b[0;32mYou grumble, `I'm grumpy!'\x1b[0m\n"
+                "\x1b[0;36mOthers users would then see:\n"
+                "\t\x1b[0;32mBob grumbles, `I'm grumpy!'\x1b[0m\n";
+            break;
+        }
+        case "-a":
+        {
+            ret = "This option will add an adverb to "
+                "the 'shout' message. For example:\n\t\x1b[0;37m> shout -a sarcastically "
+                "You're my hero!\n\t\x1b[0;32mYou sarcastically shout, `You're my hero!'\x1b[0m\n"
+                "\x1b[0;36mOthers users would then see:\n"
+                "\t\x1b[0;32mBob sarcastically shouts, `You're my hero!'\x1b[0m\n";
+            break;
+        }
+        case "-l":
+        {
+            ret = "This option will translate the message you wish to shout into "
+                "the given language - or at least attempt to do so. Your skill "
+                "in the target language will determine whether or not it is "
+                "translated appropriately or becomes gibberish. Those in the "
+                "environment will then use their skill to translate the message "
+                "back to English. For example if you have no skill in a "
+                "language, you might see:\n\t\x1b[0;37m> shout -l orcish "
+                "I should shout something nice.\n\t\x1b[0;32mYou shout in complete "
+                "gibberish, `Blarg nukuleve zog forgla bup'\n"
+                "\x1b[0;36mOthers users would see:\n"
+                "\t\x1b[0;32mBob shouts in complete gibberish, `Blarg nukuleve zog "
+                "forgla bup'\n\x1b[0;36mMeanwhile, if you do know a language you might "
+                "see:\n\t\x1b[0;37m> shout -l elven I should shout something nice."
+                "\n\t\x1b[0;32mYou shout in elven, `I should shout something nice.'\n"
+                "\x1b[0;36mOthers users that have a high skill in elven would see:"
+                "\n\t\x1b[0;32mBob shouts in elven, `I should shout something nice.'\n"
+                "\x1b[0;36mOthers users that have no skill in elven would see:"
+                "\n\t\x1b[0;32mBob shouts in elven, `Naur wu simildin welana loomen'\n"
+                "\x1b[0;36mIt is important to note that knowledge of a language is "
+                "a range and, so too, is one's ability to speak and translate "
+                "it. You will go from being able to speak/understand nothing "
+                "to brokenly speaking or partially understanding all the way "
+                "through being completely fluent.\x1b[0;36m\n";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("Shout allows a player to display a message to all players "
+        "in the game. Players can block shouts using the earmuffs "
+        "setting.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: tell, whisper, reply, say, and set";
+}

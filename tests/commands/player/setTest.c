@@ -733,7 +733,7 @@ void PlayerHelpDisplaysCorrectly()
         "\x1b[0;36;1mNotes\n"
         "\t\x1b[0m\x1b[0;36mSee also: tell, reply, guild, and shout\x1b[0m"
         "\x1b[0;36;1m\n\nCopyright\n"
-        "\x1b[0m\x1b[0;36m	Copyright (C) 1991-2018 Allen Cummings. For additional licensing\n"
+        "\x1b[0m\x1b[0;36m	Copyright (C) 1991-2019 Allen Cummings. For additional licensing\n"
         "	information, see \x1b[0m\x1b[0;36mhttp://realmsmud.org/license/\n\x1b[0m",
         Player->caughtMessage());
 }
@@ -886,7 +886,7 @@ void WizardHelpDisplaysCorrectly()
         "\x1b[0;36;1mNotes\n"
         "\t\x1b[0m\x1b[0;36mSee also: tell, reply, guild, and shout\x1b[0m"
         "\x1b[0;36;1m\n\nCopyright\n"
-        "\x1b[0m\x1b[0;36m	Copyright (C) 1991-2018 Allen Cummings. For additional licensing\n"
+        "\x1b[0m\x1b[0;36m	Copyright (C) 1991-2019 Allen Cummings. For additional licensing\n"
         "	information, see \x1b[0m\x1b[0;36mhttp://realmsmud.org/license/\n\x1b[0m", 
         Wizard->caughtMessage());
 }

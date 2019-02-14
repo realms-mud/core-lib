@@ -278,3 +278,41 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Displays the player's general information page";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+    
+    switch (parsedFlag)
+    {
+        case "-v":
+        {
+            ret = "This option will display verbose information about "
+                "the player such as best kill and other combat statistics.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("Score will display the character's vitals, race, attributes, "
+        "and high-level combat information. In verbose mode, it will also "
+        "display combat statistics for the character.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: inventory, quests, research, traits, and vitals";
+}

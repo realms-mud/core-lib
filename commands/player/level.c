@@ -69,3 +69,43 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Brings up the 'level up' menu.";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+
+    switch (parsedFlag)
+    {
+        case "-g":
+        {
+            ret = "This option short-circuits the main levelling menu and "
+                "displays the sub-menu for the specified guild.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("Level up allows a player to advance in a guild or "
+        "multiple guilds when they have earned enough experience to do so. "
+        "Through this menu, a player can choose to advance skills, "
+        "attributes, select research trees, and gain research / guild "
+        "abilities or traits.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: score, research, skills, traits";
+}

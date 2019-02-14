@@ -46,3 +46,27 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Initiate combat with another character";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("Kill will initiate combat with the specified target "
+        "with several caveats:\n1. Some environments can prevent combat "
+        "from being initiated.\n2. Characters that are members of your "
+        "faction or a faction you are friendly with cannot be attacked "
+        "unless a deliberate setting change is first made.\n3. You can "
+        "only attack other players if both you and your intended target "
+        "have set the pvp flag. Once this is done, it is permanent.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: set";
+}

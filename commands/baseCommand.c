@@ -372,7 +372,7 @@ protected string copyright(string colorConfiguration)
 {
     return configuration->decorate("\n\nCopyright\n", "heading", "help",
             colorConfiguration) +
-        configuration->decorate("\tCopyright (C) 1991-2018 Allen "
+        configuration->decorate("\tCopyright (C) 1991-2019 Allen "
             "Cummings. For additional licensing\n\tinformation, see ",
             "text", "help", colorConfiguration) +
         configuration->decorate("http://realmsmud.org/license/\n",

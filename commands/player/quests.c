@@ -41,3 +41,17 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Enter the quests subsystem menu";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The quests menu allows a player to track their current "
+        "(and completed) quests and journal their progress through the "
+        "various quests they have been given.", 78);
+}

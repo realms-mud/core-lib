@@ -245,11 +245,12 @@ protected string description(string displayCommand, string colorConfiguration)
 {
     return format("Say allows a player to display a message to all players "
         "located in the same room where he or she is standing. The character ' "
-        "can be used as an abbreviation for say to save time.", 78);
+        "can be used as an abbreviation for say to save time. Interactions "
+        "with players can be blocked using the 'block player' setting.", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected string notes(string displayCommand, string colorConfiguration)
 {
-    return "See also: tell, whisper, reply, and shout";
+    return "See also: tell, whisper, reply, shout, and set";
 }

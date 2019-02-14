@@ -88,3 +88,44 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Examine the details of another object or environment";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+
+    switch (parsedFlag)
+    {
+        case "-b":
+        {
+            ret = "This option will display a brief description of "
+                "the target of the examination. 'look -b' is synonymous "
+                "with (and this flag is redundant for) the 'glance' "
+                "command.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The look command (and all of its permutations) will "
+        "describe the details of the target for the player, including "
+        "other objects that might be in the target (if it's an environment "
+        "or container, for example.)", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "Things that you can look at often have other possible interactions.";
+}
