@@ -209,3 +209,9 @@ public nomask varargs void updateFactionDisposition(string faction, int reputati
             factions[faction]["reputation"];
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void toggleUnsafeFactionInteractions()
+{
+
+}

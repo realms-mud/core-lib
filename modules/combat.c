@@ -1108,16 +1108,6 @@ public nomask void stopFight(object attacker)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void toggleKillList()
-{
-    object player = getService("player");
-    if (player)
-    {
-        onKillList = !onKillList;
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask int onKillList()
 {
     int ret = 1;
@@ -1128,6 +1118,33 @@ public nomask int onKillList()
         ret = onKillList;
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void toggleKillList()
+{
+    object player = getService("player");
+    if (player)
+    {
+            onKillList = !onKillList;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void configurePVPSetting()
+{
+    object player = getService("player");
+    if (player &&!onKillList)
+    {
+        tell_object(player, sprintf("You can now engage in player vs. player "
+            "combat outside of the arena.\n"));
+        onKillList = 1;
+    }
+    else if(player)
+    {
+        tell_object(player, sprintf("You can not remove yourself from the "
+            "player vs. player kill list.\n"));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -195,6 +195,22 @@ private mapping parametersToFunction = ([
         "suppress message": 1,
         "wizard only": 0
     ]),
+    "pvp": ([
+        "method": "configurePVPSetting",
+        "description": "This parameter will allow you to attack and be attacked by "
+            "other players. Once this flag is set, it cannot be unset!",
+        "suppress message": 1,
+        "wizard only": 0
+    ]),
+    "unsafe faction interactions": ([
+        "method": "toggleUnsafeFactionInteractions",
+        "description": "This parameter will allow you to attack characters that "
+            "belong to factions you are either a member of or friendly towards. "
+            "Be warned - killing members of these factions will have negative "
+            "effects!",
+        "suppress message": 1,
+        "wizard only": 0
+    ]),
 ]);
 
 /////////////////////////////////////////////////////////////////////////////

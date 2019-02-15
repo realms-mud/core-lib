@@ -711,6 +711,10 @@ void PlayerHelpDisplaysCorrectly()
         "	                       in lists and other commands that identify\n"
         "	                       the player with 'what they do'\n"
         "	                       \n"
+        "	pvp                  - This parameter will allow you to attack and\n"
+        "	                       be attacked by other players. Once this flag\n"
+        "	                       is set, it cannot be unset!\n"
+        "	                       \n"
         "	silence              - This parameter will allow you 'turn off' the\n"
         "	                       specified channel. For example, if your\n"
         "	                       fighter guild is too chatty for your tastes\n"
@@ -721,6 +725,12 @@ void PlayerHelpDisplaysCorrectly()
         "	                       \n"
         "	unblock player       - This parameter will allow you to unblock a\n"
         "	                       previously-blocked player.\n"
+        "	                       \n"
+        "	unsafe faction interactions - This parameter will allow you to attack\n"
+        "	                       characters that belong to factions you are\n"
+        "	                       either a member of or friendly towards. Be\n"
+        "	                       warned - killing members of these factions\n"
+        "	                       will have negative effects!\n"
         "	                       \n"
         "	unsilence            - This parameter will allow you unsilence a\n"
         "	                       previously-silenced channel\n"
@@ -855,6 +865,10 @@ void WizardHelpDisplaysCorrectly()
         "	                       in lists and other commands that identify\n"
         "	                       the player with 'what they do'\n"
         "	                       \n"
+        "	pvp                  - This parameter will allow you to attack and\n"
+        "	                       be attacked by other players. Once this flag\n"
+        "	                       is set, it cannot be unset!\n"
+        "	                       \n"
         "	short                - Sets the user's short description\n"
         "	                       \n"
         "	short description    - Sets the user's short description\n"
@@ -874,6 +888,12 @@ void WizardHelpDisplaysCorrectly()
         "	                       \n"
         "	unblock player       - This parameter will allow you to unblock a\n"
         "	                       previously-blocked player.\n"
+        "	                       \n"
+        "	unsafe faction interactions - This parameter will allow you to attack\n"
+        "	                       characters that belong to factions you are\n"
+        "	                       either a member of or friendly towards. Be\n"
+        "	                       warned - killing members of these factions\n"
+        "	                       will have negative effects!\n"
         "	                       \n"
         "	unsilence            - This parameter will allow you unsilence a\n"
         "	                       previously-silenced channel\n"
@@ -916,4 +936,18 @@ void PlayerCannotSetPrimaryGuildIfNotMember()
         "you belong",
         Player->caughtMessage());
     ExpectEq("guildless", Player->primaryGuild());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetPVPFlagOnlyOnce()
+{
+    ExpectEq("0", Player->onKillList());
+    ExpectTrue(Player->executeCommand("set -p pvp -v 1"));
+    ExpectEq("1", Player->onKillList());
+    ExpectEq("You can now engage in player vs. player combat outside of the arena.\n",
+        Player->caughtMessage());
+    ExpectTrue(Player->executeCommand("set -p pvp -v 1"));
+    ExpectEq("1", Player->onKillList());
+    ExpectEq("You can not remove yourself from the player vs. player kill list.\n",
+        Player->caughtMessage());
 }
