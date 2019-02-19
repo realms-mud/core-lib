@@ -173,10 +173,19 @@ public nomask void clearLevelUpSuppression()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs int addExperience(int amount, string selectedGuild)
+public nomask varargs int addExperience(int amount, string selectedGuild, 
+    int ignorePartyCalculation)
 {
     int ret = 0;
     int displayMessage = 0;
+
+    object party = getService("parties") ? 
+        getService("parties")->getParty() : 0;
+    if (party && !ignorePartyCalculation)
+    {
+        amount = party->reallocateExperience(amount, selectedGuild, 
+            this_object());
+    }
 
     if (selectedGuild && member(guilds, selectedGuild))
     {

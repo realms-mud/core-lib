@@ -5,7 +5,6 @@
 inherit "/lib/tests/framework/testFixture.c";
 
 object Creator;
-object Member;
 object Dictionary;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,12 +38,8 @@ void Setup()
     Creator = clone_object("/lib/tests/support/services/mockPlayer.c");
     Creator->Name("Bob");
     Creator->joinGuild("test");
+    Creator->guildLevel("test");
     AdvanceToLevel(Creator, 4, "test");
-
-    Member = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Member->Name("Fred");
-    Member->joinGuild("test");
-    AdvanceToLevel(Member, 2, "test");
 
     Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
 }
@@ -53,22 +48,16 @@ void Setup()
 void CleanUp()
 {
     destruct(Creator);
-    destruct(Member);
     destruct(Dictionary);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanGetParty()
+void CanCreateParty()
 {
     Dictionary->createParty("Test party", Creator);
     object party = Creator->getParty();
 
-    ExpectEq(({ "lib/modules/party/party.c" }), inherit_list(party));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanGetPartyName()
-{
-    Dictionary->createParty("Test party", Creator);
-    ExpectEq("Test party#Bob", Creator->partyName());
+    ExpectTrue(objectp(party));
+    ExpectEq(Creator, party->creator());
+    ExpectEq(({ Creator }), party->members());
 }
