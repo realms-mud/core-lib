@@ -18,17 +18,17 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Flame Bolt");
+        addSpecification("name", "Ice Bolt");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of the flame bolt technique. By means of this, the "
-            "Scion is able to use their weapon as a conduit for emitting a flaming "
+            "knowledge of the ice bolt technique. By means of this, the "
+            "Scion is able to use their weapon as a conduit for emitting a freezing "
             "discharge at a foe.");
         Setup();
 
         addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/flame/root.c", WeaponType),
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/ice/root.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("scope", "targeted");
@@ -47,21 +47,21 @@ public void reset(int arg)
                 "range" : 10
             ])
         }));
-        addSpecification("damage type", "fire");
+        addSpecification("damage type", "cold");
 
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/fuel-the-flames.c", WeaponType),
-                "name" : "Fuel the Flames",
+                "research item": sprintf("lib/guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
+                "name" : "Chill the Blood",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/scorching-mark.c", WeaponType),
-                "name" : "Scorching Mark",
+                "research item": sprintf("lib/guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
+                "name" : "Freezing Mark",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0
@@ -74,7 +74,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"skill",
-                "name" : "elemental fire",
+                "name" : "elemental water",
                 "formula" : "additive",
                 "rate" : 1.10
             ]),
@@ -87,9 +87,9 @@ public void reset(int arg)
         }));
 
         addSpecification("cooldown", 6);
-        addSpecification("event handler", "flameBoltEvent");
-        addSpecification("command template", "flame bolt [at ##Target##]");
-        addSpecification("use ability message",  "Small tendrils of fire "
+        addSpecification("event handler", "iceBoltEvent");
+        addSpecification("command template", "ice bolt [at ##Target##]");
+        addSpecification("use ability message",  "Small shards of ice "
             "fly from ##InitiatorPossessive::Name## "
             "##InitiatorWeapon## into ##TargetName##.");
     }

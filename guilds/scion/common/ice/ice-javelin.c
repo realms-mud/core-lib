@@ -18,90 +18,80 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Conflagration");
+        addSpecification("name", "Ice Javelin");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of the conflagration technique. By means of this, the "
-            "Scion is able to use their weapon as a conduit for sending balls "
-            "of fiery plasma at all foes in the area.");
+            "knowledge of the ice javelin technique. By means of this, the "
+            "Scion is able to use their weapon as a conduit for emitting a shard "
+            "of super-cooled ice at a foe.");
         Setup();
 
         addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/flame/fireball.c", WeaponType),
+        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/ice/ice-bolt.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Scion of Dhuras",
-                "value": 37
+                "value": 9
             ]));
 
-        addSpecification("scope", "area");
+        addSpecification("scope", "targeted");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("spell point cost", 250);
+        addSpecification("spell point cost", 100);
 
         addSpecification("damage hit points", ({ ([
                 "probability":90,
-                "base damage" : 100,
-                "range" : 200
-            ]),
-            ([
-                "probability":10,
-                "base damage" : 200,
-                "range" : 500
-            ])
-        }));
-        addSpecification("damage spell points", ({ ([
-                "probability":90,
-                "base damage" : 50,
-                "range" : 100
+                "base damage" : 25,
+                "range" : 50
             ]),
             ([
                 "probability": 10,
-                "base damage": 100,
-                "range" : 200
+                "base damage": 50,
+                "range" : 100
             ])
         }));
-        addSpecification("damage type", "fire");
+
+        addSpecification("damage type", "cold");
 
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/fuel-the-flames.c", WeaponType),
-                "name" : "Fuel the Flames",
+                "research item": sprintf("lib/guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
+                "name" : "Chill the Blood",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/scorching-mark.c", WeaponType),
-                "name" : "Scorching Mark",
+                "research item": sprintf("lib/guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
+                "name" : "Freezing Mark",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/stoking-rage.c", WeaponType),
-                "name" : "Stoking Rage",
+                "research item": sprintf("lib/guilds/scion/paths/%s/ice/winters-rage.c", WeaponType),
+                "name" : "Winter's Rage",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/enhanced-blaze.c", WeaponType),
-                "name" : "Enhanced Blaze",
+                "research item": sprintf("lib/guilds/scion/paths/%s/ice/wind-chill.c", WeaponType),
+                "name" : "Wind Chill",
                 "formula" : "additive",
                 "base value" : 10,
                 "rate": 1.0
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/inferno-mark.c", WeaponType),
-                "name" : "Inferno Mark",
+                "research item": sprintf("lib/guilds/scion/paths/%s/ice/icy-mark.c", WeaponType),
+                "name" : "Icy Mark",
                 "formula" : "additive",
                 "base value" : 10,
                 "rate": 1.0
@@ -114,7 +104,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"skill",
-                "name" : "elemental fire",
+                "name" : "elemental water",
                 "formula" : "additive",
                 "rate" : 1.10
             ]),
@@ -138,10 +128,10 @@ public void reset(int arg)
             ]) 
         }));
 
-        addSpecification("cooldown", 180);
-        addSpecification("event handler", "conflagrationEvent");
-        addSpecification("command template", "conflagration");
-        addSpecification("use ability message",  "Intense balls of fiery plasma "
-            "erupt from ##InitiatorPossessive::Name## ##InitiatorWeapon##.");
+        addSpecification("cooldown", 60);
+        addSpecification("event handler", "iceJavelinEvent");
+        addSpecification("command template", "ice javelin [at ##Target##]");
+        addSpecification("use ability message",  "An intensly cold shard of ice "
+            "flies from ##InitiatorPossessive::Name## ##InitiatorWeapon## into ##TargetName##.");
     }
 }

@@ -75,7 +75,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": sprintf("lib/guilds/scion/paths/%s/flame/stoking-rage.c", WeaponType),
-                "name" : "Ionization",
+                "name" : "Stoking Rage",
                 "formula" : "additive",
                 "base value" : 5,
                 "rate": 1.0
@@ -83,7 +83,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": sprintf("lib/guilds/scion/paths/%s/flame/enhanced-blaze.c", WeaponType),
-                "name" : "Enhanced Discharge",
+                "name" : "Enhanced Blaze",
                 "formula" : "additive",
                 "base value" : 10,
                 "rate": 1.0
@@ -91,7 +91,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": sprintf("lib/guilds/scion/paths/%s/flame/inferno-mark.c", WeaponType),
-                "name" : "Plasma Eruption",
+                "name" : "Inferno Mark",
                 "formula" : "additive",
                 "base value" : 10,
                 "rate": 1.0
@@ -129,9 +129,9 @@ public void reset(int arg)
         }));
 
         addSpecification("cooldown", 60);
-        addSpecification("event handler", "lightningEvent");
-        addSpecification("command template", "lightning [at ##Target##]");
-        addSpecification("use ability message",  "An intense bolt of lightning "
+        addSpecification("event handler", "fireBoltEvent");
+        addSpecification("command template", "fire bolt [at ##Target##]");
+        addSpecification("use ability message",  "An intense spear-shaped bolt of fire "
             "flies from ##InitiatorPossessive::Name## ##InitiatorWeapon## into ##TargetName##.");
     }
 }
