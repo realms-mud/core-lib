@@ -99,13 +99,13 @@ public void reset(int arg)
         addSpecification("cooldown", 120);
         addSpecification("duration", 60);
         addSpecification("spell point cost", 75);
-        addSpecification("event handler", "burningBarrierEvent");
-        addSpecification("command template", "burning barrier [at ##Target##]");
+        addSpecification("event handler", "freezingBarrierEvent");
+        addSpecification("command template", "freezing barrier [at ##Target##]");
         addSpecification("penalty to resist fire", 10);
         addSpecification("penalty to resist physical", 10);
         addSpecification("apply enfeebled", 1);
 
-        addSpecification("use ability message", "A wave of ices flies "
+        addSpecification("use ability message", "A wave of ice flies "
             "from ##InitiatorPossessive::Name## ##InitiatorWeapon## and engulfs "
             "##TargetName##.");
     }

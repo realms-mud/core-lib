@@ -133,9 +133,9 @@ private void TwentyFirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
-    addResearchElement(sprintf("lib/guilds/scion/paths/%s/ice/fire-shroud.c", WeaponType));
+    addResearchElement(sprintf("lib/guilds/scion/paths/%s/ice/ice-shroud.c", WeaponType));
 
-    addChild(sprintf("lib/guilds/scion/paths/%s/ice/fire-shroud.c", WeaponType),
+    addChild(sprintf("lib/guilds/scion/paths/%s/ice/ice-shroud.c", WeaponType),
         sprintf("lib/guilds/scion/paths/%s/ice/root.c", WeaponType));
 }
 
@@ -173,7 +173,7 @@ private void ThirtyFirstLevel()
     addResearchElement(sprintf("lib/guilds/scion/paths/%s/ice/icy-barrier.c", WeaponType));
 
     addChild(sprintf("lib/guilds/scion/paths/%s/ice/freezing-shield.c", WeaponType),
-        sprintf("lib/guilds/scion/paths/%s/ice/fire-shroud.c", WeaponType));
+        sprintf("lib/guilds/scion/paths/%s/ice/ice-shroud.c", WeaponType));
     addChild(sprintf("lib/guilds/scion/paths/%s/ice/icy-barrier.c", WeaponType),
         sprintf("lib/guilds/scion/paths/%s/ice/frozen-barrier.c", WeaponType));
 }
