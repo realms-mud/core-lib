@@ -13,5 +13,7 @@ public void reset(int arg)
         Name("The Way of the Hammer");
         Description("");
         Source("Scion of Dhuras Guild");
+        addResearchElement("lib/guilds/scion/paths/hammer/root.c");
+        TreeRoot("lib/guilds/scion/paths/hammer/root.c");
     }
 }

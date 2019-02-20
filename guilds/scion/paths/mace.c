@@ -13,5 +13,7 @@ public void reset(int arg)
         Name("The Way of the Mace");
         Description("");
         Source("Scion of Dhuras Guild");
+        addResearchElement("lib/guilds/scion/paths/mace/root.c");
+        TreeRoot("lib/guilds/scion/paths/mace/root.c");
     }
 }

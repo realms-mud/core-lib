@@ -124,4 +124,46 @@ public void SetupGuild()
             "lib/guilds/scion/paths/dagger/evocation.c",
             "lib/guilds/scion/paths/dagger/spirit.c" })
     ])); 
+
+    addCriteria("magical mace path", ([
+        "type": "research choice",
+        "name": "The Path (Mace)",
+        "description": "Choose your magical path",
+        "apply": "at level 1",
+        "apply if chosen": ({ "lib/guilds/scion/paths/mace.c" }),
+        "research objects": ({ "lib/guilds/scion/paths/mace/flame.c",
+            "lib/guilds/scion/paths/mace/electricity.c",
+            "lib/guilds/scion/paths/mace/ice.c",
+            "lib/guilds/scion/paths/mace/blood.c",
+            "lib/guilds/scion/paths/mace/evocation.c",
+            "lib/guilds/scion/paths/mace/spirit.c" })
+    ])); 
+
+    addCriteria("magical hammer path", ([
+        "type": "research choice",
+        "name": "The Path (Hammer)",
+        "description": "Choose your magical path",
+        "apply": "at level 1",
+        "apply if chosen": ({ "lib/guilds/scion/paths/hammer.c" }),
+        "research objects": ({ "lib/guilds/scion/paths/hammer/flame.c",
+            "lib/guilds/scion/paths/hammer/electricity.c",
+            "lib/guilds/scion/paths/hammer/ice.c",
+            "lib/guilds/scion/paths/hammer/blood.c",
+            "lib/guilds/scion/paths/hammer/evocation.c",
+            "lib/guilds/scion/paths/hammer/spirit.c" })
+    ])); 
+
+    addCriteria("magical staff path", ([
+        "type": "research choice",
+        "name": "The Path (Staff)",
+        "description": "Choose your magical path",
+        "apply": "at level 1",
+        "apply if chosen": ({ "lib/guilds/scion/paths/staff.c" }),
+        "research objects": ({ "lib/guilds/scion/paths/staff/flame.c",
+            "lib/guilds/scion/paths/staff/electricity.c",
+            "lib/guilds/scion/paths/staff/ice.c",
+            "lib/guilds/scion/paths/staff/blood.c",
+            "lib/guilds/scion/paths/staff/evocation.c",
+            "lib/guilds/scion/paths/staff/spirit.c" })
+    ])); 
 }

@@ -10,10 +10,10 @@ public void reset(int arg)
     if (!arg)
     {
         researchTree::reset(arg);
-        Name("The Way of the Staff");
-        Description("");
+        Name("Path of Evocation");
         Source("Scion of Dhuras Guild");
-        addResearchElement("lib/guilds/scion/paths/staff/root.c");
-        TreeRoot("lib/guilds/scion/paths/staff/root.c");
+        Description("This skill provides the user with the knowledge to "
+            "express their raw magical energy as pure magical essence "
+            "given form.");
     }
 }
