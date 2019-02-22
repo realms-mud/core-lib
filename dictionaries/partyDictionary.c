@@ -4,6 +4,7 @@
 //*****************************************************************************
 
 private mapping PlayerParties = ([]);
+private mapping PendingRequests = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object getParty(object player)
@@ -97,5 +98,28 @@ public nomask void dissolveParty(object party)
             }
         }
         destruct(party);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void createPartyRequest(object target, object party)
+{
+    PendingRequests[target] = party;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int hasPendingPartyRequest(object target)
+{
+    return member(PendingRequests, target) &&
+        objectp(PendingRequests[target]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void acceptPartyRequest(object target)
+{
+    if (hasPendingPartyRequest(target))
+    {
+        PendingRequests[target]->joinParty(target);
+        m_delete(PendingRequests, target);
     }
 }
