@@ -285,6 +285,20 @@ public nomask string guildPretitle(string guild)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void refreshCachedPartyDetails()
+{
+    object parties = getService("parties");
+    if (parties)
+    {
+        object party = parties->getParty();
+        if (party)
+        {
+            party->refresh();
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int advanceLevel(string guild)
 {
     int ret = 0;
@@ -310,6 +324,8 @@ public nomask int advanceLevel(string guild)
         {
             state->resetCaches();
         }
+        refreshCachedPartyDetails();
+
         ret = 1;
     }
     return ret;
@@ -502,6 +518,7 @@ public nomask int joinGuild(string guild)
         {
             state->resetCaches();
         }
+        refreshCachedPartyDetails();
 
         object selector =
             clone_object("/lib/modules/guilds/advanceLevelSelector.c");

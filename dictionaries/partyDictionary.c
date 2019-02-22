@@ -18,6 +18,13 @@ public nomask object getParty(object player)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string *getPartyMembers(object party)
+{
+    return filter(m_indices(PlayerParties),
+        (: PlayerParties[$1] == $2 :), party);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int createParty(string name, object creator)
 {
     int ret = 0;
@@ -57,6 +64,18 @@ public nomask int leaveParty(object party, object removedMember)
     {
         ret = 1;
         m_delete(PlayerParties, removedMember->RealName());
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int leavePartyByName(object party, string name)
+{
+    int ret = 0;
+    if (objectp(party) && member(PlayerParties, name))
+    {
+        ret = 1;
+        m_delete(PlayerParties, name);
     }
     return ret;
 }

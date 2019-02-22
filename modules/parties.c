@@ -25,7 +25,7 @@ public nomask string partyName()
     object party = getParty();
     if (party)
     {
-        ret = party->partyName();
+        ret = regreplace(party->partyName(), "(.*)#[^#]+", "\\1", 1);
     }
     return ret;
 }

@@ -79,9 +79,14 @@ public nomask void leaveParty(object member)
         m_delete(Members, member);
         refresh();
     }
+
     if (!sizeof(Members))
     {
         Dictionary->dissolveParty(this_object());
+    }
+    else if (member == Creator)
+    {
+        Creator = m_indices(Members)[0];
     }
 }
 
@@ -104,11 +109,42 @@ private nomask int experienceEarned(int amount, object person)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void pruneMissingPlayers()
+{
+    object *memberList = members();
+    string *cachedMembers = Dictionary->getPartyMembers(this_object());
+
+    if (sizeof(memberList))
+    {
+        foreach(object person in memberList)
+        {
+            cachedMembers -= ({ person->RealName() });
+        }
+    }
+
+    if (sizeof(cachedMembers))
+    {
+        foreach(string person in cachedMembers)
+        {
+            Dictionary->leavePartyByName(this_object(), person);
+        }
+
+        if (!objectp(Creator) && sizeof(Members))
+        {
+            Creator = m_indices(Members)[0];
+        }
+        refresh();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int reallocateExperience(int amount, string selectedGuild,
     object initiator)
 {
     int ret = amount;
 
+    pruneMissingPlayers();
+    
     object *memberList = members();
     if (sizeof(memberList))
     {
@@ -124,6 +160,10 @@ public nomask int reallocateExperience(int amount, string selectedGuild,
                     selectedGuild, 1);
             }
         }
+    }
+    else
+    {
+        dissolveParty();
     }
     return ret;
 }

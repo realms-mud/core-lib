@@ -70,5 +70,5 @@ void CanGetParty()
 void CanGetPartyName()
 {
     Dictionary->createParty("Test party", Creator);
-    ExpectEq("Test party#Bob", Creator->partyName());
+    ExpectEq("Test party", Creator->partyName());
 }
