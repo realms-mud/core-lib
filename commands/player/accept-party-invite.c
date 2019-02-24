@@ -21,7 +21,29 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command))
     {
+        object dictionary = load_object("/lib/dictionaries/partyDictionary.c");
 
+        if (dictionary->hasPendingPartyRequest(initiator))
+        {
+            dictionary->acceptPartyRequest(initiator);
+
+            object party = initiator->getParty();
+            if (party)
+            {
+                ret = 1;
+                tell_object(initiator, sprintf("You have joined the '%s' "
+                    "party (%s)\n", capitalize(initiator->partyName()),
+                    capitalize(party->creator()->RealName())));
+            }
+            else
+            {
+                notify_fail("You were unable to join the party.\n");
+            }
+        }
+        else
+        {
+            notify_fail("You do not have a pending party invitation.\n");
+        }
     }
     return ret;
 }

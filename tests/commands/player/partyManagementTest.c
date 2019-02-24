@@ -165,3 +165,72 @@ void CannotAddPartyMemberWhenTheyAreAlreadyInAParty()
         "They must first leave it before joining another party.\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAcceptPartyInvitation()
+{
+    command("create party Weasels", Player);
+    ExpectTrue(objectp(Player->getParty()));
+
+    command("add party member fred", Player);
+    ExpectFalse(objectp(Member->getParty()));
+    ExpectTrue(Dictionary->hasPendingPartyRequest(Member));
+
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    ExpectEq("You have joined the 'Weasels' party (Bob)\n",
+        Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AcceptPartyInvitationFailsWhenNoInviteIsPending()
+{
+    command("accept party invite", Member);
+    ExpectFalse(objectp(Member->getParty()));
+
+    ExpectEq("You do not have a pending party invitation.\n",
+        Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanRemovePartyMember()
+{
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    command("remove party member fred", Player);
+    ExpectFalse(objectp(Member->getParty()));
+
+    ExpectEq("You have removed Fred from your party: Weasels\n",
+        Player->caughtMessage());
+    ExpectEq("You have been removed from the party: Weasels (Bob)\n",
+        Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotRemovePartyMemberWhenNotCreator()
+{
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    command("remove party member bob", Member);
+    ExpectTrue(objectp(Player->getParty()));
+
+    ExpectEq("Only the party's creator/owner (Bob) can remove members.\n",
+        Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotRemoveNonexistantPartyMember()
+{
+    command("create party Weasels", Player);
+    command("remove party member tantor the unclean", Player);
+
+    ExpectEq("There is nobody named 'Tantor the unclean' in your party.\n",
+        Player->caughtMessage());
+}
