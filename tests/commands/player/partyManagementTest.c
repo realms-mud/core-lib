@@ -80,7 +80,7 @@ void CanLeaveParty()
 
     command("leave party", Player);
     ExpectFalse(objectp(Player->getParty()));
-    ExpectEq("You have left your party: Weasels\n",
+    ExpectSubStringMatch("Bob has left the party",
         Player->caughtMessage());
 }
 
@@ -204,9 +204,9 @@ void CanRemovePartyMember()
     command("remove party member fred", Player);
     ExpectFalse(objectp(Member->getParty()));
 
-    ExpectEq("You have removed Fred from your party: Weasels\n",
+    ExpectSubStringMatch("Fred has been removed from the party",
         Player->caughtMessage());
-    ExpectEq("You have been removed from the party: Weasels (Bob)\n",
+    ExpectSubStringMatch("Fred has been removed from the party",
         Member->caughtMessage());
 }
 
@@ -233,4 +233,24 @@ void CannotRemoveNonexistantPartyMember()
 
     ExpectEq("There is nobody named 'Tantor the unclean' in your party.\n",
         Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanTalkOnPartyChannel()
+{
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+
+    command("party Hi there!", Player);
+    ExpectSubStringMatch("Weasels Bob.*Hi there!",
+        Player->caughtMessage());
+    ExpectSubStringMatch("Weasels Bob.*Hi there!",
+        Member->caughtMessage());
+
+    command("party Bite me!", Member);
+    ExpectSubStringMatch("Weasels Fred.*Bite me!",
+        Player->caughtMessage());
+    ExpectSubStringMatch("Weasels Fred.*Bite me!",
+        Member->caughtMessage());
 }

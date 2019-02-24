@@ -36,8 +36,8 @@ public nomask int createParty(string name, object creator)
     {
         ret = 1;
         object newParty = clone_object("/lib/modules/party/party.c");
-        newParty->createParty(name, creator);
         PlayerParties[creator->RealName()] = newParty;
+        newParty->createParty(name, creator);
     }
     return ret;
 }

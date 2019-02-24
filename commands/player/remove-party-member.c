@@ -53,6 +53,11 @@ public nomask int execute(string command, object initiator)
                         capitalize(initiator->RealName())));
 
                     party->leaveParty(members[0]);
+
+                    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+                    channels->broadcastMessage(party->partyName(), 
+                        sprintf("%s has been removed from the party.",
+                            capitalize(members[0]->RealName())), party);
                 }
                 else
                 {

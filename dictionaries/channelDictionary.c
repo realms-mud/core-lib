@@ -44,11 +44,14 @@ public nomask void broadcastMessage(string channelName, string message,
         {
             if (objectp(user) && !user->blocked(sender))
             {
-                string headerText = sprintf("[ %s %s ]: ", capitalize(channelName),
+                string channelDisplay = regreplace(channelName, 
+                    "([^#]*).*", "\\1", 1);
+
+                string headerText = sprintf("[ %s %s ]: ", capitalize(channelDisplay),
                     ((channelName == "status") ? "" : capitalize(sender->RealName())));
 
                 string header = configuration()->decorate(
-                    sprintf("[ %s %s ]: ", capitalize(channelName),
+                    sprintf("[ %s %s ]: ", capitalize(channelDisplay),
                         ((channelName == "status") ? "" : capitalize(sender->RealName()))),
                     "header", "channel", user->colorConfiguration());
 
@@ -113,7 +116,14 @@ private nomask string *getFactionChannels(object user)
 /////////////////////////////////////////////////////////////////////////////
 private nomask string *getPartyChannel(object user)
 {
-    return ({});
+    string *ret = ({});
+
+    object party = user->getParty();
+    if (party)
+    {
+        ret += ({ party->partyName() });
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -122,8 +132,8 @@ private nomask string *getChannelsForUser(object user)
     return getWizardChannels(user) +
         getGuildChannels(user) +
         getRaceChannel(user) +
-        getFactionChannels(user) +
-        getPartyChannel(user);
+        getPartyChannel(user) +
+        getFactionChannels(user);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -152,6 +162,27 @@ public nomask void registerUser(object user)
 public nomask void unregisterUser(object user)
 {
     string *channels = getChannelsForUser(user);
+
+    if (sizeof(channels))
+    {
+        foreach(string channel in channels)
+        {
+            if (sizeof(channelRegistry[channel]))
+            {
+                channelRegistry[channel] -= ({ user });
+            }
+            if (!sizeof(channelRegistry[channel]))
+            {
+                unregisterChannel(channel);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void unregisterUserFromPartyChannel(object user)
+{
+    string *channels = getPartyChannel(user);
 
     if (sizeof(channels))
     {

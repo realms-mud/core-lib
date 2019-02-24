@@ -8,11 +8,18 @@ private object Creator;
 private mapping Members = ([]);
 private int TotalWeight = 0;
 private object Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+private object channels = load_object("/lib/dictionaries/channelDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string partyName()
 {
     return Name;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string RealName()
+{
+    return "Info";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +66,8 @@ public nomask void createParty(string name, object creator)
         Name = sprintf("%s#%s", name, creator->RealName());
         Creator = creator;
         addMember(creator);
+        channels->registerChannel(Name);
+        channels->registerUser(creator);
     }
 }
 
@@ -68,6 +77,11 @@ public nomask void joinParty(object newMember)
     if (Dictionary->joinParty(this_object(), newMember))
     {
         addMember(newMember);
+        channels->registerUser(newMember);
+
+        channels->broadcastMessage(partyName(),
+            sprintf("%s has joined the party.",
+                capitalize(newMember->RealName())), this_object());
     }
 }
 
@@ -77,12 +91,19 @@ public nomask void leaveParty(object member)
     if (Dictionary->leaveParty(this_object(), member))
     {
         m_delete(Members, member);
+
+        channels->unregisterUserFromPartyChannel(member);
+
+        channels->broadcastMessage(partyName(),
+            sprintf("%s has left the party.",
+                capitalize(member->RealName())), this_object());
         refresh();
     }
 
     if (!sizeof(Members))
     {
         Dictionary->dissolveParty(this_object());
+        channels->unregisterChannel(Name);
     }
     else if (member == Creator)
     {
@@ -94,6 +115,7 @@ public nomask void leaveParty(object member)
 public nomask void dissolveParty()
 {
     Dictionary->dissolveParty(this_object());
+    channels->unregisterChannel(Name);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -23,7 +23,7 @@ public nomask int execute(string command, object initiator)
     {
         object Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
 
-        string name = regreplace(command, "create party( )*(.*)$", "\\2", 1);
+        string name = regreplace(command, "create party( )*([^#]*)$", "\\2", 1);
 
         if (initiator->getParty())
         {
