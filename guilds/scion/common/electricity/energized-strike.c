@@ -20,7 +20,7 @@ public void reset(int arg)
         addSpecification("name", "Energized Strike");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of the energized blade technique. This form enhances "
+            "knowledge of the energized strike technique. This form enhances "
             "the scion's Shock Strike and Lightning Strike abilities.");
         Setup();
 

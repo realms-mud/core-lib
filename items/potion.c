@@ -80,15 +80,15 @@ public nomask varargs int set(string element, mixed data)
     {
         switch (element)
         {
-        case "blueprint":
-        {
-            ret = checkBlueprint(data);
-            break;
-        }
-        default:
-        {
-            ret = "item"::set(element, data);
-        }
+            case "blueprint":
+            {
+                ret = checkBlueprint(data);
+                break;
+            }
+            default:
+            {
+                ret = "item"::set(element, data);
+            }
         }
     }
     return ret;
