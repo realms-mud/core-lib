@@ -79,3 +79,22 @@ void AdvancingTimePastYearIncrementsYearAndResetsSeason()
     ExpectEq("spring", Dictionary->season());
     ExpectEq(2, Dictionary->currentYear());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void MoonPhasesAreDisplayedCorrectly()
+{
+    ExpectEq("first quarter", Dictionary->moonPhase());
+
+    Dictionary->setDay(2);
+    ExpectEq("waxing crescent", Dictionary->moonPhase());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MoonPhasesRollOverToNewMoon()
+{
+    Dictionary->setDay(362);
+    ExpectEq("waning crescent", Dictionary->moonPhase());
+
+    Dictionary->setDay(363);
+    ExpectEq("new moon", Dictionary->moonPhase());
+}
