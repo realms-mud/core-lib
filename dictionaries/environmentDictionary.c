@@ -8,10 +8,79 @@ private string BaseEnvironment = "lib/environment/environment.c";
 private string BaseElement = "lib/environment/environmentalElement.c";
 private string currentSeason = "summer";
 private string currentTimeOfDay = "noon";
+private int currentYear = 1;
 private mapping elementList = ([]);
 
 private string *validSeasons = ({ "winter", "spring", "summer", "autumn" });
-private string *validTimesOfDay = ({ "midnight", "night", "dawn", "morning", "noon", "afternoon", "evening", "dusk" });
+
+private int currentTime = 660;
+private int currentDayOfYear = 92;
+
+private mapping timesOfDay = ([
+    "midnight":([
+        "winter": 60,
+        "spring": 60,
+        "summer": 60,
+        "autumn": 60,
+        "next": "late night"
+    ]),
+    "late night":([
+        "winter": 390,
+        "spring": 330,
+        "summer": 270,
+        "autumn": 330,
+        "next": "dawn"
+    ]),
+    "dawn":([
+        "winter": 450,
+        "spring": 390,
+        "summer": 330,
+        "autumn": 390,
+        "next": "morning"
+    ]),
+    "morning":([
+        "winter": 660,
+        "spring": 660,
+        "summer": 660,
+        "autumn": 660,
+        "next": "noon"
+    ]),
+    "noon":([
+        "winter": 720,
+        "spring": 720,
+        "summer": 720,
+        "autumn": 720,
+        "next": "afternoon"
+    ]),
+    "afternoon":([
+        "winter": 930,
+        "spring": 990,
+        "summer": 1050,
+        "autumn": 990,
+        "next": "evening"
+    ]),
+    "evening":([
+        "winter": 1050,
+        "spring": 1110,
+        "summer": 1170,
+        "autumn": 1110,
+        "next": "dusk"
+    ]),
+    "dusk":([
+        "winter": 1110,
+        "spring": 1170,
+        "summer": 1230,
+        "autumn": 1170,
+        "next": "night"
+    ]),
+    "night":([
+        "winter": 1440,
+        "spring": 1440,
+        "summer": 1440,
+        "autumn": 1440,
+        "next": "midnight"
+    ])
+]);
 
 private string *entryMessages = ({ "you enter", "you have come across",
     "you emerge in", "you come upon", "entering the area, you see",
@@ -173,25 +242,128 @@ public nomask int isValidSeason(string season)
 public nomask int isValidTimeOfDay(string time)
 {
     return time && stringp(time) &&
-        (member(validTimesOfDay, time) > -1);
+        (member(m_indices(timesOfDay), time) > -1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int sunlightIsVisible()
 {
-    return member(({ "midnight", "night" }), currentTimeOfDay) < 0;
+    return member(({ "midnight", "night", "late night" }), currentTimeOfDay) < 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string timeOfDay(string newTime)
+public nomask varargs string timeOfDay(string newTime)
 {
-    string ret = 0;
-    if (newTime && stringp(newTime) &&
-        (member(validTimesOfDay, newTime) > -1))
+    if (stringp(newTime) && member(timesOfDay, newTime))
     {
         currentTimeOfDay = newTime;
+        currentTime = timesOfDay[newTime][currentSeason] - 60;
     }
+
     return currentTimeOfDay;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string currentDate()
+{
+    return sprintf("%02d:%02d on day %d of year %d",
+        currentTime / 60, currentTime % 60, currentDayOfYear, currentYear);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int currentTime()
+{
+    return currentTime;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int currentDay()
+{
+    return currentDayOfYear;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int currentYear()
+{
+    return currentYear;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void calculateSeason()
+{
+    switch (currentDayOfYear)
+    {
+        case 0..91:
+        {
+            currentSeason = "spring";
+            break;
+        }
+        case 92..182:
+        {
+            currentSeason = "summer";
+            break;
+        }
+        case 183..273:
+        {
+            currentSeason = "autumn";
+            break;
+        }
+        case 274..364:
+        {
+            currentSeason = "winter";
+            break;
+        }
+        default:
+        {
+            currentYear++;
+            currentDayOfYear = 0;
+            currentSeason = "spring";
+            break;
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setDay(int newDay)
+{
+    currentDayOfYear = newDay;
+    calculateSeason();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setYear(int value)
+{
+    currentYear = value;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void advanceTime(int amount)
+{
+    if (!amount)
+    {
+        currentTime++;
+    }
+    else
+    {
+        currentTime += amount;
+    }
+
+    if (currentTime >= 1440)
+    {
+        currentDayOfYear++;
+        currentTime = 0;
+        currentTimeOfDay = "midnight";
+        calculateSeason();
+    }
+    else if(currentTime >= timesOfDay[currentTimeOfDay][currentSeason])
+    {
+        currentTimeOfDay = timesOfDay[currentTimeOfDay]["next"];
+    }
+
+    if (!amount)
+    {
+        call_out("advanceTime", 5);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -202,6 +374,29 @@ public nomask string season(string newSeason)
         (member(validSeasons, newSeason) > -1))
     {
         currentSeason = newSeason;
+        switch (currentSeason)
+        {
+            case "spring":
+            {
+                currentDayOfYear = 0;
+                break;
+            }
+            case "summer":
+            {
+                currentDayOfYear = 92;
+                break;
+            }
+            case "autumn":
+            {
+                currentDayOfYear = 183;
+                break;
+            }
+            case "winter":
+            {
+                currentDayOfYear = 274;
+                break;
+            }
+        }
     }
     return currentSeason;
 }
@@ -209,7 +404,7 @@ public nomask string season(string newSeason)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *timesOfDay()
 {
-    return validTimesOfDay + ({});
+    return m_indices(timesOfDay);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -246,4 +441,13 @@ public nomask int coordinatesValidForRegion(string region, int x, int y)
 public nomask object getRegion(string region)
 {
     return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void reset(int arg)
+{
+    if (!arg)
+    {
+        advanceTime();
+    }
 }
