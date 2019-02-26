@@ -22,7 +22,7 @@ public void reset(int arg)
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This research provides the user with the "
             "knowledge of the freezing barrier technique. By means of this, the "
-            "Scion is able to use their weapon as a conduit for emitting flaming "
+            "Scion is able to use their weapon as a conduit for emitting frigid "
             "energy that swarms around and harries a foe.");
         Setup();
 

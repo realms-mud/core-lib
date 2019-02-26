@@ -85,7 +85,7 @@ public void reset(int arg)
         addSpecification("spell point cost", 50);
         addSpecification("stamina point cost", 200);
         addSpecification("command template", "glacial brand");
-        addSpecification("bonus fire enchantment", 10);
+        addSpecification("bonus cold enchantment", 10);
         addSpecification("bonus resist fire", 25);
 
         addSpecification("use ability activate message", "Crawling tendrils of "
