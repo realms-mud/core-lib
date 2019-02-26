@@ -8,12 +8,6 @@
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string formatText(string text, int colorInfo, object viewer)
-{
-    return color(viewer->query("term"), viewer, colorInfo, format(text, 78));
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask int isValidAttacker(object attacker)
 {
     return (attacker && objectp(attacker) && 
@@ -396,10 +390,8 @@ public nomask string parseTemplate(string template, string perspective,
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void displayMessage(string message, object initiator,
-    object target)
+    object target, string textClass, string type)
 {
-    // This annoying loop handles the fact that everyone has different
-    // setting for color.
     if (environment(initiator))
     {
         object *characters = filter(all_inventory(environment(initiator)),
@@ -426,22 +418,27 @@ public nomask varargs void displayMessage(string message, object initiator,
                     parsedMessage = parseTemplate(message, "other",
                         initiator, target);
                 }
-                tell_object(person, format(parsedMessage, 78));
+
+                object configuration =
+                    load_object("/lib/dictionaries/configurationDictionary.c");
+
+                tell_object(person, configuration->decorate(
+                    format(parsedMessage, 78),
+                    textClass, type, person->colorConfiguration()));
             }
         }
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void displayMessageToSelf(string message, object initiator)
+public nomask string displayMessageToSelf(string message, object initiator)
 {
+    string ret = message;
+
     if (initiator && objectp(initiator))
     {
-        string parsedMessage;
-
-        parsedMessage = parseTemplate(message, "initiator", initiator,
+        ret = parseTemplate(message, "initiator", initiator,
             initiator);
-
-        tell_object(initiator, format(parsedMessage, 78));
     }
+    return ret;
 }

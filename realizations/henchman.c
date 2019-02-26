@@ -72,5 +72,3 @@ public nomask object getParty()
     }
     return ret;
 }
-
-//TODO [226]: To, in fact, do.

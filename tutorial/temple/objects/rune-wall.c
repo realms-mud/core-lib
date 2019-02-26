@@ -198,10 +198,8 @@ public int placeRune(string rune)
                 load_object("/lib/dictionaries/configurationDictionary.c");
 
             object messageParser = load_object("/lib/core/messageParser.c");
-            messageParser->displayMessage(configuration->decorate(
-                sprintf(msg, whichRune),
-                "rune wall", "tutorial", this_player()->colorConfiguration()),
-                this_player());
+            messageParser->displayMessage(sprintf(msg, whichRune), this_player(), 0,
+                "rune wall", "tutorial");
 
             if (whichRune == "resistance")
             {
