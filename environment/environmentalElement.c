@@ -5,6 +5,8 @@
 
 protected mapping descriptionData = ([ ]);
 protected int isLegacy = 0;
+protected int LightLevelWhenDetailsVisible = 6;
+
 protected int suppressAction = 0; 
 private string elementName = 0;
 private string State = "default";
@@ -91,7 +93,7 @@ private nomask string parseSeasonDescription(string message, mapping data)
 {
     string ret = message;
     string season = environmentDictionary()->season();
-    if (member(data, season) && environmentDictionary()->sunlightIsVisible())
+    if (member(data, season) && environmentDictionary()->ambientLight() > 5)
     {
         ret += data[season][random(sizeof(data[season]))];
     }
@@ -145,7 +147,7 @@ private nomask string parseAdjectives(string message, mapping data)
         sizeof(regexp(({ message}), "##Adjective##")))
     {
         ret = regreplace(ret, "##Adjective##( *)", 
-            environmentDictionary()->sunlightIsVisible() ?
+            (environmentDictionary()->ambientLight() > 5) ?
             data["adjectives"][random(sizeof(data["adjectives"]))] + "\\1" : "", 1);
     }
     return ret;
@@ -390,6 +392,12 @@ private nomask varargs mapping setSourceOfLightByTime(int magnitude, string peri
         }
     }
     return data;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void lightLevelWhenVisible(int value)
+{
+    LightLevelWhenDetailsVisible = value;
 }
 
 /////////////////////////////////////////////////////////////////////////////

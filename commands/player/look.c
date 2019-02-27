@@ -30,7 +30,7 @@ public nomask int execute(string command, object initiator)
         {
             tell_object(initiator, "\x1b[0;30;1mYou are blind.\x1b[0m\n");
         }
-        else if (!initiator->canSee())
+        else if (!initiator->canSee(6))
         {
             tell_object(initiator, "\x1b[0;30;1mIt is too dark.\x1b[0m\n");
 

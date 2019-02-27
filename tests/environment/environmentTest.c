@@ -752,16 +752,16 @@ void TerrainReturnValueForTimeOfDayForIsIlluminatedByDefault()
 {
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Dictionary->timeOfDay("midnight");
-    ExpectFalse(Environment->isIlluminated());
+    ExpectEq(3, Environment->isIlluminated());
 
     Dictionary->timeOfDay("dawn");
-    ExpectTrue(Environment->isIlluminated());
+    ExpectEq(7, Environment->isIlluminated());
 
     Dictionary->timeOfDay("afternoon");
-    ExpectTrue(Environment->isIlluminated());
+    ExpectEq(10, Environment->isIlluminated());
 
     Dictionary->timeOfDay("night");
-    ExpectFalse(Environment->isIlluminated());
+    ExpectEq(3, Environment->isIlluminated());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -771,13 +771,80 @@ void TerrainAffectedByLightSources()
     Environment->testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
 
     Dictionary->timeOfDay("midnight");
-    ExpectFalse(Environment->isIlluminated());
+    ExpectEq(3, Environment->isIlluminated());
 
     Dictionary->timeOfDay("night");
-    ExpectFalse(Environment->isIlluminated());
+    ExpectEq(3, Environment->isIlluminated());
 
     Dictionary->season("spring");
-    ExpectTrue(Environment->isIlluminated());
+    ExpectEq(8, Environment->isIlluminated());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TerrainLightAffectedByMoonPhase()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Dictionary->timeOfDay("night");
+
+    Dictionary->setDay(0);
+    ExpectEq(1, Environment->isIlluminated());
+
+    Dictionary->setDay(3);
+    ExpectEq(2, Environment->isIlluminated());
+
+    Dictionary->setDay(7);
+    ExpectEq(3, Environment->isIlluminated());
+
+    Dictionary->setDay(10);
+    ExpectEq(4, Environment->isIlluminated());
+
+    Dictionary->setDay(14);
+    ExpectEq(5, Environment->isIlluminated());
+
+    Dictionary->setDay(17);
+    ExpectEq(4, Environment->isIlluminated());
+
+    Dictionary->setDay(21);
+    ExpectEq(3, Environment->isIlluminated());
+
+    Dictionary->setDay(24);
+    ExpectEq(2, Environment->isIlluminated());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InteriorLightNotAffectedByOutdoorLight()
+{
+    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+
+    Dictionary->timeOfDay("afternoon");
+    ExpectEq(0, Environment->isIlluminated());
+
+    Dictionary->timeOfDay("night");
+
+    Dictionary->setDay(0);
+    ExpectEq(0, Environment->isIlluminated());
+
+    Dictionary->setDay(3);
+    ExpectEq(0, Environment->isIlluminated());
+
+    Dictionary->setDay(7);
+    ExpectEq(0, Environment->isIlluminated());
+
+    Dictionary->setDay(10);
+    ExpectEq(0, Environment->isIlluminated());
+
+    Dictionary->setDay(14);
+    ExpectEq(0, Environment->isIlluminated());
+
+    Dictionary->setDay(17);
+    ExpectEq(0, Environment->isIlluminated());
+
+    Dictionary->setDay(21);
+    ExpectEq(0, Environment->isIlluminated());
+
+    Dictionary->setDay(24);
+    ExpectEq(0, Environment->isIlluminated());
+
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -786,16 +853,16 @@ void InteriorsAffectedByLightSources()
     Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
     Environment->testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
 
-    ExpectFalse(Environment->isIlluminated());
+    ExpectEq(0, Environment->isIlluminated());
 
     Dictionary->timeOfDay("midnight");
-    ExpectFalse(Environment->isIlluminated());
+    ExpectEq(0, Environment->isIlluminated());
 
     Dictionary->timeOfDay("night");
-    ExpectFalse(Environment->isIlluminated());
+    ExpectEq(0, Environment->isIlluminated());
 
     Dictionary->season("spring");
-    ExpectTrue(Environment->isIlluminated());
+    ExpectEq(7, Environment->isIlluminated());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1103,4 +1170,18 @@ void HenchmenMoveToSameClonedEnvironment()
 
     destruct(person);
     destruct(person2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongRecoversWhenDictionaryReset()
+{
+    destruct(Environment);
+    Environment = load_object("/lib/tests/support/environment/darkRoom.c");
+    ExpectSubStringMatch("stone hallway.*trees.*light.*long.*description",
+        Environment->long());
+
+    destruct(Dictionary);
+    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    ExpectSubStringMatch("stone hallway.*trees.*light.*long.*description",
+        Environment->long());
 }

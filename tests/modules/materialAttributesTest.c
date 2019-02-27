@@ -500,10 +500,10 @@ void CanSeeReturnsEnvironmentIlluminationByDefault()
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
     move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
-    ExpectFalse(Attributes->canSee());
+    ExpectFalse(Attributes->canSee(5));
 
     dictionary->timeOfDay("noon");
-    ExpectTrue(Attributes->canSee());
+    ExpectTrue(Attributes->canSee(5));
     destruct(dictionary);
 }
 
@@ -513,10 +513,10 @@ void CanSeeReturnsTrueWhenDarkvisionPresent()
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
     move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
-    ExpectFalse(Attributes->canSee());
+    ExpectFalse(Attributes->canSee(5));
 
     Attributes->addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
-    ExpectTrue(Attributes->canSee());
+    ExpectTrue(Attributes->canSee(5));
     destruct(dictionary);
 }
 
@@ -526,10 +526,10 @@ void CanSeeReturnsFalseWhenBlindTraitPresent()
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("noon");
     move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
-    ExpectTrue(Attributes->canSee());
+    ExpectTrue(Attributes->canSee(5));
 
     Attributes->addTrait("/lib/modules/traits/diseases/cataracts.c");
-    ExpectFalse(Attributes->canSee());
+    ExpectFalse(Attributes->canSee(5));
     destruct(dictionary);
 }
 
@@ -539,16 +539,16 @@ void CanSeeReturnsTrueWhenItemWithLightPresent()
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
     move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
-    ExpectFalse(Attributes->canSee());
+    ExpectFalse(Attributes->canSee(5));
 
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
     weapon->set("short", "A Sword");
     weapon->set("weapon type", "long sword");
-    weapon->set("light", 1);
+    weapon->set("light", 6);
     weapon->set("equipment locations", OnehandedWeapon);
     move_object(weapon, Attributes);
-    ExpectTrue(Attributes->canSee());
+    ExpectTrue(Attributes->canSee(5));
     destruct(dictionary);
 }
 

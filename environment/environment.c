@@ -35,8 +35,12 @@ private object configuration =
 protected object StateMachineDictionary = 
     load_object("/lib/dictionaries/stateMachineDictionary.c");
 
-
 private mapping instances = ([]);
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+}
 
 /////////////////////////////////////////////////////////////////////////////
 private object environmentDictionary()
@@ -140,6 +144,30 @@ private nomask void createStateObjects()
             move_object(stateObject, this_object());
         }
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void resetData()
+{
+    pruneStateObjects();
+
+    environmentalElements = ([
+        "terrain":([]),
+            "interior" : ([]),
+            "feature" : ([]),
+            "building" : ([]),
+            "item" : ([]),
+            "objects" : ([]),
+            "shop" : 0,
+            "cloned" : 0,
+            "description" : ([]),
+            "location text" : ({ " is " })
+    ]);
+    aliasesToElements = ([]);
+    exits = ([]);
+    instances = ([]);
+
+    Setup();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -547,7 +575,7 @@ private string getElementDescriptions(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string getBaseDescriptionForType(string type)
+private varargs string getBaseDescriptionForType(string type, int doNotRecurse)
 {
     string ret = 0;
     if (member(environmentalElements, type) && sizeof(environmentalElements[type]))
@@ -557,6 +585,13 @@ private string getBaseDescriptionForType(string type)
         if (base)
         {
             ret = base->description(currentState());
+        }
+        else if (!doNotRecurse)
+        {
+            // This will re-load the environment's data in the event that
+            // the dictionary has been reset.
+            resetData();
+            ret = getBaseDescriptionForType(type, 1);
         }
         else
         {
@@ -765,11 +800,6 @@ public void init()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
-{
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -890,7 +920,7 @@ private nomask int getElementLighting()
 {
     int ret = 0;
 
-    foreach(string elementType in({ "feature", "building", "item" }))
+    foreach(string elementType in({ "terrain", "feature", "building", "item" }))
     {
         if (sizeof(environmentalElements[elementType]))
         {
@@ -901,11 +931,7 @@ private nomask int getElementLighting()
                     environmentDictionary()->environmentalObject(element);
                 if (elementObj)
                 {
-                    int lightSource = elementObj->isSourceOfLight(currentState());
-                    if (lightSource > ret)
-                    {
-                        ret = lightSource;
-                    }
+                    ret += elementObj->isSourceOfLight(currentState());
                 }
             }
         }
@@ -922,14 +948,11 @@ protected int alwaysLight()
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isIlluminated()
 {
-    int ret = sizeof(environmentalElements["terrain"]) &&
-        environmentDictionary()->sunlightIsVisible();
+    int ret = sizeof(environmentalElements["terrain"]) ?
+        environmentDictionary()->ambientLight() : 0;
+    
+    ret += getElementLighting();
 
-    int hasLight = getElementLighting();
-    if (hasLight > ret)
-    {
-        ret = hasLight;
-    }
     return ret || alwaysLight();
 }
 

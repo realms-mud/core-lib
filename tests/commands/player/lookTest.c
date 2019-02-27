@@ -387,6 +387,7 @@ void LookWhenDarkFailsWithDarkMessage()
 {
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
+
     ExpectTrue(Player->executeCommand("look"));
     ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
     destruct(dictionary);

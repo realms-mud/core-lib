@@ -33,3 +33,14 @@ private mapping moonPhases = ([
     26: "waning crescent",
     27: "waning crescent",
 ]);
+
+private mapping moonLightLevel = ([
+    "new moon": 1,
+    "waxing crescent": 2,
+    "first quarter": 3,
+    "waxing gibbous": 4,
+    "full moon": 5,
+    "waning gibbous": 4,
+    "last quarter": 3,
+    "waning crescent": 2,
+]);

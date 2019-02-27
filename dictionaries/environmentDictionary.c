@@ -184,9 +184,33 @@ public nomask int isValidTimeOfDay(string time)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int sunlightIsVisible()
+public nomask string moonPhase()
 {
-    return member(({ "midnight", "night", "late night" }), currentTimeOfDay) < 0;
+    // Approximation is officially close enough...
+    return moonPhases[(currentDayOfYear + (365 * currentYear)) % 28];
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int adjustLightingForWeather()
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int ambientLight()
+{
+    int ret = 10;
+    if (member(({ "midnight", "night", "late night" }), currentTimeOfDay) > -1)
+    {
+        ret = moonLightLevel[moonPhase()];
+    }
+    else if (member(({ "dawn", "dusk" }), currentTimeOfDay) > -1)
+    {
+        ret = 7;
+    }
+    ret -= adjustLightingForWeather();
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -206,13 +230,6 @@ public nomask string currentDate()
 {
     return sprintf("%02d:%02d on day %d of year %d",
         currentTime / 60, currentTime % 60, currentDayOfYear, currentYear);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask string moonPhase()
-{
-    // Approximation is officially close enough...
-    return moonPhases[(currentDayOfYear + (365 * currentYear)) % 28];
 }
 
 /////////////////////////////////////////////////////////////////////////////
