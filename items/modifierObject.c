@@ -142,7 +142,7 @@ public nomask string fullyQualifiedName()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string short()
+public varargs string short(int illuminationLevel)
 {
     return "";
 }

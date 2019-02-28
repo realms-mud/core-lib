@@ -529,7 +529,7 @@ private string getlocationText()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string getElementDescriptions(string type)
+private string getElementDescriptions(string type, int illuminationLevel)
 {
     string ret = "";
 
@@ -560,7 +560,7 @@ private string getElementDescriptions(string type)
             if (elementObj)
             {
                 string elementDescription =
-                    elementObj->description(currentState());
+                    elementObj->description(currentState(), illuminationLevel);
 
                 if (elementDescription && (elementDescription != ""))
                 {
@@ -575,7 +575,8 @@ private string getElementDescriptions(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private varargs string getBaseDescriptionForType(string type, int doNotRecurse)
+private varargs string getBaseDescriptionForType(string type, 
+    int illuminationLevel, int doNotRecurse)
 {
     string ret = 0;
     if (member(environmentalElements, type) && sizeof(environmentalElements[type]))
@@ -584,14 +585,14 @@ private varargs string getBaseDescriptionForType(string type, int doNotRecurse)
         object base = environmentDictionary()->environmentalObject(element);
         if (base)
         {
-            ret = base->description(currentState());
+            ret = base->description(currentState(), illuminationLevel);
         }
         else if (!doNotRecurse)
         {
             // This will re-load the environment's data in the event that
             // the dictionary has been reset.
             resetData();
-            ret = getBaseDescriptionForType(type, 1);
+            ret = getBaseDescriptionForType(type, illuminationLevel, 1);
         }
         else
         {
@@ -638,7 +639,7 @@ private string getExitDescription()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string getInventoryDescription()
+private string getInventoryDescription(int illuminationLevel)
 {
     string ret = "";
     object *environmentInventory = all_inventory(this_object());
@@ -668,19 +669,74 @@ public void setShortDescription(string newShort)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs string long(string item)
+private nomask int getElementLighting()
 {
-    string ret = getBaseDescriptionForType("terrain");
+    int ret = 0;
+
+    foreach(string elementType in({ "terrain", "feature", "building", "item" }))
+    {
+        if (sizeof(environmentalElements[elementType]))
+        {
+            string *elements = m_indices(environmentalElements[elementType]);
+            foreach(string element in elements)
+            {
+                object elementObj =
+                    environmentDictionary()->environmentalObject(element);
+                if (elementObj)
+                {
+                    ret += elementObj->isSourceOfLight(currentState());
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int alwaysLight()
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int minimumNeededLightLevel()
+{
+    return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isIlluminated()
+{
+    int ret = alwaysLight();
     if (!ret)
     {
-        ret = getBaseDescriptionForType("interior");
+        ret = sizeof(environmentalElements["terrain"]) ?
+            environmentDictionary()->ambientLight() : 0;
+
+        int otherLight = getElementLighting();
+        if (otherLight > ret)
+        {
+            ret = otherLight;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs string long(string item)
+{
+    int illuminationLevel = isIlluminated();
+    string ret = getBaseDescriptionForType("terrain", illuminationLevel);
+    if (!ret)
+    {
+        ret = getBaseDescriptionForType("interior", illuminationLevel);
     }
 
     if (ret)
     {
-        ret += getElementDescriptions("feature") + 
-            getElementDescriptions("item") + 
-            getElementDescriptions("building");
+        ret += getElementDescriptions("feature", illuminationLevel) +
+            getElementDescriptions("item", illuminationLevel) +
+            getElementDescriptions("building", illuminationLevel);
 
         if (member(environmentalElements["description"], currentState()))
         {
@@ -702,7 +758,8 @@ public varargs string long(string item)
 
     return configuration->decorate(capitalizeSentences(ret),
         "description", "environment", colorConfiguration) +
-        getExitDescription() + getInventoryDescription() + "\n";
+        getExitDescription() + 
+        getInventoryDescription(illuminationLevel) + "\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -913,47 +970,6 @@ public nomask varargs void setStateMachine(string machinePath,
     {
         setupStateMachine();
     }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int getElementLighting()
-{
-    int ret = 0;
-
-    foreach(string elementType in({ "terrain", "feature", "building", "item" }))
-    {
-        if (sizeof(environmentalElements[elementType]))
-        {
-            string *elements = m_indices(environmentalElements[elementType]);
-            foreach(string element in elements)
-            {
-                object elementObj =
-                    environmentDictionary()->environmentalObject(element);
-                if (elementObj)
-                {
-                    ret += elementObj->isSourceOfLight(currentState());
-                }
-            }
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected int alwaysLight()
-{
-    return 0;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int isIlluminated()
-{
-    int ret = sizeof(environmentalElements["terrain"]) ?
-        environmentDictionary()->ambientLight() : 0;
-    
-    ret += getElementLighting();
-
-    return ret || alwaysLight();
 }
 
 /////////////////////////////////////////////////////////////////////////////

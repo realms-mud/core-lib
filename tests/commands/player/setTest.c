@@ -37,8 +37,8 @@ void Setup()
     Player->Gender(1);
     Player->addCommands();
 
-    move_object(Wizard, this_object());
-    move_object(Player, this_object());
+    move_object(Wizard, "/lib/tests/support/environment/fakeEnvironment.c");
+    move_object(Player, "/lib/tests/support/environment/fakeEnvironment.c");
 
     setUsers(({ Wizard, Player }));
 }

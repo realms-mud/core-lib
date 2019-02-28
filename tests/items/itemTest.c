@@ -640,7 +640,7 @@ void CustomKeysCanBeSet()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ShortReturnsCorrectMessage()
+void ShortReturnsCorrectMessageInFullLight()
 {
     Item->set("short", "a Statue of a Weasel");
 
@@ -648,13 +648,117 @@ void ShortReturnsCorrectMessage()
     owner->Name("Harold");
     owner->Gender(1);
     move_object(Item, owner);
+    move_object(owner, "/lib/tests/support/environment/fakeEnvironment.c");
+
     ExpectEq("A Statue of a Weasel", Item->short(), "short() returns correct value");
 
     Item->set("short", "##UserPossessive## Statue of a Weasel");
     ExpectEq("Your Statue of a Weasel", Item->short(), "short() returns correct possessive value");
+    destruct(load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ShortReturnsCorrectMessageInNearDarkness()
+{
+    object environment = 
+        load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    object dictionary = 
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    Item->set("short", "a Statue of a Weasel");
+
+    object owner = clone_object("/lib/tests/support/services/mockPlayer.c");
+    owner->Name("Harold");
+    owner->Gender(1);
+    move_object(Item, owner);
+    move_object(owner, environment);
+    dictionary->timeOfDay("midnight");
+    dictionary->setDay(0);
+
+    ExpectEq("The silhouette of an item, but it is too dark to identify it", 
+        Item->short());
+
+    destruct(environment);
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsCorrectMessageInLowLight()
+{
+    object environment =
+        load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    object dictionary =
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    Item->set("short", "a Statue of a Weasel");
+
+    object owner = clone_object("/lib/tests/support/services/mockPlayer.c");
+    owner->Name("Harold");
+    owner->Gender(1);
+    move_object(Item, owner);
+    move_object(owner, environment);
+    dictionary->timeOfDay("midnight");
+    dictionary->setDay(6);
+
+    ExpectEq("An item whose details cannot be seen in the low light",
+        Item->short());
+
+    destruct(environment);
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsCorrectMessageInDimLight()
+{
+    object environment =
+        load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    object dictionary =
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    destruct(Item);
+    Item = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    Item->set("short", "Sword of Swordiness");
+
+    object owner = clone_object("/lib/tests/support/services/mockPlayer.c");
+    owner->Name("Harold");
+    owner->Gender(1);
+    move_object(Item, owner);
+    move_object(owner, environment);
+    dictionary->timeOfDay("midnight");
+    dictionary->setDay(13);
+
+    ExpectEq("An apparent long sword", Item->short());
+
+    destruct(environment);
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsCorrectMessageInSomeLight()
+{
+    object environment =
+        load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    object dictionary =
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    destruct(Item);
+    Item = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
+    Item->set("short", "Chainmail of Weasels");
+
+    object owner = clone_object("/lib/tests/support/services/mockPlayer.c");
+    owner->Name("Harold");
+    owner->Gender(1);
+    move_object(Item, owner);
+    move_object(owner, environment);
+    dictionary->timeOfDay("dawn");
+
+    ExpectEq("Chainmail", Item->short());
+
+    destruct(environment);
+    destruct(dictionary);
+}
+
+////////////////////////////////////////////////////////////////////////////
 void LongReturnsCorrectMessageBeforeIdentification()
 {
     Item->set("long", "Blah blah blah");

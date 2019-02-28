@@ -396,24 +396,42 @@ void LookWhenDarkFailsWithDarkMessage()
 /////////////////////////////////////////////////////////////////////////////
 void LookWhenDarkSucceedsWhenUserHasDarkvision()
 {
+    object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
+    elf->Name("gertrude");
+    elf->Gender(2);
+    elf->Race("elf");
+    move_object(elf, environment(Player));
+
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
     Player->addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
-    ExpectTrue(Player->executeCommand("look"));
-    ExpectSubStringMatch("a forest. To the north.*Bob",
+    command("look", Player);
+
+    ExpectSubStringMatch("a forest. To the north.*Gertrude",
         Player->caughtMessage());
+
+    destruct(elf);
     destruct(dictionary);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LookWhenDarkShowsLifeSignaturesWithInfravision()
 {
+    object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
+    elf->Name("gertrude");
+    elf->Gender(2);
+    elf->Race("elf");
+    move_object(elf, environment(Player));
+
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
     Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
-    ExpectTrue(Player->executeCommand("look"));
-    ExpectSubStringMatch("You can see objects faintly glowing in red.*Bob",
-        Player->caughtMessage());
+
+    command("look", Player);
+    ExpectSubStringMatch("You can see objects faintly glowing in red.*A "
+        "female elf", Player->caughtMessage());
+
+    destruct(elf);
     destruct(dictionary);
 }
 

@@ -262,6 +262,28 @@ public varargs string Pretitle(string msg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string shortDescription()
+{
+    string ret;
+
+    if (!shortDescription || (shortDescription == ""))
+    {
+        shortDescription = name;
+    }
+    ret = shortDescription;
+
+    if (Invisibility())
+    {
+        ret = "";
+    }
+    if (Ghost())
+    {
+        ret = sprintf("ghost of %s", shortDescription);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 // Overload as needed!
 public varargs string short(string newShort)
 {
@@ -273,8 +295,83 @@ public varargs string short(string newShort)
     {
         shortDescription = name;
     }
-    string ret = shortDescription;
-    
+    string ret = "";
+
+    int illumination = isIlluminated();
+
+    if (this_player())
+    {
+        if (this_player()->hasTraitOfRoot("infravision") && (illumination < 7))
+        {
+            illumination = 7;
+        }
+        if (this_player()->hasTraitOfRoot("darkvision"))
+        {
+            illumination = 10;
+        }
+    }
+
+    switch (illumination)
+    {
+        case 1:
+        {
+            ret = "A silhouette of something unidentifiable";
+            break;
+        }
+        case 2..3:
+        {
+            object race = getService("races");
+            ret = "The silhouette of a " +
+                ((race && race->Race()) ? "humanoid" : "creature");
+            break;
+        }
+        case 4:
+        {
+            ret = "The silhouette of a";
+
+            object race = getService("races");
+            if (race && race->Race())
+            {
+                string raceName = to_string(race->Race());
+                ret += ((member(({ 'a', 'e', 'i', 'o', 'u' }), raceName[0]) > -1) ?
+                    "n" : "") + " " + raceName;
+            }
+            else
+            {
+                ret += "n unknown creature";
+            }
+            break;
+        }
+        case 5..6:
+        {
+            object race = getService("races");
+            string raceName = "creature";
+            if (race)
+            {
+                raceName = to_string(race->Race());
+            }
+
+            ret = sprintf("The silhouette of a %s %s", GenderDesc(), raceName);
+            break;
+        }
+        case 7..8:
+        {
+            object race = getService("races");
+            string raceName = "creature";
+            if (race)
+            {
+                raceName = to_string(race->Race());
+            }
+
+            ret = sprintf("A %s %s", GenderDesc(), raceName);
+            break;
+        }
+        case 9..1000:
+        {
+            ret = shortDescription;
+            break;
+        }
+    }
     if(Invisibility())
     {
         ret = "";
@@ -492,12 +589,13 @@ public nomask varargs int canSee(int neededLevel)
 {
     int ret = 0;
     int lightLevel = 0;
-    if (!neededLevel)
-    {
-        neededLevel = 1;
-    }
 
     object location = environment(this_object());
+    if (location && !neededLevel)
+    {
+        neededLevel = location->minimumNeededLightLevel();
+    }
+
     if (location)
     {
         lightLevel = location->isIlluminated();

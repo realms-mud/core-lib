@@ -32,7 +32,9 @@ private string decorateObject(object targetObject, object initiator)
     }
 
     string itemDetails = "\n";
-    string shortDesc = targetObject->short();
+    string shortDesc = targetObject->shortDescription() || 
+        targetObject->query("short");
+
     if (shortDesc)
     {
         itemDetails = dictionary->decorate(sprintf(" (%s)\n", shortDesc),

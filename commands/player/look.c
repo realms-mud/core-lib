@@ -39,6 +39,7 @@ public nomask int execute(string command, object initiator)
                 (: $1->isRealizationOfLiving() &&
                    !$1->hasTraitOfRoot("ethereal") &&
                    !$1->hasTraitOfRoot("undead") :));
+            environmentInventory -= ({ initiator });
 
             if ((getTargetString(initiator, command) == "") &&
                 initiator->hasTraitOfRoot("infravision") &&

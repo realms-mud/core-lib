@@ -15,6 +15,16 @@ public nomask mixed query(string element)
             ret = "book";
             break;
         }
+        case "low light description":
+        {
+            ret = "The silhouette of a small, rectangular object";
+            break;
+        }
+        case "dim light description":
+        {
+            ret = "Something that appears to be a book";
+            break;
+        }
         default:
         {
             ret = "item"::query(element);

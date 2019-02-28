@@ -10,5 +10,5 @@ public void Setup()
     Name("a different light");
     addDescriptionTemplate("a light");
     addAlias("light");
-    addSourceOfLight(1);
+    addSourceOfLight(10);
 }

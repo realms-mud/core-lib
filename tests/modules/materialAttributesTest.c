@@ -15,6 +15,8 @@ void Setup()
     Attributes->hitPoints(500);
     Attributes->colorConfiguration("none");
     setUsers(({ Attributes }));
+
+    move_object(Attributes, "/lib/tests/support/environment/fakeEnvironment.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -641,4 +643,75 @@ void LongDescriptionCorrectlyDisplaysTwentyFourBitColor()
         "gladly donate my\nlymph nodes to the Sisterhood of the Five "
         "Wounds.\n\x1b[0m\x1b[0;38;2;200;0;0;1mHe is in good shape.\n\x1b[0m",
         Attributes->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsCorrectMessageInNearDarkness()
+{
+    object dictionary =
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    Attributes->Name("Bob");
+    Attributes->Race("high elf");
+    Attributes->Gender(1);
+
+    dictionary->timeOfDay("midnight");
+    dictionary->setDay(0);
+
+    ExpectEq("A silhouette of something unidentifiable", Attributes->short());
+
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsCorrectMessageInLowLight()
+{
+    object dictionary =
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    Attributes->Name("Bob");
+    Attributes->Race("high elf");
+    Attributes->Gender(1);
+
+    dictionary->timeOfDay("midnight");
+    dictionary->setDay(6);
+
+    ExpectEq("The silhouette of a humanoid", Attributes->short());
+
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsCorrectMessageInDimLight()
+{
+    object dictionary =
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    Attributes->Name("Bob");
+    Attributes->Race("high elf");
+    Attributes->Gender(1);
+
+    dictionary->timeOfDay("midnight");
+    dictionary->setDay(13);
+
+    ExpectEq("The silhouette of a male high elf", Attributes->short());
+
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsCorrectMessageInSomeLight()
+{
+    object dictionary =
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    Attributes->Name("Bob");
+    Attributes->Race("high elf");
+    Attributes->Gender(1);
+
+    dictionary->timeOfDay("dawn");
+
+    ExpectEq("A male high elf", Attributes->short());
+
+    destruct(dictionary);
 }

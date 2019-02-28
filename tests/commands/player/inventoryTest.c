@@ -75,6 +75,7 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->addCommands();
+    move_object(Player, "/lib/tests/support/environment/fakeEnvironment.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

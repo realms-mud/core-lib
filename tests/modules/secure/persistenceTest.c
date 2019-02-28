@@ -50,6 +50,8 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerMaterialAttributesRestored()
 {
+    move_object(Player, "/lib/tests/support/environment/fakeEnvironment.c");
+
     Player->restore("gorthaur");
     ExpectEq("Gorthaur", Player->Name());
     ExpectEq("male", Player->GenderDesc());
@@ -212,6 +214,7 @@ void PlayerMaterialAttributesSaved()
     destruct(Player);
     Player = clone_object("/lib/realizations/player.c");
     Player->restore("gorthaur");
+    move_object(Player, "/lib/tests/support/environment/fakeEnvironment.c");
     ExpectEq("Gorthaur", Player->Name());
     ExpectEq("female", Player->GenderDesc());
     ExpectTrue(Player->Invisibility());

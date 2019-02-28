@@ -68,6 +68,21 @@ public nomask mixed query(string element)
             ret = "weapon";
             break;
         }
+        case "low light description":
+        {
+            ret = "The silhouette of a weapon";
+            break;
+        }
+        case "dim light description":
+        {
+            ret = "An apparent " + query("weapon type");
+            break;
+        }
+        case "some light description":
+        {
+            ret = query("weapon type");
+            break;
+        }
         default:
         {
             ret = "equipment"::query(element);

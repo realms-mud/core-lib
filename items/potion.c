@@ -39,6 +39,16 @@ public nomask mixed query(string element)
             ret = itemData["biological effect"];
             break;
         }
+        case "low light description":
+        {
+            ret = "The silhouette of an object";
+            break;
+        }
+        case "dim light description":
+        {
+            ret = "Something that appears to be a potion";
+            break;
+        }
         default:
         {
             ret = "item"::query(element);

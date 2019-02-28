@@ -341,6 +341,8 @@ void MoveToLocationShowsCorrectMessageForTimeAndSeason()
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
     move_object(player, "/lib/tests/support/environment/startingRoom.c");
 
+    object x = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
+
     command("south", player);
     ExpectSubStringMatch("It is too dark", player->caughtMessage());
 
@@ -350,7 +352,7 @@ void MoveToLocationShowsCorrectMessageForTimeAndSeason()
 
     command("south", player);
     ExpectSubStringMatch("a stone hallway.*There is one obvious exit: "
-        "north.*Black-robed figure", player->caughtMessage());
+        "north.*A male human", player->caughtMessage());
 
     destruct(player);
 }
@@ -862,7 +864,7 @@ void InteriorsAffectedByLightSources()
     ExpectEq(0, Environment->isIlluminated());
 
     Dictionary->season("spring");
-    ExpectEq(7, Environment->isIlluminated());
+    ExpectEq(8, Environment->isIlluminated());
 }
 
 /////////////////////////////////////////////////////////////////////////////

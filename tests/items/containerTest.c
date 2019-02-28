@@ -34,10 +34,12 @@ void LongReturnsCorrectMessageWhenNotEmpty()
 {
     object sword = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     move_object(sword, Container);
+    move_object(Container, "/lib/tests/support/environment/fakeEnvironment.c");
 
     Container->set("long", "Blah blah blah");
     Container->set("additional long", "even more blah");
 
     ExpectSubStringMatch("Blah blah blah.*This item contains the following.*Long sword",
         Container->long(), "long() returns correct value");
+    destruct(load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }

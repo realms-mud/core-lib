@@ -43,6 +43,21 @@ public nomask mixed query(string element)
             ret = "armor";
             break;
         }
+        case "low light description":
+        {
+            ret = "The silhouette of a piece of armor";
+            break;
+        }
+        case "dim light description":
+        {
+            ret = "An apparent " + query("armor type");
+            break;
+        }
+        case "some light description":
+        {
+            ret = query("armor type");
+            break;
+        }
         default:
         {
             ret = "equipment"::query(element);

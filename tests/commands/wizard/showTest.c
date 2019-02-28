@@ -32,6 +32,7 @@ void Setup()
     Wizard->restore("earl");
     Wizard->addCommands();
     Catch->beginShadow(Wizard);
+
     setUsers(({ Wizard }));
 }
 

@@ -27,6 +27,16 @@ public nomask mixed query(string element)
                 materialsObject()->getBlueprintModifier(this_object(), "skill to use");
             break;
         }
+        case "low light description":
+        {
+            ret = "The silhouette of a small, roughly cylindrical shape";
+            break;
+        }
+        case "dim light description":
+        {
+            ret = "Something that appears to be a beverage";
+            break;
+        }
         default:
         {
             ret = "item"::query(element);

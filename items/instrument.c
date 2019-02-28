@@ -27,6 +27,21 @@ public nomask mixed query(string element)
                 materialsObject()->getBlueprintModifier(this_object(), "skill to use");
             break;
         }
+        case "low light description":
+        {
+            ret = "The silhouette of a musical instrument";
+            break;
+        }
+        case "dim light description":
+        {
+            ret = "An apparent " + query("instrument type");
+            break;
+        }
+        case "some light description":
+        {
+            ret = query("instrument type");
+            break;
+        }
         default:
         {
             ret = "equipment"::query(element);

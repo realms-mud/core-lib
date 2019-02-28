@@ -6,6 +6,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Corpse;
 object Victim;
+object Environment;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
@@ -20,8 +21,9 @@ void Setup()
     move_object(clone_object("/lib/instances/items/armor/accessories/amulet.c"), Victim);
     move_object(clone_object("/lib/instances/items/drinks/bock.c"), Victim);
 
-    move_object(Victim, this_object());
-    move_object(Corpse, this_object());
+    Environment = load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    move_object(Victim, Environment);
+    move_object(Corpse, Environment);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -29,6 +31,7 @@ void CleanUp()
 {
     destruct(Victim);
     destruct(Corpse);
+    destruct(Environment);
 }
 
 /////////////////////////////////////////////////////////////////////////////

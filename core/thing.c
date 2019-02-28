@@ -110,3 +110,9 @@ protected object getMessageParser()
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isIlluminated()
+{
+    return environment() ? environment()->isIlluminated() : 1;
+}

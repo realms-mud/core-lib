@@ -257,6 +257,26 @@ public mixed query(string element)
                 ret = "item";
                 break;
             }
+            case "low light description":
+            {
+                ret = member(itemData, "low light description") ?
+                    itemData["low light description"] :
+                    "An item whose details cannot be seen in the low light";
+                break;
+            }
+            case "dim light description":
+            {
+                ret = member(itemData, "dim light description") ?
+                    itemData["dim light description"] : 
+                    "An apparent " + query("type");
+                break;
+            }
+            case "some light description":
+            {
+                ret = member(itemData, "some light description") ?
+                    itemData["some light description"] : query("type");
+                break;
+            }
             default:
             {
                 if(member(itemData, element) && itemData[element])
@@ -607,13 +627,57 @@ static nomask void outputMessageFromTemplate(string template)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string short()
+public varargs string short()
 {
     if (!query("short"))
     {
         raise_error("Item: No short description was set.\n");
     }
-    return parseTemplate(query("short"));
+
+    string shortTemplate = query("light") ? query("short") : 0;
+    if (!shortTemplate)
+    {
+        switch (isIlluminated())
+        {
+            case 1..2:
+            {
+                shortTemplate = "The silhouette of an item, but it is too "
+                    "dark to identify it";
+                break;
+            }
+            case 3..4:
+            {
+                shortTemplate = query("low light description");
+                break;
+            }
+            case 5..6:
+            {
+                shortTemplate = query("dim light description");
+                break;
+            }
+            case 7..8:
+            {
+                shortTemplate = query("some light description");
+                break;
+            }
+            case 9..1000:
+            {
+                shortTemplate = query("short");
+                break;
+            }
+            default:
+            {
+                shortTemplate = "";
+                break;
+            }
+        }
+    }
+
+    if (shortTemplate != "")
+    {
+        shortTemplate = parseTemplate(shortTemplate);
+    }
+    return shortTemplate;
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -20,6 +20,16 @@ public nomask mixed query(string element)
             ret = "corpse";
             break;
         }
+        case "low light description":
+        {
+            ret = "The silhouette of a large object";
+            break;
+        }
+        case "dim light description":
+        {
+            ret = "Something that appears to be a corpse";
+            break;
+        }
         default:
         {
             ret = "item"::query(element);

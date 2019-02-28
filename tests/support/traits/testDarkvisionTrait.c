@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         addSpecification("type", "health");
-        addSpecification("name", "Infravision");
+        addSpecification("name", "Darkvision");
         addSpecification("description", "blah blah blah");
         addSpecification("root", "darkvision");
         "baseTrait"::reset(arg);

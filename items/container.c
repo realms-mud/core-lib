@@ -28,6 +28,16 @@ public mixed query(string element)
             ret = "container";
             break;
         }
+        case "low light description":
+        {
+            ret = "The silhouette of an item";
+            break;
+        }
+        case "dim light description":
+        {
+            ret = "Something that appears to be a container";
+            break;
+        }
         default:
         {
             ret = "item"::query(element);
