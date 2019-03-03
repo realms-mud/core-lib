@@ -25,15 +25,15 @@ void CleanUp()
 void DefaultDescriptionDisplaysCorrectly()
 {
     ExpectEq("a stand of majestic oak trees with branches laden with acorns, noonishly glowing",
-        Element->description());
+        Element->description("default", Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DawnDescriptionShowsCorrectTimeOfDay()
 {
     Dictionary->timeOfDay("dawn");
-    ExpectEq("a stand of majestic oak trees with branches laden with acorns that the faint dawn light is just beginning to illuminate",
-        Element->description());
+    ExpectEq("a stand of oak trees with branches laden with acorns that the faint dawn light is just beginning to illuminate",
+        Element->description(0, Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -41,11 +41,11 @@ void MorningDescriptionShowsCorrectTimeOfDayAndSeason()
 {
     Dictionary->timeOfDay("morning");
     ExpectEq("a stand of majestic oak trees with branches laden with acorns",
-        Element->description());
+        Element->description(0, Dictionary->ambientLight()));
 
     Dictionary->season("autumn");
     ExpectEq("a stand of majestic oak trees carpeting the ground in fallen leaves of red, yellow, and orange lit from a ray of sunshine piercing through the canopy",
-        Element->description());
+        Element->description(0, Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -53,7 +53,7 @@ void NoonDescriptionShowsCorrectTimeOfDay()
 {
     Dictionary->timeOfDay("noon");
     ExpectEq("a stand of majestic oak trees with branches laden with acorns, noonishly glowing",
-        Element->description());
+        Element->description(0, Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@ void WinterAfternoonDescriptionShowsCorrectTimeOfDayAndSeason()
     Dictionary->timeOfDay("afternoon");
     Dictionary->season("winter");
     ExpectEq("a stand of majestic oak trees covered with a thick layer of snow, afternooningly dreary",
-        Element->description());
+        Element->description(0, Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -71,23 +71,23 @@ void SpringEveningDescriptionShowsCorrectTimeOfDayAndSeason()
     Dictionary->timeOfDay("evening");
     Dictionary->season("spring");
     ExpectEq("a stand of majestic oak trees with leaves just beginning to bud, oppressive in its late-day glory",
-        Element->description());
+        Element->description(0, Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DuskDescriptionShowsCorrectTimeOfDay()
 {
     Dictionary->timeOfDay("dusk");
-    ExpectEq("a stand of majestic oak trees with branches laden with acorns, the details of which the last failing light of the day barely show",
-        Element->description());
+    ExpectEq("a stand of oak trees with branches laden with acorns, the details of which the last failing light of the day barely show",
+        Element->description(0, Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NightDescriptionShowsCorrectTimeOfDay()
 {
     Dictionary->timeOfDay("night");
-    ExpectEq("a stand of oak trees outlined in the dark",
-        Element->description());
+    ExpectEq("the silhouette of deciduous trees outlined in the dark",
+        Element->description(0, Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -96,17 +96,38 @@ void MidnightDescriptionShowsCorrectTimeOfDayAndChangesForSeason()
     Dictionary->timeOfDay("midnight");
 
     Dictionary->season("spring");
-    ExpectEq("a stand of oak trees outlined in eery black", Element->description());
+    ExpectEq("a massive silhouette of trees outlined in eery black", 
+        Element->description("default", Dictionary->ambientLight()), "spring");
 
     Dictionary->season("summer");
-    ExpectEq("a stand of oak trees outlined in eery black", Element->description());
+    ExpectEq("the silhouette of deciduous trees outlined in eery black", 
+        Element->description("default", Dictionary->ambientLight()), "summer");
 
     Dictionary->season("autumn");
-    ExpectEq("a stand of oak trees outlined in eery black. There is a creepy wisp of black energy here",
-        Element->description());
+    ExpectEq("the silhouette of oak trees outlined in eery black. There is a creepy wisp of black energy here",
+        Element->description("default", Dictionary->ambientLight()), "autumn");
 
     Dictionary->season("winter");
-    ExpectEq("a stand of oak trees outlined in eery black", Element->description());
+    ExpectEq("the silhouette of deciduous trees outlined in eery black", 
+        Element->description("default", Dictionary->ambientLight()), "winter");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MidnightDescriptionShowsCorrectTimeOfDayAndChangesForMoonPhases()
+{
+    Dictionary->timeOfDay("midnight");
+
+    Dictionary->setDay(0);
+    ExpectEq("a massive silhouette of trees outlined in eery black",
+        Element->description("default", Dictionary->ambientLight()), "new moon");
+
+    Dictionary->setDay(6);
+    ExpectEq("the silhouette of deciduous trees outlined in eery black",
+        Element->description("default", Dictionary->ambientLight()), "crescent");
+
+    Dictionary->setDay(13);
+    ExpectEq("the silhouette of oak trees outlined in eery black",
+        Element->description("default", Dictionary->ambientLight()), "full");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -115,7 +136,7 @@ void StateChangesUpdateDescription()
     Dictionary->timeOfDay("dawn");
     Dictionary->season("winter");
     ExpectEq("a stand of charred tree stumps covered with a murky mist that the sickly first rays barely illuminate",
-        Element->description("deadified"));
+        Element->description("deadified", Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -123,8 +144,8 @@ void DefaultDescriptionUsedWhenStateDoesNotHaveDescription()
 {
     Dictionary->timeOfDay("dawn");
     Dictionary->season("summer");
-    ExpectEq("a stand of majestic oak trees with branches laden with acorns that the faint dawn light is just beginning to illuminate",
-        Element->description("blarg"));
+    ExpectEq("a stand of oak trees with branches laden with acorns that the faint dawn light is just beginning to illuminate",
+        Element->description("blarg", Dictionary->ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -141,7 +162,8 @@ void LongForStateDisplaysCorrectly()
     Dictionary->season("winter");
 
     Element->currentState("deadified");
-    ExpectEq("You see many charred tree stumps outlined in the dark.\n",
+    ExpectEq("You see many charred tree stumps covered with a murky mist "
+        "outlined in the dark.\n",
         Element->long());
 }
 

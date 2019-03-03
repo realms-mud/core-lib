@@ -24,6 +24,10 @@ public void Setup()
     addSeasonDescription("autumn", ({ " carpeting the ground in fallen leaves of red, yellow, and orange" }));
 
     addDescriptionTemplate("a stand of ##Adjective## oak trees");
+    addNearDarkDescriptionTemplate("a massive silhouette of trees");
+    addLowLightDescriptionTemplate("the silhouette of deciduous trees");
+    addDimLightDescriptionTemplate("the silhouette of oak trees");
+    addSomeLightDescriptionTemplate("a stand of oak trees");
 
     addDescriptionTemplate("a stand of charred tree stumps", "deadified");
     addTimeOfDayDescription("dawn", ({ " that the sickly first rays barely illuminate" }), "deadified");

@@ -648,6 +648,25 @@ private string getInventoryDescription(int illuminationLevel)
         string colorConfiguration = this_player() ?
             this_player()->colorConfiguration() : "none";
 
+        object *infraInventory = ({});
+        if ((illuminationLevel < 7) && this_player() &&
+            this_player()->hasTraitOfRoot("infravision"))
+        {
+            infraInventory = filter(environmentInventory,
+                (: $1->isRealizationOfLiving() &&
+                    !$1->hasTraitOfRoot("ethereal") &&
+                    !$1->hasTraitOfRoot("undead") :));
+
+            environmentInventory -= ({ this_player() });
+            infraInventory -= ({ this_player() });
+
+            if (sizeof(infraInventory))
+            {
+                ret += configuration->decorate(
+                    "You can see objects faintly glowing in red:",
+                    "infravision", "environment", colorConfiguration) + "\n";
+            }
+        }
         foreach(object environmentItem in environmentInventory)
         {
             string shortDesc = environmentItem->short();
@@ -655,7 +674,9 @@ private string getInventoryDescription(int illuminationLevel)
                 (environmentItem != this_player()))
             {
                 ret += configuration->decorate(capitalize(shortDesc),
-                    "inventory", "environment", colorConfiguration) + "\n";
+                    ((member(infraInventory, environmentItem) > -1) ? 
+                        "infravision": "inventory"), 
+                    "environment", colorConfiguration) + "\n";
             }
         }
     }
@@ -726,10 +747,18 @@ public nomask int isIlluminated()
 public varargs string long(string item)
 {
     int illuminationLevel = isIlluminated();
+
+    if (this_player() && this_player()->hasTraitOfRoot("darkvision"))
+    {
+        illuminationLevel = 10;
+    }
+
     string ret = getBaseDescriptionForType("terrain", illuminationLevel);
+    int isOutside = 1;
     if (!ret)
     {
         ret = getBaseDescriptionForType("interior", illuminationLevel);
+        isOutside = 0;
     }
 
     if (ret)
@@ -758,6 +787,9 @@ public varargs string long(string item)
 
     return configuration->decorate(capitalizeSentences(ret),
         "description", "environment", colorConfiguration) +
+        (isOutside ? 
+            environmentDictionary()->timeOfDayMessage(colorConfiguration) :
+            "") +
         getExitDescription() + 
         getInventoryDescription(illuminationLevel) + "\n";
 }

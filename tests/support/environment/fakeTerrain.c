@@ -12,4 +12,8 @@ public void Setup()
     addAdjectives(({ "deciduous" }));
 
     addDescriptionTemplate("a ##Adjective## forest");
+    addNearDarkDescriptionTemplate("a very dark forest");
+    addLowLightDescriptionTemplate("a barely-lit forest");
+    addDimLightDescriptionTemplate("a dimly-lit forest");
+    addSomeLightDescriptionTemplate("a forest with a little light");
 }

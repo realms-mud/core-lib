@@ -385,12 +385,10 @@ void LookWhenBlindFailsWithBlindMessage()
 /////////////////////////////////////////////////////////////////////////////
 void LookWhenDarkFailsWithDarkMessage()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary->timeOfDay("midnight");
+    move_object(Player, "/lib/tests/support/environment/darkRoom.c");
 
     ExpectTrue(Player->executeCommand("look"));
     ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
-    destruct(dictionary);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -438,23 +436,39 @@ void LookWhenDarkShowsLifeSignaturesWithInfravision()
 /////////////////////////////////////////////////////////////////////////////
 void LookWhenDarkDoesNotShowEtherealSignaturesWithInfravision()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary->timeOfDay("midnight");
+    move_object(Player, "/lib/tests/support/environment/infraRoom.c");
+
+    object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
+    elf->Name("gertrude");
+    elf->Gender(2);
+    elf->Race("elf");
+    move_object(elf, environment(Player));
+
     Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
     Player->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+    elf->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
     ExpectTrue(Player->executeCommand("look"));
     ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
-    destruct(dictionary);
+
+    destruct(elf);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LookWhenDarkDoesNotShowUndeadSignaturesWithInfravision()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary->timeOfDay("midnight");
+    move_object(Player, "/lib/tests/support/environment/infraRoom.c");
+
+    object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
+    elf->Name("gertrude");
+    elf->Gender(2);
+    elf->Race("elf");
+    move_object(elf, environment(Player));
+
     Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
     Player->addTrait("/lib/tests/support/traits/testUndeadTrait.c");
+    elf->addTrait("/lib/tests/support/traits/testUndeadTrait.c");
     ExpectTrue(Player->executeCommand("look"));
     ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
-    destruct(dictionary);
+
+    destruct(elf);
 }

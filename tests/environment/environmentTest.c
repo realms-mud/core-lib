@@ -963,7 +963,7 @@ void NoColorCorrectlyDisplayed()
 
     command("look", person);
     ExpectSubStringMatch("a deciduous forest. To the north.*trees.*"
-        "laden with acorns.*glowing.\n"
+        "laden with acorns.*glowing.\nThe sun is high in the summer sky.\n"
         " -=-=- There is one obvious exit: north\n"
         "Sword of Blah\n",
         person->caughtMessage());
@@ -1014,7 +1014,7 @@ void EightBitColorCorrectlyDisplayed()
     move_object(weapon, Environment);
 
     command("look", person);
-    ExpectSubStringMatch("0;38;5;190m.*a deciduous forest. To the north.*"
+    ExpectSubStringMatch("0;38;5;186m.*a deciduous forest. To the north.*"
         "trees.*laden with acorns.*glowing.*"
         "0m..0;38;5;238;1m -=-=- There is one obvious exit: north\n"
         "..0m..0;38;5;80mSword of Blah..0m\n",
@@ -1186,4 +1186,387 @@ void LongRecoversWhenDictionaryReset()
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     ExpectSubStringMatch("stone hallway.*trees.*light.*long.*description",
         Environment->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysDawn()
+{
+    Dictionary->timeOfDay("dawn");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("a forest with a little light.*faint.*dawn.*light.*"
+        "38;5;166mThe red/orange glow to the east beckons the new day.*"
+        "There is one obvious exit: north.*Long sword",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysMorning()
+{
+    Dictionary->timeOfDay("morning");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("a deciduous forest.*"
+        "38;5;184mThe sun is low in the eastern summer sky.*"
+        "There is one obvious exit: north.*Sword of Blah",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysNoon()
+{
+    Dictionary->timeOfDay("noon");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("a deciduous forest.*noonish.*"
+        "38;5;226mThe sun is high in the summer sky.*"
+        "There is one obvious exit: north.*Sword of Blah",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysAfternoon()
+{
+    Dictionary->timeOfDay("afternoon");
+    Dictionary->setDay(0);
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("a deciduous forest.*afternooningly.*"
+        "38;5;190mThe sun has begun to wester in the spring sky.*"
+        "There is one obvious exit: north.*Sword of Blah",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysEvening()
+{
+    Dictionary->timeOfDay("evening");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("a deciduous forest.*late-day.*"
+        "38;5;184mThe sun is low in the western summer sky.*"
+        "There is one obvious exit: north.*Sword of Blah",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysDusk()
+{
+    Dictionary->timeOfDay("dusk");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("a forest with a little light.*failing.*light.*"
+        "38;5;166mThe red/orange glow in the western sky signals the day's end.*"
+        "There is one obvious exit: north.*Long sword",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysNightWithNewMoon()
+{
+    Dictionary->timeOfDay("night");
+    Dictionary->setDay(0);
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("very dark forest.*massive.*silhouette.*outlined in the dark.*"
+        "38;5;57mA canopy of stars blankets the region.*"
+        "There is one obvious exit: north.*The silhouette of an item, but it "
+        "is too dark to identify it",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysNightWithWaxingCrescent()
+{
+    Dictionary->timeOfDay("night");
+    Dictionary->setDay(4);
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("very dark forest.*massive.*silhouette.*outlined in the dark.*"
+        "38;5;57mA canopy of stars blankets the region. The moon, a waxing crescent, "
+        "is low in\nthe eastern sky.*"
+        "There is one obvious exit: north.*The silhouette of an item, but it "
+        "is too dark to identify it",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysNightWithFirstQuarter()
+{
+    Dictionary->timeOfDay("night");
+    Dictionary->setDay(6);
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("barely-lit forest.*silhouette.*deciduous.*outlined in the dark.*"
+        "38;5;57mA canopy of stars blankets the region. The moon, a first quarter, "
+        "is low in\nthe eastern sky.*"
+        "There is one obvious exit: north.*The silhouette of a weapon",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysMidnightWithWaxingGibbous()
+{
+    Dictionary->timeOfDay("midnight");
+    Dictionary->setDay(10);
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("barely-lit forest.*silhouette.*deciduous.*outlined.*eery.*black.*"
+        "38;5;56mA canopy of stars blankets the region. The moon, a waxing gibbous, "
+        "is almost\ndirectly overhead.*"
+        "There is one obvious exit: north.*The silhouette of a weapon",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysMidnightWithFullMoon()
+{
+    Dictionary->timeOfDay("midnight");
+    Dictionary->setDay(13);
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("dimly-lit forest.*silhouette.*oak.*trees.*outlined.*eery.*black.*"
+        "38;5;56mA canopy of stars blankets the region. The moon, a full moon, "
+        "is almost\ndirectly overhead.*"
+        "There is one obvious exit: north.*An apparent long sword",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysMidnightWithWaningGibbous()
+{
+    Dictionary->timeOfDay("midnight");
+    Dictionary->setDay(16);
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("barely-lit forest.*silhouette.*deciduous.*outlined.*eery.*black.*"
+        "38;5;56mA canopy of stars blankets the region. The moon, a waning gibbous, "
+        "is almost\ndirectly overhead.*"
+        "There is one obvious exit: north.*The silhouette of a weapon",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysLateNightWithLastQuarter()
+{
+    Dictionary->timeOfDay("late night");
+    Dictionary->setDay(20);
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("barely-lit forest.*silhouette.*deciduous.*trees.*"
+        "38;5;57mA canopy of stars blankets the region. The moon, a last quarter, "
+        "is low in the\nwestern sky.*"
+        "There is one obvious exit: north.*The silhouette of a weapon",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysLateNightWithWaningCrescent()
+{
+    Dictionary->timeOfDay("late night");
+    Dictionary->setDay(24);
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon->set("name", "blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("short", "Sword of Blah");
+    move_object(weapon, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("very dark forest.*silhouette.*trees.*"
+        "38;5;57mA canopy of stars blankets the region. The moon, a waning crescent, "
+        "is low in\nthe western sky.*"
+        "There is one obvious exit: north.*The silhouette of an item, "
+        "but it is too dark to identify it",
+        person->caughtMessage());
 }

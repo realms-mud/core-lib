@@ -89,11 +89,12 @@ public nomask void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string parseSeasonDescription(string message, mapping data)
+private nomask string parseSeasonDescription(string message, mapping data,
+    int illuminationLevel)
 {
     string ret = message;
     string season = environmentDictionary()->season();
-    if (member(data, season) && environmentDictionary()->ambientLight() > 5)
+    if (member(data, season) && (illuminationLevel >= 7))
     {
         ret += data[season][random(sizeof(data[season]))];
     }
@@ -114,7 +115,8 @@ private nomask string parseTimeOfDayDetails(string message, mapping data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string parseWeatherDetails(string message, mapping data)
+private nomask string parseWeatherDetails(string message, mapping data,
+    int illuminationLevel)
 {
     return message;
 }
@@ -166,14 +168,15 @@ protected int displayEntryMessage()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs string parseTemplate(string template, mapping data)
+protected nomask varargs string parseTemplate(string template, mapping data,
+    int illuminationLevel)
 {
-    string ret = parseSeasonDescription(template, data);
+    string ret = parseSeasonDescription(template, data, illuminationLevel);
     ret = parseTimeOfDayDetails(ret, data);
 
     if (displayWeatherDetails())
     {
-        ret = parseWeatherDetails(ret, data);
+        ret = parseWeatherDetails(ret, data, illuminationLevel);
     }
     if (displayEntryMessage())
     {
@@ -184,7 +187,37 @@ protected nomask varargs string parseTemplate(string template, mapping data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs string description(string state)
+private nomask string getTemplateKey(int illuminationLevel)
+{
+    string templateKey = "template";
+    switch (illuminationLevel)
+    {
+        case 1..2:
+        {
+            templateKey = "near dark template";
+            break;
+        }
+        case 3..4:
+        {
+            templateKey = "low light template";
+            break;
+        }
+        case 5..6:
+        {
+            templateKey = "dim light template";
+            break;
+        }
+        case 7..8:
+        {
+            templateKey = "some light template";
+            break;
+        }
+    }
+    return templateKey;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string description(string state, int illuminationLevel)
 {
     string ret = 0;
 
@@ -193,16 +226,19 @@ public nomask varargs string description(string state)
         state = currentState();
     }
 
+    string templateKey = getTemplateKey(illuminationLevel);
+
     if (member(descriptionData, state) && member(descriptionData[state],
-        "template"))
+        templateKey))
     {
-        ret = parseTemplate(descriptionData[state]["template"], descriptionData[state]);
+        ret = parseTemplate(descriptionData[state][templateKey], 
+            descriptionData[state], illuminationLevel);
     }
     else if (member(descriptionData, "default") && 
-        member(descriptionData["default"], "template"))
+        member(descriptionData["default"], templateKey))
     {
-        ret = parseTemplate(descriptionData["default"]["template"],
-            descriptionData["default"]);
+        ret = parseTemplate(descriptionData["default"][templateKey],
+            descriptionData["default"], illuminationLevel);
     }
 
     if (displayActionText() && !ret)
@@ -225,14 +261,14 @@ public nomask string long(int brief)
     {
         ret = introText +
             parseTemplate(descriptionData[state]["item template"],
-                descriptionData[state]) + ".\n";
+                descriptionData[state], 10) + ".\n";
     }
     else if (member(descriptionData, "default") && 
         member(descriptionData["default"], "item template"))
     {
         ret = introText +
             parseTemplate(descriptionData["default"]["item template"],
-                descriptionData["default"]) + ".\n";
+                descriptionData["default"], 10) + ".\n";
     }
 
     if (!ret)
@@ -244,7 +280,7 @@ public nomask string long(int brief)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void addAdjectives(string *list, string state)
+private nomask string setupDescriptionForState(string state)
 {
     if (!state)
     {
@@ -255,51 +291,76 @@ protected nomask varargs void addAdjectives(string *list, string state)
     {
         descriptionData[state] = ([]);
     }
+    return state;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addAdjectives(string *list, string state)
+{
+    state = setupDescriptionForState(state);
     descriptionData[state]["adjectives"] = list;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void addDescriptionTemplate(string template, string state)
+protected nomask varargs void addNearDarkDescriptionTemplate(string template, 
+    string state)
 {
-    if (!state)
-    {
-        state = "default";
-    }
+    state = setupDescriptionForState(state);
+    descriptionData[state]["near dark template"] = template;
+}
 
-    if (!member(descriptionData, state))
-    {
-        descriptionData[state] = ([]);
-    }
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addLowLightDescriptionTemplate(string template, 
+    string state)
+{
+    state = setupDescriptionForState(state);
+    descriptionData[state]["low light template"] = template;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addDimLightDescriptionTemplate(string template, 
+    string state)
+{
+    state = setupDescriptionForState(state);
+    descriptionData[state]["dim light template"] = template;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addSomeLightDescriptionTemplate(string template, 
+    string state)
+{
+    state = setupDescriptionForState(state);
+    descriptionData[state]["some light template"] = template;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addDescriptionTemplate(string template, 
+    string state)
+{
+    state = setupDescriptionForState(state);
     descriptionData[state]["template"] = template;
+
+    foreach(string templateType in ({ "near dark template", "low light template" ,
+        "dim light template" , "some light template" }))
+    {
+        if (!member(descriptionData[state], templateType))
+        {
+            descriptionData[state][templateType] = template;
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs void addItemTemplate(string template, string state)
 {
-    if (!state)
-    {
-        state = "default";
-    }
-
-    if (!member(descriptionData, state))
-    {
-        descriptionData[state] = ([]);
-    }
+    state = setupDescriptionForState(state);
     descriptionData[state]["item template"] = template;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs void addAlias(string alias, string state)
 {
-    if (!state)
-    {
-        state = "default";
-    }
-
-    if (!member(descriptionData, state))
-    {
-        descriptionData[state] = ([]);
-    }
+    state = setupDescriptionForState(state);
     if (!member(descriptionData[state], "aliases"))
     {
         descriptionData[state]["aliases"] = ({ });
@@ -313,15 +374,7 @@ protected nomask varargs void addSeasonDescription(string season, string *list, 
 {
     if (environmentDictionary()->isValidSeason(season))
     {
-        if (!state)
-        {
-            state = "default";
-        }
-
-        if (!member(descriptionData, state))
-        {
-            descriptionData[state] = ([]);
-        }
+        state = setupDescriptionForState(state);
         descriptionData[state][season] = list;
     }
 }
@@ -331,15 +384,7 @@ protected nomask varargs void addTimeOfDayDescription(string period, string *lis
 {
     if (environmentDictionary()->isValidTimeOfDay(period))
     {
-        if (!state)
-        {
-            state = "default";
-        }
-
-        if (!member(descriptionData, state))
-        {
-            descriptionData[state] = ([]);
-        }
+        state = setupDescriptionForState(state);
         if (!member(descriptionData[state], period))
         {
             descriptionData[state][period] = ([]);

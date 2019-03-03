@@ -31,6 +31,9 @@ private mapping numbersAsString = ([ 0:"no", 1:"one", 2:"two", 3:"three",
     11:"eleven", 12:"twelve", 13:"thirteen", 14:"fourteen", 
     15:"fifteen", 16:"sixteen" ]);
 
+private object configuration =
+    load_object("/lib/dictionaries/configurationDictionary.c");
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidLocation(mixed location)
 {
@@ -296,6 +299,89 @@ public nomask void setDay(int newDay)
 public nomask void setYear(int value)
 {
     currentYear = value;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string timeOfDayMessage(string colorConfiguration)
+{
+    string ret = "";
+
+    switch (currentTimeOfDay)
+    {
+        case "dawn":
+        {
+            ret = "The red/orange glow to the east beckons the new day.";
+            break;
+        }
+        case "morning":
+        {
+            ret = sprintf("The sun is low in the eastern %s sky.", 
+                currentSeason);
+            break;
+        }
+        case "noon":
+        {
+            ret = sprintf("The sun is high in the %s sky.", 
+                currentSeason);
+            break;
+        }
+        case "afternoon":
+        {
+            ret = sprintf("The sun has begun to wester in the %s sky.",
+                currentSeason);
+            break;
+        }
+        case "evening":
+        {
+            ret = sprintf("The sun is low in the western %s sky.",
+                currentSeason);
+            break;
+        }
+        case "dusk":
+        {
+            ret = "The red/orange glow in the western sky signals the "
+                "day's end.";
+            break;
+        }
+        case "night":
+        {
+            ret = "A canopy of stars blankets the region.";
+            string phase = moonPhase();
+
+            if (phase != "new moon")
+            {
+                ret += sprintf(" The moon, a %s, is low in the eastern sky.",
+                    phase);
+            }
+            break;
+        }
+        case "midnight":
+        {
+            ret = "A canopy of stars blankets the region.";
+            string phase = moonPhase();
+
+            if (phase != "new moon")
+            {
+                ret += sprintf(" The moon, a %s, is almost directly overhead.",
+                    phase);
+            }
+            break;
+        }
+        case "late night":
+        {
+            ret = "A canopy of stars blankets the region.";
+            string phase = moonPhase();
+
+            if (phase != "new moon")
+            {
+                ret += sprintf(" The moon, a %s, is low in the western sky.",
+                    phase);
+            }
+            break;
+        }
+    }
+    return configuration->decorate(format(ret, 78),
+        currentTimeOfDay, "environment", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
