@@ -37,6 +37,8 @@ public void Setup()
         ", the details of which the last failing light of the day barely show" }));
     addTimeOfDayDescription("night", ({ 
         " outlined in the dark" }));
+    addTimeOfDayDescription("late night", ({ 
+        " outlined in the dark" }));
     addTimeOfDayDescription("midnight", ({ 
         " scarcely outlined in eery black" }));
     addSeasonDescription("winter", ({ " covered with a thick layer of snow" }));
@@ -45,4 +47,8 @@ public void Setup()
     addSeasonDescription("autumn", ({ " carpeting the ground in fallen leaves of red, yellow, and orange" }));
 
     addDescriptionTemplate("a ##Adjective##");
+    addNearDarkDescriptionTemplate("a very dark forest");
+    addLowLightDescriptionTemplate("a barely-lit forest");
+    addDimLightDescriptionTemplate("a dimly-lit forest");
+    addSomeLightDescriptionTemplate("a forest");
 }

@@ -21,7 +21,10 @@ public void Setup()
     addTimeOfDayDescription("dusk", ({
         ". A sign in the window states that it is open and a light invitingly shines out into the street from its window" }));
     addTimeOfDayDescription("night", ({
-        " with a closed sign in the window looking in upon an unlit shop" }));
+        " with a closed sign in the window looking in upon an unlit shop. There is "
+        "a light coming from its second story" }));    
+    addTimeOfDayDescription("late night", ({
+            " with a closed sign in the window looking in upon an unlit shop" }));
     addTimeOfDayDescription("midnight", ({
         " with a closed sign in the window looking in upon an unlit shop" }));
     addSeasonDescription("winter", ({ " that has a layer of snow sitting atop its sign and covering its awning" }));
@@ -29,5 +32,11 @@ public void Setup()
     addSeasonDescription("summer", ({ " that has ivy climbing high up its walls" }));
     addSeasonDescription("autumn", ({ " with ivy whose leaves are turning a deep red color still clinging to the walls" }));
 
-    addDescriptionTemplate("a weaver's shop in a wooden building");
+    addSourceOfLight(7, "default", "night");
+
+    addDescriptionTemplate("a weaver's shop in a wooden two-story building");
+    addNearDarkDescriptionTemplate("the silhouette of a building");
+    addLowLightDescriptionTemplate("the silhouette of a two-story building");
+    addDimLightDescriptionTemplate("a dark, possibly wooden two-story building");
+    addSomeLightDescriptionTemplate("a wooden two-story building");
 }
