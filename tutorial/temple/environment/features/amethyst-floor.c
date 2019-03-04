@@ -12,7 +12,7 @@ public void Setup()
 
     addDescriptionTemplate("the floor is fashioned out of what "
         "appears to be solid amethyst");
-    addSourceOfLight(1);
+    addSourceOfLight(10);
 
     addItemTemplate("The floor appears to be fashioned out of a single "
         "amethyst crystal of mammoth proportions. All along the course of "

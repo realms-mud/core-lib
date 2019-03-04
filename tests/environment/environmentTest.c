@@ -11,6 +11,9 @@ object Dictionary;
 void Setup()
 {
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    Dictionary->setYear(1);
+    Dictionary->setDay(92);
+    Dictionary->timeOfDay("noon");
     Environment = clone_object("/lib/tests/support/environment/testEnvironment.c");
 }
 
@@ -754,6 +757,8 @@ void TerrainReturnValueForTimeOfDayForIsIlluminatedByDefault()
 {
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Dictionary->timeOfDay("midnight");
+    Dictionary->setYear(1); 
+
     ExpectEq(3, Environment->isIlluminated());
 
     Dictionary->timeOfDay("dawn");
@@ -771,6 +776,7 @@ void TerrainAffectedByLightSources()
 {
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
+    Dictionary->setYear(1);
 
     Dictionary->timeOfDay("midnight");
     ExpectEq(3, Environment->isIlluminated());

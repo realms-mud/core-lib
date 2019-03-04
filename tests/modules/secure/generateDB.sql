@@ -104,6 +104,18 @@ drop table if exists factions;
 ##
 drop table if exists players;
 ##
+drop table if exists environment;
+##
+CREATE TABLE `environment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `currentTime` int(11) NOT NULL DEFAULT '0',
+  `currentDay` int(11) NOT NULL DEFAULT '0',
+  `currentYear` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+INSERT INTO environment (currentTime, currentDay, currentYear) values (660, 92, 2942);
+##
 CREATE TABLE `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,

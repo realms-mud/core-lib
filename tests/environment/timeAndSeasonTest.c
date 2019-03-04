@@ -10,6 +10,9 @@ object Dictionary;
 void Setup()
 {
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    Dictionary->setYear(1);
+    Dictionary->setDay(92);
+    Dictionary->timeOfDay("noon");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -21,12 +24,12 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CurrentTimeDayANdYearCorrectlyDisplayed()
 {
-    ExpectEq(661, Dictionary->currentTime());
+    ExpectEq(660, Dictionary->currentTime());
     ExpectEq(92, Dictionary->currentDay());
     ExpectEq(1, Dictionary->currentYear());
 
     Dictionary->advanceTime(345);
-    ExpectEq(1006, Dictionary->currentTime());
+    ExpectEq(1005, Dictionary->currentTime());
     ExpectEq(92, Dictionary->currentDay());
     ExpectEq(1, Dictionary->currentYear());
 }
@@ -34,7 +37,7 @@ void CurrentTimeDayANdYearCorrectlyDisplayed()
 /////////////////////////////////////////////////////////////////////////////
 void SettingTimeOfDayAltersCurrentTime()
 {
-    ExpectEq(661, Dictionary->currentTime());
+    ExpectEq(660, Dictionary->currentTime());
     ExpectEq("noon", Dictionary->timeOfDay());
 
     Dictionary->timeOfDay("afternoon");

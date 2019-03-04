@@ -141,7 +141,8 @@ private nomask string parseEntryAction(string message, mapping data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string parseAdjectives(string message, mapping data)
+private nomask string parseAdjectives(string message, mapping data, 
+    int illuminationLevel)
 {
     string ret = message;
 
@@ -149,7 +150,7 @@ private nomask string parseAdjectives(string message, mapping data)
         sizeof(regexp(({ message}), "##Adjective##")))
     {
         ret = regreplace(ret, "##Adjective##( *)", 
-            (environmentDictionary()->ambientLight() > 5) ?
+            (illuminationLevel > 5) ?
             data["adjectives"][random(sizeof(data["adjectives"]))] + "\\1" : "", 1);
     }
     return ret;
@@ -182,7 +183,7 @@ protected nomask varargs string parseTemplate(string template, mapping data,
     {
         ret = parseEntryAction(ret, data);
     }
-    ret = parseAdjectives(ret, data);
+    ret = parseAdjectives(ret, data, illuminationLevel);
     return ret;
 }
 

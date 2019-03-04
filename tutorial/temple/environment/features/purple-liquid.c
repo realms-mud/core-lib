@@ -18,7 +18,7 @@ public void Setup()
         "it is as solid as rock. It is impossible to tell for sure - the "
         "constant bursts of lightning coursing through the  substance are "
         "enough to keep even the most foolhardy away");
-    addSourceOfLight(1);
+    addSourceOfLight(10);
 
     addItemTemplate("the liquid appears to be purple and, while water-like, "
         "also appears to be significantly more viscous. It pulsates with "

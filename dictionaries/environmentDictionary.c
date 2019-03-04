@@ -5,20 +5,16 @@
 #include "/lib/dictionaries/environment/locations.h"
 #include "/lib/dictionaries/environment/times-of-day.h"
 #include "/lib/dictionaries/environment/moon-phases.h"
+#include "/lib/modules/secure/environment.h"
 
 private string BaseEnvironment = "lib/environment/environment.c";
 private string BaseElement = "lib/environment/environmentalElement.c";
-private string currentSeason = "summer";
-private string currentTimeOfDay = "noon";
-private string moonPhase = "new moon";
+private string currentSeason;
+private string currentTimeOfDay;
 
-private int currentYear = 1;
 private mapping elementList = ([]);
 
 private string *validSeasons = ({ "winter", "spring", "summer", "autumn" });
-
-private int currentTime = 660;
-private int currentDayOfYear = 92;
 
 private string *entryMessages = ({ "you enter", "you have come across",
     "you emerge in", "you come upon", "entering the area, you see",
@@ -406,6 +402,7 @@ public nomask varargs void advanceTime(int amount)
     else if(currentTime >= timesOfDay[currentTimeOfDay][currentSeason])
     {
         currentTimeOfDay = timesOfDay[currentTimeOfDay]["next"];
+        saveEnvironmentalData();
     }
 
     if (!amount)
@@ -492,10 +489,29 @@ public nomask object getRegion(string region)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void calculateTimeOfDay()
+{
+    string *timeSlots = sort_array(m_indices(timesOfDay),
+        (: $3[$1]["winter"] > $3[$2]["winter"] :), timesOfDay);
+
+    foreach(string slot in timeSlots)
+    {
+        if (timesOfDay[slot][currentSeason] > currentTime)
+        {
+            currentTimeOfDay = slot;
+            break;
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
     if (!arg)
     {
+        loadEnvironmentalData();
+        calculateSeason();
+        calculateTimeOfDay();
         advanceTime();
     }
 }

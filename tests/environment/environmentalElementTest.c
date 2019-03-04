@@ -11,6 +11,10 @@ object Dictionary;
 void Setup()
 {
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    Dictionary->setYear(1);
+    Dictionary->setDay(92);
+    Dictionary->timeOfDay("noon");
+
     Element = clone_object("/lib/tests/support/environment/fakeFeature.c");
 }
 
@@ -94,8 +98,9 @@ void NightDescriptionShowsCorrectTimeOfDay()
 void MidnightDescriptionShowsCorrectTimeOfDayAndChangesForSeason()
 {
     Dictionary->timeOfDay("midnight");
-
+    Dictionary->setYear(1);
     Dictionary->season("spring");
+
     ExpectEq("a massive silhouette of trees outlined in eery black", 
         Element->description("default", Dictionary->ambientLight()), "spring");
 
@@ -195,7 +200,7 @@ void FullyRandomDescriptionsCanBeDisplayed()
     object randomTerrain = clone_object(
         "/lib/tests/support/environment/fakeRandomTerrain.c");
 
-    ExpectEq("a cedar grotto", randomTerrain->description());
+    ExpectEq("a cedar grotto", randomTerrain->description("default", 10));
     destruct(randomTerrain);
 }
 

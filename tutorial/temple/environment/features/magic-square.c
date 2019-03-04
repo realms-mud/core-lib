@@ -18,7 +18,7 @@ public void Setup()
         "\nAt the base of the grid, there are ten slightly raised cubes of "
         "onyx that look like they can be pushed into the grid's surface. "
         "They are labelled: W S A F N R P E D T");
-    addSourceOfLight(1);
+    addSourceOfLight(10);
 
     addAlias("grid");
 

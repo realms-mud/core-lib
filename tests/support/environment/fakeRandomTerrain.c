@@ -12,5 +12,6 @@ public void Setup()
     addAdjectives(({ "a cedar grotto" }));
 
     addDescriptionTemplate("##Adjective##");
+    addSourceOfLight(10);
     suppressEntryMessage();
 }

@@ -8,6 +8,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object Environment;
+object Dictionary;
 
 string *Slots = ({ "Primary Weapon", "Equipped Offhand", "Worn Armor", "Worn Helmet",
     "Worn Gloves", "Worn Boots", "Worn Cloak", "Worn Amulet", "Worn Belt",
@@ -120,7 +121,11 @@ void Setup()
     Player->Wis(10);
     Player->hitPoints(30);
 
-    destruct(load_object("/lib/dictionaries/environmentDictionary.c"));
+    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    Dictionary->setYear(1);
+    Dictionary->setDay(92);
+    Dictionary->timeOfDay("noon");
+
     Environment = clone_object("/lib/tests/support/environment/testEnvironment.c");
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
@@ -132,6 +137,7 @@ void CleanUp()
 {
     destruct(Player);
     destruct(Environment);
+    destruct(Dictionary);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -405,7 +411,7 @@ void LookWhenDarkSucceedsWhenUserHasDarkvision()
     Player->addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
     command("look", Player);
 
-    ExpectSubStringMatch("a forest. To the north.*Gertrude",
+    ExpectSubStringMatch("a deciduous forest. To the north.*Gertrude",
         Player->caughtMessage());
 
     destruct(elf);

@@ -23,7 +23,7 @@ public void Setup()
         "east, green; and to the west, white. In the middle of all "
         "the pedestals, another sits, emitting a sickly black "
         "glow");
-    addSourceOfLight(1);
+    addSourceOfLight(10);
 
     addAlias("pedestals");
 
