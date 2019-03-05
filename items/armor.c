@@ -50,12 +50,14 @@ public nomask mixed query(string element)
         }
         case "dim light description":
         {
-            ret = "An apparent " + query("armor type");
+            ret = "An apparent " + (query("armor type") ? query("armor type") : 
+                "piece of equipment");
             break;
         }
         case "some light description":
         {
-            ret = query("armor type");
+            ret = query("armor type") ? query("armor type") :
+                "A piece of equipment";
             break;
         }
         default:

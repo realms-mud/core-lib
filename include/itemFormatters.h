@@ -29,7 +29,7 @@ private nosave mapping decorators = ([
         "any": ([
             "3-bit": "\x1b[0;31m",
             "8-bit": "\x1b[0;38;5;124m",
-            "24-bit": "\x1b[0;38;2;100;10;0m"
+            "24-bit": "\x1b[0;38;2;160;10;0m"
         ]),
     ]),
     "player guilds":([
@@ -371,6 +371,11 @@ private nosave mapping decorators = ([
             "3-bit": "\x1b[0;33m",
             "8-bit": "\x1b[0;38;5;190m",
             "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+        "nothing":([
+            "3-bit": "\x1b[0;30;1m",
+            "8-bit": "\x1b[0;38;5;238;1m",
+            "24-bit": "\x1b[0;38;2;70;60;60;1m"
         ]),
         "cursed":([
             "3-bit": "\x1b[0;30;1m",

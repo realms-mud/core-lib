@@ -10,5 +10,4 @@ protected void Setup()
     // First conversation
     addTopic("first conversation", "@D@The black-robed figure falls to the "
         "ground, seriously wounded.");
-
 }

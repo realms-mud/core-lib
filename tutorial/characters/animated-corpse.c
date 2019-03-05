@@ -21,7 +21,9 @@ protected void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
-    if (caller && (program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c"))
+    if (caller && 
+        ((program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c") ||
+        (program_name(caller) == "lib/tutorial/characters/bregar/bregar.c")))
     {
         tell_room(environment(this_object()),
             sprintf("The zombie collapses to the ground, no longer animated.\n"));

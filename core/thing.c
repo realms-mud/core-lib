@@ -114,5 +114,5 @@ protected object getMessageParser()
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isIlluminated()
 {
-    return environment() ? environment()->isIlluminated() : 1;
+    return environment() ? environment()->isIlluminated() : 10;
 }

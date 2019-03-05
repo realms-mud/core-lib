@@ -346,7 +346,7 @@ public varargs string short(string newShort)
         {
             object race = getService("races");
             string raceName = "creature";
-            if (race)
+            if (race && race->Race())
             {
                 raceName = to_string(race->Race());
             }
@@ -358,7 +358,7 @@ public varargs string short(string newShort)
         {
             object race = getService("races");
             string raceName = "creature";
-            if (race)
+            if (race && race->Race())
             {
                 raceName = to_string(race->Race());
             }

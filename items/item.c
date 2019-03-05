@@ -268,7 +268,7 @@ public mixed query(string element)
             {
                 ret = member(itemData, "dim light description") ?
                     itemData["dim light description"] : 
-                    "An apparent " + query("type");
+                    "An item unidentifiable in the low light";
                 break;
             }
             case "some light description":
@@ -627,15 +627,15 @@ static nomask void outputMessageFromTemplate(string template)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs string short()
+public varargs string short(int useLight)
 {
     if (!query("short"))
     {
         raise_error("Item: No short description was set.\n");
     }
 
-    string shortTemplate = query("light") ? query("short") : 0;
-    if (!shortTemplate)
+    string shortTemplate = (query("light") || useLight) ? query("short") : "";
+    if (shortTemplate == "")
     {
         switch (isIlluminated())
         {

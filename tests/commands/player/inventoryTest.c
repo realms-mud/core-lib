@@ -248,3 +248,76 @@ void InventoryShowsCorrectAmountOfMoney()
     ExpectSubStringMatch("123456", Player->caughtMessage());
     ExpectEq(BuildInventoryString(([])), Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void InventoryShowsDeckedOutCorrectly()
+{
+    object weapon = clone_object("/lib/items/weapon");
+    weapon->set("name", "blah");
+    weapon->set("short", "Sword of Blah");
+    weapon->set("weapon type", "long sword");
+    weapon->set("bonus attack", 5);
+    weapon->set("bonus damage", 5);
+    weapon->set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Player);
+    weapon->equip("blah");
+    mapping items = (["Primary Weapon":(["type":"35;1", "data" : "Sword of Blah"])]);
+
+    move_object(clone_object("/lib/instances/items/potions/healing.c"), Player);
+    move_object(clone_object("/lib/instances/items/potions/healing.c"), Player);
+    move_object(clone_object("/lib/instances/items/potions/healing.c"), Player);
+    move_object(clone_object("/lib/instances/items/potions/healing.c"), Player);
+    move_object(clone_object("/lib/instances/items/potions/healing.c"), Player);
+    move_object(clone_object("/lib/instances/items/potions/healing.c"), Player);
+    move_object(clone_object("/lib/instances/items/potions/healing.c"), Player);
+    move_object(clone_object("/lib/instances/items/potions/healing.c"), Player);
+
+    move_object(clone_object("/lib/instances/items/potions/mana.c"), Player);
+    move_object(clone_object("/lib/instances/items/instruments/strings/lute.c"), Player);
+
+    object equipment = clone_object("/lib/instances/items/armor/accessories/amulet.c");
+    move_object(equipment, Player);
+    equipment->equip("amulet");
+
+    for (int i = 0; i < 7; i++)
+    {
+        equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
+        equipment->set("craftsmanship", 200);
+        equipment->set("short", "A big claw thingy with a long name");
+        move_object(equipment, Player);
+    }
+
+    equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
+    equipment->set("bonus spirit", 1);
+    equipment->set("short", "The land-loving mother-pigeon of all things");
+    move_object(equipment, Player);
+
+    equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
+    equipment->set("short", "Even more stuff");
+    move_object(equipment, Player);
+
+    equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
+    equipment->set("craftsmanship", 200);
+    equipment->set("short", "Ring of Really Long Names");
+    move_object(equipment, Player);
+    equipment->equip("ring");
+
+    equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
+    equipment->set("craftsmanship", 20);
+    equipment->set("short", "Ring of Shorter Names");
+    move_object(equipment, Player);
+    equipment->equip("second ring");
+
+    equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
+    equipment->set("short", "Cabbage");
+    move_object(equipment, Player);
+
+    equipment = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
+    equipment->set("bonus soak", 1);
+    equipment->set("short", "Chainmail of Chains");
+    move_object(equipment, Player);
+    equipment->equip("armor");
+
+    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectEq(BuildInventoryString(items), Player->caughtMessage());
+}

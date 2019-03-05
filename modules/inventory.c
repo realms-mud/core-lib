@@ -5,8 +5,8 @@
 virtual inherit "/lib/core/thing.c";
 
 #include "/lib/include/inventory.h"
-#include "/lib/include/itemFormatters.h"
 #include "/lib/modules/secure/inventory.h"
+
 private mapping inventoryCache = ([
     "totals": ([])
 ]);
@@ -1009,23 +1009,47 @@ public nomask int can_put_and_get()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string colorizeText(object item, int verbose)
+private nomask varargs string colorizeText(object item, int verbose, int quantity)
 {
     string ret = "";
 
     if (item && item->short())
     {
-        string formatter = NormalEquipment;
+        string formatter = "";// NormalEquipment;
 
         if (materialsObject())
         {
+            string itemDesc = item->short(1);
+            if (!quantity)
+            {
+                if (sizeof(itemDesc) > 19)
+                {
+                    itemDesc = itemDesc[0..16] + "...";
+                }
+                itemDesc = sprintf("%-21s", itemDesc);
+            }
+            else
+            {
+                if (quantity > 1)
+                {
+                    itemDesc = sprintf("[%s] %s",
+                        ((quantity > 99) ? "++" : to_string(quantity)),
+                        itemDesc);
+                }
+                if (sizeof(itemDesc) > 23)
+                {
+                    itemDesc = itemDesc[0..20] + "...";
+                }
+                itemDesc = sprintf("%-25s", itemDesc);
+            }
+
             ret = materialsObject()->applyMaterialQualityToText(item, 
-                item->short(), this_object());
+                itemDesc, this_object());
         }
 
         if (verbose)
         {
-            string details = "   " + materialsObject()->getMaterialDetails(item);
+            string details = materialsObject()->getMaterialDetails(item);
             ret += details ? details : "";
         }
     }
@@ -1033,12 +1057,15 @@ private nomask string colorizeText(object item, int verbose)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string equipmentText(string item, int verbose)
+private nomask string equipmentText(string item, int verbose, 
+    string colorConfiguration)
 {
     string ret = colorizeText(equipmentInSlot(item), verbose);
     if (ret == "")
     {
-        ret = sprintf(BoldBlack, "nothing");
+        ret = getDictionary("configuration")->decorate(
+            sprintf("%-21s", "nothing"), "nothing", "equipment",
+                colorConfiguration);
     }
 
     return ret;
@@ -1071,53 +1098,147 @@ public nomask string inventoryDescription()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string displayUnequippedItems(object banner, int verbose,
+    string colorConfiguration, string charset)
+{
+    string ret = "";
+
+    object *equippedItems = equippedByMask(AllWielded | AllWorn);
+    object *allItems = filter(all_inventory(this_object()), 
+        (: (member(inherit_list($1), "lib/items/modifierObject.c") < 0) &&
+           (member(equippedItems, $1) == -1) && $1->short() :));
+
+    if (sizeof(allItems))
+    {
+        ret += banner->buildBanner(colorConfiguration, charset,
+            "middle", "Miscellaneous Items");
+    }
+
+    mapping otherItems = ([]);
+    foreach(object equipment in allItems)
+    {
+        string key = program_name(equipment) + "#" + equipment->short(1);
+
+        if (member(otherItems, key))
+        {
+            otherItems[key]++;
+            allItems -= ({ equipment });
+        }
+        else
+        {
+            otherItems[key] = 1;
+        }
+    }
+
+    string *itemList = ({});
+
+    foreach(object equipment in allItems)
+    {
+        string key = program_name(equipment) + "#" + equipment->short(1);
+        itemList += ({ colorizeText(equipment, verbose, otherItems[key]) });
+        if ((sizeof(itemList) % 4) == 3)
+        {
+            ret += banner->banneredContent(colorConfiguration, charset,
+                implode(itemList, ""));
+            itemList = ({});
+        }
+    }
+    if (sizeof(itemList))
+    {
+        for (int i = sizeof(itemList); i < 3; i++)
+        {
+            itemList += ({ sprintf("%-25s", "") });
+        }
+        ret += banner->banneredContent(colorConfiguration, charset,
+            implode(itemList, ""));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs string inventoryText(int verbose)
 {
     string ret = "";
 
     object *equippedItems = equippedByMask(AllWielded | AllWorn);
 
+    object configuration = getDictionary("configuration");
+    object banner = getDictionary("commands");
+
+    string colorConfiguration = "none";
+    string charset = "ascii";
+    if (this_player())
+    {
+        charset = this_player()->charsetConfiguration();
+        colorConfiguration = this_player()->colorConfiguration();
+    }
+
     if (sizeof(equippedItems))
     {
-        string eqFormatter = sprintf(Red, "| ") + Cyan + "%s\n";
+        ret += banner->buildBanner(colorConfiguration, charset,
+            "top", "Wielded Weapons");
+        ret += banner->banneredContent(colorConfiguration, charset, 
+            configuration->decorate("Primary Weapon: ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("wielded primary", verbose, colorConfiguration) + " " +
+            configuration->decorate("Offhand Weapon: ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("wielded offhand", verbose, colorConfiguration));
+        ret += banner->buildBanner(colorConfiguration, charset,
+            "middle", "Worn Items");
 
-        ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        ret += sprintf(eqFormatter, "Primary Weapon:\t", equipmentText("wielded primary", verbose));
-        ret += sprintf(eqFormatter, "Equipped Offhand:\t", equipmentText("wielded offhand", verbose));
-        ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        ret += sprintf(eqFormatter, "Worn Armor:\t\t", equipmentText("armor", verbose));
-        ret += sprintf(eqFormatter, "Worn Helmet:\t\t", equipmentText("helmet", verbose));
-        ret += sprintf(eqFormatter, "Worn Gloves:\t\t", equipmentText("gloves", verbose));
-        ret += sprintf(eqFormatter, "Worn Boots:\t\t", equipmentText("boots", verbose));
-        ret += sprintf(eqFormatter, "Worn Cloak:\t\t", equipmentText("cloak", verbose));
-        ret += sprintf(eqFormatter, "Worn Amulet:\t\t", equipmentText("amulet", verbose));
-        ret += sprintf(eqFormatter, "Worn Belt:\t\t", equipmentText("belt", verbose));
-        ret += sprintf(eqFormatter, "Worn Arm Greaves:\t", equipmentText("arm greaves", verbose));
-        ret += sprintf(eqFormatter, "Worn Leg Greaves:\t", equipmentText("leg greaves", verbose));
-        ret += sprintf(eqFormatter, "Worn Bracers:\t\t", equipmentText("bracers", verbose));
-        ret += sprintf(eqFormatter, "Worn First Ring:\t", equipmentText("ring 1", verbose));
-        ret += sprintf(eqFormatter, "Worn Second Ring:\t", equipmentText("ring 2", verbose));
-        ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-    }
-    else if(sizeof(all_inventory(this_object())))
-    {
-        ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+        ret += banner->banneredContent(colorConfiguration, charset,
+            configuration->decorate("Armor:          ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("armor", verbose, colorConfiguration) + " " +
+            configuration->decorate("Helmet:         ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("helmet", verbose, colorConfiguration));
+
+        ret += banner->banneredContent(colorConfiguration, charset,
+            configuration->decorate("Gloves:         ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("gloves", verbose, colorConfiguration) + " " +
+            configuration->decorate("Boots:          ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("boots", verbose, colorConfiguration));
+
+        ret += banner->banneredContent(colorConfiguration, charset,
+            configuration->decorate("Cloak:          ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("cloak", verbose, colorConfiguration) + " " +
+            configuration->decorate("Amulet:         ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("amulet", verbose, colorConfiguration));
+
+        ret += banner->banneredContent(colorConfiguration, charset,
+            configuration->decorate("Belt:           ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("belt", verbose, colorConfiguration) + " " +
+            configuration->decorate("Bracers:        ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("bracers", verbose, colorConfiguration));
+
+        ret += banner->banneredContent(colorConfiguration, charset,
+            configuration->decorate("Arm Greaves:    ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("arm greaves", verbose, colorConfiguration) + " " +
+            configuration->decorate("Leg Greaves:    ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("leg greaves", verbose, colorConfiguration));
+
+        ret += banner->banneredContent(colorConfiguration, charset,
+            configuration->decorate("First Ring:     ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("ring 1", verbose, colorConfiguration) + " " +
+            configuration->decorate("Second Ring:    ",
+                "field", "equipment", colorConfiguration) +
+            equipmentText("ring 2", verbose, colorConfiguration));
     }
 
-    object *allItems = filter(all_inventory(this_object()), 
-        (: (member(inherit_list($1), "lib/items/modifierObject.c") < 0) :));
-    int addFooter = 0;
-    foreach(object equipment in allItems)
-    {
-        if ((member(equippedItems, equipment) == -1) && equipment->short())
-        {
-            ret += sprintf(Red, "| ") + colorizeText(equipment, verbose) + "\n";
-            addFooter = 1;
-        }
-    }
-    if (addFooter)
-    {
-        ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-    }
+    ret += displayUnequippedItems(banner, verbose, colorConfiguration, charset);
+
+    ret += banner->buildBanner(colorConfiguration, charset, "middle", "Money");
+
     return ret;
 }
