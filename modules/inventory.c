@@ -1156,7 +1156,7 @@ private nomask string displayUnequippedItems(object banner, int verbose,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs string inventoryText(int verbose)
+public nomask varargs string inventoryText(int verbose, int showMoney)
 {
     string ret = "";
 
@@ -1167,11 +1167,10 @@ public nomask varargs string inventoryText(int verbose)
 
     string colorConfiguration = "none";
     string charset = "ascii";
-    if (this_player())
-    {
-        charset = this_player()->charsetConfiguration();
-        colorConfiguration = this_player()->colorConfiguration();
-    }
+    object character = this_player() ? this_player() : this_object();
+
+    charset = character->charsetConfiguration();
+    colorConfiguration = character->colorConfiguration();
 
     if (sizeof(equippedItems))
     {
@@ -1238,7 +1237,23 @@ public nomask varargs string inventoryText(int verbose)
 
     ret += displayUnequippedItems(banner, verbose, colorConfiguration, charset);
 
-    ret += banner->buildBanner(colorConfiguration, charset, "middle", "Money");
+    if (showMoney)
+    {
+        string money = to_string(Money());
+        ret += banner->buildBanner(colorConfiguration, charset, "middle", "Money") +
+            banner->banneredContent(colorConfiguration, charset,
+                configuration->decorate("You currently have ",
+                    "field", "equipment", colorConfiguration) +
+                configuration->decorate(money,
+                    "value", "equipment", colorConfiguration) +
+                configuration->decorate(
+                    sprintf(" %-" + to_string(55 - sizeof(money)) + "s",
+                    "in cash on hand."), "field", "equipment", colorConfiguration));            
+    }
 
+    if (sizeof(ret))
+    {
+        ret += banner->buildBanner(colorConfiguration, charset, "bottom", "");
+    }
     return ret;
 }

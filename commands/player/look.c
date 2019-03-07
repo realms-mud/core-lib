@@ -28,11 +28,14 @@ public nomask int execute(string command, object initiator)
         ret = 1;
         if (initiator->hasTraitOfRoot("blind"))
         {
-            tell_object(initiator, "\x1b[0;30;1mYou are blind.\x1b[0m\n");
+            tell_object(initiator, configuration->decorate("You are blind.\n",
+                "too dark", "environment", initiator->colorConfiguration()));
         }
         else if (!initiator->canSee(1))
         {
-            tell_object(initiator, "\x1b[0;30;1mIt is too dark.\x1b[0m\n");
+            string colorConfiguration = initiator->colorConfiguration();
+            tell_object(initiator, configuration->decorate("It is too dark.\n",
+                "too dark", "environment", colorConfiguration));
 
             object *environmentInventory = filter(
                 all_inventory(environment(initiator)),
@@ -45,13 +48,18 @@ public nomask int execute(string command, object initiator)
                 initiator->hasTraitOfRoot("infravision") &&
                 sizeof(environmentInventory))
             {
-                string visibleList = "\x1b[0;30;1mYou can see objects faintly glowing in red:\n\x1b[0m";
-                foreach(object environmentItem in environmentInventory)
+                string visibleList = configuration->decorate(
+                    "You can see objects faintly glowing in red:\n",
+                    "too dark", "environment", colorConfiguration);
+
+                    foreach(object environmentItem in environmentInventory)
                 {
                     string shortDesc = environmentItem->short();
                     if (shortDesc && (shortDesc != ""))
                     {
-                        visibleList += sprintf("\x1b[0;31m%s\n\x1b[0m", capitalize(shortDesc));
+                        visibleList += configuration->decorate(
+                            capitalize(shortDesc),
+                            "infravision", "environment", colorConfiguration);
                     }
                 }
 

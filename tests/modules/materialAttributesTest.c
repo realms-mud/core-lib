@@ -362,27 +362,16 @@ void LongReturnsInventoryBasedUserDescriptions()
 
     string expected = "Tantor the title-less (male)\nHe is in good shape.\n"
         "Tantor has a shiny blah!\n\tCarrying:\n"
-        "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        "=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0m\x1b[0;36mPrimary "
-        "Weapon:\t\x1b[0mA Sword\n\x1b[0;31m| \x1b[0m\x1b[0;36m"
-        "Equipped Offhand:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m+-=-=-"
-        "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-        "=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Armor:\t\t\x1b[0m"
-        "\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Helmet:"
-        "\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36m"
-        "Worn Gloves:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m"
-        "\x1b[0;36mWorn Boots:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m"
-        "| \x1b[0m\x1b[0;36mWorn Cloak:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n"
-        "\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Amulet:\t\t\x1b[0m\x1b[0;30;1mnothing"
-        "\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Belt:\t\t\x1b[0m\x1b[0;30;1m"
-        "nothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Arm Greaves:\t\x1b[0m"
-        "\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Leg "
-        "Greaves:\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m| \x1b[0m"
-        "\x1b[0;36mWorn Bracers:\t\t\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n"
-        "\x1b[0;31m| \x1b[0m\x1b[0;36mWorn First Ring:\t\x1b[0m\x1b[0;30;1mnothi"
-        "ng\x1b[0m\n\x1b[0;31m| \x1b[0m\x1b[0;36mWorn Second Ring:\t\x1b[0m"
-        "\x1b[0;30;1mnothing\x1b[0m\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-        "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m";
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Wielded Weapons +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Primary Weapon: A Sword               Offhand Weapon: nothing               |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Worn Items +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Armor:          nothing               Helmet:         nothing               |\n"
+        "| Gloves:         nothing               Boots:          nothing               |\n"
+        "| Cloak:          nothing               Amulet:         nothing               |\n"
+        "| Belt:           nothing               Bracers:        nothing               |\n"
+        "| Arm Greaves:    nothing               Leg Greaves:    nothing               |\n"
+        "| First Ring:     nothing               Second Ring:    nothing               |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+  +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n";
     ExpectEq(expected, Attributes->long());
 }
 
@@ -398,7 +387,10 @@ void LongReturnsInventoryWithDetails()
 
     Attributes->Name("Tantor");
     Attributes->Gender(1);
-    ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n\tCarrying:\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m\x1b[0;31m| \x1b[0mA Sword\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m",
+    ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n\tCarrying:\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Miscellaneous Items +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| A Sword                                                                     |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+  +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n",
         Attributes->long());
 }
 

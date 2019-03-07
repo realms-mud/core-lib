@@ -46,15 +46,21 @@ public nomask void runAway()
 private int checkForImpairedVision(object player)
 {
     int ret = 0;
+
+    object configuration = getDictionary("configuration");
+    string colorConfiguration = this_object()->colorConfiguration() || "none";
+
     if (player->hasTraitOfRoot("blind"))
     {
-        tell_object(player, "\x1b[0;30;1mYou are blind.\x1b[0m\n");
+        tell_object(player, configuration->decorate("You are blind.\n",
+            "too dark", "environment", colorConfiguration));
         ret = 1;
     }
     else if (!player->canSee())
     {
         ret = 1;
-        tell_object(player, "\x1b[0;30;1mIt is too dark.\x1b[0m\n");
+        tell_object(player, configuration->decorate("It is too dark.\n",
+            "too dark", "environment", colorConfiguration));
 
         object *environmentInventory = filter(
             all_inventory(environment(player)),
@@ -65,13 +71,18 @@ private int checkForImpairedVision(object player)
         if (player->hasTraitOfRoot("infravision") &&
             sizeof(environmentInventory))
         {
-            string visibleList = "\x1b[0;30;1mYou can see objects faintly glowing in red:\n\x1b[0m";
+            string visibleList = configuration->decorate(
+                "You can see objects faintly glowing in red:\n",
+                "too dark", "environment", colorConfiguration);
+
             foreach(object environmentItem in environmentInventory)
             {
                 string shortDesc = environmentItem->short();
                 if (shortDesc && (shortDesc != ""))
                 {
-                    visibleList += sprintf("\x1b[0;31m%s\n\x1b[0m", capitalize(shortDesc));
+                    visibleList += configuration->decorate(
+                        capitalize(shortDesc),
+                        "infravision", "environment", colorConfiguration);
                 }
             }
 

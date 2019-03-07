@@ -4,7 +4,6 @@
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
 #include "/lib/include/inventory.h"
-#include "/lib/include/itemFormatters.h"
 
 object Player;
 object Environment;
@@ -15,61 +14,13 @@ string *Slots = ({ "Primary Weapon", "Equipped Offhand", "Worn Armor", "Worn Hel
     "Worn Arm Greaves", "Worn Leg Greaves", "Worn Bracers", "Worn First Ring",
     "Worn Second Ring" });
 
-string Bar = "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\x1b[0m";
-string EquippedItem = "\x1b[0;31m| \x1b[0m\x1b[0;36m%s:%s\x1b[0m\x1b[0;%sm%s\x1b[0m%s\n";
-string nothingEquipped = "\x1b[0;31m| \x1b[0m\x1b[0;36m%s:%s\x1b[0m\x1b[0;30;1mnothing\x1b[0m\n";
-string UnequippedItem = "\x1b[0;31m| \x1b[0m\x1b[0;37;1m%s\x1b[0m%s\n";
-string SingleDetailText = "\x1b[0;36m\t%s: \x1b[0m\x1b[0;33m%d\x1b[0m\n";
-
-/////////////////////////////////////////////////////////////////////////////
-varargs string BuildInventoryString(mapping equipped, string *unequipped, int verbose)
-{
-    string ret = "";
-    
-    string showVerbose = verbose ? "   (blarg)" : "";
-
-    if(sizeof(equipped))
-    {
-        ret += Bar;
-        foreach(string slot in Slots)
-        {
-            string spacing = (sizeof(slot) >= 14) ? "\t" : "\t\t";
-
-            if(member(equipped, slot))
-            {
-                ret += sprintf(EquippedItem, slot, spacing, equipped[slot]["type"], equipped[slot]["data"], showVerbose);
-            }
-            else
-            {
-                ret += sprintf(nothingEquipped, slot, spacing);
-            }
-
-            if(slot == "Equipped Offhand")
-            {
-                ret += Bar;
-            }
-        }
-        ret += Bar;
-    }
-
-    if(sizeof(unequipped))
-    {
-        foreach(string item in unequipped)
-        {
-            ret += sprintf(UnequippedItem, item, showVerbose);
-        }
-
-        ret += Bar;
-    }
-    return ret;
-}
-
 /////////////////////////////////////////////////////////////////////////////
 string PrepPlayerWithInventory()
 {
     Player->Race("elf");
     Player->Gender(1);
     Player->hitPoints(Player->maxHitPoints());
+    Player->colorConfiguration("none");
 
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
@@ -99,7 +50,18 @@ string PrepPlayerWithInventory()
     move_object(armor, Player);
     string *unequipped = ({ "Some junk" });
 
-    return BuildInventoryString(items, unequipped);
+    return "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Wielded Weapons +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Primary Weapon: Sword of Blah         Offhand Weapon: nothing               |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Worn Items +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Armor:          Equipment of equi...  Helmet:         nothing               |\n"
+        "| Gloves:         Equipment of equi...  Boots:          Equipment of equi...  |\n"
+        "| Cloak:          nothing               Amulet:         nothing               |\n"
+        "| Belt:           nothing               Bracers:        nothing               |\n"
+        "| Arm Greaves:    Equipment of equi...  Leg Greaves:    Equipment of equi...  |\n"
+        "| First Ring:     nothing               Second Ring:    nothing               |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Miscellaneous Items +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Some junk                                                                   |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+  +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -120,6 +82,7 @@ void Setup()
     Player->Int(10);
     Player->Wis(10);
     Player->hitPoints(30);
+    Player->colorConfiguration("none");
 
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     Dictionary->setYear(1);
@@ -160,9 +123,9 @@ void LookAtLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("look at bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
-        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" + 
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
+        "Bob has a shiny blah!\n\tCarrying:\n" + 
         expectedInventory, Player->caughtMessage());
 }
 
@@ -172,8 +135,8 @@ void LookAtLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("look -b at bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
@@ -184,9 +147,9 @@ void LookInLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("look in bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
-        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
+        "Bob has a shiny blah!\n\tCarrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -196,8 +159,8 @@ void LookInLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("look -b in bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
@@ -208,9 +171,9 @@ void LAtLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("l at bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
-        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
+        "Bob has a shiny blah!\n\tCarrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -220,8 +183,8 @@ void LAtLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("l -b at bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
@@ -232,9 +195,9 @@ void LInLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("l in bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
-        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
+        "Bob has a shiny blah!\n\tCarrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -244,8 +207,8 @@ void LInLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("l -b in bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
@@ -256,9 +219,9 @@ void ExaLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("exa bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
-        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
+        "Bob has a shiny blah!\n\tCarrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -268,8 +231,8 @@ void ExaLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("exa -b bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
@@ -280,9 +243,9 @@ void ExamineLivingShowsInventory()
     string expectedInventory = PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("examine bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
-        "Bob has a shiny blah!\n\x1b[0;36m\tCarrying:\n\x1b[0m" +
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
+        "Bob has a shiny blah!\n\tCarrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -292,8 +255,8 @@ void ExamineLivingWithBriefDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("examine -b bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
@@ -304,8 +267,8 @@ void GlanceAtDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("glance at bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
@@ -316,8 +279,8 @@ void GlanceInDoesNotShowInventory()
     PrepPlayerWithInventory();
 
     ExpectTrue(Player->executeCommand("glance in bob"));
-    ExpectEq("\x1b[0;33mBob the title-less\x1b[0m\x1b[0;35m (male)\x1b[0m"
-        "\x1b[0;32m (elf)\x1b[0m\n\x1b[0;31;1mHe is in good shape.\n\x1b[0m"
+    ExpectEq("Bob the title-less (male)"
+        " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
         Player->caughtMessage());
 }
@@ -337,9 +300,9 @@ void LookAtItemShowsDetails()
 
     ExpectTrue(command("look at blah", Player));
     ExpectEq("This is a sword with a blade that is about 40 inches (100 cm) long.\n" + 
-        sprintf(NormalEquipment, "This long sword is typical for its type.\n") + 
-        sprintf(SingleDetailText, "Weight", 5) + 
-        sprintf(Unidentified, "This item has not been identified.\n") + "\n",
+        "This long sword is typical for its type.\n"
+        "\tWeight: 5\n"
+        "This item has not been identified.\n\n",
         Player->caughtMessage());
 }
 
@@ -385,7 +348,7 @@ void LookWhenBlindFailsWithBlindMessage()
 {
     ExpectTrue(Player->addTrait("/lib/modules/traits/diseases/cataracts.c"));
     ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("\x1b[0;30;1mYou are blind.\x1b[0m\n", Player->caughtMessage());
+    ExpectEq("You are blind.\n", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -394,7 +357,7 @@ void LookWhenDarkFailsWithDarkMessage()
     move_object(Player, "/lib/tests/support/environment/darkRoom.c");
 
     ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
+    ExpectEq("It is too dark.\n", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -454,7 +417,7 @@ void LookWhenDarkDoesNotShowEtherealSignaturesWithInfravision()
     Player->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
     elf->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
     ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
+    ExpectEq("It is too dark.\n", Player->caughtMessage());
 
     destruct(elf);
 }
@@ -474,7 +437,35 @@ void LookWhenDarkDoesNotShowUndeadSignaturesWithInfravision()
     Player->addTrait("/lib/tests/support/traits/testUndeadTrait.c");
     elf->addTrait("/lib/tests/support/traits/testUndeadTrait.c");
     ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("\x1b[0;30;1mIt is too dark.\x1b[0m\n", Player->caughtMessage());
+    ExpectEq("It is too dark.\n", Player->caughtMessage());
 
     destruct(elf);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LooksSupportsColorsAndUnicode()
+{
+    string expectedInventory = PrepPlayerWithInventory();
+    Player->colorConfiguration("8-bit");
+    Player->charsetConfiguration("unicode");
+
+    ExpectTrue(Player->executeCommand("l at bob"));
+    ExpectEq("\x1b[0;38;5;190mBob the title-less\x1b[0m\x1b[0;38;5;238m (male)\x1b[0m\x1b[0;38;5;2m (elf)\x1b[0m\n"
+        "\x1b[0;38;5;9;1mHe is in good shape.\n"
+        "\x1b[0mBob has a shiny blah!\n"
+        "\x1b[0;38;5;80m	Carrying:\n"
+        "\x1b[0m\x1b[0;38;5;124m╔════════════════════════════╡ Wielded Weapons ╞══════════════════════════════╗\n"
+        "\x1b[0m\x1b[0;38;5;124m║\x1b[0m \x1b[0;38;5;80mPrimary Weapon: \x1b[0m\x1b[0;38;5;231;1mSword of Blah        \x1b[0m \x1b[0;38;5;80mOffhand Weapon: \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;124m║\x1b[0m\n"
+        "\x1b[0;38;5;124m╠══════════════════════════════╡ Worn Items ╞═════════════════════════════════╣\n"
+        "\x1b[0m\x1b[0;38;5;124m║\x1b[0m \x1b[0;38;5;80mArmor:          \x1b[0m\x1b[0;38;5;231;1mEquipment of equi... \x1b[0m \x1b[0;38;5;80mHelmet:         \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;124m║\x1b[0m\n"
+        "\x1b[0;38;5;124m║\x1b[0m \x1b[0;38;5;80mGloves:         \x1b[0m\x1b[0;38;5;231;1mEquipment of equi... \x1b[0m \x1b[0;38;5;80mBoots:          \x1b[0m\x1b[0;38;5;231;1mEquipment of equi... \x1b[0m \x1b[0;38;5;124m║\x1b[0m\n"
+        "\x1b[0;38;5;124m║\x1b[0m \x1b[0;38;5;80mCloak:          \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;80mAmulet:         \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;124m║\x1b[0m\n"
+        "\x1b[0;38;5;124m║\x1b[0m \x1b[0;38;5;80mBelt:           \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;80mBracers:        \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;124m║\x1b[0m\n"
+        "\x1b[0;38;5;124m║\x1b[0m \x1b[0;38;5;80mArm Greaves:    \x1b[0m\x1b[0;38;5;231;1mEquipment of equi... \x1b[0m \x1b[0;38;5;80mLeg Greaves:    \x1b[0m\x1b[0;38;5;231;1mEquipment of equi... \x1b[0m \x1b[0;38;5;124m║\x1b[0m\n"
+        "\x1b[0;38;5;124m║\x1b[0m \x1b[0;38;5;80mFirst Ring:     \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;80mSecond Ring:    \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;124m║\x1b[0m\n"
+        "\x1b[0;38;5;124m╠══════════════════════════╡ Miscellaneous Items ╞════════════════════════════╣\n"
+        "\x1b[0m\x1b[0;38;5;124m║\x1b[0m \x1b[0;38;5;231;1mSome junk                \x1b[0m                                                   \x1b[0;38;5;124m║\x1b[0m\n"
+        "\x1b[0;38;5;124m╚═══════════════════════════════════╡  ╞══════════════════════════════════════╝\n"
+        "\x1b[0m",
+        Player->caughtMessage());
 }
