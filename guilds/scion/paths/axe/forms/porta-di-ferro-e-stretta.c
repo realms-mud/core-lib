@@ -10,31 +10,30 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Reverse Thrust");
+        addSpecification("name", "Porta di Ferro e Stretta");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of how to transition from the boar guard into a "
-            "reverse thrust.");
+            "knowledge of a defensive maneuver where the dominant foot is "
+            "forward and the other foot placed sideways, both knees bent. The "
+            "haft is held just inside and above the knee with the axe's blade "
+            "pointed at the foe's face. From this position, it is possible to "
+            "easily launch several chops and strikes.");
         addSpecification("limited by", (["equipment":({
-            "long sword", "hand and a half sword", "two-handed sword" })]));
+            "axe" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 10 ]));
+              "value": 7 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/sword/forms/the-boar.c",
-            (["type":"research"]));
-        addPrerequisite("lib/guilds/scion/paths/sword/forms/thrusting.c",
+        addPrerequisite("lib/guilds/scion/paths/axe/forms/eisenport.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("bonus long sword", 1);
-        addSpecification("bonus hand and a half sword", 1);
-        addSpecification("bonus two-handed sword", 1);
-        addSpecification("bonus attack", 2);
-        addSpecification("bonus damage", 1);
+        addSpecification("bonus defense", 2);
+        addSpecification("bonus attack", 1);
+        addSpecification("bonus parry", 2);
     }
 }

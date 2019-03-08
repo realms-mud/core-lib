@@ -10,31 +10,33 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Reverse Thrust");
+        addSpecification("name", "Wrath Hew");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of how to transition from the boar guard into a "
-            "reverse thrust.");
-        addSpecification("limited by", (["equipment":({
-            "long sword", "hand and a half sword", "two-handed sword" })]));
+            "knowledge of a master hew - the wrath hew. This is a powerful "
+            "diagonal hewing stroke dealt from the wrath guard and ending "
+            "in a wechsel guard on the opposite side. When used to displace "
+            "another hew, the impact and weapon binding will result in the hew "
+            "ending in a hanging parry.");
+        addSpecification("limited by", (["equipment":({ "axe" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 10 ]));
+              "value": 15 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/sword/forms/the-boar.c",
+        addPrerequisite("lib/guilds/scion/paths/axe/forms/over-hew.c",
             (["type":"research"]));
-        addPrerequisite("lib/guilds/scion/paths/sword/forms/thrusting.c",
+        addPrerequisite("lib/guilds/scion/paths/axe/forms/wrath-guard.c",
+            (["type":"research"]));
+        addPrerequisite("lib/guilds/scion/paths/axe/forms/wechsel.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("bonus long sword", 1);
-        addSpecification("bonus hand and a half sword", 1);
-        addSpecification("bonus two-handed sword", 1);
+        addSpecification("bonus axe", 1);
         addSpecification("bonus attack", 2);
-        addSpecification("bonus damage", 1);
+        addSpecification("bonus damage", 2);
     }
 }
