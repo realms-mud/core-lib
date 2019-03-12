@@ -347,3 +347,4 @@ public void onBeginDetox(object caller)
     raise_error(sprintf("event handler: onBeginDetox called, caller: %s",
         program_name(caller)));
 }
+ 

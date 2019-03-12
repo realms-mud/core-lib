@@ -6,6 +6,7 @@
 private string Fail = "\x1b[0;31m[  FAILED  ]\x1b[0m ";
 private string LibPrefix = "/lib";
 private string TestPrefix = "/lib/tests";
+
 private string *DirectoriesToSearch = ({
     "commands",
     "commands/player",
