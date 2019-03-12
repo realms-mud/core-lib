@@ -34,4 +34,11 @@ protected void Setup()
         "himself, @S@`Aye! No sense getting us all killed because our "
         "commander has his head so far up... Ahh hell! We've got company!'");
     addTopicEvent("good. a blissful interlude", "fightAtTheEntrance");
+
+    addTopic("hell with that", "@D@Alberich shakes his head vigorously and "
+        "states, @S@`Hell with that! Wear it your damned self, sir!'");
+
+    addTopicInterjection("hell with that",
+        "/lib/tutorial/characters/bregar/bregar.c",
+        "that's distracting", 1);
 }

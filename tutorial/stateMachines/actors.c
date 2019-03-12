@@ -127,6 +127,7 @@ protected void addEntranceBadGuys(object location, object player)
     actors["keeper"]->registerEvent(actors["zombie 1"]);
     actors["keeper"]->registerEvent(actors["zombie 2"]);
     actors["keeper"]->registerEvent(actors["zombie 3"]);
+    move_object(player, location);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -79,3 +79,13 @@ public void killPoorBrendan()
         brendan->hit(1000, "physical");
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void killPoorBregar()
+{
+    object bregar = present("bregar");
+    if (bregar)
+    {
+        bregar->hit(1000, "physical");
+    }
+}

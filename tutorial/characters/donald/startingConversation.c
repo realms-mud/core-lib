@@ -93,6 +93,39 @@ private void WeWasteTime()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void IWantAnswers()
+{
+    addTopic("stay your sword, boy", "@S@`Stay your sword Halgaladh.' @D@"
+        "Donald moves closer to Halgaladh and none-too-gently adds in a gruff "
+        "voice, @S@`Remember your place. I've tolerated as much "
+        "insubordination as I shall on this mission because of the extreme "
+        "circumstances, but push me no further. Do not dishonor yourself, "
+        "Halgaladh, and do not force my hand.' @D@He turns to the black-robed "
+        "figure and snarls, @S@`What is this place? And be quick about it. "
+        "I assume you saw what happened to your compatriots and my patience "
+        "is wearing thinner by the second.'");
+
+    addTopicInterjection("stay your sword, boy",
+        "/lib/tutorial/characters/bregar/bregar.c",
+        "what is this place", 1);
+
+    addTopic("you get that for free", "@D@As ##InitiatorName## "
+        "##ResponseInfinitive::talk## to the prisoner, Donald walks over to "
+        "Galadhel and rubs his beard. @S@`That last one, you get for free. "
+        "If you butt heads with me again, I will lead you away in chains.' "
+        "@D@She looks at him impassively, and says nothing.");
+
+    addTopic("I have a great idea", "@D@While ##InitiatorName## "
+        "##ResponseInfinitive::continue## to talk to the prisoner, Donald "
+        "gets a wry smile on his face. He walks over to Thomas, @S@`Thomas, "
+        "I have an idea. We have a pair of robes. Put them on.'");
+
+    addTopicInterjection("I have a great idea",
+        "/lib/tutorial/characters/thomas/thomas.c",
+        "yeah no thanks", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void WakeUp()
 {
     addTopic("you hit me", "\n@D@Donald looks very groggy as he tries to "
@@ -156,4 +189,5 @@ protected void Setup()
     BrendanOeldhen();
     WeWasteTime();
     WakeUp();
+    IWantAnswers();
 }

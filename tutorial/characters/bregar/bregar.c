@@ -16,6 +16,7 @@ protected void Setup()
     addAlias("figure");
     addAlias("black-robed figure");
     addAlias("keeper");
+    addAlias("bregar");
     addAlias("keeper of the night");
 
     Gender(1);
@@ -31,7 +32,8 @@ protected void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void IYield(object player)
 {
-    player->onTriggerConversation(player, "first conversation");
+    tell_room(environment(this_object()), sprintf("Player = %O\n", player));
+    onTriggerConversation(player, "that hurts");
     player = 0;
     CallingYield = 0;
     DoNotKillMe = 0;
