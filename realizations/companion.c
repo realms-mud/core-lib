@@ -9,5 +9,3 @@ public nomask int isRealizationOfCompanion()
 {
     return 1;
 }
-
-//TODO [225]: To, in fact, do.
