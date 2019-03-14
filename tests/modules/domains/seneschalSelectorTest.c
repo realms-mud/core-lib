@@ -37,8 +37,9 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
         "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
-        "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
+        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;31mManage Troops                            \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
@@ -56,8 +57,9 @@ void SelectUnavailableOptionReturnsToMainMenu()
         "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
-        "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
+        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;31mManage Troops                            \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
@@ -75,8 +77,9 @@ void TopLevelMenuWithAdministrationProjectPrereqMetDisplaysCorrectly()
         "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
-        "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
+        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;31mManage Troops                            \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
@@ -94,8 +97,9 @@ void TopLevelMenuWithBuildingProjectPrereqMetDisplaysCorrectly()
         "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
-        "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
+        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;31mManage Troops                            \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
@@ -113,8 +117,9 @@ void TopLevelMenuWithHiringPrereqMetDisplaysCorrectly()
         "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mHire New Henchmen\x1b[0m\n"
         "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
-        "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
+        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;31mManage Troops                            \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
@@ -132,8 +137,9 @@ void TopLevelMenuWithHoldingsPrereqMetDisplaysCorrectly()
         "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mResources and Holdings\x1b[0m\n"
         "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
-        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
-        "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
+        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;31mManage Troops                            \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
@@ -151,8 +157,29 @@ void TopLevelMenuWithTaskPrereqMetDisplaysCorrectly()
         "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
         "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mManage Tasks\x1b[0m\n"
-        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
-        "\x1b[0;32;1mYou must select a number from 1 to 6.\n\x1b[0m"
+        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;31mManage Troops                            \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
+        "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TopLevelMenuWithTroopsPrereqMetDisplaysCorrectly()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/troops/basicTroops.c"), "added research");
+    Selector->initiateSelector(Player);
+
+    ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
+        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;31mAdministration Projects                  \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;31mBuilding Projects                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;31mResources and Holdings                   \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;31mHire New Henchmen                        \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m5\x1b[0m] - \x1b[0;31mManage Tasks                             \x1b[0m\x1b[0;35m(Missing Prerequisites)\x1b[0m\n"
+        "[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mManage Troops\x1b[0m\n"
+        "[\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mExit Domain Management Menu\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 7.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
@@ -214,6 +241,17 @@ void SelectingHiringMovesToTaskMenu()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void SelectingTroopsMovesToTroopsMenu()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/troops/basicTroops.c"), "added research");
+    Selector->initiateSelector(Player);
+    command("6", Player);
+
+    ExpectSubStringMatch("Exit Troop Management Menu",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DescriptionsAreDisplayed()
 {
     Selector->initiateSelector(Player);
@@ -233,7 +271,7 @@ void ExitCleansUpSelector()
     ExpectEq(0, subscriber->TimesEventReceived());
 
     ExpectTrue(present(Selector, Player));
-    command("6", Player);
+    command("7", Player);
     ExpectSubStringMatch("You have selected 'Exit Domain Management Menu'",
         Player->caughtMessage());
 

@@ -121,6 +121,93 @@ private void GutsEqualSpilled()
     addResponseTopic("that's distracting", "Who's bleeding on the ground?",
         "I don't know");
     addResponseTopic("that's distracting", "My turn...", "I don't know");
+
+    addResponse("I don't know", "It depends on what you say...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::say##, @S@`Tell me "
+        "and I will consider your request. Tell me not and you will die very "
+        "soon.'");
+    addResponse("I don't know", "You might live @A@Intimidation@E@",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::glare## menacingly at "
+        "the figure and ##ResponseInfinitive::add##, @S@`Tell me "
+        "and I will consider your request. Tell me not and you will die very "
+        "soon.'");
+    addResponsePrerequisite("I don't know", "You might live @A@Intimidation@E@",
+        (["intimidation":(["type":"skill", "value" : 5])]), 1);
+    addResponseEffect("I don't know", "You might live @A@Intimidation@E@",
+        (["experience":(["guild":"background", "amount" : 25])]));
+
+    addResponse("I don't know", "Come now @A@Diplomacy@E@",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::smile## slightly at "
+        "the figure and ##ResponseInfinitive::add##, @S@`Come now. You want "
+        "to live and I want to let you live. Things would go far toward those "
+        "goals if you shared your knowledge with us.'");
+    addResponsePrerequisite("I don't know", "Come now @A@Diplomacy@E@",
+        (["diplomacy":(["type":"skill", "value" : 5])]), 1);
+    addResponseEffect("I don't know", "Come now @A@Diplomacy@E@",
+        (["experience":(["guild":"background", "amount" : 25])]));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void GutsEqualSpilledPartTwo()
+{
+    addTopic("very well", "@S@`Very well...' @D@the black-robed man "
+        "sobs desperately, @S@`Make your way into the heart of the temple. "
+        "There, you will find the Nightmaster and his Orb of Obedience. The "
+        "orb creates small spheres of energy that are implanted into the "
+        "corpses. It is these that give them the power of the beyond.' @D@"
+        "The man shrugs slightly as he adds, @S@`Our understanding is "
+        "imperfect, only recently having acquired this orb. We were told "
+        "that eventually, they will have minds of their own, that we would "
+        "only require suggestion rather than nearly full control. Our "
+        "amulets are the key. We tell the corpses to go somewhere and so "
+        "they obey. If we do not concentrate our will on them, they are "
+        "useless mounds of flesh, much like they were in life.'");
+    addResponseTopic("I don't know", "It depends on what you say...", "very well");
+    addResponseTopic("I don't know", "You might live @A@Intimidation@E@",
+        "very well");
+    addResponseTopic("I don't know", "Come now @A@Diplomacy@E@", "very well");
+
+    addResponse("very well", "Useless? Seriously?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::smirk##, @S@`Useless "
+        "as they were in life? For that arrogant jab alone, I might end you.'");
+    addResponse("very well", "What else?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::say##, @S@`What other "
+        "information can you provide? Quickly... Time is running out.'");
+
+    addTopic("please don't kill me", "@D@The man looks absolutely terrified. "
+        "He pleads, @S@`Please, I have told you all you need to know. Release "
+        "me!' @D@When he realizes that his release is not imminent, he adds, "
+        "@S@`The Nightmaster is one of the twelve living gerents of Xyris, "
+        "lord of the dead. He commands us to prepare an army for his conquest "
+        "of Eledhel. Enter his abode and you shall gladly serve him in death. "
+        "Flee this place now lest you get ensnared by his web as I have. I "
+        "beg of thee... Flee while there is time. He is aware of you. There "
+        "is no more I can say. Release me!'");
+    addTopicEvent("please don't kill me", "enterTheLair");
+    addResponseTopic("very well", "Useless? Seriously?", "please don't kill me");
+    addResponseTopic("very well", "What else?", "please don't kill me");
+
+    addResponse("please don't kill me", "Yeah, sure. @I@Kill Prisoner@E@",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::shake## "
+        "##InitiatorPossessive## head and ##ResponseInfinitive::say##, "
+        "@S@`No... it's time to die.'");
+    addResponseEffect("please don't kill me", "Yeah, sure. @I@Kill Prisoner@E@", 
+        (["attack":1]));
+
+    addResponse("please don't kill me", "Donald?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::ask##,  @S@`Sir?'");
+    addResponse("please don't kill me", "@I@Continue@E@", "");
+
+    addTopic("please don't kill me part 2", "@D@The man looks expectantly at "
+        "##InitiatorName## and adds, @S@`I have done my part. Release me.'");
+    addResponseTopic("please don't kill me", "Donald?", 
+        "please don't kill me part 2");
+    addResponseTopic("please don't kill me", "@I@Continue@E@",
+        "please don't kill me part 2");
+
+    addTopicInterjection("please don't kill me part 2",
+        "/lib/tutorial/characters/donald/donald.c",
+        "grant him his release", 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -130,5 +217,5 @@ protected void Setup()
     SoIPickMyDeath();
     ThatIsDistracting();
     GutsEqualSpilled();
-
+    GutsEqualSpilledPartTwo();
 }

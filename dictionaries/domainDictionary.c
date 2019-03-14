@@ -64,7 +64,23 @@ public nomask mapping getTopLevelDomainMenu(object user)
                 "lib/instances/research/domains/tasks/basicTasks.c",
                 "persuasion")                 
         ]),
+        "6":([
+            "name":"Manage Troops",
+            "description" : "This option lets you create and manage "
+                "your troops and their activities.\n",
+            "selector": "troops",
+            "selector file": sprintf(DomainSelectorBase, "troops"),
+            "canShow": user->canApplyResearchBonus(
+                "lib/instances/research/domains/troops/basicTroops.c",
+                "persuasion")                 
+        ]),
     ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getTroopsMenu(object user)
+{
+    return ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

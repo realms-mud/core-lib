@@ -70,6 +70,22 @@ private void WalkingCorpsesStink()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void GrantHisRelease()
+{
+    addTopic("grant him his release", "@S@`Nay, sir. @D@responds Halgaladh "
+        "resolutely. @S@`I have no wish to counter your command nor to be "
+        "contrary, but I will not violate the tenets of our order on your "
+        "whim. To kill in battle is honorable; to kill a prisoner in our "
+        "control... you must conduct your own murder. Our task should be to "
+        "investigate the temple and bring this one back to our commanders. "
+        "You know this.'");
+
+    addTopicInterjection("grant him his release",
+        "/lib/tutorial/characters/donald/donald.c",
+        "grant him his release part 2", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     addTopic("aye but how", "@S@`Aye, but how?' @D@asks "
@@ -87,4 +103,5 @@ protected void Setup()
     WalkingCorpsesStink();
     WakeDonaldUp();
     QuestionThisOne();
+    GrantHisRelease();
 }

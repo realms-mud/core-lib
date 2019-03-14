@@ -177,6 +177,29 @@ private void WakeUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void GrantHisRelease()
+{
+    addTopic("grant him his release", "@D@Donald nods and grimly states, @S@`"
+        "Aye. Grant him his release. Kill him. We cannot leave one such as "
+        "this behind and we cannot carry him with us.'");
+    addTopicInterjection("grant him his release",
+        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "grant him his release", 1);
+
+    addTopic("grant him his release part 2", "@D@Donald looks livid. He walks "
+        "up and kicks the prisoner hard in the head as Halgaladh impassively "
+        "looks on. Donald snarls at Halgaladh, @S@`Truss him and be quick. "
+        "All of you come here! There is a clear chain of command and I am it. "
+        "We have a choice here. We can take what we know and report to the "
+        "main camp, or we can continue into the temple to defeat this "
+        "foulness. I want to continue on. It should be obvious that this... "
+        "this... this vileness disturbs me deeply, and I don't think we'll "
+        "ever be in a better position to eliminate it than now. But this may "
+        "be a fools errand, and no one need come with who is uncomfortable "
+        "with us destroying these bastards.'");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     addTopic("you heard the man", "\n@D@Donald nods and looks at Halgaladh, "
@@ -190,4 +213,5 @@ protected void Setup()
     WeWasteTime();
     WakeUp();
     IWantAnswers();
+    GrantHisRelease();
 }
