@@ -14,7 +14,7 @@ public void reset(int arg)
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
             "knowledge of how to more effectively evade an attack whilst "
-            "using an hammer.");
+            "using a hammer.");
         addSpecification("limited by", (["equipment":({ "hammer" })]));
 
         addPrerequisite("level", 

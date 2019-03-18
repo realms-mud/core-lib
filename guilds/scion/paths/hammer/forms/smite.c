@@ -13,7 +13,8 @@ public void reset(int arg)
         addSpecification("name", "Smite");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of how to more effectively smite with the fluke or head of an hammer.");
+            "knowledge of how to more effectively smite with the fluke or head "
+            "of a hammer.");
         addSpecification("limited by", (["equipment":({ "hammer" })]));
 
         addPrerequisite("level", 

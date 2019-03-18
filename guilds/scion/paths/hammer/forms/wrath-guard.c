@@ -14,7 +14,8 @@ public void reset(int arg)
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
             "knowledge of a defensive maneuver where the hammer face is "
-            "held to the side of the head, fluke or head behind the head.");
+            "held to the side of the wielder's head, fluke or hammer head "
+            "held behind the wielder.");
         addSpecification("limited by", (["equipment":({ "hammer" })]));
 
         addPrerequisite("level", 

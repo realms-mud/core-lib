@@ -13,7 +13,7 @@ public void reset(int arg)
         addSpecification("name", "Middle Smite");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of how to more effectively smite with the edge of an hammer "
+            "knowledge of how to more effectively smite with the edge of a hammer "
             "from side to side.");
         addSpecification("limited by", (["equipment":({ "hammer" })]));
 

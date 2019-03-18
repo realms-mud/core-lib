@@ -14,15 +14,15 @@ public void reset(int arg)
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
             "knowledge of how to more effectively side step an attack whilst "
-            "using a hammer.");
-        addSpecification("limited by", (["equipment":({ "hammer" })]));
+            "using a mace.");
+        addSpecification("limited by", (["equipment":({ "mace", "flail" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
               "value": 7 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/hammer/forms/evade.c",
+        addPrerequisite("lib/guilds/scion/paths/mace/forms/evade.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

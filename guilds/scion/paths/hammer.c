@@ -157,10 +157,10 @@ private void TenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwelfthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/hammer/forms/abschneiden.c");
+    addResearchElement("lib/guilds/scion/paths/hammer/forms/zerschlagen.c");
     addResearchElement("lib/guilds/scion/paths/hammer/forms/displacement.c");
 
-    addChild("lib/guilds/scion/paths/hammer/forms/abschneiden.c",
+    addChild("lib/guilds/scion/paths/hammer/forms/zerschlagen.c",
         "lib/guilds/scion/paths/hammer/forms/smite.c");
     addChild("lib/guilds/scion/paths/hammer/forms/displacement.c",
         "lib/guilds/scion/paths/hammer/forms/the-ox.c");

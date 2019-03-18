@@ -10,24 +10,30 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Side Stepping");
+        addSpecification("name", "Over-Running");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of how to more effectively side step an attack whilst "
-            "using a hammer.");
-        addSpecification("limited by", (["equipment":({ "hammer" })]));
+            "knowledge of a maneuver wherein a smite or attack from below is "
+            "countered with an attack from above. This coincides with a step "
+            "backward; the higher attack having greater range than the lower.");
+        addSpecification("limited by", (["equipment":({ "mace", "flail" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 7 ]));
+              "value": 16 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/hammer/forms/evade.c",
+        addPrerequisite("lib/guilds/scion/paths/mace/forms/striking.c",
+            (["type":"research"]));
+        addPrerequisite("lib/guilds/scion/paths/mace/forms/over-smite.c",
+            (["type":"research"]));
+        addPrerequisite("lib/guilds/scion/paths/mace/forms/dance-of-death.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("bonus dodge", 3);
+        addSpecification("bonus attack", 2);
     }
 }

@@ -13,7 +13,7 @@ public void reset(int arg)
         addSpecification("name", "Over Smite");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of how to more effectively smite with the edge of an hammer "
+            "knowledge of how to more effectively smite with the edge of a hammer "
             "from above the foe.");
         addSpecification("limited by", (["equipment":({ "hammer" })]));
 

@@ -10,26 +10,24 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Abschneiden");
+        addSpecification("name", "The Hanging Parry");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of a form of attack wherein the hammer's fluke or head "
-            "is placed against a body and then pulled or pushed along the "
-            "surface in a slicing motion.");
-        addSpecification("limited by", (["equipment":({ "hammer" })]));
+            "knowledge of a defensive maneuver while in the fool guard wherein "
+            "the head of the mace is quickly raised into a parry.");
+        addSpecification("limited by", (["equipment":({ "mace", "flail" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 12 ]));
+              "value": 8 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/hammer/forms/smite.c",
+        addPrerequisite("lib/guilds/scion/paths/mace/forms/the-fool.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("bonus attack", 1);
-        addSpecification("bonus damage", 1);
+        addSpecification("bonus parry", 2);
     }
 }

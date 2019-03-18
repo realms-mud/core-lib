@@ -14,8 +14,8 @@ public void reset(int arg)
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
             "knowledge of an advanced technique wherein the combatant first "
-            "executes and undercut and then an over chop on an opponent's "
-            "hands in an attempt to remove them.");
+            "executes and undercut and then an over bash on an opponent's "
+            "hands in an attempt to crush them.");
 
         addSpecification("limited by", (["equipment":({ "hammer" })]));
 
