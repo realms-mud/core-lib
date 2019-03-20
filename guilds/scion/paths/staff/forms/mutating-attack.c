@@ -10,31 +10,30 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Changing Through");
+        addSpecification("name", "Mutating Attack");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of various techniques of escaping a bind by sliding "
-            "the mace's head out from underneath the weapon and then "
-            "striking to another opening.");
-
-        addSpecification("limited by", (["equipment":({
-            "mace", "flail" })]));
+            "knowledge of how to change a displaced smite into a strike or "
+            "a displaced strike into a smite.");
+        addSpecification("limited by", (["equipment":({ "staff" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 19 ]));
+              "value": 14 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/mace/forms/dance-of-death.c",
+        addPrerequisite("lib/guilds/scion/paths/staff/forms/doubling.c",
+            (["type":"research"]));
+        addPrerequisite("lib/guilds/scion/paths/staff/forms/smite.c",
+            (["type":"research"]));
+        addPrerequisite("lib/guilds/scion/paths/staff/forms/striking.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("bonus mace", 1);
-        addSpecification("bonus flail", 1);
-        addSpecification("bonus dodge", 1);
-        addSpecification("bonus parry", 1);
-        addSpecification("bonus attack", 1);
+        addSpecification("bonus staff", 1);
+        addSpecification("bonus attack", 2);
+        addSpecification("bonus damage", 1);
     }
 }

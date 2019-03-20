@@ -17,7 +17,7 @@ public void reset(int arg)
             "forward and the other foot placed sideways, both knees bent. The "
             "haft is held just inside and above the knee with the mace's head "
             "pointed at the foe's face. From this position, it is possible to "
-            "easily launch several chops and strikes.");
+            "easily launch several mauls and strikes.");
         addSpecification("limited by", (["equipment":({
             "mace", "flail" })]));
 

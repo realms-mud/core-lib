@@ -10,31 +10,23 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Changing Through");
+        addSpecification("name", "Displacement");
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of various techniques of escaping a bind by sliding "
-            "the mace's head out from underneath the weapon and then "
-            "striking to another opening.");
-
-        addSpecification("limited by", (["equipment":({
-            "mace", "flail" })]));
+            "knowledge of advanced parrying techniques while guarding.");
+        addSpecification("limited by", (["equipment":({ "staff" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Scion of Dhuras",
-              "value": 19 ]));
+              "value": 12 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/mace/forms/dance-of-death.c",
+        addPrerequisite("lib/guilds/scion/paths/staff/forms/the-ox.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("bonus mace", 1);
-        addSpecification("bonus flail", 1);
-        addSpecification("bonus dodge", 1);
-        addSpecification("bonus parry", 1);
-        addSpecification("bonus attack", 1);
+        addSpecification("bonus parry", 5);
     }
 }

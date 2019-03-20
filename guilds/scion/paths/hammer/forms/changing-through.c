@@ -15,7 +15,7 @@ public void reset(int arg)
         addSpecification("description", "This skill provides the user with the "
             "knowledge of various techniques of escaping a bind by sliding "
             "the hammer's face out from underneath the weapon and then "
-            "hacking to another opening.");
+            "striking to another opening.");
 
         addSpecification("limited by", (["equipment":({
             "hammer" })]));

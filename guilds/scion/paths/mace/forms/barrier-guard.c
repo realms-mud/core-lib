@@ -14,7 +14,7 @@ public void reset(int arg)
         addSpecification("source", "Scion of Dhuras Guild");
         addSpecification("description", "This skill provides the user with the "
             "knowledge of a defensive maneuver where the dominant foot is "
-            "forward, the pommel held near the chest with the mace's head "
+            "forward, the haft held near the chest with the mace's head "
             "pointed at the foe's face.");
         addSpecification("limited by", (["equipment":({ "mace", "flail" })]));
 
