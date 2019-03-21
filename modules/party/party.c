@@ -9,6 +9,16 @@ private mapping Members = ([]);
 private int TotalWeight = 0;
 private object Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
 private object channels = load_object("/lib/dictionaries/channelDictionary.c");
+private object configuration = 
+    load_object("/lib/dictionaries/configurationDictionary.c");
+private object commands =
+    load_object("/lib/dictionaries/commandsDictionary.c");
+
+private mapping information = ([
+    "experience earned": ([]),
+    "best kill": ([]),
+    "following": ([]),
+]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string partyName()
@@ -54,6 +64,7 @@ public nomask void refresh()
 private nomask void addMember(object newMember)
 {
     Members[newMember] = 1;
+    information["experience earned"][newMember->RealName()] = 0;
     refresh();
 }
 
@@ -63,11 +74,19 @@ public nomask void createParty(string name, object creator)
     if (stringp(name) && objectp(creator) &&
         (member(inherit_list(creator), "lib/realizations/player.c") > -1))
     {
-        Name = sprintf("%s#%s", name, creator->RealName());
-        Creator = creator;
-        addMember(creator);
-        channels->registerChannel(Name);
-        channels->registerUser(creator);
+        if (sizeof(name) < 40)
+        {
+            Name = sprintf("%s#%s", name, creator->RealName());
+            Creator = creator;
+            addMember(creator);
+            channels->registerChannel(Name);
+            channels->registerUser(creator);
+        }
+        else
+        {
+            tell_object(creator, "You're naming a party, not writing a book.\n"
+                "Pick a name that's no longer than 40 characters.\n");
+        }
     }
 }
 
@@ -127,6 +146,8 @@ private nomask int experienceEarned(int amount, object person)
     {
         ret = 1;
     }
+
+    information["experience earned"][person->RealName()] += ret;
     return ret;
 }
 
@@ -187,5 +208,110 @@ public nomask int reallocateExperience(int amount, string selectedGuild,
     {
         dissolveParty();
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string memberBanner(string colorConfiguration, string charset)
+{
+    return commands->buildBanner(colorConfiguration, charset,
+        "top", sprintf("Members of '%s' Party",
+            regreplace(partyName(), "(#.*)", "", 1))) +
+        commands->banneredContent(colorConfiguration, charset,
+            configuration->decorate(sprintf("%-18s ", "Name"),
+                "heading", "party", colorConfiguration) +
+            commands->divider(colorConfiguration, charset) +
+            configuration->decorate(sprintf(" %-18s ", "Location"),
+                "heading", "party", colorConfiguration) +
+            commands->divider(colorConfiguration, charset) +
+            configuration->decorate(sprintf(" %-18s ", "Following"),
+                "heading", "party", colorConfiguration) +
+            commands->divider(colorConfiguration, charset) +
+            configuration->decorate(sprintf(" %-11s ", "Exp Earned"),
+                "heading", "party", colorConfiguration)) +
+        commands->buildBanner(colorConfiguration, charset,
+            "middle", "", "", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getMemberInformation(string colorConfiguration,
+    string charset, object initiator)
+{
+    string ret = memberBanner(colorConfiguration, charset);
+
+    object *currentMembers = members();
+    string *memberList = m_indices(information["experience earned"]);
+    if (sizeof(memberList))
+    {
+        memberList = sort_array(memberList,
+            (: information["experience earned"][$1] <
+                information["experience earned"][$2] :));
+    }
+
+    foreach(string member in memberList)
+    {
+        object *memberObj = filter(currentMembers,
+            (: $1->RealName() == $2 :), member);
+
+        string location = "No longer in party";
+        string displayColor = "former member";
+
+        if (sizeof(memberObj))
+        {
+            displayColor = (memberObj[0] == Creator) ? "creator" :
+                "active member";
+
+            location = "Nowhere";
+            object memberLocation = environment(memberObj[0]);
+            if (memberLocation)
+            {
+                location = memberLocation->short() || "Unknown";
+
+                if (sizeof(location) > 18)
+                {
+                    location = location[0..14] + "...";
+                }
+            }
+        }
+
+        ret += commands->banneredContent(colorConfiguration, charset,
+            configuration->decorate(sprintf("%-18s ",
+                capitalize(member)),
+                displayColor, "party", colorConfiguration) +
+            commands->divider(colorConfiguration, charset) +
+            configuration->decorate(sprintf(" %-18s ", location),
+                "data", "party", colorConfiguration) +
+            commands->divider(colorConfiguration, charset) +
+            configuration->decorate(sprintf(" %-18s ",
+                (sizeof(memberObj) && member(information["following"], memberObj[0]) ?
+                capitalize(information["following"][memberObj[0]]->RealName()) :
+                "Nobody")),
+                "data", "party", colorConfiguration) +
+            commands->divider(colorConfiguration, charset) +
+            configuration->decorate(sprintf(" %11d ",
+                (member(information["experience earned"], member) ?
+                information["experience earned"][member] : 0)),
+                "data", "party", colorConfiguration)
+        );
+    }
+
+    ret += commands->buildBanner(colorConfiguration, charset,
+        "bottom", "", "", 1);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string partyStatistics(object initiator)
+{
+    string ret = "";
+
+    if (objectp(initiator) && initiator->isRealizationOfPlayer())
+    {
+        string colorConfiguration = initiator->colorConfiguration();
+        string charset = initiator->charsetConfiguration();
+
+        ret += getMemberInformation(colorConfiguration, charset, initiator);
+    }
+
     return ret;
 }

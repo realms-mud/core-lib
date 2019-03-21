@@ -690,6 +690,13 @@ public void setShortDescription(string newShort)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public string short()
+{
+    return (ShortDescription != "") ? ShortDescription : 
+        regreplace(program_name(this_object()), ".*/([^./]+).c$", "\\1", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int getElementLighting()
 {
     int ret = 0;

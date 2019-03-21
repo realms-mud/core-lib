@@ -10,7 +10,7 @@ public nomask void reset(int arg)
     if (!arg)
     {
         CommandType = "Social";
-        addCommandTemplate("party [.*]");
+        addCommandTemplate("party [-i(nfo)] [.*]");
     }
 }
 
@@ -22,7 +22,19 @@ public nomask int execute(string command, object initiator)
     if (canExecuteCommand(command))
     {
         object party = initiator->getParty();
-        if (party)
+        if (sizeof(regexp(({ command }), "party -i(nfo)*")))
+        {
+            if (party)
+            {
+                ret = 1;
+                tell_object(initiator, party->partyStatistics(initiator));
+            }
+            else
+            {
+                notify_fail("You are not currently in a party.\n");
+            }
+        }
+        else if (party)
         {
             string message = 0;
             if (sizeof(regexp(({ command }), "^party (.+)")))
@@ -71,6 +83,25 @@ protected string description(string displayCommand, string colorConfiguration)
 /////////////////////////////////////////////////////////////////////////////
 protected string notes(string displayCommand, string colorConfiguration)
 {
-    return "See also: tell, whisper, reply, say, guild, faction, race, "
+    return "See also: tell, whisper, reply, say, party, faction, race, "
         "and shout";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+
+    switch (parsedFlag)
+    {
+        case "-i":
+        {
+            ret = "Instead of displaying a message, this option will display "
+                "information / statistics about the party that you are "
+                "currently in.";
+            break;
+        }
+    }
+    return format(ret, 72);
 }

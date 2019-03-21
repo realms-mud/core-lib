@@ -7,7 +7,7 @@
 private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
-private string buildBaseBanner(string location, string charset)
+private string buildBaseBanner(string location, string charset, int noGap)
 {
     string ret = "";    
     string leftCharacter;
@@ -18,7 +18,13 @@ private string buildBaseBanner(string location, string charset)
         case "unicode": 
         {
             ret = "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
-                "-=-=-=-=-=-=-=-=-=-=-";
+                "-=-=-=-=-=-=-=-=-";
+
+            if (!noGap)
+            {
+                ret += "=-=-";
+            }
+
             switch (location)
             {
                 case "top":
@@ -64,9 +70,9 @@ private string buildBaseBanner(string location, string charset)
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs string buildBanner(string colorConfiguration, string charset,
-    string location, string type, string area)
+    string location, string type, string area, int noGap)
 {
-    string ret = buildBaseBanner(location, charset);
+    string ret = buildBaseBanner(location, charset, noGap);
 
     string leftDivider;
     string rightDivider;
@@ -92,8 +98,12 @@ public varargs string buildBanner(string colorConfiguration, string charset,
         }
     }    
     
-    string banner = sprintf("%s %s%s %s", leftDivider, capitalize(type), 
-        (area ? " " + capitalize(area) : ""), rightDivider);
+    string banner = "";
+    if (!noGap)
+    {
+        banner = sprintf("%s %s%s %s", leftDivider, capitalize(type),
+            (area ? " " + capitalize(area) : ""), rightDivider);
+    }
 
     int startingPoint = ((charset == "unicode") * 2) + 40 - (sizeof(banner) / 2);
 
@@ -111,8 +121,7 @@ public varargs string buildBanner(string colorConfiguration, string charset,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string banneredContent(string colorConfiguration, string charset,
-    string content)
+public string divider(string colorConfiguration, string charset)
 {
     string divider = "";
     switch (charset)
@@ -133,8 +142,15 @@ public string banneredContent(string colorConfiguration, string charset,
             break;
         }
     }
-    divider = configuration->decorate(divider, "any", "dividers", 
+    return configuration->decorate(divider, "any", "dividers", 
         colorConfiguration);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string banneredContent(string colorConfiguration, string charset,
+    string content)
+{
+    string divider = divider(colorConfiguration, charset);
 
     return sprintf("%s %s %s\n", divider, content, divider);
 }
