@@ -9,7 +9,7 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        CommandType = "General";
+        CommandType = "Party";
         addCommandTemplate("leave party");
     }
 }
@@ -56,5 +56,6 @@ protected string description(string displayCommand, string colorConfiguration)
 protected string notes(string displayCommand, string colorConfiguration)
 {
     return "See also: create party, add party member, remove party member, "
-        "dissolve party, party";
+        "dissolve party, party, follow party member, "
+        "stop following party member";
 }

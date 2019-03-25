@@ -315,3 +315,70 @@ public nomask string partyStatistics(object initiator)
 
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string following(object initiator)
+{
+    string ret = 0;
+
+    object *potentialLeaders = m_indices(information["following"]);
+    if (sizeof(potentialLeaders))
+    {
+        foreach(object leader in potentialLeaders)
+        {
+            if (member(information["following"][leader], initiator) > -1)
+            {
+                ret = capitalize(leader->RealName());
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void follow(object leader, object follower)
+{
+    if (!member(information["following"], leader))
+    {
+        information["following"][leader] = ({ follower });
+    }
+    else if(member(information["following"][leader], follower) < 0)
+    {
+        information["following"][leader] += ({ follower });
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string stopFollowing(object follower)
+{
+    string ret = 0;
+
+    object *potentialLeaders = m_indices(information["following"]);
+    if (sizeof(potentialLeaders))
+    {
+        foreach(object leader in potentialLeaders)
+        {
+            if (member(information["following"][leader], follower) > -1)
+            {
+                information["following"][leader] -= ({ follower });
+                ret = capitalize(leader->RealName());
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void moveFollowers(object leader, string destination,
+    string direction)
+{
+    if (member(information["following"], leader) > -1)
+    {
+        foreach(object follower in information["following"][leader])
+        {
+            follower->move(destination, direction);
+        }
+    }
+}

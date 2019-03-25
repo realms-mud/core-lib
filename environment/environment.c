@@ -856,6 +856,12 @@ public nomask int move(string str)
     if (destination)
     {
         this_player()->move(destination, direction);
+
+        object party = this_player()->getParty();
+        if (party)
+        {
+            party->moveFollowers(this_player(), destination, direction);
+        }
     }
 
     return destination && stringp(destination);

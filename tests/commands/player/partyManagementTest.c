@@ -254,3 +254,204 @@ void CanTalkOnPartyChannel()
     ExpectSubStringMatch("Weasels Fred.*Bite me!",
         Member->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanFollowPartyMember()
+{
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Member, "/lib/tests/support/environment/startingRoom.c");
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    command("follow party member fred", Player);
+
+    ExpectSubStringMatch("Bob is now following Fred",
+        Player->caughtMessage());
+    ExpectSubStringMatch("Bob is now following Fred",
+        Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanNotFollowPartyMemberWhenNotPresent()
+{
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Member, "/lib/tests/support/environment/darkRoom.c");
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    Player->resetCatchList();
+    Member->resetCatchList();
+
+    command("follow party member fred", Player);
+
+    ExpectSubStringMatch("You must both be in the same location",
+        Player->caughtMessage());
+    ExpectEq(0, Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanNotFollowNonPartyMembers()
+{
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Member, "/lib/tests/support/environment/startingRoom.c");
+    command("create party Weasels", Player);
+
+    Player->resetCatchList();
+    Member->resetCatchList();
+
+    command("follow party member fred", Player);
+
+    ExpectSubStringMatch("There is nobody named 'Fred' in your party",
+        Player->caughtMessage());
+    ExpectEq(0, Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanNotFollowWhenNotInAParty()
+{
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Member, "/lib/tests/support/environment/startingRoom.c");
+
+    Player->resetCatchList();
+    Member->resetCatchList();
+
+    command("follow party member fred", Player);
+
+    ExpectSubStringMatch("You are not currently in a party",
+        Player->caughtMessage());
+    ExpectEq(0, Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanNotFollowPartyMemberWhenAlreadyFollowingSomeoneElse()
+{
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Member, "/lib/tests/support/environment/startingRoom.c");
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    command("follow party member fred", Player);
+
+    Player->resetCatchList();
+    Member->resetCatchList();
+
+    command("follow party member fred", Player);
+
+    ExpectSubStringMatch("You are currently following Fred.*"
+        "If you wish to follow someone else, stop following",
+        Player->caughtMessage());
+    ExpectEq(0, Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanStopFollowingPartyMemberYouAreFollowing()
+{
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Member, "/lib/tests/support/environment/startingRoom.c");
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    command("follow party member fred", Player);
+
+    Player->resetCatchList();
+    Member->resetCatchList();
+
+    command("stop following party member", Player);
+
+    ExpectSubStringMatch("Bob is no longer following Fred*",
+        Player->caughtMessage());
+    ExpectSubStringMatch("Bob is no longer following Fred*",
+        Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanUseStopFollowingToStopFollowingPartyMember()
+{
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Member, "/lib/tests/support/environment/startingRoom.c");
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    command("follow party member fred", Player);
+
+    Player->resetCatchList();
+    Member->resetCatchList();
+
+    command("stop following", Player);
+
+    ExpectSubStringMatch("Bob is no longer following Fred*",
+        Player->caughtMessage());
+    ExpectSubStringMatch("Bob is no longer following Fred*",
+        Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanNotStopFollowingWhenNotFollowingAnybodyy()
+{
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Member, "/lib/tests/support/environment/startingRoom.c");
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    Player->resetCatchList();
+    Member->resetCatchList();
+
+    command("stop following party member", Player);
+
+    ExpectSubStringMatch("You are not following anybody",
+        Player->caughtMessage());
+    ExpectEq(0, Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanNotStopFollowingWhenNotInParty()
+{
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Member, "/lib/tests/support/environment/startingRoom.c");
+
+    Player->resetCatchList();
+    Member->resetCatchList();
+
+    command("stop following party member", Player);
+
+    ExpectSubStringMatch("You are not currently in a party",
+        Player->caughtMessage());
+    ExpectEq(0, Member->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MemberFollowsPartyLeader()
+{
+    object startingRoom = 
+        load_object("/lib/tests/support/environment/startingRoom.c");
+    object nextRoom = 
+        load_object("/lib/tests/support/environment/not-so-dark-room.c");
+
+    move_object(Player, startingRoom);
+    move_object(Member, startingRoom);
+    command("create party Weasels", Player);
+    command("add party member fred", Player);
+    command("accept party invite", Member);
+    ExpectTrue(objectp(Member->getParty()));
+
+    command("follow party member bob", Member);
+
+    ExpectEq(startingRoom, environment(Player));
+    ExpectEq(startingRoom, environment(Member));
+
+    command("w", Player);
+    ExpectEq(nextRoom, environment(Player));
+    ExpectEq(nextRoom, environment(Member));
+}

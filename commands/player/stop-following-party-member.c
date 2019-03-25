@@ -10,7 +10,7 @@ public nomask void reset(int arg)
     if (!arg)
     {
         CommandType = "Party";
-        addCommandTemplate("accept party invite");
+        addCommandTemplate("stop following [party member]");
     }
 }
 
@@ -21,28 +21,33 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command))
     {
-        object dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+        object Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+        object party = initiator->getParty();
 
-        if (dictionary->hasPendingPartyRequest(initiator))
+        if (party)
         {
-            dictionary->acceptPartyRequest(initiator);
+            string wasFollowing = party->stopFollowing(initiator);
 
-            object party = initiator->getParty();
-            if (party)
+            if (stringp(wasFollowing))
             {
                 ret = 1;
-                tell_object(initiator, sprintf("You have joined the '%s' "
-                    "party (%s)\n", capitalize(initiator->partyName()),
-                    capitalize(party->creator()->RealName())));
+                tell_object(initiator, sprintf("You are no longer following : %s\n",
+                    wasFollowing));
+
+                object channels = load_object("/lib/dictionaries/channelDictionary.c");
+                channels->broadcastMessage(party->partyName(),
+                    sprintf("%s is no longer following %s.",
+                        capitalize(initiator->RealName()),
+                        wasFollowing), party);
             }
             else
             {
-                notify_fail("You were unable to join the party.\n");
+                notify_fail("You are not following anybody.\n");
             }
         }
         else
         {
-            notify_fail("You do not have a pending party invitation.\n");
+            notify_fail("You are not currently in a party.\n");
         }
     }
     return ret;
@@ -51,21 +56,20 @@ public nomask int execute(string command, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 protected string synopsis(string displayCommand, string colorConfiguration)
 {
-    return "Accept an invite to join a party";
+    return "Stop following a party member";
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected string description(string displayCommand, string colorConfiguration)
 {
-    return format("Accept party invite is a command used to confirm "
-        "a party invite that has been sent using the 'add party member' "
-        "command.", 78);
+    return format("Stop following party member allows a player in a party "
+        "to stop following the member they are currently following.", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected string notes(string displayCommand, string colorConfiguration)
 {
-    return "See also: create party, leave party, add party member, "
-        "remove party member, dissolve party, party, follow party member, "
-        "stop following party member";
+    return "See also: create party, add party member, remove party member, "
+        "dissolve party, party, follow party member, "
+        "leave party";
 }
