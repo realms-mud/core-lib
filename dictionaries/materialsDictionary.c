@@ -7,7 +7,6 @@
 //
 //*****************************************************************************
 #include "/lib/include/inventory.h"
-#include "/lib/include/itemFormatters.h"
 #include "materials/materials.h"
 #include "materials/weapons.h"
 #include "materials/armor.h"

@@ -1,11 +1,7 @@
 //*****************************************************************************
-// Class: racialDictionary
-// File Name: racialDictionary.c
-//
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#include "/lib/include/itemFormatters.h"
 
 private mapping personalityQuestionnaire = ([
     "1":([

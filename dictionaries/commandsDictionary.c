@@ -2,7 +2,6 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#include "/lib/include/itemFormatters.h"
 
 private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 

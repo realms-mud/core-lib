@@ -1015,8 +1015,6 @@ private nomask varargs string colorizeText(object item, int verbose, int quantit
 
     if (item && item->short())
     {
-        string formatter = "";// NormalEquipment;
-
         if (materialsObject())
         {
             string itemDesc = item->short(1);

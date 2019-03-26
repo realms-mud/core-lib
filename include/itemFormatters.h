@@ -5,15 +5,7 @@
 #ifndef itemFormatters_h
 #define itemFormatters_h
 
-private nosave string Unidentified = "\x1b[0;36m%s\x1b[0m";
-private nosave string UseIsPenalized = "\x1b[0;30;1m%s\x1b[0m";
-private nosave string NormalEquipment = "\x1b[0;37;1m%s\x1b[0m";
-private nosave string StrongEnchantment = "\x1b[0;35;1m%s\x1b[0m";
-private nosave string SpecialAttack = "\x1b[0;31m%s\x1b[0m";
-private nosave string WellCrafted = "\x1b[0;32m%s\x1b[0m";
 private nosave string Value = "\x1b[0;33m%s\x1b[0m";
-private nosave string Masterwork = "\x1b[0;32;1m%s\x1b[0m";
-private nosave string Enchanted = "\x1b[0;35m%s\x1b[0m";
 
 private nosave string Cyan = "\x1b[0;36m%s\x1b[0m";
 private nosave string BoldBlack = "\x1b[0;30;1m%s\x1b[0m";

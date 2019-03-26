@@ -54,8 +54,6 @@ private nomask string colorizeText(object item)
 
     if (item && item->short())
     {
-        string formatter = NormalEquipment;
-
         if (materialsObject())
         {
             ret = materialsObject()->applyMaterialQualityToText(item, item->short());
