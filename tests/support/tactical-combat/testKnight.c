@@ -12,7 +12,7 @@ void reset(int arg)
         set("name", "knights");
         set("short", "Knights");
         set("long", "This is a powerful unit of knights.");
-        set("ground attack", 550);
+        set("ground attack", 600);
         set("air attack", 0);
         set("defense", 400);
         set("move", 4);

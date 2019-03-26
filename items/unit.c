@@ -3,6 +3,10 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/items/item.c";
+private object configuration = 
+    load_object("/lib/dictionaries/configurationDictionary.c");
+private object display =
+    load_object("/lib/dictionaries/commandsDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int get()
@@ -29,18 +33,31 @@ public nomask mixed query(string element)
         case "messages":
         {
             ret = ({
-                "fail to do any significant damage.",
-                "succeed in a minor feint which causes light casualties.",
-                "collide forcefully with the opposing lines.",
-                "enter a pitched battle with their foes.",
-                "tear into the line of their foes.",
-                "charge headlong into the fray, disrupting the line.",
-                "send their foes reeling backwards from the onslaught.",
-                "rain hellish death on everything in their path.",
-                "mutilate their foes' once solid lines.",
-                "crush their foes under a thunderous onslaught.",
-                "completely annihilate their opposition.",
+                "fail to do any significant damage to ##TargetPossessive::Name## ##TargetUnit##.",
+                "succeed in a minor feint which causes light casualties to ##TargetPossessive::Name## ##TargetUnit##.",
+                "collide forcefully with the opposing line of ##TargetUnit##.",
+                "enter a pitched battle with ##TargetPossessive::Name## ##TargetUnit##.",
+                "tear into the line of ##TargetPossessive::Name## ##TargetUnit##.",
+                "charge headlong into the fray, disrupting the line of ##TargetUnit##.",
+                "send ##TargetPossessive::Name## ##TargetUnit## reeling backwards from the onslaught.",
+                "rain hellish death on ##TargetPossessive::Name## unfortunate ##TargetUnit##.",
+                "mutilate ##TargetPossessive::Name## once solid line of ##TargetUnit##.",
+                "crush ##TargetPossessive::Name## ##TargetUnit## under a thunderous onslaught.",
+                "completely annihilate ##TargetPossessive::Name## ##TargetUnit##.",
             });
+            break;
+        }
+        case "target messages":
+        {
+            ret = query("messages") + ({});
+            int count = sizeof(ret);
+            if (count)
+            {
+                for(int i = 0; i < count; i++)
+                {
+                    ret[i] = regreplace(ret[i], "##Target", "##Initiator", 1);
+                }
+            }
             break;
         }
         default:
@@ -68,9 +85,14 @@ public nomask varargs int set(string element, mixed data)
                 {
                     m_delete(itemData, element);
                 }
-                else
+                else if(data <= 10)
                 {
                     itemData[element] = data;
+                }
+                else
+                {
+                    raise_error("unit.c: Troop count must be between 1 and "
+                        "10.\n");
                 }
                 break;
             }
@@ -146,21 +168,27 @@ protected float randomnessFactor()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int calculateAttack(int offense, int opponentDefense)
+private nomask int calculateAttack(int offense, int opponentDefense, 
+    int troopCount)
 {
-    int ret = 0;
+    float ret = 0.0;
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < troopCount; i++)
     {
-        if ((offense * (0.5 + randomnessFactor())) >
-            (opponentDefense * (1.0 + randomnessFactor())))
-        {
-            ret++;
-        }
+        ret += ((offense * (0.5 + randomnessFactor())) -
+            (opponentDefense * (0.5 + randomnessFactor())));
     }
-    ret -= 2;
 
-    return ret;
+    ret = ret / (100 * troopCount);
+    if (ret < 0.0)
+    {
+        ret = 0;
+    }
+    else if (ret > 10.0)
+    {
+        ret = 10.0;
+    }
+    return to_int(ret);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -185,61 +213,147 @@ private nomask void advanceUnitSkills(int attackerCarnage, int targetCarnage,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void checkMorale(int damage, object target)
+private nomask string checkMorale(int damage, object target)
 {
-    if (damage < (target->query("troop count") * 2 / 3))
+    string ret = "";
+    if (damage > (target->query("troop count") / 2))
     {
         if (target->query("unit morale"))
         {
-            target->set("unit morale", target->query("unit morale") - 1);
+            target->set("unit morale", 
+                (target->query("unit morale") > 2) ?
+                target->query("unit morale") - 2 : 0);
         }
 
-        if (!target->query("unit morale"))
+        if (!random(target->query("unit morale")))
         {
-            say(sprintf("The group of %s was routed.\n",
-                target->query("name")));
+            ret = sprintf("The group of %s was routed.\n",
+                target->query("name"));
         }
-        set("unit morale", query("unit morale") + 1);
+        set("unit morale", (query("unit morale") < 8) ? 
+            query("unit morale") + 2 : 10);
     }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private string getCombatMessage(string message, object leader, 
-    object targetLeader, int perspective)
-{
-    object parser = loadBlueprint(MessageParser);
-    string ret = parser->parseTargetInfo(message, "Initiator",
-        leader, perspective);
-
-    ret = format(parser->parseTargetInfo(ret, "Target",
-        targetLeader, !perspective), 78);
-
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void displayCombatMessage(object leader, object targetLeader, 
-    object target, int attackerCarnage, int targetCarnage)
+private string getCombatMessage(string message, object target, object leader,
+    object targetLeader, int perspective)
 {
     object parser = loadBlueprint(MessageParser);
-    string message = sprintf("##InitiatorPossessive## %s %s\n"
-        "##TargetPossessive## %s %s\n",
-        query("short"), query("messages")[attackerCarnage],
-        target->query("short"), target->query("messages")[attackerCarnage]);
 
-    tell_object(leader, getCombatMessage(message, leader, targetLeader, 1));
-    tell_object(targetLeader, getCombatMessage(message, leader, targetLeader, 0));
+    string ret = parser->parseTargetInfo(message, "Initiator",
+        leader, perspective);
 
-/*    message = "##OwnerPossessive## %s have been destroyed.\n";
-    if (!j) {
-        TL(leader, sprintf(frm, enemy->query_name(), "'s", a->query("short")));
-        TL(enemy, sprintf(frm, "Your", "", a->query("short")));
+    ret = parser->parseTargetInfo(ret, "Target", targetLeader, !perspective);
+    ret = regreplace(ret, "##InitiatorUnit##", query("name"), 1);
+    ret = regreplace(ret, "##TargetUnit##", target->query("name"), 1);
+
+    return format(parser->capitalizeSentences(ret), 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string getExtraMessage(object unit, int carnage, int troopCount)
+{
+    string ret = "";
+
+    if (troopCount <= carnage)
+    {
+        ret += sprintf("The %s have been destroyed.\n", unit->query("name"));
     }
-    if (!unit["troops"]) {
-        TL(leader, sprintf(frm, "Your", "", unit["short"]));
-        TL(enemy, sprintf(frm, own->query_name(), "'s", unit["short"]));
+    else
+    {
+        ret += checkMorale(carnage, unit);
     }
-    */
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void sendMessage(object viewer, string viewerMessage, 
+    string viewerExtra, string opponentMessage, string opponentExtra,
+    string summary)
+{
+    string colorConfig = viewer ? viewer->colorConfiguration() : "none";
+    string charset = viewer ? viewer->charsetConfiguration() : "ascii";
+
+    string message = 
+        configuration->decorate(viewerMessage,
+            "attacker", "tactical combat", colorConfig) +
+        configuration->decorate(viewerExtra,
+            "extra message", "tactical combat", colorConfig) +
+        configuration->decorate(opponentMessage,
+            "defender", "tactical combat", colorConfig) + 
+        configuration->decorate(opponentExtra,
+            "extra message", "tactical combat", colorConfig);
+
+    message +=
+        display->buildBanner(colorConfig, charset, "top",
+            "Combat Results") +
+        configuration->decorate(summary,
+            "summary", "tactical combat", colorConfig);
+
+    tell_object(viewer, message);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string getSummary(int attackersLeft, int defendersLeft)
+{
+    return sprintf("%8d of ##InitiatorPossessive::Name## ##InitiatorUnit## "
+        "still remain alive.\n"
+        "%8d of ##TargetPossessive::Name## ##TargetUnit## "
+        "still remain alive.\n",
+        ((attackersLeft > 0) ? attackersLeft : 0), 
+        ((defendersLeft > 0) ? defendersLeft : 0));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void displayCombatMessage(object leader, object targetLeader, 
+    object target, int attackerCarnage, int targetCarnage, 
+    int attackerTroopCount, int targetTroopCount)
+{
+    object parser = loadBlueprint(MessageParser);
+
+    string extraAttackerMessage = 
+        getExtraMessage(this_object(), targetCarnage, attackerTroopCount);
+    string extraTargetMessage =
+        getExtraMessage(target, attackerCarnage, targetTroopCount);
+
+    string attackerMessage = sprintf("##InitiatorPossessive::Name## %s %s",
+        query("name"), query("messages")[attackerCarnage]);
+    string targetMessage = sprintf("##TargetPossessive::Name## %s %s", 
+        target->query("name"), target->query("target messages")[targetCarnage]);
+
+    string summary = getSummary(attackerTroopCount - targetCarnage,
+        targetTroopCount - attackerCarnage);
+
+    sendMessage(leader,
+        getCombatMessage(attackerMessage, target, leader, targetLeader, 1),
+        extraAttackerMessage,
+        getCombatMessage(targetMessage, target, leader, targetLeader, 1),
+        extraTargetMessage,
+        getCombatMessage(summary, target, leader, targetLeader, 1));
+
+    sendMessage(targetLeader,
+        getCombatMessage(targetMessage, target, leader, targetLeader, 0),
+        extraTargetMessage,
+        getCombatMessage(attackerMessage, target, leader, targetLeader, 0),
+        extraAttackerMessage,
+        getCombatMessage(summary, target, leader, targetLeader, 0));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void updateUnitInformation(object unit, int troopCount, int carnage)
+{
+    int remainingTroops = troopCount - carnage;
+
+    if (remainingTroops > 0)
+    {
+        unit->set("troop count", remainingTroops);
+    }
+    else
+    {
+        destruct(unit);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -252,42 +366,31 @@ public int attackUnit(string target)
     {
         int defense = getDefense();
         int offense = getSupportBonus(getAttack(targetObj));
+        int troopCount = query("troop count");
 
         int targetDefense = targetObj->getSupportBonus(targetObj->getDefense());
         int targetOffense = targetObj->getAttack(this_object());
+        int targetTroopCount = targetObj->query("troop count");
 
         object leader = query("unit owner");
         object targetLeader = targetObj->query("unit owner");
 
         if (objectp(leader) && objectp(targetLeader))
         {
-            int attackerCarnage = calculateAttack(offense, targetDefense);
-            int targetCarnage = calculateAttack(targetOffense, defense);
+            int attackerCarnage =
+                calculateAttack(offense, targetDefense, troopCount);
+            int targetCarnage = 
+                calculateAttack(targetOffense, defense, targetTroopCount);
 
             advanceUnitSkills(attackerCarnage, targetCarnage, targetObj);
 
-            checkMorale(targetCarnage, this_object());
-            checkMorale(attackerCarnage, targetObj);
-
-            set("troop count", query("troop count") - targetCarnage);
-            targetObj->set("troop count", targetObj->query("troop count") -
-                attackerCarnage);
-
             displayCombatMessage(leader, targetLeader, targetObj,
-                attackerCarnage, targetCarnage);
+                attackerCarnage, targetCarnage, troopCount, targetTroopCount);
+
+            updateUnitInformation(targetObj, targetTroopCount, attackerCarnage);
+            updateUnitInformation(this_object(), troopCount, targetCarnage);
         }
     }
-/*
-    frm = "+-=-=-=-=-=-=-> Combat results: <-=-=-=-=-=-=-=-+\n" +
-        "  %d of %s's %s still remain alive.\n" +
-        "  %d of %s's %s still remain alive.\n";
 
-    TL(own, sprintf(frm, unit["troops"], own->query_name(), unit["short"], j,
-        enemy->query_name(), a->query("short")));
-    TL(enemy, sprintf(frm, unit["troops"], own->query_name(), unit["short"], j,
-        enemy->query_name(), a->query("short")));
-    if (!j) destruct(a);
-    if (!unit["troops"]) destruct(this_object());
-    */
     return 1;
 }

@@ -14,7 +14,7 @@ void reset(int arg)
         set("long", "This is a powerful unit of archers.");
         set("ground attack", 800);
         set("air attack", 400);
-        set("defense", 200);
+        set("defense", 100);
         set("move", 6);
         set("unit morale", 5);
         set("troop count", 10);
