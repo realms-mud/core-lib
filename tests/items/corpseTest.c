@@ -39,8 +39,8 @@ void CorpseProperlySetUp()
 {
     Corpse->corpseSetup(Victim);
 
-    ExpectSubStringMatch("corpse of Fred.*Weight.*18.*A pile of 236 coins.*Long"
-        " sword.*Bock Beer.*Chainmail.*Amulet",
+    ExpectSubStringMatch("corpse of Fred.*Weight.*18.*A pile of 236 coins.*"
+        "Amulet.*Bock Beer.*Chainmail.*Long sword",
         Corpse->long(), "long() returns correct value");
 }
 
@@ -69,8 +69,8 @@ void CorpseDoesNotGetUndroppableItems()
 
     Corpse->corpseSetup(Victim);
 
-    ExpectSubStringMatch("corpse of Fred.*Weight.*18.*A pile of 236 coins.*Long"
-        " sword.*Bock Beer.*Chainmail.*Amulet",
+    ExpectSubStringMatch("corpse of Fred.*Weight.*18.*A pile of 236 coins.*"
+        "Amulet.*Bock Beer.*Chainmail.*Long sword",
         Corpse->long(), "long() returns correct value");
     ExpectEq(Victim, environment(sword));
 }
@@ -84,8 +84,8 @@ void CorpseDoesNotGetCursedItems()
 
     Corpse->corpseSetup(Victim);
 
-    ExpectSubStringMatch("corpse of Fred.*Weight.*18.*A pile of 236 coins.*Long"
-        " sword.*Bock Beer.*Chainmail.*Amulet",
+    ExpectSubStringMatch("corpse of Fred.*Weight.*18.*A pile of 236 coins.*"
+        "Amulet.*Bock Beer.*Chainmail.*Long sword",
         Corpse->long(), "long() returns correct value");
     ExpectEq(Victim, environment(sword));
 }

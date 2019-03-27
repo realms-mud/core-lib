@@ -63,7 +63,6 @@ void LongMergesDuplicateItems()
     destruct(load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 void LongDisplaysManyItemsCorrectly()
 {
