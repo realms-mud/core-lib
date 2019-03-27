@@ -5,16 +5,16 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#include "/lib/include/itemFormatters.h"
 
 private string BaseTrait = "lib/modules/traits/baseTrait.c";
 private string *validTraitTypes = ({ "health", "educational", "personality", 
     "genetic", "professional", "guild", "role", "effect", "sustained effect",
     "background", "racial", "persona" });
 
-private mapping traits = ([]);
+object configuration =
+    load_object("/lib/dictionaries/configurationDictionary.c");
 
-private nosave string FieldDisplay = Cyan + ": " + Value + "\n";
+private mapping traits = ([]);
 private mapping traitCache = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -521,7 +521,8 @@ private nomask string bonusName(string bonus)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string displayResearchTree(object trait)
+private nomask string displayResearchTree(object trait,
+    string colorConfiguration)
 {
     string ret = "";
 
@@ -536,8 +537,9 @@ private nomask string displayResearchTree(object trait)
             object treeObj = researchDictionary->researchTree(tree);
             if (tree)
             {
-                ret += sprintf("\x1b[0;34;1mThis trait makes the %s research "
-                    "tree available.\x1b[0m\n", tree->Name());
+                ret += configuration->decorate(sprintf("This trait makes "
+                    "the %s research tree available.\n", tree->Name()),
+                    "bonus modifier", "traits", colorConfiguration);
             }
         }
     }
@@ -545,7 +547,8 @@ private nomask string displayResearchTree(object trait)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string displayTraitBonusesAndPenalties(object trait)
+private nomask string displayTraitBonusesAndPenalties(object trait,
+    string colorConfiguration)
 {
     string ret = "";
     string *keys = trait->query("bonuses");
@@ -553,8 +556,12 @@ private nomask string displayTraitBonusesAndPenalties(object trait)
     {
         foreach(string bonus in keys)
         {
-            ret += sprintf("\x1b[0;34;1m(+%d)\x1b[0m \x1b[0;33mBonus %s\x1b[0m\n",
-                trait->query(bonus), bonusName(bonus));
+            ret += configuration->decorate(sprintf("(+%d)", 
+                    trait->query(bonus)), "bonus modifier", "traits", 
+                    colorConfiguration) + 
+                configuration->decorate(sprintf(" Bonus %s\n", 
+                    bonusName(bonus)), "field data", "traits", 
+                    colorConfiguration);
         }
     }
     keys = trait->query("penalties");
@@ -562,25 +569,45 @@ private nomask string displayTraitBonusesAndPenalties(object trait)
     {
         foreach(string penalty in keys)
         {
-            ret += sprintf("\x1b[0;31m(%d)\x1b[0m \x1b[0;33mPenalty to %s\x1b[0m\n",
-                trait->query(penalty), bonusName(penalty));
+            ret += configuration->decorate(sprintf("(%d)", 
+                    trait->query(penalty)), "penalty modifier", "traits", 
+                    colorConfiguration) +
+                configuration->decorate(sprintf(" Penalty to %s\n", 
+                    bonusName(penalty)), "field data", "traits", 
+                    colorConfiguration); 
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string displayTraitComponent(object trait, string component)
+private nomask string displayTraitComponent(object trait, string component,
+    string colorConfiguration)
 {
     string ret = "";
     int value = trait->query(component);
     if (value)
     {
-        ret = sprintf(Cyan + ": " +
-            ((value > 0) ? "\x1b[0;34;1m+%d\x1b[0m\n" : "\x1b[0;31m%d\x1b[0m\n"),
-            capitalize(component), value);
+        ret = configuration->decorate(sprintf("%s: ", capitalize(component)),
+                "field header", "traits", colorConfiguration) +
+            ((value > 0) ? configuration->decorate(sprintf("+%d\n", value),
+                    "bonus modifier", "traits", colorConfiguration) :
+                configuration->decorate(sprintf("%d\n", value),
+                    "penalty modifier", "traits", colorConfiguration));
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs string displayTraitRow(string heading, string value,
+    string colorConfiguration, int isNegative)
+{
+    return configuration->decorate(sprintf("%s: ", heading),
+            "field header", "traits", colorConfiguration) +
+        configuration->decorate(capitalize(value),
+            "field data", "traits", colorConfiguration) +
+        (isNegative ? configuration->decorate("[Negative]",
+            "negative trait", "traits", colorConfiguration) : "") + "\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -593,22 +620,28 @@ public nomask string traitDetailsFromFile(string traitFile)
 
         string colorConfiguration = this_player() ?
             this_player()->colorConfiguration() : "3-bit";
-        object configuration =
-            load_object("/lib/dictionaries/configurationDictionary.c");
 
-        ret = sprintf(FieldDisplay, "Trait Name",
-            capitalize(traitObj->query("name")) +
-            (traitIsNegative(traitFile) ? "\x1b[0;31m [Negative]\x1b[0m" : "")) +
-            sprintf(FieldDisplay, "Trait Type", capitalize(traitObj->query("type"))) +
-            format(sprintf(Value, traitObj->query("description")), 78) + "\n" +
-            sprintf(FieldDisplay, "Root Trait Class", capitalize(traitObj->query("root"))) +
-            (traitObj->query("opposing root") ? sprintf(FieldDisplay, "Opposing Trait Class", 
-                capitalize(traitObj->query("opposing root"))) : "") +
-            displayTraitComponent(traitObj, "opinion") +
-            displayTraitComponent(traitObj, "opposing opinion") +
-            displayTraitComponent(traitObj, "cost") +
-            displayTraitBonusesAndPenalties(traitObj) +
-            displayResearchTree(traitObj) +
+        ret = 
+            displayTraitRow("Trait Name", traitObj->query("name"), 
+                colorConfiguration, traitIsNegative(traitFile)) +
+            displayTraitRow("Trait Type", traitObj->query("type"),
+                colorConfiguration) +
+
+            configuration->decorate(format(traitObj->query("description"), 78),
+                "field data", "traits", colorConfiguration) + "\n" +
+
+            displayTraitRow("Root Trait Class", traitObj->query("root"),
+                colorConfiguration) +
+
+            (traitObj->query("opposing root") ? 
+                displayTraitRow("Opposing Trait Class", 
+                    traitObj->query("opposing root"), colorConfiguration) : "") +
+
+            displayTraitComponent(traitObj, "opinion", colorConfiguration) +
+            displayTraitComponent(traitObj, "opposing opinion", colorConfiguration) +
+            displayTraitComponent(traitObj, "cost", colorConfiguration) +
+            displayTraitBonusesAndPenalties(traitObj, colorConfiguration) +
+            displayResearchTree(traitObj, colorConfiguration) +
             traitObj->displayPrerequisites(colorConfiguration, configuration) +
             traitObj->displayLimiters(colorConfiguration, configuration);
     }

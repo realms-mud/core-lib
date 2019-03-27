@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing";
-#include "/lib/include/itemFormatters.h"
 #include "/lib/modules/secure/traits.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -439,34 +438,34 @@ static nomask void traitsHeartBeat()
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getTraitColor(string trait)
 {
-    string ret = "\x1b[0;36m";
+    string ret = "field header";
 
     if (traitDictionary()->traitIsNegative(trait))
     {
-        ret = "\x1b[0;31;1m";
+        ret = "negative trait";
     }
     else if (traitDictionary()->isValidPersistedTrait(trait))
     {
-        ret = "\x1b[0;34;1m";
+        ret = "persisted trait";
     }
     else if(traitDictionary()->isValidSustainedTrait(trait))
     {
-        ret = "\x1b[0;35m";
+        ret = "sustained trait";
     }
     else if (traitDictionary()->traitHasResearchPath(trait))
     {
-        ret = "\x1b[0;32;1m";
+        ret = "has research";
     }
     else if (traitDictionary()->traitIsEnhancement(trait))
     {
-        ret = "\x1b[0;33m";
+        ret = "enhancement";
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string traitListForType(string type, string colorConfiguration,
-    string charset)
+    string charset, object banner, object configuration)
 {
     string ret = "";
     string traitFmt;
@@ -484,16 +483,26 @@ private nomask string traitListForType(string type, string colorConfiguration,
     {
         traitList = sort_array(traitList, (: $1 > $2 :));
 
-        ret += getDictionary("commands")->buildBanner(colorConfiguration, 
-            charset, "center", type, "Traits");
+        ret += banner->buildBanner(colorConfiguration, charset, "center", 
+            type, "Traits");
+
+        string traitRow = "";
         foreach(string trait in traitList)
         {
-            string color = getTraitColor(trait);
-            traitFmt = sprintf(Red, "| ") + getTraitColor(trait) + "%23s\x1b[0m ";
-            ret += sprintf(traitFmt, capitalize(traits[trait]["name"]));
+            string name = capitalize(traits[trait]["name"]);
+            if (sizeof(name) > 23)
+            {
+                name = name[0..19] + "...";
+            }
+
+            traitRow += configuration->decorate(sprintf(" %23s ", name),
+                getTraitColor(trait), "traits", colorConfiguration);
+
             if ((columns % 3) == 2)
             {
-                ret += sprintf(Red, "|\n");
+                ret += banner->banneredContent(colorConfiguration, charset,
+                    traitRow);
+                traitRow = "";
             }
             columns++;
         }
@@ -501,9 +510,10 @@ private nomask string traitListForType(string type, string colorConfiguration,
         {
             for (int i = 0; i < (3 - columns % 3); i++)
             {
-                ret += sprintf("%s%23s\x1b[0m ", sprintf(Red, "| "), "");
+                traitRow += sprintf("%25s", "");
             }
-            ret += sprintf(Red, "|\n");
+            ret += banner->banneredContent(colorConfiguration, charset,
+                traitRow);
         }
     }
     return ret;
@@ -520,7 +530,6 @@ public nomask string traitsList(string *types)
             "sustained effect", "persona" });
     }
 
-
     object settings = getService("settings");
     string colorConfiguration = "none";
     string charset = "ascii";
@@ -530,19 +539,24 @@ public nomask string traitsList(string *types)
         charset = settings->charsetConfiguration();
     }
 
+    object banner = getDictionary("commands");
+    object configuration = getDictionary("configuration");
+
     types = sort_array(types, (: $1 > $2 :));
     foreach(string type in types)
     {
-        ret += traitListForType(type, colorConfiguration, charset);
+        ret += traitListForType(type, colorConfiguration, charset, banner,
+            configuration);
     }
     if (ret == "")
     {
-        ret = sprintf(Cyan, 
-            "You currently do not have any tracked traits.\n");
+        ret = configuration->decorate("You currently do not have any tracked "
+            "traits.\n", "field header", "traits", colorConfiguration);
     }
     else
     {
-        ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
+        ret += banner->buildBanner(colorConfiguration, charset, "bottom",
+            "", "", 1); 
     }
     return "\n" + ret;
 }

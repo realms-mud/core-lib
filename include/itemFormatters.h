@@ -692,6 +692,53 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;200;0;0m"
         ]),
    ]),
+    "traits":([
+        "field header": ([
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;80m",
+            "24-bit": "\x1b[0;38;2;180;180;190m"
+        ]),
+        "field data":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;190m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+        "negative trait":([
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;9;1m",
+            "24-bit": "\x1b[0;38;2;200;0;0;1m"
+        ]),
+        "bonus modifier":([
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;20;1m",
+            "24-bit": "\x1b[0;38;2;10;20;100;1m"
+        ]),
+        "penalty modifier":([
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;9m",
+            "24-bit": "\x1b[0;38;2;200;0;0m"
+        ]),
+        "persisted trait":([
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;25;1m",
+            "24-bit": "\x1b[0;38;2;10;80;160;1m"
+        ]),
+        "sustained trait":([
+            "3-bit": "\x1b[0;35m",
+            "8-bit": "\x1b[0;38;5;31m",
+            "24-bit": "\x1b[0;38;2;80;155;175m"
+        ]), 
+        "has research":([
+            "3-bit": "\x1b[0;32;1m",
+            "8-bit": "\x1b[0;38;5;212m",
+            "24-bit": "\x1b[0;38;2;100;200;10m"
+        ]),
+        "enhancement":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;190m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+   ]),
     "conversation":([
         "description": ([
             "3-bit": "\x1b[0;36m",
