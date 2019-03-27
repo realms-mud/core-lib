@@ -675,6 +675,23 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;200;0;0;1m"
         ]),
    ]),
+    "races":([
+        "information":([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;2m",
+            "24-bit": "\x1b[0;38;2;170;180;110m"
+        ]),
+        "bonus modifier":([
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;20;1m",
+            "24-bit": "\x1b[0;38;2;10;20;100;1m"
+        ]),
+        "penalty modifier":([
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;9m",
+            "24-bit": "\x1b[0;38;2;200;0;0m"
+        ]),
+   ]),
     "conversation":([
         "description": ([
             "3-bit": "\x1b[0;36m",

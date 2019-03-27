@@ -5,13 +5,14 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#include "/lib/include/itemFormatters.h"
 #include "/lib/dictionaries/races/eyes.h"
 #include "/lib/dictionaries/races/hair.h"
 #include "/lib/dictionaries/races/races.h"
 
 private string SubraceRoot = "/lib/modules/traits/racial/";
 private string TraitRoot = "/lib/modules/traits/%s/";
+private object configuration = 
+    load_object("/lib/dictionaries/configurationDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidRace(string race)
@@ -242,25 +243,41 @@ public nomask int canUseEquipmentOfType(object actor, object equipment)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string startingSkillsAndTraits(string race)
+private nomask string startingSkillsAndTraits(string race, string colorConfiguration)
 {
     string ret = "";
 
     if (member(races[race], "starting skill points"))
     {
-        ret += sprintf("\t\x1b[0;32mStarting skill points:\x1b[0m \x1b[0;34;1m%d\x1b[0m\n",
-            races[race]["starting skill points"]);
+        ret += configuration->decorate("\tStarting skill points: ", 
+                "information", "races", colorConfiguration) +
+            configuration->decorate(races[race]["starting skill points"],
+                "bonus modifier", "races", colorConfiguration) + "\n";
     }
     if (member(races[race], "background trait value"))
     {
-        ret += sprintf("\t\x1b[0;32mBonus to trait selection:\x1b[0m \x1b[0;34;1m%d\x1b[0m\n",
-            races[race]["background trait value"]);
+        ret += configuration->decorate("\tBonus to trait selection: ", 
+                "information", "races", colorConfiguration) +
+            configuration->decorate(races[race]["background trait value"],
+                "bonus modifier", "races", colorConfiguration) + "\n";
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string bonusAttributeDescription(string race)
+private nomask string decoratedElement(string fieldName, int value, 
+    string colorConfiguration)
+{
+    return configuration->decorate(fieldName,  
+            "information", "races", colorConfiguration) +
+        ((value > 0) ? configuration->decorate(sprintf("+%d\n", value),
+                "bonus modifier", "races", colorConfiguration) : 
+            configuration->decorate(sprintf("%d\n", value), 
+                "penalty modifier", "races", colorConfiguration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string bonusAttributeDescription(string race, string colorConfiguration)
 {
     string ret = "";
 
@@ -271,16 +288,15 @@ private nomask string bonusAttributeDescription(string race)
     {
         if (member(races[race], attribute))
         {
-            ret += sprintf("\t\x1b[0;32m%-12s\x1b[0m " +
-                ((races[race][attribute] > 0) ? "\x1b[0;34;1m+%d\x1b[0m\n" : "\x1b[0;31m%d\x1b[0m\n"),
-                capitalize(attribute), races[race][attribute]);
+            ret += decoratedElement(sprintf("\t%-12s ", capitalize(attribute)),
+                races[race][attribute], colorConfiguration);
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string bonusSkillDescription(string race)
+private nomask string bonusSkillDescription(string race, string colorConfiguration)
 {
     string ret = "";
 
@@ -291,17 +307,16 @@ private nomask string bonusSkillDescription(string race)
 
         foreach(string skill in skills)
         {
-            ret += sprintf("\t\x1b[0;32mBonus %s skill\x1b[0m " +
-                ((races[race]["skills"][skill] > 0) ? 
-                    "\x1b[0;34;1m+%d\x1b[0m\n" : "\x1b[0;31m%d\x1b[0m\n"),
-                capitalize(skill), races[race]["skills"][skill]);
+            ret += decoratedElement(sprintf("\tBonus %s skill ", 
+                capitalize(skill)), races[race]["skills"][skill],
+                colorConfiguration);
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string otherBonusesDescription(string race)
+private nomask string otherBonusesDescription(string race, string colorConfiguration)
 {
     string ret = "";
     string *bonuses = m_indices(races[race]) -
@@ -315,36 +330,38 @@ private nomask string otherBonusesDescription(string race)
     {
         if (member(races[race], bonus))
         {
-            ret += sprintf("\t\x1b[0;32m%-12s\x1b[0m " +
-                ((races[race][bonus] > 0) ? "\x1b[0;34;1m+%d\x1b[0m\n" : "\x1b[0;31m%d\x1b[0m\n"),
-                capitalize(bonus), races[race][bonus]);
+            ret += decoratedElement(sprintf("\t%-12s ", capitalize(bonus)),
+                races[race][bonus], colorConfiguration);
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string racialDescription(string race)
+private nomask string racialDescription(string race, string colorConfiguration)
 {
     string ret = races[race]["description"] + "\n" +
         sprintf("\nThe %s race incurs the following in-game bonuses/penalties:\n",
             race) +
-        startingSkillsAndTraits(race) + 
-        bonusAttributeDescription(race) +
-        otherBonusesDescription(race) +
-        bonusSkillDescription(race);
+        startingSkillsAndTraits(race, colorConfiguration) +
+        bonusAttributeDescription(race, colorConfiguration) +
+        otherBonusesDescription(race, colorConfiguration) +
+        bonusSkillDescription(race, colorConfiguration);
 
     if (member(races[race], "research trees"))
     {
-        ret += "\t\x1b[0;34;1mA special research tree only available to "
-            "this race is unlocked.\x1b[0m\n";
+        ret += configuration->decorate(
+            "\tA special research tree only available to this race is unlocked.\n",
+            "bonus modifier", "races", colorConfiguration);
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping characterCreationRaces()
+public nomask mapping characterCreationRaces(object user)
 {
+    string colorConfiguration = user->colorConfiguration();
+
     mapping selection = ([]);
 
     string *raceList = sort_array(filter(m_indices(races),
@@ -355,7 +372,7 @@ public nomask mapping characterCreationRaces()
     {
         selection[to_string(i)] = ([
             "name": capitalize(race),
-            "description": racialDescription(race)
+            "description": racialDescription(race, colorConfiguration)
         ]);
         i++;
     }
