@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/items/item.c";
-#include "/lib/include/itemFormatters.h"
 
 /////////////////////////////////////////////////////////////////////////////
 public int isContainer()
@@ -48,7 +47,7 @@ public mixed query(string element)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string colorizeText(object item)
+private nomask varargs string colorizeText(object item, int quantity)
 {
     string ret = "";
 
@@ -56,25 +55,95 @@ private nomask string colorizeText(object item)
     {
         if (materialsObject())
         {
-            ret = materialsObject()->applyMaterialQualityToText(item, item->short());
+            string itemDesc = item->short(1);
+            if (!quantity)
+            {
+                if (sizeof(itemDesc) > 19)
+                {
+                    itemDesc = itemDesc[0..16] + "...";
+                }
+                itemDesc = sprintf("%-21s", itemDesc);
+            }
+            else
+            {
+                if (quantity > 1)
+                {
+                    itemDesc = sprintf("[%s] %s",
+                        ((quantity > 99) ? "++" : to_string(quantity)),
+                        itemDesc);
+                }
+                if (sizeof(itemDesc) > 23)
+                {
+                    itemDesc = itemDesc[0..20] + "...";
+                }
+                itemDesc = sprintf("%-25s", itemDesc);
+            }
+
+            ret = materialsObject()->applyMaterialQualityToText(item,
+                itemDesc, this_object());
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs string inventoryText(object *itemList)
+private nomask string inventoryText(object *allItems)
 {
     string ret = "";
 
-    foreach(object equipment in itemList)
+    string colorConfiguration = this_player() ?
+        this_player()->colorConfiguration() : "none";
+    string charset = this_player() ?
+        this_player()->charsetConfiguration() : "ascii";
+    object banner = load_object("/lib/dictionaries/commandsDictionary.c");
+
+    if (sizeof(allItems))
     {
-        if (equipment->short())
+        ret += banner->buildBanner(colorConfiguration, charset,
+            "top", "This item contains the following");
+    }
+
+    mapping otherItems = ([]);
+    foreach(object equipment in allItems)
+    {
+        string key = program_name(equipment) + "#" + equipment->short(1);
+
+        if (member(otherItems, key))
         {
-            ret += sprintf(Red, "| ") + colorizeText(equipment) + "\n";
+            otherItems[key]++;
+            allItems -= ({ equipment });
+        }
+        else
+        {
+            otherItems[key] = 1;
         }
     }
 
+    string *itemList = ({});
+
+    foreach(object equipment in allItems)
+    {
+        string key = program_name(equipment) + "#" + equipment->short(1);
+        itemList += ({ colorizeText(equipment, otherItems[key]) });
+        if ((sizeof(itemList) % 4) == 3)
+        {
+            ret += banner->banneredContent(colorConfiguration, charset,
+                implode(itemList, ""));
+            itemList = ({});
+        }
+    }
+
+    if (sizeof(itemList))
+    {
+        for (int i = sizeof(itemList); i < 3; i++)
+        {
+            itemList += ({ sprintf("%-25s", "") });
+        }
+
+        ret += banner->banneredContent(colorConfiguration, charset,
+            implode(itemList, ""));
+    }
+    ret += banner->buildBanner(colorConfiguration, charset, "bottom", "", "", 1);
     return ret;
 }
 
@@ -84,12 +153,11 @@ public varargs string long(int doNotApplyUserStatistics)
     string ret = "item"::long(doNotApplyUserStatistics);
 
     object *inventory = sort_array(all_inventory(), 
-        (: object_name($1) < object_name($2) :));
+        (: $1->query("short") > $2->query("short") :));
 
     if (sizeof(inventory))
     {
-        ret += "\nThis item contains the following:\n" +
-            inventoryText(inventory);
+        ret += inventoryText(inventory);
     }
     return ret;
 }
