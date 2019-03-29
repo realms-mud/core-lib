@@ -23,9 +23,13 @@ protected mapping questMenuSetup(string type)
     if (questObj)
     {
         SuppressColon = 1;
-        Description = "Details:\x1b[0m\n" +
-            format(sprintf("\x1b[0;33mName\x1b[0m:  \x1b[0;33;1m%s\x1b[0m\n\x1b[0;36m%s\x1b[0m\n",
-                questObj->name(), User->questStory(type)), 78);
+        Description = "Details:\n" +
+            configuration->decorate("Name:  ",
+                "heading", "quests", colorConfiguration) +
+            configuration->decorate(capitalize(questObj->name()),
+                "data", "quests", colorConfiguration) + "\n" +
+            configuration->decorate(format(User->questStory(type), 78),
+                "description", "quests", colorConfiguration) + "\n";
     }
     else
     {
@@ -99,9 +103,13 @@ protected nomask string displayDetails(string choice)
 {
     string ret = "";
 
+    int useUnicode = User->charsetConfiguration() == "unicode";
+
     if (User->questIsActive(Data[choice]["type"]))
     {
-        ret = "\x1b[0;35m (!)\x1b[0m";
+        ret = configuration->decorate(
+            useUnicode ? " (\xe2\x8c\x9b)" : " (!)",
+            "active quest", "quests", colorConfiguration); 
     }
     else if (User->questIsCompleted(Data[choice]["type"]))
     {
@@ -109,13 +117,17 @@ protected nomask string displayDetails(string choice)
 
         if (questObj && questObj->questSucceeded(User))
         {
-            ret = "\x1b[0;34;1m (*)\x1b[0m";
+            ret = configuration->decorate(
+                useUnicode ? " (\xe2\x98\x85)" : " (*)",
+                "selected", "selector", colorConfiguration); 
         }
         else if (questObj &&
             questObj->questInCompletionState(User->questState(Data[choice]["type"])) &&
             !questObj->questSucceeded(User))
         {
-            ret = "\x1b[0;31m (X)\x1b[0m";
+            ret = configuration->decorate(
+                useUnicode ? " (\xe2\x95\xb3)" : " (X)",
+                "failure", "selector", colorConfiguration);
         }
     }
     return ret;

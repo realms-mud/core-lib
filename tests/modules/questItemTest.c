@@ -314,8 +314,12 @@ void AddTransitionSilentlySucceedsWhenEverythingValidates()
 void QuestStoryReturnsCorrectNarrativeForQuestStatesCompleted()
 {
     SetUpQuestItem();
-    ExpectEq("\x1b[0;36mI've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me! I told the king to piss off. I have socks to fold.\x1b[0m\x1b[0;31m [Failure]\x1b[0m",
-        QuestItem->questStory(({"meet the king", "met the king", "serve the king", "ignore the king"})));
+    ExpectEq("\x1b[0;36mI've been asked to meet the king! I met King Tantor "
+        "the Unclean of Thisplace. He seems to like me. The king asked me - "
+        "ME - to be his personal manservant. Yay me! I told the king to piss "
+        "off. I have socks to fold.\x1b[0m\x1b[0;31;1m [Failure]\x1b[0m",
+        QuestItem->questStory(({"meet the king", "met the king", "serve the king", "ignore the king"}),
+            clone_object("/lib/realizations/player.c")));
 }
 
 /////////////////////////////////////////////////////////////////////////////

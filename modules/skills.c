@@ -6,7 +6,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
-#include "/lib/include/itemFormatters.h"
 #include "/lib/modules/secure/skills.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -200,13 +199,14 @@ public nomask int decrementSkill(string skill, int amount)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string skillListForType(string type)
+private nomask string skillListForType(string type, string colorConfiguration,
+    string charset, object banner, object configuration)
 {
     string ret = "";
-    string skillFmt = sprintf(Red, "| ") + "\x1b[0;36m%24s\x1b[0m : \x1b[0;33m%3d\x1b[0m \x1b[0;34;1m%5s\x1b[0m";
 
     int x = 1;
     string *skillList = skillsObject()->validSkillsOfType(type);
+    string skillsLine = "";
     foreach(string skill in skillList)
     {
         int value = 0;
@@ -216,20 +216,29 @@ private nomask string skillListForType(string type)
         }
         int bonus = getSkill(skill) - value;
 
-        ret += sprintf(skillFmt, capitalize(skill), value, (bonus > 0) ? "(+" + bonus + ")" : "");
+        skillsLine += 
+            configuration->decorate(sprintf("%24s : ", capitalize(skill)),
+                "skill header", "skills", colorConfiguration) +
+            configuration->decorate(sprintf("%3d ", value),
+                "skill value", "skills", colorConfiguration) +
+            ((bonus > 0) ? configuration->decorate(sprintf("(+%2d) ", bonus),
+                "modifier", "skills", colorConfiguration) : "      ");
+
         if (!(x % 2))
         {
-            ret += sprintf(Red, " |\n");
+            ret += banner->banneredContent(colorConfiguration, charset, skillsLine);
+            skillsLine = "";
         }
         else
         {
-            ret += " ";
+            skillsLine += " ";
         }
         x++;
     }
     if (!(x % 2))
     {
-        ret += sprintf("%s%38s%s", sprintf(Red, "|"), "", sprintf(Red, "|\n"));
+        skillsLine += sprintf("%37s", "");
+        ret += banner->banneredContent(colorConfiguration, charset, skillsLine);
     }
     return ret;
 }
@@ -253,15 +262,22 @@ public nomask string skillsList(string *types)
         charset = settings->charsetConfiguration();
     }
 
+    object banner = getDictionary("commands");
+    object configuration = getDictionary("configuration");
+
     types = sort_array(types, (: $1 > $2 :));
     foreach(string type in types)
     {
-        ret += getDictionary("commands")->buildBanner(colorConfiguration, charset, 
-            "center", type, "Skills") + skillListForType(type);
+        ret += banner->buildBanner(colorConfiguration, charset,
+            "center", type, "Skills") + 
+            skillListForType(type, colorConfiguration, charset, banner, 
+                configuration);
     }
 
-    ret += sprintf(Red, "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n");
-    ret += sprintf(BoldBlack, 
-        sprintf("You have %d skill points available to spend.\n", availableSkillPoints));
+    ret += banner->buildBanner(colorConfiguration, charset,
+        "bottom", "", "", 1);
+    ret += configuration->decorate(sprintf("You have %d skill points "
+        "available to spend.\n", availableSkillPoints),
+        "points remaining", "skills", colorConfiguration);
     return ret;
 }

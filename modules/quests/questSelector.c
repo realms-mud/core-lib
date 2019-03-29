@@ -64,7 +64,8 @@ protected nomask string displayDetails(string choice)
     if (member(Data[choice], "can display") &&
         !Data[choice]["can display"])
     {
-        ret = "\x1b[0;31m(No quests)\x1b[0m";
+        ret = configuration->decorate("(No quests)", 
+            "failure", "selector", colorConfiguration);
     }
     return ret;
 }

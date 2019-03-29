@@ -1383,9 +1383,12 @@ public nomask int canAdvanceSkill(object skillOwner, string skill, int value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping creationListForSkillType(string type)
+public nomask mapping creationListForSkillType(string type, object user)
 {
     mapping ret = ([]);
+
+    string colorConfiguration = user->colorConfiguration();
+    object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
     string *skillsList = validSkillsOfType(type);
     if (sizeof(skillsList))
@@ -1393,11 +1396,15 @@ public nomask mapping creationListForSkillType(string type)
         int i = 1;
         foreach(string skill in skillsList)
         {
-            string attribute =
-                sprintf("\t\x1b[0;32mAffecting attribute\x1b[0m: \x1b[0;34;1m%s\x1b[0m\n",
-                    capitalize(skills[skill]["attribute"]));
+            string attribute = configuration->decorate("\tAffecting attribute: ",
+                    "information", "skills", colorConfiguration) +
+                configuration->decorate(capitalize(skills[skill]["attribute"]),
+                    "modifier", "skills", colorConfiguration) + "\n";
 
-            int penalty = skills[skill]["untrained penalty"];
+            string penalty = skills[skill]["untrained penalty"] ?
+                configuration->decorate("\tAttempting to use this skill "
+                    "untrained will incur a penalty.\n",
+                    "penalty", "skills", colorConfiguration) : "";
 
             string name = capitalize(skill);
             if (sizeof(name) > 20)
@@ -1407,9 +1414,7 @@ public nomask mapping creationListForSkillType(string type)
             ret[to_string(i)] = ([
                 "name": name,
                 "skill": skill,
-                "description": skills[skill]["description"] + "\x1b[0m" +
-                    attribute +
-                    (penalty ? "\t\x1b[0;31;1mAttempting to use this skill untrained will incur a penalty.\n" : "")
+                "description": skills[skill]["description"] + attribute + penalty
             ]);
             i++;
         }

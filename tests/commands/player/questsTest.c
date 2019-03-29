@@ -118,9 +118,9 @@ void DescriptionOfQuestChangesWithStateAdvancement()
     command("5", Player);
     command("1", Player);
 
-    ExpectEq("\x1b[0;36mQuest - \x1b[0m\x1b[0;37;1mDetails:\x1b[0m\n"
-        "\x1b[0;33mName\x1b[0m:  \x1b[0;33;1mHail to the king, baby!\x1b[0m\n"
-        "\x1b[0;36m\x1b[0;36mI've been asked to meet the king!\x1b[0m\x1b[0m\n\x1b[0m\n"
+    ExpectEq("\x1b[0;36mQuest - \x1b[0m\x1b[0;37;1mDetails:\n"
+        "\x1b[0;33mName:  \x1b[0m\x1b[0;33;1mHail to the king, baby!\x1b[0m\n"
+        "\x1b[0;36m\x1b[0;36mI've been asked to meet the king!\n\x1b[0m\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -132,11 +132,11 @@ void DescriptionOfQuestChangesWithStateAdvancement()
 
     command("1", Player);
     command("1", Player);
-    ExpectEq("\x1b[0;36mQuest - \x1b[0m\x1b[0;37;1mDetails:\x1b[0m\n"
-        "\x1b[0;33mName\x1b[0m:  \x1b[0;33;1mHail to the king, baby!\x1b[0m\n"
-        "\x1b[0;36m\x1b[0;36mI've been asked to meet the king! I met King Tantor the Unclean\n"
-        "of Thisplace. He seems to like me. The king asked me - ME - to be his personal\n"
-        "manservant. Yay me!\x1b[0m\x1b[0m\n\x1b[0m\n"
+    ExpectEq("\x1b[0;36mQuest - \x1b[0m\x1b[0;37;1mDetails:\n"
+        "\x1b[0;33mName:  \x1b[0m\x1b[0;33;1mHail to the king, baby!\x1b[0m\n"
+        "\x1b[0;36m\x1b[0;36mI've been asked to meet the king! I met King Tantor the Unclean of\n"
+        "Thisplace. He seems to like me. The king asked me - ME - to be his personal\n"
+        "manservant. Yay me!\n\x1b[0m\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -176,5 +176,28 @@ void CanViewDetails()
     command("describe 2", Player);
 
     ExpectSubStringMatch("Hail.*This is the description.*Thisplace.*Failure",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDisplayUnicode()
+{
+    Player->charsetConfiguration("unicode");
+    Player->colorConfiguration("8-bit");
+    Player->beginQuest("lib/tests/support/quests/anotherQuest.c");
+    Player->beginQuest("lib/tests/support/quests/fakeQuestItem.c");
+    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "met the king");
+    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "ignore the king");
+    Player->executeCommand("quests");
+    command("7", Player);
+
+    ExpectEq("\x1b[0;38;5;80mQuest - \x1b[0m\x1b[0;38;5;15;1mSelect a quest to view in more detail\x1b[0m:\n"
+        "\t[\x1b[0;38;5;9;1m1\x1b[0m] - \x1b[0;38;5;2mAnother quest       \x1b[0m\x1b[0;38;5;20;1m (\xe2\x98\x85)\x1b[0m"
+        "\t[\x1b[0;38;5;9;1m2\x1b[0m] - \x1b[0;38;5;2mHail to the king,...\x1b[0m\x1b[0;38;5;124m (\xe2\x95\xb3)\x1b[0m\n"
+        "\t[\x1b[0;38;5;9;1m3\x1b[0m] - \x1b[0;38;5;2mReturn to previous menu\x1b[0m\n"
+        "\x1b[0;38;5;2;1mYou must select a number from 1 to 3.\n\x1b[0m"
+        "\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
+        "\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
         Player->caughtMessage());
 }

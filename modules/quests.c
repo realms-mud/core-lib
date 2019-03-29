@@ -96,7 +96,7 @@ public nomask string questStory(string questItem)
     if (isValidQuest(questItem) && getQuestObject(questItem))
     {
         ret = quest->questStory(quests[questItem]["states completed"] +
-            ({ quests[questItem]["state"] }));
+            ({ quests[questItem]["state"] }), this_object());
     }
     return ret;
 }

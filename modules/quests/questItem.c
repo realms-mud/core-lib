@@ -5,27 +5,14 @@
 virtual inherit "/lib/core/prerequisites.c";
 virtual inherit "/lib/core/stateMachine.c";
 
-private nosave string Cyan = "\x1b[0;36m%s\x1b[0m";
-private nosave string Red = "\x1b[0;31m%s\x1b[0m";
-private nosave string Green = "\x1b[0;32m%s\x1b[0m";
 private string BaseQuest = "lib/modules/quests/questItem.c";
 
 private string Name = 0;
 private string Description = 0;
 private string Type = "secondary";
 
-private nosave mapping colors = ([
-    "success":([
-        "3-bit": "\x1b[0;32;1m",
-        "8-bit": "\x1b[0;38;5;28;1m",
-        "24-bit": "\x1b[0;38;2;0;180;0;1m"
-    ]),
-    "failure":([
-        "3-bit": "\x1b[0;31;1m",
-        "8-bit": "\x1b[0;38;5;124;1m",
-        "24-bit": "\x1b[0;38;2;180;0;0;1m"
-    ])
-]);
+private object configuration = 
+    load_object("/lib/dictionaries/configurationDictionary.c");
 
     // "<state>" : ([
     //     "description": <some text>
@@ -94,7 +81,6 @@ public varargs string getCurrentState(object caller)
         "stateMachine"::getCurrentState(caller);
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidQuest()
 {
@@ -113,12 +99,10 @@ protected void advanceState(object caller, string newState)
             caller->colorConfiguration() : "none";
 
         string questFinish = stateTree[newState]["is final state"];
-        string message = sprintf("[ Quest %s ]: %s.\n", questFinish, Name);
+        string message = configuration->decorate(
+            sprintf("[ Quest %s ]: %s.\n", questFinish, Name),
+            questFinish, "quests", colorConfig);
 
-        if (member(colors[questFinish], colorConfig))
-        {
-            message = colors[questFinish][colorConfig] + message + "\x1b[0m";
-        }
         tell_object(caller, message);
     }
 }
@@ -182,21 +166,27 @@ public nomask void setType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string questStory(string *stateList)
+public nomask string questStory(string *stateList, object user)
 {
+    string colorConfiguration = (objectp(user) && user->colorConfiguration()) ?
+        user->colorConfiguration() : "none";
+
     // WARNING: This array MUST be passed in the order in which the states
     // were completed or the story will be nonsensical!
     string ret = "The quest has just begun.";
     if(sizeof(stateList))
     {
-        ret = sprintf(Cyan, implode(map(stateList, 
-            (: (member(stateTree, $1) ? stateTree[$1]["description"] : "") :))," "));
+        string story = implode(map(stateList,
+            (: (member(stateTree, $1) ? stateTree[$1]["description"] : "") :))," ");
+
+        ret = configuration->decorate(story, "description", "quests", 
+            colorConfiguration);
 
         if(member(stateTree[stateList[sizeof(stateList) - 1]], "is final state"))
         {
             string result = stateTree[stateList[sizeof(stateList) - 1]]["is final state"];
-            string colorFormat = (result == "success") ? Green : Red;
-            ret += sprintf(colorFormat, " [" + capitalize(result) + "]");
+            ret += configuration->decorate(" [" + capitalize(result) + "]", 
+                result, "quests", colorConfiguration);
         }
     }
     return ret;

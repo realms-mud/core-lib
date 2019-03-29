@@ -8,5 +8,5 @@ inherit "/lib/modules/creation/skillSelectorSubmenu.c";
 protected mapping skillMenuSetup()
 {
     return SkillDictionary ? 
-        SkillDictionary->creationListForSkillType("subterfuge") : ([]);
+        SkillDictionary->creationListForSkillType("subterfuge", User) : ([]);
 }

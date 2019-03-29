@@ -36,12 +36,6 @@ public nomask void reset(int arg)
         {
             raise_error("skillSelectorSubmenu: ERROR - The skills dictionary is not present!\n");
         }
-        Data = skillMenuSetup();
-
-        Data[to_string(sizeof(Data) + 1)] = ([
-            "name":"Return to previous menu",
-            "description" : "Return to the main skill selection menu.\n"
-        ]);
     }
 }
 
@@ -52,6 +46,13 @@ protected nomask void setUpUserForSelection()
     {
         Type = "Level up";
     }
+
+    Data = skillMenuSetup();
+
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name":"Return to previous menu",
+        "description" : "Return to the main skill selection menu.\n"
+    ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
