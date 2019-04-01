@@ -51,7 +51,8 @@ public nomask int execute(string command, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 protected string wildcardMeaning(string colorConfiguration)
 {
-    return "\x1b[0;31;1m<Message to speak>\x1b[0m";
+    return configuration->decorate("<Message to speak>",
+        "wildcard", "help", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////

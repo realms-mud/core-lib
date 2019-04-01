@@ -42,34 +42,32 @@ private nomask string categoriesHelpList(string *commandCategories,
     string message = "";
     foreach(string commandCategory in commandCategories)
     {
+        int columnSize = (commandCategory == "Party") ? 25 : 15;
+
         message += Dictionary->buildBanner(colorConfiguration, charset,
             "top", capitalize(commandCategory), "Help");
 
         string *commandEntries = sort_array(m_indices(
             commandList[commandCategory]), (: $1 > $2 :));
         int count = 0;
+
+        string helpRow = "";
         foreach(string commandEntry in commandEntries)
         {
-            if (!(count % 5))
+            if (!(count % (80 / columnSize)))
             {
                 if (count)
                 {
-                    message += " \x1b[0;31m|\x1b[0m\n";
+                    message += Dictionary->banneredContent(
+                        colorConfiguration, charset, helpRow);
+                    helpRow = "";
                 }
-                message += "\x1b[0;31m| \x1b[0;37m";
             }
-            message += sprintf("%-15s", commandEntry);
+            helpRow += sprintf("%-" + to_string(columnSize) + "s", commandEntry);
             count++;
         }
-        int spacesLeft = count % 5;
-        if (spacesLeft)
-        {
-            for (int i = spacesLeft; i < 5; i++)
-            {
-                message += sprintf("%-15s", "");
-            }
-        }
-        message += " \x1b[0;31m|\x1b[0m\n";
+
+        message += Dictionary->banneredContent(colorConfiguration, charset, helpRow);
     }
     message += Dictionary->buildBanner(colorConfiguration, charset, "center", "", "");
 
@@ -102,8 +100,12 @@ private nomask void pageString(string message, object initiator,
     {
         pageString(implode(messageLines[0..(pageSize - 1)], "\n"), initiator, 
             colorConfiguration, charset);
-        tell_object(initiator, "\n\x1b[0;35;1mMore? [q to quit]\x1b[0m\n");
-        input_to("responseToPage", 1, "\x1b[0;36m" + implode(messageLines[pageSize..], "\n"), 
+        tell_object(initiator, configuration->decorate("\nMore? [q to quit]\n",
+            "page", "help", colorConfiguration));
+
+        input_to("responseToPage", 1, configuration->decorate(
+            implode(messageLines[pageSize..], "\n"),
+            "text", "help", colorConfiguration),
             initiator, colorConfiguration, charset);
     }
     else

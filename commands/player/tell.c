@@ -113,5 +113,5 @@ protected string description(string displayCommand, string colorConfiguration)
 /////////////////////////////////////////////////////////////////////////////
 protected string notes(string displayCommand, string colorConfiguration)
 {
-    return "See also: tell, whisper, reply, say, and set";
+    return "See also: shout, whisper, reply, say, and set";
 }

@@ -164,7 +164,8 @@ public nomask int execute(string command, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 protected string wildcardMeaning(string colorConfiguration)
 {
-    return "\x1b[0;31;1m<Message to speak>\x1b[0m";
+    return configuration->decorate("<Message to speak>",
+        "wildcard", "help", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -183,19 +184,29 @@ protected string flagInformation(string flag, string colorConfiguration)
         case "-v":
         {
             ret = "This option will replace the verb displayed as part of "
-                "the 'say' message. For example:\n\t\x1b[0;37m> say -v grumble "
-                "I'm grumpy!\n\t\x1b[0;32mYou grumble, `I'm grumpy!'\x1b[0m\n"
-                "\x1b[0;36mOthers users would then see:\n"
-                "\t\x1b[0;32mBob grumbles, `I'm grumpy!'\x1b[0m\n";
+                "the 'say' message. For example:\n\t" +
+                configuration->decorate("> say -v grumble I'm grumpy!\n",
+                    "message", "say", colorConfiguration) +
+                configuration->decorate("\tYou grumble, `I'm grumpy!'\n",
+                    "help display", "say", colorConfiguration) +
+                configuration->decorate("Other users would then see:\n",
+                    "message", "soul", colorConfiguration) + 
+                configuration->decorate("\tBob grumbles, `I'm grumpy!'\n",
+                        "help display", "say", colorConfiguration);
             break;
         }
         case "-a":
         {
             ret = "This option will add an adverb to "
-                "the 'say' message. For example:\n\t\x1b[0;37m> say -a sarcastically "
-                "You're my hero!\n\t\x1b[0;32mYou sarcastically say, `You're my hero!'\x1b[0m\n"
-                "\x1b[0;36mOthers users would then see:\n"
-                "\t\x1b[0;32mBob sarcastically says, `You're my hero!'\x1b[0m\n";
+                "the 'say' message. For example:\n\t" +
+                configuration->decorate("> say -a sarcastically You're my "
+                    "hero!\n", "message", "say", colorConfiguration) +
+                configuration->decorate("\tYou sarcastically say, `You're "
+                    "my hero!'\n", "help display", "say", colorConfiguration) +
+                configuration->decorate("Other users would then see:\n",
+                    "message", "soul", colorConfiguration) +
+                configuration->decorate("\tBob sarcastically says, `You're "
+                    "my hero!'\n", "help display", "say", colorConfiguration); 
             break;
         }
         case "-l":
@@ -206,34 +217,61 @@ protected string flagInformation(string flag, string colorConfiguration)
                 "translated appropriately or becomes gibberish. Those in the "
                 "environment will then use their skill to translate the message "
                 "back to English. For example if you have no skill in a "
-                "language, you might see:\n\t\x1b[0;37m> say -l orcish "
-                "I should say something nice.\n\t\x1b[0;32mYou say in complete "
-                "gibberish, `Blarg nukuleve zog forgla bup'\n"
-                "\x1b[0;36mOthers users would see:\n"
-                "\t\x1b[0;32mBob says in complete gibberish, `Blarg nukuleve zog "
-                "forgla bup'\n\x1b[0;36mMeanwhile, if you do know a language you might "
-                "see:\n\t\x1b[0;37m> say -l elven I should say something nice."
-                "\n\t\x1b[0;32mYou say in elven, `I should say something nice.'\n"
-                "\x1b[0;36mOthers users that have a high skill in elven would see:"
-                "\n\t\x1b[0;32mBob says in elven, `I should say something nice.'\n"
-                "\x1b[0;36mOthers users that have no skill in elven would see:"
-                "\n\t\x1b[0;32mBob says in elven, `Naur wu simildin welana loomen'\n"
-                "\x1b[0;36mIt is important to note that knowledge of a language is "
-                "a range and, so too, is one's ability to speak and translate "
-                "it. You will go from being able to speak/understand nothing "
-                "to brokenly speaking or partially understanding all the way "
-                "through being completely fluent.\x1b[0;36m\n";
+                "language, you might see:\n\t" +
+                configuration->decorate("> say -l orcish I should say "
+                    "something nice.\n", "message", "say", colorConfiguration) +
+                configuration->decorate("\tYou say in complete gibberish, "
+                    "`Blarg nukuleve zog forgla bup'\n",
+                    "help display", "say", colorConfiguration) +
+                configuration->decorate("Other users would then see:\n",
+                    "message", "soul", colorConfiguration) +
+                configuration->decorate("\tBob says in complete gibberish, "
+                    "`Blarg nukuleve zog forgla bup'\n",
+                    "help display", "say", colorConfiguration) +
+
+                configuration->decorate("Meanwhile, if you do know a language "
+                    "you might see:\n", "message", "soul", colorConfiguration) +
+                configuration->decorate("> say -l elven I should say "
+                    "something nice.\n", "message", "say", colorConfiguration) +
+                configuration->decorate("\tYou say in elven, `I should "
+                    "say something nice.'\n",
+                    "help display", "say", colorConfiguration) +
+                configuration->decorate("Other users that have a high skill in "
+                    "elven would see:\n", "message", "soul", colorConfiguration) +
+                configuration->decorate("\tBob says in elven, `I should "
+                    "say something nice.'\n",
+                    "help display", "say", colorConfiguration) +
+                configuration->decorate("Other users that have no skill in "
+                    "elven would see:\n", "message", "soul", colorConfiguration) +
+                configuration->decorate("\tBob says in elven, `Naur wu "
+                    "simildin welana loomen'\n",
+                    "help display", "say", colorConfiguration) +
+
+                configuration->decorate("It is important to note that knowledge "
+                    "of a language is a range and, so too, is one's ability "
+                    "to speak and translate it. You will go from being able to "
+                    "speak/understand nothing to brokenly speaking or "
+                    "partially understanding all the way through being "
+                    "completely fluent.\n",
+                    "text", "help", colorConfiguration);
             break;
         }
         case "-t":
         {
             ret = "This option will allow you to speak a message to a specific "
-                "target. For example:\n\t\x1b[0;37m> say -t Fred "
-                "Hi Fred!\n\t\x1b[0;32mYou say to Fred, `Hi Fred!'\x1b[0m\n"
-                "\x1b[0;36mFred would then see:\n"
-                "\t\x1b[0;32mBob says to you, `Hi Fred!'\x1b[0m\n"
-                "\x1b[0;36mOthers users would then see:\n"
-                "\t\x1b[0;32mBob says to Fred, `Hi Fred!'\x1b[0m\n";
+                "target. For example:\n\t" +
+                configuration->decorate("> say -t Fred Hi Fred!\n",
+                    "message", "say", colorConfiguration) +
+                configuration->decorate("\tYou say to Fred, `Hi Fred!'\n", 
+                    "help display", "say", colorConfiguration) +
+                configuration->decorate("Fred would then see:\n",
+                    "message", "soul", colorConfiguration) +
+                configuration->decorate("\tBob says to you, `Hi Fred!'\n",
+                    "help display", "say", colorConfiguration) +
+                configuration->decorate("Other users would then see:\n",
+                    "message", "soul", colorConfiguration) +
+                configuration->decorate("\tBob says to Fred, `Hi Fred!'\n", 
+                    "help display", "say", colorConfiguration);
             break;
         }
     }

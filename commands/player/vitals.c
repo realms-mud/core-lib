@@ -44,11 +44,26 @@ protected string description(string displayCommand, string colorConfiguration)
 {
     return format("The vitals command displays information about your current hit "
         "points, spell points, and stamina points levels.\n\nFor example:\n> "
-        "vitals", 78) + "\x1b[0;31m|\x1b[0m  \x1b[0;36mHit Points: \x1b[0;35;1m==\x1b[0;31m........\x1b[0m"
-        "\x1b[0;36m   Spell Points: \x1b[0;35;1m========\x1b[0;31m..\x1b[0m       "
-        "\x1b[0;36mStamina: \x1b[0;35;1m==========\x1b[0m \x1b[0;31m|\x1b[0m\n\x1b[0;31m|"
-        "              \x1b[0;33m30 / 121                    122 / 152 "
-        "                96 / 96   \x1b[0;31m|\x1b[0m\n";
+        "vitals", 78) + 
+        configuration->decorate("Hit Points: ",
+            "content", "score", colorConfiguration) +
+        configuration->decorate("==",
+            "bar", "score", colorConfiguration) +
+        configuration->decorate("........",
+            "empty bar", "score", colorConfiguration) +
+        configuration->decorate("   Spell Points: ",
+            "content", "score", colorConfiguration) +
+        configuration->decorate("========",
+            "bar", "score", colorConfiguration) +
+        configuration->decorate("..",
+            "empty bar", "score", colorConfiguration) +
+        configuration->decorate("       Stamina: ",
+            "content", "score", colorConfiguration) +
+        configuration->decorate("========== ", 
+            "bar", "score", colorConfiguration) +
+        configuration->decorate("                30 / 121                    "
+            "122 / 152                 96 / 96  ", 
+            "information", "score", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
