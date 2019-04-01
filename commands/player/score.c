@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
-#include "/lib/include/itemFormatters.h"
 
 private object Dictionary;
 
@@ -54,33 +53,52 @@ private nomask string combatStatistics(object initiator,
     string bestKillLine;
     if (sizeof(bestKill))
     {
-        bestKillLine = sprintf("\x1b[0;36mBest Kill: \x1b[0m\x1b[0;33m%s \x1b[0;35m(Level %s)\x1b[0m "
-            "\x1b[0;31;1mwas killed %s times.\x1b[0m", bestKill["name"],
-            bestKill["level"], bestKill["times killed"]);
+        bestKillLine = configuration->decorate("Best Kill: ", "content", "score",
+                colorConfiguration) +
+            configuration->decorate(bestKill["name"] + " ", "information", "score",
+                colorConfiguration) +
+            configuration->decorate(sprintf("(Level %s) ", bestKill["level"]),
+                "statistics level", "score", colorConfiguration) +
+            configuration->decorate(sprintf("was killed %s times.", 
+                bestKill["times killed"]), "statistics info", "score", 
+                colorConfiguration);
     }
     else
     {
-        bestKillLine = "\x1b[0;36mBest Kill: \x1b[0m\x1b[0;33m<nobody>\x1b[0;35m\x1b[0m\x1b[0;31;1m.\x1b[0m";
+        bestKillLine = configuration->decorate("Best Kill: ", "content", "score",
+                colorConfiguration) +
+            configuration->decorate("<nobody>", "information", "score",
+                colorConfiguration);
     }
 
     mapping nemesis = initiator->getNemesis();
     string nemesisLine;
     if (sizeof(nemesis))
     {
-        nemesisLine = sprintf("\x1b[0;36mNemesis: \x1b[0m\x1b[0;33m%s \x1b[0;35m(Level %s)\x1b[0m "
-            "\x1b[0;31;1mwas killed %s times.\x1b[0m", nemesis["name"],
-            nemesis["level"], nemesis["times killed"]);
+        nemesisLine = configuration->decorate("Nemesis: ", "content", "score",
+                colorConfiguration) +
+            configuration->decorate(nemesis["name"] + " ", "information", "score",
+                colorConfiguration) +
+            configuration->decorate(sprintf("(Level %s) ", nemesis["level"]),
+                "statistics level", "score", colorConfiguration) +
+            configuration->decorate(sprintf("was killed %s times.",
+                nemesis["times killed"]), "statistics info", "score",
+                colorConfiguration);
     }
     else
     {
-        nemesisLine  = "\x1b[0;36mNemesis: \x1b[0m\x1b[0;33m<nobody>\x1b[0;35m\x1b[0m\x1b[0;31;1m.\x1b[0m";
+        nemesisLine = configuration->decorate("Nemesis: ", "content", "score",
+                colorConfiguration) +
+            configuration->decorate("<nobody>", "information", "score",
+                colorConfiguration);
     }
 
-    return Dictionary->buildBanner(colorConfiguration, charset, "center", 
+    return Dictionary->buildBanner(colorConfiguration, charset, "center",
         "Combat Statistics") +
-        sprintf("\x1b[0;31m|\x1b[0m %-117s \x1b[0;31m|\x1b[0m\n", bestKillLine) +
-        sprintf("\x1b[0;31m|\x1b[0m %-117s \x1b[0;31m|\x1b[0m\n", nemesisLine);
+        Dictionary->banneredContent(colorConfiguration, charset, bestKillLine) +
+        Dictionary->banneredContent(colorConfiguration, charset, nemesisLine);
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getWeaponData(object initiator, object weapon, 
@@ -121,9 +139,6 @@ private nomask string getWeaponData(object initiator, object weapon,
 private nomask string getDefensiveStats(object initiator,
     string colorConfiguration, string charset)
 {
-    string format = "\x1b[0;36m%s: \x1b[0m\x1b[0;33m%d to %d\x1b[0m";
-    string row = "\x1b[0;31m|\x1b[0m  %-54s %-38s %-46s \x1b[0;31m|\x1b[0m\n";
-
     int defend = initiator->calculateDefendAttack();
     int soak = initiator->calculateSoakDamage("physical");
 
