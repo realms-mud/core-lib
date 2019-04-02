@@ -7,28 +7,28 @@ virtual inherit "/lib/modules/conversations/baseConversation.c";
 /////////////////////////////////////////////////////////////////////////////
 private void ThatHurts()
 {
-    addTopic("that hurts", "@D@The black-robed figure falls to the "
+    addTopic("first conversation", "@D@The black-robed figure falls to the "
         "ground, seriously wounded.");
 
-    addTopicInterjection("that hurts",
+    addTopicInterjection("first conversation",
         "/lib/tutorial/characters/halgaladh/halgaladh.c",
         "shall we question this one?", 1);
 
     addTopic("what is this place", "@D@The black-robed figure "
         "looks absolutely terrified and chokes out, @S@`Please don't kill "
         "me!'");
-    addResponse("that hurts", "Then answer...",
+    addResponse("first conversation", "Then answer...",
         "@D@@C@##InitiatorName## ##ResponseInfinitive::respond##, @S@`You "
         "should answer his question if you want to live.'");
-    addResponse("that hurts", "Why not?",
+    addResponse("first conversation", "Why not?",
         "@D@@C@##InitiatorName## ##ResponseInfinitive::ask##, @S@`That "
         "all depends on how cooperative you are. I will repeat my friend: "
         "What is this place?'");
-    addResponse("that hurts", "@I@Kill Prisoner@E@",
+    addResponse("first conversation", "@I@Kill Prisoner@E@",
         "@D@@C@##InitiatorName## ##ResponseInfinitive::shake## "
         "##InitiatorPossessive## head and ##ResponseInfinitive::say##, "
         "@S@`No... it's time to die.'");
-    addResponseEffect("that hurts", "@I@Kill Prisoner@E@", (["attack":1]));
+    addResponseEffect("first conversation", "@I@Kill Prisoner@E@", (["attack":1]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,8 +38,8 @@ private void SoIPickMyDeath()
         "ask that of me.' @D@The figure loses all color in his face. @S@`He "
         "will do worse than kill me!'");
 
-    addResponseTopic("that hurts", "Then answer...", "not that");
-    addResponseTopic("that hurts", "Why not?", "not that");
+    addResponseTopic("first conversation", "Then answer...", "not that");
+    addResponseTopic("first conversation", "Why not?", "not that");
 
     addTopicInterjection("not that",
         "/lib/tutorial/characters/donald/donald.c",

@@ -16,7 +16,6 @@ private void QuestionThisOne()
     addTopicInterjection("shall we question this one?",
         "/lib/tutorial/characters/donald/donald.c",
         "stay your sword, boy", 1);
-
 }
 
 /////////////////////////////////////////////////////////////////////////////

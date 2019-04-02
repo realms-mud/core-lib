@@ -31,7 +31,7 @@ public void continueOnTrailPart2()
 public void continueOnTrail()
 {
     StateMachine->beginConversation("baddies went north");
-    call_out("continueOnTrailPart2", 1);
+    call_out("continueOnTrailPart2", 0);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,6 +43,6 @@ public void init()
         (StateMachine->getCurrentState() == "on the trail") &&
         present("alberich"))
     {
-        call_out("continueOnTrail", 2);
+        call_out("continueOnTrail", 0);
     }
 }

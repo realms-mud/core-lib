@@ -42,6 +42,6 @@ public void init()
         present("alberich"))
     {
         present("alberich")->registerEvent(this_object());
-        call_out("continueOnTrail", 1);
+        call_out("continueOnTrail", 0);
     }
 }

@@ -10,11 +10,14 @@ public void Setup()
     cloneEnvironment();
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/cottonwoodStand.c", "north");
-    addFeature("/lib/environment/features/cottonwoodStand.c", "south");
+    addFeature("/lib/tutorial/features/obedience-temple-near.c", "north");
 
     // First test
     addExit("east", "/lib/tutorial/rooms/onTheTrailPart7.c", "on the trail");
     addObject("/lib/tutorial/characters/brendan/brendan.c", "on the trail");
+
+    addExit("north", "/lib/tutorial/temple/environment/rooms/entry-to-pedestal.c", 
+        "enter the lair");
 
     setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
 }

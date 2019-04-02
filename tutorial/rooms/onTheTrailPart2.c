@@ -36,6 +36,6 @@ public void init()
         (StateMachine->getCurrentState() == "on the trail") &&
         present("alberich"))
     {
-        call_out("continueOnTrail", 1);
+        call_out("continueOnTrail", 0);
     }
 }

@@ -92,7 +92,7 @@ public void init()
         present("galadhel"))
     {
         present("galadhel")->registerEvent(this_object());
-        call_out("continueOnTrail", 1);
+        call_out("continueOnTrail", 0);
     }
 }
 

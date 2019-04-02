@@ -31,6 +31,6 @@ public void init()
     if (this_player()->isRealizationOfPlayer() && 
         StateMachine->getCurrentState() == "on the trail")
     {
-        call_out("prodThePlayer", 2);
+        call_out("prodThePlayer", 1);
     }
 }

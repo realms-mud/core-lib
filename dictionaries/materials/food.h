@@ -566,136 +566,205 @@ private nosave mapping food =
     ]),
     "snow pea": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "snow pea seed": 1
+            "snow pea": 1
         ]),
         "base experience": 1,
     ]),
     "green bean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "green bean seed": 1
+            "green bean": 1
         ]),
         "base experience": 1,
     ]),
     "wax bean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "wax bean seed": 1
+            "wax bean": 1
         ]),
         "base experience": 1,
     ]),
     "lima bean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "lima bean seed": 1
+            "lima bean": 1
         ]),
         "base experience": 1,
     ]),
     "chickpea": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "chickpea seed": 1
+            "chickpea": 1
         ]),
         "base experience": 1,
     ]),
     "navy bean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "navy bean seed": 1
+            "navy bean": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "fava bean": ([
+        "type": "vegetable",
+        "subtype": "legume",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "fava bean": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "lupin bean": ([
+        "type": "vegetable",
+        "subtype": "legume",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "lupin bean": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "mung bean": ([
+        "type": "vegetable",
+        "subtype": "legume",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "mung bean": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "runner bean": ([
+        "type": "vegetable",
+        "subtype": "legume",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "runner bean": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "pigeon pea": ([
+        "type": "vegetable",
+        "subtype": "legume",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "pigeon pea": 1
         ]),
         "base experience": 1,
     ]),
     "pinto bean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "pinto bean seed": 1
+            "pinto bean": 1
         ]),
         "base experience": 1,
     ]),
     "black turtle bean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "black turtle bean seed": 1
+            "black turtle bean": 1
         ]),
         "base experience": 1,
     ]),
     "soybean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "soybean seed": 1
+            "soybean": 1
         ]),
         "base experience": 1,
     ]),
     "black-eyed pea": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "black-eyed pea seed": 1
+            "black-eyed pea": 1
         ]),
         "base experience": 1,
     ]),
     "cannellini bean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "cannellini bean seed": 1
+            "cannellini bean": 1
         ]),
         "base experience": 1,
     ]),
     "great northern bean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "great northern bean seed": 1
+            "great northern bean": 1
         ]),
         "base experience": 1,
     ]),
     "kidney bean": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "kidney bean seed": 1
+            "kidney bean": 1
         ]),
         "base experience": 1,
     ]),
     "wheat": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -706,6 +775,7 @@ private nosave mapping food =
     ]),
     "flax": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -716,6 +786,7 @@ private nosave mapping food =
     ]),
     "barley": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -726,6 +797,7 @@ private nosave mapping food =
     ]),
     "wild rice": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -736,6 +808,7 @@ private nosave mapping food =
     ]),
     "rye": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -746,6 +819,7 @@ private nosave mapping food =
     ]),
     "amaranth": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -756,6 +830,7 @@ private nosave mapping food =
     ]),
     "millet": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -766,6 +841,7 @@ private nosave mapping food =
     ]),
     "oat": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -776,6 +852,7 @@ private nosave mapping food =
     ]),
     "quinoa": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -786,6 +863,7 @@ private nosave mapping food =
     ]),
     "rice": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -796,6 +874,7 @@ private nosave mapping food =
     ]),
     "basmati rice": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -806,6 +885,7 @@ private nosave mapping food =
     ]),
     "spelt": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -816,6 +896,7 @@ private nosave mapping food =
     ]),
     "teff": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -824,23 +905,179 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
-    "red lentil": ([
+    "buckwheat": ([
         "type": "vegetable",
+        "subtype": "grain",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "red lentil seed": 1
+            "buckwheat seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "sorghum": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "sorghum seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "triticale": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "triticale seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "chia": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "chia seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "fonio": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "fonio seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "flour corn": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "flour corn seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "popcorn": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "popcorn seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "dent corn": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "dent corn seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "flint corn": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "flint corn seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "sweet corn": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "sweet corn seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "waxy corn": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "waxy corn seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "pod corn": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "pod corn seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "striped maize": ([
+        "type": "vegetable",
+        "subtype": "grain",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "striped maize seed": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "red lentil": ([
+        "type": "vegetable",
+        "subtype": "legume",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "red lentil": 1
         ]),
         "base experience": 1,
     ]),
     "green lentil": ([
         "type": "vegetable",
+        "subtype": "legume",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
         "crafting materials": ([
-            "green lentil seed": 1
+            "green lentil": 1
+        ]),
+        "base experience": 1,
+    ]),
+    "peanut": ([
+        "type": "vegetable",
+        "subtype": "legume",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "peanut": 1
         ]),
         "base experience": 1,
     ]),

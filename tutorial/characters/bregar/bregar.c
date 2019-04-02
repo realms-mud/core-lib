@@ -32,8 +32,7 @@ protected void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void IYield(object player)
 {
-    tell_room(environment(this_object()), sprintf("Player = %O\n", player));
-    onTriggerConversation(player, "that hurts");
+    command("talk bregar", player);
     player = 0;
     CallingYield = 0;
     DoNotKillMe = 0;
