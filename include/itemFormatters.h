@@ -5,16 +5,6 @@
 #ifndef itemFormatters_h
 #define itemFormatters_h
 
-private nosave string Value = "\x1b[0;33m%s\x1b[0m";
-
-private nosave string Cyan = "\x1b[0;36m%s\x1b[0m";
-private nosave string BoldBlack = "\x1b[0;30;1m%s\x1b[0m";
-private nosave string Red = "\x1b[0;31m%s\x1b[0m";
-private nosave string Green = "\x1b[0;32m%s\x1b[0m";
-private nosave string Yellow = "\x1b[0;33m%s\x1b[0m";
-private nosave string Blue = "\x1b[0;34m%s\x1b[0m";
-private nosave string Magenta = "\x1b[0;35m%s\x1b[0m";
-
 /////////////////////////////////////////////////////////////////////////////
 private nosave mapping decorators = ([
     "dividers":([
@@ -91,6 +81,63 @@ private nosave mapping decorators = ([
             "3-bit": "\x1b[0;31;1m",
             "8-bit": "\x1b[0;38;5;20m",
             "24-bit": "\x1b[0;38;2;50;50;150m"
+        ]),
+    ]),
+    "wizard commands":([
+        "message":([
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;178m",
+            "24-bit": "\x1b[0;38;2;200;20;100m"
+        ]),
+        "error message":([
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;9m",
+            "24-bit": "\x1b[0;38;2;200;0;0m"
+        ]),
+        "error details":([
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;9;1m",
+            "24-bit": "\x1b[0;38;2;200;0;0;1m"
+        ]),
+        "environment changed":([
+            "3-bit": "\x1b[0;32;1m",
+            "8-bit": "\x1b[0;38;5;212;1m",
+            "24-bit": "\x1b[0;38;2;100;200;10;1m"
+        ]),
+        "no access":([
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;9m",
+            "24-bit": "\x1b[0;38;2;200;0;0m"
+        ]),
+        "compiled":([
+            "3-bit": "\x1b[0;33;1m",
+            "8-bit": "\x1b[0;38;5;190;1m",
+            "24-bit": "\x1b[0;38;2;200;200;0;1m"
+        ]),
+        "normal":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;190m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+        "directory":([
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;20;1m",
+            "24-bit": "\x1b[0;38;2;0;0;220;1m"
+        ]),
+        "roles":([
+            "3-bit": "\x1b[0;35m",
+            "8-bit": "\x1b[0;38;5;12m",
+            "24-bit": "\x1b[0;38;2;150;230;190m"
+        ]),
+        "permissions":([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;212m",
+            "24-bit": "\x1b[0;38;2;100;200;10m"
+        ]),
+        "file size":([
+            "3-bit": "\x1b[0;37m",
+            "8-bit": "\x1b[0;38;5;15m",
+            "24-bit": "\x1b[0;38;2;255;255;255m"
         ]),
     ]),
     "show":([

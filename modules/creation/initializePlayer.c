@@ -68,12 +68,21 @@ private nomask void initiateSelector()
         Player->spellPoints(Player->maxSpellPoints());
         Player->staminaPoints(Player->maxStaminaPoints());
         Player->save();
-        tell_object(Player, format("\x1b[0;32;1mCharacter creation is now complete"
-            " and you have been moved to your starting location.\x1b[0m "
-            "\x1b[0;32mIf you need additional information to get started or for "
-            "getting around in the game, you can use the 'help' command. Enjoy "
-            "your time here and don't hesitate to contact any of the game "
-            "administrators with your questions or comments.\n\x1b[0m\n", 78));
+
+        string colorConfiguration = Player->colorConfiguration();
+        object configuration = 
+            load_object("/lib/dictionaries/configurationDictionary.c");
+
+        tell_object(Player, configuration->decorate(format("Character "
+                "creation is now complete and you have been moved to your "
+                "starting location.\n", 78),
+                "instructions", "selector", colorConfiguration) +
+            configuration->decorate(format("If you need additional "
+                "information to get started or for getting around in the "
+                "game, you can use the 'help' command. Enjoy your time here "
+                "and don't hesitate to contact any of the game administrators "
+                "with your questions or comments.\n", 78),
+                "details", "selector", colorConfiguration));
 
         backgroundDictionary->initiateBackground(Player);
         destruct(this_object());

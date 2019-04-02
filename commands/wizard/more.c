@@ -24,7 +24,10 @@ private nomask void pageString(string message, object initiator)
         if (sizeof(messageLines) > pageSize)
         {
             pageString(implode(messageLines[0..(pageSize - 1)], "\n"), initiator);
-            tell_object(initiator, "\n\x1b[0;35;1mMore? [q to quit]\x1b[0m\n");
+            
+            tell_object(initiator, configuration->decorate("\nMore? [q to quit]\n",
+                "page", "help", initiator->colorConfiguration()));
+
             input_to("responseToPage", 1, implode(messageLines[pageSize..], "\n"), initiator);
         }
         else

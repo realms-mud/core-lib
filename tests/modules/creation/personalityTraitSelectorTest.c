@@ -44,7 +44,7 @@ void CleanUp()
 void InitialCreationDisplayIsCorrect()
 {
     Selector->initiateSelector(User);
-    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\x1b[0m\n\n"
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\n\n"
         "\x1b[0;36mYou have been invited to attend a grand ball. All of the nobility\n"
         "will be there, though you do not know any of them. You are expected to\n"
         "mingle with them. Does this\x1b[0m\x1b[0m:\n"
@@ -64,7 +64,7 @@ void SecondQuestionIsCorrect()
 {
     Selector->initiateSelector(User);
     Selector->applySelection("2");
-    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\x1b[0m\n\n"
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\n\n"
         "\x1b[0;36mYour instructor likes to torment his students with inane activites. Today,\n"
         "he has assigned the task of adding all numbers from 1 to 1000. Do you\x1b[0m\x1b[0m:\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mGet on with it. If you hurry up and work through the problem as\n"
@@ -84,7 +84,7 @@ void ThirdQuestionIsCorrect()
     Selector->initiateSelector(User);
     Selector->applySelection("2");
     Selector->applySelection("2");
-    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\x1b[0m\n\n"
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\n\n"
         "\x1b[0;36mYou have gone to a village meeting wherein you are discussing two projects\n"
         "that are competing for the same resources: the building of a new well for\n"
         "irrigation or erecting a statue of Sir Whatshisname Of Whocares. Most there\n"
@@ -105,7 +105,7 @@ void FourthQuestionIsCorrect()
     Selector->applySelection("2");
     Selector->applySelection("2");
     Selector->applySelection("1");
-    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\x1b[0m\n\n"
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\n\n"
         "\x1b[0;36mAs the leader of an expeditionary force, you have come across an enemy\n"
         "encampment. Through your reconnaissance, you have been able to clearly\n"
         "determine that they are planning to lead a campaign to loot and pillage\n"
@@ -127,7 +127,7 @@ void FifthQuestionIsCorrect()
     Selector->applySelection("2");
     Selector->applySelection("1");
     Selector->applySelection("2");
-    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\x1b[0m\n\n"
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\n\n"
         "\x1b[0;36mYou have been hired by the local lord to track down and apprehend a war\n"
         "criminal. In time, you find the man - one of your old comrades-in-arms. As you\n"
         "are in the process of taking him back for judgement, you discover that his\n"
@@ -160,7 +160,7 @@ void SixthQuestionIsCorrect()
     Selector->applySelection("1");
     Selector->applySelection("2");
     Selector->applySelection("3");
-    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\x1b[0m\n\n"
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\n\n"
         "\x1b[0;36mYour travels have led you to a crypt. After vanquishing a wight, you\n"
         "find a vast, opulent treasure that will easily set you up for life. You take\n"
         "all you can and congratulate yourself for your good fortune. The next day while\n"
@@ -190,7 +190,7 @@ void SeventhQuestionIsCorrect()
     Selector->applySelection("2");
     Selector->applySelection("3");
     Selector->applySelection("1");
-    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\x1b[0m\n\n"
+    ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mPersonality Test\n\n"
         "\x1b[0;36mYou are a lord and have a long-standing dispute with a fellow noble - \n"
         "Ser Osis of D'Liver. She has gone to the king complaining about how she has been\n"
         "inconvenienced and insulted by you because you did not have your servant\n"

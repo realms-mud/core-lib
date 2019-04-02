@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
-#include "/lib/include/itemFormatters.h"
 
 private object Dictionary;
 

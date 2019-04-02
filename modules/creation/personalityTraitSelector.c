@@ -22,18 +22,25 @@ public nomask void reset(int arg)
             raise_error("personalityTraitQuestionnaire: ERROR - The background dictionary is not present!\n");
         }
 
-        Questionnaire = Dictionary->personalityQuestionnaire();
-        if (sizeof(Questionnaire))
-        {
-            QuestionList = sort_array(m_indices(Questionnaire), (: $1 > $2 :));
-
-            Description = "Personality Test\x1b[0m\n\n\x1b[0;36m" + 
-                Questionnaire[QuestionList[0]]["question"] + "\x1b[0m";
-            Data = Questionnaire[QuestionList[0]]["answers"];
-        }
         AllowUndo = 0;
         HasDescription = 0;
         TestTaken = 0;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setUpUserForSelection()
+{
+    Questionnaire = Dictionary->personalityQuestionnaire();
+    if (sizeof(Questionnaire))
+    {
+        QuestionList = sort_array(m_indices(Questionnaire), (: $1 > $2 :));
+
+        Description = "Personality Test\n\n" +
+            configuration->decorate(Questionnaire[QuestionList[0]]["question"],
+                "description", "selector", colorConfiguration);
+
+        Data = Questionnaire[QuestionList[0]]["answers"];
     }
 }
 
@@ -46,8 +53,9 @@ protected nomask int processSelection(string selection)
     QuestionList -= ({ QuestionList[0] });
     if (sizeof(QuestionList))
     {
-        Description = "Personality Test\x1b[0m\n\n\x1b[0;36m" +
-            Questionnaire[QuestionList[0]]["question"] + "\x1b[0m";
+        Description = "Personality Test\n\n" +
+            configuration->decorate(Questionnaire[QuestionList[0]]["question"],
+                "description", "selector", colorConfiguration);
 
         Data = Questionnaire[QuestionList[0]]["answers"];
     }

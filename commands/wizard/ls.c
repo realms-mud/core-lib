@@ -45,60 +45,68 @@ private string getDirectoryToCheck(string command, object initiator)
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs string getFileState(string file, string displayName, 
-    object initiator, int width)
+    object initiator, string colorConfiguration, int width)
 {
     string format;
     string widthFormat = width ? ("%-" + to_string(width) + "s") : "%s";
 
     if (!initiator->hasReadAccess(file) && !initiator->hasWriteAccess(file))
     {
-        format = "\x1b[0;31m" + widthFormat + "\x1b[0m";
+        format = "no access";
     }
     else if ((file[sizeof(file)-2..] == ".c") && find_object(file))
     {
         displayName += "*";
-        format = "\x1b[0;33;1m" + widthFormat + "\x1b[0m";
+        format = "compiled";
     }
     else if (file_size(file) == -2)
     {
         displayName += "/";
-        format = "\x1b[0;34;1m" + widthFormat + "\x1b[0m";
+        format = "directory";
     }
     else
     {
-        format = "\x1b[0;33m" + widthFormat + "\x1b[0m";
+        format = "normal";
     }
-    return sprintf(format, displayName);
+    return configuration->decorate(sprintf(widthFormat, displayName),
+        format, "wizard commands", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string getGroupInfo(string file, object initiator)
+private nomask string getGroupInfo(string file, object initiator,
+    string colorConfiguration)
 {
     string readGroup = initiator->groupReadAccess(file);
     string writeGroup = initiator->groupWriteAccess(file);
-    return sprintf("\x1b[0;35m%s%s%s\x1b[0m", readGroup, 
-        (((readGroup != "") && (writeGroup != "")) ? ", " : ""), writeGroup);      
+    return configuration->decorate(sprintf("%-29s", sprintf("%s%s%s", readGroup,
+        (((readGroup != "") && (writeGroup != "")) ? ", " : ""), writeGroup)),
+        "roles", "wizard commands", colorConfiguration);      
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string getFileInfo(string file, object initiator)
+private nomask string getFileInfo(string file, object initiator,
+    string colorConfiguration)
 {
     string *fileDetails = get_dir(file, 0x07);
 
-    return sprintf("\x1b[0;32m%s%s%s\x1b[0m  %-40s%10s \x1b[0;36m%s\x1b[0m  %s\n",
-        ((file_size(file) == -2) ? "d" : "-"),
-        (initiator->hasReadAccess(file) ? "r" : "-"),
-        (initiator->hasWriteAccess(file) ? "w" : "-"),
-        getGroupInfo(file, initiator),
-        ((file_size(file) != -2) ? to_string(fileDetails[1]) : ""),
-        regreplace(ctime(to_int(fileDetails[2])),
+    return configuration->decorate(sprintf("%s%s%s  ", 
+                ((file_size(file) == -2) ? "d" : "-"),
+                (initiator->hasReadAccess(file) ? "r" : "-"),
+                (initiator->hasWriteAccess(file) ? "w" : "-")),
+            "permissions", "wizard commands", colorConfiguration) +
+        getGroupInfo(file, initiator, colorConfiguration) +
+        configuration->decorate(sprintf("%10s  ", 
+            ((file_size(file) != -2) ? to_string(fileDetails[1]) : "")),
+            "file size", "wizard commands", colorConfiguration) +
+        configuration->decorate(regreplace(ctime(to_int(fileDetails[2])),
             "....(.......[0-9]+:[0-9]+)...( [0-9]+)", "\\1\\2", 1),
-        getFileState(file, fileDetails[0], initiator));
+            "message", "wizard commands", colorConfiguration) + "  " +
+        getFileState(file, fileDetails[0], initiator, colorConfiguration) + "\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs int listFiles(string path, object initiator, 
-    int recurse, int maxWidth, int numFiles)
+    int recurse, int maxWidth, string colorConfiguration, int numFiles)
 {
     int ret = 0;
     string *files = get_dir(path, 0x10);
@@ -121,7 +129,9 @@ private nomask varargs int listFiles(string path, object initiator,
         {
             int numColumns = (80 / maxWidth);
             tell_object(initiator, getFileState(files[0],
-                regreplace(files[0], ".*/([^/]+)$", "\\1", 1), initiator, maxWidth));
+                regreplace(files[0], ".*/([^/]+)$", "\\1", 1), initiator,
+                colorConfiguration, maxWidth));
+
             if ((numFiles % numColumns) == (numColumns - 1))
             {
                 tell_object(initiator, "\n");
@@ -129,7 +139,7 @@ private nomask varargs int listFiles(string path, object initiator,
         }
         else
         {
-            tell_object(initiator, getFileInfo(files[0], initiator));
+            tell_object(initiator, getFileInfo(files[0], initiator, colorConfiguration));
         }
     }
     else if ((sizeof(files) > 1) || recurse)
@@ -142,7 +152,8 @@ private nomask varargs int listFiles(string path, object initiator,
             }
             if (!sizeof(regexp(({ file }), "/\\.+$")))
             {
-                ret += listFiles(file, initiator, recurse, maxWidth, numFiles++);
+                ret += listFiles(file, initiator, recurse, maxWidth, 
+                    colorConfiguration, numFiles++);
             }
         }
         tell_object(initiator, "\n");
@@ -195,7 +206,8 @@ public nomask int execute(string command, object initiator)
             tell_object(initiator, sprintf("\x1b[0;36m[%s]\x1b[0m\n", 
                 getDirectoryToCheck(command, initiator)));
             ret = listFiles(newDirectory, initiator, 1, 
-                maxWidth(newDirectory, command));
+                maxWidth(newDirectory, command), 
+                initiator->colorConfiguration());
         }
         else if (file_size(newDirectory) == -1)
         {

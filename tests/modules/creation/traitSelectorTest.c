@@ -150,7 +150,7 @@ void EducationalTraitsMenuIsCorrect()
         "\t[\x1b[0;31;1m24\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 24.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m",
+        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m\x1b[0m",
         User->caughtMessage());
 
     educationalTraits->applySelection("1");
@@ -213,7 +213,7 @@ void GeneticTraitsMenuIsCorrect()
         "\t[\x1b[0;31;1m20\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 20.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m",
+        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m\x1b[0m",
         User->caughtMessage());
 }
 
@@ -265,7 +265,7 @@ void HealthTraitsMenuIsCorrect()
         "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m",
+        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m\x1b[0m",
         User->caughtMessage());
 }
 
@@ -310,7 +310,7 @@ void SexualityTraitsMenuIsCorrect()
         "\t[\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
-        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m",
+        "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m\x1b[0m",
         User->caughtMessage());
 }
 

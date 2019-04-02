@@ -85,7 +85,8 @@ protected nomask string displayDetails(string choice)
 
     if (User->isTraitOf(Data[choice]["file"]))
     {
-        ret = "\x1b[0;34;1m(*)\x1b[0m";
+        ret = configuration->decorate("(*)",
+            "selected", "selector", colorConfiguration); 
     }
     return ret;
 }
@@ -93,6 +94,9 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
-    return "You may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1m"
-        "denotes an already-chosen trait.\n";
+    return "You may only select a trait once. " +
+        configuration->decorate("(*)",
+            "selected", "selector", colorConfiguration) + " " +
+        configuration->decorate("denotes an already-chosen trait.\n",
+            "instructions", "selector", colorConfiguration);
 }

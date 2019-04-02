@@ -15,43 +15,6 @@ public nomask void reset(int arg)
     if(!arg)
     {
         Description = "From this menu, you can choose your character's traits";
-        Data = ([
-            "1":([
-                "name": "Take Personality Test",
-                "type": "personality",
-                "description": "This option takes you through a series of questions that\n"
-                    "are used to identify your character's personality.\n"
-            ]),
-            "2":([
-                "name": "Educational Traits",
-                "type" : "educational",
-                "description": "Educational traits are learned traits - those that\n"
-                    "have been cultivated both through formal learning as well as\n"
-                    "those uncovered as a result of either success or failure to learn.\n"
-            ]),
-            "3":([
-                "name": "Genetic Traits",
-                "type" : "genetic",
-                "description": "Genetic traits are those traits you have inherited the disposition for\n"
-                    "by your ancestors.\n"
-            ]),
-            "4":([
-                "name": "Health Traits",
-                "type" : "health",
-                "description": "Health traits are those genetic traits that are specifically related to\n"
-                    "your physical and mental health.\n"
-            ]),
-            "5":([
-                "name": "Sexuality Traits",
-                "type" : "sexuality",
-                "description": "Sexuality traits are those traits that deal with sexual identity.\n"
-            ]),
-            "6":([
-                "name": "Exit Trait Selection   \x1b[0;31;1m(You will lose unspent trait points!)\x1b[0m",
-                "type" : "exit",
-                "description": "This option lets you exit the trait selection menu.\n"
-            ]),
-        ]);
     }
 }
 
@@ -61,6 +24,46 @@ protected nomask void setUpUserForSelection()
     object racialDictionary = load_object("/lib/dictionaries/racialDictionary.c");
 
     TotalPoints = racialDictionary->backgroundTraitPoints(User->Race());
+
+    Data = ([
+        "1":([
+            "name": "Take Personality Test",
+            "type": "personality",
+            "description": "This option takes you through a series of questions that\n"
+                "are used to identify your character's personality.\n"
+        ]),
+        "2":([
+            "name": "Educational Traits",
+            "type" : "educational",
+            "description": "Educational traits are learned traits - those that\n"
+                "have been cultivated both through formal learning as well as\n"
+                "those uncovered as a result of either success or failure to learn.\n"
+        ]),
+        "3":([
+            "name": "Genetic Traits",
+            "type" : "genetic",
+            "description": "Genetic traits are those traits you have inherited the disposition for\n"
+                "by your ancestors.\n"
+        ]),
+        "4":([
+            "name": "Health Traits",
+            "type" : "health",
+            "description": "Health traits are those genetic traits that are specifically related to\n"
+                "your physical and mental health.\n"
+        ]),
+        "5":([
+            "name": "Sexuality Traits",
+            "type" : "sexuality",
+            "description": "Sexuality traits are those traits that deal with sexual identity.\n"
+        ]),
+        "6":([
+            "name": "Exit Trait Selection   " +
+                configuration->decorate("(You will lose unspent trait points!)",
+                    "blocked", "selector", colorConfiguration),
+            "type" : "exit",
+            "description": "This option lets you exit the trait selection menu.\n"
+        ]),
+    ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +73,8 @@ protected nomask string displayDetails(string choice)
 
     if ((Data[choice]["type"] == "personality") && TestTaken)
     {
-        ret = "\x1b[0;34;1m  (Completed)\x1b[0m";
+        ret = configuration->decorate("  (Completed)",
+            "selected", "selector", colorConfiguration); 
     }
     return ret;
 }

@@ -7,19 +7,19 @@ private nosave string GroupObj = "/lib/dictionaries/groups/%s.c";
 private nosave string PathToCheck;
 
 private nosave mapping validWizardLevels = ([ 
-    "apprentice": "\x1b[0;31mApprentice Wizard\x1b[0m", 
-    "wizard": "\x1b[0;31mTraining Wizard\x1b[0m",
-    "creator": "\x1b[0;36mWizard\x1b[0m",
-    "emeritus": "\x1b[0;36mEmeritus Wizard\x1b[0m",
-    "high wizard": "\x1b[0;36mHigh Wizard\x1b[0m",
-    "senior": "\x1b[0;36;1mSenior Wizard\x1b[0m",
-    "admin": "\x1b[0;33mAdministrative Wizard\x1b[0m", 
-    "elder": "\x1b[0;33;1mElder Wizard\x1b[0m",
-    "sage": "\x1b[0;33;1mSage Wizard\x1b[0m",
-    "arch wizard": "\x1b[0;34;1mArch Wizard\x1b[0m", 
-    "demi god": "\x1b[0;34;1mDemigod\x1b[0m", 
-    "god": "\x1b[0;34;1mGod\x1b[0m", 
-    "owner": "\x1b[0;34;1mThe Owner of the mud!\x1b[0m"
+    "apprentice": "Apprentice Wizard", 
+    "wizard": "Training Wizard",
+    "creator": "Wizard",
+    "emeritus": "Emeritus Wizard",
+    "high wizard": "High Wizard",
+    "senior": "Senior Wizard",
+    "admin": "Administrative Wizard", 
+    "elder": "Elder Wizard",
+    "sage": "Sage Wizard",
+    "arch wizard": "Arch Wizard", 
+    "demi god": "Demigod", 
+    "god": "God", 
+    "owner": "The Owner of the mud!"
 ]);
 
 private string wizardLevel = 0;

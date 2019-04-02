@@ -130,10 +130,11 @@ void PlayerSeesWelcomeMessageOnCompletion()
         selector = first_inventory(User);
     }
     ExpectEq("\x1b[0;32;1mCharacter creation is now complete"
-            " and you have been moved to your\nstarting location.\x1b[0m "
-            "\x1b[0;32mIf you need additional information to get\nstarted or for "
-            "getting around in the game, you can use the 'help' command.\nEnjoy "
-            "your time here and don't hesitate to contact any of the game\n"
-            "administrators with your questions or comments.\n\x1b[0m\n",
+            " and you have been moved to your starting\nlocation.\n\x1b[0m"
+            "\x1b[0;32mIf you need additional information to get started "
+            "or for getting around in the\ngame, you can use the 'help' "
+            "command. Enjoy your time here and don't hesitate\nto contact "
+            "any of the game administrators with your questions or "
+            "comments.\n\x1b[0m",
         User->caughtMessages()[10], "Final message is correct");
 }

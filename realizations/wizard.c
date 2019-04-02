@@ -22,15 +22,23 @@ public nomask string wizardInformation()
 {
     // TODO - add wizard info such as GM duties, etc.
     string ret = "";
+
+    string colorConfiguration = colorConfiguration();
+    object configuration = getDictionary("configuration");
+
     if (wizardLevel)
     {
-        ret = sprintf("\x1b[0;30;1m%s is a mud wizard -> %s\x1b[0m\n",
-            capitalize(this_object()->Pronoun()), validWizardLevels[wizardLevel]);
+        ret = configuration->decorate(sprintf("%s is a mud wizard -> ",
+                capitalize(this_object()->Pronoun())),
+                "roles", "wizard commands", colorConfiguration) +
+            configuration->decorate(validWizardLevels[wizardLevel],
+                wizardLevel, "wizard levels", colorConfiguration) + "\n";
     }
     else
     {
-        ret = sprintf("\x1b[0;30;1m%s is a Player.\x1b[0m\n",
-            capitalize(this_object()->Pronoun()));
+        ret = configuration->decorate(sprintf("%s is a Player.",
+            capitalize(this_object()->Pronoun())),
+            "roles", "wizard commands", colorConfiguration) + "\n";
     }
     return ret;
 }

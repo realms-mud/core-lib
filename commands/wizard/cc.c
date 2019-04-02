@@ -15,7 +15,8 @@ public nomask void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void compileOneItem(string path, object initiator)
+private nomask void compileOneItem(string path, object initiator,
+    string colorConfiguration)
 {
     object existingBlueprint;
     catch (existingBlueprint = blueprint(path); nolog);
@@ -41,14 +42,17 @@ private nomask void compileOneItem(string path, object initiator)
     {
         rm(logFile);
     }
-    tell_object(initiator, "\x1b[0;36mBuilding: " + path + "\x1b[0m\n");
+    tell_object(initiator, configuration->decorate(sprintf("Building: %s\n",
+        path), "message", "wizard commands", colorConfiguration));
 
     string result = catch (existingBlueprint = load_object(path));
 
     if (result)
     {
-        result = sprintf("\x1b[0;31m%s\n\x1b[0;31;1m%s\x1b[0m", result,
-            (read_file(logFile) || driver_info(-42)));
+        result = configuration->decorate(result,
+                "error message", "wizard commands", colorConfiguration) +
+            configuration->decorate((read_file(logFile) || driver_info(-42)),
+                "error message", "wizard commands", colorConfiguration);
 
         tell_object(initiator, result);
         rm(logFile);
@@ -58,14 +62,17 @@ private nomask void compileOneItem(string path, object initiator)
         foreach(object item in objectsToMove)
         {
             move_object(item, existingBlueprint);
-            tell_object(item, "\x1b[0;32;1mYour environment has been recompiled.\x1b[0m\n\n");
+            tell_object(item, configuration->decorate(
+                "Your environment has been recompiled.\n\n",
+                "error message", "wizard commands", colorConfiguration));
             command("look", item);
         }
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask varargs int compile(string path, object initiator, int recurse)
+private nomask varargs int compile(string path, object initiator, 
+    string colorConfiguration, int recurse)
 {
     int ret = 0;
     if (recurse && (file_size(path) == -2))
@@ -86,7 +93,7 @@ private nomask varargs int compile(string path, object initiator, int recurse)
         (file_size(path) != -2))
     {
         ret = 1;
-        compileOneItem(path, initiator);
+        compileOneItem(path, initiator, colorConfiguration);
     }
     else if(recurse)
     {
@@ -100,7 +107,7 @@ private nomask varargs int compile(string path, object initiator, int recurse)
             {
                 file = "/" + file;
             }
-            ret += compile(file, initiator, 1);
+            ret += compile(file, initiator, colorConfiguration, 1);
         }
     }
     else
@@ -137,7 +144,8 @@ public nomask int execute(string command, object initiator)
 
         if (targetPath)
         {
-            ret = compile(targetPath, initiator,
+            ret = compile(targetPath, initiator, 
+                initiator->colorConfiguration(),
                 sizeof(regexp(({ command }), "-r")));
         }
         else
