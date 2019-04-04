@@ -50,9 +50,24 @@ public void testAddExit(string direction, string path, string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void testAddBuilding(string feature, string location, string path)
+public void testAddExitWithDoor(string direction, string path,
+    string door, string key, string state)
 {
-    addBuilding(feature, location, path);
+    addExitWithDoor(direction, path, door, key, state);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void testAddBuilding(string feature, string location, string path,
+    string state)
+{
+    addBuilding(feature, location, path, state);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void testAddBuildingWithDoor(string feature, mixed location,
+    string path, string door, string key, string state)
+{
+    addBuildingWithDoor(feature, location, path, door, key, state);
 }
 
 /////////////////////////////////////////////////////////////////////////////

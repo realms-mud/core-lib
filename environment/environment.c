@@ -13,7 +13,8 @@ private mapping environmentalElements = ([
     "shop": 0,
     "cloned": 0,
     "description": ([]),
-    "location text": ({ " is " })
+    "location text": ({ " is " }),
+    "doors": ([]),
 ]);
 
 private mapping aliasesToElements = ([]);
@@ -161,7 +162,8 @@ public void resetData()
             "shop" : 0,
             "cloned" : 0,
             "description" : ([]),
-            "location text" : ({ " is " })
+            "location text" : ({ " is " }),
+            "doors" : ([])
     ]);
     aliasesToElements = ([]);
     exits = ([]);
@@ -374,7 +376,44 @@ protected nomask varargs void addExit(string direction, string path, string stat
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void addBuilding(string feature, mixed location, string path, string state)
+private nomask void addDoor(string path, string door, string key, string state)
+{
+    if (!stringp(door))
+    {
+        door = "/lib/environment/doors/door.c";
+    }
+
+    object doorObj = environmentDictionary()->getDoor(door);
+    if (doorObj)
+    {
+        if (!member(environmentalElements["doors"], state))
+        {
+            environmentalElements["doors"][state] = ([]);
+        }
+        environmentalElements["doors"][state][path] = doorObj;
+        if (environmentDictionary()->isValidKey(key))
+        {
+            doorObj->setKey(key);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addExitWithDoor(string direction, string path, 
+    string door, string key, string state)
+{
+    if (!state)
+    {
+        state = "default";
+    }
+
+    addExit(direction, path, state);
+    addDoor(path, door, key, state);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addBuilding(string feature, mixed location, 
+    string path, string state)
 {
     if (addEnvironmentalElement(feature, "building", location) && stringp(location))
     {
@@ -388,6 +427,14 @@ protected nomask varargs void addBuilding(string feature, mixed location, string
         raise_error(sprintf("ERROR in environment.c: '%s' is not a "
             "valid building with a valid location.\n", feature));
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addBuildingWithDoor(string feature, mixed location,
+    string path, string door, string key, string state)
+{
+    addBuilding(feature, location, path, state);
+    addExitWithDoor(location, path, door, key, state);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -843,24 +890,56 @@ public nomask int move(string str)
     string direction = query_verb();
     string destination = 0;
 
-    if (member(exits, currentState()) && 
-        member(exits[currentState()], direction))
+    string state = currentState();
+    if (member(exits, state) &&
+        member(exits[state], direction))
     {
-        destination = exits[currentState()][direction];
+        destination = exits[state][direction];
     }
     else if (member(exits, "default") &&
         member(exits["default"], direction))
     {
         destination = exits["default"][direction];
+        state = "default";
     }
+
+    int canMove = 1;
     if (destination)
     {
-        this_player()->move(destination, direction);
+        object door = 0;
+        object originalLocation = environment(this_player());
 
-        object party = this_player()->getParty();
-        if (party)
+        if (member(environmentalElements["doors"], state) &&
+            member(environmentalElements["doors"][state], destination))
         {
-            party->moveFollowers(this_player(), destination, direction);
+            door =  environmentalElements["doors"][state][destination];
+
+            if (door->isLocked())
+            {
+                canMove = 0;
+                door->displayLockedMessage(this_player());
+            }
+            else
+            {
+                door->displayMoveMessage(this_player(), direction);
+            }
+        }
+
+        if (canMove)
+        {
+            this_player()->move(destination, direction, objectp(door));
+
+            object party = this_player()->getParty();
+            if (party)
+            {
+                party->moveFollowers(this_player(), destination, direction);
+            }
+
+            if (door)
+            {
+                door->displayOpenMessage(this_player());
+                door->displayCloseMessage(this_player(), originalLocation);
+            }
         }
     }
 
@@ -982,7 +1061,6 @@ public nomask varargs void enterEnvironment(object actor, object party)
             location = clone_object(object_name(this_object()));
             instances[owner] = location;
         }
-
     }
 
     if (StateMachinePath)

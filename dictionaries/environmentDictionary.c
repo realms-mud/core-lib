@@ -515,3 +515,51 @@ public nomask void reset(int arg)
         advanceTime();
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidKey(string key)
+{
+    int ret = stringp(key);
+    if (ret)
+    {
+        if (file_size(key) > 0)
+        {
+            object keyObj = load_object(key);
+            ret = member(inherit_list(keyObj), "lib/items/key.c") > -1;
+
+            if (!ret)
+            {
+                raise_error(sprintf("ERROR in environment: '%s' is not a "
+                    "valid key object.\n", key));
+            }
+        }
+        else
+        {
+            raise_error(sprintf("ERROR in environment: '%s' is not a "
+                "valid file.\n", key));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getDoor(string door)
+{
+    object ret = 0;
+    if (file_size(door) > 0)
+    {
+        ret = clone_object(door);
+
+        if (member(inherit_list(ret), "lib/environment/doors/baseDoor.c") < 0)
+        {
+            raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+                "valid door object.\n", door));
+        }
+    }
+    else
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid file.\n", door));
+    }
+    return ret;
+}

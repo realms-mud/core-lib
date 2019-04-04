@@ -151,6 +151,16 @@ addBuilding("/lib/environment/shops/wainwright.c", "north", "/players/maeglin/sp
 The pre-fabricated buildings can be found in: `/lib/environment/buildings`. All custom buildings
 must inherit from `/lib/environment/buildings/baseBuilding.c`.
 
+If the building you wish to add has a door that should open/close and potentially lock, there is a special
+method for adding a building of this nature.
+
+`varargs void addBuildingWithDoor(string building, mixed location, string path, string door, string key, string state);`
+
+This is identical to the `addBuilding` method with the notable addition of two new parameters: door and key. The door
+parameter is a string that is the file path to the door environmental element that will be used to describe the door. This must inherit 
+`/lib/environment/doors/baseDoor.c`. The (optional) key parameter is the file path to the key object that can lock/unlock the door. This key must inherit 
+`/lib/items/key.c`.
+
 ###### Other Features and Static Items
 In addition to buildings, you can also add other features or static items.
 
@@ -228,6 +238,12 @@ on the fly, you will need to do that logic using your own custom handler. [See t
 #### Adding Exits
 ```
 varargs void addExit(string direction, string path, string state);
+```
+TBD
+
+```
+varargs void addExitWithDoor(string direction, string path, string door, 
+    string key, string state);
 ```
 TBD
 

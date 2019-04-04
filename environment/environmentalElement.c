@@ -9,7 +9,7 @@ protected int LightLevelWhenDetailsVisible = 6;
 
 protected int suppressAction = 0; 
 private string elementName = 0;
-private string State = "default";
+protected string State = "default";
 
 /////////////////////////////////////////////////////////////////////////////
 protected object environmentDictionary()

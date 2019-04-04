@@ -269,6 +269,7 @@ void CanMoveToAttachedLocation()
 
     command("north", person);
     ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+    destruct(person);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -287,6 +288,7 @@ void MovesToLocationForAppropriateState()
 
     command("north", person);
     ExpectEq("lib/tests/support/environment/fromLocation.c", program_name(environment(person)));
+    destruct(person);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -305,6 +307,7 @@ void MovesToDefaultLocationWhenNotDefinedInState()
 
     command("north", person);
     ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+    destruct(person);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -323,6 +326,7 @@ void DefaultMoveLocationsStillAvailableWhenInDifferentStateAndNotOverridden()
 
     command("south", person);
     ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+    destruct(person);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1575,4 +1579,150 @@ void CorrectlyDisplaysLateNightWithWaningCrescent()
         "There is one obvious exit: north.*The silhouette of an item, "
         "but it is too dark to identify it",
         person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExitsWithDefaultDoorsBehavesCorrectly()
+{
+    Environment->testAddExitWithDoor("north", 
+        "/lib/tests/support/environment/not-so-dark-room.c");
+    Environment->testAddItem("/lib/tests/support/environment/light.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    move_object(person, Environment);
+    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    move_object(observer, Environment);
+
+    object other = clone_object("/lib/tests/support/services/mockPlayer.c");
+    other->Name("harold");
+    move_object(other, "/lib/tests/support/environment/not-so-dark-room.c");
+
+    command("north", person);
+    ExpectSubStringMatch("You go through the door to the north", 
+        person->caughtMessages()[0]);
+    ExpectSubStringMatch("Dwight goes through the door to the north.*The door closes",
+        implode(observer->caughtMessages(), "\n"));
+    ExpectSubStringMatch("The door opens and Dwight enters",
+        other->caughtMessage());   
+
+    ExpectEq("lib/tests/support/environment/not-so-dark-room.c",
+        program_name(environment(person)));
+
+    destruct(person);
+    destruct(observer);
+    destruct(other);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void BuildingsWithDoorsBehaveCorrectly()
+{
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddBuildingWithDoor(
+        "/lib/tests/support/environment/fakeBuilding.c",
+        "north",
+        "/lib/tests/support/environment/not-so-dark-room.c");
+
+    Environment->testAddItem("/lib/tests/support/environment/light.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    move_object(person, Environment);
+    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    move_object(observer, Environment);
+
+    object other = clone_object("/lib/tests/support/services/mockPlayer.c");
+    other->Name("harold");
+    move_object(other, "/lib/tests/support/environment/not-so-dark-room.c");
+
+    command("north", person);
+    ExpectSubStringMatch("You go through the door to the north",
+        implode(person->caughtMessages(), "\n"));
+    ExpectSubStringMatch("Dwight goes through the door to the north.*The door closes",
+        implode(observer->caughtMessages(), "\n"));
+    ExpectSubStringMatch("The door opens and Dwight enters",
+        other->caughtMessage());
+
+    ExpectEq("lib/tests/support/environment/not-so-dark-room.c",
+        program_name(environment(person)));
+
+    destruct(person);
+    destruct(observer);
+    destruct(other);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotMoveThroughLockedDoor()
+{
+    Environment->testAddExitWithDoor("north",
+        "/lib/tests/support/environment/not-so-dark-room.c",
+        "/lib/environment/doors/door.c",
+        "/lib/items/key.c");
+
+    Environment->testAddItem("/lib/tests/support/environment/light.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    move_object(person, Environment);
+
+    ExpectEq("lib/tests/support/environment/testEnvironment.c", 
+        program_name(environment(person)));
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    move_object(observer, Environment);
+
+    command("north", person);
+    ExpectSubStringMatch("You try to go through the door, but it is locked",
+        person->caughtMessage());
+    ExpectSubStringMatch("Dwight tries to go through the door, but it is locked",
+        observer->caughtMessage());
+
+    ExpectEq("lib/tests/support/environment/testEnvironment.c",
+        program_name(environment(person)));
+
+    destruct(person);
+    destruct(observer);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotGoIntoLockedBuilding()
+{
+    Environment->testAddBuildingWithDoor(
+        "/lib/tests/support/environment/fakeBuilding.c",
+        "north",
+        "/lib/tests/support/environment/not-so-dark-room.c",
+        "/lib/environment/doors/door.c",
+        "/lib/items/key.c");
+
+    Environment->testAddItem("/lib/tests/support/environment/light.c");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    move_object(person, Environment);
+
+    ExpectEq("lib/tests/support/environment/testEnvironment.c",
+        program_name(environment(person)));
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    move_object(observer, Environment);
+
+    command("north", person);
+    ExpectSubStringMatch("You try to go through the door, but it is locked",
+        person->caughtMessage());
+    ExpectSubStringMatch("Dwight tries to go through the door, but it is locked",
+        observer->caughtMessage());
+
+    ExpectEq("lib/tests/support/environment/testEnvironment.c",
+        program_name(environment(person)));
+
+    destruct(person);
+    destruct(observer);
 }

@@ -390,12 +390,22 @@ public nomask string parseTemplate(string template, string perspective,
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void displayMessage(string message, object initiator,
-    object target, string textClass, string type)
+    object target, string textClass, string type, int checkVisibility,
+    object location, int suppressInitiator)
 {
     if (environment(initiator))
     {
-        object *characters = filter(all_inventory(environment(initiator)),
+        if (!objectp(location))
+        {
+            location = environment(initiator);
+        }
+        object *characters = filter(all_inventory(location),
             (: $1->isRealizationOfLiving() :));
+
+        if (suppressInitiator)
+        {
+            characters -= ({ initiator });
+        }
 
         foreach(object person in characters)
         {
@@ -422,9 +432,13 @@ public nomask varargs void displayMessage(string message, object initiator,
                 object configuration =
                     load_object("/lib/dictionaries/configurationDictionary.c");
 
-                tell_object(person, configuration->decorate(
-                    format(parsedMessage, 78),
-                    textClass, type, person->colorConfiguration()));
+                if (!checkVisibility ||
+                    (checkVisibility && person->canSee()))
+                {
+                    tell_object(person, configuration->decorate(
+                        format(parsedMessage, 78),
+                        textClass, type, person->colorConfiguration()));
+                }
             }
         }
     }
