@@ -15,7 +15,7 @@ public void reset(int arg)
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to craft scale armor.");
         addSpecification("research type", "granted");
-        addPrerequisite("lib/instances/research/crafting/armor/craftHeavyArmor.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/armor/heavy-armor/craftHeavyArmor.c", (["type":"research"]));
         addPrerequisite("armorer", (["type":"skill", "value" : 9]));
     }
 }

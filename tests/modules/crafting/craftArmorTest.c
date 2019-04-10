@@ -247,7 +247,8 @@ void CanCraftHeavyArmor()
     ExpectEq(15, silk->query("quantity"));
 
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftArmor.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftPlateArmor.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/heavy-armor/craftHeavyArmor.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/heavy-armor/craftPlateArmor.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftTextiles.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
