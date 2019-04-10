@@ -4,8 +4,9 @@
 //*****************************************************************************
 
 private nosave string *armorCategories = ({ "chainmail", "plate armor", 
-    "clothing", "splint armor", "scale armor", "leather armor", "gloves",
-    "helmet", "jewelry" });
+    "clothing", "splint armor", "scale armor", "hard leather", "soft leather",
+    "gloves", "helmet", "jewelry" });
+
 private nosave mapping armorBlueprints = ([
     "chainmail": ([
         "type": "armor",

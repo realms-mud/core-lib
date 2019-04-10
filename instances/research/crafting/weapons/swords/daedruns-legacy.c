@@ -20,7 +20,7 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/swords/daedruns-way.c", 
             (["type":"research"]));
 
-        addSpecification("limited by", (["crafting type":"sword"]));
+        addSpecification("limited by", (["crafting type":({ "sword", "dagger" })]));
 
         addSpecification("bonus crafting value multiplier", 20);
         addSpecification("bonus crafting enchantments", 1);

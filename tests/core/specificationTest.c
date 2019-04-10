@@ -582,3 +582,22 @@ void DisplayLimitersStringCorrectWithLimitorForSpellPointsDrained()
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("\x1b[0;36mThis is only applied when you are spell points drained.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void LimitorsFallBackToSkillWhenInCorrectSubType()
+{
+    mapping limitor = ([ "crafting type": "hard leather" ]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor),
+        "set the limitor");
+
+    object chainmail = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
+    ExpectFalse(Specification->canApplySkill("x", Attacker, chainmail));
+
+    limitor = ([ "crafting type": "chainmail" ]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor),
+        "set the limitor");
+    ExpectTrue(Specification->canApplySkill("x", Attacker, chainmail));
+
+    destruct(chainmail);
+}

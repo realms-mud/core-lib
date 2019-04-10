@@ -23,6 +23,12 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/common/folding.c",
             (["type":"research"]));
+
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 10]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 5]));
+        addPrerequisite("physics", (["type":"skill", "value" : 5]));
+        addPrerequisite("mathematics", (["type":"skill", "value" : 5]));
+
         addSpecification("limited by", (["crafting type":({ "sword", "dagger",
             "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
             "bow", "sling", "thrown", "shield" })]));

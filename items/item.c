@@ -16,6 +16,7 @@ protected nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDiction
 private nosave string CraftingDictionary = "/lib/dictionaries/craftingDictionary.c";
 protected nosave string MessageParser = "/lib/core/messageParser.c";
 private nosave string BonusesBlueprint = "/lib/dictionaries/bonusesDictionary.c";
+private object MaterialsObject = load_object(MaterialsBlueprint);
 
 protected mapping itemData = ([ 
 //  "aliases": ({ }),  // string array of alternate names for item
@@ -77,7 +78,7 @@ protected nomask object loadBlueprint(string blueprint)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask object materialsObject()
 {
-    return load_object(MaterialsBlueprint);
+    return MaterialsObject;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -225,6 +226,13 @@ public mixed query(string element)
                 ret = member(itemData, "crafting type") ? itemData["crafting type"] :
                     materialsObject()->getBlueprintModifier(
                         this_object(), "subtype");
+
+               if (!load_object(CraftingDictionary)->isValidType(ret))
+                {
+                    ret = materialsObject()->getBlueprintModifier(
+                        this_object(), "skill to use");
+                }
+                
                 break;
             }
             case "short":

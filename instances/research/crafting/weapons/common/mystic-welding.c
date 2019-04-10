@@ -24,6 +24,14 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/common/mystic-wrapping.c",
             (["type":"research"]));
+
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 12]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 15]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 5]));
+        addPrerequisite("physics", (["type":"skill", "value" : 10]));
+        addPrerequisite("mathematics", (["type":"skill", "value" : 5]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 20]));
+
         addSpecification("limited by", (["crafting type":({ "sword", "dagger",
             "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
             "bow", "sling", "thrown", "shield" })]));

@@ -26,7 +26,7 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/common/differential-hardening.c",
             (["type":"research"]));
 
-        addSpecification("limited by", (["crafting type":"sword"]));
+        addSpecification("limited by", (["crafting type":({ "sword", "dagger" })]));
 
         addSpecification("bonus crafting value multiplier", 30);
         addSpecification("bonus crafting encumberance reduction", 10);

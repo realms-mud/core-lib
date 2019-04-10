@@ -24,6 +24,11 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/common/annealing.c",
             (["type":"research"]));
+
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 4]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 3]));
+        addPrerequisite("physics", (["type":"skill", "value" : 3]));
+
         addSpecification("limited by", (["crafting type":({ "sword", "dagger",
             "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",
             "bow", "sling", "thrown", "shield" })]));

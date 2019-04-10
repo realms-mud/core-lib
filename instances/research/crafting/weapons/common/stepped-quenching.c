@@ -24,6 +24,9 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
+        addPrerequisite("chemistry", (["type":"skill", "value" : 7]));
+        addPrerequisite("physics", (["type":"skill", "value" : 3]));
+
         addPrerequisite("lib/instances/research/crafting/weapons/common/quenching.c",
             (["type":"research"]));
         addSpecification("limited by", (["crafting type":({ "sword", "dagger",

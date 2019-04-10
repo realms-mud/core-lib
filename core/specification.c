@@ -290,16 +290,23 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
             if (stringp(researchData["limited by"]["crafting type"]) &&
                 target)
             {
-                ret &&= (target->query("crafting type") ==
-                    researchData["limited by"]["crafting type"]);
+                ret &&= ((target->query("crafting type") ==
+                    researchData["limited by"]["crafting type"]) ||
+                    (getDictionary("materials")->getBlueprintModifier(target,
+                        "skill to use") == 
+                        researchData["limited by"]["crafting type"]));
             }
             else if (pointerp(researchData["limited by"]["crafting type"]) &&
                 target)
             {
                 int checkList = 0;
+                object materials = getDictionary("materials");
+
                 foreach(string key in researchData["limited by"]["crafting type"])
                 {
-                    checkList += (target->query("crafting type") == key);
+                    checkList += ((target->query("crafting type") == key) ||
+                        (materials->getBlueprintModifier(target, 
+                           "skill to use") == key));
                 }
                 ret &&= checkList;
             }

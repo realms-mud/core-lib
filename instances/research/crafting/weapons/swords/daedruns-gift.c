@@ -21,7 +21,7 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/swords/enhance-the-essence.c", 
             (["type":"research"]));
 
-        addSpecification("limited by", (["crafting type":"sword"]));
+        addSpecification("limited by", (["crafting type":({ "sword", "dagger" }) ]));
 
         addSpecification("bonus crafting magical enchantment", 2);
         addSpecification("bonus crafting enchantments", 1);

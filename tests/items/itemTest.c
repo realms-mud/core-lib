@@ -879,3 +879,12 @@ void CraftingMaterialsAreDisplayedInLongDescription()
         "resemble a dragon's talon. Clutched in its grip is a beautifully cut ruby.",
         Item->long());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CraftingTypeReturnsCorrectlyWhenSubtypeNotValidCraftingType()
+{
+    object chainmail = 
+        clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
+
+    ExpectEq("chainmail", chainmail->query("crafting type"));
+}
