@@ -21,6 +21,12 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/swords/enhance-the-essence.c", 
             (["type":"research"]));
 
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 45]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 35]));
+        addPrerequisite("gem crafting", (["type":"skill", "value" : 30]));
+        addPrerequisite("physics", (["type":"skill", "value" : 25]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 40]));
+
         addSpecification("limited by", (["crafting type":({ "sword", "dagger" }) ]));
 
         addSpecification("bonus crafting magical enchantment", 2);

@@ -16,5 +16,6 @@ public void reset(int arg)
             "knowledge required to craft double bit axes.");
         addSpecification("research type", "granted");
         addPrerequisite("lib/instances/research/crafting/weapons/axes/craftBasicAxe.c", (["type":"research"]));
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 10]));
     }
 }

@@ -20,6 +20,7 @@ public void reset(int arg)
 
         addSpecification("limited by", (["crafting type":({ "chainmail", 
             "plate armor", "splint armor", "scale armor", "helmet" })]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 1]));
 
         addSpecification("penalty to crafting armor class", 1);
     }

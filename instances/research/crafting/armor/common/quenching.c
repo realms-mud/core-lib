@@ -22,6 +22,9 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/common/slack-quenching.c",
             (["type":"research"]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 5]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 1]));
+
         addSpecification("limited by", (["crafting type":({ "chainmail",
             "plate armor", "splint armor", "scale armor", "helmet" })]));
 

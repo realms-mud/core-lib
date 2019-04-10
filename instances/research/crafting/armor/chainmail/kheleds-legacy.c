@@ -19,6 +19,10 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/chainmail/kheleds-way.c", 
             (["type":"research"]));
+        addPrerequisite("armorer", (["type":"skill", "value" : 30]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 25]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 25]));
+        addPrerequisite("gem crafting", (["type":"skill", "value" : 20]));
 
         addSpecification("limited by", (["crafting type":"chainmail"]));
 

@@ -19,6 +19,9 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/chainmail/kheleds-tradition.c", 
             (["type":"research"]));
+        addPrerequisite("armorer", (["type":"skill", "value" : 25]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 22]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 22]));
 
         addSpecification("limited by", (["crafting type":"chainmail"]));
 

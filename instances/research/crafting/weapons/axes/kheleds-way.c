@@ -19,6 +19,9 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/axes/kheleds-tradition.c", 
             (["type":"research"]));
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 23]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 21]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 21]));
 
         addSpecification("limited by", (["crafting type":"axe"]));
 

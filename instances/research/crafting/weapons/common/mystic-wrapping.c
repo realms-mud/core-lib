@@ -26,6 +26,7 @@ public void reset(int arg)
             (["type":"research"]));
 
         addPrerequisite("weapon smithing", (["type":"skill", "value" : 10]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 10]));
         addPrerequisite("metal crafting", (["type":"skill", "value" : 10]));
         addPrerequisite("chemistry", (["type":"skill", "value" : 5]));
         addPrerequisite("physics", (["type":"skill", "value" : 10]));

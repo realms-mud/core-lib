@@ -14,6 +14,8 @@ void Setup()
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
+    Player->addSkillPoints(100);
+    Player->advanceSkill("weapon smithing", 1);
     Player->addCommands();
 
     move_object(Selector, Player);

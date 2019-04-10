@@ -20,6 +20,11 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/common/annealing.c",
             (["type":"research"]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 3]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 5]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 2]));
+        addPrerequisite("physics", (["type":"skill", "value" : 2]));
+
         addSpecification("limited by", (["crafting type":({ "chainmail",
             "plate armor", "splint armor", "scale armor", "helmet" })]));
     }

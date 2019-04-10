@@ -26,6 +26,12 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/common/differential-hardening.c",
             (["type":"research"]));
 
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 20]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 10]));
+        addPrerequisite("physics", (["type":"skill", "value" : 15]));
+        addPrerequisite("mathematics", (["type":"skill", "value" : 10]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 15]));
+
         addSpecification("limited by", (["crafting type":({ "sword", "dagger" })]));
 
         addSpecification("bonus crafting value multiplier", 30);

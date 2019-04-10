@@ -23,6 +23,9 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/common/quenching.c",
             (["type":"research"]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 6]));
+        addPrerequisite("physics", (["type":"skill", "value" : 3]));
+
         addSpecification("limited by", (["crafting type":({ "chainmail",
             "plate armor", "splint armor", "scale armor", "helmet" })]));
 

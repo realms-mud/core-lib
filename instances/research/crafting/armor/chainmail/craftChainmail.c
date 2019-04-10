@@ -17,5 +17,6 @@ public void reset(int arg)
         addSpecification("research type", "granted");
         addPrerequisite("lib/instances/research/crafting/armor/craftArmor.c", 
             (["type":"research"]));
+        addPrerequisite("armorer", (["type":"skill", "value" : 5]));
     }
 }

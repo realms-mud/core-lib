@@ -19,6 +19,9 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/chainmail/maeliths-tradition.c", 
             (["type":"research"]));
+        addPrerequisite("armorer", (["type":"skill", "value" : 35]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 35]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 25]));
 
         addSpecification("limited by", (["crafting type":"chainmail"]));
 

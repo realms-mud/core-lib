@@ -19,6 +19,9 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/axes/maeliths-legacy.c", 
             (["type":"research"]));
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 30]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 25]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 25]));
 
         addSpecification("limited by", (["crafting type":"axe"]));
 

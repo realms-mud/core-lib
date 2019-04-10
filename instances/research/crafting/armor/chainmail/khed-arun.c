@@ -20,6 +20,8 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/chainmail/khazuraths-legacy.c", 
             (["type":"research"]));
+        addPrerequisite("armorer", (["type":"skill", "value" : 42]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 42]));
 
         addSpecification("limited by", (["crafting type":"chainmail"]));
 

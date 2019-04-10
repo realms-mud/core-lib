@@ -20,6 +20,8 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/chainmail/khuz-no-dai.c", 
             (["type":"research"]));
+        addPrerequisite("armorer", (["type":"skill", "value" : 46]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 50]));
 
         addSpecification("limited by", (["crafting type":"chainmail"]));
 

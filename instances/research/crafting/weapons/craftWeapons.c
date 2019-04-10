@@ -15,5 +15,7 @@ public void reset(int arg)
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to craft weapons.");
         addSpecification("research type", "granted");
+
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 1]));
     }
 }

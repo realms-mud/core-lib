@@ -23,6 +23,11 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/common/tempering.c",
             (["type":"research"]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 5]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 8]));
+        addPrerequisite("physics", (["type":"skill", "value" : 3]));
+        addPrerequisite("mathematics", (["type":"skill", "value" : 3]));
+
         addSpecification("limited by", (["crafting type":({ "chainmail",
             "plate armor", "splint armor", "scale armor", "helmet" })]));
 

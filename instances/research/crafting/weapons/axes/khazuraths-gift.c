@@ -20,6 +20,8 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/axes/khuz-no-dai.c", 
             (["type":"research"]));
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 45]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 40]));
 
         addSpecification("limited by", (["crafting type":"axe"]));
 

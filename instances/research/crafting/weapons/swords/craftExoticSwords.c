@@ -26,5 +26,6 @@ public void reset(int arg)
             (["type":"research"]));
         addPrerequisite("lib/instances/research/crafting/weapons/common/forge-welding.c",
             (["type":"research"]));
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 8]));
     }
 }

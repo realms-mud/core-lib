@@ -10,11 +10,14 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Chainmail");
+        addSpecification("name", "Craft Heavy Armor");
         addSpecification("source", "crafting");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft chainmail armor.");
+            "fundamental knowledge required to craft heavy armor. This "
+            "knowledge is the building blocks for creating plate, splint, and "
+            "scale armor.");
         addSpecification("research type", "granted");
         addPrerequisite("lib/instances/research/crafting/armor/craftArmor.c", (["type":"research"]));
+        addPrerequisite("armorer", (["type":"skill", "value" : 3]));
     }
 }

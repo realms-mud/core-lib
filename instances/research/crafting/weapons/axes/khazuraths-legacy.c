@@ -19,6 +19,8 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/axes/khazuraths-way.c", 
             (["type":"research"]));
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 35]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 30]));
 
         addSpecification("limited by", (["crafting type":"axe"]));
 

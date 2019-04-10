@@ -21,6 +21,9 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/swords/daedruns-legacy.c", 
             (["type":"research"]));
 
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 35]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 33]));
+
         addSpecification("limited by", (["crafting type":({ "sword", "dagger" })]));
 
         addSpecification("bonus crafting value multiplier", 10);

@@ -25,6 +25,12 @@ public void reset(int arg)
             (["type":"research"]));
         addPrerequisite("lib/instances/research/crafting/armor/common/differential-hardening.c",
             (["type":"research"]));
+        addPrerequisite("armorer", (["type":"skill", "value" : 20]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 20]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 20]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 10]));
+        addPrerequisite("physics", (["type":"skill", "value" : 15]));
+        addPrerequisite("mathematics", (["type":"skill", "value" : 10]));
 
         addSpecification("limited by", (["crafting type":"chainmail"]));
 

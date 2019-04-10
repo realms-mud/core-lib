@@ -20,6 +20,9 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/axes/khazuraths-legacy.c", 
             (["type":"research"]));
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 42]));
+        addPrerequisite("gem crafting", (["type":"skill", "value" : 30]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 35]));
 
         addSpecification("limited by", (["crafting type":"axe"]));
 

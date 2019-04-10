@@ -21,6 +21,9 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/swords/impart-the-essence.c", 
             (["type":"research"]));
 
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 40]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 35]));
+
         addSpecification("limited by", (["crafting type":({ "sword", "dagger" })]));
 
         addSpecification("bonus crafting magical enchantment", 2);

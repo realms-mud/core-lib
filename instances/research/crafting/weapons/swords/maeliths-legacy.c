@@ -20,6 +20,12 @@ public void reset(int arg)
         addPrerequisite("lib/instances/research/crafting/weapons/swords/maeliths-tradition.c", 
             (["type":"research"]));
 
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 22]));
+        addPrerequisite("chemistry", (["type":"skill", "value" : 11]));
+        addPrerequisite("physics", (["type":"skill", "value" : 16]));
+        addPrerequisite("mathematics", (["type":"skill", "value" : 11]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 18]));
+
         addSpecification("limited by", (["crafting type":({ "sword", "dagger" })]));
 
         addSpecification("bonus crafting value multiplier", 20);

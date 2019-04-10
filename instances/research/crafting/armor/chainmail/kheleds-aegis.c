@@ -19,6 +19,7 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/armor/chainmail/kheleds-legacy.c", 
             (["type":"research"]));
+        addPrerequisite("armorer", (["type":"skill", "value" : 35]));
 
         addSpecification("limited by", (["crafting type":"chainmail"]));
 

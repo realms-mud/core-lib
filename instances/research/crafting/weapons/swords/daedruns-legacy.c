@@ -19,6 +19,11 @@ public void reset(int arg)
 
         addPrerequisite("lib/instances/research/crafting/weapons/swords/daedruns-way.c", 
             (["type":"research"]));
+        addPrerequisite("weapon smithing", (["type":"skill", "value" : 33]));
+        addPrerequisite("metal crafting", (["type":"skill", "value" : 30]));
+        addPrerequisite("gem crafting", (["type":"skill", "value" : 25]));
+        addPrerequisite("physics", (["type":"skill", "value" : 21]));
+        addPrerequisite("spellcraft", (["type":"skill", "value" : 30]));
 
         addSpecification("limited by", (["crafting type":({ "sword", "dagger" })]));
 

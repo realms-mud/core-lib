@@ -21,6 +21,7 @@ public void reset(int arg)
         addSpecification("research cost", 1);
 
         addPrerequisite("chemistry", (["type":"skill", "value" : 5]));
+        addPrerequisite("blacksmithing", (["type":"skill", "value" : 1]));
 
         addPrerequisite("lib/instances/research/crafting/weapons/common/slack-quenching.c",
             (["type":"research"]));

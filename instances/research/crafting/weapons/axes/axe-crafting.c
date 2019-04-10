@@ -142,9 +142,7 @@ public void Techniques()
     addResearchElement("lib/instances/research/crafting/weapons/axes/khazuraths-gift.c");
     addChild("lib/instances/research/crafting/weapons/axes/khazuraths-gift.c",
         "lib/instances/research/crafting/weapons/axes/khuz-no-dai.c");
-
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
