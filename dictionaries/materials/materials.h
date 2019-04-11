@@ -2768,6 +2768,36 @@ private nosave mapping materials =
         "scarcity": "common",
         "experience modifier": 1
     ]),
+    "thrush feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "grebe feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "quail feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
     "blackbird feather": ([
         "class": "plumage",
         "crafting skill required": 1,
@@ -2798,6 +2828,56 @@ private nosave mapping materials =
         "scarcity": "common",
         "experience modifier": 1
     ]),
+    "crane feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "swan feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "goose feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "cormorant feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "albatross feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
     "grouse feather": ([
         "class": "plumage",
         "crafting skill required": 1,
@@ -2808,7 +2888,57 @@ private nosave mapping materials =
         "scarcity": "common",
         "experience modifier": 1
     ]),
-    "bluejay feather": ([
+    "lark feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "cedar waxwing feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+     "robin feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+     "cardinal feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+   "bluejay feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+   "herron feather": ([
         "class": "plumage",
         "crafting skill required": 1,
         "crafting prerequisites": ([
@@ -2829,6 +2959,26 @@ private nosave mapping materials =
         "experience modifier": 1
     ]),
     "oriol feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "woodpecker feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "hummingbird feather": ([
         "class": "plumage",
         "crafting skill required": 1,
         "crafting prerequisites": ([

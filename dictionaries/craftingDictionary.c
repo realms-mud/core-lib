@@ -534,8 +534,13 @@ public nomask mapping getMaterialsOfType(string type, object user,
 
             craftingItem->set("material", material);
 
+            string name = capitalize(material);
+            if (sizeof(name) > 20)
+            {
+                name = name[0..16] + "...";
+            }
             ret[to_string(menuItem)] = ([
-                "name": capitalize(material),
+                "name": name,
                 "type": material,
                 "description": sprintf("This option lets you craft using: %s\n%s\n", 
                     material, materialDictionary->getEquipmentStatistics(craftingItem, user)),
