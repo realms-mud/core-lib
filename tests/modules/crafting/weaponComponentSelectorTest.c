@@ -120,7 +120,7 @@ void SelectingComponentDisplaysComponentMenu()
     command("1", Player);
 
     ExpectEq("\x1b[0;36mCraft Blade - \x1b[0m\x1b[0;37;1mSelect materials and the type of blade you will craft\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;34;1mnone\x1b[0m     "
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;34;1mnone     \x1b[0m"
         "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlamberge           \x1b[0m         \n"
         "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSerrated            \x1b[0m         "
         "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mType X              \x1b[0m         \n"
@@ -211,12 +211,12 @@ void SelectingTypeFlagsChosenTypeInComponentMenu()
     command("6", Player);
 
     ExpectEq("\x1b[0;36mCraft Blade - \x1b[0m\x1b[0;37;1mSelect materials and the type of blade you will craft\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;34;1mnone\x1b[0m     "
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSelect metal        \x1b[0m\x1b[0;34;1mnone     \x1b[0m"
         "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlamberge           \x1b[0m         \n"
         "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSerrated            \x1b[0m         "
         "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mType X              \x1b[0m         \n"
         "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mType XI             \x1b[0m         "
-        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mType XIII           \x1b[0m\x1b[0;34;1m   (*)\x1b[0m   \n"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mType XIII           \x1b[0m\x1b[0;34;1m   (*)   \x1b[0m\n"
         "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mType XIIa           \x1b[0m         "
         "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mType XIV            \x1b[0m         \n"
         "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mType XIX            \x1b[0m         "
@@ -266,7 +266,7 @@ void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
         "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mSerrated            \x1b[0m         "
         "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mType X              \x1b[0m         \n"
         "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mType XI             \x1b[0m         "
-        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mType XIII           \x1b[0m\x1b[0;34;1m   (*)\x1b[0m   \n"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mType XIII           \x1b[0m\x1b[0;34;1m   (*)   \x1b[0m\n"
         "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mType XIIa           \x1b[0m         "
         "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mType XIV            \x1b[0m         \n"
         "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mType XIX            \x1b[0m         "

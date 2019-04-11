@@ -3,7 +3,9 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private nosave string *materialClasses = ({ "textile", "crystal", "clay", "exotic", "leather", "metal", "stone", "wood" });
+private nosave string *materialClasses = ({ "textile", "crystal", "clay", 
+    "skeletal", "leather", "metal", "stone", "wood", "plumage" });
+
 private nosave mapping materials =
 ([
     "linen": ([
@@ -2661,11 +2663,11 @@ private nosave mapping materials =
         "experience modifier": 2.85
     ]),
     "bone": ([
-        "class": "exotic",
+        "class": "skeletal",
         "crafting skill required": 5,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
-            "wood craft": (["type":"skill", "value": 1]),
+            "wood crafting": (["type":"skill", "value": 1]),
             "chemistry": (["type":"skill", "value": 2]),
             "physics": (["type":"skill", "value": 2])
         ]),
@@ -2675,11 +2677,11 @@ private nosave mapping materials =
         "experience modifier": 1.1
     ]),
     "horn": ([
-        "class": "exotic",
+        "class": "skeletal",
         "crafting skill required": 7,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
-            "wood craft": (["type":"skill", "value": 2]),
+            "wood crafting": (["type":"skill", "value": 2]),
             "chemistry": (["type":"skill", "value": 3]),
             "physics": (["type":"skill", "value": 3])
         ]),
@@ -2689,11 +2691,11 @@ private nosave mapping materials =
         "experience modifier": 1.2
     ]),
     "antler": ([
-        "class": "exotic",
+        "class": "skeletal",
         "crafting skill required": 7,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
-            "wood craft": (["type":"skill", "value": 2]),
+            "wood crafting": (["type":"skill", "value": 2]),
             "chemistry": (["type":"skill", "value": 3]),
             "physics": (["type":"skill", "value": 3])
         ]),
@@ -2703,11 +2705,11 @@ private nosave mapping materials =
         "experience modifier": 1.1
     ]),
     "ivory": ([
-        "class": "exotic",
+        "class": "skeletal",
         "crafting skill required": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftExoticMaterials.c":(["type":"research"]),
-            "wood craft": (["type":"skill", "value": 2]),
+            "wood crafting": (["type":"skill", "value": 2]),
             "chemistry": (["type":"skill", "value": 4]),
             "physics": (["type":"skill", "value": 4])
         ]),
@@ -2716,8 +2718,8 @@ private nosave mapping materials =
         "scarcity": "very rare",
         "experience modifier": 1.2
     ]),
-    "feather": ([
-        "class": "feather",
+    "pigeon feather": ([
+        "class": "plumage",
         "crafting skill required": 1,
         "crafting prerequisites": ([
         ]),
@@ -2726,7 +2728,336 @@ private nosave mapping materials =
         "scarcity": "common",
         "experience modifier": 1
     ]),
-
+    "dove feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "sparrow feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "tree swallow feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "barn swallow feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "blackbird feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "bluebird feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "wren feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "grouse feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "bluejay feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "finch feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "oriol feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "grackle feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "starling feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "crow feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "raven feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "seagull feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "hawk feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.1,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "eagle feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.2,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "owl feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "chicken feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "turkey feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "duck feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "peacock feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.2,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "pheasant feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "griffin feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 3.0,
+        "description": "",
+        "scarcity": "rare",
+        "experience modifier": 1
+    ]),
+    "phoenix feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 3.0,
+        "description": "",
+        "scarcity": "rare",
+        "experience modifier": 1
+    ]),
+    "pegasus feather": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 3.0,
+        "description": "",
+        "scarcity": "rare",
+        "experience modifier": 1
+    ]),
+    "pegasus hair": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 3.0,
+        "description": "",
+        "scarcity": "rare",
+        "experience modifier": 1
+    ]),
+    "horse hair": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "griffin hair": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 3.0,
+        "description": "",
+        "scarcity": "rare",
+        "experience modifier": 1
+    ]),
+    "unicorn hair": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 5.0,
+        "description": "",
+        "scarcity": "rare",
+        "experience modifier": 1
+    ]),
+    "hippogriff hair": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 3.0,
+        "description": "",
+        "scarcity": "rare",
+        "experience modifier": 1
+    ]),
+    "lion mane": ([
+        "class": "plumage",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "description": "",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
     "kirnalt": ([
         "class": "metal",
         "crafting skill required": 80,

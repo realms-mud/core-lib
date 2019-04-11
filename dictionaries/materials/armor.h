@@ -724,8 +724,8 @@ private nosave mapping armorBlueprints = ([
             "metal crafting": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 2,
-            "leather": 1
+            "helmet design": (["metal": 2, "leather": 1 ]),
+            "crest": (["metal": 0, "crystal": 0, "plumage": 0, "skeletal": 0 ])
         ]),
         "default location": Helmet,
         "default ac": 1,
@@ -733,7 +733,7 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "iron",
         "default value": 50,
-        "default description": "This is a helmet made of metal and lined with leather.",
+        "default description": "This is a helmet.",
         "base experience": 5,
     ]),
     "helm": ([
@@ -745,8 +745,8 @@ private nosave mapping armorBlueprints = ([
             "metal crafting": (["type":"skill", "value": 5]),
         ]),
         "crafting materials": ([
-            "metal": 3,
-            "leather": 1
+            "helm design": (["metal": 3, "leather": 1 ]),
+            "crest": (["metal": 0, "crystal": 0, "plumage": 0, "skeletal" : 0])
         ]),
         "default location": Helmet,
         "default ac": 1,
@@ -754,7 +754,7 @@ private nosave mapping armorBlueprints = ([
         "default weight": 1,
         "default material": "iron",
         "default value": 50,
-        "default description": "This is a helm of metal. It has been lined with leather on the inside.",
+        "default description": "This is a helm.",
         "base experience": 5,
     ]),
     "coif": ([

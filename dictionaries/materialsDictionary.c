@@ -51,7 +51,7 @@ public nomask int isValidMaterial(string material)
 public nomask int isValidMaterialType(string materialType)
 {
     return (member(({ "wood", "textile", "stone", "leather", "metal", 
-        "crystal", "exotic" }), materialType) > -1);
+        "crystal", "skeletal", "plumage" }), materialType) > -1);
 }
 
 /////////////////////////////////////////////////////////////////////////////

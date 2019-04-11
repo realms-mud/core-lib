@@ -3251,4 +3251,485 @@ private nosave mapping craftingComponents =
         ]),
         "experience modifier": 1.1
     ]),
+    "Aventail": ([
+        "class": "helmet design",
+        "value": 35,
+        "description": "a somewhat conical metal skull piece formed to wrap around the "
+            "top of the user's head and down the back to the neck. A flexible metal coif "
+            "is attached via a leather band and it covers the throat and neck. The "
+            "interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 7]),
+            "armorer": (["type":"skill", "value": 5]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Cervelliere": ([
+        "class": "helmet design",
+        "value": 35,
+        "description": "a simple metal skull piece formed to wrap around the "
+            "top of the user's head . A leather strap is used to keep the helmet "
+            "affixed to the wearer's head.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "armorer": (["type":"skill", "value": 5]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Nasal Helmet": ([
+        "class": "helmet design",
+        "value": 35,
+        "description": "a simple, conical metal skull piece formed to wrap around the "
+            "top of the user's head. There is a protective nose piece hanging down "
+            "from the faceward side of the helmet. A leather strap is used to keep "
+            "the helmet affixed to the wearer's head.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "armorer": (["type":"skill", "value": 5]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Pioneer Helmet": ([
+        "class": "helmet design",
+        "value": 35,
+        "description": "eight metal bands make up this helmet. The sturdiest is a piece "
+            "that runs from the nape of the neck to the nose, where it thickens and "
+            "juts slightly out. The other bands of metal cross this piece offering a "
+            "frame around which leather is wrapped. The main piece of metal and "
+            "another perpendicular are exposed above the leather. Around the temples and "
+            "up around the brow, another shaped piece of metal is formed. To this "
+            "on each side, a leather cheek and neck guard are attached.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "leatherworking": (["type":"skill", "value": 5]),
+            "armorer": (["type":"skill", "value": 5]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Lamellenhelm": ([
+        "class": "helmet design",
+        "value": 65,
+        "description": "a series of metal, lamellar plates form close to the head "
+            "down to around the temples and up around the brow. Plates of metal "
+            "hang on hinges and cover the cheeks of the wearer. The interior "
+            "is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 9]),
+            "leatherworking": (["type":"skill", "value": 5]),
+            "armorer": (["type":"skill", "value": 9]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Spangenhelm": ([
+        "class": "helmet design",
+        "value": 45,
+        "description": "six metal plates form a somewhat conical shape around "
+            "the head. Strips of leather hang on hinges and cover the cheeks "
+            "of the wearer. The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "leatherworking": (["type":"skill", "value": 5]),
+            "armorer": (["type":"skill", "value": 5]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+
+    "Kettle Hat": ([
+        "class": "helmet design",
+        "value": 45,
+        "description": "a formed metal skull piece shaped roughly like a brimmed hat. It has "
+            "a metal coif descending around the head, covering the neck and throat. "
+            "The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Armet": ([
+        "class": "helm design",
+        "value": 65,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "two hinged cheek-pieces that lock in the front over the chin and a visor on "
+            "a double pivot, one to each side of the skull. The interior is padded with "
+            "leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 8]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Sallet": ([
+        "class": "helm design",
+        "value": 55,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "a visor attached via a double pivot, one to each side of the skull. "
+            "The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 8]),
+            "armorer": (["type":"skill", "value": 6]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Barbuta (T)": ([
+        "class": "helm design",
+        "value": 35,
+        "description": "a curved metal skull piece with long extensions that cover the cheeks, "
+            "throat, and neck. It has a long, T-shaped opening for the eyes and mouth. "
+            "The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 6]),
+            "armorer": (["type":"skill", "value": 6]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Barbuta (Y)": ([
+        "class": "helm design",
+        "value": 35,
+        "description": "a curved metal skull piece with long extensions that cover the cheeks, "
+            "throat, and neck. It has a long, Y-shaped opening for the eyes and mouth. "
+            "The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 6]),
+            "armorer": (["type":"skill", "value": 6]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Barbuta (Arch)": ([
+        "class": "helm design",
+        "value": 35,
+        "description": "a curved metal skull piece with long extensions that cover the cheeks, "
+            "throat, and neck. It has a long, arched opening for the eyes and mouth. "
+            "The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 6]),
+            "armorer": (["type":"skill", "value": 6]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Aventail Bascinet": ([
+        "class": "helm design",
+        "value": 45,
+        "description": "a somewhat conical metal skull piece formed to wrap around the "
+            "top of the user's head and down the back to the neck. A flexible metal coif "
+            "is attached via a leather band and it covers the throat and neck. A sturdy "
+            "metal visor covers the face. The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 9]),
+            "armorer": (["type":"skill", "value": 8]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Bretache": ([
+        "class": "helm design",
+        "value": 35,
+        "description": "a curved metal skull piece with long extensions that cover the cheeks, "
+            "throat, and neck. It has a long, arched opening for the eyes and mouth. A "
+            "thick metal noseguard juts down between the eyes to protect the face and a "
+            "coif of metal mail wraps around the throat and neck. "
+            "The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 6]),
+            "armorer": (["type":"skill", "value": 6]),
+        ]),
+        "experience modifier": 1.0
+    ]),
+    "Hounskull Bascinet": ([
+        "class": "helm design",
+        "value": 75,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "two hinged cheek-pieces that lock in the front over the chin and a visor on "
+            "a double pivot, one to each side of the skull. The visor is large and "
+            "dog muzzle-shaped. The interior is padded with "
+            "leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Beak Bascinet": ([
+        "class": "helm design",
+        "value": 75,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "two hinged cheek-pieces that lock in the front over the chin and a visor on "
+            "a double pivot, one to each side of the skull. The visor is large and "
+            "beak-shaped. The interior is padded with "
+            "leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Round Bascinet": ([
+        "class": "helm design",
+        "value": 75,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "two hinged cheek-pieces that lock in the front over the chin and a visor on "
+            "a double pivot, one to each side of the skull. The visor is large and "
+            "rounded. The interior is padded with "
+            "leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Close Helm": ([
+        "class": "helm design",
+        "value": 85,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "a single hinged cheek-piece that locks on the side covering the face. "
+            "The visor is split: opening the top would leave the chin protected, while "
+            "the lower portion could be opened to more completely expose the wearer's "
+            "face. The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Dragon Close Helm": ([
+        "class": "helm design",
+        "value": 100,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "a single hinged cheek-piece that locks on the side covering the face. "
+            "The visor is formed to look like a dragon's face. The interior is "
+            "padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Wolf Close Helm": ([
+        "class": "helm design",
+        "value": 100,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "a single hinged cheek-piece that locks on the side covering the face. "
+            "The visor is formed to look like a wolf's face, a pronounced muzzle "
+            "jutting out. The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Lion Close Helm": ([
+        "class": "helm design",
+        "value": 100,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "a single hinged cheek-piece that locks on the side covering the face. "
+            "The visor is formed to look like a lion's face. The interior is "
+            "padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Eagle Close Helm": ([
+        "class": "helm design",
+        "value": 100,
+        "description": "a curved metal skull piece formed to wrap around the user's head. It has "
+            "a single hinged cheek-piece that locks on the side covering the face. "
+            "The visor is formed to look like an eagle's face and beak. The interior is "
+            "padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+            "sculpture": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Stechhelm": ([
+        "class": "helm design",
+        "value": 75,
+        "description": "a flat metal skull piece formed to wrap around the user's head. It "
+            "has a large visor shaped almost like a frog's mouth, the eye opening "
+            "being a somewhat triangular slit. The interior is padded with "
+            "leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Pot Helm": ([
+        "class": "helm design",
+        "value": 25,
+        "description": "a flat metal top sits upon a roughly cylindrical metal helm "
+            "that covers the entire head of the wearer. Small breathing holes are "
+            "cut out below the nose and around the mouth. Two eye slits have also "
+            "been cut out. The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Kettle Helm": ([
+        "class": "helm design",
+        "value": 85,
+        "description": "a skull piece of metal shaped roughly like a brimmed hat. It has "
+            "a single hinged cheek-piece that locks on the side covering the face. "
+            "This affords protection around most of the head, only leaving a small "
+            "opening for the eyes and mouth. The interior is padded with leather.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 10]),
+            "armorer": (["type":"skill", "value": 10]),
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Plume": ([
+        "class": "crest",
+        "value": 30,
+        "description": "a plume of plumage that flows out of a metal post from the "
+            "back top of the head piece.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 2]),
+            "sculpture": (["type":"skill", "value": 2]),
+        ]),
+        "crafting materials": ([
+            "plumage": 2,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Horned": ([
+        "class": "crest",
+        "value": 30,
+        "description": "a pair of horns carved out of skeletal that jut out from metal "
+            "posts by each temple.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 2]),
+            "sculpture": (["type":"skill", "value": 2]),
+        ]),
+        "crafting materials": ([
+            "skeletal": 2,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Antlered": ([
+        "class": "crest",
+        "value": 30,
+        "description": "a pair of antlers carved out of skeletal that jut out from metal "
+            "posts by each temple.",
+        "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 2]),
+            "sculpture": (["type":"skill", "value": 2]),
+        ]),
+        "crafting materials": ([
+            "skeletal": 2,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Winged": ([
+        "class": "crest",
+        "value": 30,
+        "description": "a pair of metal wings covered in plumage that juts out "
+            "from each temple.",
+         "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 2]),
+            "sculpture": (["type":"skill", "value": 2]),
+        ]),
+        "crafting materials": ([
+            "plumage": 2,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Ornate Dragon": ([
+        "class": "crest",
+        "value": 30,
+        "description": "an ornate metal dragon with a pair of crystal eyes "
+            "that sits atop the apex of the head piece.",
+         "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 6]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Ornate Boar": ([
+        "class": "crest",
+        "value": 30,
+        "description": "an ornate metal boar with a pair of crystal eyes "
+            "that sits atop the apex of the head piece.",
+         "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 6]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Ornate Griffin": ([
+        "class": "crest",
+        "value": 30,
+        "description": "an ornate metal griffin with a pair of crystal eyes "
+            "that sits atop the apex of the head piece.",
+         "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 6]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Ornate Wolf": ([
+        "class": "crest",
+        "value": 30,
+        "description": "an ornate metal wolf with a pair of crystal eyes "
+            "that sits atop the apex of the head piece.",
+         "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 6]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Ornate Serpent": ([
+        "class": "crest",
+        "value": 30,
+        "description": "an ornate metal serpent with a pair of crystal eyes "
+            "that sits atop the apex of the head piece.",
+         "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 5]),
+            "sculpture": (["type":"skill", "value": 6]),
+        ]),
+        "crafting materials": ([
+            "crystal": 2,
+            "metal": 1,
+        ]),
+        "experience modifier": 1.1
+    ]),
+    "Simple Crest": ([
+        "class": "crest",
+        "value": 5,
+        "description": "a flat band of metal that spans the top of the head piece.",
+         "crafting prerequisites": ([
+            "metal crafting": (["type":"skill", "value": 1]),
+        ]),
+        "crafting materials": ([
+            "metal": 1,
+        ]),
+        "experience modifier": 1.0
+    ]),
 ]);

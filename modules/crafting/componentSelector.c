@@ -134,19 +134,20 @@ protected nomask string displayDetails(string choice)
     string ret = sprintf("%9s", "");
     if (Data[choice]["selector"] == "material")
     {
-        ret = sprintf("%-22s", configuration->decorate(
+        ret = configuration->decorate(sprintf("%-9s",
             (!Data[choice]["is disabled"] || (AdditionalMaterials &&
                 member(AdditionalMaterials, Data[choice]["type"]))) ?
             Dictionary->getCraftingMaterial(CraftingItem, Data[choice]["type"],
-                CraftingComponent) : "none",
-            "selected", "selector", colorConfiguration));
+                CraftingComponent) : (Data[choice]["is disabled"] ? "N/A" : "none")),
+            "selected", "selector", colorConfiguration);
     }
     else if (Data[choice]["type"] ==
         Dictionary->selectionForComponent(CraftingItem, CraftingComponent))
     {
-        ret = sprintf("%-22s", configuration->decorate(
-            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x80\xa0)" : "   (*)",
-            "selected", "selector", colorConfiguration)); 
+        ret = configuration->decorate(sprintf("%-9s",
+            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x80\xa0)" :
+                "   (*)"),
+            "selected", "selector", colorConfiguration); 
     }
     return ret;
 }
