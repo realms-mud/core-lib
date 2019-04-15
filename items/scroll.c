@@ -25,6 +25,15 @@ public nomask mixed query(string element)
             ret = "Something that appears to be a scroll";
             break;
         }
+        case "crafting guilds":
+        {
+            object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+            if (guilds)
+            {
+                ret = guilds->guildsInClass("enchanting");
+            }
+            break;
+        }
         default:
         {
             ret = "item"::query(element);

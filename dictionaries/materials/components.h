@@ -3304,7 +3304,7 @@ private nosave mapping craftingComponents =
             "leatherworking": (["type":"skill", "value": 5]),
             "armorer": (["type":"skill", "value": 5]),
         ]),
-        "experience modifier": 1.0
+        "experience modifier": 1.05
     ]),
     "Lamellenhelm": ([
         "class": "helmet design",
@@ -3318,7 +3318,7 @@ private nosave mapping craftingComponents =
             "leatherworking": (["type":"skill", "value": 5]),
             "armorer": (["type":"skill", "value": 9]),
         ]),
-        "experience modifier": 1.0
+        "experience modifier": 1.1
     ]),
     "Spangenhelm": ([
         "class": "helmet design",
@@ -3418,7 +3418,7 @@ private nosave mapping craftingComponents =
             "metal crafting": (["type":"skill", "value": 9]),
             "armorer": (["type":"skill", "value": 8]),
         ]),
-        "experience modifier": 1.0
+        "experience modifier": 1.05
     ]),
     "Bretache": ([
         "class": "helm design",
@@ -3502,7 +3502,7 @@ private nosave mapping craftingComponents =
             "armorer": (["type":"skill", "value": 10]),
             "sculpture": (["type":"skill", "value": 10]),
         ]),
-        "experience modifier": 1.1
+        "experience modifier": 1.15
     ]),
     "Wolf Close Helm": ([
         "class": "helm design",
@@ -3516,7 +3516,7 @@ private nosave mapping craftingComponents =
             "armorer": (["type":"skill", "value": 10]),
             "sculpture": (["type":"skill", "value": 10]),
         ]),
-        "experience modifier": 1.1
+        "experience modifier": 1.15
     ]),
     "Lion Close Helm": ([
         "class": "helm design",
@@ -3530,7 +3530,7 @@ private nosave mapping craftingComponents =
             "armorer": (["type":"skill", "value": 10]),
             "sculpture": (["type":"skill", "value": 10]),
         ]),
-        "experience modifier": 1.1
+        "experience modifier": 1.15
     ]),
     "Eagle Close Helm": ([
         "class": "helm design",
@@ -3544,7 +3544,7 @@ private nosave mapping craftingComponents =
             "armorer": (["type":"skill", "value": 10]),
             "sculpture": (["type":"skill", "value": 10]),
         ]),
-        "experience modifier": 1.1
+        "experience modifier": 1.15
     ]),
     "Stechhelm": ([
         "class": "helm design",
@@ -3570,7 +3570,7 @@ private nosave mapping craftingComponents =
             "metal crafting": (["type":"skill", "value": 10]),
             "armorer": (["type":"skill", "value": 10]),
         ]),
-        "experience modifier": 1.1
+        "experience modifier": 1.0
     ]),
     "Kettle Helm": ([
         "class": "helm design",
@@ -3583,7 +3583,7 @@ private nosave mapping craftingComponents =
             "metal crafting": (["type":"skill", "value": 10]),
             "armorer": (["type":"skill", "value": 10]),
         ]),
-        "experience modifier": 1.1
+        "experience modifier": 1.0
     ]),
     "Plume": ([
         "class": "crest",

@@ -32,6 +32,14 @@ public nomask void completeCrafting()
 {
     if (CraftingItem)
     {
+        object guilds = getService("guilds");
+        int experience = to_int(CraftingItem->query("crafting experience"));
+
+        if (guilds && experience)
+        {
+            guilds->distributeExperience(experience,
+                CraftingItem->query("crafting guilds"));
+        }
         move_object(CraftingItem, this_object());
         craftingEvent("onCraftingCompleted");
         CraftingItem = 0;

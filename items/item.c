@@ -235,6 +235,15 @@ public mixed query(string element)
                 
                 break;
             }
+            case "crafting guilds":
+            {
+                object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+                if (guilds)
+                {
+                    ret = guilds->guildsInClass("crafting");
+                }
+                break;
+            }
             case "short":
             {
                 ret = itemData["short"] ? itemData["short"] : query("name");

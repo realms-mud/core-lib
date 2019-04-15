@@ -17,7 +17,7 @@ public nomask mixed query(string element)
         }
         case "low light description":
         {
-            ret = "The silhouette of aan object";
+            ret = "The silhouette of an object";
             break;
         }
         case "dim light description":

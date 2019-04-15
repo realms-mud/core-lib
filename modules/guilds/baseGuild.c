@@ -11,6 +11,7 @@ private int MaxLevel = 1000;
 private float ExperienceMultiplier = 1.0;
 private string PrerequisiteObject = "lib/core/prerequisites.c";
 private string guildName = "BaseGuild";
+private string guildClass = "combat";
 private string *preferredSkills = ({ "general", "erudite", "language" });
 protected int CanLeaveGuild = 1;
 protected int CanReJoinGuild = 1;
@@ -274,6 +275,21 @@ public nomask varargs string guildName(string newName)
         guildName = newName;
     }
     return guildName;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string guildClass(string newClass)
+{
+    if (newClass && stringp(newClass))
+    {
+        object guildDictionary = getDictionary("guilds");
+        if (guildDictionary && guildDictionary->isValidGuildClass(newClass))
+        {
+            guildClass = newClass;
+        }
+    }
+
+    return guildClass;
 }
 
 /////////////////////////////////////////////////////////////////////////////

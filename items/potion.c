@@ -49,6 +49,15 @@ public nomask mixed query(string element)
             ret = "Something that appears to be a potion";
             break;
         }
+        case "crafting guilds":
+        {
+            object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+            if (guilds)
+            {
+                ret = guilds->guildsInClass("brewing");
+            }
+            break;
+        }
         default:
         {
             ret = "item"::query(element);

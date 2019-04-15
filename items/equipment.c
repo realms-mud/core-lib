@@ -148,6 +148,15 @@ public mixed query(string element)
                 materialsObject()->getBlueprintModifier(this_object(), "default location");
             break;
         }
+        case "crafting guilds":
+        {
+            object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+            if (guilds)
+            {
+                ret = guilds->guildsInClass("smithing");
+            }
+            break;
+        }
         default:
         {
             ret = "item"::query(element);

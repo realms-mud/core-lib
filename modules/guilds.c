@@ -240,6 +240,29 @@ public nomask varargs int addExperience(int amount, string selectedGuild,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs int distributeExperience(int amount, 
+    string *potentialGuilds)
+{
+    int ret = 0;
+    string *availableGuilds = filter(memberOfGuilds(),
+        (: (pointerp($2) && (member($2, $1) > -1)) :), potentialGuilds);
+
+    if (sizeof(availableGuilds))
+    {
+        int expPerGuild = amount / sizeof(availableGuilds);
+        foreach(string guild in availableGuilds)
+        {
+            ret += addExperience(expPerGuild, guild, 1);
+        }
+    }
+    else
+    {
+        ret = addExperience(amount);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string guildRank(string guild)
 {
     string ret = 0;

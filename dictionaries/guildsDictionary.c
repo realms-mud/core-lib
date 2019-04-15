@@ -9,6 +9,15 @@ private string BaseGuild = "lib/modules/guilds/baseGuild.c";
 private mapping guildList = ([]);
 private mapping guildBonusCache = ([]);
 
+private mapping guildClassEntries = ([
+    "combat":({}),
+    "smithing": ({}),
+    "crafting": ({}),
+    "enchanting": ({}),
+    "brewing": ({}),
+    "farming": ({})
+]);
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask object guildObject(string guild)
 {
@@ -33,7 +42,26 @@ public nomask int isValidGuild(string guild)
     return (guildObj && objectp(guildObj) && 
         (guildObj->guildName() != "BaseGuild"));
 }
-   
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidGuildClass(string guildClass)
+{
+    int ret = member(m_indices(guildClassEntries), guildClass) > -1;
+    if (!ret)
+    {
+        raise_error(sprintf("%s is not a valid guild class (%O)\n",
+            guildClass, previous_object()));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *guildsInClass(string guildClass)
+{
+    return isValidGuildClass(guildClass) ?
+        guildClassEntries[guildClass] + ({}) : ({});
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int registerGuild(string location)
 {
@@ -58,6 +86,8 @@ public nomask int registerGuild(string location)
             ret = 1;
             guildList[guild->guildName()] = location;
             guildBonusCache[guild->guildName()] = ([]);
+
+            guildClassEntries[guild->guildClass()] += ({ guild->guildName() });
         }
     }
 

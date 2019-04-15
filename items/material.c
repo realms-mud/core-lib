@@ -56,6 +56,15 @@ public nomask mixed query(string element)
             ret = query("class");
             break;
         }
+        case "crafting guilds":
+        {
+            object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+            if (guilds)
+            {
+                ret = guilds->guildsInClass("smithing");
+            }
+            break;
+        }
         default:
         {
             ret = "item"::query(element);

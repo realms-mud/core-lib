@@ -11,7 +11,8 @@ object Selector;
 void Init()
 {
     ignoreList += ({ "SetUpSkills", "SetUpInventory", "SetUpResearch",
-        "CraftSword", "PopulateSwordData", "getMaterialsOnHand", "__inline_lib_tests_modules_crafting_craftWeaponTest_c_181_#0000" });
+        "CraftSword", "PopulateSwordData", "getMaterialsOnHand", 
+        "__inline_lib_tests_modules_crafting_craftWeaponTest_c_187_#0000" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -144,6 +145,7 @@ void PopulateSwordData(object sword)
 {
     sword->set("material", "admantite");
     sword->set("primary crafting material", "admantite");
+    sword->set("primary component", "blade");
     sword->set("crafting materials", ([
         "blade": ([ "description": "a broad, flat, metal blade with parallel edges and a lenticular cross-section. The fuller is narrow and runs half of the length of the blade, ending in a rounded point.", 
                     "metal": "admantite", 
@@ -169,6 +171,10 @@ void PopulateSwordData(object sword)
                     "value": 50
         ])
     ]));
+
+    load_object("/lib/dictionaries/craftingDictionary.c")->setCraftingMaterial(
+        sword, "metal", "admantite", "blade");
+
     command("1", Player);
     command("25", Player);
 }
@@ -236,7 +242,7 @@ void CraftSelectedOptionBecomesEnabledWhenAllCriteriaMet()
     CraftSword();
 
     ExpectSubStringMatch("32mCraft Selected Long sword",
-        Player->caughtMessage());
+            Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -373,6 +379,7 @@ void CraftingSetsEnchantments()
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftEnchantments.c"));
     ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectEq(0, Player->effectiveExperience(), "initial experience");
 
     Selector->initiateSelector(Player);
 
@@ -395,4 +402,5 @@ void CraftingSetsEnchantments()
 
     ExpectEq((["fire":10]), sword->query("enchantments"));
     ExpectEq(6, sword->query("bonus spell points"));
+    ExpectEq(132, Player->effectiveExperience(), "end experience");
 }

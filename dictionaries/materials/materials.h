@@ -3126,7 +3126,7 @@ private nosave mapping materials =
         "value multiplier": 3.0,
         "description": "",
         "scarcity": "rare",
-        "experience modifier": 1
+        "experience modifier": 1.05
     ]),
     "phoenix feather": ([
         "class": "plumage",
@@ -3136,7 +3136,7 @@ private nosave mapping materials =
         "value multiplier": 3.0,
         "description": "",
         "scarcity": "rare",
-        "experience modifier": 1
+        "experience modifier": 1.1
     ]),
     "pegasus feather": ([
         "class": "plumage",
@@ -3146,7 +3146,7 @@ private nosave mapping materials =
         "value multiplier": 3.0,
         "description": "",
         "scarcity": "rare",
-        "experience modifier": 1
+        "experience modifier": 1.1
     ]),
     "pegasus hair": ([
         "class": "plumage",
@@ -3156,7 +3156,7 @@ private nosave mapping materials =
         "value multiplier": 3.0,
         "description": "",
         "scarcity": "rare",
-        "experience modifier": 1
+        "experience modifier": 1.15
     ]),
     "horse hair": ([
         "class": "plumage",
@@ -3176,7 +3176,7 @@ private nosave mapping materials =
         "value multiplier": 3.0,
         "description": "",
         "scarcity": "rare",
-        "experience modifier": 1
+        "experience modifier": 1.1
     ]),
     "unicorn hair": ([
         "class": "plumage",
@@ -3186,7 +3186,7 @@ private nosave mapping materials =
         "value multiplier": 5.0,
         "description": "",
         "scarcity": "rare",
-        "experience modifier": 1
+        "experience modifier": 1.15
     ]),
     "hippogriff hair": ([
         "class": "plumage",
@@ -3196,7 +3196,7 @@ private nosave mapping materials =
         "value multiplier": 3.0,
         "description": "",
         "scarcity": "rare",
-        "experience modifier": 1
+        "experience modifier": 1.1
     ]),
     "lion mane": ([
         "class": "plumage",

@@ -25,6 +25,7 @@ int AdvanceToLevel(int level, string guild)
 void Init()
 {
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
+    destruct(load_object("/lib/tests/support/guilds/nonCombatGuild.c"));
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     dict->resetCache();
 
@@ -230,7 +231,6 @@ void AddExperienceToSpecificGuildCorrectlyHandled()
 /////////////////////////////////////////////////////////////////////////////
 void AddExperienceToCombatGuildsDoesNotAddToNonCombatGuilds()
 {
-    object guild = load_object("/lib/tests/support/guilds/nonCombatGuild.c");
     ExpectTrue(User->joinGuild("fake smith"));
     ExpectTrue(User->addExperience(1000, "fake smith"), "experience added");
     ExpectTrue(User->advanceLevel("fake smith"), "level advanced");
@@ -877,4 +877,31 @@ void LevelUpMessageDisplayedWhenEnoughExperienceToLevelIsAdded()
     ExpectTrue(User->addExperience(1000), "experience added");
     ExpectSubStringMatch("You have enough experience to level up", 
         User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DistributeExperienceCorrectlyHandlesExperienceInCorrectGuildClasses()
+{
+    ExpectTrue(User->joinGuild("test"));
+    ExpectTrue(User->distributeExperience(1000), "experience added");
+    ExpectTrue(User->advanceLevel("test"), "level advanced");
+    ExpectTrue(User->joinGuild("fake mage"));
+    ExpectTrue(User->joinGuild("fake smith"));
+
+    ExpectEq(0, User->guildExperience("test"), "initial test guild experience");
+    ExpectEq(0, User->guildExperience("fake mage"), "initial mage guild experience");
+    ExpectEq(0, User->guildExperience("fake smith"), "initial smith guild experience");
+
+    ExpectTrue(User->distributeExperience(300), "experience added");
+    ExpectEq(200, User->guildExperience("test"), "new test guild experience");
+    ExpectEq(100, User->guildExperience("fake mage"), "new mage guild experience");
+    ExpectEq(0, User->guildExperience("fake smith"), "new smith guild experience");
+
+    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+
+    ExpectTrue(User->distributeExperience(500, dict->guildsInClass("smithing")), 
+        "experience added");
+    ExpectEq(200, User->guildExperience("test"), "new test guild experience");
+    ExpectEq(100, User->guildExperience("fake mage"), "new mage guild experience");
+    ExpectEq(500, User->guildExperience("fake smith"), "new smith guild experience");
 }

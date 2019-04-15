@@ -668,6 +668,11 @@ public nomask varargs void setCraftingMaterial(object item, string materialClass
     {
         item->set("material", material);
         item->set("primary crafting material", material);
+
+        item->set("crafting experience", to_float(
+            materialsDictionary->getBlueprintModifier(item, "base experience") *
+            (member(materials[material], "experience modifier") ?
+                materials[material]["experience modifier"] : 1.0)));
     }
         
     item->set("crafting materials", materialSelections);
@@ -922,16 +927,20 @@ private nomask int applyEffects(string enchantment, object user, object item,
                     (effects[effect][element] + bonus) * count;
             }
         }
-        else if (effect == "damage type")
-        {
-            printf("Effects = %O\n", effects);
-        }
-        else
+        else if(effect != "damage type")
         {
             effects[effect] = (effects[effect] + bonus) * count;
         }
+
         ret &&= item->set(effect, effects[effect]);
     }
+
+    if (member(equipmentEnchantments[enchantment], "experience modifier"))
+    {
+        item->set("crafting experience", item->query("crafting experience") *
+            equipmentEnchantments[enchantment]["experience modifier"]);
+    }
+
     return ret;
 }
 
@@ -957,10 +966,36 @@ public nomask int applyEnchantments(object item, object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void updateItemExperience(object item)
+{
+    mapping craftingMaterials = item->query("crafting materials");
+    if (craftingMaterials && mappingp(craftingMaterials))
+    {
+        string *components = filter(m_indices(craftingMaterials),
+            (: mappingp($2[$1]) :), craftingMaterials);
+
+        if (sizeof(components))
+        {
+            foreach(mapping component in components)
+            {
+                string key = craftingMaterials[component]["type"];
+
+                item->set("crafting experience", 
+                    item->query("crafting experience") *
+                    (member(craftingComponents[key], "experience modifier") ?
+                        craftingComponents[key]["experience modifier"] : 1.0));
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int craftItem(object item, object user)
 {
     int canCraft = 0;
     mapping materialsUsed = materialsUsedForCrafting(item);
+
+    updateItemExperience(item);
 
     if (sizeof(materialsUsed))
     {
