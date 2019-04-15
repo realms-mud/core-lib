@@ -229,7 +229,7 @@ void DescribeShowsDetailsAboutWeaponWithPrerequisitesAndMaterials()
 
     ExpectSubStringMatch("This option lets you craft: long sword"
         ".*Blacksmithing of 1.*Craft Long Swords.*Metal crafting of 1"
-        ".*Weapon smithing of 8.*Optional.*crystal can be"
+        ".*Weapon smithing of 8.*Optional.*Crystal can be"
         ".*Leather needed.*1.*Metal needed.*10.*Wood needed.*1",
         Player->caughtMessage());
 }

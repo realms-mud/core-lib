@@ -651,7 +651,8 @@ private nomask string displayTraitPrerequsite(string *traits)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayPrerequisites(string colorConfiguration, object configuration)
+public nomask string displayPrerequisites(string colorConfiguration, 
+    object configuration)
 {
     string ret = "";
 
@@ -719,9 +720,15 @@ public nomask string displayPrerequisites(string colorConfiguration, object conf
                     break;
                 }
             }
+
+            if (sizeof(prereq) > 62)
+            {
+                prereq = prereq[0..58] + "...";
+            }
+
             ret += configuration->decorate(sprintf("%15s: ",
-                capitalize(prerequisites[key]["type"])),
-                "field header", "research", colorConfiguration) +
+                        capitalize(prerequisites[key]["type"])),
+                    "field data", "research", colorConfiguration) +
                 configuration->decorate(prereq + "\n",
                     "prerequisite", "research", colorConfiguration);
         }

@@ -545,7 +545,7 @@ void TraitDetailsDisplayTraitPrerequisites()
         "\x1b[0;36mRoot Trait Class: \x1b[0m\x1b[0;33mDisfigured\x1b[0m\n"
         "\x1b[0;36mOpposing Trait Class: \x1b[0m\x1b[0;33mNormal\x1b[0m\n"
         "\x1b[0;36mPrerequisites:\n\x1b[0m"
-        "\x1b[0;36m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m";
+        "\x1b[0;33m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m";
     object trait = load_object("/lib/tests/support/traits/testTraitWithPrerequisites.c");
     trait->init();
 

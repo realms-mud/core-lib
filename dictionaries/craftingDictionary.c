@@ -280,7 +280,7 @@ private nomask string getDescriptionDetails(object blueprintObj)
         load_object("/lib/dictionaries/configurationDictionary.c");
 
     return blueprintObj->displayPrerequisites(colorConfiguration, configuration) +
-        blueprintObj->displayNeededMaterials();
+        blueprintObj->displayNeededMaterials(colorConfiguration, configuration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -322,7 +322,8 @@ public nomask mapping getCraftingListBySubType(string type, string subType,
                 "canShow": prereqsMet && materialsMet,
                 "prerequisites met": prereqsMet,
                 "have materials": materialsMet,
-                "show materials": 1
+                "show materials": 1,
+                "do not format": 1
             ]);
             menuItem++;
             destruct(blueprintObj);

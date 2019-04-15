@@ -198,7 +198,8 @@ public nomask varargs int checkAgregateMaterials(object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs string displayNeededMaterials(string component)
+public nomask varargs string displayNeededMaterials(string colorConfiguration, 
+    object configuration, string component)
 {
     string ret = "";
 
@@ -214,11 +215,17 @@ public nomask varargs string displayNeededMaterials(string component)
             string *materials = sort_array(m_indices(neededMaterials), (: $1 > $2 :));
             foreach(string material in materials)
             {
-                ret += (neededMaterials[material] > 0) ?
-                    sprintf("\t\x1b[0;32m%s needed: \x1b[0;35m%d\x1b[0m\n",
-                        capitalize(material), neededMaterials[material]) :
-                    sprintf("\t\x1b[0;31;1m(Optional)\x1b[0;32m %s can be used to "
-                        "embellish the design\x1b[0m\n", material);
+                ret += ((neededMaterials[material] > 0) ?
+                    (configuration->decorate(sprintf("\t%s needed: ",
+                        capitalize(material)), "field data", "research", 
+                        colorConfiguration) +
+                    configuration->decorate(to_string(neededMaterials[material]),
+                        "prerequisite", "research", colorConfiguration)) :
+                    (configuration->decorate("\t(Optional) ",
+                        "formula type", "research", colorConfiguration) +
+                     configuration->decorate(sprintf("%s can be used to embellish "
+                            "the design", capitalize(material)),
+                         "prerequisite", "research", colorConfiguration))) + "\n";
             }
         }
     }

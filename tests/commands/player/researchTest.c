@@ -109,7 +109,7 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
         "\x1b[0m\x1b[0;33m                  Modified -> \x1b[0m\x1b[0;34;1m0.25 * your strength attribute \x1b[0m\x1b[0;31;1m(subtractive)\n"
         "\x1b[0m\x1b[0;36mThis is only applied when you're using: long sword.\n\x1b[0m"
         "\x1b[0;36mPrerequisites:\n\x1b[0m"
-        "\x1b[0;36m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m"
+        "\x1b[0;33m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m"
         "\x1b[0;36mResearch Prereqs : \x1b[0;34;1mSpiffy tree root\x1b[0m\n"
         "\x1b[0m\x1b[0m\n"
         "	[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
@@ -161,7 +161,7 @@ void DescribeAsQuestionMarkShowsResearchDetails()
         "\x1b[0m\x1b[0;33m                  Modified -> \x1b[0m\x1b[0;34;1m0.25 * your strength attribute \x1b[0m\x1b[0;31;1m(subtractive)\n"
         "\x1b[0m\x1b[0;36mThis is only applied when you're using: long sword.\n\x1b[0m"
         "\x1b[0;36mPrerequisites:\n\x1b[0m"
-        "\x1b[0;36m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m"
+        "\x1b[0;33m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m"
         "\x1b[0;36mResearch Prereqs : \x1b[0;34;1mSpiffy tree root\x1b[0m\n"
         "\x1b[0m\x1b[0m",
         Player->caughtMessage());

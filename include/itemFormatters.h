@@ -699,7 +699,7 @@ private nosave mapping decorators = ([
         "prerequisite":([
             "3-bit": "\x1b[0;35m",
             "8-bit": "\x1b[0;38;5;31m",
-            "24-bit": "\x1b[0;38;2;80;155;175m"
+            "24-bit": "\x1b[0;38;2;80;125;185m"
         ]), 
         "known":([
             "3-bit": "\x1b[0;34;1m",
