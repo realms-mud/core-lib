@@ -680,3 +680,24 @@ public void init()
     add_action("unequip", "unequip");
     item::init();
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setComponent(string type, string name, mapping materials)
+{
+    if (query("blueprint"))
+    {
+        mapping component = materialsObject()->generateComponent(this_object(),
+            type, name, materials);
+
+        if (!member(itemData, "crafting materials"))
+        {
+            itemData["crafting materials"] = ([]);
+        }
+        itemData["crafting materials"][type] = component;
+    }
+    else
+    {
+        raise_error("Equipment: A blueprint must be set before components "
+            "can be assigned.\n");
+    }
+}

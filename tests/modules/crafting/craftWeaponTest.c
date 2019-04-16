@@ -12,7 +12,7 @@ void Init()
 {
     ignoreList += ({ "SetUpSkills", "SetUpInventory", "SetUpResearch",
         "CraftSword", "PopulateSwordData", "getMaterialsOnHand", 
-        "__inline_lib_tests_modules_crafting_craftWeaponTest_c_187_#0000" });
+        "__inline_lib_tests_modules_crafting_craftWeaponTest_c_188_#0000" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -161,7 +161,8 @@ void PopulateSwordData(object sword)
         "hilt": ([ "description": "a hilt of metal covered with a slightly ovular grip made out of wood and wrapped in spiraled metal wire.", 
                     "leather": "pegasus leather", 
                     "metal": "gold", 
-                    "type": "Spiral Grip", "value": 15, 
+                    "type": "Spiral Hilt", 
+                    "value": 15, 
                     "wood": "koa" 
         ]), 
         "pommel": ([ "crystal": "ruby", 
@@ -402,5 +403,5 @@ void CraftingSetsEnchantments()
 
     ExpectEq((["fire":10]), sword->query("enchantments"));
     ExpectEq(6, sword->query("bonus spell points"));
-    ExpectEq(132, Player->effectiveExperience(), "end experience");
+    ExpectEq(139, Player->effectiveExperience(), "end experience");
 }

@@ -361,3 +361,90 @@ void EnchantmentsAddModifiersItemResearchAndTraitEnchantments()
     destruct(modifier);
     destruct(player);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SetComponentCorrectlySetsComponents()
+{
+    Weapon->set("blueprint", "long sword");
+
+    Weapon->setComponent("blade", "Type XIIa",
+        (["metal":"galvorn" ]));
+    Weapon->setComponent("crossguard", "Snake Form",
+        (["metal":"steel", "crystal" : "ruby"]));
+    Weapon->setComponent("hilt", "Spiral Hilt",
+        (["metal":"gold", "wood": "koa", "leather": "boar leather" ]));
+    Weapon->setComponent("pommel", "Dragon Talon",
+        (["metal": "steel", "crystal": "garnet" ]));
+
+    ExpectEq("This is a sword with a blade that is about 40 inches (100 cm) long. The blade\n"
+        "is a broad, flat, and evenly tapered galvorn blade with a lenticular\n"
+        "cross-section. The fuller is narrow and runs 2/3 of the length of the blade,\n"
+        "ending in a sharp, acute point. The crossguard is an ornate steel knuckleguard\n"
+        "that has been sculpted to appear as though a snake with ruby eyes is\n"
+        "protecting the user's hand. The hilt is a hilt of gold covered with a slightly\n"
+        "ovular grip made out of koa and wrapped in spiraled gold wire. The pommel is\n"
+        "an exquisite steel pommel that has been intricately sculpted to resemble a\n"
+        "dragon's talon. Clutched in its grip is a beautifully cut garnet. \n"
+        "This long sword is typical for its type.\n"
+        "\tWeight: 5\n"
+        "This item has not been identified.\n\n", 
+        Weapon->long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetComponentFailsWhenBlueprintNotSet()
+{
+    string error = catch (Weapon->setComponent("blade", "Type XIIa",
+        (["metal":"galvorn"])));
+
+    ExpectEq("*Equipment: A blueprint must be set before components can be assigned.\n",
+        error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetComponentFailsWhenInvalidComponentSet()
+{
+    Weapon->set("blueprint", "long sword");
+    string error = catch (Weapon->setComponent("blade", "Type Invalid",
+        (["metal":"galvorn"])));
+
+    ExpectEq("*ERROR in materials: Type Invalid is not a valid blade component.\n",
+        error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetComponentFailsWhenInvalidComponentTypeSet()
+{
+    Weapon->set("blueprint", "long sword");
+    string error = catch (Weapon->setComponent("shaft", "Simple shaft",
+        (["wood":"pine"])));
+
+    ExpectEq("*ERROR in materials: shaft is not a valid long sword component type.\n",
+        error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetComponentFailsWhenInvalidMaterialIsSet()
+{
+    Weapon->set("blueprint", "long sword");
+
+    string error = catch (Weapon->setComponent("hilt", "Spiral Hilt",
+        (["metal":"gold", "wood": "copper", "leather" : "boar leather"])));
+
+    ExpectEq("*ERROR in materials: copper is not a valid material for the "
+        "specified component (hilt - Spiral Hilt).\n",
+        error);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetComponentFailsWhenMaterialIsMissing()
+{
+    Weapon->set("blueprint", "long sword");
+
+    string error = catch (Weapon->setComponent("hilt", "Spiral Hilt",
+        (["metal": "gold", "wood": "koa" ])));
+
+    ExpectEq("*ERROR in materials: The leather material is missing from the "
+        "component (hilt) definition.\n",
+        error);
+}
