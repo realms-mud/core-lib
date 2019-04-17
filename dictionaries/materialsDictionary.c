@@ -1145,7 +1145,9 @@ public nomask varargs string getRandomMaterialFromClass(string materialClass,
             weightedMaterials += getWeightedMaterial(material);
         }
     }
-    return weightedMaterials[random(sizeof(weightedMaterials))];
+
+    return sizeof(weightedMaterials) ?
+        weightedMaterials[random(sizeof(weightedMaterials))] : "error";
 }
 
 /////////////////////////////////////////////////////////////////////////////

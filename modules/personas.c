@@ -5,6 +5,13 @@
 virtual inherit "/lib/core/thing.c";
 
 private nosave int researchFrequency = 35;
+private nosave string Persona;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string persona()
+{
+    return Persona;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 private void setMonsterLevel(int level)
@@ -40,6 +47,7 @@ public nomask void SetUpPersonaOfLevel(string persona, int level)
     {
         setPersonaLevel(level);
         getDictionary("persona")->setupPersona(persona, this_object());
+        Persona = persona;
     }
     else
     {

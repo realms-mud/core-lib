@@ -462,16 +462,19 @@ private nomask string attributeDetails(string attribute,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string attributes()
+public nomask varargs string attributes(string colorConfiguration, 
+    string charset)
 {
-    string colorConfiguration = "none";
-    string charset = "ascii";
     object settings = getService("settings");
-    if (objectp(settings))
+    if (objectp(settings) && !colorConfiguration)
     {
-        colorConfiguration = settings->colorConfiguration();
-        charset = settings->charsetConfiguration();
+        colorConfiguration = settings->colorConfiguration() || "none";
     }
+    if (objectp(settings) && !charset)
+    {
+        charset = settings->charsetConfiguration() || "ascii";
+    }
+
     object commandDictionary = getDictionary("commands");
     object configuration = getDictionary("configuration");
 

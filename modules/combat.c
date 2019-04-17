@@ -1950,20 +1950,9 @@ static nomask void healingHeartBeat()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string vitalsDetails(string vital)
+private nomask string vitalsDetails(string vital, object configuration,
+    string colorConfiguration, string charset)
 {
-    string colorConfiguration = "none";
-    string charset = "ascii";
-    object settings = getService("settings");
-    if (objectp(settings))
-    {
-        colorConfiguration = settings->colorConfiguration();
-        charset = settings->charsetConfiguration();
-    }
-
-    object configuration = getDictionary("configuration");
-    object commandDictionary = getDictionary("commands");
-
     int current = call_other(this_object(), lower_case(vital) + "Points");
     int max = call_other(this_object(), "max" + capitalize(vital) + "Points");
 
@@ -2012,23 +2001,25 @@ private nomask string vitalsDetails(string vital)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string vitals()
+public nomask varargs string vitals(string colorConfiguration, string charset)
 {
-    string colorConfiguration = "none";
-    string charset = "ascii";
     object settings = getService("settings");
-    if (objectp(settings))
+    if (objectp(settings) && !colorConfiguration)
     {
-        colorConfiguration = settings->colorConfiguration();
-        charset = settings->charsetConfiguration();
+        colorConfiguration = settings->colorConfiguration() || "none";
+    }
+    if (objectp(settings) && !charset)
+    {
+        charset = settings->charsetConfiguration() || "ascii";
     }
 
     object configuration = getDictionary("configuration");
     object commandDictionary = getDictionary("commands");
 
     return commandDictionary->banneredContent(colorConfiguration, charset,
-            vitalsDetails("Hit") + vitalsDetails("Spell") + 
-            vitalsDetails("Stamina")) +
+            vitalsDetails("Hit", configuration, colorConfiguration, charset) + 
+            vitalsDetails("Spell", configuration, colorConfiguration, charset) +
+            vitalsDetails("Stamina", configuration, colorConfiguration, charset)) +
         commandDictionary->banneredContent(colorConfiguration, charset,
             configuration->decorate(sprintf("%16d/%-5d", hitPoints(), 
                 maxHitPoints()), "information", "score", colorConfiguration) +
