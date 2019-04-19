@@ -74,7 +74,7 @@ private nomask string *getWizardChannels(object user)
     string *ret = ({});
     if (member(inherit_list(user), "lib/realizations/wizard.c") > -1)
     {
-        ret += ({ "wiz", "status" });
+        ret += ({ "wiz", "status", "issue logged by" });
 
         if (member(({ "owner", "god", "demigod", "archwizard", "sage", "elder" }),
             user->wizardLevel()) > -1)

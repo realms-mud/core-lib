@@ -51,7 +51,7 @@ private nomask void compileOneItem(string path, object initiator,
     {
         result = configuration->decorate(result,
                 "error message", "wizard commands", colorConfiguration) +
-            configuration->decorate((read_file(logFile) || driver_info(-42)),
+            configuration->decorate((read_file(logFile) || driver_info(-44)),
                 "error message", "wizard commands", colorConfiguration);
 
         tell_object(initiator, result);

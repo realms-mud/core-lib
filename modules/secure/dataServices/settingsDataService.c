@@ -75,7 +75,7 @@ public nomask void saveSettings(int dbHandle, mapping playerData)
 
         string *keys = filter(m_indices(playerData),
             (: (member(({ "blocks", "busy", "earmuffs", "page size",
-                "color setting", "character set" }), $1) > -1) :));
+                "color setting", "character set", "safety teleport" }), $1) > -1) :));
 
         if (sizeof(keys))
         {
@@ -99,3 +99,17 @@ public nomask void saveSettings(int dbHandle, mapping playerData)
         }
     }
 }
+
+/*
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canSafetyTeleport()
+{
+    return lastSafetyTeleport <= time();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setLastSafetyTeleport()
+{
+    lastSafetyTeleport = time() + 3600;
+}
+*/

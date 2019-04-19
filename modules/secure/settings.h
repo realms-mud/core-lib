@@ -10,7 +10,7 @@ private string PrimaryGuild = 0;
 private mapping blocks = ([ ]);
 private string colorSetting = "3-bit";
 private string characterSet = "ascii";
-
+private int lastSafetyTeleport = 0;
 private nosave object ReplyTo;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -24,6 +24,7 @@ static nomask void loadSettings(mapping data, object persistence)
         colorSetting = persistence->extractSaveData("color setting", data);
         characterSet = persistence->extractSaveData("character set", data);
         PrimaryGuild = persistence->extractSaveData("primary guild", data);
+        lastSafetyTeleport = persistence->extractSaveData("safety teleport", data);
         blocks = persistence->extractSaveData("blocks", data);
     }
 
@@ -53,6 +54,7 @@ static nomask mapping sendSettings()
         "page size": to_string(PageSize),
         "color setting": colorSetting,
         "character set": characterSet,
-        "primary guild": PrimaryGuild
+        "primary guild": PrimaryGuild,
+        "safety teleport": lastSafetyTeleport
     ]);
 }

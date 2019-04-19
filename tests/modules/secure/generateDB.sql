@@ -52,6 +52,8 @@ drop procedure if exists saveBlockedUser;
 ##
 drop procedure if exists updateLoginTime;
 ##
+drop procedure if exists saveIssue;
+##
 drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
@@ -105,6 +107,20 @@ drop table if exists factions;
 drop table if exists players;
 ##
 drop table if exists environment;
+##
+drop table if exists issues;
+##
+CREATE TABLE `issues` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` smallint NOT NULL DEFAULT '0',
+  `loggedBy` varchar(40) NOT NULL,
+  `assignedTo` varchar(40),
+  `firstLoggedTime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `affectedObject` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `data` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE TABLE `environment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1038,6 +1054,22 @@ BEGIN
             values (lplayerId, p_setting, p_value);
 		end if;
     end if;    
+END;
+##
+CREATE PROCEDURE `saveIssue`(p_id int, p_status int,
+    p_loggedBy varchar(40), p_assignedTo varchar(40),
+    p_affectedObject varchar(255), p_location varchar(255),
+    p_data text)
+BEGIN
+    if p_id <> 0 then
+        update issues set status = p_status,
+                          assignedTo = p_assignedTo
+        where id = p_id;
+    else
+        insert into issues (status, loggedBy, firstLoggedTime, affectedObject, 
+            location, data)
+        values(p_status, p_loggedBy, now(), p_affectedObject, p_location, p_data);
+    end if;
 END;
 ##
 CREATE PROCEDURE `saveBlockedUser`(p_playerName varchar(40),

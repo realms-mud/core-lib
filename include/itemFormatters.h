@@ -265,7 +265,12 @@ private nosave mapping decorators = ([
             "3-bit": "\x1b[0;31;1m",
             "8-bit": "\x1b[0;38;5;20m",
             "24-bit": "\x1b[0;38;2;50;50;150m"
-        ]),    
+        ]),
+        "issue":([
+            "3-bit": "\x1b[0;32;1m",
+            "8-bit": "\x1b[0;38;5;149;1m",
+            "24-bit": "\x1b[0;38;2;210;220;40;1m"  
+        ]), 
     ]),
     "shout":([
         "message":([
