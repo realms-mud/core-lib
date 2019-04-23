@@ -4,6 +4,7 @@
 //*****************************************************************************
 
 protected mapping descriptionData = ([ ]);
+
 protected int isLegacy = 0;
 protected int LightLevelWhenDetailsVisible = 6;
 
@@ -191,6 +192,7 @@ protected nomask varargs string parseTemplate(string template, mapping data,
 private nomask string getTemplateKey(int illuminationLevel)
 {
     string templateKey = "template";
+
     switch (illuminationLevel)
     {
         case 1..2:
@@ -218,7 +220,93 @@ private nomask string getTemplateKey(int illuminationLevel)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs string description(string state, int illuminationLevel)
+public nomask int lightSourceIsActive(string state, object environment)
+{
+    int ret = 0;
+    if (objectp(environment) &&
+        member(descriptionData, "active light sources") &&
+        member(descriptionData["active light sources"], environment))
+    {
+        ret = descriptionData["active light sources"][environment];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int isSourceOfLight(string state, object environment)
+{
+    if (!state || (member(descriptionData, "light") &&
+        !member(descriptionData["light"], state)))
+    {
+        state = "default";
+    }
+
+    int ret = lightSourceIsActive(state, environment);
+
+    string timeOfDay = environmentDictionary()->timeOfDay();
+    string season = environmentDictionary()->season();
+
+    if (member(descriptionData, "light") &&
+        member(descriptionData["light"], state) &&
+        member(descriptionData["light"][state], timeOfDay) &&
+        member(descriptionData["light"][state][timeOfDay], season) &&
+        (descriptionData["light"][state][timeOfDay][season] > ret))
+    {
+        ret = descriptionData["light"][state][timeOfDay][season];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask nomask int canActivateLightSource(string state)
+{
+    return member(descriptionData, state) &&
+        member(descriptionData[state], "active light template");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string getSourceOfLightTemplate(string state,
+    int illuminationLevel)
+{
+    return canActivateLightSource(state) ?
+        parseTemplate(descriptionData[state]["active light template"],
+            descriptionData[state], illuminationLevel) : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int processLightSourceActivation(string state, object environment)
+{
+    // Overload this for light sources that decay over time (camp fire, etc)
+    return canActivateLightSource(state) ?
+        descriptionData[state]["active light magnitude"] : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void activateLightSource(string state, object environment)
+{
+    if (canActivateLightSource(state))
+    {
+        if (!member(descriptionData, "active light sources"))
+        {
+            descriptionData["active light sources"] = ([]);
+        }
+        descriptionData["active light sources"][environment] =
+            processLightSourceActivation(state, environment);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void deactivateLightSource(string state, object environment)
+{
+    if (lightSourceIsActive(state, environment))
+    {
+        m_delete(descriptionData["active light sources"], environment);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string description(string state, int illuminationLevel,
+    object environment)
 {
     string ret = 0;
 
@@ -227,19 +315,27 @@ public nomask varargs string description(string state, int illuminationLevel)
         state = currentState();
     }
 
-    string templateKey = getTemplateKey(illuminationLevel);
-
-    if (member(descriptionData, state) && member(descriptionData[state],
-        templateKey))
+    if (isSourceOfLight(state, environment) && canActivateLightSource(state) &&
+        lightSourceIsActive(state, environment))
     {
-        ret = parseTemplate(descriptionData[state][templateKey], 
-            descriptionData[state], illuminationLevel);
+        ret = getSourceOfLightTemplate(state, illuminationLevel);
     }
-    else if (member(descriptionData, "default") && 
-        member(descriptionData["default"], templateKey))
+    else
     {
-        ret = parseTemplate(descriptionData["default"][templateKey],
-            descriptionData["default"], illuminationLevel);
+        string templateKey = getTemplateKey(illuminationLevel);
+
+        if (member(descriptionData, state) && member(descriptionData[state],
+            templateKey))
+        {
+            ret = parseTemplate(descriptionData[state][templateKey],
+                descriptionData[state], illuminationLevel);
+        }
+        else if (member(descriptionData, "default") &&
+            member(descriptionData["default"], templateKey))
+        {
+            ret = parseTemplate(descriptionData["default"][templateKey],
+                descriptionData["default"], illuminationLevel);
+        }
     }
 
     if (displayActionText() && !ret)
@@ -479,25 +575,10 @@ protected nomask varargs void addSourceOfLight(int magnitude, string state, stri
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs int isSourceOfLight(string state)
+protected nomask varargs void addActiveSourceOfLight(int magnitude,
+    string template, string state)
 {
-    int ret = 0;
-
-    if (!state || (member(descriptionData, "light") &&
-        !member(descriptionData["light"], state)))
-    {
-        state = "default";
-    }
-
-    string timeOfDay = environmentDictionary()->timeOfDay();
-    string season = environmentDictionary()->season();
-
-    if (member(descriptionData, "light") &&
-        member(descriptionData["light"], state) &&
-        member(descriptionData["light"][state], timeOfDay) &&
-        member(descriptionData["light"][state][timeOfDay], season))
-    {
-        ret = descriptionData["light"][state][timeOfDay][season];
-    }
-    return ret;
+    state = setupDescriptionForState(state);
+    descriptionData[state]["active light template"] = template;
+    descriptionData[state]["active light magnitude"] = magnitude;
 }

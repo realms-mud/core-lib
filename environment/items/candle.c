@@ -2,10 +2,13 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public string Type()
+public void Setup()
 {
-    return "building";
+    Name("candle");
+
+    addDescriptionTemplate("an unlit candle");
+    addActiveSourceOfLight(8, "a lit candle");
 }

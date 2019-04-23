@@ -8,7 +8,7 @@ inherit "/lib/environment/items/baseContainer.c";
 public void Setup()
 {
     Name("fake light");
-    addDescriptionTemplate("a light");
+    addDescriptionTemplate("an extinguished light");
     addDescriptionTemplate("a state-changed light", "some state");
     addAlias("light");
 }
@@ -17,4 +17,11 @@ public void Setup()
 public nomask varargs void testAddSourceOfLight(int magnitude, string state, string period, string season)
 {
     return addSourceOfLight(magnitude, state, period, season);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void testAddActiveSourceOfLight(int magnitude, 
+    string template, string state)
+{
+    return addActiveSourceOfLight(magnitude, template, state);
 }

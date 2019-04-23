@@ -1726,3 +1726,136 @@ void CannotGoIntoLockedBuilding()
     destruct(person);
     destruct(observer);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysActiveLight()
+{
+    Dictionary->timeOfDay("midnight");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddItem("/lib/environment/items/candle.c", "north");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    observer->colorConfiguration("3-bit");
+    move_object(observer, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("an[ \n]unlit.*candle", person->caughtMessage());
+
+    command("light", person);
+    ExpectSubStringMatch("You light the following: candle", person->caughtMessage());
+    ExpectSubStringMatch("Dwight lights the following: candle", observer->caughtMessage());
+
+    command("look", person);
+    ExpectSubStringMatch("a[ \n]lit.*candle", person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysMultipleActiveLight()
+{
+    Dictionary->timeOfDay("midnight");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddItem("/lib/environment/items/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/torch.c", "west");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    observer->colorConfiguration("3-bit");
+    move_object(observer, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*an[ \n]unlit[ \n]torch", 
+        person->caughtMessage());
+
+    command("light", person);
+    ExpectSubStringMatch("You light the following: candle and torch", 
+        person->caughtMessage());
+    ExpectSubStringMatch("Dwight lights the following: candle and torch", 
+        observer->caughtMessage());
+
+    command("look", person);
+    ExpectSubStringMatch("a[ \n]lit[ \n]candle.*a[ \n]lit[ \n]torch", 
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyLightOneActiveLightSource()
+{
+    Dictionary->timeOfDay("midnight");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddItem("/lib/environment/items/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/torch.c", "west");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    observer->colorConfiguration("3-bit");
+    move_object(observer, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*an[ \n]unlit[ \n]torch", 
+        person->caughtMessage());
+
+    command("light torch", person);
+    ExpectSubStringMatch("You light the following: torch", person->caughtMessage());
+    ExpectSubStringMatch("Dwight lights the following: torch", observer->caughtMessage());
+
+    command("look", person);
+    ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*a[ \n]lit[ \n]torch", 
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyExtinguishActiveLightSource()
+{
+    Dictionary->timeOfDay("midnight");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddItem("/lib/environment/items/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/torch.c", "west");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    observer->colorConfiguration("3-bit");
+    move_object(observer, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*an[ \n]unlit[ \n]torch",
+        person->caughtMessage());
+
+    command("light torch", person);
+    ExpectSubStringMatch("You light the following: torch", person->caughtMessage());
+    ExpectSubStringMatch("Dwight lights the following: torch", observer->caughtMessage());
+
+    command("look", person);
+    ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*a[ \n]lit[ \n]torch",
+        person->caughtMessage());
+
+    command("extinguish torch", person);
+    ExpectSubStringMatch("You extinguish the following: torch", 
+        person->caughtMessage());
+    ExpectSubStringMatch("Dwight extinguishes the following: torch", 
+        observer->caughtMessage());
+
+    command("look", person);
+    ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*an[ \n]unlit[ \n]torch",
+        person->caughtMessage());
+}

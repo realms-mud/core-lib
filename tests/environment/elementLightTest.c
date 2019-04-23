@@ -11,6 +11,10 @@ object Dictionary;
 void Setup()
 {
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    Dictionary->setYear(1);
+    Dictionary->setDay(92);
+    Dictionary->timeOfDay("noon");
+
     Element = clone_object("/lib/tests/support/environment/testLightSource.c");
 }
 
@@ -106,4 +110,62 @@ void AddSourceForSpecificTimeAndSeasonAndStateDoesNotLightOthers()
     Dictionary->season("spring");
     ExpectFalse(Element->isSourceOfLight());
     ExpectFalse(Element->isSourceOfLight("some state"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetActiveLighting()
+{
+    Element->testAddActiveSourceOfLight(8, "a light");
+
+    ExpectEq("an extinguished light", Element->description("default", 1,
+        this_object()));
+
+    Element->activateLightSource("default", this_object());
+
+    ExpectEq("a light", Element->description("default", 1,
+        this_object()));
+    ExpectEq(8, Element->lightSourceIsActive("default", this_object()));
+    ExpectEq(8, Element->isSourceOfLight("default", this_object()));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDeactivateLighting()
+{
+    Element->testAddActiveSourceOfLight(8, "a light");
+
+    Element->activateLightSource("default", this_object());
+
+    ExpectEq("a light", Element->description("default", 1,
+        this_object()));
+
+    Element->deactivateLightSource("default", this_object());
+
+    ExpectEq("an extinguished light", Element->description("default", 1,
+        this_object()));
+    ExpectEq(0, Element->lightSourceIsActive("default", this_object()));
+    ExpectEq(0, Element->isSourceOfLight("default", this_object()));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ActiveAndInactiveLightSourcesCorrectlyDisplayed()
+{
+    Element->testAddSourceOfLight(5);
+    Element->testAddActiveSourceOfLight(8, "a light");
+
+    ExpectEq("an extinguished light", Element->description("default", 1,
+        this_object()));
+    ExpectEq(0, Element->lightSourceIsActive("default", this_object()));
+    ExpectEq(5, Element->isSourceOfLight("default", this_object()));
+
+    Element->activateLightSource("default", this_object());
+    ExpectEq("a light", Element->description("default", 1,
+        this_object()));
+    ExpectEq(8, Element->lightSourceIsActive("default", this_object()));
+    ExpectEq(8, Element->isSourceOfLight("default", this_object()));
+
+    Element->deactivateLightSource("default", this_object());
+    ExpectEq("an extinguished light", Element->description("default", 1,
+        this_object()));
+    ExpectEq(0, Element->lightSourceIsActive("default", this_object()));
+    ExpectEq(5, Element->isSourceOfLight("default", this_object()));
 }
