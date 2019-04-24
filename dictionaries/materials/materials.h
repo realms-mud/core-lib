@@ -85,7 +85,7 @@ private nosave mapping materials =
             "cold": 5,
             "water": 1,
         ]),
-        "description": "",
+        "description": "This is a textile made from the tightly-woven, inner wool of an ox.",
         "value multiplier": 15.0,
         "scarcity": "rare",
         "experience modifier": 1.5
@@ -97,7 +97,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a textile made from the tightly-woven fibers of cotton.",
         "value multiplier": 1.2,
         "scarcity": "common",
         "experience modifier": 1
@@ -109,7 +109,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a textile made from the tightly-woven fibers of the ramie plant.",
         "value multiplier": 1.1,
         "scarcity": "common",
         "experience modifier": 1
@@ -121,7 +121,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftTextiles.c":(["type":"research"]),
             "weaving and beadwork": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a textile made from the loosely-woven fibers of the hemp plant.",
         "value multiplier": 0.9,
         "scarcity": "common",
         "experience modifier": 1
@@ -137,7 +137,7 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "encumberance": 1,
-        "description": "",
+        "description": "This is a durable textile made from the tightly-woven fibers of the flax plant.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -153,7 +153,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "value multiplier": 2.2,
-        "description": "",
+        "description": "This is a textile made from the tightly-woven strands of silkworm cocoons.",
         "scarcity": "rare",
         "experience modifier": 1.25
     ]),
@@ -169,7 +169,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 1,
         "value multiplier": 2.0,
-        "description": "",
+        "description": "This is a textile made from dual-sheet tightly-woven silk.",
         "scarcity": "rare",
         "experience modifier": 1.25
     ]),
@@ -184,7 +184,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 5]),
         ]),
-        "description": "",
+        "description": "This is a nondescript stone.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -200,7 +200,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a sandstone.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -218,7 +218,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 15]),
         ]),
-        "description": "",
+        "description": "This is a stone with significant veins of quartzite.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -233,7 +233,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
-        "description": "",
+        "description": "This is a piece of granite.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -248,7 +248,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
-        "description": "",
+        "description": "This is a piece of basalt.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -263,7 +263,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 15]),
         ]),
-        "description": "",
+        "description": "This is a slab of marble.",
         "scarcity": "common",
         "experience modifier": 1.1
     ]),
@@ -275,7 +275,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 8]),
         ]),
-        "description": "",
+        "description": "This is a slab of limestone.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -291,7 +291,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 6]),
         ]),
-        "description": "",
+        "description": "This is a slab of slate.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -305,7 +305,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 3]),
         ]),
-        "description": "",
+        "description": "This is a piece of chalk.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -319,7 +319,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 3]),
         ]),
-        "description": "",
+        "description": "This is a slab of shale.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -333,7 +333,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 6]),
         ]),
-        "description": "",
+        "description": "This is a piece of coal.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -344,7 +344,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 7]),
         ]),
-        "description": "",
+        "description": "This is a piece of dolomite.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -359,7 +359,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
-        "description": "",
+        "description": "This is a piece of flint.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -373,7 +373,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 3]),
         ]),
-        "description": "",
+        "description": "This is a chunk of terra cotta clay.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -387,7 +387,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 4]),
         ]),
-        "description": "",
+        "description": "This is a chunk of earthenware clay.",
         "scarcity": "common",
         "experience modifier": 1.1
     ]),
@@ -398,7 +398,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 5]),
         ]),
-        "description": "",
+        "description": "This is a chunk of stoneware clay.",
         "scarcity": "common",
         "experience modifier": 1.05
     ]),
@@ -412,7 +412,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 3]),
         ]),
-        "description": "",
+        "description": "This is a paste of gypsum and lime.",
         "scarcity": "common",
         "experience modifier": 1.05
     ]),
@@ -423,7 +423,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 5]),
         ]),
-        "description": "",
+        "description": "This is a slurry of ceramic clay.",
         "scarcity": "common",
         "experience modifier": 1.1
     ]),
@@ -437,7 +437,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftClay.c":(["type":"research"]),
             "pottery": (["type":"skill", "value": 10]),
         ]),
-        "description": "",
+        "description": "This is a slurry of kaolin.",
         "scarcity": "common",
         "experience modifier": 1.1
     ]),
@@ -448,7 +448,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a plank of pine.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -459,7 +459,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a plank of poplar.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -470,7 +470,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of cedar.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -482,7 +482,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a plank of oak.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -493,7 +493,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of maple.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -504,7 +504,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a plank of birch.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -515,7 +515,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of pine.sycamore",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -526,7 +526,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of beech.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -537,7 +537,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of ash.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -548,7 +548,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of hickory.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -560,7 +560,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a plank of mesquite.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -572,7 +572,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.2,
-        "description": "",
+        "description": "This is a plank of walnut.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -584,7 +584,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.2,
-        "description": "",
+        "description": "This is a plank of pecan.",
         "scarcity": "common",
         "experience modifier": 1.05
     ]),
@@ -595,7 +595,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a plank of dogwood.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -607,7 +607,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
         "value multiplier": 1.25,
-        "description": "",
+        "description": "This is a plank of cherry wood.",
         "scarcity": "common",
         "experience modifier": 1.1
     ]),
@@ -619,7 +619,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a plank of holly.",
         "scarcity": "common",
         "experience modifier": 1.05
     ]),
@@ -631,7 +631,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a plank of yew.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -642,7 +642,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
-        "description": "",
+        "description": "This is a plank of apple wood.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -657,7 +657,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 6]),
         ]),
         "value multiplier": 1.5,
-        "description": "",
+        "description": "This is a plank of teak.",
         "scarcity": "uncommon",
         "experience modifier": 1.15
     ]),
@@ -668,7 +668,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
         ]),
-        "description": "",
+        "description": "This is a plank of cypress.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -679,7 +679,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of cottonwood.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -690,7 +690,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of hemlock.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -701,7 +701,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of spruce.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -712,7 +712,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of aspen.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -727,7 +727,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.4,
-        "description": "",
+        "description": "This is a plank of swamp ash.",
         "scarcity": "uncommon",
         "experience modifier": 1.1
     ]),
@@ -738,7 +738,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of elm.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -753,7 +753,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
-        "description": "",
+        "description": "This is a plank of basswood.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -768,7 +768,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.4,
-        "description": "",
+        "description": "This is a plank of bloodwood.",
         "scarcity": "uncommon",
         "experience modifier": 1.1
     ]),
@@ -780,7 +780,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.2,
-        "description": "",
+        "description": "This is a plank of rosewood.",
         "scarcity": "uncommon",
         "experience modifier": 1.1
     ]),
@@ -791,7 +791,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
-        "description": "",
+        "description": "This is a plank of buckeye.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -802,7 +802,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 4]),
         ]),
-        "description": "",
+        "description": "This is a plank of buckthorn.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -813,7 +813,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of alder.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -826,7 +826,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a plank of ironwood.",
         "scarcity": "common",
         "experience modifier": 1.1
     ]),
@@ -843,7 +843,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 2.5,
-        "description": "",
+        "description": "This is a plank of the mystic malorn tree.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -855,7 +855,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a plank of redwood.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -870,7 +870,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.3,
-        "description": "",
+        "description": "This is a plank of mahogany.",
         "scarcity": "uncommon",
         "experience modifier": 1.1
     ]),
@@ -881,7 +881,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
         ]),
-        "description": "",
+        "description": "This is a plank of mulberry wood.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -896,7 +896,7 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 1.4,
-        "description": "",
+        "description": "This is a plank of marblewood.",
         "scarcity": "rare",
         "experience modifier": 1.2
     ]),
@@ -913,7 +913,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.7,
-        "description": "",
+        "description": "This is a plank of purple heart.",
         "scarcity": "rare",
         "experience modifier": 1.3
     ]),
@@ -927,7 +927,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 1.7,
-        "description": "",
+        "description": "This is a plank of bubinga wood.",
         "scarcity": "rare",
         "experience modifier": 1.25
     ]),
@@ -944,7 +944,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 5]),
         ]),
         "value multiplier": 2.0,
-        "description": "",
+        "description": "This is a plank of kingwood.",
         "scarcity": "rare",
         "experience modifier": 1.6
     ]),
@@ -958,7 +958,7 @@ private nosave mapping materials =
             "carpentry": (["type":"skill", "value": 2]),
         ]),
         "value multiplier": 2.0,
-        "description": "",
+        "description": "This is a plank of koa wood.",
         "scarcity": "rare",
         "experience modifier": 1.25
     ]),
@@ -969,7 +969,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "description": "",
+        "description": "This is a piece of leather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -980,7 +980,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "description": "",
+        "description": "This is a piece of cow leather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -991,7 +991,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "description": "",
+        "description": "This is a piece of deer leather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1002,7 +1002,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "description": "",
+        "description": "This is a piece of goat leather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1013,7 +1013,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "description": "",
+        "description": "This is a piece of sheep leather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1024,7 +1024,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "description": "",
+        "description": "This is a piece of bear leather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1035,7 +1035,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "description": "",
+        "description": "This is a piece of boar leather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1046,7 +1046,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "description": "",
+        "description": "This is a piece of horse leather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1057,7 +1057,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 3])
         ]),
-        "description": "",
+        "description": "This is a piece of wolf leather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1072,7 +1072,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 20])
         ]),
         "value multiplier": 6.0,
-        "description": "",
+        "description": "This is a piece of unicorn leather.",
         "scarcity": "very rare",
         "experience modifier": 2.0
     ]),
@@ -1088,7 +1088,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 20])
         ]),
         "value multiplier": 6.0,
-        "description": "",
+        "description": "This is a piece of pegasus leather.",
         "scarcity": "very rare",
         "experience modifier": 2.0
     ]),
@@ -1104,7 +1104,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 30])
         ]),
         "value multiplier": 10.0,
-        "description": "",
+        "description": "This is a piece of basilisk leather.",
         "scarcity": "very rare",
         "experience modifier": 2.5
     ]),
@@ -1120,7 +1120,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftExoticLeather.c":(["type":"research"]),
             "leatherworking": (["type":"skill", "value": 25])
         ]),
-        "description": "",
+        "description": "This is a piece of wyvern leather.",
         "scarcity": "very rare",
         "experience modifier": 2.25
     ]),
@@ -1136,7 +1136,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 35])
         ]),
         "value multiplier": 15.0,
-        "description": "",
+        "description": "This is a piece of chimera leather.",
         "scarcity": "very rare",
         "experience modifier": 2.5
     ]),
@@ -1152,7 +1152,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 40])
         ]),
         "value multiplier": 20.0,
-        "description": "",
+        "description": "This is a piece of hydra leather.",
         "scarcity": "very rare",
         "experience modifier": 2.75
     ]),
@@ -1177,7 +1177,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "value multiplier": 0.95,
-        "description": "",
+        "description": "This is a bronze ingot.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1197,7 +1197,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "value multiplier": 0.9,
-        "description": "",
+        "description": "This is a refined copper ingot.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1213,7 +1213,7 @@ private nosave mapping materials =
         ]),
         "attack rating": -1,
         "encumberance": -1,
-        "description": "",
+        "description": "This is a refined tin ingot.",
         "scarcity": "uncommon",
         "experience modifier": 1.1
     ]),
@@ -1230,7 +1230,7 @@ private nosave mapping materials =
         "defense": ([
             "acid": -1
         ]),
-        "description": "",
+        "description": "This is a refined zinc ingot.",
         "scarcity": "uncommon",
         "experience modifier": 1.1
     ]),
@@ -1254,7 +1254,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 1,
         "value multiplier": 1.95,
-        "description": "",
+        "description": "This is a brass ingot.",
         "scarcity": "uncommon",
         "experience modifier": 1.2
     ]),
@@ -1277,7 +1277,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 8.0,
-        "description": "",
+        "description": "This is a refined gold ingot.",
         "scarcity": "very rare",
         "experience modifier": 1.2
     ]),
@@ -1301,7 +1301,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 1.5,
-        "description": "",
+        "description": "This is a refined lead ingot.",
         "scarcity": "very rare",
         "experience modifier": 1
     ]),
@@ -1324,7 +1324,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 2.0,
-        "description": "",
+        "description": "This is a refined antimony ingot.",
         "scarcity": "very rare",
         "experience modifier": 1
     ]),
@@ -1346,7 +1346,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 1,
         "value multiplier": 1.6,
-        "description": "",
+        "description": "This is a refined bismuth ingot.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -1367,7 +1367,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 1.5,
-        "description": "",
+        "description": "This is a refined magnesium ingot.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1391,7 +1391,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 1.5,
-        "description": "",
+        "description": "This is a large graphite crystal.",
         "scarcity": "rare",
         "experience modifier": 1.1
     ]),
@@ -1419,7 +1419,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 1,
         "value multiplier": 1.5,
-        "description": "",
+        "description": "This is a pewter ingot.",
         "scarcity": "uncommon",
         "experience modifier": 1
     ]),
@@ -1441,7 +1441,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 8.5,
-        "description": "",
+        "description": "This is a refined platinum ingot.",
         "scarcity": "very rare",
         "experience modifier": 1.2
     ]),
@@ -1462,7 +1462,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 8.5,
-        "description": "",
+        "description": "This is a refined tantalum ingot.",
         "scarcity": "very rare",
         "experience modifier": 1.5
     ]),
@@ -1488,7 +1488,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 3,
         "value multiplier": 10.0,
-        "description": "",
+        "description": "This is a refined iridium ingot.",
         "scarcity": "very rare",
         "experience modifier": 2.0
     ]),
@@ -1514,7 +1514,7 @@ private nosave mapping materials =
         ]),
         "encumberance": 4,
         "value multiplier": 8.1,
-        "description": "",
+        "description": "This is a refined osmium ingot.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -1537,7 +1537,7 @@ private nosave mapping materials =
             "acid": 10
         ]),
         "value multiplier": 6.1,
-        "description": "",
+        "description": "This is a refined palladium ingot.",
         "scarcity": "rare",
         "experience modifier": 1.2
     ]),
@@ -1555,7 +1555,7 @@ private nosave mapping materials =
         "defense": ([
             "good": 3
         ]),        "value multiplier": 2.0,
-        "description": "",
+        "description": "This is a refined silver ingot.",
         "scarcity": "uncommon",
         "experience modifier": 1
     ]),
@@ -1582,7 +1582,7 @@ private nosave mapping materials =
             "disease": 5
         ]),
         "value multiplier": 5.0,
-        "description": "",
+        "description": "This is an electrum ingot.",
         "scarcity": "uncommon",
         "experience modifier": 1
     ]),
@@ -1605,7 +1605,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 20])
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a refined aluminum ingot.",
         "scarcity": "rare",
         "experience modifier": 1.2
     ]),
@@ -1624,7 +1624,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 10])
         ]),
         "value multiplier": 1.3,
-        "description": "",
+        "description": "This is a refined nickel ingot.",
         "scarcity": "rare",
         "experience modifier": 1.75
     ]),
@@ -1650,7 +1650,8 @@ private nosave mapping materials =
             "nickel": 2
         ]),
         "value multiplier": 1.5,
-        "description": "",
+        "description": "This is a cupronickel alloy ingot. The material is very strong "
+                "and makes both excellent armors and weapons.",
         "scarcity": "rare",
         "experience modifier": 1.75
     ]),
@@ -1674,7 +1675,8 @@ private nosave mapping materials =
             "magnesium": 1
         ]),
         "value multiplier": 5.1,
-        "description": "",
+        "description": "This is an aluminum-magnesium alloy ingot. The resulting material "
+                "is incredibly strong, though somewhat brittle.",
         "scarcity": "rare",
         "experience modifier": 1.65
     ]),
@@ -1703,7 +1705,7 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "value multiplier": 0.95,
-        "description": "",
+        "description": "This is an aluminum-bronze ingot. It is a very strong material.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1725,7 +1727,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 15])
         ]),
         "value multiplier": 1.6,
-        "description": "",
+        "description": "This is a refined cobalt ingot.",
         "scarcity": "rare",
         "experience modifier": 1.2
     ]),
@@ -1747,7 +1749,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "value multiplier": 8.0,
-        "description": "",
+        "description": "This is a refined titanium ingot.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -1770,7 +1772,7 @@ private nosave mapping materials =
             "fire": 5
         ]),
         "value multiplier": 8.0,
-        "description": "",
+        "description": "This is a refined tungsten ingot.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -1781,7 +1783,7 @@ private nosave mapping materials =
             "lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
         ]),
-        "description": "",
+        "description": "This is a refined iron ingot.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1807,7 +1809,7 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is an iron-graphite steel ingot.",
         "scarcity": "common",
         "experience modifier": 1.2
     ]),
@@ -1832,7 +1834,7 @@ private nosave mapping materials =
             "physical": -1
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a cast iron ingot.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1856,7 +1858,8 @@ private nosave mapping materials =
         ]),
         "encumberance": -4,
         "value multiplier": 20.0,
-        "description": "",
+        "description": "This is a refined mithril ingot. This metal is incredibly "
+            "strong, yet lighter than steel and is an excellent magical conduit.",
         "scarcity": "very rare",
         "experience modifier": 2.5
     ]),
@@ -1882,7 +1885,9 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 30.0,
-        "description": "",
+        "description": "This is a refined nurilium ingot. It is a crimson metal "
+                "of nearly mythic durability that is also a phenomenal conduit "
+                "for magical energies - particularly those of elemental fire.",
         "scarcity": "very rare",
         "experience modifier": 3
     ]),
@@ -1909,7 +1914,9 @@ private nosave mapping materials =
         ]),
         "encumberance": -1,
         "value multiplier": 45.0,
-        "description": "",
+        "description": "This is a refined nurilium ingot. It is a bluish metal "
+                "of nearly mythic durability that is also a phenomenal conduit "
+                "for magical energies - particularly those of electrical nature.",
         "scarcity": "very rare",
         "experience modifier": 3
     ]),
@@ -1933,7 +1940,8 @@ private nosave mapping materials =
             "magical": 1
         ]),
         "value multiplier": 16.0,
-        "description": "",
+        "description": "This is a refined admantite ingot. This metal is incredibly "
+                "strong and durable.",
         "scarcity": "very rare",
         "experience modifier": 2.5
     ]),
@@ -1959,7 +1967,9 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 25.0,
-        "description": "",
+        "description": "This is a refined galvorn ingot. This black metal is incredibly "
+                "strong, but is heavier than steel. It has incredible conductivity, being "
+                "superior to even silver in this regard.",
         "scarcity": "very rare",
         "experience modifier": 2.75
     ]),
@@ -1983,7 +1993,10 @@ private nosave mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 25.0,
-        "description": "",
+        "description": "This is a refined iron ingot created by an incredibly "
+                "dense form of iron with several other trace metals that has "
+                "fallen from the skies. It is much-coveted and far stronger "
+                "than even steel.",
         "scarcity": "very rare",
         "experience modifier": 2.25
     ]),
@@ -2009,7 +2022,8 @@ private nosave mapping materials =
         ]),
         "encumberance": 1,
         "value multiplier": 15.0,
-        "description": "",
+        "description": "This is a block of crystalline material formed from "
+                "raw magical energy.",
         "scarcity": "very rare",
         "experience modifier": 2.5
     ]),
@@ -2032,7 +2046,8 @@ private nosave mapping materials =
         ]),
         "encumberance": 1,
         "value multiplier": 10.0,
-        "description": "",
+        "description": "This is a block of crystalline material formed from "
+                "raw magical energy.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -2054,7 +2069,7 @@ private nosave mapping materials =
             "magical": 2
         ]),
         "value multiplier": 1.5,
-        "description": "",
+        "description": "This is a transparent crystal of compressed carbon and lead.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2074,7 +2089,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a transparent crystal of compressed carbon.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2094,7 +2109,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a crystal of opal.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2114,7 +2129,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.2,
-        "description": "",
+        "description": "This is a crystal of topaz.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2134,7 +2149,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.2,
-        "description": "",
+        "description": "This is a crystal of turquoise.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2154,7 +2169,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a crystal of amethyst.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2174,7 +2189,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.5,
-        "description": "",
+        "description": "This is a crystal of garnet.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2194,7 +2209,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.2,
-        "description": "",
+        "description": "This is a crystal of florite.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2214,7 +2229,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.15,
-        "description": "",
+        "description": "This is a crystal of citrine.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2234,7 +2249,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 1.15,
-        "description": "",
+        "description": "This is a crystal of agate.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2254,7 +2269,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 4.5,
-        "description": "",
+        "description": "This is a crystal of onyx.",
         "scarcity": "very rare",
         "experience modifier": 1.1
     ]),
@@ -2274,7 +2289,7 @@ private nosave mapping materials =
             "physical": 2
         ]),
         "value multiplier": 3.5,
-        "description": "",
+        "description": "This is a crystal of jade.",
         "scarcity": "very rare",
         "experience modifier": 1
     ]),
@@ -2294,7 +2309,7 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "value multiplier": 2.5,
-        "description": "",
+        "description": "This is a crystal of fossilized tree resin.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2314,7 +2329,7 @@ private nosave mapping materials =
             "physical": 1
         ]),
         "value multiplier": 1.25,
-        "description": "",
+        "description": "This is a crystal of aquamarine.",
         "scarcity": "rare",
         "experience modifier": 1
     ]),
@@ -2334,7 +2349,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "value multiplier": 11.5,
-        "description": "",
+        "description": "This is a crystal of emerald.",
         "scarcity": "very rare",
         "experience modifier": 1.1
     ]),
@@ -2354,7 +2369,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "value multiplier": 11.5,
-        "description": "",
+        "description": "This is a crystal of ruby.",
         "scarcity": "very rare",
         "experience modifier": 1.1
     ]),
@@ -2374,7 +2389,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "value multiplier": 10.5,
-        "description": "",
+        "description": "This is a crystal of sapphire.",
         "scarcity": "very rare",
         "experience modifier": 1.1
     ]),
@@ -2394,7 +2409,7 @@ private nosave mapping materials =
             "physical": 3
         ]),
         "value multiplier": 12.5,
-        "description": "",
+        "description": "This is a crystal of bloodstone.",
         "scarcity": "very rare",
         "experience modifier": 1.2
     ]),
@@ -2414,7 +2429,7 @@ private nosave mapping materials =
             "physical": 4
         ]),
         "value multiplier": 15.5,
-        "description": "",
+        "description": "This is a crystal of diamond.",
         "scarcity": "very rare",
         "experience modifier": 1.5
     ]),
@@ -2440,7 +2455,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
-        "description": "",
+        "description": "This is a crystal of kirluin. It is a pale blue gem of "
+                "incredible beauty. Stronger than diamonds, it can be melted "
+                "and formed into weapons and armor of great strength and "
+                "beauty and imbued with powerful enchantments.",
         "scarcity": "very rare",
         "experience modifier": 2.25
     ]),
@@ -2466,7 +2484,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
-        "description": "",
+        "description": "This is a crystal of gwyrluin. It is a pale grey-brown gem of "
+                "incredible beauty. Stronger than diamonds, it can be melted "
+                "and formed into weapons and armor of great strength and "
+                "beauty and imbued with powerful enchantments.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -2492,7 +2513,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
-        "description": "",
+        "description": "This is a crystal of durluin. It is a dark grey gem of "
+                "incredible beauty. Stronger than diamonds, it can be melted "
+                "and formed into weapons and armor of great strength and "
+                "beauty and imbued with powerful enchantments.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -2518,7 +2542,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
-        "description": "",
+        "description": "This is a crystal of trynluin. It is a golden gem of "
+                "incredible beauty. Stronger than diamonds, it can be melted "
+                "and formed into weapons and armor of great strength and "
+                "beauty and imbued with powerful enchantments.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -2544,7 +2571,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
-        "description": "",
+        "description": "This is a crystal of rhudluin. It is a pale red gem of "
+                "incredible beauty. Stronger than diamonds, it can be melted "
+                "and formed into weapons and armor of great strength and "
+                "beauty and imbued with powerful enchantments.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -2570,7 +2600,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
-        "description": "",
+        "description": "This is a crystal of melynuin. It is a pale yellow gem of "
+                "incredible beauty. Stronger than diamonds, it can be melted "
+                "and formed into weapons and armor of great strength and "
+                "beauty and imbued with powerful enchantments.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -2596,7 +2629,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
-        "description": "",
+        "description": "This is a crystal of asurluin. It is a deep blue gem of "
+                "incredible beauty. Stronger than diamonds, it can be melted "
+                "and formed into weapons and armor of great strength and "
+                "beauty and imbued with powerful enchantments.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -2622,7 +2658,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 50.0,
-        "description": "",
+        "description": "This is a crystal of marnluin. It is a pale ice-blue gem of "
+                "incredible beauty. Stronger than diamonds, it can be melted "
+                "and formed into weapons and armor of great strength and "
+                "beauty and imbued with powerful enchantments.",
         "scarcity": "very rare",
         "experience modifier": 2
     ]),
@@ -2641,7 +2680,7 @@ private nosave mapping materials =
             "physical": 10
         ]),
         "value multiplier": 25.0,
-        "description": "",
+        "description": "This is a piece of dragon leather with its scales still attached.",
         "scarcity": "very rare",
         "experience modifier": 2.5
     ]),
@@ -2658,7 +2697,7 @@ private nosave mapping materials =
             "leatherworking": (["type":"skill", "value": 25])
         ]),
         "value multiplier": 25.0,
-        "description": "",
+        "description": "This is a piece of dragon leather.",
         "scarcity": "very rare",
         "experience modifier": 2.85
     ]),
@@ -2672,7 +2711,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 2])
         ]),
         "value multiplier": 1.5,
-        "description": "",
+        "description": "This is a bone.",
         "scarcity": "uncommon",
         "experience modifier": 1.1
     ]),
@@ -2686,7 +2725,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 3])
         ]),
         "value multiplier": 2.0,
-        "description": "",
+        "description": "This is a horn.",
         "scarcity": "uncommon",
         "experience modifier": 1.2
     ]),
@@ -2700,7 +2739,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 3])
         ]),
         "value multiplier": 2.0,
-        "description": "",
+        "description": "This is an antler.",
         "scarcity": "uncommon",
         "experience modifier": 1.1
     ]),
@@ -2714,7 +2753,7 @@ private nosave mapping materials =
             "physics": (["type":"skill", "value": 4])
         ]),
         "value multiplier": 5.0,
-        "description": "",
+        "description": "This is a tusk of ivory.",
         "scarcity": "very rare",
         "experience modifier": 1.2
     ]),
@@ -2724,7 +2763,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a pigeon feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2734,7 +2773,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a dove feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2744,7 +2783,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a sparrow feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2754,7 +2793,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a tree swallow feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2764,7 +2803,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a barn swallow feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2774,7 +2813,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a thrush feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2784,7 +2823,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a grebe feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2794,7 +2833,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a quail feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2804,7 +2843,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a blackbird feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2814,7 +2853,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a bluebird feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2824,7 +2863,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a wren feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2834,7 +2873,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a crane feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2844,7 +2883,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a swan feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2854,7 +2893,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a goose feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2864,7 +2903,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a cormorant feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2874,7 +2913,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a albatross feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2884,7 +2923,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a grouse feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2894,7 +2933,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a lark feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2904,7 +2943,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a cedar waxwing feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2914,7 +2953,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a robin feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2924,7 +2963,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a cardinal feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2934,7 +2973,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a bluejay feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2944,7 +2983,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a herron feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2954,7 +2993,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a finch feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2964,7 +3003,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is an oriol feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2974,7 +3013,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a woodpecker feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2984,7 +3023,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a hummingbird feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -2994,7 +3033,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a grackle feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3004,7 +3043,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a starling feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3014,7 +3053,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a crow feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3024,7 +3063,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a raven feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3034,7 +3073,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a seagull feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3044,7 +3083,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.1,
-        "description": "",
+        "description": "This is a hawk feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3054,7 +3093,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.2,
-        "description": "",
+        "description": "This is an eagle feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3064,7 +3103,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is an owl feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3074,7 +3113,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a chicken feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3084,7 +3123,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a turkey feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3094,7 +3133,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a duck feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3104,7 +3143,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.2,
-        "description": "",
+        "description": "This is a peacock feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3114,7 +3153,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a pheasant feather.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3124,7 +3163,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 3.0,
-        "description": "",
+        "description": "This is a griffin feather.",
         "scarcity": "rare",
         "experience modifier": 1.05
     ]),
@@ -3134,7 +3173,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 3.0,
-        "description": "",
+        "description": "This is a phoenix feather.",
         "scarcity": "rare",
         "experience modifier": 1.1
     ]),
@@ -3144,7 +3183,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 3.0,
-        "description": "",
+        "description": "This is a pegasus feather.",
         "scarcity": "rare",
         "experience modifier": 1.1
     ]),
@@ -3154,7 +3193,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 3.0,
-        "description": "",
+        "description": "This is a plume of hair from a pegasus tail.",
         "scarcity": "rare",
         "experience modifier": 1.15
     ]),
@@ -3164,7 +3203,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a plume of hair from a horse tail.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3174,7 +3213,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 3.0,
-        "description": "",
+        "description": "This is a plume of hair from a griffin tail.",
         "scarcity": "rare",
         "experience modifier": 1.1
     ]),
@@ -3184,7 +3223,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 5.0,
-        "description": "",
+        "description": "This is a plume of hair from an unicorn tail.",
         "scarcity": "rare",
         "experience modifier": 1.15
     ]),
@@ -3194,7 +3233,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 3.0,
-        "description": "",
+        "description": "This is a plume of hair from a hippogriff tail.",
         "scarcity": "rare",
         "experience modifier": 1.1
     ]),
@@ -3204,7 +3243,7 @@ private nosave mapping materials =
         "crafting prerequisites": ([
         ]),
         "value multiplier": 1.0,
-        "description": "",
+        "description": "This is a plume of hair from a lion mane.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -3237,7 +3276,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 70.0,
-        "description": "",
+        "description": "This is a kirluin-infused mithril alloy. It has "
+                "a pale blue sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3270,7 +3312,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "description": "",
+        "description": "This is a gwyrluin-infused mithril alloy. It has "
+                "a pale grey-brown sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3303,7 +3348,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a durluin-infused mithril alloy. It has "
+                "a dark grey sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3336,7 +3384,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a trynluin-infused mithril alloy. It has "
+                "a golden sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3369,7 +3420,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "description": "",
+        "description": "This is a rhudluin-infused mithril alloy. It has "
+                "a pale red sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3402,7 +3456,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "description": "",
+        "description": "This is a melynuin-infused mithril alloy. It has "
+                "a pale yellow sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3435,7 +3492,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "description": "",
+        "description": "This is a asurluin-infused mithril alloy. It has "
+                "a deep blue sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3468,7 +3528,10 @@ private nosave mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "description": "",
+        "description": "This is a marnluin-infused mithril alloy. It has "
+                "a pale ice-blue sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3495,7 +3558,11 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a silken fabric that has been woven "
+                "with pliant, supple strands of kirluin. It has "
+                "a pale blue sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3522,7 +3589,11 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a silken fabric that has been woven "
+                "with pliant, supple strands of gwyrluin. It has "
+                "a pale grey-brown sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3549,7 +3620,11 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a silken fabric that has been woven "
+                "with pliant, supple strands of durluin. It has "
+                "a dark grey sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3576,7 +3651,11 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a silken fabric that has been woven "
+                "with pliant, supple strands of trynluin. It has "
+                "a golden sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3603,7 +3682,11 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a silken fabric that has been woven "
+                "with pliant, supple strands of rhudluin. It has "
+                "a pale red sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3630,7 +3713,11 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a silken fabric that has been woven "
+                "with pliant, supple strands of melynuin. It has "
+                "a pale yellow sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3657,7 +3744,11 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a silken fabric that has been woven "
+                "with pliant, supple strands of asurluin. It has "
+                "a deep blue sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
@@ -3684,7 +3775,11 @@ private nosave mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 75.0,
-        "description": "",
+        "description": "This is a silken fabric that has been woven "
+                "with pliant, supple strands of marnluin. It has "
+                "a pale ice-blue sheen and is exceptionally beautiful. It is "
+                "incredibly strong and durable with incredible magical "
+                "properties.",
         "scarcity": "very rare",
         "experience modifier": 3.2
     ]),
