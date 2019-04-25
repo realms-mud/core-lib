@@ -170,6 +170,13 @@ protected int displayEntryMessage()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected string getDescriptionFromSet()
+{
+    return (member(descriptionData[State], "active light template") ?
+        descriptionData[State]["active light template"] : "");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask varargs string parseTemplate(string template, mapping data,
     int illuminationLevel)
 {
@@ -184,6 +191,13 @@ protected nomask varargs string parseTemplate(string template, mapping data,
     {
         ret = parseEntryAction(ret, data);
     }
+
+    if (sizeof(regexp(({ template }), "##UseDescriptionSet##")))
+    {
+        ret = regreplace(ret, "##UseDescriptionSet##", 
+            getDescriptionFromSet(), 1);
+    }
+
     ret = parseAdjectives(ret, data, illuminationLevel);
     return ret;
 }
@@ -227,7 +241,7 @@ public nomask int lightSourceIsActive(string state, object environment)
         member(descriptionData, "active light sources") &&
         member(descriptionData["active light sources"], environment))
     {
-        ret = descriptionData["active light sources"][environment];
+        ret = descriptionData["active light sources"][environment]["magnitude"];
     }
     return ret;
 }
@@ -266,10 +280,19 @@ public nomask nomask int canActivateLightSource(string state)
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string getSourceOfLightTemplate(string state,
-    int illuminationLevel)
+    int illuminationLevel, object environment)
 {
+    string descriptionTemplate = 
+        descriptionData[state][getTemplateKey(illuminationLevel)];
+
+    if (member(descriptionData, "active light sources") &&
+        member(descriptionData["active light sources"], environment))
+    {
+        descriptionTemplate =
+            descriptionData["active light sources"][environment]["template"];
+    }
     return canActivateLightSource(state) ?
-        parseTemplate(descriptionData[state]["active light template"],
+        parseTemplate(descriptionTemplate,
             descriptionData[state], illuminationLevel) : 0;
 }
 
@@ -290,8 +313,19 @@ public nomask void activateLightSource(string state, object environment)
         {
             descriptionData["active light sources"] = ([]);
         }
-        descriptionData["active light sources"][environment] =
+        if (!member(descriptionData["active light sources"], environment))
+        {
+            descriptionData["active light sources"][environment] = ([]);
+        }
+        descriptionData["active light sources"][environment]["magnitude"] =
             processLightSourceActivation(state, environment);
+
+        if (!member(descriptionData["active light sources"][environment],
+            "template"))
+        {
+            descriptionData["active light sources"][environment]["template"] =
+                descriptionData[state]["active light template"];
+        }
     }
 }
 
@@ -318,7 +352,7 @@ public nomask varargs string description(string state, int illuminationLevel,
     if (isSourceOfLight(state, environment) && canActivateLightSource(state) &&
         lightSourceIsActive(state, environment))
     {
-        ret = getSourceOfLightTemplate(state, illuminationLevel);
+        ret = getSourceOfLightTemplate(state, illuminationLevel, environment);
     }
     else
     {
@@ -373,7 +407,7 @@ public nomask string long(int brief)
         raise_error(sprintf("ERROR in baseFeature.c: The item details for "
             "the %s state does not exist.\n", state));
     }
-    return ret;
+    return format(ret, 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////

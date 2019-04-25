@@ -1859,3 +1859,113 @@ void CorrectlyExtinguishActiveLightSource()
     ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*an[ \n]unlit[ \n]torch",
         person->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DecayingLightsCorrectlyDisplayed()
+{
+    object campfire = load_object("/lib/environment/items/camp-fire.c");
+
+    Dictionary->timeOfDay("midnight");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddItem("/lib/environment/items/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/camp-fire.c", "west");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("barely.*charred.*ashen remains.*small campfire",
+        person->caughtMessage());
+
+    command("light campfire", person);
+
+    command("look", person);
+    ExpectSubStringMatch("little.*light.*flickering.*roil.*newly-added",
+        person->caughtMessage());
+
+    campfire->decayFire("default", Environment);
+    command("look", person);
+    ExpectSubStringMatch("little.*light.*flickering.*roil.*slightly-charred",
+        person->caughtMessage());
+
+    campfire->decayFire("default", Environment);
+    command("look", person);
+    ExpectSubStringMatch("dimly-lit.*flames.*ascend.*hisses.*pops",
+        person->caughtMessage());
+
+    campfire->decayFire("default", Environment);
+    command("look", person);
+    ExpectSubStringMatch("dimly-lit.*flames.*wrap.*charred.*coals",
+        person->caughtMessage());
+
+    campfire->decayFire("default", Environment);
+    command("look", person);
+    ExpectSubStringMatch("barely-lit.*low.*flames.*coals.*red",
+        person->caughtMessage());
+
+    campfire->decayFire("default", Environment);
+    command("look", person);
+    ExpectSubStringMatch("barely-lit.*faint.*flickers.*nearly-spent",
+        person->caughtMessage());
+
+    campfire->decayFire("default", Environment);
+    command("look", person);
+    ExpectSubStringMatch("barely-lit.*occasional.*flickers.*faintly",
+        person->caughtMessage());
+
+    campfire->decayFire("default", Environment);
+    command("look", person);
+    ExpectSubStringMatch("barely-lit.*faint.*light.*ashen.*embers",
+        person->caughtMessage());
+
+    campfire->decayFire("default", Environment);
+    command("look", person);
+    ExpectSubStringMatch("barely.*charred.*ashen remains.*small campfire",
+        person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EnvironmentsIndependentlyHandleTheSameLightSource()
+{
+    object campfire = load_object("/lib/environment/items/camp-fire.c");
+
+    Dictionary->timeOfDay("midnight");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddItem("/lib/environment/items/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/camp-fire.c", "west");
+
+    object environment2 =
+        clone_object("/lib/tests/support/environment/testEnvironment.c");
+    environment2->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    environment2->testAddItem("/lib/environment/items/camp-fire.c", "west");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    observer->colorConfiguration("3-bit");
+    move_object(observer, environment2);
+
+    command("light campfire", person);
+
+    command("look", person);
+    ExpectSubStringMatch("little.*light.*flickering.*roil.*newly-added",
+        person->caughtMessage());
+    command("exa fire", person);
+    ExpectSubStringMatch("Flickering.*roil.*newly-added",
+        person->caughtMessage());
+
+    command("look", observer);
+    ExpectSubStringMatch("barely.*charred.*ashen remains.*small campfire",
+        observer->caughtMessage());
+    command("exa fire", observer);
+    ExpectSubStringMatch("charred.*ashen remains.*small campfire",
+        observer->caughtMessage());
+
+    destruct(environment2);
+}

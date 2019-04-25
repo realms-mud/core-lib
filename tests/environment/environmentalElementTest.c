@@ -168,7 +168,7 @@ void LongForStateDisplaysCorrectly()
 
     Element->currentState("deadified");
     ExpectEq("You see many charred tree stumps covered with a murky mist "
-        "outlined in the dark.\n",
+        "outlined in the\ndark.\n",
         Element->long());
 }
 
@@ -212,4 +212,36 @@ void WhenMessagesAreSuppressedDescriptionCanBeNull()
 
     ExpectFalse(itemWithoutDescription->description());
     destruct(itemWithoutDescription);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetDescriptionFromSetReturnsCorrectItemDescription()
+{
+    destruct(Element);
+    Element = clone_object("/lib/environment/items/camp-fire.c");
+
+    ExpectEq("You see the area around the campfire has been cleared away "
+        "to place a barrier\nbetween the fire and other combustible objects. "
+        "There are charred cinders and\nthe ashen remains of a small campfire.\n",
+        Element->long());
+
+    Element->activateLightSource("default", this_object());
+    ExpectEq("You see the area around the campfire has been cleared away to "
+        "place a barrier\nbetween the fire and other combustible objects. "
+        "Flickering tendrils of flame\nroil out from the newly-added logs of "
+        "a small camp fire.\n",
+        Element->long());
+
+    Element->decayFire("default", this_object());
+    Element->decayFire("default", this_object());
+    Element->decayFire("default", this_object());
+    Element->decayFire("default", this_object());
+    Element->decayFire("default", this_object());
+    Element->decayFire("default", this_object());
+    ExpectEq(2, Element->isSourceOfLight("default", this_object()));
+    ExpectEq("You see the area around the campfire has been cleared away to "
+        "place a barrier\nbetween the fire and other combustible objects. "
+        "Occasional flickers of red\nflame emanate from the faintly glowing "
+        "red coals of a small camp fire.\n",
+        Element->long());
 }

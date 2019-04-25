@@ -169,3 +169,70 @@ void ActiveAndInactiveLightSourcesCorrectlyDisplayed()
     ExpectEq(0, Element->lightSourceIsActive("default", this_object()));
     ExpectEq(5, Element->isSourceOfLight("default", this_object()));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetActiveDecayingLighting()
+{
+    destruct(Element);
+    Element = clone_object("/lib/environment/items/camp-fire.c");
+
+    ExpectEq("there are charred cinders and the ashen remains of a small "
+        "campfire", 
+        Element->description("default", 1, this_object()));
+
+    Element->activateLightSource("default", this_object());
+
+    ExpectEq("flickering tendrils of flame roil out from the newly-added "
+        "logs of a small camp fire", 
+        Element->description("default", 1, this_object()));
+    ExpectEq(8, Element->lightSourceIsActive("default", this_object()));
+    ExpectEq(8, Element->isSourceOfLight("default", this_object()));
+
+    Element->decayFire("default", this_object());
+    ExpectEq("flickering tendrils of flame roil out from the slightly-"
+        "charred logs of a small camp fire",
+        Element->description("default", 1, this_object()));
+    ExpectEq(7, Element->lightSourceIsActive("default", this_object()));
+    ExpectEq(7, Element->isSourceOfLight("default", this_object()));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ActiveDecayingLightingWillResetToNoLight()
+{
+    destruct(Element);
+    Element = clone_object("/lib/environment/items/camp-fire.c");
+
+    ExpectEq("there are charred cinders and the ashen remains of a small "
+        "campfire",
+        Element->description("default", 1, this_object()));
+
+    Element->activateLightSource("default", this_object());
+    ExpectEq(8, Element->isSourceOfLight("default", this_object()));
+
+    Element->decayFire("default", this_object());
+    ExpectEq(7, Element->isSourceOfLight("default", this_object()));
+
+    Element->decayFire("default", this_object());
+    ExpectEq(6, Element->isSourceOfLight("default", this_object()));
+
+    Element->decayFire("default", this_object());
+    ExpectEq(5, Element->isSourceOfLight("default", this_object()));
+
+    Element->decayFire("default", this_object());
+    ExpectEq(4, Element->isSourceOfLight("default", this_object()));
+
+    Element->decayFire("default", this_object());
+    ExpectEq(3, Element->isSourceOfLight("default", this_object()));
+
+    Element->decayFire("default", this_object());
+    ExpectEq(2, Element->isSourceOfLight("default", this_object()));
+    ExpectEq("occasional flickers of red flame emanate from the faintly "
+        "glowing red coals of a small camp fire",
+        Element->description("default", 1, this_object()));
+
+    Element->decayFire("default", this_object());
+    ExpectEq(1, Element->isSourceOfLight("default", this_object()));
+
+    Element->decayFire("default", this_object());
+    ExpectEq(0, Element->isSourceOfLight("default", this_object()));
+}
