@@ -13,6 +13,6 @@ public void reset(int arg)
         set("short", "Potion of Earth Resistance");
         set("aliases", ({ "earth resistance", "potion", "earth resistance potion",
             "potion of earth resistance" }));
-        set("blueprint", "earth resistance");
+        set("blueprint", "earth resistance potion");
     }
 }

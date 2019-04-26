@@ -24,7 +24,7 @@ public nomask mixed query(string element)
         case "food type":
         {
             ret = member(itemData, "food type") ? itemData["food type"] :
-                materialsObject()->getBlueprintModifier(this_object(), "skill to use");
+                materialsObject()->getBlueprintDetails(this_object(), "skill to use");
             break;
         }
         case "low light description":

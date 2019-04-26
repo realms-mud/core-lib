@@ -222,27 +222,44 @@ public nomask int isValidBonus(string bonus)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int getBlueprintModifier(object item, string type)
+private nomask mixed getBlueprintData(object item, string type)
 {
-    int ret = 0;
+    mixed ret = 0;
     string itemType = item->query("blueprint");
-    if (isValidWeaponBlueprint(itemType))
+    if (isValidWeaponBlueprint(itemType) && 
+        member(weaponBlueprints[itemType], type))
     {
         ret = weaponBlueprints[itemType][type];
     }
-    else if (isValidArmorBlueprint(itemType))
+    else if (isValidArmorBlueprint(itemType) &&
+        member(armorBlueprints[itemType], type))
     {
         ret = armorBlueprints[itemType][type];
     }
-    else if (isValidMaterial(itemType))
+    else if (isValidMaterial(itemType) &&
+        member(materials[itemType], type))
     {
         ret = materials[itemType][type];
     }
-    else if (isValidInstrumentBlueprint(itemType))
+    else if (isValidInstrumentBlueprint(itemType) &&
+        member(instrumentBlueprints[itemType], type))
     {
         ret = instrumentBlueprints[itemType][type];
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int getBlueprintModifier(object item, string type)
+{
+    return to_int(getBlueprintData(item, type));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getBlueprintDetails(object item, string type)
+{
+    string detail = getBlueprintData(item, type);
+    return (detail && stringp(detail)) ? detail : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -531,6 +548,10 @@ public varargs string applyMaterialQualityToText(object equipment,
         {
             qualityText = "a well-crafted item";
         }
+    }
+    else
+    {
+        equipment->identify();
     }
 
     if(!text)

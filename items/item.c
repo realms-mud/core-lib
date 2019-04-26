@@ -185,15 +185,23 @@ public mixed query(string element)
             case "long":
             {
                 ret = member(itemData, "long") ? itemData["long"] :
-                    materialsObject()->getBlueprintModifier(
-                        this_object(), "default description");
+                    materialsObject()->getBlueprintDetails(
+                        this_object(), "default description") || query("short");
+                break;
+            }
+            case "description":
+            {
+                ret = member(itemData, "description") ? itemData["description"] :
+                    materialsObject()->getBlueprintDetails(this_object(), 
+                        "default description") || query("short");
                 break;
             }
             case "primary component":
             {
-                ret = member(itemData, "primary component") ? itemData["primary component"] :
-                    materialsObject()->getBlueprintModifier(
-                        this_object(), "primary component");
+                ret = member(itemData, "primary component") ? 
+                    itemData["primary component"] :
+                    materialsObject()->getBlueprintDetails(this_object(), 
+                        "primary component");
                 break;
             }
             case "value":
@@ -224,12 +232,12 @@ public mixed query(string element)
             case "crafting type":
             {
                 ret = member(itemData, "crafting type") ? itemData["crafting type"] :
-                    materialsObject()->getBlueprintModifier(
+                    materialsObject()->getBlueprintDetails(
                         this_object(), "subtype");
 
                if (!load_object(CraftingDictionary)->isValidType(ret))
                 {
-                    ret = materialsObject()->getBlueprintModifier(
+                    ret = materialsObject()->getBlueprintDetails(
                         this_object(), "skill to use");
                 }
                 

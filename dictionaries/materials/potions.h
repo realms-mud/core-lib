@@ -5,7 +5,7 @@
 
 private nosave mapping potions =
 ([
-    "healing":([
+    "healing potion":([
         "type": "health",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewPotions.c":(["type":"research"]),
@@ -19,7 +19,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "mana":([
+    "mana potion":([
         "type": "health",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewPotions.c":(["type":"research"]),
@@ -33,7 +33,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "stamina":([
+    "stamina potion":([
         "type": "health",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewPotions.c":(["type":"research"]),
@@ -108,7 +108,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "acid resistance":([
+    "acid resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -122,7 +122,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "air resistance":([
+    "air resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -136,7 +136,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "chaos resistance":([
+    "chaos resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -150,7 +150,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "cold resistance":([
+    "cold resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -164,7 +164,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "disease resistance":([
+    "disease resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -178,7 +178,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "earth resistance":([
+    "earth resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -192,7 +192,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "electricity resistance":([
+    "electricity resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -206,7 +206,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "energy resistance":([
+    "energy resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -220,7 +220,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "evil resistance":([
+    "evil resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -234,7 +234,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "fire resistance":([
+    "fire resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -248,7 +248,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "good resistance":([
+    "good resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -262,7 +262,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "magic resistance":([
+    "magic resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -276,7 +276,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "neutral resistance":([
+    "neutral resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -290,7 +290,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "paralysis resistance":([
+    "paralysis resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -304,7 +304,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "physical resistance":([
+    "physical resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -318,7 +318,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "poison resistance":([
+    "poison resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -332,7 +332,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "psionic resistance":([
+    "psionic resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -346,7 +346,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "sonic resistance":([
+    "sonic resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -360,7 +360,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "undead resistance":([
+    "undead resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -374,7 +374,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "water resistance":([
+    "water resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -388,7 +388,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "strength":([
+    "strength potion":([
         "type": "attributes",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -402,7 +402,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "intelligence":([
+    "intelligence potion":([
         "type": "attributes",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -416,7 +416,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "dexterity":([
+    "dexterity potion":([
         "type": "attributes",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -430,7 +430,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "wisdom":([
+    "wisdom potion":([
         "type": "attributes",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -444,7 +444,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "constitution":([
+    "constitution potion":([
         "type": "attributes",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -458,7 +458,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "charisma":([
+    "charisma potion":([
         "type": "attributes",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
@@ -472,7 +472,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "speed":([
+    "speed potion":([
         "type": "combat",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewFortifyingPotions.c":(["type":"research"]),
@@ -486,7 +486,7 @@ private nosave mapping potions =
         ]),
         "base experience": 5,
     ]),
-    "fortification":([
+    "fortification potion":([
         "type": "combat",
         "crafting prerequisites": ([
             "lib/instances/research/crafting/potions/brewFortifyingPotions.c":(["type":"research"]),

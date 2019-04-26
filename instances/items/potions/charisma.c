@@ -13,6 +13,6 @@ public void reset(int arg)
         set("short", "Potion of Charisma");
         set("aliases", ({ "charisma", "potion", "charisma potion",
             "potion of charisma" }));
-        set("blueprint", "charisma");
+        set("blueprint", "charisma potion");
     }
 }

@@ -96,7 +96,9 @@ void StrongEnchantmentItemsCorrectlyDisplayed()
 /////////////////////////////////////////////////////////////////////////////
 void WeaponStatisticsNotShownWhenNotIdentified()
 {
-    string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") +
+    Weapon->set("enchantments", (["fire":10, "magical" : 2]));
+
+    string expected = sprintf(Enchanted, "This long sword is enchanted.\n") +
         sprintf(SingleDetailText, "Weight", 5) + 
         sprintf(Unidentified, "This item has not been identified.\n");
 

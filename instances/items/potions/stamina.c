@@ -12,6 +12,6 @@ public void reset(int arg)
         set("name", "Stamina Potion");
         set("short", "Stamina Potion");
         set("aliases", ({ "stamina", "potion", "stamina potion" }));
-        set("blueprint", "stamina");
+        set("blueprint", "stamina potion");
     }
 }

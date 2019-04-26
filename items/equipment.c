@@ -105,12 +105,6 @@ public mixed query(string element)
     mixed ret = 0;
     switch (element)
     {
-        case "description":
-        {
-            ret = member(itemData, "description") ? itemData["description"] :
-                materialsObject()->getBlueprintModifier(this_object(), "default description");
-            break;
-        }
         case "encumberance":
         {
             ret = member(itemData, "encumberance") ? itemData["encumberance"] :
@@ -139,7 +133,7 @@ public mixed query(string element)
         case "material":
         {
             ret = member(itemData, "material") ? itemData["material"] :
-                materialsObject()->getBlueprintModifier(this_object(), "default material");
+                materialsObject()->getBlueprintDetails(this_object(), "default material");
             break;
         }
         case "equipment locations":

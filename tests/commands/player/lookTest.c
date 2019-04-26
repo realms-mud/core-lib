@@ -301,8 +301,12 @@ void LookAtItemShowsDetails()
     ExpectTrue(command("look at blah", Player));
     ExpectEq("This is a sword with a blade that is about 40 inches (100 cm) long.\n" + 
         "This long sword is typical for its type.\n"
-        "\tWeight: 5\n"
-        "This item has not been identified.\n\n",
+        "\tMaterial: Iron\n"
+        "\tAttack: 8 to 108\n"
+        "\tDamage: 9 to 12\n"
+        "\tDefense: 2 to 3\n"
+        "\tEncumberance: 2\n"
+        "\tWeight: 5\n\n",
         Player->caughtMessage());
 }
 

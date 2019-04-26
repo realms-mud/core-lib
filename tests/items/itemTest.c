@@ -764,8 +764,8 @@ void LongReturnsCorrectMessageBeforeIdentification()
     Item->set("long", "Blah blah blah");
     Item->set("additional long", "even more blah");
 
-    ExpectEq("Blah blah blah\nThis item is typical for its type.\nThis item "
-        "has not been identified.\n\n", Item->long(), "long() returns correct value");
+    ExpectEq("Blah blah blah\nThis item is typical for its type.\n\n", 
+        Item->long(), "long() returns correct value");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -887,4 +887,22 @@ void CraftingTypeReturnsCorrectlyWhenSubtypeNotValidCraftingType()
         clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
 
     ExpectEq("chainmail", chainmail->query("crafting type"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ItemDescriptionsDisplayedCorrectly()
+{
+    object material =
+        clone_object("/lib/instances/items/materials/metal/kirnalt.c");
+
+    ExpectEq("This is a kirluin-infused mithril alloy. It has a pale blue sheen and is\n"
+        "exceptionally beautiful. It is incredibly strong and durable with incredible\n"
+        "magical properties.\n"
+        "This kirnalt is typical for its type.\n\n", 
+        material->long());
+
+    ExpectEq("This is a kirluin-infused mithril alloy. It has a pale blue sheen "
+        "and is exceptionally beautiful. It is incredibly strong and durable "
+        "with incredible magical properties.",
+        material->query("description"));
 }

@@ -13,6 +13,6 @@ public void reset(int arg)
         set("short", "Potion of Wisdom");
         set("aliases", ({ "wisdom", "potion", "wisdom potion",
             "potion of wisdom" }));
-        set("blueprint", "wisdom");
+        set("blueprint", "wisdom potion");
     }
 }

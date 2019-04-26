@@ -85,7 +85,7 @@ public nomask varargs int storeItem(object item, int isPermanent)
             "description": item->long(1),
             "value": item->query("value"),
             "type": item->query("type"),
-            "subType": dictionary->getBlueprintModifier(item, "subtype"),
+            "subType": dictionary->getBlueprintDetails(item, "subtype"),
             "quality": dictionary->getMaterialQualityFormatter(item),
             "summary": dictionary->getItemSummary(item),
             "data": item->query("all")

@@ -25,12 +25,13 @@ void SetUpStoreInventory()
     Store->shopType("weapons");
     Store->shopSubType("swords");
 
-    Store->storeItem(clone_object("/lib/instances/items/weapons/swords/bastard-sword.c"));
+    object weapon = clone_object("/lib/instances/items/weapons/swords/bastard-sword.c");
+    weapon->set("bonus strength", 5);
+    Store->storeItem(weapon);
 
-    object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     weapon->identify();
     Store->storeItem(weapon);
-    Selector->setStore(Store);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     weapon->identify();
@@ -38,7 +39,6 @@ void SetUpStoreInventory()
     weapon->set("name", "Sword of Weasels");
     weapon->set("bonus strength", 1);
     Store->storeItem(weapon);
-    Selector->setStore(Store);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     weapon->identify();
@@ -46,14 +46,12 @@ void SetUpStoreInventory()
     weapon->set("name", "Admantite Sword");
     weapon->set("craftsmanship", 60);
     Store->storeItem(weapon);
-    Selector->setStore(Store);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     weapon->identify();
     weapon->set("material", "admantite");
     weapon->set("name", "Admantite Sword");
     Store->storeItem(weapon);
-    Selector->setStore(Store);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/claymore.c");
     weapon->identify();
@@ -62,7 +60,6 @@ void SetUpStoreInventory()
     weapon->set("bonus strength", 5);
     weapon->set("bonus damage", 5);
     Store->storeItem(weapon);
-    Selector->setStore(Store);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/katana.c");
     weapon->identify();
@@ -70,6 +67,7 @@ void SetUpStoreInventory()
     weapon->set("name", "Sword of the Grebes");
     weapon->set("craftsmanship", 80);
     Store->storeItem(weapon);
+
     Selector->setStore(Store);
 }
 
@@ -285,7 +283,7 @@ void DisplayIsCorrectWithNoColorSelected()
 
     ExpectEq("Buy Items - Select an item to buy:\n"
         "-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-\n"
-        "[1] - Bastard sword                 650    This item has not been identified\n"
+        "[1] - Bastard sword        (E)     8150    This item has not been identified\n"
         "[2] - Sword of Really L... (P)    23250    Damage: 21, Defense:  4, Attack:  8\n"
         "[3] - Sword of the Grebes  (C)    18337    Damage: 21, Defense:  4, Attack: 21\n"
         "[4] - Long sword                    450    Damage: 10, Defense:  2, Attack:  5\n"
@@ -315,7 +313,7 @@ void DisplayIsCorrectWithThreeBitColorSelected()
 
     ExpectEq("\x1b[0;36mBuy Items - \x1b[0m\x1b[0;37;1mSelect an item to buy:\n"
         "\x1b[0;31m-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-\x1b[0m\x1b[0m\n"
-        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;37;1mBastard sword          \x1b[0m\x1b[0;32m      650\x1b[0m\x1b[0m    \x1b[0;30;1mThis item has not been identified\x1b[0m\n"
+        "[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mBastard sword          \x1b[0m\x1b[0;32m     8150\x1b[0m\x1b[0m    \x1b[0;30;1mThis item has not been identified\x1b[0m\n"
         "[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m\x1b[0;35;1mSword of Really L...   \x1b[0m\x1b[0;32m    23250\x1b[0m\x1b[0m    \x1b[0;36mDamage: \x1b[0m\x1b[0;33m21\x1b[0m, \x1b[0;36mDefense: \x1b[0m\x1b[0;33m 4\x1b[0m, \x1b[0;36mAttack: \x1b[0m\x1b[0;33m 8\x1b[0m\n"
         "[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32m\x1b[0;32mSword of the Grebes    \x1b[0m\x1b[0;32m    18337\x1b[0m\x1b[0m    \x1b[0;36mDamage: \x1b[0m\x1b[0;33m21\x1b[0m, \x1b[0;36mDefense: \x1b[0m\x1b[0;33m 4\x1b[0m, \x1b[0;36mAttack: \x1b[0m\x1b[0;33m21\x1b[0m\n"
         "[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32m\x1b[0;37;1mLong sword             \x1b[0m\x1b[0;32m      450\x1b[0m\x1b[0m    \x1b[0;36mDamage: \x1b[0m\x1b[0;33m10\x1b[0m, \x1b[0;36mDefense: \x1b[0m\x1b[0;33m 2\x1b[0m, \x1b[0;36mAttack: \x1b[0m\x1b[0;33m 5\x1b[0m\n"
@@ -341,7 +339,7 @@ void DisplayIsCorrectWithEightBitColorSelected()
 
     ExpectEq("\x1b[0;38;5;80mBuy Items - \x1b[0m\x1b[0;38;5;15;1mSelect an item to buy:\n"
         "\x1b[0;38;5;9m-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-\x1b[0m\x1b[0m\n"
-        "[\x1b[0;38;5;9;1m1\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;231;1mBastard sword          \x1b[0m\x1b[0;38;5;2m      650\x1b[0m\x1b[0m    \x1b[0;38;5;238;1mThis item has not been identified\x1b[0m\n"
+        "[\x1b[0;38;5;9;1m1\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;31mBastard sword          \x1b[0m\x1b[0;38;5;2m     8150\x1b[0m\x1b[0m    \x1b[0;38;5;238;1mThis item has not been identified\x1b[0m\n"
         "[\x1b[0;38;5;9;1m2\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;32;1mSword of Really L...   \x1b[0m\x1b[0;38;5;2m    23250\x1b[0m\x1b[0m    \x1b[0;38;5;80mDamage: \x1b[0m\x1b[0;38;5;190m21\x1b[0m, \x1b[0;38;5;80mDefense: \x1b[0m\x1b[0;38;5;190m 4\x1b[0m, \x1b[0;38;5;80mAttack: \x1b[0m\x1b[0;38;5;190m 8\x1b[0m\n"
         "[\x1b[0;38;5;9;1m3\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;144mSword of the Grebes    \x1b[0m\x1b[0;38;5;2m    18337\x1b[0m\x1b[0m    \x1b[0;38;5;80mDamage: \x1b[0m\x1b[0;38;5;190m21\x1b[0m, \x1b[0;38;5;80mDefense: \x1b[0m\x1b[0;38;5;190m 4\x1b[0m, \x1b[0;38;5;80mAttack: \x1b[0m\x1b[0;38;5;190m21\x1b[0m\n"
         "[\x1b[0;38;5;9;1m4\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;231;1mLong sword             \x1b[0m\x1b[0;38;5;2m      450\x1b[0m\x1b[0m    \x1b[0;38;5;80mDamage: \x1b[0m\x1b[0;38;5;190m10\x1b[0m, \x1b[0;38;5;80mDefense: \x1b[0m\x1b[0;38;5;190m 2\x1b[0m, \x1b[0;38;5;80mAttack: \x1b[0m\x1b[0;38;5;190m 5\x1b[0m\n"
@@ -367,7 +365,7 @@ void DisplayIsCorrectWithTwnetyFourBitColorSelected()
 
     ExpectEq("\x1b[0;38;2;180;180;190mBuy Items - \x1b[0m\x1b[0;38;2;255;255;255;1mSelect an item to buy:\n"
         "\x1b[0;38;2;200;0;0m-=-=-=-=-=-=-= Name =-=-=-=-=-=-=- Cost -=-=-= Item Details =-=-=-=-=-=-=-=-=-\x1b[0m\x1b[0m\n"
-        "[\x1b[0;38;2;220;40;0;1m1\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;255;255;255;1mBastard sword          \x1b[0m\x1b[0;38;2;170;180;110m      650\x1b[0m\x1b[0m    \x1b[0;38;2;70;60;60;1mThis item has not been identified\x1b[0m\n"
+        "[\x1b[0;38;2;220;40;0;1m1\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;50;75;195mBastard sword          \x1b[0m\x1b[0;38;2;170;180;110m     8150\x1b[0m\x1b[0m    \x1b[0;38;2;70;60;60;1mThis item has not been identified\x1b[0m\n"
         "[\x1b[0;38;2;220;40;0;1m2\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;60;75;215;1mSword of Really L...   \x1b[0m\x1b[0;38;2;170;180;110m    23250\x1b[0m\x1b[0m    \x1b[0;38;2;180;180;190mDamage: \x1b[0m\x1b[0;38;2;200;200;0m21\x1b[0m, \x1b[0;38;2;180;180;190mDefense: \x1b[0m\x1b[0;38;2;200;200;0m 4\x1b[0m, \x1b[0;38;2;180;180;190mAttack: \x1b[0m\x1b[0;38;2;200;200;0m 8\x1b[0m\n"
         "[\x1b[0;38;2;220;40;0;1m3\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;60;180;160mSword of the Grebes    \x1b[0m\x1b[0;38;2;170;180;110m    18337\x1b[0m\x1b[0m    \x1b[0;38;2;180;180;190mDamage: \x1b[0m\x1b[0;38;2;200;200;0m21\x1b[0m, \x1b[0;38;2;180;180;190mDefense: \x1b[0m\x1b[0;38;2;200;200;0m 4\x1b[0m, \x1b[0;38;2;180;180;190mAttack: \x1b[0m\x1b[0;38;2;200;200;0m21\x1b[0m\n"
         "[\x1b[0;38;2;220;40;0;1m4\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;255;255;255;1mLong sword             \x1b[0m\x1b[0;38;2;170;180;110m      450\x1b[0m\x1b[0m    \x1b[0;38;2;180;180;190mDamage: \x1b[0m\x1b[0;38;2;200;200;0m10\x1b[0m, \x1b[0;38;2;180;180;190mDefense: \x1b[0m\x1b[0;38;2;200;200;0m 2\x1b[0m, \x1b[0;38;2;180;180;190mAttack: \x1b[0m\x1b[0;38;2;200;200;0m 5\x1b[0m\n"

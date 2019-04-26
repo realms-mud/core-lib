@@ -60,7 +60,7 @@ public nomask mixed query(string element)
         case "weapon type":
         {
             ret = member(itemData, "weapon type") ? itemData["weapon type"] :
-                materialsObject()->getBlueprintModifier(this_object(), "skill to use");
+                materialsObject()->getBlueprintDetails(this_object(), "skill to use");
             break;
         }
         case "type":

@@ -26,19 +26,13 @@ public nomask mixed query(string element)
         case "scarcity":
         {
             ret = member(itemData, "scarcity") ? itemData["scarcity"] :
-                materialsObject()->getBlueprintModifier(this_object(), "scarcity");
+                materialsObject()->getBlueprintDetails(this_object(), "scarcity");
             break;
         }
         case "class":
         {
             ret = member(itemData, "class") ? itemData["class"] :
-                materialsObject()->getBlueprintModifier(this_object(), "class");
-            break;
-        }
-        case "description":
-        {
-            ret = member(itemData, "description") ? itemData["description"] :
-                materialsObject()->getBlueprintModifier(this_object(), "description");
+                materialsObject()->getBlueprintDetails(this_object(), "class");
             break;
         }
         case "low light description":
