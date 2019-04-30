@@ -99,7 +99,7 @@ void SectionWithMoreThanThreeTraitsCorrectlyDisplays()
 
     ExpectTrue(Player->executeCommand("traits"));
     ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
-        sprintf(TraitsRow, "\x1b[0;36m", "Abrasive", "\x1b[0;33m", "Charming", "\x1b[0;31;1m", "Test 1") +
+        sprintf(TraitsRow, "\x1b[0;36m", "Abrasive", "\x1b[0;36m", "Charming", "\x1b[0;31;1m", "Test 1") +
         sprintf(TraitsRowOne, "\x1b[0;36m", "Test 2", "", "", "", "") + EndBar,
         Player->caughtMessage());
 }

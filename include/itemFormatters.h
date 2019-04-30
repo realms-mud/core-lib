@@ -857,6 +857,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;190m",
             "24-bit": "\x1b[0;38;2;200;200;0m"
         ]),
+        "personality trait":([
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;80m",
+            "24-bit": "\x1b[0;38;2;180;180;190m"
+        ]), 
     ]),
     "quests":([
         "description": ([

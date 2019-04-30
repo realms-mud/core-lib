@@ -444,6 +444,10 @@ private nomask string getTraitColor(string trait)
     {
         ret = "negative trait";
     }
+    else if (traitDictionary()->traitIsOfType(trait, "personality"))
+    {
+        ret = "personality trait";
+    }
     else if (traitDictionary()->isValidPersistedTrait(trait))
     {
         ret = "persisted trait";
