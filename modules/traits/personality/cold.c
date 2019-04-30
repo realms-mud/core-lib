@@ -17,6 +17,8 @@ public void reset(int arg)
         addSpecification("opposing root", "warm");
         addSpecification("opinion", -5);
         addSpecification("opposing opinion", -10);
+        addSpecification("penalty to persuasion", 1);
+        addSpecification("penalty to diplomacy", 1);
         "baseTrait"::reset(arg);
     }
 }

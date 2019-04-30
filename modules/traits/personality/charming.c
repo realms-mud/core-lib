@@ -18,6 +18,10 @@ public void reset(int arg)
         addSpecification("opinion", 20);
         addSpecification("opposing opinion", -10);
         addSpecification("cost", 2);
+        addSpecification("bonus persuasion", 1);
+        addSpecification("bonus diplomacy", 1);
+        addSpecification("bonus etiquette", 1);
+        addSpecification("bonus bluff", 1);
         "baseTrait"::reset(arg);
     }
 }

@@ -13,10 +13,8 @@ public void reset(int arg)
         addSpecification("name", "envious");
         addSpecification("description", "You want it all. You want it now. "
             "You covet what others have.");
-        addSpecification("root", "malicious");
-        addSpecification("opposing root", "kind");
+        addSpecification("root", "envious");
         addSpecification("opinion", -5);
-        addSpecification("opposing opinion", -15);
         "baseTrait"::reset(arg);
     }
 }

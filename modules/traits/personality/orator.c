@@ -15,8 +15,7 @@ public void reset(int arg)
         addSpecification("root", "eloquent");
         addSpecification("opposing root", "vulgar");
         addSpecification("opinion", 15);
-        addSpecification("bonus persuasion", 2);
+        addSpecification("bonus persuasion", 5);
         "baseTrait"::reset(arg);
     }
 }
-

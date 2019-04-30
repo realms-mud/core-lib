@@ -17,6 +17,7 @@ public void reset(int arg)
         addSpecification("opposing root", "kind");
         addSpecification("opinion", -10);
         addSpecification("opposing opinion", -10);
+        addSpecification("bonus intimidation", 1);
         "baseTrait"::reset(arg);
     }
 }

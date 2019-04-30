@@ -18,6 +18,9 @@ public void reset(int arg)
         addSpecification("opposing root", "kind");
         addSpecification("opinion", -5);
         addSpecification("opposing opinion", -5);
+        addSpecification("penalty to diplomacy", 1);
+        addSpecification("bonus intimidation", 1);
+        addSpecification("penalty to etiquette", 1);
         "baseTrait"::reset(arg);
     }
 }

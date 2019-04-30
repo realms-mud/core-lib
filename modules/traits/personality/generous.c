@@ -17,6 +17,8 @@ public void reset(int arg)
         addSpecification("opposing root", "miserly");
         addSpecification("opinion", 15);
         addSpecification("opposing opinion", -5);
+        addSpecification("bonus persuasion", 1);
+        addSpecification("bonus diplomacy", 1);
         "baseTrait"::reset(arg);
     }
 }

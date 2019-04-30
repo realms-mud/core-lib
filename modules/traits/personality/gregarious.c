@@ -19,6 +19,7 @@ public void reset(int arg)
         addSpecification("opposing root", "introvert");
         addSpecification("opinion", 1);
         addSpecification("opposing opinion", -1);
+        addSpecification("bonus persuasion", 2);
         "baseTrait"::reset(arg);
     }
 }

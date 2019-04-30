@@ -18,6 +18,9 @@ public void reset(int arg)
         addSpecification("penalty to charisma", 1);
         addSpecification("opinion", -15);
         addSpecification("opposing opinion", -15);
+        addSpecification("penalty to persuasion", 1);
+        addSpecification("penalty to diplomacy", 1);
+        addSpecification("bonus intimidation", 1);
         "baseTrait"::reset(arg);
     }
 }

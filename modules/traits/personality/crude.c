@@ -17,5 +17,6 @@ public void reset(int arg)
         addSpecification("opinion", -5);
         addSpecification("opposing opinion", -10);
         "baseTrait"::reset(arg);
+        addSpecification("penalty to etiquette", 1);
     }
 }

@@ -15,6 +15,9 @@ public void reset(int arg)
             "have a knack for piquing their enthusiasm.");
         addSpecification("root", "interesting");
         addSpecification("opinion", 5);
+        addSpecification("bonus persuasion", 1);
+        addSpecification("bonus diplomacy", 1);
+
         "baseTrait"::reset(arg);
     }
 }

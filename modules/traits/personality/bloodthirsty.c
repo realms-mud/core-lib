@@ -15,6 +15,8 @@ public void reset(int arg)
             "apt to resolve personal issues through violence.");
         addSpecification("root", "brutal");
         addSpecification("opinion", -5);
+        addSpecification("penalty to persuasion", 1);
+        addSpecification("bonus intimidation", 1);
         "baseTrait"::reset(arg);
     }
 }

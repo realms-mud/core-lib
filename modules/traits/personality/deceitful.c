@@ -17,6 +17,8 @@ public void reset(int arg)
         addSpecification("opposing root", "honorable");
         addSpecification("opinion", -5);
         addSpecification("opposing opinion", -15);
+        addSpecification("bonus bluff", 1);
+        addSpecification("penalty to diplomacy", 2);
         "baseTrait"::reset(arg);
     }
 }

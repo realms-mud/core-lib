@@ -14,6 +14,9 @@ public void reset(int arg)
         addSpecification("description", "You have a lack of social grace.");
         addSpecification("root", "awkward");
         addSpecification("opinion", -1);
+        addSpecification("penalty to persuasion", 1);
+        addSpecification("penalty to diplomacy", 1);
+        addSpecification("penalty to intimidation", 1);
         "baseTrait"::reset(arg);
     }
 }
