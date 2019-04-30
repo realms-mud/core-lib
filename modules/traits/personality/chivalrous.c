@@ -12,8 +12,8 @@ public void reset(int arg)
         addSpecification("type", "personality");
         addSpecification("name", "chivalrous");
         addSpecification("description", "You are corteous and gallant.");
-        addSpecification("root", "nice");
-        addSpecification("opposing root", "jackass");
+        addSpecification("root", "kind");
+        addSpecification("opposing root", "malicious");
         addSpecification("opinion", 20);
         addSpecification("opposing opinion", -5);
         "baseTrait"::reset(arg);

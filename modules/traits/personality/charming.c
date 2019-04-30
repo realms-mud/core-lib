@@ -12,8 +12,8 @@ public void reset(int arg)
         addSpecification("type", "personality");
         addSpecification("name", "charming");
         addSpecification("description", "You are a pleasant person and, darn it, people like you.");
-        addSpecification("root", "nice");
-        addSpecification("opposing root", "jackass");
+        addSpecification("root", "kind");
+        addSpecification("opposing root", "harsh");
         addSpecification("bonus charisma", 1);
         addSpecification("opinion", 20);
         addSpecification("opposing opinion", -10);

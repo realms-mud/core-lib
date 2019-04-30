@@ -12,7 +12,7 @@ public void reset(int arg)
         addSpecification("type", "personality");
         addSpecification("name", "crude");
         addSpecification("description", "You are rather unrefined and ill-mannered.");
-        addSpecification("root", "harsh");
+        addSpecification("root", "crude");
         addSpecification("opposing root", "refined");
         addSpecification("opinion", -5);
         addSpecification("opposing opinion", -10);

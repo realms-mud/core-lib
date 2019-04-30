@@ -13,8 +13,8 @@ public void reset(int arg)
         addSpecification("name", "charitable");
         addSpecification("description", "You give freely of yourself - "
             "be it monetarily or of your time - to those in need.");
-        addSpecification("root", "nice");
-        addSpecification("opposing root", "jackass");
+        addSpecification("root", "kind");
+        addSpecification("opposing root", "malicious");
         addSpecification("opinion", 20);
         addSpecification("opposing opinion", -5);
         "baseTrait"::reset(arg);
