@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private mapping environmentalElements = ([
+protected mapping environmentalElements = ([
     "terrain":([]),
     "interior": ([]),
     "feature": ([]),
@@ -30,13 +30,13 @@ protected nosave object StateMachine = 0;
 protected nosave string StateMachinePath = 0;
 
 private nosave int SetupCompleted = 0;
-private object configuration = 
+protected object configuration = 
     load_object("/lib/dictionaries/configurationDictionary.c");
 
 protected object StateMachineDictionary = 
     load_object("/lib/dictionaries/stateMachineDictionary.c");
 
-private mapping instances = ([]);
+protected mapping instances = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
