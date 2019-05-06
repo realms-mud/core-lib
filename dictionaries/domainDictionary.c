@@ -3,6 +3,8 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 #include "domains/buildings.h"
+#include "domains/castles.h"
+#include "domains/castle-components.h"
 #include "domains/buildingEffects.h"
 #include "domains/troops.h"
 #include "domains/troopEffects.h"
@@ -151,4 +153,83 @@ public nomask int validBuildingEffects(mapping effects)
 public nomask int validTroopEffects(mapping effects)
 {
     return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void transformLayout(mapping building)
+{
+    string layout = implode(building["layout"], "\n");
+
+    foreach(string key in m_indices(building["components"]))
+    {
+        foreach(string section in m_indices(building["components"][key]))
+        {
+            layout = regreplace(layout, section,
+                building["components"][key][section], 1);
+        }
+    }
+    building["layout"] = explode(layout, "\n");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string applyColorToBuilding(mapping component, string key, 
+    string colorConfiguration, string charset)
+{
+    string ret = 0;
+    string *colors = m_indices(CastleComponents[key]["colors"]);
+    colors -= ({ "default" });
+
+        printf("component = %O\n", component);
+        printf("colors = %O\n", colors);
+        
+    if (member(CastleComponents[key]["colors"]["default"], colorConfiguration))
+    {
+        ret = component[charset];
+        if (sizeof(colors))
+        {
+            foreach(string color in colors)
+            {
+                ret = regreplace(ret, color,
+                    CastleComponents[key]["colors"][color][colorConfiguration], 1);
+            }
+        }
+
+        ret = CastleComponents[key]["colors"]["default"][colorConfiguration] +
+            ret + "\x1b[0m";
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs mapping getPlayerDomain(object player, string type)
+{
+    mapping ret = ([]);
+
+    string colorConfiguration = player->colorConfiguration();
+    string charset = player->charsetConfiguration();
+
+    if (stringp(type) && member(CastleBlueprints, type))
+    {
+        ret = CastleBlueprints[type] + ([]);
+
+        string *components = m_indices(ret["components"]);
+        foreach(string component in components)
+        {
+            string key = sprintf("unbuilt %s", component);
+            printf("key = %O\n", key);
+            foreach(string section in m_indices(CastleComponents[key]["components"]))
+            {
+            printf("Oink: %O, %O\n\n", section, key);
+                ret["components"][component][section] =
+                    applyColorToBuilding(
+                        CastleComponents[key]["components"][section] + ([]),
+                        key, colorConfiguration, charset);
+            }
+        }
+    }
+
+    // do getting of buildings
+
+    transformLayout(ret);
+    return ret;
 }
