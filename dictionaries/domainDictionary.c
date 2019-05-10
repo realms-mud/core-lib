@@ -177,11 +177,7 @@ private nomask string applyColorToBuilding(mapping component, string key,
 {
     string ret = 0;
     string *colors = m_indices(CastleComponents[key]["colors"]);
-    colors -= ({ "default" });
-
-        printf("component = %O\n", component);
-        printf("colors = %O\n", colors);
-        
+       
     if (member(CastleComponents[key]["colors"]["default"], colorConfiguration))
     {
         ret = component[charset];
@@ -201,7 +197,8 @@ private nomask string applyColorToBuilding(mapping component, string key,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs mapping getPlayerDomain(object player, string type)
+public nomask varargs mapping getPlayerDomain(object player, string location,
+    string type)
 {
     mapping ret = ([]);
 
@@ -216,10 +213,8 @@ public nomask varargs mapping getPlayerDomain(object player, string type)
         foreach(string component in components)
         {
             string key = sprintf("unbuilt %s", component);
-            printf("key = %O\n", key);
             foreach(string section in m_indices(CastleComponents[key]["components"]))
             {
-            printf("Oink: %O, %O\n\n", section, key);
                 ret["components"][component][section] =
                     applyColorToBuilding(
                         CastleComponents[key]["components"][section] + ([]),
@@ -228,7 +223,27 @@ public nomask varargs mapping getPlayerDomain(object player, string type)
         }
     }
 
-    // do getting of buildings
+    mapping upgrades = player->getDomainUpgrades(location, type);
+    if (sizeof(upgrades))
+    {
+        foreach(string upgrade in m_indices(upgrades))
+        {
+            printf("Oy!\n");
+            if (member(CastleComponents, upgrades[upgrade]))
+            {
+                mapping components = 
+                    CastleComponents[upgrades[upgrade]]["components"];
+
+                foreach(string section in m_indices(components))
+                {
+                    ret["components"][upgrade][section] =
+                        applyColorToBuilding(
+                            CastleComponents[upgrades[upgrade]]["components"][section] + ([]),
+                            upgrades[upgrade], colorConfiguration, charset);
+                }
+            }
+        }
+    }
 
     transformLayout(ret);
     return ret;

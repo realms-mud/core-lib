@@ -54,6 +54,10 @@ drop procedure if exists updateLoginTime;
 ##
 drop procedure if exists saveIssue;
 ##
+drop procedure if exists saveHolding;
+##
+drop procedure if exists saveDomainBuilding;
+##
 drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;

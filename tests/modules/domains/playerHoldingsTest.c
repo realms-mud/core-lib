@@ -27,5 +27,5 @@ void CleanUp()
 void castleDrawing()
 {
 //    ExpectEq("x", "\n" + implode(Dictionary->getPlayerDomain(
-//        Player, "castle")["layout"], "\n"));
+//        Player, "weasel", "castle")["layout"], "\n"));
 }

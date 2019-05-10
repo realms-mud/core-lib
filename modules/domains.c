@@ -4,3 +4,12 @@
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/domains.h"
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs mapping getDomainUpgrades(string location, string type)
+{
+    return ([
+        "keep": "stone keep",
+        "northwest tower": "ballista northwest tower",
+    ]);
+}
