@@ -2,6 +2,8 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef castles_h
+#define castles_h
 
 private mapping CastleBlueprints = ([
     "keep":([
@@ -16,7 +18,12 @@ private mapping CastleBlueprints = ([
             "   KEEP    5   ",
         }),
         "components":([
-            "keep":([ ]),
+            "keep":([
+                "type":"keep",
+                "display name": "Keep",
+                "sort order": 1,
+                "description": ""
+            ]),
         ]),
     ]),
 
@@ -43,31 +50,156 @@ private mapping CastleBlueprints = ([
             "SWMTR4      ST2      SEMTR4",
         }),
         "components":([ 
-            "keep":([ ]),
-            "northwest tower": ([ ]),
-            "northwest building": ([ ]),
-            "north tower": ([ ]),
-            "northeast building": ([ ]),
-            "northeast tower": ([ ]),
-            "first western building":  ([ ]),
-            "second western building": ([ ]),
-            "west tower": ([ ]),
-            "first eastern building": ([ ]),
-            "second eastern building": ([ ]),
-            "east tower": ([ ]),
-            "southwest tower": ([ ]),
-            "southwest building": ([ ]),
-            "south tower":  ([ ]),
-            "southeast building": ([ ]),
-            "southeast tower": ([ ]),
-            "western north wall": ([ ]),
-            "eastern north wall": ([ ]),
-            "western south wall": ([ ]),
-            "eastern south wall": ([ ]),
-            "northern west wall": ([ ]),
-            "southern west wall": ([ ]),
-            "northern east wall": ([ ]),
-            "southern east wall": ([ ]),
+            "keep":([
+                "type":"keep",
+                "display name": "Keep",
+                "sort order": 1,
+                "description": ""
+            ]),
+            "northwest tower": ([
+                "type":"tower",
+                "display name": "Northwest Tower",
+                "sort order": 1,
+                "description": ""
+            ]),
+            "northwest building": ([
+                "type":"building",
+                "display name": "Northwest Building",
+                "sort order": 1,
+                "description": ""
+            ]),
+            "north tower": ([
+                "type":"tower",
+                "display name": "North Tower",
+                "sort order": 2,
+                "description": ""
+            ]),
+            "northeast building": ([
+                "type":"building",
+                "display name": "Northeast Building",
+                "sort order": 2,
+                "description": ""
+            ]),
+            "northeast tower": ([
+                "type":"tower",
+                "display name": "Northeast Tower",
+                "sort order": 3,
+                "description": ""
+            ]),
+            "first western building": ([
+                "type":"building",
+                "display name": "West Building 1",
+                "sort order": 3,
+                "description": ""
+            ]),
+            "second western building": ([
+                "type":"building",
+                "display name": "West Building 2",
+                "sort order": 4,
+                "description": ""
+            ]),
+            "west tower": ([
+                "type":"tower",
+                "display name": "West Tower",
+                "sort order": 4,
+                "description": ""
+            ]),
+            "first eastern building": ([
+                "type":"building",
+                "display name": "East Building 1",
+                "sort order": 5,
+                "description": ""
+            ]),
+            "second eastern building": ([
+                "type":"building",
+                "display name": "East Building 2",
+                "sort order": 6,
+                "description": ""
+            ]),
+            "east tower": ([
+                "type":"tower",
+                "display name": "East Tower",
+                "sort order": 5,
+                "description": ""
+            ]),
+            "southwest tower": ([
+                "type":"tower",
+                "display name": "Southwest Tower",
+                "sort order": 6,
+                "description": ""
+            ]),
+            "southwest building": ([
+                "type":"building",
+                "display name": "Southwest Building",
+                "sort order": 7,
+                "description": ""
+            ]),
+            "south tower": ([
+                "type":"tower",
+                "display name": "South Tower",
+                "sort order": 7,
+                "description": ""
+            ]),
+            "southeast building": ([
+                "type":"building",
+                "display name": "Southeast Building",
+                "sort order": 8,
+                "description": ""
+            ]),
+            "southeast tower": ([
+                "type":"tower",
+                "display name": "Southeast Tower",
+                "sort order": 8,
+                "description": ""
+            ]),
+            "western north wall": ([
+                "type":"wall",
+                "display name": "North Inner Wall W",
+                "sort order": 1,
+                "description": ""
+            ]),
+            "eastern north wall": ([
+                "type":"wall",
+                "display name": "North Inner Wall E",
+                "sort order": 2,
+                "description": ""
+            ]),
+            "northern west wall": ([
+                "type":"wall",
+                "display name": "West Inner Wall N",
+                "sort order": 3,
+                "description": ""
+            ]),
+            "southern west wall": ([
+                "type":"wall",
+                "display name": "West Inner Wall S",
+                "sort order": 4,
+                "description": ""
+            ]),
+            "northern east wall": ([
+                "type":"wall",
+                "display name": "East Inner Wall N",
+                "sort order": 5,
+                "description": ""
+            ]),
+            "southern east wall": ([
+                "type":"wall",
+                "display name": "East Inner Wall S",
+                "sort order": 6,
+                "description": ""
+            ]),
+            "western south wall": ([
+                "type":"wall",
+                "display name": "South Inner Wall W",
+                "sort order": 7,
+                "description": ""
+            ]),
+            "eastern south wall": ([
+                "type":"wall",
+                "display name": "South Inner Wall E",
+                "sort order": 8,
+                "description": ""
+            ]),
         ]),
     ]),
 
@@ -103,48 +235,260 @@ private mapping CastleBlueprints = ([
             "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
         }),
         "components":([
-            "keep":([ ]),
-            "northwest tower": ([ ]),
-            "northwest building": ([ ]),
-            "north tower": ([ ]),
-            "northeast building": ([ ]),
-            "northeast tower": ([ ]),
-            "first western building":  ([ ]),
-            "second western building": ([ ]),
-            "west tower": ([ ]),
-            "first eastern building": ([ ]),
-            "second eastern building": ([ ]),
-            "east tower": ([ ]),
-            "southwest tower": ([ ]),
-            "southwest building": ([ ]),
-            "south tower":  ([ ]),
-            "southeast building": ([ ]),
-            "southeast tower": ([ ]),
-            "western north wall": ([ ]),
-            "eastern north wall": ([ ]),
-            "western south wall": ([ ]),
-            "eastern south wall": ([ ]),
-            "northern west wall": ([ ]),
-            "southern west wall": ([ ]),
-            "northern east wall": ([ ]),
-            "southern east wall": ([ ]),
-            "moat":([ ]),
-            "northwest castle tower": ([ ]),
-            "northeast castle tower": ([ ]),
-            "southwest castle tower": ([ ]),
-            "southeast castle tower": ([ ]),
-            "western north castle wall": ([ ]),
-            "eastern north castle wall": ([ ]),
-            "western south castle wall": ([ ]),
-            "eastern south castle wall": ([ ]),
-            "northern west castle wall": ([ ]),
-            "southern west castle wall": ([ ]),
-            "northern east castle wall": ([ ]),
-            "southern east castle wall": ([ ]),
-            "north castle tower": ([ ]),
-            "south castle tower": ([]),
-            "west castle tower": ([ ]),
-            "east castle tower": ([ ]),
+            "keep":([
+                "type":"keep",
+                "display name": "Keep",
+                "sort order": 1,
+                "description": ""
+            ]),
+            "northwest tower": ([
+                "type":"tower",
+                "display name": "Northwest Tower",
+                "sort order": 1,
+                "description": ""
+            ]),
+            "northwest building": ([
+                "type":"building",
+                "display name": "Northwest Building",
+                "sort order": 1,
+                "description": ""
+            ]),
+            "north tower": ([
+                "type":"tower",
+                "display name": "North Tower",
+                "sort order": 2,
+                "description": ""
+            ]),
+            "northeast building": ([
+                "type":"building",
+                "display name": "Northeast Building",
+                "sort order": 2,
+                "description": ""
+            ]),
+            "northeast tower": ([
+                "type":"tower",
+                "display name": "Northeast Tower",
+                "sort order": 3,
+                "description": ""
+            ]),
+            "first western building": ([
+                "type":"building",
+                "display name": "West Building 1",
+                "sort order": 3,
+                "description": ""
+            ]),
+            "second western building": ([
+                "type":"building",
+                "display name": "West Building 2",
+                "sort order": 4,
+                "description": ""
+            ]),
+            "west tower": ([
+                "type":"tower",
+                "display name": "West Tower",
+                "sort order": 4,
+                "description": ""
+            ]),
+            "first eastern building": ([
+                "type":"building",
+                "display name": "East Building 1",
+                "sort order": 5,
+                "description": ""
+            ]),
+            "second eastern building": ([
+                "type":"building",
+                "display name": "East Building 2",
+                "sort order": 6,
+                "description": ""
+            ]),
+            "east tower": ([
+                "type":"tower",
+                "display name": "East Tower",
+                "sort order": 5,
+                "description": ""
+            ]),
+            "southwest tower": ([
+                "type":"tower",
+                "display name": "Southwest Tower",
+                "sort order": 6,
+                "description": ""
+            ]),
+            "southwest building": ([
+                "type":"building",
+                "display name": "Southwest Building",
+                "sort order": 7,
+                "description": ""
+            ]),
+            "south tower": ([
+                "type":"tower",
+                "display name": "South Tower",
+                "sort order": 7,
+                "description": ""
+            ]),
+            "southeast building": ([
+                "type":"building",
+                "display name": "Southeast Building",
+                "sort order": 8,
+                "description": ""
+            ]),
+            "southeast tower": ([
+                "type":"tower",
+                "display name": "Southeast Tower",
+                "sort order": 8,
+                "description": ""
+            ]),
+            "western north wall": ([
+                "type":"wall",
+                "display name": "North Inner Wall W",
+                "sort order": 1,
+                "description": ""
+            ]),
+            "eastern north wall": ([
+                "type":"wall",
+                "display name": "North Inner Wall E",
+                "sort order": 2,
+                "description": ""
+            ]),
+            "northern west wall": ([
+                "type":"wall",
+                "display name": "West Inner Wall N",
+                "sort order": 3,
+                "description": ""
+            ]),
+            "southern west wall": ([
+                "type":"wall",
+                "display name": "West Inner Wall S",
+                "sort order": 4,
+                "description": ""
+            ]),
+            "northern east wall": ([
+                "type":"wall",
+                "display name": "East Inner Wall N",
+                "sort order": 5,
+                "description": ""
+            ]),
+            "southern east wall": ([
+                "type":"wall",
+                "display name": "East Inner Wall S",
+                "sort order": 6,
+                "description": ""
+            ]),
+            "western south wall": ([
+                "type":"wall",
+                "display name": "South Inner Wall W",
+                "sort order": 7,
+                "description": ""
+            ]),
+            "eastern south wall": ([
+                "type":"wall",
+                "display name": "South Inner Wall E",
+                "sort order": 8,
+                "description": ""
+            ]),
+            "moat": ([
+                "type":"moat",
+                "display name": "Moat",
+                "sort order": 1,
+                "description": ""
+            ]),
+            "northwest castle tower": ([
+                "type":"tower",
+                "display name": "Outer Tower (NW)",
+                "sort order": 9,
+                "description": ""
+            ]),
+            "north castle tower": ([
+                "type":"tower",
+                "display name": "Outer Tower (N)",
+                "sort order": 10,
+                "description": ""
+            ]),
+            "northeast castle tower": ([
+                "type":"tower",
+                "display name": "Outer Tower (NE)",
+                "sort order": 11,
+                "description": ""
+            ]),
+            "west castle tower": ([
+                "type":"tower",
+                "display name": "Outer Tower (W)",
+                "sort order": 12,
+                "description": ""
+            ]),
+            "east castle tower": ([
+                "type":"tower",
+                "display name": "Outer Tower (E)",
+                "sort order": 13,
+                "description": ""
+            ]),
+            "southwest castle tower": ([
+                "type":"tower",
+                "display name": "Outer Tower (SW)",
+                "sort order": 14,
+                "description": ""
+            ]),
+            "south castle tower": ([
+                "type":"tower",
+                "display name": "Outer Tower (S)",
+                "sort order": 15,
+                "description": ""
+            ]),
+            "southeast castle tower": ([
+                "type":"tower",
+                "display name": "Outer Tower (SE)",
+                "sort order": 16,
+                "description": ""
+            ]),
+            "western north castle wall": ([
+                "type":"wall",
+                "display name": "North Outer Wall W",
+                "sort order": 9,
+                "description": ""
+            ]),
+            "eastern north castle wall": ([
+                "type":"wall",
+                "display name": "North Outer Wall E",
+                "sort order": 10,
+                "description": ""
+            ]),
+            "northern west castle wall": ([
+                "type":"wall",
+                "display name": "West Outer Wall N",
+                "sort order": 11,
+                "description": ""
+            ]),
+            "southern west castle wall": ([
+                "type":"wall",
+                "display name": "West Outer Wall S",
+                "sort order": 12,
+                "description": ""
+            ]),
+            "northern east castle wall": ([
+                "type":"wall",
+                "display name": "East Outer Wall N",
+                "sort order": 13,
+                "description": ""
+            ]),
+            "southern east castle wall": ([
+                "type":"wall",
+                "display name": "East Outer Wall S",
+                "sort order": 14,
+                "description": ""
+            ]),
+            "western south castle wall": ([
+                "type":"wall",
+                "display name": "South Outer Wall W",
+                "sort order": 15,
+                "description": ""
+            ]),
+            "eastern south castle wall": ([
+                "type":"wall",
+                "display name": "South Outer Wall E",
+                "sort order": 16,
+                "description": ""
+            ]),
         ]),
     ]),
 ]);
+
+#endif

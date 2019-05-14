@@ -4,6 +4,21 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
+private string Location;
+private string HoldingType = "none";
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setLocation(string location)
+{
+    Location = location;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setHoldingType(string type)
+{
+    HoldingType = type;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
@@ -23,14 +38,14 @@ protected nomask void setUpUserForSelection()
     object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
     if (dictionary)
     {
-        Data = dictionary->getBuildingMenu(User);
+        Data = dictionary->getBuildingMenu(User, Location, HoldingType);
     }
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Exit Building Projects Menu",
-            "type" : "exit",
-            "description" : "This option lets you exit the building "
-            "projects menu.\n",
-            "canShow" : 1
+        "type" : "exit",
+        "description" : "This option lets you exit the building "
+        "projects menu.\n",
+        "canShow" : 1
     ]);
 }
 
@@ -42,4 +57,24 @@ public nomask void onSelectorCompleted(object caller)
         tell_object(User, displayMessage());
     }
     caller->cleanUp();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string choiceFormatter(string choice)
+{
+    string section = "";
+    if(member(Data[choice], "first section"))
+    {
+        string padding = (sizeof(Data) < 10) ? "" : " ";
+        foreach(string line in Data[choice]["first section"])
+        {
+            section += sprintf("%26s%s%s\n", "", padding, line);
+        }
+    }
+    return section + sprintf("[%s]%s - %s%s%s",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        padSelectionDisplay(choice),
+        configuration->decorate("%-20s", "choice enabled", "selector", colorConfiguration),
+        displayDetails(choice),
+        Data[choice]["layout panel"] || "");
 }

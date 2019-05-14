@@ -12,6 +12,14 @@
 #include "motte-buildings.h"
 #include "motte-towers.h"
 
+private string *ComponentTypes = ({ 
+    "building",
+    "keep",
+    "moat",
+    "tower",
+    "wall"
+});
+
 private mapping CastleComponents = CastleBuildings + CastleKeeps + 
     CastleTowers + CastleWalls + MotteBuildings + MotteTowers;
 

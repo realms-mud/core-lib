@@ -127,7 +127,7 @@ private mapping MotteBuildings = ([
                 "unicode": " \xe2\x94\x8a\xe2\x81\x87",
             ]),
             "EB3": ([
-                "ascii": ".. ",
+                "ascii": " ..",
                 "unicode": " \xe2\x94\x94\xe2\x94\x88",
             ]),
         ]),
@@ -154,7 +154,7 @@ private mapping MotteBuildings = ([
                 "unicode": " \xe2\x94\x8a\xe2\x81\x87",
             ]),
             "EB6": ([
-                "ascii": ".. ",
+                "ascii": " ..",
                 "unicode": " \xe2\x94\x94\xe2\x94\x88",
             ]),
         ]),

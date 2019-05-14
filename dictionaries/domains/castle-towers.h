@@ -724,7 +724,7 @@ private mapping CastleTowers = ([
         ]),
         "components":([
             "SWCTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\xa9\xe2\x94\x80\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
@@ -764,7 +764,7 @@ private mapping CastleTowers = ([
         ]),
         "components":([
             "SWCTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\xa9\xe2\x94\x80\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
@@ -804,7 +804,7 @@ private mapping CastleTowers = ([
         ]),
         "components":([
             "SWCTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\xa9\xe2\x94\x80\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
@@ -844,7 +844,7 @@ private mapping CastleTowers = ([
         ]),
         "components":([
             "SWCTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\xa9\xe2\x94\x80\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
@@ -884,7 +884,7 @@ private mapping CastleTowers = ([
         ]),
         "components":([
             "SWCTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\xa9\xe2\x94\x80\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
@@ -1398,7 +1398,7 @@ private mapping CastleTowers = ([
         ]),
         "components":([
             "NCATOWER1": ([
-                "ascii": "+===---==+",
+                "ascii": "+==---==+",
                 "unicode": "\xe2\x95\x94\xe2\x95\x90\xe2\x95\x90"
                     "gate\xe2\x94\x84\xe2\x94\x84\xe2\x94\x84default"
                     "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x97",
@@ -1609,7 +1609,7 @@ private mapping CastleTowers = ([
         ]),
         "components":([
             "SCATOWER1": ([
-                "ascii": "+===---==+",
+                "ascii": "+==---==+",
                 "unicode": "\xe2\x95\x94\xe2\x95\x90\xe2\x95\x90"
                     "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
                     "\xe2\x95\x90\xe2\x95\x97",
@@ -1916,7 +1916,7 @@ private mapping CastleTowers = ([
             ]),
             "ECT6": ([
                 "ascii": "....",
-                "unicode": "\xe2\x95\x9a\xe2\x95\x90\xe2\x95\xa6\xe2\x95\x9d",
+                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
             ]),
         ]),
     ]),

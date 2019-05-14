@@ -9,7 +9,7 @@ virtual inherit "/lib/core/thing.c";
 public nomask varargs mapping getDomainUpgrades(string location, string type)
 {
     return ([
-        "keep": "stone keep",
+/*        "keep": "stone keep",
         "northwest tower": "mage northwest tower",
         "northeast tower": "mage northeast tower",
         "southwest tower": "mage southwest tower",
@@ -41,6 +41,12 @@ public nomask varargs mapping getDomainUpgrades(string location, string type)
         "northern west castle wall": "northern west castle wall",
         "northern east castle wall": "northern east castle wall",
         "southern west castle wall": "southern west castle wall",
-        "southern east castle wall": "southern east castle wall",
+        "southern east castle wall": "southern east castle wall", */
     ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string getDomainType(string location)
+{
+    return "castle";
 }

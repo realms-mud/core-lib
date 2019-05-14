@@ -1183,7 +1183,7 @@ private mapping MotteTowers = ([
         ]),
         "components":([
             "SWMTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\x90\xe2\x95\xa9\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
@@ -1223,7 +1223,7 @@ private mapping MotteTowers = ([
         ]),
         "components":([
             "SWMTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\x90\xe2\x95\xa9\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
@@ -1263,7 +1263,7 @@ private mapping MotteTowers = ([
         ]),
         "components":([
             "SWMTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\x90\xe2\x95\xa9\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
@@ -1303,7 +1303,7 @@ private mapping MotteTowers = ([
         ]),
         "components":([
             "SWMTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\x90\xe2\x95\xa9\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
@@ -1343,7 +1343,7 @@ private mapping MotteTowers = ([
         ]),
         "components":([
             "SWMTR1": ([
-                "ascii":"+-    ",
+                "ascii":"+=    ",
                 "unicode": "\xe2\x95\x94\xe2\x95\x90\xe2\x95\xa9\xe2\x94\x80"
                     "\xe2\x94\x80\xe2\x94\x90",
             ]),
