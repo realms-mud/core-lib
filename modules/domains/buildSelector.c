@@ -38,7 +38,8 @@ protected nomask void setUpUserForSelection()
     object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
     if (dictionary)
     {
-        Data = dictionary->getBuildingMenu(User, Location, HoldingType);
+        Data = dictionary->getBuildingMenu(User, Location, HoldingType,
+            "northwest tower");
     }
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Exit Building Projects Menu",
@@ -77,4 +78,25 @@ protected string choiceFormatter(string choice)
         configuration->decorate("%-20s", "choice enabled", "selector", colorConfiguration),
         displayDetails(choice),
         Data[choice]["layout panel"] || "");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask int processSelection(string selection)
+{
+    int ret = -1;
+    if (User)
+    {
+        ret = (Data[selection]["type"] == "exit") || (selection == "abort");
+        if (!ret && member(Data[selection], "is category") &&
+            Data[selection]["is category"])
+        {
+            HoldingType = Data[selection]["type"];
+            Description = capitalize(HoldingType) + ":\n" +
+                configuration->decorate(format(Data[selection]["description"], 78), 
+                    "description", "selector", colorConfiguration);
+            SuppressColon = 1;
+            initiateSelector(User);
+        }
+    }
+    return ret;
 }

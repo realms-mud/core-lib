@@ -56,13 +56,57 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
         "                              .       .     .?.         .?.     .       .    \n"
         "                              .       .    ........ ........    .       .    \n"
         "                              .       ......      ...      ......       .    \n"
-        "[1] - Building               ..                                         ..   \n"
-        "[2] - Keep                   .                 .........                 .   \n"
-        "[3] - Moat                   .    ..............       ..............    .   \n"
-        "[4] - Tower                  ......            .........            ......   \n"
-        "[5] - Wall                                                                   \n"
+        "[1] - Construct Building     ..                                         ..   \n"
+        "[2] - Construct Keep         .                 .........                 .   \n"
+        "[3] - Construct Moat         .    ..............       ..............    .   \n"
+        "[4] - Construct Tower        ......            .........            ......   \n"
+        "[5] - Construct Wall                                                         \n"
         "[6] - Exit Building Projects Menu\n"
         "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSelectConstructBuildings()
+{
+    Selector->initiateSelector(Player);
+    command("1", Player);
+
+    ExpectEq("Building Projects - Building:\n"
+        "From this menu, you can initiate, modify, or abort building projects in your\n"
+        "holdings at default.\n\n"
+        "                                                                             \n"
+        "                             ......            .........            ......   \n"
+        "                             .    ..............       ..............    .   \n"
+        "                             .                 .........                 .   \n"
+        "                             ..                                         ..   \n"
+        "                              .       ......      ...      ......       .    \n"
+        "                              .       .    ........ ........    .       .    \n"
+        "                              .       .     .?.         .?.     .       .    \n"
+        "                              .       ..    ...         ...    ..       .    \n"
+        "                              .        . ..                 .. .        .    \n"
+        "                             ....      . ?.    .........    .? .      ....   \n"
+        "                             .  .      . ..    .       .    .. .      .  .   \n"
+        "                             .  .     ...      .       .      ...     .  .   \n"
+        "                             .  .     ...      .       .      ...     .  .   \n"
+        "                             .  .      . ..    .........    .. .      .  .   \n"
+        "                             ....      . ?.                 .? .      ....   \n"
+        "                              .        . ..                 .. .        .    \n"
+        "                              .       ..    ...         ...    ..       .    \n"
+        "[1] - Northwest Building      .       .     .?.         .?.     .       .    \n"
+        "[2] - Northeast Building      .       .    ........ ........    .       .    \n"
+        "[3] - West Building 1         .       ......      ...      ......       .    \n"
+        "[4] - West Building 2        ..                                         ..   \n"
+        "[5] - East Building 1        .                 .........                 .   \n"
+        "[6] - East Building 2        .    ..............       ..............    .   \n"
+        "[7] - Southwest Building     ......            .........            ......   \n"
+        "[8] - Southeast Building                                                     \n"
+        "[9] - Exit Building Projects Menu\n"
+        "You must select a number from 1 to 9.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",

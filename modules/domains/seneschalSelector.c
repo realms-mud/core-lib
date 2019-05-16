@@ -5,6 +5,13 @@
 inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
+private string Location;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setLocation(string location)
+{
+    Location = location;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
@@ -47,6 +54,7 @@ protected nomask int processSelection(string selection)
             SubselectorObj =
                 clone_object(Data[selection]["selector file"]);
             SubselectorObj->setType(Data[selection]["selector"]);
+            SubselectorObj->setLocation(Location);
             move_object(SubselectorObj, User);
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->initiateSelector(User);

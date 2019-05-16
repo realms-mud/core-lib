@@ -4,6 +4,14 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
+private string Location;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setLocation(string location)
+{
+    Location = location;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {

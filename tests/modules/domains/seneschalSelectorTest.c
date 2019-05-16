@@ -4,13 +4,14 @@
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
 
-object Player;
-object Selector;
+private object Player;
+private object Selector;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Selector = clone_object("/lib/modules/domains/seneschalSelector.c");
+    Selector->setLocation("default");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");

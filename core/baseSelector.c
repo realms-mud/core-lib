@@ -217,6 +217,7 @@ public nomask int applySelection(string arguments)
         {
             ret = Describe;
             tell_object(User, displayMessage() + "\n");
+
             tell_object(User, configuration->decorate(
                 member(Data[element],"do not format") ? Data[element]["description"] :
                 format(Data[element]["description"], 78),
@@ -252,6 +253,7 @@ public nomask int applySelection(string arguments)
             {
                 undoSelection(selection);
             }
+
             tell_object(User, configuration->decorate(
                 "You have reset your selections.\n",
                 "action", "selector", colorConfiguration) +
@@ -262,9 +264,11 @@ public nomask int applySelection(string arguments)
         else if ((arguments == "exit") && AllowAbort)
         {
             ret = Success;
+
             tell_object(User, configuration->decorate(
                 Type + " has been exited.\n",
                 "action", "selector", colorConfiguration));
+
             emitCompletionEvent();
             notifySynchronous("onSelectorAborted");
         }
@@ -276,6 +280,7 @@ public nomask int applySelection(string arguments)
             {
                 choice = choice[0..48] + "...";
             }
+
             tell_object(User, configuration->decorate(
                 sprintf("You have selected '%s'.\n", choice),
                 "action", "selector", colorConfiguration)); 

@@ -70,6 +70,36 @@ private nomask void transformLayout(mapping building)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string applyIsBuildingBackground(string message,
+    string colorConfiguration)
+{
+    string ret = message;
+    string colorReplacement = "";
+
+    switch (colorConfiguration)
+    {
+        case "3-bit":
+        {
+            colorReplacement = "\x1b[0;31;1";
+            break;
+        }
+        case "8-bit":
+        {
+            colorReplacement = "\x1b[0;48;5;52;\\1";
+            break;
+        }
+        case "24-bit":
+        {
+            colorReplacement = "\x1b[0;48;2;90;0;0;\\1";
+            break;
+        }
+    }
+
+    return 
+        regreplace(ret, "\x1b.0;([^m]+)", colorReplacement, 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string applyColorToBuilding(mapping component, string key, 
     string colorConfiguration, string charset)
 {
@@ -98,8 +128,16 @@ private nomask string applyColorToBuilding(mapping component, string key,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string* getComponentDetails(mapping component)
+{
+    string* ret = ({ "" });
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs mapping getPlayerDomain(object player, string location,
-    string type)
+    string type, string highlightComponent)
 {
     mapping ret = ([]);
 
@@ -122,6 +160,15 @@ public nomask varargs mapping getPlayerDomain(object player, string location,
                     applyColorToBuilding(
                         CastleComponents[key]["components"][section] + ([]),
                         key, colorConfiguration, charset);
+
+                if (stringp(highlightComponent) &&
+                    (highlightComponent == component))
+                {
+                    ret["components"][component]["sections"][section] =
+                        applyIsBuildingBackground(
+                            ret["components"][component]["sections"][section],
+                            colorConfiguration);
+                }
             }
         }
     }
@@ -142,6 +189,15 @@ public nomask varargs mapping getPlayerDomain(object player, string location,
                         applyColorToBuilding(
                             CastleComponents[upgrades[upgrade]]["components"][section] + ([]),
                             upgrades[upgrade], colorConfiguration, charset);
+
+                    if (stringp(highlightComponent) &&
+                        (highlightComponent == upgrade))
+                    {
+                        ret["components"][upgrade]["sections"][section] =
+                            applyIsBuildingBackground(
+                                ret["components"][upgrade]["sections"][section],
+                                colorConfiguration);
+                    }
                 }
                 ret["components"][upgrade]["constructed"] = upgrades[upgrade];
             }
@@ -245,17 +301,20 @@ public nomask mapping getHoldingsMenu(object user)
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getBuildingMenu(object user, string location, 
-    string type)
+    string type, string highlightComponent)
 {
     mapping ret = ([]);
     string *components = ComponentTypes + ({});
     string domainType = user->getDomainType(location);
+    int showCategories = 1;
 
-    mapping playerDomain = getPlayerDomain(user, location, domainType);
+    mapping playerDomain = getPlayerDomain(user, location, domainType,
+        highlightComponent);
 
     if ((member(components, type) > -1) && domainType &&
         member(CastleBlueprints, domainType))
     {
+        showCategories = 0;
         components = sort_array(
             filter(m_indices(CastleBlueprints[domainType]["components"]),
                 (: CastleBlueprints[$2]["components"][$1]["type"] == $3 :), 
@@ -277,28 +336,34 @@ public nomask mapping getBuildingMenu(object user, string location,
 
     foreach(string component in components)
     {
-        if (member(playerDomain["components"], component))
+        if(showCategories)
         {
             ret[to_string(count)] = ([
-                "name":playerDomain["components"][component]["display name"][0..18],
-                    "type" : component,
-                    "description" : playerDomain["components"][component]["description"],
-                    "canShow" : 1,
-                    "layout panel" : (sizeof(playerDomain["layout"]) >= count) ?
-                        playerDomain["layout"][count + offset - 1] : "",
-            ]);
-        }
-        else
-        {
-            ret[to_string(count)] = ([
-                "name": capitalize(component[0..18]),
+                "name": sprintf("Construct %s", capitalize(component))[0..18],
                 "type" : component,
-                "description" : "",
+                "description" : sprintf("From this menu, you can initiate, "
+                    "modify, or abort %s projects in your holdings at %s.",
+                    component, location),
                 "canShow" : 1,
+                "is category": 1,
                 "layout panel" : (sizeof(playerDomain["layout"]) >= count) ?
                     playerDomain["layout"][count + offset - 1] : "",
             ]);
         }
+        else if (member(playerDomain["components"], component))
+        {
+            ret[to_string(count)] = ([
+                "name": playerDomain["components"][component]["display name"][0..18],
+                "type" : component,
+                "description" : playerDomain["components"][component]["description"],
+                "canShow" : 1,
+                "layout panel" : (sizeof(playerDomain["layout"]) >= count) ?
+                    playerDomain["layout"][count + offset - 1] : "",
+                "details": getComponentDetails(
+                    playerDomain["components"][component])
+            ]);
+        }
+
         if (firstSection)
         {
             ret[to_string(count)]["first section"] = firstSection;

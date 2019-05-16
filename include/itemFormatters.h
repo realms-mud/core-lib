@@ -351,7 +351,7 @@ private nosave mapping decorators = ([
         ]),
         "description":([
             "3-bit": "\x1b[0;36m",
-            "8-bit": "\x1b[0;38;5;117m",
+            "8-bit": "\x1b[0;38;5;116m",
             "24-bit": "\x1b[0;38;2;140;180;190m"
         ]),
         "action":([

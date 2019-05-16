@@ -137,5 +137,13 @@ of light are positive, the environment will be light and otherwise, it will be d
 
 The optional parameters limit the light source to specific states, times of day, and seasons respectively.
 
+#### Active Lighting
+
+TBD
+
+#### Decaying Light Sources
+
+TBD
+
 ##### State Machines
 TBD
