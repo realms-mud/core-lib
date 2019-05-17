@@ -53,7 +53,7 @@ private mapping MotteBuildings = ([
     ]),
 
     "unbuilt first western building":([
-        "type": "western building",
+        "type": "first western building",
         "dimensions": "2x1",
         "description": "",
         "colors": ([
@@ -80,7 +80,7 @@ private mapping MotteBuildings = ([
     ]),
 
     "unbuilt second western building":([
-        "type": "western building",
+        "type": "second western building",
         "dimensions": "2x1",
         "description": "",
         "colors": ([
@@ -107,7 +107,7 @@ private mapping MotteBuildings = ([
     ]),
 
     "unbuilt first eastern building":([
-        "type": "eastern building",
+        "type": "first eastern building",
         "dimensions": "2x1",
         "description": "",
         "colors": ([
@@ -134,7 +134,7 @@ private mapping MotteBuildings = ([
     ]),
 
     "unbuilt second eastern building":([
-        "type": "eastern building",
+        "type": "second eastern building",
         "dimensions": "2x1",
         "description": "",
         "colors": ([

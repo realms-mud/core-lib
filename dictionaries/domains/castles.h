@@ -210,11 +210,11 @@ private mapping CastleBlueprints = ([
             "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
             "WSMNWCTR1            NCATOWER1            NECTR1ESM",
             "WSMNWCTR2NWCASTLEWALLNCATOWER2NECASTLEWALLNECTR2ESM",
-            "WSMNWCTR3            NCATOWER3            NECTR3ESM",
-            "WSMNWCTR4                                 NECTR4ESM",
-            "WSMNWX      NWMTR1      NT1      NEMTR1      NEXESM",
-            "WSMNWX      NWMTR2NWMWALNT2NEMWALNEMTR2      NEXESM",
-            "WSMNWX      NWMTR3NW1         NE1NEMTR3      NEXESM",
+            "WSMNWCTR3NC1         NCATOWER3         NC3NECTR3ESM",
+            "WSMNWCTR4NC2                           NC4NECTR4ESM",
+            "WSMNWXWC1   NWMTR1      NT1      NEMTR1   EC1NEXESM",
+            "WSMNWXWC2   NWMTR2NWMWALNT2NEMWALNEMTR2   EC2NEXESM",
+            "WSMNWXWC3   NWMTR3NW1         NE1NEMTR3   EC3NEXESM",
             "WSMNWX      NWMTR4NW2         NE2NEMTR4      NEXESM",
             "WSMNWX      NWIWB1               EB1NEI      NEXESM",
             "WSMWCT1     NWIWB2   KEEP    1   EB2NEI     ECT1ESM",
@@ -225,11 +225,11 @@ private mapping CastleBlueprints = ([
             "WSMWCT6     SWIWB5               EB5SEI     ECT6ESM",
             "WSMSWX      SWIWB6               EB6SEI      SEXESM",
             "WSMSWX      SWMTR1SW1         SE1SEMTR1      SEXESM",
-            "WSMSWX      SWMTR2SW2         SE2SEMTR2      SEXESM",
-            "WSMSWX      SWMTR3SWMWALST1SEMWALSEMTR3      SEXESM",
-            "WSMSWX      SWMTR4      ST2      SEMTR4      SEXESM",
-            "WSMSWCTR1                                 SECTR1ESM",
-            "WSMSWCTR2            SCATOWER1            SECTR2ESM",
+            "WSMSWXWC4   SWMTR2SW2         SE2SEMTR2   EC4SEXESM",
+            "WSMSWXWC5   SWMTR3SWMWALST1SEMWALSEMTR3   EC5SEXESM",
+            "WSMSWXWC6   SWMTR4      ST2      SEMTR4   EC6SEXESM",
+            "WSMSWCTR1SC1                           SC3SECTR1ESM",
+            "WSMSWCTR2SC2         SCATOWER1         SC4SECTR2ESM",
             "WSMSWCTR3SWCASTLEWALLSCATOWER2SECASTLEWALLSECTR3ESM",
             "WSMSWCTR4            SCATOWER3            SECTR4ESM",
             "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
@@ -487,6 +487,54 @@ private mapping CastleBlueprints = ([
                 "sort order": 16,
                 "description": ""
             ]),
+            "northwest castle building": ([
+                "type":"building",
+                "display name": "NW Castle Building",
+                "sort order": 9,
+                "description": ""
+            ]),       
+            "northeast castle building": ([
+                "type":"building",
+                "display name": "NE Castle Building",
+                "sort order": 10,
+                "description": ""
+            ]),       
+            "first western castle building": ([
+                "type":"building",
+                "display name": "W Castle Building 1",
+                "sort order": 11,
+                "description": ""
+            ]),       
+            "second western castle building": ([
+                "type":"building",
+                "display name": "W Castle Building 2",
+                "sort order": 12,
+                "description": ""
+            ]),       
+            "first eastern castle building": ([
+                "type":"building",
+                "display name": "E Castle Building 1",
+                "sort order": 13,
+                "description": ""
+            ]),       
+            "second eastern castle building": ([
+                "type":"building",
+                "display name": "E Castle Building 2",
+                "sort order": 14,
+                "description": ""
+            ]),       
+            "southwest castle building": ([
+                "type":"building",
+                "display name": "SW Castle Building",
+                "sort order": 15,
+                "description": ""
+            ]),       
+            "southeast castle building": ([
+                "type":"building",
+                "display name": "SE Castle Building",
+                "sort order": 16,
+                "description": ""
+            ]),       
         ]),
     ]),
 ]);
