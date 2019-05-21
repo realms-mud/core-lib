@@ -6,47 +6,101 @@ virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/domains.h"
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs mapping getDomainUpgrades(string location, string type)
+public nomask mapping getDomainUpgrades(string location)
 {
-    return ([
-/*        "keep": "stone keep",
-        "northwest tower": "mage northwest tower",
-        "northeast tower": "mage northeast tower",
-        "southwest tower": "mage southwest tower",
-        "southeast tower": "mage southeast tower",
-        "northwest castle tower": "mage northwest castle tower",
-        "northeast castle tower": "mage northeast castle tower",
-        "southwest castle tower": "ballista southwest castle tower",
-        "north castle tower": "gate north castle tower",
-        "south castle tower": "gate south castle tower",
-        "west castle tower": "archer's west castle tower",
-        "east castle tower": "gate east castle tower",
-        "southeast castle tower": "mage southeast castle tower",
-        "north tower": "ballista north tower",
-        "south tower": "ballista south tower",
-        "west tower": "gate west tower",
-        "east tower": "ballista east tower",
-        "western north wall": "western north wall",
-        "eastern north wall": "eastern north wall",
-        "western south wall": "western south wall",
-        "eastern south wall": "eastern south wall",
-        "northern west wall": "northern west wall",
-        "southern west wall": "southern west wall",
-        "northern east wall": "northern east wall",
-        "southern east wall": "southern east wall",
-        "western north castle wall": "western north castle wall",
-        "western south castle wall": "western south castle wall",
-        "eastern north castle wall": "eastern north castle wall",
-        "eastern south castle wall": "eastern south castle wall",
-        "northern west castle wall": "northern west castle wall",
-        "northern east castle wall": "northern east castle wall",
-        "southern west castle wall": "southern west castle wall",
-        "southern east castle wall": "southern east castle wall", */
-    ]);
+    mapping ret = ([]);
+
+    if (member(holdings, location) && member(holdings[location], "upgrades"))
+    {
+        ret = holdings[location]["upgrades"] + ([]);
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs string getDomainType(string location)
+public nomask string getDomainType(string location)
 {
-    return "castle";
+    string ret = 0;
+    if (member(holdings, location) && member(holdings[location], "type"))
+    {
+        ret = holdings[location]["type"];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int buildDomainUpgrade(string location, string element, 
+    string upgrade)
+{
+    int ret = 0;
+    object dictionary = getDictionary("domain");
+
+    if (member(holdings, location))
+    {
+        string type = getDomainType(location);
+
+        mapping builtElement = dictionary->build(
+            this_object(), location, type, element, upgrade);
+
+        if (mappingp(builtElement))
+        {
+            holdings[location]["upgrades"][element] = builtElement;
+            ret = 1;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int addPlayerHolding(string location)
+{
+    int ret = 0;
+    object dictionary = getDictionary("domain");
+
+    if (!member(holdings, location))
+    {
+        mapping playerHolding = dictionary->getPlayerHolding(
+            this_object(), location);
+
+        if (mappingp(playerHolding))
+        {
+            holdings[location] = playerHolding;
+            ret = 1;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int removePlayerHolding(string location)
+{
+    int ret = 0;
+
+    if (member(holdings, location))
+    {
+        m_delete(holdings, location);
+        ret = 1;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getTitles()
+{
+    string* titles = ({});
+
+    if(sizeof(holdings))
+    {
+        foreach(string location in m_indices(holdings))
+        {
+            titles += ({ holdings[location]["title"] });
+        }
+    }
+
+    if (sizeof(honoraryTitles))
+    {
+        titles += honoraryTitles;
+    }
+
+    return titles;
 }

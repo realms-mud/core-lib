@@ -6,11 +6,20 @@ inherit "/lib/core/baseSelector.c";
 
 private string Location;
 private string HoldingType = "none";
+private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
 {
-    Location = location;
+    mapping info = dictionary->getPlayerHolding(User, location);
+    if (mappingp(info))
+    {
+        Location = location;
+        Description = "Main Menu:\n" +
+            configuration->decorate(format(sprintf("From this menu, "
+            "you can initiate, modify, or abort projects in your holdings at %s.",
+            info["name"]), 78));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,6 +35,7 @@ public nomask void reset(int arg)
     {
         AllowUndo = 0;
         AllowAbort = 1;
+        SuppressColon = 1;
         Description = "Main Menu";
         Type = "Building Projects";
         Data = ([]);

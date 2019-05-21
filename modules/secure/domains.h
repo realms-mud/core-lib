@@ -5,6 +5,8 @@
 
 private mapping holdings = ([]);
 
+private string *honoraryTitles = ({});
+
 /////////////////////////////////////////////////////////////////////////////
 static nomask void loadDomains(mapping data, object persistence)
 {

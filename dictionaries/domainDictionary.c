@@ -6,6 +6,7 @@
 #include "domains/castles.h"
 #include "domains/castle-components.h"
 #include "domains/buildingEffects.h"
+#include "domains/locations.h"
 #include "domains/troops.h"
 #include "domains/troopEffects.h"
 
@@ -178,17 +179,19 @@ public nomask varargs mapping getPlayerDomain(object player, string location,
     {
         foreach(string upgrade in m_indices(upgrades))
         {
-            if (member(CastleComponents, upgrades[upgrade]))
+            string upgradeName = upgrades[upgrade]["name"];
+
+            if (member(CastleComponents, upgradeName))
             {
                 mapping components = 
-                    CastleComponents[upgrades[upgrade]]["components"];
+                    CastleComponents[upgradeName]["components"];
 
                 foreach(string section in m_indices(components))
                 {
                     ret["components"][upgrade]["sections"][section] =
                         applyColorToBuilding(
-                            CastleComponents[upgrades[upgrade]]["components"][section] + ([]),
-                            upgrades[upgrade], colorConfiguration, charset);
+                            CastleComponents[upgradeName]["components"][section] + ([]),
+                            upgradeName, colorConfiguration, charset);
 
                     if (stringp(highlightComponent) &&
                         (highlightComponent == upgrade))
@@ -204,7 +207,10 @@ public nomask varargs mapping getPlayerDomain(object player, string location,
         }
     }
 
-    transformLayout(ret);
+    if (sizeof(ret))
+    {
+        transformLayout(ret);
+    }
     return ret;
 }
 
@@ -311,8 +317,8 @@ public nomask mapping getBuildingMenu(object user, string location,
     mapping playerDomain = getPlayerDomain(user, location, domainType,
         highlightComponent);
 
-    if ((member(components, type) > -1) && domainType &&
-        member(CastleBlueprints, domainType))
+    if (member(Locations, location) && (member(components, type) > -1) && 
+        domainType && member(CastleBlueprints, domainType))
     {
         showCategories = 0;
         components = sort_array(
@@ -343,7 +349,7 @@ public nomask mapping getBuildingMenu(object user, string location,
                 "type" : component,
                 "description" : sprintf("From this menu, you can initiate, "
                     "modify, or abort %s projects in your holdings at %s.",
-                    component, location),
+                    component, Locations[location]["name"]),
                 "canShow" : 1,
                 "is category": 1,
                 "layout panel" : (sizeof(playerDomain["layout"]) >= count) ?
@@ -378,4 +384,53 @@ public nomask mapping getBuildingMenu(object user, string location,
 public nomask mapping getAdministrationMenu(object user)
 {
     return ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int hasMaterials(object player, string upgrade)
+{
+    return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canBuild(object player, string location, string type,
+    string element, string upgrade)
+{
+    return member(Locations, location) &&
+        (Locations[location]["type"] == type) &&
+        member(CastleBlueprints, type) &&
+        member(CastleBlueprints[type]["components"], element) &&
+        member(CastleComponents, upgrade) &&
+        hasMaterials(player, upgrade);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping build(object player, string location, string type,
+    string element, string upgrade)
+{
+    mapping ret = 0;
+
+    if (canBuild(player, location, type, element, upgrade))
+    {
+        ret = ([
+            "name": upgrade,
+            "construction started": time(),
+            "construction completion": 
+                time() + CastleComponents[upgrade]["construction time"]
+        ]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getPlayerHolding(object player, string location)
+{
+    mapping ret = 0;
+
+    if (member(Locations, location))
+    {
+        ret = Locations[location] + ([]);
+        ret["upgrades"] = ([]);
+    }
+    return ret;
 }

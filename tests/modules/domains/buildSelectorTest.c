@@ -11,13 +11,51 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/domains/buildSelector.c");
-    Selector->setLocation("default");
+    Selector->setLocation("argalach castle");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->addCommands();
     Player->colorConfiguration("none");
     Player->charsetConfiguration("ascii");
+    Player->addPlayerHolding("argalach castle");
+
+    /*       "type": "castle",
+       "upgrades": ([
+           "keep": ([ "name" : "stone keep"]),
+           "northwest tower": ([ "name" : "mage northwest tower"]),
+           "northeast tower": ([ "name" : "mage northeast tower"]),
+           "southwest tower": ([ "name" : "mage southwest tower"]),
+           "southeast tower": ([ "name" : "mage southeast tower"]),
+           "northwest castle tower": ([ "name" : "mage northwest castle tower"]),
+           "northeast castle tower": ([ "name" : "mage northeast castle tower"]),
+           "southwest castle tower": ([ "name" : "ballista southwest castle tower"]),
+           "north castle tower": ([ "name" : "gate north castle tower"]),
+           "south castle tower": ([ "name" : "gate south castle tower"]),
+           "west castle tower": ([ "name" : "archer's west castle tower"]),
+           "east castle tower": ([ "name" : "gate east castle tower"]),
+           "southeast castle tower": ([ "name" : "mage southeast castle tower"]),
+           "north tower": ([ "name" : "ballista north tower"]),
+           "south tower": ([ "name" : "ballista south tower"]),
+           "west tower": ([ "name" : "gate west tower"]),
+           "east tower": ([ "name" : "ballista east tower"]),
+           "western north wall": ([ "name" : "western north wall"]),
+           "eastern north wall": ([ "name" : "eastern north wall"]),
+           "western south wall": ([ "name" : "western south wall"]),
+           "eastern south wall": ([ "name" : "eastern south wall"]),
+           "northern west wall": ([ "name" : "northern west wall"]),
+           "southern west wall": ([ "name" : "southern west wall"]),
+           "northern east wall": ([ "name" : "northern east wall"]),
+           "southern east wall": ([ "name" : "southern east wall"]),
+           "western north castle wall": ([ "name" : "western north castle wall"]),
+           "western south castle wall": ([ "name" : "western south castle wall"]),
+           "eastern north castle wall": ([ "name" : "eastern north castle wall"]),
+           "eastern south castle wall": ([ "name" : "eastern south castle wall"]),
+           "northern west castle wall": ([ "name" : "northern west castle wall"]),
+           "northern east castle wall": ([ "name" : "northern east castle wall"]),
+           "southern west castle wall": ([ "name" : "southern west castle wall"]),
+           "southern east castle wall": ([ "name" : "southern east castle wall"]),
+       ])*/
 
     move_object(Selector, Player);
 }
@@ -35,6 +73,8 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("Building Projects - Main Menu:\n"
+        "From this menu, you can initiate, modify, or abort projects in your holdings\n"
+        "at Argalach Castle.\n\n"
         "                                                                             \n"
         "                             ......            .........            ......   \n"
         "                             .    ..............       ..............    .   \n"
@@ -78,7 +118,7 @@ void CanSelectConstructBuildings()
 
     ExpectEq("Building Projects - Building:\n"
         "From this menu, you can initiate, modify, or abort building projects in your\n"
-        "holdings at default.\n\n"
+        "holdings at Argalach Castle.\n\n"
         "                                                                              \n"
         "                              ......            .........            ......   \n"
         "                              .    ..............       ..............    .   \n"
