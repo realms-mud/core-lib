@@ -11,7 +11,7 @@ private object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/domains/seneschalSelector.c");
-    Selector->setLocation("default");
+    Selector->setLocation("argalach castle");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
