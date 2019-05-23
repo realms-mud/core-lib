@@ -8,6 +8,7 @@
 private mapping CastleWalls = ([
     "unbuilt western north wall":([
         "type": "western north wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -26,8 +27,135 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "western north wall":([
+    "pallisade western north wall":([
         "type": "western north wall",
+        "display name": "Wooden Pallisade",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "wooden rampart western north wall":([
+        "type": "western north wall",
+        "display name": "Wooden Rampart",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "stone western north wall":([
+        "type": "western north wall",
+        "display name": "Simple Stone Wall",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "western north bulwark":([
+        "type": "western north wall",
+        "display name": "Stone Bulwark",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "talus western north wall":([
+        "type": "western north wall",
+        "display name": "Stone Wall (Talus)",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "western north rampart":([
+        "type": "western north wall",
+        "display name": "Stone Rampart",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "western north bastion":([
+        "type": "western north wall",
+        "display name": "Stone Bastion",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -48,6 +176,7 @@ private mapping CastleWalls = ([
 
     "unbuilt eastern north wall":([
         "type": "eastern north wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -66,8 +195,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "eastern north wall":([
+    "stone eastern north wall":([
         "type": "eastern north wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -88,6 +218,7 @@ private mapping CastleWalls = ([
 
     "unbuilt western south wall":([
         "type": "western south wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -106,8 +237,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "western south wall":([
+    "stone western south wall":([
         "type": "western south wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -128,6 +260,7 @@ private mapping CastleWalls = ([
 
     "unbuilt eastern south wall":([
         "type": "eastern south wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -146,8 +279,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "eastern south wall":([
+    "stone eastern south wall":([
         "type": "eastern south wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -168,6 +302,7 @@ private mapping CastleWalls = ([
 
     "unbuilt northern west wall":([
         "type": "northern west wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -185,8 +320,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "northern west wall":([
+    "stone northern west wall":([
         "type": "northern west wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -206,6 +342,7 @@ private mapping CastleWalls = ([
 
     "unbuilt southern west wall":([
         "type": "southern west wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -223,8 +360,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "southern west wall":([
+    "stone southern west wall":([
         "type": "southern west wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -244,6 +382,7 @@ private mapping CastleWalls = ([
 
     "unbuilt northern east wall":([
         "type": "northern east wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -261,8 +400,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "northern east wall":([
+    "stone northern east wall":([
         "type": "northern east wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -282,6 +422,7 @@ private mapping CastleWalls = ([
 
     "unbuilt southern east wall":([
         "type": "southern east wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -299,8 +440,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "southern east wall":([
+    "stone southern east wall":([
         "type": "southern east wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -320,6 +462,7 @@ private mapping CastleWalls = ([
 
     "unbuilt western north castle wall":([
         "type": "western north castle wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x4",
         "description": "",
         "colors": ([
@@ -340,8 +483,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "western north castle wall":([
+    "stone western north castle wall":([
         "type": "western north castle wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x4",
         "description": "",
         "colors": ([
@@ -363,6 +507,7 @@ private mapping CastleWalls = ([
 
     "unbuilt eastern north castle wall":([
         "type": "eastern north castle wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x4",
         "description": "",
         "colors": ([
@@ -383,8 +528,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "eastern north castle wall":([
+    "stone eastern north castle wall":([
         "type": "eastern north castle wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x4",
         "description": "",
         "colors": ([
@@ -406,6 +552,7 @@ private mapping CastleWalls = ([
 
     "unbuilt western south castle wall":([
         "type": "western south castle wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x4",
         "description": "",
         "colors": ([
@@ -426,8 +573,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "western south castle wall":([
+    "stone western south castle wall":([
         "type": "western south castle wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x4",
         "description": "",
         "colors": ([
@@ -449,6 +597,7 @@ private mapping CastleWalls = ([
 
     "unbuilt eastern south castle wall":([
         "type": "eastern south castle wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x4",
         "description": "",
         "colors": ([
@@ -469,8 +618,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "eastern south castle wall":([
+    "stone eastern south castle wall":([
         "type": "eastern south castle wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x4",
         "description": "",
         "colors": ([
@@ -492,6 +642,7 @@ private mapping CastleWalls = ([
 
     "unbuilt northern west castle wall":([
         "type": "northern west castle wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x3",
         "description": "",
         "colors": ([
@@ -509,8 +660,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "northern west castle wall":([
+    "stone northern west castle wall":([
         "type": "northern west castle wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x3",
         "description": "",
         "colors": ([
@@ -530,6 +682,7 @@ private mapping CastleWalls = ([
 
     "unbuilt southern west castle wall":([
         "type": "southern west castle wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x3",
         "description": "",
         "colors": ([
@@ -547,8 +700,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "southern west castle wall":([
+    "stone southern west castle wall":([
         "type": "southern west castle wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x3",
         "description": "",
         "colors": ([
@@ -568,6 +722,7 @@ private mapping CastleWalls = ([
 
     "unbuilt northern east castle wall":([
         "type": "northern east castle wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x3",
         "description": "",
         "colors": ([
@@ -585,8 +740,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "northern east castle wall": ([
+    "stone northern east castle wall": ([
         "type": "northern east castle wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x3",
         "description": "",
         "colors": ([
@@ -606,6 +762,7 @@ private mapping CastleWalls = ([
 
     "unbuilt southern east castle wall":([
         "type": "southern east castle wall",
+        "display name": "Unbuilt Wall",
         "dimensions": "1x3",
         "description": "",
         "colors": ([
@@ -623,8 +780,9 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
-    "southern east castle wall":([
+    "stone southern east castle wall":([
         "type": "southern east castle wall",
+        "display name": "Simple Stone Wall",
         "dimensions": "1x3",
         "description": "",
         "colors": ([

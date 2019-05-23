@@ -152,3 +152,52 @@ void CanSelectConstructBuildings()
         "X is the option about which you would like further details.\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSelectConstructASpecificBuilding()
+{
+    Player->colorConfiguration("8-bit");
+
+    Selector->initiateSelector(Player);
+    command("4", Player);
+    command("1", Player);
+
+    ExpectEq("\x1b[0;38;5;80mBuilding Projects - \x1b[0m\x1b[0;38;5;15;1mTower:\n"
+        "\x1b[0;38;5;116mFrom this menu, you can initiate, modify, or abort tower projects in your\n"
+        "holdings at Argalach Castle.\n"
+        "\x1b[0m\x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m......\x1b[0m            \x1b[0;38;5;9m.........\x1b[0m            \x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m............\x1b[0m\x1b[0;38;5;9m.       .\x1b[0m\x1b[0;38;5;9m............\x1b[0m\x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.     \x1b[0m\x1b[0;38;5;1m.?.\x1b[0m         \x1b[0;38;5;9m.........\x1b[0m         \x1b[0;38;5;1m.?.\x1b[0m\x1b[0;38;5;9m     .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m..    \x1b[0m\x1b[0;38;5;1m...\x1b[0m                           \x1b[0;38;5;1m...\x1b[0m\x1b[0;38;5;9m    ..\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;48;5;52;38;5;9m......\x1b[0m      \x1b[0;38;5;9m...\x1b[0m      \x1b[0;38;5;9m......\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m?. \x1b[0m   \x1b[0;48;5;52;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m. .\x1b[0m\x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m.    .\x1b[0m   \x1b[0;38;5;9m .?\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;48;5;52;38;5;9m.     \x1b[0m\x1b[0;38;5;1m.?.\x1b[0m         \x1b[0;38;5;1m.?.\x1b[0m\x1b[0;38;5;9m     .\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;48;5;52;38;5;9m..    \x1b[0m\x1b[0;38;5;1m...\x1b[0m         \x1b[0;38;5;1m...\x1b[0m\x1b[0;38;5;9m    ..\x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m               \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m....\x1b[0m     \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m?. \x1b[0m   \x1b[0;38;5;9m.........\x1b[0m   \x1b[0;38;5;9m .?\x1b[0m\x1b[0;38;5;9m . \x1b[0m     \x1b[0;38;5;9m....\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.  .\x1b[0m     \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;9m.       .\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m     \x1b[0;38;5;9m.  .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.  .\x1b[0m     \x1b[0;38;5;9m...\x1b[0m      \x1b[0;38;5;9m.       .\x1b[0m      \x1b[0;38;5;9m...\x1b[0m     \x1b[0;38;5;9m.  .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.  .\x1b[0m     \x1b[0;38;5;9m...\x1b[0m      \x1b[0;38;5;9m.       .\x1b[0m      \x1b[0;38;5;9m...\x1b[0m     \x1b[0;38;5;9m.  .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.  .\x1b[0m     \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;9m.........\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m     \x1b[0;38;5;9m.  .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m....\x1b[0m     \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m?. \x1b[0m               \x1b[0;38;5;9m .?\x1b[0m\x1b[0;38;5;9m . \x1b[0m     \x1b[0;38;5;9m....\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m               \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m..    \x1b[0m\x1b[0;38;5;1m...\x1b[0m         \x1b[0;38;5;1m...\x1b[0m\x1b[0;38;5;9m    ..\x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n" +
+        "                          \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;9m.     \x1b[0m\x1b[0;38;5;1m.?.\x1b[0m         \x1b[0;38;5;1m.?.\x1b[0m\x1b[0;38;5;9m     .\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m1\x1b[0m] - \x1b[0;38;5;2mArcher's Tower      \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m?. \x1b[0m   \x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m. .\x1b[0m\x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m.    .\x1b[0m   \x1b[0;38;5;9m .?\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m2\x1b[0m] - \x1b[0;38;5;2mBallista Tower      \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;9m......\x1b[0m      \x1b[0;38;5;9m...\x1b[0m      \x1b[0;38;5;9m......\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m3\x1b[0m] - \x1b[0;38;5;2mBasic Tower         \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m..    \x1b[0m\x1b[0;38;5;1m...\x1b[0m                           \x1b[0;38;5;1m...\x1b[0m\x1b[0;38;5;9m    ..\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m4\x1b[0m] - \x1b[0;38;5;2mCatapult Tower      \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.     \x1b[0m\x1b[0;38;5;1m.?.\x1b[0m         \x1b[0;38;5;9m.........\x1b[0m         \x1b[0;38;5;1m.?.\x1b[0m\x1b[0;38;5;9m     .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m5\x1b[0m] - \x1b[0;38;5;2mMage Tower          \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m............\x1b[0m\x1b[0;38;5;9m.       .\x1b[0m\x1b[0;38;5;9m............\x1b[0m\x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m6\x1b[0m] - \x1b[0;38;5;2mTall Tower          \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m......\x1b[0m            \x1b[0;38;5;9m.........\x1b[0m            \x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m7\x1b[0m] - \x1b[0;38;5;2mTrebuchet Tower     \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m8\x1b[0m] - \x1b[0;38;5;2mExit Building Projects Menu\x1b[0m\n"
+        "\x1b[0;38;5;2;1mYou must select a number from 1 to 8.\n"
+        "\x1b[0m\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n"
+        "\x1b[0m\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
+//    */
+        Player->caughtMessage());
+}

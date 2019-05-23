@@ -306,29 +306,90 @@ public nomask mapping getHoldingsMenu(object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string *getComponents(object user, string location, 
+    string type, string highlightComponent)
+{
+    string *components = ComponentTypes + ({});
+    string domainType = user->getDomainType(location);
+
+    if (member(Locations, location) && (member(components, type) > -1))
+    {
+        if (highlightComponent && member(CastleComponents, 
+            sprintf("unbuilt %s", highlightComponent)))
+        {
+            components = sort_array(
+                filter(m_indices(CastleComponents),
+                (: CastleComponents[$1]["type"] == $2 :), highlightComponent),
+                    (: $1 > $2 :));
+
+            components -= ({ sprintf("unbuilt %s", highlightComponent) });
+        }
+        else if (domainType && member(CastleBlueprints, domainType))
+        {
+            components = sort_array(
+                filter(m_indices(CastleBlueprints[domainType]["components"]),
+                (: CastleBlueprints[$2]["components"][$1]["type"] == $3 :),
+                    domainType, type),
+                    (: CastleBlueprints[$3]["components"][$1]["sort order"] >
+                        CastleBlueprints[$3]["components"][$2]["sort order"] :),
+                    domainType);
+        }
+    }
+    return components;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getComponentCategory(string component, string location)
+{
+    return ([
+        "name": sprintf("Construct %s", capitalize(component))[0..18],
+        "type": component,
+        "description": sprintf("From this menu, you can initiate, "
+            "modify, or abort %s projects in your holdings at %s.",
+            component, Locations[location]["name"]),
+        "canShow": 1,
+        "is category": 1,
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getComponentClass(string component, mapping playerDomain)
+{
+    return ([
+        "name": playerDomain["components"][component]["display name"][0..18],
+        "type" : component,
+        "description" : playerDomain["components"][component]["description"],
+        "canShow" : 1,
+        "details": getComponentDetails(playerDomain["components"][component])
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getComponentOptions(string component, mapping playerDomain)
+{
+    return ([                
+        "name": CastleComponents[component]["display name"][0..18],
+        "type": component,
+        "description": CastleComponents[component]["description"],
+        "canShow": 1,
+        "details": getComponentDetails(
+            playerDomain["components"][CastleComponents[component]["type"]])
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getBuildingMenu(object user, string location, 
     string type, string highlightComponent)
 {
     mapping ret = ([]);
-    string *components = ComponentTypes + ({});
+    string *components = getComponents(user, location, type, highlightComponent);
     string domainType = user->getDomainType(location);
-    int showCategories = 1;
+
+    int showCategories = implode(sort_array(components, (: $1 > $2 :)), "") == 
+        implode(sort_array(ComponentTypes, (: $1 > $2 :)), "");
 
     mapping playerDomain = getPlayerDomain(user, location, domainType,
         highlightComponent);
-
-    if (member(Locations, location) && (member(components, type) > -1) && 
-        domainType && member(CastleBlueprints, domainType))
-    {
-        showCategories = 0;
-        components = sort_array(
-            filter(m_indices(CastleBlueprints[domainType]["components"]),
-                (: CastleBlueprints[$2]["components"][$1]["type"] == $3 :), 
-                    domainType, type),
-            (: CastleBlueprints[$3]["components"][$1]["sort order"] > 
-                CastleBlueprints[$3]["components"][$2]["sort order"] :),
-                domainType);
-    }
 
     int count = 1;
     int offset = 0;
@@ -342,38 +403,30 @@ public nomask mapping getBuildingMenu(object user, string location,
 
     foreach(string component in components)
     {
+        string key = to_string(count);
         if(showCategories)
         {
-            ret[to_string(count)] = ([
-                "name": sprintf("Construct %s", capitalize(component))[0..18],
-                "type" : component,
-                "description" : sprintf("From this menu, you can initiate, "
-                    "modify, or abort %s projects in your holdings at %s.",
-                    component, Locations[location]["name"]),
-                "canShow" : 1,
-                "is category": 1,
-                "layout panel" : (sizeof(playerDomain["layout"]) >= count) ?
-                    playerDomain["layout"][count + offset - 1] : "",
-            ]);
+            ret[key] = getComponentCategory(component, location);
         }
         else if (member(playerDomain["components"], component))
         {
-            ret[to_string(count)] = ([
-                "name": playerDomain["components"][component]["display name"][0..18],
-                "type" : component,
-                "description" : playerDomain["components"][component]["description"],
-                "canShow" : 1,
-                "layout panel" : (sizeof(playerDomain["layout"]) >= count) ?
-                    playerDomain["layout"][count + offset - 1] : "",
-                "details": getComponentDetails(
-                    playerDomain["components"][component])
-            ]);
+            ret[key] = getComponentClass(component, playerDomain);
+        }
+        else
+        {
+            ret[key] = getComponentOptions(component, playerDomain);
         }
 
-        if (firstSection)
+        if (mappingp(ret[key]))
         {
-            ret[to_string(count)]["first section"] = firstSection;
-            firstSection = 0;
+            ret[key]["layout panel"] = (sizeof(playerDomain["layout"]) >= count) ?
+                playerDomain["layout"][count + offset - 1] : "";
+
+            if (firstSection)
+            {
+                ret[key]["first section"] = firstSection;
+                firstSection = 0;
+            }
         }
         count++;
     }
@@ -431,6 +484,18 @@ public nomask mapping getPlayerHolding(object player, string location)
     {
         ret = Locations[location] + ([]);
         ret["upgrades"] = ([]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getLocationDisplayName(string location)
+{
+    string ret = 0;
+
+    if (member(Locations, location))
+    {
+        ret = Locations[location]["name"];
     }
     return ret;
 }

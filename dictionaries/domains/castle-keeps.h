@@ -8,6 +8,7 @@
 private mapping CastleKeeps = ([
     "unbuilt keep":([
         "type": "keep",
+        "display name": "Unbuilt Keep",
         "dimensions": "3x3",
         "description": "",
         "colors": ([
@@ -45,6 +46,7 @@ private mapping CastleKeeps = ([
 
     "small wooden keep":([
         "type": "keep",
+        "display name": "Small Wooden Keep",
         "dimensions": "3x3",
         "description": "",
         "colors": ([
@@ -90,6 +92,7 @@ private mapping CastleKeeps = ([
 
     "wooden keep":([
         "type": "keep",
+        "display name": "Wooden Keep",
         "dimensions":"3x3",
         "description": "",
         "colors": ([
@@ -135,6 +138,7 @@ private mapping CastleKeeps = ([
 
     "small stone keep":([
         "type": "keep",
+        "display name": "Small Stone Keep",
         "dimensions":"3x3",
         "description": "",
         "colors": ([
@@ -180,6 +184,7 @@ private mapping CastleKeeps = ([
 
     "stone keep":([
         "type": "keep",
+        "display name": "Stone Keep",
         "dimensions":"3x3",
         "description": "",
         "colors": ([

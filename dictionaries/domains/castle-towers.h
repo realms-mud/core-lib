@@ -8,6 +8,7 @@
 private mapping CastleTowers = ([
     "unbuilt northwest castle tower":([
         "type": "northwest castle tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -38,8 +39,9 @@ private mapping CastleTowers = ([
         ]),
     ]),
 
-    "northwest castle tower":([
+    "basic northwest castle tower":([
         "type": "northwest castle tower",
+        "display name": "Basic Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -73,6 +75,7 @@ private mapping CastleTowers = ([
 
     "tall northwest castle tower":([
         "type": "northwest castle tower",
+        "display name": "Tall Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -108,6 +111,7 @@ private mapping CastleTowers = ([
 
     "archer's northwest castle tower":([
         "type": "northwest castle tower",
+        "display name": "Archer's Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -148,6 +152,7 @@ private mapping CastleTowers = ([
 
     "ballista northwest castle tower":([
         "type": "northwest castle tower",
+        "display name": "Ballista Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -188,6 +193,7 @@ private mapping CastleTowers = ([
 
     "catapult northwest castle tower":([
         "type": "northwest castle tower",
+        "display name": "Catapult Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -228,6 +234,7 @@ private mapping CastleTowers = ([
 
     "trebuchet northwest castle tower":([
         "type": "northwest castle tower",
+        "display name": "Trebuchet Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -268,6 +275,7 @@ private mapping CastleTowers = ([
 
     "mage northwest castle tower":([
         "type": "northwest castle tower",
+        "display name": "Mage Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -308,6 +316,7 @@ private mapping CastleTowers = ([
 
     "unbuilt northeast castle tower":([
         "type": "northeast castle tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -338,8 +347,9 @@ private mapping CastleTowers = ([
         ]),
     ]),
 
-    "northeast castle tower":([
+    "basic northeast castle tower":([
         "type": "northeast castle tower",
+        "display name": "Basic Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -373,6 +383,7 @@ private mapping CastleTowers = ([
 
     "tall northeast castle tower":([
         "type": "northeast castle tower",
+        "display name": "Tall Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -408,6 +419,7 @@ private mapping CastleTowers = ([
 
     "archer's northeast castle tower":([
         "type": "northeast castle tower",
+        "display name": "Archer's Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -448,6 +460,7 @@ private mapping CastleTowers = ([
 
     "ballista northeast castle tower":([
         "type": "northeast castle tower",
+        "display name": "Ballista Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -488,6 +501,7 @@ private mapping CastleTowers = ([
 
     "catapult northeast castle tower":([
         "type": "northeast castle tower",
+        "display name": "Catapult Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -528,6 +542,7 @@ private mapping CastleTowers = ([
 
     "trebuchet northeast castle tower":([
         "type": "northeast castle tower",
+        "display name": "Trebuchet Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -568,6 +583,7 @@ private mapping CastleTowers = ([
 
     "mage northeast castle tower":([
         "type": "northeast castle tower",
+        "display name": "Mage Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -608,6 +624,7 @@ private mapping CastleTowers = ([
 
     "unbuilt southwest castle tower":([
         "type": "southwest castle tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -638,8 +655,9 @@ private mapping CastleTowers = ([
         ]),
     ]),
 
-    "southwest castle tower":([
+    "basic southwest castle tower":([
         "type": "southwest castle tower",
+        "display name": "Basic Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -673,6 +691,7 @@ private mapping CastleTowers = ([
 
     "tall southwest castle tower":([
         "type": "southwest castle tower",
+        "display name": "Tall Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -708,6 +727,7 @@ private mapping CastleTowers = ([
 
     "archer's southwest castle tower":([
         "type": "southwest castle tower",
+        "display name": "Archer's Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -748,6 +768,7 @@ private mapping CastleTowers = ([
 
     "ballista southwest castle tower":([
         "type": "southwest castle tower",
+        "display name": "Ballista Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -788,6 +809,7 @@ private mapping CastleTowers = ([
 
     "catapult southwest castle tower":([
         "type": "southwest castle tower",
+        "display name": "Catapult Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -828,6 +850,7 @@ private mapping CastleTowers = ([
 
     "trebuchet southwest castle tower":([
         "type": "southwest castle tower",
+        "display name": "Trebuchet Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -868,6 +891,7 @@ private mapping CastleTowers = ([
 
     "mage southwest castle tower":([
         "type": "southwest castle tower",
+        "display name": "Mage Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -908,6 +932,7 @@ private mapping CastleTowers = ([
 
     "unbuilt southeast castle tower":([
         "type": "southeast castle tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -938,8 +963,9 @@ private mapping CastleTowers = ([
         ]),
     ]),
 
-    "southeast castle tower":([
+    "basic southeast castle tower":([
         "type": "southeast castle tower",
+        "display name": "Basic Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -973,6 +999,7 @@ private mapping CastleTowers = ([
 
     "tall southeast castle tower":([
         "type": "southeast castle tower",
+        "display name": "Tall Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1008,6 +1035,7 @@ private mapping CastleTowers = ([
 
     "archer's southeast castle tower":([
         "type": "southeast castle tower",
+        "display name": "Archer's Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1048,6 +1076,7 @@ private mapping CastleTowers = ([
 
     "ballista southeast castle tower":([
         "type": "southeast castle tower",
+        "display name": "Ballista Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1088,6 +1117,7 @@ private mapping CastleTowers = ([
 
     "catapult southeast castle tower":([
         "type": "southeast castle tower",
+        "display name": "Catapult Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1128,6 +1158,7 @@ private mapping CastleTowers = ([
 
     "trebuchet southeast castle tower":([
         "type": "southeast castle tower",
+        "display name": "Trebuchet Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1168,6 +1199,7 @@ private mapping CastleTowers = ([
 
     "mage southeast castle tower":([
         "type": "southeast castle tower",
+        "display name": "Mage Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1208,6 +1240,7 @@ private mapping CastleTowers = ([
 
     "unbuilt north castle tower":([
         "type": "north castle tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1237,8 +1270,9 @@ private mapping CastleTowers = ([
         ]),
     ]),
 
-    "north castle tower":([
+    "basic north castle tower":([
         "type": "north castle tower",
+        "display name": "Basic Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1270,6 +1304,7 @@ private mapping CastleTowers = ([
 
     "tall north castle tower":([
         "type": "north castle tower",
+        "display name": "Tall Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1303,6 +1338,7 @@ private mapping CastleTowers = ([
 
     "archer's north castle tower":([
         "type": "north castle tower",
+        "display name": "Archer's Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1340,6 +1376,7 @@ private mapping CastleTowers = ([
 
     "ballista north castle tower":([
         "type": "north castle tower",
+        "display name": "Ballista Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1377,6 +1414,7 @@ private mapping CastleTowers = ([
 
     "gate north castle tower":([
         "type": "north castle tower",
+        "display name": "Gatehouse",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1419,6 +1457,7 @@ private mapping CastleTowers = ([
 
     "unbuilt south castle tower":([
         "type": "south castle tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1448,8 +1487,9 @@ private mapping CastleTowers = ([
         ]),
     ]),
 
-    "south castle tower":([
+    "basic south castle tower":([
         "type": "south castle tower",
+        "display name": "Basic Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1481,6 +1521,7 @@ private mapping CastleTowers = ([
 
     "tall south castle tower":([
         "type": "south castle tower",
+        "display name": "Tall Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1514,6 +1555,7 @@ private mapping CastleTowers = ([
 
     "archer's south castle tower":([
         "type": "south castle tower",
+        "display name": "Archer's Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1551,6 +1593,7 @@ private mapping CastleTowers = ([
 
     "ballista south castle tower":([
         "type": "south castle tower",
+        "display name": "Ballista Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1588,6 +1631,7 @@ private mapping CastleTowers = ([
 
     "gate south castle tower":([
         "type": "south castle tower",
+        "display name": "Gatehouse",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1630,6 +1674,7 @@ private mapping CastleTowers = ([
 
     "unbuilt west castle tower":([
         "type": "west castle tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1667,8 +1712,9 @@ private mapping CastleTowers = ([
         ]),
     ]),
 
-    "west castle tower":([
+    "basic west castle tower":([
         "type": "west castle tower",
+        "display name": "Basic Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1708,6 +1754,7 @@ private mapping CastleTowers = ([
 
     "tall west castle tower":([
         "type": "west castle tower",
+        "display name": "Tall Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1747,6 +1794,7 @@ private mapping CastleTowers = ([
 
     "archer's west castle tower":([
         "type": "west castle tower",
+        "display name": "Archer's Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1791,6 +1839,7 @@ private mapping CastleTowers = ([
 
     "ballista west castle tower":([
         "type": "west castle tower",
+        "display name": "Ballista Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1835,6 +1884,7 @@ private mapping CastleTowers = ([
 
     "gate west castle tower":([
         "type": "west castle tower",
+        "display name": "Gatehouse",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1884,6 +1934,7 @@ private mapping CastleTowers = ([
 
     "unbuilt east castle tower":([
         "type": "east castle tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1921,8 +1972,9 @@ private mapping CastleTowers = ([
         ]),
     ]),
 
-    "east castle tower":([
+    "basic east castle tower":([
         "type": "east castle tower",
+        "display name": "Basic Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -1962,6 +2014,7 @@ private mapping CastleTowers = ([
 
     "tall east castle tower":([
         "type": "east castle tower",
+        "display name": "Tall Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -2001,6 +2054,7 @@ private mapping CastleTowers = ([
 
     "archer's east castle tower":([
         "type": "east castle tower",
+        "display name": "Archer's Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -2045,6 +2099,7 @@ private mapping CastleTowers = ([
 
     "ballista east castle tower":([
         "type": "east castle tower",
+        "display name": "Ballista Tower",
         "dimensions": "3x2",
         "description": "",
         "colors": ([
@@ -2089,6 +2144,7 @@ private mapping CastleTowers = ([
 
     "gate east castle tower":([
         "type": "east castle tower",
+        "display name": "Gatehouse",
         "dimensions": "3x2",
         "description": "",
         "colors": ([

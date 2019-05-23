@@ -5,8 +5,10 @@
 inherit "/lib/core/baseSelector.c";
 
 private string Location;
-private string HoldingType = "none";
+private string HoldingType = 0;
+private string Component = 0;
 private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
@@ -15,10 +17,6 @@ public nomask void setLocation(string location)
     if (mappingp(info))
     {
         Location = location;
-        Description = "Main Menu:\n" +
-            configuration->decorate(format(sprintf("From this menu, "
-            "you can initiate, modify, or abort projects in your holdings at %s.",
-            info["name"]), 78));
     }
 }
 
@@ -26,6 +24,12 @@ public nomask void setLocation(string location)
 public nomask void setHoldingType(string type)
 {
     HoldingType = type;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setComponent(string component)
+{
+    Component = component;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -46,11 +50,21 @@ public nomask void reset(int arg)
 protected nomask void setUpUserForSelection()
 {
     object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+
+    Description = (HoldingType ? (capitalize(HoldingType) + ":\n") :
+        "Main Menu:\n") +
+        configuration->decorate(format(sprintf("From this menu, you can "
+            "initiate, modify, or abort %sprojects in your holdings at %s.",
+            (HoldingType ? (HoldingType + " ") : ""), 
+            dictionary->getLocationDisplayName(Location)), 78),
+            "description", "selector", colorConfiguration);
+
     if (dictionary)
     {
         Data = dictionary->getBuildingMenu(User, Location, HoldingType,
-            "northwest tower");
+            Component);
     }
+
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Exit Building Projects Menu",
         "type" : "exit",
@@ -65,6 +79,7 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
+        setUpUserForSelection();
         tell_object(User, displayMessage());
     }
     caller->cleanUp();
@@ -97,16 +112,38 @@ protected nomask int processSelection(string selection)
     if (User)
     {
         ret = (Data[selection]["type"] == "exit") || (selection == "abort");
+
         if (!ret && member(Data[selection], "is category") &&
             Data[selection]["is category"])
         {
-            HoldingType = Data[selection]["type"];
-            Description = capitalize(HoldingType) + ":\n" +
-                configuration->decorate(format(Data[selection]["description"], 78), 
-                    "description", "selector", colorConfiguration);
-            SuppressColon = 1;
-            initiateSelector(User);
+            SubselectorObj =
+                clone_object("/lib/modules/domains/buildSelector.c");
+            SubselectorObj->setHoldingType(Data[selection]["type"]);
+            SubselectorObj->setLocation(Location);
+
+            move_object(SubselectorObj, User);
+            SubselectorObj->registerEvent(this_object());
+            SubselectorObj->initiateSelector(User);
+        }
+
+        else if (!ret)
+        {
+            SubselectorObj =
+                clone_object("/lib/modules/domains/buildSelector.c");
+            SubselectorObj->setHoldingType(HoldingType);
+            SubselectorObj->setComponent(Data[selection]["type"]);
+            SubselectorObj->setLocation(Location);
+
+            move_object(SubselectorObj, User);
+            SubselectorObj->registerEvent(this_object());
+            SubselectorObj->initiateSelector(User);
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask int suppressMenuDisplay()
+{
+    return objectp(SubselectorObj);
 }

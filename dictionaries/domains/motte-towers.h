@@ -8,6 +8,7 @@
 private mapping MotteTowers = ([
     "unbuilt northwest tower":([
         "type": "northwest tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -38,8 +39,9 @@ private mapping MotteTowers = ([
         ]),
     ]),
 
-    "northwest tower":([
+    "basic northwest tower":([
         "type": "northwest tower",
+        "display name": "Basic Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -73,6 +75,7 @@ private mapping MotteTowers = ([
 
     "tall northwest tower":([
         "type": "northwest tower",
+        "display name": "Tall Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -108,6 +111,7 @@ private mapping MotteTowers = ([
 
     "archer's northwest tower":([
         "type": "northwest tower",
+        "display name": "Archer's Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -148,6 +152,7 @@ private mapping MotteTowers = ([
 
     "ballista northwest tower":([
         "type": "northwest tower",
+        "display name": "Ballista Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -188,6 +193,7 @@ private mapping MotteTowers = ([
 
     "catapult northwest tower":([
         "type": "northwest tower",
+        "display name": "Catapult Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -228,6 +234,7 @@ private mapping MotteTowers = ([
 
     "trebuchet northwest tower":([
         "type": "northwest tower",
+        "display name": "Trebuchet Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -268,6 +275,7 @@ private mapping MotteTowers = ([
 
     "mage northwest tower":([
         "type": "northwest tower",
+        "display name": "Mage Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -308,6 +316,7 @@ private mapping MotteTowers = ([
 
     "unbuilt north tower":([
         "type": "north tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -329,8 +338,9 @@ private mapping MotteTowers = ([
         ]),
     ]),
 
-    "north tower":([
+    "basic north tower":([
         "type": "north tower",
+        "display name": "Basic Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -354,6 +364,7 @@ private mapping MotteTowers = ([
 
     "tall north tower":([
         "type": "north tower",
+        "display name": "Tall Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -377,7 +388,8 @@ private mapping MotteTowers = ([
 
     "gate north tower":([
         "type": "north tower",
-        "dimensions": "1x1",
+         "display name": "Gatehouse",
+       "dimensions": "1x1",
         "description": "",
         "colors": ([
             "default":([
@@ -405,6 +417,7 @@ private mapping MotteTowers = ([
 
     "archer's north tower":([
         "type": "north tower",
+        "display name": "Archer's Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -433,6 +446,7 @@ private mapping MotteTowers = ([
 
     "ballista north tower":([
         "type": "north tower",
+        "display name": "Ballista Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -461,6 +475,7 @@ private mapping MotteTowers = ([
 
     "unbuilt northeast tower":([
         "type": "northeast tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -491,8 +506,9 @@ private mapping MotteTowers = ([
         ]),
     ]),
 
-    "northeast tower":([
+    "basic northeast tower":([
         "type": "northeast tower",
+        "display name": "Basic Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -526,6 +542,7 @@ private mapping MotteTowers = ([
 
     "tall northeast tower":([
         "type": "northeast tower",
+        "display name": "Tall Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -561,6 +578,7 @@ private mapping MotteTowers = ([
 
     "archer's northeast tower":([
         "type": "northeast tower",
+        "display name": "Archer's Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -601,6 +619,7 @@ private mapping MotteTowers = ([
 
     "ballista northeast tower":([
         "type": "northeast tower",
+        "display name": "Ballista Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -641,6 +660,7 @@ private mapping MotteTowers = ([
 
     "catapult northeast tower":([
         "type": "northeast tower",
+        "display name": "Catapult Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -681,6 +701,7 @@ private mapping MotteTowers = ([
 
     "trebuchet northeast tower":([
         "type": "northeast tower",
+        "display name": "Trebuchet Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -721,6 +742,7 @@ private mapping MotteTowers = ([
 
     "mage northeast tower":([
         "type": "northeast tower",
+        "display name": "Mage Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -761,6 +783,7 @@ private mapping MotteTowers = ([
 
     "unbuilt west tower":([
         "type": "west tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -782,8 +805,9 @@ private mapping MotteTowers = ([
         ]),
     ]),
 
-    "west tower":([
+    "basic west tower":([
         "type": "west tower",
+        "display name": "Basic Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -807,6 +831,7 @@ private mapping MotteTowers = ([
 
     "tall west tower":([
         "type": "west tower",
+        "display name": "Tall Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -830,6 +855,7 @@ private mapping MotteTowers = ([
 
     "gate west tower":([
         "type": "west tower",
+        "display name": "Gatehouse",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -858,6 +884,7 @@ private mapping MotteTowers = ([
 
     "archer's west tower":([
         "type": "west tower",
+        "display name": "Archer's Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -886,6 +913,7 @@ private mapping MotteTowers = ([
 
     "ballista west tower":([
         "type": "west tower",
+        "display name": "Ballista Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -914,6 +942,7 @@ private mapping MotteTowers = ([
 
     "unbuilt east tower":([
         "type": "east tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -935,8 +964,9 @@ private mapping MotteTowers = ([
         ]),
     ]),
 
-    "east tower":([
+    "basic east tower":([
         "type": "east tower",
+        "display name": "Basic Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -960,6 +990,7 @@ private mapping MotteTowers = ([
 
     "tall east tower":([
         "type": "east tower",
+        "display name": "Tall Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -983,6 +1014,7 @@ private mapping MotteTowers = ([
 
     "gate east tower":([
         "type": "east tower",
+        "display name": "Gatehouse",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1011,6 +1043,7 @@ private mapping MotteTowers = ([
 
     "archer's east tower":([
         "type": "east tower",
+        "display name": "Archer's Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1039,6 +1072,7 @@ private mapping MotteTowers = ([
 
     "ballista east tower":([
         "type": "east tower",
+        "display name": "Ballista Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1067,6 +1101,7 @@ private mapping MotteTowers = ([
 
     "unbuilt southwest tower":([
         "type": "southwest tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1097,8 +1132,9 @@ private mapping MotteTowers = ([
         ]),
     ]),
 
-    "southwest tower":([
+    "basic southwest tower":([
         "type": "southwest tower",
+        "display name": "Basic Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1132,6 +1168,7 @@ private mapping MotteTowers = ([
 
     "tall southwest tower":([
         "type": "southwest tower",
+        "display name": "Tall Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1167,6 +1204,7 @@ private mapping MotteTowers = ([
 
     "archer's southwest tower":([
         "type": "southwest tower",
+        "display name": "Archer's Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1207,6 +1245,7 @@ private mapping MotteTowers = ([
 
     "ballista southwest tower":([
         "type": "southwest tower",
+        "display name": "Ballista Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1247,6 +1286,7 @@ private mapping MotteTowers = ([
 
     "catapult southwest tower":([
         "type": "southwest tower",
+        "display name": "Catapult Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1287,6 +1327,7 @@ private mapping MotteTowers = ([
 
     "trebuchet southwest tower":([
         "type": "southwest tower",
+        "display name": "Trebuchet Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1327,6 +1368,7 @@ private mapping MotteTowers = ([
 
     "mage southwest tower":([
         "type": "southwest tower",
+        "display name": "Mage Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1367,6 +1409,7 @@ private mapping MotteTowers = ([
 
     "unbuilt south tower":([
         "type": "south tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1388,8 +1431,9 @@ private mapping MotteTowers = ([
         ]),
     ]),
 
-    "south tower":([
+    "basic south tower":([
         "type": "south tower",
+        "display name": "Basic Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1413,6 +1457,7 @@ private mapping MotteTowers = ([
 
     "tall south tower":([
         "type": "south tower",
+        "display name": "Tall Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1436,6 +1481,7 @@ private mapping MotteTowers = ([
 
     "gate south tower":([
         "type": "south tower",
+        "display name": "Gatehouse",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1464,6 +1510,7 @@ private mapping MotteTowers = ([
 
     "archer's south tower":([
         "type": "south tower",
+        "display name": "Archer's Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1492,6 +1539,7 @@ private mapping MotteTowers = ([
 
     "ballista south tower":([
         "type": "south tower",
+        "display name": "Ballista Tower",
         "dimensions": "1x1",
         "description": "",
         "colors": ([
@@ -1520,6 +1568,7 @@ private mapping MotteTowers = ([
 
     "unbuilt southeast tower":([
         "type": "southeast tower",
+        "display name": "Unbuilt Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1550,8 +1599,9 @@ private mapping MotteTowers = ([
         ]),
     ]),
 
-    "southeast tower":([
+    "basic southeast tower":([
         "type": "southeast tower",
+        "display name": "Basic Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1585,6 +1635,7 @@ private mapping MotteTowers = ([
 
     "tall southeast tower":([
         "type": "southeast tower",
+        "display name": "Tall Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1620,6 +1671,7 @@ private mapping MotteTowers = ([
 
     "archer's southeast tower":([
         "type": "southeast tower",
+        "display name": "Archer's Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1660,6 +1712,7 @@ private mapping MotteTowers = ([
 
     "ballista southeast tower":([
         "type": "southeast tower",
+        "display name": "Ballista Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1700,6 +1753,7 @@ private mapping MotteTowers = ([
 
     "catapult southeast tower":([
         "type": "southeast tower",
+        "display name": "Catapult Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1740,6 +1794,7 @@ private mapping MotteTowers = ([
 
     "trebuchet southeast tower":([
         "type": "southeast tower",
+        "display name": "Trebuchet Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
@@ -1780,6 +1835,7 @@ private mapping MotteTowers = ([
 
     "mage southeast tower":([
         "type": "southeast tower",
+        "display name": "Mage Tower",
         "dimensions": "2x2",
         "description": "",
         "colors": ([
