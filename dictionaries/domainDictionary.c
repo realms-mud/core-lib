@@ -369,7 +369,8 @@ private nomask mapping getComponentOptions(string component, mapping playerDomai
 {
     return ([                
         "name": CastleComponents[component]["display name"][0..18],
-        "type": component,
+        "value": component,
+		"type": CastleComponents[component]["type"],
         "description": CastleComponents[component]["description"],
         "canShow": 1,
         "details": getComponentDetails(
@@ -498,4 +499,16 @@ public nomask string getLocationDisplayName(string location)
         ret = Locations[location]["name"];
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getFeatureDescription(string element)
+{
+	string ret = 0;
+
+	if (member(CastleComponents, element))
+	{
+		ret = CastleComponents[element]["feature description"];
+	}
+	return ret;
 }

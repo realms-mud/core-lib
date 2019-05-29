@@ -9,5 +9,5 @@ public void Setup()
 {
     Name("moat");
 
-    addDescriptionTemplate("a moat");
+    addDescriptionTemplate("an unfilled moat");
 }

@@ -729,6 +729,8 @@ private mapping CastleTowers = ([
         "type": "southwest castle tower",
         "display name": "Archer's Tower",
         "dimensions": "2x2",
+		"feature description": "a stout, three story tower with many locations "
+			"upon the battlements manned by archers",
         "description": "",
         "colors": ([
             "default":([

@@ -6,12 +6,15 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object Selector;
+object Location;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Selector = clone_object("/lib/modules/domains/buildSelector.c");
     Selector->setLocation("argalach castle");
+
+	Location = load_object("/lib/dictionaries/domains/rooms/keep-1x1.c");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
@@ -20,7 +23,8 @@ void Setup()
     Player->charsetConfiguration("ascii");
     Player->addPlayerHolding("argalach castle");
 
-    /*       "type": "castle",
+	Location->enterEnvironment(Player);
+	/*       "type": "castle",
        "upgrades": ([
            "keep": ([ "name" : "stone keep"]),
            "northwest tower": ([ "name" : "mage northwest tower"]),
@@ -63,8 +67,9 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    destruct(Player);
     destruct(Selector);
+    destruct(Player);
+	destruct(Location);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -198,6 +203,55 @@ void CanSelectConstructASpecificBuilding()
         "\x1b[0m\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
-//    */
+
         Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSelectConstructASpecificBuilding2()
+{
+	Player->colorConfiguration("8-bit");
+
+	Selector->initiateSelector(Player);
+	command("4", Player);
+	command("1", Player);
+	command("1", Player);
+
+	ExpectEq("\x1b[0;38;5;80mBuilding Projects - \x1b[0m\x1b[0;38;5;15;1mTower:\n"
+		"\x1b[0;38;5;116mFrom this menu, you can initiate, modify, or abort tower projects in your\n"
+		"holdings at Argalach Castle.\n"
+		"\x1b[0m\x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m......\x1b[0m            \x1b[0;38;5;9m.........\x1b[0m            \x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m............\x1b[0m\x1b[0;38;5;9m.       .\x1b[0m\x1b[0;38;5;9m............\x1b[0m\x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.     \x1b[0m\x1b[0;38;5;1m.?.\x1b[0m         \x1b[0;38;5;9m.........\x1b[0m         \x1b[0;38;5;1m.?.\x1b[0m\x1b[0;38;5;9m     .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m..    \x1b[0m\x1b[0;38;5;1m...\x1b[0m                           \x1b[0;38;5;1m...\x1b[0m\x1b[0;38;5;9m    ..\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;103m+====+\x1b[0m      \x1b[0;38;5;9m...\x1b[0m      \x1b[0;38;5;9m......\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m?. \x1b[0m   \x1b[0;38;5;103m|+\x1b[0;38;5;199m--\x1b[0;38;5;103m+|\x1b[0m\x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m. .\x1b[0m\x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m.    .\x1b[0m   \x1b[0;38;5;9m .?\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;103m|+--+ \x1b[0m\x1b[0;38;5;1m.?.\x1b[0m         \x1b[0;38;5;1m.?.\x1b[0m\x1b[0;38;5;9m     .\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;103m+=    \x1b[0m\x1b[0;38;5;1m...\x1b[0m         \x1b[0;38;5;1m...\x1b[0m\x1b[0;38;5;9m    ..\x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"                           \x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m               \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m1\x1b[0m]  - \x1b[0;38;5;2mNorthwest Tower     \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m....\x1b[0m     \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m?. \x1b[0m   \x1b[0;38;5;9m.........\x1b[0m   \x1b[0;38;5;9m .?\x1b[0m\x1b[0;38;5;9m . \x1b[0m     \x1b[0;38;5;9m....\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n" + 
+		"[\x1b[0;38;5;9;1m2\x1b[0m]  - \x1b[0;38;5;2mNorth Tower         \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.  .\x1b[0m     \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;9m.       .\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m     \x1b[0;38;5;9m.  .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m3\x1b[0m]  - \x1b[0;38;5;2mNortheast Tower     \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.  .\x1b[0m     \x1b[0;38;5;9m...\x1b[0m      \x1b[0;38;5;9m.       .\x1b[0m      \x1b[0;38;5;9m...\x1b[0m     \x1b[0;38;5;9m.  .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m4\x1b[0m]  - \x1b[0;38;5;2mWest Tower          \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.  .\x1b[0m     \x1b[0;38;5;9m...\x1b[0m      \x1b[0;38;5;9m.       .\x1b[0m      \x1b[0;38;5;9m...\x1b[0m     \x1b[0;38;5;9m.  .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m5\x1b[0m]  - \x1b[0;38;5;2mEast Tower          \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.  .\x1b[0m     \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;9m.........\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m     \x1b[0;38;5;9m.  .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m6\x1b[0m]  - \x1b[0;38;5;2mSouthwest Tower     \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m....\x1b[0m     \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m?. \x1b[0m               \x1b[0;38;5;9m .?\x1b[0m\x1b[0;38;5;9m . \x1b[0m     \x1b[0;38;5;9m....\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m7\x1b[0m]  - \x1b[0;38;5;2mSouth Tower         \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m               \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m8\x1b[0m]  - \x1b[0;38;5;2mSoutheast Tower     \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m      \x1b[0;38;5;9m..    \x1b[0m\x1b[0;38;5;1m...\x1b[0m         \x1b[0;38;5;1m...\x1b[0m\x1b[0;38;5;9m    ..\x1b[0m      \x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n" +
+		"[\x1b[0;38;5;9;1m9\x1b[0m]  - \x1b[0;38;5;2mOuter Tower (NW)    \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;9m.     \x1b[0m\x1b[0;38;5;1m.?.\x1b[0m         \x1b[0;38;5;1m.?.\x1b[0m\x1b[0;38;5;9m     .\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m10\x1b[0m] - \x1b[0;38;5;2mOuter Tower (N)     \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m?. \x1b[0m   \x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m. .\x1b[0m\x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m.    .\x1b[0m   \x1b[0;38;5;9m .?\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m11\x1b[0m] - \x1b[0;38;5;2mOuter Tower (NE)    \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m.. \x1b[0m   \x1b[0;38;5;9m......\x1b[0m      \x1b[0;38;5;9m...\x1b[0m      \x1b[0;38;5;9m......\x1b[0m   \x1b[0;38;5;9m ..\x1b[0m\x1b[0;38;5;9m . \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m12\x1b[0m] - \x1b[0;38;5;2mOuter Tower (W)     \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m..    \x1b[0m\x1b[0;38;5;1m...\x1b[0m                           \x1b[0;38;5;1m...\x1b[0m\x1b[0;38;5;9m    ..\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m13\x1b[0m] - \x1b[0;38;5;2mOuter Tower (E)     \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.     \x1b[0m\x1b[0;38;5;1m.?.\x1b[0m         \x1b[0;38;5;9m.........\x1b[0m         \x1b[0;38;5;1m.?.\x1b[0m\x1b[0;38;5;9m     .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m14\x1b[0m] - \x1b[0;38;5;2mOuter Tower (SW)    \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m............\x1b[0m\x1b[0;38;5;9m.       .\x1b[0m\x1b[0;38;5;9m............\x1b[0m\x1b[0;38;5;9m.    .\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m15\x1b[0m] - \x1b[0;38;5;2mOuter Tower (S)     \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m......\x1b[0m            \x1b[0;38;5;9m.........\x1b[0m            \x1b[0;38;5;9m......\x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m16\x1b[0m] - \x1b[0;38;5;2mOuter Tower (SE)    \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\x1b[0;38;5;9m   \x1b[0m\n"
+		"[\x1b[0;38;5;9;1m17\x1b[0m] - \x1b[0;38;5;2mExit Building Projects Menu\x1b[0m\n"
+		"\x1b[0;38;5;2;1mYou must select a number from 1 to 17.\n"
+		"\x1b[0m\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n"
+		"\x1b[0m\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\n"
+		"X is the option about which you would like further details.\n"
+		"\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
+		Player->caughtMessage());
 }

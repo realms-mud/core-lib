@@ -195,9 +195,135 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
+    "pallisade eastern north wall":([
+        "type": "eastern north wall",
+        "display name": "Wooden Pallisade",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "wooden rampart eastern north wall":([
+        "type": "eastern north wall",
+        "display name": "Wooden Rampart",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
     "stone eastern north wall":([
         "type": "eastern north wall",
         "display name": "Simple Stone Wall",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "eastern north bulwark":([
+        "type": "eastern north wall",
+        "display name": "Stone Bulwark",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "talus eastern north wall":([
+        "type": "eastern north wall",
+        "display name": "Stone Wall (Talus)",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "eastern north rampart":([
+        "type": "eastern north wall",
+        "display name": "Stone Rampart",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "NEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "eastern north bastion":([
+        "type": "eastern north wall",
+        "display name": "Stone Bastion",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -237,9 +363,135 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
+    "pallisade western south wall":([
+        "type": "western south wall",
+        "display name": "Wooden Pallisade",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "wooden rampart western south wall":([
+        "type": "western south wall",
+        "display name": "Wooden Rampart",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
     "stone western south wall":([
         "type": "western south wall",
         "display name": "Simple Stone Wall",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "western south bulwark":([
+        "type": "western south wall",
+        "display name": "Stone Bulwark",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "talus western south wall":([
+        "type": "western south wall",
+        "display name": "Stone Wall (Talus)",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "western south rampart":([
+        "type": "western south wall",
+        "display name": "Stone Rampart",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SWMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "western south bastion":([
+        "type": "western south wall",
+        "display name": "Stone Bastion",
         "dimensions": "1x2",
         "description": "",
         "colors": ([
@@ -279,9 +531,135 @@ private mapping CastleWalls = ([
         ]),
     ]),
 
+    "pallisade eastern south wall":([
+        "type": "eastern south wall",
+        "display name": "Wooden Pallisade",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "wooden rampart eastern south wall":([
+        "type": "eastern south wall",
+        "display name": "Wooden Rampart",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
     "stone eastern south wall":([
         "type": "eastern south wall",
         "display name": "Simple Stone Wall",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "eastern south bulwark":([
+        "type": "eastern south wall",
+        "display name": "Stone Bulwark",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "talus eastern south wall":([
+        "type": "eastern south wall",
+        "display name": "Stone Wall (Talus)",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "eastern south rampart":([
+        "type": "eastern south wall",
+        "display name": "Stone Rampart",
+        "dimensions": "1x2",
+        "description": "",
+        "colors": ([
+            "default":([
+                "3-bit": "\x1b[0;36m",
+                "8-bit": "\x1b[0;38;5;103m",
+                "24-bit": "\x1b[0;38;2;112;128;144m",
+            ]),
+        ]),
+        "components":([
+            "SEMWAL": ([
+                "ascii": "======",
+                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+                    "\xe2\x95\x90\xe2\x95\x90",
+            ]),
+        ]),
+    ]),
+
+    "eastern south bastion":([
+        "type": "eastern south wall",
+        "display name": "Stone Bastion",
         "dimensions": "1x2",
         "description": "",
         "colors": ([

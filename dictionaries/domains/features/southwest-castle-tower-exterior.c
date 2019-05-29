@@ -9,5 +9,5 @@ public void Setup()
 {
     Name("southwest castle tower exterior");
 
-    addDescriptionTemplate("a tower");
+    addDescriptionTemplate("an open area where a tower could be placed");
 }
