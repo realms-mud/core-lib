@@ -61,6 +61,19 @@ private mapping CastleKeeps = ([
                 "24-bit": "\x1b[0;48;2;0;30;0;38;2;1;121;111m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"main wooden keep": ([ "wood": 400, "metal": 10, "textile": 0 ]),
+				"wooden battlement": ([ "wood": 50, "metal": 5 ]),
+			]),
+			"workers": ([
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "KEEP    1":([
                 "ascii": "+-------+",
@@ -107,6 +120,20 @@ private mapping CastleKeeps = ([
                 "24-bit": "\x1b[0;48;2;0;30;0;38;2;1;121;111m",
             ]),
         ]),
+		"construction": ([
+			"duration": 900,
+			"materials": ([
+				"main wooden keep": ([ "wood": 400, "metal": 10, "textile": 0 ]),
+				"central wooden tower": ([ "wood": 300, "metal": 10, "textile": 0 ]),
+				"wooden battlement": ([ "wood": 75, "metal": 5 ]),
+			]),
+			"workers": ([
+				"carpenter": 10,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([ 
             "KEEP    1":([
                 "ascii": "+~~~~~~~+",
@@ -153,6 +180,20 @@ private mapping CastleKeeps = ([
                 "24-bit": "\x1b[0;48;2;112;128;144;38;2;90,90,90m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"main stone keep": ([ "stone": 400, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([ 
             "KEEP    1":([
                 "ascii": "+=======+",
@@ -199,6 +240,21 @@ private mapping CastleKeeps = ([
                 "24-bit": "\x1b[0;48;2;112;128;144;38;2;90,90,90m",
             ]),
         ]),
+		"construction": ([
+			"duration": 1000,
+			"materials": ([
+				"main stone keep": ([ "stone": 400, "wood": 50, "metal": 10, "textile": 0 ]),
+				"central stone tower": ([ "stone": 300, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 3,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([ 
             "KEEP    1":([
                 "ascii": "+=======+",

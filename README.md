@@ -6,7 +6,7 @@ writing, 3.5.X).
 The goal of this project is twofold: First, there is a barrier of entry into the fascinating world of LP MUDs. On a typical LP MUD,
 in order for a person to create content, one must create a program. It has been my experience that this requirement does turn away a
 lot of would-be creators. The added flexibility LPC provides (ie: if you can imagine it, you can build it given that LPC
-is a fully-features programming language) is hampered by the barrier-of-entry wherein you must be an adept programmer
+is a fully-featured programming language) is hampered by the barrier-of-entry wherein you must be an adept programmer
 to do much with LPC. This doesn't have to be the case. Second, I have a lot of ideas about what I thought would make
 a great game - mixing concepts from modern AAA RPGs (conversation trees, rich quests, detailed crafting, etc), grand 
 strategy games (the ability to wage wars, engage in diplomacy, etc. with a few hundred AI or human-controlled entities), 

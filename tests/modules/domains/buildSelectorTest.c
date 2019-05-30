@@ -24,42 +24,6 @@ void Setup()
     Player->addPlayerHolding("argalach castle");
 
 	Location->enterEnvironment(Player);
-	/*       "type": "castle",
-       "upgrades": ([
-           "keep": ([ "name" : "stone keep"]),
-           "northwest tower": ([ "name" : "mage northwest tower"]),
-           "northeast tower": ([ "name" : "mage northeast tower"]),
-           "southwest tower": ([ "name" : "mage southwest tower"]),
-           "southeast tower": ([ "name" : "mage southeast tower"]),
-           "northwest castle tower": ([ "name" : "mage northwest castle tower"]),
-           "northeast castle tower": ([ "name" : "mage northeast castle tower"]),
-           "southwest castle tower": ([ "name" : "ballista southwest castle tower"]),
-           "north castle tower": ([ "name" : "gate north castle tower"]),
-           "south castle tower": ([ "name" : "gate south castle tower"]),
-           "west castle tower": ([ "name" : "archer's west castle tower"]),
-           "east castle tower": ([ "name" : "gate east castle tower"]),
-           "southeast castle tower": ([ "name" : "mage southeast castle tower"]),
-           "north tower": ([ "name" : "ballista north tower"]),
-           "south tower": ([ "name" : "ballista south tower"]),
-           "west tower": ([ "name" : "gate west tower"]),
-           "east tower": ([ "name" : "ballista east tower"]),
-           "western north wall": ([ "name" : "western north wall"]),
-           "eastern north wall": ([ "name" : "eastern north wall"]),
-           "western south wall": ([ "name" : "western south wall"]),
-           "eastern south wall": ([ "name" : "eastern south wall"]),
-           "northern west wall": ([ "name" : "northern west wall"]),
-           "southern west wall": ([ "name" : "southern west wall"]),
-           "northern east wall": ([ "name" : "northern east wall"]),
-           "southern east wall": ([ "name" : "southern east wall"]),
-           "western north castle wall": ([ "name" : "western north castle wall"]),
-           "western south castle wall": ([ "name" : "western south castle wall"]),
-           "eastern north castle wall": ([ "name" : "eastern north castle wall"]),
-           "eastern south castle wall": ([ "name" : "eastern south castle wall"]),
-           "northern west castle wall": ([ "name" : "northern west castle wall"]),
-           "northern east castle wall": ([ "name" : "northern east castle wall"]),
-           "southern west castle wall": ([ "name" : "southern west castle wall"]),
-           "southern east castle wall": ([ "name" : "southern east castle wall"]),
-       ])*/
 
     move_object(Selector, Player);
 }
@@ -208,7 +172,7 @@ void CanSelectConstructASpecificBuilding()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanSelectConstructASpecificBuilding2()
+void CanSelectFromConstructComponentMenu()
 {
 	Player->colorConfiguration("8-bit");
 
@@ -253,5 +217,82 @@ void CanSelectConstructASpecificBuilding2()
 		"\x1b[0m\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\n"
 		"X is the option about which you would like further details.\n"
 		"\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
+		Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplayCastleWithPreVuiltComponents()
+{
+	Player->buildDomainUpgrade("argalach castle", "keep", "stone keep");
+	Player->buildDomainUpgrade("argalach castle", "northwest tower", "mage northwest tower");
+	Player->buildDomainUpgrade("argalach castle", "northeast tower", "mage northeast tower");
+	Player->buildDomainUpgrade("argalach castle", "southwest tower", "mage southwest tower");
+	Player->buildDomainUpgrade("argalach castle", "southeast tower", "mage southeast tower");
+	Player->buildDomainUpgrade("argalach castle", "northwest castle tower", "mage northwest castle tower");
+	Player->buildDomainUpgrade("argalach castle", "northeast castle tower", "mage northeast castle tower");
+	Player->buildDomainUpgrade("argalach castle", "southwest castle tower", "ballista southwest castle tower");
+	Player->buildDomainUpgrade("argalach castle", "north castle tower", "gate north castle tower");
+	Player->buildDomainUpgrade("argalach castle", "south castle tower", "gate south castle tower");
+	Player->buildDomainUpgrade("argalach castle", "west castle tower", "archer's west castle tower");
+	Player->buildDomainUpgrade("argalach castle", "east castle tower", "gate east castle tower");
+	Player->buildDomainUpgrade("argalach castle", "southeast castle tower", "mage southeast castle tower");
+	Player->buildDomainUpgrade("argalach castle", "north tower", "ballista north tower");
+	Player->buildDomainUpgrade("argalach castle", "south tower", "ballista south tower");
+	Player->buildDomainUpgrade("argalach castle", "west tower", "gate west tower");
+	Player->buildDomainUpgrade("argalach castle", "east tower", "ballista east tower");
+	Player->buildDomainUpgrade("argalach castle", "western north wall", "stone western north wall");
+	Player->buildDomainUpgrade("argalach castle", "eastern north wall", "stone eastern north wall");
+	Player->buildDomainUpgrade("argalach castle", "western south wall", "stone western south wall");
+	Player->buildDomainUpgrade("argalach castle", "eastern south wall", "stone eastern south wall");
+	Player->buildDomainUpgrade("argalach castle", "northern west wall", "stone northern west wall");
+	Player->buildDomainUpgrade("argalach castle", "southern west wall", "stone southern west wall");
+	Player->buildDomainUpgrade("argalach castle", "northern east wall", "stone northern east wall");
+	Player->buildDomainUpgrade("argalach castle", "southern east wall", "stone southern east wall");
+	Player->buildDomainUpgrade("argalach castle", "western north castle wall", "stone western north castle wall");
+	Player->buildDomainUpgrade("argalach castle", "western south castle wall", "stone western south castle wall");
+	Player->buildDomainUpgrade("argalach castle", "eastern north castle wall", "stone eastern north castle wall");
+	Player->buildDomainUpgrade("argalach castle", "eastern south castle wall", "stone eastern south castle wall");
+	Player->buildDomainUpgrade("argalach castle", "northern west castle wall", "stone northern west castle wall");
+	Player->buildDomainUpgrade("argalach castle", "northern east castle wall", "stone northern east castle wall");
+	Player->buildDomainUpgrade("argalach castle", "southern west castle wall", "stone southern west castle wall");
+	Player->buildDomainUpgrade("argalach castle", "southern east castle wall", "stone southern east castle wall");
+
+	Player->colorConfiguration("none");
+	Selector->initiateSelector(Player);
+
+	ExpectEq("Building Projects - Main Menu:\n"
+		"From this menu, you can initiate, modify, or abort projects in your holdings\n"
+		"at Argalach Castle.\n\n"
+		"                                                                             \n"
+		"                             +====+            +==---==+            +====+   \n"
+		"                             |+~~+|============| x x x |============|+~~+|   \n"
+		"                             |+~~+ .?.         +=======+         .?. +~~+|   \n"
+		"                             +=    ...                           ...    =+   \n"
+		"                              | ..    +====+      +-+      +====+    .. |    \n"
+		"                              | ?.    |+~~+|======+ +======|+~~+|    .? |    \n"
+		"                              | ..    |+~~+ .?.         .?. +~~+|    .. |    \n"
+		"                              |       +=    ...         ...    =+       |    \n"
+		"                              |        | ..                 .. |        |    \n"
+		"                             +==+      | ?.    +=======+    .? |      +==+   \n"
+		"                             |x |      | ..    | +---+ |    .. |      | x|   \n"
+		"                             |  |     +-+      | |   | |      +-+     |  |   \n"
+		"                             |  |     +-+      | +---+ |      +-+     |  |   \n"
+		"                             |x |      | ..    +=======+    .. |      | x|   \n"
+		"                             +==+      | ?.                 .? |      +==+   \n"
+		"                              |        | ..                 .. |        |    \n"
+		"                              |       +=    ...         ...    =+       |    \n"
+		"                              | ..    |+~~+ .?.         .?. +~~+|    .. |    \n"
+		"                              | ?.    |+~~+|======+ +======|+~~+|    .? |    \n"
+		"                              | ..    +====+      +-+      +====+    .. |    \n"
+		"[1] - Construct Building     +=    ...                           ...    =+   \n"
+		"[2] - Construct Keep         |+~~+ .?.         +==---==+         .?. +~~+|   \n"
+		"[3] - Construct Moat         |+~~+|============| x x x |============|+~~+|   \n"
+		"[4] - Construct Tower        +====+            +=======+            +====+   \n"
+		"[5] - Construct Wall                                                         \n"
+		"[6] - Exit Building Projects Menu\n"
+		"You must select a number from 1 to 6.\n"
+		"Type 'exit' if you do not wish to make a selection at this time.\n"
+		"For details on a given choice, type 'describe X' (or '? X') where\n"
+		"X is the option about which you would like further details.\n",
 		Player->caughtMessage());
 }
