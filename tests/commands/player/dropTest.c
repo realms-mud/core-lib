@@ -221,3 +221,46 @@ void CanDropSomeMoney()
     ExpectEq(100, present_clone("lib/items/money.c", Room)->query("value"));
     ExpectEq("You drop money.\n", Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayersCannotDropItemsWithoutDropMethod()
+{
+	object player2 = clone_object("/lib/tests/support/services/mockPlayer.c");
+	Player->Name("fred");
+
+	move_object(player2, Player);
+	ExpectFalse(Player->executeCommand("drop fred"));
+	ExpectFalse(present(player2, Room));
+
+	destruct(player2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WizardsCanDropItemsWithoutDropMethod()
+{
+	object player2 = clone_object("/lib/tests/support/services/mockWizard.c");
+	Player->Name("fred");
+
+	move_object(player2, Room);
+	move_object(Player, player2);
+
+	ExpectTrue(player2->executeCommand("drop fred"));
+	ExpectTrue(present(Player, Room));
+
+	destruct(player2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WizardsCanDropItemsById()
+{
+	object player2 = clone_object("/lib/tests/support/services/mockWizard.c");
+	Player->Name("fred");
+
+	move_object(player2, Room);
+	move_object(Player, player2);
+
+	ExpectTrue(player2->executeCommand("drop " + object_name(Player)));
+	ExpectTrue(present(Player, Room));
+
+	destruct(player2);
+}

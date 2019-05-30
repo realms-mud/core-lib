@@ -59,6 +59,11 @@ public nomask int execute(string command, object initiator)
                     !$1->query("undroppable") &&
                     $1->id($2) :), targetString);
         }
+		else if ((member(inherit_list(initiator), "lib/realizations/wizard.c") > -1) &&
+			present_clone(targetString, initiator))
+		{
+			targets += ({ present_clone(targetString, initiator) });
+		}
         else
         {
             targets += ({ getTarget(initiator, command, TargetInventory) });
@@ -73,10 +78,16 @@ public nomask int execute(string command, object initiator)
                 if (!initiator->isEquipped(target) ||
                     sizeof(regexp(({ command }), "-f")))
                 {
+					if (!function_exists("drop", target) &&
+						(member(inherit_list(initiator),
+							"lib/realizations/wizard.c") > -1))
+					{
+						move_object(target, environment(initiator));
+					}
                     if (!target->drop())
                     {
                         displayMessage("##InitiatorName## ##Infinitive::drop## " +
-                            target->query("name") + ".\n", initiator);
+                            (target->query("name") || target->Name()) + ".\n", initiator);
                     }
                 }
             }

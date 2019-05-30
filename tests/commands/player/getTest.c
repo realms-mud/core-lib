@@ -331,3 +331,38 @@ void AFlagForGetAllMoneyGetsAllMoney()
     ExpectEq(250, Player->Money());
     ExpectEq(4, sizeof(all_inventory(Room)));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayersCannotGetUngettableItems()
+{
+	object player2 = clone_object("/lib/tests/support/services/mockPlayer.c");
+	player2->Name("fred");
+
+	move_object(player2, Room);
+	ExpectFalse(Player->executeCommand("get fred"));
+	ExpectTrue(present(player2, Room), "Fred is here.");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WizardsCanGetUngettableItems()
+{
+	object player2 = clone_object("/lib/tests/support/services/mockWizard.c");
+	player2->Name("fred");
+
+	move_object(player2, Room);
+
+	ExpectTrue(player2->executeCommand("get bob"));
+	ExpectFalse(present(Player, Room));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WizardsCanGetByObjectId()
+{
+	object player2 = clone_object("/lib/tests/support/services/mockWizard.c");
+	player2->Name("fred");
+
+	move_object(player2, Room);
+
+	ExpectTrue(player2->executeCommand("get " + object_name(Player)));
+	ExpectFalse(present(Player, Room));
+}

@@ -44,15 +44,25 @@ private nomask object *getAllOfSpecificId(object initiator, object source)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object *getSpecificItem(object initiator, object source, string targetString)
+private nomask object *getSpecificItem(object initiator, object source, 
+	string targetString)
 {
     object *targets = ({});
     object target = present(targetString, source) ||
         present(targetString, environment(initiator));
 
+	int isWizard = 
+		member(inherit_list(initiator), "lib/realizations/wizard.c") > -1;
+
+	if (!target && isWizard)
+	{
+		target = present_clone(targetString, source) ||
+			present_clone(targetString, environment(initiator));
+	}
+
     if (target)
     {
-        if (target->get())
+        if (target->get() || isWizard)
         {
             targets += ({ target });
         }
@@ -94,7 +104,7 @@ private nomask int getObjects(object initiator, object source, object *targets)
             {
                 move_object(target, initiator);
                 displayMessage("##InitiatorName## ##Infinitive::pick## up " +
-                    target->query("name") + ".\n", initiator);
+                    (target->query("name") || target->Name()) + ".\n", initiator);
             }
             else
             {
