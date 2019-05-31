@@ -118,9 +118,9 @@ void ChoosingHelmDisplaysHelmMenu()
     command("1", Player);
     command("13", Player);
 
-    ExpectEq("Craft Helm - From this menu, you will select the\n"
-        "components that will be used to craft your helm. The relative statistics\n"
-        "for the item you are creating are:\n"
+    ExpectEq("Craft Helm - From this menu, you will select the components "
+		"that will be used\nto craft your helm. The relative statistics "
+        "for the item you are creating are:\n\n"
         "\tMaterial: none selected\n"
         "\tWeight: 1\n"
         "\n"

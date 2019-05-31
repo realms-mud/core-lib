@@ -91,9 +91,9 @@ private nomask string getDescription()
                 "information", "selector", colorConfiguration); 
         }
     }
-    return sprintf("From this menu, you will select the\ncomponents that "
-        "will be used to craft your %s. The relative statistics\nfor the item "
-        "you are creating are:", CraftingItem) + ret;
+    return regreplace(format(sprintf("%s - From this menu, you will select the components that "
+        "will be used to craft your %s. The relative statistics for the item "
+        "you are creating are:", Type, CraftingItem), 78), (Type + " - "), "") + ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -106,8 +106,8 @@ protected nomask void setUpUserForSelection()
     }
     getItemToCraft();
 
-    Description = getDescription();
     Type = "Craft " + capitalize(CraftingItem);
+    Description = getDescription();
 
     Data = Dictionary->getCraftingDataForItem(CraftingType, CraftingItem, User);
 

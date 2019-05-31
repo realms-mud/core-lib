@@ -111,9 +111,9 @@ void ChoosingRingDisplaysRingMenu()
     command("1", Player);
     command("16", Player);
 
-    ExpectEq("\x1b[0;36mCraft Ring - \x1b[0m\x1b[0;37;1mFrom this menu, you will select the\n"
-        "components that will be used to craft your ring. The relative statistics\n"
-        "for the item you are creating are:\n"
+    ExpectEq("\x1b[0;36mCraft Ring - \x1b[0m\x1b[0;37;1mFrom this menu, you "
+		"will select the components that will be used\nto craft your ring. "
+		"The relative statistics for the item you are creating are:\n\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0;31mnone selected\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Metal        \x1b[0m\n"
         "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mSelect Ring design  \x1b[0m\n"
@@ -153,9 +153,9 @@ void SelectingMaterialUpdatesRingMenu()
     command("1", Player);
     command("1", Player);
 
-    ExpectEq("\x1b[0;36mCraft Ring - \x1b[0m\x1b[0;37;1mFrom this menu, you will select the\n"
-        "components that will be used to craft your ring. The relative statistics\n"
-        "for the item you are creating are:\n"
+    ExpectEq("\x1b[0;36mCraft Ring - \x1b[0m\x1b[0;37;1mFrom this menu, you "
+		"will select the components that will be used\nto craft your ring. "
+		"The relative statistics for the item you are creating are:\n\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0m\x1b[0;33mAdmantite\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Metal        \x1b[0m\x1b[0;34;1m   (*)\x1b[0m\n"
         "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mSelect Ring design  \x1b[0m\n"
@@ -181,9 +181,9 @@ void CanAddComponentThatDoesNotModifyMaterials()
     command("10", Player);
     command("19", Player);
 
-    ExpectEq("\x1b[0;36mCraft Ring - \x1b[0m\x1b[0;37;1mFrom this menu, you will select the\n"
-        "components that will be used to craft your ring. The relative statistics\n"
-        "for the item you are creating are:\n"
+    ExpectEq("\x1b[0;36mCraft Ring - \x1b[0m\x1b[0;37;1mFrom this menu, you "
+		"will select the components that will be used\nto craft your ring. "
+		"The relative statistics for the item you are creating are:\n\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0;31mnone selected\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mSelect Metal        \x1b[0m\n"
         "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mSelect Ring design  \x1b[0m\x1b[0;34;1m   (*)\x1b[0m\n"
