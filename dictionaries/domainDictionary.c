@@ -435,6 +435,13 @@ public nomask mapping getBuildingMenu(object user, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping getBuildComponentMenu(object user, string location,
+	string type, string highlightComponent)
+{
+	return ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getAdministrationMenu(object user)
 {
     return ([]);

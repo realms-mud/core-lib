@@ -7,7 +7,7 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("ceiling");
+    Name("amethyst ceiling");
     suppressEntryMessage();
 
     addDescriptionTemplate("the ceiling is hard to discern from this distance, "

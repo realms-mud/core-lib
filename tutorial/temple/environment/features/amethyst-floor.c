@@ -7,7 +7,7 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("floor");
+    Name("amethyst floor");
     suppressEntryMessage();
 
     addDescriptionTemplate("the floor is fashioned out of what "
