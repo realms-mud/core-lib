@@ -51,6 +51,20 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NWMTR1": ([
                 "ascii":"+----+",
@@ -85,6 +99,21 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NWMTR1": ([
                 "ascii":"+====+",
@@ -126,6 +155,22 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NWMTR1": ([
                 "ascii":"+====+",
@@ -167,6 +212,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "NWMTR1": ([
                 "ascii":"+====+",
@@ -208,6 +270,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 880,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"catapult platform": ([ "stone": 250, "wood": 75, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 3,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "NWMTR1": ([
                 "ascii":"+====+",
@@ -249,6 +328,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"trebuchet platform": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 3,
+			]),
+		]),
         "components":([
             "NWMTR1": ([
                 "ascii":"+====+",
@@ -290,6 +386,24 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;60;20;190;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 1024,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+				"arcane craftsman": 5
+			]),
+		]),
         "components":([
             "NWMTR1": ([
                 "ascii":"+====+",
@@ -350,6 +464,20 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NT1": ([
                 "ascii": "+-+",
@@ -374,6 +502,21 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NT1": ([
                 "ascii": "+=+",
@@ -403,6 +546,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144;1m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"gatehouse": ([ "stone": 400, "wood": 150, "metal": 75, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "NT1": ([
                 "ascii": "+gate-default+",
@@ -432,6 +592,22 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NT1": ([
                 "ascii": "+archer-default+",
@@ -461,6 +637,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "NT1": ([
                 "ascii": "+ballista-default+",
@@ -518,6 +711,20 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NEMTR1": ([
                 "ascii":"+====+",
@@ -552,6 +759,21 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NEMTR1": ([
                 "ascii":"+====+",
@@ -593,6 +815,22 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NEMTR1": ([
                 "ascii":"+====+",
@@ -634,6 +872,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "NEMTR1": ([
                 "ascii":"+====+",
@@ -675,6 +930,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 880,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"catapult platform": ([ "stone": 250, "wood": 75, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 3,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "NEMTR1": ([
                 "ascii":"+====+",
@@ -716,6 +988,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"trebuchet platform": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 3,
+			]),
+		]),
         "components":([
             "NEMTR1": ([
                 "ascii":"+====+",
@@ -757,6 +1046,24 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;60;20;190;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 1024,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+				"arcane craftsman": 5
+			]),
+		]),
         "components":([
             "NEMTR1": ([
                 "ascii":"+====+",
@@ -817,6 +1124,20 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "WM1": ([
                 "ascii": "+-+",
@@ -841,6 +1162,21 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "WM1": ([
                 "ascii": "+-+",
@@ -870,6 +1206,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144;1m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"gatehouse": ([ "stone": 400, "wood": 150, "metal": 75, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "WM1": ([
                 "ascii": "gate+default-+",
@@ -899,6 +1252,22 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "WM1": ([
                 "ascii": "archer+default-+",
@@ -928,6 +1297,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "WM1": ([
                 "ascii": "ballista+default-+",
@@ -976,6 +1362,20 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "EM1": ([
                 "ascii": "+-+",
@@ -1000,6 +1400,21 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "EM1": ([
                 "ascii": "+-+",
@@ -1029,6 +1444,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144;1m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"gatehouse": ([ "stone": 400, "wood": 150, "metal": 75, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "EM1": ([
                 "ascii": "+-gate+default",
@@ -1058,6 +1490,22 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "EM1": ([
                 "ascii": "+-archer+default",
@@ -1087,6 +1535,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "EM1": ([
                 "ascii": "+-ballista+default",
@@ -1144,6 +1609,20 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SWMTR1": ([
                 "ascii":"+-    ",
@@ -1178,6 +1657,21 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SWMTR1": ([
                 "ascii":"+=    ",
@@ -1219,6 +1713,22 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SWMTR1": ([
                 "ascii":"+=    ",
@@ -1260,6 +1770,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "SWMTR1": ([
                 "ascii":"+=    ",
@@ -1301,6 +1828,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 880,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"catapult platform": ([ "stone": 250, "wood": 75, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 3,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "SWMTR1": ([
                 "ascii":"+=    ",
@@ -1342,6 +1886,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"trebuchet platform": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 3,
+			]),
+		]),
         "components":([
             "SWMTR1": ([
                 "ascii":"+=    ",
@@ -1383,6 +1944,24 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;60;20;190;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 1024,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+				"arcane craftsman": 5
+			]),
+		]),
         "components":([
             "SWMTR1": ([
                 "ascii":"+=    ",
@@ -1443,6 +2022,20 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "ST1": ([
                 "ascii": "+ +",
@@ -1467,6 +2060,21 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "ST1": ([
                 "ascii": "+ +",
@@ -1496,6 +2104,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144;1m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"gatehouse": ([ "stone": 400, "wood": 150, "metal": 75, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "ST1": ([
                 "ascii": "+ +",
@@ -1525,6 +2150,22 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "ST1": ([
                 "ascii": "+ +",
@@ -1554,6 +2195,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "ST1": ([
                 "ascii": "+ +",
@@ -1611,6 +2269,20 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SEMTR1": ([
                 "ascii":"    -+",
@@ -1645,6 +2317,21 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SEMTR1": ([
                 "ascii":"    =+",
@@ -1686,6 +2373,22 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SEMTR1": ([
                 "ascii":"    =+",
@@ -1727,6 +2430,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "SEMTR1": ([
                 "ascii":"    =+",
@@ -1768,6 +2488,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 880,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"catapult platform": ([ "stone": 250, "wood": 75, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 3,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "SEMTR1": ([
                 "ascii":"    =+",
@@ -1809,6 +2546,23 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"trebuchet platform": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 3,
+			]),
+		]),
         "components":([
             "SEMTR1": ([
                 "ascii":"    =+",
@@ -1850,6 +2604,24 @@ private mapping MotteTowers = ([
                 "24-bit": "\x1b[0;38;2;60;20;190;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 1024,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+				"arcane craftsman": 5
+			]),
+		]),
         "components":([
             "SEMTR1": ([
                 "ascii":"    =+",

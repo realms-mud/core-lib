@@ -129,21 +129,37 @@ private nomask string applyColorToBuilding(mapping component, string key,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string* getComponentDetails(mapping component)
+private nomask string *getComponentDetails(mapping component)
 {
-    string* ret = ({ "" });
+    string *ret = ({ "" });
 
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs mapping getPlayerDomain(object player, string location,
-    string type, string highlightComponent)
+private nomask void updateSections(mapping blueprint, string *sections, 
+	string key, string component, string highlightComponent,
+	string colorConfiguration, string charset)
 {
-    mapping ret = ([]);
+	foreach(string section in sections)
+	{
+		blueprint[section] = applyColorToBuilding(
+				CastleComponents[key]["components"][section] + ([]),
+				key, colorConfiguration, charset);
 
-    string colorConfiguration = player->colorConfiguration();
-    string charset = player->charsetConfiguration();
+		if (stringp(highlightComponent) && (highlightComponent == component))
+		{
+			blueprint[section] =
+				applyIsBuildingBackground(blueprint[section], colorConfiguration);
+		}
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getUnbuiltDomain(string type, string highlightComponent, 
+	string colorConfiguration, string charset)
+{
+	mapping ret = ([]);
 
     if (stringp(type) && member(CastleBlueprints, type))
     {
@@ -155,57 +171,71 @@ public nomask varargs mapping getPlayerDomain(object player, string location,
             ret["components"][component]["sections"] = ([]);
 
             string key = sprintf("unbuilt %s", component);
-            foreach(string section in m_indices(CastleComponents[key]["components"]))
-            {
-                ret["components"][component]["sections"][section] =
-                    applyColorToBuilding(
-                        CastleComponents[key]["components"][section] + ([]),
-                        key, colorConfiguration, charset);
 
-                if (stringp(highlightComponent) &&
-                    (highlightComponent == component))
-                {
-                    ret["components"][component]["sections"][section] =
-                        applyIsBuildingBackground(
-                            ret["components"][component]["sections"][section],
-                            colorConfiguration);
-                }
-            }
+			updateSections(ret["components"][component]["sections"],
+				m_indices(CastleComponents[key]["components"]),
+				sprintf("unbuilt %s", component),
+				component, highlightComponent, colorConfiguration, charset);
         }
     }
+	return ret;
+}
 
-    mapping upgrades = player->getDomainUpgrades(location, type);
-    if (sizeof(upgrades))
-    {
-        foreach(string upgrade in m_indices(upgrades))
-        {
-            string upgradeName = upgrades[upgrade]["name"];
+/////////////////////////////////////////////////////////////////////////////
+private nomask void applyDomainUpgrades(mapping domains, object player, 
+	string location, string type, string highlightComponent, 
+	string colorConfiguration, string charset)
+{
+	mapping upgrades = player->getDomainUpgrades(location, type);
+	if (sizeof(upgrades))
+	{
+		foreach(string upgrade in m_indices(upgrades))
+		{
+			string upgradeName = upgrades[upgrade]["name"];
 
-            if (member(CastleComponents, upgradeName))
-            {
-                mapping components = 
-                    CastleComponents[upgradeName]["components"];
+			if (member(CastleComponents, upgradeName))
+			{
+				updateSections(domains["components"][upgrade]["sections"],
+					m_indices(CastleComponents[upgradeName]["components"]),
+					upgradeName, upgrade, highlightComponent,
+					colorConfiguration, charset);
 
-                foreach(string section in m_indices(components))
-                {
-                    ret["components"][upgrade]["sections"][section] =
-                        applyColorToBuilding(
-                            CastleComponents[upgradeName]["components"][section] + ([]),
-                            upgradeName, colorConfiguration, charset);
+				domains["components"][upgrade]["constructed"] = 
+					upgrades[upgrade];
+			}
+		}
+	}
+}
 
-                    if (stringp(highlightComponent) &&
-                        (highlightComponent == upgrade))
-                    {
-                        ret["components"][upgrade]["sections"][section] =
-                            applyIsBuildingBackground(
-                                ret["components"][upgrade]["sections"][section],
-                                colorConfiguration);
-                    }
-                }
-                ret["components"][upgrade]["constructed"] = upgrades[upgrade];
-            }
-        }
-    }
+/////////////////////////////////////////////////////////////////////////////
+private nomask void applyCurrentComponent(mapping domains, string component,
+	string highlightComponent, string colorConfiguration, string charset)
+{
+	if (component && member(CastleComponents, component))
+	{
+		string upgrade = CastleComponents[component]["type"];
+
+		updateSections(domains["components"][upgrade]["sections"],
+			m_indices(CastleComponents[component]["components"]),
+			component, upgrade, highlightComponent, colorConfiguration, charset);
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs mapping getPlayerDomain(object player, string location,
+    string type, string highlightComponent, string currentComponent)
+{
+    string colorConfiguration = player->colorConfiguration();
+    string charset = player->charsetConfiguration();
+
+	mapping ret = 
+		getUnbuiltDomain(type, highlightComponent, colorConfiguration, charset);
+
+	applyDomainUpgrades(ret, player, location, type, highlightComponent,
+		colorConfiguration, charset);
+
+	applyCurrentComponent(ret, currentComponent, highlightComponent,
+		colorConfiguration, charset);
 
     if (sizeof(ret))
     {
@@ -435,10 +465,55 @@ public nomask mapping getBuildingMenu(object user, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getBuildComponentMenu(object user, string location,
-	string type, string highlightComponent)
+private nomask string *getComponentInfo(object user, string component)
 {
-	return ([]);
+	string *ret = ({});
+
+	if (member(CastleComponents, component))
+	{
+		string colorConfiguration = user->colorConfiguration();
+		string charset = user->charsetConfiguration();
+
+		object configuration =
+			load_object("/lib/dictionaries/configurationDictionary.c");
+
+		ret += ({
+
+		});
+	}
+	return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getBuildComponentMenu(object user, string location,
+	string component)
+{
+    mapping ret = ([]);
+
+    string domainType = user->getDomainType(location);
+
+    mapping playerDomain = getPlayerDomain(user, location, domainType,
+		component, component);
+
+	string *details = getComponentInfo(user, component);
+	string *options = ({});
+    int count = 1;
+    int offset = 0;
+    string *firstSection = 0;
+
+    if (sizeof(playerDomain["layout"]) > sizeof(options))
+    {
+        offset = sizeof(playerDomain["layout"]) - sizeof(options);
+        firstSection = playerDomain["layout"][0..(offset - 1)];
+    }
+
+    foreach(string option in options)
+    {
+        string key = to_string(count);
+        count++;
+    }
+	
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

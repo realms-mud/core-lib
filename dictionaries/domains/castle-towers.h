@@ -51,6 +51,20 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NWCTR1": ([
                 "ascii":"+----+",
@@ -85,6 +99,21 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NWCTR1": ([
                 "ascii":"+====+",
@@ -126,6 +155,22 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NWCTR1": ([
                 "ascii":"+====+",
@@ -167,6 +212,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "NWCTR1": ([
                 "ascii":"+====+",
@@ -208,6 +270,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 880,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"catapult platform": ([ "stone": 250, "wood": 75, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 3,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "NWCTR1": ([
                 "ascii":"+====+",
@@ -249,6 +328,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"trebuchet platform": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 3,
+			]),
+		]),
         "components":([
             "NWCTR1": ([
                 "ascii":"+====+",
@@ -290,6 +386,24 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;60;20;190;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 1024,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+				"arcane craftsman": 5
+			]),
+		]),
         "components":([
             "NWCTR1": ([
                 "ascii":"+====+",
@@ -359,6 +473,20 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NECTR1": ([
                 "ascii":"+====+",
@@ -393,6 +521,21 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NECTR1": ([
                 "ascii":"+====+",
@@ -434,6 +577,22 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NECTR1": ([
                 "ascii":"+====+",
@@ -475,6 +634,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "NECTR1": ([
                 "ascii":"+====+",
@@ -516,6 +692,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 880,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"catapult platform": ([ "stone": 250, "wood": 75, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 3,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "NECTR1": ([
                 "ascii":"+====+",
@@ -557,6 +750,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"trebuchet platform": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 3,
+			]),
+		]),
         "components":([
             "NECTR1": ([
                 "ascii":"+====+",
@@ -598,6 +808,24 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;60;20;190;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 1024,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+				"arcane craftsman": 5
+			]),
+		]),
         "components":([
             "NECTR1": ([
                 "ascii":"+====+",
@@ -667,6 +895,20 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SWCTR1": ([
                 "ascii":"+-    ",
@@ -701,6 +943,21 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SWCTR1": ([
                 "ascii":"+=    ",
@@ -744,6 +1001,22 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SWCTR1": ([
                 "ascii":"+=    ",
@@ -785,6 +1058,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "SWCTR1": ([
                 "ascii":"+=    ",
@@ -826,6 +1116,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 880,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"catapult platform": ([ "stone": 250, "wood": 75, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 3,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "SWCTR1": ([
                 "ascii":"+=    ",
@@ -867,6 +1174,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"trebuchet platform": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 3,
+			]),
+		]),
         "components":([
             "SWCTR1": ([
                 "ascii":"+=    ",
@@ -908,6 +1232,24 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;60;20;190;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 1024,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+				"arcane craftsman": 5
+			]),
+		]),
         "components":([
             "SWCTR1": ([
                 "ascii":"+=    ",
@@ -977,6 +1319,20 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SECTR1": ([
                 "ascii":"    -+",
@@ -1011,6 +1367,21 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SECTR1": ([
                 "ascii":"    =+",
@@ -1052,6 +1423,22 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SECTR1": ([
                 "ascii":"    =+",
@@ -1093,6 +1480,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "SECTR1": ([
                 "ascii":"    =+",
@@ -1134,6 +1538,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 880,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"catapult platform": ([ "stone": 250, "wood": 75, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 3,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "SECTR1": ([
                 "ascii":"    =+",
@@ -1175,6 +1596,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"trebuchet platform": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 3,
+			]),
+		]),
         "components":([
             "SECTR1": ([
                 "ascii":"    =+",
@@ -1216,6 +1654,24 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;60;20;190;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 1024,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+				"arcane craftsman": 5
+			]),
+		]),
         "components":([
             "SECTR1": ([
                 "ascii":"    =+",
@@ -1284,6 +1740,20 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NCATOWER1": ([
                 "ascii": "+=======+",
@@ -1316,6 +1786,21 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NCATOWER1": ([
                 "ascii": "+=======+",
@@ -1355,6 +1840,22 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "NCATOWER1": ([
                 "ascii": "+=======+",
@@ -1393,6 +1894,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "NCATOWER1": ([
                 "ascii": "+=======+",
@@ -1436,6 +1954,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144;1m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"gatehouse": ([ "stone": 400, "wood": 150, "metal": 75, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "NCATOWER1": ([
                 "ascii": "+==---==+",
@@ -1501,6 +2036,20 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SCATOWER1": ([
                 "ascii": "+=======+",
@@ -1533,6 +2082,21 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SCATOWER1": ([
                 "ascii": "+=======+",
@@ -1572,6 +2136,22 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "SCATOWER1": ([
                 "ascii": "+=======+",
@@ -1610,6 +2190,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "SCATOWER1": ([
                 "ascii": "+=======+",
@@ -1653,6 +2250,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144;1m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"gatehouse": ([ "stone": 400, "wood": 150, "metal": 75, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "SCATOWER1": ([
                 "ascii": "+==---==+",
@@ -1726,6 +2340,20 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "WCT1": ([
                 "ascii": "+==+",
@@ -1766,6 +2394,21 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "WCT1": ([
                 "ascii": "+==+",
@@ -1811,6 +2454,22 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "WCT1": ([
                 "ascii": "+==+",
@@ -1856,6 +2515,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "WCT1": ([
                 "ascii": "+==+",
@@ -1906,6 +2582,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144;1m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"gatehouse": ([ "stone": 400, "wood": 150, "metal": 75, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "WCT1": ([
                 "ascii": "+==+",
@@ -1986,6 +2679,20 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 400,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "ECT1": ([
                 "ascii": "+==+",
@@ -2026,6 +2733,21 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
+		"construction": ([
+			"duration": 600,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 5,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "ECT1": ([
                 "ascii": "+==+",
@@ -2071,6 +2793,22 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100;1m"
             ]),
         ]),
+		"construction": ([
+			"duration": 800,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"archer level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+			]),
+		]),
         "components":([
             "ECT1": ([
                 "ascii": "+==+",
@@ -2116,6 +2854,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;100;20;100m"
             ]),
         ]),
+		"construction": ([
+			"duration": 840,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"ballista platform": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 8,
+				"carpenter": 2,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 1,
+			]),
+		]),
         "components":([
             "ECT1": ([
                 "ascii": "+==+",
@@ -2166,6 +2921,23 @@ private mapping CastleTowers = ([
                 "24-bit": "\x1b[0;38;2;112;128;144;1m",
             ]),
         ]),
+		"construction": ([
+			"duration": 960,
+			"materials": ([
+				"stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
+				"gatehouse": ([ "stone": 400, "wood": 150, "metal": 75, "textile": 0 ]),
+				"stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+			]),
+			"workers": ([
+				"stonemason": 10,
+				"carpenter": 5,
+				"foreman": 1,
+				"blacksmith": 1,
+				"architect": 1,
+				"engineer": 2,
+			]),
+		]),
         "components":([
             "ECT1": ([
                 "ascii": "+==+",
