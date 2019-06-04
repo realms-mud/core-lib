@@ -30,17 +30,18 @@ protected nosave object StateMachine = 0;
 protected nosave string StateMachinePath = 0;
 
 private nosave int SetupCompleted = 0;
+protected mapping instances = ([]);
+
 protected object configuration = 
     load_object("/lib/dictionaries/configurationDictionary.c");
 
 protected object StateMachineDictionary = 
     load_object("/lib/dictionaries/stateMachineDictionary.c");
 
-protected mapping instances = ([]);
-
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+
 }
 
 /////////////////////////////////////////////////////////////////////////////

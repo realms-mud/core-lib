@@ -475,28 +475,102 @@ private nomask string *displayLayout(string component,
 
 	if (member(CastleComponents, component))
 	{
-	string* sections = sort_array(
-		m_indices(CastleComponents[component]["components"]),
-		(: $1 > $2 :));
+		string* sections = sort_array(
+			m_indices(CastleComponents[component]["components"]),
+			(: $1 > $2 :));
 
-	foreach(string section in sections)
-	{
-		ret += ({ "        " +
-			applyColorToBuilding(
-			CastleComponents[component]["components"][section] + ([]),
-			component, colorConfiguration, charset)
+		string padding = sprintf("%" + to_string(16 - sizeof(
+			CastleComponents[component]["components"][sections[0]]["ascii"])) +
+			"s", "");
+
+		foreach(string section in sections)
+		{
+			ret += ({ "        " +
+				applyColorToBuilding(
+				CastleComponents[component]["components"][section] + ([]),
+				component, colorConfiguration, charset) + padding
 			});
-	}
+		}
 
-	ret[0] = regreplace(ret[0], "        ",
-		configuration->decorate("Layout: ", "heading", "player domains",
-			colorConfiguration));
+		ret[0] = regreplace(ret[0], "        ",
+			configuration->decorate("Layout: ", "heading", "player domains",
+				colorConfiguration));
 	}
 	return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string* getComponentInfo(object user, mapping componentData)
+private nomask string *displayCompletionTime(object user, 
+	mapping constructionData, string colorConfiguration, string charset)
+{
+	return ({
+		configuration->decorate("Completion time: ", "heading",
+			"player domains", colorConfiguration) +
+		configuration->decorate(sprintf("%-7d", constructionData["duration"]),
+			"value", "player domains", colorConfiguration),
+		sprintf("%24s", "")
+	});
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *displayMaterialsData(object user, mapping componentData,
+	mapping constructionData, string colorConfiguration, string charset)
+{
+	string *ret = ({});
+
+	foreach(string material in m_indices(constructionData["materials"]))
+	{
+		ret += ({ 
+			configuration->decorate(
+				sprintf("%-24s", capitalize(material) + ":"), 
+				"heading", "player domains", colorConfiguration),
+			member(componentData, material) ?
+			configuration->decorate(
+				sprintf("    %-20s", componentData[material]),
+				"value", "player domains", colorConfiguration) :
+			configuration->decorate(sprintf("    %-20s", "<select>"),
+				"selection needed", "player domains", colorConfiguration)
+		});
+	}
+	return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *displayWorkerData(object user, 
+	mapping constructionData, string colorConfiguration, string charset)
+{
+	string *ret = ({ sprintf("%24s", ""),
+		configuration->decorate(
+			sprintf("%-24s", "Needed workers:"),
+			"heading", "player domains", colorConfiguration),
+	});
+
+	string *workers = sort_array(m_indices(constructionData["workers"]),
+		(: $1 > $2 :));
+
+	foreach(string worker in workers)
+	{
+		int currentNumber = 0;
+		int totalNeeded = constructionData["workers"][worker];
+
+		ret += ({ 
+			configuration->decorate(
+				sprintf("    %-12s - ", capitalize(worker)), 
+				"worker", "player domains", colorConfiguration) +
+			configuration->decorate(sprintf("%2d", currentNumber),
+				(currentNumber >= totalNeeded) ? "value" : "incomplete",
+				"player domains", colorConfiguration) +
+			configuration->decorate("/", currentNumber,
+				"heading", "player domains", colorConfiguration) +
+			configuration->decorate(sprintf("%-2d", totalNeeded),
+				"total", "player domains", colorConfiguration)
+		});
+	}
+	return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *getComponentInfo(object user, mapping componentData)
 {
 	string* ret = ({});
 
@@ -508,26 +582,14 @@ private nomask string* getComponentInfo(object user, mapping componentData)
 		mapping construction =
 			CastleComponents[componentData["name"]]["construction"] + ([]);
 
-		ret += displayLayout(componentData["name"], colorConfiguration, charset) +
-			({
-				configuration->decorate("Completion time: ", "heading",
-					"player domains", colorConfiguration) +
-				configuration->decorate(construction["duration"],
-					"value", "player domains", colorConfiguration) + "     "
-			});
-
-		foreach(string material in m_indices(construction["materials"]))
-		{
-			ret += ({ sprintf("%24s",
-				configuration->decorate(capitalize(material), "heading",
-					"player domains", colorConfiguration)),
-				sprintf("    %20s", member(componentData, material) ?
-				configuration->decorate(componentData[material],
-					"value", "player domains", colorConfiguration) :
-				configuration->decorate("<select>",
-					"selection needed", "player domains", colorConfiguration))
-				});
-		}
+		ret += displayLayout(componentData["name"], 
+				colorConfiguration, charset) +
+			displayCompletionTime(user, construction, 
+				colorConfiguration, charset) +
+			displayMaterialsData(user, componentData, construction, 
+				colorConfiguration, charset) +
+			displayWorkerData(user, construction, 
+				colorConfiguration, charset);
 	}
 	return ret;
 }
@@ -541,51 +603,27 @@ public nomask mapping getBuildComponentMenu(object user, string location,
 	string domainType = user->getDomainType(location);
 
 	mapping playerDomain = getPlayerDomain(user, location, domainType,
-		componentData["name"], componentData["name"]);
+		componentData["type"]);
 
 	string *details = getComponentInfo(user, componentData);
 
-	string *options = ({ "1", "2", "3", "4", "5", "6", "7", "8", "9" });
+	string *options = ({ /*"1", "2", "3", "4", "5", "6", "7", "8", "9"*/ });
 	int count = 1;
 	int offset = 0;
-	string *firstSection = 0;
-
-	if (sizeof(playerDomain["layout"]) > sizeof(options))
-	{
-		offset = sizeof(playerDomain["layout"]) - sizeof(options);
-		firstSection = playerDomain["layout"][0..(offset - 1)];
-	}
+	string *firstSection = playerDomain["layout"][0..sizeof(details)];
 
 	if (sizeof(firstSection) > sizeof(details))
 	{
 		int size;
-		string* extraData = ({});
-		int sectionOffset;
-		if (sizeof(firstSection) <= sizeof(details))
-		{
-			size = sizeof(details) - sizeof(firstSection);
-			sectionOffset = sizeof(firstSection);
-			extraData = details[0..(size - 1)];
-			details = details[sectionOffset..];
-		}
-		else
-		{
-			size = sizeof(firstSection) - sizeof(details);
-			sectionOffset = sizeof(details);
-			for (int i = 0; i < size; i++)
-			{
-				extraData += ({ sprintf("%24s%s", "", firstSection[i]) });
-			}
+		string *extraData = ({});
 
-			firstSection = firstSection[sectionOffset..];
-		}
 		for (int i = 0; i < sizeof(firstSection); i++)
 		{
 			extraData += ({ sprintf("%24s%s",
 				sizeof(details) > i ? details[i] : "", firstSection[i]) });
 		}
-		printf("%O\n", extraData);
 	}
+
     foreach(string option in options)
     {
         string key = to_string(count);

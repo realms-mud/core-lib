@@ -128,6 +128,7 @@ void CanSelectConstructASpecificBuilding()
     Player->colorConfiguration("8-bit");
 
     Selector->initiateSelector(Player);
+
     command("4", Player);
     command("1", Player);
 
@@ -177,6 +178,7 @@ void CanSelectFromConstructComponentMenu()
 	Player->colorConfiguration("8-bit");
 
 	Selector->initiateSelector(Player);
+
 	command("4", Player);
 	command("1", Player);
 	command("1", Player);
