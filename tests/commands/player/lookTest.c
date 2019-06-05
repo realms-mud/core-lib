@@ -457,7 +457,7 @@ void LooksSupportsColorsAndUnicode()
     ExpectEq("\x1b[0;38;5;190mBob the title-less\x1b[0m\x1b[0;38;5;238m (male)\x1b[0m\x1b[0;38;5;2m (elf)\x1b[0m\n"
         "\x1b[0;38;5;9;1mHe is in good shape.\n"
         "\x1b[0mBob has a shiny blah!\n"
-        "\x1b[0;38;5;80m	Carrying:\n"
+        "\x1b[0;38;5;80m\tCarrying:\n"
         "\x1b[0m\x1b[0;38;5;124m╔════════════════════════════╡ Wielded Weapons ╞══════════════════════════════╗\n"
         "\x1b[0m\x1b[0;38;5;124m║\x1b[0m \x1b[0;38;5;80mPrimary Weapon: \x1b[0m\x1b[0;38;5;231;1mSword of Blah        \x1b[0m \x1b[0;38;5;80mOffhand Weapon: \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;124m║\x1b[0m\n"
         "\x1b[0;38;5;124m╠══════════════════════════════╡ Worn Items ╞═════════════════════════════════╣\n"

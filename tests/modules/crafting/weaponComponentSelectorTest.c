@@ -79,8 +79,8 @@ void SpecificWeaponMenuDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mCraft Long sword - \x1b[0m\x1b[0;37;1mFrom this menu, "
-		"you will select the components that will be\nused to craft your long "
-		"sword. The relative statistics for the item you are\ncreating are:\n\n"
+        "you will select the components that will be\nused to craft your long "
+        "sword. The relative statistics for the item you are\ncreating are:\n\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0;31mnone selected\x1b[0m\n"
         "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m5\x1b[0m\x1b[0;33m to 105\x1b[0m\n"
         "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m7\x1b[0m\x1b[0;33m to 10\x1b[0m\n"
@@ -312,8 +312,8 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
     command("26", Player);
 
     ExpectEq("\x1b[0;36mCraft Long sword - \x1b[0m\x1b[0;37;1mFrom this menu, "
-		"you will select the components that will be\nused to craft your long "
-		"sword. The relative statistics for the item you are\ncreating are:\n\n"
+        "you will select the components that will be\nused to craft your long "
+        "sword. The relative statistics for the item you are\ncreating are:\n\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0;31mnone selected\x1b[0m\n"
         "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m5\x1b[0m\x1b[0;33m to 105\x1b[0m\n"
         "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m7\x1b[0m\x1b[0;33m to 10\x1b[0m\n"
@@ -353,8 +353,8 @@ void ConfirmSetsValuesForWeaponCraftingMenu()
     command("25", Player);
 
     ExpectEq("\x1b[0;36mCraft Long sword - \x1b[0m\x1b[0;37;1mFrom this menu, "
-		"you will select the components that will be\nused to craft your long "
-		"sword. The relative statistics for the item you are\ncreating are:\n\n"
+        "you will select the components that will be\nused to craft your long "
+        "sword. The relative statistics for the item you are\ncreating are:\n\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0m\x1b[0;33mAdmantite\x1b[0m\n"
         "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m8\x1b[0m\x1b[0;33m to 108\x1b[0m\n"
         "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m12\x1b[0m\x1b[0;33m to 15\x1b[0m\x1b[0;31m [+2 magical]\x1b[0m\n"
@@ -633,7 +633,7 @@ void TurningOffColorDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("Craft Long sword - From this menu, you will select the components "
-		"that will be\nused to craft your long sword. The relative statistics "
+        "that will be\nused to craft your long sword. The relative statistics "
         "for the item you are\ncreating are:\n\n"
         "\tMaterial: none selected\n"
         "\tAttack: 5 to 105\n"

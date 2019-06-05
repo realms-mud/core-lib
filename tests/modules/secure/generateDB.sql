@@ -501,14 +501,14 @@ p_intelligence int, p_dexterity int, p_wisdom int, p_constitution int,
 p_charisma int, p_invisible int, p_attributes int, p_skill int,
 p_research int, p_unassigned int, p_location varchar(200), p_money int) RETURNS int(11)
 BEGIN
-	declare pid int;
+    declare pid int;
     
     select id into pid
     from players where name = p_name;
     
     if pid is not null then
-		update players set race = p_race,
-						   age = p_age,
+        update players set race = p_race,
+                           age = p_age,
                            gender = p_gender,
                            ghost = p_ghost,
                            strength = p_strength,
@@ -525,9 +525,9 @@ BEGIN
                            location = p_location,
                            playerMoney = p_money,
                            LastLogin = now()
-		where id = pid;
-	else
-		insert into players (name, race, age, gender, ghost, strength,
+        where id = pid;
+    else
+        insert into players (name, race, age, gender, ghost, strength,
         intelligence, dexterity, wisdom, constitution, charisma, invisible,
         attributePoints, skillPoints, researchPoints, unassignedExperience, 
         whenCreated, LastLogin, location, playerMoney)
@@ -544,20 +544,20 @@ END;
 CREATE PROCEDURE `saveBiologicalInformation`(p_playerid int, p_intoxicated int,
 p_stuffed int, p_drugged int, p_soaked int, p_headache int)
 BEGIN
-	declare pid int;
+    declare pid int;
     
     select id into pid
     from biological where playerid = p_playerid;
     
     if pid is not null then
-		update biological set intoxicated = p_intoxicated,
-						      stuffed = p_stuffed,
-						      drugged = p_drugged,
-						      soaked = p_soaked,
-						      headache = p_headache
-		where id = pid;
-	else
-		insert into biological (playerid, intoxicated, stuffed, drugged, soaked, headache)
+        update biological set intoxicated = p_intoxicated,
+                              stuffed = p_stuffed,
+                              drugged = p_drugged,
+                              soaked = p_soaked,
+                              headache = p_headache
+        where id = pid;
+    else
+        insert into biological (playerid, intoxicated, stuffed, drugged, soaked, headache)
         values (p_playerid, p_intoxicated, p_stuffed, p_drugged, p_soaked, p_headache);
     end if;
 END;
@@ -566,54 +566,54 @@ CREATE PROCEDURE `saveCombatInformation`(p_playerid int, p_hp int,
 p_maxhp int, p_sp int, p_maxsp int, p_st int, p_maxst int, p_wimpy int,
 p_killList int, p_healhp int, p_healsp int, p_healst int)
 BEGIN
-	declare pid int;
+    declare pid int;
  
     select id into pid
     from playerCombatData where playerid = p_playerid;
     
     if pid is not null then
-		update playerCombatData set hitPoints = p_hp,
-						      maxHitPoints = p_maxhp,
-						      spellPoints = p_sp,
-						      maxSpellPoints = p_maxsp,
-						      staminaPoints = p_st,
-						      maxStaminaPoints = p_maxst,
-						      wimpy = p_wimpy,
-						      onKillList = p_killList,
-						      timeToHealHP = p_healhp,
-						      timeToHealSP = p_healsp,
-						      timeToHealST = p_healst
-		where id = pid;
-	else
-		insert into playerCombatData (playerid,
-									  hitPoints,
-									  maxHitPoints,
-									  spellPoints,
-									  maxSpellPoints,
-									  staminaPoints,
-									  maxStaminaPoints,
-									  wimpy,
-									  onKillList,
-									  timeToHealHP,
-									  timeToHealSP,
-									  timeToHealST)
+        update playerCombatData set hitPoints = p_hp,
+                              maxHitPoints = p_maxhp,
+                              spellPoints = p_sp,
+                              maxSpellPoints = p_maxsp,
+                              staminaPoints = p_st,
+                              maxStaminaPoints = p_maxst,
+                              wimpy = p_wimpy,
+                              onKillList = p_killList,
+                              timeToHealHP = p_healhp,
+                              timeToHealSP = p_healsp,
+                              timeToHealST = p_healst
+        where id = pid;
+    else
+        insert into playerCombatData (playerid,
+                                      hitPoints,
+                                      maxHitPoints,
+                                      spellPoints,
+                                      maxSpellPoints,
+                                      staminaPoints,
+                                      maxStaminaPoints,
+                                      wimpy,
+                                      onKillList,
+                                      timeToHealHP,
+                                      timeToHealSP,
+                                      timeToHealST)
         values (p_playerid, p_hp, p_maxhp, p_sp, p_maxsp, p_st, p_maxst,
-				p_wimpy, p_killList, p_healhp, p_healsp, p_healst);
+                p_wimpy, p_killList, p_healhp, p_healsp, p_healst);
     end if;
 END;
 ##
 CREATE PROCEDURE `saveMaterialAttribute`(p_playerid int, p_type varchar(45), p_value varchar(256))
 BEGIN
-	declare materialId int;
+    declare materialId int;
     
     select id into materialId
     from materialAttributes
     where playerid = p_playerid and type = p_type;
     
     if materialId is not null then
-		update materialAttributes set value = p_value where id = materialId;
-	else
-		insert into materialAttributes (playerid, type, value)
+        update materialAttributes set value = p_value where id = materialId;
+    else
+        insert into materialAttributes (playerid, type, value)
         values (p_playerid, p_type, p_value);
     end if;
 END;
@@ -624,34 +624,34 @@ p_magicalin varchar(256), p_magicalout varchar(256), p_home varchar(256),
 p_clone varchar(256), p_short varchar(256), p_long varchar(256))
 BEGIN
     if p_title <> '' then
-	    call saveMaterialAttribute(p_playerid, 'title', p_title);
+        call saveMaterialAttribute(p_playerid, 'title', p_title);
     end if;
     if p_pretitle <> '' then
-	    call saveMaterialAttribute(p_playerid, 'pretitle', p_pretitle);
+        call saveMaterialAttribute(p_playerid, 'pretitle', p_pretitle);
     end if;
     if p_msgin <> '' then
-	    call saveMaterialAttribute(p_playerid, 'messageIn', p_msgin);
+        call saveMaterialAttribute(p_playerid, 'messageIn', p_msgin);
     end if;
     if p_msgout <> '' then
-	    call saveMaterialAttribute(p_playerid, 'messageOut', p_msgout);
+        call saveMaterialAttribute(p_playerid, 'messageOut', p_msgout);
     end if;
     if p_magicalIn <> '' then
-	    call saveMaterialAttribute(p_playerid, 'magicalMessageIn', p_magicalIn);
+        call saveMaterialAttribute(p_playerid, 'magicalMessageIn', p_magicalIn);
     end if;
     if p_magicalOut <> '' then
-	    call saveMaterialAttribute(p_playerid, 'magicalMessageOut', p_magicalOut);
+        call saveMaterialAttribute(p_playerid, 'magicalMessageOut', p_magicalOut);
     end if;
     if p_home <> '' then
-	    call saveMaterialAttribute(p_playerid, 'messageHome', p_home);
+        call saveMaterialAttribute(p_playerid, 'messageHome', p_home);
     end if;
     if p_clone <> '' then
-	    call saveMaterialAttribute(p_playerid, 'messageClone', p_clone);
+        call saveMaterialAttribute(p_playerid, 'messageClone', p_clone);
     end if;
     if p_short <> '' then
-	    call saveMaterialAttribute(p_playerid, 'shortDescription', p_short);
+        call saveMaterialAttribute(p_playerid, 'shortDescription', p_short);
     end if;
     if p_long <> '' then
-    	call saveMaterialAttribute(p_playerid, 'longDescription', p_long);
+        call saveMaterialAttribute(p_playerid, 'longDescription', p_long);
     end if;
 END;
 ##
@@ -659,31 +659,31 @@ CREATE PROCEDURE `saveGuild`(p_playerid int, p_guild varchar(40), p_title varcha
 p_pretitle varchar(45), p_rank varchar(45), p_level int, p_experience int, p_leftGuild int,
 p_anathema int, p_rankAdvancedAt int)
 BEGIN
-	declare guildId int;
+    declare guildId int;
  
     select id into guildId
     from guilds where playerid = p_playerid and name = p_guild;
     
     if guildId is not null then
-		update guilds set title = p_title,
-						  pretitle = p_pretitle,
+        update guilds set title = p_title,
+                          pretitle = p_pretitle,
                           rank = p_rank,
                           level = p_level,
                           experience = p_experience,
                           leftGuild = p_leftGuild,
                           anathema = p_anathema,
                           rankAdvancedAt = p_rankAdvancedAt
-		where id = guildId;
-	else
-		insert into guilds (playerid,
-									  name,
-									  title,
-									  pretitle,
+        where id = guildId;
+    else
+        insert into guilds (playerid,
+                                      name,
+                                      title,
+                                      pretitle,
                                       rank,
                                       level,
-									  experience,
+                                      experience,
                                       leftGuild,
-								      anathema,
+                                      anathema,
                                       rankAdvancedAt)
         values (p_playerid, p_guild, p_title, p_pretitle, p_rank, p_level,
                 p_experience, p_leftGuild, p_anathema, p_rankAdvancedAt);
@@ -693,20 +693,20 @@ END;
 CREATE PROCEDURE `saveQuest` (p_playerid int, p_quest varchar(200), p_name varchar(45), 
 p_state varchar(45), p_statesCompleted varchar(45), p_active int, p_completed int)
 BEGIN
-	declare questId int;
+    declare questId int;
  
     select id into questId
     from quests where playerid = p_playerid and path = p_quest;
     
     if questId is not null then
-		update quests set name = p_name,
+        update quests set name = p_name,
                           state = p_state,
-						  statesCompleted = p_statesCompleted,
+                          statesCompleted = p_statesCompleted,
                           isActive = p_active,
                           isCompleted = p_completed
-		where id = questId;
-	else
-		insert into quests (playerid, path, name, state, statesCompleted, isActive, isCompleted)
+        where id = questId;
+    else
+        insert into quests (playerid, path, name, state, statesCompleted, isActive, isCompleted)
         values (p_playerid, p_quest, p_name, p_state, p_statesCompleted, p_active, p_completed);
     end if;
 END;
@@ -715,21 +715,21 @@ CREATE PROCEDURE `saveResearch`(p_playerid int, p_path varchar(200), p_began int
 p_whenCompleted int, p_timeSpent int, p_completed int, p_timeToComplete int, 
 p_cooldown int)
 BEGIN
-	declare researchId int;
+    declare researchId int;
  
     select id into researchId
     from research where playerid = p_playerid and path = p_path;
     
     if researchId is not null then
-		update research set whenResearchBegan = p_began,
-						  whenResearchComplete = p_whenCompleted,
+        update research set whenResearchBegan = p_began,
+                          whenResearchComplete = p_whenCompleted,
                           timeSpentLearning = p_timeSpent,
                           researchComplete = p_completed,
                           timeToCompleteLearning = p_timeToComplete,
                           cooldown = p_cooldown
-		where id = researchId;
-	else
-		insert into research (playerid, path, whenResearchBegan, whenResearchComplete, 
+        where id = researchId;
+    else
+        insert into research (playerid, path, whenResearchBegan, whenResearchComplete, 
         timeSpentLearning, researchComplete, timeToCompleteLearning, cooldown)
         values (p_playerid, p_path, p_began, p_whenCompleted, p_timeSpent, p_completed,
         p_timeToComplete, p_cooldown);
@@ -738,7 +738,7 @@ END;
 ##
 CREATE PROCEDURE `pruneResearchChoices` (p_playerid int)
 BEGIN
-	delete from researchChoiceItems
+    delete from researchChoiceItems
     where researchChoiceId in (select id from researchChoices where playerid = p_playerid);
     
     delete from researchChoices where playerid = p_playerid;
@@ -747,7 +747,7 @@ END;
 CREATE FUNCTION `saveResearchChoice` (p_playerid int, p_name varchar(45))
 RETURNS INTEGER
 BEGIN
-	declare choiceId int;
+    declare choiceId int;
     
     insert into researchChoices (playerid, name) values (p_playerId, p_name);
     
@@ -761,20 +761,20 @@ END;
 CREATE PROCEDURE `saveResearchChoiceOption` (p_choiceId int, p_selection varchar(5),
 p_type varchar(15), p_name varchar(45), p_description varchar(256), p_key varchar(200))
 BEGIN
-	insert into researchChoiceItems 
+    insert into researchChoiceItems 
     (researchChoiceId, selectionNumber, type, name, description, researchChoiceItems.key)
     values (p_choiceId, p_selection, p_type, p_name, p_description, p_key);
 END;
 ##
 CREATE PROCEDURE `saveOpenResearchTrees` (p_playerid int, p_path varchar(200))
 BEGIN
-	declare researchId int;
+    declare researchId int;
  
     select id into researchId
     from openResearchTrees where playerid = p_playerid and researchTree = p_path;
     
     if researchId is null then
-		insert into openResearchTrees (playerId, researchTree)
+        insert into openResearchTrees (playerId, researchTree)
         values (p_playerid, p_path);
     end if;
 END;
@@ -782,16 +782,16 @@ END;
 CREATE PROCEDURE `saveSkills` (p_playerid int, p_name varchar(45), 
 p_value int)
 BEGIN
-	declare skillId int;
+    declare skillId int;
  
     select id into skillId
     from skills where playerid = p_playerid and name = p_name;
     
     if skillId is not null then
-		update skills set value = p_value
-		where id = skillId;
-	else
-		insert into skills (playerid, name, value)
+        update skills set value = p_value
+        where id = skillId;
+    else
+        insert into skills (playerid, name, value)
         values (p_playerid, p_name, p_value);
     end if;
 END;
@@ -800,15 +800,15 @@ CREATE PROCEDURE `saveTraits` (p_playerid int, p_path varchar(200),
 p_name varchar(45), p_added int, p_end int, p_expire varchar(256),
 p_trigger varchar(200))
 BEGIN
-	declare tid int;
+    declare tid int;
  
     select id into tid
     from traits where playerid = p_playerid and path = p_path;
     
     if tid is not null then
-		update traits set name = p_name,
+        update traits set name = p_name,
                           added = p_added
-		where id = tid;
+        where id = tid;
 
         if p_end is not null and p_end <> 0 then 
             update timedtraits set endTime = p_end,
@@ -816,15 +816,15 @@ BEGIN
                               triggeringResearch = p_trigger
             where traitid = tid;
         end if;
-	else
-		insert into traits (playerid, path, name, added)
+    else
+        insert into traits (playerid, path, name, added)
         values (p_playerid, p_path, p_name, p_added);
 
         if p_end is not null and p_end <> 0 then
             select id into tid
             from traits where playerid = p_playerid and path = p_path;
 
-   		    insert into timedtraits (traitid, endTime, expireMessage, triggeringResearch)
+               insert into timedtraits (traitid, endTime, expireMessage, triggeringResearch)
             values (tid, p_end, p_expire, p_trigger);
         end if;
     end if;
@@ -832,16 +832,16 @@ END;
 ##
 CREATE PROCEDURE `saveTemporaryTraits` (p_playerid int, p_traits varchar(512))
 BEGIN
-	declare playerId int;
+    declare playerId int;
  
     select id into playerId
     from temporaryTraits where playerid = p_playerid;
     
     if playerId is not null then
-		update temporaryTraits set traitList = p_traits
-		where id = playerId;
-	else
-		insert into temporaryTraits (playerid, traitList)
+        update temporaryTraits set traitList = p_traits
+        where id = playerId;
+    else
+        insert into temporaryTraits (playerid, traitList)
         values (p_playerid, p_traits);
     end if;
 END;
@@ -862,30 +862,30 @@ CREATE PROCEDURE `saveFaction` (p_playerid int, p_path varchar(200),
 p_disposition varchar(20), p_reputation int, p_lastInteraction int, 
 p_lastReputation int, p_numInteractions int, p_dispositionTime int, p_isMember tinyint)
 BEGIN
- 	declare factionId int;
+     declare factionId int;
 
     select id into factionId
     from factions where playerid = p_playerid and path = p_path;
     
     if factionId is not null then
-		update factions set disposition = p_disposition,
+        update factions set disposition = p_disposition,
                             reputation = p_reputation,
                             lastInteraction = p_lastInteraction,
                             lastReputation = p_lastReputation,
                             numberOfInteractions = p_numInteractions,
                             dispositionTime = p_dispositionTime,
                             isMember = p_isMember
-		where id = factionId;
-	else
-		insert into factions (playerid, path, disposition, reputation, lastInteraction, lastReputation, numberOfInteractions, dispositionTime, isMember)
+        where id = factionId;
+    else
+        insert into factions (playerid, path, disposition, reputation, lastInteraction, lastReputation, numberOfInteractions, dispositionTime, isMember)
         values (p_playerid, p_path, p_disposition, p_reputation, p_lastInteraction, p_lastReputation, p_numInteractions, p_dispositionTime, p_isMember);
     end if;
 END;
 ##
 CREATE PROCEDURE `saveCombatStatistics` (p_playerName varchar(40),
 p_key varchar(200), p_name varchar(40), p_level int)
-BEGIN	
-	declare lPlayerId int;
+BEGIN    
+    declare lPlayerId int;
     declare statId int;
     declare timesPreviouslyKilled int;
     
@@ -894,15 +894,15 @@ BEGIN
 
     if(lPlayerId is not null) then
     
-		select id, timesKilled into statId, timesPreviouslyKilled
-		from combatStatistics
-		where (playerid = lPlayerId) AND (foeKey = p_key);
-		
+        select id, timesKilled into statId, timesPreviouslyKilled
+        from combatStatistics
+        where (playerid = lPlayerId) AND (foeKey = p_key);
+        
         if(statId is not null) then
-			update combatStatistics
-			set timesKilled = timesPreviouslyKilled + 1
+            update combatStatistics
+            set timesKilled = timesPreviouslyKilled + 1
             where id = statId;
-		else
+        else
             insert into combatStatistics
             (name, level, foeKey, timesKilled, playerId)
             values (p_name, p_level, p_key, 1, lPlayerId);           
@@ -915,9 +915,9 @@ BEGIN
         -- Stupid MySQL can handle this as an embedded query???
         select id into statId 
         from combatStatistics
-		where playerId = lPlayerId
-		order by timesKilled desc, level desc
-		limit 1;
+        where playerId = lPlayerId
+        order by timesKilled desc, level desc
+        limit 1;
 
         update combatStatistics
         set isNemesis = 1
@@ -925,9 +925,9 @@ BEGIN
  
         select id into statId
         from combatStatistics
-		where playerId = lPlayerId
-		order by level desc, timesKilled desc
-		limit 1;
+        where playerId = lPlayerId
+        order by level desc, timesKilled desc
+        limit 1;
 
         update combatStatistics
         set isBestKill = 1
@@ -938,23 +938,23 @@ END;
 ##
 CREATE PROCEDURE `saveCombatStatisticsForRace` 
 (p_playerName varchar(40), p_race varchar(20))
-BEGIN	
-	declare lPlayerId int;
+BEGIN    
+    declare lPlayerId int;
     declare statId int;
     
     select id into lPlayerId
     from players where name = p_playerName;
 
     if(lPlayerId is not null) then
-		select id into statId
-		from combatStatisticsForRace
-		where (playerid = lPlayerId) AND (race = p_race);
-		
+        select id into statId
+        from combatStatisticsForRace
+        where (playerid = lPlayerId) AND (race = p_race);
+        
         if(statId is not null) then
-			update combatStatisticsForRace
-			set timesKilled = timesKilled + 1
+            update combatStatisticsForRace
+            set timesKilled = timesKilled + 1
             where id = statId;
-		else
+        else
             insert into combatStatisticsForRace
             (playerid, race, timesKilled)
             values (lPlayerId, p_race, 1);           
@@ -964,22 +964,22 @@ END;
 ##
 CREATE PROCEDURE `saveWizardLevel`(p_playerid int, p_level varchar(20))
 BEGIN
-	declare levelId int;
+    declare levelId int;
     declare wizardId int;
     
     select id into levelId
     from wizardTypes where type = p_level;
     
     if levelId is not null then
-		select id into wizardId
-		from wizards where playerId = p_playerId;
-		
-		if wizardId is not null then
-			update wizards set typeId = levelId
+        select id into wizardId
+        from wizards where playerId = p_playerId;
+        
+        if wizardId is not null then
+            update wizards set typeId = levelId
             where id = wizardId;
-		else
-			insert into wizards (playerId, typeId) values (p_playerId, levelId);
-		end if;
+        else
+            insert into wizards (playerId, typeId) values (p_playerId, levelId);
+        end if;
     end if;    
 END;
 ##
@@ -993,17 +993,17 @@ BEGIN
     from players where name = p_playerName;
     
     if lplayerId is not null then
-		select id into opinionId
-		from opinions where playerId = lplayerId and targetKey = p_targetKey;
-		
-		if opinionId is not null then
-			update opinions set opinion = p_opinion,
+        select id into opinionId
+        from opinions where playerId = lplayerId and targetKey = p_targetKey;
+        
+        if opinionId is not null then
+            update opinions set opinion = p_opinion,
                                 lastInteraction = p_lastInteraction
             where id = opinionId;
-		else
-			insert into opinions (playerId, targetKey, opinion, lastInteraction) 
+        else
+            insert into opinions (playerId, targetKey, opinion, lastInteraction) 
             values (lplayerId, p_targetKey, p_opinion, p_lastInteraction);
-		end if;
+        end if;
     end if;    
 END;
 ##
@@ -1017,17 +1017,17 @@ BEGIN
     from players where name = p_playerName;
     
     if lplayerId is not null then
-		select id into stateId
-		from characterStates 
+        select id into stateId
+        from characterStates 
         where playerId = lplayerId and targetKey = p_targetKey;
-		
-		if stateId is not null then
-			update characterStates set state = p_state
+        
+        if stateId is not null then
+            update characterStates set state = p_state
             where id = stateId;
-		else
-			insert into characterStates (playerId, targetKey, state) 
+        else
+            insert into characterStates (playerId, targetKey, state) 
             values (lplayerId, p_targetKey, p_state);
-		end if;
+        end if;
     end if;    
 END;
 ##
@@ -1046,17 +1046,17 @@ BEGIN
     from players where name = p_playerName;
     
     if lplayerId is not null then
-		select id into lSettingId
-		from settings 
+        select id into lSettingId
+        from settings 
         where playerId = lplayerId and setting = p_setting;
-		
-		if lSettingId is not null then
-			update settings set value = p_value
+        
+        if lSettingId is not null then
+            update settings set value = p_value
             where id = lSettingId;
-		else
-			insert into settings (playerId, setting, value) 
+        else
+            insert into settings (playerId, setting, value) 
             values (lplayerId, p_setting, p_value);
-		end if;
+        end if;
     end if;    
 END;
 ##
@@ -1090,15 +1090,15 @@ BEGIN
     from players where name = p_blockedPlayer;
 
     if lplayerId is not null and lBlockedId is not null then
-		select id into lBlockId
-		from blockedUsers 
+        select id into lBlockId
+        from blockedUsers 
         where playerId = lplayerId and blockedPlayerId = lBlockedId;
-		
-		if lBlockId is null and actionType = 'block' then
-			insert into blockedUsers (playerId, blockedPlayerId) 
+        
+        if lBlockId is null and actionType = 'block' then
+            insert into blockedUsers (playerId, blockedPlayerId) 
             values (lplayerId, lBlockedId);
-		elseif lBlockId is not null and actionType = 'unblock' then
-			delete from blockedUsers where id = lBlockId;
+        elseif lBlockId is not null and actionType = 'unblock' then
+            delete from blockedUsers where id = lBlockId;
         end if;
     end if;    
 END;

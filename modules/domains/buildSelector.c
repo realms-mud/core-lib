@@ -113,44 +113,49 @@ protected nomask int processSelection(string selection)
     {
         ret = (Data[selection]["type"] == "exit") || (selection == "abort");
 
-		if (!ret)
-		{
-			ret = 0;
-			if (member(Data[selection], "is category") &&
-				Data[selection]["is category"])
-			{
-				SubselectorObj =
-					clone_object("/lib/modules/domains/buildSelector.c");
-				SubselectorObj->setHoldingType(Data[selection]["type"]);
-				SubselectorObj->setLocation(Location);
+        if (!ret)
+        {
+            ret = 0;
+            if (member(Data[selection], "is category") &&
+                Data[selection]["is category"])
+            {
+                SubselectorObj =
+                    clone_object("/lib/modules/domains/buildSelector.c");
+                SubselectorObj->setHoldingType(Data[selection]["type"]);
+                SubselectorObj->setLocation(Location);
 
-				move_object(SubselectorObj, User);
-				SubselectorObj->registerEvent(this_object());
-				SubselectorObj->initiateSelector(User);
-			}
-			else if (member(Data[selection], "value") &&
-				stringp(Data[selection]["value"]))
-			{
-				User->buildDomainUpgrade(Location,
-					Data[selection]["type"],
-					Data[selection]["value"]);
+                move_object(SubselectorObj, User);
+                SubselectorObj->registerEvent(this_object());
+                SubselectorObj->initiateSelector(User);
+            }
+            else if (member(Data[selection], "value") &&
+                stringp(Data[selection]["value"]))
+            {
+                SubselectorObj =
+                    clone_object("/lib/modules/domains/buildComponentSelector.c");
+                SubselectorObj->setLocation(Location);
+                SubselectorObj->setConstructionData(([
+                    "type":Component,
+                    "name": Data[selection]["value"]
+                ]));
 
-				environment(User)->build(Data[selection]["value"]);
-				ret = 1;
-			}
-			else
-			{
-				SubselectorObj =
-					clone_object("/lib/modules/domains/buildSelector.c");
-				SubselectorObj->setHoldingType(HoldingType);
-				SubselectorObj->setComponent(Data[selection]["type"]);
-				SubselectorObj->setLocation(Location);
+                move_object(SubselectorObj, User);
+                SubselectorObj->registerEvent(this_object());
+                SubselectorObj->initiateSelector(User);
+            }
+            else
+            {
+                SubselectorObj =
+                    clone_object("/lib/modules/domains/buildSelector.c");
+                SubselectorObj->setHoldingType(HoldingType);
+                SubselectorObj->setComponent(Data[selection]["type"]);
+                SubselectorObj->setLocation(Location);
 
-				move_object(SubselectorObj, User);
-				SubselectorObj->registerEvent(this_object());
-				SubselectorObj->initiateSelector(User);
-			}
-		}
+                move_object(SubselectorObj, User);
+                SubselectorObj->registerEvent(this_object());
+                SubselectorObj->initiateSelector(User);
+            }
+        }
     }
     return ret;
 }

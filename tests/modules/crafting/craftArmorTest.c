@@ -82,8 +82,8 @@ void ChoosingRobesDisplaysRobesMenu()
     command("7", Player);
 
     ExpectEq("\x1b[0;36mCraft Robes - \x1b[0m\x1b[0;37;1mFrom this menu, you "
-		"will select the components that will be used\nto craft your robes. "
-		"The relative statistics for the item you are creating\nare:\n\n"
+        "will select the components that will be used\nto craft your robes. "
+        "The relative statistics for the item you are creating\nare:\n\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0;31mnone selected\x1b[0m\n"
         "\x1b[0;36m\tDamage Protection: \x1b[0m\x1b[0;33m1\x1b[0m\n"
         "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m6\x1b[0m\n"
@@ -129,8 +129,8 @@ void SelectingMaterialUpdatesRobesMenu()
     command("17", Player);
 
     ExpectEq("\x1b[0;36mCraft Robes - \x1b[0m\x1b[0;37;1mFrom this menu, you "
-		"will select the components that will be used\nto craft your robes. "
-		"The relative statistics for the item you are creating\nare:\n\n"
+        "will select the components that will be used\nto craft your robes. "
+        "The relative statistics for the item you are creating\nare:\n\n"
         "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0m\x1b[0;33mSilk\x1b[0m\n"
         "\x1b[0;36m\tDamage Protection: \x1b[0m\x1b[0;33m2\x1b[0m\n"
         "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m5\x1b[0m\n"

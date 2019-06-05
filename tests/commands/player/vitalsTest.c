@@ -103,10 +103,10 @@ void HelpForVitalsDisplaysProperInfo()
     ExpectTrue(Player->executeCommand("help vitals"));
     ExpectEq("\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Help for Vitals +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;36;1mSynopsis\n"
-        "\x1b[0m\x1b[0;36m	vitals - Display a character's vitals\n"
+        "\x1b[0m\x1b[0;36m\tvitals - Display a character's vitals\n"
         "\x1b[0m\x1b[0;36;1m\nSyntax\n"
-        "\x1b[0m	\x1b[0;36mvitals\n"
-        "		\x1b[0m\n"
+        "\x1b[0m\t\x1b[0;36mvitals\n"
+        "\t\t\x1b[0m\n"
         "[0;36;1mDescription\n"
         "\x1b[0m\x1b[0;36mThe vitals command displays information about your current hit points, spell\n"
         "points, and stamina points levels.\n"
@@ -122,7 +122,7 @@ void HelpForVitalsDisplaysProperInfo()
         "\x1b[0;36;1mNotes\n"
         "\t\x1b[0m\x1b[0;36mSee also: score\x1b[0m"
         "\x1b[0;36;1m\n\nCopyright\n"
-        "\x1b[0m\x1b[0;36m	Copyright (C) 1991-2019 Allen Cummings. For additional licensing\n"
-        "	information, see \x1b[0m\x1b[0;36mhttp://realmsmud.org/license/\n\x1b[0m",
+        "\x1b[0m\x1b[0;36m\tCopyright (C) 1991-2019 Allen Cummings. For additional licensing\n"
+        "\tinformation, see \x1b[0m\x1b[0;36mhttp://realmsmud.org/license/\n\x1b[0m",
         Player->caughtMessage());
 }

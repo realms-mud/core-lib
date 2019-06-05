@@ -20,12 +20,12 @@ protected nomask varargs void addConditionalExit(string layout,
 /////////////////////////////////////////////////////////////////////////////
 public void build(string type)
 {
-	object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 
-	string newDescription = dictionary->getFeatureDescription(type);
+    string newDescription = dictionary->getFeatureDescription(type);
 
-	if (newDescription)
-	{
-		// TODO 606
-	}
+    if (newDescription)
+    {
+        // TODO 606
+    }
 }

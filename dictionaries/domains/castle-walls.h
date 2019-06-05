@@ -39,17 +39,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
@@ -71,22 +71,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
@@ -108,21 +108,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
@@ -144,21 +144,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
@@ -180,21 +180,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
@@ -216,22 +216,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
@@ -253,23 +253,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
@@ -312,17 +312,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
@@ -344,22 +344,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
@@ -381,22 +381,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
@@ -418,21 +418,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
@@ -454,21 +454,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
@@ -490,22 +490,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
@@ -527,23 +527,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
@@ -586,17 +586,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
@@ -618,22 +618,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
@@ -655,22 +655,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
@@ -692,21 +692,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
@@ -728,21 +728,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
@@ -764,22 +764,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
@@ -801,23 +801,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
@@ -860,17 +860,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
@@ -892,22 +892,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
@@ -929,22 +929,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
@@ -966,21 +966,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
@@ -1002,21 +1002,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
@@ -1038,22 +1038,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
@@ -1075,23 +1075,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
@@ -1133,17 +1133,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "NWI": ([
                 "ascii": "  |",
@@ -1164,22 +1164,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWI": ([
                 "ascii": " | ",
@@ -1200,21 +1200,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWI": ([
                 "ascii": " | ",
@@ -1235,21 +1235,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWI": ([
                 "ascii": " | ",
@@ -1270,21 +1270,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWI": ([
                 "ascii": " | ",
@@ -1305,22 +1305,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWI": ([
                 "ascii": " | ",
@@ -1341,23 +1341,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWI": ([
                 "ascii": " | ",
@@ -1398,17 +1398,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "SWI": ([
                 "ascii": " | ",
@@ -1429,22 +1429,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWI": ([
                 "ascii": " | ",
@@ -1465,21 +1465,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWI": ([
                 "ascii": " | ",
@@ -1500,21 +1500,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWI": ([
                 "ascii": " | ",
@@ -1535,21 +1535,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWI": ([
                 "ascii": " | ",
@@ -1570,22 +1570,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWI": ([
                 "ascii": " | ",
@@ -1606,23 +1606,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWI": ([
                 "ascii": " | ",
@@ -1663,17 +1663,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "NEI": ([
                 "ascii": " | ",
@@ -1694,22 +1694,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEI": ([
                 "ascii": " | ",
@@ -1730,21 +1730,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEI": ([
                 "ascii": " | ",
@@ -1765,21 +1765,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEI": ([
                 "ascii": " | ",
@@ -1800,21 +1800,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEI": ([
                 "ascii": " | ",
@@ -1835,22 +1835,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEI": ([
                 "ascii": " | ",
@@ -1871,23 +1871,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEI": ([
                 "ascii": " | ",
@@ -1928,17 +1928,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "SEI": ([
                 "ascii": " | ",
@@ -1959,22 +1959,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEI": ([
                 "ascii": " | ",
@@ -1995,21 +1995,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEI": ([
                 "ascii": " | ",
@@ -2030,21 +2030,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEI": ([
                 "ascii": " | ",
@@ -2065,21 +2065,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEI": ([
                 "ascii": " | ",
@@ -2100,22 +2100,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEI": ([
                 "ascii": " | ",
@@ -2136,23 +2136,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEI": ([
                 "ascii": " | ",
@@ -2196,17 +2196,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
@@ -2229,22 +2229,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
@@ -2267,21 +2267,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
@@ -2304,21 +2304,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
@@ -2341,21 +2341,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
@@ -2378,22 +2378,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
@@ -2416,23 +2416,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
@@ -2478,17 +2478,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
@@ -2511,22 +2511,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
@@ -2549,21 +2549,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
@@ -2586,21 +2586,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
@@ -2623,21 +2623,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
@@ -2660,22 +2660,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
@@ -2698,23 +2698,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
@@ -2760,17 +2760,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
@@ -2793,22 +2793,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
@@ -2831,21 +2831,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
@@ -2868,21 +2868,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
@@ -2905,21 +2905,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
@@ -2942,22 +2942,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
@@ -2980,23 +2980,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
@@ -3042,17 +3042,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
@@ -3075,22 +3075,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
@@ -3113,21 +3113,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
@@ -3150,21 +3150,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
@@ -3187,21 +3187,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
@@ -3224,22 +3224,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
@@ -3262,23 +3262,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
@@ -3321,17 +3321,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "NWX": ([
                 "ascii": " | ",
@@ -3352,22 +3352,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWX": ([
                 "ascii": " | ",
@@ -3388,21 +3388,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWX": ([
                 "ascii": " | ",
@@ -3423,21 +3423,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWX": ([
                 "ascii": " | ",
@@ -3458,21 +3458,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWX": ([
                 "ascii": " | ",
@@ -3493,22 +3493,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWX": ([
                 "ascii": " | ",
@@ -3529,23 +3529,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NWX": ([
                 "ascii": " | ",
@@ -3586,17 +3586,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "SWX": ([
                 "ascii": " | ",
@@ -3617,22 +3617,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWX": ([
                 "ascii": " | ",
@@ -3653,21 +3653,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWX": ([
                 "ascii": " | ",
@@ -3688,21 +3688,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWX": ([
                 "ascii": " | ",
@@ -3723,21 +3723,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWX": ([
                 "ascii": " | ",
@@ -3758,22 +3758,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWX": ([
                 "ascii": " | ",
@@ -3794,23 +3794,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SWX": ([
                 "ascii": " | ",
@@ -3851,17 +3851,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "NEX": ([
                 "ascii": " | ",
@@ -3882,22 +3882,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEX": ([
                 "ascii": " | ",
@@ -3918,21 +3918,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEX": ([
                 "ascii": " | ",
@@ -3953,21 +3953,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEX": ([
                 "ascii": " | ",
@@ -3988,21 +3988,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEX": ([
                 "ascii": " | ",
@@ -4023,22 +4023,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEX": ([
                 "ascii": " | ",
@@ -4059,23 +4059,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "NEX": ([
                 "ascii": " | ",
@@ -4116,17 +4116,17 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 100,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5 ]),
-			]),
-			"workers": ([
-				"carpenter": 5,
-				"foreman": 1,
-				"blacksmith": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 100,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5 ]),
+            ]),
+            "workers": ([
+                "carpenter": 5,
+                "foreman": 1,
+                "blacksmith": 1,
+            ]),
+        ]),
         "components":([
             "SEX": ([
                 "ascii": " | ",
@@ -4147,22 +4147,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 200,
-			"materials": ([
-				"wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
-				"wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 8,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 1,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 200,
+            "materials": ([
+                "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
+                "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 8,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 1,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEX": ([
                 "ascii": " | ",
@@ -4183,21 +4183,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 250,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 8,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 250,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 8,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEX": ([
                 "ascii": " | ",
@@ -4218,21 +4218,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEX": ([
                 "ascii": " | ",
@@ -4253,21 +4253,21 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 400,
-			"materials": ([
-				"stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "stone talus": ([ "stone": 300, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEX": ([
                 "ascii": " | ",
@@ -4288,22 +4288,22 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 360,
-			"materials": ([
-				"stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 360,
+            "materials": ([
+                "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEX": ([
                 "ascii": " | ",
@@ -4324,23 +4324,23 @@ private mapping CastleWalls = ([
                 "24-bit": "\x1b[0;38;2;112;128;144m",
             ]),
         ]),
-		"construction": ([
-			"duration": 480,
-			"materials": ([
-				"stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
-				"stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
-				"stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-				"rampart": ([ "stone": 0 ]),
-			]),
-			"workers": ([
-				"carpenter": 3,
-				"foreman": 1,
-				"blacksmith": 1,
-				"stonemason": 10,
-				"engineer": 1,
-				"architect": 1,
-			]),
-		]),
+        "construction": ([
+            "duration": 480,
+            "materials": ([
+                "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
+                "stone bastion": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
+                "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
+                "rampart": ([ "stone": 0 ]),
+            ]),
+            "workers": ([
+                "carpenter": 3,
+                "foreman": 1,
+                "blacksmith": 1,
+                "stonemason": 10,
+                "engineer": 1,
+                "architect": 1,
+            ]),
+        ]),
         "components":([
             "SEX": ([
                 "ascii": " | ",
