@@ -614,7 +614,7 @@ private nomask string *getComponentInfo(object user, mapping componentData)
 /////////////////////////////////////////////////////////////////////////////
 private nomask int canCreateBuilding(mapping componentData)
 {
-    return 0;
+    return 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -648,6 +648,8 @@ private nomask mapping getConstructionOptions(mapping componentData)
     ret[to_string(sizeof(ret) + 1)] = ([
         "name":"Select Workers",
         "type": "workers",
+        "data": member(CastleComponents[componentData["name"]], "workers") ?
+            (CastleComponents[componentData["name"]]["workers"] + ([])) : ([]),
         "description": "This option lets you select workers for the building "
             "project.\n",
         "canShow": 1
@@ -813,4 +815,25 @@ public nomask string getFeatureDescription(string element)
         ret = CastleComponents[element]["feature description"];
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getBuildSectionMenu(object user, string location,
+    mapping sectionData)
+{
+    return ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getSectionMaterialsMenu(object user, string location,
+    mapping componentData)
+{
+    return ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getWorkersMenu(object user, string location,
+    mapping componentData)
+{
+    return ([]);
 }

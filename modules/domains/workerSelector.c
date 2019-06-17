@@ -5,7 +5,7 @@
 inherit "/lib/core/baseSelector.c";
 
 private string Location;
-private mapping ConstructionData = 0;
+private mapping WorkerData = 0;
 private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 private object SubselectorObj;
 
@@ -20,9 +20,9 @@ public nomask void setLocation(string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setConstructionData(mapping data)
+public nomask void setWorkerData(mapping data)
 {
-    ConstructionData = data;
+    WorkerData = data;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -44,10 +44,10 @@ protected nomask void setUpUserForSelection()
 {
     object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 
-    if (dictionary && ConstructionData)
+    if (dictionary && WorkerData)
     {
-        Description = (member(ConstructionData, "name") ? 
-            (dictionary->generateTitle(ConstructionData["name"]) + ":\n") : 
+        Description = (member(WorkerData, "name") ? 
+            (dictionary->generateTitle(WorkerData["name"]) + ":\n") : 
             "Main Menu:\n") +
             configuration->decorate(format(sprintf("From this menu, you can "
                 "initiate, modify, or abort projects in your holdings at %s.",
@@ -55,7 +55,7 @@ protected nomask void setUpUserForSelection()
                 "description", "selector", colorConfiguration);
 
         Data = dictionary->getBuildComponentMenu(User, Location, 
-            ConstructionData);
+            WorkerData);
     }
 }
 
@@ -100,11 +100,12 @@ protected nomask int processSelection(string selection)
 
         if (!ret)
         {
+            ret = 0;
             if (Data[selection]["type"] == "create")
             {
                 User->buildDomainUpgrade(Location,
-                    ConstructionData["type"],
-                    ConstructionData["value"]);
+                    WorkerData["type"],
+                    WorkerData["value"]);
                 ret = 1;
             }
             else if (Data[selection]["type"] == "workers")
@@ -121,7 +122,7 @@ protected nomask int processSelection(string selection)
             else
             {
                 SubselectorObj =
-                    clone_object("/lib/modules/domains/sectionSelector.c");
+                    clone_object("/lib/modules/domains/materialsSelector.c");
                 SubselectorObj->setDetails(Data[selection]["details"]);
                 SubselectorObj->setLocation(Location);
 

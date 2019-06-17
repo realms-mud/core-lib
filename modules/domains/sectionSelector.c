@@ -5,7 +5,7 @@
 inherit "/lib/core/baseSelector.c";
 
 private string Location;
-private mapping ConstructionData = 0;
+private mapping SectionData = 0;
 private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 private object SubselectorObj;
 
@@ -20,9 +20,9 @@ public nomask void setLocation(string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setConstructionData(mapping data)
+public nomask void setDetails(mapping data)
 {
-    ConstructionData = data;
+    SectionData = data;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -44,18 +44,18 @@ protected nomask void setUpUserForSelection()
 {
     object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 
-    if (dictionary && ConstructionData)
+    if (dictionary && SectionData)
     {
-        Description = (member(ConstructionData, "name") ? 
-            (dictionary->generateTitle(ConstructionData["name"]) + ":\n") : 
+        Description = (member(SectionData, "name") ?
+            (dictionary->generateTitle(SectionData["name"]) + ":\n") :
             "Main Menu:\n") +
             configuration->decorate(format(sprintf("From this menu, you can "
                 "initiate, modify, or abort projects in your holdings at %s.",
                 dictionary->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration);
 
-        Data = dictionary->getBuildComponentMenu(User, Location, 
-            ConstructionData);
+        Data = dictionary->getBuildSectionMenu(User, Location,
+            SectionData);
     }
 }
 
@@ -100,29 +100,11 @@ protected nomask int processSelection(string selection)
 
         if (!ret)
         {
-            if (Data[selection]["type"] == "create")
-            {
-                User->buildDomainUpgrade(Location,
-                    ConstructionData["type"],
-                    ConstructionData["value"]);
-                ret = 1;
-            }
-            else if (Data[selection]["type"] == "workers")
+            if (Data[selection]["type"] == "material")
             {
                 SubselectorObj =
-                    clone_object("/lib/modules/domains/workerSelector.c");
-                SubselectorObj->setWorkerData(Data[selection]["data"]);
-                SubselectorObj->setLocation(Location);
-
-                move_object(SubselectorObj, User);
-                SubselectorObj->registerEvent(this_object());
-                SubselectorObj->initiateSelector(User);
-            }
-            else
-            {
-                SubselectorObj =
-                    clone_object("/lib/modules/domains/sectionSelector.c");
-                SubselectorObj->setDetails(Data[selection]["details"]);
+                    clone_object("/lib/modules/domains/materialsSelector.c");
+                SubselectorObj->setMaterialData(Data[selection]["data"]);
                 SubselectorObj->setLocation(Location);
 
                 move_object(SubselectorObj, User);
