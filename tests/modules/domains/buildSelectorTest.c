@@ -216,7 +216,7 @@ void CanSelectFromConstructComponentMenu()
         "[\x1b[0;38;5;9;1m3\x1b[0m] - \x1b[0;38;5;2mStone Tower            \x1b[0m\n"
         "[\x1b[0;38;5;9;1m4\x1b[0m] - \x1b[0;38;5;2mStone Tower Second Level\x1b[0m\n"
         "[\x1b[0;38;5;9;1m5\x1b[0m] - \x1b[0;38;5;2mSelect Workers      \x1b[0m\n"
-        "[\x1b[0;38;5;9;1m6\x1b[0m] - \x1b[0;38;5;2mCreate Building     \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m6\x1b[0m] - \x1b[0;38;5;9mCreate Building     \x1b[0m\n"
         "[\x1b[0;38;5;9;1m7\x1b[0m] - \x1b[0;38;5;2mExit Building Menu  \x1b[0m\n"
         "\x1b[0;38;5;2;1mYou must select a number from 1 to 7.\n"
         "\x1b[0m\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n"
@@ -306,7 +306,24 @@ void CorrectlyDisplayCastleWithPreVuiltComponents()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysWorkerMenu()
 {
+    Selector->initiateSelector(Player);
 
+    command("4", Player);
+    command("1", Player);
+    command("1", Player);
+    Player->resetCatchList();
+    command("5", Player);
+
+    ExpectEq("Building Projects - Main Menu:\n"
+        "From this menu, you can select the workers who will be executing your Archer's\n"
+        "Tower project in your holdings at Argalach Castle.\n"
+        "\n"
+        "[1] - Exit Building Menu  \n"
+        "You must select a number from 1 to 1.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////

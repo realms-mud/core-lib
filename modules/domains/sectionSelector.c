@@ -33,7 +33,7 @@ public nomask void reset(int arg)
         AllowUndo = 0;
         AllowAbort = 1;
         SuppressColon = 1;
-        Description = "Main Menu";
+        Description = "Building Sections";
         Type = "Building Projects";
         Data = ([]);
     }

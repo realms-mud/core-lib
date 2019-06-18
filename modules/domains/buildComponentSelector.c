@@ -33,7 +33,7 @@ public nomask void reset(int arg)
         AllowUndo = 0;
         AllowAbort = 1;
         SuppressColon = 1;
-        Description = "Main Menu";
+        Description = "Buildings";
         Type = "Building Projects";
         Data = ([]);
     }
@@ -82,10 +82,14 @@ protected string choiceFormatter(string choice)
             section += sprintf("%s%s\n", padding, line);
         }
     }
+
+    string choiceColor = member(Data[choice], "is disabled") &&
+        Data[choice]["is disabled"] ? "choice disabled" : "choice enabled";
+
     return section + sprintf("[%s]%s - %s%s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        configuration->decorate("%-20s", "choice enabled", "selector", colorConfiguration),
+        configuration->decorate("%-20s", choiceColor, "selector", colorConfiguration),
         displayDetails(choice),
         Data[choice]["layout panel"] || "");
 }

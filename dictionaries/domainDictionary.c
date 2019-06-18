@@ -648,8 +648,9 @@ private nomask mapping getConstructionOptions(mapping componentData)
     ret[to_string(sizeof(ret) + 1)] = ([
         "name":"Select Workers",
         "type": "workers",
-        "data": member(CastleComponents[componentData["name"]], "workers") ?
-            (CastleComponents[componentData["name"]]["workers"] + ([])) : ([]),
+        "data": member(CastleComponents[componentData["name"]]["construction"], 
+            "workers") ?
+            (CastleComponents[componentData["name"]] + ([])) : ([]),
         "description": "This option lets you select workers for the building "
             "project.\n",
         "canShow": 1
@@ -835,5 +836,23 @@ public nomask mapping getSectionMaterialsMenu(object user, string location,
 public nomask mapping getWorkersMenu(object user, string location,
     mapping componentData)
 {
-    return ([]);
+    mapping ret = ([]);
+
+    ret[to_string(sizeof(ret) + 1)] = ([
+        "name":"Exit Building Menu",
+        "type": "exit",
+        "description": "This option lets you exit the building "
+            "projects menu.\n",
+        "canShow": 1
+    ]);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidHenchman(mapping data)
+{
+    return mappingp(data) && member(data, "name") &&
+        member(data, "type") && member(data, "persona") &&
+        member(data, "level") && member(data, "vitals") &&
+        member(data, "activity");
 }

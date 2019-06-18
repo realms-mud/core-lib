@@ -33,7 +33,7 @@ public nomask void reset(int arg)
         AllowUndo = 0;
         AllowAbort = 1;
         SuppressColon = 1;
-        Description = "Main Menu";
+        Description = "Select Workers";
         Type = "Building Projects";
         Data = ([]);
     }
@@ -46,15 +46,17 @@ protected nomask void setUpUserForSelection()
 
     if (dictionary && WorkerData)
     {
+        printf("%O\n", WorkerData);
         Description = (member(WorkerData, "name") ? 
             (dictionary->generateTitle(WorkerData["name"]) + ":\n") : 
             "Main Menu:\n") +
             configuration->decorate(format(sprintf("From this menu, you can "
-                "initiate, modify, or abort projects in your holdings at %s.",
+                "select the workers who will be executing your %s project "
+                "in your holdings at %s.", WorkerData["display name"],
                 dictionary->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration);
 
-        Data = dictionary->getBuildComponentMenu(User, Location, 
+        Data = dictionary->getWorkersMenu(User, Location,
             WorkerData);
     }
 }

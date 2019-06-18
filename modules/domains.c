@@ -104,3 +104,38 @@ public nomask string *getTitles()
 
     return titles;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int addHenchman(string location, mapping data)
+{
+    int ret = 0;
+    object dictionary = getDictionary("domain");
+
+    if (dictionary->isValidHenchman(data) && member(holdings, location))
+    {
+        ret = 1;
+        if (!member(henchmen, location))
+        {
+            henchmen[location] = ([]);
+        }
+        henchmen[location] += data;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs mapping getHenchmen(string location, string type)
+{
+    mapping ret = ([]);
+
+    if (stringp(location) && member(henchmen, location))
+    {
+        ret = henchmen[location];
+
+        if (stringp(type))
+        {
+            ret = filter(ret, (: $1["type"] == $2 :), type);
+        }
+    }
+    return ret;
+}
