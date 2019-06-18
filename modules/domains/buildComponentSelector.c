@@ -48,7 +48,7 @@ protected nomask void setUpUserForSelection()
     {
         Description = (member(ConstructionData, "name") ? 
             (dictionary->generateTitle(ConstructionData["name"]) + ":\n") : 
-            "Main Menu:\n") +
+            "Buildings:\n") +
             configuration->decorate(format(sprintf("From this menu, you can "
                 "initiate, modify, or abort projects in your holdings at %s.",
                 dictionary->getLocationDisplayName(Location)), 78),

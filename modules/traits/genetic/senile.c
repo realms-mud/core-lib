@@ -17,9 +17,8 @@ public void reset(int arg)
         addSpecification("opinion", -15);
         addSpecification("penalty to charisma", 1);
         addSpecification("penalty to intelligence", 1);
-        addSpecification("research tree", "lib/instances/research/senileResearchTree.c");
+        addSpecification("research tree", "lib/instances/research/traits/senileResearchTree.c");
         addSpecification("cost", -1);
         "baseTrait"::reset(arg);
     }
 }
-

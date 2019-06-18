@@ -79,6 +79,8 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
+        HoldingType = 0;
+        Component = 0;
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }

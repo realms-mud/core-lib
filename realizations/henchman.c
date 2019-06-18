@@ -10,7 +10,9 @@ virtual inherit "/lib/modules/crafting.c";
 virtual inherit "/lib/modules/personas.c";
 virtual inherit "/lib/modules/combatChatter.c";
 
-private object leader;
+private object Leader;
+private string Location;
+private mapping Activity = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfHenchman()
@@ -48,16 +50,49 @@ public nomask void setMaxStaminaPoints(int value)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLeader(object player)
 {
-    leader = player;
+    Leader = player;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setLocation(string location)
+{
+    if (Leader && Leader->getDomainType(location))
+    {
+        Location = location;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string location()
+{
+    return Location;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setActivity(mapping activity)
+{
+    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+
+    if (Leader && Leader->getDomainType(Location) &&
+        dictionary->isValidActivity(Location, activity))
+    {
+        Activity = activity + ([]);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping activity()
+{
+    return Activity + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string partyName()
 {
     string ret = 0;
-    if (leader)
+    if (Leader)
     {
-        ret = leader->RealName();
+        ret = Leader->RealName();
     }
     return ret;
 }
@@ -66,9 +101,9 @@ public nomask string partyName()
 public nomask object getParty()
 {
     object ret = this_object();
-    if (leader && leader->getParty())
+    if (Leader && Leader->getParty())
     {
-        ret = leader->getParty();
+        ret = Leader->getParty();
     }
     return ret;
 }

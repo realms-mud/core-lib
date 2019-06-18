@@ -78,7 +78,6 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
         Player->caughtMessage());
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectConstructBuildings()
 {
@@ -227,7 +226,7 @@ void CanSelectFromConstructComponentMenu()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CorrectlyDisplayCastleWithPreVuiltComponents()
+void CorrectlyDisplayCastleWithPreBuiltComponents()
 {
     Player->buildDomainUpgrade("argalach castle", "keep", "stone keep");
     Player->buildDomainUpgrade("argalach castle", "northwest tower", "mage northwest tower");
@@ -304,30 +303,50 @@ void CorrectlyDisplayCastleWithPreVuiltComponents()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CorrectlyDisplaysWorkerMenu()
+void CorrectlyRevertsToTopLevelMenuOnCompletion()
 {
     Selector->initiateSelector(Player);
+    Player->buildDomainUpgrade("argalach castle", "northwest tower", 
+        "archer's northwest tower");
 
     command("4", Player);
     command("1", Player);
     command("1", Player);
-    Player->resetCatchList();
-    command("5", Player);
+    command("7", Player);
 
     ExpectEq("Building Projects - Main Menu:\n"
-        "From this menu, you can select the workers who will be executing your Archer's\n"
-        "Tower project in your holdings at Argalach Castle.\n"
-        "\n"
-        "[1] - Exit Building Menu  \n"
-        "You must select a number from 1 to 1.\n"
+        "From this menu, you can initiate, modify, or abort projects in your holdings\n"
+        "at Argalach Castle.\n\n"
+        "                                                                             \n"
+        "                             ......            .........            ......   \n"
+        "                             .    ..............       ..............    .   \n"
+        "                             .     .?.         .........         .?.     .   \n"
+        "                             ..    ...                           ...    ..   \n"
+        "                              . ..    +====+      ...      ......    .. .    \n"
+        "                              . ?.    |+--+|....... ........    .    .? .    \n"
+        "                              . ..    |+--+ .?.         .?.     .    .. .    \n"
+        "                              .       +=    ...         ...    ..       .    \n"
+        "                              .        . ..                 .. .        .    \n"
+        "                             ....      . ?.    .........    .? .      ....   \n"
+        "                             .  .      . ..    .       .    .. .      .  .   \n"
+        "                             .  .     ...      .       .      ...     .  .   \n"
+        "                             .  .     ...      .       .      ...     .  .   \n"
+        "                             .  .      . ..    .........    .. .      .  .   \n"
+        "                             ....      . ?.                 .? .      ....   \n"
+        "                              .        . ..                 .. .        .    \n"
+        "                              .       ..    ...         ...    ..       .    \n"
+        "                              . ..    .     .?.         .?.     .    .. .    \n"
+        "                              . ?.    .    ........ ........    .    .? .    \n"
+        "                              . ..    ......      ...      ......    .. .    \n"
+        "[1] - Construct Building     ..    ...                           ...    ..   \n"
+        "[2] - Construct Keep         .     .?.         .........         .?.     .   \n"
+        "[3] - Construct Moat         .    ..............       ..............    .   \n"
+        "[4] - Construct Tower        ......            .........            ......   \n"
+        "[5] - Construct Wall                                                         \n"
+        "[6] - Exit Building Projects Menu\n"
+        "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
         Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CorrectlyDisplaysSectionMenu()
-{
-
 }

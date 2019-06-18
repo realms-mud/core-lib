@@ -83,7 +83,7 @@ private mapping races = ([
             "draconid": 8,
             "common": 5
         ]),
-        "research trees": ({ "lib/instances/research/draconidResearchTree.c" }),
+        "research trees": ({ "lib/instances/research/races/draconidResearchTree.c" }),
         "starting skill points": 8,
         "background trait value": 4
     ]),
@@ -109,7 +109,7 @@ private mapping races = ([
         "spell points": 15,
         "stamina points": 15,
         "bonus heal hit points rate": 2,
-        "research trees": ({ "lib/instances/research/maegenstrydResearchTree.c" }),
+        "research trees": ({ "lib/instances/research/races/maegenstrydResearchTree.c" }),
         "skills": ([
             "ancient history": 3,
             "spellcraft": 3,
@@ -298,7 +298,7 @@ private mapping races = ([
         "hit points": 25,
         "spell points": 50,
         "bonus heal spell points rate": 2,
-        "research trees": ({ "lib/instances/research/highElfResearchTree.c" }),
+        "research trees": ({ "lib/instances/research/races/highElfResearchTree.c" }),
         "skills": ([
             "spellcraft": 5,
             "blacksmithing": 3,

@@ -856,3 +856,9 @@ public nomask int isValidHenchman(mapping data)
         member(data, "level") && member(data, "vitals") &&
         member(data, "activity");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidActivity(string location, mapping activity)
+{
+    return 1;
+}

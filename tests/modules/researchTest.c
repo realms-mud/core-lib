@@ -452,7 +452,7 @@ void AvailableResearchTreesReturnsTreesAvailableFromRaces()
 
     Research->Race("high elf");
 
-    ExpectEq(({ "lib/instances/research/highElfResearchTree.c" }),
+    ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c" }),
         Research->availableResearchTrees());
 }
 
@@ -487,7 +487,7 @@ void AvailableResearchTreesReturnsTreesAvailableFromAllRelevantServices()
         "does/not/exist/traitResearchTree.c", 
         "some/other/locale/traitResearchTree.c",
         "lib/tests/support/guilds/testGuildResearchTree.c",
-        "lib/instances/research/highElfResearchTree.c",
+        "lib/instances/research/races/highElfResearchTree.c",
         "lib/tests/support/research/testResearchTree.c"
     });
     ExpectEq(({}), Research->availableResearchTrees());

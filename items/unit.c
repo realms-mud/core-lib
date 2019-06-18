@@ -3,6 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/items/item.c";
+
 private object configuration = 
     load_object("/lib/dictionaries/configurationDictionary.c");
 private object display =

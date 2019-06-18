@@ -269,7 +269,7 @@ void CanSelectResearchChoice()
     command("1", Player);
     command("4", Player);
     ExpectFalse(Player->isResearched("lib/guilds/scion/paths/sword/root.c"));
-    ExpectEq(({ "lib/instances/research/highElfResearchTree.c",
+    ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
         "lib/guilds/scion/common/mana-shield/mana-shield.c" }), 
         Player->availableResearchTrees());
 
@@ -287,7 +287,7 @@ void CanSelectResearchChoice()
 
     command("1", Player);
     ExpectTrue(Player->isResearched("lib/guilds/scion/paths/sword/root.c"));
-    ExpectEq(({ "lib/instances/research/highElfResearchTree.c",
+    ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
         "lib/guilds/scion/common/mana-shield/mana-shield.c",
         "lib/guilds/scion/paths/sword.c" }),
         Player->availableResearchTrees());
@@ -321,7 +321,7 @@ void CanSelectResearchWhenAllChoicesMade()
 
     ExpectTrue(Player->isResearched("lib/guilds/scion/paths/sword/root.c"));
     ExpectTrue(Player->isResearched("lib/guilds/scion/paths/sword/flame/root.c"));
-    ExpectEq(({ "lib/instances/research/highElfResearchTree.c",
+    ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
         "lib/guilds/scion/paths/sword.c", "lib/guilds/scion/paths/sword/flame.c",
         "lib/guilds/scion/common/mana-shield/mana-shield.c" }),
         Player->availableResearchTrees());
