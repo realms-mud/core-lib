@@ -237,6 +237,129 @@ private nosave mapping materials =
         "scarcity": "common",
         "experience modifier": 1
     ]),
+    "diorite": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 8]),
+        ]),
+        "default description": "This is a piece of diorite.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "andesite": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a piece of andesite.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "boninite": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a piece of boninite.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "obsidian": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a piece of granite.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "scoria": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a piece of scoria.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "tuff": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a piece of tuff - a rock made of volcanic ash.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "claystone": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a piece of claystone.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "chert": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a piece of chert.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "gneiss": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a piece of gneiss.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "alabaster": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "defense": ([
+            "physical": -2
+        ]),
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 7]),
+        ]),
+        "default description": "This is a piece of alabaster.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
     "basalt": ([
         "class": "stone",
         "crafting skill required": 10,
@@ -279,6 +402,57 @@ private nosave mapping materials =
         "scarcity": "common",
         "experience modifier": 1
     ]),
+    "travertine": ([
+        "class": "stone",
+        "crafting skill required": 8,
+        "encumberance": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 8]),
+        ]),
+        "default description": "This is a slab of travertine.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "brick": ([
+        "class": "stone",
+        "crafting skill required": 8,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftBrick.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "pottery": (["type":"skill", "value": 5]),
+        ]),
+        "default description": "This is a panel of bricks.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "concrete": ([
+        "class": "stone",
+        "crafting skill required": 20,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftConcrete.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 20]),
+            "pottery": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a slab of concrete.",
+        "scarcity": "rare",
+        "experience modifier": 1
+    ]),
+    "lazurite": ([
+        "class": "stone",
+        "crafting skill required": 10,
+        "encumberance": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
+            "stonemasonry": (["type":"skill", "value": 10]),
+        ]),
+        "default description": "This is a piece of lazurite.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+
     "slate": ([
         "class": "stone",
         "crafting skill required": 6,

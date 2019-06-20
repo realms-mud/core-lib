@@ -1,0 +1,23 @@
+//*****************************************************************************
+// Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
+inherit "/lib/modules/research/knowledgeResearchItem.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void reset(int arg)
+{
+    if (!arg)
+    {
+        knowledgeResearchItem::reset(arg);
+        addSpecification("name", "Substitute stones with clays");
+        addSpecification("source", "crafting");
+        addSpecification("description", "This skill provides the user with the "
+            "knowledge required to use clays as substitues for "
+            "stone when crafting.");
+        addSpecification("research type", "points");
+        addSpecification("research cost", 1);
+        addPrerequisite("lib/instances/research/crafting/materials/craftClay.c", (["type":"research"]));
+        addPrerequisite("lib/instances/research/crafting/materials/craftStone.c", (["type":"research"]));
+    }
+}

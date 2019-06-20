@@ -382,6 +382,19 @@ private string *getTypes(string type, object user)
     {
         types += ({ "crystal" });
     }
+    else if (type == "stone")
+    {
+        if (user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsStone.c"))
+        {
+            types += ({ "crystal" });
+        }
+
+        if (user->isResearched("lib/instances/research/crafting/materials/useClaysAsStone.c"))
+        {
+            types += ({ "clay" });
+        }
+    }
+
     return types;
 }
 

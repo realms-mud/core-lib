@@ -833,11 +833,33 @@ public nomask mapping getSectionMaterialsMenu(object user, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int canSelectWorkers(mapping componentData)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getWorkersMenu(object user, string location,
     mapping componentData)
 {
     mapping ret = ([]);
 
+    ret[to_string(sizeof(ret) + 1)] = ([
+        "name":"Auto-Select Workers",
+        "type": "auto-select",
+        "description": "This option will automatically select workers "
+            "to optimally build the structure in question.\n",
+        "canShow": 1
+    ]);
+
+    ret[to_string(sizeof(ret) + 1)] = ([
+        "name": "Confirm Selected Workers",
+        "type": "confirm",
+        "description": "This option assigns workers to the task of "
+            "building the selected component.\n",
+        "is disabled": canSelectWorkers(componentData),
+        "canShow": 1
+    ]);
     ret[to_string(sizeof(ret) + 1)] = ([
         "name":"Exit Building Menu",
         "type": "exit",
@@ -847,7 +869,34 @@ public nomask mapping getWorkersMenu(object user, string location,
     ]);
     return ret;
 }
+/*
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getComponentWorkerInfoInfo(object user, 
+    mapping componentData)
+{
+    string ret = "";
 
+    // Unicode character is: \xe2\x99\x99
+    if (member(CastleComponents, componentData["name"]))
+    {
+        string colorConfiguration = user->colorConfiguration();
+        string charset = user->charsetConfiguration();
+
+        mapping construction =
+            CastleComponents[componentData["name"]]["construction"] + ([]);
+
+        ret += displayLayout(componentData["name"],
+            colorConfiguration, charset) +
+            displayCompletionTime(user, construction,
+                colorConfiguration, charset) +
+            displayMaterialsData(user, componentData, construction,
+                colorConfiguration, charset) +
+            displayWorkerData(user, construction,
+                colorConfiguration, charset);
+    }
+    return ret;
+}
+*/
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidHenchman(mapping data)
 {

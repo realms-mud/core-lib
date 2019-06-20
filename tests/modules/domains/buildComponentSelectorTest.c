@@ -92,8 +92,10 @@ void CorrectlyDisplaysWorkerMenu()
         "From this menu, you can select the workers who will be executing your Stone\n"
         "Keep project in your holdings at Argalach Castle.\n"
         "\n"
-        "[1] - Exit Building Menu  \n"
-        "You must select a number from 1 to 1.\n"
+        "[1] - Auto-Select Workers \n"
+        "[2] - Confirm Selected Workers\n"
+        "[3] - Exit Building Menu  \n"
+        "You must select a number from 1 to 3.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
