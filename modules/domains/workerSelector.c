@@ -20,9 +20,10 @@ public nomask void setLocation(string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setWorkerData(mapping data)
+public nomask void setWorkerData(mapping data, string name)
 {
     WorkerData = data;
+    WorkerData["name"] = name;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -46,14 +47,13 @@ protected nomask void setUpUserForSelection()
 
     if (dictionary && WorkerData)
     {
-        Description = (member(WorkerData, "name") ? 
-            (dictionary->generateTitle(WorkerData["name"]) + ":\n") : 
-            "Assign Workers:\n") +
+        Description = "Assign Workers:\n" +
             configuration->decorate(format(sprintf("From this menu, you can "
                 "select the workers who will be executing your %s project "
                 "in your holdings at %s.", WorkerData["display name"],
                 dictionary->getLocationDisplayName(Location)), 78),
-                "description", "selector", colorConfiguration);
+                "description", "selector", colorConfiguration) + "\n" +
+            dictionary->getComponentWorkerInfo(User, WorkerData);
 
         Data = dictionary->getWorkersMenu(User, Location,
             WorkerData);

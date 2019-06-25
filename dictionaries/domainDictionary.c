@@ -29,6 +29,18 @@ public nomask string generateTitle(string data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string pluralizeValue(string data)
+{
+    string ret = data;
+    ret = regreplace(ret, "(s|ch|sh|x|z|dg|o)$", "\\1e");
+    ret = regreplace(ret, "([^aeiou])y$", "\\1ie");
+    ret += "s";
+    ret = regreplace(ret, "(.*)mans$", "\\1men");
+
+    return generateTitle(ret);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int validBuildings(mixed buildings)
 {
     int ret = 0;
@@ -844,22 +856,41 @@ public nomask mapping getWorkersMenu(object user, string location,
 {
     mapping ret = ([]);
 
-    ret[to_string(sizeof(ret) + 1)] = ([
-        "name":"Auto-Select Workers",
-        "type": "auto-select",
-        "description": "This option will automatically select workers "
-            "to optimally build the structure in question.\n",
-        "canShow": 1
-    ]);
+    if(member(componentData, "construction") && 
+        member(componentData["construction"], "workers"))
+    {
+        ret[to_string(sizeof(ret) + 1)] = ([
+            "name":"Auto-Select Workers",
+            "type": "auto-select",
+            "description": "This option will automatically select workers "
+                "to optimally build the structure in question.\n",
+            "canShow": 1
+        ]);
 
-    ret[to_string(sizeof(ret) + 1)] = ([
-        "name": "Confirm Selected Workers",
-        "type": "confirm",
-        "description": "This option assigns workers to the task of "
-            "building the selected component.\n",
-        "is disabled": canSelectWorkers(componentData),
-        "canShow": 1
-    ]);
+        string *workers = sort_array(
+            m_indices(componentData["construction"]["workers"]),
+            (: $1 > $2 :));
+
+        foreach(string worker in workers)
+        {
+            ret[to_string(sizeof(ret) + 1)] = ([
+                "name": sprintf("Select %s", pluralizeValue(worker)),
+                "type": worker,
+                "description": "This option assigns workers to the task of "
+                    "building the selected component.\n",
+                "is disabled": canSelectWorkers(componentData),
+                "canShow": 1
+            ]);            
+        }
+        ret[to_string(sizeof(ret) + 1)] = ([
+            "name": "Confirm Selected Workers",
+            "type": "confirm",
+            "description": "This option assigns workers to the task of "
+                "building the selected component.\n",
+            "is disabled": canSelectWorkers(componentData),
+            "canShow": 1
+        ]);
+    }
     ret[to_string(sizeof(ret) + 1)] = ([
         "name":"Exit Building Menu",
         "type": "exit",
@@ -869,34 +900,46 @@ public nomask mapping getWorkersMenu(object user, string location,
     ]);
     return ret;
 }
-/*
+
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getComponentWorkerInfoInfo(object user, 
-    mapping componentData)
+public nomask string getComponentWorkerInfo(object user, mapping componentData)
 {
     string ret = "";
 
     // Unicode character is: \xe2\x99\x99
-    if (member(CastleComponents, componentData["name"]))
+    string colorConfiguration = user->colorConfiguration();
+    string charset = user->charsetConfiguration();
+
+    string *layout = displayLayout(componentData["name"],
+        colorConfiguration, charset);
+
+    string *workers = displayWorkerData(user, 
+        componentData["construction"] + ([]),
+        colorConfiguration, charset)[1..];
+
+    int layoutSize = sizeof(layout);
+    int workerSize = sizeof(workers);
+    int sharedRows = (layoutSize > workerSize) ? workerSize : layoutSize;
+        
+    for (int i = 0; i < sharedRows; i++)
     {
-        string colorConfiguration = user->colorConfiguration();
-        string charset = user->charsetConfiguration();
-
-        mapping construction =
-            CastleComponents[componentData["name"]]["construction"] + ([]);
-
-        ret += displayLayout(componentData["name"],
-            colorConfiguration, charset) +
-            displayCompletionTime(user, construction,
-                colorConfiguration, charset) +
-            displayMaterialsData(user, componentData, construction,
-                colorConfiguration, charset) +
-            displayWorkerData(user, construction,
-                colorConfiguration, charset);
+        ret += sprintf("%" + sizeof(layout[i]) + "s%s\n",
+            layout[i], workers[i]);
+    }
+    if (layoutSize > workerSize)
+    {
+        ret += implode(layout[workerSize..], "\n");
+    }
+    else
+    {
+        for (int i = layoutSize; i < workerSize; i++)
+        {
+            ret += sprintf("%29s%s\n", "", workers[i]);
+        }
     }
     return ret;
 }
-*/
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidHenchman(mapping data)
 {
