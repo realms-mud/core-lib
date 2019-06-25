@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         addSpecification("type", "health");
         addSpecification("name", "Stuff 2");
-        addSpecification("description", "blah blah blah");
+        addSpecification("description", "blah blah blah - yes, blah");
         addSpecification("root", "disfigured");
         addSpecification("opposing root", "normal");
         addSpecification("opinion", 10);
