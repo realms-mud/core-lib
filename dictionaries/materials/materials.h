@@ -234,7 +234,7 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "default description": "This is a piece of granite.",
-        "scarcity": "common",
+        "scarcity": "uncommon",
         "experience modifier": 1
     ]),
     "diorite": ([
@@ -246,7 +246,7 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 8]),
         ]),
         "default description": "This is a piece of diorite.",
-        "scarcity": "common",
+        "scarcity": "uncommon",
         "experience modifier": 1
     ]),
     "andesite": ([
@@ -258,7 +258,7 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "default description": "This is a piece of andesite.",
-        "scarcity": "common",
+        "scarcity": "uncommon",
         "experience modifier": 1
     ]),
     "boninite": ([
@@ -282,7 +282,7 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "default description": "This is a piece of granite.",
-        "scarcity": "common",
+        "scarcity": "rare",
         "experience modifier": 1
     ]),
     "scoria": ([
@@ -294,7 +294,7 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "default description": "This is a piece of scoria.",
-        "scarcity": "common",
+        "scarcity": "uncommon",
         "experience modifier": 1
     ]),
     "tuff": ([
@@ -387,7 +387,7 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 15]),
         ]),
         "default description": "This is a slab of marble.",
-        "scarcity": "common",
+        "scarcity": "uncommon",
         "experience modifier": 1.1
     ]),
     "limestone": ([
@@ -449,7 +449,7 @@ private nosave mapping materials =
             "stonemasonry": (["type":"skill", "value": 10]),
         ]),
         "default description": "This is a piece of lazurite.",
-        "scarcity": "common",
+        "scarcity": "uncommon",
         "experience modifier": 1
     ]),
 

@@ -5,8 +5,10 @@
 #ifndef buildingComponents_h
 #define buildingComponents_h
 
-#include "keep-components.h"
+#include "stone-keep-components.h"
+#include "wooden-keep-components.h"
 
-private mapping BuildingComponents = KeepComponents + ([]);
+private mapping BuildingComponents = StoneKeepComponents +
+    WoodenKeepComponents + ([]);
 
 #endif
