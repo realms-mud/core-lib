@@ -2,6 +2,7 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "domains/building-components.h"
 #include "domains/buildings.h"
 #include "domains/castles.h"
 #include "domains/castle-components.h"
@@ -941,12 +942,21 @@ public nomask string getComponentWorkerInfo(object user, mapping componentData)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int isValidHenchmanType(string data)
+{
+    return member(({ "aegis", "diplomat", "senechal", "advisor", "soldier",
+        "concubine", "mage", "artisan", "sage", "noble", "scholar",
+        "engineer", "architect", "craftsman", "banker", "innkeeper",
+        "retailer", "manager", "scientist", "arcane craftsman" }), data) > -1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isValidHenchman(mapping data)
 {
     return mappingp(data) && member(data, "name") &&
-        member(data, "type") && member(data, "persona") &&
-        member(data, "level") && member(data, "vitals") &&
-        member(data, "activity");
+        member(data, "type") && isValidHenchmanType(data["type"]) &&
+        member(data, "persona") && member(data, "level") && 
+        member(data, "vitals") && member(data, "activity");
 }
 
 /////////////////////////////////////////////////////////////////////////////

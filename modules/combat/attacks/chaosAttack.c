@@ -32,6 +32,3 @@ public void reset(int arg)
             "suddenly ##Infinitive::obsolete## ##TargetName##!", "< 120");
     }
 }
-
-
-

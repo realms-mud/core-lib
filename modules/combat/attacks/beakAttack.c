@@ -25,7 +25,3 @@ public void reset(int arg)
             "##SimileDictionary## with ##AttackerPossessive## beak.", "1-150");
     }
 }
-
-
-
-

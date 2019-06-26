@@ -16,5 +16,3 @@ public void conversationEventHappened(object caller, object initiator)
 {
     NumTimesCalled++;
 }
-
-

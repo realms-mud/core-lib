@@ -16,5 +16,3 @@ public void usedResearchEvent(object caller)
 {
     NumTimesCalled++;
 }
-
-

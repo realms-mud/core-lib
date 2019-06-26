@@ -25,6 +25,27 @@ private nosave mapping fighterBlueprints = ([
         "base spell points": 10,
         "base stamina points": 50
     ]),
+    "man-at-arms":([
+        "category": "fighters",
+        "primary skills": ({ "parry", "dodge", "shield", "long sword",
+            "hand and a half sword", "short sword", "dagger", "axe",
+            "two-handed sword", "plate armor", "splint armor", "mace",
+            "chainmail", "scalemail", "hard leather", "soft leather",
+            "no armor" }),
+        "secondary skills": ({ "anatomy and physiology", "perception",
+            "listen", "spot", "common", "dual wield" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "swords", "axes", "maces" }),
+            "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
+        "base hit points": 150,
+        "base spell points": 10,
+        "base stamina points": 75
+    ]),
     "knifeman":([
         "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "short sword", "dagger",
@@ -39,6 +60,26 @@ private nosave mapping fighterBlueprints = ([
             "armor": ({ "light-armor", "medium-armor" }),
             "armor/accessories": ({ "belt", "boots", "coif", "gloves", 
                 "helmet", "ring", "sabaton" })
+        ]),
+        "base hit points": 100,
+        "base spell points": 10,
+        "base stamina points": 50
+    ]),
+    "light infantry": ([
+        "category": "fighters",
+        "primary skills": ({ "parry", "dodge", "shield", "long sword",
+            "hand and a half sword", "short sword", "dagger",
+            "two-handed sword", "hard leather", "soft leather",
+            "no armor" }),
+        "secondary skills": ({ "anatomy and physiology", "perception",
+            "listen", "spot", "common", "dual wield" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "daggers", "swords" }),
+            "armor": ({ "light-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gloves", 
+                "helmet", "ring" })
         ]),
         "base hit points": 100,
         "base spell points": 10,
@@ -281,6 +322,48 @@ private nosave mapping fighterBlueprints = ([
         "base spell points": 10,
         "base stamina points": 50
     ]),
+    "knight": ([
+        "category": "fighters",
+        "primary skills": ({ "parry", "dodge", "shield", "long sword",
+            "hand and a half sword", "short sword", "dagger", "axe",
+            "two-handed sword", "plate armor", "splint armor", "mace",
+            "chainmail", "scalemail", "hard leather", "soft leather",
+            "no armor" }),
+        "secondary skills": ({ "anatomy and physiology", "perception",
+            "listen", "spot", "common", "dual wield" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "swords", "axes", "maces" }),
+            "armor": ({ "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
+        "base hit points": 150,
+        "base spell points": 100,
+        "base stamina points": 50
+    ]),
+    "phaedra": ([
+        "category": "fighters",
+        "primary skills": ({ "parry", "dodge", "shield", "long sword",
+            "hand and a half sword", "short sword", "dagger", "axe",
+            "two-handed sword", "plate armor", "splint armor", "mace",
+            "chainmail", "scalemail", "hard leather", "soft leather",
+            "no armor" }),
+        "secondary skills": ({ "anatomy and physiology", "perception",
+            "listen", "spot", "common", "dual wield" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "equipment": ([ 
+            "weapons":({ "swords", "axes", "maces" }),
+            "armor": ({ "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
+                "helm", "helmet", "ring", "sabaton" })
+        ]),
+        "base hit points": 200,
+        "base spell points": 100,
+        "base stamina points": 100
+    ]),
     "knight of the storm":([
         "category": "fighters",
         "primary skills": ({ "parry", "dodge", "shield", "long sword",
@@ -305,5 +388,4 @@ private nosave mapping fighterBlueprints = ([
         "base spell points": 100,
         "base stamina points": 50
     ]),
-
 ]);

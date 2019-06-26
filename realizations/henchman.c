@@ -12,6 +12,7 @@ virtual inherit "/lib/modules/combatChatter.c";
 
 private object Leader;
 private string Location;
+private string Type;
 private mapping Activity = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -84,6 +85,23 @@ public nomask void setActivity(mapping activity)
 public nomask mapping activity()
 {
     return Activity + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setType(string type)
+{
+    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+
+    if (dictionary->isValidHenchmanType(type))
+    {
+        Type = type;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string type()
+{
+    return Type;
 }
 
 /////////////////////////////////////////////////////////////////////////////

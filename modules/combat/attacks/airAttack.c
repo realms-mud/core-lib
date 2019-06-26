@@ -30,6 +30,3 @@ public void reset(int arg)
             "51-150");
     }
 }
-
-
-
