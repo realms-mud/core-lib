@@ -1066,10 +1066,15 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;190m",
             "24-bit": "\x1b[0;38;2;200;200;0m"
         ]),
-        "selection needed":([
+        "selection needed": ([
             "3-bit": "\x1b[0;35m",
             "8-bit": "\x1b[0;38;5;24m",
             "24-bit": "\x1b[0;38;2;140;140;180m"
+        ]),
+        "selected":([
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;25;1m",
+            "24-bit": "\x1b[0;38;2;10;80;160;1m"
         ]),
     ]),
 ]);

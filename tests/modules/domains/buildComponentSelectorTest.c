@@ -116,5 +116,27 @@ void CorrectlyDisplaysWorkerMenu()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysSectionMenu()
 {
+    Selector->initiateSelector(Player);
+    command("1", Player);
 
+    ExpectEq("Building Projects - Stone Keep:\n"
+        "From this menu, you can select a central stone tower for your stone keep\n"
+        "project at Argalach Castle.\n"
+        "\n"
+        "Layout: +=======+            Building Sections:\n"
+        "        | +---+ |                Central Stone Tower: <Make Selection>\n"
+        "        | |   | |                Main Stone Keep: <Make Selection>\n"
+        "        | +---+ |                Stone Battlement: <Make Selection>\n"
+        "        +=======+            \n"
+        "\n"
+        "    [1] - Hexagonal Stone Tower         [2] - Magi Stone Tower          \n"
+        "    [3] - Octagonal Stone Tower         [4] - Round Stone Tower         \n"
+        "    [5] - Square Stone Tower            [6] - Stone Bergfriede          \n"
+        "    [7] - Stone Bretasche               [8] - Stone Observatory         \n"
+        "    [9] - Exit Building Menu        \n"
+        "You must select a number from 1 to 9.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
 }

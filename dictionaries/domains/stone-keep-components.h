@@ -6,7 +6,7 @@
 #define stoneKeepComponents_h
 
 private mapping StoneKeepComponents = ([
-    "Simple Square Keep":([
+    "Simple Square Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1,
@@ -20,7 +20,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Tall Square Keep":([
+    "Tall Square Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1.1,
@@ -49,7 +49,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Large Square Keep":([
+    "Large Square Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1.1,
@@ -78,7 +78,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Simple Round Keep":([
+    "Simple Round Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1,
@@ -96,7 +96,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Tall Round Keep":([
+    "Tall Round Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1.1,
@@ -125,7 +125,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Large Round Keep":([
+    "Large Round Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1.1,
@@ -154,7 +154,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Simple Hexagonal Keep":([
+    "Simple Hexagonal Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1,
@@ -172,7 +172,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Tall Hexagonal Keep":([
+    "Tall Hexagonal Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1.1,
@@ -201,7 +201,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Large Hexagonal Keep":([
+    "Large Hexagonal Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1.1,
@@ -230,7 +230,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Simple Octagonal Keep":([
+    "Simple Octagonal Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1,
@@ -248,7 +248,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Tall Octagonal Keep":([
+    "Tall Octagonal Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1.1,
@@ -277,7 +277,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Large Octagonal Keep":([
+    "Large Octagonal Stone Keep":([
         "class": "main stone keep",
         "description": "",
         "experience modifier": 1.1,
@@ -306,7 +306,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Square Tower":([
+    "Square Stone Tower":([
         "class": "central stone tower",
         "description": "",
         "experience modifier": 1,
@@ -318,7 +318,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Round Tower":([
+    "Round Stone Tower":([
         "class":"central stone tower",
         "description": "",
         "experience modifier": 1,
@@ -334,7 +334,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Hexagonal Tower":([
+    "Hexagonal Stone Tower":([
         "class":"central stone tower",
         "description": "",
         "experience modifier": 1,
@@ -350,7 +350,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Octagonal Tower":([
+    "Octagonal Stone Tower":([
         "class":"central stone tower",
         "description": "",
         "experience modifier": 1,
@@ -366,7 +366,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Bretasche":([
+    "Stone Bretasche":([
         "class": "central stone tower",
         "description": "",
         "experience modifier": 1.1,
@@ -393,7 +393,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Bergfriede":([
+    "Stone Bergfriede":([
         "class": "central stone tower",
         "description": "",
         "experience modifier": 1.1,
@@ -420,7 +420,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Observatory":([
+    "Stone Observatory":([
         "class": "central stone tower",
         "description": "",
         "experience modifier": 1.1,
@@ -445,7 +445,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Magi Tower":([
+    "Magi Stone Tower":([
         "class": "central stone tower",
         "description": "",
         "experience modifier": 1.1,
@@ -477,7 +477,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Simple Battlement":([
+    "Simple Stone Battlement":([
         "class": "stone battlement",
         "description": "",
         "experience modifier": 1,
@@ -488,7 +488,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 1,
     ]),
-    "Parapet":([
+    "Stone Parapet":([
         "class": "stone battlement",
         "description": "",
         "experience modifier": 1.1,
@@ -513,7 +513,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 2,
     ]),
-    "Crenelated Parapet":([
+    "Crenelated Stone Parapet":([
         "class": "stone battlement",
         "description": "",
         "experience modifier": 1.1,
@@ -538,7 +538,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Enbrasured Parapet":([
+    "Enbrasured Stone Parapet":([
         "class": "stone battlement",
         "description": "",
         "experience modifier": 1.1,
@@ -563,7 +563,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 4,
     ]),
-    "Machicolationed Battlement":([
+    "Machicolationed Stone Battlement":([
         "class": "stone battlement",
         "description": "",
         "experience modifier": 1.1,
@@ -590,7 +590,7 @@ private mapping StoneKeepComponents = ([
         "defend air attack": 4,
         "air attack": 2,
     ]),
-    "Crossbow Parapet":([
+    "Crossbow Stone Parapet":([
         "class": "stone battlement",
         "description": "",
         "experience modifier": 1.1,

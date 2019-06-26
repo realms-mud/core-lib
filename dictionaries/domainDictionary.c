@@ -652,7 +652,7 @@ private nomask mapping getConstructionOptions(mapping componentData)
                 "type": section,
                 "canShow": 1,
                 "selected": 1,
-                "details": construction[section],
+                "details": construction,
             ]);
             menuItem++;
         }
@@ -832,10 +832,43 @@ public nomask string getFeatureDescription(string element)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int canSelectSection(object user, string option)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getBuildSectionMenu(object user, string location,
     mapping sectionData)
 {
-    return ([]);
+    mapping ret = ([]);
+
+    string *sectionOptions = sort_array(filter(m_indices(BuildingComponents),
+        (: BuildingComponents[$1]["class"] == $2 :), 
+            sectionData["selected section"]),
+        (: $1 > $2 :));
+
+    foreach(string option in sectionOptions)
+    {
+        ret[to_string(sizeof(ret) + 1)] = ([
+            "name": sprintf(generateTitle(option)),
+            "type": option,
+            "description": "This option assigns workers to the task of "
+                "building the selected component.\n",
+            "is disabled": canSelectSection(user, option),
+            "canShow": 1
+        ]); 
+    }
+
+    ret[to_string(sizeof(ret) + 1)] = ([
+        "name":"Exit Building Menu",
+        "type" : "exit",
+        "description" : "This option lets you exit the building "
+            "projects menu.\n",
+        "canShow" : 1
+    ]);
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -903,42 +936,85 @@ public nomask mapping getWorkersMenu(object user, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getComponentWorkerInfo(object user, mapping componentData)
+private nomask string generateBuildInfo(string *leftColumn, string *rightColumn)
 {
     string ret = "";
 
+    int leftColumnSize = sizeof(leftColumn);
+    int rightColumnSize = sizeof(rightColumn);
+    int sharedRows = (leftColumnSize > rightColumnSize) ? 
+        rightColumnSize : leftColumnSize;
+
+    for (int i = 0; i < sharedRows; i++)
+    {
+        ret += sprintf("%" + sizeof(leftColumn[i]) + "s%s\n",
+            leftColumn[i], rightColumn[i]);
+    }
+    if (leftColumnSize > rightColumnSize)
+    {
+        ret += implode(leftColumn[rightColumnSize..], "\n");
+    }
+    else
+    {
+        for (int i = leftColumnSize; i < rightColumnSize; i++)
+        {
+            ret += sprintf("%29s%s\n", "", rightColumn[i]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getComponentWorkerInfo(object user, mapping componentData)
+{
     // Unicode character is: \xe2\x99\x99
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
 
-    string *layout = displayLayout(componentData["name"],
-        colorConfiguration, charset);
+    return generateBuildInfo(
+        displayLayout(componentData["name"], colorConfiguration, charset),
+        displayWorkerData(user, componentData["construction"] + ([]),
+            colorConfiguration, charset)[1..]);
+}
 
-    string *workers = displayWorkerData(user, 
-        componentData["construction"] + ([]),
-        colorConfiguration, charset)[1..];
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *displaySectionData(object user, mapping sections,
+    string colorConfiguration, string charset)
+{
+    string *ret = ({ configuration->decorate("Building Sections:",
+        "heading", "player domains", colorConfiguration)
+    });
 
-    int layoutSize = sizeof(layout);
-    int workerSize = sizeof(workers);
-    int sharedRows = (layoutSize > workerSize) ? workerSize : layoutSize;
-        
-    for (int i = 0; i < sharedRows; i++)
+    string *sectionList = sort_array(m_indices(sections), (: $1 > $2 :));
+    sectionList -= ({ "name", "selected section" });
+
+    foreach(string section in sectionList)
     {
-        ret += sprintf("%" + sizeof(layout[i]) + "s%s\n",
-            layout[i], workers[i]);
-    }
-    if (layoutSize > workerSize)
-    {
-        ret += implode(layout[workerSize..], "\n");
-    }
-    else
-    {
-        for (int i = layoutSize; i < workerSize; i++)
-        {
-            ret += sprintf("%29s%s\n", "", workers[i]);
-        }
+        string entry = "    " +
+            configuration->decorate(generateTitle(section),
+                "value", "player domains", colorConfiguration) + ": " +
+            (member(sections[section], "selection") ?
+                configuration->decorate(
+                    generateTitle(sections[section]["selection"]["name"]),
+                    "selected", "player domains", colorConfiguration) :
+                configuration->decorate("<Make Selection>",
+                    "selection needed", "player domains", colorConfiguration));
+        ret += ({ entry });
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getBuildSectionInfo(object user, mapping componentData)
+{
+    string colorConfiguration = user->colorConfiguration();
+    string charset = user->charsetConfiguration();
+
+    return generateBuildInfo(
+        displayLayout(componentData["name"], colorConfiguration, charset),
+        displaySectionData(user, 
+            componentData + ([]),
+            colorConfiguration, charset));
 }
 
 /////////////////////////////////////////////////////////////////////////////

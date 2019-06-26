@@ -20,9 +20,11 @@ public nomask void setLocation(string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setDetails(mapping data)
+public nomask void setDetails(mapping data, string name, string selection)
 {
     SectionData = data;
+    SectionData["name"] = name;
+    SectionData["selected section"] = selection;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -33,6 +35,7 @@ public nomask void reset(int arg)
         AllowUndo = 0;
         AllowAbort = 1;
         SuppressColon = 1;
+        NumColumns = 2;
         Description = "Building Sections";
         Type = "Building Projects";
         Data = ([]);
@@ -50,9 +53,11 @@ protected nomask void setUpUserForSelection()
             (dictionary->generateTitle(SectionData["name"]) + ":\n") :
             "Building Sections:\n") +
             configuration->decorate(format(sprintf("From this menu, you can "
-                "initiate, modify, or abort projects in your holdings at %s.",
+                "select a %s for your %s project at %s.",
+                SectionData["selected section"], SectionData["name"],
                 dictionary->getLocationDisplayName(Location)), 78),
-                "description", "selector", colorConfiguration);
+                "description", "selector", colorConfiguration) + "\n" +
+            dictionary->getBuildSectionInfo(User, SectionData) + "\n";
 
         Data = dictionary->getBuildSectionMenu(User, Location,
             SectionData);
@@ -82,10 +87,10 @@ protected string choiceFormatter(string choice)
             section += sprintf("%s%s\n", padding, line);
         }
     }
-    return section + sprintf("[%s]%s - %s%s%s",
+    return section + sprintf("    [%s]%s - %s%s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        configuration->decorate("%-20s", "choice enabled", "selector", colorConfiguration),
+        configuration->decorate("%-26s", "choice enabled", "selector", colorConfiguration),
         displayDetails(choice),
         Data[choice]["layout panel"] || "");
 }
