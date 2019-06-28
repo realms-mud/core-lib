@@ -838,11 +838,60 @@ private nomask int canSelectSection(object user, string option)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getBuildSectionMenu(object user, string location,
-    mapping sectionData)
+private nomask mapping materialsNeededForSection(mapping sectionData,
+    string selection)
+{
+    mapping ret = sectionData[sectionData["selected section"]] + ([]);
+
+    if (selection && member(BuildingComponents, selection) &&
+        member(BuildingComponents[selection], "building materials"))
+    {
+        mapping additionalMaterials =
+            BuildingComponents[selection]["building materials"];
+
+        foreach(string material in m_indices(additionalMaterials))
+        {
+            ret[material] += additionalMaterials[material];
+        }
+    }
+    return filter(ret, (: ret[$1] > 0 :));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping generateMaterialMenuEntries(mapping sectionData)
 {
     mapping ret = ([]);
 
+    string *materialsInSection = sort_array(
+        m_indices(sectionData[sectionData["selected section"]]),
+        (: $1 > $2 :));
+
+    mapping neededMaterials = materialsNeededForSection(sectionData,
+        (member(sectionData, "chosen section") ? 
+            sectionData["chosen section"] : 0));
+
+    foreach(string material in materialsInSection)
+    {
+        ret[to_string(sizeof(ret) + 1)] = ([
+            "name": "Select " + generateTitle(material),
+            "type": material,
+            "description": "This option assigns workers to the task of "
+                "building the selected component.\n",
+            "is disabled": !member(neededMaterials, material),
+            "selected material": 
+                member(sectionData["selected materials"], material) ?
+                    sectionData["selected materials"][material] : 0,
+            "canShow": 1
+        ]); 
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void generateSectionOptions(mapping output, object user,
+    mapping sectionData)
+{
     string *sectionOptions = sort_array(filter(m_indices(BuildingComponents),
         (: BuildingComponents[$1]["class"] == $2 :), 
             sectionData["selected section"]),
@@ -850,8 +899,8 @@ public nomask mapping getBuildSectionMenu(object user, string location,
 
     foreach(string option in sectionOptions)
     {
-        ret[to_string(sizeof(ret) + 1)] = ([
-            "name": sprintf(generateTitle(option)),
+        output[to_string(sizeof(output) + 1)] = ([
+            "name": generateTitle(option),
             "type": option,
             "description": "This option assigns workers to the task of "
                 "building the selected component.\n",
@@ -859,15 +908,56 @@ public nomask mapping getBuildSectionMenu(object user, string location,
             "canShow": 1
         ]); 
     }
+}
 
-    ret[to_string(sizeof(ret) + 1)] = ([
-        "name":"Exit Building Menu",
-        "type" : "exit",
-        "description" : "This option lets you exit the building "
-            "projects menu.\n",
-        "canShow" : 1
-    ]);
+/////////////////////////////////////////////////////////////////////////////
+private nomask int beginConstructionIsEnabled(mapping sectionData)
+{
+    int ret = member(sectionData, "chosen section") && 
+        member(BuildingComponents, sectionData["chosen section"]) &&
+        member(sectionData, "selected materials");
 
+    if (ret)
+    {
+        mapping neededMaterials = materialsNeededForSection(sectionData,
+            sectionData["chosen section"]);
+
+        foreach(string material in m_indices(neededMaterials))
+        {
+            ret &&= member(sectionData["selected materials"], material);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getBuildSectionMenu(object user, string location,
+    mapping sectionData)
+{
+    mapping ret = ([]);
+
+    if(mappingp(sectionData) && member(sectionData, "selected section"))
+    {
+        ret = generateMaterialMenuEntries(sectionData);
+        generateSectionOptions(ret, user, sectionData);
+
+        ret[to_string(sizeof(ret) + 1)] = ([
+            "name":"Begin Construction",
+            "type": "exit",
+            "description": "This option lets you begin construction on "
+                "the building component.\n",
+            "is disabled" : !beginConstructionIsEnabled(sectionData),
+            "canShow": 1
+        ]);
+
+        ret[to_string(sizeof(ret) + 1)] = ([
+            "name":"Exit Building Section Menu",
+            "type" : "exit",
+            "description" : "This option lets you exit the building "
+                "projects menu.\n",
+            "canShow" : 1
+        ]);
+    }
     return ret;
 }
 
@@ -925,6 +1015,7 @@ public nomask mapping getWorkersMenu(object user, string location,
             "canShow": 1
         ]);
     }
+
     ret[to_string(sizeof(ret) + 1)] = ([
         "name":"Exit Building Menu",
         "type": "exit",
@@ -985,11 +1076,20 @@ private nomask string *displaySectionData(object user, mapping sections,
         "heading", "player domains", colorConfiguration)
     });
 
+    string selectedSection = sections["selected section"];
     string *sectionList = sort_array(m_indices(sections), (: $1 > $2 :));
-    sectionList -= ({ "name", "selected section" });
+
+    sectionList -= ({ "name", "selected section", "selected materials", 
+        "chosen section" });
 
     foreach(string section in sectionList)
     {
+        string sectionInfo = (section == selectedSection) ?
+            configuration->decorate("<Make Selection>",
+                "selection needed", "player domains", colorConfiguration) :
+            configuration->decorate("<Not Selected Yet>",
+                "not selected yet", "player domains", colorConfiguration);
+
         string entry = "    " +
             configuration->decorate(generateTitle(section),
                 "value", "player domains", colorConfiguration) + ": " +
@@ -997,8 +1097,8 @@ private nomask string *displaySectionData(object user, mapping sections,
                 configuration->decorate(
                     generateTitle(sections[section]["selection"]["name"]),
                     "selected", "player domains", colorConfiguration) :
-                configuration->decorate("<Make Selection>",
-                    "selection needed", "player domains", colorConfiguration));
+                sectionInfo);
+
         ret += ({ entry });
     }
     return ret;

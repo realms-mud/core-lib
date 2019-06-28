@@ -22,9 +22,10 @@ public nomask void setLocation(string location)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setDetails(mapping data, string name, string selection)
 {
-    SectionData = data;
+    SectionData = data + ([]);
     SectionData["name"] = name;
     SectionData["selected section"] = selection;
+    SectionData["selected materials"] = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -53,7 +54,8 @@ protected nomask void setUpUserForSelection()
             (dictionary->generateTitle(SectionData["name"]) + ":\n") :
             "Building Sections:\n") +
             configuration->decorate(format(sprintf("From this menu, you can "
-                "select a %s for your %s project at %s.",
+                "select the materials to construct with and style of %s "
+                "to build for your %s project at %s.",
                 SectionData["selected section"], SectionData["name"],
                 dictionary->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration) + "\n" +
@@ -87,10 +89,14 @@ protected string choiceFormatter(string choice)
             section += sprintf("%s%s\n", padding, line);
         }
     }
+
+    string choiceColor = member(Data[choice], "is disabled") &&
+        Data[choice]["is disabled"] ? "choice disabled" : "choice enabled";
+
     return section + sprintf("    [%s]%s - %s%s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        configuration->decorate("%-26s", "choice enabled", "selector", colorConfiguration),
+        configuration->decorate("%-26s", choiceColor, "selector", colorConfiguration),
         displayDetails(choice),
         Data[choice]["layout panel"] || "");
 }

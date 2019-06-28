@@ -73,21 +73,51 @@ public nomask void onSelectorCompleted(object caller)
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    string section = "";
-    if(member(Data[choice], "first section"))
-    {
-        string padding = (sizeof(Data) < 10) ? "" : " ";
-        foreach(string line in Data[choice]["first section"])
-        {
-            section += sprintf("%s%s\n", padding, line);
-        }
-    }
-    return section + sprintf("[%s]%s - %s%s%s",
+    string displayType = Data[choice]["canShow"] ? "choice enabled" : "choice disabled";
+
+    return sprintf("[%s]%s - %s%s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        configuration->decorate("%-20s", "choice enabled", "selector", colorConfiguration),
+        configuration->decorate("%-20s", displayType, "selector", colorConfiguration),
         displayDetails(choice),
         Data[choice]["layout panel"] || "");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string additionalInstructions()
+{
+    return configuration->decorate("P", "note", "selector", colorConfiguration) +
+        configuration->decorate(" denotes unrealized prerequisites.\n",
+            "details", "selector", colorConfiguration) +
+        configuration->decorate("M", "note", "selector", colorConfiguration) +
+        configuration->decorate(" denotes that proper quantities of the "
+            "material requirements are missing.\n",
+            "details", "selector", colorConfiguration);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string displayDetails(string choice)
+{
+    string *flags = ({});
+
+    if (member(Data[choice], "prerequisites met") &&
+        !Data[choice]["prerequisites met"])
+    {
+        flags += ({ "P" });
+    }
+    if (member(Data[choice], "has materials") &&
+        !Data[choice]["has materials"])
+    {
+        flags += ({ "M" });
+    }
+    string ret = sizeof(flags) ? configuration->decorate(sprintf("(%s)",
+        implode(flags, ",")), "note", "selector", colorConfiguration) : "     ";
+
+    if (sizeof(flags) == 1)
+    {
+        ret += "  ";
+    }
+    return member(Data[choice], "canShow") ? ret : "";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -107,28 +137,6 @@ protected nomask int processSelection(string selection)
                     MaterialData["type"],
                     MaterialData["value"]);
                 ret = 1;
-            }
-            else if (Data[selection]["type"] == "workers")
-            {
-                SubselectorObj =
-                    clone_object("/lib/modules/domains/workerSelector.c");
-                SubselectorObj->setWorkerData(Data[selection]["data"]);
-                SubselectorObj->setLocation(Location);
-
-                move_object(SubselectorObj, User);
-                SubselectorObj->registerEvent(this_object());
-                SubselectorObj->initiateSelector(User);
-            }
-            else
-            {
-                SubselectorObj =
-                    clone_object("/lib/modules/domains/materialsSelector.c");
-                SubselectorObj->setDetails(Data[selection]["details"]);
-                SubselectorObj->setLocation(Location);
-
-                move_object(SubselectorObj, User);
-                SubselectorObj->registerEvent(this_object());
-                SubselectorObj->initiateSelector(User);
             }
         }
     }
