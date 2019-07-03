@@ -8,6 +8,7 @@ private string Location;
 private mapping SectionData = 0;
 private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 private object SubselectorObj;
+private string ConfirmChoice;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
@@ -63,7 +64,28 @@ protected nomask void setUpUserForSelection()
 
         Data = dictionary->getBuildSectionMenu(User, Location,
             SectionData);
+
+        ConfirmChoice = to_string(sizeof(Data) + 1);
+
+        Data[ConfirmChoice] = ([
+            "name":"Begin Construction",
+            "type": "construct",
+            "description": "This option lets you begin construction on "
+                "the building component.\n",
+            "is disabled" : !dictionary->beginConstructionIsEnabled(SectionData),
+            "canShow": 1
+        ]);
+
+        Data[to_string(sizeof(Data) + 1)] = ([
+            "name":"Exit Section Menu",
+            "type" : "exit",
+            "description" : "This option lets you exit the building "
+                "projects menu.\n",
+            "canShow" : 1
+        ]);
     }
+
+    printf("SectionData is -> %O\n", SectionData);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -78,15 +100,46 @@ public nomask void onSelectorCompleted(object caller)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask string displayDetails(string choice)
+{
+    string ret = sprintf("%9s", "");
+    if ((Data[choice]["type"] == "construct") &&
+        (User->colorConfiguration() == "none"))
+    {
+        ret = sprintf("%-9s", "N/A");
+    }
+    else if (Data[choice]["type"] == "material")
+    {
+        ret = configuration->decorate(sprintf("%-9s",
+            (!Data[choice]["is disabled"] && (
+                member(SectionData["selected materials"], 
+                    Data[choice]["material type"]) && 
+                Data[choice]["selected material"])) ?
+            SectionData["selected materials"][Data[choice]["material type"]] :
+            (Data[choice]["is disabled"] ? "N/A" : "none")),
+            "selected", "selector", colorConfiguration);
+    }
+    else if (member(SectionData, "chosen section") &&
+        (Data[choice]["type"] == SectionData["chosen section"]))
+    {
+        ret = configuration->decorate(sprintf("%-9s",
+            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x80\xa0)" :
+            "   (*)"),
+            "selected", "selector", colorConfiguration);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
     string choiceColor = member(Data[choice], "is disabled") &&
         Data[choice]["is disabled"] ? "choice disabled" : "choice enabled";
 
-    return sprintf("    [%s]%s - %s%s%s",
+    return sprintf("[%s]%s - %s%s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        configuration->decorate("%-26s", choiceColor, "selector", colorConfiguration),
+        configuration->decorate("%-23s", choiceColor, "selector", colorConfiguration),
         displayDetails(choice),
         Data[choice]["layout panel"] || "");
 }
@@ -101,16 +154,27 @@ protected nomask int processSelection(string selection)
 
         if (!ret)
         {
-            if (Data[selection]["type"] == "material")
+            if (Data[selection]["type"] == "construct")
+            {
+                ret = !Data[selection]["is disabled"];
+            }
+            else if (!Data[selection]["is disabled"] &&
+                (Data[selection]["type"] == "material"))
             {
                 SubselectorObj =
                     clone_object("/lib/modules/domains/materialsSelector.c");
-                SubselectorObj->setMaterialData(Data[selection]["data"]);
+                SubselectorObj->setMaterialData(Data[selection]["material type"]);
                 SubselectorObj->setLocation(Location);
 
                 move_object(SubselectorObj, User);
                 SubselectorObj->registerEvent(this_object());
                 SubselectorObj->initiateSelector(User);
+            }
+            else if(!Data[selection]["is disabled"])
+            {
+                ret = 0;
+                SectionData["chosen section"] = Data[selection]["type"];
+                setUpUserForSelection();
             }
         }
     }
@@ -121,4 +185,10 @@ protected nomask int processSelection(string selection)
 protected nomask int suppressMenuDisplay()
 {
     return objectp(SubselectorObj);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getSectionData()
+{
+    return SectionData + ([]);
 }

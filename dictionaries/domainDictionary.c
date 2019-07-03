@@ -874,7 +874,8 @@ private nomask mapping generateMaterialMenuEntries(mapping sectionData)
     {
         ret[to_string(sizeof(ret) + 1)] = ([
             "name": "Select " + generateTitle(material),
-            "type": material,
+            "type": "material",
+            "material type": material, 
             "description": "This option assigns workers to the task of "
                 "building the selected component.\n",
             "is disabled": !member(neededMaterials, material),
@@ -911,7 +912,7 @@ private nomask void generateSectionOptions(mapping output, object user,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int beginConstructionIsEnabled(mapping sectionData)
+public nomask int beginConstructionIsEnabled(mapping sectionData)
 {
     int ret = member(sectionData, "chosen section") && 
         member(BuildingComponents, sectionData["chosen section"]) &&
@@ -940,23 +941,6 @@ public nomask mapping getBuildSectionMenu(object user, string location,
     {
         ret = generateMaterialMenuEntries(sectionData);
         generateSectionOptions(ret, user, sectionData);
-
-        ret[to_string(sizeof(ret) + 1)] = ([
-            "name":"Begin Construction",
-            "type": "exit",
-            "description": "This option lets you begin construction on "
-                "the building component.\n",
-            "is disabled" : !beginConstructionIsEnabled(sectionData),
-            "canShow": 1
-        ]);
-
-        ret[to_string(sizeof(ret) + 1)] = ([
-            "name":"Exit Building Section Menu",
-            "type" : "exit",
-            "description" : "This option lets you exit the building "
-                "projects menu.\n",
-            "canShow" : 1
-        ]);
     }
     return ret;
 }
@@ -1084,9 +1068,13 @@ private nomask string *displaySectionData(object user, mapping sections,
 
     foreach(string section in sectionList)
     {
-        string sectionInfo = (section == selectedSection) ?
+        string currentSection = member(sections, "chosen section") ?
+            configuration->decorate(sections["chosen section"],
+                "selected", "player domains", colorConfiguration) :
             configuration->decorate("<Make Selection>",
-                "selection needed", "player domains", colorConfiguration) :
+                "selection needed", "player domains", colorConfiguration);
+
+        string sectionInfo = (section == selectedSection) ? currentSection :
             configuration->decorate("<Not Selected Yet>",
                 "not selected yet", "player domains", colorConfiguration);
 

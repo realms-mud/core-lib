@@ -129,13 +129,44 @@ void CorrectlyDisplaysSectionMenu()
         "        | +---+ |                Stone Battlement: <Not Selected Yet>\n"
         "        +=======+            \n"
         "\n"
-        "    [1]  - Select Metal                  [2]  - Select Stone              \n"
-        "    [3]  - Select Textile                [4]  - Select Wood               \n"
-        "    [5]  - Hexagonal Stone Tower         [6]  - Magi Stone Tower          \n"
-        "    [7]  - Octagonal Stone Tower         [8]  - Round Stone Tower         \n"
-        "    [9]  - Square Stone Tower            [10] - Stone Bergfriede          \n"
-        "    [11] - Stone Bretasche               [12] - Stone Observatory         \n"
-        "    [13] - Begin Construction            [14] - Exit Building Section Menu\n"
+        "[1]  - Select Metal           none     [2]  - Select Stone           none     \n"
+        "[3]  - Select Textile         N/A      [4]  - Select Wood            none     \n"
+        "[5]  - Hexagonal Stone Tower           [6]  - Magi Stone Tower                \n"
+        "[7]  - Octagonal Stone Tower           [8]  - Round Stone Tower               \n"
+        "[9]  - Square Stone Tower              [10] - Stone Bergfriede                \n"
+        "[11] - Stone Bretasche                 [12] - Stone Observatory               \n"
+        "[13] - Begin Construction     N/A      [14] - Exit Section Menu               \n"
+        "You must select a number from 1 to 14.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SectionUpdatedWhenSelected()
+{
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("10", Player);
+
+    ExpectEq("Building Projects - Stone Keep:\n"
+        "From this menu, you can select the materials to construct with and style of\n"
+        "central stone tower to build for your stone keep project at Argalach Castle.\n"
+        "\n"
+        "Layout: +=======+            Building Sections:\n"
+        "        | +---+ |                Central Stone Tower: Stone Bergfriede\n"
+        "        | |   | |                Main Stone Keep: <Not Selected Yet>\n"
+        "        | +---+ |                Stone Battlement: <Not Selected Yet>\n"
+        "        +=======+            \n"
+        "\n"
+        "[1]  - Select Metal           none     [2]  - Select Stone           none     \n"
+        "[3]  - Select Textile         none     [4]  - Select Wood            none     \n"
+        "[5]  - Hexagonal Stone Tower           [6]  - Magi Stone Tower                \n"
+        "[7]  - Octagonal Stone Tower           [8]  - Round Stone Tower               \n"
+        "[9]  - Square Stone Tower              [10] - Stone Bergfriede          (*)   \n"
+        "[11] - Stone Bretasche                 [12] - Stone Observatory               \n"
+        "[13] - Begin Construction     N/A      [14] - Exit Section Menu               \n"
         "You must select a number from 1 to 14.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
