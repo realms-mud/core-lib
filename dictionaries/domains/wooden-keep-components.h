@@ -300,7 +300,7 @@ private mapping WoodenKeepComponents = ([
         "defend air attack": 1,
     ]),
     "Round Tower":([
-        "class":"central wooden tower",
+        "class": "central wooden tower",
         "description": "",
         "experience modifier": 1,
         "default units": ([
@@ -315,7 +315,7 @@ private mapping WoodenKeepComponents = ([
         "defend air attack": 1,
     ]),
     "Hexagonal Tower":([
-        "class":"central wooden tower",
+        "class": "central wooden tower",
         "description": "",
         "experience modifier": 1,
         "default units": ([
@@ -330,7 +330,7 @@ private mapping WoodenKeepComponents = ([
         "defend air attack": 1,
     ]),
     "Octagonal Tower":([
-        "class":"central wooden tower",
+        "class": "central wooden tower",
         "description": "",
         "experience modifier": 1,
         "default units": ([

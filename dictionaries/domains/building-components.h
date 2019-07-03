@@ -6,9 +6,11 @@
 #define buildingComponents_h
 
 #include "stone-keep-components.h"
+#include "tower-components.h"
 #include "wooden-keep-components.h"
 
 private mapping BuildingComponents = StoneKeepComponents +
-    WoodenKeepComponents + ([]);
+    WoodenKeepComponents + 
+    TowerComponents + ([]);
 
 #endif

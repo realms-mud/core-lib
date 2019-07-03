@@ -80,20 +80,10 @@ public nomask void onSelectorCompleted(object caller)
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    string section = "";
-    if(member(Data[choice], "first section"))
-    {
-        string padding = (sizeof(Data) < 10) ? "" : " ";
-        foreach(string line in Data[choice]["first section"])
-        {
-            section += sprintf("%s%s\n", padding, line);
-        }
-    }
-
     string choiceColor = member(Data[choice], "is disabled") &&
         Data[choice]["is disabled"] ? "choice disabled" : "choice enabled";
 
-    return section + sprintf("    [%s]%s - %s%s%s",
+    return sprintf("    [%s]%s - %s%s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
         configuration->decorate("%-26s", choiceColor, "selector", colorConfiguration),

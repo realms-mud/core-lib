@@ -319,7 +319,7 @@ private mapping StoneKeepComponents = ([
         "defend air attack": 1,
     ]),
     "Round Stone Tower":([
-        "class":"central stone tower",
+        "class": "central stone tower",
         "description": "",
         "experience modifier": 1,
         "default units": ([
@@ -335,7 +335,7 @@ private mapping StoneKeepComponents = ([
         "defend air attack": 1,
     ]),
     "Hexagonal Stone Tower":([
-        "class":"central stone tower",
+        "class": "central stone tower",
         "description": "",
         "experience modifier": 1,
         "default units": ([
@@ -351,7 +351,7 @@ private mapping StoneKeepComponents = ([
         "defend air attack": 1,
     ]),
     "Octagonal Stone Tower":([
-        "class":"central stone tower",
+        "class": "central stone tower",
         "description": "",
         "experience modifier": 1,
         "default units": ([
