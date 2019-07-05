@@ -391,7 +391,7 @@ private mapping CastleTowers = ([
             "materials": ([
                 "stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
                 "stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
-                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0, "crystal": 10 ]),
                 "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
             ]),
             "workers": ([
@@ -813,7 +813,7 @@ private mapping CastleTowers = ([
             "materials": ([
                 "stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
                 "stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
-                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0, "crystal": 10 ]),
                 "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
             ]),
             "workers": ([
@@ -1237,7 +1237,7 @@ private mapping CastleTowers = ([
             "materials": ([
                 "stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
                 "stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
-                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0, "crystal": 10 ]),
                 "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
             ]),
             "workers": ([
@@ -1659,7 +1659,7 @@ private mapping CastleTowers = ([
             "materials": ([
                 "stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
                 "stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
-                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0, "crystal": 10 ]),
                 "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
             ]),
             "workers": ([

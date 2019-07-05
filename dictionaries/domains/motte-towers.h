@@ -391,7 +391,7 @@ private mapping MotteTowers = ([
             "materials": ([
                 "stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
                 "stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
-                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0, "crystal": 10 ]),
                 "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
             ]),
             "workers": ([
@@ -531,8 +531,8 @@ private mapping MotteTowers = ([
 
     "gate north tower":([
         "type": "north tower",
-         "display name": "Gatehouse",
-       "dimensions": "1x1",
+        "display name": "Gatehouse",
+        "dimensions": "1x1",
         "description": "",
         "colors": ([
             "default":([
@@ -1051,7 +1051,7 @@ private mapping MotteTowers = ([
             "materials": ([
                 "stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
                 "stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
-                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0, "crystal": 10 ]),
                 "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
             ]),
             "workers": ([
@@ -1949,7 +1949,7 @@ private mapping MotteTowers = ([
             "materials": ([
                 "stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
                 "stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
-                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0, "crystal": 10 ]),
                 "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
             ]),
             "workers": ([
@@ -2609,7 +2609,7 @@ private mapping MotteTowers = ([
             "materials": ([
                 "stone tower": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
                 "stone tower second level": ([ "stone": 250, "wood": 50, "metal": 10, "textile": 0 ]),
-                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0 ]),
+                "mage tower addition": ([ "stone": 350, "wood": 100, "metal": 25, "textile": 0, "crystal": 10 ]),
                 "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
             ]),
             "workers": ([
