@@ -84,13 +84,16 @@ protected nomask void setUpUserForSelection()
             "canShow" : 1
         ]);
     }
-
-    printf("SectionData is -> %O\n", SectionData);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
+    if (caller->selection())
+    {
+        SectionData["selected materials"][caller->materialType()] =
+            caller->selection();
+    }
     if (User)
     {
         setUpUserForSelection();
@@ -163,7 +166,8 @@ protected nomask int processSelection(string selection)
             {
                 SubselectorObj =
                     clone_object("/lib/modules/domains/materialsSelector.c");
-                SubselectorObj->setMaterialData(Data[selection]["material type"]);
+                SubselectorObj->setMaterialData(
+                    Data[selection]["material type"], SectionData);
                 SubselectorObj->setLocation(Location);
 
                 move_object(SubselectorObj, User);

@@ -5,6 +5,8 @@
 inherit "/lib/core/baseSelector.c";
 
 private string Location;
+private string MaterialType;
+private string Selection;
 private mapping MaterialData = 0;
 private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 private object SubselectorObj;
@@ -20,8 +22,9 @@ public nomask void setLocation(string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setMaterialData(mapping data)
+public nomask void setMaterialData(string type, mapping data)
 {
+    MaterialType = type;
     MaterialData = data;
 }
 
@@ -33,6 +36,7 @@ public nomask void reset(int arg)
         AllowUndo = 0;
         AllowAbort = 1;
         SuppressColon = 1;
+        NumColumns = 2;
         Description = "Materials";
         Type = "Building Projects";
         Data = ([]);
@@ -46,15 +50,15 @@ protected nomask void setUpUserForSelection()
 
     if (dictionary && MaterialData)
     {
-        Description = (member(MaterialData, "name") ? 
-            (dictionary->generateTitle(MaterialData["name"]) + ":\n") : 
-            "Materials:\n") +
+        Description = "Select Material:\n" +
             configuration->decorate(format(sprintf("From this menu, you can "
-                "initiate, modify, or abort projects in your holdings at %s.",
+                "select the type of %s to construct with for your %s "
+                "of your %s project at %s.", MaterialType,
+                MaterialData["selected section"], MaterialData["name"],
                 dictionary->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration);
 
-        Data = dictionary->getBuildComponentMenu(User, Location, 
+        Data = dictionary->getMaterialsOfType(MaterialType, User,
             MaterialData);
     }
 }
@@ -75,7 +79,7 @@ protected string choiceFormatter(string choice)
 {
     string displayType = Data[choice]["canShow"] ? "choice enabled" : "choice disabled";
 
-    return sprintf("[%s]%s - %s%s%s",
+    return sprintf("    [%s]%s - %s%s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
         configuration->decorate("%-20s", displayType, "selector", colorConfiguration),
@@ -128,16 +132,10 @@ protected nomask int processSelection(string selection)
     {
         ret = (Data[selection]["type"] == "exit") || (selection == "abort");
 
-        if (!ret)
+        if (!ret && Data[selection]["canShow"])
         {
-            ret = 0;
-            if (Data[selection]["type"] == "create")
-            {
-                User->buildDomainUpgrade(Location,
-                    MaterialData["type"],
-                    MaterialData["value"]);
-                ret = 1;
-            }
+            Selection = Data[selection]["type"];
+            ret = 1;
         }
     }
     return ret;
@@ -147,4 +145,16 @@ protected nomask int processSelection(string selection)
 protected nomask int suppressMenuDisplay()
 {
     return objectp(SubselectorObj);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string selection()
+{
+    return Selection;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string materialType()
+{
+    return MaterialType;
 }

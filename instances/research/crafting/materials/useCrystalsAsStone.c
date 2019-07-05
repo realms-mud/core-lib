@@ -15,8 +15,8 @@ public void reset(int arg)
         addSpecification("description", "This skill provides the user with the "
             "knowledge required to use gems and crystals as substitues for "
             "stone when crafting.");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
+        addSpecification("research type", "granted");
+
         addPrerequisite("lib/instances/research/crafting/materials/craftGems.c", (["type":"research"]));
         addPrerequisite("lib/instances/research/crafting/materials/craftStone.c", (["type":"research"]));
         addPrerequisite("lib/instances/research/crafting/materials/craftConcrete.c", (["type":"research"]));

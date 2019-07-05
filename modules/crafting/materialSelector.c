@@ -53,7 +53,7 @@ protected nomask void setUpUserForSelection()
 {
     if (!CraftingItem)
     {
-        raise_error("ERROR: componentSelector.c - The type has not been "
+        raise_error("ERROR: materialSelector.c - The type has not been "
             "set.\n");
     }
 

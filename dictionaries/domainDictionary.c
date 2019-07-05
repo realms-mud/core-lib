@@ -10,6 +10,7 @@
 #include "domains/locations.h"
 #include "domains/troops.h"
 #include "domains/troopEffects.h"
+#include "materials/materials.h"
 
 private string DomainSelectorBase = "/lib/modules/domains/%sSelector.c";
 
@@ -1127,4 +1128,125 @@ public nomask int isValidHenchman(mapping data)
 public nomask int isValidActivity(string location, mapping activity)
 {
     return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string *getTypes(string type, object user)
+{
+    string *types = ({ type });
+    if ((type == "metal") && user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsMetal.c"))
+    {
+        types += ({ "crystal" });
+    }
+    else if (type == "stone")
+    {
+        if (user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsStone.c"))
+        {
+            types += ({ "crystal" });
+        }
+
+        if (user->isResearched("lib/instances/research/crafting/materials/useClaysAsStone.c"))
+        {
+            types += ({ "clay" });
+        }
+    }
+
+    return types;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getMaterialsOfTypeOnHand(string type, object user,
+    mapping sectionData, mapping materialsToBeUsed)
+{
+    mapping ret = ([]);
+
+    object *inventory = filter(deep_inventory(user),
+        (: ((member(inherit_list($1), "lib/items/material.c") > -1) &&
+            (member($2, $1->query("class")) > -1)) :), getTypes(type, user));
+
+    if (sizeof(inventory))
+    {
+        foreach(object item in inventory)
+        {
+            string material = item->query("blueprint");
+            if (!member(ret, material))
+            {
+                ret[material] = 0;
+            }
+            ret[material] += item->query("quantity");
+            if (member(materialsToBeUsed, material))
+            {
+                ret[material] -= materialsToBeUsed[material];
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getMaterialsOfType(string type, object user, 
+    mapping sectionData)
+{
+    mapping ret = ([]);
+
+    mapping materialsToBeUsed = materialsNeededForSection(sectionData,
+        (member(sectionData, "chosen section") ?
+            sectionData["chosen section"] : 0));
+
+    mapping materialsOnHand = getMaterialsOfTypeOnHand(type, user, 
+        sectionData, materialsToBeUsed);
+
+    string *materialsOfType = sort_array(filter(m_indices(materials),
+        (: (member($2, materials[$1]["class"]) > -1) :), getTypes(type, user)),
+        (: $1 > $2 :));
+
+    if(sizeof(materialsOfType))
+    {
+        int menuItem = 1;
+
+        object materialDictionary = 
+            load_object("/lib/dictionaries/materialsDictionary.c");
+
+        foreach(string material in materialsOfType)
+        {
+            int hasMaterials = (member(materialsOnHand, material) &&
+                (materialsOnHand[material] >= materialsToBeUsed[type]));
+
+            object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
+            if (sizeof(materials) && member(materials, material))
+            {
+                blueprintObj->set("blueprint data", materials[material]);
+                blueprintObj->set("blueprint", material);
+            }
+
+            int prerequisites = blueprintObj->checkPrerequisites(user) &&
+                blueprintObj->checkResearch(user);
+            destruct(blueprintObj);
+
+            string name = capitalize(material);
+            if (sizeof(name) > 20)
+            {
+                name = name[0..16] + "...";
+            }
+            ret[to_string(menuItem)] = ([
+                "name": name,
+                "type": material,
+                "description": sprintf("This options selects %s as your %s "
+                    "building material.", material, type),
+                "has materials": hasMaterials,
+                "prerequisites met": prerequisites,
+                "canShow": (hasMaterials && prerequisites)
+            ]);
+            menuItem++;
+        }
+    }
+
+    ret[to_string(sizeof(ret) + 1)] = ([
+        "name":"Exit Material Menu",
+        "type": "exit",
+        "description": "This option lets you exit the material "
+            "selection menu.\n",
+        "canShow": 1
+    ]);
+    return ret;
 }

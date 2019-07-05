@@ -173,3 +173,282 @@ void SectionUpdatedWhenSelected()
         "X is the option about which you would like further details.\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysMaterialsMenu()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
+
+    object material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 100);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 250);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/marble.c");
+    material->set("quantity", 500);
+    move_object(material, Player);
+
+    Player->addSkillPoints(500);
+    Player->advanceSkill("stonemasonry", 10);
+
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("2", Player);
+
+    ExpectEq("Building Projects - Select Material:\n"
+        "From this menu, you can select the type of stone to construct with for your\n"
+        "central stone tower of your stone keep project at Argalach Castle.\n"
+        "\n"
+        "    [1]  - Alabaster           (M)      [2]  - Andesite            (M)  \n"
+        "    [3]  - Basalt              (M)      [4]  - Boninite            (M)  \n"
+        "    [5]  - Brick               (P,M)    [6]  - Chalk               (M)  \n"
+        "    [7]  - Chert               (M)      [8]  - Claystone           (M)  \n"
+        "    [9]  - Coal                (M)      [10] - Concrete            (P,M)\n"
+        "    [11] - Diorite             (M)      [12] - Dolomite            (M)  \n"
+        "    [13] - Flint               (M)      [14] - Gneiss              (M)  \n"
+        "    [15] - Granite                      [16] - Lazurite            (M)  \n"
+        "    [17] - Limestone           (M)      [18] - Marble              (P)  \n"
+        "    [19] - Obsidian            (P,M)    [20] - Quartzite           (P,M)\n"
+        "    [21] - Sandstone           (M)      [22] - Scoria              (P,M)\n"
+        "    [23] - Shale               (M)      [24] - Slate               (M)  \n"
+        "    [25] - Stone               (M)      [26] - Travertine          (M)  \n"
+        "    [27] - Tuff                (M)      [28] - Exit Material Menu       \n"
+        "You must select a number from 1 to 28.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "P denotes unrealized prerequisites.\n"
+        "M denotes that proper quantities of the material requirements are missing.\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSelectMaterialForComponent()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
+
+    object material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 100);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 250);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/marble.c");
+    material->set("quantity", 500);
+    move_object(material, Player);
+
+    Player->addSkillPoints(500);
+    Player->advanceSkill("stonemasonry", 10);
+
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("2", Player);
+    command("15", Player);
+
+    ExpectEq("Building Projects - Stone Keep:\n"
+        "From this menu, you can select the materials to construct with and style of\n"
+        "central stone tower to build for your stone keep project at Argalach Castle.\n"
+        "\n"
+        "Layout: +=======+            Building Sections:\n"
+        "        | +---+ |                Central Stone Tower: <Make Selection>\n"
+        "        | |   | |                Main Stone Keep: <Not Selected Yet>\n"
+        "        | +---+ |                Stone Battlement: <Not Selected Yet>\n"
+        "        +=======+            \n"
+        "\n"
+        "[1]  - Select Metal           none     [2]  - Select Stone           granite  \n"
+        "[3]  - Select Textile         N/A      [4]  - Select Wood            none     \n"
+        "[5]  - Hexagonal Stone Tower           [6]  - Magi Stone Tower                \n"
+        "[7]  - Octagonal Stone Tower           [8]  - Round Stone Tower               \n"
+        "[9]  - Square Stone Tower              [10] - Stone Bergfriede                \n"
+        "[11] - Stone Bretasche                 [12] - Stone Observatory               \n"
+        "[13] - Begin Construction     N/A      [14] - Exit Section Menu               \n"
+        "You must select a number from 1 to 14.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSelectMaterialsWithFailedPrerequisiteCheck()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
+
+    object material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 100);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 250);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/marble.c");
+    material->set("quantity", 500);
+    move_object(material, Player);
+
+    Player->addSkillPoints(500);
+    Player->advanceSkill("stonemasonry", 10);
+
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("2", Player);
+    command("18", Player);
+
+    ExpectEq("Building Projects - Select Material:\n"
+        "From this menu, you can select the type of stone to construct with for your\n"
+        "central stone tower of your stone keep project at Argalach Castle.\n"
+        "\n"
+        "    [1]  - Alabaster           (M)      [2]  - Andesite            (M)  \n"
+        "    [3]  - Basalt              (M)      [4]  - Boninite            (M)  \n"
+        "    [5]  - Brick               (P,M)    [6]  - Chalk               (M)  \n"
+        "    [7]  - Chert               (M)      [8]  - Claystone           (M)  \n"
+        "    [9]  - Coal                (M)      [10] - Concrete            (P,M)\n"
+        "    [11] - Diorite             (M)      [12] - Dolomite            (M)  \n"
+        "    [13] - Flint               (M)      [14] - Gneiss              (M)  \n"
+        "    [15] - Granite                      [16] - Lazurite            (M)  \n"
+        "    [17] - Limestone           (M)      [18] - Marble              (P)  \n"
+        "    [19] - Obsidian            (P,M)    [20] - Quartzite           (P,M)\n"
+        "    [21] - Sandstone           (M)      [22] - Scoria              (P,M)\n"
+        "    [23] - Shale               (M)      [24] - Slate               (M)  \n"
+        "    [25] - Stone               (M)      [26] - Travertine          (M)  \n"
+        "    [27] - Tuff                (M)      [28] - Exit Material Menu       \n"
+        "You must select a number from 1 to 28.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "P denotes unrealized prerequisites.\n"
+        "M denotes that proper quantities of the material requirements are missing.\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSelectMaterialsWithFailedMaterialsCheck()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
+
+    object material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 100);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 250);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/marble.c");
+    material->set("quantity", 500);
+    move_object(material, Player);
+
+    Player->addSkillPoints(500);
+    Player->advanceSkill("stonemasonry", 10);
+
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("2", Player);
+    command("1", Player);
+
+    ExpectEq("Building Projects - Select Material:\n"
+        "From this menu, you can select the type of stone to construct with for your\n"
+        "central stone tower of your stone keep project at Argalach Castle.\n"
+        "\n"
+        "    [1]  - Alabaster           (M)      [2]  - Andesite            (M)  \n"
+        "    [3]  - Basalt              (M)      [4]  - Boninite            (M)  \n"
+        "    [5]  - Brick               (P,M)    [6]  - Chalk               (M)  \n"
+        "    [7]  - Chert               (M)      [8]  - Claystone           (M)  \n"
+        "    [9]  - Coal                (M)      [10] - Concrete            (P,M)\n"
+        "    [11] - Diorite             (M)      [12] - Dolomite            (M)  \n"
+        "    [13] - Flint               (M)      [14] - Gneiss              (M)  \n"
+        "    [15] - Granite                      [16] - Lazurite            (M)  \n"
+        "    [17] - Limestone           (M)      [18] - Marble              (P)  \n"
+        "    [19] - Obsidian            (P,M)    [20] - Quartzite           (P,M)\n"
+        "    [21] - Sandstone           (M)      [22] - Scoria              (P,M)\n"
+        "    [23] - Shale               (M)      [24] - Slate               (M)  \n"
+        "    [25] - Stone               (M)      [26] - Travertine          (M)  \n"
+        "    [27] - Tuff                (M)      [28] - Exit Material Menu       \n"
+        "You must select a number from 1 to 28.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "P denotes unrealized prerequisites.\n"
+        "M denotes that proper quantities of the material requirements are missing.\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysNonStandardMaterials()
+{
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftClay.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftConcrete.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/useClaysAsStone.c"));
+    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/useCrystalsAsStone.c"));
+
+    object material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 100);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/granite.c");
+    material->set("quantity", 250);
+    move_object(material, Player);
+
+    material = clone_object("/lib/instances/items/materials/stone/marble.c");
+    material->set("quantity", 500);
+    move_object(material, Player);
+
+    Player->addSkillPoints(500);
+    Player->advanceSkill("stonemasonry", 10);
+
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("2", Player);
+    command("1", Player);
+
+    ExpectEq("Building Projects - Select Material:\n"
+        "From this menu, you can select the type of stone to construct with for your\n"
+        "central stone tower of your stone keep project at Argalach Castle.\n"
+        "\n"
+        "    [1]  - Agate               (P,M)    [2]  - Alabaster           (M)  \n"
+        "    [3]  - Amber               (P,M)    [4]  - Amethyst            (P,M)\n"
+        "    [5]  - Andesite            (M)      [6]  - Aquamarine          (P,M)\n"
+        "    [7]  - Asurluin            (P,M)    [8]  - Basalt              (M)  \n"
+        "    [9]  - Bloodstone          (P,M)    [10] - Boninite            (M)  \n"
+        "    [11] - Brick               (P,M)    [12] - Ceramic slip        (P,M)\n"
+        "    [13] - Chalk               (M)      [14] - Chert               (M)  \n"
+        "    [15] - Citrine             (P,M)    [16] - Claystone           (M)  \n"
+        "    [17] - Coal                (M)      [18] - Concrete            (P,M)\n"
+        "    [19] - Crystal             (P,M)    [20] - Diamond             (P,M)\n"
+        "    [21] - Diorite             (M)      [22] - Dolomite            (M)  \n"
+        "    [23] - Durluin             (P,M)    [24] - Earthenware         (P,M)\n"
+        "    [25] - Emerald             (P,M)    [26] - Flint               (M)  \n"
+        "    [27] - Florite             (P,M)    [28] - Garnet              (P,M)\n"
+        "    [29] - Gneiss              (M)      [30] - Granite                  \n"
+        "    [31] - Gwyrluin            (P,M)    [32] - Jade                (P,M)\n"
+        "    [33] - Kaolin              (P,M)    [34] - Kirluin             (P,M)\n"
+        "    [35] - Lazurite            (M)      [36] - Limestone           (M)  \n"
+        "    [37] - Magical crystal     (P,M)    [38] - Magical ice         (P,M)\n"
+        "    [39] - Marble              (P)      [40] - Marnluin            (P,M)\n"
+        "    [41] - Melynuin            (P,M)    [42] - Obsidian            (P,M)\n"
+        "    [43] - Onyx                (P,M)    [44] - Opal                (P,M)\n"
+        "    [45] - Plaster             (P,M)    [46] - Quartz              (P,M)\n"
+        "    [47] - Quartzite           (P,M)    [48] - Rhudluin            (P,M)\n"
+        "    [49] - Ruby                (P,M)    [50] - Sandstone           (M)  \n"
+        "    [51] - Sapphire            (P,M)    [52] - Scoria              (P,M)\n"
+        "    [53] - Shale               (M)      [54] - Slate               (M)  \n"
+        "    [55] - Stone               (M)      [56] - Stoneware           (P,M)\n"
+        "    [57] - Terra cotta         (P,M)    [58] - Topaz               (P,M)\n"
+        "    [59] - Travertine          (M)      [60] - Trynluin            (P,M)\n"
+        "    [61] - Tuff                (M)      [62] - Turquoise           (P,M)\n"
+        "    [63] - Exit Material Menu       \n"
+        "You must select a number from 1 to 63.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "P denotes unrealized prerequisites.\n"
+        "M denotes that proper quantities of the material requirements are missing.\n",
+        Player->caughtMessage());
+}

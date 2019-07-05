@@ -279,7 +279,7 @@ private nosave mapping materials =
         "encumberance": 2,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
-            "stonemasonry": (["type":"skill", "value": 10]),
+            "stonemasonry": (["type":"skill", "value": 25]),
         ]),
         "default description": "This is a piece of granite.",
         "scarcity": "rare",
@@ -291,7 +291,7 @@ private nosave mapping materials =
         "encumberance": 2,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
-            "stonemasonry": (["type":"skill", "value": 10]),
+            "stonemasonry": (["type":"skill", "value": 12]),
         ]),
         "default description": "This is a piece of scoria.",
         "scarcity": "uncommon",
@@ -315,7 +315,7 @@ private nosave mapping materials =
         "encumberance": 2,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftStone.c":(["type":"research"]),
-            "stonemasonry": (["type":"skill", "value": 10]),
+            "stonemasonry": (["type":"skill", "value": 7]),
         ]),
         "default description": "This is a piece of claystone.",
         "scarcity": "common",
