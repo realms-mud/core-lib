@@ -221,3 +221,56 @@ public nomask mapping getMaterialsOfType(string type, object user,
     ]);
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *displaySectionData(object user, mapping sections,
+    string colorConfiguration, string charset)
+{
+    string *ret = ({ configuration->decorate("Building Sections:",
+        "heading", "player domains", colorConfiguration)
+        });
+
+    string selectedSection = sections["selected section"];
+    string *sectionList = sort_array(m_indices(sections), (: $1 > $2 :));
+
+    sectionList -= ({ "name", "selected section", "selected materials",
+        "chosen section" });
+
+    foreach(string section in sectionList)
+    {
+        string currentSection = member(sections, "chosen section") ?
+            configuration->decorate(sections["chosen section"],
+                "selected", "player domains", colorConfiguration) :
+            configuration->decorate("<Make Selection>",
+                "selection needed", "player domains", colorConfiguration);
+
+        string sectionInfo = (section == selectedSection) ? currentSection :
+            configuration->decorate("<Not Selected Yet>",
+                "not selected yet", "player domains", colorConfiguration);
+
+        string entry = "    " +
+            configuration->decorate(generateTitle(section),
+                "value", "player domains", colorConfiguration) + ": " +
+                (member(sections[section], "selection") ?
+                    configuration->decorate(
+                        generateTitle(sections[section]["selection"]["name"]),
+                        "selected", "player domains", colorConfiguration) :
+                    sectionInfo);
+
+        ret += ({ entry });
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getBuildSectionInfo(object user, mapping componentData)
+{
+    string colorConfiguration = user->colorConfiguration();
+    string charset = user->charsetConfiguration();
+
+    return generateBuildInfo(
+        displayLayout(componentData["name"], colorConfiguration, charset),
+        displaySectionData(user, 
+            componentData + ([]),
+            colorConfiguration, charset));
+}

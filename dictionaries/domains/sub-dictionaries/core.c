@@ -30,7 +30,7 @@ public nomask string generateTitle(string data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string pluralizeValue(string data)
+public nomask varargs string pluralizeValue(string data, int doNotCapitalize)
 {
     string ret = data;
     ret = regreplace(ret, "(s|ch|sh|x|z|dg|o)$", "\\1e");
@@ -38,7 +38,7 @@ protected nomask string pluralizeValue(string data)
     ret += "s";
     ret = regreplace(ret, "(.*)mans$", "\\1men");
 
-    return generateTitle(ret);
+    return doNotCapitalize ? ret : generateTitle(ret);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -114,7 +114,7 @@ protected nomask int processSelection(string selection)
             else if (Data[selection]["type"] == "workers")
             {
                 SubselectorObj =
-                    clone_object("/lib/modules/domains/workerSelector.c");
+                    clone_object("/lib/modules/domains/workCrewSelector.c");
                 SubselectorObj->setWorkerData(Data[selection]["data"],
                     ConstructionData["name"]);
                 SubselectorObj->setLocation(Location);

@@ -76,54 +76,60 @@ public nomask string getComponentWorkerInfo(object user, mapping componentData)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string *displaySectionData(object user, mapping sections,
-    string colorConfiguration, string charset)
-{
-    string *ret = ({ configuration->decorate("Building Sections:",
-        "heading", "player domains", colorConfiguration)
-    });
-
-    string selectedSection = sections["selected section"];
-    string *sectionList = sort_array(m_indices(sections), (: $1 > $2 :));
-
-    sectionList -= ({ "name", "selected section", "selected materials", 
-        "chosen section" });
-
-    foreach(string section in sectionList)
-    {
-        string currentSection = member(sections, "chosen section") ?
-            configuration->decorate(sections["chosen section"],
-                "selected", "player domains", colorConfiguration) :
-            configuration->decorate("<Make Selection>",
-                "selection needed", "player domains", colorConfiguration);
-
-        string sectionInfo = (section == selectedSection) ? currentSection :
-            configuration->decorate("<Not Selected Yet>",
-                "not selected yet", "player domains", colorConfiguration);
-
-        string entry = "    " +
-            configuration->decorate(generateTitle(section),
-                "value", "player domains", colorConfiguration) + ": " +
-            (member(sections[section], "selection") ?
-                configuration->decorate(
-                    generateTitle(sections[section]["selection"]["name"]),
-                    "selected", "player domains", colorConfiguration) :
-                sectionInfo);
-
-        ret += ({ entry });
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask string getBuildSectionInfo(object user, mapping componentData)
+public nomask string getWorkersOfType(object user, string type, 
+    mapping workers)
 {
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
 
-    return generateBuildInfo(
-        displayLayout(componentData["name"], colorConfiguration, charset),
-        displaySectionData(user, 
-            componentData + ([]),
-            colorConfiguration, charset));
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int canSelectWorkersOfType(mapping componentData)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getWorkersByTypeMenu(object user, string location,
+    string type, mapping componentData)
+{
+    mapping ret = ([]);
+
+    mapping henchmen = user->getHenchmen(location, type);
+    if(sizeof(henchmen))
+    {
+        string *workers = sort_array(m_indices(henchmen), (: $1 > $2 :));
+
+        foreach(string worker in workers)
+        {
+            string name = generateTitle(worker);
+            ret[to_string(sizeof(ret) + 1)] = ([
+                "name":name,
+                "type": worker,
+                "description": sprintf("This option assigns %s to the task of "
+                    "building the selected component.\n", name),
+                "is disabled": member(henchmen[worker], "current assignment"),
+                "canShow": 1
+            ]);            
+        }
+    }
+    ret[to_string(sizeof(ret) + 1)] = ([
+        "name": "Confirm Selected Workers",
+        "type": "confirm",
+        "description": "This option assigns workers to the task of "
+            "building the selected component.\n",
+        "is disabled": canSelectWorkersOfType(componentData),
+        "canShow": 1
+    ]);
+
+    ret[to_string(sizeof(ret) + 1)] = ([
+        "name":"Exit Building Menu",
+        "type": "exit",
+        "description": "This option lets you exit the building "
+            "projects menu.\n",
+        "canShow": 1
+    ]);
+    return ret;
 }
