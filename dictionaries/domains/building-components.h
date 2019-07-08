@@ -7,10 +7,12 @@
 
 #include "stone-keep-components.h"
 #include "tower-components.h"
+#include "wall-components.h"
 #include "wooden-keep-components.h"
 
 private mapping BuildingComponents = StoneKeepComponents +
     WoodenKeepComponents + 
+    WallComponents +
     TowerComponents + ([]);
 
 #endif
