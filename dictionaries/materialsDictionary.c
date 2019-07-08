@@ -1473,3 +1473,27 @@ public nomask mapping generateComponent(object item, string componentType,
     }
     return ret + ([]);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public string *getTypes(string type, object user)
+{
+    string *types = ({ type });
+    if ((type == "metal") && user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsMetal.c"))
+    {
+        types += ({ "crystal" });
+    }
+    else if (type == "stone")
+    {
+        if (user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsStone.c"))
+        {
+            types += ({ "crystal" });
+        }
+
+        if (user->isResearched("lib/instances/research/crafting/materials/useClaysAsStone.c"))
+        {
+            types += ({ "clay" });
+        }
+    }
+
+    return types;
+}

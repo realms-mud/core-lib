@@ -5,7 +5,7 @@
 #ifndef castles_h
 #define castles_h
 
-private mapping CastleBlueprints = ([
+protected mapping CastleBlueprints = ([
     "keep":([
         "type": "keep",
         "dimensions": "3x3",

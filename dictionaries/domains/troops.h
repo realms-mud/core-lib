@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private mapping TroopBlueprints = ([
+protected mapping TroopBlueprints = ([
     "archers": ([
 
     ]),

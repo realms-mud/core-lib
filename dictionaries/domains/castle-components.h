@@ -12,7 +12,7 @@
 #include "motte-buildings.h"
 #include "motte-towers.h"
 
-private string *ComponentTypes = ({ 
+protected string *ComponentTypes = ({
     "building",
     "keep",
     "moat",
@@ -20,7 +20,7 @@ private string *ComponentTypes = ({
     "wall"
 });
 
-private mapping CastleComponents = CastleBuildings + CastleKeeps + 
-    CastleTowers + CastleWalls + MotteBuildings + MotteTowers;
+protected mapping CastleComponents = CastleBuildings + CastleKeeps +
+    CastleTowers + CastleWalls + MotteBuildings + MotteTowers + ([]);
 
 #endif

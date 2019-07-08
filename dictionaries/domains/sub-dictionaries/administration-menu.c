@@ -2,7 +2,10 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+virtual inherit "/lib/dictionaries/domains/sub-dictionaries/core.c";
 
-protected mapping TroopEffects = ([
-
-]);
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getAdministrationMenu(object user)
+{
+    return ([]);
+}

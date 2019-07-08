@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private mapping Locations = ([
+protected mapping Locations = ([
     "argalach castle":([
         "name": "Argalach Castle",
         "entry point": "lib/areas/eledhel/argalach/entry.c",

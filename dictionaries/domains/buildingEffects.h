@@ -3,6 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private mapping BuildingEffects = ([
+protected mapping BuildingEffects = ([
 
 ]);

@@ -10,7 +10,7 @@
 #include "wall-components.h"
 #include "wooden-keep-components.h"
 
-private mapping BuildingComponents = StoneKeepComponents +
+protected mapping BuildingComponents = StoneKeepComponents +
     WoodenKeepComponents + 
     WallComponents +
     TowerComponents + ([]);

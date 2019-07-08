@@ -5,7 +5,7 @@
 #ifndef buildings_h
 #define buildings_h
 
-private mapping BuildingBlueprints = ([
+protected mapping BuildingBlueprints = ([
     "stable":([
         "type": "war",
         "description": "",

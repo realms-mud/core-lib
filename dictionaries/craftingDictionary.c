@@ -375,30 +375,6 @@ public nomask mapping getCraftingDataForItem(string type, string item, object us
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string *getTypes(string type, object user)
-{
-    string *types = ({ type });
-    if ((type == "metal") && user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsMetal.c"))
-    {
-        types += ({ "crystal" });
-    }
-    else if (type == "stone")
-    {
-        if (user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsStone.c"))
-        {
-            types += ({ "crystal" });
-        }
-
-        if (user->isResearched("lib/instances/research/crafting/materials/useClaysAsStone.c"))
-        {
-            types += ({ "clay" });
-        }
-    }
-
-    return types;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask mapping materialsUsedForSubcomponents(string *components,
     mapping craftingMaterials, mapping blueprintMaterials)
 {
@@ -491,13 +467,15 @@ public nomask mapping materialsUsedForCrafting(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping getMaterialsOfTypeOnHand(string type, object user, object craftingItem)
+private nomask mapping getMaterialsOfTypeOnHand(string type, object user, 
+    object craftingItem)
 {
     mapping ret = ([]);
 
     object *inventory = filter(deep_inventory(user),
         (: ((member(inherit_list($1), "lib/items/material.c") > -1) &&
-            (member($2, $1->query("class")) > -1)) :), getTypes(type, user));
+            (member($2, $1->query("class")) > -1)) :), 
+        load_object("/lib/dictionaries/materialsDictionary.c")->getTypes(type, user));
 
     if (sizeof(inventory))
     {
@@ -526,7 +504,8 @@ public nomask mapping getMaterialsOfType(string type, object user,
     mapping ret = ([]);
     mapping materialsOnHand = getMaterialsOfTypeOnHand(type, user, craftingItem);
     string *materialsOfType = sort_array(filter(m_indices(materials),
-        (: (member($2, materials[$1]["class"]) > -1) :), getTypes(type, user)),
+        (: (member($2, materials[$1]["class"]) > -1) :), 
+        load_object("/lib/dictionaries/materialsDictionary.c")->getTypes(type, user)),
         (: $1 > $2 :));
 
     if(sizeof(materialsOfType))
