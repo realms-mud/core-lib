@@ -115,8 +115,8 @@ protected nomask int processSelection(string selection)
             {
                 SubselectorObj =
                     clone_object("/lib/modules/domains/workerSelector.c");
-                SubselectorObj->setWorkerData(WorkerData);
                 SubselectorObj->setWorkerType(Data[selection]["type"]);
+                SubselectorObj->setQuantityNeeded(Data[selection]["quantity"]);
                 SubselectorObj->setLocation(Location);
 
                 move_object(SubselectorObj, User);

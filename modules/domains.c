@@ -118,7 +118,7 @@ public nomask int addHenchman(string location, mapping data)
         {
             henchmen[location] = ([]);
         }
-        henchmen[location] += data;
+        henchmen[location][data["name"]] = data;
     }
     return ret;
 }
@@ -134,7 +134,7 @@ public nomask varargs mapping getHenchmen(string location, string type)
 
         if (stringp(type))
         {
-            ret = filter(ret, (: $1["type"] == $2 :), type);
+            ret = filter(ret, (: $2["type"] == $3 :), type);
         }
     }
     return ret;

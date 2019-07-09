@@ -36,6 +36,7 @@ public nomask mapping getWorkersMenu(object user, string location,
             ret[to_string(sizeof(ret) + 1)] = ([
                 "name": sprintf("Select %s", pluralizeValue(worker)),
                 "type": worker,
+                "quantity": componentData["construction"]["workers"][worker],
                 "description": "This option assigns workers to the task of "
                     "building the selected component.\n",
                 "is disabled": canSelectWorkers(componentData),
@@ -77,7 +78,7 @@ public nomask string getComponentWorkerInfo(object user, mapping componentData)
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getWorkersOfType(object user, string type, 
-    mapping workers)
+    string location)
 {
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
@@ -86,14 +87,8 @@ public nomask string getWorkersOfType(object user, string type,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int canSelectWorkersOfType(mapping componentData)
-{
-    return 0;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getWorkersByTypeMenu(object user, string location,
-    string type, mapping componentData)
+    string type, int confirmDisabled)
 {
     mapping ret = ([]);
 
@@ -105,8 +100,13 @@ public nomask mapping getWorkersByTypeMenu(object user, string location,
         foreach(string worker in workers)
         {
             string name = generateTitle(worker);
+            if (sizeof(name) > 24)
+            {
+                name = name[0..20] + "...";
+            }
+
             ret[to_string(sizeof(ret) + 1)] = ([
-                "name":name,
+                "name": name,
                 "type": worker,
                 "description": sprintf("This option assigns %s to the task of "
                     "building the selected component.\n", name),
@@ -120,7 +120,7 @@ public nomask mapping getWorkersByTypeMenu(object user, string location,
         "type": "confirm",
         "description": "This option assigns workers to the task of "
             "building the selected component.\n",
-        "is disabled": canSelectWorkersOfType(componentData),
+        "is disabled": confirmDisabled,
         "canShow": 1
     ]);
 

@@ -179,5 +179,5 @@ void GetHenchmenReturnsCorrectListForLocation()
     ExpectEq(([]), Player->getHenchmen("argalach castle"));
 
     ExpectTrue(Player->addHenchman("argalach castle", henchman));
-    ExpectEq(henchman, Player->getHenchmen("argalach castle"));
+    ExpectEq((["Tantor the Unclean": henchman]), Player->getHenchmen("argalach castle"));
 }
