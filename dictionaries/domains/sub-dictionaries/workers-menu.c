@@ -110,13 +110,14 @@ public nomask mapping getWorkersByTypeMenu(object user, string location,
                 "type": worker,
                 "description": sprintf("This option assigns %s to the task of "
                     "building the selected component.\n", name),
-                "is disabled": member(henchmen[worker], "current assignment"),
+                "is disabled": henchmen[worker]->activity() != "idle",
+                "data": henchmen[worker],
                 "canShow": 1
             ]);            
         }
     }
     ret[to_string(sizeof(ret) + 1)] = ([
-        "name": "Confirm Selected Workers",
+        "name": "Confirm Selections",
         "type": "confirm",
         "description": "This option assigns workers to the task of "
             "building the selected component.\n",

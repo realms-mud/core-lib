@@ -9,7 +9,6 @@ private string MaterialType;
 private string Selection;
 private mapping MaterialData = 0;
 private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
-private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
@@ -61,17 +60,6 @@ protected nomask void setUpUserForSelection()
         Data = dictionary->getMaterialsOfType(MaterialType, User,
             MaterialData);
     }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void onSelectorCompleted(object caller)
-{
-    if (User)
-    {
-        setUpUserForSelection();
-        tell_object(User, displayMessage());
-    }
-    caller->cleanUp();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -139,12 +127,6 @@ protected nomask int processSelection(string selection)
         }
     }
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask int suppressMenuDisplay()
-{
-    return objectp(SubselectorObj);
 }
 
 /////////////////////////////////////////////////////////////////////////////

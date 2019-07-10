@@ -161,12 +161,7 @@ void GetHenchmenReturnsCorrectListForLocation()
         "type": "architect",
         "persona": "mage",
         "level": 10,
-        "vitals": ([
-            "hit points": 10,
-            "spell points": 10,
-            "stamina": 10
-        ]),
-        "activity": "idle"
+        "activity": "building"
     ]);
 
     ExpectFalse(Player->addHenchman("argalach castle", henchman));
@@ -179,5 +174,13 @@ void GetHenchmenReturnsCorrectListForLocation()
     ExpectEq(([]), Player->getHenchmen("argalach castle"));
 
     ExpectTrue(Player->addHenchman("argalach castle", henchman));
-    ExpectEq((["Tantor the Unclean": henchman]), Player->getHenchmen("argalach castle"));
+    mapping henchmen = Player->getHenchmen("argalach castle");
+    ExpectTrue(member(m_indices(henchmen), "Tantor the Unclean") > -1);
+    object tantor = henchmen["Tantor the Unclean"];
+
+    ExpectEq("Tantor the Unclean", tantor->short());
+    ExpectEq("building", tantor->activity());
+    ExpectEq("mage", tantor->persona());
+    ExpectEq(10, tantor->effectiveLevel());
+    ExpectEq("architect", tantor->type());
 }

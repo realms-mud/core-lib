@@ -10,7 +10,6 @@ private int QuantityNeeded;
 private mapping Selections = ([]);
 
 private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
-private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
@@ -71,17 +70,6 @@ protected nomask void setUpUserForSelection()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void onSelectorCompleted(object caller)
-{
-    if (User)
-    {
-        setUpUserForSelection();
-        tell_object(User, displayMessage());
-    }
-    caller->cleanUp();
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask string additionalInstructions()
 {
     int needed = QuantityNeeded - sizeof(Selections);
@@ -93,10 +81,15 @@ protected nomask string additionalInstructions()
 protected nomask string displayDetails(string choice)
 {
     string ret = sprintf("%7s", "");
-    if ((Data[choice]["type"] == "confirm") &&
-        (User->colorConfiguration() == "none"))
+    if ((Data[choice]["type"] == "confirm") && Data[choice]["is disabled"])
     {
-        ret = sprintf("%-7s", "  N/A");
+        ret = sprintf("%-7s", (User->colorConfiguration() == "none") ?
+            "N/A" : "");
+    }
+    else if (Data[choice]["is disabled"])
+    {
+        ret = configuration->decorate(sprintf("%-7s", "busy"),
+            "busy", "player domains", colorConfiguration);
     }
     else if (member(m_indices(Selections), Data[choice]["type"]) > -1)
     {
@@ -132,14 +125,26 @@ protected nomask int processSelection(string selection)
 
         if (!ret)
         {
+            if (!Data[selection]["is disabled"] &&
+                Data[selection]["type"] == "confirm")
+            {
+                ret = 1;
+            }
+            else if (!Data[selection]["is disabled"])
+            {
+                if (!member(Selections, Data[selection]["type"]))
+                {
+                    Selections[Data[selection]["type"]] =
+                        Data[selection]["data"];
 
+                }
+                else
+                {
+                    m_delete(Selections, Data[selection]["type"]);
+                }
+                setUpUserForSelection();
+            }
         }
     }
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask int suppressMenuDisplay()
-{
-    return objectp(SubselectorObj);
 }

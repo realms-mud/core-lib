@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/realizations/living.c";
-virtual inherit "/lib/modules/guilds.c";
 virtual inherit "/lib/modules/quests.c";
 virtual inherit "/lib/modules/conversations.c";
 virtual inherit "/lib/modules/crafting.c";
@@ -13,13 +12,61 @@ virtual inherit "/lib/modules/combatChatter.c";
 private object Leader;
 private string Location;
 private string Type;
-private mapping Activity = ([]);
+private string Activity = "idle";
+
+private nosave int EffectiveLevel;
+private nosave float ExperiencePerHitPoint = 0;
+private nosave int ExperiencePerHitPointSet = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfHenchman()
 {
     return 1;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int effectiveLevel(int newLevel)
+{
+    if (newLevel)
+    {
+        EffectiveLevel = newLevel;
+    }
+    return EffectiveLevel;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int effectiveExperience()
+{
+    return 1000 + (1000 * EffectiveLevel * (EffectiveLevel + 1) / 2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void calculateExperiencePerHitPoint(int totalHP)
+{
+    ExperiencePerHitPoint = (1.0 * effectiveExperience()) / 
+        (totalHP * 125.0);
+
+    ExperiencePerHitPointSet = 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void getExperienceFromHit(int damage, object foe)
+{
+    if (damage && objectp(foe))
+    {
+        if (!ExperiencePerHitPointSet)
+        {
+            calculateExperiencePerHitPoint(
+                call_direct(this_object(), "maxHitPoints"));
+        }
+
+        int experienceToAdd = to_int(ExperiencePerHitPoint * damage /
+            foe->effectiveLevel());
+
+        foe->addExperience(experienceToAdd ? experienceToAdd : 1);
+    }
+}
+
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setMaxHitPoints(int value)
@@ -70,21 +117,21 @@ public nomask string location()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setActivity(mapping activity)
+public nomask void setActivity(string activity)
 {
     object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 
     if (Leader && Leader->getDomainType(Location) &&
         dictionary->isValidActivity(Location, activity))
     {
-        Activity = activity + ([]);
+        Activity = activity;
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping activity()
+public nomask string activity()
 {
-    return Activity + ([]);
+    return Activity;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -124,4 +171,44 @@ public nomask object getParty()
         ret = Leader->getParty();
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setHenchmanData(mapping data, object leader)
+{
+    Name(data["name"]);
+    Gender(data["gender"] == "male" ? 1 : 2);
+    if (member(data, "house"))
+    {
+        Title(data["house"]);
+    }
+    if (member(data, "pre-title"))
+    {
+        Pretitle(data["pre-title"]);
+    }
+    setLeader(leader);
+    setLocation(data["location"]);
+    SetUpPersonaOfLevel(data["persona"], data["level"]);
+    setUpRandomEquipment(data["level"] * 2);
+    setType(data["type"]);
+    setActivity(data["activity"]);
+
+    if (member(data, "skills") && mappingp(data["skills"]) &&
+        sizeof(data["skills"]))
+    {
+        foreach(string skill in m_indices(data["skills"]))
+        {
+            addSkillPoints(advanceSkillCost(skill, data["skills"][skill]));
+            advanceSkill(skill, data["skills"][skill]);
+        }
+    }
+
+    if (member(data, "traits") && mappingp(data["traits"]) &&
+        sizeof(data["traits"]))
+    {
+        foreach(string trait in m_indices(data["traits"]))
+        {
+            addTrait(data["traits"][trait]);
+        }
+    }
 }

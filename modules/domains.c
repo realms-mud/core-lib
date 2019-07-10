@@ -118,7 +118,15 @@ public nomask int addHenchman(string location, mapping data)
         {
             henchmen[location] = ([]);
         }
-        henchmen[location][data["name"]] = data;
+        string key = data["name"];
+        if (member(data, "house"))
+        {
+            key += " " + data["house"];
+        }
+
+        data["location"] = location;
+        henchmen[location][key] = 
+            dictionary->getHenchmanFromData(data, this_object());
     }
     return ret;
 }
@@ -134,8 +142,8 @@ public nomask varargs mapping getHenchmen(string location, string type)
 
         if (stringp(type))
         {
-            ret = filter(ret, (: $2["type"] == $3 :), type);
+            ret = filter(ret, (: $2->type() == $3 :), type);
         }
     }
-    return ret;
+    return ret + ([]);
 }

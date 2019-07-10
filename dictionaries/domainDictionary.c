@@ -7,6 +7,7 @@ virtual inherit "/lib/dictionaries/domains/sub-dictionaries/administration-menu.
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/build-component-menu.c";
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/building-menu.c";
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/execute-build.c";
+virtual inherit "/lib/dictionaries/domains/sub-dictionaries/henchman.c";
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/hiring-menu.c";
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/holdings-menu.c";
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/section-menu.c";
@@ -91,28 +92,4 @@ public nomask int validBuildingEffects(mapping effects)
 public nomask int validTroopEffects(mapping effects)
 {
     return 0;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int isValidHenchmanType(string data)
-{
-    return member(({ "aegis", "diplomat", "senechal", "advisor", "soldier",
-        "concubine", "mage", "artisan", "sage", "noble", "scholar",
-        "engineer", "architect", "craftsman", "banker", "innkeeper",
-        "retailer", "manager", "scientist", "arcane craftsman" }), data) > -1;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int isValidHenchman(mapping data)
-{
-    return mappingp(data) && member(data, "name") &&
-        member(data, "type") && isValidHenchmanType(data["type"]) &&
-        member(data, "persona") && member(data, "level") &&
-        member(data, "vitals") && member(data, "activity");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int isValidActivity(string location, mapping activity)
-{
-    return 1;
 }
