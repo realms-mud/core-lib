@@ -142,7 +142,8 @@ public nomask varargs mapping getHenchmen(string location, string type)
 
         if (stringp(type))
         {
-            ret = filter(ret, (: $2->type() == $3 :), type);
+            ret = filter(ret, (: $2->type() == $3 ||
+                $2->hasTraitOfRoot($3) :), type);
         }
     }
     return ret + ([]);

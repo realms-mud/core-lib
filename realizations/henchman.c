@@ -203,12 +203,12 @@ public nomask void setHenchmanData(mapping data, object leader)
         }
     }
 
-    if (member(data, "traits") && mappingp(data["traits"]) &&
+    if (member(data, "traits") && pointerp(data["traits"]) &&
         sizeof(data["traits"]))
     {
-        foreach(string trait in m_indices(data["traits"]))
+        foreach(string trait in data["traits"])
         {
-            addTrait(data["traits"][trait]);
+            addTrait(trait);
         }
     }
 }

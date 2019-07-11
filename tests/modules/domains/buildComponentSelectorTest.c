@@ -41,7 +41,8 @@ void SetupHenchmen()
         "name": "Derek",
         "house": "Evendim",
         "gender": "male",
-        "type": "worker",
+        "type": "craftsman",
+        "traits": ({ "lib/instances/traits/domains/journeyman-carpenter.c" }),
         "persona": "swordsman",
         "level": 10,
         "activity": "building"

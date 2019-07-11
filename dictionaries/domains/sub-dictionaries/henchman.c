@@ -40,13 +40,13 @@ public nomask int isValidHenchman(mapping data)
 
     if (ret && member(data, "traits"))
     {
-        ret &&= mappingp(data["traits"]) && sizeof(data["traits"]);
+        ret &&= pointerp(data["traits"]) && sizeof(data["traits"]);
         if (ret)
         {
             object traitsDictionary = 
                 load_object("/lib/dictionaries/traitsDictionary.c");
 
-            foreach(string trait in m_indices(data["traits"]))
+            foreach(string trait in data["traits"])
             {
                 ret &&= traitsDictionary->validTrait(trait);
             }

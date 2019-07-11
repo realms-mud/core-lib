@@ -184,3 +184,30 @@ void GetHenchmenReturnsCorrectListForLocation()
     ExpectEq(10, tantor->effectiveLevel());
     ExpectEq("architect", tantor->type());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void GetHenchmenReturnsCorrectTypeOfHenchmen()
+{
+    mapping henchman = ([
+        "name":"Tantor the Unclean",
+        "type" : "craftsman",
+        "persona" : "swordsman",
+        "traits": ({ "lib/instances/traits/domains/journeyman-carpenter.c" }),
+        "level" : 10,
+        "activity" : "building"
+    ]);
+
+    Player->addPlayerHolding("argalach castle");
+    ExpectTrue(Player->addHenchman("argalach castle", henchman), "added henchman");
+
+    mapping henchmen = Player->getHenchmen("argalach castle", "carpenter");
+    ExpectTrue(member(m_indices(henchmen), "Tantor the Unclean") > -1, "Tantor in list");
+    object tantor = henchmen["Tantor the Unclean"];
+
+    ExpectEq("Tantor the Unclean", tantor->short());
+    ExpectEq("building", tantor->activity());
+    ExpectEq("swordsman", tantor->persona());
+    ExpectEq(10, tantor->effectiveLevel());
+    ExpectEq("craftsman", tantor->type());
+    ExpectTrue(tantor->hasTraitOfRoot("carpenter"), "is a carpenter");
+}
