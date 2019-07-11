@@ -267,7 +267,7 @@ void CheckPrerequsistesCorrectlyHandlesOpinionChecks()
     ExpectTrue(Prerequisite->AddTestPrerequisite("opinion", (["type":"opinion", "value" : 20]), "group a"));
     ExpectFalse(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check initially fails for group a");
 
-    Researcher->addTrait("lib/modules/traits/educational/articulate.c");
+    Researcher->addTrait("lib/instances/traits/educational/articulate.c");
     ExpectTrue(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check passes for group a");
 }
 
@@ -337,8 +337,10 @@ void DisplayPrerequisitesCorrectlyDisplaysResearchPrerequisites()
 void DisplayPrerequisitesCorrectlyDisplaysTraitPrerequisites()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("trait", ([
-        "type":"trait", 
-        "value" : ({ "/lib/modules/traits/personality/abrasive.c", "/lib/modules/traits/personality/charming.c" })])));
+        "type": "trait", 
+        "value" : ({ "/lib/instances/traits/personality/abrasive.c", 
+            "/lib/instances/traits/personality/charming.c" })
+    ])));
 
     ExpectEq("\x1b[0;36mPrerequisites:\n"
         "\x1b[0m\x1b[0;33m          Trait: \x1b[0m\x1b[0;35mAbrasive or Charming\n\x1b[0m",

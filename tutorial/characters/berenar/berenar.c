@@ -12,7 +12,7 @@ protected void Setup()
     Race("maegenstryd");
     SetUpPersonaOfLevel("swordsman", 3);
 
-    addTrait("lib/modules/traits/educational/tactician.c");
+    addTrait("lib/instances/traits/educational/tactician.c");
 
     object equipment = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     equipment->set("craftsmanship", 70);

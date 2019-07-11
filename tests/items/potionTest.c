@@ -74,10 +74,10 @@ void DrinkingPotionWithBiologicalEffectHasEffectApplied()
     object potion = clone_object("/lib/instances/items/potions/stamina.c");
     move_object(potion, Player);
 
-    ExpectFalse(Player->isTraitOf("lib/modules/traits/biological/adrenaline.c"));
+    ExpectFalse(Player->isTraitOf("lib/instances/traits/biological/adrenaline.c"));
 
     command("drink potion", Player);
-    ExpectTrue(Player->isTraitOf("lib/modules/traits/biological/adrenaline.c"));
+    ExpectTrue(Player->isTraitOf("lib/instances/traits/biological/adrenaline.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

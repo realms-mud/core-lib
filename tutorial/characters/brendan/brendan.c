@@ -19,7 +19,7 @@ protected void Setup()
     Gender(1);
     Race("maegenstryd");
     SetUpPersonaOfLevel("keeper of the night", 5);
-    addTrait("lib/modules/traits/educational/educated.c");
+    addTrait("lib/instances/traits/educational/educated.c");
 
     addConversation("/lib/tutorial/characters/brendan/startingConversation.c");
 }

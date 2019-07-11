@@ -89,7 +89,8 @@ private nomask void SetResearch(object character, string persona)
 private nomask void SetTraits(object character, string persona)
 {
     string *traits = personaBlueprints()[persona]["traits"];
-    character->addTrait(sprintf("lib/modules/traits/personas/%s/%s.c",
+
+    character->addTrait(sprintf("lib/instances/traits/personas/%s/%s.c",
         personaBlueprints()[persona]["category"], 
         regreplace(persona, " ", "-", 1)));
 

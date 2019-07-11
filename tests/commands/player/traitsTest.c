@@ -81,7 +81,7 @@ void SectionWithThreeTraitsHasNoEmptyColumns()
 {
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait.c");
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait2.c");
-    Player->addTrait("/lib/modules/traits/personality/abrasive.c");
+    Player->addTrait("/lib/instances/traits/personality/abrasive.c");
 
     ExpectTrue(Player->executeCommand("traits"));
     ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
@@ -94,8 +94,8 @@ void SectionWithMoreThanThreeTraitsCorrectlyDisplays()
 {
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait.c");
     Player->addTrait("/lib/tests/support/traits/testPersonalityTrait2.c");
-    Player->addTrait("/lib/modules/traits/personality/abrasive.c");
-    Player->addTrait("/lib/modules/traits/personality/charming.c");
+    Player->addTrait("/lib/instances/traits/personality/abrasive.c");
+    Player->addTrait("/lib/instances/traits/personality/charming.c");
 
     ExpectTrue(Player->executeCommand("traits"));
     ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Personality Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
@@ -304,7 +304,7 @@ void RFlagDisplaysRoleTraits()
 /////////////////////////////////////////////////////////////////////////////
 void RacialFlagDisplaysRacialTraits()
 {
-    Player->addTrait("/lib/modules/traits/racial/hillgarathElf.c");
+    Player->addTrait("/lib/instances/traits/racial/hillgarathElf.c");
 
     ExpectTrue(Player->executeCommand("traits -racial"));
     ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Racial Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
@@ -315,7 +315,7 @@ void RacialFlagDisplaysRacialTraits()
 /////////////////////////////////////////////////////////////////////////////
 void RaFlagDisplaysRaTraits()
 {
-    Player->addTrait("/lib/modules/traits/racial/hillgarathElf.c");
+    Player->addTrait("/lib/instances/traits/racial/hillgarathElf.c");
 
     ExpectTrue(Player->executeCommand("traits -ra"));
     ExpectEq("\n\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Racial Traits +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m" +
@@ -504,7 +504,7 @@ void TraitDetailsDisplayTraitPenalties()
 /////////////////////////////////////////////////////////////////////////////
 void NegativeTraitDetailsDisplayNegativeIdentifier()
 {
-    Player->addTrait("/lib/modules/traits/personality/abrasive.c");
+    Player->addTrait("/lib/instances/traits/personality/abrasive.c");
     ExpectTrue(Player->executeCommand("traits -details abrasive"));
     ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "[Negative]")));
 }

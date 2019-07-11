@@ -9,8 +9,9 @@
 #include "/lib/dictionaries/races/hair.h"
 #include "/lib/dictionaries/races/races.h"
 
-private string SubraceRoot = "/lib/modules/traits/racial/";
-private string TraitRoot = "/lib/modules/traits/%s/";
+private string SubraceRoot = "/lib/instances/traits/racial/";
+private string TraitRoot = "/lib/instances/traits/%s/";
+
 private object configuration = 
     load_object("/lib/dictionaries/configurationDictionary.c");
 

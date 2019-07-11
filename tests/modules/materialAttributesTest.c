@@ -522,7 +522,7 @@ void CanSeeReturnsFalseWhenBlindTraitPresent()
     move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
     ExpectTrue(Attributes->canSee(5));
 
-    Attributes->addTrait("/lib/modules/traits/diseases/cataracts.c");
+    Attributes->addTrait("/lib/instances/traits/diseases/cataracts.c");
     ExpectFalse(Attributes->canSee(5));
     destruct(dictionary);
 }

@@ -154,7 +154,7 @@ void EducationalTraitsMenuIsCorrect()
         User->caughtMessage());
 
     educationalTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("lib/modules/traits/educational/arcane.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/educational/arcane.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -172,7 +172,7 @@ void EducationalTraitsCanBeSelected()
 
     ExpectTrue(objectp(educationalTraits), "The educational trait selector was added to the player");
     educationalTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("lib/modules/traits/educational/arcane.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/educational/arcane.c"));
     ExpectFalse(objectp(educationalTraits), "The educational trait selector test was cleaned up");
 
     ExpectSubStringMatch("You have 4 trait points left to assign",
@@ -232,7 +232,7 @@ void GeneticTraitsCanBeSelected()
 
     ExpectTrue(objectp(geneticTraits), "The genetic trait selector was added to the player");
     geneticTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("lib/modules/traits/genetic/attractive.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/genetic/attractive.c"));
     ExpectFalse(objectp(geneticTraits), "The genetic trait selector test was cleaned up");
 
     ExpectSubStringMatch("You have 5 trait points left to assign",
@@ -284,7 +284,7 @@ void HealthTraitsCanBeSelected()
 
     ExpectTrue(objectp(healthTraits), "The health trait selector was added to the player");
     healthTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("lib/modules/traits/health/clubfooted.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/health/clubfooted.c"));
     ExpectFalse(objectp(healthTraits), "The health trait selector test was cleaned up");
 
     ExpectSubStringMatch("You have 7 trait points left to assign",
@@ -326,6 +326,6 @@ void SexualityTraitsCanBeSelected()
 
     ExpectTrue(objectp(sexualityTraits), "The sexuality trait selector was added to the player");
     sexualityTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("lib/modules/traits/sexuality/asexual.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/sexuality/asexual.c"));
     ExpectFalse(objectp(sexualityTraits), "The sexuality trait selector test was cleaned up");
 }

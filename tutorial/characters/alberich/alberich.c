@@ -11,8 +11,8 @@ protected void Setup()
     Gender(1);
     Race("human");
     SetUpPersonaOfLevel("knifeman", 3);
-    addTrait("lib/modules/traits/racial/eledhelHuman.c");
-    addTrait("lib/modules/traits/educational/hunter.c");
+    addTrait("lib/instances/traits/racial/eledhelHuman.c");
+    addTrait("lib/instances/traits/educational/hunter.c");
 
     object equipment = clone_object("/lib/instances/items/weapons/swords/short-sword.c");
     equipment->set("craftsmanship", 50);

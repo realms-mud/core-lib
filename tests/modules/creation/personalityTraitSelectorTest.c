@@ -220,7 +220,7 @@ void CanSelectESTJ()
     Selector->applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/estj.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/estj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -233,7 +233,7 @@ void CanSelectESTP()
     Selector->applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/estp.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/estp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -246,7 +246,7 @@ void CanSelectESFJ()
     Selector->applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/esfj.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/esfj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -259,7 +259,7 @@ void CanSelectESFP()
     Selector->applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/esfp.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/esfp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -272,7 +272,7 @@ void CanSelectENTJ()
     Selector->applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/eitj.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/eitj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -285,7 +285,7 @@ void CanSelectENTP()
     Selector->applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/eitp.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/eitp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -298,7 +298,7 @@ void CanSelectENFJ()
     Selector->applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/eifj.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/eifj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -311,7 +311,7 @@ void CanSelectENFP()
     Selector->applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/eifp.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/eifp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -324,7 +324,7 @@ void CanSelectISTJ()
     Selector->applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/istj.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/istj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -337,7 +337,7 @@ void CanSelectISTP()
     Selector->applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/istp.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/istp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -350,7 +350,7 @@ void CanSelectISFJ()
     Selector->applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/isfj.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/isfj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -363,7 +363,7 @@ void CanSelectISFP()
     Selector->applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/isfp.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/isfp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -376,7 +376,7 @@ void CanSelectINTJ()
     Selector->applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/iitj.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/iitj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -389,7 +389,7 @@ void CanSelectINTP()
     Selector->applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/iitp.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/iitp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -402,7 +402,7 @@ void CanSelectINFJ()
     Selector->applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/iifj.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/iifj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -415,7 +415,7 @@ void CanSelectINFP()
     Selector->applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/iifp.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/iifp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -426,8 +426,8 @@ void AllTraitsSetOnUserAndSelectorSetsTestTaken()
     AnswerQuestionsTakeFirstChoice();
     ExpectTrue(Selector->testTaken());
 
-    ExpectTrue(User->isTraitOf("lib/modules/traits/archetypes/estj.c"));
-    ExpectTrue(User->isTraitOf("lib/modules/traits/personality/loyal.c"));
-    ExpectTrue(User->isTraitOf("lib/modules/traits/personality/dishonest.c"));
-    ExpectTrue(User->isTraitOf("lib/modules/traits/personality/vulgar.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/archetypes/estj.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/personality/loyal.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/personality/dishonest.c"));
+    ExpectTrue(User->isTraitOf("lib/instances/traits/personality/vulgar.c"));
 }

@@ -22,7 +22,7 @@ protected void Setup()
     Gender(1);
     Race("human");
     SetUpPersonaOfLevel("keeper of the night", 3);
-    addTrait("lib/modules/traits/educational/educated.c");
+    addTrait("lib/instances/traits/educational/educated.c");
 
     setUpRandomEquipment(0);
 

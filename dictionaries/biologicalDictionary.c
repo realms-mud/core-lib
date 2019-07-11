@@ -12,51 +12,51 @@
 /////////////////////////////////////////////////////////////////////////////
 private mapping drugEffects = ([
     "alcohol":([
-        "trait": "lib/modules/traits/biological/drunk.c",
+        "trait": "lib/instances/traits/biological/drunk.c",
         "toxicity": 3,
     ]),
     "opiate": ([
-        "trait": "lib/modules/traits/biological/wasted-on-opiates.c",
+        "trait": "lib/instances/traits/biological/wasted-on-opiates.c",
         "toxicity": 10,
     ]),
     "salicylate": ([
-        "trait": "lib/modules/traits/biological/salicylate.c",
+        "trait": "lib/instances/traits/biological/salicylate.c",
         "toxicity": 1,
     ]),
     "psychedelic": ([
-        "trait": "lib/modules/traits/biological/stoned.c",
+        "trait": "lib/instances/traits/biological/stoned.c",
         "toxicity": 4,
     ]),
     "dissociative": ([
-        "trait": "lib/modules/traits/biological/hallucinating.c",
+        "trait": "lib/instances/traits/biological/hallucinating.c",
         "toxicity": 5,
     ]),
     "dileriant": ([
-        "trait": "lib/modules/traits/biological/drug-dilerious.c",
+        "trait": "lib/instances/traits/biological/drug-dilerious.c",
         "toxicity": 5,
     ]),
     "steroid": ([
-        "trait": "lib/modules/traits/biological/steroids.c",
+        "trait": "lib/instances/traits/biological/steroids.c",
         "toxicity": 4,
     ]),
     "barbituate": ([
-        "trait": "lib/modules/traits/biological/impaired-barbituates.c",
+        "trait": "lib/instances/traits/biological/impaired-barbituates.c",
         "toxicity": 5,
     ]),
     "benzodiazepine": ([
-        "trait": "lib/modules/traits/biological/on-benzodiazepine.c",
+        "trait": "lib/instances/traits/biological/on-benzodiazepine.c",
         "toxicity": 3,
     ]),
     "antidepressant": ([
-        "trait": "lib/modules/traits/biological/antidepressant.c",
+        "trait": "lib/instances/traits/biological/antidepressant.c",
         "toxicity": 4,
     ]),
     "xanthine": ([
-        "trait": "lib/modules/traits/biological/caffeinated.c",
+        "trait": "lib/instances/traits/biological/caffeinated.c",
         "toxicity": 1,
     ]),
     "adrenaline": ([
-        "trait": "lib/modules/traits/biological/adrenaline.c",
+        "trait": "lib/instances/traits/biological/adrenaline.c",
         "toxicity": 1,
     ]),
     "sympathomimetic amine": ([

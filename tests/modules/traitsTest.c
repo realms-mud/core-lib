@@ -195,7 +195,7 @@ void MultipleTraitsStackAttributeBonuses()
 {
     ExpectEq(20, Traits->Str(), "initial strength");
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"), "add trait");
-    ExpectTrue(Traits->addTrait("lib/modules/traits/genetic/strong.c"), "add trait");
+    ExpectTrue(Traits->addTrait("lib/instances/traits/genetic/strong.c"), "add trait");
     ExpectEq(24, Traits->Str(), "after trait strength");
 }
 

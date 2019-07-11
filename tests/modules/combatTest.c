@@ -594,7 +594,7 @@ void CalculateDefendAttackHandlesBlindness()
     object weapon = CreateWeapon("blah");
     weapon->set("skill penalty", 1);
     Attacker->addSkillPoints(100);
-    ExpectTrue(Attacker->addTrait("/lib/modules/traits/diseases/cataracts.c"));
+    ExpectTrue(Attacker->addTrait("/lib/instances/traits/diseases/cataracts.c"));
 
     ExpectEq(-21, Attacker->calculateDefendAttack(), "nothing is equipped");
 
@@ -980,7 +980,7 @@ void CalculateAttackUsesHandlesBlindness()
 
     ExpectEq(9, Attacker->calculateAttack(Target, weapon, 1), "weapon is equipped");
 
-    ExpectTrue(Attacker->addTrait("/lib/modules/traits/diseases/cataracts.c"));
+    ExpectTrue(Attacker->addTrait("/lib/instances/traits/diseases/cataracts.c"));
     ExpectEq(-16, Attacker->calculateAttack(Target, weapon, 1), "attacker is blind!");
 
     Attacker->advanceSkill("blind fighting", 10);

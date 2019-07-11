@@ -289,10 +289,9 @@ void DrinkAlcoholIncreasesIntoxication()
 /////////////////////////////////////////////////////////////////////////////
 void DrinkAlcoholAddsDrunkTrait()
 {
-    ExpectFalse(Character->isTraitOf("lib/modules/traits/biological/drunk.c"));
-
+    ExpectFalse(Character->isTraitOf("lib/instances/traits/biological/drunk.c"));
     ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
-    ExpectTrue(Character->isTraitOf("lib/modules/traits/biological/drunk.c"));
+    ExpectTrue(Character->isTraitOf("lib/instances/traits/biological/drunk.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -484,14 +483,15 @@ void CanConsumeDrugToWasted()
 /////////////////////////////////////////////////////////////////////////////
 void ConsumeDrugAddsCorrectDruggedTrait()
 {
-    ExpectFalse(Character->isTraitOf("lib/modules/traits/biological/wasted-on-opiates.c"));
+    ExpectFalse(Character->isTraitOf("lib/instances/traits/biological/wasted-on-opiates.c"));
 
     object drug = clone_object("/lib/items/food.c");
     drug->set("biological effect", "opiate");
     drug->set("biological strength", 5);
 
     ExpectTrue(Character->consumeDrug(drug));   
-    ExpectTrue(Character->isTraitOf("lib/modules/traits/biological/wasted-on-opiates.c"));
+    ExpectTrue(Character->isTraitOf("lib/instances/traits/biological/wasted-on-opiates.c"));
+
     destruct(drug);
 }
 

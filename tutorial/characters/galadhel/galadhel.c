@@ -32,8 +32,8 @@ protected void Setup()
     Gender(2);
     Race("maegenstryd");
     SetUpPersonaOfLevel("archer", 3);
-    addTrait("lib/modules/traits/background/human/eledhelean/noble/marannuminas.c");
-    addTrait("lib/modules/traits/educational/hunter.c");
+    addTrait("lib/instances/traits/background/human/eledhelean/noble/marannuminas.c");
+    addTrait("lib/instances/traits/educational/hunter.c");
 
     object equipment = clone_object("/lib/instances/items/weapons/bows/bow.c");
     equipment->set("craftsmanship", 50);

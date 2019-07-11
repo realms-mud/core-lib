@@ -350,7 +350,7 @@ void CanOnlyLookAtEnvironmentElementsWhenInCorrectState()
 /////////////////////////////////////////////////////////////////////////////
 void LookWhenBlindFailsWithBlindMessage()
 {
-    ExpectTrue(Player->addTrait("/lib/modules/traits/diseases/cataracts.c"));
+    ExpectTrue(Player->addTrait("/lib/instances/traits/diseases/cataracts.c"));
     ExpectTrue(Player->executeCommand("look"));
     ExpectEq("You are blind.\n", Player->caughtMessage());
 }
@@ -397,8 +397,8 @@ void LookWhenDarkShowsLifeSignaturesWithInfravision()
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
     Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
-
     command("look", Player);
+
     ExpectSubStringMatch("You can see objects faintly glowing in red.*A "
         "female elf", Player->caughtMessage());
 

@@ -252,7 +252,7 @@ private nomask void setPersonalityArchetype(object user, string *results)
         trait += result[0..0];
     }
     
-    user->addTrait(sprintf("lib/modules/traits/archetypes/%s.c", trait));
+    user->addTrait(sprintf("lib/instances/traits/archetypes/%s.c", trait));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -263,7 +263,7 @@ public nomask void updateUserPersonality(object user, string *results)
 
     foreach(string result in results)
     {
-        user->addTrait(sprintf("lib/modules/traits/personality/%s.c", result));
+        user->addTrait(sprintf("lib/instances/traits/personality/%s.c", result));
     }
 }
 

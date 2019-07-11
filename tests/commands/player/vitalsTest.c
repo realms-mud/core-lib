@@ -22,8 +22,8 @@ void Setup()
     Player->Chr(10);
     Player->addCommands();
     Player->Race("high elf");
-    Player->addTrait("/lib/modules/traits/racial/hillgarathElf.c");
-    Player->addTrait("/lib/modules/traits/genetic/smart.c");
+    Player->addTrait("/lib/instances/traits/racial/hillgarathElf.c");
+    Player->addTrait("/lib/instances/traits/genetic/smart.c");
     Player->spellPoints(Player->maxSpellPoints());
     Player->staminaPoints(Player->maxStaminaPoints());
 

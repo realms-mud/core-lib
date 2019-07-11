@@ -315,7 +315,7 @@ void SelectionOfAshBlondSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("1");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/ash-blond.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/ash-blond.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -324,7 +324,7 @@ void SelectionOfAshBrownSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("2");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/ash-brown.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/ash-brown.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -333,7 +333,7 @@ void SelectionOfAshGraySetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("3");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/ash-gray.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/ash-gray.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -342,7 +342,7 @@ void SelectionOfAuburnSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("4");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/auburn.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/auburn.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -351,7 +351,7 @@ void SelectionOfBeigeSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("5");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/beige.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/beige.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -360,7 +360,7 @@ void SelectionOfBlackSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("6");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/black.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/black.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -369,7 +369,7 @@ void SelectionOfBlondSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("7");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/blond.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/blond.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -378,7 +378,7 @@ void SelectionOfBrownSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("8");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/brown.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/brown.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -387,7 +387,7 @@ void SelectionOfBrunetteSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("9");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/brunette.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/brunette.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -396,7 +396,7 @@ void SelectionOfBurgundySetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("10");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/burgundy.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/burgundy.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -405,7 +405,7 @@ void SelectionOfCaramelBrownSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("11");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/caramel-brown.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/caramel-brown.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -414,7 +414,7 @@ void SelectionOfChestnutBrownSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("12");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/chestnut-brown.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/chestnut-brown.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -423,7 +423,7 @@ void SelectionOfChocolateBrownSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("13");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/chocolate-brown.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/chocolate-brown.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -432,7 +432,7 @@ void SelectionOfCopperSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("14");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/copper.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/copper.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -441,7 +441,7 @@ void SelectionOfGingerSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("15");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/ginger.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/ginger.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -450,7 +450,7 @@ void SelectionOfGoldenSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("16");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/golden.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/golden.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -459,7 +459,7 @@ void SelectionOfHoneyBrownSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("17");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/honey-brown.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/honey-brown.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -468,7 +468,7 @@ void SelectionOfPearlWhiteSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("18");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/pearl-white.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/pearl-white.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -477,7 +477,7 @@ void SelectionOfPlatinumBlondSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("19");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/platinum-blond.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/platinum-blond.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -486,7 +486,7 @@ void SelectionOfRavenBlackSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("20");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/raven.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/raven.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -495,7 +495,7 @@ void SelectionOfRussetBrownSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("21");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/russet-brown.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/russet-brown.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -504,7 +504,7 @@ void SelectionOfSaltPepperSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("22");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/salt-and-pepper.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/salt-and-pepper.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -513,7 +513,7 @@ void SelectionOfSandyBrownSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("23");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/sandy-brown.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/sandy-brown.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -522,7 +522,7 @@ void SelectionOfSilverSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("24");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/silver.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/silver.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -531,7 +531,7 @@ void SelectionOfSteelGraySetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("25");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/steel-gray.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/steel-gray.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -540,7 +540,7 @@ void SelectionOfStrawberryBlondSetsTraitOnUser()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("26");
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/hair/strawberry-blond.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/hair/strawberry-blond.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -556,7 +556,7 @@ void SelectionOfNoHairColorSetsTraitOnUser()
 void HillgarathiHighElfShowsCorrectHairList()
 {
     User->Race("high elf");
-    User->addTrait("/lib/modules/traits/racial/hillgarathElf.c");
+    User->addTrait("/lib/instances/traits/racial/hillgarathElf.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 17",
@@ -567,7 +567,7 @@ void HillgarathiHighElfShowsCorrectHairList()
 void MoonHighElfShowsCorrectHairList()
 {
     User->Race("high elf");
-    User->addTrait("/lib/modules/traits/racial/echorluinElf.c");
+    User->addTrait("/lib/instances/traits/racial/echorluinElf.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 19",
@@ -588,7 +588,7 @@ void HighElfShowsCorrectHairList()
 void DarkElfShowsCorrectHairList()
 {
     User->Race("elf");
-    User->addTrait("/lib/modules/traits/racial/darkElf.c");
+    User->addTrait("/lib/instances/traits/racial/darkElf.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 10",
@@ -599,7 +599,7 @@ void DarkElfShowsCorrectHairList()
 void GreyElfShowsCorrectHairList()
 {
     User->Race("elf");
-    User->addTrait("/lib/modules/traits/racial/greyElf.c");
+    User->addTrait("/lib/instances/traits/racial/greyElf.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 22",
@@ -610,7 +610,7 @@ void GreyElfShowsCorrectHairList()
 void SeaElfShowsCorrectHairList()
 {
     User->Race("elf");
-    User->addTrait("/lib/modules/traits/racial/seaElf.c");
+    User->addTrait("/lib/instances/traits/racial/seaElf.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 13",
@@ -621,7 +621,7 @@ void SeaElfShowsCorrectHairList()
 void WoodElfShowsCorrectHairList()
 {
     User->Race("elf");
-    User->addTrait("/lib/modules/traits/racial/woodElf.c");
+    User->addTrait("/lib/instances/traits/racial/woodElf.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 21",
@@ -642,7 +642,7 @@ void ElfShowsCorrectHairList()
 void KhazurathiDwarfShowsCorrectHairList()
 {
     User->Race("dwarf");
-    User->addTrait("/lib/modules/traits/racial/khazurathiDwarf.c");
+    User->addTrait("/lib/instances/traits/racial/khazurathiDwarf.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 16",
@@ -653,7 +653,7 @@ void KhazurathiDwarfShowsCorrectHairList()
 void MirostiDwarfShowsCorrectHairList()
 {
     User->Race("dwarf");
-    User->addTrait("/lib/modules/traits/racial/mirostiDwarf.c");
+    User->addTrait("/lib/instances/traits/racial/mirostiDwarf.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 22",
@@ -743,7 +743,7 @@ void FaerieShowsCorrectHairList()
 void AndurathiShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/andurathHuman.c");
+    User->addTrait("/lib/instances/traits/racial/andurathHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 19",
@@ -754,7 +754,7 @@ void AndurathiShowsCorrectHairList()
 void CelebnostiShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/celebnostHuman.c");
+    User->addTrait("/lib/instances/traits/racial/celebnostHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 21",
@@ -765,7 +765,7 @@ void CelebnostiShowsCorrectHairList()
 void EledheleanShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/eledhelHuman.c");
+    User->addTrait("/lib/instances/traits/racial/eledhelHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 27",
@@ -776,7 +776,7 @@ void EledheleanShowsCorrectHairList()
 void EndurgishShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/endurghulHuman.c");
+    User->addTrait("/lib/instances/traits/racial/endurghulHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 20",
@@ -787,7 +787,7 @@ void EndurgishShowsCorrectHairList()
 void HelcarishShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/helcarionHuman.c");
+    User->addTrait("/lib/instances/traits/racial/helcarionHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 22",
@@ -798,7 +798,7 @@ void HelcarishShowsCorrectHairList()
 void HillgarathiShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/hillgarathHuman.c");
+    User->addTrait("/lib/instances/traits/racial/hillgarathHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 27",
@@ -809,7 +809,7 @@ void HillgarathiShowsCorrectHairList()
 void IarwatheanShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/iarwathHuman.c");
+    User->addTrait("/lib/instances/traits/racial/iarwathHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 27",
@@ -820,7 +820,7 @@ void IarwatheanShowsCorrectHairList()
 void LinmiriShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/linmirHuman.c");
+    User->addTrait("/lib/instances/traits/racial/linmirHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 12",
@@ -831,7 +831,7 @@ void LinmiriShowsCorrectHairList()
 void MenadrostiShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/menadrostHuman.c");
+    User->addTrait("/lib/instances/traits/racial/menadrostHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 27",
@@ -842,7 +842,7 @@ void MenadrostiShowsCorrectHairList()
 void TirnostiShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/tirnostHuman.c");
+    User->addTrait("/lib/instances/traits/racial/tirnostHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 27",
@@ -853,7 +853,7 @@ void TirnostiShowsCorrectHairList()
 void ZhenduliShowsCorrectHairList()
 {
     User->Race("human");
-    User->addTrait("/lib/modules/traits/racial/zhendulachHuman.c");
+    User->addTrait("/lib/instances/traits/racial/zhendulachHuman.c");
 
     Selector->initiateSelector(User);
     ExpectSubStringMatch("You must select a number from 1 to 13",

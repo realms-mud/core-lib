@@ -50,7 +50,7 @@ void SelectionOfHalfHighElfAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("1");
     ExpectEq("\x1b[0;36mYou have selected 'Half elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/deityTouchedElf.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/deityTouchedElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ void SelectionOfHillgarathiHighElfAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("2");
     ExpectEq("\x1b[0;36mYou have selected 'Hillgarathi elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/hillgarathElf.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/hillgarathElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ void SelectionOfMoonHighElfAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("3");
     ExpectEq("\x1b[0;36mYou have selected 'Moon elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/echorluinElf.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/echorluinElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ void SelectionOfDarkElfAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("1");
     ExpectEq("\x1b[0;36mYou have selected 'Dark elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/darkElf.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/darkElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -119,7 +119,7 @@ void SelectionOfGreyElfAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("2");
     ExpectEq("\x1b[0;36mYou have selected 'Grey elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/greyElf.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/greyElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ void SelectionOfSeaElfAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("3");
     ExpectEq("\x1b[0;36mYou have selected 'Sea elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/seaElf.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/seaElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -139,7 +139,7 @@ void SelectionOfWoodElfAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("4");
     ExpectEq("\x1b[0;36mYou have selected 'Wood elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/woodElf.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/woodElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -163,7 +163,7 @@ void SelectionOfKhazurathiDwarfAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("1");
     ExpectEq("\x1b[0;36mYou have selected 'Khazurathi dwarf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/khazurathiDwarf.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/khazurathiDwarf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -173,7 +173,7 @@ void SelectionOfMirostiDwarfAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("2");
     ExpectEq("\x1b[0;36mYou have selected 'Mirosti dwarf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/mirostiDwarf.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/mirostiDwarf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -283,7 +283,7 @@ void SelectionOfAndurathiAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("1");
     ExpectEq("\x1b[0;36mYou have selected 'Andurathi'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/andurathHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/andurathHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -293,7 +293,7 @@ void SelectionOfCelebnostiAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("2");
     ExpectEq("\x1b[0;36mYou have selected 'Celebnosti'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/celebnostHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/celebnostHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -303,7 +303,7 @@ void SelectionOfEledheleanAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("3");
     ExpectEq("\x1b[0;36mYou have selected 'Eledhelean'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/eledhelHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/eledhelHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -313,7 +313,7 @@ void SelectionOfEndurgishAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("4");
     ExpectEq("\x1b[0;36mYou have selected 'Endurgish'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/endurghulHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/endurghulHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -323,7 +323,7 @@ void SelectionOfHelcarishAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("5");
     ExpectEq("\x1b[0;36mYou have selected 'Helcarish'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/helcarionHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/helcarionHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -333,7 +333,7 @@ void SelectionOfHillgarathiAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("6");
     ExpectEq("\x1b[0;36mYou have selected 'Hillgarathi'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/hillgarathHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/hillgarathHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -343,7 +343,7 @@ void SelectionOfIarwatheanAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("7");
     ExpectEq("\x1b[0;36mYou have selected 'Iarwathean'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/iarwathHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/iarwathHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -353,7 +353,7 @@ void SelectionOfLinmiriAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("8");
     ExpectEq("\x1b[0;36mYou have selected 'Linmiri'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/linmirHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/linmirHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -363,7 +363,7 @@ void SelectionOfMenadrostiAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("9");
     ExpectEq("\x1b[0;36mYou have selected 'Menadrosti'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/menadrostHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/menadrostHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -373,7 +373,7 @@ void SelectionOfTirnostiAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("10");
     ExpectEq("\x1b[0;36mYou have selected 'Tirnosti'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/tirnostHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/tirnostHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -383,5 +383,5 @@ void SelectionOfZhenduliAddsTrait()
     Selector->initiateSelector(User);
     Selector->applySelection("11");
     ExpectEq("\x1b[0;36mYou have selected 'Zhenduli'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/modules/traits/racial/zhendulachHuman.c"));
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/zhendulachHuman.c"));
 }
