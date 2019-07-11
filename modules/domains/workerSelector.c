@@ -51,8 +51,6 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
-
     if (dictionary && WorkerType)
     {
         Description = "Assign Workers:\n" +
@@ -62,7 +60,8 @@ protected nomask void setUpUserForSelection()
                 dictionary->pluralizeValue(WorkerType, 1),
                 dictionary->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration) +
-            dictionary->getWorkersOfType(User, WorkerType, Location);
+            dictionary->getWorkersOfType(User, WorkerType, Location,
+                QuantityNeeded, Selections);
 
         Data = dictionary->getWorkersByTypeMenu(User, Location, WorkerType,
             (QuantityNeeded - sizeof(Selections)) != 0);
@@ -104,8 +103,11 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    string choiceColor = member(Data[choice], "is disabled") &&
-        Data[choice]["is disabled"] ? "choice disabled" : "choice enabled";
+    string choiceColor = ((member(Data[choice], "is disabled") &&
+        Data[choice]["is disabled"]) || ((QuantityNeeded == sizeof(Selections)) &&
+            member(Data[choice], "data") &&
+            !member(Selections, Data[choice]["type"]))) ? 
+            "choice disabled" : "choice enabled";
 
     return sprintf("[%s]%s - %s%s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
@@ -132,11 +134,15 @@ protected nomask int processSelection(string selection)
             }
             else if (!Data[selection]["is disabled"])
             {
-                if (!member(Selections, Data[selection]["type"]))
+                if (!member(Selections, Data[selection]["type"]) &&
+                    (QuantityNeeded > sizeof(Selections)))
                 {
-                    Selections[Data[selection]["type"]] =
-                        Data[selection]["data"];
-
+                    object worker = Data[selection]["data"];
+                    Selections[Data[selection]["type"]] = ([
+                        "object": worker,
+                        "benefits": dictionary->getBenefits(worker, WorkerType),
+                        "level": dictionary->getBenefitLevel(worker, WorkerType)
+                    ]);
                 }
                 else
                 {

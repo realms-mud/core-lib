@@ -78,12 +78,45 @@ public nomask string getComponentWorkerInfo(object user, mapping componentData)
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getWorkersOfType(object user, string type, 
-    string location)
+    string location, int quantity, mapping currentSelections)
 {
+    string ret = "\n";
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
 
-    return "";
+    if (quantity == sizeof(currentSelections))
+    {
+        ret += configuration->decorate(
+            sprintf("All required %s have been assigned.\nSelect 'Confirm "
+            "Selections' to continue.\n", pluralizeValue(type, 1)),
+            "selected", "player domains", colorConfiguration);
+    }
+    else
+    {
+        ret += configuration->decorate(
+            sprintf("%s selected: %d of %d.\n", pluralizeValue(type),
+                sizeof(currentSelections), quantity), 
+            "selected", "player domains", colorConfiguration);
+    }
+
+    if (sizeof(currentSelections))
+    {
+        foreach(string entry in m_indices(currentSelections))
+        {
+            string details = currentSelections[entry]["benefits"];
+            ret += "    " +
+                configuration->decorate(
+                    sprintf("%-25s", (sizeof(entry) > 25) ?
+                        entry[0..21] + "..." : entry),
+                    currentSelections[entry]["level"], "player domains", 
+                    colorConfiguration) +
+                configuration->decorate(
+                    sprintf("Benefits: %-40s\n", (sizeof(details) > 4000) ?
+                        details[0..36] + "..." : details),
+                    "heading", "player domains", colorConfiguration);
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

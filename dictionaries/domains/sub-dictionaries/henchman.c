@@ -72,3 +72,27 @@ public nomask object getHenchmanFromData(mapping data, object user)
 
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getBenefits(object henchman, string type)
+{
+    return "";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getBenefitLevel(object henchman, string type)
+{
+    string traits = implode(henchman->Traits(type), "");
+    string santizedType = regreplace(type, " .*", "", 1);
+    string ret = "low end worker";
+
+    if (sizeof(regexp(({ traits }), "master-" + santizedType)))
+    {
+        ret = "elite worker";
+    }
+    else if (sizeof(regexp(({ traits }), "journeyman-" + santizedType)))
+    {
+        ret = "average worker";
+    }
+    return ret;
+}

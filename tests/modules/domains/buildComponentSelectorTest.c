@@ -6,48 +6,6 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object Selector;
-object Location;
-
-/////////////////////////////////////////////////////////////////////////////
-void Init()
-{
-    ignoreList += ({ "SetupHenchmen" });
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void SetupHenchmen()
-{
-    Player->addHenchman("argalach castle", ([
-        "name": "Tirian",
-        "house": "Arthellyn",
-        "gender": "male",
-        "type": "architect",
-        "persona": "swordsman",
-        "level": 12,
-        "activity": "idle"
-    ]));
-
-    Player->addHenchman("argalach castle", ([
-        "name": "Beren",
-        "house": "Marannuminas",
-        "gender": "male",
-        "type": "architect",
-        "persona": "swordsman",
-        "level": 10,
-        "activity": "building"
-    ]));
-
-    Player->addHenchman("argalach castle", ([
-        "name": "Derek",
-        "house": "Evendim",
-        "gender": "male",
-        "type": "craftsman",
-        "traits": ({ "lib/instances/traits/domains/journeyman-carpenter.c" }),
-        "persona": "swordsman",
-        "level": 10,
-        "activity": "building"
-    ]));
-}
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
@@ -56,16 +14,12 @@ void Setup()
     Selector->setLocation("argalach castle");
     Selector->setConstructionData((["type":"keep", "name" : "stone keep"]));
 
-    Location = load_object("/lib/dictionaries/domains/rooms/keep-1x1.c");
-
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->addCommands();
     Player->colorConfiguration("none");
     Player->charsetConfiguration("ascii");
     Player->addPlayerHolding("argalach castle");
-
-    Location->enterEnvironment(Player);
 
     move_object(Selector, Player);
 }
@@ -75,7 +29,6 @@ void CleanUp()
 {
     destruct(Selector);
     destruct(Player);
-    destruct(Location);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -497,9 +450,6 @@ void CorrectlyDisplaysWorkerMenu()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysWorkerSelectionMenu()
 {
-    SetupHenchmen();
-    Player->colorConfiguration("none");
-
     Selector->initiateSelector(Player);
     command("4", Player);
     command("2", Player);
@@ -507,64 +457,9 @@ void CorrectlyDisplaysWorkerSelectionMenu()
     ExpectEq("Building Projects - Assign Workers:\n"
         "From this menu, you can select the architects who will be executing your\n"
         "project in your holdings at Argalach Castle.\n"
-        "\n"
-        "[1] - Beren Marannuminas       busy   [2] - Tirian Arthellyn                \n"
-        "[3] - Confirm Selections       N/A    [4] - Exit Building Menu              \n"
-        "You must select a number from 1 to 4.\n"
-        "Type 'exit' if you do not wish to make a selection at this time.\n"
-        "For details on a given choice, type 'describe X' (or '? X') where\n"
-        "X is the option about which you would like further details.\n"
-        "You have 1 worker left to assign.\n",
-        Player->caughtMessage());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void SelectingWorkerActsAsToggle()
-{
-    SetupHenchmen();
-    Player->colorConfiguration("none");
-
-    Selector->initiateSelector(Player);
-    command("4", Player);
-    command("2", Player);
-
-    ExpectEq("Building Projects - Assign Workers:\n"
-        "From this menu, you can select the architects who will be executing your\n"
-        "project in your holdings at Argalach Castle.\n"
-        "\n"
-        "[1] - Beren Marannuminas       busy   [2] - Tirian Arthellyn                \n"
-        "[3] - Confirm Selections       N/A    [4] - Exit Building Menu              \n"
-        "You must select a number from 1 to 4.\n"
-        "Type 'exit' if you do not wish to make a selection at this time.\n"
-        "For details on a given choice, type 'describe X' (or '? X') where\n"
-        "X is the option about which you would like further details.\n"
-        "You have 1 worker left to assign.\n",
-        Player->caughtMessage());
-
-    command("2", Player);
-
-    ExpectEq("Building Projects - Assign Workers:\n"
-        "From this menu, you can select the architects who will be executing your\n"
-        "project in your holdings at Argalach Castle.\n"
-        "\n"
-        "[1] - Beren Marannuminas       busy   [2] - Tirian Arthellyn            (*) \n"
-        "[3] - Confirm Selections              [4] - Exit Building Menu              \n"
-        "You must select a number from 1 to 4.\n"
-        "Type 'exit' if you do not wish to make a selection at this time.\n"
-        "For details on a given choice, type 'describe X' (or '? X') where\n"
-        "X is the option about which you would like further details.\n"
-        "You have 0 workers left to assign.\n",
-        Player->caughtMessage());
-
-    command("2", Player);
-
-    ExpectEq("Building Projects - Assign Workers:\n"
-        "From this menu, you can select the architects who will be executing your\n"
-        "project in your holdings at Argalach Castle.\n"
-        "\n"
-        "[1] - Beren Marannuminas       busy   [2] - Tirian Arthellyn                \n"
-        "[3] - Confirm Selections       N/A    [4] - Exit Building Menu              \n"
-        "You must select a number from 1 to 4.\n"
+        "\nArchitects selected: 0 of 1.\n\n"
+        "[1] - Confirm Selections       N/A    [2] - Exit Building Menu              \n"
+        "You must select a number from 1 to 2.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
