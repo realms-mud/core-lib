@@ -139,12 +139,19 @@ public nomask varargs mapping getHenchmen(string location, string type)
     if (stringp(location) && member(henchmen, location))
     {
         ret = henchmen[location];
-
-        if (stringp(type))
+    }
+    else if((location == "all") && sizeof(henchmen))
+    {
+        foreach(string key in m_indices(henchmen))
         {
-            ret = filter(ret, (: $2->type() == $3 ||
-                $2->hasTraitOfRoot($3) :), type);
+            ret += henchmen[key];
         }
+    }
+        
+    if (sizeof(ret) && stringp(type))
+    {
+        ret = filter(ret, (: $2->type() == $3 ||
+            $2->hasTraitOfRoot($3) :), type);
     }
     return ret + ([]);
 }

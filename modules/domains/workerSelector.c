@@ -140,7 +140,8 @@ protected nomask int processSelection(string selection)
                     object worker = Data[selection]["data"];
                     Selections[Data[selection]["type"]] = ([
                         "object": worker,
-                        "benefits": dictionary->getBenefits(worker, WorkerType),
+                        "benefits": dictionary->getBenefits(User, worker, 
+                            WorkerType),
                         "level": dictionary->getBenefitLevel(worker, WorkerType)
                     ]);
                 }

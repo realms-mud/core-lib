@@ -101,9 +101,14 @@ public nomask string getWorkersOfType(object user, string type,
 
     if (sizeof(currentSelections))
     {
-        foreach(string entry in m_indices(currentSelections))
+        string *currentList = 
+            sort_array(m_indices(currentSelections), (: $1 > $2 :));
+
+        foreach(string entry in currentList)
         {
-            string details = currentSelections[entry]["benefits"];
+            string details = 
+                currentSelections[entry]["benefits"]["description"];
+
             ret += "    " +
                 configuration->decorate(
                     sprintf("%-25s", (sizeof(entry) > 25) ?
@@ -111,8 +116,8 @@ public nomask string getWorkersOfType(object user, string type,
                     currentSelections[entry]["level"], "player domains", 
                     colorConfiguration) +
                 configuration->decorate(
-                    sprintf("Benefits: %-40s\n", (sizeof(details) > 4000) ?
-                        details[0..36] + "..." : details),
+                    sprintf("%-50s\n", (sizeof(details) > 4000) ?
+                        details[0..46] + "..." : details),
                     "heading", "player domains", colorConfiguration);
         }
     }
