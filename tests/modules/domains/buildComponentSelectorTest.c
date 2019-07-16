@@ -12,7 +12,7 @@ void Setup()
 {
     Selector = clone_object("/lib/modules/domains/buildComponentSelector.c");
     Selector->setLocation("argalach castle");
-    Selector->setConstructionData((["type":"keep", "name" : "stone keep"]));
+    Selector->setConstructionData((["type": "keep", "name": "stone keep"]));
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
@@ -458,8 +458,9 @@ void CorrectlyDisplaysWorkerSelectionMenu()
         "From this menu, you can select the architects who will be executing your\n"
         "project in your holdings at Argalach Castle.\n"
         "\nArchitects selected: 0 of 1.\n\n"
-        "[1] - Confirm Selections       N/A    [2] - Exit Building Menu              \n"
-        "You must select a number from 1 to 2.\n"
+        "[1] - Hire Apprentice ($25000) low $  [2] - Hire Architect ($225000) low $  \n"
+        "[3] - Confirm Selections       N/A    [4] - Exit Building Menu              \n"
+        "You must select a number from 1 to 4.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"

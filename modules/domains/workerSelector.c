@@ -7,6 +7,8 @@ inherit "/lib/core/baseSelector.c";
 private string Location;
 private string WorkerType;
 private int QuantityNeeded;
+private int Duration;
+private int CurrentCost = 0;
 private mapping Selections = ([]);
 
 private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
@@ -25,6 +27,12 @@ public nomask void setLocation(string location)
 public nomask void setQuantityNeeded(int quantity)
 {
     QuantityNeeded = quantity;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setDuration(int duration)
+{
+    Duration = duration;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +72,7 @@ protected nomask void setUpUserForSelection()
                 QuantityNeeded, Selections);
 
         Data = dictionary->getWorkersByTypeMenu(User, Location, WorkerType,
-            (QuantityNeeded - sizeof(Selections)) != 0);
+            (QuantityNeeded - sizeof(Selections)) != 0, Duration, CurrentCost);
     }
 }
 
@@ -80,7 +88,13 @@ protected nomask string additionalInstructions()
 protected nomask string displayDetails(string choice)
 {
     string ret = sprintf("%7s", "");
-    if ((Data[choice]["type"] == "confirm") && Data[choice]["is disabled"])
+    if ((member(({ "hire apprentice", "hire journeyman" }),
+        Data[choice]["type"]) > -1) && Data[choice]["is disabled"])
+    {
+        ret = sprintf("%-7s", (User->colorConfiguration() == "none") ?
+            "low $" : "");
+    }
+    else if ((Data[choice]["type"] == "confirm") && Data[choice]["is disabled"])
     {
         ret = sprintf("%-7s", (User->colorConfiguration() == "none") ?
             "N/A" : "");
@@ -118,6 +132,24 @@ protected string choiceFormatter(string choice)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void setupHireling(string type, string selection)
+{
+    mapping workerData = dictionary->getRandomHenchman(
+        WorkerType, type, Data[selection]["cost"],
+        Data[selection]["duration"]);
+    CurrentCost += Data[selection]["cost"];
+
+    object worker = User->addHenchman(Location, workerData);
+
+    Selections[worker->Name() + " " + worker->Title()] = ([
+        "object": worker,
+        "benefits" : dictionary->getBenefits(User, worker,
+            WorkerType),
+        "level" : dictionary->getBenefitLevel(worker, WorkerType)
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int processSelection(string selection)
 {
     int ret = -1;
@@ -134,7 +166,17 @@ protected nomask int processSelection(string selection)
             }
             else if (!Data[selection]["is disabled"])
             {
-                if (!member(Selections, Data[selection]["type"]) &&
+                if ((Data[selection]["type"] == "hire apprentice") &&
+                    (QuantityNeeded > sizeof(Selections)))
+                {
+                    setupHireling("apprentice", selection);
+                }
+                else if ((Data[selection]["type"] == "hire journeyman") &&
+                    (QuantityNeeded > sizeof(Selections)))
+                {
+                    setupHireling("journeyman", selection);
+                }
+                else if (!member(Selections, Data[selection]["type"]) &&
                     (QuantityNeeded > sizeof(Selections)))
                 {
                     object worker = Data[selection]["data"];
@@ -147,6 +189,11 @@ protected nomask int processSelection(string selection)
                 }
                 else
                 {
+                    if (Data[selection]["cost"])
+                    {
+                        CurrentCost -= Data[selection]["cost"];
+                        User->removeHenchman(Location, Data[selection]["name"]);
+                    }
                     m_delete(Selections, Data[selection]["type"]);
                 }
                 setUpUserForSelection();

@@ -13,6 +13,8 @@ private object Leader;
 private string Location;
 private string Type;
 private string Activity = "idle";
+private int RemovalTime = 0;
+private int Cost = 0;
 
 private nosave int EffectiveLevel;
 private nosave float ExperiencePerHitPoint = 0;
@@ -22,6 +24,17 @@ private nosave int ExperiencePerHitPointSet = 0;
 public nomask int isRealizationOfHenchman()
 {
     return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void reset(int arg)
+{
+    if (arg)
+    {
+        return;
+    }
+    "living"::reset(arg);
+    registerHeartBeat("henchman");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -174,6 +187,31 @@ public nomask object getParty()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void setCost(int cost)
+{
+    if (cost > 0)
+    {
+        Cost = cost;
+    }
+    else
+    {
+        raise_error("Henchman: The cost must be a value greater than 0.\n");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isHireling()
+{
+    return Cost > 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int cost()
+{
+    return Cost;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setHenchmanData(mapping data, object leader)
 {
     Name(data["name"]);
@@ -193,6 +231,15 @@ public nomask void setHenchmanData(mapping data, object leader)
     setType(data["type"]);
     setActivity(data["activity"]);
 
+    if (member(data, "cost") && intp(data["cost"]))
+    {
+        setCost(data["cost"]);
+    }
+    if (member(data, "duration") && intp(data["duration"]))
+    {
+        RemovalTime = Age() + data["duration"];
+    }
+
     if (member(data, "skills") && mappingp(data["skills"]) &&
         sizeof(data["skills"]))
     {
@@ -210,5 +257,15 @@ public nomask void setHenchmanData(mapping data, object leader)
         {
             addTrait(trait);
         }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+static nomask varargs void henchmanHeartBeat()
+{
+    if (Leader && Cost && (Age() >= RemovalTime))
+    {
+        Leader->removeHenchman(Location, short());
+        Leader = 0;
     }
 }

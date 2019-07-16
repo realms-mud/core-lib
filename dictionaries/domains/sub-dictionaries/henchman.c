@@ -3,6 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/core.c";
+#include "henchman-names.h"
 
 private mapping Modifiers = ([
     "duration": ([
@@ -149,6 +150,53 @@ public nomask object getHenchmanFromData(mapping data, object user)
     }
 
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getName(string gender)
+{
+    return (gender == "female") ? femaleNames[random(sizeof(femaleNames))] :
+        maleNames[random(sizeof(maleNames))];
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getFamilyName()
+{
+    return familyNames[random(sizeof(familyNames))];
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getRandomHenchman(string type, string rating, int cost,
+    int duration)
+{
+    mapping ret = ([]);
+
+    string revisedType = type;
+    if (member(({ "engineer", "architect", "arcane craftsman", "blacksmith",
+           "carpenter", "stonemason" }), type) > -1)
+    {
+        revisedType = "craftsman";
+    }
+
+    if(isValidHenchmanType(revisedType) &&
+       (member(({ "apprentice", "journeyman", "master" }), rating) > -1))
+    {
+        string gender = (random(100) >= 50) ? "female": "male";
+
+        return ([
+            "name": getName(gender),
+            "house": getFamilyName(),
+            "gender": gender,
+            "type": revisedType,
+            "traits": ({ sprintf("lib/instances/traits/domains/%s-%s.c",
+                rating, type) }),
+            "cost": cost,
+            "duration": duration,
+            "persona": "swordsman",
+            "level": 5,
+            "activity": "idle"
+        ]);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

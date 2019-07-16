@@ -106,14 +106,13 @@ public nomask string *getTitles()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int addHenchman(string location, mapping data)
+public nomask object addHenchman(string location, mapping data)
 {
-    int ret = 0;
+    object ret = 0;
     object dictionary = getDictionary("domain");
 
     if (dictionary->isValidHenchman(data) && member(holdings, location))
     {
-        ret = 1;
         if (!member(henchmen, location))
         {
             henchmen[location] = ([]);
@@ -125,8 +124,21 @@ public nomask int addHenchman(string location, mapping data)
         }
 
         data["location"] = location;
-        henchmen[location][key] = 
-            dictionary->getHenchmanFromData(data, this_object());
+        ret = dictionary->getHenchmanFromData(data, this_object());
+
+        henchmen[location][key] = ret;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int removeHenchman(string location, string key)
+{
+    int ret = 0;
+    if (member(henchmen, location) && member(henchmen[location], key))
+    {
+        m_delete(henchmen[location], key);
+        ret = 1;
     }
     return ret;
 }

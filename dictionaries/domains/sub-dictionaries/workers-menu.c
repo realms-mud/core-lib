@@ -37,6 +37,7 @@ public nomask mapping getWorkersMenu(object user, string location,
                 "name": sprintf("Select %s", pluralizeValue(worker)),
                 "type": worker,
                 "quantity": componentData["construction"]["workers"][worker],
+                "duration": componentData["construction"]["duration"],
                 "description": "This option assigns workers to the task of "
                     "building the selected component.\n",
                 "is disabled": canSelectWorkers(componentData),
@@ -126,7 +127,7 @@ public nomask string getWorkersOfType(object user, string type,
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getWorkersByTypeMenu(object user, string location,
-    string type, int confirmDisabled)
+    string type, int confirmDisabled, int duration, int currentCost)
 {
     mapping ret = ([]);
 
@@ -149,11 +150,35 @@ public nomask mapping getWorkersByTypeMenu(object user, string location,
                 "description": sprintf("This option assigns %s to the task of "
                     "building the selected component.\n", name),
                 "is disabled": henchmen[worker]->activity() != "idle",
+                "cost": henchmen[worker]->cost(),
                 "data": henchmen[worker],
                 "canShow": 1
             ]);            
         }
     }
+    int cost = duration * 25;
+    ret[to_string(sizeof(ret) + 1)] = ([
+        "name": sprintf("Hire Apprentice ($%d)", cost),
+        "type": "hire apprentice",
+        "description": "This option hires a low-end contract worker in leiu "
+            "of a henchman\n",
+        "duration": duration,
+        "cost": cost,
+        "is disabled": user->Money() < (cost + currentCost),
+        "canShow": 1
+    ]);
+
+    cost = duration * 225;
+    ret[to_string(sizeof(ret) + 1)] = ([
+        "name": sprintf("Hire %s ($%d)", generateTitle(type), cost),
+        "type": "hire journeyman",
+        "description": "This option hires a contract worker in leiu "
+            "of a henchman\n",
+        "duration": duration,
+        "cost": cost,
+        "is disabled": user->Money() < (cost + currentCost),
+        "canShow": 1
+    ]);
     ret[to_string(sizeof(ret) + 1)] = ([
         "name": "Confirm Selections",
         "type": "confirm",

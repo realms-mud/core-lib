@@ -97,6 +97,7 @@ void Setup()
     Selector = clone_object("/lib/modules/domains/workerSelector.c");
     Selector->setLocation("argalach castle");
     Selector->setQuantityNeeded(1);
+    Selector->setDuration(500);
     Selector->setWorkerType("architect");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
@@ -128,8 +129,9 @@ void CorrectlyDisplaysWorkerSelectionMenu()
         "project in your holdings at Argalach Castle.\n"
         "\nArchitects selected: 0 of 1.\n\n"
         "[1] - Beren Marannuminas       busy   [2] - Tirian Arthellyn                \n"
-        "[3] - Confirm Selections       N/A    [4] - Exit Building Menu              \n"
-        "You must select a number from 1 to 4.\n"
+        "[3] - Hire Apprentice ($12500) low $  [4] - Hire Architect ($112500) low $  \n"
+        "[5] - Confirm Selections       N/A    [6] - Exit Building Menu              \n"
+        "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
@@ -149,8 +151,9 @@ void SelectingWorkerActsAsToggle()
         "project in your holdings at Argalach Castle.\n"
         "\nArchitects selected: 0 of 1.\n\n"
         "[1] - Beren Marannuminas       busy   [2] - Tirian Arthellyn                \n"
-        "[3] - Confirm Selections       N/A    [4] - Exit Building Menu              \n"
-        "You must select a number from 1 to 4.\n"
+        "[3] - Hire Apprentice ($12500) low $  [4] - Hire Architect ($112500) low $  \n"
+        "[5] - Confirm Selections       N/A    [6] - Exit Building Menu              \n"
+        "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
@@ -166,8 +169,9 @@ void SelectingWorkerActsAsToggle()
         "Select 'Confirm Selections' to continue.\n"
         "    Tirian Arthellyn         No bonuses or penalties\n\n"
         "[1] - Beren Marannuminas       busy   [2] - Tirian Arthellyn            (*) \n"
-        "[3] - Confirm Selections              [4] - Exit Building Menu              \n"
-        "You must select a number from 1 to 4.\n"
+        "[3] - Hire Apprentice ($12500) low $  [4] - Hire Architect ($112500) low $  \n"
+        "[5] - Confirm Selections              [6] - Exit Building Menu              \n"
+        "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
@@ -181,8 +185,9 @@ void SelectingWorkerActsAsToggle()
         "project in your holdings at Argalach Castle.\n"
         "\nArchitects selected: 0 of 1.\n\n"
         "[1] - Beren Marannuminas       busy   [2] - Tirian Arthellyn                \n"
-        "[3] - Confirm Selections       N/A    [4] - Exit Building Menu              \n"
-        "You must select a number from 1 to 4.\n"
+        "[3] - Hire Apprentice ($12500) low $  [4] - Hire Architect ($112500) low $  \n"
+        "[5] - Confirm Selections       N/A    [6] - Exit Building Menu              \n"
+        "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
@@ -214,9 +219,10 @@ void CannotSelectMoreWorkersThanNeeded()
         "Select 'Confirm Selections' to continue.\n"
         "    Tirian Arthellyn         No bonuses or penalties\n\n"
         "[1] - Beren Marannuminas       busy   [2] - Tantor The Unclean              \n"
-        "[3] - Tirian Arthellyn            (*) [4] - Confirm Selections              \n"
-        "[5] - Exit Building Menu              \n"
-        "You must select a number from 1 to 5.\n"
+        "[3] - Tirian Arthellyn            (*) [4] - Hire Apprentice ($12500) low $  \n"
+        "[5] - Hire Architect ($112500) low $  [6] - Confirm Selections              \n"
+        "[7] - Exit Building Menu              \n"
+        "You must select a number from 1 to 7.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
@@ -232,9 +238,10 @@ void CannotSelectMoreWorkersThanNeeded()
         "Select 'Confirm Selections' to continue.\n"
         "    Tirian Arthellyn         No bonuses or penalties\n\n"
         "[1] - Beren Marannuminas       busy   [2] - Tantor The Unclean              \n"
-        "[3] - Tirian Arthellyn            (*) [4] - Confirm Selections              \n"
-        "[5] - Exit Building Menu              \n"
-        "You must select a number from 1 to 5.\n"
+        "[3] - Tirian Arthellyn            (*) [4] - Hire Apprentice ($12500) low $  \n"
+        "[5] - Hire Architect ($112500) low $  [6] - Confirm Selections              \n"
+        "[7] - Exit Building Menu              \n"
+        "You must select a number from 1 to 7.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
@@ -259,8 +266,9 @@ void CorrectDetailsDisplayedForSelectedWorkers()
         "    Marik Argalen            M: +17%, D: +17%, C: +10%, U: +10%, S: +15%\n\n"
         "[1] - Arnalt Arator                   [2] - Derek Evendim            busy   \n"
         "[3] - Marik Argalen               (*) [4] - Royce Eralkidh                  \n"
-        "[5] - Confirm Selections       N/A    [6] - Exit Building Menu              \n"
-        "You must select a number from 1 to 6.\n"
+        "[5] - Hire Apprentice ($12500) low $  [6] - Hire Carpenter ($112500) low $  \n"
+        "[7] - Confirm Selections       N/A    [8] - Exit Building Menu              \n"
+        "You must select a number from 1 to 8.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
@@ -276,8 +284,9 @@ void CorrectDetailsDisplayedForSelectedWorkers()
         "    Marik Argalen            M: +17%, D: +17%, C: +10%, U: +10%, S: +15%\n\n"
         "[1] - Arnalt Arator               (*) [2] - Derek Evendim            busy   \n"
         "[3] - Marik Argalen               (*) [4] - Royce Eralkidh                  \n"
-        "[5] - Confirm Selections       N/A    [6] - Exit Building Menu              \n"
-        "You must select a number from 1 to 6.\n"
+        "[5] - Hire Apprentice ($12500) low $  [6] - Hire Carpenter ($112500) low $  \n"
+        "[7] - Confirm Selections       N/A    [8] - Exit Building Menu              \n"
+        "You must select a number from 1 to 8.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
@@ -295,11 +304,68 @@ void CorrectDetailsDisplayedForSelectedWorkers()
         "    Royce Eralkidh           No bonuses or penalties\n\n"
         "[1] - Arnalt Arator               (*) [2] - Derek Evendim            busy   \n"
         "[3] - Marik Argalen               (*) [4] - Royce Eralkidh              (*) \n"
-        "[5] - Confirm Selections              [6] - Exit Building Menu              \n"
-        "You must select a number from 1 to 6.\n"
+        "[5] - Hire Apprentice ($12500) low $  [6] - Hire Carpenter ($112500) low $  \n"
+        "[7] - Confirm Selections              [8] - Exit Building Menu              \n"
+        "You must select a number from 1 to 8.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 0 workers left to assign.\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanHireAWorker()
+{
+    Player->addMoney(12500);
+    SetupHenchmen("carpenter");
+    Selector->setQuantityNeeded(3);
+    Selector->setWorkerType("carpenter");
+
+    Selector->initiateSelector(Player);
+
+    ExpectEq("Building Projects - Assign Workers:\n"
+        "From this menu, you can select the carpenters who will be executing your\n"
+        "project in your holdings at Argalach Castle.\n"
+        "\nCarpenters selected: 0 of 3.\n\n"
+        "[1] - Arnalt Arator                   [2] - Derek Evendim            busy   \n"
+        "[3] - Marik Argalen                   [4] - Royce Eralkidh                  \n"
+        "[5] - Hire Apprentice ($12500)        [6] - Hire Carpenter ($112500) low $  \n"
+        "[7] - Confirm Selections       N/A    [8] - Exit Building Menu              \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "You have 3 workers left to assign.\n",
+        Player->caughtMessage());
+
+    command("5", Player);
+
+    string addedCharacter = regreplace(Player->caughtMessage(),
+        ".*    ([A-Za-z]+ [A-Za-z]+).*", "\\1", 1);
+    string newEntry = regreplace(Player->caughtMessage(),
+        ".*([0-9]+). - " + addedCharacter + ".*", "\\1", 1);
+
+    ExpectSubStringMatch(sprintf("Carpenters selected: 1 of 3.*"
+        "%s.*M: -5%%, D: -5%%, C: -5%%, U: -5%%, S: -5%%.*%s. - %s.*"
+        "Hire Apprentice ..12500. low.*2 workers", 
+        addedCharacter, newEntry, addedCharacter), 
+        Player->caughtMessage());
+
+    command(newEntry, Player);
+
+    ExpectEq("Building Projects - Assign Workers:\n"
+        "From this menu, you can select the carpenters who will be executing your\n"
+        "project in your holdings at Argalach Castle.\n"
+        "\nCarpenters selected: 0 of 3.\n\n"
+        "[1] - Arnalt Arator                   [2] - Derek Evendim            busy   \n"
+        "[3] - Marik Argalen                   [4] - Royce Eralkidh                  \n"
+        "[5] - Hire Apprentice ($12500)        [6] - Hire Carpenter ($112500) low $  \n"
+        "[7] - Confirm Selections       N/A    [8] - Exit Building Menu              \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "You have 3 workers left to assign.\n",
         Player->caughtMessage());
 }
