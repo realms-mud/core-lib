@@ -23,8 +23,14 @@ public nomask void setLocation(string location)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setWorkerData(mapping data, string name)
 {
-    WorkerData = data;
+    WorkerData = data + ([]);
     WorkerData["name"] = name;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping WorkerData()
+{
+    return WorkerData + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -66,6 +72,15 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
+        if (!member(WorkerData, "assigned workers"))
+        {
+            WorkerData["construction"]["assigned workers"] = ([]);
+        }
+        WorkerData["construction"]["assigned workers"][caller->WorkerType()] =
+            caller->Selections();
+
+        printf("Selections = %O\n", WorkerData);
+
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }

@@ -369,3 +369,31 @@ void CanHireAWorker()
         "You have 3 workers left to assign.\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DescriptionShowsWorkDetails()
+{
+    SetupHenchmen("carpenter");
+    Selector->setQuantityNeeded(3);
+    Selector->setWorkerType("carpenter");
+
+    Selector->initiateSelector(Player);
+    command("? 3", Player);
+
+    ExpectEq("This option assigns Marik Argalen to the task of building the selected\n"
+        "component.\n"
+        "Stats:\n"
+        "Name  : Marik Argalen\n"
+        "Traits: Master Carpenter, Swordsman\n"
+        "Skills:\n"
+        "    Carpentry: 25\n"
+        "    Wood Crafting: 20\n"
+        "Domain Modifiers - This worker will have the following project-level effects:\n"
+        "This person reduces the duration by 17% on this project.\n"
+        "This person reduces the materials used by 17% on this project.\n"
+        "This person increases the structural strength by 15% on this project.\n"
+        "This person increases the units accomodated by 10% on this project.\n"
+        "This person increases the combat modifiers by 10% on this project.\n"
+        "This person is considered an elite worker for this project.\n\n",
+        Player->caughtMessage());
+}

@@ -40,7 +40,7 @@ private nomask mapping getConstructionOptions(mapping componentData)
 {
     mapping ret = ([]);
     mapping construction = 
-        CastleComponents[componentData["name"]]["construction"]["materials"];
+        CastleComponents[componentData["name"]]["construction"]["materials"] + ([]);
 
     string *sections = sort_array(m_indices(construction), (: $1 > $2 :));
 
@@ -63,12 +63,12 @@ private nomask mapping getConstructionOptions(mapping componentData)
         }
     }
     
+    construction = CastleComponents[componentData["name"]] + ([]);
     ret[to_string(sizeof(ret) + 1)] = ([
         "name":"Select Workers",
         "type": "workers",
-        "data": member(CastleComponents[componentData["name"]]["construction"], 
-            "workers") ?
-            (CastleComponents[componentData["name"]] + ([])) : ([]),
+        "data": (member(construction["construction"], "workers") ?
+            construction : ([])),
         "description": "This option lets you select workers for the building "
             "project.\n",
         "canShow": 1

@@ -42,6 +42,18 @@ public nomask void setWorkerType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string WorkerType()
+{
+    return WorkerType;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping Selections()
+{
+    return Selections + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)
 {
     if (!arg)
@@ -157,7 +169,11 @@ protected nomask int processSelection(string selection)
     {
         ret = (Data[selection]["type"] == "exit") || (selection == "abort");
 
-        if (!ret)
+        if (ret)
+        {
+            Selections = ([]);
+        }
+        else
         {
             if (!Data[selection]["is disabled"] &&
                 Data[selection]["type"] == "confirm")

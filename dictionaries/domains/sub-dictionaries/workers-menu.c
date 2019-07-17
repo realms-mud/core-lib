@@ -7,7 +7,22 @@ virtual inherit "/lib/dictionaries/domains/sub-dictionaries/domain-layout.c";
 /////////////////////////////////////////////////////////////////////////////
 private nomask int canSelectWorkers(mapping componentData)
 {
-    return 0;
+    int ret = 0;
+
+    if (member(componentData["construction"], "workers") &&
+        member(componentData["construction"], "assigned workers"))
+    {
+        ret = 1;
+
+        mapping data = componentData["construction"];
+        foreach(string workerType in m_indices(data["workers"]))
+        {
+            ret &&= member(data["assigned workers"], workerType) && 
+                (sizeof(data["assigned workers"][workerType]) ==
+                    data["workers"][workerType]);
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -148,7 +163,8 @@ public nomask mapping getWorkersByTypeMenu(object user, string location,
                 "name": name,
                 "type": worker,
                 "description": sprintf("This option assigns %s to the task of "
-                    "building the selected component.\n", name),
+                    "building the selected component.\nStats:\n%s\n", name,
+                    this_object()->getHenchmanDetails(user, henchmen[worker], type, name)),
                 "is disabled": henchmen[worker]->activity() != "idle",
                 "cost": henchmen[worker]->cost(),
                 "data": henchmen[worker],

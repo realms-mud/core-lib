@@ -467,3 +467,39 @@ void CorrectlyDisplaysWorkerSelectionMenu()
         "You have 1 worker left to assign.\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void WorkerDisplayIsUpdated()
+{
+    Player->addMoney(125000);
+    Selector->initiateSelector(Player);
+    command("4", Player);
+    command("2", Player);
+    command("1", Player);
+    command("4", Player);
+
+    ExpectEq("Building Projects - Assign Workers:\n"
+        "From this menu, you can select the workers who will be executing your Stone\n"
+        "Keep project in your holdings at Argalach Castle.\n"
+        "\n"
+        "Layout: +=======+            Needed workers:              \n"
+        "        | +---+ |                Architect         -  1/1 \n"
+        "        | |   | |                Blacksmith        -  0/1 \n"
+        "        | +---+ |                Carpenter         -  0/3 \n"
+        "        +=======+                Foreman           -  0/1 \n"
+        "                                 Stonemason        -  0/10\n"
+        "\n"
+        "[1] - Auto-Select Workers \n"
+        "[2] - Select Architects   \n"
+        "[3] - Select Blacksmiths  \n"
+        "[4] - Select Carpenters   \n"
+        "[5] - Select Foremen      \n"
+        "[6] - Select Stonemasons  \n"
+        "[7] - Confirm Selected Workers\n"
+        "[8] - Exit Building Menu  \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
+}

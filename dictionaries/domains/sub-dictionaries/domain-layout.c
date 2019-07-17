@@ -282,7 +282,10 @@ protected nomask string *displayWorkerData(object user,
 
     foreach(string worker in workers)
     {
-        int currentNumber = 0;
+        int currentNumber = (member(constructionData, "assigned workers") &&
+            member(constructionData["assigned workers"], worker)) ?
+            sizeof(constructionData["assigned workers"][worker]) : 0;
+
         int totalNeeded = constructionData["workers"][worker];
 
         ret += ({ 

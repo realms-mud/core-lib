@@ -403,6 +403,103 @@ public nomask mapping getBenefits(object user, object henchman, string type)
     ret["combat"] = getBenefit("combat", type, baseline, maxModifier, skills);
 
     ret["description"] = displayDescription(user, ret);
+    ret["level"] = baseline;
+    ret["skills"] = skills + ([]);
+    ret["traits"] = henchman->Traits();
 
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs string domainModifierDisplay(string description, 
+    int value, string colorConfiguration, int isReductive)
+{
+    string color = "heading";
+    string modifierMessage = sprintf("This person has no effect to the %s "
+        "on this project.", description);
+
+    if (value)
+    {
+        color = (value > 0) ? "positive value" : "negative value";
+        if (isReductive)
+        {
+            modifierMessage = (value < 0) ?
+                "This person increases the %s by %d%% on this project." :
+                "This person reduces the %s by %d%% on this project.";
+        }
+        else
+        {
+            modifierMessage = (value > 0) ?
+                "This person increases the %s by %d%% on this project." :
+                "This person reduces the %s by %d%% on this project.";
+        }
+        modifierMessage = sprintf(modifierMessage, description, abs(value));
+    }
+
+    return configuration->decorate(modifierMessage,
+        color, "player domains", colorConfiguration) + "\n";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getHenchmanDetails(object user, object henchman, 
+    string type, string name)
+{
+    string ret = "";
+    mapping benefits = getBenefits(user, henchman, type);
+
+    string colorConfiguration = user->colorConfiguration();
+    string charset = user->charsetConfiguration();
+
+    ret = configuration->decorate(sprintf("%-6s: ", "Name"),
+            "heading", "player domains", colorConfiguration) +
+        configuration->decorate(name,
+            "value", "player domains", colorConfiguration) + "\n" +
+        configuration->decorate(sprintf("%-6s: ", "Traits"),
+            "heading", "player domains", colorConfiguration) +
+        configuration->decorate(generateTitle(implode(
+                henchman->TraitNames(), ", ")),
+            "value", "player domains", colorConfiguration) + "\n";
+    
+    if (member(benefits, "skills"))
+    {
+        ret += configuration->decorate(sprintf("%-6s:\n", "Skills"),
+            "heading", "player domains", colorConfiguration);
+
+        foreach(string skill in m_indices(benefits["skills"]))
+        {
+            int value = benefits["skills"][skill];
+            string description = skill;
+            if (description == "primary")
+            {
+                description = ProfessionSkills[type]["primary"];
+            }
+            ret += configuration->decorate("    " + 
+                    generateTitle(description) + ": ",
+                    "value", "player domains", colorConfiguration) +
+                configuration->decorate(to_string(value) + "\n",
+                    "positive value", "player domains", colorConfiguration);
+        }
+    }
+    
+    ret += configuration->decorate("Domain Modifiers - This worker will "
+        "have the following project-level effects:\n",
+            "heading", "player domains", colorConfiguration) +
+
+        domainModifierDisplay("duration", benefits["duration"],
+            colorConfiguration, 1) +
+        domainModifierDisplay("materials used", benefits["materials"],
+            colorConfiguration, 1) +
+        domainModifierDisplay("structural strength", benefits["structure"],
+            colorConfiguration) +
+        domainModifierDisplay("units accomodated", benefits["units"],
+            colorConfiguration) +
+        domainModifierDisplay("combat modifiers", benefits["combat"],
+            colorConfiguration) +
+
+        configuration->decorate(
+            sprintf("This person is considered a%s %s for this project.\n",
+                (benefits["level"] == "low end worker") ? "" : "n",
+                benefits["level"]),
+            benefits["level"], "player domains", colorConfiguration);
     return ret;
 }

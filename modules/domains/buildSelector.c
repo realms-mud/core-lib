@@ -137,7 +137,7 @@ protected nomask int processSelection(string selection)
                     clone_object("/lib/modules/domains/buildComponentSelector.c");
                 SubselectorObj->setLocation(Location);
                 SubselectorObj->setConstructionData(([
-                    "type":Component,
+                    "type": Component,
                     "name": Data[selection]["value"]
                 ]));
 
