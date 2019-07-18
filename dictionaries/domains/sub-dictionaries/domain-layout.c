@@ -253,9 +253,11 @@ protected nomask string *displayMaterialsData(object user, mapping componentData
             configuration->decorate(
                 sprintf("%-29s", generateTitle(material) + ":"),
                 "heading", "player domains", colorConfiguration),
-            member(componentData, material) ?
+            (member(componentData, "selected sections") &&
+             member(componentData["selected sections"], material)) ?
             configuration->decorate(
-                sprintf("    %-25s", componentData[material]),
+                sprintf("    %-25s", 
+                    componentData["selected sections"][material]["selection"]),
                 "value", "player domains", colorConfiguration) :
             configuration->decorate(sprintf("    %-25s", "<select>"),
                 "selection needed", "player domains", colorConfiguration)
@@ -265,7 +267,7 @@ protected nomask string *displayMaterialsData(object user, mapping componentData
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string *displayWorkerData(object user,
+protected nomask string *displayWorkerData(object user, mapping workerData,
     mapping constructionData, string colorConfiguration, string charset)
 {
     string *ret = ({ 
@@ -282,9 +284,9 @@ protected nomask string *displayWorkerData(object user,
 
     foreach(string worker in workers)
     {
-        int currentNumber = (member(constructionData, "assigned workers") &&
-            member(constructionData["assigned workers"], worker)) ?
-            sizeof(constructionData["assigned workers"][worker]) : 0;
+        int currentNumber = (member(workerData, "assigned workers") &&
+            member(workerData["assigned workers"], worker)) ?
+            sizeof(workerData["assigned workers"][worker]) : 0;
 
         int totalNeeded = constructionData["workers"][worker];
 

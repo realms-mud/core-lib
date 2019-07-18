@@ -86,9 +86,12 @@ public nomask string getComponentWorkerInfo(object user, mapping componentData)
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
 
+    string name = componentData["name"];
+
     return generateBuildInfo(
-        displayLayout(componentData["name"], colorConfiguration, charset),
-        displayWorkerData(user, componentData["construction"] + ([]),
+        displayLayout(name, colorConfiguration, charset),
+        displayWorkerData(user, componentData,
+            CastleComponents[name]["construction"] + ([]),
             colorConfiguration, charset)[1..]);
 }
 

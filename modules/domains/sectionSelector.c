@@ -106,7 +106,7 @@ public nomask void onSelectorCompleted(object caller)
 protected nomask string displayDetails(string choice)
 {
     string ret = sprintf("%9s", "");
-    if ((Data[choice]["type"] == "construct") &&
+    if ((Data[choice]["type"] == "construct") && Data[choice]["is disabled"] &&
         (User->colorConfiguration() == "none"))
     {
         ret = sprintf("%-9s", "N/A");
@@ -178,6 +178,7 @@ protected nomask int processSelection(string selection)
             {
                 ret = 0;
                 SectionData["chosen section"] = Data[selection]["type"];
+                SectionData["selected materials"] = ([]);
                 setUpUserForSelection();
             }
         }

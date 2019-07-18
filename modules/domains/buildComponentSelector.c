@@ -64,10 +64,44 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
+        mapping data = caller->getSectionData();
+        if (mappingp(data))
+        {
+            if (!member(ConstructionData, "selected sections"))
+            {
+                ConstructionData["selected sections"] = ([]);
+            }
+            ConstructionData["selected sections"][data["selected section"]] = ([
+                "selection": data["chosen section"],
+                "materials": data["selected materials"]
+            ]);
+        }
+        else
+        {
+            data = caller->ConstructionData();
+            if (mappingp(data))
+            {
+                ConstructionData["assigned workers"] = 
+                    data["assigned workers"];
+            }
+        }
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }
     caller->cleanUp();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string displayDetails(string choice)
+{
+    string ret = "";
+
+    if ((Data[choice]["type"] == "create") && Data[choice]["is disabled"])
+    {
+        ret = sprintf("%-3s", (User->colorConfiguration() == "none") ?
+            "N/A" : "");
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -104,19 +138,22 @@ protected nomask int processSelection(string selection)
 
         if (!ret)
         {
-            if (Data[selection]["type"] == "create")
+            if ((Data[selection]["type"] == "create"))
             {
-                User->buildDomainUpgrade(Location,
-                    ConstructionData["type"],
-                    ConstructionData["value"]);
-                ret = 1;
+                ret = !Data[selection]["is disabled"];
+                if (ret)
+                {
+                    User->buildDomainUpgrade(Location,
+                        ConstructionData["type"],
+                        ConstructionData["value"]);
+                }
             }
             else if (Data[selection]["type"] == "workers")
             {
                 SubselectorObj =
                     clone_object("/lib/modules/domains/workCrewSelector.c");
-                SubselectorObj->setWorkerData(Data[selection]["data"],
-                    ConstructionData["name"]);
+                SubselectorObj->setWorkerData(Data[selection]["data"]);
+                SubselectorObj->setConstructionData(ConstructionData);
                 SubselectorObj->setLocation(Location);
 
                 move_object(SubselectorObj, User);

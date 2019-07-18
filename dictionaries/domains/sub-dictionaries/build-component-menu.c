@@ -23,7 +23,7 @@ private nomask string *getComponentInfo(object user, mapping componentData)
                 colorConfiguration, charset) +
             displayMaterialsData(user, componentData, construction, 
                 colorConfiguration, charset) +
-            displayWorkerData(user, construction, 
+            displayWorkerData(user, componentData, construction,
                 colorConfiguration, charset);
     }
     return ret;

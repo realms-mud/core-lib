@@ -215,7 +215,7 @@ void CanSelectFromConstructComponentMenu()
         "[\x1b[0;38;5;9;1m3\x1b[0m] - \x1b[0;38;5;2mStone Tower            \x1b[0m\n"
         "[\x1b[0;38;5;9;1m4\x1b[0m] - \x1b[0;38;5;2mStone Tower Second Level\x1b[0m\n"
         "[\x1b[0;38;5;9;1m5\x1b[0m] - \x1b[0;38;5;2mSelect Workers      \x1b[0m\n"
-        "[\x1b[0;38;5;9;1m6\x1b[0m] - \x1b[0;38;5;9mCreate Building     \x1b[0m\n"
+        "[\x1b[0;38;5;9;1m6\x1b[0m] - \x1b[0;38;5;9mCreate Building     \x1b[0m   \n"
         "[\x1b[0;38;5;9;1m7\x1b[0m] - \x1b[0;38;5;2mExit Building Menu  \x1b[0m\n"
         "\x1b[0;38;5;2;1mYou must select a number from 1 to 7.\n"
         "\x1b[0m\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n"

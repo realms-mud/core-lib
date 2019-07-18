@@ -7,6 +7,7 @@ inherit "/lib/core/baseSelector.c";
 private string Location;
 
 private mapping WorkerData = 0;
+private mapping ConstructionData = 0;
 private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
 private object SubselectorObj;
 
@@ -21,16 +22,21 @@ public nomask void setLocation(string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setWorkerData(mapping data, string name)
+public nomask void setWorkerData(mapping data)
 {
     WorkerData = data + ([]);
-    WorkerData["name"] = name;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping WorkerData()
+public nomask void setConstructionData(mapping data)
 {
-    return WorkerData + ([]);
+    ConstructionData = data + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping ConstructionData()
+{
+    return ConstructionData;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +66,7 @@ protected nomask void setUpUserForSelection()
                 "in your holdings at %s.", WorkerData["display name"],
                 dictionary->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration) + "\n" +
-            dictionary->getComponentWorkerInfo(User, WorkerData);
+            dictionary->getComponentWorkerInfo(User, ConstructionData);
 
         Data = dictionary->getWorkersMenu(User, Location,
             WorkerData);
@@ -72,14 +78,12 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
-        if (!member(WorkerData, "assigned workers"))
+        if (!member(ConstructionData, "assigned workers"))
         {
-            WorkerData["construction"]["assigned workers"] = ([]);
+            ConstructionData["assigned workers"] = ([]);
         }
-        WorkerData["construction"]["assigned workers"][caller->WorkerType()] =
+        ConstructionData["assigned workers"][caller->WorkerType()] =
             caller->Selections();
-
-        printf("Selections = %O\n", WorkerData);
 
         setUpUserForSelection();
         tell_object(User, displayMessage());
@@ -124,7 +128,8 @@ protected nomask int processSelection(string selection)
             }
             else if (Data[selection]["type"] == "auto-select")
             {
-                dictionary->autoSelectWorkers(Location, User, WorkerData);
+                dictionary->autoSelectWorkers(Location, User, WorkerData,
+                    ConstructionData);
             }
             else
             {

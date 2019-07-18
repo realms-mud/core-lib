@@ -106,6 +106,7 @@ public nomask int beginConstructionIsEnabled(mapping sectionData)
             ret &&= member(sectionData["selected materials"], material);
         }
     }
+
     return ret;
 }
 
