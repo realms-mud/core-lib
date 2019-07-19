@@ -397,3 +397,49 @@ void DescriptionShowsWorkDetails()
         "This person is considered an elite worker for this project.\n\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DescriptionShowsWorkDetailsWhenNotInSameLocation()
+{
+    SetupHenchmen("carpenter");
+    Selector->setLocation("durthan castle");
+    Selector->setQuantityNeeded(3);
+    Selector->setWorkerType("carpenter");
+
+    Selector->initiateSelector(Player);
+
+    ExpectEq("Building Projects - Assign Workers:\n"
+        "From this menu, you can select the carpenters who will be executing your\n"
+        "project in your holdings at Durthan Castle.\n"
+        "\nCarpenters selected: 0 of 3.\n\n"
+        "[1] - Arnalt Arator               (R) [2] - Derek Evendim            busy   \n"
+        "[3] - Marik Argalen               (R) [4] - Royce Eralkidh              (R) \n"
+        "[5] - Hire Apprentice ($12500) low $  [6] - Hire Carpenter ($112500) low $  \n"
+        "[7] - Confirm Selections       N/A    [8] - Exit Building Menu              \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "You have 3 workers left to assign.\n",
+        Player->caughtMessage());
+
+    command("? 3", Player);
+
+    ExpectEq("This option assigns Marik Argalen to the task of building the selected\n"
+        "component.\n"
+        "Stats:\n"
+        "Name  : Marik Argalen\n"
+        "Traits: Master Carpenter, Swordsman\n"
+        "Skills:\n"
+        "    Carpentry: 25\n"
+        "    Wood Crafting: 20\n"
+        "Domain Modifiers - This worker will have the following project-level effects:\n"
+        "This person increases the duration by 8% on this project.\n"
+        "This person reduces the materials used by 17% on this project.\n"
+        "This person increases the structural strength by 15% on this project.\n"
+        "This person increases the units accomodated by 10% on this project.\n"
+        "This person increases the combat modifiers by 10% on this project.\n"
+        "This person is considered an elite worker for this project.\n"
+        "The duration is increased because this person is not at Durthan Castle.\n\n",
+        Player->caughtMessage());
+}

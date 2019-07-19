@@ -135,7 +135,7 @@ public nomask string getWorkersOfType(object user, string type,
                     currentSelections[entry]["level"], "player domains", 
                     colorConfiguration) +
                 configuration->decorate(
-                    sprintf("%-50s\n", (sizeof(details) > 4000) ?
+                    sprintf("%-50s\n", (sizeof(details) > 50) ?
                         details[0..46] + "..." : details),
                     "heading", "player domains", colorConfiguration);
         }
@@ -149,7 +149,7 @@ public nomask mapping getWorkersByTypeMenu(object user, string location,
 {
     mapping ret = ([]);
 
-    mapping henchmen = user->getHenchmen(location, type);
+    mapping henchmen = user->getHenchmen(type);
     if(sizeof(henchmen))
     {
         string *workers = sort_array(m_indices(henchmen), (: $1 > $2 :));
@@ -167,8 +167,10 @@ public nomask mapping getWorkersByTypeMenu(object user, string location,
                 "type": worker,
                 "description": sprintf("This option assigns %s to the task of "
                     "building the selected component.\nStats:\n%s\n", name,
-                    this_object()->getHenchmanDetails(user, henchmen[worker], type, name)),
+                    this_object()->getHenchmanDetails(user, henchmen[worker], type, 
+                        name, location)),
                 "is disabled": henchmen[worker]->activity() != "idle",
+                "is remote": (location != henchmen[worker]->location()),
                 "cost": henchmen[worker]->cost(),
                 "data": henchmen[worker],
                 "canShow": 1

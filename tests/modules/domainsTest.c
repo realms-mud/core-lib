@@ -142,15 +142,19 @@ void GetTitlesReturnsListOfTitles()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetHenchmenReturnsEmptyListWhenNoLocationUsed()
-{
-    ExpectEq(([]), Player->getHenchmen());
-}
-
-/////////////////////////////////////////////////////////////////////////////
 void GetHenchmenReturnsEmptyListWhenUnownedLocationUsed()
 {
-    ExpectEq(([]), Player->getHenchmen("argalach castle"));
+    mapping henchman = ([
+        "name": "Tantor the Unclean",
+        "type": "architect",
+        "persona": "mage",
+        "level": 10,
+        "activity": "building"
+    ]);
+    Player->addPlayerHolding("durthan castle");
+    ExpectTrue(Player->addHenchman("durthan castle", henchman));
+
+    ExpectEq(([]), Player->getHenchmen("all", "argalach castle"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -173,8 +177,14 @@ void GetHenchmenReturnsCorrectListForLocation()
     ExpectFalse(Player->addHenchman("argalach castle", ([ "name": "Bob" ])));
     ExpectEq(([]), Player->getHenchmen("argalach castle"));
 
+    Player->addPlayerHolding("durthan castle");
     ExpectTrue(Player->addHenchman("argalach castle", henchman));
-    mapping henchmen = Player->getHenchmen("argalach castle");
+
+    henchman["name"] = "Bob the Boorish";
+    ExpectTrue(Player->addHenchman("durthan castle", henchman));
+
+    mapping henchmen = Player->getHenchmen("all", "argalach castle");
+    ExpectEq(1, sizeof(henchmen));
     ExpectTrue(member(m_indices(henchmen), "Tantor the Unclean") > -1);
     object tantor = henchmen["Tantor the Unclean"];
 
@@ -183,6 +193,30 @@ void GetHenchmenReturnsCorrectListForLocation()
     ExpectEq("mage", tantor->persona());
     ExpectEq(10, tantor->effectiveLevel());
     ExpectEq("architect", tantor->type());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetHenchmenReturnsAllHenchmenWhenNoLocationUsed()
+{
+    mapping henchman = ([
+        "name": "Tantor the Unclean",
+        "type": "architect",
+        "persona": "mage",
+        "level": 10,
+        "activity": "building"
+    ]);
+
+    Player->addPlayerHolding("argalach castle");
+    Player->addPlayerHolding("durthan castle");
+
+    ExpectTrue(Player->addHenchman("argalach castle", henchman));
+
+    henchman["name"] = "Bob the Boorish";
+    ExpectTrue(Player->addHenchman("durthan castle", henchman));
+
+    mapping henchmen = Player->getHenchmen();
+    ExpectEq(2, sizeof(henchmen));
+    ExpectEq(({ "Bob the Boorish", "Tantor the Unclean" }), m_indices(henchmen));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -200,7 +234,7 @@ void GetHenchmenReturnsCorrectTypeOfHenchmen()
     Player->addPlayerHolding("argalach castle");
     ExpectTrue(Player->addHenchman("argalach castle", henchman), "added henchman");
 
-    mapping henchmen = Player->getHenchmen("argalach castle", "carpenter");
+    mapping henchmen = Player->getHenchmen("carpenter");
     ExpectTrue(member(m_indices(henchmen), "Tantor the Unclean") > -1, "Tantor in list");
     object tantor = henchmen["Tantor the Unclean"];
 

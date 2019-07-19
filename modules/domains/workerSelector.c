@@ -123,6 +123,13 @@ protected nomask string displayDetails(string choice)
             "   (*)"),
             "selected", "selector", colorConfiguration);
     }
+    else if (Data[choice]["is remote"])
+    {
+        ret = configuration->decorate(sprintf("%-7s",
+            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x99\x99)" :
+            "   (R)"),
+            "is remote", "selector", colorConfiguration);
+    }
     return ret;
 }
 
@@ -156,7 +163,7 @@ private nomask void setupHireling(string type, string selection)
     Selections[worker->Name() + " " + worker->Title()] = ([
         "object": worker,
         "benefits" : dictionary->getBenefits(User, worker,
-            WorkerType),
+            WorkerType, Location),
         "level" : dictionary->getBenefitLevel(worker, WorkerType)
     ]);
 }
@@ -199,7 +206,7 @@ protected nomask int processSelection(string selection)
                     Selections[Data[selection]["type"]] = ([
                         "object": worker,
                         "benefits": dictionary->getBenefits(User, worker, 
-                            WorkerType),
+                            WorkerType, Location),
                         "level": dictionary->getBenefitLevel(worker, WorkerType)
                     ]);
                 }

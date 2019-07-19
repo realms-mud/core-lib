@@ -144,7 +144,7 @@ public nomask int removeHenchman(string location, string key)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs mapping getHenchmen(string location, string type)
+public nomask varargs mapping getHenchmen(string type, string location)
 {
     mapping ret = ([]);
 
@@ -152,7 +152,7 @@ public nomask varargs mapping getHenchmen(string location, string type)
     {
         ret = henchmen[location];
     }
-    else if((location == "all") && sizeof(henchmen))
+    else if((!location || (location == "all")) && sizeof(henchmen))
     {
         foreach(string key in m_indices(henchmen))
         {
@@ -160,7 +160,7 @@ public nomask varargs mapping getHenchmen(string location, string type)
         }
     }
         
-    if (sizeof(ret) && stringp(type))
+    if (sizeof(ret) && stringp(type) && (type != "all"))
     {
         ret = filter(ret, (: $2->type() == $3 ||
             $2->hasTraitOfRoot($3) :), type);

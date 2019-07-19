@@ -10,4 +10,10 @@ protected mapping Locations = ([
         "title": "##Count## of Argalach",
         "type": "castle"
     ]),
+    "durthan castle":([
+        "name": "Durthan Castle",
+        "entry point": "lib/areas/eledhel/durthan/entry.c",
+        "title": "##Count## of Durthan",
+        "type": "castle"
+    ]),
 ]);

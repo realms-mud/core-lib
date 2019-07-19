@@ -258,7 +258,7 @@ private nomask mapping getSkillsForProfession(object henchman,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int getBenefit(string benefitType, string profession, 
-    string baseline, int maxModifier, mapping skills)
+    string baseline, int maxModifier, mapping skills, int isRemote)
 {
     float ret = 0.0;
 
@@ -294,9 +294,13 @@ private nomask int getBenefit(string benefitType, string profession,
             }
         }
     }
+
+    if (isRemote && (benefitType == "duration"))
+    {
+        ret -= 25.0;
+    }
     return to_int(ret);
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getDecorator(string type, string charset)
@@ -388,7 +392,8 @@ private nomask string displayDescription(object user, mapping data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getBenefits(object user, object henchman, string type)
+public nomask mapping getBenefits(object user, object henchman, string type,
+    string location)
 {
     mapping ret = ([]);
 
@@ -396,11 +401,16 @@ public nomask mapping getBenefits(object user, object henchman, string type)
     int maxModifier = getModifier("maximum modifier", baseline);
     mapping skills = getSkillsForProfession(henchman, type);
 
-    ret["duration"] = getBenefit("duration", type, baseline, maxModifier, skills);
-    ret["materials"] = getBenefit("materials", type, baseline, maxModifier, skills);
-    ret["structure"] = getBenefit("structure", type, baseline, maxModifier, skills);
-    ret["units"] = getBenefit("units", type, baseline, maxModifier, skills);
-    ret["combat"] = getBenefit("combat", type, baseline, maxModifier, skills);
+    ret["duration"] = getBenefit("duration", type, baseline, maxModifier, 
+        skills, location != henchman->location());
+    ret["materials"] = getBenefit("materials", type, baseline, maxModifier,
+        skills, location != henchman->location());
+    ret["structure"] = getBenefit("structure", type, baseline, maxModifier,
+        skills, location != henchman->location());
+    ret["units"] = getBenefit("units", type, baseline, maxModifier,
+        skills, location != henchman->location());
+    ret["combat"] = getBenefit("combat", type, baseline, maxModifier,
+        skills, location != henchman->location());
 
     ret["description"] = displayDescription(user, ret);
     ret["level"] = baseline;
@@ -442,10 +452,10 @@ private nomask varargs string domainModifierDisplay(string description,
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getHenchmanDetails(object user, object henchman, 
-    string type, string name)
+    string type, string name, string location)
 {
     string ret = "";
-    mapping benefits = getBenefits(user, henchman, type);
+    mapping benefits = getBenefits(user, henchman, type, location);
 
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
@@ -501,5 +511,14 @@ public nomask string getHenchmanDetails(object user, object henchman,
                 (benefits["level"] == "low end worker") ? "" : "n",
                 benefits["level"]),
             benefits["level"], "player domains", colorConfiguration);
+
+    if (location != henchman->location())
+    {
+        ret += configuration->decorate(
+            sprintf("The duration is increased because this person is not at "
+                "%s.\n", generateTitle(location || "this location")),
+            "negative value", "player domains", colorConfiguration);
+    }
+
     return ret;
 }
