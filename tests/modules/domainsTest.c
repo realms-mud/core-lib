@@ -111,6 +111,7 @@ void GetDomainUpgradesReturnsCorrectValue()
 
     mapping upgrades = Player->getDomainUpgrades("argalach castle");
     ExpectEq(result, m_indices(upgrades));
+
     ExpectTrue(member(upgrades["west tower"], "construction completion"));
     ExpectTrue(member(upgrades["west tower"], "construction started"));
     ExpectTrue(member(upgrades["west tower"], "name"));
