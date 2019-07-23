@@ -350,3 +350,51 @@ void CorrectlyRevertsToTopLevelMenuOnCompletion()
         "X is the option about which you would like further details.\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectlyTruncatesLongNames()
+{
+    Selector->initiateSelector(Player);
+    Player->buildDomainUpgrade("argalach castle", "northwest tower",
+        "archer's northwest tower");
+
+    command("1", Player);
+    command("1", Player);
+
+    ExpectEq("Building Projects - Building:\n"
+        "From this menu, you can initiate, modify, or abort building projects in your\n"
+        "holdings at Argalach Castle.\n"
+        "\n"
+        "                                                                              \n"
+        "                              ......            .........            ......   \n"
+        "                              .    ..............       ..............    .   \n"
+        "                              .     .?.         .........         .?.     .   \n"
+        "                              ..    ...                           ...    ..   \n"
+        "                               . ..    +====+      ...      ......    .. .    \n"
+        "                               . ?.    |+--+|....... ........    .    .? .    \n"
+        "                               . ..    |+--+ .?.         .?.     .    .. .    \n"
+        "                               .       +=    ...         ...    ..       .    \n"
+        "                               .        . ..                 .. .        .    \n"
+        "                              ....      . ?.    .........    .? .      ....   \n"
+        "                              .  .      . ..    .       .    .. .      .  .   \n"
+        "                              .  .     ...      .       .      ...     .  .   \n"
+        "[1]  - Arcane Study           .  .     ...      .       .      ...     .  .   \n"
+        "[2]  - Civic Building         .  .      . ..    .........    .. .      .  .   \n"
+        "[3]  - Commerce and Trade     ....      . ?.                 .? .      ....   \n"
+        "[4]  - Craftsman's Buil...     .        . ..                 .. .        .    \n"
+        "[5]  - Garden                  .       ..    ...         ...    ..       .    \n"
+        "[6]  - Guild Hall              . ..    .     .?.         .?.     .    .. .    \n"
+        "[7]  - Housing                 . ?.    .    ........ ........    .    .? .    \n"
+        "[8]  - Bakehouse and Br...     . ..    ......      ...      ......    .. .    \n"
+        "[9]  - Knowledge Center       ..    ...                           ...    ..   \n"
+        "[10] - Military Building      .     .?.         .........         .?.     .   \n"
+        "[11] - Storehouse             .    ..............       ..............    .   \n"
+        "[12] - Temple                 ......            .........            ......   \n"
+        "[13] - Workshop and Lab...                                                    \n"
+        "[14] - Exit Building Projects Menu\n"
+        "You must select a number from 1 to 14.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
+}

@@ -40,8 +40,13 @@ private nomask string *getComponents(object user, string location,
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping getComponentCategory(string component, string location)
 {
+    string name = sprintf("Construct %s", generateTitle(component));
+    if (sizeof(name) > 19)
+    {
+        name = name[0..15] + "...";
+    }
     return ([
-        "name": sprintf("Construct %s", generateTitle(component))[0..18],
+        "name": name,
         "type": component,
         "description": sprintf("From this menu, you can initiate, "
             "modify, or abort %s projects in your holdings at %s.",
@@ -54,8 +59,13 @@ private nomask mapping getComponentCategory(string component, string location)
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping getComponentClass(string component, mapping playerDomain)
 {
+    string name = playerDomain["components"][component]["display name"];
+    if (sizeof(name) > 19)
+    {
+        name = name[0..15] + "...";
+    }
     return ([
-        "name": playerDomain["components"][component]["display name"][0..18],
+        "name": name,
         "type" : component,
         "description" : playerDomain["components"][component]["description"],
         "canShow" : 1,
@@ -66,8 +76,13 @@ private nomask mapping getComponentClass(string component, mapping playerDomain)
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping getComponentOptions(string component, mapping playerDomain)
 {
+    string name = CastleComponents[component]["display name"];
+    if (sizeof(name) > 19)
+    {
+        name = name[0..15] + "...";
+    }
     return ([                
-        "name": CastleComponents[component]["display name"][0..18],
+        "name":name,
         "value": component,
         "type": CastleComponents[component]["type"],
         "description": CastleComponents[component]["description"],
