@@ -3,4 +3,3 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
-

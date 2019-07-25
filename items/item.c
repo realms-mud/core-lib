@@ -1,13 +1,6 @@
 //*****************************************************************************
-// Class: item
-// File Name: item.c
-//
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-//
-// Description: This class defines exactly what items that can be carried are
-//              and as such, must be inherited by all carryable items. 
-//
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
 

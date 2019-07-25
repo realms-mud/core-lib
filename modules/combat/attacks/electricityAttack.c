@@ -30,6 +30,3 @@ public void reset(int arg)
             "scorching ##TargetPossessive## ##BodyPart##.", "51-190");
     }
 }
-
-
-

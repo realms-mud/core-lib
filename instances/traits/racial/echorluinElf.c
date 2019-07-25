@@ -18,4 +18,3 @@ public void reset(int arg)
         "baseTrait"::reset(arg);
     }
 }
-

@@ -9,13 +9,10 @@ public void reset(int arg)
 {
     if (!arg)
     {
-        addSpecification("type", "racial");
-        addSpecification("name", "Wood Elf");
-        addSpecification("description", "");
-        addSpecification("root", "elf");
-        addSpecification("opposing root", "dwarf");
-        addSpecification("opinion", 10);
-        addSpecification("opposing opinion", -10);
+        addSpecification("type", "persona");
+        addSpecification("name", "phaedra colonel");
+        addSpecification("description", "You are a colonel in the Phaedra.");
+        addSpecification("root", "fighter persona");
         "baseTrait"::reset(arg);
     }
 }
