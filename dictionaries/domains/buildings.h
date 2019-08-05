@@ -234,84 +234,150 @@ protected mapping BuildingBlueprints = ([
         "structure": 300,
     ]),
 
-    "forge":([
-        "type": "crafting",
+    "smelter":([
+        "type": "craftsman's floorplan",
         "description": "",
+        "default units": ([
+            "henchman": 1,
+            "blacksmith": 2,
+        ]),
         "effects": ([
+            "smelt metal":([
+                "action": "smelt metal",
+                "duration bonus": 10,
+                "quantity bonus": 10,
+            ])
         ]),
-        "upgrades": ([
-        ]),
-        "colors": ([
-            "default":([
-                "3-bit": "\x1b[0;31m",
-                "8-bit": "\x1b[0;38;5;9m",
-                "24-bit": "\x1b[0;38;2;200;0;0m"
+        "building prerequisites": ([
+            "smelt metal":(["type":"research", "value": ({
+                "/lib/instances/research/crafting/materials/refineMetal.c", })
             ]),
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "blacksmithing": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
         ]),
-        "icon":([
-            "ascii": "",
-            "unicode": "",
+        "building materials": ([
+            "stone": 100,
+            "wood": 150,
+            "metal": 15,
+            "textile": 5,
         ]),
+        "added duration": 300,
+        "structure": 300,
     ]),
+
     "blacksmith":([
-        "type": "crafting",
+        "type": "craftsman's floorplan",
         "description": "",
+        "default units": ([
+            "henchman": 1,
+            "blacksmith": 2,
+        ]),
         "effects": ([
+            "blacksmithing":([
+                "action": "blacksmithing",
+                "duration bonus": 10,
+            ])
         ]),
-        "upgrades": ([
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "blacksmithing": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
         ]),
-        "colors": ([
-            "default":([
-                "3-bit": "\x1b[0;31m",
-                "8-bit": "\x1b[0;38;5;9m",
-                "24-bit": "\x1b[0;38;2;200;0;0m"
-            ]),
+        "building materials": ([
+            "stone": 100,
+            "wood": 150,
+            "metal": 15,
+            "textile": 5,
         ]),
-        "icon":([
-            "ascii": "",
-            "unicode": "",
-        ]),
+        "added duration": 300,
+        "structure": 300,
     ]),
+
     "weaponsmith":([
-        "type": "crafting",
+        "type": "craftsman's floorplan",
         "description": "",
+        "default units": ([
+            "henchman": 1,
+            "weaponsmith": 2,
+        ]),
         "effects": ([
-        ]),
-        "upgrades": ([
-        ]),
-        "colors": ([
-            "default":([
-                "3-bit": "\x1b[0;31m",
-                "8-bit": "\x1b[0;38;5;9m",
-                "24-bit": "\x1b[0;38;2;200;0;0m"
+            "well-armed":([
+                "trait": "/lib/instances/unit-traits/well-armed",
+                "applies to category": "fighters"
             ]),
+            "craft weapons":([
+                "action": "craft weapons",
+                "duration bonus": 10,
+                "quantity bonus": 10,
+            ])
         ]),
-        "icon":([
-            "ascii": "",
-            "unicode": "",
+        "building prerequisites": ([
+            "craft weapons":(["type":"research", "value" : ({
+                "/lib/instances/research/crafting/weapons/craftWeapons.c", })
+            ]),
+            "weaponsmithing": (["type":"skill", "value": 15]),
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
         ]),
+        "building materials": ([
+            "stone": 100,
+            "wood": 150,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "added duration": 300,
+        "structure": 300,
     ]),
+
     "armorer":([
-        "type": "crafting",
+        "type": "craftsman's floorplan",
         "description": "",
+        "default units": ([
+            "henchman": 1,
+            "armorer": 2,
+        ]),
         "effects": ([
-        ]),
-        "upgrades": ([
-        ]),
-        "colors": ([
-            "default":([
-                "3-bit": "\x1b[0;31m",
-                "8-bit": "\x1b[0;38;5;9m",
-                "24-bit": "\x1b[0;38;2;200;0;0m"
+            "well-protected":([
+                "trait": "/lib/instances/unit-traits/well-protected",
+                "applies to category": "fighters"
             ]),
+            "craft weapons":([
+                "action": "craft armor",
+                "duration bonus": 10,
+                "quantity bonus": 10,
+            ])
         ]),
-        "icon":([
-            "ascii": "",
-            "unicode": "",
+        "building prerequisites": ([
+            "craft weapons":(["type":"research", "value" : ({
+                "/lib/instances/research/crafting/weapons/craftArmor.c", })
+            ]),
+            "armorer": (["type":"skill", "value": 15]),
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
         ]),
+        "building materials": ([
+            "stone": 100,
+            "wood": 150,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "added duration": 300,
+        "structure": 300,
     ]),
+
     "workshop":([
-        "type": "crafting",
+        "type": "craftsman's floorplan",
         "description": "",
         "effects": ([
         ]),
@@ -330,7 +396,7 @@ protected mapping BuildingBlueprints = ([
         ]),
     ]),
     "carpenter":([
-        "type": "crafting",
+        "type": "craftsman's floorplan",
         "description": "",
         "effects": ([
         ]),
@@ -349,7 +415,7 @@ protected mapping BuildingBlueprints = ([
         ]),
     ]),
     "stone mason":([
-        "type": "crafting",
+        "type": "craftsman's floorplan",
         "description": "",
         "effects": ([
         ]),
