@@ -119,15 +119,15 @@ protected nomask string displayDetails(string choice)
     else if (member(m_indices(Selections), Data[choice]["type"]) > -1)
     {
         ret = configuration->decorate(sprintf("%-7s",
-            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x80\xa0)" :
-            "   (*)"),
+            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x80\xa0) " :
+            "   (*) "),
             "selected", "selector", colorConfiguration);
     }
     else if (Data[choice]["is remote"])
     {
         ret = configuration->decorate(sprintf("%-7s",
-            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x99\x99)" :
-            "   (R)"),
+            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x99\x99) " :
+            "   (R) "),
             "is remote", "selector", colorConfiguration);
     }
     return ret;

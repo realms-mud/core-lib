@@ -249,18 +249,25 @@ protected nomask string *displayMaterialsData(object user, mapping componentData
 
     foreach(string material in m_indices(constructionData["materials"]))
     {
+        string selection = configuration->decorate(sprintf("    %-25s", "<select>"),
+            "selection needed", "player domains", colorConfiguration);
+
+        if (member(componentData, "selected sections") &&
+            member(componentData["selected sections"], material))
+        {
+            selection = componentData["selected sections"][material]["selection"];
+            if (sizeof(selection) > 25)
+            {
+                selection = selection[0..21] + "...";
+            }
+            selection = configuration->decorate(sprintf("    %-25s", selection),
+                "value", "player domains", colorConfiguration);
+        }
         ret += ({ 
             configuration->decorate(
                 sprintf("%-29s", generateTitle(material) + ":"),
                 "heading", "player domains", colorConfiguration),
-            (member(componentData, "selected sections") &&
-             member(componentData["selected sections"], material)) ?
-            configuration->decorate(
-                sprintf("    %-25s", 
-                    componentData["selected sections"][material]["selection"]),
-                "value", "player domains", colorConfiguration) :
-            configuration->decorate(sprintf("    %-25s", "<select>"),
-                "selection needed", "player domains", colorConfiguration)
+            selection
         });
     }
     return ret;

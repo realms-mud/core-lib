@@ -383,18 +383,18 @@ void DescriptionShowsWorkDetails()
     ExpectEq("This option assigns Marik Argalen to the task of building the selected\n"
         "component.\n"
         "Stats:\n"
-        "Name  : Marik Argalen\n"
-        "Traits: Master Carpenter, Swordsman\n"
-        "Skills:\n"
-        "    Carpentry: 25\n"
-        "    Wood Crafting: 20\n"
+        "    Name  : Marik Argalen\n"
+        "    Traits: Master Carpenter, Swordsman\n"
+        "    Skills:\n"
+        "        Carpentry: 25\n"
+        "        Wood Crafting: 20\n"
         "Domain Modifiers - This worker will have the following project-level effects:\n"
         "This person reduces the duration by 17% on this project.\n"
         "This person reduces the materials used by 17% on this project.\n"
         "This person increases the structural strength by 15% on this project.\n"
         "This person increases the units accomodated by 10% on this project.\n"
         "This person increases the combat modifiers by 10% on this project.\n"
-        "This person is considered an elite worker for this project.\n\n",
+        "This person is considered an elite worker for this project.\n",
         Player->caughtMessage());
 }
 
@@ -428,11 +428,11 @@ void DescriptionShowsWorkDetailsWhenNotInSameLocation()
     ExpectEq("This option assigns Marik Argalen to the task of building the selected\n"
         "component.\n"
         "Stats:\n"
-        "Name  : Marik Argalen\n"
-        "Traits: Master Carpenter, Swordsman\n"
-        "Skills:\n"
-        "    Carpentry: 25\n"
-        "    Wood Crafting: 20\n"
+        "    Name  : Marik Argalen\n"
+        "    Traits: Master Carpenter, Swordsman\n"
+        "    Skills:\n"
+        "        Carpentry: 25\n"
+        "        Wood Crafting: 20\n"
         "Domain Modifiers - This worker will have the following project-level effects:\n"
         "This person increases the duration by 8% on this project.\n"
         "This person reduces the materials used by 17% on this project.\n"
@@ -440,6 +440,6 @@ void DescriptionShowsWorkDetailsWhenNotInSameLocation()
         "This person increases the units accomodated by 10% on this project.\n"
         "This person increases the combat modifiers by 10% on this project.\n"
         "This person is considered an elite worker for this project.\n"
-        "The duration is increased because this person is not at Durthan Castle.\n\n",
+        "The duration is increased because this person is not at Durthan Castle.\n",
         Player->caughtMessage());
 }

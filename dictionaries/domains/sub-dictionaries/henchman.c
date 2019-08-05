@@ -460,11 +460,11 @@ public nomask string getHenchmanDetails(object user, object henchman,
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
 
-    ret = configuration->decorate(sprintf("%-6s: ", "Name"),
+    ret = configuration->decorate(sprintf("    %-6s: ", "Name"),
             "heading", "player domains", colorConfiguration) +
         configuration->decorate(name,
             "value", "player domains", colorConfiguration) + "\n" +
-        configuration->decorate(sprintf("%-6s: ", "Traits"),
+        configuration->decorate(sprintf("    %-6s: ", "Traits"),
             "heading", "player domains", colorConfiguration) +
         configuration->decorate(generateTitle(implode(
                 henchman->TraitNames(), ", ")),
@@ -472,7 +472,7 @@ public nomask string getHenchmanDetails(object user, object henchman,
     
     if (member(benefits, "skills"))
     {
-        ret += configuration->decorate(sprintf("%-6s:\n", "Skills"),
+        ret += configuration->decorate(sprintf("    %-6s:\n", "Skills"),
             "heading", "player domains", colorConfiguration);
 
         foreach(string skill in m_indices(benefits["skills"]))
@@ -483,7 +483,7 @@ public nomask string getHenchmanDetails(object user, object henchman,
             {
                 description = ProfessionSkills[type]["primary"];
             }
-            ret += configuration->decorate("    " + 
+            ret += configuration->decorate("        " + 
                     generateTitle(description) + ": ",
                     "value", "player domains", colorConfiguration) +
                 configuration->decorate(to_string(value) + "\n",

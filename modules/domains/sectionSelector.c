@@ -126,8 +126,8 @@ protected nomask string displayDetails(string choice)
         (Data[choice]["type"] == SectionData["chosen section"]))
     {
         ret = configuration->decorate(sprintf("%-9s",
-            (User->charsetConfiguration() == "unicode") ? "   (\xe2\x80\xa0)" :
-            "   (*)"),
+            (User->charsetConfiguration() == "unicode") ? "     (\xe2\x80\xa0) " :
+            "     (*) "),
             "selected", "selector", colorConfiguration);
     }
     return ret;

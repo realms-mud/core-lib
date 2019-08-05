@@ -49,8 +49,13 @@ private nomask mapping getConstructionOptions(mapping componentData)
     {
         foreach(string section in sections)
         {
+            string name = generateTitle(section);
+            if (sizeof(name) > 23)
+            {
+                name = name[0..19] + "...";
+            }
             ret[to_string(menuItem)] = ([
-                "name": sprintf("%-23s", generateTitle(section)),
+                "name": sprintf("%-23s", name),
                 "description": sprintf("This option lets you select the type "
                     "of %s you will be constructing for your %s\n", 
                     section, componentData["name"]),

@@ -126,7 +126,7 @@ void SectionUpdatedWhenSelected()
         "[3]  - Select Textile         none     [4]  - Select Wood            none     \n"
         "[5]  - Hexagonal Stone Tower           [6]  - Magi Stone Tower                \n"
         "[7]  - Octagonal Stone Tower           [8]  - Round Stone Tower               \n"
-        "[9]  - Square Stone Tower              [10] - Stone Bergfriede          (*)   \n"
+        "[9]  - Square Stone Tower              [10] - Stone Bergfriede            (*) \n"
         "[11] - Stone Bretasche                 [12] - Stone Observatory               \n"
         "[13] - Begin Construction     N/A      [14] - Exit Section Menu               \n"
         "You must select a number from 1 to 14.\n"

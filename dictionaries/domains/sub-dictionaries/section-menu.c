@@ -78,8 +78,14 @@ private nomask void generateSectionOptions(mapping output, object user,
 
     foreach(string option in sectionOptions)
     {
+        string name = generateTitle(option);
+        if (sizeof(name) > 22)
+        {
+            name = name[0..18] + "...";
+        }
+
         output[to_string(sizeof(output) + 1)] = ([
-            "name": generateTitle(option),
+            "name": name,
             "type": option,
             "description": "This option assigns workers to the task of "
                 "building the selected component.\n",
