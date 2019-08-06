@@ -106,3 +106,10 @@ void WildcardsWork()
     ExpectTrue(Wizard->executeCommand("ls -l /lib/modules/b*"));
     ExpectEq(5, sizeof(explode(Wizard->caughtMessages(), "\n")));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void LsOfEmptyDirectoryDisplaysCorrectly()
+{
+    ExpectTrue(Wizard->executeCommand("ls empty"));
+    ExpectSubStringMatch("No files present", Wizard->caughtMessages());
+}

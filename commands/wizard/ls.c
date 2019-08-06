@@ -156,6 +156,12 @@ private nomask varargs int listFiles(string path, object initiator,
                     colorConfiguration, numFiles++);
             }
         }
+        if (!ret)
+        {
+            ret = 1;
+            tell_object(initiator, configuration->decorate("No files present.\n",
+                "message", "wizard commands", colorConfiguration));
+        }
         tell_object(initiator, "\n");
     }
     else
