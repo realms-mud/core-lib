@@ -228,13 +228,72 @@ protected nomask string *displayLayout(string component,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string *displayCompletionTime(object user,
+private nomask int getSectionDurations(mapping sections)
+{
+    int ret = 0;
+
+    foreach(string section in m_indices(sections))
+    {
+        if (member(sections[section], "selection") &&
+            member(BuildingComponents, sections[section]["selection"]) &&
+            member(BuildingComponents[sections[section]["selection"]],
+                "added duration"))
+        {
+            ret += BuildingComponents[sections[section]["selection"]]
+                    ["added duration"];
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int getWorkerDurations(int initialValue, mapping workers)
+{
+    int ret = 0;
+
+    float multiplier = 0.0;
+    int numWorkers = 0;
+
+    foreach(string workerType in m_indices(workers))
+    {
+        foreach(string worker in m_indices(workers[workerType]))
+        {
+            if (member(workers[workerType][worker], "benefits") &&
+                member(workers[workerType][worker]["benefits"], "duration"))
+            {
+                numWorkers++;
+                multiplier -= 
+                    to_float(workers[workerType][worker]["benefits"]["duration"]);
+            }
+        }
+    }
+
+    return to_int(initialValue * (100.0 + (multiplier / 
+        (numWorkers ? numWorkers : 1))) / 100.0);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string *displayCompletionTime(object user, mapping componentData,
     mapping constructionData, string colorConfiguration, string charset)
 {
+    int completionTime = constructionData["duration"];
+
+    if (member(componentData, "selected sections"))
+    {
+        completionTime += 
+            getSectionDurations(componentData["selected sections"]);
+    }
+
+    if (member(componentData, "assigned workers"))
+    {
+        completionTime = getWorkerDurations(completionTime,
+            componentData["assigned workers"]);
+    }
+
     return ({
         configuration->decorate("Completion time: ", "heading",
             "player domains", colorConfiguration) +
-        configuration->decorate(sprintf("%-12d", constructionData["duration"]),
+        configuration->decorate(sprintf("%-12d", completionTime),
             "value", "player domains", colorConfiguration),
         configuration->decorate(sprintf("%-29s", ""), "heading",
             "player domains", colorConfiguration)

@@ -509,6 +509,7 @@ void WorkerDisplayIsUpdatedOnTopLevel()
 {
     object workerSelector = 
         clone_object("/lib/modules/domains/workCrewSelector.c");
+
     workerSelector->setConstructionData(([ 
         "assigned workers": ([
             "architect": ([ 
@@ -628,7 +629,7 @@ void SectionDisplayIsUpdatedOnTopLevel()
         "        | |   | |               .    ..............       ..............    .   \n"
         "        | +---+ |               .     .?.         .........         .?.     .   \n"
         "        +=======+               ..    ...                           ...    ..   \n"
-        "Completion time: 1000            . ..    ......      ...      ......    .. .    \n"
+        "Completion time: 1500            . ..    ......      ...      ......    .. .    \n"
         "                                 . ?.    .    ........ ........    .    .? .    \n"
         "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
         "    <select>                     .       ..    ...         ...    ..       .    \n"
@@ -641,6 +642,195 @@ void SectionDisplayIsUpdatedOnTopLevel()
         "    Architect         -  0/1    ....      . ?.                 .? .      ....   \n"
         "    Blacksmith        -  0/1     .        . ..                 .. .        .    \n"
         "    Carpenter         -  0/3     .       ..    ...         ...    ..       .    \n"
+        "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
+        "    Stonemason        -  0/10    . ?.    .    ........ ........    .    .? .    \n"
+        "                                 . ..    ......      ...      ......    .. .    \n"
+        "                                ..    ...                           ...    ..   \n"
+        "Select building options for:    .     .?.         .........         .?.     .   \n"
+        "[1] - Central Stone Tower       .    ..............       ..............    .   \n"
+        "[2] - Main Stone Keep           ......            .........            ......   \n"
+        "[3] - Stone Battlement                                                          \n"
+        "[4] - Select Workers      \n"
+        "[5] - Create Building     N/A\n"
+        "[6] - Exit Building Menu  \n"
+        "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CompletionTimeIsUpdated()
+{
+    object workerSelector =
+        clone_object("/lib/modules/domains/workCrewSelector.c");
+
+    workerSelector->setConstructionData(([
+        "assigned workers":([
+            "carpenter":([
+                "Arnalt Arator": ([ 
+                    "benefits": ([ 
+                        "duration": -5,
+                        "traits": ({ 
+                            "lib/instances/traits/domains/apprentice-carpenter.c",
+                            "lib/instances/traits/personas/fighters/swordsman.c"
+                        }),
+                        "structure": -5,
+                        "level": "low end worker",
+                        "materials": -5,
+                        "units": -5,
+                        "combat": -5,
+                        "skills": ([ 
+                            "primary": 2,
+                            "wood crafting": 1
+                        ]),
+                    "description": "M: -5%, D: -5%, C: -5%, U: -5%, S: -5%"
+                    ]),
+                    "object": "lib/realizations/henchman#344",
+                    "level": "low end worker"
+                ]),
+                "Marik Argalen": ([ 
+                    "benefits": ([ 
+                        "duration": 17,
+                        "traits": ({
+                           "lib/instances/traits/domains/master-carpenter.c",
+                         "lib/instances/traits/personas/fighters/swordsman.c"
+                        }),
+                        "structure": 15,
+                        "level": "elite worker",
+                        "materials": 17,
+                        "units": 10,
+                        "combat": 10,
+                        "skills": ([
+                            "primary": 25,
+                            "wood crafting": 20
+                        ]),
+                        "description": "M: +17%, D: +17%, C: +10%, U: +10%, S: +15%"
+                    ]),
+                    "object": "lib/realizations/henchman#337",
+                    "level": "elite worker"
+                ]),
+                "Royce Eralkidh": ([
+                    "benefits": ([
+                        "duration": 0,
+                        "traits": ({ 
+                            "lib/instances/traits/domains/journeyman-carpenter.c",
+                            "lib/instances/traits/personas/fighters/swordsman.c"
+                        }),
+                        "structure": 0,
+                        "level": "average worker",
+                        "materials": 0,
+                        "units": 0,
+                        "combat": 0,
+                        "skills": ([
+                            "primary": 10,
+                            "wood crafting": 5
+                        ]),
+                    "description": "No bonuses or penalties"
+                    ]),
+                    "object": "lib/realizations/henchman#330",
+                    "level": "average worker"
+                ])
+            ])
+        ])
+    ]));
+
+    Selector->initiateSelector(Player);
+    Selector->onSelectorCompleted(workerSelector);
+
+    ExpectEq("Building Projects - Stone Keep:\n"
+        "From this menu, you can initiate, modify, or abort projects in your holdings\n"
+        "at Argalach Castle.\n\n"
+        "Layout: +=======+                                                               \n"
+        "        | +---+ |               ......            .........            ......   \n"
+        "        | |   | |               .    ..............       ..............    .   \n"
+        "        | +---+ |               .     .?.         .........         .?.     .   \n"
+        "        +=======+               ..    ...                           ...    ..   \n"
+        "Completion time: 960             . ..    ......      ...      ......    .. .    \n"
+        "                                 . ?.    .    ........ ........    .    .? .    \n"
+        "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
+        "    <select>                     .       ..    ...         ...    ..       .    \n"
+        "Central Stone Tower:             .        . ..                 .. .        .    \n"
+        "    <select>                    ....      . ?.    .........    .? .      ....   \n"
+        "Main Stone Keep:                .  .      . ..    .       .    .. .      .  .   \n"
+        "    <select>                    .  .     ...      .       .      ...     .  .   \n"
+        "                                .  .     ...      .       .      ...     .  .   \n"
+        "Needed workers:                 .  .      . ..    .........    .. .      .  .   \n"
+        "    Architect         -  0/1    ....      . ?.                 .? .      ....   \n"
+        "    Blacksmith        -  0/1     .        . ..                 .. .        .    \n"
+        "    Carpenter         -  3/3     .       ..    ...         ...    ..       .    \n"
+        "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
+        "    Stonemason        -  0/10    . ?.    .    ........ ........    .    .? .    \n"
+        "                                 . ..    ......      ...      ......    .. .    \n"
+        "                                ..    ...                           ...    ..   \n"
+        "Select building options for:    .     .?.         .........         .?.     .   \n"
+        "[1] - Central Stone Tower       .    ..............       ..............    .   \n"
+        "[2] - Main Stone Keep           ......            .........            ......   \n"
+        "[3] - Stone Battlement                                                          \n"
+        "[4] - Select Workers      \n"
+        "[5] - Create Building     N/A\n"
+        "[6] - Exit Building Menu  \n"
+        "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
+
+    object sectionSelector = 
+        clone_object("/lib/modules/domains/sectionSelector.c");
+
+    sectionSelector->setDetails(
+        ([
+            "main stone keep": ([ 
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 400
+            ]),
+            "stone battlement": ([ 
+                "metal": 5,
+                "wood": 25,
+                "stone": 75
+            ]),
+            "central stone tower": ([
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 300
+            ]),
+            "chosen section": "Stone Observatory",
+            "selected materials": ([ 
+                "metal": "iron",
+                "wood": "pine",
+                "textile": "linen",
+                "stone": "granite"
+            ]),
+        ]),
+        "stone keep", "central stone tower");
+
+    Selector->onSelectorCompleted(sectionSelector);
+    ExpectEq("Building Projects - Stone Keep:\n"
+        "From this menu, you can initiate, modify, or abort projects in your holdings\n"
+        "at Argalach Castle.\n\n"
+        "Layout: +=======+                                                               \n"
+        "        | +---+ |               ......            .........            ......   \n"
+        "        | |   | |               .    ..............       ..............    .   \n"
+        "        | +---+ |               .     .?.         .........         .?.     .   \n"
+        "        +=======+               ..    ...                           ...    ..   \n"
+        "Completion time: 1440            . ..    ......      ...      ......    .. .    \n"
+        "                                 . ?.    .    ........ ........    .    .? .    \n"
+        "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
+        "    <select>                     .       ..    ...         ...    ..       .    \n"
+        "Central Stone Tower:             .        . ..                 .. .        .    \n"
+        "    Stone Observatory           ....      . ?.    .........    .? .      ....   \n"
+        "Main Stone Keep:                .  .      . ..    .       .    .. .      .  .   \n"
+        "    <select>                    .  .     ...      .       .      ...     .  .   \n"
+        "                                .  .     ...      .       .      ...     .  .   \n"
+        "Needed workers:                 .  .      . ..    .........    .. .      .  .   \n"
+        "    Architect         -  0/1    ....      . ?.                 .? .      ....   \n"
+        "    Blacksmith        -  0/1     .        . ..                 .. .        .    \n"
+        "    Carpenter         -  3/3     .       ..    ...         ...    ..       .    \n"
         "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
         "    Stonemason        -  0/10    . ?.    .    ........ ........    .    .? .    \n"
         "                                 . ..    ......      ...      ......    .. .    \n"

@@ -19,7 +19,7 @@ private nomask string *getComponentInfo(object user, mapping componentData)
 
         ret += displayLayout(componentData["name"], 
                 colorConfiguration, charset) +
-            displayCompletionTime(user, construction, 
+            displayCompletionTime(user, componentData, construction,
                 colorConfiguration, charset) +
             displayMaterialsData(user, componentData, construction, 
                 colorConfiguration, charset) +
