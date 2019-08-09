@@ -895,3 +895,9 @@ void CancelClearsSectionSelection()
         "X is the option about which you would like further details.\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayBenefitsFromBuilding()
+{
+
+}

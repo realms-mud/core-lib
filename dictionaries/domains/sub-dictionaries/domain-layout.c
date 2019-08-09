@@ -371,3 +371,93 @@ protected nomask string *displayWorkerData(object user, mapping workerData,
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping aggregateUnitList(mapping constructionData,
+    mapping componentData)
+{
+    mapping units = ([]);
+
+    foreach(string material in m_indices(constructionData["materials"]))
+    {
+        if (member(componentData, "selected sections") &&
+            member(componentData["selected sections"], material) &&
+            member(BuildingComponents,
+                componentData["selected sections"][material]))
+        {
+            string key = componentData["selected sections"][material];
+
+            if (member(BuildingComponents[key], "default units"))
+            {
+                foreach(string unit in
+                    m_indices(BuildingComponents[key]["default units"]))
+                {
+                    if (!member(units, unit))
+                    {
+                        units[unit] = 0;
+                    }
+                    units[unit] +=
+                        BuildingComponents[key]["default units"][unit];
+                }
+            }
+        }
+    }
+    return units;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping aggregateBonuses(mapping constructionData,
+    mapping componentData)
+{
+    mapping bonuses = ([]);
+
+    foreach(string material in m_indices(constructionData["materials"]))
+    {
+        if (member(componentData, "selected sections") &&
+            member(componentData["selected sections"], material) &&
+            member(BuildingComponents, 
+                componentData["selected sections"][material]))
+        {
+            string key = componentData["selected sections"][material];
+            
+            foreach(string bonus in ({ "structure", "defend ground attack",
+                "defend air attack", "ground attack", "air attack" }))
+            {
+                if (member(BuildingComponents[key], bonus))
+                {
+                    bonuses[bonus] = bonuses[bonus] +
+                        BuildingComponents[key][bonus];
+                }
+            }
+        }
+    }
+    return bonuses;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string *displayBuildingBenefits(object user, mapping componentData,
+    mapping constructionData, string colorConfiguration, string charset)
+{
+    string *ret = ({ });
+    mapping units = aggregateUnitList(constructionData, componentData);
+    mapping bonuses = aggregateBonuses(constructionData, componentData);
+
+    if (sizeof(units))
+    {
+        ret += ({
+            configuration->decorate("Units:\n",
+                "heading", "player domains", colorConfiguration)
+        });
+
+        foreach(string unit in m_indices(units))
+        {
+            ret += ({ 
+                configuration->decorate(pluralizeValue(unit),
+                    "value", "player domains", colorConfiguration) +
+                configuration->decorate(sprintf(" (%d)\n", units[unit]),
+                    "selected", "player domains", colorConfiguration)
+            });
+        }
+    }
+    return ret;
+}
