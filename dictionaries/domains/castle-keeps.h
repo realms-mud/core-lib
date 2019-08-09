@@ -65,7 +65,7 @@ private mapping CastleKeeps = ([
             "duration": 600,
             "materials": ([
                 "main wooden keep": ([ "wood": 400, "metal": 10, "textile": 0 ]),
-                "wooden battlement": ([ "wood": 50, "metal": 5 ]),
+                "wooden battlement": ([ "wood": 50, "metal": 5, "textile": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 5,
@@ -125,7 +125,7 @@ private mapping CastleKeeps = ([
             "materials": ([
                 "main wooden keep": ([ "wood": 400, "metal": 10, "textile": 0 ]),
                 "central wooden tower": ([ "wood": 300, "metal": 10, "textile": 0 ]),
-                "wooden battlement": ([ "wood": 75, "metal": 5 ]),
+                "wooden battlement": ([ "wood": 75, "metal": 5, "textile": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 10,
@@ -184,7 +184,7 @@ private mapping CastleKeeps = ([
             "duration": 600,
             "materials": ([
                 "main stone keep": ([ "stone": 400, "wood": 50, "metal": 10, "textile": 0 ]),
-                "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+                "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5, "textile": 0 ]),
             ]),
             "workers": ([
                 "stonemason": 5,
@@ -245,7 +245,7 @@ private mapping CastleKeeps = ([
             "materials": ([
                 "main stone keep": ([ "stone": 400, "wood": 50, "metal": 10, "textile": 0 ]),
                 "central stone tower": ([ "stone": 300, "wood": 50, "metal": 10, "textile": 0 ]),
-                "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5 ]),
+                "stone battlement": ([ "stone": 75, "wood": 25, "metal": 5, "textile": 0 ]),
             ]),
             "workers": ([
                 "stonemason": 10,

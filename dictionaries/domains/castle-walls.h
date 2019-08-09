@@ -221,7 +221,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -259,7 +259,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -349,7 +349,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -386,7 +386,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -495,7 +495,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -533,7 +533,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -623,7 +623,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -660,7 +660,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -769,7 +769,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -807,7 +807,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -897,7 +897,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -934,7 +934,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -1043,7 +1043,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -1081,7 +1081,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -1169,7 +1169,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -1310,7 +1310,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -1347,7 +1347,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -1434,7 +1434,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -1575,7 +1575,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -1612,7 +1612,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -1699,7 +1699,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -1840,7 +1840,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -1877,7 +1877,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -1964,7 +1964,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -2105,7 +2105,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -2142,7 +2142,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -2234,7 +2234,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -2383,7 +2383,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -2422,7 +2422,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -2516,7 +2516,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -2665,7 +2665,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -2704,7 +2704,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -2798,7 +2798,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -2947,7 +2947,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -2986,7 +2986,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -3080,7 +3080,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -3229,7 +3229,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -3268,7 +3268,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -3357,7 +3357,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -3498,7 +3498,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -3535,7 +3535,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -3622,7 +3622,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -3763,7 +3763,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -3800,7 +3800,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -3887,7 +3887,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -4028,7 +4028,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -4065,7 +4065,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -4152,7 +4152,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "wooden wall": ([ "wood": 100, "metal": 5, "textile": 0 ]),
                 "wooden battlement": ([ "wood":25, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 8,
@@ -4293,7 +4293,7 @@ private mapping CastleWalls = ([
             "materials": ([
                 "stone bulwark": ([ "stone": 250, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
@@ -4330,7 +4330,7 @@ private mapping CastleWalls = ([
                 "stone wall": ([ "stone": 100, "wood": 10, "metal": 5, "textile": 0 ]),
                 "stone bulwark": ([ "stone": 450, "wood": 50, "metal": 5, "textile": 0 ]),
                 "stone battlement": ([ "stone":25, "wood": 10, "metal": 5, "textile": 0 ]),
-                "rampart": ([ "stone": 0 ]),
+                "rampart": ([ "stone": 0, "wood": 0 ]),
             ]),
             "workers": ([
                 "carpenter": 3,
