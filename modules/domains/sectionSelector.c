@@ -182,6 +182,10 @@ protected nomask int processSelection(string selection)
                 setUpUserForSelection();
             }
         }
+        else
+        {
+            SectionData = ([]);
+        }
     }
     return ret;
 }

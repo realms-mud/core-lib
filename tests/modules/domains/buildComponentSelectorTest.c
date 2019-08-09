@@ -848,3 +848,50 @@ void CompletionTimeIsUpdated()
         "X is the option about which you would like further details.\n",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CancelClearsSectionSelection()
+{
+    Selector->initiateSelector(Player);
+    command("1", Player);
+    command("10", Player);
+    command("14", Player);
+
+    ExpectEq("Building Projects - Stone Keep:\n"
+        "From this menu, you can initiate, modify, or abort projects in your holdings\n"
+        "at Argalach Castle.\n\n"
+        "Layout: +=======+                                                               \n"
+        "        | +---+ |               ......            .........            ......   \n"
+        "        | |   | |               .    ..............       ..............    .   \n"
+        "        | +---+ |               .     .?.         .........         .?.     .   \n"
+        "        +=======+               ..    ...                           ...    ..   \n"
+        "Completion time: 1000            . ..    ......      ...      ......    .. .    \n"
+        "                                 . ?.    .    ........ ........    .    .? .    \n"
+        "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
+        "    <select>                     .       ..    ...         ...    ..       .    \n"
+        "Central Stone Tower:             .        . ..                 .. .        .    \n"
+        "    <select>                    ....      . ?.    .........    .? .      ....   \n"
+        "Main Stone Keep:                .  .      . ..    .       .    .. .      .  .   \n"
+        "    <select>                    .  .     ...      .       .      ...     .  .   \n"
+        "                                .  .     ...      .       .      ...     .  .   \n"
+        "Needed workers:                 .  .      . ..    .........    .. .      .  .   \n"
+        "    Architect         -  0/1    ....      . ?.                 .? .      ....   \n"
+        "    Blacksmith        -  0/1     .        . ..                 .. .        .    \n"
+        "    Carpenter         -  0/3     .       ..    ...         ...    ..       .    \n"
+        "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
+        "    Stonemason        -  0/10    . ?.    .    ........ ........    .    .? .    \n"
+        "                                 . ..    ......      ...      ......    .. .    \n"
+        "                                ..    ...                           ...    ..   \n"
+        "Select building options for:    .     .?.         .........         .?.     .   \n"
+        "[1] - Central Stone Tower       .    ..............       ..............    .   \n"
+        "[2] - Main Stone Keep           ......            .........            ......   \n"
+        "[3] - Stone Battlement                                                          \n"
+        "[4] - Select Workers      \n"
+        "[5] - Create Building     N/A\n"
+        "[6] - Exit Building Menu  \n"
+        "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
+}
