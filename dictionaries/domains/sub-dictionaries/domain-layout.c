@@ -482,7 +482,8 @@ private nomask string *formatUnits(string *layout, mapping componentData,
                 unitName = unitName[0..(11 + componentSize)] + "...";
             }
 
-            ret += ({ ((sizeof(layout) > offset) ? layout[offset] : "") +
+            ret += ({ ((sizeof(layout) > offset) ? layout[offset] : 
+                sprintf("%-" + to_string(9 + componentSize) + "s", "")) +
                 configuration->decorate(sprintf("%3d ", units[unit]),
                     "selected", "player domains", colorConfiguration) +
                 configuration->decorate(
@@ -527,7 +528,7 @@ private nomask string *formatBonuses(mapping componentData,
         foreach(string bonus in m_indices(bonuses))
         {
             ret += ({ 
-                configuration->decorate(sprintf("+%d", bonuses[bonus]),
+                configuration->decorate(sprintf("+%-3d", bonuses[bonus]),
                     "selected", "player domains", colorConfiguration) +
                 configuration->decorate(sprintf(" to %-21s", bonus),
                     "value", "player domains", colorConfiguration)
