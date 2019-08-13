@@ -17,13 +17,11 @@ private nomask string *getComponentInfo(object user, mapping componentData)
         mapping construction =
             CastleComponents[componentData["name"]]["construction"] + ([]);
 
-        ret += displayLayout(componentData["name"], 
-                colorConfiguration, charset) +
+        ret += displayBuildingBenefits(user, componentData, construction,
+            colorConfiguration, charset) +
             displayCompletionTime(user, componentData, construction,
                 colorConfiguration, charset) +
             displayMaterialsData(user, componentData, construction, 
-                colorConfiguration, charset) +
-            displayBuildingBenefits(user, componentData, construction,
                 colorConfiguration, charset) +
             displayWorkerData(user, componentData, construction,
                 colorConfiguration, charset);
@@ -72,7 +70,7 @@ private nomask mapping getConstructionOptions(mapping componentData)
     
     construction = CastleComponents[componentData["name"]] + ([]);
     ret[to_string(sizeof(ret) + 1)] = ([
-        "name":"Select Workers",
+        "name": sprintf("%-23s", "Select Workers"),
         "type": "workers",
         "data": (member(construction["construction"], "workers") ?
             construction : ([])),
@@ -82,7 +80,7 @@ private nomask mapping getConstructionOptions(mapping componentData)
     ]);
 
     ret[to_string(sizeof(ret) + 1)] = ([
-        "name":"Create Building",
+        "name": sprintf("%-23s", "Create Building"),
         "type": "create",
         "description": "This option lets you begin work on the building "
             "project.\n",
@@ -91,7 +89,7 @@ private nomask mapping getConstructionOptions(mapping componentData)
     ]);
 
     ret[to_string(sizeof(ret) + 1)] = ([
-        "name":"Exit Building Menu",
+        "name":sprintf("%-23s", "Exit Building Menu"),
         "type": "exit",
         "description": "This option lets you exit the building "
             "projects menu.\n",
@@ -119,28 +117,39 @@ public nomask mapping getBuildComponentMenu(object user, string location,
 
         int count = 1;
         int offset = 0;
-        string *firstSection = playerDomain["layout"][0..(sizeof(details) + 1)];
-
-        if (sizeof(firstSection) > sizeof(details))
+        int sectionSize = (sizeof(details) + 1);
+        if (sectionSize < 22)
         {
-            int size;
-            string *extraData = ({});
-
-            for (int i = 0; i < sizeof(firstSection); i++)
-            {
-                extraData += ({ sprintf("%29s%s",
-                    sizeof(details) > i ? details[i] : "", firstSection[i]) });
-                size = i;
-            }
-
-            extraData += ({ configuration->decorate(
-                    sprintf("%-29s", "Select building options for:"),
-                    "heading", "player domains", user->colorConfiguration()) +
-                playerDomain["layout"][size + 1]
-            });
-            firstSection = extraData;
-            offset = sizeof(firstSection) - 1;
+            sectionSize = 22;
         }
+        string *firstSection = playerDomain["layout"][0..sectionSize];
+
+        int size;
+        string *extraData = ({});
+
+        for (int i = 0; i < sizeof(firstSection); i++)
+        {
+            extraData += ({ sprintf("%29s%s",
+                sizeof(details) > i ? details[i] : "", firstSection[i]) });
+            size = i;
+        }
+
+        offset = sizeof(firstSection);
+        if (sizeof(details) > offset)
+        {
+            for (int i = offset; i < sizeof(details); i++)
+            {
+                extraData += ({ details[i] });
+            }
+        }
+
+        extraData += ({ configuration->decorate(
+                sprintf("%-29s", "Select building options for:"),
+                "heading", "player domains", user->colorConfiguration()) +
+                ((sizeof(playerDomain["layout"]) > (size + 1)) ? 
+                    playerDomain["layout"][size + 1] : "")
+        });
+        firstSection = extraData;
 
         ret = getConstructionOptions(componentData);
         string *entries = sort_array(m_indices(ret), (: $1 > $2 :));

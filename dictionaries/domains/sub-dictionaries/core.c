@@ -37,6 +37,7 @@ public nomask varargs string pluralizeValue(string data, int doNotCapitalize)
     ret = regreplace(ret, "([^aeiou])y$", "\\1ie");
     ret += "s";
     ret = regreplace(ret, "(.*)mans$", "\\1men");
+    ret = regreplace(ret, "(.*)man-at-armses$", "\\1men-at-arms");
 
     return doNotCapitalize ? ret : generateTitle(ret);
 }

@@ -196,7 +196,7 @@ protected nomask varargs mapping getPlayerDomain(object player, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string *displayLayout(string component, 
+private nomask string *getLayout(string component, 
     string colorConfiguration, string charset)
 {
     string* ret = ({ });
@@ -207,17 +207,34 @@ protected nomask string *displayLayout(string component,
             m_indices(CastleComponents[component]["components"]),
             (: $1 > $2 :));
 
-        string padding = sprintf("%" + to_string(21 - sizeof(
-            CastleComponents[component]["components"][sections[0]]["ascii"])) +
-            "s", "");
-
         foreach(string section in sections)
         {
-            ret += ({ "        " +
+            ret += ({ 
                 applyColorToBuilding(
                 CastleComponents[component]["components"][section] + ([]),
-                component, colorConfiguration, charset) + padding
+                component, colorConfiguration, charset)
             });
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string *displayLayout(string component, 
+    string colorConfiguration, string charset)
+{
+    string *ret = getLayout(component, colorConfiguration, charset);
+
+    if (sizeof(ret))
+    {
+        string padding = sprintf("%" + to_string(21 - sizeof(
+            CastleComponents[component]["components"]
+                [m_indices(CastleComponents[component]["components"])[0]]["ascii"])) +
+            "s", "");
+
+        for (int i = 0; i < sizeof(ret); i++)
+        {
+            ret[i] = "        " + ret[i] + padding;
         }
 
         ret[0] = regreplace(ret[0], "        ",
@@ -383,9 +400,9 @@ private nomask mapping aggregateUnitList(mapping constructionData,
         if (member(componentData, "selected sections") &&
             member(componentData["selected sections"], material) &&
             member(BuildingComponents,
-                componentData["selected sections"][material]))
+                componentData["selected sections"][material]["selection"]))
         {
-            string key = componentData["selected sections"][material];
+            string key = componentData["selected sections"][material]["selection"];
 
             if (member(BuildingComponents[key], "default units"))
             {
@@ -416,9 +433,9 @@ private nomask mapping aggregateBonuses(mapping constructionData,
         if (member(componentData, "selected sections") &&
             member(componentData["selected sections"], material) &&
             member(BuildingComponents, 
-                componentData["selected sections"][material]))
+                componentData["selected sections"][material]["selection"]))
         {
-            string key = componentData["selected sections"][material];
+            string key = componentData["selected sections"][material]["selection"];
             
             foreach(string bonus in ({ "structure", "defend ground attack",
                 "defend air attack", "ground attack", "air attack" }))
@@ -435,29 +452,102 @@ private nomask mapping aggregateBonuses(mapping constructionData,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string *displayBuildingBenefits(object user, mapping componentData,
+private nomask string *formatUnits(string *layout, mapping componentData, 
     mapping constructionData, string colorConfiguration, string charset)
 {
-    string *ret = ({ });
+    int offset = 0;
+    string *ret = ({ 
+        configuration->decorate(sprintf("%-29s", "Layout:"),
+            "heading", "player domains", colorConfiguration) 
+    });
+
     mapping units = aggregateUnitList(constructionData, componentData);
-    mapping bonuses = aggregateBonuses(constructionData, componentData);
+
+    int componentSize = 9 - sizeof(CastleComponents[componentData["name"]]["components"]
+        [m_indices(CastleComponents[componentData["name"]]["components"])[0]]["ascii"]);
 
     if (sizeof(units))
     {
-        ret += ({
-            configuration->decorate("Units:\n",
+        ret = ({
+            configuration->decorate(sprintf("%-9s %-19s", "Layout:", "Units:"),
                 "heading", "player domains", colorConfiguration)
         });
 
+
         foreach(string unit in m_indices(units))
         {
+            string unitName = pluralizeValue(unit);
+            if (sizeof(unitName) > (15 + componentSize))
+            {
+                unitName = unitName[0..(11 + componentSize)] + "...";
+            }
+
+            ret += ({ ((sizeof(layout) > offset) ? layout[offset] : "") +
+                configuration->decorate(sprintf("%3d ", units[unit]),
+                    "selected", "player domains", colorConfiguration) +
+                configuration->decorate(
+                    sprintf("%-" + to_string(16 - componentSize) + "s", unitName),
+                    "value", "player domains", colorConfiguration)
+            });
+
+            offset++;
+        }
+    }
+
+    if (sizeof(ret) <= sizeof(layout))
+    {
+        for (int i = offset; i < sizeof(layout); i++)
+        {
             ret += ({ 
-                configuration->decorate(pluralizeValue(unit),
-                    "value", "player domains", colorConfiguration) +
-                configuration->decorate(sprintf(" (%d)\n", units[unit]),
-                    "selected", "player domains", colorConfiguration)
+                (sizeof(layout) > offset) ? (layout[i] + 
+                sprintf("%-" + to_string(20 + componentSize) + "s", "")) : 
+                sprintf("%-29s", "") });
+        }
+
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *formatBonuses(mapping componentData, 
+    mapping constructionData, string colorConfiguration, string charset)
+{
+    string *ret = ({ });
+
+    mapping bonuses = aggregateBonuses(constructionData, componentData);
+
+    if (sizeof(bonuses))
+    {
+        ret += ({
+        configuration->decorate(sprintf("%-29s", "Effects:"),
+            "heading", "player domains", colorConfiguration)
+        });
+
+        foreach(string bonus in m_indices(bonuses))
+        {
+            ret += ({ 
+                configuration->decorate(sprintf("+%d", bonuses[bonus]),
+                    "selected", "player domains", colorConfiguration) +
+                configuration->decorate(sprintf(" to %-21s", bonus),
+                    "value", "player domains", colorConfiguration)
             });
         }
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string *displayBuildingBenefits(object user, mapping componentData,
+    mapping constructionData, string colorConfiguration, string charset)
+{
+    string *layout = getLayout(componentData["name"], colorConfiguration, charset);
+
+    string *ret = formatUnits(layout, componentData, constructionData,
+        colorConfiguration, charset);
+
+    ret += formatBonuses(componentData, constructionData,
+        colorConfiguration, charset);
+
     return ret;
 }

@@ -39,35 +39,36 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
         "at Argalach Castle.\n\n"
-        "Layout: +=======+                                                               \n"
-        "        | +---+ |               ......            .........            ......   \n"
-        "        | |   | |               .    ..............       ..............    .   \n"
-        "        | +---+ |               .     .?.         .........         .?.     .   \n"
-        "        +=======+               ..    ...                           ...    ..   \n"
-        "Completion time: 1000            . ..    ......      ...      ......    .. .    \n"
-        "                                 . ?.    .    ........ ........    .    .? .    \n"
-        "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
-        "    <select>                     .       ..    ...         ...    ..       .    \n"
-        "Central Stone Tower:             .        . ..                 .. .        .    \n"
-        "    <select>                    ....      . ?.    .........    .? .      ....   \n"
-        "Main Stone Keep:                .  .      . ..    .       .    .. .      .  .   \n"
+        "Layout:                                                                         \n"
+        "+=======+                       ......            .........            ......   \n"
+        "| +---+ |                       .    ..............       ..............    .   \n"
+        "| |   | |                       .     .?.         .........         .?.     .   \n"
+        "| +---+ |                       ..    ...                           ...    ..   \n"
+        "+=======+                        . ..    ......      ...      ......    .. .    \n"
+        "Completion time: 1000            . ?.    .    ........ ........    .    .? .    \n"
+        "                                 . ..    .     .?.         .?.     .    .. .    \n"
+        "Stone Battlement:                .       ..    ...         ...    ..       .    \n"
+        "    <select>                     .        . ..                 .. .        .    \n"
+        "Central Stone Tower:            ....      . ?.    .........    .? .      ....   \n"
+        "    <select>                    .  .      . ..    .       .    .. .      .  .   \n"
+        "Main Stone Keep:                .  .     ...      .       .      ...     .  .   \n"
         "    <select>                    .  .     ...      .       .      ...     .  .   \n"
-        "                                .  .     ...      .       .      ...     .  .   \n"
-        "Needed workers:                 .  .      . ..    .........    .. .      .  .   \n"
-        "    Architect         -  0/1    ....      . ?.                 .? .      ....   \n"
-        "    Blacksmith        -  0/1     .        . ..                 .. .        .    \n"
-        "    Carpenter         -  0/3     .       ..    ...         ...    ..       .    \n"
-        "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
-        "    Stonemason        -  0/10    . ?.    .    ........ ........    .    .? .    \n"
-        "                                 . ..    ......      ...      ......    .. .    \n"
+        "                                .  .      . ..    .........    .. .      .  .   \n"
+        "Needed workers:                 ....      . ?.                 .? .      ....   \n"
+        "    Architect         -  0/1     .        . ..                 .. .        .    \n"
+        "    Blacksmith        -  0/1     .       ..    ...         ...    ..       .    \n"
+        "    Carpenter         -  0/3     . ..    .     .?.         .?.     .    .. .    \n"
+        "    Foreman           -  0/1     . ?.    .    ........ ........    .    .? .    \n"
+        "    Stonemason        -  0/10    . ..    ......      ...      ......    .. .    \n"
         "                                ..    ...                           ...    ..   \n"
-        "Select building options for:    .     .?.         .........         .?.     .   \n"
-        "[1] - Central Stone Tower       .    ..............       ..............    .   \n"
-        "[2] - Main Stone Keep           ......            .........            ......   \n"
-        "[3] - Stone Battlement                                                          \n"                           
-        "[4] - Select Workers      \n"
-        "[5] - Create Building     N/A\n"
-        "[6] - Exit Building Menu  \n"
+        "                                .     .?.         .........         .?.     .   \n"
+        "Select building options for:    .    ..............       ..............    .   \n"
+        "[1] - Central Stone Tower       ......            .........            ......   \n"
+        "[2] - Main Stone Keep                                                           \n"
+        "[3] - Stone Battlement       \n"
+        "[4] - Select Workers         \n"
+        "[5] - Create Building        N/A\n"
+        "[6] - Exit Building Menu     \n"
         "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
@@ -547,35 +548,36 @@ void WorkerDisplayIsUpdatedOnTopLevel()
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
         "at Argalach Castle.\n\n"
-        "Layout: +=======+                                                               \n"
-        "        | +---+ |               ......            .........            ......   \n"
-        "        | |   | |               .    ..............       ..............    .   \n"
-        "        | +---+ |               .     .?.         .........         .?.     .   \n"
-        "        +=======+               ..    ...                           ...    ..   \n"
-        "Completion time: 1000            . ..    ......      ...      ......    .. .    \n"
-        "                                 . ?.    .    ........ ........    .    .? .    \n"
-        "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
-        "    <select>                     .       ..    ...         ...    ..       .    \n"
-        "Central Stone Tower:             .        . ..                 .. .        .    \n"
-        "    <select>                    ....      . ?.    .........    .? .      ....   \n"
-        "Main Stone Keep:                .  .      . ..    .       .    .. .      .  .   \n"
+        "Layout:                                                                         \n"
+        "+=======+                       ......            .........            ......   \n"
+        "| +---+ |                       .    ..............       ..............    .   \n"
+        "| |   | |                       .     .?.         .........         .?.     .   \n"
+        "| +---+ |                       ..    ...                           ...    ..   \n"
+        "+=======+                        . ..    ......      ...      ......    .. .    \n"
+        "Completion time: 1000            . ?.    .    ........ ........    .    .? .    \n"
+        "                                 . ..    .     .?.         .?.     .    .. .    \n"
+        "Stone Battlement:                .       ..    ...         ...    ..       .    \n"
+        "    <select>                     .        . ..                 .. .        .    \n"
+        "Central Stone Tower:            ....      . ?.    .........    .? .      ....   \n"
+        "    <select>                    .  .      . ..    .       .    .. .      .  .   \n"
+        "Main Stone Keep:                .  .     ...      .       .      ...     .  .   \n"
         "    <select>                    .  .     ...      .       .      ...     .  .   \n"
-        "                                .  .     ...      .       .      ...     .  .   \n"
-        "Needed workers:                 .  .      . ..    .........    .. .      .  .   \n"
-        "    Architect         -  1/1    ....      . ?.                 .? .      ....   \n"
-        "    Blacksmith        -  1/1     .        . ..                 .. .        .    \n"
-        "    Carpenter         -  2/3     .       ..    ...         ...    ..       .    \n"
-        "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
-        "    Stonemason        -  5/10    . ?.    .    ........ ........    .    .? .    \n"
-        "                                 . ..    ......      ...      ......    .. .    \n"
+        "                                .  .      . ..    .........    .. .      .  .   \n"
+        "Needed workers:                 ....      . ?.                 .? .      ....   \n"
+        "    Architect         -  1/1     .        . ..                 .. .        .    \n"
+        "    Blacksmith        -  1/1     .       ..    ...         ...    ..       .    \n"
+        "    Carpenter         -  2/3     . ..    .     .?.         .?.     .    .. .    \n"
+        "    Foreman           -  0/1     . ?.    .    ........ ........    .    .? .    \n"
+        "    Stonemason        -  5/10    . ..    ......      ...      ......    .. .    \n"
         "                                ..    ...                           ...    ..   \n"
-        "Select building options for:    .     .?.         .........         .?.     .   \n"
-        "[1] - Central Stone Tower       .    ..............       ..............    .   \n"
-        "[2] - Main Stone Keep           ......            .........            ......   \n"
-        "[3] - Stone Battlement                                                          \n"
-        "[4] - Select Workers      \n"
-        "[5] - Create Building     N/A\n"
-        "[6] - Exit Building Menu  \n"
+        "                                .     .?.         .........         .?.     .   \n"
+        "Select building options for:    .    ..............       ..............    .   \n"
+        "[1] - Central Stone Tower       ......            .........            ......   \n"
+        "[2] - Main Stone Keep                                                           \n"
+        "[3] - Stone Battlement       \n"
+        "[4] - Select Workers         \n"
+        "[5] - Create Building        N/A\n"
+        "[6] - Exit Building Menu     \n"
         "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
@@ -624,35 +626,39 @@ void SectionDisplayIsUpdatedOnTopLevel()
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
         "at Argalach Castle.\n\n"
-        "Layout: +=======+                                                               \n"
-        "        | +---+ |               ......            .........            ......   \n"
-        "        | |   | |               .    ..............       ..............    .   \n"
-        "        | +---+ |               .     .?.         .........         .?.     .   \n"
-        "        +=======+               ..    ...                           ...    ..   \n"
-        "Completion time: 1500            . ..    ......      ...      ......    .. .    \n"
-        "                                 . ?.    .    ........ ........    .    .? .    \n"
-        "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
-        "    <select>                     .       ..    ...         ...    ..       .    \n"
-        "Central Stone Tower:             .        . ..                 .. .        .    \n"
-        "    Stone Observatory           ....      . ?.    .........    .? .      ....   \n"
-        "Main Stone Keep:                .  .      . ..    .       .    .. .      .  .   \n"
+        "Layout:   Units:                                                                \n"
+        "+=======+  7 Henchmen           ......            .........            ......   \n"
+        "| +---+ |                       .    ..............       ..............    .   \n"
+        "| |   | |                       .     .?.         .........         .?.     .   \n"
+        "| +---+ |                       ..    ...                           ...    ..   \n"
+        "+=======+                        . ..    ......      ...      ......    .. .    \n"
+        "Effects:                         . ?.    .    ........ ........    .    .? .    \n"
+        "  +3 to defend air attack        . ..    .     .?.         .?.     .    .. .    \n"
+        "+350 to structure                .       ..    ...         ...    ..       .    \n"
+        "  +6 to defend ground attack     .        . ..                 .. .        .    \n"
+        "Completion time: 1500           ....      . ?.    .........    .? .      ....   \n"
+        "                                .  .      . ..    .       .    .. .      .  .   \n"
+        "Stone Battlement:               .  .     ...      .       .      ...     .  .   \n"
         "    <select>                    .  .     ...      .       .      ...     .  .   \n"
-        "                                .  .     ...      .       .      ...     .  .   \n"
-        "Needed workers:                 .  .      . ..    .........    .. .      .  .   \n"
-        "    Architect         -  0/1    ....      . ?.                 .? .      ....   \n"
-        "    Blacksmith        -  0/1     .        . ..                 .. .        .    \n"
-        "    Carpenter         -  0/3     .       ..    ...         ...    ..       .    \n"
-        "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
-        "    Stonemason        -  0/10    . ?.    .    ........ ........    .    .? .    \n"
-        "                                 . ..    ......      ...      ......    .. .    \n"
-        "                                ..    ...                           ...    ..   \n"
-        "Select building options for:    .     .?.         .........         .?.     .   \n"
-        "[1] - Central Stone Tower       .    ..............       ..............    .   \n"
-        "[2] - Main Stone Keep           ......            .........            ......   \n"
-        "[3] - Stone Battlement                                                          \n"
-        "[4] - Select Workers      \n"
-        "[5] - Create Building     N/A\n"
-        "[6] - Exit Building Menu  \n"
+        "Central Stone Tower:            .  .      . ..    .........    .. .      .  .   \n"
+        "    Stone Observatory           ....      . ?.                 .? .      ....   \n"
+        "Main Stone Keep:                 .        . ..                 .. .        .    \n"
+        "    <select>                     .       ..    ...         ...    ..       .    \n"
+        "                                 . ..    .     .?.         .?.     .    .. .    \n"
+        "Needed workers:                  . ?.    .    ........ ........    .    .? .    \n"
+        "    Architect         -  0/1     . ..    ......      ...      ......    .. .    \n"
+        "    Blacksmith        -  0/1    ..    ...                           ...    ..   \n"
+        "    Carpenter         -  0/3    .     .?.         .........         .?.     .   \n"
+        "    Foreman           -  0/1    .    ..............       ..............    .   \n"
+        "    Stonemason        -  0/10   ......            .........            ......   \n"
+        "                                                                                \n"
+        "Select building options for: \n"
+        "[1] - Central Stone Tower    \n"
+        "[2] - Main Stone Keep        \n"
+        "[3] - Stone Battlement       \n"
+        "[4] - Select Workers         \n"
+        "[5] - Create Building        N/A\n"
+        "[6] - Exit Building Menu     \n"
         "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
@@ -742,35 +748,36 @@ void CompletionTimeIsUpdated()
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
         "at Argalach Castle.\n\n"
-        "Layout: +=======+                                                               \n"
-        "        | +---+ |               ......            .........            ......   \n"
-        "        | |   | |               .    ..............       ..............    .   \n"
-        "        | +---+ |               .     .?.         .........         .?.     .   \n"
-        "        +=======+               ..    ...                           ...    ..   \n"
-        "Completion time: 960             . ..    ......      ...      ......    .. .    \n"
-        "                                 . ?.    .    ........ ........    .    .? .    \n"
-        "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
-        "    <select>                     .       ..    ...         ...    ..       .    \n"
-        "Central Stone Tower:             .        . ..                 .. .        .    \n"
-        "    <select>                    ....      . ?.    .........    .? .      ....   \n"
-        "Main Stone Keep:                .  .      . ..    .       .    .. .      .  .   \n"
+        "Layout:                                                                         \n"
+        "+=======+                       ......            .........            ......   \n"
+        "| +---+ |                       .    ..............       ..............    .   \n"
+        "| |   | |                       .     .?.         .........         .?.     .   \n"
+        "| +---+ |                       ..    ...                           ...    ..   \n"
+        "+=======+                        . ..    ......      ...      ......    .. .    \n"
+        "Completion time: 960             . ?.    .    ........ ........    .    .? .    \n"
+        "                                 . ..    .     .?.         .?.     .    .. .    \n"
+        "Stone Battlement:                .       ..    ...         ...    ..       .    \n"
+        "    <select>                     .        . ..                 .. .        .    \n"
+        "Central Stone Tower:            ....      . ?.    .........    .? .      ....   \n"
+        "    <select>                    .  .      . ..    .       .    .. .      .  .   \n"
+        "Main Stone Keep:                .  .     ...      .       .      ...     .  .   \n"
         "    <select>                    .  .     ...      .       .      ...     .  .   \n"
-        "                                .  .     ...      .       .      ...     .  .   \n"
-        "Needed workers:                 .  .      . ..    .........    .. .      .  .   \n"
-        "    Architect         -  0/1    ....      . ?.                 .? .      ....   \n"
-        "    Blacksmith        -  0/1     .        . ..                 .. .        .    \n"
-        "    Carpenter         -  3/3     .       ..    ...         ...    ..       .    \n"
-        "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
-        "    Stonemason        -  0/10    . ?.    .    ........ ........    .    .? .    \n"
-        "                                 . ..    ......      ...      ......    .. .    \n"
+        "                                .  .      . ..    .........    .. .      .  .   \n"
+        "Needed workers:                 ....      . ?.                 .? .      ....   \n"
+        "    Architect         -  0/1     .        . ..                 .. .        .    \n"
+        "    Blacksmith        -  0/1     .       ..    ...         ...    ..       .    \n"
+        "    Carpenter         -  3/3     . ..    .     .?.         .?.     .    .. .    \n"
+        "    Foreman           -  0/1     . ?.    .    ........ ........    .    .? .    \n"
+        "    Stonemason        -  0/10    . ..    ......      ...      ......    .. .    \n"
         "                                ..    ...                           ...    ..   \n"
-        "Select building options for:    .     .?.         .........         .?.     .   \n"
-        "[1] - Central Stone Tower       .    ..............       ..............    .   \n"
-        "[2] - Main Stone Keep           ......            .........            ......   \n"
-        "[3] - Stone Battlement                                                          \n"
-        "[4] - Select Workers      \n"
-        "[5] - Create Building     N/A\n"
-        "[6] - Exit Building Menu  \n"
+        "                                .     .?.         .........         .?.     .   \n"
+        "Select building options for:    .    ..............       ..............    .   \n"
+        "[1] - Central Stone Tower       ......            .........            ......   \n"
+        "[2] - Main Stone Keep                                                           \n"
+        "[3] - Stone Battlement       \n"
+        "[4] - Select Workers         \n"
+        "[5] - Create Building        N/A\n"
+        "[6] - Exit Building Menu     \n"
         "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
@@ -813,35 +820,39 @@ void CompletionTimeIsUpdated()
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
         "at Argalach Castle.\n\n"
-        "Layout: +=======+                                                               \n"
-        "        | +---+ |               ......            .........            ......   \n"
-        "        | |   | |               .    ..............       ..............    .   \n"
-        "        | +---+ |               .     .?.         .........         .?.     .   \n"
-        "        +=======+               ..    ...                           ...    ..   \n"
-        "Completion time: 1440            . ..    ......      ...      ......    .. .    \n"
-        "                                 . ?.    .    ........ ........    .    .? .    \n"
-        "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
-        "    <select>                     .       ..    ...         ...    ..       .    \n"
-        "Central Stone Tower:             .        . ..                 .. .        .    \n"
-        "    Stone Observatory           ....      . ?.    .........    .? .      ....   \n"
-        "Main Stone Keep:                .  .      . ..    .       .    .. .      .  .   \n"
+        "Layout:   Units:                                                                \n"
+        "+=======+  7 Henchmen           ......            .........            ......   \n"
+        "| +---+ |                       .    ..............       ..............    .   \n"
+        "| |   | |                       .     .?.         .........         .?.     .   \n"
+        "| +---+ |                       ..    ...                           ...    ..   \n"
+        "+=======+                        . ..    ......      ...      ......    .. .    \n"
+        "Effects:                         . ?.    .    ........ ........    .    .? .    \n"
+        "  +3 to defend air attack        . ..    .     .?.         .?.     .    .. .    \n"
+        "+350 to structure                .       ..    ...         ...    ..       .    \n"
+        "  +6 to defend ground attack     .        . ..                 .. .        .    \n"
+        "Completion time: 1440           ....      . ?.    .........    .? .      ....   \n"
+        "                                .  .      . ..    .       .    .. .      .  .   \n"
+        "Stone Battlement:               .  .     ...      .       .      ...     .  .   \n"
         "    <select>                    .  .     ...      .       .      ...     .  .   \n"
-        "                                .  .     ...      .       .      ...     .  .   \n"
-        "Needed workers:                 .  .      . ..    .........    .. .      .  .   \n"
-        "    Architect         -  0/1    ....      . ?.                 .? .      ....   \n"
-        "    Blacksmith        -  0/1     .        . ..                 .. .        .    \n"
-        "    Carpenter         -  3/3     .       ..    ...         ...    ..       .    \n"
-        "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
-        "    Stonemason        -  0/10    . ?.    .    ........ ........    .    .? .    \n"
-        "                                 . ..    ......      ...      ......    .. .    \n"
-        "                                ..    ...                           ...    ..   \n"
-        "Select building options for:    .     .?.         .........         .?.     .   \n"
-        "[1] - Central Stone Tower       .    ..............       ..............    .   \n"
-        "[2] - Main Stone Keep           ......            .........            ......   \n"
-        "[3] - Stone Battlement                                                          \n"
-        "[4] - Select Workers      \n"
-        "[5] - Create Building     N/A\n"
-        "[6] - Exit Building Menu  \n"
+        "Central Stone Tower:            .  .      . ..    .........    .. .      .  .   \n"
+        "    Stone Observatory           ....      . ?.                 .? .      ....   \n"
+        "Main Stone Keep:                 .        . ..                 .. .        .    \n"
+        "    <select>                     .       ..    ...         ...    ..       .    \n"
+        "                                 . ..    .     .?.         .?.     .    .. .    \n"
+        "Needed workers:                  . ?.    .    ........ ........    .    .? .    \n"
+        "    Architect         -  0/1     . ..    ......      ...      ......    .. .    \n"
+        "    Blacksmith        -  0/1    ..    ...                           ...    ..   \n"
+        "    Carpenter         -  3/3    .     .?.         .........         .?.     .   \n"
+        "    Foreman           -  0/1    .    ..............       ..............    .   \n"
+        "    Stonemason        -  0/10   ......            .........            ......   \n"
+        "                                                                                \n"
+        "Select building options for: \n"
+        "[1] - Central Stone Tower    \n"
+        "[2] - Main Stone Keep        \n"
+        "[3] - Stone Battlement       \n"
+        "[4] - Select Workers         \n"
+        "[5] - Create Building        N/A\n"
+        "[6] - Exit Building Menu     \n"
         "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
@@ -860,35 +871,36 @@ void CancelClearsSectionSelection()
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
         "at Argalach Castle.\n\n"
-        "Layout: +=======+                                                               \n"
-        "        | +---+ |               ......            .........            ......   \n"
-        "        | |   | |               .    ..............       ..............    .   \n"
-        "        | +---+ |               .     .?.         .........         .?.     .   \n"
-        "        +=======+               ..    ...                           ...    ..   \n"
-        "Completion time: 1000            . ..    ......      ...      ......    .. .    \n"
-        "                                 . ?.    .    ........ ........    .    .? .    \n"
-        "Stone Battlement:                . ..    .     .?.         .?.     .    .. .    \n"
-        "    <select>                     .       ..    ...         ...    ..       .    \n"
-        "Central Stone Tower:             .        . ..                 .. .        .    \n"
-        "    <select>                    ....      . ?.    .........    .? .      ....   \n"
-        "Main Stone Keep:                .  .      . ..    .       .    .. .      .  .   \n"
+        "Layout:                                                                         \n"
+        "+=======+                       ......            .........            ......   \n"
+        "| +---+ |                       .    ..............       ..............    .   \n"
+        "| |   | |                       .     .?.         .........         .?.     .   \n"
+        "| +---+ |                       ..    ...                           ...    ..   \n"
+        "+=======+                        . ..    ......      ...      ......    .. .    \n"
+        "Completion time: 1000            . ?.    .    ........ ........    .    .? .    \n"
+        "                                 . ..    .     .?.         .?.     .    .. .    \n"
+        "Stone Battlement:                .       ..    ...         ...    ..       .    \n"
+        "    <select>                     .        . ..                 .. .        .    \n"
+        "Central Stone Tower:            ....      . ?.    .........    .? .      ....   \n"
+        "    <select>                    .  .      . ..    .       .    .. .      .  .   \n"
+        "Main Stone Keep:                .  .     ...      .       .      ...     .  .   \n"
         "    <select>                    .  .     ...      .       .      ...     .  .   \n"
-        "                                .  .     ...      .       .      ...     .  .   \n"
-        "Needed workers:                 .  .      . ..    .........    .. .      .  .   \n"
-        "    Architect         -  0/1    ....      . ?.                 .? .      ....   \n"
-        "    Blacksmith        -  0/1     .        . ..                 .. .        .    \n"
-        "    Carpenter         -  0/3     .       ..    ...         ...    ..       .    \n"
-        "    Foreman           -  0/1     . ..    .     .?.         .?.     .    .. .    \n"
-        "    Stonemason        -  0/10    . ?.    .    ........ ........    .    .? .    \n"
-        "                                 . ..    ......      ...      ......    .. .    \n"
+        "                                .  .      . ..    .........    .. .      .  .   \n"
+        "Needed workers:                 ....      . ?.                 .? .      ....   \n"
+        "    Architect         -  0/1     .        . ..                 .. .        .    \n"
+        "    Blacksmith        -  0/1     .       ..    ...         ...    ..       .    \n"
+        "    Carpenter         -  0/3     . ..    .     .?.         .?.     .    .. .    \n"
+        "    Foreman           -  0/1     . ?.    .    ........ ........    .    .? .    \n"
+        "    Stonemason        -  0/10    . ..    ......      ...      ......    .. .    \n"
         "                                ..    ...                           ...    ..   \n"
-        "Select building options for:    .     .?.         .........         .?.     .   \n"
-        "[1] - Central Stone Tower       .    ..............       ..............    .   \n"
-        "[2] - Main Stone Keep           ......            .........            ......   \n"
-        "[3] - Stone Battlement                                                          \n"
-        "[4] - Select Workers      \n"
-        "[5] - Create Building     N/A\n"
-        "[6] - Exit Building Menu  \n"
+        "                                .     .?.         .........         .?.     .   \n"
+        "Select building options for:    .    ..............       ..............    .   \n"
+        "[1] - Central Stone Tower       ......            .........            ......   \n"
+        "[2] - Main Stone Keep                                                           \n"
+        "[3] - Stone Battlement       \n"
+        "[4] - Select Workers         \n"
+        "[5] - Create Building        N/A\n"
+        "[6] - Exit Building Menu     \n"
         "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
@@ -899,5 +911,146 @@ void CancelClearsSectionSelection()
 /////////////////////////////////////////////////////////////////////////////
 void DisplayBenefitsFromBuilding()
 {
+    object sectionSelector = 
+        clone_object("/lib/modules/domains/sectionSelector.c");
 
+    sectionSelector->setDetails(
+        ([
+            "main stone keep": ([ 
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 400
+            ]),
+            "stone battlement": ([ 
+                "metal": 5,
+                "wood": 25,
+                "stone": 75
+            ]),
+            "central stone tower": ([
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 300
+            ]),
+            "chosen section": "Stone Bergfriede",
+            "selected materials": ([ 
+                "metal": "iron",
+                "wood": "pine",
+                "textile": "linen",
+                "stone": "granite"
+            ]),
+        ]),
+        "stone keep", "central stone tower");
+
+    Selector->initiateSelector(Player);
+    Selector->onSelectorCompleted(sectionSelector);
+
+    sectionSelector =
+        clone_object("/lib/modules/domains/sectionSelector.c");
+    sectionSelector->setDetails(
+        ([
+            "main stone keep": ([ 
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 400
+            ]),
+            "stone battlement": ([ 
+                "metal": 5,
+                "wood": 25,
+                "stone": 75
+            ]),
+            "central stone tower": ([
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 300
+            ]),
+            "chosen section": "Machicolationed Stone Battlement",
+            "selected materials": ([ 
+                "metal": "iron",
+                "wood": "pine",
+                "textile": "linen",
+                "stone": "granite"
+            ]),
+        ]),
+        "stone keep", "stone battlement");
+    Selector->onSelectorCompleted(sectionSelector);
+
+    sectionSelector =
+        clone_object("/lib/modules/domains/sectionSelector.c");
+    sectionSelector->setDetails(
+        ([
+            "main stone keep": ([ 
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 400
+            ]),
+            "stone battlement": ([ 
+                "metal": 5,
+                "wood": 25,
+                "stone": 75
+            ]),
+            "central stone tower": ([
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 300
+            ]),
+            "chosen section": "Large Octagonal Stone Keep",
+            "selected materials": ([ 
+                "metal": "iron",
+                "wood": "pine",
+                "textile": "linen",
+                "stone": "granite"
+            ]),
+        ]),
+        "stone keep", "main stone keep");
+    Selector->onSelectorCompleted(sectionSelector);
+
+    ExpectEq("Building Projects - Stone Keep:\n"
+        "From this menu, you can initiate, modify, or abort projects in your holdings\n"
+        "at Argalach Castle.\n\n"
+        "Layout:   Units:                                                                \n"
+        "+=======+ 35 Spearmen           ......            .........            ......   \n"
+        "| +---+ | 25 Archers            .    ..............       ..............    .   \n"
+        "| |   | |  9 Henchmen           .     .?.         .........         .?.     .   \n"
+        "| +---+ | 20 Knights            ..    ...                           ...    ..   \n"
+        "+=======+ 35 Swordsmen           . ..    ......      ...      ......    .. .    \n"
+        "           5 Bombadiers          . ?.    .    ........ ........    .    .? .    \n"
+        "          40 Men-at-arms         . ..    .     .?.         .?.     .    .. .    \n"
+        "Effects:                         .       ..    ...         ...    ..       .    \n"
+        "  +2 to air attack               .        . ..                 .. .        .    \n"
+        " +10 to defend air attack       ....      . ?.    .........    .? .      ....   \n"
+        "+925 to structure               .  .      . ..    .       .    .. .      .  .   \n"
+        " +18 to defend ground attack    .  .     ...      .       .      ...     .  .   \n"
+        "Completion time: 2100           .  .     ...      .       .      ...     .  .   \n"
+        "                                .  .      . ..    .........    .. .      .  .   \n"
+        "Stone Battlement:               ....      . ?.                 .? .      ....   \n"
+        "    Machicolationed Stone ...    .        . ..                 .. .        .    \n"
+        "Central Stone Tower:             .       ..    ...         ...    ..       .    \n"
+        "    Stone Bergfriede             . ..    .     .?.         .?.     .    .. .    \n"
+        "Main Stone Keep:                 . ?.    .    ........ ........    .    .? .    \n"
+        "    Large Octagonal Stone ...    . ..    ......      ...      ......    .. .    \n"
+        "                                ..    ...                           ...    ..   \n"
+        "Needed workers:                 .     .?.         .........         .?.     .   \n"
+        "    Architect         -  0/1    .    ..............       ..............    .   \n"
+        "    Blacksmith        -  0/1    ......            .........            ......   \n"
+        "    Carpenter         -  0/3                                                    \n"
+        "    Foreman           -  0/1 \n"
+        "    Stonemason        -  0/10\n"
+        "Select building options for: \n"
+        "[1] - Central Stone Tower    \n"
+        "[2] - Main Stone Keep        \n"
+        "[3] - Stone Battlement       \n"
+        "[4] - Select Workers         \n"
+        "[5] - Create Building        N/A\n"
+        "[6] - Exit Building Menu     \n"
+        "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
 }
