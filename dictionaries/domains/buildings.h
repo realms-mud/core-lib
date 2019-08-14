@@ -215,9 +215,33 @@ protected mapping BuildingBlueprints = ([
             "aegis guard": 10,
         ]),
         "building prerequisites": ([
-            "phaedra":(["type":"trait", "value": ({
-                "/lib/instances/traits/personas/fighter/aegis.c", })
-            ]),
+            "aegis":(["type":"guild", "value" : ({ "aegis" }) ]),
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 100,
+            "wood": 150,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "added duration": 300,
+        "structure": 300,
+    ]),
+
+    "scion of dhuras outpost": ([
+        "class": "military floorplan",
+        "description": "",
+        "experience modifier": 1.1,
+        "default units": ([
+            "henchman": 1,
+            "scion of dhuras": 10,
+        ]),
+        "building prerequisites": ([
+            "scion of dhuras": (["type":"guild", "value" : ({ "scion of dhuras" })]),
             "stonemasonry": (["type":"skill", "value": 5]),
             "carpentry": (["type":"skill", "value": 5]),
             "wood crafting": (["type":"skill", "value": 5]),
@@ -379,22 +403,38 @@ protected mapping BuildingBlueprints = ([
     "workshop":([
         "type": "craftsman's floorplan",
         "description": "",
+        "default units": ([
+            "henchman": 3,
+        ]),
         "effects": ([
-        ]),
-        "upgrades": ([
-        ]),
-        "colors": ([
-            "default":([
-                "3-bit": "\x1b[0;31m",
-                "8-bit": "\x1b[0;38;5;9m",
-                "24-bit": "\x1b[0;38;2;200;0;0m"
+            "craft seige equipment":([
+                "action": "craft seige equipment",
+                "duration bonus": 10,
+                "quantity bonus": 10,
             ]),
+            "workshop research": ([
+                "duration bonus": 10,
+                "apply": "1 every 12 hours",
+                "type" : ({ "domains", "crafting" })
+            ])
         ]),
-        "icon":([
-            "ascii": "",
-            "unicode": "",
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
         ]),
+        "building materials": ([
+            "stone": 100,
+            "wood": 150,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "added duration": 300,
+        "structure": 300,
     ]),
+
     "carpenter":([
         "type": "craftsman's floorplan",
         "description": "",

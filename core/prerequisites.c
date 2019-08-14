@@ -42,6 +42,11 @@ protected mapping prerequisites = ([
 //     "type": "guild",
 //     "value": ({ "fighter" })
 // ]),
+// "guild rank": ([
+//     "type": "guild rank",
+//     "guild": "mage",
+//     "value": ({ "acolyte", "archmage" })
+// ]),
 // "best kill": ([
 //     "type": "combat statistic",
 //     "value": 45
@@ -69,7 +74,7 @@ private nomask int isValidPrerequisiteType(string type)
 {
     return (member(({ "research", "attribute", "skill", "quest", "guild",
         "race", "faction", "trait", "background", "combat statistic", "level",
-        "opinion", "state", "presence", "not present" }), type) > -1);
+        "opinion", "state", "presence", "not present", "guild rank" }), type) > -1);
 }
 
 //-----------------------------------------------------------------------------
@@ -305,6 +310,14 @@ private nomask int checkGuilds(object researcher, string *guilds)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkGuildRanks(object researcher, string guild,
+    string *ranks)
+{
+    return checkGuilds(researcher, ({ guild })) && pointerp(ranks) &&
+        (member(ranks, researcher->guildRank(guild)) > -1);
+}
+
 //-----------------------------------------------------------------------------
 // Method: checkRaces
 // Description: This method will check whether or not the passed researcher
@@ -530,6 +543,12 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
                         ret &&= checkGuilds(researcher, prerequisiteData["value"]);
                         break;
                     }
+                    case "guild rank":
+                    {
+                        ret &&= checkGuildRanks(researcher, 
+                            prerequisiteData["guild"], prerequisiteData["value"]);
+                        break;
+                    }
                     case "race":
                     {
                         ret &&= checkRaces(researcher, prerequisiteData["value"]);
@@ -702,6 +721,12 @@ public nomask string displayPrerequisites(string colorConfiguration,
                         prerequisites[key]["value"]);
                     break;
                 }
+                case "guild rank":
+                {
+                    prereq = sprintf("Rank in the %s guild of ", 
+                        prerequisites[key]["guild"]);
+                    // Yes, fall through! 
+                }
                 case "guild":
                 case "race":
                 case "presence":
@@ -711,11 +736,19 @@ public nomask string displayPrerequisites(string colorConfiguration,
                     if (pointerp(prerequisites[key]["value"]) &&
                         sizeof(prerequisites[key]["value"]))
                     {
-                        foreach(string value in prerequisites[key]["value"])
+                        string *words = explode(implode(
+                            prerequisites[key]["value"], " or "), " ");
+
+                        int size = sizeof(words);
+                        for (int i = 0; i < size; i++)
                         {
-                            prereq += capitalize(value) + " or ";
+                            if (words[i] != "or")
+                            {
+                                words[i] = capitalize(words[i]);
+                            }
                         }
-                        prereq = prereq[..(sizeof(prereq) - 5)];
+
+                        prereq += implode(words, " ");
                     }
                     break;
                 }

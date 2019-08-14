@@ -117,6 +117,31 @@ void CheckPrerequsistesCorrectlyHandlesGuildChecks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CheckPrerequsistesCorrectlyHandlesGuildRankChecks()
+{
+    Researcher->ToggleMockGuilds();
+    ExpectTrue(Prerequisite->AddTestPrerequisite("guild rank", 
+        (["type": "guild rank", "guild": "mage", "value" : ({ "adept", "archmage" })])));
+
+    ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "check initially fails");
+
+    Researcher->SetGuild("fighter");
+    ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "check fails when wrong guild set");
+
+    Researcher->SetGuild("mage");
+    ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "check fails when correct guild set");
+
+    Researcher->SetRank("acolyte");
+    ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "check fails when wrong rank set");
+
+    Researcher->SetRank("adept");
+    ExpectTrue(Prerequisite->checkPrerequisites(Researcher), "check succeeds when valid rank set");
+
+    Researcher->SetRank("archmage");
+    ExpectTrue(Prerequisite->checkPrerequisites(Researcher));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CheckPrerequsistesCorrectlyHandlesRaceChecks()
 {
     Researcher->ToggleMockGuilds();
@@ -394,7 +419,7 @@ void DisplayPrerequisitesCorrectlyDisplaysRacePrerequisites()
         "type":"race", "value" : ({ "elf", "half-elf", "high elf" }) ])));
 
     ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m"
-        "\x1b[0;33m           Race: \x1b[0m\x1b[0;35mElf or Half-elf or High elf\n\x1b[0m",
+        "\x1b[0;33m           Race: \x1b[0m\x1b[0;35mElf or Half-elf or High Elf\n\x1b[0m",
         Prerequisite->displayPrerequisites(colorConfiguration, Configuration));
 }
 
@@ -409,12 +434,23 @@ void DisplayPrerequisitesCorrectlyDisplaysGuildPrerequisites()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void DisplayPrerequisitesCorrectlyDisplaysGuildRankPrerequisites()
+{
+    ExpectTrue(Prerequisite->AddTestPrerequisite("guild rank",
+        (["type":"guild rank", "guild" : "mage", "value" : ({ "adept", "archmage" })])));
+
+    ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;33m     Guild rank: "
+        "\x1b[0m\x1b[0;35mRank in the mage guild of Adept or Archmage\n\x1b[0m",
+        Prerequisite->displayPrerequisites(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DisplayPrerequisitesCorrectlyDisplaysFactionPrerequisites()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("faction", ([
-        "type":"faction", "value": ({ "Llama lords" })])));
+        "type":"faction", "value": ({ "llama lords" })])));
 
-    ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;33m        Faction: \x1b[0m\x1b[0;35mLlama lords\n\x1b[0m",
+    ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;33m        Faction: \x1b[0m\x1b[0;35mLlama Lords\n\x1b[0m",
         Prerequisite->displayPrerequisites(colorConfiguration, Configuration));
 }
 

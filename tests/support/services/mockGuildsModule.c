@@ -9,6 +9,7 @@ private string guild = "";
 private int level = 0;
 private int experience = 0;
 private object guildObj = 0;
+private string rank = "";
 
 /////////////////////////////////////////////////////////////////////////////
 public void ToggleMockGuilds()
@@ -33,6 +34,12 @@ public void SetGuildObject(object guild)
 public void SetLevel(int newLevel)
 {
     level = newLevel;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void SetRank(string newRank)
+{
+    rank = newRank;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,6 +71,12 @@ public nomask mapping *guildsExtraAttacks()
 public nomask int guildLevel(string check)
 {
     return (guild == check) ? level : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string guildRank(string check)
+{
+    return (guild == check) ? rank : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -100,4 +113,3 @@ public nomask int costToAdvanceSkill(string skillType)
 {
     return guildObj ? guildObj->costToAdvanceSkillOfType(skillType) : 2;
 }
-
