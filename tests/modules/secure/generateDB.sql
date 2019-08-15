@@ -4,6 +4,8 @@ drop view if exists researchChoicesView;
 ##
 drop view if exists traitsView;
 ##
+drop view if exists componentsView;
+##
 drop procedure if exists saveBiologicalInformation;
 ##
 drop procedure if exists saveCombatInformation;
@@ -61,6 +63,26 @@ drop procedure if exists saveDomainBuilding;
 drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
+##
+drop table if exists domainUnitTraits;
+##
+drop table if exists domainUnits;
+##
+drop table if exists domainHenchmanTraits;
+##
+drop table if exists domainHenchmanSkills;
+##
+drop table if exists domainHenchmen;
+##
+drop table if exists domainComponentMaterials;
+##
+drop table if exists domainComponentUpgrades;
+##
+drop table if exists domainSectionComponents;
+##
+drop table if exists domainSections;
+##
+drop table if exists domains;
 ##
 drop table if exists settings;
 ##
@@ -398,6 +420,7 @@ CREATE TABLE `opinions` (
   `playerId` int(11) NOT NULL,
   `targetKey` varchar(200) NOT NULL,
   `opinion` int(11) NOT NULL DEFAULT '0',
+  `type` VARCHAR(45) NOT NULL DEFAULT 'neutral',
   `lastInteraction` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
@@ -432,6 +455,124 @@ CREATE TABLE `blockedUsers` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `blockingplayerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `blockedplayersid` FOREIGN KEY (`blockedPlayerId`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domains` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `playerid` INT(11) NOT NULL,
+  `name` VARCHAR(128) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `player_key_idx` (`playerid` ASC),
+  CONSTRAINT `player_key` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domainSections` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(64) NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `constructionStart` bigint NOT NULL,
+  `timeLeft` INT DEFAULT NULL,
+  `completionTime` bigint DEFAULT NULL,
+  `domainId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `domainid_for_section_idx` (`domainId` ASC),
+  CONSTRAINT `domainid_for_section` FOREIGN KEY (`domainId`) REFERENCES `domains` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domainSectionComponents` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `sectionid` INT NOT NULL,
+  `type` VARCHAR(100) NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+   `maximumStructure` INT NOT NULL,
+   `currentStructure` INT NOT NULL,
+   `timeUntilRepaired` INT DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `component_section_idx` (`sectionid` ASC),
+  CONSTRAINT `component_section` FOREIGN KEY (`sectionid`) REFERENCES `domainSections` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domainComponentMaterials` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `componentId` INT NOT NULL,
+  `type` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(64) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `component_material_idx` (`componentId` ASC),
+  CONSTRAINT `component_material` FOREIGN KEY (`componentId`) REFERENCES `domainSectionComponents` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domainComponentUpgrades` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `componentId` INT NOT NULL,
+  `name` VARCHAR(128) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `component_upgrade_idx` (`componentId` ASC),
+  CONSTRAINT `component_upgrade` FOREIGN KEY (`componentId`) REFERENCES `domainSectionComponents` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domainHenchmen` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `originatingLocationId` INT NOT NULL,
+  `currentLocation` VARCHAR(256) NOT NULL,
+  `name` VARCHAR(128) NOT NULL,
+  `activity` VARCHAR(64) NOT NULL DEFAULT 'idle',
+  `persona` VARCHAR(64) NOT NULL,
+  `level` INT NOT NULL DEFAULT 1,
+  `experience` INT NOT NULL DEFAULT 0,
+  `opinion` INT NOT NULL DEFAULT 0,
+  `opinionType` VARCHAR(45) NOT NULL DEFAULT 'neutral',
+  PRIMARY KEY (`id`),
+  INDEX `henchman_base_location_idx` (`originatingLocationId` ASC),
+  CONSTRAINT `henchman_base_location` FOREIGN KEY (`originatingLocationId`) REFERENCES `domainSectionComponents` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domainHenchmanSkills` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `henchmanId` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `value` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  CONSTRAINT `skillshenchmanid_idx` FOREIGN KEY (`henchmanId`) REFERENCES `domainHenchmen` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domainHenchmanTraits` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `henchmanId` int(11) NOT NULL,
+  `path` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  CONSTRAINT `traits_henchmanId` FOREIGN KEY (`henchmanId`) REFERENCES `domainHenchmen` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domainUnits` (
+  `id` INT NOT NULL,
+  `type` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `morale` INT NOT NULL,
+  `maxTroops` INT NOT NULL,
+  `currentTroops` INT NOT NULL,
+  `movement` INT NOT NULL,
+  `skill` INT NOT NULL,
+  `locationId` INT NOT NULL,
+  `leaderId` INT DEFAULT NULL,
+  `leaderIsOwner` TINYINT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `unit_location_idx` (`locationId` ASC),
+  CONSTRAINT `unit_location` FOREIGN KEY (`locationId`) REFERENCES `domainSectionComponents` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `unit_leader` FOREIGN KEY (`leaderId`) REFERENCES `domainHenchmen` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `domainUnitTraits` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `unitId` INT NOT NULL,
+  `name` VARCHAR(128) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `unit_trait_idx` (`unitId` ASC),
+  CONSTRAINT `unit_trait` FOREIGN KEY (`unitId`) REFERENCES `domainUnits` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE VIEW `basicPlayerData` AS select `players`.`name` AS `name`,
@@ -494,6 +635,28 @@ CREATE VIEW `traitsView` AS select `traits`.`playerid` AS `playerid`,
                                    `timedtraits`.`triggeringResearch` AS `triggeringResearch` 
                             from (`traits` 
                             left join `timedtraits` on((`traits`.`id` = `timedtraits`.`traitid`)));
+##
+CREATE VIEW `componentsView` AS 
+    select `domainSectionComponents`.`sectionid` AS `sectionId`,
+        `domainSectionComponents`.`id` AS `componentId`,
+		`domainSectionComponents`.`type` AS `componentType`,
+        `domainSectionComponents`.`name` AS `componentName`,
+        `domainSectionComponents`.`maximumStructure` AS `maximumStructure`,
+        `domainSectionComponents`.`currentStructure` AS `currentStructure`,
+        `domainSectionComponents`.`timeUntilRepaired` AS `timeUntilRepaired`,
+        `metal`.`name` as `metal`,
+        `stone`.`name` as `stone`,
+        `textile`.`name` as `textile`,
+        `wood`.`name` as `wood`
+    from `domainSectionComponents` 
+    left outer join `domainComponentMaterials` as `metal`
+		on `domainSectionComponents`.`id` = `metal`.`componentId` and `metal`.`type` = 'metal'
+    left outer join `domainComponentMaterials` as `stone`
+		on `domainSectionComponents`.`id` = `stone`.`componentId` and `stone`.`type` = 'stone'
+    left outer join `domainComponentMaterials` as `textile`
+		on `domainSectionComponents`.`id` = `textile`.`componentId` and `textile`.`type` = 'textile'
+    left outer join `domainComponentMaterials` as `wood`
+		on `domainSectionComponents`.`id` = `wood`.`componentId` and `wood`.`type` = 'wood';
 ##
 CREATE FUNCTION `saveBasicPlayerInformation`(p_name varchar(40),
 p_race varchar(20), p_age int, p_gender int, p_ghost int, p_strength int,
