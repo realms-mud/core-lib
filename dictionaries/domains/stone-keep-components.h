@@ -393,7 +393,7 @@ private mapping StoneKeepComponents = ([
         "defend ground attack": 6,
         "defend air attack": 3,
     ]),
-    "Stone Bergfriede":([
+    "Stone Bergfriede": ([
         "class": "central stone tower",
         "description": "",
         "experience modifier": 1.1,

@@ -44,7 +44,7 @@ public nomask mapping getPlayerData(string name)
             data += getFactions(data["playerId"], dbHandle);
             data += getWizardLevel(data["playerId"], dbHandle);
             data += getPlayerSettings(dbHandle, name);
-            data += getPlayerDomains(data["playerId"], dbHandle);
+//            data += getPlayerDomains(data["playerId"], dbHandle);
         }
 
         disconnect(dbHandle);
@@ -80,7 +80,7 @@ public nomask void savePlayerData(mapping playerData)
             saveFactions(dbHandle, playerId, playerData);
             saveWizardLevel(dbHandle, playerId, playerData);
             saveSettings(dbHandle, playerData);
-            saveDomains(dbHandle, playerId, playerData);
+//            saveDomains(dbHandle, playerId, playerData);
             db_close(dbHandle);
         }
     }
@@ -134,5 +134,23 @@ public nomask int playerExists(string name)
     {
         ret = 1;
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void savePlayerDomains(string player, mapping data)
+{
+    int dbHandle = connect();
+    savePlayerDomainData(dbHandle, player, data);
+    disconnect(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public mapping getPlayerDomains(string player)
+{
+    int dbHandle = connect();
+    mapping ret = getPlayerDomainData(player, dbHandle);
+    disconnect(dbHandle);
+
     return ret;
 }

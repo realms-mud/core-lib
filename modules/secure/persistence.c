@@ -236,3 +236,15 @@ public int playerExists(string name)
 {
     return DataAccess()->playerExists(name);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void savePlayerDomains(string player, mapping data)
+{
+    return DataAccess()->savePlayerDomains(player, data);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public mapping getPlayerDomains(string player)
+{
+    return DataAccess()->getPlayerDomains(player);
+}

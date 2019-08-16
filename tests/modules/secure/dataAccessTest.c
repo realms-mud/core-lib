@@ -261,3 +261,76 @@ void GetCharacterStateReturnsCorrectValue()
 
     ExpectEq("first state", DataAccess->getCharacterState("gorthaur", "lib/realizations/monster.c#fred"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void GetPlayerDomainsReturnsCorrectValue()
+{
+    mapping data = ([
+        "domains":([
+            "argalach castle":([
+                "keep":([
+                    "name": "stone keep",
+                    "construction start": 1,
+                    "construction completion": 5,
+                    "construction time left": 4,
+                    "components": ([
+                        "main stone keep":([
+                            "name": "Large Square Stone Keep",
+                            "maximum structure": 500,
+                            "current structure": 500,
+                            "time until repaired": 0,
+                            "materials": ([ 
+                                "metal": "iron",
+                                "stone" : "limestone",
+                                "textile" : "linen",
+                                "wood" : "pine",
+                            ]),
+                            "henchmen": ([
+                            ]),
+                            "units": ([
+                            ]),
+                        ]),
+                        "central stone tower": ([
+                            "name":"Stone Bergfriede",
+                            "maximum structure": 400,
+                            "current structure": 400,
+                            "time until repaired": 0,
+                            "materials": ([ 
+                                "metal": "bronze",
+                                "stone" : "granite",
+                                "textile" : "silk",
+                                "wood" : "oak",
+                            ]),
+                            "henchmen": ([
+                            ]),
+                            "units": ([
+                            ]),
+                        ]),
+                        "stone battlement": ([
+                            "name":"Enbrasured Stone Parapet",
+                            "maximum structure": 200,
+                            "current structure": 200,
+                            "time until repaired": 0,
+                            "materials": ([ 
+                                "metal": "iron",
+                                "stone" : "limestone",
+                                "textile" : "linen",
+                                "wood" : "pine",
+                            ]),
+                            "henchmen": ([
+                            ]),
+                            "units": ([
+                            ]),
+                        ]),
+                    ]),
+                ]),
+            ]),
+        ]),
+    ]);
+
+    DataAccess->savePlayerDomains("gorthaur", data);
+
+    mapping loadedData = DataAccess->getPlayerDomains("gorthaur");
+
+    ExpectEq(data["domains"], loadedData);
+}

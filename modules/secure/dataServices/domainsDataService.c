@@ -5,12 +5,13 @@
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping getDomainList(int playerId, int dbHandle)
+private nomask mapping getDomainList(string name, int dbHandle)
 {
     mapping ret = ([]);
 
-    string query = sprintf("select * from domains "
-        "where playerid = '%d'", playerId);
+    string query = sprintf("select domains.* from domains "
+        "inner join players on domains.playerId = players.id "
+        "where players.name = '%s'", name);
     db_exec(dbHandle, query);
 
     mixed result;
@@ -20,7 +21,7 @@ private nomask mapping getDomainList(int playerId, int dbHandle)
         if (result)
         {
             ret[convertString(result[2])] = ([
-                "id": result[1]
+                "id": to_int(result[0])
             ]);
         }
     } while (result);
@@ -29,15 +30,182 @@ private nomask mapping getDomainList(int playerId, int dbHandle)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping getHenchmen(int sectionId, int dbHandle)
+private nomask mapping getHenchmanSkills(int henchmanId, int dbHandle)
 {
-    return ([]);
+    mapping ret = ([]);
+
+    string query = sprintf("select * "
+        "from `domainHenchmanSkills` "
+        "where henchmanId = '%d'", henchmanId);
+
+    db_exec(dbHandle, query);
+
+    mixed result;
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            ret[convertString(result[2])] = to_int(result[3]);
+        }
+    } while (result);
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping getUnits(int sectionId, int dbHandle)
+private nomask string *getHenchmanTraits(int henchmanId, int dbHandle)
 {
-    return ([]);
+    string *ret = ({});
+
+    string query = sprintf("select * "
+        "from `domainHenchmanTraits` "
+        "where henchmanId = '%d'", henchmanId);
+
+    db_exec(dbHandle, query);
+
+    mixed result;
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            ret += ({ convertString(result[2]) });
+        }
+    } while (result);
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getHenchmen(int componentId, int dbHandle)
+{
+    mapping ret = ([]);
+
+    string query = sprintf("select * "
+        "from `domainHenchmen` "
+        "left outer join `domainUnits` on "
+        "`domainHenchmen`.`id` = `domainUnits`.`leaderId`"
+        "where originatingLocationId = '%d'", componentId);
+
+    db_exec(dbHandle, query);
+
+    mixed result;
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            string key = sprintf("%d - %s",
+                to_int(result[0]), convertString(result[3]));
+
+            ret[key] = ([
+                "id": to_int(result[0]),
+                "originating location": to_int(result[1]),
+                "current location": convertString(result[2]),
+                "name": convertString(result[3]),
+                "activity": convertString(result[4]),
+                "persona": convertString(result[5]),
+                "level": to_int(result[6]),
+                "experience": to_int(result[7]),
+                "opinion": to_int(result[8]),
+                "opinion type": convertString(result[9])
+            ]);
+
+            if (ret[key]["activity"] == "leading troops")
+            {
+                ret[key]["unit id"] = to_int(result[10]);
+
+                if (!ret[key]["unit id"])
+                {
+                    m_delete(ret[key], "unit id");
+                    ret[key]["activity"] = "idle";
+                }
+            }
+        }
+    } while (result);
+
+    if (sizeof(ret))
+    {
+        foreach(string henchman in m_indices(ret))
+        {
+            ret[henchman]["skills"] =
+                getHenchmanSkills(ret[henchman]["id"], dbHandle);
+            ret[henchman]["traits"] =
+                getHenchmanTraits(ret[henchman]["id"], dbHandle);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getUnits(int componentId, int dbHandle)
+{
+    mapping ret = ([]);
+
+    string query = sprintf("select * "
+        "from `domainUnits` "
+        "where locationId = '%d'", componentId);
+
+    db_exec(dbHandle, query);
+
+    mixed result;
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            string key = sprintf("%d - %s",
+                to_int(result[0]), convertString(result[2]));
+
+            ret[key] = ([
+                "id": to_int(result[0]),
+                "type": convertString(result[1]),
+                "name": convertString(result[2]),
+                "morale": to_int(result[3]),
+                "unit capacity": to_int(result[4]),
+                "current unit size": to_int(result[5]),
+                "movement": to_int(result[6]),
+                "skill": to_int(result[7]),
+                "current location": convertString(result[8]),
+            ]);
+
+            if (result[9])
+            {
+                ret[key]["leader ID"] = to_int(result[9]);
+            }
+            if (result[10])
+            {
+                ret[key]["led by owner"] = to_int(result[10]);
+            }
+        }
+    } while (result);
+
+    if (sizeof(ret))
+    {
+        foreach(string unit in m_indices(ret))
+        {
+            query = sprintf("select name "
+                "from `domainUnitTraits` "
+                "where unitId = '%d'", ret[unit]["id"]);
+
+            db_exec(dbHandle, query);
+            string *traits = ({});
+            do
+            {
+                result = db_fetch(dbHandle);
+                if (result)
+                {
+                    traits += ({ convertString(result[0]) });
+                }
+            } while (result);
+            if (sizeof(traits))
+            {
+                ret[unit]["traits"] = traits;
+            }
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -96,7 +264,7 @@ private nomask mapping getSectionDetails(int sectionId, int dbHandle)
                 getHenchmen(ret[component]["henchmen"], dbHandle);
 
             ret[component]["units"] =
-                getUnits(ret[component]["henchmen"], dbHandle);
+                getUnits(ret[component]["units"], dbHandle);
         }
     }
     return ret;
@@ -112,7 +280,7 @@ private nomask mapping getDomainDetails(int domainId, int dbHandle)
         "`domainSections`.`constructionStart` AS `constructionStart`, "
         "`domainSections`.`completionTime` AS `completionTime`, "
         "`domainSections`.`timeLeft` AS `timeLeft`, "
-        "`domainSections`.`id` AS `sectionId`, "
+        "`domainSections`.`id` AS `sectionId` "
         "from `domainSections` "
         "where domainId = '%d'", domainId);
 
@@ -128,7 +296,7 @@ private nomask mapping getDomainDetails(int domainId, int dbHandle)
                 "name": convertString(result[1]),
                 "construction start": to_int(result[2]),
                 "construction completion": to_int(result[3]),
-                "construction start": to_int(result[4]),
+                "construction time left": to_int(result[4]),
                 "components": to_int(result[5])
             ]);
         }
@@ -146,9 +314,9 @@ private nomask mapping getDomainDetails(int domainId, int dbHandle)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask mapping getPlayerDomains(int playerId, int dbHandle)
+protected nomask mapping getPlayerDomainData(string player, int dbHandle)
 {
-    mapping ret = getDomainList(playerId, dbHandle);
+    mapping ret = getDomainList(player, dbHandle);
 
     if (sizeof(ret))
     {
@@ -162,28 +330,104 @@ protected nomask mapping getPlayerDomains(int playerId, int dbHandle)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void saveDomains(int dbHandle, int playerId, mapping playerData)
+private nomask void saveDomainComponentMaterials(int dbHandle, int componentId,
+    mapping data)
+{
+    if (sizeof(data))
+    {
+        string *materials = m_indices(data);
+        foreach(string material in materials)
+        {
+            string query = sprintf("call saveDomainComponentMaterials"
+                "(%d,'%s','%s');",
+                componentId,
+                sanitizeString(material),
+                sanitizeString(data[material]));
+
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveDomainComponents(int dbHandle, int sectionId, mapping data)
+{
+    if (sizeof(data))
+    {
+        string *components = m_indices(data);
+        foreach(string component in components)
+        {
+            string query = sprintf("select saveDomainComponent(%d,'%s',"
+                "'%s',%d,%d,%d);",
+                sectionId,
+                sanitizeString(component),
+                sanitizeString(data[component]["name"]),
+                data[component]["maximum structure"],
+                data[component]["current structure"],
+                data[component]["time until repaired"]);
+
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+
+            if (result)
+            {
+                saveDomainComponentMaterials(dbHandle, to_int(result[0]),
+                    data[component]["materials"]);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveDomainSections(int dbHandle, int domainId, mapping data)
+{
+    if (sizeof(data))
+    {
+        string *sections = m_indices(data);
+        foreach(string section in sections)
+        {
+            string query = sprintf("select saveDomainSection(%d,'%s',"
+                "'%s',%d,%d,%d);",
+                domainId,
+                sanitizeString(section),
+                sanitizeString(data[section]["name"]),
+                data[section]["construction start"],
+                data[section]["construction completion"],
+                data[section]["construction time left"]);
+
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+
+            if (result)
+            {
+                saveDomainComponents(dbHandle, to_int(result[0]),
+                    data[section]["components"]);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void savePlayerDomainData(int dbHandle, string player, 
+    mapping playerData)
 {
     if (member(playerData, "domains") && sizeof(playerData["domains"]))
     {
         string *domains = m_indices(playerData["domains"]);
         foreach(string domain in domains)
         {
-         /*   string query = sprintf("call saveFaction("
-                "%d,'%s','%s',%d,%d,%d,%d,%d,%d);",
-                playerId,
-                sanitizeString(faction),
-                sanitizeString(playerData["factions"][faction]["disposition"]),
-                playerData["factions"][faction]["reputation"],
-                playerData["factions"][faction]["last interaction"],
-                playerData["factions"][faction]["last interaction reputation"],
-                playerData["factions"][faction]["number of interactions"],
-                playerData["factions"][faction]["disposition time"],
-                (member(playerData["memberOfFactions"], faction) > -1)
-            );
+            string query = sprintf("select savePlayerDomain('%s','%s');",
+                player, sanitizeString(domain));
+
             db_exec(dbHandle, query);
             mixed result = db_fetch(dbHandle);
-            */
+
+            if (result && result[0])
+            {
+                saveDomainSections(dbHandle, to_int(result[0]), 
+                    playerData["domains"][domain]);
+            }
         }
     }
 }

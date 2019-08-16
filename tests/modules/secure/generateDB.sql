@@ -6,6 +6,14 @@ drop view if exists traitsView;
 ##
 drop view if exists componentsView;
 ##
+drop function if exists savePlayerDomain;
+##
+drop function if exists saveDomainSection;
+##
+drop function if exists saveDomainComponent;
+##
+drop procedure if exists saveDomainComponentMaterials;
+##
 drop procedure if exists saveBiologicalInformation;
 ##
 drop procedure if exists saveCombatInformation;
@@ -558,6 +566,7 @@ CREATE TABLE `domainUnits` (
   `movement` INT NOT NULL,
   `skill` INT NOT NULL,
   `locationId` INT NOT NULL,
+  `currentLocation` VARCHAR(256) DEFAULT NULL,
   `leaderId` INT DEFAULT NULL,
   `leaderIsOwner` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
@@ -703,7 +712,101 @@ BEGIN
 RETURN pid;
 END;
 ##
+CREATE FUNCTION `savePlayerDomain` (p_player varchar(40), p_name varchar(128)) RETURNS int(11)
+BEGIN
+    declare pid int;
+    declare domainId int;
+    
+    select id into pid
+    from players where name = p_player;
+ 
+    if pid is not null then
+        select id into domainId
+        from domains where playerid = pid and name = p_name;
+    
+        if domainId is null then
+            insert into domains (playerid, name)
+            values (pid, p_name);
 
+            select id into domainId
+            from domains where playerid = pid and name = p_name;
+        end if;
+    end if;
+RETURN domainId;
+END;
+##
+CREATE FUNCTION `saveDomainSection` ( p_domainId int,  p_type varchar(100), 
+    p_name varchar(100), p_start int, p_end int, p_timeLeft int) RETURNS int(11)
+BEGIN
+    declare sectionId int;
+
+    select id into sectionId
+    from domainSections where domainId = p_domainId and type = p_type;
+    
+    if sectionId is not null then
+        update domainSections set type = p_type,
+                           name = p_name,
+                           constructionStart = p_start,
+                           timeLeft = p_timeLeft,
+                           completionTime = p_end
+        where id = sectionId;
+    else
+        insert into domainSections (type, name, constructionStart, timeLeft,
+            completionTime, domainId)
+        values (p_type, p_name, p_start, p_timeLeft, p_end, p_domainId);
+
+        select id into sectionId
+        from domainSections where domainId = p_domainId and type = p_type;
+    end if;
+RETURN sectionId;
+END;
+##
+CREATE FUNCTION `saveDomainComponent` ( p_sectionId int,  p_type varchar(100), 
+    p_name varchar(100), p_max int, p_current int, p_time int) RETURNS int(11)
+BEGIN
+    declare componentId int;
+
+    select id into componentId
+    from domainSectionComponents 
+    where sectionId = p_sectionId and type = p_type;
+
+    if componentId is not null then
+        update domainSectionComponents set type = p_type,
+                           name = p_name,
+                           maximumStructure = p_max,
+                           currentStructure = p_current,
+                           timeUntilRepaired = p_time
+        where id = sectionId;
+    else
+        insert into domainSectionComponents (sectionId, type, name, maximumStructure, 
+            currentStructure, timeUntilRepaired)
+        values (p_sectionId, p_type, p_name, p_max, p_current, p_time);
+
+        select id into componentId
+        from domainSectionComponents 
+        where sectionId = p_sectionId and type = p_type;
+    end if;
+RETURN componentId;
+END;
+##
+CREATE PROCEDURE `saveDomainComponentMaterials` ( p_componentId int, 
+    p_type varchar(45), p_name varchar(64))
+BEGIN
+    declare materialId int;
+
+    select id into materialId
+    from domainComponentMaterials 
+    where componentId = p_componentId and type = p_type;
+
+    if materialId is not null then
+        update domainComponentMaterials set type = p_type, name = p_name
+        where id = materialId;
+    else
+        insert into domainComponentMaterials (componentId, type, name)
+        values (p_componentId, p_type, p_name);
+    end if;
+END;
+##
 CREATE PROCEDURE `saveBiologicalInformation`(p_playerid int, p_intoxicated int,
 p_stuffed int, p_drugged int, p_soaked int, p_headache int)
 BEGIN
