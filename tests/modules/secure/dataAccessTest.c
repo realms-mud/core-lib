@@ -8,8 +8,188 @@ object DataAccess;
 object Database;
 
 /////////////////////////////////////////////////////////////////////////////
+private mapping SetupDomain()
+{
+    return ([
+        "domains":([
+            "argalach castle":([
+                "keep":([
+                    "name": "stone keep",
+                    "construction start": 1,
+                    "construction completion": 5,
+                    "construction time left": 4,
+                    "components": ([
+                        "main stone keep":([
+                            "name": "Large Square Stone Keep",
+                            "maximum structure": 500,
+                            "current structure": 500,
+                            "time until repaired": 0,
+                            "materials": ([ 
+                                "metal": "iron",
+                                "stone" : "limestone",
+                                "textile" : "linen",
+                                "wood" : "pine",
+                            ]),
+                            "henchmen": ([
+                                "2 - Lana the Lascivious": ([
+                                    "id": 2,
+                                    "originating location": 3,
+                                    "name": "Lana the Lascivious",
+                                    "age": 21,
+                                    "gender": 1,
+                                    "race": "maegenstryd",
+                                    "current location": "/some/path/to/room.c",
+                                    "activity": "leading troops",
+                                    "unit id": 3,
+                                    "persona": "swordsman",
+                                    "level": 6,
+                                    "experience": 222,
+                                    "opinion": 94,
+                                    "opinion type": "romance",
+                                    "skills": ([
+                                        "diplomacy": 10,
+                                        "long sword": 16,
+                                        "metal crafting": 12,
+                                    ]),
+                                    "traits": ({
+                                        "/lib/instances/traits/domains/apprentice-blacksmith.c",
+                                        "/lib/instances/traits/personality/lascivious.c"
+                                    })
+                                ]),
+                                "3 - Tantor the Unclean": ([
+                                    "id": 3,
+                                    "originating location": 3,
+                                    "name": "Tantor the Unclean",
+                                    "age": 26,
+                                    "gender": 1,
+                                    "race": "maegenstryd",
+                                    "current location": "/some/path/to/room.c",
+                                    "activity": "building",
+                                    "persona": "swordsman",
+                                    "level": 16,
+                                    "experience": 992,
+                                    "opinion": 86,
+                                    "opinion type": "friendly",
+                                    "skills": ([
+                                        "engineering": 10,
+                                        "long sword": 16,
+                                        "metal crafting": 12,
+                                        "stonemasonry": 14,
+                                    ]),
+                                    "traits": ({
+                                        "/lib/instances/traits/domains/journeyman-stonemason.c",
+                                        "/lib/instances/traits/personality/boorish.c"
+                                    })
+                                ]),
+                            ]),
+                            "units": ([
+                                "3 - Weasel Brigade":([
+                                    "id": 3,
+                                    "type": "archer",
+                                    "name": "Weasel Brigade",
+                                    "morale": 1,
+                                    "unit capacity": 50,
+                                    "current unit size": 46,
+                                    "movement": 3,
+                                    "skill": 1,
+                                    "current location": "/path/to/nowhere.c",
+                                    "leader ID": 2,
+                                    "traits": ({ "magic armor", "afraid" })
+                                ])
+                            ]),
+                        ]),
+                        "central stone tower": ([
+                            "name":"Stone Bergfriede",
+                            "maximum structure": 400,
+                            "current structure": 400,
+                            "time until repaired": 0,
+                            "materials": ([ 
+                                "metal": "bronze",
+                                "stone" : "granite",
+                                "textile" : "silk",
+                                "wood" : "oak",
+                            ]),
+                            "henchmen": ([
+                            ]),
+                            "units": ([
+                            ]),
+                        ]),
+                        "stone battlement": ([
+                            "name":"Enbrasured Stone Parapet",
+                            "maximum structure": 200,
+                            "current structure": 200,
+                            "time until repaired": 0,
+                            "materials": ([ 
+                                "metal": "iron",
+                                "stone" : "limestone",
+                                "textile" : "linen",
+                                "wood" : "pine",
+                            ]),
+                            "henchmen": ([
+                                "1 - Vaire the Vole-Hearted": ([
+                                    "id": 1,
+                                    "originating location": 1,
+                                    "name": "Vaire the Vole-Hearted",
+                                    "age": 22,
+                                    "gender": 2,
+                                    "race": "high elf",
+                                    "current location": "/some/path/to/room.c",
+                                    "activity": "building",
+                                    "persona": "swordsman",
+                                    "level": 16,
+                                    "experience": 992,
+                                    "opinion": 86,
+                                    "opinion type": "romance",
+                                    "skills": ([
+                                        "long sword": 16,
+                                        "engineering": 10,
+                                        "metal crafting": 12,
+                                        "stonemasonry": 14,
+                                    ]),
+                                    "traits": ({
+                                        "/lib/instances/traits/personality/insecure.c",
+                                        "/lib/instances/traits/personality/coward.c"
+                                    })
+                                ]),
+                            ]),
+                            "units": ([
+                                "1 - Llama Brigade":([
+                                    "id": 1,
+                                    "type": "swordsman",
+                                    "name": "Llama Brigade",
+                                    "morale": 5,
+                                    "unit capacity": 75,
+                                    "current unit size": 62,
+                                    "movement": 4,
+                                    "skill": 3,
+                                    "current location": "/path/to/nowhere.c",
+                                    "led by owner": 1
+                                ]),
+                                "2 - Grebe Brigade":([
+                                    "id": 2,
+                                    "type": "axeman",
+                                    "name": "Grebe Brigade",
+                                    "morale": 4,
+                                    "unit capacity": 25,
+                                    "current unit size": 22,
+                                    "movement": 5,
+                                    "skill": 5,
+                                    "current location": "/path/to/nowhere.c"
+                                ]),
+                            ]),
+                        ]),
+                    ]),
+                ]),
+            ]),
+        ]),
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Init()
 {
+    ignoreList += ({ "SetupDomain" });
+
     setRestoreCaller(this_object());
     Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
     Database->PrepDatabase();
@@ -107,7 +287,8 @@ void SavingSameCombatStatisticMultipleTimesIncrementsTimesKilled()
     db_exec(dbHandle, "select * from combatStatistics");
     mixed result = db_fetch(dbHandle);
     while(db_fetch(dbHandle));
-db_close(dbHandle);
+
+    db_close(dbHandle);
     ExpectEq(1, result[0], "stat id");
     ExpectEq("bob", result[1], "name");
     ExpectEq(10, result[2], "level");
@@ -124,7 +305,8 @@ db_close(dbHandle);
     db_exec(dbHandle, "select * from combatStatistics");
     result = db_fetch(dbHandle);
     while(db_fetch(dbHandle));
-db_close(dbHandle);
+    db_close(dbHandle);
+
     ExpectEq(2, result[4], "times killed has incremented");
 }
 
@@ -265,72 +447,77 @@ void GetCharacterStateReturnsCorrectValue()
 /////////////////////////////////////////////////////////////////////////////
 void GetPlayerDomainsReturnsCorrectValue()
 {
-    mapping data = ([
-        "domains":([
-            "argalach castle":([
-                "keep":([
-                    "name": "stone keep",
-                    "construction start": 1,
-                    "construction completion": 5,
-                    "construction time left": 4,
-                    "components": ([
-                        "main stone keep":([
-                            "name": "Large Square Stone Keep",
-                            "maximum structure": 500,
-                            "current structure": 500,
-                            "time until repaired": 0,
-                            "materials": ([ 
-                                "metal": "iron",
-                                "stone" : "limestone",
-                                "textile" : "linen",
-                                "wood" : "pine",
-                            ]),
-                            "henchmen": ([
-                            ]),
-                            "units": ([
-                            ]),
-                        ]),
-                        "central stone tower": ([
-                            "name":"Stone Bergfriede",
-                            "maximum structure": 400,
-                            "current structure": 400,
-                            "time until repaired": 0,
-                            "materials": ([ 
-                                "metal": "bronze",
-                                "stone" : "granite",
-                                "textile" : "silk",
-                                "wood" : "oak",
-                            ]),
-                            "henchmen": ([
-                            ]),
-                            "units": ([
-                            ]),
-                        ]),
-                        "stone battlement": ([
-                            "name":"Enbrasured Stone Parapet",
-                            "maximum structure": 200,
-                            "current structure": 200,
-                            "time until repaired": 0,
-                            "materials": ([ 
-                                "metal": "iron",
-                                "stone" : "limestone",
-                                "textile" : "linen",
-                                "wood" : "pine",
-                            ]),
-                            "henchmen": ([
-                            ]),
-                            "units": ([
-                            ]),
-                        ]),
-                    ]),
-                ]),
-            ]),
-        ]),
-    ]);
+    mapping data = SetupDomain();
 
+    DataAccess->savePlayerDomains("gorthaur", data);
     DataAccess->savePlayerDomains("gorthaur", data);
 
     mapping loadedData = DataAccess->getPlayerDomains("gorthaur");
 
     ExpectEq(data["domains"], loadedData);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UpdatesToHenchmanTraitsSavedCorrectly()
+{
+    mapping data = SetupDomain();
+
+    DataAccess->savePlayerDomains("gorthaur", data);
+    mapping loadedData = DataAccess->getPlayerDomains("gorthaur");
+
+    ExpectEq(data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"],
+        loadedData["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"]);
+
+    data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"]
+        ["3 - Tantor the Unclean"]["traits"] = ({
+            "/lib/instances/traits/domains/master-stonemason.c",
+            "/lib/instances/traits/personality/boorish.c",
+            "/lib/instances/traits/personality/drunkard.c"
+            });
+
+    DataAccess->savePlayerDomains("gorthaur", data);
+    loadedData = DataAccess->getPlayerDomains("gorthaur");
+
+    ExpectEq(data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"],
+        loadedData["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HenchmanResetsLeadingTroopsToIdleWhenIdNotSet()
+{
+    mapping data = SetupDomain();
+
+    data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"]
+        ["3 - Tantor the Unclean"]["activity"] = "leading troops";
+
+    DataAccess->savePlayerDomains("gorthaur", data);
+    mapping loadedData = DataAccess->getPlayerDomains("gorthaur");
+
+    ExpectEq("idle", loadedData["argalach castle"]["keep"]["components"]
+        ["main stone keep"]["henchmen"]["3 - Tantor the Unclean"]["activity"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UpdatesToUnitTraitsSavedCorrectly()
+{
+    mapping data = SetupDomain();
+
+    DataAccess->savePlayerDomains("gorthaur", data);
+    mapping loadedData = DataAccess->getPlayerDomains("gorthaur");
+
+    ExpectEq(data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["units"],
+        loadedData["argalach castle"]["keep"]["components"]["main stone keep"]["units"]);
+
+    data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["units"]
+        ["3 - Weasel Brigade"]["traits"] = ({
+            "magic armor",
+            "confident",
+            "well-rested"
+            });
+
+    DataAccess->savePlayerDomains("gorthaur", data);
+    loadedData = DataAccess->getPlayerDomains("gorthaur");
+
+    ExpectEq(data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["units"],
+        loadedData["argalach castle"]["keep"]["components"]["main stone keep"]["units"]);
 }

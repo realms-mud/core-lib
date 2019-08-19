@@ -94,6 +94,7 @@ private nomask mapping getHenchmen(int componentId, int dbHandle)
     do
     {
         result = db_fetch(dbHandle);
+
         if (result)
         {
             string key = sprintf("%d - %s",
@@ -104,17 +105,20 @@ private nomask mapping getHenchmen(int componentId, int dbHandle)
                 "originating location": to_int(result[1]),
                 "current location": convertString(result[2]),
                 "name": convertString(result[3]),
-                "activity": convertString(result[4]),
-                "persona": convertString(result[5]),
-                "level": to_int(result[6]),
-                "experience": to_int(result[7]),
-                "opinion": to_int(result[8]),
-                "opinion type": convertString(result[9])
+                "gender": to_int(result[4]),
+                "race": convertString(result[5]),
+                "age": to_int(result[6]),
+                "activity": convertString(result[7]),
+                "persona": convertString(result[8]),
+                "level": to_int(result[9]),
+                "experience": to_int(result[10]),
+                "opinion": to_int(result[11]),
+                "opinion type": convertString(result[12])
             ]);
 
             if (ret[key]["activity"] == "leading troops")
             {
-                ret[key]["unit id"] = to_int(result[10]);
+                ret[key]["unit id"] = to_int(result[13]);
 
                 if (!ret[key]["unit id"])
                 {
@@ -167,16 +171,16 @@ private nomask mapping getUnits(int componentId, int dbHandle)
                 "current unit size": to_int(result[5]),
                 "movement": to_int(result[6]),
                 "skill": to_int(result[7]),
-                "current location": convertString(result[8]),
+                "current location": convertString(result[9]),
             ]);
 
-            if (result[9])
+            if (to_int(result[10]))
             {
-                ret[key]["leader ID"] = to_int(result[9]);
+                ret[key]["leader ID"] = to_int(result[10]);
             }
-            if (result[10])
+            if (to_int(result[11]))
             {
-                ret[key]["led by owner"] = to_int(result[10]);
+                ret[key]["led by owner"] = to_int(result[11]);
             }
         }
     } while (result);
@@ -330,6 +334,152 @@ protected nomask mapping getPlayerDomainData(string player, int dbHandle)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void saveUnitTraits(int dbHandle, int unitId,
+    string *traits)
+{
+    if (sizeof(traits))
+    {
+        string query = sprintf("delete from domainUnitTraits "
+            "where unitId = %d and name not in ('%s');",
+            unitId, implode(traits, "','"));
+
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+
+        foreach(string trait in traits)
+        {
+            query = sprintf("call saveUnitTraits"
+                "(%d,'%s');",
+                unitId,
+                sanitizeString(trait));
+
+            db_exec(dbHandle, query);
+            result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveDomainUnits(int dbHandle, int componentId, 
+    mapping data)
+{
+    if (sizeof(data))
+    {
+        string *units = sort_array(m_indices(data), (: $1 > $2 :));
+        foreach(string unit in units)
+        {
+            string query = sprintf("select saveDomainUnit(%d,'%s',"
+                "'%s',%d,%d,%d,%d,%d,%d,%d,'%s');",
+                componentId,
+                sanitizeString(data[unit]["type"]),
+                sanitizeString(data[unit]["name"]),
+                data[unit]["morale"],
+                data[unit]["unit capacity"],
+                data[unit]["current unit size"],
+                data[unit]["movement"],
+                data[unit]["skill"],
+                data[unit]["leader ID"],
+                data[unit]["led by owner"],
+                sanitizeString(data[unit]["current location"]));
+
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+
+            if (result)
+            {
+                saveUnitTraits(dbHandle, to_int(result[0]),
+                    data[unit]["traits"]);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveHenchmanSkills(int dbHandle, int henchmanId,
+    mapping data)
+{
+    if (sizeof(data))
+    {
+        string *skills = m_indices(data);
+        foreach(string skill in skills)
+        {
+            string query = sprintf("call saveHenchmanSkills"
+                "(%d,'%s',%d);",
+                henchmanId,
+                sanitizeString(skill),
+                data[skill]);
+
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveHenchmanTraits(int dbHandle, int henchmanId,
+    string *traits)
+{
+    if (sizeof(traits))
+    {
+        string query = sprintf("delete from domainHenchmanTraits "
+            "where henchmanId = %d and path not in ('%s');",
+            henchmanId, implode(traits, "','"));
+
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+
+        foreach(string trait in traits)
+        {
+            query = sprintf("call saveHenchmanTraits"
+                "(%d,'%s');",
+                henchmanId,
+                sanitizeString(trait));
+
+            db_exec(dbHandle, query);
+            result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveDomainHenchmen(int dbHandle, mapping data)
+{
+    if (sizeof(data))
+    {
+        string *henchmen = sort_array(m_indices(data), (: $1 > $2 :));
+        foreach(string henchman in henchmen)
+        {
+            string query = sprintf("select saveDomainHenchman(%d,'%s',"
+                "%d,'%s',%d,'%s','%s','%s',%d,%d,%d,'%s');",
+                data[henchman]["originating location"],
+                sanitizeString(data[henchman]["name"]),
+                data[henchman]["gender"],
+                sanitizeString(data[henchman]["race"]),
+                data[henchman]["age"],
+                sanitizeString(data[henchman]["current location"]),
+                sanitizeString(data[henchman]["activity"]),
+                sanitizeString(data[henchman]["persona"]),
+                data[henchman]["level"],
+                data[henchman]["experience"],
+                data[henchman]["opinion"],
+                sanitizeString(data[henchman]["opinion type"]));
+
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+
+            if (result)
+            {
+                saveHenchmanSkills(dbHandle, to_int(result[0]),
+                    data[henchman]["skills"]);
+
+                saveHenchmanTraits(dbHandle, to_int(result[0]),
+                    data[henchman]["traits"]);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void saveDomainComponentMaterials(int dbHandle, int componentId,
     mapping data)
 {
@@ -374,6 +524,11 @@ private nomask void saveDomainComponents(int dbHandle, int sectionId, mapping da
             {
                 saveDomainComponentMaterials(dbHandle, to_int(result[0]),
                     data[component]["materials"]);
+
+                saveDomainHenchmen(dbHandle, data[component]["henchmen"]);
+
+                saveDomainUnits(dbHandle, to_int(result[0]),
+                    data[component]["units"]);
             }
         }
     }

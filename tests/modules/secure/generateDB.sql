@@ -12,6 +12,16 @@ drop function if exists saveDomainSection;
 ##
 drop function if exists saveDomainComponent;
 ##
+drop function if exists saveDomainHenchman;
+##
+drop function if exists saveDomainUnit;
+##
+drop procedure if exists saveHenchmanSkills;
+##
+drop procedure if exists saveHenchmanTraits;
+##
+drop procedure if exists saveUnitTraits;
+##
 drop procedure if exists saveDomainComponentMaterials;
 ##
 drop procedure if exists saveBiologicalInformation;
@@ -526,6 +536,9 @@ CREATE TABLE `domainHenchmen` (
   `originatingLocationId` INT NOT NULL,
   `currentLocation` VARCHAR(256) NOT NULL,
   `name` VARCHAR(128) NOT NULL,
+  `gender` INT NOT NULL,
+  `race` VARCHAR(45) NOT NULL DEFAULT 'human',
+  `age` INT NOT NULL DEFAULT 21,
   `activity` VARCHAR(64) NOT NULL DEFAULT 'idle',
   `persona` VARCHAR(64) NOT NULL,
   `level` INT NOT NULL DEFAULT 1,
@@ -557,7 +570,7 @@ CREATE TABLE `domainHenchmanTraits` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 ##
 CREATE TABLE `domainUnits` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(45) NOT NULL,
   `name` VARCHAR(100) NOT NULL,
   `morale` INT NOT NULL,
@@ -571,7 +584,7 @@ CREATE TABLE `domainUnits` (
   `leaderIsOwner` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `unit_location_idx` (`locationId` ASC),
-  CONSTRAINT `unit_location` FOREIGN KEY (`locationId`) REFERENCES `domainSectionComponents` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `unit_location` FOREIGN KEY (`locationId`) REFERENCES `domainSectionComponents` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `unit_leader` FOREIGN KEY (`leaderId`) REFERENCES `domainHenchmen` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
@@ -776,7 +789,7 @@ BEGIN
                            maximumStructure = p_max,
                            currentStructure = p_current,
                            timeUntilRepaired = p_time
-        where id = sectionId;
+        where id = componentId;
     else
         insert into domainSectionComponents (sectionId, type, name, maximumStructure, 
             currentStructure, timeUntilRepaired)
@@ -787,6 +800,82 @@ BEGIN
         where sectionId = p_sectionId and type = p_type;
     end if;
 RETURN componentId;
+END;
+##
+CREATE FUNCTION `saveDomainHenchman` ( p_locationId int,  p_name varchar(128), 
+    p_gender int,  p_race varchar(45), p_age int, p_currentLocation varchar(256),
+    p_activity varchar(64), p_persona varchar(64), p_level int, p_experience int, 
+    p_opinion int, p_opinionType varchar(45)) RETURNS int(11)
+BEGIN
+    declare henchmanId int;
+
+    select id into henchmanId
+    from domainHenchmen 
+    where originatingLocationId = p_locationId and name = p_name and persona = p_persona;
+
+    if henchmanId is not null then
+        update domainHenchmen set age = p_age,
+                           currentLocation = p_currentLocation,
+                           activity = p_activity,
+                           level = p_level,
+                           experience = p_experience,
+                           opinion = p_opinion,
+                           opinionType = p_opinionType
+        where id = henchmanId;
+    else
+        INSERT INTO domainHenchmen
+            (originatingLocationId, currentLocation, name, gender, race, age, activity, persona,
+                level, experience, opinion, opinionType)
+        VALUES (p_locationId, p_currentLocation, p_name, p_gender, p_race, p_age, p_activity, 
+                p_persona, p_level, p_experience, p_opinion, p_opinionType);
+
+        select id into henchmanId
+        from domainHenchmen 
+        where originatingLocationId = p_locationId and name = p_name and persona = p_persona;
+    end if;
+RETURN henchmanId;
+END;
+##
+CREATE FUNCTION `saveDomainUnit` ( p_locationId int,  p_type varchar(45),
+    p_name varchar(100), p_morale int, p_maxTroops int, p_currentTroops int,
+    p_movement int, p_skill int, p_leaderId int, p_leaderIsOwner int, 
+    p_currentLocation varchar(256)) RETURNS int(11)
+BEGIN
+    declare unitId int;
+
+    select id into unitId
+    from domainUnits 
+    where locationId = p_locationId and name = p_name and type = p_type;
+
+    if unitId is not null then
+        update domainUnits set morale = p_morale,
+                           maxTroops = p_maxTroops,
+                           currentTroops = p_currentTroops,
+                           movement = p_movement,
+                           skill = p_skill,
+                           leaderId = p_leaderId,
+                           leaderIsOwner = p_leaderIsOwner,
+                           currentLocation = p_currentLocation
+        where id = unitId;
+
+    else
+        insert into domainUnits 
+            (type, name, morale, maxTroops, currentTroops, movement, skill, locationId,
+                leaderIsOwner, currentLocation)
+            values (p_type, p_name, p_morale, p_maxTroops, p_currentTroops, p_movement, 
+                p_skill, p_locationId, p_leaderIsOwner, p_currentLocation);
+
+        select id into unitId
+        from domainUnits 
+        where locationId = p_locationId and name = p_name and type = p_type;
+
+        if p_leaderId > 0 then
+            update domainUnits set leaderId = p_leaderId
+            where id = unitId;  
+        end if;
+
+    end if;
+RETURN unitId;
 END;
 ##
 CREATE PROCEDURE `saveDomainComponentMaterials` ( p_componentId int, 
@@ -804,6 +893,52 @@ BEGIN
     else
         insert into domainComponentMaterials (componentId, type, name)
         values (p_componentId, p_type, p_name);
+    end if;
+END;
+##
+CREATE PROCEDURE `saveHenchmanSkills` ( p_henchmanId int, 
+    p_name varchar(45), p_value int)
+BEGIN
+    declare skillId int;
+
+    select id into skillId
+    from domainHenchmanSkills 
+    where henchmanId = p_henchmanId and name = p_name;
+    
+    if skillId is not null then
+        update domainHenchmanSkills set value = p_value
+        where id = skillId;
+    else
+        insert into domainHenchmanSkills (henchmanId, name, value)
+        values (p_henchmanId, p_name, p_value);
+    end if;
+END;
+##
+CREATE PROCEDURE `saveHenchmanTraits` ( p_henchmanId int, p_path varchar(200))
+BEGIN
+    declare traitId int;
+
+    select id into traitId
+    from domainHenchmanTraits 
+    where henchmanId = p_henchmanId and path = p_path;
+    
+    if traitId is null then
+        insert into domainHenchmanTraits (henchmanId, path)
+        values (p_henchmanId, p_path);
+    end if;
+END;
+##
+CREATE PROCEDURE `saveUnitTraits` ( p_unitId int, p_trait varchar(128))
+BEGIN
+    declare traitId int;
+
+    select id into traitId
+    from domainUnitTraits 
+    where unitId = p_unitId and name = p_trait;
+    
+    if traitId is null then
+        insert into domainUnitTraits (unitId, name)
+        values (p_unitId, p_trait);
     end if;
 END;
 ##
