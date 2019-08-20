@@ -30,12 +30,29 @@ public nomask void shutdownGame()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs string timeLeft(int time)
+{
+    // Eek! Magic numbers everywhere! As soon as I'm getting paid more than
+    // $0/hr for this, I'll fix it...
+    return sprintf("%s%s%s%s%s",
+        ((time / 31557600) ? sprintf("%d year%s ", (time / 31557600),
+        ((time / 31557600) == 1) ? "" : "s") : ""),
+            ((time / 86400) ? sprintf("%d day%s ", ((time % 31557600) / 86400),
+        (((time % 31557600) / 86400) == 1) ? "" : "s") : ""),
+                ((time / 3600) ? sprintf("%d hour%s ", ((time % 86400) / 3600),
+        (((time % 86400) / 3600) == 1) ? "" : "s") : ""),
+                    ((time / 60) ? sprintf("%d minute%s ", ((time % 3600) / 60),
+        (((time % 3600) / 60) == 1) ? "" : "s") : ""),
+        sprintf("%d second%s", (time % 60), (((time % 60) == 1) ? "" : "s")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void notifyUsers(int time)
 {
     object *userList = users();
     if (sizeof(userList))
     {
-        string timeLeft = userList[0]->ageString(time);
+        string timeLeft = timeLeft(time);
 
         foreach(object user in userList)
         {

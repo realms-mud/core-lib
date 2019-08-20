@@ -88,12 +88,12 @@ void CanExecuteRebootCommandWithTime()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanExecuteRebootCommandWithZeroTimeAsOneSecond()
+void CanExecuteRebootCommandWithZeroTime()
 {
     ToggleCallOutBypass();
     ExpectTrue(ElderWizard->executeCommand("reboot -t 0"));
 
-    ExpectSubStringMatch("The MUD will reboot in 1 second",
+    ExpectSubStringMatch("The MUD will reboot in 0 seconds",
         ElderWizard->caughtMessages());
     ToggleCallOutBypass();
 }
