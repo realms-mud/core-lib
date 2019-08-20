@@ -26,21 +26,24 @@ The mudlib has been broken down into what I felt was a sensible directory struct
 
 - /commands is the area where player and wizard actions/commands have been implemented. Commands all inherit from baseCommand.c and consist of one or more command templates (one or more regular expression-like definitions that show what a user types to execute the command) and the execution action. For those commands that are limited in scope of who can use them, there is a role-based access control system integrated.
 - /core contains the base generic mudlib components that are used in multiple mudlib areas such as the event handling system, a message parser, the state machine framework, the user object modularization components, and the prerequisites and specification systems.
-- /dictionaries contains the implementation of service-like components that environments, guilds, users, and equipment use - methods that shouldn't reside in instantiated objects.
+- /dictionaries contains the implementation of service-like components that environments, domains, guilds, users, and equipment use - methods that shouldn't reside in instantiated objects.
+- /documentation contains the documentation for creators desiring to add content using this mudlib (sorry all - it's incomplete and very much a work in progress!)
 - /environment contains everything needed to create a "room"/user's environment. Rather than writing "one off" descriptions, environments are built by adding their component features in place. This allows for easy translation to non-text (ie: areas that can be easily translated into 3D objects in a non-text world.) The individual objects have time-of-day, season, and state description modifiers. These are used to build description strings from the individual fragments of text. See buildings/shops/alchemist.c for an example of these objects.
-- /instances are concrete implementations of items, research, and other core components that all creators can use to build their areas.
+- /guilds/scion contains an example guild
+- /instances are concrete implementations of items, research, traits, and other core components that all creators can use to build their areas.
 - /items is the implementation of the various objects that a user can ultimately carry (armor, weapons, books, etc).
-- /items/inventory contains the inventory management aspects of shops (used by /environment/shopInventories/baseShop.c - I should move these, actually. :) )
 - /modules contains all of the components used to create/assemble the various living creature archetypes (players, monsters, sophisticated NPCs, etc)
 - /modules/<subdirectory> contains the ancillary components for modules:
     - conversations contains the conversation tree builder
     - creation contains all of the user-creation components
+    - domains contains all of the user domain and holdings management content
     - guilds contains the component that is used to define guilds
     - quests contains the quest definition and visualization components
     - research contains all of the definition objects for the different types of research.
     - secure is a replaceable section for data persistence of the player object. It's currently a pretty straightforward data access layer tying to the database/stored procedures defined in /tests/modules/secure/generateDB.sql. I've got a fluent ORM implemented in LPC that I'm not ready to share yet. 
     - traits contains the trait definition component and a whole lot of traits (many are only shells - others such as those in /modules/traits/educational are fully defined.)
 - /realizations are built-up collections of modules. For example, living identified the modules all living creatures have, player.c adds player-only elements, wizard.c adds wiz-level stuff, etc.
+- /tutorial contains the in-game player tutorial. While it's a halfway decent introduction into how to create content in the mudlib, that was not its primary goal and it will most assuredly have gaps between what's implemented there and everything the mudlib is capable of.
 
 All lib functionality is exercised in the /tests directory. In order to see how to use something, you can simply look at its associated tests to glean ideas on how 
 to implement it. The /tests/support directory contains "test helpers" in addition to some concrete examples of items, quests, guilds, research, and so on.
