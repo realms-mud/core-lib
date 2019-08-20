@@ -21,4 +21,5 @@ protected nomask void applyGroupDetails()
     addPermission("/lib/dictionaries/groups", None);
     addPermission("/lib/tests/dictionaries/groups", None);
     addCommand("hiz");
+    addCommand("reboot");
 }

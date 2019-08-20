@@ -34,8 +34,6 @@ private nomask void shoutMessage(string message, string messageTemplate,
         targets += ({ initiator });
     }
 
-    object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
-
     foreach(object target in targets)
     {
         string newMessage = message;
