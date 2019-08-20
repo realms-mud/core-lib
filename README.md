@@ -33,7 +33,7 @@ The mudlib has been broken down into what I felt was a sensible directory struct
 - /instances are concrete implementations of items, research, traits, and other core components that all creators can use to build their areas.
 - /items is the implementation of the various objects that a user can ultimately carry (armor, weapons, books, etc).
 - /modules contains all of the components used to create/assemble the various living creature archetypes (players, monsters, sophisticated NPCs, etc)
-- /modules/<subdirectory> contains the ancillary components for modules:
+- /modules/{subdirectory} contains the ancillary components for modules:
     - conversations contains the conversation tree builder
     - creation contains all of the user-creation components
     - domains contains all of the user domain and holdings management content
