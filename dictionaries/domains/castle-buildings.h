@@ -193,10 +193,10 @@ private mapping CastleBuildings = ([
         ]),
     ]),
 
-    "kitchen northwest castle building":([
+    "kitchen northwest castle building": ([
         "type": "northwest castle building",
         "dimensions": "2x1",
-        "display name": "Bakehouse and Brewery",
+        "display name": "Food and Drink",
         "description": "",
         "colors": ([
             "default":([

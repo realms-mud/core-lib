@@ -7,7 +7,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("leatherworking");
+    Name("art gallery");
 
     addTimeOfDayDescription("dawn", ({
         ". It has a closed sign in the window. A light is shining out from the windows"
@@ -32,11 +32,11 @@ public void Setup()
     addSeasonDescription("summer", ({ " that has ivy climbing high up its walls" }));
     addSeasonDescription("autumn", ({ " with ivy whose leaves are turning a deep red color still clinging to the walls" }));
 
-    addDescriptionTemplate("a leatherworking shop in a wooden building");
     addSourceOfLight(7, "default", "night");
 
+    addDescriptionTemplate("an art gallery in a wooden building");
     addNearDarkDescriptionTemplate("the silhouette of a building");
     addLowLightDescriptionTemplate("the silhouette of a two-story building");
-    addDimLightDescriptionTemplate("a dark, possibly wood two-story building");
-    addSomeLightDescriptionTemplate("a two-story wooden building");
+    addDimLightDescriptionTemplate("a dark, possibly wooden two-story building");
+    addSomeLightDescriptionTemplate("a wooden two-story building");
 }

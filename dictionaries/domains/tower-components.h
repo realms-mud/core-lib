@@ -488,7 +488,8 @@ private mapping TowerComponents = ([
             "mage": 5,
         ]),
         "henchmen": ([
-            "magic user": 2
+            "magic user": 1,
+            "arcane craftsman": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),

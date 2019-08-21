@@ -538,7 +538,8 @@ private mapping StoneKeepComponents = ([
         "default units": ([
         ]),
         "henchmen": ([
-            "magic user": 8
+            "magic user": 5,
+            "arcane craftsman": 3
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 20]),

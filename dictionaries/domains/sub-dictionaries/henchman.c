@@ -96,8 +96,9 @@ public nomask int isValidHenchmanType(string data)
         "concubine", "magic user", "artisan", "sage", "noble", "scholar", 
         "scion of dhuras", "phaedra", "engineer", "architect", "blacksmith", 
         "carpenter", "stonemason", "armorer", "weaponsmith", "banker", "innkeeper",
-        "foreman", "retailer", "administrator", "scientist", 
-        "arcane craftsman" }), data) > -1;
+        "foreman", "retailer", "administrator", "scientist", "farmer",
+        "arcane craftsman", "miner", "trader", "priest", "monk", "druid",
+        "entertainer" }), data) > -1;
 }
 
 /////////////////////////////////////////////////////////////////////////////

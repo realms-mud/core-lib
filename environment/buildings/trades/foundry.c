@@ -7,6 +7,6 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("foundary");
-    addDescriptionTemplate("a foundary");
+    Name("foundry");
+    addDescriptionTemplate("a foundry");
 }
