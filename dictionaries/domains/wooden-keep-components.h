@@ -14,7 +14,9 @@ private mapping WoodenKeepComponents = ([
             "man-at-arms": 10,
             "spearman": 15,
             "light infantry": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
         ]),
         "structure": 100,
         "defend ground attack": 5,
@@ -27,9 +29,13 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 10,
             "knight": 5,
-            "henchman": 3,
             "spearman": 25,
             "light infantry": 25,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1,
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -54,9 +60,15 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 5,
             "spearman": 35,
             "swordsman": 35,
+        ]),
+        "henchmen": ([
+            "seneschal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 8]),
@@ -82,7 +94,9 @@ private mapping WoodenKeepComponents = ([
             "man-at-arms": 10,
             "spearman": 15,
             "light infantry": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -98,9 +112,13 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 10,
             "knight": 5,
-            "henchman": 3,
             "spearman": 25,
             "light infantry": 25,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1,
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -125,9 +143,15 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 5,
             "spearman": 35,
             "swordsman": 35,
+        ]),
+        "henchmen": ([
+            "seneschal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 8]),
@@ -153,7 +177,9 @@ private mapping WoodenKeepComponents = ([
             "man-at-arms": 10,
             "spearman": 15,
             "light infantry": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -169,9 +195,13 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 10,
             "knight": 5,
-            "henchman": 3,
             "spearman": 25,
             "light infantry": 25,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1,
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -196,9 +226,15 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 5,
             "spearman": 35,
             "swordsman": 35,
+        ]),
+        "henchmen": ([
+            "seneschal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 8]),
@@ -224,7 +260,10 @@ private mapping WoodenKeepComponents = ([
             "man-at-arms": 10,
             "spearman": 15,
             "light infantry": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -240,9 +279,13 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 10,
             "knight": 5,
-            "henchman": 3,
             "spearman": 25,
             "light infantry": 25,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1,
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -267,9 +310,15 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 5,
             "spearman": 35,
             "swordsman": 35,
+        ]),
+        "henchmen": ([
+            "seneschal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 8]),
@@ -293,7 +342,9 @@ private mapping WoodenKeepComponents = ([
         "experience modifier": 1,
         "default units": ([
             "man-at-arms": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
         ]),
         "structure": 50,
         "defend ground attack": 5,
@@ -305,7 +356,9 @@ private mapping WoodenKeepComponents = ([
         "experience modifier": 1,
         "default units": ([
             "man-at-arms": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -320,7 +373,9 @@ private mapping WoodenKeepComponents = ([
         "experience modifier": 1,
         "default units": ([
             "man-at-arms": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -335,7 +390,9 @@ private mapping WoodenKeepComponents = ([
         "experience modifier": 1,
         "default units": ([
             "man-at-arms": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 5]),
@@ -351,7 +408,10 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 10,
             "knight": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 10]),
@@ -376,7 +436,10 @@ private mapping WoodenKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 15]),
@@ -399,7 +462,11 @@ private mapping WoodenKeepComponents = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "henchman": 5,
+        ]),
+        "henchmen": ([
+            "administrator": 1,
+            "scholar": 2,
+            "scientist": 2
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 20]),
@@ -422,7 +489,9 @@ private mapping WoodenKeepComponents = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "mage henchman": 6,
+        ]),
+        "henchmen": ([
+            "magic user": 6
         ]),
         "building prerequisites": ([
             "carpentry": (["type":"skill", "value": 20]),

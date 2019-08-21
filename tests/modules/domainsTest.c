@@ -225,7 +225,7 @@ void GetHenchmenReturnsCorrectTypeOfHenchmen()
 {
     mapping henchman = ([
         "name":"Tantor the Unclean",
-        "type" : "craftsman",
+        "type" : "carpenter",
         "persona" : "swordsman",
         "traits": ({ "lib/instances/traits/domains/journeyman-carpenter.c" }),
         "level" : 10,
@@ -243,6 +243,6 @@ void GetHenchmenReturnsCorrectTypeOfHenchmen()
     ExpectEq("building", tantor->activity());
     ExpectEq("swordsman", tantor->persona());
     ExpectEq(10, tantor->effectiveLevel());
-    ExpectEq("craftsman", tantor->type());
+    ExpectEq("carpenter", tantor->type());
     ExpectTrue(tantor->hasTraitOfRoot("carpenter"), "is a carpenter");
 }

@@ -93,9 +93,11 @@ public nomask int isValidActivity(string location, string activity)
 public nomask int isValidHenchmanType(string data)
 {
     return member(({ "aegis", "diplomat", "senechal", "advisor", "soldier",
-        "concubine", "mage", "artisan", "sage", "noble", "scholar",
-        "engineer", "architect", "craftsman", "banker", "innkeeper",
-        "retailer", "manager", "scientist", "arcane craftsman" }), data) > -1;
+        "concubine", "magic user", "artisan", "sage", "noble", "scholar", 
+        "scion of dhuras", "phaedra", "engineer", "architect", "blacksmith", 
+        "carpenter", "stonemason", "armorer", "weaponsmith", "banker", "innkeeper",
+        "foreman", "retailer", "administrator", "scientist", 
+        "arcane craftsman" }), data) > -1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -171,23 +173,16 @@ public nomask mapping getRandomHenchman(string type, string rating, int cost,
 {
     mapping ret = ([]);
 
-    string revisedType = type;
-    if (member(({ "engineer", "architect", "arcane craftsman", "blacksmith",
-           "carpenter", "stonemason" }), type) > -1)
-    {
-        revisedType = "craftsman";
-    }
-
-    if(isValidHenchmanType(revisedType) &&
+    if(isValidHenchmanType(type) &&
        (member(({ "apprentice", "journeyman", "master" }), rating) > -1))
     {
         string gender = (random(100) >= 50) ? "female": "male";
 
-        return ([
+        ret = ([
             "name": getName(gender),
             "house": getFamilyName(),
             "gender": gender,
-            "type": revisedType,
+            "type": type,
             "traits": ({ sprintf("lib/instances/traits/domains/%s-%s.c",
                 rating, type) }),
             "cost": cost,
@@ -197,6 +192,8 @@ public nomask mapping getRandomHenchman(string type, string rating, int cost,
             "activity": "idle"
         ]);
     }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

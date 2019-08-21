@@ -14,7 +14,10 @@ private mapping StoneKeepComponents = ([
             "man-at-arms": 15,
             "spearman": 25,
             "light infantry": 25,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1
         ]),
         "structure": 250,
         "defend ground attack": 6,
@@ -27,9 +30,14 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 4,
             "spearman": 40,
             "light infantry": 40,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -56,9 +64,16 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 20,
             "knight": 10,
-            "henchman": 6,
             "spearman": 35,
             "swordsman": 35,
+        ]),
+        "henchmen": ([
+            "seneschal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1,
+            "scholar": 1,
+            "magic user": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 10]),
@@ -86,7 +101,10 @@ private mapping StoneKeepComponents = ([
             "man-at-arms": 15,
             "spearman": 25,
             "light infantry": 25,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -103,9 +121,14 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 4,
             "spearman": 40,
             "light infantry": 40,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -132,9 +155,16 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 20,
             "knight": 10,
-            "henchman": 6,
             "spearman": 35,
             "swordsman": 35,
+        ]),
+        "henchmen": ([
+            "seneschal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1,
+            "scholar": 1,
+            "magic user": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 10]),
@@ -162,7 +192,10 @@ private mapping StoneKeepComponents = ([
             "man-at-arms": 15,
             "spearman": 25,
             "light infantry": 25,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -179,9 +212,14 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 4,
             "spearman": 40,
             "light infantry": 40,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -208,9 +246,16 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 20,
             "knight": 10,
-            "henchman": 6,
             "spearman": 35,
             "swordsman": 35,
+        ]),
+        "henchmen": ([
+            "seneschal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1,
+            "scholar": 1,
+            "magic user": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 10]),
@@ -238,7 +283,10 @@ private mapping StoneKeepComponents = ([
             "man-at-arms": 15,
             "spearman": 25,
             "light infantry": 25,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -255,9 +303,14 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 4,
             "spearman": 40,
             "light infantry": 40,
+        ]),
+        "henchmen": ([
+            "senechal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -284,9 +337,16 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 20,
             "knight": 10,
-            "henchman": 6,
             "spearman": 35,
             "swordsman": 35,
+        ]),
+        "henchmen": ([
+            "seneschal": 1,
+            "advisor": 1,
+            "diplomat": 1,
+            "soldier": 1,
+            "scholar": 1,
+            "magic user": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 10]),
@@ -312,7 +372,10 @@ private mapping StoneKeepComponents = ([
         "experience modifier": 1,
         "default units": ([
             "man-at-arms": 10,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "structure": 150,
         "defend ground attack": 6,
@@ -324,7 +387,10 @@ private mapping StoneKeepComponents = ([
         "experience modifier": 1,
         "default units": ([
             "man-at-arms": 10,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -340,7 +406,10 @@ private mapping StoneKeepComponents = ([
         "experience modifier": 1,
         "default units": ([
             "man-at-arms": 10,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -356,7 +425,10 @@ private mapping StoneKeepComponents = ([
         "experience modifier": 1,
         "default units": ([
             "man-at-arms": 10,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
+            "scholar": 1,
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -373,7 +445,11 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 10,
-            "henchman": 3,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
+            "scholar": 1,
+            "noble": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 10]),
@@ -400,7 +476,11 @@ private mapping StoneKeepComponents = ([
         "default units": ([
             "man-at-arms": 20,
             "knight": 10,
-            "henchman": 3,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
+            "scholar": 1,
+            "noble": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -425,7 +505,13 @@ private mapping StoneKeepComponents = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "henchman": 7,
+            "knight": 3,
+        ]),
+        "henchmen": ([
+            "administrator": 1,
+            "magic user": 1,
+            "scholar": 2,
+            "scientist": 3
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 20]),
@@ -450,7 +536,9 @@ private mapping StoneKeepComponents = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "mage henchman": 8,
+        ]),
+        "henchmen": ([
+            "magic user": 8
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 20]),

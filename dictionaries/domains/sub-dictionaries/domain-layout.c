@@ -417,6 +417,19 @@ private nomask mapping aggregateUnitList(mapping constructionData,
                         BuildingComponents[key]["default units"][unit];
                 }
             }
+            if (member(BuildingComponents[key], "henchmen"))
+            {
+                foreach(string unit in
+                    m_indices(BuildingComponents[key]["henchmen"]))
+                {
+                    if (!member(units, "henchman"))
+                    {
+                        units["henchman"] = 0;
+                    }
+                    units["henchman"] +=
+                        BuildingComponents[key]["henchmen"][unit];
+                }
+            }
         }
     }
     return units;

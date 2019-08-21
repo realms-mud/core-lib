@@ -11,7 +11,6 @@ private mapping WallComponents = ([
         "description": "",
         "experience modifier": 1,
         "default units": ([
-
         ]),
         "structure": 50,
         "defend ground attack": 4,
@@ -144,6 +143,7 @@ private mapping WallComponents = ([
         "description": "",
         "experience modifier": 1,
         "default units": ([
+            "archer": 15,
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -291,7 +291,9 @@ private mapping WallComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "man-at-arms": 10,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 250,
         "defend ground attack": 6,
@@ -303,7 +305,9 @@ private mapping WallComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "knight": 10,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 12]),
@@ -328,9 +332,11 @@ private mapping WallComponents = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "archer": 10,
+            "archer": 25,
             "knight": 10,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -355,10 +361,12 @@ private mapping WallComponents = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "archer": 10,
+            "archer": 35,
             "man-at-arms": 15,
             "knight": 10,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -383,10 +391,12 @@ private mapping WallComponents = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "archer": 10,
+            "archer": 25,
             "swordsman": 25,
             "knight": 10,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -457,6 +467,9 @@ private mapping WallComponents = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 10]),

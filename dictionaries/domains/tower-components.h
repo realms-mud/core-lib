@@ -13,7 +13,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "swordsman": 15,
             "light infantry": 25,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 250,
         "defend ground attack": 6,
@@ -26,8 +28,10 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 2,
             "light infantry": 40,
+        ]),
+        "henchmen": ([
+            "soldier": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -54,7 +58,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "swordsman": 15,
             "light infantry": 25,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 250,
         "defend ground attack": 6,
@@ -67,8 +73,10 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 2,
             "light infantry": 40,
+        ]),
+        "henchmen": ([
+            "soldier": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -95,7 +103,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "swordsman": 15,
             "light infantry": 25,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 250,
         "defend ground attack": 6,
@@ -108,8 +118,10 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 2,
             "light infantry": 40,
+        ]),
+        "henchmen": ([
+            "soldier": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -136,7 +148,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "swordsman": 15,
             "light infantry": 25,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 250,
         "defend ground attack": 6,
@@ -149,8 +163,10 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 2,
             "light infantry": 40,
+        ]),
+        "henchmen": ([
+            "soldier": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -177,7 +193,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "swordsman": 5,
             "light infantry": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 200,
         "defend ground attack": 6,
@@ -190,7 +208,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -217,7 +237,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "swordsman": 5,
             "light infantry": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 200,
         "defend ground attack": 6,
@@ -230,7 +252,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -257,7 +281,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "swordsman": 5,
             "light infantry": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 200,
         "defend ground attack": 6,
@@ -270,7 +296,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -297,7 +325,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "swordsman": 5,
             "light infantry": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 200,
         "defend ground attack": 6,
@@ -310,7 +340,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 15,
             "knight": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -336,7 +368,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "archer": 35,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 200,
         "defend ground attack": 6,
@@ -349,7 +383,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "archer": 35,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 200,
         "defend ground attack": 6,
@@ -362,7 +398,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "archer": 35,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 200,
         "defend ground attack": 6,
@@ -375,7 +413,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "archer": 35,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "structure": 200,
         "defend ground attack": 6,
@@ -388,7 +428,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "archer": 50,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -415,7 +457,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "crossbowman": 50,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -442,7 +486,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "mage": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "magic user": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -474,7 +520,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "geomancer": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "magic user": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -506,7 +554,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "aeromancer": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "magic user": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -538,7 +588,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "pyromancer": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "magic user": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -570,7 +622,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "aquamancer": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "magic user": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -602,7 +656,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "cryomancer": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "magic user": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -634,7 +690,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "oneiromancer": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "magic user": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -666,7 +724,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1.1,
         "default units": ([
             "necromancer": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "magic user": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -698,7 +758,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "oxybeles": 3,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -719,7 +781,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "polybolos": 3,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -748,7 +812,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "scorpion": 10,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -776,7 +842,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "cheiroballistra": 10,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -805,7 +873,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "ballistae": 3,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -833,7 +903,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "katapeltikon": 1,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -854,7 +926,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "onager": 1,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -882,7 +956,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "catapult": 1,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -910,7 +986,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "petrartia arcatinus": 1,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -939,7 +1017,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "mangonel": 1,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -967,7 +1047,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "trebuchet": 1,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -995,7 +1077,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "couillard": 1,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -1024,7 +1108,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "cannon": 2,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "engineer": 1
         ]),
         "building prerequisites": ([
             "lib/instances/research/crafting/materials/gunpowder.c":(["type":"research"]),
@@ -1054,7 +1140,9 @@ private mapping TowerComponents = ([
         "experience modifier": 1,
         "default units": ([
             "swordsman": 10,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -1073,7 +1161,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 10,
             "knight": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -1100,7 +1190,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 25,
             "knight": 5,
-            "henchman": 2,
+        ]),
+        "henchmen": ([
+            "soldier": 2
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -1127,7 +1219,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 10,
             "bombadier": 5,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -1155,7 +1249,9 @@ private mapping TowerComponents = ([
         "default units": ([
             "man-at-arms": 10,
             "archer": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),
@@ -1184,7 +1280,11 @@ private mapping TowerComponents = ([
             "man-at-arms": 25,
             "archer": 25,
             "knight": 15,
-            "henchman": 3,
+        ]),
+        "henchmen": ([
+            "soldier": 1,
+            "scholar": 1,
+            "magic user": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 20]),
@@ -1213,7 +1313,9 @@ private mapping TowerComponents = ([
             "ballistae": 3,
             "man-at-arms": 10,
             "archer": 15,
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "soldier": 1
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 15]),

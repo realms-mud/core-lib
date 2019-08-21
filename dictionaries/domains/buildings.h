@@ -12,9 +12,11 @@ protected mapping BuildingBlueprints = ([
         "experience modifier": 1.1,
         "default units": ([
             "knight": 5,
-            "henchman": 1,
             "light cavalry": 15,
             "heavy cavalry": 5,
+        ]),
+        "henchmen": ([
+            "military": 1,
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -39,10 +41,12 @@ protected mapping BuildingBlueprints = ([
         "experience modifier": 1.1,
         "default units": ([
             "men-at-arms": 10,
-            "henchman": 1,
             "swordsman": 25,
             "axeman": 15,
             "spearman": 15,
+        ]),
+        "henchmen": ([
+            "military": 1,
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -66,7 +70,9 @@ protected mapping BuildingBlueprints = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "military": 1,
         ]),
         "effects": ([
             "well-equipped":([
@@ -98,8 +104,10 @@ protected mapping BuildingBlueprints = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "henchman": 1,
             "knight": 5,
+        ]),
+        "henchmen": ([
+            "military": 1,
         ]),
         "effects": ([
             "well-trained":([
@@ -129,8 +137,10 @@ protected mapping BuildingBlueprints = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "henchman": 1,
             "archer": 50,
+        ]),
+        "henchmen": ([
+            "military": 1,
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -154,8 +164,10 @@ protected mapping BuildingBlueprints = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "henchman": 1,
             "crossbowman": 50,
+        ]),
+        "henchmen": ([
+            "military": 1,
         ]),
         "building prerequisites": ([
             "stonemasonry": (["type":"skill", "value": 5]),
@@ -179,8 +191,10 @@ protected mapping BuildingBlueprints = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "henchman": 1,
             "phaedra": 25,
+        ]),
+        "henchmen": ([
+            "phaedra": 1,
         ]),
         "building prerequisites": ([
             "phaedra":(["type":"trait", "value" : ({
@@ -211,8 +225,10 @@ protected mapping BuildingBlueprints = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "henchman": 1,
             "aegis guard": 10,
+        ]),
+        "henchmen": ([
+            "aegis": 1,
         ]),
         "building prerequisites": ([
             "aegis":(["type":"guild", "value" : ({ "aegis" }) ]),
@@ -237,8 +253,10 @@ protected mapping BuildingBlueprints = ([
         "description": "",
         "experience modifier": 1.1,
         "default units": ([
-            "henchman": 1,
             "scion of dhuras": 10,
+        ]),
+        "henchmen": ([
+            "scion of dhuras": 1,
         ]),
         "building prerequisites": ([
             "scion of dhuras": (["type":"guild", "value" : ({ "scion of dhuras" })]),
@@ -262,8 +280,10 @@ protected mapping BuildingBlueprints = ([
         "type": "craftsman's floorplan",
         "description": "",
         "default units": ([
-            "henchman": 1,
+        ]),
+        "henchmen": ([
             "blacksmith": 2,
+            "engineer": 1,
         ]),
         "effects": ([
             "smelt metal":([
@@ -296,8 +316,9 @@ protected mapping BuildingBlueprints = ([
         "type": "craftsman's floorplan",
         "description": "",
         "default units": ([
-            "henchman": 1,
-            "blacksmith": 2,
+        ]),
+        "henchmen": ([
+            "blacksmith": 3,
         ]),
         "effects": ([
             "blacksmithing":([
@@ -326,7 +347,9 @@ protected mapping BuildingBlueprints = ([
         "type": "craftsman's floorplan",
         "description": "",
         "default units": ([
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "blacksmith": 1,
             "weaponsmith": 2,
         ]),
         "effects": ([
@@ -365,7 +388,9 @@ protected mapping BuildingBlueprints = ([
         "type": "craftsman's floorplan",
         "description": "",
         "default units": ([
-            "henchman": 1,
+        ]),
+        "henchmen": ([
+            "blacksmith": 1,
             "armorer": 2,
         ]),
         "effects": ([
@@ -404,7 +429,10 @@ protected mapping BuildingBlueprints = ([
         "type": "craftsman's floorplan",
         "description": "",
         "default units": ([
-            "henchman": 3,
+        ]),
+        "henchmen": ([
+            "architect": 1,
+            "engineer": 2,
         ]),
         "effects": ([
             "craft seige equipment":([
@@ -438,21 +466,38 @@ protected mapping BuildingBlueprints = ([
     "carpenter":([
         "type": "craftsman's floorplan",
         "description": "",
+        "default units": ([
+        ]),
+        "henchmen": ([
+            "carpenter": 3,
+        ]),
         "effects": ([
-        ]),
-        "upgrades": ([
-        ]),
-        "colors": ([
-            "default":([
-                "3-bit": "\x1b[0;31m",
-                "8-bit": "\x1b[0;38;5;9m",
-                "24-bit": "\x1b[0;38;2;200;0;0m"
+            "craft seige equipment":([
+                "action": "craft seige equipment",
+                "duration bonus": 10,
+                "quantity bonus": 10,
             ]),
+            "workshop research": ([
+                "duration bonus": 10,
+                "apply": "1 every 12 hours",
+                "type" : ({ "domains", "crafting" })
+            ])
         ]),
-        "icon":([
-            "ascii": "",
-            "unicode": "",
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 10]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
         ]),
+        "building materials": ([
+            "stone": 100,
+            "wood": 150,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "added duration": 300,
+        "structure": 300,
     ]),
     "stone mason":([
         "type": "craftsman's floorplan",
