@@ -5,7 +5,248 @@
 #ifndef buildings_h
 #define buildings_h
 
-protected mapping BuildingBlueprints = ([
+private mapping BuildingBlueprints = ([
+    "single-story wood": ([
+        "class": "building type",
+        "description": "",
+        "experience modifier": 1.1,
+        "default units": ([
+        ]),
+        "henchmen": ([
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 20,
+            "wood": 100,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "structure": 100,
+    ]),
+
+    "brick and wood": ([
+        "class": "building type",
+        "description": "",
+        "experience modifier": 1.1,
+        "default units": ([
+        ]),
+        "henchmen": ([
+        ]),
+        "effects": ([
+            "increase unit size": ([
+                "action": "increase unit size",
+                "quantity multiplier": 1.5
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 10]),
+            "carpentry": (["type":"skill", "value": 10]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 125,
+            "wood": 150,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "added duration": 200,
+        "structure": 250,
+    ]),
+
+    "ornate wood": ([
+        "class": "building type",
+        "description": "",
+        "experience modifier": 1.1,
+        "default units": ([
+        ]),
+        "henchmen": ([
+        ]),
+        "effects": ([
+            "increase unit size": ([
+                "action": "increase unit size",
+                "quantity multiplier": 1.75
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 10]),
+            "wood crafting": (["type":"skill", "value": 15]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 20,
+            "wood": 250,
+            "metal": 25,
+            "textile": 5,
+        ]),
+        "added duration": 500,
+        "structure": 300,
+    ]),
+
+    "two-story wood": ([
+        "class": "building type",
+        "description": "",
+        "experience modifier": 1.1,
+        "default units": ([
+        ]),
+        "henchmen": ([
+        ]),
+        "effects": ([
+            "increase unit size": ([
+                "action": "increase unit size",
+                "quantity multiplier": 1.5
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 20,
+            "wood": 200,
+            "metal": 25,
+            "textile": 10,
+        ]),
+        "added duration": 200,
+        "structure": 200,
+    ]),
+
+    "three-story wood": ([
+        "class": "building type",
+        "description": "",
+        "experience modifier": 1.1,
+        "default units": ([
+        ]),
+        "henchmen": ([
+        ]),
+        "effects": ([
+            "increase unit size": ([
+                "action": "increase unit size",
+                "quantity multiplier": 2.0
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 10]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 15]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 30,
+            "wood": 350,
+            "metal": 35,
+            "textile": 15,
+        ]),
+        "added duration": 800,
+        "structure": 300,
+    ]),
+
+    "stone": ([
+        "class": "building type",
+        "description": "",
+        "experience modifier": 1.1,
+        "default units": ([
+        ]),
+        "henchmen": ([
+        ]),
+        "effects": ([
+            "increase unit size": ([
+                "action": "increase unit size",
+                "quantity multiplier": 1.25
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 10]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 125,
+            "wood": 50,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "added duration": 200,
+        "structure": 250,
+    ]),
+
+    "two-story stone": ([
+        "class": "building type",
+        "description": "",
+        "experience modifier": 1.1,
+        "default units": ([
+        ]),
+        "henchmen": ([
+        ]),
+        "effects": ([
+            "increase unit size": ([
+                "action": "increase unit size",
+                "quantity multiplier": 1.75
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 15]),
+            "carpentry": (["type":"skill", "value": 10]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 10]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 250,
+            "wood": 100,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "added duration": 400,
+        "structure": 350,
+    ]),
+
+    "three-story stone": ([
+        "class": "building type",
+        "description": "",
+        "experience modifier": 1.1,
+        "default units": ([
+        ]),
+        "henchmen": ([
+        ]),
+        "effects": ([
+            "increase unit size": ([
+                "action": "increase unit size",
+                "quantity multiplier": 2.25
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 20]),
+            "carpentry": (["type":"skill", "value": 15]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 20]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 350,
+            "wood": 200,
+            "metal": 15,
+            "textile": 5,
+        ]),
+        "added duration": 800,
+        "structure": 500,
+    ]),
+
     "stables": ([
         "class": "military floorplan",
         "description": "",
@@ -277,7 +518,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "smelter":([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -319,7 +560,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "foundry":([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -361,7 +602,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "lumber mill":([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -403,7 +644,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "quarry":([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -445,7 +686,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "blacksmith":([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -477,7 +718,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "weaponsmith":([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -519,7 +760,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "swordsmith":([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -560,7 +801,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "bowyer" :([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -601,7 +842,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "armorer":([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -643,7 +884,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "workshop":([
-        "type": "workshop floorplan",
+        "class": "workshop floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -681,7 +922,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "arcane workshop": ([
-        "type": "arcane floorplan",
+        "class": "arcane floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -719,7 +960,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "enchanter's workshop": ([
-        "type": "arcane floorplan",
+        "class": "arcane floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -762,7 +1003,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "laboratory": ([
-        "type": "workshop floorplan",
+        "class": "workshop floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -791,7 +1032,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "carpenter":([
-        "type": "workshop floorplan",
+        "class": "workshop floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -824,7 +1065,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "stonemason":([
-        "type": "workshop floorplan",
+        "class": "workshop floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -857,7 +1098,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "granary":([
-        "type": "storage floorplan",
+        "class": "storage floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -889,7 +1130,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "greenhouse":([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -921,7 +1162,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "barn":([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -952,7 +1193,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "vegetable garden":([
-        "type": "garden layout",
+        "class": "garden layout",
         "description": "",
         "default units": ([
         ]),
@@ -983,7 +1224,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "terraced garden":([
-        "type": "garden layout",
+        "class": "garden layout",
         "description": "",
         "default units": ([
         ]),
@@ -1014,7 +1255,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "orchard":([
-        "type": "garden layout",
+        "class": "garden layout",
         "description": "",
         "default units": ([
         ]),
@@ -1045,7 +1286,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "hedge maze":([
-        "type": "garden layout",
+        "class": "garden layout",
         "description": "",
         "default units": ([
         ]),
@@ -1072,7 +1313,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "flower garden":([
-        "type": "garden layout",
+        "class": "garden layout",
         "description": "",
         "default units": ([
         ]),
@@ -1104,7 +1345,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "well housing":([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1136,7 +1377,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "warehouse":([
-        "type": "storage floorplan",
+        "class": "storage floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1168,7 +1409,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "lumber yard":([
-        "type": "storage floorplan",
+        "class": "storage floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1200,7 +1441,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "mining company":([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1234,7 +1475,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "trading company":([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1260,7 +1501,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "alchemist": ([
-        "type": "workshop floorplan",
+        "class": "workshop floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1286,7 +1527,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "apothecary": ([
-        "type": "workshop floorplan",
+        "class": "workshop floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1312,7 +1553,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "art gallery": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1338,7 +1579,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "bakery": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1364,7 +1605,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "barber": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1389,7 +1630,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "book vendor": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1415,7 +1656,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "brewer": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1441,7 +1682,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "butcher": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1467,7 +1708,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "cartographer": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1493,7 +1734,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "publisher": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1519,7 +1760,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "teamster": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1545,7 +1786,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "water mill": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1577,7 +1818,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "wind mill": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1609,7 +1850,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "dyer": ([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1635,7 +1876,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "engraver": ([
-        "type": "workshop floorplan",
+        "class": "workshop floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1661,7 +1902,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "furrier": ([
-        "type": "workshop floorplan",
+        "class": "workshop floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1687,7 +1928,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "general shop": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1712,7 +1953,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "glass blower": ([
-        "type": "workshop floorplan",
+        "class": "workshop floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1738,7 +1979,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "grocer": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1764,7 +2005,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "inn": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1790,7 +2031,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "jeweler": ([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1816,7 +2057,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "leatherworking shop": ([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1842,7 +2083,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "luthier": ([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1868,7 +2109,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "potter": ([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1894,7 +2135,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "ship wright": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1920,7 +2161,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "spice merchant": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1946,7 +2187,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "tailor": ([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1972,7 +2213,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "tavern": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -1998,7 +2239,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "vinter": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2024,7 +2265,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "wainwright": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2050,7 +2291,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "weaver": ([
-        "type": "craftsman's floorplan",
+        "class": "craftsman's floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2076,7 +2317,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "bank": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2102,7 +2343,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "brothel": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2128,7 +2369,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "market": ([
-        "type": "commerce floorplan",
+        "class": "commerce floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2153,7 +2394,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "distillery": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2179,7 +2420,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "kitchen": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2205,7 +2446,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "bakehouse": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2231,7 +2472,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "grillhouse": ([
-        "type": "bakehouse floorplan",
+        "class": "bakehouse floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2257,7 +2498,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "guild hall":([
-        "type": "guild floorplan",
+        "class": "guild floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2283,7 +2524,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "crypt":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2308,7 +2549,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "small wooden church":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2333,7 +2574,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "wooden church":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2359,7 +2600,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "chapel":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2385,7 +2626,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "stone church":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2411,7 +2652,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "abbey":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2437,7 +2678,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "monestary":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2463,7 +2704,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "temple":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2489,7 +2730,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "grove":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2514,7 +2755,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "cathedral":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2540,7 +2781,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "crypt":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2565,7 +2806,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "catacombs":([
-        "type": "temple floorplan",
+        "class": "temple floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2590,7 +2831,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "library":([
-        "type": "library floorplan",
+        "class": "library floorplan",
         "description": "",
         "henchmen": ([
             "scholar": 2,
@@ -2613,7 +2854,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "large library":([
-        "type": "library floorplan",
+        "class": "library floorplan",
         "description": "",
         "henchmen": ([
             "scholar": 5,
@@ -2636,7 +2877,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "observatory":([
-        "type": "library floorplan",
+        "class": "library floorplan",
         "description": "",
         "henchmen": ([
             "magic user": 1,
@@ -2661,7 +2902,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "planetarium":([
-        "type": "library floorplan",
+        "class": "library floorplan",
         "description": "",
         "henchmen": ([
             "magic user": 1,
@@ -2686,7 +2927,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "dungeon":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2711,7 +2952,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "amphitheater":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2737,7 +2978,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "civic center":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2764,7 +3005,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "gladiator ring":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
             "man-at-arms": 10
@@ -2790,7 +3031,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "jail":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2815,7 +3056,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "museum":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2842,7 +3083,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "brick school":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2869,7 +3110,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "stone school":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2896,7 +3137,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "wooden school":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2923,7 +3164,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "theater":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2950,7 +3191,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "hall":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -2977,7 +3218,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "university":([
-        "type": "civic floorplan",
+        "class": "civic floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -3007,7 +3248,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "arcane university":([
-        "type": "arcane floorplan",
+        "class": "arcane floorplan",
         "description": "",
         "default units": ([
             "mage": 3,
@@ -3047,7 +3288,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "mage shop":([
-        "type": "arcane floorplan",
+        "class": "arcane floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -3075,7 +3316,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "mystic training ground":([
-        "type": "arcane floorplan",
+        "class": "arcane floorplan",
         "description": "",
         "default units": ([
             "mage": 1,
@@ -3109,7 +3350,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "arcane laboratory":([
-        "type": "arcane floorplan",
+        "class": "arcane floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -3137,7 +3378,7 @@ protected mapping BuildingBlueprints = ([
     ]),
 
     "arcane school":([
-        "type": "arcane floorplan",
+        "class": "arcane floorplan",
         "description": "",
         "default units": ([
         ]),
@@ -3161,6 +3402,129 @@ protected mapping BuildingBlueprints = ([
             "textile": 5,
         ]),
         "added duration": 500,
+        "structure": 100,
+    ]),
+
+    "servant's quarters": ([
+        "class": "castle housing floorplan",
+        "description": "",
+        "default units": ([
+        ]),
+        "henchmen": ([
+            "administrator": 1
+        ]),
+        "effects": ([
+            "housing":([
+                "action": "housing",
+                "capacity": 10,
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 200,
+            "wood": 150,
+            "metal": 25,
+            "textile": 5,
+        ]),
+        "added duration": 100,
+        "structure": 100,
+    ]),
+
+    "military housing": ([
+        "class": "castle housing floorplan",
+        "description": "",
+        "default units": ([
+            "man-at-arms": 25
+        ]),
+        "henchmen": ([
+        ]),
+        "effects": ([
+            "housing":([
+                "action": "housing",
+                "capacity": 5,
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 200,
+            "wood": 150,
+            "metal": 25,
+            "textile": 5,
+        ]),
+        "added duration": 100,
+        "structure": 100,
+    ]),
+
+    "guest house": ([
+        "class": "castle housing floorplan",
+        "description": "",
+        "default units": ([
+        ]),
+        "henchmen": ([
+        ]),
+        "effects": ([
+            "housing":([
+                "action": "housing",
+                "capacity": 5,
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 300,
+            "wood": 150,
+            "metal": 25,
+            "textile": 5,
+        ]),
+        "added duration": 200,
+        "structure": 100,
+    ]),
+
+    "dignitary guest house": ([
+        "class": "castle housing floorplan",
+        "description": "",
+        "default units": ([
+        ]),
+        "henchmen": ([
+            "administrator": 1
+        ]),
+        "effects": ([
+            "housing":([
+                "action": "housing",
+                "capacity": 5,
+            ]),
+        ]),
+        "building prerequisites": ([
+            "stonemasonry": (["type":"skill", "value": 5]),
+            "carpentry": (["type":"skill", "value": 5]),
+            "wood crafting": (["type":"skill", "value": 5]),
+            "engineering": (["type":"skill", "value": 5]),
+            "sewing": (["type":"skill", "value": 2]),
+        ]),
+        "building materials": ([
+            "stone": 300,
+            "wood": 150,
+            "metal": 25,
+            "textile": 5,
+        ]),
+        "added duration": 600,
         "structure": 100,
     ]),
 

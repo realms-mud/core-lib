@@ -459,7 +459,7 @@ void CorrectlyDisplaysWorkerSelectionMenu()
         "From this menu, you can select the architects who will be executing your\n"
         "project in your holdings at Argalach Castle.\n"
         "\nArchitects selected: 0 of 1.\n\n"
-        "[1] - Hire Apprentice ($25000) low $  [2] - Hire Architect ($225000) low $  \n"
+        "[1] - Hire Apprentice ($25000) low $  [2] - Hire Journeyman ($225000)low $  \n"
         "[3] - Confirm Selections       N/A    [4] - Exit Building Menu              \n"
         "You must select a number from 1 to 4.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"

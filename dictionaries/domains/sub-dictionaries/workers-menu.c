@@ -192,7 +192,7 @@ public nomask mapping getWorkersByTypeMenu(object user, string location,
 
     cost = duration * 225;
     ret[to_string(sizeof(ret) + 1)] = ([
-        "name": sprintf("Hire %s ($%d)", generateTitle(type), cost),
+        "name": sprintf("Hire Journeyman ($%d)", cost),
         "type": "hire journeyman",
         "description": "This option hires a contract worker in leiu "
             "of a henchman\n",

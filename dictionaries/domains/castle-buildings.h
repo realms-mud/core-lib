@@ -517,7 +517,7 @@ private mapping CastleBuildings = ([
             "duration": 200,
             "materials": ([
                 "building type": ([ "stone": 25, "wood": 25, "metal": 10, "textile": 0 ]),
-                "housing floorplan": ([ "stone": 0, "wood": 50, "metal": 10, "textile": 0 ]),
+                "castle housing floorplan": ([ "stone": 0, "wood": 50, "metal": 10, "textile": 0 ]),
             ]),
             "workers": ([
                 "stonemason": 1,
