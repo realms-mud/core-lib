@@ -63,6 +63,8 @@ private nomask mapping getConstructionOptions(mapping componentData)
                 "canShow": 1,
                 "selected": 1,
                 "details": construction,
+                "previous selections": member(componentData, "selected sections") ?
+                    componentData["selected sections"] : ([ ])
             ]);
             menuItem++;
         }

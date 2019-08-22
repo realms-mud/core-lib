@@ -241,19 +241,30 @@ private nomask string *displaySectionData(object user, mapping sections,
     string *sectionList = sort_array(m_indices(sections), (: $1 > $2 :));
 
     sectionList -= ({ "name", "selected section", "selected materials",
-        "chosen section" });
+        "chosen section", "selected sections" });
 
     foreach(string section in sectionList)
     {
-        string currentSection = member(sections, "chosen section") ?
-            configuration->decorate(sections["chosen section"],
-                "selected", "player domains", colorConfiguration) :
-            configuration->decorate("<Make Selection>",
-                "selection needed", "player domains", colorConfiguration);
-
-        string sectionInfo = (section == selectedSection) ? currentSection :
-            configuration->decorate("<Not Selected Yet>",
-                "not selected yet", "player domains", colorConfiguration);
+        string sectionInfo;
+        
+        if (section == selectedSection)
+        {
+            sectionInfo = member(sections, "chosen section") ?
+                configuration->decorate(sections["chosen section"],
+                    "selected", "player domains", colorConfiguration) :
+                configuration->decorate("<Make Selection>",
+                    "selection needed", "player domains", colorConfiguration);
+        }
+        else
+        {
+            sectionInfo = member(sections, "selected sections") &&
+                member(sections["selected sections"], section) ?
+                configuration->decorate(
+                    sections["selected sections"][section]["selection"],
+                    "selected", "player domains", colorConfiguration) :
+                configuration->decorate("<Not Selected Yet>",
+                    "not selected yet", "player domains", colorConfiguration);
+        }
 
         string entry = "    " +
             configuration->decorate(generateTitle(section),

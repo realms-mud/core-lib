@@ -667,6 +667,71 @@ void SectionDisplayIsUpdatedOnTopLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void SectionDisplayIsUpdatedOnSectionMenu()
+{
+    object sectionSelector = 
+        clone_object("/lib/modules/domains/sectionSelector.c");
+
+    sectionSelector->setDetails(
+        ([
+            "main stone keep": ([ 
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 400
+            ]),
+            "stone battlement": ([ 
+                "metal": 5,
+                "wood": 25,
+                "stone": 75
+            ]),
+            "central stone tower": ([
+                "metal": 10,
+                "textile": 0,
+                "wood": 50,
+                "stone": 300
+            ]),
+            "chosen section": "Stone Observatory",
+            "selected materials": ([ 
+                "metal": "iron",
+                "wood": "pine",
+                "textile": "linen",
+                "stone": "granite"
+            ]),
+        ]),
+        "stone keep", "central stone tower");
+
+    Selector->initiateSelector(Player);
+    Selector->onSelectorCompleted(sectionSelector);
+
+    command("2", Player);
+
+    ExpectEq("Building Projects - Stone Keep:\n"
+        "From this menu, you can select the materials to construct with and style of\n"
+        "main stone keep to build for your stone keep project at Argalach Castle.\n"
+        "\n"
+        "Layout: +=======+            Building Sections:\n"
+        "        | +---+ |                Central Stone Tower: Stone Observatory\n"
+        "        | |   | |                Main Stone Keep: <Make Selection>\n"
+        "        | +---+ |                Stone Battlement: <Not Selected Yet>\n"
+        "        +=======+            \n"
+        "\n"
+        "[1]  - Select Metal           none     [2]  - Select Stone           none     \n"
+        "[3]  - Select Textile         N/A      [4]  - Select Wood            none     \n"
+        "[5]  - Large Hexagonal Sto...          [6]  - Large Octagonal Sto...          \n"
+        "[7]  - Large Round Stone Keep          [8]  - Large Square Stone ...          \n"
+        "[9]  - Simple Hexagonal St...          [10] - Simple Octagonal St...          \n"
+        "[11] - Simple Round Stone ...          [12] - Simple Square Stone...          \n"
+        "[13] - Tall Hexagonal Ston...          [14] - Tall Octagonal Ston...          \n"
+        "[15] - Tall Round Stone Keep           [16] - Tall Square Stone Keep          \n"
+        "[17] - Begin Construction     N/A      [18] - Exit Section Menu               \n"
+        "You must select a number from 1 to 18.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        Player->caughtMessage());
+}
+/////////////////////////////////////////////////////////////////////////////
 void CompletionTimeIsUpdated()
 {
     object workerSelector =

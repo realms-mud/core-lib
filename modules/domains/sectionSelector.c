@@ -21,11 +21,13 @@ public nomask void setLocation(string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setDetails(mapping data, string name, string selection)
+public nomask void setDetails(mapping data, string name, string selection,
+    mapping selectedSections)
 {
     SectionData = data + ([]);
     SectionData["name"] = name;
     SectionData["selected section"] = selection;
+    SectionData["selected sections"] = selectedSections;
     SectionData["selected materials"] = ([]);
 }
 
