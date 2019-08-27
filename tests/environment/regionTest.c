@@ -16,7 +16,7 @@ void Setup()
     Player->colorConfiguration("3-bit");
     Player->charsetConfiguration("unicode");
 
-    Region = clone_object("/lib/environment/region.c");
+    Region = clone_object("/lib/tests/support/environment/regionHelper.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -27,9 +27,39 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void DefaultDescriptionDisplaysCorrectlyForTerrain()
+void SendingEntryCreatesMapWithCorrectEntryPoint()
 {
-    string *ret = Region->createArea(Player);
+    Region->setDimensions(10, 5);
+    ExpectEq("north", Region->createArea("dungeon", "south"));
+    ExpectEq("west", Region->createArea("dungeon", "east"));
+}
 
-    Region->displayMap(Player);
+/////////////////////////////////////////////////////////////////////////////
+void CanCreateWithSpecificEntryPoint()
+{
+    Region->setDimensions(10, 5);
+    Region->createArea("forest", "south", ({ 3, 0}));
+
+    ExpectEq(({ 3, 0 }), Region->EntryLocation());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CorrectNumberOfRoomsGenerated()
+{
+    Region->setDimensions(15, 5);
+    Region->createArea();
+
+    ExpectEq(7, Region->generatedRoomCount());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AllGeneratedRoomsHaveExits()
+{
+    Region->setDimensions(10, 5);
+    Region->createArea();
+
+    foreach(mapping room in Region->rooms())
+    {
+        ExpectTrue(sizeof(room["exits"]));
+    }
 }

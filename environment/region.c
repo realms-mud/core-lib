@@ -7,6 +7,7 @@ private object configuration = load_object("/lib/dictionaries/configurationDicti
 
 protected int MaxX = 25;
 protected int MaxY = 10;
+
 private string *availableDirections = ({ "north", "south", "east", "west" });
 private mapping oppositeDirection = ([
     "north": "south",
@@ -44,16 +45,21 @@ private mapping displayCharacter = ([
         "ascii": "#",
         "unicode": "\xe2\x96\xa3"
     ]),
+    "exit": ([
+        "ascii": "X",
+        "unicode": "\xe2\x8c\xa7"
+    ]),
     "none": ([
         "ascii": " ",
         "unicode": " "
     ]),
 ]);
 
-private mapping grid = ([
+protected mapping grid = ([
 ]);
 
-private mapping *rooms = ({ });
+protected mapping *rooms = ({ });
+protected int *entry = ({ });
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getRelativeOverheadMap(int x, int y)
@@ -101,18 +107,71 @@ private nomask void addRandomCreature()
 
 }
 
+private nomask int *getRandomEntryCoordinates(string enterFrom)
+{
+    int startOnXAxis;
+    int useMax;
+    switch (enterFrom)
+    {
+        case "north":
+        {
+            startOnXAxis = 0;
+            useMax = 1;
+            break;
+        }
+        case "south":
+        {
+            startOnXAxis = 0;
+            useMax = 0;
+            break;
+        }
+        case "east":
+        {
+            startOnXAxis = 1;
+            useMax = 1;
+            break;
+        }
+        case "west":
+        {
+            startOnXAxis = 1;
+            useMax = 0;
+            break;
+        }
+        default:
+        {
+            // Pick a random start from an edge position
+            startOnXAxis = random(2);
+            useMax = random(2);
+            break;
+        }
+    }
+
+    return ({
+        startOnXAxis ? (useMax ? (MaxX - 1) : 0) : random(MaxX),
+        startOnXAxis ? random(MaxY) : (useMax ? (MaxY - 1) : 0)
+    });
+}
+
 /////////////////////////////////////////////////////////////////////////////
-private nomask varargs void createRoom(int isEntry)
+private nomask varargs void createRoom(int isEntry, string enterFrom,
+    int *coordinates)
 {
     int x;
     int y;
     if (isEntry)
     {
-        // Pick a random start from an edge position
-        int startOnXAxis = random(2);
-        int useMax = random(2);
-        x = startOnXAxis ? (useMax ? (MaxX - 1) : 0) : random(MaxX);
-        y = startOnXAxis ? random(MaxY) : (useMax ? (MaxY - 1) : 0);
+        if (sizeof(coordinates) != 2)
+        {
+            int *entryLocation = getRandomEntryCoordinates(enterFrom);
+            x = entryLocation[0];
+            y = entryLocation[1];
+        }
+        else
+        {
+            x = coordinates[0];
+            y = coordinates[1];
+        }
+        entry = ({ x, y });
     }
     else
     {
@@ -135,6 +194,61 @@ private nomask varargs void createRoom(int isEntry)
     {
         createRoom(isEntry);
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs mapping createExit(int count)
+{
+    mapping ret = ([]);
+    if (sizeof(entry) && (count < 20))
+    {
+        int x = -1;
+        int y = -1;
+        string exitTo = 0;
+        int *exitCoordinates = ({});
+
+        if (entry[0] == 0)
+        {
+            x = MaxX - 1;
+            y = random(MaxY);
+            exitCoordinates = ({ 0, y });
+            exitTo = "east";
+        }
+        else if (entry[0] == (MaxX - 1))
+        {
+            x = 0;
+            y = random(MaxY);
+            exitCoordinates = ({ (MaxX - 1), y });
+            exitTo = "west";
+        }
+        else if (entry[1] == 0)
+        {
+            y = MaxY - 1;
+            x = random(MaxX);
+            exitCoordinates = ({ x, 0 });
+            exitTo = "north";
+        }
+        else if (entry[1] == (MaxY - 1))
+        {
+            y = 0;
+            x = random(MaxX);
+            exitCoordinates = ({ x, (MaxY - 1) });
+            exitTo = "south";
+        }
+
+        if (!grid[x][y]["is placed"])
+        {
+            grid[x][y]["room type"] = "exit";
+            grid[x][y]["exit to"] = exitTo;
+            grid[x][y]["exit coordinates"] = exitCoordinates;
+            ret = grid[x][y];
+        }
+        else
+        {
+            ret = createExit(++count);
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -293,14 +407,110 @@ public nomask string displayMap(object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void createArea()
+private nomask void constructPath(mapping room)
+{
+    string *path = 0;
+    for (int i = 0; (!path && (i < 20)); i++)
+    {
+        path = traverseAPath(room);
+    }
+
+    int fromX = -1;
+    int fromY = -1;
+
+    for (int i = 0; i < sizeof(path); i++)
+    {
+        int toX = to_int(regreplace(path[i], "([0-9]+)x[0-9]+,*.*", "\\1", 1));
+        int toY = to_int(regreplace(path[i], "[0-9]+x([0-9]+),*.*", "\\1", 1));
+        string direction = regreplace(path[i], ".*,(.+)", "\\1", 1);
+
+        if ((fromX > -1) && (fromY > -1))
+        {
+            grid[fromX][fromY]["exits"][direction] = sprintf("%dx%d", toX, toY);
+            grid[toX][toY]["exits"][oppositeDirection[direction]] =
+                sprintf("%dx%d", fromX, fromY);
+            grid[toX][toY]["is placed"] = 1;
+            if (grid[toX][toY]["room type"] == "none")
+            {
+                grid[toX][toY]["room type"] = "corridor";
+            }
+
+        }
+        else
+        {
+            grid[toX][toY]["is placed"] = 1;
+        }
+
+        fromX = toX;
+        fromY = toY;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs string getDirectionOfEntry(string enterFrom)
+{
+    string exitTo = 0;
+    if (sizeof(entry))
+    {
+        if (entry[0] == 0)
+        {
+            exitTo = "east";
+        }
+        else if (entry[0] == (MaxX - 1))
+        {
+            exitTo = "west";
+        }
+        else if (entry[1] == 0)
+        {
+            exitTo = "north";
+        }
+        else if (entry[1] == (MaxY - 1))
+        {
+            exitTo = "south";
+        }
+
+        if (enterFrom)
+        {
+            exitTo = oppositeDirection[enterFrom];
+        }
+    }
+    return exitTo;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int getRoomCount()
+{
+    return MaxX + random(MaxX);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setDimensions(int x, int y)
+{
+    if ((x > 25) || (y > 25))
+    {
+        raise_error("Region: The largest area that can be generated is 25x25.\n");
+    }
+    else if ((x < 5) || (y < 5))
+    {
+        raise_error("Region: The smallest area that can be generated is 5x5.\n");
+    }
+    else
+    {
+        MaxX = x;
+        MaxY = y;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string createArea(string type, string enterFrom,
+    int *coordinates)
 {
     createEmptyGrid(MaxX, MaxY);
 
     // Create entry point
-    createRoom(1);
+    createRoom(1, enterFrom, coordinates);
 
-    int numberOfRooms = 25 + random(25);
+    int numberOfRooms = getRoomCount();
     for (int i = 0; i < numberOfRooms; i++)
     {
         createRoom();
@@ -310,41 +520,14 @@ public nomask void createArea()
     {
         foreach(mapping room in rooms)
         {
-            string *path = 0;
-            for (int i = 0; (!path && (i < 20)); i++)
-            {
-                path = traverseAPath(room);
-            }
-
-            int fromX = -1;
-            int fromY = -1;
-
-            for (int i = 0; i < sizeof(path); i++)
-            {
-                int toX = to_int(regreplace(path[i], "([0-9]+)x[0-9]+,*.*", "\\1", 1));
-                int toY = to_int(regreplace(path[i], "[0-9]+x([0-9]+),*.*", "\\1", 1));
-                string direction = regreplace(path[i], ".*,(.+)", "\\1", 1);
-
-                if ((fromX > -1) && (fromY > -1))
-                {
-                    grid[fromX][fromY]["exits"][direction] = sprintf("%dx%d", toX, toY);
-                    grid[toX][toY]["exits"][oppositeDirection[direction]] =
-                        sprintf("%dx%d", fromX, fromY);
-                    grid[toX][toY]["is placed"] = 1;
-                    if (grid[toX][toY]["room type"] == "none")
-                    {
-                        grid[toX][toY]["room type"] = "corridor";
-                    }
-
-                }
-                else
-                {
-                    grid[toX][toY]["is placed"] = 1;
-                }
-
-                fromX = toX;
-                fromY = toY;
-            }
+            constructPath(room);
         }
     }
+    mapping exit = createExit();
+    if (sizeof(exit))
+    {
+        rooms += ({ exit });
+        constructPath(exit);
+    }
+    return getDirectionOfEntry(enterFrom);
 }
