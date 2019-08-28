@@ -27,18 +27,56 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void SettingInvalidRegionTypeThrowsError()
+{
+    string err = catch (Region->setRegionType("bad region name"));
+    string expectedError = "*ERROR - region: The region must be a valid type "
+        "as defined in /lib/dictionaries/regions/region-types.h\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotGenerateRegionWithoutType()
+{
+    Region->setRegionName("a forest");
+
+    string err = catch (Region->createRegion());
+    string expectedError = "*ERROR - region: The region type must be set before it is generated.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotGenerateRegionWithoutName()
+{
+    Region->setRegionType("forest");
+
+    string err = catch (Region->createRegion());
+    string expectedError = "*ERROR - region: The region name must be set before it is generated.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void SendingEntryCreatesMapWithCorrectEntryPoint()
 {
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+
     Region->setDimensions(10, 5);
-    ExpectEq("north", Region->createArea("dungeon", "south"));
-    ExpectEq("west", Region->createArea("dungeon", "east"));
+    ExpectEq("north", Region->createRegion("south"));
+    ExpectEq("west", Region->createRegion("east"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCreateWithSpecificEntryPoint()
 {
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+
     Region->setDimensions(10, 5);
-    Region->createArea("forest", "south", ({ 3, 0}));
+    Region->createRegion("south", ({ 3, 0}));
 
     ExpectEq(({ 3, 0 }), Region->EntryLocation());
 }
@@ -46,8 +84,11 @@ void CanCreateWithSpecificEntryPoint()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectNumberOfRoomsGenerated()
 {
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+
     Region->setDimensions(15, 5);
-    Region->createArea();
+    Region->createRegion();
 
     ExpectEq(7, Region->generatedRoomCount());
 }
@@ -55,8 +96,11 @@ void CorrectNumberOfRoomsGenerated()
 /////////////////////////////////////////////////////////////////////////////
 void AllGeneratedRoomsHaveExits()
 {
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+
     Region->setDimensions(10, 5);
-    Region->createArea();
+    Region->createRegion();
 
     foreach(mapping room in Region->rooms())
     {
