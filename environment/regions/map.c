@@ -23,7 +23,7 @@ private mapping displayCharacter = ([
         "ascii": "-",
         "unicode": "\xe2\x94\x80"
     ]),
-    "corridor": ([
+    "path": ([
         "ascii": "o",
         "unicode": "\xe2\x97\x87"
     ]),

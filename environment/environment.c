@@ -19,7 +19,7 @@ protected mapping environmentalElements = ([
 
 private mapping aliasesToElements = ([]);
 
-private mapping exits = ([]);
+protected mapping exits = ([]);
 private string State = "default";
 private string RegionPath = 0;
 private int xCoordinate = 0;
@@ -377,6 +377,32 @@ protected nomask varargs void addExit(string direction, string path, string stat
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addGeneratedExit(string direction, string location, 
+    object region, string state)
+{
+    if (!state)
+    {
+        state = "default";
+    }
+    if (!stringp(direction) || !stringp(location) || !objectp(region))
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' must be a string, "
+            "'%s' must be a valid destination, and '%s' must be a valid "
+            "object.\n", to_string(direction), to_string(location),
+            object_name(region)));
+    }
+    if (!member(exits, state))
+    {
+        exits[state] = ([]);
+    }
+
+    exits[state][direction] = ([
+        "destination": location,
+        "region": region
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void addDoor(string path, string door, string key, string state)
 {
     if (!stringp(door))
@@ -413,6 +439,19 @@ protected nomask varargs void addExitWithDoor(string direction, string path,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addGeneratedExitWithDoor(string direction, 
+    string location, object region, string door, string key, string state)
+{
+    if (!state)
+    {
+        state = "default";
+    }
+
+    addGeneratedExit(direction, location, region, state);
+    addDoor(location, door, key, state);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask varargs void addBuilding(string feature, mixed location, 
     string path, string state)
 {
@@ -436,6 +475,25 @@ protected nomask varargs void addBuildingWithDoor(string feature, mixed location
 {
     addBuilding(feature, location, path, state);
     addExitWithDoor(location, path, door, key, state);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addGeneratedBuilding(string feature, mixed location,
+    string path, object region, string door, string key, string state)
+{
+    if (addEnvironmentalElement(feature, "building", location) && 
+        stringp(location))
+    {
+        if (stringp(path))
+        {
+            addGeneratedExitWithDoor(location, path, region, door, key, state);
+        }
+    }
+    else
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid building with a valid location.\n", feature));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -893,18 +951,32 @@ public nomask int move(string str)
 {
     string direction = query_verb();
     string destination = 0;
+    object region = 0;
 
     string state = currentState();
-    if (member(exits, state) &&
-        member(exits[state], direction))
+    if (member(exits, state) && member(exits[state], direction) &&
+        stringp(exits[state][direction]))
     {
         destination = exits[state][direction];
     }
-    else if (member(exits, "default") &&
-        member(exits["default"], direction))
+    else if (member(exits, state) && member(exits[state], direction) &&
+        mappingp(exits[state][direction]))
+    {
+        destination = exits[state][direction]["destination"];
+        region = exits[state][direction]["region"];
+    }
+    else if (member(exits, "default") && member(exits["default"], direction) &&
+        stringp(exits["default"][direction]))
     {
         destination = exits["default"][direction];
         state = "default";
+    }
+    else if (member(exits, "default") && member(exits["default"], direction) &&
+        mappingp(exits["default"][direction]))
+    {
+        state = "default";
+        destination = exits[state][direction]["destination"];
+        region = exits[state][direction]["region"];
     }
 
     int canMove = 1;
@@ -931,12 +1003,12 @@ public nomask int move(string str)
 
         if (canMove)
         {
-            this_player()->move(destination, direction, objectp(door));
+            this_player()->move(destination, direction, objectp(door), region);
 
             object party = this_player()->getParty();
             if (party)
             {
-                party->moveFollowers(this_player(), destination, direction);
+                party->moveFollowers(this_player(), destination, direction, region);
             }
 
             if (door)

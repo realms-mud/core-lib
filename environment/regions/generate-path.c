@@ -146,7 +146,7 @@ protected nomask void constructPath(mapping room)
             grid[toX][toY]["is placed"] = 1;
             if (grid[toX][toY]["room type"] == "none")
             {
-                grid[toX][toY]["room type"] = "corridor";
+                grid[toX][toY]["room type"] = "path";
             }
 
         }

@@ -96,13 +96,16 @@ private int checkForImpairedVision(object player)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs nomask int move(string location, string direction, int silently)
+public varargs nomask int move(string location, string direction, 
+    int silently, object region)
 {
     int ret = 0;
     object environmentDictionary = getDictionary("environment");
     if (environmentDictionary)
     {
-        object newLocation = environmentDictionary->getEnvironment(location);
+        object newLocation = region ? region->getEnvironment(location) :
+            environmentDictionary->getEnvironment(location);
+
         if (environmentDictionary->canMakeMove(this_object(), environment(),
             newLocation))
         {

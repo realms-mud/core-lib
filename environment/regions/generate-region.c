@@ -14,7 +14,7 @@ protected int getRoomCount()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void createEmptyGrid(int x, int y)
+protected nomask void createEmptyGrid(int x, int y)
 {
     for (int i = 0; i < x; i++)
     {
@@ -26,10 +26,8 @@ private nomask void createEmptyGrid(int x, int y)
                 "y": j,
                 "room type": "none",
                 "is placed": 0,
-                "environmental elements": ([]),
                 "exits": ([]),
-                "objects": ([]),
-                "living": ([])
+                "environment": 0
             ]);
         }
     }

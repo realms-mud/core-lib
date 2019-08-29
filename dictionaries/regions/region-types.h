@@ -5,10 +5,15 @@
 #ifndef regionTypes_h
 #define regionTypes_h
 
-protected mapping regionTypes = ([
+protected mapping RegionTypes = ([
     "forest":([
-
+        "terrain": "/lib/environment/terrain/forest.c",
+        "potential features": ({ }),
+        "potential items": ({ }),
+        "potential objects": ({ }),
+        "potential encounters": ({ })
     ]),
+
     "hilly forest":([
 
     ]),

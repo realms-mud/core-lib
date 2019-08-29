@@ -6,21 +6,12 @@ virtual inherit "/lib/environment/regions/core.c";
 virtual inherit "/lib/environment/regions/entries-and-exits.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void addRandomEnvironmentalElements()
+protected nomask void generateRoomDetails(mapping room)
 {
+    room["environment"] =
+        clone_object("/lib/environment/generatedEnvironment");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask void addRandomObjects()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask void addRandomCreature()
-{
-
+    room["environment"]->generateEnvironment(room, this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -55,9 +46,7 @@ protected nomask varargs void createRoom(int isEntry, string enterFrom,
         grid[x][y]["is placed"] = isEntry;
         grid[x][y]["room type"] = isEntry ? "entry" : "room";
 
-        addRandomEnvironmentalElements();
-        addRandomObjects();
-        addRandomCreature();
+        generateRoomDetails(grid[x][y]);
 
         rooms += ({ grid[x][y] });
     }

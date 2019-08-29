@@ -372,13 +372,13 @@ public nomask string stopFollowing(object follower)
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void moveFollowers(object leader, string destination,
-    string direction, int silently)
+    string direction, int silently, object region)
 {
     if (member(information["following"], leader) > -1)
     {
         foreach(object follower in information["following"][leader])
         {
-            follower->move(destination, direction, silently);
+            follower->move(destination, direction, silently, region);
         }
     }
 }

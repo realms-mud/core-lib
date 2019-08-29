@@ -55,3 +55,17 @@ public nomask void setRegionType(string type)
             "/lib/dictionaries/regions/region-types.h\n");
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getEnvironment(string location)
+{
+    int x = to_int(regreplace(location, "([0-9]+)x[0-9]+,*.*", "\\1", 1));
+    int y = to_int(regreplace(location, "[0-9]+x([0-9]+),*.*", "\\1", 1));
+
+    if (!objectp(grid[x][y]["environment"]))
+    {
+        generateRoomDetails(grid[x][y]);
+    }
+
+    return grid[x][y]["environment"];
+}

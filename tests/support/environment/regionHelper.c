@@ -35,3 +35,14 @@ protected int getRoomCount()
 {
     return roomCount;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void addTestRoom(int x, int y, mapping data)
+{
+    if (!sizeof(grid))
+    {
+        createEmptyGrid(MaxX, MaxY);
+    }
+    grid[x][y] = data;
+    generateRoomDetails(data);
+}
