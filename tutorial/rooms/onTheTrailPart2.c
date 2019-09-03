@@ -9,7 +9,7 @@ public void Setup()
 {
     cloneEnvironment();
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/sycamoreStand.c", "north");
+    addFeature("/lib/environment/features/trees/sycamore-stand.c", "north");
 
     // First test
     addExit("south", "/lib/tutorial/rooms/onTheTrailPart1.c", "on the trail");

@@ -171,6 +171,37 @@ private nosave mapping creatureBlueprints = ([
         "base spell points" : 0,
         "base stamina points" : 50
     ]),
+    "coyote":([
+        "category": "creatures",
+        "primary skills":({ "parry", "dodge", "no armor" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "minimum level": 1,
+        "attacks": ([
+            "claw": 3,
+            "fangs": 5,
+        ]),
+        "base hit points": 15,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+    "deer":([
+        "category": "creatures",
+        "primary skills":({ "parry", "dodge", "no armor", "listen" }),
+        "secondary skills" : ({ "perception", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "minimum level": 1,
+        "attacks": ([
+            "hoof": 3,
+            "horn": 3,
+        ]),
+        "base hit points": 10,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+
     "eagle":([
         "category": "creatures",
         "primary skills":({ "parry", "dodge", "no armor" }),

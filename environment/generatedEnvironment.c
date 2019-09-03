@@ -13,12 +13,18 @@ private nomask void addRandomEnvironmentalElements(mapping elements,
 {
     foreach(string feature in m_indices(elements["features"]))
     {
-        addFeature(feature, elements["features"][feature], state);
+        foreach(string direction in elements["features"][feature])
+        {
+            addFeature(feature, direction, state);
+        }
     }
 
     foreach(string item in m_indices(elements["items"]))
     {
-        addItem(item, elements["items"][item], state);
+        foreach(string direction in elements["items"][item])
+        {
+            addItem(item, direction, state);
+        }
     }
 
     if (member(elements, "shop"))
@@ -97,4 +103,16 @@ public nomask varargs void generateEnvironment(mapping data, object region,
             addRandomCreature(roomData["creatures"], state);
         }
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void addEntryExit(string direction, string location)
+{
+    addExit(direction, location);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getCoordinates()
+{
+    return sprintf("%dx%d", xCoordinate, yCoordinate);
 }

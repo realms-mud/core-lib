@@ -76,7 +76,7 @@ void CanCreateWithSpecificEntryPoint()
     Region->setRegionType("forest");
 
     Region->setDimensions(10, 5);
-    Region->createRegion("south", ({ 3, 0}));
+    Region->createRegion("south", 0, ({ 3, 0}));
 
     ExpectEq(({ 3, 0 }), Region->EntryLocation());
 }
@@ -106,4 +106,23 @@ void AllGeneratedRoomsHaveExits()
     {
         ExpectTrue(sizeof(room["exits"]));
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanCreateGeneratedRegionFromRealEnvironment()
+{
+    object environment = 
+        load_object("/lib/tests/support/environment/startingRoom.c");
+
+    object region = environment->addGeneratedRegion("north", "forest", 15, 10);
+
+    move_object(Player, environment);
+
+    command("n", Player);
+    ExpectEq(region->getEntryCoordinates(), environment(Player)->getCoordinates());
+    ExpectEq(region->getEnvironment(region->getEntryCoordinates()),
+        environment(Player));
+
+    command("s", Player);
+    ExpectEq(environment, environment(Player));
 }

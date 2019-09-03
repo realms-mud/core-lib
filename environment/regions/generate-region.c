@@ -55,7 +55,8 @@ private nomask int canGenerateRegion()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs string createRegion(string enterFrom, int *coordinates)
+public nomask varargs string createRegion(string enterFrom, string location,
+    int *coordinates)
 {
     string ret = 0;
     if (canGenerateRegion())
@@ -84,6 +85,17 @@ public nomask varargs string createRegion(string enterFrom, int *coordinates)
             rooms += ({ exit });
             constructPath(exit);
         }
+
+        foreach(mapping room in rooms)
+        {
+            generateRoomDetails(room);
+        }
+
+        if (location)
+        {
+            rooms[0]["environment"]->addEntryExit(enterFrom, location);
+        }
+
         ret = getDirectionOfEntry(enterFrom);
     }
     return ret;

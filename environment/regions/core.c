@@ -51,3 +51,30 @@ protected nomask varargs string getDirectionOfEntry(string enterFrom)
     }
     return exitTo;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getEnterFromDirection(string direction)
+{
+    string ret = 0;
+    if (member(oppositeDirection, direction))
+    {
+        ret = oppositeDirection[direction];
+    }
+    else
+    {
+        raise_error("The specified direction must be one of: north, south "
+            "east, or west.\n");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getEntryCoordinates()
+{
+    string ret = 0;
+    if (sizeof(entry))
+    {
+        ret = sprintf("%dx%d", entry[0], entry[1]);
+    }
+    return ret;
+}

@@ -9,8 +9,8 @@ public void Setup()
 {
     cloneEnvironment();
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/cottonwoodStand.c", "west");
-    addFeature("/lib/environment/features/cottonwoodStand.c", "south");
+    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "west");
+    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "south");
 
     // First test
     addExit("east", "/lib/tutorial/rooms/onTheTrailPart3.c", "on the trail");

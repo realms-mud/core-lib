@@ -5,13 +5,31 @@
 #ifndef regionTypes_h
 #define regionTypes_h
 
+#include "/lib//dictionaries/regions/trees.h"
+
 protected mapping RegionTypes = ([
     "forest":([
         "terrain": "/lib/environment/terrain/forest.c",
-        "potential features": ({ }),
-        "potential items": ({ }),
+        "potential features": Trees,
+        "potential items": ([ ]),
         "potential objects": ({ }),
-        "potential encounters": ({ })
+        "potential encounters": ([
+            "deer": 15,
+            "coyote": 10,
+            "boar": 10,
+            "bear": 5,
+            "wolf": 5,
+            "panther": 2,
+            "mountain lion": 2,
+            "wolverine": 1,
+            "ruffian": 10,
+            "hunter": 10,
+            "keeper of the night": 10,
+            "knight of the storm": 5,
+            "zombie": 5,
+            "skeleton": 5,
+            "warg": 5,
+        ])
     ]),
 
     "hilly forest":([

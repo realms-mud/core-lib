@@ -15,6 +15,7 @@ protected mapping environmentalElements = ([
     "description": ([]),
     "location text": ({ " is " }),
     "doors": ([]),
+    "regions": ([])
 ]);
 
 private mapping aliasesToElements = ([]);
@@ -22,8 +23,8 @@ private mapping aliasesToElements = ([]);
 protected mapping exits = ([]);
 private string State = "default";
 private string RegionPath = 0;
-private int xCoordinate = 0;
-private int yCoordinate = 0;
+protected int xCoordinate = 0;
+protected int yCoordinate = 0;
 private nosave string ShortDescription = "";
 
 protected nosave object StateMachine = 0;
@@ -400,6 +401,33 @@ protected nomask varargs void addGeneratedExit(string direction, string location
         "destination": location,
         "region": region
     ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs object addGeneratedRegion(string direction, string type,
+    int x, int y, string state)
+{
+    object ret = 0;
+    if (!member(environmentalElements["regions"], direction))
+    {
+        ret = clone_object("/lib/environment/region.c");
+
+        if (x && y)
+        {
+            ret->setDimensions(x, y);
+        }
+
+        ret->setRegionName(sprintf("%s start", object_name(this_object())));
+        ret->setRegionType(type);
+
+        ret->createRegion(ret->getEnterFromDirection(direction),
+            regreplace(object_name(this_object()), "([^#]+)#*.*", "/\\1.c", 1));
+
+        addGeneratedExit(direction, ret->getEntryCoordinates(), ret, state);
+
+        environmentalElements["regions"][direction] = ret;
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

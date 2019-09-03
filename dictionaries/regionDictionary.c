@@ -4,6 +4,14 @@
 //*****************************************************************************
 #include "/lib//dictionaries/regions/region-types.h"
 
+private string FeaturePrefix = "/lib/environment/features/";
+
+private mapping WeightedFeatures = ([]);
+private mapping WeightedEncounters = ([]);
+
+private string *availableDirections = ({ "north", "south", "east", "west",
+    "northwest", "northeast", "southwest", "southeast" });
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidRegionType(string type)
 {
@@ -54,6 +62,53 @@ private nomask mapping setExits(mapping room, mapping exits,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void createWeightedFeatureList(string featureType,
+    mapping features)
+{
+    WeightedFeatures[featureType] = ({});
+
+    foreach(string feature in m_indices(features))
+    {
+        for (int i = 0; i < features[feature]; i++)
+        {
+            WeightedFeatures[featureType] += ({ feature });
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping generateElements(string regionType, mapping items)
+{
+    mapping ret = ([]);
+
+    if (sizeof(items))
+    {
+        int numFeatures = 1 + random(5);
+        string direction = availableDirections[random(sizeof(availableDirections))];
+
+        for (int i = 0; i < numFeatures; i++)
+        {
+            string featureType = m_indices(items)[random(sizeof(items))];
+
+            if (!member(WeightedFeatures, featureType))
+            {
+                createWeightedFeatureList(featureType, items[featureType]);
+            }
+            string feature = sprintf("%s%s/%s.c", FeaturePrefix, featureType,
+                WeightedFeatures[featureType][
+                random(sizeof(WeightedFeatures[featureType]))]);
+
+            if (!member(ret, feature))
+            {
+                ret[feature] = ({});
+            }
+            ret[feature] += ({ direction });
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping generateRoomData(object region, mapping data)
 {
     mapping ret = 0;
@@ -65,8 +120,14 @@ public nomask mapping generateRoomData(object region, mapping data)
         setTerrain(ret, roomInput);
         setExits(ret, data["exits"], roomInput, region);
 
-        ret["features"] = ([]);
-        ret["items"] = ([]);
+        string regionType = region->regionType();
+
+        ret["features"] = generateElements(regionType,
+            RegionTypes[regionType]["potential features"]);
+
+        ret["items"] = generateElements(regionType,
+            RegionTypes[regionType]["potential items"]);
+
         ret["room objects"] = ([]);
         ret["creatures"] = ([]);
     }

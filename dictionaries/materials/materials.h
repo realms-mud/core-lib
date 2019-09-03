@@ -626,6 +626,17 @@ private nosave mapping materials =
         "scarcity": "common",
         "experience modifier": 1
     ]),
+    "hemlock": ([
+        "class": "wood",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 1]),
+        ]),
+        "default description": "This is a plank of hemlock.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
     "poplar": ([
         "class": "wood",
         "crafting skill required": 1,
@@ -762,6 +773,102 @@ private nosave mapping materials =
         "scarcity": "common",
         "experience modifier": 1.05
     ]),
+    "plum": ([
+        "class": "wood",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 1.2,
+        "default description": "This is a plank of plum wood.",
+        "scarcity": "common",
+        "experience modifier": 1.05
+    ]),
+    "black locust": ([
+        "class": "wood",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 1.2,
+        "default description": "This is a plank of black locust wood.",
+        "scarcity": "common",
+        "experience modifier": 1.05
+    ]),
+    "pear": ([
+        "class": "wood",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 1.2,
+        "default description": "This is a plank of pear wood.",
+        "scarcity": "common",
+        "experience modifier": 1.05
+    ]),
+    "peach": ([
+        "class": "wood",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 1.2,
+        "default description": "This is a plank of peach wood.",
+        "scarcity": "common",
+        "experience modifier": 1.05
+    ]),
+    "nectarine": ([
+        "class": "wood",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 1.2,
+        "default description": "This is a plank of nectarine wood.",
+        "scarcity": "common",
+        "experience modifier": 1.05
+    ]),
+    "apricot": ([
+        "class": "wood",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 1.2,
+        "default description": "This is a plank of apricot wood.",
+        "scarcity": "common",
+        "experience modifier": 1.05
+    ]),
+    "grape": ([
+        "class": "wood",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 1.2,
+        "default description": "This is a plank of grape wood.",
+        "scarcity": "common",
+        "experience modifier": 1.05
+    ]),
+    "persimmon": ([
+        "class": "wood",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 1.2,
+        "default description": "This is a plank of persimmon wood.",
+        "scarcity": "common",
+        "experience modifier": 1.05
+    ]),
     "dogwood": ([
         "class": "wood",
         "crafting skill required": 1,
@@ -770,6 +877,39 @@ private nosave mapping materials =
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "default description": "This is a plank of dogwood.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "willow": ([
+        "class": "wood",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 1]),
+        ]),
+        "default description": "This is a plank of willow.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "magnolia": ([
+        "class": "wood",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 1]),
+        ]),
+        "default description": "This is a plank of magnolia wood.",
+        "scarcity": "common",
+        "experience modifier": 1
+    ]),
+    "lilac": ([
+        "class": "wood",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 1]),
+        ]),
+        "default description": "This is a plank of lilac wood.",
         "scarcity": "common",
         "experience modifier": 1
     ]),
@@ -1074,6 +1214,21 @@ private nosave mapping materials =
         "scarcity": "rare",
         "experience modifier": 1.2
     ]),
+    "lacewood": ([
+        "class": "wood",
+        "attack": ([
+            "physical": 1,
+        ]),
+        "crafting skill required": 5,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftRareWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 5]),
+        ]),
+        "value multiplier": 1.4,
+        "default description": "This is a plank of lacewood.",
+        "scarcity": "rare",
+        "experience modifier": 1.2
+    ]),
     "purple heart": ([
         "class": "wood",
         "attack rating": 2,
@@ -1133,6 +1288,20 @@ private nosave mapping materials =
         ]),
         "value multiplier": 2.0,
         "default description": "This is a plank of koa wood.",
+        "scarcity": "rare",
+        "experience modifier": 1.25
+    ]),
+    "ebony": ([
+        "class": "wood",
+        "attack rating": 1,
+        "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftRareWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 8]),
+            "carpentry": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 2.0,
+        "default description": "This is a plank of ebony wood.",
         "scarcity": "rare",
         "experience modifier": 1.25
     ]),

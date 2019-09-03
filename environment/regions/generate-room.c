@@ -46,8 +46,6 @@ protected nomask varargs void createRoom(int isEntry, string enterFrom,
         grid[x][y]["is placed"] = isEntry;
         grid[x][y]["room type"] = isEntry ? "entry" : "room";
 
-        generateRoomDetails(grid[x][y]);
-
         rooms += ({ grid[x][y] });
     }
     else

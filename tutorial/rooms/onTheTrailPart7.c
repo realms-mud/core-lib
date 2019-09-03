@@ -9,7 +9,7 @@ public void Setup()
 {
     cloneEnvironment();
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/sugarMapleStand.c", "north");
+    addFeature("/lib/environment/features/trees/sugar-maple-stand.c", "north");
     addFeature("/lib/tutorial/features/obedience-temple-far.c", "west");
 
     // First test
