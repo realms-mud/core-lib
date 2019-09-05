@@ -28,8 +28,10 @@ void SetUpPersonaOfLevelWorksForMonsters()
     ExpectEq(0, Persona->Str());
     ExpectEq(0, Persona->getSkill("long sword"));
     ExpectFalse(Persona->isTraitOf("lib/instances/traits/personas/fighters/swordsman.c"));
+    Persona->Race("human");
 
     Persona->SetUpPersonaOfLevel("swordsman", 10);
+
     ExpectTrue(Persona->isTraitOf("lib/instances/traits/personas/fighters/swordsman.c"));
 
     ExpectEq(1120, Persona->maxHitPoints());
@@ -61,7 +63,7 @@ void SetUpPersonaOfLevelWorksForMonsters()
     ExpectEq(10, Persona->getSkill("perception"));
     ExpectEq(10, Persona->getSkill("listen"));
     ExpectEq(10, Persona->getSkill("spot"));
-    ExpectEq(10, Persona->getSkill("common"));
+    ExpectEq(15, Persona->getSkill("common"));
     ExpectEq(10, Persona->getSkill("dual wield"));
 }
 
@@ -85,6 +87,7 @@ void SetUpPersonaOfLevelWorksForHenchmen()
 {
     destruct(Persona);
     Persona = clone_object("/lib/realizations/henchman.c");
+    Persona->Race("human");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
     ExpectEq(112, Persona->maxHitPoints());
@@ -98,6 +101,7 @@ void SetUpPersonaOfLevelWorksForNPC()
 {
     destruct(Persona);
     Persona = clone_object("/lib/realizations/npc.c");
+    Persona->Race("human");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
     ExpectEq(112, Persona->maxHitPoints());
@@ -111,6 +115,7 @@ void SetUpPersonaOfLevelWorksForCompanion()
 {
     destruct(Persona);
     Persona = clone_object("/lib/realizations/companion.c");
+    Persona->Race("human");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
     ExpectEq(112, Persona->maxHitPoints());
@@ -124,6 +129,7 @@ void SetUpPersonaOfLevelWorksForAI()
 {
     destruct(Persona);
     Persona = clone_object("/lib/realizations/monsterWithAI.c");
+    Persona->Race("human");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
     ExpectEq(112, Persona->maxHitPoints());
@@ -137,6 +143,7 @@ void SetUpPersonaOfLevelWorksForSeneschal()
 {
     destruct(Persona);
     Persona = clone_object("/lib/realizations/seneschal.c");
+    Persona->Race("human");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
     ExpectEq(112, Persona->maxHitPoints());
@@ -150,6 +157,7 @@ void SetUpPersonaOfLevelWorksForWanderer()
 {
     destruct(Persona);
     Persona = clone_object("/lib/realizations/wanderingMonster.c");
+    Persona->Race("human");
 
     Persona->SetUpPersonaOfLevel("swordsman", 1);
     ExpectEq(112, Persona->maxHitPoints());
@@ -211,6 +219,7 @@ void SetUpRandomEquipmentWithEnchantmentSetsUpEquipmentForPersona()
 void MinimumLevelNotMetReturnsError()
 {
     string error = catch (Persona->SetUpPersonaOfLevel("chimera", 10));
+
     ExpectSubStringMatch("personaDictionary: The character's level is lower than that required for this persona", error);
 }
 
@@ -229,7 +238,9 @@ void CreaturesGetAllAttacksSet()
 /////////////////////////////////////////////////////////////////////////////
 void CreaturesWithWeaponsGetAllAttacksSet()
 {
+    Persona->Race("human");
     Persona->SetUpPersonaOfLevel("skeleton", 10);
+    ExpectTrue(Persona->isTraitOf("lib/instances/traits/personas/undead/skeleton.c"));
     Persona->setUpRandomEquipment();
 
     ExpectEq(3, sizeof(all_inventory(Persona)));

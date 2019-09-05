@@ -93,3 +93,27 @@ void CanMoveFromOneGeneratedRoomToTheNext()
     command("s", Player);
     ExpectEq(object_name(data["environment"]), object_name(environment(Player)));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void EncountersGeneratedWhenUserEntersEnvironment()
+{
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+
+    Region->setDimensions(10, 5);
+
+    mapping data = ([
+        "x":1,
+        "y": 2,
+        "room type": "room",
+        "is placed": 1,
+        "exits": ([
+            "north": "1x3"
+        ])
+    ]);
+    Region->addTestRoom(1, 2, data);
+
+    move_object(Player, data["environment"]);
+
+    ExpectTrue(sizeof(all_inventory(data["environment"])) > 1);
+}

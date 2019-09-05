@@ -517,3 +517,9 @@ public nomask string raceDetails(object person)
     return sprintf("%s%s", race ? capitalize(race) : "Unknown",
         subrace ? " (" + subrace + ")" : "");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getRandomRace()
+{
+    return m_indices(races)[random(sizeof(races))];
+}

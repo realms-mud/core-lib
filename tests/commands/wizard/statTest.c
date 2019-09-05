@@ -75,6 +75,7 @@ void CanStatPlayers()
 void CanStatMonsters()
 {
     object monster = clone_object("/lib/realizations/monster.c");
+    monster->Race("human");
     monster->SetUpPersonaOfLevel("oneiromancer", 20);
     
     object item = clone_object("/lib/instances/items/weapons/staffs/ornate-staff.c");
@@ -97,7 +98,7 @@ void CanStatMonsters()
     command("stat fred", Wizard);
     ExpectEq("Fred \n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "| Race: Unknown                          Overall Level: 20                    |\n"
+        "| Race: Human                            Overall Level: 20                    |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Vitals +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "|   Hit Points: ========== Spell Points: ==========      Stamina: ==========  |\n"
         "|             1240/1240                 4240/4240               1240/1240     |\n"

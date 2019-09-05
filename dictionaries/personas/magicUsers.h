@@ -6,6 +6,7 @@
 private nosave mapping magicUserBlueprints = ([
     "keeper of the night": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
             "destruction", "elemental air", "magical essence", "body",
             "blood", "spirit" }),
@@ -36,6 +37,7 @@ private nosave mapping magicUserBlueprints = ([
     ]),
     "geomancer": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
             "evocation", "elemental earth", "magical essence", 
             "transformation", "manipulation" }),
@@ -66,6 +68,7 @@ private nosave mapping magicUserBlueprints = ([
     ]),
     "aeromancer": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
             "evocation", "elemental air", "magical essence", 
             "transformation", "manipulation" }),
@@ -96,6 +99,7 @@ private nosave mapping magicUserBlueprints = ([
     ]),
     "pyromancer": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
             "evocation", "elemental fire", "magical essence", 
             "transformation", "manipulation" }),
@@ -126,6 +130,7 @@ private nosave mapping magicUserBlueprints = ([
     ]),
     "aquamancer": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
             "evocation", "elemental water", "magical essence", 
             "transformation", "manipulation" }),
@@ -156,6 +161,7 @@ private nosave mapping magicUserBlueprints = ([
     ]),
     "cryomancer": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
             "evocation", "elemental water", "magical essence", 
             "transformation", "manipulation" }),
@@ -186,6 +192,7 @@ private nosave mapping magicUserBlueprints = ([
     ]),
     "oneiromancer": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
             "evocation", "magical essence", "mind", "senses",
             "transformation", "manipulation" }),
@@ -216,6 +223,7 @@ private nosave mapping magicUserBlueprints = ([
     ]),
     "necromancer": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
             "evocation", "magical essence", "mind", "senses",
             "transformation", "manipulation", "body", "blood" }),
@@ -246,6 +254,7 @@ private nosave mapping magicUserBlueprints = ([
     ]),
     "mage": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
             "evocation", "magical essence", "mind", "senses",
             "transformation", "manipulation", "destruction" }),
@@ -276,6 +285,7 @@ private nosave mapping magicUserBlueprints = ([
     ]),
     "battle mage": ([
         "category": "mages",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "two-handed sword", 
             "chainmail", "scalemail", "hard leather", "soft leather",

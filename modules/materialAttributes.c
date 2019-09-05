@@ -409,7 +409,10 @@ public nomask int addAlias(string newAlias)
 public int id(string item)
 {
     string *aliasCheck = Aliases() + ({ RealName(), lower_case(RealName()) });
-    
+    if (this_object()->apparentRace())
+    {
+        aliasCheck += ({ this_object()->apparentRace() });
+    }
     return (item && stringp(item) && aliasCheck && (member(aliasCheck, item) > -1));
 }
 

@@ -23,12 +23,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "bat":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 1,
+        "maximum level": 5,
         "attacks": ([
             "claw": 3,
             "claw": 3,
@@ -39,12 +40,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 50
     ]),
     "bear":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 10,
+        "maximum level": 25,
         "attacks": ([
             "claw": 10,
             "claw": 10,
@@ -55,12 +57,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "boar":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 5,
+        "maximum level": 15,
         "attacks": ([
             "tusk": 10,
             "fangs": 5,
@@ -70,12 +73,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "cat":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 1,
+        "maximum level": 8,
         "attacks": ([
             "claw": 3,
             "claw": 3,
@@ -86,12 +90,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 50
     ]),
     "panther":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 6,
+        "maximum level": 15,
         "attacks": ([
             "claw": 10,
             "claw": 10,
@@ -102,12 +107,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 50
     ]),
     "mountain lion":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 6,
+        "maximum level": 15,
         "attacks": ([
             "claw": 10,
             "claw": 10,
@@ -157,12 +163,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "dog":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 1,
+        "maximum level": 8,
         "attacks": ([
             "claw": 3,
             "fangs": 5,
@@ -172,12 +179,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 50
     ]),
     "coyote":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 1,
+        "maximum level": 9,
         "attacks": ([
             "claw": 3,
             "fangs": 5,
@@ -187,12 +195,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 50
     ]),
     "deer":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor", "listen" }),
         "secondary skills" : ({ "perception", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 1,
+        "maximum level": 5,
         "attacks": ([
             "hoof": 3,
             "horn": 3,
@@ -203,12 +212,13 @@ private nosave mapping creatureBlueprints = ([
     ]),
 
     "eagle":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 3,
+        "maximum level": 15,
         "attacks": ([
             "talon": 5,
             "beak": 10,
@@ -218,12 +228,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "raven":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 2,
+        "maximum level": 8,
         "attacks": ([
             "talon": 3,
             "beak": 5,
@@ -249,7 +260,7 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "ghoul":([
-        "category": "creatures",
+        "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({ "lib/instances/traits/effects/ethereal" }),
@@ -267,7 +278,7 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 35
     ]),
     "ghast":([
-        "category": "creatures",
+        "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
@@ -511,7 +522,8 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "lich":([
-        "category": "creatures",
+        "category": "undead",
+        "is humanoid": 1,
         "primary skills":({ "parry", "dodge", "no armor", "staff" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
@@ -734,7 +746,7 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 20
     ]),
     "mohrg":([
-        "category": "creatures",
+        "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
@@ -752,7 +764,7 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 35
     ]),
     "mummy":([
-        "category": "creatures",
+        "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
@@ -842,12 +854,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "horse":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 5,
+        "maximum level": 15,
         "attacks": ([
             "hoof": 10,
         ]),
@@ -871,7 +884,7 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 150
     ]),
     "nukulevee":([
-        "category": "creatures",
+        "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor", "pole arm" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
@@ -938,12 +951,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "rat":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 1,
+        "maximum level": 5,
         "attacks": ([
             "claw": 2,
             "claw": 2,
@@ -972,7 +986,7 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "shadow":([
-        "category": "creatures",
+        "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({ "lib/instances/traits/effects/ethereal" }),
@@ -991,7 +1005,8 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "skeleton":([
-        "category": "creatures",
+        "category": "undead",
+        "is humanoid": 1,
         "primary skills":({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger",
             "two-handed sword", "plate armor", "splint armor",
@@ -1018,7 +1033,7 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 25
     ]),
     "spectre":([
-        "category": "creatures",
+        "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({ "lib/instances/traits/effects/ethereal" }),
@@ -1135,12 +1150,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "wolf":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 3,
+        "maximum level": 20,
         "attacks": ([
             "claw": 6,
             "fangs": 10,
@@ -1150,12 +1166,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 50
     ]),
     "wolverine":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 2,
+        "maximum level": 12,
         "attacks": ([
             "claw": 5,
             "claw": 5,
@@ -1166,12 +1183,13 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 50
     ]),
     "weasel":([
-        "category": "creatures",
+        "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
         "minimum level": 1,
+        "maximum level": 8,
         "attacks": ([
             "claw": 3,
             "claw": 3,
@@ -1197,7 +1215,8 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 50
     ]),
     "vampire":([
-        "category": "creatures",
+        "category": "undead",
+        "is humanoid": 1,
         "primary skills":({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger",
             "two-handed sword", "plate armor", "splint armor",
@@ -1220,7 +1239,7 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 100
     ]),
     "wight":([
-        "category": "creatures",
+        "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({ "lib/instances/traits/effects/ethereal" }),
@@ -1238,7 +1257,8 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 35
     ]),
     "zombie":([
-        "category": "creatures",
+        "category": "undead",
+        "is humanoid": 1,
         "primary skills":({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger",
             "two-handed sword", "plate armor", "splint armor",
@@ -1265,7 +1285,7 @@ private nosave mapping creatureBlueprints = ([
         "base stamina points" : 25
     ]),
     "wraith":([
-        "category": "creatures",
+        "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({ "lib/instances/traits/effects/ethereal" }),

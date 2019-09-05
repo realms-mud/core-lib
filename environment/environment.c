@@ -156,16 +156,16 @@ public void resetData()
 
     environmentalElements = ([
         "terrain":([]),
-            "interior" : ([]),
-            "feature" : ([]),
-            "building" : ([]),
-            "item" : ([]),
-            "objects" : ([]),
-            "shop" : 0,
-            "cloned" : 0,
-            "description" : ([]),
-            "location text" : ({ " is " }),
-            "doors" : ([])
+        "interior" : ([]),
+        "feature" : ([]),
+        "building" : ([]),
+        "item" : ([]),
+        "objects" : ([]),
+        "shop" : 0,
+        "cloned" : 0,
+        "description" : ([]),
+        "location text" : ({ " is " }),
+        "doors" : ([])
     ]);
     aliasesToElements = ([]);
     exits = ([]);
@@ -1078,6 +1078,12 @@ private nomask void setUpActiveLighting()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected void setUpEncounter(object player)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void init()
 {
     if (objectp(this_player()) && present(this_player()))
@@ -1110,6 +1116,7 @@ public void init()
         }
 
         setUpActiveLighting();
+        setUpEncounter(this_player());
     }
 }
 

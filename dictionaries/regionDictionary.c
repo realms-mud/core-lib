@@ -77,13 +77,28 @@ private nomask void createWeightedFeatureList(string featureType,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void createWeightedEncounterList(string regionType,
+    mapping encounters)
+{
+    WeightedEncounters[regionType] = ({});
+
+    foreach(string encounter in m_indices(encounters))
+    {
+        for (int i = 0; i < encounters[encounter]; i++)
+        {
+            WeightedEncounters[regionType] += ({ encounter });
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask mapping generateElements(string regionType, mapping items)
 {
     mapping ret = ([]);
 
     if (sizeof(items))
     {
-        int numFeatures = 1 + random(5);
+        int numFeatures = 1 + random(3);
         string direction = availableDirections[random(sizeof(availableDirections))];
 
         for (int i = 0; i < numFeatures; i++)
@@ -102,7 +117,38 @@ private nomask mapping generateElements(string regionType, mapping items)
             {
                 ret[feature] = ({});
             }
-            ret[feature] += ({ direction });
+
+            if (member(ret[feature], direction) < 0)
+            {
+                ret[feature] += ({ direction });
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *generateEncounters(string regionType, mapping encounters)
+{
+    string *ret = ({});
+
+    object personaDictionary =
+        load_object("/lib/dictionaries/personaDictionary.c");
+
+    mapping personas = personaDictionary->personaBlueprints();
+
+    if (sizeof(encounters))
+    {
+        if (!member(WeightedEncounters, regionType))
+        {
+            createWeightedEncounterList(regionType, encounters);
+        }
+
+        int possibleEncounters = 3 + random(5);
+        for (int i = 0; i < possibleEncounters; i++)
+        {
+            ret += ({ WeightedEncounters[regionType]
+                [random(sizeof(WeightedEncounters[regionType]))] });
         }
     }
     return ret;
@@ -112,6 +158,7 @@ private nomask mapping generateElements(string regionType, mapping items)
 public nomask mapping generateRoomData(object region, mapping data)
 {
     mapping ret = 0;
+
     if (isValidRegion(region))
     {
         ret = ([]);
@@ -129,7 +176,10 @@ public nomask mapping generateRoomData(object region, mapping data)
             RegionTypes[regionType]["potential items"]);
 
         ret["room objects"] = ([]);
-        ret["creatures"] = ([]);
+
+        ret["creatures"] = (data["room type"] == "room") ?
+            generateEncounters(regionType, 
+                RegionTypes[regionType]["potential encounters"]) : ([]);
     }
 
     return ret;

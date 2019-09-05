@@ -40,13 +40,21 @@ private void setPersonaLevel(int level)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void SetUpPersonaOfLevel(string persona, int level)
+public nomask varargs void SetUpPersonaOfLevel(string persona, int level,
+    int setMinimumLevelAutomatically)
 {
     object livingObj = getService("living");
     if (livingObj)
     {
-        setPersonaLevel(level);
-        getDictionary("persona")->setupPersona(persona, this_object());
+        object personaDictionary = getDictionary("persona");
+        
+        int levelToSet = setMinimumLevelAutomatically ?
+            personaDictionary->getValidLevel(persona, level, this_object()) :
+            level;
+
+        setPersonaLevel(levelToSet);
+
+        personaDictionary->setupPersona(persona, this_object());
         Persona = persona;
     }
     else

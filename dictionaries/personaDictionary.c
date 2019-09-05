@@ -178,6 +178,19 @@ private int minimumLevelMet(object character, string persona)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void SetRace(object character, string persona)
+{
+    object racialDictionary =
+        load_object("/lib/dictionaries/racialDictionary.c");
+
+    if (!character->Race())
+    {
+        character->Race(member(personaBlueprints()[persona], "is humanoid") ?
+            racialDictionary->getRandomRace() : persona);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setupPersona(string persona, object character)
 {
     if (objectp(character) &&
@@ -198,6 +211,7 @@ public nomask void setupPersona(string persona, object character)
         {
             if (minimumLevelMet(character, persona))
             {
+                SetRace(character, persona);
                 SetStats(character);
                 SetPrimarySkills(character, persona);
                 SetSecondarySkills(character, persona);
@@ -302,4 +316,81 @@ public nomask object *getRandomEquipment(object persona, int chanceForMagicalIte
         }
     }
     return equipment + ({});
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getRandomPersona(string type)
+{
+    string ret = type;
+    mapping blueprints = personaBlueprints();
+
+    switch (ret)
+    {
+        case "outlaw":
+        case "ruffian":
+        {
+            string *personas = filter(m_indices(blueprints),
+                (: $2[$1]["category"] == "fighters" :), blueprints);
+            personas -= ({ "knight", "phaedra", "knight of the storm" });
+
+            ret = personas[random(sizeof(personas))];
+        }
+        case "magic user":
+        {
+            string *personas = filter(m_indices(blueprints),
+                (: $2[$1]["category"] == "mages" :), blueprints);
+
+            ret = personas[random(sizeof(personas))];
+        }
+        case "dragon":
+        {
+            string *personas = filter(m_indices(blueprints),
+                (: $2[$1]["category"] == "dragons" :), blueprints);
+
+            ret = personas[random(sizeof(personas))];
+        }
+        case "creature":
+        {
+            string *personas = filter(m_indices(blueprints),
+                (: $2[$1]["category"] == "creatures" :), blueprints);
+
+            ret = personas[random(sizeof(personas))];
+        }
+        case "undead":
+        {
+            string *personas = filter(m_indices(blueprints),
+                (: $2[$1]["category"] == "undead" :), blueprints);
+
+            ret = personas[random(sizeof(personas))];
+        }
+        case "hunter":
+        {
+            ret = random(2) ? "archer" : "crossbowman";
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int getValidLevel(string persona, int level, object target)
+{
+    int ret = (level > 0) ? level : 1;
+
+    mapping blueprints = personaBlueprints();
+
+    if (member(blueprints, persona) &&
+        (member(inherit_list(target), "lib/realizations/henchman.c") == -1))
+    {
+        if (member(blueprints[persona], "minimum level") &&
+            (ret < blueprints[persona]["minimum level"]))
+        {
+            ret = blueprints[persona]["minimum level"];
+        }
+        else if (member(blueprints[persona], "maximum level") &&
+            (ret > blueprints[persona]["maximum level"]))
+        {
+            ret = blueprints[persona]["maximum level"];
+        }
+    }
+    return ret;
 }

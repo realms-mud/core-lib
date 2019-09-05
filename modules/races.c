@@ -33,7 +33,7 @@ public nomask varargs string apparentRace(string newRace)
     {
         apparentRace = newRace;
     }
-    return apparentRace;
+    return apparentRace ? apparentRace : race;
 }
 
 /////////////////////////////////////////////////////////////////////////////

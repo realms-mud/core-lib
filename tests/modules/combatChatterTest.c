@@ -38,6 +38,7 @@ void SetUpAttacker()
 {
     Attacker = clone_object("/lib/tests/support/services/mockPlayer.c");
     Attacker->Name("Bob");
+    Attacker->Race("human");
     Attacker->Str(20);
     Attacker->Int(20);
     Attacker->Wis(20);

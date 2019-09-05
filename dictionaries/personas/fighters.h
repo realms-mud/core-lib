@@ -6,6 +6,7 @@
 private nosave mapping fighterBlueprints = ([
     "swordsman":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger",
             "two-handed sword", "plate armor", "splint armor",
@@ -27,6 +28,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "man-at-arms":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger", "axe",
             "two-handed sword", "plate armor", "splint armor", "mace",
@@ -48,6 +50,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "knifeman":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "short sword", "dagger",
             "chainmail", "scalemail", "hard leather", "soft leather",
             "no armor" }),
@@ -67,6 +70,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "light infantry": ([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger",
             "two-handed sword", "hard leather", "soft leather",
@@ -87,6 +91,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "axeman":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "axe", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -107,6 +112,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "maceman":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "mace", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -127,6 +133,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "hammerman":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "hammer", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -147,6 +154,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "flail man":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "flail", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -167,6 +175,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "staff man":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "staff", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -187,6 +196,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "halberdier":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "pole arm", 
             "plate armor", "splint armor", "chainmail", "scalemail" }),
         "secondary skills": ({ "anatomy and physiology", "perception",
@@ -205,6 +215,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "spearman":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "pole arm", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -225,6 +236,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "guisarmier":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "pole arm", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -245,6 +257,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "brawler":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "unarmed", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -264,6 +277,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "archer":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "bow", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -284,6 +298,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "crossbowman":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "crossbow", 
             "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -304,6 +319,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "auxiliary":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "sling", 
             "thrown", "plate armor", "splint armor",
             "chainmail", "scalemail", "hard leather", "soft leather",
@@ -324,6 +340,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "knight": ([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger", "axe",
             "two-handed sword", "plate armor", "splint armor", "mace",
@@ -345,6 +362,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "phaedra": ([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger", "axe",
             "two-handed sword", "plate armor", "splint armor", "mace",
@@ -366,6 +384,7 @@ private nosave mapping fighterBlueprints = ([
     ]),
     "knight of the storm":([
         "category": "fighters",
+        "is humanoid": 1,
         "primary skills": ({ "parry", "dodge", "shield", "long sword",
             "hand and a half sword", "short sword", "dagger",
             "two-handed sword", "plate armor", "splint armor",
