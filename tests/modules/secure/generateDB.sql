@@ -643,7 +643,7 @@ CREATE TABLE `environmentDescriptions` (
   `description` LONGTEXT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  ADD INDEX `environment_description_idx` (`environmentId` ASC),
+  INDEX `environment_description_idx` (`environmentId` ASC),
   CONSTRAINT `environment_description`
       FOREIGN KEY (`environmentId`)
       REFERENCES `environmentInstances` (`id`)
@@ -657,7 +657,7 @@ CREATE TABLE `environmentShops` (
   `shop` VARCHAR(256) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  ADD INDEX `environment_shop_idx` (`environmentId` ASC),
+  INDEX `environment_shop_idx` (`environmentId` ASC),
   CONSTRAINT `environment_shop`
       FOREIGN KEY (`environmentId`)
       REFERENCES `environmentInstances` (`id`)
