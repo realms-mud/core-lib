@@ -23,6 +23,7 @@ private mapping aliasesToElements = ([]);
 protected mapping exits = ([]);
 private string State = "default";
 private string RegionPath = 0;
+private string uniqueIdentifier = 0;
 protected int xCoordinate = 0;
 protected int yCoordinate = 0;
 private nosave string ShortDescription = "";
@@ -404,8 +405,21 @@ protected nomask varargs void addGeneratedExit(string direction, string location
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void setIdentifier(string newIdentifier)
+{
+    uniqueIdentifier = newIdentifier;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string identifiedBy()
+{
+    return uniqueIdentifier ? uniqueIdentifier :
+        sprintf("%s-%s", object_name(this_object()), currentState());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs object addGeneratedRegion(string direction, string type,
-    int x, int y, string state)
+    int x, int y, string name, string state)
 {
     object ret = 0;
     if (!member(environmentalElements["regions"], direction))
@@ -417,7 +431,9 @@ public nomask varargs object addGeneratedRegion(string direction, string type,
             ret->setDimensions(x, y);
         }
 
-        ret->setRegionName(sprintf("%s start", object_name(this_object())));
+        ret->setRegionName(name ? name : 
+            sprintf("%s-%s", identifiedBy(), direction));
+
         ret->setRegionType(type);
 
         ret->createRegion(ret->getEnterFromDirection(direction),

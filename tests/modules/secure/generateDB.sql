@@ -82,6 +82,18 @@ drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
 ##
+drop table if exists environmentDescriptions;
+##
+drop table if exists environmentShops;
+##
+drop table if exists environmentInstances;
+##
+drop table if exists environmentalElements;
+##
+drop table if exists environmentalObjects;
+##
+drop table if exists regions;
+##
 drop table if exists domainUnitTraits;
 ##
 drop table if exists domainUnits;
@@ -595,6 +607,92 @@ CREATE TABLE `domainUnitTraits` (
   PRIMARY KEY (`id`),
   INDEX `unit_trait_idx` (`unitId` ASC),
   CONSTRAINT `unit_trait` FOREIGN KEY (`unitId`) REFERENCES `domainUnits` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `regions` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(256) NOT NULL,
+  `type` VARCHAR(45) NOT NULL,
+  `x-dimension` TINYINT NOT NULL,
+  `y-dimension` TINYINT NOT NULL,
+  `entryPoint` VARCHAR(256) NOT NULL,
+  `entryDirection` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `environmentInstances` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `regionId` INT NULL,
+  `x-coordinate` INT NULL,
+  `y-coordinate` INT NULL,
+  `identifier` VARCHAR(256) NOT NULL,
+  `name` VARCHAR(128) NULL,
+  `isCloned` BINARY NOT NULL DEFAULT false,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `instance_region_idx` (`regionId` ASC),
+  CONSTRAINT `instance_region` FOREIGN KEY (`regionId`) REFERENCES `regions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `environmentDescriptions` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `environmentId` INT NOT NULL,
+  `state` VARCHAR(80) NULL,
+  `description` LONGTEXT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `environment_description_idx` (`environmentId` ASC),
+  CONSTRAINT `environment_description`
+      FOREIGN KEY (`environmentId`)
+      REFERENCES `environmentInstances` (`id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `environmentShops` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `environmentId` INT NOT NULL,
+  `shop` VARCHAR(256) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `environment_shop_idx` (`environmentId` ASC),
+  CONSTRAINT `environment_shop`
+      FOREIGN KEY (`environmentId`)
+      REFERENCES `environmentInstances` (`id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `environmentalElements` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `environmentId` INT NOT NULL,
+  `type` VARCHAR(45) NOT NULL,
+  `value` VARCHAR(256) NOT NULL,
+  `state` VARCHAR(80) NULL,
+  `location` VARCHAR(40) NULL,
+  `x-coordinate` INT NULL,
+  `y-coordinate` INT NULL,
+  `z-coordinate` INT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `environment_element_idx` (`environmentId` ASC),
+  CONSTRAINT `environment_element` FOREIGN KEY (`environmentId`) REFERENCES `environmentInstances` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `environmentalObjects` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `environmentId` INT NOT NULL,
+  `path` VARCHAR(256) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `environment_object_idx` (`environmentId` ASC),
+  CONSTRAINT `environment_object`
+      FOREIGN KEY (`environmentId`)
+      REFERENCES `environmentInstances` (`id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE VIEW `basicPlayerData` AS select `players`.`name` AS `name`,
