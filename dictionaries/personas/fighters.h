@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private nosave mapping fighterBlueprints = ([
+private nosave mapping fighterBlueprints = ([ 
     "swordsman":([
         "category": "fighters",
         "is humanoid": 1,
