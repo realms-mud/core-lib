@@ -997,17 +997,6 @@ private nosave mapping materials =
         "scarcity": "common",
         "experience modifier": 1
     ]),
-    "hemlock": ([
-        "class": "wood",
-        "crafting skill required": 2,
-        "crafting prerequisites": ([
-            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
-            "wood crafting": (["type":"skill", "value": 2]),
-        ]),
-        "default description": "This is a plank of hemlock.",
-        "scarcity": "common",
-        "experience modifier": 1
-    ]),
     "spruce": ([
         "class": "wood",
         "crafting skill required": 2,
