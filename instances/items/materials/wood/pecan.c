@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg) 
     {
         set("name", "Pecan");
-        set("short", "Pecan");
+        set("short", "Pecan (Wood)");
         set("aliases", ({ "wood", "pecan" }));
         set("blueprint", "pecan");
     }

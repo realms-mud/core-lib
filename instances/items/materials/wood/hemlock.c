@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg) 
     {
         set("name", "Hemlock");
-        set("short", "Hemlock");
+        set("short", "Hemlock (Wood)");
         set("aliases", ({ "wood", "hemlock" }));
         set("blueprint", "hemlock");
     }

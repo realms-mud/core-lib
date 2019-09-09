@@ -9,9 +9,9 @@ public void reset(int arg)
 {
     if (!arg) 
     {
-        set("name", "Walnut");
-        set("short", "Walnut (Wood)");
-        set("aliases", ({ "wood", "walnut" }));
-        set("blueprint", "walnut");
+        set("name", "Nectarine");
+        set("short", "Nectarine (Wood)");
+        set("aliases", ({ "wood", "nectarine" }));
+        set("blueprint", "nectarine");
     }
 }
