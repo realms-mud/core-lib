@@ -153,27 +153,31 @@ public nomask mapping loadRegion(string enterFrom, string location,
     mapping grid)
 {
     mapping ret = 0;
-    string query = sprintf("select * from regions "
-        "where entryPoint = '%s' and entryDirection = '%s';", 
-        location, enterFrom);
 
-    int dbHandle = connect();
-    db_exec(dbHandle, query);
-    mixed result = db_fetch(dbHandle);
-    disconnect(dbHandle);
-
-    if (sizeof(result))
+    if(stringp(enterFrom) && stringp(location) && mappingp(grid))
     {
-        // The entry point/direction pair is unique
-        ret = ([
-            "name": convertString(result[1]),
-            "type": convertString(result[2]),
-            "x-dimension": to_int(result[3]),
-            "y-dimension": to_int(result[4]),
-            "entry point": convertString(result[5]),
-            "entry direction": convertString(result[6]),
-        ]);
-        ret["grid"] = loadRegionGrid(to_int(result[0]), grid);
+        string query = sprintf("select * from regions "
+            "where entryPoint = '%s' and entryDirection = '%s';", 
+            location, enterFrom);
+
+        int dbHandle = connect();
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+        disconnect(dbHandle);
+
+        if (sizeof(result))
+        {
+            // The entry point/direction pair is unique
+            ret = ([
+                "name": convertString(result[1]),
+                "type": convertString(result[2]),
+                "x-dimension": to_int(result[3]),
+                "y-dimension": to_int(result[4]),
+                "entry point": convertString(result[5]),
+                "entry direction": convertString(result[6]),
+            ]);
+            ret["grid"] = loadRegionGrid(to_int(result[0]), grid);
+        }
     }
     return ret;
 }
