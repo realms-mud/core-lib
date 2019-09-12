@@ -4,6 +4,7 @@
 //*****************************************************************************
 virtual inherit "/lib/environment/regions/core.c";
 virtual inherit "/lib/environment/regions/generate-region.c";
+virtual inherit "/lib/environment/regions/load-region.c";
 virtual inherit "/lib/environment/regions/map.c";
 
 /////////////////////////////////////////////////////////////////////////////

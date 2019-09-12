@@ -55,46 +55,59 @@ private nomask int canGenerateRegion()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void generateRegion(string enterFrom, string location,
+    int *coordinates)
+{
+    // Create entry point
+    createRoom(1, enterFrom, coordinates);
+
+    int numberOfRooms = getRoomCount();
+    for (int i = 0; i < numberOfRooms; i++)
+    {
+        createRoom();
+    }
+
+    while (sizeof(filter(rooms, (: $1["is placed"] == 0 :))))
+    {
+        foreach(mapping room in rooms)
+        {
+            constructPath(room);
+        }
+    }
+    mapping exit = createExit();
+    if (sizeof(exit))
+    {
+        rooms += ({ exit });
+        constructPath(exit);
+    }
+
+    foreach(mapping room in rooms)
+    {
+        generateRoomDetails(room);
+    }
+
+    if (location)
+    {
+        rooms[0]["environment"]->addEntryExit(enterFrom, location);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs string createRegion(string enterFrom, string location,
     int *coordinates)
 {
     string ret = 0;
-    if (canGenerateRegion())
+
+    createEmptyGrid(MaxX, MaxY);
+
+    mapping existingRegion = Dictionary->loadRegion(enterFrom, location);
+    if (mappingp(existingRegion))
     {
-        createEmptyGrid(MaxX, MaxY);
-
-        // Create entry point
-        createRoom(1, enterFrom, coordinates);
-
-        int numberOfRooms = getRoomCount();
-        for (int i = 0; i < numberOfRooms; i++)
-        {
-            createRoom();
-        }
-
-        while (sizeof(filter(rooms, (: $1["is placed"] == 0 :))))
-        {
-            foreach(mapping room in rooms)
-            {
-                constructPath(room);
-            }
-        }
-        mapping exit = createExit();
-        if (sizeof(exit))
-        {
-            rooms += ({ exit });
-            constructPath(exit);
-        }
-
-        foreach(mapping room in rooms)
-        {
-            generateRoomDetails(room);
-        }
-
-        if (location)
-        {
-            rooms[0]["environment"]->addEntryExit(enterFrom, location);
-        }
+        buildExistingRegion(existingRegion);
+    }
+    else if (canGenerateRegion())
+    {
+        generateRegion(enterFrom, location, coordinates);
 
         ret = getDirectionOfEntry(enterFrom);
     }

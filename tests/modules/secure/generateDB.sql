@@ -619,7 +619,8 @@ CREATE TABLE `regions` (
   `entryDirection` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC)
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
+  INDEX `region_entry_info (`entryPoint`, `entryDirection` ASC)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE TABLE `environmentInstances` (
