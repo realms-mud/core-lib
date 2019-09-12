@@ -14,6 +14,12 @@ drop function if exists saveDomainComponent;
 ##
 drop function if exists saveDomainHenchman;
 ##
+drop function if exists saveRegion;
+##
+drop function if exists saveEnvironmentInstance;
+##
+drop procedure if exists saveEnvironmentExit;
+##
 drop function if exists saveDomainUnit;
 ##
 drop procedure if exists saveHenchmanSkills;
@@ -622,7 +628,7 @@ CREATE TABLE `regions` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
-  INDEX `region_entry_info (`entryPoint`, `entryDirection` ASC)
+  INDEX `region_entry_info` (`entryPoint`, `entryDirection` ASC)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE TABLE `environmentInstances` (
@@ -1654,7 +1660,7 @@ BEGIN
         update regions set name = p_name,
                            type = p_type,
                            `x-dimension` = p_x,
-                           `y-dimension` = p_y;
+                           `y-dimension` = p_y
         where id = regionId;
     else
         insert into regions (name, type, `x-dimension`, `y-dimension`, entryPoint, entryDirection)
@@ -1718,6 +1724,24 @@ BEGIN
         end if;
     end if;
 RETURN lEnvironmentId;
+END;
+##
+CREATE PROCEDURE `saveEnvironmentExit` ( p_environmentId int, p_direction varchar(20), 
+    p_location varchar(256))
+BEGIN
+    declare exitId int;
+
+    select id into exitId
+    from environmentExits where environmentId = p_environmentId and direction = p_direction;
+    
+    if exitId is not null then
+        update environmentExits set direction = p_direction,
+                                    location = p_location
+        where id = exitId;
+    else
+        insert into environmentExits (environmentId, location, direction)
+        values (p_environmentId, p_location, p_direction);
+    end if;
 END;
 ##
 insert into players (id,name,race,age,gender) values (1,'maeglin','high elf',1,1);

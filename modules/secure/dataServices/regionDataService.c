@@ -155,7 +155,7 @@ public nomask mapping loadRegion(string enterFrom, string location,
     mapping ret = 0;
     string query = sprintf("select * from regions "
         "where entryPoint = '%s' and entryDirection = '%s';", 
-        enterFrom, location);
+        location, enterFrom);
 
     int dbHandle = connect();
     db_exec(dbHandle, query);
@@ -179,22 +179,92 @@ public nomask mapping loadRegion(string enterFrom, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void saveEnvironmentalObjects(int dbHandle, int environmentId,
+    mapping items)
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveEnvironmentalElements(int dbHandle, int environmentId,
+    mapping elements)
+{
+    string query;
+    string *ids = ({});
+/*
+    foreach(string exit in m_indices(exits))
+    {
+        query = sprintf("call saveEnvironmentalElements(%d,'%s','%s');",
+            environmentId, exit, exits[exit]);
+
+        db_exec(dbHandle, query);
+        result = db_fetch(dbHandle);
+    }
+    */
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveEnvironmentExits(int dbHandle, int environmentId,
+    mapping exits)
+{
+    string query = sprintf("delete from environmentExits "
+        "where environmentId = %d", environmentId);
+
+    if (sizeof(exits))
+    {
+        query += " and direction not in ('" +
+            implode(m_indices(exits), "','") + "')";
+    }
+    query += ";";
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+
+    if (sizeof(exits))
+    {
+        foreach(string exit in m_indices(exits))
+        {
+            query = sprintf("call saveEnvironmentExit(%d,'%s','%s');",
+                environmentId, exit, exits[exit]);
+
+            db_exec(dbHandle, query);
+            result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void saveEnvironmentData(int dbHandle, int regionId,
     mapping *rooms)
 {
     if (sizeof(rooms))
     {
-        string query = sprintf("select saveEnvironmentInstance("
-            "'%s','%s',%d,%d,'%s','%s');",
-            name, type, x, y, entryPoint, entryDirection);
-
-        int dbHandle = connect();
-        db_exec(dbHandle, query);
-        mixed result = db_fetch(dbHandle);
-
-        if (result && result[0])
+        foreach(mapping room in rooms)
         {
-            saveEnvironmentData(dbHandle, to_int(result[0]), rooms);
+            string query = sprintf("select saveEnvironmentInstance("
+                "%d,%d,%d,'%s','%s','%s',%d,'%s','%s','%s');",
+                regionId,
+                room["x"],
+                room["y"],
+                sanitizeString(room["room type"]),
+                sanitizeString(room["identifier"]),
+                sanitizeString(room["name"]),
+                room["is cloned"],
+                sanitizeString(room["description"]),
+                sanitizeString(room["shop"]),
+                sanitizeString("default"));
+
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+
+            if (result && result[0])
+            {
+                saveEnvironmentExits(dbHandle, to_int(result[0]), 
+                    room["exits"]);
+                saveEnvironmentalElements(dbHandle, to_int(result[0]), 
+                    room["elements"]);
+                saveEnvironmentalObjects(dbHandle, to_int(result[0]), 
+                    room["objects"]);
+            }
         }
     }
 }
@@ -204,7 +274,12 @@ public nomask void saveRegion(string name, string type, int x, int y,
     string entryPoint, string entryDirection, mapping *rooms)
 {
     string query = sprintf("select saveRegion('%s','%s',%d,%d,'%s','%s');",
-        name, type, x, y, entryPoint, entryDirection);
+        sanitizeString(name), 
+        sanitizeString(type), 
+        x, 
+        y, 
+        sanitizeString(entryPoint),
+        sanitizeString(entryDirection));
 
     int dbHandle = connect();
     db_exec(dbHandle, query);
