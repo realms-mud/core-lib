@@ -1642,6 +1642,84 @@ BEGIN
     end if;    
 END;
 ##
+CREATE FUNCTION `saveRegion` ( p_name varchar(256), p_type varchar(45), 
+    p_x int, p_y int, p_entryPoint varchar(256), p_direction varchar(20)) RETURNS int(11)
+BEGIN
+    declare regionId int;
+
+    select id into regionId
+    from regions where entryPoint = p_entryPoint and entryDirection = p_direction;
+    
+    if regionId is not null then
+        update regions set name = p_name,
+                           type = p_type,
+                           `x-dimension` = p_x,
+                           `y-dimension` = p_y;
+        where id = regionId;
+    else
+        insert into regions (name, type, `x-dimension`, `y-dimension`, entryPoint, entryDirection)
+        values (p_name, p_type, p_x, p_y, p_entryPoint, p_direction);
+
+        select id into regionId
+        from regions where entryPoint = p_entryPoint and entryDirection = p_direction;
+    end if;
+RETURN regionId;
+END;
+##
+CREATE FUNCTION `saveEnvironmentInstance` ( p_regionId int, p_x int, p_y int, 
+    p_type varchar(40), p_identifier varchar(256), p_name varchar(128), p_cloned binary, 
+    p_description longtext, p_shop varchar(256), p_state varchar(80)) RETURNS int(11)
+BEGIN
+    declare lEnvironmentId int;
+    declare childId int;
+
+    select id into lEnvironmentId
+    from environmentInstances where regionId = p_regionId and identifier = p_identifier;
+    
+    if lEnvironmentId is not null then
+        update environmentInstances set name = p_name,
+                           type = p_type,
+                           isCloned = p_cloned,
+                           `x-coordinate` = p_x,
+                           `y-coordinate` = p_y
+        where id = lEnvironmentId;
+    else
+        insert into environmentInstances (regionId, `x-coordinate`, `y-coordinate`, type,
+            identifier, name, isCloned)
+        values (p_regionId, p_x, p_y, p_type, p_identifier, p_name, p_cloned);
+
+        select id into lEnvironmentId
+        from environmentInstances where regionId = p_regionId and identifier = p_identifier;
+    end if;
+
+    if p_description <> '' then
+        select id into childId
+        from environmentDescriptions 
+        where environmentId = lEnvironmentId and state = p_state;
+
+        if childId is not null then
+            update environmentDescriptions set description = p_description
+            where id = childId;
+        else
+            insert into environmentDescriptions (environmentId, state, description)
+            values(lEnvironmentId, p_state, p_description);
+        end if;
+    end if;
+
+    if p_shop <> '' then
+        select id into childId from environmentShops where environmentId = lEnvironmentId;
+
+        if childId is not null then
+            update environmentShops set shop = p_shop
+            where id = childId;
+        else
+            insert into environmentShops (environmentId, shop)
+            values(lEnvironmentId, p_shop);
+        end if;
+    end if;
+RETURN lEnvironmentId;
+END;
+##
 insert into players (id,name,race,age,gender) values (1,'maeglin','high elf',1,1);
 ##
 insert into wizards (playerid,typeid) values (1, (select id from wizardTypes where type='owner'));

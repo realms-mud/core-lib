@@ -39,7 +39,7 @@ private nomask mapping *loadEnvironmentElements(int dbHandle, int environmentId)
     mapping *ret = ({});
 
     string query = sprintf("select type, value, state, location, "
-        "x-coordinate, y-coordinate, z-coordinate "
+        "`x-coordinate`, `y-coordinate`, `z-coordinate` "
         "from environmentalElements "
         "where environmentId = %d;", environmentId);
 
@@ -167,11 +167,11 @@ public nomask mapping loadRegion(string enterFrom, string location,
         // The entry point/direction pair is unique
         ret = ([
             "name": convertString(result[1]),
-            "type" : convertString(result[2]),
-            "x-dimension" : to_int(result[3]),
-            "y-dimension" : to_int(result[4]),
-            "entry point" : convertString(result[5]),
-            "entry direction" : convertString(result[6]),
+            "type": convertString(result[2]),
+            "x-dimension": to_int(result[3]),
+            "y-dimension": to_int(result[4]),
+            "entry point": convertString(result[5]),
+            "entry direction": convertString(result[6]),
         ]);
         ret["grid"] = loadRegionGrid(to_int(result[0]), grid);
     }
@@ -179,15 +179,40 @@ public nomask mapping loadRegion(string enterFrom, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void saveRegion(int currentTime, int currentDay,
-    int currentYear)
+private nomask void saveEnvironmentData(int dbHandle, int regionId,
+    mapping *rooms)
 {
-    string query = sprintf("update environment set "
-        "currentTime = %d, currentDay = %d, currentYear = %d "
-        "where id = 1;", currentTime, currentDay, currentYear);
+    if (sizeof(rooms))
+    {
+        string query = sprintf("select saveEnvironmentInstance("
+            "'%s','%s',%d,%d,'%s','%s');",
+            name, type, x, y, entryPoint, entryDirection);
+
+        int dbHandle = connect();
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+
+        if (result && result[0])
+        {
+            saveEnvironmentData(dbHandle, to_int(result[0]), rooms);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void saveRegion(string name, string type, int x, int y,
+    string entryPoint, string entryDirection, mapping *rooms)
+{
+    string query = sprintf("select saveRegion('%s','%s',%d,%d,'%s','%s');",
+        name, type, x, y, entryPoint, entryDirection);
 
     int dbHandle = connect();
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
+
+    if (result && result[0])
+    {
+        saveEnvironmentData(dbHandle, to_int(result[0]), rooms);
+    }
     disconnect(dbHandle);
 }
