@@ -86,11 +86,13 @@ drop table if exists environmentDescriptions;
 ##
 drop table if exists environmentShops;
 ##
-drop table if exists environmentInstances;
-##
 drop table if exists environmentalElements;
 ##
 drop table if exists environmentalObjects;
+##
+drop table if exists environmentExits;
+##
+drop table if exists environmentInstances;
 ##
 drop table if exists regions;
 ##
@@ -628,6 +630,7 @@ CREATE TABLE `environmentInstances` (
   `regionId` INT NULL,
   `x-coordinate` INT NULL,
   `y-coordinate` INT NULL,
+  `type` VARCHAR(40) NULL,
   `identifier` VARCHAR(256) NOT NULL,
   `name` VARCHAR(128) NULL,
   `isCloned` BINARY NOT NULL DEFAULT false,
@@ -666,6 +669,21 @@ CREATE TABLE `environmentShops` (
       ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
+CREATE TABLE `environmentExits` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `environmentId` INT NOT NULL,
+  `location` VARCHAR(256) NOT NULL,
+  `direction` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `environment_exit_idx` (`environmentId` ASC),
+  CONSTRAINT `environment_exit`
+      FOREIGN KEY (`environmentId`)
+      REFERENCES `environmentInstances` (`id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
 CREATE TABLE `environmentalElements` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `environmentId` INT NOT NULL,
@@ -685,7 +703,10 @@ CREATE TABLE `environmentalElements` (
 CREATE TABLE `environmentalObjects` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `environmentId` INT NOT NULL,
+  `state` VARCHAR(80) NULL,
   `path` VARCHAR(256) NOT NULL,
+  `isRandom` BINARY NOT NULL DEFAULT false,
+  `probability` TINYINT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `environment_object_idx` (`environmentId` ASC),
@@ -778,6 +799,24 @@ CREATE VIEW `componentsView` AS
 		on `domainSectionComponents`.`id` = `textile`.`componentId` and `textile`.`type` = 'textile'
     left outer join `domainComponentMaterials` as `wood`
 		on `domainSectionComponents`.`id` = `wood`.`componentId` and `wood`.`type` = 'wood';
+##
+CREATE VIEW `environmentView` AS
+    select `environmentInstances`.`id` AS `environmentId`,
+           `environmentInstances`.`regionId` AS `regionId`,
+           `environmentInstances`.`x-coordinate` AS `x-coordinate`,
+           `environmentInstances`.`y-coordinate` AS `y-coordinate`,
+           `environmentInstances`.`type` AS `type`,
+           `environmentInstances`.`identifier` AS `identifier`,
+           `environmentInstances`.`name` AS `name`,
+           `environmentInstances`.`isCloned` AS `isCloned`,
+           `environmentDescriptions`.`description` AS `description`,
+           `environmentShops`.`shop` AS `shop`
+    from `environmentInstances`
+    left outer join `environmentDescriptions`
+        on `environmentDescriptions`.`environmentId` = `environmentInstances`.`id` 
+        AND (`environmentDescriptions`.`state` = 'default' OR `environmentDescriptions`.`state` is null)
+    left outer join `environmentShops`
+        on `environmentShops`.`environmentId` = `environmentInstances`.`id`;
 ##
 CREATE FUNCTION `saveBasicPlayerInformation`(p_name varchar(40),
 p_race varchar(20), p_age int, p_gender int, p_ghost int, p_strength int,

@@ -100,7 +100,7 @@ public nomask varargs string createRegion(string enterFrom, string location,
 
     createEmptyGrid(MaxX, MaxY);
 
-    mapping existingRegion = Dictionary->loadRegion(enterFrom, location);
+    mapping existingRegion = Dictionary->loadRegion(enterFrom, location, grid);
     if (mappingp(existingRegion))
     {
         buildExistingRegion(existingRegion);

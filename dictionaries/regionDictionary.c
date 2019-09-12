@@ -2,7 +2,8 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#include "/lib//dictionaries/regions/region-types.h"
+#include "/lib/dictionaries/regions/region-types.h"
+#include "/lib/modules/secure/regions.h"
 
 private string FeaturePrefix = "/lib/environment/features/";
 
@@ -183,4 +184,11 @@ public nomask mapping generateRoomData(object region, mapping data)
     }
 
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping loadRegion(string enterFrom, string location,
+    mapping grid)
+{
+    return loadRegionData(enterFrom, location, grid);
 }
