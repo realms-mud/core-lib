@@ -6,6 +6,7 @@ virtual inherit "/lib/environment/regions/core.c";
 virtual inherit "/lib/environment/regions/entries-and-exits.c";
 virtual inherit "/lib/environment/regions/generate-path.c";
 virtual inherit "/lib/environment/regions/generate-room.c";
+virtual inherit "/lib/environment/regions/load-region.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected int getRoomCount()
