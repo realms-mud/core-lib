@@ -1743,6 +1743,7 @@ BEGIN
         values (p_environmentId, p_location, p_direction);
     end if;
 END;
+
 ##
 insert into players (id,name,race,age,gender) values (1,'maeglin','high elf',1,1);
 ##

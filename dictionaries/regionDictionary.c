@@ -192,3 +192,9 @@ public nomask mapping loadRegion(string enterFrom, string location,
 {
     return loadRegionData(enterFrom, location, grid);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void saveRegion()
+{
+
+}

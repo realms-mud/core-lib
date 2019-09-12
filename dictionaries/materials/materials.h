@@ -2,7 +2,6 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
 private nosave string *materialClasses = ({ "textile", "crystal", "clay", 
     "skeletal", "leather", "metal", "stone", "wood", "plumage" });
 

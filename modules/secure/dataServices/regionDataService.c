@@ -182,6 +182,7 @@ public nomask mapping loadRegion(string enterFrom, string location,
 private nomask void saveEnvironmentalObjects(int dbHandle, int environmentId,
     mapping items)
 {
+
 }
 
 /////////////////////////////////////////////////////////////////////////////

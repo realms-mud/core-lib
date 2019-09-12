@@ -1276,7 +1276,7 @@ private nosave mapping creatureBlueprints = ([
             "armor/accessories": ({ "belt", "boots", "coif", "gloves", 
                 "helmet", "ring" })
         ]),
-        "minimum level": 3,
+        "minimum level": 2,
         "attacks": ([
             "undead": 5,
         ]),

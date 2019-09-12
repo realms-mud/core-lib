@@ -12,3 +12,9 @@ private nomask mapping loadRegionData(string enterFrom, string location,
 {
     return service->loadRegion(enterFrom, location, grid);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveegionData()
+{
+
+}

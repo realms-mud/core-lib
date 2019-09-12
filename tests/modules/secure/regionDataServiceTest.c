@@ -67,5 +67,6 @@ void CanSaveToDatabase()
                 "exits": ([ "north": "/lib/somewhere/else.c", "south": "/lib/elsewhere.c" ])
             ]) }));
 
+
     mapping grid = createEmptyGrid(5, 6);
 }

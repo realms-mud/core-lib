@@ -78,7 +78,7 @@ private mapping Trees = ([
         "malorn-stand": 1,
         "lilac-stand": 2,
         "lacewood": 1,
-        "swamp-ash": 1
+        "swamp-ash": 1,
     ])
 ]);
 

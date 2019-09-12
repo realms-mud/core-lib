@@ -98,7 +98,6 @@ public nomask varargs string createRegion(string enterFrom, string location,
     int *coordinates)
 {
     string ret = 0;
-
     createEmptyGrid(MaxX, MaxY);
 
     mapping existingRegion = Dictionary->loadRegion(enterFrom, location, grid);
