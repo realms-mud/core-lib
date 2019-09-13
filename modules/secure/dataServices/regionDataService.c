@@ -186,7 +186,36 @@ public nomask mapping loadRegion(string enterFrom, string location,
 private nomask void saveEnvironmentalObjects(int dbHandle, int environmentId,
     mapping items)
 {
+    string query;
+    mixed result;
+    string *ids = ({});
 
+    if (sizeof(items))
+    {
+        foreach(string item in m_indices(items))
+        {
+            query = sprintf("select saveEnvironmentalObject("
+                "%d,'%s','%s',%d,%d,%d);",
+                environmentId,
+                sanitizeString(items[item]["state"]),
+                sanitizeString(item),
+                items[item]["is random"],
+                items[item]["probability"],
+                items[item]["quantity"]);
+
+            db_exec(dbHandle, query);
+            result = db_fetch(dbHandle);
+
+            ids += ({ sanitizeString(result[0]) });
+        }
+    }
+
+    query = sprintf("delete from environmentalObjects "
+        "where environmentId = %d and id not in (%s);",
+        environmentId, implode(ids, ","));
+
+    db_exec(dbHandle, query);
+    result = db_fetch(dbHandle);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -194,17 +223,41 @@ private nomask void saveEnvironmentalElements(int dbHandle, int environmentId,
     mapping elements)
 {
     string query;
+    mixed result;
     string *ids = ({});
-/*
-    foreach(string exit in m_indices(exits))
-    {
-        query = sprintf("call saveEnvironmentalElements(%d,'%s','%s');",
-            environmentId, exit, exits[exit]);
 
-        db_exec(dbHandle, query);
-        result = db_fetch(dbHandle);
+    if (sizeof(elements))
+    {
+        foreach(string element in m_indices(elements))
+        {
+            string value = regreplace(element, "([^,]+),*.*", "\\1", 1);
+            string location = (value != element) ?
+                regreplace(element, "[^,]+,(.*)", "\\1", 1) : "";
+
+            query = sprintf("select saveEnvironmentalElement("
+                "%d,'%s','%s','%s','%s',%d,%d,%d);",
+                environmentId,
+                sanitizeString(elements[element]["type"]),
+                sanitizeString(value),
+                sanitizeString(elements[element]["state"]),
+                sanitizeString(location),
+                elements[element]["x-coordinate"],
+                elements[element]["y-coordinate"],
+                elements[element]["z-coordinate"]);
+
+            db_exec(dbHandle, query);
+            result = db_fetch(dbHandle);
+
+            ids += ({ sanitizeString(result[0]) });
+        }
     }
-    */
+
+    query = sprintf("delete from environmentalElements "
+        "where environmentId = %d and id not in (%s);",
+        environmentId, implode(ids, ","));
+
+    db_exec(dbHandle, query);
+    result = db_fetch(dbHandle);
 }
 
 /////////////////////////////////////////////////////////////////////////////

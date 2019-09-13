@@ -18,6 +18,10 @@ drop function if exists saveRegion;
 ##
 drop function if exists saveEnvironmentInstance;
 ##
+drop function if exists saveEnvironmentalElement;
+##
+drop function if exists saveEnvironmentalObject;
+##
 drop procedure if exists saveEnvironmentExit;
 ##
 drop function if exists saveDomainUnit;
@@ -713,6 +717,7 @@ CREATE TABLE `environmentalObjects` (
   `path` VARCHAR(256) NOT NULL,
   `isRandom` BINARY NOT NULL DEFAULT false,
   `probability` TINYINT NULL,
+  `quantity` TINYINT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `environment_object_idx` (`environmentId` ASC),
@@ -1743,7 +1748,60 @@ BEGIN
         values (p_environmentId, p_location, p_direction);
     end if;
 END;
+##
+CREATE FUNCTION `saveEnvironmentalElement` ( p_environmentId int, p_type varchar(45),
+    p_value varchar(256), p_state varchar(80), p_location varchar(40), p_x int, 
+    p_y int, p_z int) RETURNS int(11)
+BEGIN
+    declare elementId int;
 
+    select id into elementId from environmentalElements 
+    where environmentId = p_environmentId and value = p_value and location = p_location;
+    
+    if elementId is not null then
+        update environmentalElements set type = p_type,
+                                         state = p_state,
+                                         `x-coordinate` = p_x,
+                                         `y-coordinate` = p_y,
+                                         `z-coordinate` = p_z
+        where id = elementId;
+    else
+        insert into environmentalElements (environmentId, type, value, state, location,
+            `x-coordinate`, `y-coordinate`, `z-coordinate`)
+        values (p_environmentId, p_type, p_value, p_state, p_location, p_x, p_y, p_z);
+
+        select id into elementId from environmentalElements 
+        where environmentId = p_environmentId and value = p_value and location = p_location;
+    end if;
+RETURN elementId;
+END;
+##
+CREATE FUNCTION `saveEnvironmentalObject` ( p_environmentId int, p_state varchar(80),
+    p_path varchar(256), p_random binary, p_probability tinyint, p_quantity tinyint) 
+    RETURNS int(11)
+BEGIN
+    declare elementId int;
+
+    select id into elementId from environmentalObjects 
+    where environmentId = p_environmentId and path = p_path;
+    
+    if elementId is not null then
+        update environmentalObjects set state = p_state,
+                                        isRandom = p_random,
+                                        probability = p_probability,
+                                        quantity = p_quantity
+        where id = elementId;
+    else
+        insert into environmentalObjects (environmentId, state, path, isRandom, 
+            probability, quantity)
+        values (p_environmentId, p_state, p_path, p_random, p_probability, 
+            p_quantity);
+
+        select id into elementId from environmentalObjects 
+        where environmentId = p_environmentId and path = p_path;
+    end if;
+RETURN elementId;
+END;
 ##
 insert into players (id,name,race,age,gender) values (1,'maeglin','high elf',1,1);
 ##
