@@ -12,14 +12,42 @@ private object *currentEncounters = ({});
 private int timeUntilNextEncounter;
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void addRandomEnvironmentalElements(mapping elements, 
+private nomask mapping getElementMapping(string type, string name, 
+    string location, mapping element, string state)
+{
+    object elementObj = load_object(name);
+    string elementName = elementObj->Name();
+
+    mapping *instance = filter(element[elementName], 
+        (: $1["description"] == $2 :), location);
+
+    return ([ sprintf("%s%s", name, (location ? "," + location : "")) :
+    ([
+        "type": type,
+        "state": state || "default",
+        "x-coordinate": instance[0]["x"],
+        "y-coordinate": instance[0]["y"],
+        "z-coordinate": instance[0]["z"],
+        "x-rotation": instance[0]["x-rotation"],
+        "y-rotation": instance[0]["y-rotation"],
+        "z-rotation": instance[0]["z-rotation"],
+    ]) ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping addRandomEnvironmentalElements(mapping elements, 
     string state)
 {
+    mapping ret = ([]);
+
     foreach(string feature in m_indices(elements["features"]))
     {
         foreach(string direction in elements["features"][feature])
         {
             addFeature(feature, direction, state);
+
+            ret += getElementMapping("feature", feature, direction,
+                 environmentalElements["feature"], state);
         }
     }
 
@@ -28,6 +56,9 @@ private nomask void addRandomEnvironmentalElements(mapping elements,
         foreach(string direction in elements["items"][item])
         {
             addItem(item, direction, state);
+
+            ret += getElementMapping("item", item, direction,
+                 environmentalElements["item"], state);
         }
     }
 
@@ -35,6 +66,8 @@ private nomask void addRandomEnvironmentalElements(mapping elements,
     {
         addShop(elements["shop"]);
     }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -80,23 +113,30 @@ private nomask void addGeneratedExits(mapping exits, object region,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs void generateEnvironment(mapping data, object region, 
+public nomask varargs mapping generateEnvironment(mapping data, object region, 
     string state)
 {
+    mapping ret = ([]);
+
     if (mappingp(data))
     {
-        mapping roomData =
-            regionDictionary->generateRoomData(region, data);
+        mapping roomData = regionDictionary->generateRoomData(region, data);
 
         if (roomData)
         {
             if (member(roomData, "terrain"))
             {
                 setTerrain(roomData["terrain"]);
+
+                ret += getElementMapping("terrain", roomData["terrain"], "",
+                     environmentalElements["terrain"], state);
             }
             else
             {
                 setInterior(roomData["interior"]);
+
+                ret += getElementMapping("interior", roomData["interior"], "",
+                     environmentalElements["interior"], state);
             }
 
             setCoordinates(region->regionName(), data["x"], data["y"]);
@@ -107,6 +147,8 @@ public nomask varargs void generateEnvironment(mapping data, object region,
             addRandomCreature(roomData["creatures"], state);
         }
     }
+
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

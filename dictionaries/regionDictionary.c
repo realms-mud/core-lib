@@ -194,7 +194,17 @@ public nomask mapping loadRegion(string enterFrom, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void saveRegion()
+public nomask void saveRegion(object region)
 {
-
+    if (objectp(region) &&
+        (member(inherit_list(region), "lib/environment/region.c") > -1))
+    {
+        saveRegionData(region->regionName(),
+            region->regionType(),
+            region->xDimension(),
+            region->yDimension(),
+            region->entryPoint(),
+            region->entryDirection(),
+            region->rooms());
+    }
 }

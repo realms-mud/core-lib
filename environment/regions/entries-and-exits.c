@@ -95,6 +95,12 @@ protected nomask varargs mapping createExit(int count)
             grid[x][y]["room type"] = "exit";
             grid[x][y]["exit to"] = exitTo;
             grid[x][y]["exit coordinates"] = exitCoordinates;
+
+            string name = sprintf("%dx%d", x, y);
+            grid[x][y]["identifier"] = sprintf("%s,%s-%s", EntryPoint || "none",
+                EnterFrom || "no exit", name);
+            grid[x][y]["name"] = name;
+
             ret = grid[x][y];
         }
         else

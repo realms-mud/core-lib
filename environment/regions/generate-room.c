@@ -46,6 +46,11 @@ protected nomask varargs void createRoom(int isEntry, string enterFrom,
         grid[x][y]["is placed"] = isEntry;
         grid[x][y]["room type"] = isEntry ? "entry" : "room";
 
+        string name = sprintf("%dx%d", x, y);
+        grid[x][y]["identifier"] = sprintf("%s,%s-%s", EntryPoint || "none", 
+            EnterFrom || "no exit", name);
+        grid[x][y]["name"] = name;
+
         rooms += ({ grid[x][y] });
     }
     else

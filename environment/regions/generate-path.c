@@ -147,8 +147,14 @@ protected nomask void constructPath(mapping room)
             if (grid[toX][toY]["room type"] == "none")
             {
                 grid[toX][toY]["room type"] = "path";
-            }
 
+                string name = sprintf("%dx%d", toX, toY);
+                grid[toX][toY]["identifier"] = sprintf("%s,%s-%s", EntryPoint || "none",
+                    EnterFrom || "no exit", name);
+                grid[toX][toY]["name"] = name;
+
+                rooms += ({ grid[toX][toY] });
+            }
         }
         else
         {

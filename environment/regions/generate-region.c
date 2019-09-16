@@ -59,6 +59,9 @@ private nomask int canGenerateRegion()
 private nomask void generateRegion(string enterFrom, string location,
     int *coordinates)
 {
+    EntryPoint = location;
+    EnterFrom = enterFrom;
+
     // Create entry point
     createRoom(1, enterFrom, coordinates);
 

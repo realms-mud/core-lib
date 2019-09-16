@@ -14,7 +14,8 @@ private nomask mapping loadRegionData(string enterFrom, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void saveegionData()
+private nomask void saveRegionData(string name, string type, int x, int y,
+    string entryPoint, string entryDirection, mapping *rooms)
 {
-
+    service->saveRegion(name, type, x, y, entryPoint, entryDirection, rooms);
 }
