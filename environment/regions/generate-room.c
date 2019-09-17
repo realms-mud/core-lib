@@ -11,7 +11,7 @@ protected nomask void generateRoomDetails(mapping room)
     room["environment"] =
         clone_object("/lib/environment/generatedEnvironment");
 
-    room["environment"]->generateEnvironment(room, this_object());
+    room += room["environment"]->generateEnvironment(room, this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////

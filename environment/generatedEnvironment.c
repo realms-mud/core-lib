@@ -116,7 +116,9 @@ private nomask void addGeneratedExits(mapping exits, object region,
 public nomask varargs mapping generateEnvironment(mapping data, object region, 
     string state)
 {
-    mapping ret = ([]);
+    mapping ret = ([
+        "elements": ([])
+    ]);
 
     if (mappingp(data))
     {
@@ -128,23 +130,31 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
             {
                 setTerrain(roomData["terrain"]);
 
-                ret += getElementMapping("terrain", roomData["terrain"], "",
-                     environmentalElements["terrain"], state);
+                ret["elements"] += getElementMapping("terrain", 
+                    roomData["terrain"], "", environmentalElements["terrain"], 
+                    state);
             }
             else
             {
                 setInterior(roomData["interior"]);
 
-                ret += getElementMapping("interior", roomData["interior"], "",
-                     environmentalElements["interior"], state);
+                ret["elements"] += getElementMapping("interior", 
+                    roomData["interior"], "", environmentalElements["interior"],
+                    state);
             }
 
             setCoordinates(region->regionName(), data["x"], data["y"]);
             addGeneratedExits(roomData["exits"], region, state);
 
-            addRandomEnvironmentalElements(roomData, state);
-            addRandomObjects(roomData["room objects"], state);
+            ret["elements"] += 
+                addRandomEnvironmentalElements(roomData, state);
+
+            addRandomObjects(filter(roomData["room objects"],
+                (: $2["type"] == "object"  :)), state);
+
             addRandomCreature(roomData["creatures"], state);
+
+            ret["room objects"] = roomData["room objects"];
         }
     }
 

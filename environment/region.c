@@ -4,6 +4,7 @@
 //*****************************************************************************
 virtual inherit "/lib/environment/regions/core.c";
 virtual inherit "/lib/environment/regions/generate-region.c";
+virtual inherit "/lib/environment/regions/persist-region.c";
 virtual inherit "/lib/environment/regions/map.c";
 
 /////////////////////////////////////////////////////////////////////////////
@@ -100,10 +101,4 @@ public mapping *rooms()
     mapping *ret = rooms + ({});
 
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void save()
-{
-    Dictionary->saveRegion(this_object());
 }

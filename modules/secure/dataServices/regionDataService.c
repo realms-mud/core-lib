@@ -5,11 +5,12 @@
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping *loadEnvironmentObjects(int dbHandle, int environmentId)
+private nomask mapping loadEnvironmentObjects(int dbHandle, int environmentId)
 {
-    mapping *ret = ({});
+    mapping ret = ([]);
 
-    string query = sprintf("select state, path, isRandom, probability "
+    string query = sprintf("select state, path, isRandom, probability, "
+        "type, quantity "
         "from environmentalObjects "
         "where environmentId = %d;", environmentId);
 
@@ -21,12 +22,13 @@ private nomask mapping *loadEnvironmentObjects(int dbHandle, int environmentId)
         result = db_fetch(dbHandle);
         if (result)
         {
-            ret += ({ ([
+            ret[convertString(result[1])]= ([
                 "state": convertString(result[0]),
-                "path": convertString(result[1]),
                 "is random": to_int(result[2]),
-                "probability": to_int(result[3])
-            ]) });
+                "probability": to_int(result[3]),
+                "type" : convertString(result[4]),
+                "quantity": to_int(result[5])
+            ]);
         }
     } while (result);
 
@@ -34,12 +36,13 @@ private nomask mapping *loadEnvironmentObjects(int dbHandle, int environmentId)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping *loadEnvironmentElements(int dbHandle, int environmentId)
+private nomask mapping loadEnvironmentElements(int dbHandle, int environmentId)
 {
-    mapping *ret = ({});
+    mapping ret = ([]);
 
     string query = sprintf("select type, value, state, location, "
-        "`x-coordinate`, `y-coordinate`, `z-coordinate` "
+        "`x-coordinate`, `y-coordinate`, `z-coordinate`, "
+        "`x-rotation`, `y-rotation`, `z-rotation` "
         "from environmentalElements "
         "where environmentId = %d;", environmentId);
 
@@ -51,15 +54,21 @@ private nomask mapping *loadEnvironmentElements(int dbHandle, int environmentId)
         result = db_fetch(dbHandle);
         if (result)
         {
-            ret += ({ ([
-                "element type": convertString(result[0]),
-                "value": convertString(result[1]),
+            string location = convertString(result[3]);
+
+            string key = sprintf("%s%s", convertString(result[1]),
+                (location != "") ? "," + location : "");
+
+            ret[key] = ([
+                "type": convertString(result[0]),
                 "state": convertString(result[2]),
-                "location": convertString(result[3]),
                 "x-coordinate": to_int(result[4]),
                 "y-coordinate": to_int(result[5]),
-                "z-coordinate" : to_int(result[6])
-            ]) });
+                "z-coordinate" : to_int(result[6]),
+                "x-rotation" : to_int(result[7]),
+                "y-rotation" : to_int(result[8]),
+                "z-rotation" : to_int(result[9])
+            ]);
         }
     } while (result);
 
@@ -91,14 +100,13 @@ private nomask mapping loadEnvironmentExits(int dbHandle, int environmentId)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping loadRegionGrid(int regionId, mapping grid)
+private nomask mapping loadRegionGrid(int dbHandle, int regionId, mapping grid)
 {
     mapping ret = grid + ([]);
 
     string query = sprintf("select * from environmentView "
         "where regionId = %d;", regionId);
 
-    int dbHandle = connect();
     db_exec(dbHandle, query);
 
     mapping environments = ([]);
@@ -140,21 +148,42 @@ private nomask mapping loadRegionGrid(int regionId, mapping grid)
         ]);
 
         ret[x][y]["exits"] = loadEnvironmentExits(dbHandle, environmentId);
-        ret[x][y]["elements"] = loadEnvironmentElements(dbHandle, environmentId);
-        ret[x][y]["objects"] = loadEnvironmentObjects(dbHandle, environmentId);
+        ret[x][y]["elements"] = 
+            loadEnvironmentElements(dbHandle, environmentId);
+
+        ret[x][y]["room objects"] =        
+            loadEnvironmentObjects(dbHandle, environmentId);
     }
-    disconnect(dbHandle);
 
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping loadRegion(string enterFrom, string location,
-    mapping grid)
+private nomask mapping createEmptyGrid(int x, int y)
+{
+    mapping ret = ([]);
+    for (int i = 0; i < x; i++)
+    {
+        ret[i] = ([]);
+        for (int j = 0; j < y; j++)
+        {
+            ret[i][j] = ([
+                "x":i,
+                "y" : j,
+                "room type" : "none",
+                "exits": ([ ])
+            ]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping loadRegion(string enterFrom, string location)
 {
     mapping ret = 0;
 
-    if(stringp(enterFrom) && stringp(location) && mappingp(grid))
+    if(stringp(enterFrom) && stringp(location))
     {
         string query = sprintf("select * from regions "
             "where entryPoint = '%s' and entryDirection = '%s';", 
@@ -163,7 +192,6 @@ public nomask mapping loadRegion(string enterFrom, string location,
         int dbHandle = connect();
         db_exec(dbHandle, query);
         mixed result = db_fetch(dbHandle);
-        disconnect(dbHandle);
 
         if (sizeof(result))
         {
@@ -176,8 +204,13 @@ public nomask mapping loadRegion(string enterFrom, string location,
                 "entry point": convertString(result[5]),
                 "entry direction": convertString(result[6]),
             ]);
-            ret["grid"] = loadRegionGrid(to_int(result[0]), grid);
+
+            mapping grid = createEmptyGrid(to_int(result[3]),
+                to_int(result[4]));
+
+            ret["grid"] = loadRegionGrid(dbHandle, to_int(result[0]), grid);
         }
+        disconnect(dbHandle);
     }
     return ret;
 }
@@ -195,13 +228,14 @@ private nomask void saveEnvironmentalObjects(int dbHandle, int environmentId,
         foreach(string item in m_indices(items))
         {
             query = sprintf("select saveEnvironmentalObject("
-                "%d,'%s','%s',%d,%d,%d);",
+                "%d,'%s','%s',%d,%d,%d,'%s');",
                 environmentId,
                 sanitizeString(items[item]["state"]),
                 sanitizeString(item),
                 items[item]["is random"],
                 items[item]["probability"],
-                items[item]["quantity"]);
+                items[item]["quantity"],
+                sanitizeString(items[item]["type"]));
 
             db_exec(dbHandle, query);
             result = db_fetch(dbHandle);
@@ -235,7 +269,7 @@ private nomask void saveEnvironmentalElements(int dbHandle, int environmentId,
                 regreplace(element, "[^,]+,(.*)", "\\1", 1) : "";
 
             query = sprintf("select saveEnvironmentalElement("
-                "%d,'%s','%s','%s','%s',%d,%d,%d);",
+                "%d,'%s','%s','%s','%s',%d,%d,%d,%d,%d,%d);",
                 environmentId,
                 sanitizeString(elements[element]["type"]),
                 sanitizeString(value),
@@ -243,7 +277,10 @@ private nomask void saveEnvironmentalElements(int dbHandle, int environmentId,
                 sanitizeString(location),
                 elements[element]["x-coordinate"],
                 elements[element]["y-coordinate"],
-                elements[element]["z-coordinate"]);
+                elements[element]["z-coordinate"],
+                elements[element]["x-rotation"],
+                elements[element]["y-rotation"],
+                elements[element]["z-rotation"]);
 
             db_exec(dbHandle, query);
             result = db_fetch(dbHandle);
@@ -321,7 +358,7 @@ private nomask void saveEnvironmentData(int dbHandle, int regionId,
                 saveEnvironmentalElements(dbHandle, to_int(result[0]), 
                     room["elements"]);
                 saveEnvironmentalObjects(dbHandle, to_int(result[0]), 
-                    room["objects"]);
+                    room["room objects"]);
             }
         }
     }

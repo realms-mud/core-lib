@@ -152,6 +152,7 @@ private nomask string *generateEncounters(string regionType, mapping encounters)
                 [random(sizeof(WeightedEncounters[regionType]))] });
         }
     }
+
     return ret;
 }
 
@@ -181,16 +182,26 @@ public nomask mapping generateRoomData(object region, mapping data)
         ret["creatures"] = (data["room type"] == "room") ?
             generateEncounters(regionType, 
                 RegionTypes[regionType]["potential encounters"]) : ([]);
+
+        foreach(string creature in ret["creatures"])
+        {
+            ret["room objects"][creature] = ([
+                "type": "creature",
+                "state": "default",
+                "is random": 1,
+                "probability": 100 / sizeof(ret["creatures"]),
+                "quantity": 1
+            ]);
+        }
     }
 
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping loadRegion(string enterFrom, string location,
-    mapping grid)
+public nomask mapping loadRegion(string enterFrom, string location)
 {
-    return loadRegionData(enterFrom, location, grid);
+    return loadRegionData(enterFrom, location);
 }
 
 /////////////////////////////////////////////////////////////////////////////

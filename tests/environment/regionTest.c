@@ -128,14 +128,3 @@ void CanCreateGeneratedRegionFromRealEnvironment()
 
     destruct(environment);
 }
-
-/////////////////////////////////////////////////////////////////////////////
-void CanRestoreRegion()
-{
-/*    object environment =
-        load_object("/lib/tests/support/environment/startingRoom.c");
-
-    object region = environment->addGeneratedRegion("north", "forest", 15, 10);
-    region->save();
-    */
-}

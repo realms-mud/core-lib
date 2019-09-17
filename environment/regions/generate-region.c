@@ -6,7 +6,6 @@ virtual inherit "/lib/environment/regions/core.c";
 virtual inherit "/lib/environment/regions/entries-and-exits.c";
 virtual inherit "/lib/environment/regions/generate-path.c";
 virtual inherit "/lib/environment/regions/generate-room.c";
-virtual inherit "/lib/environment/regions/load-region.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected int getRoomCount()
@@ -92,7 +91,8 @@ private nomask void generateRegion(string enterFrom, string location,
 
     if (location)
     {
-        rooms[0]["environment"]->addEntryExit(enterFrom, location);
+        grid[entry[0]][entry[1]]["environment"]->addEntryExit(
+            enterFrom, location);
     }
 }
 
@@ -101,15 +101,11 @@ public nomask varargs string createRegion(string enterFrom, string location,
     int *coordinates)
 {
     string ret = 0;
-    createEmptyGrid(MaxX, MaxY);
 
-    mapping existingRegion = Dictionary->loadRegion(enterFrom, location, grid);
-    if (mappingp(existingRegion))
+    int loaded = call_direct(this_object(), "load", enterFrom, location);
+    if (!loaded && canGenerateRegion())
     {
-        buildExistingRegion(existingRegion);
-    }
-    else if (canGenerateRegion())
-    {
+        createEmptyGrid(MaxX, MaxY);
         generateRegion(enterFrom, location, coordinates);
 
         ret = getDirectionOfEntry(enterFrom);

@@ -7,10 +7,9 @@ private object service =
     load_object("/lib/modules/secure/dataServices/regionDataService.c");
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping loadRegionData(string enterFrom, string location,
-    mapping grid)
+private nomask mapping loadRegionData(string enterFrom, string location)
 {
-    return service->loadRegion(enterFrom, location, grid);
+    return service->loadRegion(enterFrom, location);
 }
 
 /////////////////////////////////////////////////////////////////////////////

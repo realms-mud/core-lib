@@ -704,6 +704,9 @@ CREATE TABLE `environmentalElements` (
   `x-coordinate` INT NULL,
   `y-coordinate` INT NULL,
   `z-coordinate` INT NULL,
+  `x-rotation` INT NULL,
+  `y-rotation` INT NULL,
+  `z-rotation` INT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `environment_element_idx` (`environmentId` ASC),
@@ -718,6 +721,7 @@ CREATE TABLE `environmentalObjects` (
   `isRandom` BINARY NOT NULL DEFAULT false,
   `probability` TINYINT NULL,
   `quantity` TINYINT NULL,
+  `type` VARCHAR(10) NOT NULL DEFAULT 'object',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `environment_object_idx` (`environmentId` ASC),
@@ -1751,7 +1755,7 @@ END;
 ##
 CREATE FUNCTION `saveEnvironmentalElement` ( p_environmentId int, p_type varchar(45),
     p_value varchar(256), p_state varchar(80), p_location varchar(40), p_x int, 
-    p_y int, p_z int) RETURNS int(11)
+    p_y int, p_z int, p_x_rot int, p_y_rot int, p_z_rot int) RETURNS int(11)
 BEGIN
     declare elementId int;
 
@@ -1763,12 +1767,17 @@ BEGIN
                                          state = p_state,
                                          `x-coordinate` = p_x,
                                          `y-coordinate` = p_y,
-                                         `z-coordinate` = p_z
+                                         `z-coordinate` = p_z,
+                                         `x-rotation` = p_x_rot,
+                                         `y-rotation` = p_y_rot,
+                                         `z-rotation` = p_z_rot
         where id = elementId;
     else
         insert into environmentalElements (environmentId, type, value, state, location,
-            `x-coordinate`, `y-coordinate`, `z-coordinate`)
-        values (p_environmentId, p_type, p_value, p_state, p_location, p_x, p_y, p_z);
+            `x-coordinate`, `y-coordinate`, `z-coordinate`, `x-rotation`, `y-rotation`,
+            `z-rotation`)
+        values (p_environmentId, p_type, p_value, p_state, p_location, p_x, p_y, p_z,
+            p_x_rot, p_y_rot, p_z_rot);
 
         select id into elementId from environmentalElements 
         where environmentId = p_environmentId and value = p_value and location = p_location;
@@ -1777,7 +1786,8 @@ RETURN elementId;
 END;
 ##
 CREATE FUNCTION `saveEnvironmentalObject` ( p_environmentId int, p_state varchar(80),
-    p_path varchar(256), p_random binary, p_probability tinyint, p_quantity tinyint) 
+    p_path varchar(256), p_random binary, p_probability tinyint, p_quantity tinyint,
+    p_type varchar(10)) 
     RETURNS int(11)
 BEGIN
     declare elementId int;
@@ -1793,9 +1803,9 @@ BEGIN
         where id = elementId;
     else
         insert into environmentalObjects (environmentId, state, path, isRandom, 
-            probability, quantity)
+            probability, quantity, type)
         values (p_environmentId, p_state, p_path, p_random, p_probability, 
-            p_quantity);
+            p_quantity, p_type);
 
         select id into elementId from environmentalObjects 
         where environmentId = p_environmentId and path = p_path;
