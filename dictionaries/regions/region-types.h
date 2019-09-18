@@ -35,7 +35,17 @@ protected mapping RegionTypes = ([
             "creature": 1,
         ])
     ]),
-
+    "keeper's temple":([
+        "terrain": "/lib/environment/terrain/keepers-temple.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "potential encounters": ([
+            "keeper of the night": 75,
+            "zombie": 40,
+            "skeleton": 40
+        ])
+    ]),
     "hilly forest":([
 
     ]),

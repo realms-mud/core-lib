@@ -5,7 +5,7 @@
 virtual inherit "/lib/core/thing.c";
 
 private nosave int researchFrequency = 35;
-private nosave string Persona;
+private nosave string Persona = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string persona()

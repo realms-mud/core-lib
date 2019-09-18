@@ -215,6 +215,7 @@ protected void setUpEncounter(object player)
                     capitalize(encounter->apparentRace()));
             }
             encounter->Name(realName);
+            encounter->setUpRandomEquipment(5 + (encounter->effectiveLevel() * 3));
 
             move_object(encounter, this_object());
         }

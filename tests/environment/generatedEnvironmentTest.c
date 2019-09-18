@@ -97,10 +97,10 @@ void CanMoveFromOneGeneratedRoomToTheNext()
 /////////////////////////////////////////////////////////////////////////////
 void EncountersGeneratedWhenUserEntersEnvironment()
 {
-    Region->setRegionName("a forest");
-    Region->setRegionType("forest");
+    Region->setRegionName("a temple");
+    Region->setRegionType("keeper's temple");
 
-    Region->setDimensions(10, 5);
+    Region->setDimensions(5, 5);
 
     mapping data = ([
         "x":1,
@@ -116,4 +116,5 @@ void EncountersGeneratedWhenUserEntersEnvironment()
     move_object(Player, data["environment"]);
 
     ExpectTrue(sizeof(all_inventory(data["environment"])) > 1);
+    ExpectTrue(sizeof(all_inventory(all_inventory(data["environment"])[0])));
 }

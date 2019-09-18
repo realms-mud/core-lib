@@ -266,52 +266,55 @@ public nomask object *getRandomEquipment(object persona, int chanceForMagicalIte
     if (objectp(persona))
     {
         string *personas = persona->Traits("persona");
-        if (!sizeof(personas))
+        if (!persona->persona())
         {
             raise_error("personaDictionary: A character must have a persona "
                 "before creating equipment.\n");
         }
 
-        object materialsDictionary =
-            load_object("/lib/dictionaries/materialsDictionary.c");
-        
-        mapping equipmentList = getEquipmentList(personas[0]);
-        if (equipmentList)
+        if(sizeof(personas))
         {
-            foreach(string item in m_indices(equipmentList))
+            object materialsDictionary =
+                load_object("/lib/dictionaries/materialsDictionary.c");
+        
+            mapping equipmentList = getEquipmentList(personas[0]);
+            if (equipmentList)
             {
-                string type;
-                string subtype;
-                string *listOfPotentialItems = 0;
+                foreach(string item in m_indices(equipmentList))
+                {
+                    string type;
+                    string subtype;
+                    string *listOfPotentialItems = 0;
 
-                if (sizeof(regexp(({ item }), "[a-z]+/[a-z]+")))
-                {
-                    string *types = explode(item, "/");
-                    type = types[0];
-                    subtype = types[1];
-                    listOfPotentialItems = equipmentList[item];
-                }
-                else
-                {
-                    type = item;
-                    if (sizeof(regexp(({ equipmentList[item] }), "[a-z]+/[a-z]+")))
+                    if (sizeof(regexp(({ item }), "[a-z]+/[a-z]+")))
                     {
-                    
-                        string *subtypes = explode(equipmentList[item][
-                            random(sizeof(equipmentList[item]))], "/");
-                        subtype = subtypes[0];
-                        listOfPotentialItems = ({ subtypes[1] });
+                        string *types = explode(item, "/");
+                        type = types[0];
+                        subtype = types[1];
+                        listOfPotentialItems = equipmentList[item];
                     }
                     else
                     {
-                        subtype = equipmentList[item][
-                            random(sizeof(equipmentList[item]))];
+                        type = item;
+                        if (sizeof(regexp(({ equipmentList[item] }), "[a-z]+/[a-z]+")))
+                        {
+                    
+                            string *subtypes = explode(equipmentList[item][
+                                random(sizeof(equipmentList[item]))], "/");
+                            subtype = subtypes[0];
+                            listOfPotentialItems = ({ subtypes[1] });
+                        }
+                        else
+                        {
+                            subtype = equipmentList[item][
+                                random(sizeof(equipmentList[item]))];
+                        }
                     }
+
+                    equipment += ({ materialsDictionary->generateRandomItem(
+                        type, subtype, chanceForMagicalItems, listOfPotentialItems) });
+
                 }
-
-                equipment += ({ materialsDictionary->generateRandomItem(
-                    type, subtype, chanceForMagicalItems, listOfPotentialItems) });
-
             }
         }
     }
