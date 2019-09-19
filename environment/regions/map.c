@@ -41,7 +41,11 @@ private mapping displayCharacter = ([
     ]),
     "player": ([
         "ascii": "P",
-        "unicode": "\xe2\x8c\xa5"
+        "unicode": "\xe2\x99\x99"
+    ]),
+    "divider": ([
+        "ascii": "'",
+        "unicode": "\xe2\x95\x91"
     ]),
     "none": ([
         "ascii": " ",
@@ -58,47 +62,88 @@ private nomask int hasExit(mapping location, string direction)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayMap(object user)
+private nomask varargs string displayMapSection(object user, int startX, 
+    int startY, int endX, int endY, int addDivider)
 {
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
 
-    string map = "\n";
+    string map = "";
 
-    for(int y = (MaxY - 1); y >= 0; y--)
+    if (user)
     {
-        string *row = ({ "", "", "", "" });
-
-        for(int x = 0; x < MaxX; x++)
+        for (int y = startY; y >= endY; y--)
         {
-            mapping location = grid[x][y];
+            string *row = ({ "", "", "", "" });
 
-            int userHere = objectp(present(user, grid[x][y]["environment"]));
-            string exitColor = userHere ? "user location" : "exit";
+            for (int x = startX; x <= endX; x++)
+            {
+                mapping location = grid[x][y];
 
-            row[0] += sprintf(" %s ", hasExit(location, "north") ?
-               configuration->decorate(displayCharacter["north"][charset],
-                   exitColor, "map", colorConfiguration): " ");
+                int userHere = objectp(present(user, location["environment"]));
+                string exitColor = userHere ? "user location" : "exit";
 
-            row[1] += sprintf("%s%s%s",
-                (hasExit(location, "west") ?
-                    configuration->decorate(displayCharacter["west"][charset],
-                    exitColor, "map", colorConfiguration) : " "),
-                configuration->decorate(
+                row[0] += sprintf(" %s ", hasExit(location, "north") ?
+                    configuration->decorate(displayCharacter["north"][charset],
+                        exitColor, "map", colorConfiguration) : " ");
+
+                row[1] += sprintf("%s%s%s",
+                    (hasExit(location, "west") ?
+                        configuration->decorate(displayCharacter["west"][charset],
+                            exitColor, "map", colorConfiguration) : " "),
+                    configuration->decorate(
                     (userHere ? displayCharacter["player"][charset] :
                         displayCharacter[location["room type"]][charset]),
-                    (userHere ? "user location" : location["room type"]),
-                    "map", colorConfiguration),
-                (hasExit(location, "east") ?
-                    configuration->decorate(displayCharacter["east"][charset],
-                    exitColor, "map", colorConfiguration) : " "));
+                        (userHere ? "user location" : location["room type"]),
+                        "map", colorConfiguration),
+                        (hasExit(location, "east") ?
+                            configuration->decorate(displayCharacter["east"][charset],
+                                exitColor, "map", colorConfiguration) : " "));
 
-            row[2] += sprintf(" %s ", hasExit(location, "south") ?
-                configuration->decorate(displayCharacter["south"][charset],
-                    exitColor, "map", colorConfiguration) : " ");
+                row[2] += sprintf(" %s ", hasExit(location, "south") ?
+                    configuration->decorate(displayCharacter["south"][charset],
+                        exitColor, "map", colorConfiguration) : " ");
+            }
+
+            string divider = !addDivider ? "" :
+                configuration->decorate(displayCharacter["divider"][charset],
+                    "divider", "map", colorConfiguration);
+
+            map += sprintf("%s%s\n%s%s\n%s%s\n", row[0], divider, row[1], 
+                divider, row[2], divider);
         }
-
-        map += sprintf("%s\n%s\n%s\n", row[0], row[1], row[2]);
     }
     return map;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getMiniMap(object environment, object user)
+{
+    string map = 0;
+
+    if (environment)
+    {
+        string coordinates = environment->getCoordinates();
+        if (coordinates)
+        {
+            int xCoordinate = to_int(regreplace(coordinates, "([0-9]+)x.*", "\\1", 1));
+            int endX = (xCoordinate == (MaxX - 1)) ? (MaxX - 1) : xCoordinate +
+                ((xCoordinate == 0) ? 2 : 1);
+            int startX = xCoordinate ? xCoordinate - ((endX == (MaxX - 1)) ? 2 : 1) : 0;
+
+            int yCoordinate = to_int(regreplace(coordinates, ".*x([0-9]+)", "\\1", 1));
+            int startY = (yCoordinate == (MaxY - 1)) ? (MaxY - 1) : yCoordinate +
+                ((yCoordinate == 0) ? 2 : 1);
+            int endY = yCoordinate ? yCoordinate - ((yCoordinate == (MaxY - 1)) ? 2 : 1) : 0;
+
+            map = displayMapSection(user, startX, startY, endX, endY, 1);
+        }
+    }
+    return map ? explode(map, "\n") : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string displayMap(object user)
+{
+    return "\n" + displayMapSection(user, 0, MaxY - 1, MaxX - 1, 0);
 }

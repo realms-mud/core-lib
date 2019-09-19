@@ -211,6 +211,14 @@ private mapping parametersToFunction = ([
         "suppress message": 1,
         "wizard only": 0
     ]),
+    "display map": ([
+        "method": "setMiniMap",
+        "description": "Toggles whether or not the user will see the mini map when "
+            "it's available.\n"
+            "Possible values are: on, off",
+        "suppress message": 1,
+        "wizard only": 0
+    ]),
 ]);
 
 /////////////////////////////////////////////////////////////////////////////

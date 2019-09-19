@@ -37,7 +37,7 @@ protected int getRoomCount()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void addTestRoom(int x, int y, mapping data)
+public mapping addTestRoom(int x, int y, mapping data)
 {
     if (!sizeof(grid))
     {
@@ -45,4 +45,6 @@ public void addTestRoom(int x, int y, mapping data)
     }
     grid[x][y] = data;
     generateRoomDetails(data);
+
+    return data;
 }

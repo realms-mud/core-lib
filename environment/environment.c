@@ -907,13 +907,32 @@ public nomask int isIlluminated()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask object getRegion()
+{
+    return Region;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public varargs string long(string item)
 {
     int illuminationLevel = isIlluminated();
+    int descriptionWidth = 78;
+    string *map = 0;
 
-    if (this_player() && this_player()->hasTraitOfRoot("darkvision"))
+    string colorConfiguration = "none";
+
+    if (this_player())
     {
-        illuminationLevel = 10;
+        colorConfiguration = this_player()->colorConfiguration();
+        if (this_player()->hasTraitOfRoot("darkvision"))
+        {
+            illuminationLevel = 10;
+        }
+        if (this_player()->displayMiniMap() && getRegion())
+        {
+            descriptionWidth = 66;
+            map = getRegion()->getMiniMap(this_object(), this_player());
+        }
     }
 
     string ret = getBaseDescriptionForType("terrain", illuminationLevel);
@@ -934,10 +953,48 @@ public varargs string long(string item)
         {
             ret += " " + environmentalElements["description"][currentState()];
         }
-        ret = format(ret, 78);
+        ret = format(ret, descriptionWidth);
         ret = regreplace(ret,
             "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
             #'parseEfunCall,1);
+        ret = capitalizeSentences(ret);
+
+        if(map)
+        {
+            string *splitDesc = explode(ret, "\n");
+
+            int shortest = sizeof(map) < sizeof(splitDesc) ? 
+                sizeof(map) : sizeof(splitDesc);
+
+            ret = "";
+            int count = 0;
+            for (int i = 0; i < shortest; i++)
+            {
+                ret += map[i] + " " + 
+                    configuration->decorate(splitDesc[i],
+                        "description", "environment", colorConfiguration) + "\n";
+                count++;
+            }
+
+            if (sizeof(map) > sizeof(splitDesc))
+            {
+                ret += implode(map[count..(sizeof(map) - 1)], "\n");
+            }
+            else
+            {
+                for (int i = count; i < sizeof(splitDesc); i++)
+                {
+                    ret += sprintf("%18s %s\n", "", 
+                        configuration->decorate(splitDesc[i],
+                            "description", "environment", colorConfiguration));
+                }
+            }
+        }
+        else
+        {
+            ret = sprintf(configuration->decorate(ret,
+                "description", "environment", colorConfiguration));
+        }
     }
     else
     {
@@ -945,12 +1002,7 @@ public varargs string long(string item)
             "interior must be set.\n");
     }
 
-    string colorConfiguration = this_player() ?
-        this_player()->colorConfiguration() : "none";
-
-    return configuration->decorate(capitalizeSentences(ret),
-        "description", "environment", colorConfiguration) +
-        (isOutside ? 
+    return ret + (isOutside ? 
             environmentDictionary()->timeOfDayMessage(colorConfiguration) :
             "") +
         getExitDescription() + 
@@ -1359,10 +1411,4 @@ public nomask int activateLights(string whichLights)
 public nomask int deactivateLights(string whichLights)
 {
     return manipulateLights(whichLights, "deactivate", "extinguish");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask object getRegion()
-{
-    return Region;
 }

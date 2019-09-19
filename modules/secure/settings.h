@@ -6,6 +6,7 @@
 private int IsBusy = 0;
 private int Earmuffs = 0;
 private int PageSize = 20;
+private int DisplayMiniMap = 1;
 private string PrimaryGuild = 0;
 private mapping blocks = ([ ]);
 private string colorSetting = "3-bit";
@@ -24,7 +25,10 @@ static nomask void loadSettings(mapping data, object persistence)
         colorSetting = persistence->extractSaveData("color setting", data);
         characterSet = persistence->extractSaveData("character set", data);
         PrimaryGuild = persistence->extractSaveData("primary guild", data);
-        lastSafetyTeleport = persistence->extractSaveData("safety teleport", data);
+        lastSafetyTeleport = persistence->extractSaveData("safety teleport", 
+            data);
+        DisplayMiniMap = to_int(persistence->extractSaveData("display mini map",
+            data));
         blocks = persistence->extractSaveData("blocks", data);
     }
 
@@ -55,6 +59,7 @@ static nomask mapping sendSettings()
         "color setting": colorSetting,
         "character set": characterSet,
         "primary guild": PrimaryGuild,
-        "safety teleport": lastSafetyTeleport
+        "safety teleport": lastSafetyTeleport,
+        "display mini map": DisplayMiniMap
     ]);
 }

@@ -75,7 +75,8 @@ public nomask void saveSettings(int dbHandle, mapping playerData)
 
         string *keys = filter(m_indices(playerData),
             (: (member(({ "blocks", "busy", "earmuffs", "page size",
-                "color setting", "character set", "safety teleport" }), $1) > -1) :));
+                "color setting", "character set", "safety teleport",
+                "display mini map" }), $1) > -1) :));
 
         if (sizeof(keys))
         {

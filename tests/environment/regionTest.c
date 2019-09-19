@@ -115,7 +115,6 @@ void CanCreateGeneratedRegionFromRealEnvironment()
         load_object("/lib/tests/support/environment/startingRoom.c");
 
     object region = environment->addGeneratedRegion("north", "forest", 15, 10);
-
     move_object(Player, environment);
 
     command("n", Player);

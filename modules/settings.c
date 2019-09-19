@@ -67,6 +67,12 @@ public nomask int isEarmuffed()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int displayMiniMap()
+{
+    return DisplayMiniMap;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setBusy(string state)
 {
     IsBusy = (state == "on");
@@ -80,6 +86,15 @@ public nomask void setEarmuffs(string state)
     Earmuffs = (state == "on");
     tell_object(this_object(), sprintf("You have set your earmuffs to '%s'.\n",
         Earmuffs ? "on" : "off"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setMiniMap(string state)
+{
+    DisplayMiniMap = (state == "on");
+    tell_object(this_object(), sprintf("You have set your display mini map "
+        "flag to '%s'.\n",
+        DisplayMiniMap ? "on" : "off"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

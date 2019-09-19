@@ -277,6 +277,13 @@ public void init()
 {
     if (deferredRegion)
     {
+        if (this_player())
+        {
+            tell_object(this_player(), configuration->decorate(
+                "Loading a new region into memory. Please wait...\n",
+                "exits", "environment", 
+                this_player()->colorConfiguration()));
+        }
         object previousRegion = deferredRegion["source"];
         string destinationDirection =
             previousRegion->getEnterFromDirection(deferredRegion["direction"]);
