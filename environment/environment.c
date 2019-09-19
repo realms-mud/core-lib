@@ -23,6 +23,8 @@ private mapping aliasesToElements = ([]);
 protected mapping exits = ([]);
 private string State = "default";
 private string RegionPath = 0;
+protected object Region = 0;
+
 private string uniqueIdentifier = 0;
 protected int xCoordinate = 0;
 protected int yCoordinate = 0;
@@ -419,7 +421,7 @@ public nomask string identifiedBy()
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs object addGeneratedRegion(string direction, string type,
-    int x, int y, string name, string state)
+    int x, int y, int *entryCoordinate, string name, string state)
 {
     object ret = 0;
     if (!member(environmentalElements["regions"], direction))
@@ -437,7 +439,8 @@ public nomask varargs object addGeneratedRegion(string direction, string type,
         ret->setRegionType(type);
 
         ret->createRegion(ret->getEnterFromDirection(direction),
-            regreplace(object_name(this_object()), "([^#]+)#*.*", "/\\1.c", 1));
+            regreplace(object_name(this_object()), "([^#]+)#*.*", "/\\1.c", 1),
+            entryCoordinate);
 
         addGeneratedExit(direction, ret->getEntryCoordinates(), ret, state);
 
@@ -1356,4 +1359,10 @@ public nomask int activateLights(string whichLights)
 public nomask int deactivateLights(string whichLights)
 {
     return manipulateLights(whichLights, "deactivate", "extinguish");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getRegion()
+{
+    return Region;
 }

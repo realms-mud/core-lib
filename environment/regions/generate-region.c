@@ -91,6 +91,7 @@ private nomask void generateRegion(string enterFrom, string location,
 
     if (location)
     {
+        grid[entry[0]][entry[1]]["exit to"] = enterFrom;
         grid[entry[0]][entry[1]]["environment"]->addEntryExit(
             enterFrom, location);
     }

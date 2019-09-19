@@ -24,6 +24,8 @@ drop function if exists saveEnvironmentalObject;
 ##
 drop procedure if exists saveEnvironmentExit;
 ##
+drop procedure if exists saveRegionExit;
+##
 drop function if exists saveDomainUnit;
 ##
 drop procedure if exists saveHenchmanSkills;
@@ -101,6 +103,8 @@ drop table if exists environmentalElements;
 drop table if exists environmentalObjects;
 ##
 drop table if exists environmentExits;
+##
+drop table if exists regionExits;
 ##
 drop table if exists environmentInstances;
 ##
@@ -647,7 +651,36 @@ CREATE TABLE `environmentInstances` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `instance_region_idx` (`regionId` ASC),
-  CONSTRAINT `instance_region` FOREIGN KEY (`regionId`) REFERENCES `regions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `instance_region` 
+      FOREIGN KEY (`regionId`) 
+      REFERENCES `regions` (`id`)
+      ON DELETE NO ACTION 
+      ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `regionExits` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `regionId` INT NOT NULL,
+  `environmentId` INT NOT NULL,
+  `location` VARCHAR(256) NOT NULL,
+  `direction` VARCHAR(20) NOT NULL,
+  `state` VARCHAR(80) NULL DEFAULT 'default',
+  `x-coordinate` INT NOT NULL,
+  `y-coordinate` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `region_exit_idx` (`regionId` ASC),
+  INDEX `region_environment_exit_idx` (`environmentId` ASC),
+  CONSTRAINT `region_exit` 
+      FOREIGN KEY (`regionId`) 
+      REFERENCES `regions` (`id`)
+      ON DELETE NO ACTION 
+      ON UPDATE NO ACTION,
+  CONSTRAINT `region_environment_exit`
+      FOREIGN KEY (`environmentId`)
+      REFERENCES `environmentInstances` (`id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE TABLE `environmentDescriptions` (
@@ -1750,6 +1783,28 @@ BEGIN
     else
         insert into environmentExits (environmentId, location, direction)
         values (p_environmentId, p_location, p_direction);
+    end if;
+END;
+##
+CREATE PROCEDURE `saveRegionExit` ( p_regionId int, p_environmentId int, p_direction varchar(20), 
+    p_location varchar(256), p_state varchar(80), p_x int, p_y int)
+BEGIN
+    declare exitId int;
+
+    select id into exitId
+    from regionExits where regionId = p_regionId and
+        environmentId = p_environmentId and direction = p_direction;
+    
+    if exitId is not null then
+        update regionExits set location = p_location, 
+                               state = p_state,
+                               `x-coordinate` = p_x,
+                               `y-coordinate` = p_y
+        where id = exitId;
+    else
+        insert into regionExits (regionId, environmentId, location, direction, state, 
+            `x-coordinate`, `y-coordinate`)
+        values (p_regionId, p_environmentId, p_location, p_direction, p_state, p_x, p_y);
     end if;
 END;
 ##

@@ -10,6 +10,8 @@ private object regionDictionary =
 private string *possibleEncounters = ({});
 private object *currentEncounters = ({});
 private int timeUntilNextEncounter;
+private mapping deferredRegion = 0;
+private string PathType = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping getElementMapping(string type, string name, 
@@ -97,6 +99,8 @@ private nomask void addGeneratedExits(mapping exits, object region,
         foreach(string direction in m_indices(exits))
         {
             mapping exit = exits[direction];
+            PathType = exit["path type"];
+
             if (member(exit, "building"))
             {
                 addGeneratedBuilding(exit["building"], direction,
@@ -113,6 +117,23 @@ private nomask void addGeneratedExits(mapping exits, object region,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void deferGenerateRegion(string direction, object region,
+    int *entryCoordinate, string exitCoordinate, string name, string state)
+{
+    deferredRegion = ([
+        "direction": direction,
+        "type": region->regionType(),
+        "x": region->xDimension(),
+        "y": region->yDimension(),
+        "exit coordinate": exitCoordinate,
+        "entry coordinate": entryCoordinate,
+        "name": name,
+        "state": state,
+        "source": region,
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs mapping generateEnvironment(mapping data, object region, 
     string state)
 {
@@ -120,12 +141,18 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
         "elements": ([])
     ]);
 
+    if (!state)
+    {
+        state = "default";
+    }
+
     if (mappingp(data))
     {
         mapping roomData = regionDictionary->generateRoomData(region, data);
 
         if (roomData)
         {
+            Region = region;
             if (member(roomData, "terrain"))
             {
                 setTerrain(roomData["terrain"]);
@@ -154,6 +181,24 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
 
             addRandomCreature(roomData["creatures"], state);
 
+            if (data["room type"] == "exit")
+            {
+                deferGenerateRegion(data["exit to"], 
+                    region,
+                    data["exit coordinates"],
+                    data["name"],
+                    sprintf("%s-%s-%s", 
+                        region->regionName(), 
+                        data["name"] || "none",
+                        data["exit to"] || "none"),
+                    state);
+
+                if (PathType)
+                {
+                    addFeature(PathType, data["exit to"], state);
+                }
+            }
+
             ret["room objects"] = roomData["room objects"];
         }
     }
@@ -165,6 +210,11 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
 public nomask void addEntryExit(string direction, string location)
 {
     addExit(direction, location);
+
+    if (PathType)
+    {
+        addFeature(PathType, direction);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -219,5 +269,44 @@ protected void setUpEncounter(object player)
 
             move_object(encounter, this_object());
         }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void init()
+{
+    if (deferredRegion)
+    {
+        object previousRegion = deferredRegion["source"];
+        string destinationDirection =
+            previousRegion->getEnterFromDirection(deferredRegion["direction"]);
+
+        object newRegion = addGeneratedRegion(deferredRegion["direction"],
+            deferredRegion["type"],
+            deferredRegion["x"],
+            deferredRegion["y"],
+            deferredRegion["entry coordinate"],
+            deferredRegion["name"],
+            deferredRegion["state"]);
+
+        newRegion->setEntryExit(deferredRegion["exit coordinate"],
+            previousRegion, deferredRegion["state"]);
+
+        deferredRegion = 0;
+    }
+
+    "environment"::init();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void updateEntryPoint(string direction, string entryPoint,
+    object region, string state)
+{
+    if (member(exits, state))
+    {
+        exits[state][direction] = ([
+            "region": region,
+            "destination": entryPoint
+        ]);
     }
 }

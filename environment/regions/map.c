@@ -39,11 +39,23 @@ private mapping displayCharacter = ([
         "ascii": "X",
         "unicode": "\xe2\x8c\xa7"
     ]),
+    "player": ([
+        "ascii": "P",
+        "unicode": "\xe2\x8c\xa5"
+    ]),
     "none": ([
         "ascii": " ",
         "unicode": " "
     ]),
 ]);
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int hasExit(mapping location, string direction)
+{
+    return member(location["exits"], direction) ||
+        ((member(({ "entry", "exit" }), location["room type"]) > -1) &&
+        (location["exit to"] == direction));
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string displayMap(object user)
@@ -60,23 +72,30 @@ public nomask string displayMap(object user)
         for(int x = 0; x < MaxX; x++)
         {
             mapping location = grid[x][y];
-            row[0] += sprintf(" %s ", member(location["exits"], "north") ?
+
+            int userHere = objectp(present(user, grid[x][y]["environment"]));
+            string exitColor = userHere ? "user location" : "exit";
+
+            row[0] += sprintf(" %s ", hasExit(location, "north") ?
                configuration->decorate(displayCharacter["north"][charset],
-                   "exit", "map", colorConfiguration): " ");
+                   exitColor, "map", colorConfiguration): " ");
 
             row[1] += sprintf("%s%s%s",
-                (member(location["exits"], "west") ?
+                (hasExit(location, "west") ?
                     configuration->decorate(displayCharacter["west"][charset],
-                    "exit", "map", colorConfiguration) : " "),
-                configuration->decorate(displayCharacter[location["room type"]][charset],
-                    location["room type"], "map", colorConfiguration),
-                (member(location["exits"], "east") ?
+                    exitColor, "map", colorConfiguration) : " "),
+                configuration->decorate(
+                    (userHere ? displayCharacter["player"][charset] :
+                        displayCharacter[location["room type"]][charset]),
+                    (userHere ? "user location" : location["room type"]),
+                    "map", colorConfiguration),
+                (hasExit(location, "east") ?
                     configuration->decorate(displayCharacter["east"][charset],
-                    "exit", "map", colorConfiguration) : " "));
+                    exitColor, "map", colorConfiguration) : " "));
 
-            row[2] += sprintf(" %s ", member(location["exits"], "south") ?
+            row[2] += sprintf(" %s ", hasExit(location, "south") ?
                 configuration->decorate(displayCharacter["south"][charset],
-                    "exit", "map", colorConfiguration) : " ");
+                    exitColor, "map", colorConfiguration) : " ");
         }
 
         map += sprintf("%s\n%s\n%s\n", row[0], row[1], row[2]);

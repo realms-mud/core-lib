@@ -118,3 +118,39 @@ void EncountersGeneratedWhenUserEntersEnvironment()
     ExpectTrue(sizeof(all_inventory(data["environment"])) > 1);
     ExpectTrue(sizeof(all_inventory(all_inventory(data["environment"])[0])));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void ExitPointsConnectedToNewRegion()
+{
+    Region->setRegionName("a temple");
+    Region->setRegionType("keeper's temple");
+
+    Region->setDimensions(5, 5);
+
+    mapping data = ([
+        "x": 4,
+        "y": 4,
+        "name": "4x4",
+        "room type": "exit",
+        "exit to": "north",
+        "exit coordinates": ({ 4, 0 }),
+        "is placed" : 1,
+        "exits" : ([
+            "south":"4x3"
+        ])
+    ]);
+    Region->addTestRoom(4, 4, data);
+
+    move_object(Player, data["environment"]);
+
+    ExpectEq("4x4", environment(Player)->getCoordinates());
+    ExpectEq(Region, environment(Player)->getRegion());
+
+    command("n", Player);
+    ExpectEq("4x0", environment(Player)->getCoordinates());
+    ExpectNotEq(Region, environment(Player)->getRegion());
+
+    command("s", Player);
+    ExpectEq("4x4", environment(Player)->getCoordinates());
+    ExpectEq(Region, environment(Player)->getRegion());
+}

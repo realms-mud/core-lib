@@ -90,6 +90,7 @@ public nomask int load(string enterFrom, string location)
                 }
             }
 
+            grid[entry[0]][entry[1]]["exit to"] = enterFrom;
             grid[entry[0]][entry[1]]["environment"]->addEntryExit(
                 enterFrom, location);
         }

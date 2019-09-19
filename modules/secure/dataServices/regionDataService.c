@@ -100,6 +100,36 @@ private nomask mapping loadEnvironmentExits(int dbHandle, int environmentId)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask mapping loadRegionExits(int dbHandle, mapping room,
+    int regionId, int environmentId)
+{
+    mapping ret = room;
+
+    string query = sprintf("select direction, location, state, "
+        "`x-coordinate`, `y-coordinate` "
+        "from regionExits "
+        "where regionId = %d and environmentId = %d;", regionId, environmentId);
+
+    db_exec(dbHandle, query);
+
+    mixed result;
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            ret["exit to"] = convertString(result[0]);
+            ret["name"] = convertString(result[1]);
+            ret["state"] = convertString(result[2]);
+            ret["exit coordinates"] = 
+                ({ to_int(result[3]), to_int(result[4]) });
+        }
+    } while (result);
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask mapping loadRegionGrid(int dbHandle, int regionId, mapping grid)
 {
     mapping ret = grid + ([]);
@@ -125,7 +155,8 @@ private nomask mapping loadRegionGrid(int dbHandle, int regionId, mapping grid)
                 "name": convertString(result[6]),
                 "is cloned": to_int(result[7]),
                 "description": convertString(result[8]),
-                "shop": convertString(result[9])
+                "shop": convertString(result[9]),
+                "region id": to_int(result[1])
             ]);
         }
     } while (result);
@@ -153,6 +184,12 @@ private nomask mapping loadRegionGrid(int dbHandle, int regionId, mapping grid)
 
         ret[x][y]["room objects"] =        
             loadEnvironmentObjects(dbHandle, environmentId);
+
+        if (ret[x][y]["room type"] == "exit")
+        {
+            ret[x][y] = loadRegionExits(dbHandle, ret[x][y], 
+                environment["region id"], environmentId);
+        }
     }
 
     return ret;
@@ -328,6 +365,29 @@ private nomask void saveEnvironmentExits(int dbHandle, int environmentId,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void saveRegionExitPoint(int dbHandle, int regionId, 
+    int environmentId, mapping exit)
+{
+    string query;
+    mixed result;
+
+    if (sizeof(exit))
+    {
+        query = sprintf("call saveRegionExit(%d,%d,'%s','%s','%s',%d,%d);",
+            regionId,
+            environmentId,
+            sanitizeString(exit["exit to"]),
+            sanitizeString(exit["name"]),
+            sanitizeString(member(exit, "state") ? exit["state"] : "default"),
+            exit["exit coordinates"][0],
+            exit["exit coordinates"][1]);
+
+        db_exec(dbHandle, query);
+        result = db_fetch(dbHandle);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void saveEnvironmentData(int dbHandle, int regionId,
     mapping *rooms)
 {
@@ -353,12 +413,18 @@ private nomask void saveEnvironmentData(int dbHandle, int regionId,
 
             if (result && result[0])
             {
-                saveEnvironmentExits(dbHandle, to_int(result[0]), 
-                    room["exits"]);
-                saveEnvironmentalElements(dbHandle, to_int(result[0]), 
+                int environmentId = to_int(result[0]);
+                saveEnvironmentExits(dbHandle, environmentId, room["exits"]);
+                saveEnvironmentalElements(dbHandle, environmentId, 
                     room["elements"]);
-                saveEnvironmentalObjects(dbHandle, to_int(result[0]), 
+                saveEnvironmentalObjects(dbHandle, environmentId,
                     room["room objects"]);
+
+                if (room["room type"] == "exit")
+                {
+                    saveRegionExitPoint(dbHandle, regionId, environmentId,
+                        room);
+                }
             }
         }
     }

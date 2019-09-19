@@ -102,3 +102,13 @@ public mapping *rooms()
 
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void setEntryExit(string entryPoint, object region, string state)
+{
+    if (sizeof(entry))
+    {
+        grid[entry[0]][entry[1]]["environment"]->updateEntryPoint(
+            EnterFrom, entryPoint, region, state);
+    }
+}
