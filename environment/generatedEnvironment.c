@@ -238,8 +238,8 @@ protected void setUpEncounter(object player)
         string name = possibleEncounters[random(sizeof(possibleEncounters))];
 
         int count = 1;
-        if (member(({ "outlaw", "ruffian", "undead", "wolf",
-            "coyote", "zombie", "skeleton" }), name) > -1)
+        if (member(({ "outlaw", "ruffian", "undead", "timber wolf", "gray wolf",
+            "red wolf", "coyote", "zombie", "skeleton" }), name) > -1)
         {
             count = 1 + random(3);
         }
@@ -265,6 +265,7 @@ protected void setUpEncounter(object player)
                     capitalize(encounter->apparentRace()));
             }
             encounter->Name(realName);
+            encounter->addAlias(name);
             encounter->setUpRandomEquipment(5 + (encounter->effectiveLevel() * 3));
 
             move_object(encounter, this_object());

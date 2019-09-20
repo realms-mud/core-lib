@@ -39,12 +39,13 @@ private nosave mapping creatureBlueprints = ([
         "base spell points" : 0,
         "base stamina points" : 50
     ]),
-    "bear":([
+    "black bear":([
         "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "bear" }),
         "minimum level": 10,
         "maximum level": 25,
         "attacks": ([
@@ -55,6 +56,24 @@ private nosave mapping creatureBlueprints = ([
         "base hit points": 150,
         "base spell points" : 0,
         "base stamina points" : 100
+    ]),
+    "brown bear":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "bear" }),
+        "minimum level": 15,
+        "maximum level": 35,
+        "attacks": ([
+            "claw": 15,
+            "claw": 15,
+            "fangs": 20,
+        ]),
+        "base hit points": 250,
+        "base spell points" : 0,
+        "base stamina points" : 150
     ]),
     "boar":([
         "category": "animal",
@@ -95,6 +114,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "cat" }),
         "minimum level": 6,
         "maximum level": 15,
         "attacks": ([
@@ -112,6 +132,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "cat", "lion" }),
         "minimum level": 6,
         "maximum level": 15,
         "attacks": ([
@@ -194,12 +215,13 @@ private nosave mapping creatureBlueprints = ([
         "base spell points" : 0,
         "base stamina points" : 50
     ]),
-    "deer":([
+    "white-tail deer":([
         "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor", "listen" }),
         "secondary skills" : ({ "perception", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "deer" }),
         "minimum level": 1,
         "maximum level": 5,
         "attacks": ([
@@ -210,7 +232,40 @@ private nosave mapping creatureBlueprints = ([
         "base spell points" : 0,
         "base stamina points" : 50
     ]),
-
+    "mule deer":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor", "listen" }),
+        "secondary skills" : ({ "perception", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "deer" }),
+        "minimum level": 1,
+        "maximum level": 5,
+        "attacks": ([
+            "hoof": 3,
+            "horn": 3,
+        ]),
+        "base hit points": 10,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+    "moose":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor", "listen" }),
+        "secondary skills" : ({ "perception", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "deer" }),
+        "minimum level": 8,
+        "maximum level": 15,
+        "attacks": ([
+            "hoof": 10,
+            "horn": 10,
+        ]),
+        "base hit points": 150,
+        "base spell points" : 0,
+        "base stamina points" : 150
+    ]),
     "eagle":([
         "category": "animal",
         "primary skills":({ "parry", "dodge", "no armor" }),
@@ -317,6 +372,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "elemental" }),
         "minimum level": 5,
         "attacks": ([
             "fire": 10,
@@ -331,6 +387,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "elemental" }),
         "minimum level": 5,
         "attacks": ([
             "electricity": 10,
@@ -345,6 +402,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "elemental" }),
         "minimum level": 5,
         "attacks": ([
             "earth": 10,
@@ -359,6 +417,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "elemental" }),
         "minimum level": 5,
         "attacks": ([
             "water": 10,
@@ -374,6 +433,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "wisp" }),
         "minimum level": 5,
         "attacks": ([
             "chaos": 10,
@@ -388,6 +448,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "wisp" }),
         "minimum level": 5,
         "attacks": ([
             "cold": 10,
@@ -402,6 +463,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "wisp" }),
         "minimum level": 5,
         "attacks": ([
             "energy": 10,
@@ -416,6 +478,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "wisp" }),
         "minimum level": 5,
         "attacks": ([
             "magical": 10,
@@ -463,6 +526,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "hound" }),
         "minimum level": 7,
         "attacks": ([
             "claw": 5,
@@ -571,6 +635,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -586,6 +651,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -601,6 +667,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -616,6 +683,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -631,6 +699,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -646,6 +715,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -661,6 +731,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -676,6 +747,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -691,6 +763,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -706,6 +779,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -721,6 +795,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -736,6 +811,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "mephit" }),
         "minimum level": 5,
         "attacks": ([
             "claw": 5,
@@ -805,6 +881,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "hag" }),
         "minimum level": 10,
         "attacks": ([
             "claw": 10,
@@ -823,6 +900,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "hag" }),
         "minimum level": 10,
         "attacks": ([
             "claw": 10,
@@ -841,6 +919,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "hag" }),
         "minimum level": 10,
         "attacks": ([
             "claw": 10,
@@ -976,6 +1055,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "serpent" }),
         "minimum level": 10,
         "attacks": ([
             "fangs": 25,
@@ -1053,6 +1133,7 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "spider" }),
         "minimum level": 10,
         "attacks": ([
             "claw": 10,
@@ -1155,6 +1236,125 @@ private nosave mapping creatureBlueprints = ([
         "secondary skills" : ({ "perception", "listen", "spot" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "minimum level": 3,
+        "maximum level": 20,
+        "attacks": ([
+            "claw": 6,
+            "fangs": 10,
+        ]),
+        "base hit points": 30,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+    "red fox":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "fox" }),
+        "minimum level": 3,
+        "maximum level": 10,
+        "attacks": ([
+            "claw": 5,
+            "fangs": 8,
+        ]),
+        "base hit points": 30,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+    "fennec fox":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "fox" }),
+        "minimum level": 3,
+        "maximum level": 10,
+        "attacks": ([
+            "claw": 5,
+            "fangs": 8,
+        ]),
+        "base hit points": 30,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+    "gray fox":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "fox" }),
+        "minimum level": 3,
+        "maximum level": 10,
+        "attacks": ([
+            "claw": 5,
+            "fangs": 8,
+        ]),
+        "base hit points": 30,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+    "kit fox":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "fox" }),
+        "minimum level": 3,
+        "maximum level": 10,
+        "attacks": ([
+            "claw": 5,
+            "fangs": 8,
+        ]),
+        "base hit points": 30,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+    "timber wolf":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "wolf" }),
+        "minimum level": 3,
+        "maximum level": 20,
+        "attacks": ([
+            "claw": 6,
+            "fangs": 10,
+        ]),
+        "base hit points": 30,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+    "gray wolf":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "wolf" }),
+        "minimum level": 3,
+        "maximum level": 20,
+        "attacks": ([
+            "claw": 6,
+            "fangs": 10,
+        ]),
+        "base hit points": 30,
+        "base spell points" : 0,
+        "base stamina points" : 50
+    ]),
+    "red wolf":([
+        "category": "animal",
+        "primary skills":({ "parry", "dodge", "no armor" }),
+        "secondary skills" : ({ "perception", "listen", "spot" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "wolf" }),
         "minimum level": 3,
         "maximum level": 20,
         "attacks": ([

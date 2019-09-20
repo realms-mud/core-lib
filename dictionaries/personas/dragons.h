@@ -11,6 +11,7 @@ private nosave mapping dragonBlueprints = ([
             "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -32,6 +33,7 @@ private nosave mapping dragonBlueprints = ([
             "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -53,6 +55,7 @@ private nosave mapping dragonBlueprints = ([
             "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -74,6 +77,7 @@ private nosave mapping dragonBlueprints = ([
             "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -95,6 +99,7 @@ private nosave mapping dragonBlueprints = ([
             "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -116,6 +121,7 @@ private nosave mapping dragonBlueprints = ([
             "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -137,6 +143,7 @@ private nosave mapping dragonBlueprints = ([
             "destruction", "plant" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -158,6 +165,7 @@ private nosave mapping dragonBlueprints = ([
             "destruction", "spirit" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -179,6 +187,7 @@ private nosave mapping dragonBlueprints = ([
             "magical essence", "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -200,6 +209,7 @@ private nosave mapping dragonBlueprints = ([
             "magical essence", "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -221,6 +231,7 @@ private nosave mapping dragonBlueprints = ([
             "magical essence", "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -242,6 +253,7 @@ private nosave mapping dragonBlueprints = ([
             "destruction", "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "dragon" }),
         "minimum level": 35,
         "attacks": ([
             "claw": 10,
@@ -263,6 +275,7 @@ private nosave mapping dragonBlueprints = ([
             "destruction", "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "drake" }),
         "minimum level": 20,
         "attacks": ([
             "claw": 10,
@@ -284,6 +297,7 @@ private nosave mapping dragonBlueprints = ([
             "destruction", "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "drake" }),
         "minimum level": 20,
         "attacks": ([
             "claw": 10,
@@ -305,6 +319,7 @@ private nosave mapping dragonBlueprints = ([
             "destruction", "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "drake" }),
         "minimum level": 20,
         "attacks": ([
             "claw": 10,
@@ -326,6 +341,7 @@ private nosave mapping dragonBlueprints = ([
             "destruction", "evocation" }),
         "traits" : ({}),
         "potential traits" : ({}),
+        "aliases": ({ "wyrm" }),
         "minimum level": 20,
         "attacks": ([
             "claw": 10,

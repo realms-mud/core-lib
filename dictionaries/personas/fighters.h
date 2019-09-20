@@ -16,6 +16,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "swords" }),
             "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
@@ -38,6 +39,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "swords", "axes", "maces" }),
             "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
@@ -58,6 +60,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "daggers" }),
             "armor": ({ "light-armor", "medium-armor" }),
@@ -79,6 +82,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter", "infantry" }),
         "equipment": ([ 
             "weapons":({ "daggers", "swords" }),
             "armor": ({ "light-armor" }),
@@ -100,6 +104,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "axes" }),
             "armor": ({ "medium-armor", "heavy-armor" }),
@@ -121,6 +126,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "maces" }),
             "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
@@ -142,6 +148,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "hammers" }),
             "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
@@ -162,6 +169,7 @@ private nosave mapping fighterBlueprints = ([
         "secondary skills": ({ "anatomy and physiology", "perception",
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
+        "aliases": ({ "fighter", "man" }),
         "potential traits": ({ }),
         "equipment": ([ 
             "weapons":({ "flails" }),
@@ -184,6 +192,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter", "man" }),
         "equipment": ([ 
             "weapons":({ "staffs" }),
             "armor": ({ "light-armor", "medium-armor" }),
@@ -203,6 +212,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "pole-arms/halberd" }),
             "armor": ({ "heavy-armor" }),
@@ -224,6 +234,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "pole-arms/spear" }),
             "armor": ({ "light-armor", "medium-armor" }),
@@ -245,6 +256,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "pole-arms" }),
             "armor": ({ "light-armor", "medium-armor", "heavy-armor" }),
@@ -266,6 +278,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([
             "armor": ({ "light-armor", "medium-armor" }),
             "armor/accessories": ({ "belt", "boots", "coif", "gauntlets", "gloves", 
@@ -286,6 +299,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "bowyer and fletcher" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "bows" }),
             "armor": ({ "light-armor", "medium-armor" }),
@@ -307,6 +321,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "bowyer and fletcher" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "crossbows" }),
             "armor": ({ "light-armor", "medium-armor" }),
@@ -328,6 +343,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "bowyer and fletcher" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "thrown", "slings" }),
             "armor": ({ "light-armor", "medium-armor" }),
@@ -350,6 +366,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter" }),
         "equipment": ([ 
             "weapons":({ "swords", "axes", "maces" }),
             "armor": ({ "medium-armor", "heavy-armor" }),
@@ -372,6 +389,7 @@ private nosave mapping fighterBlueprints = ([
             "listen", "spot", "common", "dual wield" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter", "knight" }),
         "equipment": ([ 
             "weapons":({ "swords", "axes", "maces" }),
             "armor": ({ "medium-armor", "heavy-armor" }),
@@ -394,6 +412,7 @@ private nosave mapping fighterBlueprints = ([
             "spellcraft", "evocation" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "fighter", "knight", "storm" }),
         "equipment": ([ 
             "weapons":({ "swords" }),
             "armor": ({ "medium-armor", "heavy-armor" }),

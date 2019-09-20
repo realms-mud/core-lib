@@ -17,6 +17,7 @@ private nosave mapping magicUserBlueprints = ([
             "animal" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "mage", "keeper" }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
             "armor/clothing": ({ "robes" }),
@@ -48,6 +49,7 @@ private nosave mapping magicUserBlueprints = ([
             "destruction", "body", "blood", "spirit" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "mage" }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
             "armor/clothing": ({ "robes" }),
@@ -79,6 +81,7 @@ private nosave mapping magicUserBlueprints = ([
             "destruction", "body", "blood", "spirit" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "mage" }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
             "armor/clothing": ({ "robes" }),
@@ -110,6 +113,7 @@ private nosave mapping magicUserBlueprints = ([
             "destruction", "body", "blood", "spirit" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "mage" }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
             "armor/clothing": ({ "robes" }),
@@ -141,6 +145,7 @@ private nosave mapping magicUserBlueprints = ([
             "destruction", "body", "blood", "spirit" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "mage" }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
             "armor/clothing": ({ "robes" }),
@@ -172,6 +177,7 @@ private nosave mapping magicUserBlueprints = ([
             "destruction", "body", "blood", "spirit" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "mage" }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
             "armor/clothing": ({ "robes" }),
@@ -203,6 +209,7 @@ private nosave mapping magicUserBlueprints = ([
             "destruction", "body", "blood", "spirit" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "mage" }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
             "armor/clothing": ({ "robes" }),
@@ -234,6 +241,7 @@ private nosave mapping magicUserBlueprints = ([
             "destruction", "spirit" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "mage" }),
         "equipment": ([ 
             "weapons":({ "daggers", "staffs" }),
             "armor/clothing": ({ "robes" }),
@@ -298,6 +306,7 @@ private nosave mapping magicUserBlueprints = ([
             "body", "blood", "spirit" }),
         "traits": ({ }),
         "potential traits": ({ }),
+        "aliases": ({ "mage" }),
         "equipment": ([ 
             "weapons":({ "swords" }),
             "armor": ({ "light-armor", "medium-armor" }),

@@ -1668,10 +1668,9 @@ public nomask int attack(object foe)
 /////////////////////////////////////////////////////////////////////////////
 static void handleMoveFromCombat()
 {
-    spellAction(1);
-
     if (getTargetToAttack())
     {
+        spellAction(1);
         string colorConfiguration = this_object()->colorConfiguration() ?
             this_object()->colorConfiguration() : "none";
 

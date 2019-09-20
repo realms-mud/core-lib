@@ -65,6 +65,7 @@ void SetUpPersonaOfLevelWorksForMonsters()
     ExpectEq(10, Persona->getSkill("spot"));
     ExpectEq(15, Persona->getSkill("common"));
     ExpectEq(10, Persona->getSkill("dual wield"));
+    ExpectTrue(Persona->id("fighter"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

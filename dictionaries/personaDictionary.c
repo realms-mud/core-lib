@@ -191,6 +191,20 @@ private nomask void SetRace(object character, string persona)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void SetAliases(object character, string persona)
+{
+    if (member(personaBlueprints()[persona], "aliases"))
+    {
+        string *aliases = personaBlueprints()[persona]["aliases"];
+ 
+        foreach(string alias in aliases)
+        {
+            character->addAlias(alias);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setupPersona(string persona, object character)
 {
     if (objectp(character) &&
@@ -220,6 +234,7 @@ public nomask void setupPersona(string persona, object character)
                 SetRandomTraits(character, persona);
                 SetCombatAttributes(character, persona);
                 SetResearch(character, persona);
+                SetAliases(character, persona);
             }
             else
             {
