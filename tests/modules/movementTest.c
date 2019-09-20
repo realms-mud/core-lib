@@ -14,6 +14,14 @@ void Setup()
 {
     Movement = clone_object("/lib/tests/support/services/mockPlayer");
     Movement->Name("Bob");
+    Movement->Str(10);
+    Movement->Int(10);
+    Movement->Wis(10);
+    Movement->Con(10);
+    Movement->Dex(10);
+    Movement->Chr(10);
+    Movement->hitPoints(Movement->maxHitPoints());
+    Movement->addCommands();
     Movement->reset();
 
     FromPlace = load_object("/lib/tests/support/environment/fromLocation.c");
@@ -43,11 +51,26 @@ void CanMoveUserFromOneEnvironmentToAnother()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void SpellActionIsSetWhenMoveOccurs()
+void SpellActionIsSetWhenMoveOccursDuringCombat()
+{
+    object target = clone_object("/lib/realizations/monster.c");
+    target->Name("fred");
+    target->SetUpPersonaOfLevel("swordsman", 1);
+    move_object(target, FromPlace);
+
+    Movement->attack(target);
+    target->heart_beat();
+    ExpectFalse(Movement->spellAction());
+    ExpectTrue(Movement->move(program_name(ToPlace)), "move called");
+    ExpectTrue(Movement->spellAction());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SpellActionIsNotSetWhenMoveOccursWhenNotInCombat()
 {
     ExpectFalse(Movement->spellAction());
     ExpectTrue(Movement->move(program_name(ToPlace)), "move called");
-    ExpectEq(1, Movement->spellAction());
+    ExpectFalse(Movement->spellAction());
 }
 
 /////////////////////////////////////////////////////////////////////////////
