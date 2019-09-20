@@ -21,7 +21,5 @@ public void Setup()
     addConditionalExit("/lib/dictionaries/domains/features/south-castle-tower-exterior.c",
         "gatehouse", "south", "/lib/dictionaries/domains/rooms/village/village-10x19.c");
 
-    setCoordinates("keep", 1, 9);
-
     setStateMachine("/lib/dictionaries/domains/stateMachine/domainStateMachine.c");
 }

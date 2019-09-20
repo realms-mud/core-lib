@@ -16,7 +16,5 @@ public void Setup()
     addConditionalExit("/lib/dictionaries/domains/layouts/moat.c",
         "none", "west", "/lib/dictionaries/domains/rooms/keep-1x16.c");
 
-    setCoordinates("keep", 1, 17);
-
     setStateMachine("/lib/dictionaries/domains/stateMachine/domainStateMachine.c");
 }
