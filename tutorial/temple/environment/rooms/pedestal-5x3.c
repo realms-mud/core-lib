@@ -14,8 +14,8 @@ public void Setup()
     addFeature("lib/tutorial/temple/environment/features/purple-liquid.c");
 
     // First test
-    addExit("north", "/lib/tutorial/temple/environment/rooms/pedestal-4x3.c", "first test");
-    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-5x4.c", "first test");
+    addExit("north", "/lib/tutorial/temple/environment/rooms/pedestal-4x3.c", "second test");
+    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-5x4.c", "second test");
 
     // Third test
     addExit("north", "/lib/tutorial/temple/environment/rooms/pedestal-4x3.c", "third test");
@@ -33,6 +33,5 @@ public void Setup()
     addExit("north", "/lib/tutorial/temple/environment/rooms/pedestal-4x3.c", "seventh test");
     addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-5x2.c", "seventh test");
 
-    setCoordinates("temple of obedience", 23, 21);
     setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }

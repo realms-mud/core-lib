@@ -63,7 +63,7 @@ private nomask int hasExit(mapping location, string direction)
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs string displayMapSection(object user, int startX, 
-    int startY, int endX, int endY, int addDivider)
+    int startY, int endX, int endY, string state, int addDivider)
 {
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
@@ -79,6 +79,24 @@ private nomask varargs string displayMapSection(object user, int startX,
             for (int x = startX; x <= endX; x++)
             {
                 mapping location = grid[x][y];
+
+                if(member(location, "state exits") && objectp(location["environment"]))
+                {
+                    string *exits = member(location["state exits"], state) ?
+                        m_indices(location["state exits"][state]) : ({});
+
+                    location["exits"] = ([]);
+                    if(sizeof(exits))
+                    {
+                        foreach(string direction in exits)
+                        {
+                            location["exits"][direction] = ([
+                                "region":this_object(),
+                                "destination" : "manual"
+                            ]);
+                        }
+                    }
+                }
 
                 int userHere = objectp(present(user, location["environment"]));
                 string exitColor = userHere ? "user location" : "exit";
@@ -117,9 +135,15 @@ private nomask varargs string displayMapSection(object user, int startX,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *getMiniMap(object environment, object user)
+public nomask string *getMiniMap(object environment, object user, 
+    string state)
 {
     string map = 0;
+
+    if (!state)
+    {
+        state = "default";
+    }
 
     if (environment)
     {
@@ -136,14 +160,18 @@ public nomask string *getMiniMap(object environment, object user)
                 ((yCoordinate == 0) ? 2 : 1);
             int endY = yCoordinate ? yCoordinate - ((yCoordinate == (MaxY - 1)) ? 2 : 1) : 0;
 
-            map = displayMapSection(user, startX, startY, endX, endY, 1);
+            map = displayMapSection(user, startX, startY, endX, endY, state, 1);
         }
     }
     return map ? explode(map, "\n") : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayMap(object user)
+public nomask varargs string displayMap(object user, string state)
 {
-    return "\n" + displayMapSection(user, 0, MaxY - 1, MaxX - 1, 0);
+    if (!state)
+    {
+        state = "default";
+    }
+    return "\n" + displayMapSection(user, 0, MaxY - 1, MaxX - 1, 0, state);
 }

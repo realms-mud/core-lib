@@ -25,7 +25,8 @@ public nomask int execute(string command, object initiator)
         if (environment)
         {
             string map = environment->getRegion() ?
-                environment->getRegion()->displayMap(initiator) : 0;
+                environment->getRegion()->displayMap(initiator,
+                    environment->currentState()) : 0;
 
             if (stringp(map))
             {

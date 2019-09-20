@@ -170,7 +170,7 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
                     state);
             }
 
-            setCoordinates(region->regionName(), data["x"], data["y"]);
+            setCoordinates(region, data["x"], data["y"]);
             addGeneratedExits(roomData["exits"], region, state);
 
             ret["elements"] += 
@@ -215,12 +215,6 @@ public nomask void addEntryExit(string direction, string location)
     {
         addFeature(PathType, direction);
     }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask string getCoordinates()
-{
-    return sprintf("%dx%d", xCoordinate, yCoordinate);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -299,6 +293,8 @@ public void init()
 
         newRegion->setEntryExit(deferredRegion["exit coordinate"],
             previousRegion, deferredRegion["state"]);
+
+        newRegion->setPersistRegion(previousRegion->persistRegion());
 
         deferredRegion = 0;
     }

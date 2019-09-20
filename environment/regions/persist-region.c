@@ -5,7 +5,7 @@
 virtual inherit "/lib/environment/regions/core.c";
 virtual inherit "/lib/environment/regions/generate-room.c"; 
 
-private int PersistRegion = 1;
+protected int PersistRegion = 1;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int persistRegion()
@@ -74,7 +74,7 @@ public nomask int load(string enterFrom, string location)
 {
     int ret = 0;
 
-    if (stringp(enterFrom) && stringp(location))
+    if (PersistRegion && stringp(enterFrom) && stringp(location))
     {
         mapping data = Dictionary->loadRegion(enterFrom, location);
 
@@ -102,5 +102,8 @@ public nomask int load(string enterFrom, string location)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void save()
 {
-    Dictionary->saveRegion(this_object());
+    if (PersistRegion)
+    {
+        Dictionary->saveRegion(this_object());
+    }
 }

@@ -19,7 +19,6 @@ public void Setup()
 
     addObject("/lib/tutorial/temple/objects/pilon.c");
 
-    setCoordinates("temple of obedience", 26, 24);
     setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
 

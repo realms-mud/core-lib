@@ -127,3 +127,111 @@ void CanCreateGeneratedRegionFromRealEnvironment()
 
     destruct(environment);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanCreateManualRegions()
+{
+    Player->colorConfiguration("none");
+    Player->charsetConfiguration("ascii");
+
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+
+    Region->setDimensions(5, 5);
+    Region->setEntryCoordinate(0, 0, 
+        "/lib/tests/support/environment/region/0x0.c", "west",
+        "/lib/tests/support/environment/darkRoom.c");
+
+    Region->setCoordinate(0, 1, "/lib/tests/support/environment/region/0x1.c");
+    Region->setCoordinate(1, 0, "/lib/tests/support/environment/region/1x0.c",
+        "path");
+    Region->setCoordinate(1, 1, "/lib/tests/support/environment/region/1x1.c",
+        "path");
+    Region->setCoordinate(1, 2, "/lib/tests/support/environment/region/1x2.c",
+        "path");
+    Region->setCoordinate(2, 2, "/lib/tests/support/environment/region/2x2.c");
+    Region->setCoordinate(1, 3, "/lib/tests/support/environment/region/1x3.c",
+        "path");
+    Region->setExitCoordinate(1, 4, "/lib/tests/support/environment/region/1x4.c",
+        "north");
+
+    ExpectEq("\n    |          \n"
+        "    X          \n"
+        "    |          \n"
+        "    |          \n"
+        "    o          \n"
+        "    |          \n"
+        "    |          \n"
+        "    o--#       \n"
+        "    |          \n"
+        "    |          \n"
+        " #--o          \n"
+        "    |          \n"
+        "    |          \n"
+        "-#--o          \n"
+        "               \n", Region->displayMap(Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MapsChangeWithStateTransitions()
+{
+    Player->colorConfiguration("none");
+    Player->charsetConfiguration("ascii");
+    move_object(Player,
+        "/lib/tutorial/temple/environment/rooms/entry-to-pedestal.c");
+
+    command("s", Player);
+    
+    object region = environment(Player)->getRegion();
+    object stateMachine = environment(Player)->stateMachine();
+
+    ExpectEq("\n"
+        " |                   \n"
+        " #  o  o  o  o  #    \n"
+        "                     \n"
+        "                     \n"
+        " o  o  o  o  o  #    \n"
+        "                     \n"
+        "                     \n"
+        " o  o  o  o  o       \n"
+        "                     \n"
+        "                     \n"
+        " o  o  o  o  o       \n"
+        "                     \n"
+        "                     \n"
+        " o  o  o  o  o       \n"
+        "                     \n"
+        "                     \n"                     
+        "                     \n"
+        "                     \n"
+        "                     \n"
+        "                     \n"
+        "                     \n", region->displayMap(Player, stateMachine->getCurrentState()));
+
+    command("get rune", Player);
+    command("place rune", Player);
+    stateMachine->receiveEvent(Player, "startFirstTest");
+
+    ExpectEq("\n"
+        " |                   \n"
+        " #--o  o  o  o--#-   \n"
+        "    |        |       \n"
+        "    |        |       \n"
+        " o  o--o--o  o  #    \n"
+        "          |  |       \n"
+        "          |  |       \n"
+        " o  o  o--o  o       \n"
+        "       |     |       \n"
+        "       |     |       \n"
+        " o  o  o--o--o       \n"
+        "                     \n"
+        "                     \n"
+        " o  o  o  o  o       \n"
+        "                     \n"
+        "                     \n"
+        "                     \n"
+        "                     \n"
+        "                     \n"
+        "                     \n"
+        "                     \n", region->displayMap(Player, stateMachine->getCurrentState()));
+}

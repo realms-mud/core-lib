@@ -22,7 +22,6 @@ private mapping aliasesToElements = ([]);
 
 protected mapping exits = ([]);
 private string State = "default";
-private string RegionPath = 0;
 protected object Region = 0;
 
 private string uniqueIdentifier = 0;
@@ -576,18 +575,31 @@ protected nomask void setInterior(string interior)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void setCoordinates(string region, int x, int y)
+public nomask string getCoordinates()
 {
-    if (environmentDictionary()->coordinatesValidForRegion(region, x, y))
+    return sprintf("%dx%d", xCoordinate, yCoordinate);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs mapping getExitDirections()
+{
+    return exits + ([ ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setCoordinates(object region, int x, int y)
+{
+    if (objectp(region) && 
+        (member(inherit_list(region), "lib/environment/region.c") > -1))
     {
-        RegionPath = region;
+        Region = region;
         xCoordinate = x;
         yCoordinate = y;
     }
     else
     {
-        raise_error(sprintf("ERROR in environment.c: coordinates(%d,%d) are "
-            "not valid for this region: '%s'.\n", x, y, region));
+        raise_error("ERROR in environment.c: You must specify a valid region "
+            "when setting coordinates.\n");
     }
 }
 
@@ -931,7 +943,8 @@ public varargs string long(string item)
         if (this_player()->displayMiniMap() && getRegion())
         {
             descriptionWidth = 66;
-            map = getRegion()->getMiniMap(this_object(), this_player());
+            map = getRegion()->getMiniMap(this_object(), this_player(),
+                currentState());
         }
     }
 
@@ -1271,6 +1284,11 @@ public nomask varargs void enterEnvironment(object actor, object party)
             environmentalElements["clone owner"] = owner;
             location = clone_object(object_name(this_object()));
             instances[owner] = location;
+
+            if (Region)
+            {
+                location->setCoordinates(Region, xCoordinate, yCoordinate);
+            }
         }
     }
 
@@ -1307,16 +1325,9 @@ public nomask varargs void setStateMachine(string machinePath,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string overheadMap()
+public nomask object stateMachine()
 {
-    string ret = 0;
-
-    object region = environmentDictionary()->getRegion(RegionPath);
-    if (region)
-    {
-        ret = region->getRelativeOverheadMap(xCoordinate, yCoordinate);
-    }
-    return ret;
+    return StateMachine;
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -48,6 +48,5 @@ public void Setup()
     addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-3x2.c", "seventh test");
     addObject("/lib/tutorial/temple/objects/rune-doom.c", "seventh test");
 
-    setCoordinates("temple of obedience", 23, 23);
     setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }

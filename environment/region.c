@@ -112,3 +112,66 @@ public void setEntryExit(string entryPoint, object region, string state)
             EnterFrom, entryPoint, region, state);
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void setCoordinate(int x, int y, string path,
+    string roomType)
+{
+    PersistRegion = 0;
+
+    if ((x < 0) || (y < 0) || (x > MaxX) || (y > MaxY))
+    {
+        raise_error(sprintf("Error in region.c: The coordinate provided "
+            "(%d,%d) is not valid for this region.\n", x, y));
+    }
+    
+    object environment;
+    string loadFailed = catch (environment = load_object(path));
+    if(loadFailed || (member(inherit_list(environment), 
+        "lib/environment/environment.c") < 0))
+    {
+        raise_error(sprintf("Error in region.c: The provided path "
+            "(%O) is not a valid environment.\n", path));
+    }
+
+    if (!roomType)
+    {
+        roomType = "room";
+    }
+
+    if (sizeof(grid) < MaxX)
+    {
+        createEmptyGrid(MaxX, MaxY);
+    }
+
+    grid[x][y] = ([
+        "is placed": 1,
+        "room type": roomType,
+        "name": path,
+        "environment": environment,
+        "state exits": environment->getExitDirections(),
+    ]);
+
+    environment->setCoordinates(this_object(), x, y);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setEntryCoordinate(int x, int y, string path,
+    string enterFrom, string entryPoint)
+{
+    EntryPoint = entryPoint;
+    EnterFrom = enterFrom;
+    setCoordinate(x, y, path, "entry");
+
+    grid[x][y]["exit to"] = enterFrom;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setExitCoordinate(int x, int y, string path,
+    string exitTo)
+{
+    setCoordinate(x, y, path, "exit");
+
+    grid[x][y]["exit to"] = exitTo;
+    grid[x][y]["exit coordinates"] = ({ });
+}

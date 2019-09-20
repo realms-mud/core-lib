@@ -477,18 +477,6 @@ public nomask string convertNumberToString(int number)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int coordinatesValidForRegion(string region, int x, int y)
-{
-    return 1;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask object getRegion(string region)
-{
-    return 0;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask void calculateTimeOfDay()
 {
     string *timeSlots = sort_array(m_indices(timesOfDay),

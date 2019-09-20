@@ -23,7 +23,6 @@ public void Setup()
     addObject("/lib/tutorial/temple/objects/pedestal.c");
 
     addObject("/lib/tutorial/temple/objects/rune-resistance.c", "entered room");
-    setCoordinates("temple of obedience", 21, 25);
 
     setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
 

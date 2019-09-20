@@ -13,13 +13,12 @@ public void Setup()
     addFeature("lib/tutorial/temple/environment/features/amethyst-ceiling.c");
     addFeature("lib/tutorial/temple/environment/features/magic-square.c");
 
-    // Second test
-    addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-1x5.c");
-    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-exit-1.c");
+    // First test
+    addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-1x5.c", "first test");
+    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-exit-1.c", "first test");
 
     addObject("/lib/tutorial/temple/objects/magic-square.c");
 
-    setCoordinates("temple of obedience", 26, 25);
     setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
 
