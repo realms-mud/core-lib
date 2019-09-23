@@ -6,12 +6,25 @@ virtual inherit "/lib/environment/regions/core.c";
 virtual inherit "/lib/environment/regions/entries-and-exits.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void generateRoomDetails(mapping room)
+public nomask void generateRoomDetailsAsync(mapping room)
 {
     room["environment"] =
         clone_object("/lib/environment/generatedEnvironment");
 
     room += room["environment"]->generateEnvironment(room, this_object());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void generateRoomDetails(mapping room)
+{
+    if (room["room type"] == "entry")
+    {
+        generateRoomDetailsAsync(room);
+    }
+    else
+    {
+        call_out("generateRoomDetailsAsync", 0, room);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

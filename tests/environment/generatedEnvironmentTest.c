@@ -206,6 +206,8 @@ private mapping *getRegionData(object region)
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    ToggleCallOutBypass();
+
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->addCommands();
@@ -223,6 +225,8 @@ void CleanUp()
     destruct(Environment);
     destruct(Region);
     destruct(Player);
+
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
