@@ -6,6 +6,7 @@ virtual inherit "/lib/environment/regions/core.c";
 virtual inherit "/lib/environment/regions/entries-and-exits.c";
 virtual inherit "/lib/environment/regions/generate-path.c";
 virtual inherit "/lib/environment/regions/generate-room.c";
+virtual inherit "/lib/environment/regions/generate-settlement.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected int getRoomCount()
@@ -60,6 +61,12 @@ private nomask void generateRegion(string enterFrom, string location,
 {
     EntryPoint = location;
     EnterFrom = enterFrom;
+
+    if ((MaxX > 9) && (MaxY > 9) && 
+        Dictionary->canConstructSettlement(RegionType))
+    {
+        generateSettlement();
+    }
 
     // Create entry point
     createRoom(1, enterFrom, coordinates);

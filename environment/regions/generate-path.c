@@ -88,7 +88,12 @@ private nomask varargs string *traverseAPath(mapping startRoom,
 
         string nextCoordinates = sprintf("%dx%d", nextRoom["x"], nextRoom["y"]);
         mapping room = grid[nextRoom["x"]][nextRoom["y"]];
-        if ((nextRoom["direction"] != "none"))
+
+        if (room["room type"] == "building")
+        {
+            path = 0;
+        }
+        else if (nextRoom["direction"] != "none")
         {
             if ((room["is placed"] != 1))
             {

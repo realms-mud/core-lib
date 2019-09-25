@@ -235,3 +235,9 @@ void MapsChangeWithStateTransitions()
         "                     \n"
         "                     \n", region->displayMap(Player, stateMachine->getCurrentState()));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayVillage()
+{
+
+}

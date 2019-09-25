@@ -54,7 +54,7 @@ protected nomask varargs void createRoom(int isEntry, string enterFrom,
         y = random(MaxY);
     }
 
-    if (!grid[x][y]["is placed"])
+    if (grid[x][y]["room type"] == "none")
     {
         grid[x][y]["is placed"] = isEntry;
         grid[x][y]["room type"] = isEntry ? "entry" : "room";

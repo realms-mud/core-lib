@@ -2,7 +2,9 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "/lib/dictionaries/regions/building-layouts.h"
 #include "/lib/dictionaries/regions/region-types.h"
+#include "/lib/dictionaries/regions/settlements.h"
 #include "/lib/modules/secure/regions.h"
 
 private string FeaturePrefix = "/lib/environment/features/";
@@ -12,6 +14,8 @@ private mapping WeightedEncounters = ([]);
 
 private string *availableDirections = ({ "north", "south", "east", "west",
     "northwest", "northeast", "southwest", "southeast" });
+
+private string *buildingColors = ({ "wood building", "stone building" });
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidRegionType(string type)
@@ -55,7 +59,7 @@ private nomask mapping setExits(mapping room, mapping exits,
     {
         room["exits"][direction] = ([
             "exit to": exits[direction],
-            "path type": "/lib/environment/features/path.c",
+            "path type": "/lib/environment/features/paths/path.c",
             "region": region
         ]);
     }
@@ -218,4 +222,45 @@ public nomask void saveRegion(object region)
             region->entryDirection(),
             region->rooms());
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canConstructSettlement(string type)
+{
+    return member(RegionTypes, type) &&
+        member(RegionTypes[type], "settlement chance") &&
+        (random(100) < RegionTypes[type]["settlement chance"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping constructSettlement(string type)
+{
+    mapping ret = 0;
+
+    if (member(RegionTypes, type))
+    {
+        int size = RegionTypes[type]["settlement size"];
+        mapping possibleSettlements = filter(Settlements,
+            (: $2["size"] <= $3 :), size);
+
+        ret = possibleSettlements[m_indices(possibleSettlements)
+            [random(sizeof(possibleSettlements))]];
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getBuildingLayout(string size)
+{
+    mapping ret = 0;
+    if (member(BuildingLayouts, size))
+    {
+        mapping possibleBuildings = BuildingLayouts[size];
+        string *layouts = m_indices(possibleBuildings);
+        ret = possibleBuildings[layouts[random(sizeof(layouts))]] + ([]);
+
+        ret["color"] = buildingColors[random(sizeof(buildingColors))];
+    }
+    return ret;
 }

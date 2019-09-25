@@ -98,29 +98,43 @@ private nomask varargs string displayMapSection(object user, int startX,
                     }
                 }
 
-                int userHere = objectp(present(user, location["environment"]));
-                string exitColor = userHere ? "user location" : "exit";
+                if (location["room type"] == "building")
+                {
+                    mapping icon = Dictionary->getBuildingLayout("1x1");
 
-                row[0] += sprintf(" %s ", hasExit(location, "north") ?
-                    configuration->decorate(displayCharacter["north"][charset],
-                        exitColor, "map", colorConfiguration) : " ");
+                    row[0] += configuration->decorate(icon[charset][0],
+                        icon["color"], "map", colorConfiguration);
+                    row[1] += configuration->decorate(icon[charset][1],
+                        icon["color"], "map", colorConfiguration);
+                    row[2] += configuration->decorate(icon[charset][2],
+                        icon["color"], "map", colorConfiguration);
+                }
+                else
+                {
+                    int userHere = objectp(present(user, location["environment"]));
+                    string exitColor = userHere ? "user location" : "exit";
 
-                row[1] += sprintf("%s%s%s",
-                    (hasExit(location, "west") ?
-                        configuration->decorate(displayCharacter["west"][charset],
-                            exitColor, "map", colorConfiguration) : " "),
-                    configuration->decorate(
-                    (userHere ? displayCharacter["player"][charset] :
-                        displayCharacter[location["room type"]][charset]),
-                        (userHere ? "user location" : location["room type"]),
-                        "map", colorConfiguration),
-                        (hasExit(location, "east") ?
-                            configuration->decorate(displayCharacter["east"][charset],
-                                exitColor, "map", colorConfiguration) : " "));
+                    row[0] += sprintf(" %s ", hasExit(location, "north") ?
+                        configuration->decorate(displayCharacter["north"][charset],
+                            exitColor, "map", colorConfiguration) : " ");
 
-                row[2] += sprintf(" %s ", hasExit(location, "south") ?
-                    configuration->decorate(displayCharacter["south"][charset],
-                        exitColor, "map", colorConfiguration) : " ");
+                    row[1] += sprintf("%s%s%s",
+                        (hasExit(location, "west") ?
+                            configuration->decorate(displayCharacter["west"][charset],
+                                exitColor, "map", colorConfiguration) : " "),
+                        configuration->decorate(
+                        (userHere ? displayCharacter["player"][charset] :
+                            displayCharacter[location["room type"]][charset]),
+                            (userHere ? "user location" : location["room type"]),
+                            "map", colorConfiguration),
+                            (hasExit(location, "east") ?
+                                configuration->decorate(displayCharacter["east"][charset],
+                                    exitColor, "map", colorConfiguration) : " "));
+
+                    row[2] += sprintf(" %s ", hasExit(location, "south") ?
+                        configuration->decorate(displayCharacter["south"][charset],
+                            exitColor, "map", colorConfiguration) : " ");
+                }
             }
 
             string divider = !addDivider ? "" :

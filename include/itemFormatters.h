@@ -1061,6 +1061,16 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;9m",
             "24-bit": "\x1b[0;38;2;200;0;0m"
         ]),
+        "wood building": ([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;212m",
+            "24-bit": "\x1b[0;38;2;100;200;10m"
+        ]),
+        "stone building": ([
+            "3-bit": "\x1b[0;36;1m",
+            "8-bit": "\x1b[0;38;5;80;1m",
+            "24-bit": "\x1b[0;38;2;180;180;190;1m"
+        ]),
     ]),
     "player domains":([
         "heading": ([
