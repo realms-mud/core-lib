@@ -33,6 +33,8 @@ protected nosave object StateMachine = 0;
 protected nosave string StateMachinePath = 0;
 
 private nosave int SetupCompleted = 0;
+private int SettlementChance = -1;
+
 protected mapping instances = ([]);
 
 protected object configuration = 
@@ -419,6 +421,12 @@ public nomask string identifiedBy()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void setGeneratedSettlementChance(int chance)
+{
+    SettlementChance = chance;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs object addGeneratedRegion(string direction, string type,
     int x, int y, int *entryCoordinate, string name, string state)
 {
@@ -426,6 +434,11 @@ public nomask varargs object addGeneratedRegion(string direction, string type,
     if (!member(environmentalElements["regions"], direction))
     {
         ret = clone_object("/lib/environment/region.c");
+
+        if (SettlementChance >= 0)
+        {
+            ret->setSettlementChance(SettlementChance);
+        }
 
         if (x && y)
         {

@@ -24,6 +24,8 @@ drop function if exists saveEnvironmentalObject;
 ##
 drop procedure if exists saveEnvironmentExit;
 ##
+drop procedure if exists saveRegionMapDecorators;
+##
 drop procedure if exists saveRegionExit;
 ##
 drop function if exists saveDomainUnit;
@@ -105,6 +107,8 @@ drop table if exists environmentalObjects;
 drop table if exists environmentExits;
 ##
 drop table if exists regionExits;
+##
+drop table if exists regionMapDecorators;
 ##
 drop table if exists environmentInstances;
 ##
@@ -680,6 +684,25 @@ CREATE TABLE `regionExits` (
       FOREIGN KEY (`environmentId`)
       REFERENCES `environmentInstances` (`id`)
       ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `regionMapDecorators` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `regionId` INT NOT NULL,
+  `class` VARCHAR(20) NOT NULL,
+  `type` VARCHAR(20) NOT NULL,
+  `size` VARCHAR(20) NOT NULL,
+  `color` VARCHAR(20) NOT NULL,
+  `x-coordinate` INT NOT NULL,
+  `y-coordinate` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `region_decorator_idx` (`regionId` ASC),
+  CONSTRAINT `region_decorator` 
+      FOREIGN KEY (`regionId`) 
+      REFERENCES `regions` (`id`)
+      ON DELETE NO ACTION 
       ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
@@ -1805,6 +1828,28 @@ BEGIN
         insert into regionExits (regionId, environmentId, location, direction, state, 
             `x-coordinate`, `y-coordinate`)
         values (p_regionId, p_environmentId, p_location, p_direction, p_state, p_x, p_y);
+    end if;
+END;
+##
+CREATE PROCEDURE `saveRegionMapDecorators` ( p_regionId int, p_class varchar(20), 
+    p_type varchar(20), p_size varchar(20), p_color varchar(20), p_x int, p_y int)
+BEGIN
+    declare decoratorId int;
+
+    select id into decoratorId
+    from regionMapDecorators where regionId = p_regionId and
+        `x-coordinate` = p_x and `y-coordinate` = p_y;
+    
+    if decoratorId is not null then
+        update regionMapDecorators set class = p_location, 
+                                       type = p_state,
+                                       size = p_size,
+                                       color = p_color
+        where id = decoratorId;
+    else
+        insert into regionMapDecorators (regionId, class, type, size, color, 
+            `x-coordinate`, `y-coordinate`)
+        values (p_regionId, p_class, p_type, p_size, p_color, p_x, p_y);
     end if;
 END;
 ##

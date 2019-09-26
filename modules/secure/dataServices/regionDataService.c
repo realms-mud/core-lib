@@ -4,6 +4,9 @@
 //*****************************************************************************
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
+private object regionDictionary =
+    load_object("/lib/dictionaries/regionDictionary.c");
+
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping loadEnvironmentObjects(int dbHandle, int environmentId)
 {
@@ -130,6 +133,32 @@ private nomask mapping loadRegionExits(int dbHandle, mapping room,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask mapping loadRegionMapDecorator(int dbHandle, int regionId, 
+    int x, int y)
+{
+    mapping ret = 0;
+
+    string query = sprintf("select class, size, type, color "
+        "from regionMapDecorators "
+        "where regionId = %d and `x-coordinate` = %d and "
+        "`y-coordinate` = %d;", regionId, x, y);
+
+    db_exec(dbHandle, query);
+
+    mixed result = db_fetch(dbHandle);
+    if (result)
+    {   
+        ret = regionDictionary->getMapDecorator(
+            convertString(result[0]),
+            convertString(result[1]),
+            convertString(result[2]),
+            convertString(result[3]));
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask mapping loadRegionGrid(int dbHandle, int regionId, mapping grid)
 {
     mapping ret = grid + ([]);
@@ -189,6 +218,12 @@ private nomask mapping loadRegionGrid(int dbHandle, int regionId, mapping grid)
         {
             ret[x][y] = loadRegionExits(dbHandle, ret[x][y], 
                 environment["region id"], environmentId);
+        }
+
+        if (ret[x][y]["room type"] == "building")
+        {
+            ret[x][y]["icon"] = loadRegionMapDecorator(dbHandle,
+                regionId, x, y);
         }
     }
 
@@ -365,6 +400,29 @@ private nomask void saveEnvironmentExits(int dbHandle, int environmentId,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void saveRegionMapDecorator(int dbHandle, int regionId,
+    mapping building)
+{
+    string query;
+    mixed result;
+
+    if (sizeof(building) && member(building, "icon"))
+    {
+        query = sprintf("call saveRegionMapDecorators(%d,'%s','%s','%s','%s',%d,%d);",
+            regionId,
+            sanitizeString(building["icon"]["class"]),
+            sanitizeString(building["icon"]["type"]),
+            sanitizeString(building["icon"]["size"]),
+            sanitizeString(building["icon"]["color"]),
+            building["x"],
+            building["y"]);
+
+        db_exec(dbHandle, query);
+        result = db_fetch(dbHandle);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void saveRegionExitPoint(int dbHandle, int regionId, 
     int environmentId, mapping exit)
 {
@@ -424,6 +482,11 @@ private nomask void saveEnvironmentData(int dbHandle, int regionId,
                 {
                     saveRegionExitPoint(dbHandle, regionId, environmentId,
                         room);
+                }
+
+                if (room["room type"] == "building")
+                {
+                    saveRegionMapDecorator(dbHandle, regionId, room);
                 }
             }
         }

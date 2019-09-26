@@ -237,7 +237,23 @@ void MapsChangeWithStateTransitions()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void DisplayVillage()
+void CanGenerateSettlement()
 {
+    Player->colorConfiguration("none");
+    Player->charsetConfiguration("unicode");
 
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+    Region->setDimensions(25,10);
+    Region->setSettlementChance(0);
+    Region->createRegion();
+
+    ExpectFalse(sizeof(Region->decorators()));
+    ExpectTrue(sizeof(Region->rooms()));
+
+    Region->setSettlementChance(100);
+    Region->createRegion();
+
+    ExpectTrue(sizeof(Region->decorators()));
+    ExpectTrue(sizeof(Region->rooms()));
 }

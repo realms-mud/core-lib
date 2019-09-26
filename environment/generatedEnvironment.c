@@ -117,6 +117,47 @@ private nomask void addGeneratedExits(mapping exits, object region,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask mapping addGeneratedFeatures(mapping features, object region,
+    string state)
+{
+    mapping ret = ([]);
+
+    if (mappingp(features) && member(features, "features"))
+    {
+        foreach(string direction in m_indices(features["features"]))
+        {
+            addFeature(features["features"][direction], direction, state);
+
+            ret += getElementMapping("feature", 
+                features["features"][direction],
+                direction, 
+                environmentalElements["feature"], 
+                state);
+        }
+    }
+
+    if (mappingp(features) && member(features, "buildings"))
+    {
+        foreach(string direction in m_indices(features["buildings"]))
+        {
+            addBuilding(features["buildings"][direction], 
+                direction,
+                regionDictionary->getBuildingEntrance(
+                    features["buildings"][direction]), 
+                state);
+
+            ret += getElementMapping("building", 
+                features["buildings"][direction],
+                direction, 
+                environmentalElements["feature"], 
+                state);
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void deferGenerateRegion(string direction, object region,
     int *entryCoordinate, string exitCoordinate, string name, string state)
 {
@@ -173,7 +214,9 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
             setCoordinates(region, data["x"], data["y"]);
             addGeneratedExits(roomData["exits"], region, state);
 
-            ret["elements"] += 
+            ret["elements"] += (member(data, "features") || 
+                member(data, "buildings")) ?
+                addGeneratedFeatures(data, region, state) :
                 addRandomEnvironmentalElements(roomData, state);
 
             addRandomObjects(filter(roomData["room objects"],

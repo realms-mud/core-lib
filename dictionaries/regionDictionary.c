@@ -220,16 +220,20 @@ public nomask void saveRegion(object region)
             region->yDimension(),
             region->entryPoint(),
             region->entryDirection(),
-            region->rooms());
+            region->rooms() + region->decorators());
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int canConstructSettlement(string type)
+public nomask int canConstructSettlement(object region)
 {
-    return member(RegionTypes, type) &&
+    string type = region->regionType();
+    int chance = region->settlementChance();
+
+    return region && member(RegionTypes, type) &&
         member(RegionTypes[type], "settlement chance") &&
-        (random(100) < RegionTypes[type]["settlement chance"]);
+        (random(100) < ((chance != -1) ? chance :
+            RegionTypes[type]["settlement chance"]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -258,9 +262,48 @@ public nomask mapping getBuildingLayout(string size)
     {
         mapping possibleBuildings = BuildingLayouts[size];
         string *layouts = m_indices(possibleBuildings);
-        ret = possibleBuildings[layouts[random(sizeof(layouts))]] + ([]);
+        string type = layouts[random(sizeof(layouts))];
+        ret = possibleBuildings[type] + ([]);
 
         ret["color"] = buildingColors[random(sizeof(buildingColors))];
+        ret["class"] = "building";
+        ret["type"] = type;
+        ret["size"] = size;
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getMapDecorator(string class, string size, string type,
+    string color)
+{
+    mapping ret = 0;
+
+    switch (class)
+    {
+        case "building":
+        {
+            if (member(BuildingLayouts, size) &&
+                member(BuildingLayouts[size], type))
+            {
+                ret = BuildingLayouts[size][type] + ([]);
+                break;
+            }
+        }
+    }
+
+    if (ret)
+    {
+        ret["color"] = color;
+        ret["class"] = class;
+        ret["type"] = type;
+        ret["size"] = size;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getBuildingEntrance(string building)
+{
+    return building;
 }

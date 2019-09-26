@@ -11,6 +11,7 @@ protected string EntryPoint = 0;
 
 protected mapping grid = ([ ]);
 protected mapping *rooms = ({ });
+protected mapping *decorators = ({ });
 protected int *entry = ({ });
 
 protected string *availableDirections = ({ "north", "south", "east", "west" });

@@ -104,6 +104,14 @@ public mapping *rooms()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public mapping *decorators()
+{
+    mapping *ret = decorators + ({});
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void setEntryExit(string entryPoint, object region, string state)
 {
     if (sizeof(entry))

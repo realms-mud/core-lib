@@ -100,14 +100,12 @@ private nomask varargs string displayMapSection(object user, int startX,
 
                 if (location["room type"] == "building")
                 {
-                    mapping icon = Dictionary->getBuildingLayout("1x1");
-
-                    row[0] += configuration->decorate(icon[charset][0],
-                        icon["color"], "map", colorConfiguration);
-                    row[1] += configuration->decorate(icon[charset][1],
-                        icon["color"], "map", colorConfiguration);
-                    row[2] += configuration->decorate(icon[charset][2],
-                        icon["color"], "map", colorConfiguration);
+                    row[0] += configuration->decorate(location["icon"][charset][0],
+                        location["icon"]["color"], "map", colorConfiguration);
+                    row[1] += configuration->decorate(location["icon"][charset][1],
+                        location["icon"]["color"], "map", colorConfiguration);
+                    row[2] += configuration->decorate(location["icon"][charset][2],
+                        location["icon"]["color"], "map", colorConfiguration);
                 }
                 else
                 {
