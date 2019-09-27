@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("forest clearing");
     addAdjectives(({ "clearing in a sprawling forest",
-        "clearing in a forest thick with mighty trees; knotted arms rising upward",
+        "clearing in a forest thick with mighty trees",
         "clearing in a grove of many trees",
         "clearing in a towering forest",
         "clearing in a lush forest",
@@ -42,13 +42,13 @@ public void Setup()
     addTimeOfDayDescription("midnight", ({ 
         " scarcely outlined in eery black" }));
     addSeasonDescription("winter", ({ " covered with a thick layer of snow" }));
-    addSeasonDescription("spring", ({ " with leaves just beginning to bud" }));
-    addSeasonDescription("summer", ({ " with branches laden with leaves" }));
-    addSeasonDescription("autumn", ({ " carpeting the ground in fallen leaves of red, yellow, and orange" }));
+    addSeasonDescription("spring", ({ "; the trees' leaves just beginning to bud" }));
+    addSeasonDescription("summer", ({ "; the trees laden with leaves" }));
+    addSeasonDescription("autumn", ({ ". The ground is carpeted with fallen leaves of red, yellow, and orange" }));
 
     addDescriptionTemplate("a ##Adjective##");
-    addNearDarkDescriptionTemplate("a very dark forest");
-    addLowLightDescriptionTemplate("a barely-lit forest");
-    addDimLightDescriptionTemplate("a dimly-lit forest");
-    addSomeLightDescriptionTemplate("a forest");
+    addNearDarkDescriptionTemplate("a very dark clearing in a forest");
+    addLowLightDescriptionTemplate("a barely-lit clearing in a forest");
+    addDimLightDescriptionTemplate("a dimly-lit clearing in a forest");
+    addSomeLightDescriptionTemplate("a clearing in a forest");
 }

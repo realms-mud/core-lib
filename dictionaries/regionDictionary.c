@@ -170,7 +170,14 @@ public nomask mapping generateRoomData(object region, mapping data)
         ret = ([]);
         mapping roomInput = RegionTypes[region->regionType()] + ([]);
 
-        setTerrain(ret, roomInput);
+        if (member(data, "terrain") || member(data, "interior"))
+        {
+            setTerrain(ret, data);
+        }
+        else
+        {
+            setTerrain(ret, roomInput);
+        }
         setExits(ret, data["exits"], roomInput, region);
 
         string regionType = region->regionType();

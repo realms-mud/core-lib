@@ -5,6 +5,7 @@
 virtual inherit "/lib/environment/regions/core.c";
 
 private int GenerateSettlementsChance = -1;
+private mapping *settlementPath = ({});
 
 /////////////////////////////////////////////////////////////////////////////
 public void setSettlementChance(int chance)
@@ -31,6 +32,8 @@ protected nomask void generateSettlement()
     mapping settlement = Dictionary->constructSettlement(RegionType);
     if (mappingp(settlement))
     {
+        settlementPath = ({ });
+
         int startX = random(MaxX - settlement["x dimension"]);
         int startY = random(MaxY - settlement["y dimension"]);
 
@@ -41,28 +44,30 @@ protected nomask void generateSettlement()
                 int x = startX + relativeX;
                 int y = startY + relativeY;
 
-                grid[x][y]["room type"] =
-                    settlement["layout"][relativeX][relativeY]["type"];
+                mapping settlementRoom = settlement["layout"][relativeX][relativeY];
+
+                grid[x][y]["room type"] = settlementRoom["type"];
+                grid[x][y]["terrain"] = settlement["terrain"];
 
                 string name = sprintf("%dx%d", x, y);
                 grid[x][y]["identifier"] = sprintf("%s,%s-%s", EntryPoint || "none",
                     EnterFrom || "no exit", name);
                 grid[x][y]["name"] = name;
 
-                if(member(settlement["layout"][relativeX][relativeY], "exits"))
+                if (member(settlementRoom, "buildings"))
                 {
-                    mapping exits = settlement["layout"][relativeX][relativeY]["exits"];
+                    grid[x][y]["buildings"] = settlementRoom["buildings"];
+                }
+                if(member(settlementRoom, "exits"))
+                {
+                    mapping exits = settlementRoom["exits"];
 
                     foreach(string exit in m_indices(exits))
                     {
-                        grid[x][y]["exits"][exit] = sprintf("%dx%d", exits[exit][0],
-                            exits[exit][1]);
+                        grid[x][y]["exits"][exit] = sprintf("%dx%d", 
+                            startX + exits[exit][0],
+                            startY + exits[exit][1]);
                     }
-                }
-
-                if (member(settlement["layout"][relativeX][relativeY], "features"))
-                {
-
                 }
 
                 if (grid[x][y]["room type"] == "building")
@@ -71,10 +76,24 @@ protected nomask void generateSettlement()
                     decorators += ({ grid[x][y] });
                 }
                 else if(grid[x][y]["room type"] == "path")
-                {
-                    rooms += ({ grid[x][y] });
+                {          
+                    settlementPath += ({ grid[x][y] });
                 }
             }
         }
+
+        rooms += settlementPath;
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getSettlementEntrance()
+{
+    object ret = 0;
+
+    if (sizeof(settlementPath) && member(settlementPath[0], "environment"))
+    {
+        ret = settlementPath[0]["environment"];
+    }
+    return ret;
 }

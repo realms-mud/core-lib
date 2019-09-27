@@ -26,7 +26,7 @@ void Setup()
     Region = clone_object("/lib/tests/support/environment/regionHelper.c");
 
     Room = load_object("/lib/tests/support/environment/regionRoom.c");
-    //Room->setGeneratedSettlementChance(0);
+    Room->setGeneratedSettlementChance(100);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -64,7 +64,7 @@ void SendingEntryCreatesMapWithCorrectEntryPoint()
     Region->setRegionName("a forest");
     Region->setRegionType("forest");
 
-    Region->setDimensions(10, 5);
+    Region->setDimensions(5, 5);
     ExpectEq("north", Region->createRegion("south"));
     ExpectEq("west", Region->createRegion("east"));
 }
@@ -75,7 +75,7 @@ void CanCreateWithSpecificEntryPoint()
     Region->setRegionName("a forest");
     Region->setRegionType("forest");
 
-    Region->setDimensions(10, 5);
+    Region->setDimensions(5, 5);
     Region->createRegion("south", 0, ({ 3, 0}));
 
     ExpectEq(({ 3, 0 }), Region->EntryLocation());
@@ -87,7 +87,7 @@ void CorrectNumberOfRoomsGenerated()
     Region->setRegionName("a forest");
     Region->setRegionType("forest");
 
-    Region->setDimensions(15, 5);
+    Region->setDimensions(5, 5);
     Region->createRegion();
 
     ExpectEq(7, Region->generatedRoomCount());
@@ -99,7 +99,7 @@ void AllGeneratedRoomsHaveExits()
     Region->setRegionName("a forest");
     Region->setRegionType("forest");
 
-    Region->setDimensions(10, 5);
+    Region->setDimensions(5, 5);
     Region->createRegion();
 
     foreach(mapping room in Region->rooms())
@@ -114,7 +114,7 @@ void CanCreateGeneratedRegionFromRealEnvironment()
     object environment = 
         load_object("/lib/tests/support/environment/startingRoom.c");
 
-    object region = environment->addGeneratedRegion("north", "forest", 15, 10);
+    object region = environment->addGeneratedRegion("north", "forest", 5, 5);
     move_object(Player, environment);
 
     command("n", Player);
@@ -239,12 +239,13 @@ void MapsChangeWithStateTransitions()
 /////////////////////////////////////////////////////////////////////////////
 void CanGenerateSettlement()
 {
+    ToggleCallOutBypass();
     Player->colorConfiguration("none");
     Player->charsetConfiguration("unicode");
 
     Region->setRegionName("a forest");
     Region->setRegionType("forest");
-    Region->setDimensions(25,10);
+    Region->setDimensions(10,10);
     Region->setSettlementChance(0);
     Region->createRegion();
 
@@ -256,4 +257,12 @@ void CanGenerateSettlement()
 
     ExpectTrue(sizeof(Region->decorators()));
     ExpectTrue(sizeof(Region->rooms()));
+
+    move_object(Player, Region->getSettlementEntrance());
+
+    command("l", Player);
+    ExpectSubStringMatch("north.*building", Player->caughtMessage());
+    ExpectSubStringMatch("south.*building", Player->caughtMessage());
+
+    ToggleCallOutBypass();
 }

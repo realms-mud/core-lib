@@ -149,7 +149,7 @@ private nomask mapping addGeneratedFeatures(mapping features, object region,
             ret += getElementMapping("building", 
                 features["buildings"][direction],
                 direction, 
-                environmentalElements["feature"], 
+                environmentalElements["building"], 
                 state);
         }
     }
