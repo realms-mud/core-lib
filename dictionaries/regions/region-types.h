@@ -8,7 +8,7 @@
 #include "/lib//dictionaries/regions/trees.h"
 
 protected mapping RegionTypes = ([
-    "forest":([
+    "forest": ([
         "terrain": "/lib/environment/terrain/forest.c",
         "potential features": Trees,
         "potential items": ([ ]),

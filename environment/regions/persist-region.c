@@ -107,3 +107,61 @@ public nomask void save()
         Dictionary->saveRegion(this_object());
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string generateStaticTerrain(mapping room, string fileTemplate)
+{
+    string type = 0;
+    if (member(room, "terrain"))
+    {
+        type = "terrain";
+    }
+    else if (member(room, "interior"))
+    {
+        type = "interior";
+    }
+
+    string functionName = sprintf("set%s", capitalize(type));
+
+    string terrainText = sprintf("set%s(\"%s\");", capitalize(type),
+        room[type]);
+
+    return regreplace(fileTemplate, "// SetTerrain", terrainText);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *generateStaticRoomFiles(string roomPath)
+{
+    string *ret = ({});
+    if (file_size(roomPath) == -2)
+    {
+        string template = read_file("/lib/environment/generatedRoomTemplate.c");
+
+        foreach(mapping room in rooms)
+        {
+            mapping roomData = Dictionary->generateRoomData(this_object(), room);
+
+            string file = generateStaticTerrain(roomData, template);
+        }
+    }
+    else
+    {
+        raise_error(sprintf("ERROR in region.c: %s must be a valid directory.\n",
+            roomPath));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void generateStaticRegionFile(string roomPath, 
+    string *coordinateList)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void generateStaticFiles(string rootPath)
+{
+    string *coordinateList = generateStaticRoomFiles(rootPath);
+    generateStaticRegionFile(rootPath, coordinateList);
+}

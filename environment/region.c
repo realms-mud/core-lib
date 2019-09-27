@@ -7,6 +7,8 @@ virtual inherit "/lib/environment/regions/generate-region.c";
 virtual inherit "/lib/environment/regions/persist-region.c";
 virtual inherit "/lib/environment/regions/map.c";
 
+private int setupCompleted = 0;
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setDimensions(int x, int y)
 {
@@ -182,4 +184,20 @@ public nomask void setExitCoordinate(int x, int y, string path,
 
     grid[x][y]["exit to"] = exitTo;
     grid[x][y]["exit coordinates"] = ({ });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void reset(int arg)
+{
+    if (!arg && !setupCompleted)
+    {
+        Setup();
+        setupCompleted = 1;
+    }
 }

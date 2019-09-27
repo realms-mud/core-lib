@@ -266,3 +266,18 @@ void CanGenerateSettlement()
 
     ToggleCallOutBypass();
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGenerateFiles()
+{
+    Player->colorConfiguration("none");
+    Player->charsetConfiguration("unicode");
+
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+    Region->setDimensions(10, 10);
+    Region->setSettlementChance(0);
+    Region->createRegion();
+
+    Region->generateStaticFiles("/lib/");
+}
