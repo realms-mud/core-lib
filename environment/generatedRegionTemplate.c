@@ -10,8 +10,8 @@ public void Setup()
     // RegionName
     // RegionType
     // Dimensions
-    // SettlementChance
     // EntryCoordinate
+
     // Rooms
     // MapIcons
 }

@@ -73,7 +73,7 @@ private nomask mapping addRandomEnvironmentalElements(mapping elements,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void addRandomObjects(mapping items, string state)
+private nomask varargs void addRandomObjects(mapping items, string state)
 {
     foreach(string item in m_indices(items))
     {
@@ -82,7 +82,8 @@ private nomask void addRandomObjects(mapping items, string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void addRandomCreature(string *creatures, string state)
+protected nomask varargs void addRandomCreature(string *creatures, 
+    string state)
 {
     if (sizeof(creatures))
     {

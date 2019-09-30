@@ -270,14 +270,40 @@ void CanGenerateSettlement()
 /////////////////////////////////////////////////////////////////////////////
 void CanGenerateFiles()
 {
+    string originalDir = "/lib/generated_region/";
+    mkdir(originalDir);
+
+    string *files = get_dir(originalDir, 0x10);
+    ExpectEq(({ }), files);
+
     Player->colorConfiguration("none");
     Player->charsetConfiguration("unicode");
 
     Region->setRegionName("a forest");
     Region->setRegionType("forest");
+
     Region->setDimensions(10, 10);
     Region->setSettlementChance(0);
-    Region->createRegion();
+    Region->createRegion("west", "/lib/tests/support/environment/startingRoom.c");
 
-    Region->generateStaticFiles("/lib/");
+    Region->generateStaticFiles("/lib/generated_region");
+
+    files = get_dir(originalDir, 0x10);
+    ExpectEq(({ "lib/generated_region/a-forest--lib-tests-support-environment-startingRoom-c" }), 
+        files);
+    string dirToDelete = files[0];
+
+    files = get_dir(files[0] + "/", 0x10);
+
+    // This is one for each room file and one for the region
+    ExpectEq(sizeof(Region->rooms()) + 1, sizeof(files));
+
+    foreach(string file in files)
+    {
+        // First, verify that the generated file is loadable
+        ExpectTrue(load_object(file));
+        rm(file);
+    }
+    rmdir(dirToDelete);
+    rmdir(originalDir);
 }

@@ -81,3 +81,11 @@ public nomask string getEntryCoordinates()
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public string regionIdentifier()
+{
+    return regreplace(sprintf("%s-%s", RegionName, 
+        EntryPoint || getEntryCoordinates()), 
+        "[^A-Za-z0-9-_]", "-", 1);
+}
