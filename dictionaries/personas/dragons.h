@@ -4,6 +4,29 @@
 //*****************************************************************************
 
 private nosave mapping dragonBlueprints = ([
+    "dracolich":([
+        "category": "undead",
+        "primary skills":({ "parry", "dodge", "no armor", "elemental air" }),
+        "secondary skills" : ({ "perception", "listen", "spot",
+            "evocation" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "dragon", "undead" }),
+        "minimum level": 35,
+        "attacks": ([
+            "claw": 10,
+            "wing": 10,
+            "tail": 10,
+            "fangs": 25,
+            "undead": 15,
+        ]),
+        "research": ([
+            "lightning breath": 25,
+        ]),
+        "base hit points": 250,
+        "base spell points" : 200,
+        "base stamina points" : 100
+    ]),
     "white dragon":([
         "category": "dragons",
         "primary skills":({ "parry", "dodge", "no armor", "elemental water" }),

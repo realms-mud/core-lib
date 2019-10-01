@@ -5,12 +5,13 @@
 #ifndef regionTypes_h
 #define regionTypes_h
 
+#include "/lib//dictionaries/regions/terrain.h"
 #include "/lib//dictionaries/regions/trees.h"
 
 protected mapping RegionTypes = ([
     "forest": ([
         "terrain": "/lib/environment/terrain/forest.c",
-        "potential features": Trees,
+        "potential features": Trees + Terrain,
         "potential items": ([ ]),
         "potential objects": ({ }),
         "settlement chance": 15,
@@ -57,10 +58,78 @@ protected mapping RegionTypes = ([
         ])
     ]),
     "hilly forest":([
-
+        "terrain": "/lib/environment/terrain/forest-hill.c",
+        "potential features": Trees + Terrain,
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 15,
+        "settlement size": 12,
+        "potential encounters": ([
+            "white-tail deer": 100,
+            "mule deer": 35,
+            "moose": 25,
+            "red fox": 25,
+            "gray fox": 25,
+            "kit fox": 25,
+            "coyote": 75,
+            "boar": 50,
+            "black bear": 45,
+            "brown bear": 25,
+            "timber wolf": 50,
+            "gray wolf": 20,
+            "red wolf": 25,
+            "panther": 10,
+            "mountain lion": 10,
+            "wolverine": 10,
+            "ruffian": 250,
+            "outlaw": 150,
+            "hunter": 75,
+            "keeper of the night": 50,
+            "knight of the storm": 35,
+            "zombie": 50,
+            "skeleton": 50,
+            "undead": 1,
+            "warg": 40,
+            "dragon": 1,
+            "creature": 1,
+        ])
     ]),
     "mountainous forest":([
-
+        "terrain": "/lib/environment/terrain/forest-mountain.c",
+        "potential features": Trees + Terrain,
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 15,
+        "settlement size": 12,
+        "potential encounters": ([
+            "white-tail deer": 100,
+            "mule deer": 35,
+            "moose": 25,
+            "red fox": 25,
+            "gray fox": 25,
+            "kit fox": 25,
+            "coyote": 75,
+            "boar": 50,
+            "black bear": 45,
+            "brown bear": 25,
+            "timber wolf": 50,
+            "gray wolf": 20,
+            "red wolf": 25,
+            "panther": 10,
+            "mountain lion": 10,
+            "wolverine": 10,
+            "ruffian": 250,
+            "outlaw": 150,
+            "hunter": 75,
+            "keeper of the night": 50,
+            "knight of the storm": 35,
+            "zombie": 50,
+            "skeleton": 50,
+            "undead": 1,
+            "warg": 40,
+            "dragon": 1,
+            "creature": 1,
+        ])
     ]),
 
     "city":([
@@ -148,7 +217,30 @@ protected mapping RegionTypes = ([
     ]),
 
     "crypt":([
-
+        "interior": "/lib/environment/interior/crypt.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([
+            "ghoul": 20,
+            "ghast": 15,
+            "lich": 1,
+            "mohrg": 10,
+            "mummy": 8,
+            "rat": 5,
+            "shadow": 10,
+            "skeleton": 100,
+            "spectre": 35,
+            "giant spider": 5,
+            "vampire": 5,
+            "wight": 25,
+            "zombie": 75,
+            "wraith": 6,
+            "dracolich": 1,
+            "keeper of the night": 5,
+        ])
     ]),
 
     "dry cavern":([
@@ -163,7 +255,7 @@ protected mapping RegionTypes = ([
 
     ]),
 
-    "dungeon":([
+    "dungeon": ([
 
     ]),
 
@@ -171,7 +263,11 @@ protected mapping RegionTypes = ([
 
     ]),
 
-    "keep":([
+    "stone keep":([
+
+    ]),
+
+    "wooden keep":([
 
     ]),
 
@@ -179,7 +275,11 @@ protected mapping RegionTypes = ([
 
     ]),
 
-    "castle":([
+    "stone castle":([
+
+    ]),
+
+    "wooden castle":([
 
     ]),
 

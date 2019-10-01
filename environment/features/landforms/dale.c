@@ -7,7 +7,7 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("canyon dry brook");
+    Name("dale");
 
-    addDescriptionTemplate("a canyon with a dry creek bed in it");
+    addDescriptionTemplate("a dale");
 }

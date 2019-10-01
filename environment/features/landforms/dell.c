@@ -7,7 +7,7 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("mount");
+    Name("dell");
 
-    addDescriptionTemplate("a mount");
+    addDescriptionTemplate("a dell");
 }
