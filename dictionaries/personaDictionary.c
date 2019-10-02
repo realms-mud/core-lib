@@ -337,7 +337,7 @@ public nomask object *getRandomEquipment(object persona, int chanceForMagicalIte
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getRandomPersona(string type)
+public nomask string getRandomPersona(string type, int level)
 {
     string ret = type;
     mapping blueprints = personaBlueprints();
@@ -411,4 +411,16 @@ public nomask int getValidLevel(string persona, int level, object target)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *filterEncountersForLevel(string *encounters, int level)
+{
+    mapping blueprints = personaBlueprints();
+
+    return filter(encounters, (: (!member($2, $1) ||
+        ((!member($2[$1], "minimum level") || (member($2[$1], "minimum level") && 
+            (level >= $2[$1]["minimum level"]))) &&
+        (!member($2[$1], "maximum level") || (member($2[$1], "maximum level") && 
+            (level <= $2[$1]["maximum level"]))))) :), blueprints);
 }

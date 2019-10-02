@@ -490,7 +490,7 @@ CREATE TABLE `characterStates` (
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `playerid` int(11) NOT NULL,
-  `setting` varchar(20) NOT NULL,
+  `setting` varchar(40) NOT NULL,
   `value` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
@@ -1647,7 +1647,7 @@ BEGIN
 END;
 ##
 CREATE PROCEDURE `saveSetting`(p_playerName varchar(40),
-p_setting varchar(20), p_value varchar(20))
+p_setting varchar(40), p_value varchar(20))
 BEGIN
     declare lplayerId int;
     declare lSettingId int;

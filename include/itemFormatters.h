@@ -981,6 +981,43 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;140;170;140m"
         ]),
     ]),
+    "combat assessment": ([
+        "very easy":([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;10m",
+            "24-bit": "\x1b[0;38;2;0;255;0m"
+        ]),
+        "easy":([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;40m",
+            "24-bit": "\x1b[0;38;2;0;180;0m"
+        ]),
+        "somewhat easy":([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;34m",
+            "24-bit": "\x1b[0;38;2;100;200;100m"
+        ]),
+        "even":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;11m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+        "somewhat challenging":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;214m",
+            "24-bit": "\x1b[0;38;2;200;150;0m"
+        ]),
+        "challenging":([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;166m",
+            "24-bit": "\x1b[0;38;2;255;180;0m"
+        ]),
+        "suicidal":([
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;9m",
+            "24-bit": "\x1b[0;38;2;200;0;0m"
+        ]),
+    ]),
     "party":([
         "active member":([
             "3-bit": "\x1b[0;33m",

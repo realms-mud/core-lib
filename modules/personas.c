@@ -135,3 +135,112 @@ public nomask void setPersonality(string personality)
 {
 
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask float calculateStrengthOfAttack(object attacker, object defender)
+{
+    float ret = 0;
+
+    foreach(mapping attack in attacker->getAttacks())
+    {
+        object weapon;
+        if (getDictionary("attacks")->isWeaponAttack(attack))
+        {
+            weapon = attacker->equipmentInSlot(attack["attack type"]);
+            if (!weapon)
+            {
+                weapon = getDictionary("attacks")->getAttack("unarmed");
+            }
+        }
+        else if (getDictionary("attacks")->isValidAttack(attack))
+        {
+            weapon = 
+                getDictionary("attacks")->getAttack(attack["attack type"]);
+
+            weapon->setAttackValues(attack["damage"], attack["to hit"]);
+        }
+
+        string damageType = weapon->getDamageType() ? 
+            weapon->getDamageType() : "physical";
+
+        int potentialDamage = attacker->calculateDamage(weapon, damageType, 1) -
+            defender->calculateSoakDamage(damageType);
+
+        if (potentialDamage < 1)
+        {
+            potentialDamage = 1;
+        }
+
+        float attackAdjustment =
+            (100.0 + attacker->calculateAttack(defender, weapon, 1)) / 100.0;
+
+        ret += attackAdjustment * potentialDamage;
+    }
+
+    return ret + attacker->effectiveLevel();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string getCombatComparison(object persona, object player)
+{
+    string ret = "";
+
+    if (!persona)
+    {
+        persona = this_object();
+    }
+    if (!player)
+    {
+        player = this_player();
+    }
+
+    if (player->displayLevelComparison())
+    {
+        float personaPoints = calculateStrengthOfAttack(persona, player);
+        float playerPoints = calculateStrengthOfAttack(player, persona);
+        float comparison = (personaPoints - playerPoints) / 
+            (playerPoints + personaPoints);
+
+        object configuration = getDictionary("configuration");
+
+        if (comparison < -0.8)
+        {
+            ret = configuration->decorate(" [Very Easy]",
+                "very easy", "combat assessment", player->colorConfiguration());
+        }
+        else if (comparison < -0.50)
+        {
+            ret = configuration->decorate(" [Easy]",
+                "easy", "combat assessment", player->colorConfiguration());
+        }
+        else if (comparison < -0.20)
+        {
+            ret = configuration->decorate(" [Somewhat Easy]",
+                "somewhat easy", "combat assessment", 
+                player->colorConfiguration());
+        }
+        else if (comparison < 0.20)
+        {
+            ret = configuration->decorate(" [Even]",
+                "even", "combat assessment", player->colorConfiguration());
+        }
+        else if (comparison < 0.50)
+        {
+            ret = configuration->decorate(" [Somewhat Challenging]",
+                "somewhat challenging", "combat assessment", 
+                player->colorConfiguration());
+        }
+        else if (comparison < 0.80)
+        {
+            ret = configuration->decorate(" [Challenging]",
+                "challenging", "combat assessment",
+                player->colorConfiguration());
+        }
+        else
+        {
+            ret = configuration->decorate(" [Suicidal]",
+                "suicidal", "combat assessment", player->colorConfiguration());
+        }
+    }
+    return ret;
+}

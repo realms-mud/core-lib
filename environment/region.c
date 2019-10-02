@@ -40,6 +40,12 @@ public nomask string regionType()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int regionLevel()
+{
+    return RegionLevel;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setRegionName(string name)
 {
     RegionName = name;
@@ -56,6 +62,20 @@ public nomask void setRegionType(string type)
     {
         raise_error("ERROR - region: The region must be a valid type as defined in "
             "/lib/dictionaries/regions/region-types.h\n");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setRegionLevel(int level)
+{
+    if (level > 0)
+    {
+        RegionLevel = level;
+    }
+    else
+    {
+        raise_error("ERROR - region: The region must be an integer greater "
+            "than 1.\n");
     }
 }
 

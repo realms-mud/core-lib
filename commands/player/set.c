@@ -219,7 +219,14 @@ private mapping parametersToFunction = ([
         "suppress message": 1,
         "wizard only": 0
     ]),
-]);
+    "display comparison": ([
+        "method": "setLevelComparison",
+        "description": "Toggles whether or not the user will see a level comparison "
+            "as part of NPC short descriptions.\n"
+            "Possible values are: on, off",
+        "suppress message": 1,
+        "wizard only": 0
+    ]),]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset(int arg)

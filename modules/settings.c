@@ -73,6 +73,12 @@ public nomask int displayMiniMap()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int displayLevelComparison()
+{
+    return DisplayLevelComparison;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setBusy(string state)
 {
     IsBusy = (state == "on");
@@ -95,6 +101,15 @@ public nomask void setMiniMap(string state)
     tell_object(this_object(), sprintf("You have set your display mini map "
         "flag to '%s'.\n",
         DisplayMiniMap ? "on" : "off"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setLevelComparison(string state)
+{
+    DisplayLevelComparison = (state == "on");
+    tell_object(this_object(), sprintf("You have set your display level "
+        "comparison flag to '%s'.\n",
+        DisplayLevelComparison ? "on" : "off"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

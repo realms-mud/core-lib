@@ -273,7 +273,13 @@ protected void setUpEncounter(object player)
         object personaDictionary = 
             load_object("/lib/dictionaries/personaDictionary.c");
 
-        string name = possibleEncounters[random(sizeof(possibleEncounters))];
+        int baseLevel = (objectp(Region) && Region->regionLevel()) ?
+            Region->regionLevel() : player->effectiveLevel();
+
+        string *encounterList = personaDictionary->filterEncountersForLevel(
+            possibleEncounters, baseLevel);
+
+        string name = encounterList[random(sizeof(encounterList))];
 
         int count = 1;
         if (member(({ "outlaw", "ruffian", "undead", "timber wolf", "gray wolf",
@@ -284,10 +290,14 @@ protected void setUpEncounter(object player)
 
         for (int i = 0; i < count; i++)
         {
+            int level = (objectp(Region) && Region->regionLevel()) ?
+                (baseLevel - 2 + random(5)) :
+                (baseLevel - 5 + random(11));
+
             object encounter = clone_object("/lib/realizations/monster.c");
             encounter->SetUpPersonaOfLevel(
-                personaDictionary->getRandomPersona(name),
-                (player->effectiveLevel() - 5 + random(10)), 1);
+                personaDictionary->getRandomPersona(name, level), level, 1);
+
             encounter->Gender(1 + random(2));
             encounter->addAlias(name);
 

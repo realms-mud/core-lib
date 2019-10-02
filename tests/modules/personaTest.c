@@ -424,3 +424,90 @@ void WillExecuteResearchBasedOnFrequency()
     ExpectEq(Persona->spellPoints(), Persona->maxSpellPoints());
     ExpectNotEq(target->hitPoints(), target->maxHitPoints());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void filterEncountersForLevelReturnsCorrectList()
+{
+    object dictionary =
+        load_object("/lib/dictionaries/personaDictionary.c");
+
+    string *potentialList = ({ "outlaw", "ruffian", "white-tail deer", "bat", 
+        "undead", "basilisk", "skeleton", "vampire", "zombie", "wraith", 
+        "swordsman", "keeper of the night", "dracolich", "gold dragon" });
+
+    ExpectEq(({ "outlaw", "ruffian", "white-tail deer", "bat", "undead",
+        "swordsman", "keeper of the night" }), 
+        dictionary->filterEncountersForLevel(potentialList, 1));
+
+    ExpectEq(({ "outlaw", "ruffian", "white-tail deer", "bat", "undead",
+        "skeleton", "zombie", "swordsman", "keeper of the night" }), 
+        dictionary->filterEncountersForLevel(potentialList, 3));
+
+    ExpectEq(({ "outlaw", "ruffian", "undead", "skeleton", "zombie", 
+        "swordsman", "keeper of the night" }), 
+        dictionary->filterEncountersForLevel(potentialList, 6));
+
+    ExpectEq(({ "outlaw", "ruffian", "undead", "basilisk", "skeleton", 
+        "vampire", "zombie", "wraith", "swordsman", "keeper of the night" }), 
+        dictionary->filterEncountersForLevel(potentialList, 20));
+
+    ExpectEq(({ "outlaw", "ruffian", "undead", "basilisk", "skeleton",
+        "vampire", "zombie", "wraith", "swordsman", "keeper of the night",
+        "dracolich", "gold dragon" }), 
+        dictionary->filterEncountersForLevel(potentialList, 40));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DoesNotDisplayPersonaComparerWhenDisabled()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("Frank");
+    player->Str(20);
+    player->Dex(20);
+    player->Con(20);
+    player->Int(20);
+    player->Wis(20);
+    player->setLevelComparison("off");
+
+    ExpectEq("", Persona->getCombatComparison(Persona, player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShowPersonaCompererWhenEnabled()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("Frank");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->Str(20);
+    player->Dex(20);
+    player->Con(20);
+    player->Int(20);
+    player->Wis(20);
+    player->addSkillPoints(20);
+    player->advanceSkill("chainmail", 5);
+    player->advanceSkill("long sword", 5);
+
+    object armor = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
+    move_object(armor, player);
+    command("wear armor", player);
+
+    object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    move_object(weapon, player);
+    command("wield sword", player);
+
+    player->setLevelComparison("on");
+
+    Persona->SetUpPersonaOfLevel("rat", 1);
+    ExpectEq(" [Easy]", Persona->getCombatComparison(Persona, player));
+
+    destruct(Persona);
+    Setup();
+    Persona->SetUpPersonaOfLevel("rat", 3);
+    ExpectEq(" [Somewhat Easy]", Persona->getCombatComparison(Persona, player));
+
+    destruct(Persona);
+    Setup();
+    Persona->SetUpPersonaOfLevel("oneiromancer", 50);
+    ExpectEq(" [Suicidal]", Persona->getCombatComparison(Persona, player));
+}

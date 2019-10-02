@@ -322,7 +322,7 @@ public varargs string short(string newShort)
         {
             object race = getService("races");
             ret = "The silhouette of a " +
-                ((race && race->Race()) ? "humanoid" : "creature");
+                ((race && race->apparentRace()) ? "humanoid" : "creature");
             break;
         }
         case 4:
@@ -332,7 +332,7 @@ public varargs string short(string newShort)
             object race = getService("races");
             if (race && race->Race())
             {
-                string raceName = to_string(race->Race());
+                string raceName = to_string(race->apparentRace());
                 ret += ((member(({ 'a', 'e', 'i', 'o', 'u' }), raceName[0]) > -1) ?
                     "n" : "") + " " + raceName;
             }
@@ -348,7 +348,7 @@ public varargs string short(string newShort)
             string raceName = "creature";
             if (race && race->Race())
             {
-                raceName = to_string(race->Race());
+                raceName = to_string(race->apparentRace());
             }
 
             ret = sprintf("The silhouette of a %s %s", GenderDesc(), raceName);
@@ -360,7 +360,7 @@ public varargs string short(string newShort)
             string raceName = "creature";
             if (race && race->Race())
             {
-                raceName = to_string(race->Race());
+                raceName = to_string(race->apparentRace());
             }
 
             ret = sprintf("A %s %s", GenderDesc(), raceName);
@@ -380,6 +380,13 @@ public varargs string short(string newShort)
     {
         ret = sprintf("ghost of %s", shortDescription);
     }
+
+    object combatObj = getService("personas");
+    if (combatObj && this_player())
+    {
+        ret += combatObj->getCombatComparison(combatObj, this_player());
+    }
+
     return ret;
 }
 
