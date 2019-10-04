@@ -7,8 +7,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("museum");
-    setFloorPlanType("museum");
+    Name("crypt");
+    setFloorPlanType("crypt");
 
-    addDescriptionTemplate("a massive museum in an ornately accented granite building");
+    addDescriptionTemplate("a limestone crypt entry building");
 }

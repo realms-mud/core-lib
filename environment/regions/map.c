@@ -112,14 +112,19 @@ private nomask varargs string displayMapSection(object user, int startX,
                     int userHere = objectp(present(user, location["environment"]));
                     string exitColor = userHere ? "user location" : "exit";
 
-                    row[0] += sprintf(" %s ", hasExit(location, "north") ?
+                    string emptyCell = configuration->decorate(" ",
+                        (userHere ? "reverse" : "none"), "map", colorConfiguration);
+
+                    row[0] += sprintf("%s%s%s", emptyCell,
+                        hasExit(location, "north") ?
                         configuration->decorate(displayCharacter["north"][charset],
-                            exitColor, "map", colorConfiguration) : " ");
+                            exitColor, "map", colorConfiguration) : emptyCell,
+                        emptyCell);
 
                     row[1] += sprintf("%s%s%s",
                         (hasExit(location, "west") ?
                             configuration->decorate(displayCharacter["west"][charset],
-                                exitColor, "map", colorConfiguration) : " "),
+                                exitColor, "map", colorConfiguration) : emptyCell),
                         configuration->decorate(
                         (userHere ? displayCharacter["player"][charset] :
                             displayCharacter[location["room type"]][charset]),
@@ -127,11 +132,12 @@ private nomask varargs string displayMapSection(object user, int startX,
                             "map", colorConfiguration),
                             (hasExit(location, "east") ?
                                 configuration->decorate(displayCharacter["east"][charset],
-                                    exitColor, "map", colorConfiguration) : " "));
+                                    exitColor, "map", colorConfiguration) : emptyCell));
 
-                    row[2] += sprintf(" %s ", hasExit(location, "south") ?
+                    row[2] += sprintf("%s%s%s", emptyCell, hasExit(location, "south") ?
                         configuration->decorate(displayCharacter["south"][charset],
-                            exitColor, "map", colorConfiguration) : " ");
+                            exitColor, "map", colorConfiguration) : emptyCell,
+                        emptyCell);
                 }
             }
 

@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("library");
+    setFloorPlanType("library");
+
     addDescriptionTemplate("a library in a small wooden structure");
 }

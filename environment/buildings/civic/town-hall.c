@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("town hall");
+    setFloorPlanType("administrative building");
+
     addDescriptionTemplate("a brick building with the carved words, `Town Hall' above the door");
 }

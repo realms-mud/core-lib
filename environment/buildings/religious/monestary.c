@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("monestary");
+    setFloorPlanType("church");
+
     addDescriptionTemplate("a monestary");
 }

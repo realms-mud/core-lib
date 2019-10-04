@@ -8,6 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("court house");
+    setFloorPlanType("court house");
+
     addDescriptionTemplate("a large granite court house");
     addNearDarkDescriptionTemplate("the silhouette of a large building");
     addLowLightDescriptionTemplate("the silhouette of a large, three-story building");

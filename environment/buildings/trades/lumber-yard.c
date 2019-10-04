@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("lumber yard");
+    setFloorPlanType("trade");
+
     addDescriptionTemplate("a lumber yard");
 }

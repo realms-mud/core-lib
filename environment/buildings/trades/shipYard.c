@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("shipyard");
+    setFloorPlanType("shipyard");
+
     addDescriptionTemplate("a shipyard");
 }

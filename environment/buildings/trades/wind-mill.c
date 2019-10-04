@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("windmill");
+    setFloorPlanType("mill");
+
     addDescriptionTemplate("a windmill");
 }

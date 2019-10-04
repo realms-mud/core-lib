@@ -8,6 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("jail");
+    setFloorPlanType("jail");
+
     addDescriptionTemplate("a sturdy brick jail with metal bars reinforcing the windows");
 
     addNearDarkDescriptionTemplate("the silhouette of a building");

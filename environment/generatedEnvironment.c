@@ -278,45 +278,47 @@ protected void setUpEncounter(object player)
 
         string *encounterList = personaDictionary->filterEncountersForLevel(
             possibleEncounters, baseLevel);
-
-        string name = encounterList[random(sizeof(encounterList))];
-
-        int count = 1;
-        if (member(({ "outlaw", "ruffian", "undead", "timber wolf", "gray wolf",
-            "red wolf", "coyote", "zombie", "skeleton" }), name) > -1)
+        if (sizeof(encounterList))
         {
-            count = 1 + random(3);
-        }
+            string name = encounterList[random(sizeof(encounterList))];
 
-        for (int i = 0; i < count; i++)
-        {
-            int level = (objectp(Region) && Region->regionLevel()) ?
-                (baseLevel - 2 + random(5)) :
-                (baseLevel - 5 + random(11));
-
-            object encounter = clone_object("/lib/realizations/monster.c");
-            encounter->SetUpPersonaOfLevel(
-                personaDictionary->getRandomPersona(name, level), level, 1);
-
-            encounter->Gender(1 + random(2));
-            encounter->addAlias(name);
-
-            if (encounter->Race() == "deity")
+            int count = 1;
+            if (member(({ "outlaw", "ruffian", "undead", "timber wolf", "gray wolf",
+                "red wolf", "coyote", "zombie", "skeleton" }), name) > -1)
             {
-                encounter->apparentRace("human");
+                count = 1 + random(3);
             }
-            string realName = name;
-            if (encounter->apparentRace() &&
-                (member(({ "outlaw", "ruffian", "skeleton", "zombie" }), name) > -1))
-            {
-                realName = sprintf("%s (%s)", name, 
-                    capitalize(encounter->apparentRace()));
-            }
-            encounter->Name(realName);
-            encounter->addAlias(name);
-            encounter->setUpRandomEquipment(5 + (encounter->effectiveLevel() * 3));
 
-            move_object(encounter, this_object());
+            for (int i = 0; i < count; i++)
+            {
+                int level = (objectp(Region) && Region->regionLevel()) ?
+                    (baseLevel - 2 + random(5)) :
+                    (baseLevel - 5 + random(11));
+
+                object encounter = clone_object("/lib/realizations/monster.c");
+                encounter->SetUpPersonaOfLevel(
+                    personaDictionary->getRandomPersona(name, level), level, 1);
+
+                encounter->Gender(1 + random(2));
+                encounter->addAlias(name);
+
+                if (encounter->Race() == "deity")
+                {
+                    encounter->apparentRace("human");
+                }
+                string realName = name;
+                if (encounter->apparentRace() &&
+                    (member(({ "outlaw", "ruffian", "skeleton", "zombie" }), name) > -1))
+                {
+                    realName = sprintf("%s (%s)", name,
+                        capitalize(encounter->apparentRace()));
+                }
+                encounter->Name(realName);
+                encounter->addAlias(name);
+                encounter->setUpRandomEquipment(5 + (encounter->effectiveLevel() * 3));
+
+                move_object(encounter, this_object());
+            }
         }
     }
 }

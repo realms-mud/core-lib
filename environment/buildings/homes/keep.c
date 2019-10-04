@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("keep");
+    setFloorPlanType("keep");
+
     addDescriptionTemplate("a keep");
 }

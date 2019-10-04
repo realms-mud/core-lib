@@ -3,6 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 #include "/lib/dictionaries/regions/building-layouts.h"
+#include "/lib/dictionaries/regions/floor-plans.h"
 #include "/lib/dictionaries/regions/region-types.h"
 #include "/lib/dictionaries/regions/settlements.h"
 #include "/lib/modules/secure/regions.h"
@@ -50,21 +51,42 @@ private nomask mapping setTerrain(mapping room, mapping roomInput)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping setExits(mapping room, mapping exits,
-    mapping roomInput, object region)
+private nomask mapping setExits(mapping room, mapping data, object region)
 {
     room["exits"] = ([]);
+    room["buildings"] = ([]);
 
-    foreach(string direction in m_indices(exits))
+    foreach(string direction in m_indices(data["exits"]))
     {
-        room["exits"][direction] = ([
-            "exit to": exits[direction],
-            "path type": "/lib/environment/features/paths/path.c",
-            "region": region
-        ]);
+        if (member(data, "buildings") && member(data["buildings"], direction))
+        {
+            object building = load_object(data["buildings"][direction]);
+            if(building)
+            {
+                object interior = building->generateInterior(
+                    direction, data["x"], data["y"]);
+
+                room["buildings"][direction] = ([
+                    "exit to": direction,
+                    "building": data["buildings"][direction],
+                    "region": interior,
+                    "entry point": interior ? 
+                        interior->getEntryCoordinates() : "0x0",
+                ]);
+            }
+        }
+        else
+        {
+            room["exits"][direction] = ([
+                "exit to": data["exits"][direction],
+                "path type": "/lib/environment/features/paths/path.c",
+                "region": region
+            ]);
+        }
     }
     return room;
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void createWeightedFeatureList(string featureType,
@@ -178,7 +200,7 @@ public nomask mapping generateRoomData(object region, mapping data)
         {
             setTerrain(ret, roomInput);
         }
-        setExits(ret, data["exits"], roomInput, region);
+        setExits(ret, data, region);
 
         string regionType = region->regionType();
 

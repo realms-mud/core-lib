@@ -120,3 +120,26 @@ public nomask varargs string createRegion(string enterFrom, string location,
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void createRegionFromTemplate(mapping data)
+{
+    MaxX = data["x dimension"];
+    MaxY = data["y dimension"];
+    RegionName = data["name"];
+    RegionType = data["type"];
+    EnterFrom = data["enter from"];
+    EntryPoint = data["entry point"];
+    RegionLevel = data["level"];
+
+    createEmptyGrid(MaxX, MaxY);
+
+    entry = data["entry coordinate"];
+    decorators = data["decorators"];
+    rooms = data["rooms"];
+
+    foreach(mapping room in data["rooms"])
+    {
+        grid[room["x"]][room["y"]] = room;
+    }
+}

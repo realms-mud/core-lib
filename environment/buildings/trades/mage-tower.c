@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("mage tower");
+    setFloorPlanType("mage tower");
+
     addDescriptionTemplate("a mage tower");
 }

@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("amphitheater");
+    setFloorPlanType("amphitheater");
+
     addDescriptionTemplate("an expansive amphitheater built of limestone");
 }

@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("theater");
+    setFloorPlanType("theater");
+
     addDescriptionTemplate("a large wooden theater");
 }

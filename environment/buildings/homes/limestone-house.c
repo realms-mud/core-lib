@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("limestone house");
+    setFloorPlanType("house");
+
     addDescriptionTemplate("a limestone house");
 }

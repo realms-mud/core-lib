@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("water mill");
+    setFloorPlanType("mill");
+
     addDescriptionTemplate("a water mill");
 }

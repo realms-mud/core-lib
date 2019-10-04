@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("post office");
+    setFloorPlanType("post office");
+
     addDescriptionTemplate("a small brick building housing the post office");
 }

@@ -8,6 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("potter");
+    InteriorType("limestone building");
+    setFloorPlanType("shop");
 
     addTimeOfDayDescription("dawn", ({
         ". It has a closed sign in the window. A light is shining out from the windows"
@@ -32,7 +34,7 @@ public void Setup()
     addSeasonDescription("summer", ({ " that has ivy climbing high up its walls" }));
     addSeasonDescription("autumn", ({ " with ivy whose leaves are turning a deep red color still clinging to the walls" }));
 
-    addDescriptionTemplate("a pottery shop in a stone");
+    addDescriptionTemplate("a pottery shop in a stone building");
     addSourceOfLight(7, "default", "night");
 
     addNearDarkDescriptionTemplate("the silhouette of a building");

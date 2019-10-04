@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("bank");
+    setFloorPlanType("bank");
+
     addDescriptionTemplate("a bank");
 }

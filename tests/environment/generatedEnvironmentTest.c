@@ -494,11 +494,11 @@ void MiniMapCorrectlyDisplayedInMapInterior()
     ExpectEq(" \x1b[0;36m|\x1b[0m       \x1b[0;31m'\x1b[0m\n"
         " o\x1b[0;36m-\x1b[0m\x1b[0;36m-\x1b[0mo    \x1b[0;31m'\x1b[0m\n"
         "    \x1b[0;36m|\x1b[0m    \x1b[0;31m'\x1b[0m\n"
-        "    \x1b[0;41;33m|\x1b[0m    \x1b[0;31m'\x1b[0m\n"
-        "\x1b[0;36m-\x1b[0mo\x1b[0;36m-\x1b[0m\x1b[0;41;33m-\x1b[0m\x1b[0;41;33mP\x1b[0m  \x1b[0;33;1m#\x1b[0m\x1b[0;36m-\x1b[0m\x1b[0;31m'\x1b[0m\n"
-        "    \x1b[0;41;33m|\x1b[0m    \x1b[0;31m'\x1b[0m\n"
+        "   \x1b[0;41m \x1b[0m\x1b[0;41;33m|\x1b[0m\x1b[0;41m \x1b[0m   \x1b[0;31m'\x1b[0m\n"
+        "\x1b[0;36m-\x1b[0mo\x1b[0;36m-\x1b[0m\x1b[0;41;33m-\x1b[0m\x1b[0;41;33mP\x1b[0m\x1b[0;41m \x1b[0m \x1b[0;34;1m#\x1b[0m\x1b[0;36m-\x1b[0m\x1b[0;31m'\x1b[0m\n"
+        "   \x1b[0;41m \x1b[0m\x1b[0;41;33m|\x1b[0m\x1b[0;41m \x1b[0m   \x1b[0;31m'\x1b[0m\n"
         "    \x1b[0;36m|\x1b[0m    \x1b[0;31m'\x1b[0m\n"
-        " o\x1b[0;36m-\x1b[0m\x1b[0;36m-\x1b[0mo\x1b[0;36m-\x1b[0m\x1b[0;36m-\x1b[0m\x1b[0;33;1m#\x1b[0m \x1b[0;31m'\x1b[0m\n"
+        " o\x1b[0;36m-\x1b[0m\x1b[0;36m-\x1b[0mo\x1b[0;36m-\x1b[0m\x1b[0;36m-\x1b[0m\x1b[0;34;1m#\x1b[0m \x1b[0;31m'\x1b[0m\n"
         " \x1b[0;36m|\x1b[0m     \x1b[0;36m|\x1b[0m \x1b[0;31m'\x1b[0m\n",
         implode(Region->getMiniMap(environment(Player), Player), "\n"));
 }

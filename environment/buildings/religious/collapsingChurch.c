@@ -1,7 +1,6 @@
 //*****************************************************************************
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-// - Tophandour's Arcane Trickster content, by Tophandour
 //*****************************************************************************
 inherit "/lib/environment/buildings/baseBuilding.c";
 
@@ -9,6 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("collapsingChurch");
+    setFloorPlanType("ruin");
+
     addTimeOfDayDescription("dawn", ({
         ". The worn wooden structure creaks and moans in the breeze. You can hardly see inside in the weak dawn light."
         }));

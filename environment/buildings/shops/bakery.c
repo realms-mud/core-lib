@@ -8,6 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("bakery");
+    InteriorType("limestone building");
+    setFloorPlanType("shop");
 
     addTimeOfDayDescription("dawn", ({
         ". It has an open sign in the window. A light is shining out from the windows"

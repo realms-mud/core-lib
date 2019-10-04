@@ -2,13 +2,12 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/buildings/baseBuilding.c";
+inherit "/lib/environment/interiors/baseInterior.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("museum");
-    setFloorPlanType("museum");
+    Name("brick interior shop");
 
-    addDescriptionTemplate("a massive museum in an ornately accented granite building");
+    addDescriptionTemplate("a shop with brick walls");
 }

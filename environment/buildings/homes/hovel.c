@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("hovel");
+    setFloorPlanType("hovel");
+
     addDescriptionTemplate("a dilapitated hovel");
 }

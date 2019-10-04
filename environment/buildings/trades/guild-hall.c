@@ -8,5 +8,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("guild hall");
+    setFloorPlanType("guild");
+
     addDescriptionTemplate("a guild hall");
 }

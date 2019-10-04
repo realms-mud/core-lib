@@ -263,6 +263,56 @@ protected mapping RegionTypes = ([
 
     ]),
 
+    "limestone building":([
+        "interior": "/lib/environment/interior/limestone-interior-shop.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([ ])
+    ]),
+
+    "granite building":([
+        "interior": "/lib/environment/interior/grainte-interior-shop.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([ ])
+    ]),
+
+    "brick building":([
+        "interior": "/lib/environment/interior/brick-interior-shop.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([ ])
+    ]),
+
+    "wooden building":([
+        "interior": "/lib/environment/interior/wooden-interior-shop.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([ ])
+    ]),
+
+    "opulent building":([
+        "interior": "/lib/environment/interior/opulent-shop.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([ ])
+    ]),
+
     "stone keep":([
 
     ]),
