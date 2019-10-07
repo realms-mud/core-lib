@@ -44,7 +44,31 @@ public nomask string InteriorType(string interior)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object generateInterior(string exitTo, int x, int y)
+public nomask object generateInterior(string exitTo, int x, int y,
+    object connectedRegion)
 {
-    return 0;
+    object dictionary = load_object("/lib/dictionaries/regionDictionary.c");
+    mapping regionData = dictionary->getFloorPlan(FloorPlanType);
+
+    object region = clone_object("/lib/environment/region.c");
+
+    mapping *entries = filter(regionData["rooms"],
+        (: (member($1, "entry for") && (member($1["entry for"], $2) > -1)) :),
+            exitTo);
+
+    if (sizeof(entries))
+    {
+        mapping entry = entries[random(sizeof(entries))];
+
+        regionData["entry coordinate"] = ({ entry["x"], entry["y"] });
+        entry["room type"] = "entry";
+    }
+    regionData["master region name"] = connectedRegion->regionName();
+    regionData["level"] = connectedRegion->regionLevel();
+    regionData["entry point"] = sprintf("%dx%d", x, y);
+    regionData["type"] = interiorType;
+    regionData["enter from"] = region->getEnterFromDirection(exitTo);
+
+    region->createRegionFromTemplate(regionData);
+    return region;
 }

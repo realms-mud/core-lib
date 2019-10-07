@@ -8,7 +8,7 @@
 #include "/lib/dictionaries/regions/settlements.h"
 #include "/lib/modules/secure/regions.h"
 
-private string FeaturePrefix = "/lib/environment/features/";
+private string FeaturePrefix = "/lib/environment/";
 
 private mapping WeightedFeatures = ([]);
 private mapping WeightedEncounters = ([]);
@@ -64,13 +64,12 @@ private nomask mapping setExits(mapping room, mapping data, object region)
             if(building)
             {
                 object interior = building->generateInterior(
-                    direction, data["x"], data["y"]);
+                    direction, data["x"], data["y"], region);
 
                 room["buildings"][direction] = ([
-                    "exit to": direction,
                     "building": data["buildings"][direction],
                     "region": interior,
-                    "entry point": interior ? 
+                    "exit to": interior ? 
                         interior->getEntryCoordinates() : "0x0",
                 ]);
             }
@@ -86,7 +85,6 @@ private nomask mapping setExits(mapping room, mapping data, object region)
     }
     return room;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void createWeightedFeatureList(string featureType,
@@ -119,7 +117,8 @@ private nomask void createWeightedEncounterList(string regionType,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping generateElements(string regionType, mapping items)
+private nomask mapping generateElements(string regionType, string type, 
+    mapping items)
 {
     mapping ret = ([]);
 
@@ -136,7 +135,8 @@ private nomask mapping generateElements(string regionType, mapping items)
             {
                 createWeightedFeatureList(featureType, items[featureType]);
             }
-            string feature = sprintf("%s%s/%s.c", FeaturePrefix, featureType,
+            string feature = sprintf("%s%s/%s/%s.c", FeaturePrefix, type,
+                featureType,
                 WeightedFeatures[featureType][
                 random(sizeof(WeightedFeatures[featureType]))]);
 
@@ -204,10 +204,10 @@ public nomask mapping generateRoomData(object region, mapping data)
 
         string regionType = region->regionType();
 
-        ret["features"] = generateElements(regionType,
+        ret["features"] = generateElements(regionType, "features",
             RegionTypes[regionType]["potential features"]);
 
-        ret["items"] = generateElements(regionType,
+        ret["items"] = generateElements(regionType, "items",
             RegionTypes[regionType]["potential items"]);
 
         ret["room objects"] = ([]);
@@ -335,4 +335,13 @@ public nomask mapping getMapDecorator(string class, string size, string type,
 public nomask string getBuildingEntrance(string building)
 {
     return building;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getFloorPlan(string type)
+{
+    mapping floorPlans = filter(FloorPlans, (: $2["type"] == $3 :), type);
+
+    return floorPlans[m_indices(floorPlans)[
+        random(sizeof(m_indices(floorPlans)))]] + ([]);
 }

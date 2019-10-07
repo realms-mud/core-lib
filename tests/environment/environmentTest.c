@@ -1732,7 +1732,7 @@ void CorrectlyDisplaysActiveLight()
 {
     Dictionary->timeOfDay("midnight");
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
     person->Name("dwight");
@@ -1760,8 +1760,8 @@ void CorrectlyDisplaysMultipleActiveLight()
 {
     Dictionary->timeOfDay("midnight");
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/candle.c", "north");
-    Environment->testAddItem("/lib/environment/items/torch.c", "west");
+    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/lighting/torch.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
     person->Name("dwight");
@@ -1793,8 +1793,8 @@ void CorrectlyLightOneActiveLightSource()
 {
     Dictionary->timeOfDay("midnight");
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/candle.c", "north");
-    Environment->testAddItem("/lib/environment/items/torch.c", "west");
+    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/lighting/torch.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
     person->Name("dwight");
@@ -1824,8 +1824,8 @@ void CorrectlyExtinguishActiveLightSource()
 {
     Dictionary->timeOfDay("midnight");
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/candle.c", "north");
-    Environment->testAddItem("/lib/environment/items/torch.c", "west");
+    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/lighting/torch.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
     person->Name("dwight");
@@ -1867,7 +1867,7 @@ void DecayingLightsCorrectlyDisplayed()
 
     Dictionary->timeOfDay("midnight");
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
     Environment->testAddItem("/lib/environment/items/camp-fire.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
@@ -1933,7 +1933,7 @@ void EnvironmentsIndependentlyHandleTheSameLightSource()
 
     Dictionary->timeOfDay("midnight");
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/candle.c", "north");
+    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
     Environment->testAddItem("/lib/environment/items/camp-fire.c", "west");
 
     object environment2 =

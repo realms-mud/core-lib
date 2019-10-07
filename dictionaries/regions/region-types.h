@@ -217,7 +217,7 @@ protected mapping RegionTypes = ([
     ]),
 
     "crypt":([
-        "interior": "/lib/environment/interior/crypt.c",
+        "interior": "/lib/environment/interiors/crypt.c",
         "potential features": ([ ]),
         "potential items": ([ ]),
         "potential objects": ({ }),
@@ -264,9 +264,9 @@ protected mapping RegionTypes = ([
     ]),
 
     "limestone building":([
-        "interior": "/lib/environment/interior/limestone-interior-shop.c",
+        "interior": "/lib/environment/interiors/limestone-interior-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ ]),
+        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,
@@ -274,9 +274,9 @@ protected mapping RegionTypes = ([
     ]),
 
     "granite building":([
-        "interior": "/lib/environment/interior/grainte-interior-shop.c",
+        "interior": "/lib/environment/interiors/grainte-interior-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ ]),
+        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,
@@ -284,9 +284,9 @@ protected mapping RegionTypes = ([
     ]),
 
     "brick building":([
-        "interior": "/lib/environment/interior/brick-interior-shop.c",
+        "interior": "/lib/environment/interiors/brick-interior-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ ]),
+        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,
@@ -294,9 +294,9 @@ protected mapping RegionTypes = ([
     ]),
 
     "wooden building":([
-        "interior": "/lib/environment/interior/wooden-interior-shop.c",
+        "interior": "/lib/environment/interiors/wooden-interior-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ ]),
+        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,
@@ -304,9 +304,9 @@ protected mapping RegionTypes = ([
     ]),
 
     "opulent building":([
-        "interior": "/lib/environment/interior/opulent-shop.c",
+        "interior": "/lib/environment/interiors/opulent-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ ]),
+        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,

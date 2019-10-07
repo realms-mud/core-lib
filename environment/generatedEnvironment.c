@@ -102,17 +102,8 @@ private nomask void addGeneratedExits(mapping exits, object region,
             mapping exit = exits[direction];
             PathType = exit["path type"];
 
-            if (member(exit, "building"))
-            {
-                addGeneratedBuilding(exit["building"], direction,
-                    exit["exit to"], region, exit["door"], exit["key"], state);
-                addFeature(exit["path type"], direction, state);
-            }
-            else
-            {
-                addGeneratedExit(direction, exit["exit to"], region, state);
-                addFeature(exit["path type"], direction, state);
-            }
+            addGeneratedExit(direction, exit["exit to"], region, state);
+            addFeature(exit["path type"], direction, state);
         }
     }
 }
@@ -137,24 +128,52 @@ private nomask mapping addGeneratedFeatures(mapping features, object region,
         }
     }
 
-    if (mappingp(features) && member(features, "buildings"))
-    {
-        foreach(string direction in m_indices(features["buildings"]))
-        {
-            addBuilding(features["buildings"][direction], 
-                direction,
-                regionDictionary->getBuildingEntrance(
-                    features["buildings"][direction]), 
-                state);
+    return ret;
+}
 
-            ret += getElementMapping("building", 
-                features["buildings"][direction],
-                direction, 
-                environmentalElements["building"], 
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping addGeneratedStructures(mapping structures, mapping
+    data, object region, string state)
+{
+    mapping ret = ([]);
+
+    if (mappingp(structures) && member(structures, "buildings") &&
+        sizeof(structures["buildings"]))
+    {
+        foreach(string direction in m_indices(structures["buildings"]))
+        {
+            mapping building = structures["buildings"][direction];
+
+            addGeneratedBuilding(building["building"],
+                direction,
+                building["exit to"],
+                building["region"]);
+
+            ret += getElementMapping("building",
+                building["building"],
+                direction,
+                environmentalElements["building"],
                 state);
         }
     }
 
+    if (mappingp(data) && member(data, "buildings"))
+    {
+        mapping buildingsNoExit = filter(data["buildings"],
+            (: (member(m_indices(structures["buildings"]), $1) < 0) :));
+
+        foreach(string direction in m_indices(buildingsNoExit))
+        {
+            addBuilding(buildingsNoExit[direction],
+                direction, 0, state);
+
+            ret += getElementMapping("building",
+                buildingsNoExit[direction],
+                direction,
+                environmentalElements["building"],
+                state);
+        }
+    }
     return ret;
 }
 
@@ -215,13 +234,15 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
             setCoordinates(region, data["x"], data["y"]);
             addGeneratedExits(roomData["exits"], region, state);
 
-            ret["elements"] += (member(data, "features") || 
-                member(data, "buildings")) ?
+            ret["elements"] += addGeneratedStructures(roomData, data, region, 
+                state);
+
+            ret["elements"] += member(data, "features") ?
                 addGeneratedFeatures(data, region, state) :
                 addRandomEnvironmentalElements(roomData, state);
 
             addRandomObjects(filter(roomData["room objects"],
-                (: $2["type"] == "object"  :)), state);
+                (: $2["type"] == "object" :)), state);
 
             addRandomCreature(roomData["creatures"], state);
 

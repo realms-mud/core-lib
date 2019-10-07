@@ -141,5 +141,9 @@ public nomask void createRegionFromTemplate(mapping data)
     foreach(mapping room in data["rooms"])
     {
         grid[room["x"]][room["y"]] = room;
+        grid[room["x"]][room["y"]]["identifier"] = sprintf("%s,%dx%d",
+            data["master region name"], room["x"], room["y"]);
     }
+
+    grid[entry[0]][entry[1]]["room type"] = "entry";
 }

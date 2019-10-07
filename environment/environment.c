@@ -217,7 +217,7 @@ private nomask varargs int addEnvironmentalElement(string element, string type, 
                     "direction for '%s' as it has no description.\n", element));
             }
         }
-        else if((file_size(element) > 0) &&
+        else if(element && (file_size(element) > 0) &&
             environmentDictionary()->isValidEnvironmentItem(load_object(element)->Name(), type))
         {
             raise_error(sprintf("ERROR in environment.c: Unable to register '%s'. "
@@ -979,11 +979,11 @@ public varargs string long(string item)
         {
             ret += " " + environmentalElements["description"][currentState()];
         }
-        ret = format(ret, descriptionWidth);
         ret = regreplace(ret,
             "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
             #'parseEfunCall,1);
         ret = capitalizeSentences(ret);
+        ret = format(ret, descriptionWidth);
 
         if(map)
         {

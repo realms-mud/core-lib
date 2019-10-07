@@ -20,7 +20,8 @@ private mapping FloorPlans = ([
                 "exits" : ([
                     "north": "0x1",
                     "east": "1x0"
-                ])
+                ]),
+                "entry for": ({ "north", "east" })
             ]),
             ([
                 "x": 0,
@@ -53,7 +54,8 @@ private mapping FloorPlans = ([
                 "exits" : ([
                     "south": "1x0",
                     "west": "0x1"
-                ])
+                ]),
+                "entry for": ({ "south", "west" })
             ]),
         }),
         "decorators": ({ })

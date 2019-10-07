@@ -119,7 +119,7 @@ public nomask varargs int registerElement(string location, string type)
         location = "/" + location;
     }
 
-    if (file_size(location) > 0)
+    if (location && file_size(location) > 0)
     {
         object element = load_object(location);
         element->Setup();

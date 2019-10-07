@@ -307,3 +307,27 @@ void CanGenerateFiles()
     rmdir(dirToDelete);
     rmdir(originalDir);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanEnterTemplatedRegion()
+{
+    ToggleCallOutBypass();
+    Player->colorConfiguration("none");
+    Player->charsetConfiguration("unicode");
+
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+    Region->setDimensions(10, 10);
+
+    Region->setSettlementChance(100);
+    Region->createRegion();
+
+    ExpectTrue(sizeof(Region->decorators()));
+    ExpectTrue(sizeof(Region->rooms()));
+
+    move_object(Player, Region->getSettlementEntrance());
+
+    command("s", Player);
+
+    ToggleCallOutBypass();
+}
