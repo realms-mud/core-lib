@@ -322,12 +322,15 @@ void CanEnterTemplatedRegion()
     Region->setSettlementChance(100);
     Region->createRegion();
 
-    ExpectTrue(sizeof(Region->decorators()));
-    ExpectTrue(sizeof(Region->rooms()));
-
     move_object(Player, Region->getSettlementEntrance());
 
     command("s", Player);
+    ExpectNotEq(object_name(Region->getSettlementEntrance()), 
+        object_name(environment(Player)));
+
+    command("n", Player);
+    ExpectEq(object_name(Region->getSettlementEntrance()), 
+        object_name(environment(Player)));
 
     ToggleCallOutBypass();
 }

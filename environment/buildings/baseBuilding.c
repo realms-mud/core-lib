@@ -69,6 +69,6 @@ public nomask object generateInterior(string exitTo, int x, int y,
     regionData["type"] = interiorType;
     regionData["enter from"] = region->getEnterFromDirection(exitTo);
 
-    region->createRegionFromTemplate(regionData);
+    region->createRegionFromTemplate(regionData, connectedRegion);
     return region;
 }

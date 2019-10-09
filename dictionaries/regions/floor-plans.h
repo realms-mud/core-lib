@@ -8,8 +8,11 @@
 private mapping FloorPlans = ([
     "shop 1": ([
         "type": "shop",
-        "x dimension": 2,
-        "y dimension": 2,
+        "interior": "/lib/environment/interiors/limestone-interior-shop.c",
+        "door": "/lib/environment/doors/door.c",
+        "key": 0,
+        "x dimension": 4,
+        "y dimension": 4,
         "rooms": ({ 
             ([
                 "x": 0,
@@ -21,6 +24,7 @@ private mapping FloorPlans = ([
                     "north": "0x1",
                     "east": "1x0"
                 ]),
+                "doors": ({ "north" }),
                 "entry for": ({ "north", "east" })
             ]),
             ([
@@ -32,7 +36,8 @@ private mapping FloorPlans = ([
                 "exits" : ([
                     "south": "0x0",
                     "east": "1x1"
-                ])
+                ]),
+                "doors": ({ "south", "east" }),
             ]),
             ([
                 "x": 1,
@@ -55,6 +60,7 @@ private mapping FloorPlans = ([
                     "south": "1x0",
                     "west": "0x1"
                 ]),
+                "doors": ({ "west" }),
                 "entry for": ({ "south", "west" })
             ]),
         }),

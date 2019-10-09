@@ -122,7 +122,8 @@ public nomask varargs string createRegion(string enterFrom, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void createRegionFromTemplate(mapping data)
+public nomask void createRegionFromTemplate(mapping data, 
+    object connectedRegion)
 {
     MaxX = data["x dimension"];
     MaxY = data["y dimension"];
@@ -140,10 +141,30 @@ public nomask void createRegionFromTemplate(mapping data)
 
     foreach(mapping room in data["rooms"])
     {
+        room["room type"] = "room";
+        room["identifier"] = sprintf("%s,%dx%d",
+            connectedRegion->regionName(), room["x"], room["y"]);
+
+        if (member(data, "terrain"))
+        {
+            room["terrain"] = data["terrain"];
+        }
+        else
+        {
+            room["interior"] = data["interior"];
+        }
+
         grid[room["x"]][room["y"]] = room;
-        grid[room["x"]][room["y"]]["identifier"] = sprintf("%s,%dx%d",
-            data["master region name"], room["x"], room["y"]);
     }
 
-    grid[entry[0]][entry[1]]["room type"] = "entry";
+    if (!member(grid[entry[0]][entry[1]], "exits"))
+    {
+        grid[entry[0]][entry[1]]["exits"] = ([]);
+    }
+    grid[entry[0]][entry[1]]["exits"][EnterFrom] = ([
+        "exit to": EntryPoint,
+        "door": data["door"],
+        "key": data["key"],
+        "region": connectedRegion
+    ]);
 }

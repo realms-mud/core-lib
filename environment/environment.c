@@ -1400,8 +1400,6 @@ private nomask int displayLightMessage(string *elements, object initiator,
 private nomask int manipulateLights(string whichLights, string action,
     string verb)
 {
-    int ret = 0;
-
     string *activatedItems = ({});
     string *elements = getActiveLightElements(whichLights);
 

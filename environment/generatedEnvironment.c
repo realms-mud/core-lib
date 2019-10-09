@@ -92,8 +92,7 @@ protected nomask varargs void addRandomCreature(string *creatures,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void addGeneratedExits(mapping exits, object region, 
-    string state)
+private nomask void addGeneratedExits(mapping exits, string state)
 {
     if (mappingp(exits) && sizeof(exits))
     {
@@ -102,8 +101,27 @@ private nomask void addGeneratedExits(mapping exits, object region,
             mapping exit = exits[direction];
             PathType = exit["path type"];
 
-            addGeneratedExit(direction, exit["exit to"], region, state);
-            addFeature(exit["path type"], direction, state);
+            if (member(exit, "door"))
+            {
+                addGeneratedExitWithDoor(direction, 
+                    exit["exit to"], 
+                    exit["region"], 
+                    exit["door"],
+                    exit["key"],
+                    state);
+            }
+            else
+            {
+                addGeneratedExit(direction, 
+                    exit["exit to"], 
+                    exit["region"], 
+                    state);
+            }
+
+            if (PathType)
+            {
+                addFeature(exit["path type"], direction, state);
+            }
         }
     }
 }
@@ -232,7 +250,7 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
             }
 
             setCoordinates(region, data["x"], data["y"]);
-            addGeneratedExits(roomData["exits"], region, state);
+            addGeneratedExits(roomData["exits"], state);
 
             ret["elements"] += addGeneratedStructures(roomData, data, region, 
                 state);

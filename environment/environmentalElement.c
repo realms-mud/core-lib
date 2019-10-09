@@ -11,6 +11,7 @@ protected int LightLevelWhenDetailsVisible = 6;
 protected int suppressAction = 0; 
 private string elementName = 0;
 protected string State = "default";
+private int MimicExteriorLighting = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 protected object environmentDictionary()
@@ -69,6 +70,7 @@ public string Type()
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -126,6 +128,12 @@ private nomask string parseWeatherDetails(string message, mapping data,
 protected nomask void suppressEntryMessage()
 {
     suppressAction = 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void useExteriorLighting()
+{
+    MimicExteriorLighting = 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -236,7 +244,9 @@ private nomask string getTemplateKey(int illuminationLevel)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int lightSourceIsActive(string state, object environment)
 {
-    int ret = 0;
+    int ret = MimicExteriorLighting ? 
+        environmentDictionary()->ambientLight() : 0;
+
     if (objectp(environment) &&
         member(descriptionData, "active light sources") &&
         member(descriptionData["active light sources"], environment))

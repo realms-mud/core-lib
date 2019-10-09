@@ -11,10 +11,11 @@
 protected mapping RegionTypes = ([
     "forest": ([
         "terrain": "/lib/environment/terrain/forest.c",
+        "path type": "/lib/environment/features/paths/path.c",
         "potential features": Trees + Terrain,
         "potential items": ([ ]),
         "potential objects": ({ }),
-        "settlement chance": 15,
+        "settlement chance": 100,
         "settlement size": 12,
         "potential encounters": ([
             "white-tail deer": 100,
@@ -60,6 +61,7 @@ protected mapping RegionTypes = ([
     "hilly forest":([
         "terrain": "/lib/environment/terrain/forest-hill.c",
         "potential features": Trees + Terrain,
+        "path type": "/lib/environment/features/paths/path.c",
         "potential items": ([ ]),
         "potential objects": ({ }),
         "settlement chance": 15,
@@ -97,6 +99,7 @@ protected mapping RegionTypes = ([
     "mountainous forest":([
         "terrain": "/lib/environment/terrain/forest-mountain.c",
         "potential features": Trees + Terrain,
+        "path type": "/lib/environment/features/paths/path.c",
         "potential items": ([ ]),
         "potential objects": ({ }),
         "settlement chance": 15,
@@ -266,7 +269,7 @@ protected mapping RegionTypes = ([
     "limestone building":([
         "interior": "/lib/environment/interiors/limestone-interior-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
+        "potential items": ([ "lighting": ([ "window": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,
@@ -276,7 +279,7 @@ protected mapping RegionTypes = ([
     "granite building":([
         "interior": "/lib/environment/interiors/grainte-interior-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
+        "potential items": ([ "lighting": ([ "window": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,
@@ -286,7 +289,7 @@ protected mapping RegionTypes = ([
     "brick building":([
         "interior": "/lib/environment/interiors/brick-interior-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
+        "potential items": ([ "lighting": ([ "window": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,
@@ -296,7 +299,7 @@ protected mapping RegionTypes = ([
     "wooden building":([
         "interior": "/lib/environment/interiors/wooden-interior-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
+        "potential items": ([ "lighting": ([ "window": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,
@@ -306,7 +309,7 @@ protected mapping RegionTypes = ([
     "opulent building":([
         "interior": "/lib/environment/interiors/opulent-shop.c",
         "potential features": ([ ]),
-        "potential items": ([ "lighting": ([ "candle": 10, ]) ]),
+        "potential items": ([ "lighting": ([ "window": 10, ]) ]),
         "potential objects": ({ }),
         "settlement chance": 0,
         "settlement size": 0,

@@ -51,7 +51,8 @@ private nomask mapping setTerrain(mapping room, mapping roomInput)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping setExits(mapping room, mapping data, object region)
+private nomask mapping setExits(mapping room, mapping data, object region,
+    string pathType)
 {
     room["exits"] = ([]);
     room["buildings"] = ([]);
@@ -66,23 +67,36 @@ private nomask mapping setExits(mapping room, mapping data, object region)
                 object interior = building->generateInterior(
                     direction, data["x"], data["y"], region);
 
-                room["buildings"][direction] = ([
-                    "building": data["buildings"][direction],
-                    "region": interior,
-                    "exit to": interior ? 
-                        interior->getEntryCoordinates() : "0x0",
-                ]);
+                if(interior)
+                {
+                    room["buildings"][direction] = ([
+                        "building": data["buildings"][direction],
+                        "region": interior,
+                        "exit to": interior->getEntryCoordinates(),
+                    ]);
+                }
             }
+        }
+        else if(!mappingp(data["exits"][direction]))
+        {
+            room["exits"][direction] = ([
+                "exit to": data["exits"][direction],
+                "path type": pathType,
+                "region": region
+            ]);
         }
         else
         {
             room["exits"][direction] = ([
-                "exit to": data["exits"][direction],
-                "path type": "/lib/environment/features/paths/path.c",
-                "region": region
+                "exit to": data["exits"][direction]["exit to"],
+                "path type": pathType,
+                "region": data["exits"][direction]["region"],
+                "door": data["exits"][direction]["door"],
+                "key": data["exits"][direction]["key"]
             ]);
         }
     }
+
     return room;
 }
 
@@ -200,7 +214,9 @@ public nomask mapping generateRoomData(object region, mapping data)
         {
             setTerrain(ret, roomInput);
         }
-        setExits(ret, data, region);
+        string pathType = member(roomInput, "path type") ?
+            roomInput["path type"] : 0;
+        setExits(ret, data, region, pathType);
 
         string regionType = region->regionType();
 
@@ -340,8 +356,49 @@ public nomask string getBuildingEntrance(string building)
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getFloorPlan(string type)
 {
+    // For some unknown, idiotic reason, a copy wasn't getting created
+    // correctly, so a manual deep copy is being done here.
     mapping floorPlans = filter(FloorPlans, (: $2["type"] == $3 :), type);
 
-    return floorPlans[m_indices(floorPlans)[
-        random(sizeof(m_indices(floorPlans)))]] + ([]);
+    mapping floorPlan = floorPlans[m_indices(floorPlans)[
+        random(sizeof(m_indices(floorPlans)))]];
+
+    mapping ret = ([
+        "type": floorPlan["type"],
+        "interior": floorPlan["interior"],
+        "door": floorPlan["door"],
+        "key": floorPlan["key"],
+        "x dimension": floorPlan["x dimension"],
+        "y dimension": floorPlan["y dimension"],
+        "decorators": floorPlan["decorators"],
+        "rooms": ({ })
+    ]);
+
+    foreach(mapping room in floorPlan["rooms"])
+    {
+        mapping roomToAdd = ([
+            "x": room["x"],
+            "y": room["y"],
+            "name": room["name"],
+            "is placed": room["is placed"],
+            "room type": room["room type"],
+            "exits": ([]),
+        ]);
+
+        if (member(room, "doors"))
+        {
+            roomToAdd["doors"] = room["doors"] + ({});
+        }
+        if (member(room, "entry for"))
+        {
+            roomToAdd["entry for"] = room["entry for"] + ({});
+        }
+
+        foreach(string exit in m_indices(room["exits"]))
+        {
+            roomToAdd["exits"][exit] = room["exits"][exit];
+        }
+        ret["rooms"] += ({ roomToAdd });
+    }
+    return ret + ([]);
 }

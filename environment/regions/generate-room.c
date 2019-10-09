@@ -17,7 +17,8 @@ public nomask void generateRoomDetailsAsync(mapping room)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void generateRoomDetails(mapping room)
 {
-    if (room["room type"] == "entry")
+    if ((room["room type"] == "entry") || (sizeof(entry) &&
+        (room["x"] == entry[0]) && (room["y"] == entry[1])))
     {
         generateRoomDetailsAsync(room);
     }
