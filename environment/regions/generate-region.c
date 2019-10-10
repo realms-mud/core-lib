@@ -142,8 +142,8 @@ public nomask void createRegionFromTemplate(mapping data,
     foreach(mapping room in data["rooms"])
     {
         room["room type"] = "room";
-        room["identifier"] = sprintf("%s,%dx%d",
-            connectedRegion->regionName(), room["x"], room["y"]);
+        room["identifier"] = sprintf("%s-%dx%d", RegionName, room["x"], 
+            room["y"]);
 
         if (member(data, "terrain"))
         {
@@ -167,4 +167,9 @@ public nomask void createRegionFromTemplate(mapping data,
         "key": data["key"],
         "region": connectedRegion
     ]);
+
+    foreach(mapping room in rooms)
+    {
+ //       generateRoomDetails(room);
+    }
 }

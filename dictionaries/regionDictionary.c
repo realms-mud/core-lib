@@ -360,12 +360,15 @@ public nomask mapping getFloorPlan(string type)
     // correctly, so a manual deep copy is being done here.
     mapping floorPlans = filter(FloorPlans, (: $2["type"] == $3 :), type);
 
-    mapping floorPlan = floorPlans[m_indices(floorPlans)[
-        random(sizeof(m_indices(floorPlans)))]];
+    string floorPlanKey = m_indices(floorPlans)[
+        random(sizeof(m_indices(floorPlans)))];
+
+    mapping floorPlan = floorPlans[floorPlanKey];
 
     mapping ret = ([
         "type": floorPlan["type"],
         "interior": floorPlan["interior"],
+        "name": regreplace(floorPlanKey, "( +)", "-", 1),
         "door": floorPlan["door"],
         "key": floorPlan["key"],
         "x dimension": floorPlan["x dimension"],

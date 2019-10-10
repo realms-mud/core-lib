@@ -325,7 +325,7 @@ void CanEnterTemplatedRegion()
     move_object(Player, Region->getSettlementEntrance());
 
     command("s", Player);
-    ExpectNotEq(object_name(Region->getSettlementEntrance()), 
+    ExpectNotEq(object_name(Region->getSettlementEntrance()),
         object_name(environment(Player)));
 
     command("n", Player);

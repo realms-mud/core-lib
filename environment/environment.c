@@ -9,6 +9,7 @@ protected mapping environmentalElements = ([
     "feature": ([]),
     "building": ([]),
     "item": ([]),
+    "door": ([]),
     "objects": ([]),
     "shop": 0,
     "cloned": 0,
@@ -164,6 +165,7 @@ public void resetData()
         "feature" : ([]),
         "building" : ([]),
         "item" : ([]),
+        "door": ([]),
         "objects" : ([]),
         "shop" : 0,
         "cloned" : 0,
@@ -462,7 +464,8 @@ public nomask varargs object addGeneratedRegion(string direction, string type,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void addDoor(string path, string door, string key, string state)
+private nomask void addDoor(string direction, string path, string door, 
+    string key, string state)
 {
     if (!stringp(door))
     {
@@ -481,6 +484,12 @@ private nomask void addDoor(string path, string door, string key, string state)
         {
             doorObj->setKey(key);
         }
+
+        if (!addEnvironmentalElement(door, "door", direction))
+        {
+            raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+                "valid door.\n", door));
+        }
     }
 }
 
@@ -494,7 +503,7 @@ protected nomask varargs void addExitWithDoor(string direction, string path,
     }
 
     addExit(direction, path, state);
-    addDoor(path, door, key, state);
+    addDoor(direction, path, door, key, state);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -507,7 +516,7 @@ protected nomask varargs void addGeneratedExitWithDoor(string direction,
     }
 
     addGeneratedExit(direction, location, region, state);
-    addDoor(location, door, key, state);
+    addDoor(direction, location, door, key, state);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -973,7 +982,8 @@ public varargs string long(string item)
     {
         ret += getElementDescriptions("feature", illuminationLevel) +
             getElementDescriptions("item", illuminationLevel) +
-            getElementDescriptions("building", illuminationLevel);
+            getElementDescriptions("building", illuminationLevel) +
+            getElementDescriptions("door", illuminationLevel);
 
         if (member(environmentalElements["description"], currentState()))
         {

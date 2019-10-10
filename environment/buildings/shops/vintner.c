@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("vintner");
     InteriorType("granite building");
-    setFloorPlanType("shop");
+    setFloorPlanType("granite shop");
 
     addTimeOfDayDescription("dawn", ({
         ". It has a closed sign in the window. A light is shining out from the windows"

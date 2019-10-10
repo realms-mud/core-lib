@@ -8,7 +8,7 @@ public void Setup()
 {
     Name("stonemason");
     InteriorType("limestone building");
-    setFloorPlanType("shop");
+    setFloorPlanType("limestone shop");
 
     addTimeOfDayDescription("dawn", ({
         ". It has a closed sign in the window. A light is shining out from the windows"

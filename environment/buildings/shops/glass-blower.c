@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("glass blower");
     InteriorType("brick building");
-    setFloorPlanType("shop");
+    setFloorPlanType("brick shop");
 
     addTimeOfDayDescription("dawn", ({
         ". It has a closed sign in the window. A light is shining out from the windows"

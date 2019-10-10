@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/environment/environmentalElement.c";
 
-private string interiorType = "wood building";
+private string interiorType = "wooden building";
 private string FloorPlanType = "shop";
 
 /////////////////////////////////////////////////////////////////////////////
@@ -20,9 +20,9 @@ public string floorPlanType()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected string setFloorPlanType(string type)
+protected void setFloorPlanType(string type)
 {
-    return FloorPlanType;
+    FloorPlanType = type;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -66,6 +66,8 @@ public nomask object generateInterior(string exitTo, int x, int y,
     regionData["master region name"] = connectedRegion->regionName();
     regionData["level"] = connectedRegion->regionLevel();
     regionData["entry point"] = sprintf("%dx%d", x, y);
+    regionData["name"] = sprintf("%s-%s", regionData["name"],
+        regreplace(object_name(region), ".*#([0-9]+)", "\\1", 1));
     regionData["type"] = interiorType;
     regionData["enter from"] = region->getEnterFromDirection(exitTo);
 
