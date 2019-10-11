@@ -75,6 +75,12 @@ private mapping squareDisplay = ([
         "8-bit": "\x1b[0;38;5;9m",
         "24-bit": "\x1b[0;38;2;200;0;0m"
     ]),
+    "button":([
+        "none": "",
+        "3-bit": "\x1b[0;35m",
+        "8-bit": "\x1b[0;38;5;244m",
+        "24-bit": "\x1b[0;38;2;120;120;160m"
+    ]),
 ]);
 
 private mapping gridDisplay = ([
@@ -157,90 +163,112 @@ private mapping magicSquare = ([
         "initial": "E",
         "current": "E",
         "solved": "Y",
+        "button": ([ "A5": "w" ]),
     ]),
     "A2":([
         "initial": "A",
         "current": "A",
         "solved": "A",
+        "button": ([ "A6" : "z" ]),
     ]),
     "A3":([
         "initial": "E",
         "current": "E",
         "solved": "F",
+        "button": ([ "A7": "s" ]),
     ]),
     "A4":([
         "initial": "H",
         "current": "H",
         "solved": "H",
+        "button": ([ "A8": "y" ]),
     ]),
     "B1":([
         "initial": "E",
         "current": "E",
         "solved": "F",
+        "button": ([ "B5": "a" ]),
     ]),
     "B2":([
         "initial": "H",
         "current": "H",
         "solved": "H",
+        "button": ([ "B6": "x" ]),
     ]),
     "B3":([
         "initial": "Y",
         "current": "Y",
         "solved": "Y",
+        "button": ([ "B7": "v" ]),
     ]),
     "B4":([
         "initial": "E",
         "current": "E",
         "solved": "A",
+        "button": ([ "B8": "f" ]),
     ]),
     "C1":([
         "initial": "E",
         "current": "E",
         "solved": "H",
+        "button": ([ "C5": "n" ]),
     ]),
     "C2":([
         "initial": "F",
         "current": "F",
         "solved": "F",
+        "button": ([ "C6": "b" ]),
     ]),
     "C3":([
         "initial": "A",
         "current": "A",
         "solved": "A",
+        "button": ([ "C7": "m" ]),
     ]),
     "C4":([
         "initial": "E",
         "current": "E",
         "solved": "Y",
+        "button": ([ "C8": "r" ]),
     ]),
     "D1":([
         "initial": "E",
         "current": "E",
         "solved": "A",
+        "button": ([ "D5": "p" ]),
     ]),
     "D2":([
         "initial": "E",
         "current": "E",
         "solved": "Y",
+        "button": ([ "D6": "e" ]),
     ]),
     "D3":([
         "initial": "E",
         "current": "E",
         "solved": "H",
+        "button": ([ "D7": "d" ]),
     ]),
     "D4":([
         "initial": "E",
         "current": "E",
         "solved": "F",
+        "button": ([ "D8": "t" ]),
     ]),
 ]);
 
 private mapping buttons = ([
     "W": "A1",
+    "Z": "A2",
     "S": "A3",
+    "Y": "A4",
     "A": "B1",
+    "X": "B2",
+    "V": "B3",
     "F": "B4",
     "N": "C1",
+    "B": "C2",
+    "M": "C3",
     "R": "C4",
     "P": "D1",
     "E": "D2",
@@ -266,15 +294,15 @@ private int isValidPattern()
 private string grid(object configuration, string colorConfig, 
     string charsetConfig)
 {
-    string grid = "\n\t\t\t/~~~t~~~T~~~t~~~`\n"
-                  "\t\t\tI A1: A2I A3: A4I\n"
-                  "\t\t\t<---v---#---v--->\n"
-                  "\t\t\tI B1: B2I B3: B4I\n"
-                  "\t\t\t<~~~x~~~X~~~x~~~>\n"
-                  "\t\t\tI C1: C2I C3: C4I\n"
-                  "\t\t\t<---v---#---v--->\n"
-                  "\t\t\tI D1: D2I D3: D4I\n"
-                  "\t\t\tL~~~u~~~U~~~u~~~l\n";
+    string grid = "\n\t\t/~~~t~~~T~~~t~~~`        /~~~t~~~T~~~t~~~`\n"
+                  "\t\tI A1: A2I A3: A4I        I A5: A6I A7: A8I\n"
+                  "\t\t<---v---#---v--->        <---v---#---v--->\n"
+                  "\t\tI B1: B2I B3: B4I        I B5: B6I B7: B8I\n"
+                  "\t\t<~~~x~~~X~~~x~~~>        <~~~x~~~X~~~x~~~>\n"
+                  "\t\tI C1: C2I C3: C4I        I C5: C6I C7: C8I\n"
+                  "\t\t<---v---#---v--->        <---v---#---v--->\n"
+                  "\t\tI D1: D2I D3: D4I        I D5: D6I D7: D8I\n"
+                  "\t\tL~~~u~~~U~~~u~~~l        L~~~u~~~U~~~u~~~l\n";
 
     foreach(string character in m_indices(gridDisplay))
     {
@@ -308,6 +336,16 @@ public string displayMagicSquare()
             squareDisplay["grid"][colorConfig];
 
         grid = regreplace(grid, entry, replacementString);
+
+        mapping buttonDisplay = magicSquare[entry]["button"];
+        foreach(string buttonLocation in m_indices(buttonDisplay))
+        {
+            replacementString = squareDisplay["button"][colorConfig] +
+                ((magicSquare[entry]["initial"] == "E") ?
+                buttonDisplay[buttonLocation] : " ") + " " +
+                squareDisplay["grid"][colorConfig];
+            grid = regreplace(grid, buttonLocation, replacementString);
+        }
     }
 
     return grid;
@@ -374,12 +412,13 @@ public int press(string str)
     int ret = 0;
     
     str = stringp(str) ? capitalize(str) : "invalid";
-    if (sizeof(regexp(({ str }), "(W|S|A|F|N|R|P|E|D|T)( cube|)")))
+    if (sizeof(regexp(({ str }), "(W|Z|S|Y|A|X|V|F|N|B|M|R|P|E|D|T)( cube|)")))
     {
         string letter = 
-            regreplace(str, "(W|S|A|F|N|R|P|E|D|T)( cube|)", "\\1");
+            regreplace(str, "(W|Z|S|Y|A|X|V|F|N|B|M|R|P|E|D|T)( cube|)", "\\1");
 
-        if (member(buttons, capitalize(letter)))
+        if (member(buttons, letter) &&
+            (magicSquare[buttons[letter]]["initial"] == "E"))
         {
             ret = 1;
             string gridLocation = buttons[capitalize(letter)];

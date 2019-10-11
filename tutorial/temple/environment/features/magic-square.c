@@ -15,9 +15,8 @@ public void Setup()
         "room stands a table carved of onxy. On its surface sits a "
         "grid with several glowing runes.\n"
         "##call_other::key::/lib/tutorial/temple/objects/magic-square.c::displayMagicSquare::"
-        "\nAt the base of the grid, there are ten slightly raised cubes of "
-        "onyx that look like they can be pushed into the grid's surface. "
-        "They are labelled: W S A F N R P E D T");
+        "\nTo the right of the grid, there are ten slightly raised cubes of "
+        "onyx that look like they can be pushed into the grid's surface. ");
     addSourceOfLight(10);
 
     addAlias("grid");

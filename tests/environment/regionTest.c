@@ -90,7 +90,9 @@ void CorrectNumberOfRoomsGenerated()
     Region->setDimensions(5, 5);
     Region->createRegion();
 
-    ExpectEq(7, Region->generatedRoomCount());
+    // At least 5 rooms and an entrance are created. There may also be an
+    // exit, but this is not guaranteed.
+    ExpectTrue(Region->generatedRoomCount() >= 6);
 }
 
 /////////////////////////////////////////////////////////////////////////////
