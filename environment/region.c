@@ -174,6 +174,8 @@ public nomask varargs void setCoordinate(int x, int y, string path,
         createEmptyGrid(MaxX, MaxY);
     }
 
+    string decoratorType = environment->decoratorType();
+
     grid[x][y] = ([
         "is placed": 1,
         "room type": roomType,
@@ -181,6 +183,11 @@ public nomask varargs void setCoordinate(int x, int y, string path,
         "environment": environment,
         "state exits": environment->getExitDirections(),
     ]);
+
+    if (decoratorType)
+    {
+        grid[x][y]["icon"] = Dictionary->getMapDecorator(decoratorType);
+    }
 
     environment->setCoordinates(this_object(), x, y);
 }

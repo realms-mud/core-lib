@@ -3,55 +3,9 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/environment/regions/core.c";
+#include "/lib/environment/regions/display-characters.h"
 
 private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
-
-private mapping displayCharacter = ([
-    "north":([
-        "ascii": "|",
-        "unicode": "\xe2\x94\x82"
-    ]),
-    "south":([
-        "ascii": "|",
-        "unicode": "\xe2\x94\x82"
-    ]),
-    "east":([
-        "ascii": "-",
-        "unicode": "\xe2\x94\x80"
-    ]),
-    "west":([
-        "ascii": "-",
-        "unicode": "\xe2\x94\x80"
-    ]),
-    "path": ([
-        "ascii": "o",
-        "unicode": "\xe2\x97\x87"
-    ]),
-    "room": ([
-        "ascii": "#",
-        "unicode": "\xe2\x96\xa3"
-    ]),
-    "entry": ([
-        "ascii": "#",
-        "unicode": "\xe2\x96\xa3"
-    ]),
-    "exit": ([
-        "ascii": "X",
-        "unicode": "\xe2\x8c\xa7"
-    ]),
-    "player": ([
-        "ascii": "P",
-        "unicode": "\xe2\x99\x99"
-    ]),
-    "divider": ([
-        "ascii": "'",
-        "unicode": "\xe2\x95\x91"
-    ]),
-    "none": ([
-        "ascii": " ",
-        "unicode": " "
-    ]),
-]);
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int hasExit(mapping location, string direction)
@@ -59,6 +13,23 @@ private nomask int hasExit(mapping location, string direction)
     return member(location["exits"], direction) ||
         ((member(({ "entry", "exit" }), location["room type"]) > -1) &&
         (location["exit to"] == direction));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs string displayCell(mapping location, 
+    string defaultCell, string colorConfiguration, string charset, 
+    int userHere, string direction)
+{
+    if (!direction)
+    {
+        direction = "none";
+    }
+
+    return hasExit(location, direction) ?
+        configuration->decorate(displayCharacter[direction][charset],
+            (userHere ? "user location" : "exit"), "map", colorConfiguration) :
+        configuration->decorate(defaultCell, (userHere ? "reverse" : "none"),
+            "map", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -110,34 +81,48 @@ private nomask varargs string displayMapSection(object user, int startX,
                 else
                 {
                     int userHere = objectp(present(user, location["environment"]));
-                    string exitColor = userHere ? "user location" : "exit";
 
-                    string emptyCell = configuration->decorate(" ",
-                        (userHere ? "reverse" : "none"), "map", colorConfiguration);
+                    string decoratorType = objectp(location["environment"]) ?
+                        location["environment"]->decoratorType() : "none";
 
-                    row[0] += sprintf("%s%s%s", emptyCell,
-                        hasExit(location, "north") ?
-                        configuration->decorate(displayCharacter["north"][charset],
-                            exitColor, "map", colorConfiguration) : emptyCell,
-                        emptyCell);
+                    string **icon = Dictionary->getMapIcon(decoratorType,
+                        colorConfiguration, charset);
+
+                    row[0] += sprintf("%s%s%s", 
+                        displayCell(location, icon[0][0], colorConfiguration, 
+                            charset, userHere),
+                        displayCell(location, icon[0][1], colorConfiguration,
+                            charset, userHere, "north"),
+                        displayCell(location, icon[0][2], colorConfiguration,
+                            charset, userHere));
+
+                    string roomType = location["room type"];
+                    int useRoom = member(displayCharacter, roomType) &&
+                        (icon[1][1] == " ");
 
                     row[1] += sprintf("%s%s%s",
-                        (hasExit(location, "west") ?
-                            configuration->decorate(displayCharacter["west"][charset],
-                                exitColor, "map", colorConfiguration) : emptyCell),
+                        displayCell(location, icon[1][0], colorConfiguration,
+                            charset, userHere, "west"),
                         configuration->decorate(
                         (userHere ? displayCharacter["player"][charset] :
-                            displayCharacter[location["room type"]][charset]),
-                            (userHere ? "user location" : location["room type"]),
+                            (useRoom ? 
+                                displayCharacter[roomType][charset] : 
+                                sprintf("%s%s%s",
+                                    Dictionary->iconColor(decoratorType, colorConfiguration),
+                                    icon[1][1],
+                                    (colorConfiguration != "none") ? "\x1b[0m" : ""))),
+                            (userHere ? "user location" : roomType),
                             "map", colorConfiguration),
-                            (hasExit(location, "east") ?
-                                configuration->decorate(displayCharacter["east"][charset],
-                                    exitColor, "map", colorConfiguration) : emptyCell));
+                        displayCell(location, icon[1][2], colorConfiguration,
+                            charset, userHere, "east"));
 
-                    row[2] += sprintf("%s%s%s", emptyCell, hasExit(location, "south") ?
-                        configuration->decorate(displayCharacter["south"][charset],
-                            exitColor, "map", colorConfiguration) : emptyCell,
-                        emptyCell);
+                    row[2] += sprintf("%s%s%s",
+                        displayCell(location, icon[2][0], colorConfiguration,
+                            charset, userHere),
+                        displayCell(location, icon[2][1], colorConfiguration,
+                            charset, userHere, "south"),
+                        displayCell(location, icon[2][2], colorConfiguration,
+                            charset, userHere));
                 }
             }
 

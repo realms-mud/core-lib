@@ -1444,3 +1444,16 @@ public nomask int deactivateLights(string whichLights)
 {
     return manipulateLights(whichLights, "deactivate", "extinguish");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void addDecorator(string decorator)
+{
+    environmentalElements["decorator"] = decorator;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string decoratorType()
+{
+    return member(environmentalElements, "decorator") ?
+        environmentalElements["decorator"] : 0;
+}

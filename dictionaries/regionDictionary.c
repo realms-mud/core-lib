@@ -4,6 +4,7 @@
 //*****************************************************************************
 #include "/lib/dictionaries/regions/building-layouts.h"
 #include "/lib/dictionaries/regions/floor-plans.h"
+#include "/lib/dictionaries/regions/map-icons.h"
 #include "/lib/dictionaries/regions/region-types.h"
 #include "/lib/dictionaries/regions/settlements.h"
 #include "/lib/modules/secure/regions.h"
@@ -404,4 +405,43 @@ public nomask mapping getFloorPlan(string type)
         ret["rooms"] += ({ roomToAdd });
     }
     return ret + ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string **getMapIcon(string name, string colorConfiguration,
+    string charset)
+{
+    string **ret = ({ ({ " ", " ", " " }),
+        ({ " ", " ", " " }),
+        ({ " ", " ", " " }) });
+
+    if (member(MapIcons, name) && 
+        member(MapIcons[name]["colors"], colorConfiguration))
+    {
+        string **icon = (charset == "unicode") ?
+            MapIcons[name]["unicode"] : MapIcons[name]["ascii"];
+
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                ret[x][y] = icon[x][y];
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string iconColor(string name, string colorConfiguration)
+{
+    string ret = "";
+
+    if (name && member(MapIcons, name) &&
+        member(MapIcons[name]["colors"], colorConfiguration))
+    {
+        ret = MapIcons[name]["colors"][colorConfiguration];
+    }
+
+    return ret;
 }
