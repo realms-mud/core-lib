@@ -397,10 +397,10 @@ void Y()
 */
 
 /////////////////////////////////////////////////////////////////////////////
-void L()
+/*void L()
 {
     Region = clone_object("/lib/tutorial/eledhel/southwest-rural-one/region.c");
-/*
+
     string originalDir = "/lib/tutorial/eledhel/";
     mkdir(originalDir);
 
@@ -415,5 +415,6 @@ void L()
     Region->createRegion("east", "/lib/tutorial/eledhel/southwest-rural-one/0x2.c");
 
     Region->generateStaticFiles("/lib/tutorial/eledhel/");
- */   ExpectEq("x", Region->displayMap(Player));
+    ExpectEq("x", Region->displayMap(Player));
 }
+*/
