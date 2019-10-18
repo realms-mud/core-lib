@@ -9,5 +9,6 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
-    addDecorator("tall southwest tower");
+    addExit("north", "/lib/tutorial/eledhel/southern-city/12x6.c");
+    addExit("south", "/lib/tutorial/eledhel/southern-city/12x4.c");
 }

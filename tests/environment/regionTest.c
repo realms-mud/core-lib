@@ -380,10 +380,10 @@ void CanEnterTemplatedRegion()
 
     write_file(originalDir + "southern-city.c", regionFile);
 }
-*/
+
 
 /////////////////////////////////////////////////////////////////////////////
-/*void Y()
+void Y()
 {
     ToggleCallOutBypass();
 
@@ -395,3 +395,25 @@ void CanEnterTemplatedRegion()
     ToggleCallOutBypass();
 }
 */
+
+/////////////////////////////////////////////////////////////////////////////
+void L()
+{
+    Region = clone_object("/lib/tutorial/eledhel/southwest-rural-one/region.c");
+/*
+    string originalDir = "/lib/tutorial/eledhel/";
+    mkdir(originalDir);
+
+    Player->colorConfiguration("none");
+    Player->charsetConfiguration("unicode");
+
+    Region->setRegionName("southwest-rural-x");
+    Region->setRegionType("rural");
+
+    Region->setDimensions(25, 5);
+    Region->setSettlementChance(100);
+    Region->createRegion("east", "/lib/tutorial/eledhel/southwest-rural-one/0x2.c");
+
+    Region->generateStaticFiles("/lib/tutorial/eledhel/");
+ */   ExpectEq("x", Region->displayMap(Player));
+}

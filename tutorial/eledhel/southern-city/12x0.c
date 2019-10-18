@@ -9,5 +9,6 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
-    addDecorator("south gatehouse");
+    addExit("north", "/lib/tutorial/eledhel/southern-city/12x1.c");
+    addExit("south", "/lib/tutorial/eledhel/southern-rural/3x9.c");
 }

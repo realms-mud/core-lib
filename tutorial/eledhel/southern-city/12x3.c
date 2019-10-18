@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    addBuilding("/lib/environment/buildings/shops/wainwright.c", "east");
 
-    addDecorator("tall southwest tower");
+    addExit("north", "/lib/tutorial/eledhel/southern-city/12x4.c");
+    addExit("south", "/lib/tutorial/eledhel/southern-city/12x2.c");
 }

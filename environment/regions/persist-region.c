@@ -282,8 +282,8 @@ private nomask void generateStaticRegionFile(string roomPath,
     string rooms = "";
     foreach(string roomFile in coordinateList)
     {
-        int x = to_int(regreplace(roomFile, ".*([0-9]+)x[0-9]+.c$", "\\1"));
-        int y = to_int(regreplace(roomFile, ".*[0-9]+x([0-9]+).c$", "\\1"));
+        int x = to_int(regreplace(roomFile, ".*/([0-9]+)x[0-9]+.c$", "\\1"));
+        int y = to_int(regreplace(roomFile, ".*/[0-9]+x([0-9]+).c$", "\\1"));
         rooms += sprintf("    setCoordinate(%d, %d,\n"
             "        \"%s\", \"%s\");\n", x, y, roomFile, grid[x][y]["room type"]);
     }

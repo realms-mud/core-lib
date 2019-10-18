@@ -1083,6 +1083,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;12;1m",
             "24-bit": "\x1b[0;38;2;0;0;255;1m"
         ]),
+        "shop": ([
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;9;1m",
+            "24-bit": "\x1b[0;38;2;200;0;0;1m"
+        ]),
         "user location": ([
             "3-bit": "\x1b[0;41;33m",
             "8-bit": "\x1b[0;48;5;52;38;5;10m",

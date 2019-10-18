@@ -30,6 +30,10 @@ private mapping displayCharacter = ([
         "ascii": "#",
         "unicode": "\xe2\x96\xa3"
     ]),
+    "shop": ([
+        "ascii": "$",
+        "unicode": "$"
+    ]),
     "entry": ([
         "ascii": "#",
         "unicode": "\xe2\x96\xa3"

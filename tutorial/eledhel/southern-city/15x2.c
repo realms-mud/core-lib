@@ -8,6 +8,9 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    addBuilding("/lib/environment/buildings/homes/large-limestone-house.c",
+        "north");
 
-    addDecorator("tall southwest tower");
+    addExit("west", "/lib/tutorial/eledhel/southern-city/16x2.c");
+    addExit("east", "/lib/tutorial/eledhel/southern-city/14x2.c");
 }

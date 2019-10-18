@@ -8,6 +8,4 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
-
-    addDecorator("tall southwest tower");
 }
