@@ -9,5 +9,5 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
-    addDecorator("tall southwest tower");
+    addDecorator("1x2 building 0x1 right door");
 }

@@ -7,7 +7,10 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
+    setTerrain("/lib/environment/terrain/pier.c");
+    addFeature("/lib/environment/features/water/ocean.c", "east");
+    addFeature("/lib/environment/features/water/ocean.c", "south");
 
-    addDecorator("tall southwest tower");
+    addDecorator("dock end");
+    addExit("west", "/lib/tutorial/eledhel/southern-city/22x3.c");
 }

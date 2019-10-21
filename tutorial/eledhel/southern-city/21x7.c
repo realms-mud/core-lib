@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    addBuilding("/lib/environment/buildings/trades/shipYard.c",
+        "east", "/lib/tutorial/eledhel/southern-city/shipyard/0x1.c");
 
-    addDecorator("tall southwest tower");
+    addExit("west", "/lib/tutorial/eledhel/southern-city/20x7.c");
 }
