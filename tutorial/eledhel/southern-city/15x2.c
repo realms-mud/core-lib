@@ -11,6 +11,6 @@ public void Setup()
     addBuilding("/lib/environment/buildings/homes/large-limestone-house.c",
         "north");
 
-    addExit("west", "/lib/tutorial/eledhel/southern-city/16x2.c");
-    addExit("east", "/lib/tutorial/eledhel/southern-city/14x2.c");
+    addExit("west", "/lib/tutorial/eledhel/southern-city/14x2.c");
+    addExit("east", "/lib/tutorial/eledhel/southern-city/16x2.c");
 }

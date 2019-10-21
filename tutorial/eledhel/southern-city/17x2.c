@@ -10,6 +10,6 @@ public void Setup()
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/shops/inn.c", "north");
 
-    addExit("west", "/lib/tutorial/eledhel/southern-city/18x2.c");
-    addExit("east", "/lib/tutorial/eledhel/southern-city/16x2.c");
+    addExit("west", "/lib/tutorial/eledhel/southern-city/16x2.c");
+    addExit("east", "/lib/tutorial/eledhel/southern-city/18x2.c");
 }
