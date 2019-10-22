@@ -338,64 +338,18 @@ void CanEnterTemplatedRegion()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-/*void X()
-{
-    string originalDir = "/lib/tutorial/eledhel/southern-city/";
-
-    string roomData = "//*****************************************************************************\n"
-        "// Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See\n"
-        "//                      the accompanying LICENSE file for details.\n"
-        "//*****************************************************************************\n"
-        "inherit \"/lib/environment/environment.c\";\n"
-        "\n"
-        "/////////////////////////////////////////////////////////////////////////////\n"
-        "public void Setup()\n"
-        "{\n"
-        "    setTerrain(\"/lib/environment/terrain/city.c\");\n"
-        "\n"
-        "    addDecorator(\"tall southwest tower\");\n"
-        "}\n";
-
-    string rooms = "";
-
-    for (int x = 0; x < 25; x++)
-    {
-        for (int y = 0; y < 10; y++)
-        {
-            string roomFile = sprintf("%s%dx%d.c", originalDir, x, y);
-
-            write_file(roomFile, roomData);
-
-            rooms += sprintf("    setCoordinate(%d, %d,\n"
-                "        \"%s\", \"%s\");\n", x, y, roomFile, "room");
-        }
-    }
-
-    string regionFile =
-        read_file("/lib/environment/generatedRegionTemplate.c");
-
-    regionFile = regreplace(regionFile, "    // Rooms", rooms) + "\n";
-    regionFile = regreplace(regionFile, "\r\n", "\n", 1);
-    regionFile = regreplace(regionFile, "(\r*\n)+}", "\n}", 1);
-
-    write_file(originalDir + "southern-city.c", regionFile);
-}
-*/
-
-/////////////////////////////////////////////////////////////////////////////
 /*void Y()
 {
     ToggleCallOutBypass();
 
     object region = 
-        load_object("/lib/tutorial/eledhel/southern-city/southern-city.c");
+        load_object("/lib/tutorial/eledhel/central-city/central-city.c");
 
     ExpectEq("x", region->displayMap(Player));
 
     ToggleCallOutBypass();
 }
 */
-
 /////////////////////////////////////////////////////////////////////////////
 /*void L()
 {

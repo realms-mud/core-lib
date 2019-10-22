@@ -9,6 +9,6 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
-    addExit("north", "/lib/tutorial/eledhel/south-central-city/12x0.c");
+    addExit("north", "/lib/tutorial/eledhel/central-city/12x0.c");
     addExit("south", "/lib/tutorial/eledhel/southern-city/12x8.c");
 }
