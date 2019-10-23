@@ -9,5 +9,5 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
-    addDecorator("large keep 2x3");
+    addDecorator("palace 2x3");
 }

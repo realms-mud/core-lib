@@ -8,6 +8,9 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    addBuilding("/lib/environment/buildings/shops/leatherworking-shop.c",
+        "east", "/lib/tutorial/eledhel/central-city/leather/0x1.c");
 
-    addDecorator("tall southwest tower");
+    addExit("north", "/lib/tutorial/eledhel/central-city/14x1.c");
+    addExit("south", "/lib/tutorial/eledhel/southern-city/14x9.c");
 }

@@ -12,26 +12,12 @@ public void Setup()
     setDimensions(25, 10);
     // EntryCoordinate
 
-    setCoordinate(0, 0,
-        "/lib/tutorial/eledhel/central-city/0x0.c", "none");
-    setCoordinate(0, 1,
-        "/lib/tutorial/eledhel/central-city/0x1.c", "none");
-    setCoordinate(0, 2,
-        "/lib/tutorial/eledhel/central-city/0x2.c", "none");
-    setCoordinate(0, 3,
-        "/lib/tutorial/eledhel/central-city/0x3.c", "none");
     setCoordinate(0, 4,
         "/lib/tutorial/eledhel/central-city/0x4.c", "none");
     setCoordinate(0, 5,
         "/lib/tutorial/eledhel/central-city/0x5.c", "path");
     setCoordinate(0, 6,
         "/lib/tutorial/eledhel/central-city/0x6.c", "none");
-    setCoordinate(0, 7,
-        "/lib/tutorial/eledhel/central-city/0x7.c", "none");
-    setCoordinate(0, 8,
-        "/lib/tutorial/eledhel/central-city/0x8.c", "none");
-    setCoordinate(0, 9,
-        "/lib/tutorial/eledhel/central-city/0x9.c", "none");
     setCoordinate(1, 0,
         "/lib/tutorial/eledhel/central-city/1x0.c", "none");
     setCoordinate(1, 1,
@@ -241,11 +227,11 @@ public void Setup()
     setCoordinate(11, 3,
         "/lib/tutorial/eledhel/central-city/11x3.c", "none");
     setCoordinate(11, 4,
-        "/lib/tutorial/eledhel/central-city/11x4.c", "none");
+        "/lib/tutorial/eledhel/central-city/11x4.c", "room");
     setCoordinate(11, 5,
         "/lib/tutorial/eledhel/central-city/11x5.c", "path");
     setCoordinate(11, 6,
-        "/lib/tutorial/eledhel/central-city/11x6.c", "none");
+        "/lib/tutorial/eledhel/central-city/11x6.c", "room");
     setCoordinate(11, 7,
         "/lib/tutorial/eledhel/central-city/11x7.c", "none");
     setCoordinate(11, 8,
@@ -273,57 +259,45 @@ public void Setup()
     setCoordinate(12, 9,
         "/lib/tutorial/eledhel/central-city/12x9.c", "path");
     setCoordinate(13, 0,
-        "/lib/tutorial/eledhel/central-city/13x0.c", "none");
+        "/lib/tutorial/eledhel/central-city/13x0.c", "shop");
     setCoordinate(13, 1,
-        "/lib/tutorial/eledhel/central-city/13x1.c", "none");
+        "/lib/tutorial/eledhel/central-city/13x1.c", "shop");
     setCoordinate(13, 2,
-        "/lib/tutorial/eledhel/central-city/13x2.c", "none");
-    setCoordinate(13, 3,
-        "/lib/tutorial/eledhel/central-city/13x3.c", "none");
+        "/lib/tutorial/eledhel/central-city/13x2.c", "path");
     setCoordinate(13, 4,
-        "/lib/tutorial/eledhel/central-city/13x4.c", "none");
+        "/lib/tutorial/eledhel/central-city/13x4.c", "room");
     setCoordinate(13, 5,
         "/lib/tutorial/eledhel/central-city/13x5.c", "path");
     setCoordinate(13, 6,
-        "/lib/tutorial/eledhel/central-city/13x6.c", "none");
-    setCoordinate(13, 7,
-        "/lib/tutorial/eledhel/central-city/13x7.c", "none");
+        "/lib/tutorial/eledhel/central-city/13x6.c", "room");
     setCoordinate(13, 8,
         "/lib/tutorial/eledhel/central-city/13x8.c", "none");
     setCoordinate(13, 9,
         "/lib/tutorial/eledhel/central-city/13x9.c", "none");
     setCoordinate(14, 0,
-        "/lib/tutorial/eledhel/central-city/14x0.c", "none");
+        "/lib/tutorial/eledhel/central-city/14x0.c", "path");
     setCoordinate(14, 1,
-        "/lib/tutorial/eledhel/central-city/14x1.c", "none");
+        "/lib/tutorial/eledhel/central-city/14x1.c", "path");
     setCoordinate(14, 2,
-        "/lib/tutorial/eledhel/central-city/14x2.c", "none");
-    setCoordinate(14, 3,
-        "/lib/tutorial/eledhel/central-city/14x3.c", "none");
-    setCoordinate(14, 4,
-        "/lib/tutorial/eledhel/central-city/14x4.c", "none");
+        "/lib/tutorial/eledhel/central-city/14x2.c", "path");
     setCoordinate(14, 5,
         "/lib/tutorial/eledhel/central-city/14x5.c", "path");
-    setCoordinate(14, 6,
-        "/lib/tutorial/eledhel/central-city/14x6.c", "none");
-    setCoordinate(14, 7,
-        "/lib/tutorial/eledhel/central-city/14x7.c", "none");
     setCoordinate(14, 8,
         "/lib/tutorial/eledhel/central-city/14x8.c", "none");
     setCoordinate(14, 9,
         "/lib/tutorial/eledhel/central-city/14x9.c", "none");
     setCoordinate(15, 0,
-        "/lib/tutorial/eledhel/central-city/15x0.c", "none");
+        "/lib/tutorial/eledhel/central-city/15x0.c", "shop");
     setCoordinate(15, 1,
-        "/lib/tutorial/eledhel/central-city/15x1.c", "none");
+        "/lib/tutorial/eledhel/central-city/15x1.c", "shop");
     setCoordinate(15, 2,
-        "/lib/tutorial/eledhel/central-city/15x2.c", "none");
+        "/lib/tutorial/eledhel/central-city/15x2.c", "path");
     setCoordinate(15, 3,
         "/lib/tutorial/eledhel/central-city/15x3.c", "none");
     setCoordinate(15, 4,
         "/lib/tutorial/eledhel/central-city/15x4.c", "none");
     setCoordinate(15, 5,
-        "/lib/tutorial/eledhel/central-city/15x5.c", "path");
+        "/lib/tutorial/eledhel/central-city/15x5.c", "none");
     setCoordinate(15, 6,
         "/lib/tutorial/eledhel/central-city/15x6.c", "none");
     setCoordinate(15, 7,
@@ -333,17 +307,17 @@ public void Setup()
     setCoordinate(15, 9,
         "/lib/tutorial/eledhel/central-city/15x9.c", "none");
     setCoordinate(16, 0,
-        "/lib/tutorial/eledhel/central-city/16x0.c", "none");
+        "/lib/tutorial/eledhel/central-city/16x0.c", "shop");
     setCoordinate(16, 1,
-        "/lib/tutorial/eledhel/central-city/16x1.c", "none");
+        "/lib/tutorial/eledhel/central-city/16x1.c", "shop");
     setCoordinate(16, 2,
-        "/lib/tutorial/eledhel/central-city/16x2.c", "none");
+        "/lib/tutorial/eledhel/central-city/16x2.c", "path");
     setCoordinate(16, 3,
         "/lib/tutorial/eledhel/central-city/16x3.c", "none");
     setCoordinate(16, 4,
         "/lib/tutorial/eledhel/central-city/16x4.c", "none");
     setCoordinate(16, 5,
-        "/lib/tutorial/eledhel/central-city/16x5.c", "path");
+        "/lib/tutorial/eledhel/central-city/16x5.c", "none");
     setCoordinate(16, 6,
         "/lib/tutorial/eledhel/central-city/16x6.c", "none");
     setCoordinate(16, 7,
@@ -353,17 +327,17 @@ public void Setup()
     setCoordinate(16, 9,
         "/lib/tutorial/eledhel/central-city/16x9.c", "none");
     setCoordinate(17, 0,
-        "/lib/tutorial/eledhel/central-city/17x0.c", "none");
+        "/lib/tutorial/eledhel/central-city/17x0.c", "path");
     setCoordinate(17, 1,
-        "/lib/tutorial/eledhel/central-city/17x1.c", "none");
+        "/lib/tutorial/eledhel/central-city/17x1.c", "path");
     setCoordinate(17, 2,
-        "/lib/tutorial/eledhel/central-city/17x2.c", "none");
+        "/lib/tutorial/eledhel/central-city/17x2.c", "path");
     setCoordinate(17, 3,
         "/lib/tutorial/eledhel/central-city/17x3.c", "none");
     setCoordinate(17, 4,
         "/lib/tutorial/eledhel/central-city/17x4.c", "none");
     setCoordinate(17, 5,
-        "/lib/tutorial/eledhel/central-city/17x5.c", "path");
+        "/lib/tutorial/eledhel/central-city/17x5.c", "none");
     setCoordinate(17, 6,
         "/lib/tutorial/eledhel/central-city/17x6.c", "none");
     setCoordinate(17, 7,
@@ -373,17 +347,17 @@ public void Setup()
     setCoordinate(17, 9,
         "/lib/tutorial/eledhel/central-city/17x9.c", "none");
     setCoordinate(18, 0,
-        "/lib/tutorial/eledhel/central-city/18x0.c", "none");
+        "/lib/tutorial/eledhel/central-city/18x0.c", "shop");
     setCoordinate(18, 1,
-        "/lib/tutorial/eledhel/central-city/18x1.c", "none");
+        "/lib/tutorial/eledhel/central-city/18x1.c", "shop");
     setCoordinate(18, 2,
-        "/lib/tutorial/eledhel/central-city/18x2.c", "none");
+        "/lib/tutorial/eledhel/central-city/18x2.c", "path");
     setCoordinate(18, 3,
         "/lib/tutorial/eledhel/central-city/18x3.c", "none");
     setCoordinate(18, 4,
         "/lib/tutorial/eledhel/central-city/18x4.c", "none");
     setCoordinate(18, 5,
-        "/lib/tutorial/eledhel/central-city/18x5.c", "path");
+        "/lib/tutorial/eledhel/central-city/18x5.c", "none");
     setCoordinate(18, 6,
         "/lib/tutorial/eledhel/central-city/18x6.c", "none");
     setCoordinate(18, 7,
@@ -393,17 +367,17 @@ public void Setup()
     setCoordinate(18, 9,
         "/lib/tutorial/eledhel/central-city/18x9.c", "none");
     setCoordinate(19, 0,
-        "/lib/tutorial/eledhel/central-city/19x0.c", "none");
+        "/lib/tutorial/eledhel/central-city/19x0.c", "shop");
     setCoordinate(19, 1,
-        "/lib/tutorial/eledhel/central-city/19x1.c", "none");
+        "/lib/tutorial/eledhel/central-city/19x1.c", "shop");
     setCoordinate(19, 2,
-        "/lib/tutorial/eledhel/central-city/19x2.c", "none");
+        "/lib/tutorial/eledhel/central-city/19x2.c", "path");
     setCoordinate(19, 3,
         "/lib/tutorial/eledhel/central-city/19x3.c", "none");
     setCoordinate(19, 4,
         "/lib/tutorial/eledhel/central-city/19x4.c", "none");
     setCoordinate(19, 5,
-        "/lib/tutorial/eledhel/central-city/19x5.c", "path");
+        "/lib/tutorial/eledhel/central-city/19x5.c", "none");
     setCoordinate(19, 6,
         "/lib/tutorial/eledhel/central-city/19x6.c", "none");
     setCoordinate(19, 7,
@@ -413,17 +387,17 @@ public void Setup()
     setCoordinate(19, 9,
         "/lib/tutorial/eledhel/central-city/19x9.c", "none");
     setCoordinate(20, 0,
-        "/lib/tutorial/eledhel/central-city/20x0.c", "none");
+        "/lib/tutorial/eledhel/central-city/20x0.c", "path");
     setCoordinate(20, 1,
-        "/lib/tutorial/eledhel/central-city/20x1.c", "none");
+        "/lib/tutorial/eledhel/central-city/20x1.c", "path");
     setCoordinate(20, 2,
-        "/lib/tutorial/eledhel/central-city/20x2.c", "none");
+        "/lib/tutorial/eledhel/central-city/20x2.c", "path");
     setCoordinate(20, 3,
         "/lib/tutorial/eledhel/central-city/20x3.c", "none");
     setCoordinate(20, 4,
         "/lib/tutorial/eledhel/central-city/20x4.c", "none");
     setCoordinate(20, 5,
-        "/lib/tutorial/eledhel/central-city/20x5.c", "path");
+        "/lib/tutorial/eledhel/central-city/20x5.c", "none");
     setCoordinate(20, 6,
         "/lib/tutorial/eledhel/central-city/20x6.c", "none");
     setCoordinate(20, 7,
@@ -433,9 +407,9 @@ public void Setup()
     setCoordinate(20, 9,
         "/lib/tutorial/eledhel/central-city/20x9.c", "none");
     setCoordinate(21, 0,
-        "/lib/tutorial/eledhel/central-city/21x0.c", "none");
+        "/lib/tutorial/eledhel/central-city/21x0.c", "shop");
     setCoordinate(21, 1,
-        "/lib/tutorial/eledhel/central-city/21x1.c", "none");
+        "/lib/tutorial/eledhel/central-city/21x1.c", "shop");
     setCoordinate(21, 2,
         "/lib/tutorial/eledhel/central-city/21x2.c", "none");
     setCoordinate(21, 3,
@@ -443,7 +417,7 @@ public void Setup()
     setCoordinate(21, 4,
         "/lib/tutorial/eledhel/central-city/21x4.c", "none");
     setCoordinate(21, 5,
-        "/lib/tutorial/eledhel/central-city/21x5.c", "path");
+        "/lib/tutorial/eledhel/central-city/21x5.c", "none");
     setCoordinate(21, 6,
         "/lib/tutorial/eledhel/central-city/21x6.c", "none");
     setCoordinate(21, 7,
