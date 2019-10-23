@@ -9,5 +9,5 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
-    addDecorator("north-south wall");
+    addDecorator("inner north-south wall");
 }

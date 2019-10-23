@@ -9,6 +9,8 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/shops/wainwright.c", "north");
+    addBuilding("/lib/environment/buildings/military/tall-wall-tower.c",
+        "south", "/lib/tutorial/eledhel/southern-city/southeast-gate-tower/4x4.c");
 
     addExit("west", "/lib/tutorial/eledhel/southern-city/12x2.c");
     addExit("east", "/lib/tutorial/eledhel/southern-city/14x2.c");

@@ -11,6 +11,6 @@ public void Setup()
     addBuilding("/lib/environment/buildings/military/tall-wall-tower.c",
         "east", "/lib/tutorial/eledhel/southern-city/southeast-tower/0x1.c");
 
-    addDecorator("east-west wall");
+    addDecorator("inner east-west wall");
     addExit("north", "/lib/tutorial/eledhel/southern-city/19x2.c");
 }
