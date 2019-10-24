@@ -211,6 +211,8 @@ private nomask varargs int addEnvironmentalElement(string element, string type, 
         if (ret)
         {
             object elementObj = load_object(element);
+            elementObj->setUpForEnvironment(currentState(), this_object());
+
             element = elementObj->Name();
 
             if (location && !elementObj->description())

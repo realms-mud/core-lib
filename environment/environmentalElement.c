@@ -620,9 +620,20 @@ protected nomask varargs void addSourceOfLight(int magnitude, string state, stri
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs void addActiveSourceOfLight(int magnitude,
-    string template, string state)
+    string template, int activeByDefault, string state)
 {
     state = setupDescriptionForState(state);
     descriptionData[state]["active light template"] = template;
     descriptionData[state]["active light magnitude"] = magnitude;
+    descriptionData[state]["active by default"] = activeByDefault;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setUpForEnvironment(string state, object environment)
+{
+    if (state && member(descriptionData, state) &&
+        descriptionData[state]["active by default"])
+    {
+        activateLightSource(state, environment);
+    }
 }

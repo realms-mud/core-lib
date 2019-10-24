@@ -1756,6 +1756,34 @@ void CorrectlyDisplaysActiveLight()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CorrectlyDisplaysDefaultActiveLight()
+{
+    Dictionary->timeOfDay("midnight");
+    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment->testAddItem("/lib/environment/items/lighting/lit-candle.c", "north");
+
+    object person = clone_object("/lib/tests/support/services/mockPlayer.c");
+    person->Name("dwight");
+    person->colorConfiguration("8-bit");
+    move_object(person, Environment);
+
+    object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
+    observer->Name("fred");
+    observer->colorConfiguration("3-bit");
+    move_object(observer, Environment);
+
+    command("look", person);
+    ExpectSubStringMatch("a[ \n]lit.*candle", person->caughtMessage());
+
+    command("extinguish", person);
+    ExpectSubStringMatch("You extinguish the following: candle", person->caughtMessage());
+    ExpectSubStringMatch("Dwight extinguishes the following: candle", observer->caughtMessage());
+
+    command("look", person);
+    ExpectSubStringMatch("an[ \n]unlit.*candle", person->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMultipleActiveLight()
 {
     Dictionary->timeOfDay("midnight");

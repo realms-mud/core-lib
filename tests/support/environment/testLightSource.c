@@ -21,7 +21,7 @@ public nomask varargs void testAddSourceOfLight(int magnitude, string state, str
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void testAddActiveSourceOfLight(int magnitude, 
-    string template, string state)
+    string template, int activeByDefault, string state)
 {
-    return addActiveSourceOfLight(magnitude, template, state);
+    return addActiveSourceOfLight(magnitude, template, activeByDefault, state);
 }
