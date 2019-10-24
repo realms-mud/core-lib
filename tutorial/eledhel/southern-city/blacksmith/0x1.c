@@ -7,10 +7,8 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
-    addBuilding("/lib/environment/buildings/shops/blacksmith.c",
-        "east", "/lib/tutorial/eledhel/southern-city/blacksmith/0x1.c");
+    setInterior("/lib/environment/interiors/limestone-interior-shop.c");
+    addItem("/lib/environment/items/lighting/window.c", "west");
 
-    addExit("north", "/lib/tutorial/eledhel/southern-city/14x9.c");
-    addExit("south", "/lib/tutorial/eledhel/southern-city/14x7.c");
+    addExitWithDoor("west", "/lib/tutorial/eledhel/southern-city/14x8.c");
 }

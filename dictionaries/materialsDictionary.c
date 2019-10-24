@@ -1367,6 +1367,21 @@ public nomask varargs object generateRandomItem(string type, string subtype,
         {
             addEnchantments(item, 1 + random(5));
         }
+
+        if (member(({ "rod", "wand" }), item->query("name")) > -1)
+        {
+            string *possibleDamageTypes = ({ "acid", "air", "chaos", "cold",
+                "earth", "electricity", "energy", "fire", "magical", "poison",
+                "water", "undead", "good", "evil", "psionic", "sonic" });
+            string damageType =
+                possibleDamageTypes[random(sizeof(possibleDamageTypes))];
+
+            item->set("primary damage type", damageType);
+            item->set("name", sprintf("%s %s", capitalize(damageType),
+                item->query("name")));
+            item->set("short", sprintf("%s %s", capitalize(damageType),
+                item->query("short")));
+        }
     }
     return item;
 }

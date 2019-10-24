@@ -2,15 +2,13 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/lib/environment/shopInventories/baseShop.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
-    addBuilding("/lib/environment/buildings/shops/blacksmith.c",
-        "east", "/lib/tutorial/eledhel/southern-city/blacksmith/0x1.c");
-
-    addExit("north", "/lib/tutorial/eledhel/southern-city/14x9.c");
-    addExit("south", "/lib/tutorial/eledhel/southern-city/14x7.c");
+    name("The Dagger Smith");
+    welcomeMessage("Welcome to the dagger smith's shop");
+    shopType("weapons");
+    shopSubType("daggers");
 }

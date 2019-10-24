@@ -2,15 +2,15 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/lib/environment/region.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
-    addBuilding("/lib/environment/buildings/shops/blacksmith.c",
-        "east", "/lib/tutorial/eledhel/southern-city/blacksmith/0x1.c");
+    setRegionName("Eledhel-southern-wainwright");
+    setRegionType("wooden building");
+    setDimensions(5, 5);
 
-    addExit("north", "/lib/tutorial/eledhel/southern-city/14x9.c");
-    addExit("south", "/lib/tutorial/eledhel/southern-city/14x7.c");
+    setCoordinate(0, 0,
+        "/lib/tutorial/eledhel/southern-city/inn/0x0.c", "room");
 }
