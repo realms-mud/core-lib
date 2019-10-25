@@ -12,5 +12,5 @@ public void Setup()
     setDimensions(5, 5);
 
     setCoordinate(0, 1,
-        "/lib/tutorial/eledhel/southern-city/blacksmith/0x1.c", "room");
+        "/lib/tutorial/eledhel/southern-city/axe-and-hammer/0x1.c", "room");
 }
