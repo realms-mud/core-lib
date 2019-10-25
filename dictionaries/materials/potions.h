@@ -62,6 +62,7 @@ private nosave mapping potions =
             "biological": "magical",
         ]),
         "base experience": 10,
+        "default value": 1250,
     ]),
     "tincture of telus":([
         "type": "power",
@@ -76,6 +77,7 @@ private nosave mapping potions =
             "biological": "magical",
         ]),
         "base experience": 5,
+        "default value": 1500,
     ]),
     "nectar of echlarhol":([
         "type": "power",
@@ -92,6 +94,7 @@ private nosave mapping potions =
             "biological": "magical",
         ]),
         "base experience": 5,
+        "default value": 1750,
     ]),
     "ilaina's elixir":([
         "type": "health",
@@ -107,6 +110,7 @@ private nosave mapping potions =
             "biological": "magical",
         ]),
         "base experience": 5,
+        "default value": 2000,
     ]),
     "acid resistance potion":([
         "type": "resistance",
@@ -121,6 +125,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "air resistance potion":([
         "type": "resistance",
@@ -135,6 +140,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "chaos resistance potion":([
         "type": "resistance",
@@ -149,6 +155,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "cold resistance potion":([
         "type": "resistance",
@@ -163,6 +170,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "disease resistance potion":([
         "type": "resistance",
@@ -177,6 +185,7 @@ private nosave mapping potions =
             "biological": "salicylate",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "earth resistance potion":([
         "type": "resistance",
@@ -191,6 +200,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "electricity resistance potion":([
         "type": "resistance",
@@ -205,6 +215,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "energy resistance potion":([
         "type": "resistance",
@@ -219,6 +230,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "evil resistance potion":([
         "type": "resistance",
@@ -233,6 +245,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "fire resistance potion":([
         "type": "resistance",
@@ -247,6 +260,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "good resistance potion":([
         "type": "resistance",
@@ -261,6 +275,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "magic resistance potion":([
         "type": "resistance",
@@ -275,6 +290,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "neutral resistance potion":([
         "type": "resistance",
@@ -289,6 +305,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "paralysis resistance potion":([
         "type": "resistance",
@@ -303,6 +320,7 @@ private nosave mapping potions =
             "biological": "neurotoxin",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "physical resistance potion":([
         "type": "resistance",
@@ -317,6 +335,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "poison resistance potion":([
         "type": "resistance",
@@ -331,6 +350,7 @@ private nosave mapping potions =
             "biological": "adrenaline",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "psionic resistance potion":([
         "type": "resistance",
@@ -345,6 +365,7 @@ private nosave mapping potions =
             "biological": "empathogen",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "sonic resistance potion":([
         "type": "resistance",
@@ -359,6 +380,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "undead resistance potion":([
         "type": "resistance",
@@ -373,6 +395,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "water resistance potion":([
         "type": "resistance",
@@ -387,6 +410,7 @@ private nosave mapping potions =
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
+        "default value": 250,
     ]),
     "strength potion":([
         "type": "attributes",
@@ -401,6 +425,7 @@ private nosave mapping potions =
             "biological": "steroid",
         ]),
         "base experience": 5,
+        "default value": 750,
     ]),
     "intelligence potion":([
         "type": "attributes",
@@ -415,6 +440,7 @@ private nosave mapping potions =
             "biological": "magical",
         ]),
         "base experience": 5,
+        "default value": 750,
     ]),
     "dexterity potion":([
         "type": "attributes",
@@ -429,6 +455,7 @@ private nosave mapping potions =
             "biological": "xanthine",
         ]),
         "base experience": 5,
+        "default value": 750,
     ]),
     "wisdom potion":([
         "type": "attributes",
@@ -443,6 +470,7 @@ private nosave mapping potions =
             "biological": "magical",
         ]),
         "base experience": 5,
+        "default value": 750,
     ]),
     "constitution potion":([
         "type": "attributes",
@@ -457,6 +485,7 @@ private nosave mapping potions =
             "biological": "adrenaline",
         ]),
         "base experience": 5,
+        "default value": 750,
     ]),
     "charisma potion":([
         "type": "attributes",
@@ -471,6 +500,7 @@ private nosave mapping potions =
             "biological": "magical",
         ]),
         "base experience": 5,
+        "default value": 750,
     ]),
     "speed potion":([
         "type": "combat",
@@ -485,6 +515,7 @@ private nosave mapping potions =
             "biological": "xanthine",
         ]),
         "base experience": 5,
+        "default value": 500,
     ]),
     "fortification potion":([
         "type": "combat",
@@ -499,6 +530,7 @@ private nosave mapping potions =
             "biological": "steroids",
         ]),
         "base experience": 5,
+        "default value": 500,
     ]),
     "tincture of combat prowess":([
         "type": "combat",
@@ -513,5 +545,6 @@ private nosave mapping potions =
             "biological": "steroids",
        ]),
         "base experience": 5,
+        "default value": 500,
     ]),
 ]);

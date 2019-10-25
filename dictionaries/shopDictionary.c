@@ -33,10 +33,21 @@ private mapping alwaysGenerate = ([
 
 private mapping consumables = ([
     "potions":([
-        "permanent": ({ "/lib/instances/items/potions/healing.c" , 
-            "/lib/instances/items/potions/mana.c" }),
+        "permanent": ({ "lib/instances/items/potions/healing.c" , 
+            "lib/instances/items/potions/mana.c" }),
         "base dir": "/lib/instances/items/potions/"
-    ])
+    ]),
+    "drinks":([
+        "permanent": ({ }),
+        "base dir": "/lib/instances/items/drinks/"
+    ]),
+    "metal":([
+        "permanent": ({ "lib/instances/items/materials/metal/iron.c",
+            "lib/instances/items/materials/metal/copper.c",
+            "lib/instances/items/materials/metal/cast-iron.c",
+            "lib/instances/items/materials/metal/bronze.c" }),
+        "base dir": "/lib/instances/items/materials/metal/"
+    ]),
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -377,11 +388,10 @@ public nomask varargs void generateConsumableItems(object shop,
 
     int numItems = shop->randomItemsToGenerate();
 
-    string *itemBlueprints = 
+    string *itemBlueprints =
         filter(get_dir(consumables[type]["base dir"], 0x10),
-            (: sizeof(regexp(({ $1 }), "\.c$")) :));
-
-    itemBlueprints -= consumables[type]["permanent"];
+        (: sizeof(regexp(({ $1 }), "\.c$")) && (member($2, $1) == -1) :), 
+            consumables[type]["permanent"]);
 
     for (int i = 0; i < numItems; i++)
     {
@@ -389,7 +399,7 @@ public nomask varargs void generateConsumableItems(object shop,
             clone_object(itemBlueprints[random(sizeof(itemBlueprints))]);
 
         item->identify();
-        item->set("quantity", 10 + random(91));
+        item->set("quantity", 10 + random(16));
         shop->storeItem(item);
         destruct(item);
     }

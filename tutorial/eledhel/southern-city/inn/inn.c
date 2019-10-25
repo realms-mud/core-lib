@@ -7,7 +7,7 @@ inherit "/lib/environment/region.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setRegionName("Eledhel-southern-wainwright");
+    setRegionName("Eledhel-southern-inn");
     setRegionType("wooden building");
     setDimensions(5, 5);
 

@@ -379,3 +379,23 @@ void DisplayIsCorrectWithTwnetyFourBitColorSelected()
         "X is the option about which you would like further details.\n\x1b[0m\x1b[0;38;2;160;220;60;1m\x1b[0m",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayIsCorrectForConsumables()
+{
+    destruct(Store);
+
+    Store = clone_object("/lib/environment/shopInventories/baseShop.c");
+    Store->name("Bob's Stuff");
+    Store->welcomeMessage("Remember: Nobody outsells Bob");
+    Store->shopType("potions");
+    load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Store);
+    Selector->setStore(Store);
+
+    Selector->initiateSelector(Player);
+    move_object(Selector, Player);
+    command("1", Player);
+
+    ExpectSubStringMatch("Healing Potion.*Mana Potion",
+        Player->caughtMessage());
+}

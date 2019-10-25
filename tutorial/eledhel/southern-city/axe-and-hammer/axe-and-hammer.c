@@ -7,7 +7,7 @@ inherit "/lib/environment/region.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setRegionName("Eledhel-southern-blacksmith");
+    setRegionName("Eledhel-southern-axe-and-hammer");
     setRegionType("limestone building");
     setDimensions(5, 5);
 

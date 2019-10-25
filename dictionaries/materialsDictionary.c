@@ -32,6 +32,14 @@ private nosave string *validWeaponTypes = ({ "shield", "axe", "long sword",
 private nosave string *validDamageTypes = ({ "slash", "bludgeon", "thrust" });
 private nosave object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
+private mapping defaultValues = ([
+    "armor": 250,
+    "weapon": 250,
+    "instrument": 250,
+    "potion": 150,
+
+]);
+
 /////////////////////////////////////////////////////////////////////////////
 private nomask int isValidItem(object item)
 {
@@ -246,6 +254,11 @@ private nomask mixed getBlueprintData(object item, string type)
     {
         ret = instrumentBlueprints[itemType][type];
     }
+    else if (isValidPotionBlueprint(itemType) &&
+        member(potions[itemType], type))
+    {
+        ret = potions[itemType][type];
+    }
     return ret;
 }
 
@@ -289,13 +302,14 @@ public nomask int getDefaultValue(object item)
     int ret = getBlueprintModifier(item, "default value");
 
     string material = item->query("material");
-
+ 
     if (member(materials, material) && member(materials[material],
         "value multiplier"))
     {
         ret = to_int(ret * materials[material]["value multiplier"]);
     }
-    return to_int(ret + (250 * (1 + 0.35 * (getMaterialCraftsmanshipBonus(item))) *
+    return to_int(ret + (defaultValues[item->query("type")] * 
+        (1 + 0.35 * (getMaterialCraftsmanshipBonus(item))) *
         (1 + 10 * item->query("enchanted"))));
 }
 
