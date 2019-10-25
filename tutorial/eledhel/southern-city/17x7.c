@@ -11,7 +11,7 @@ public void Setup()
     addBuilding("/lib/environment/buildings/trades/foundry.c", "west",
         "/lib/tutorial/eledhel/southern-city/foundry/2x4.c");
     addBuilding("/lib/environment/buildings/shops/armorer.c",
-        "east", "/lib/tutorial/eledhel/southern-city/medium-armor/0x1.c");
+        "east", "/lib/tutorial/eledhel/southern-city/18x7.c");
 
     addExit("north", "/lib/tutorial/eledhel/southern-city/17x8.c");
     addExit("south", "/lib/tutorial/eledhel/southern-city/17x6.c");

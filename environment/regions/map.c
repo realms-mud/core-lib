@@ -26,7 +26,7 @@ private nomask varargs string displayCell(mapping location,
     }
 
     return (hasExit(location, direction) && (member(({ "room", "path", "entry", 
-        "exit", "shop" }), location["room type"]) > -1)) ?
+        "exit" }), location["room type"]) > -1)) ?
         configuration->decorate(displayCharacter[direction][charset],
             (userHere ? "user location" : "exit"), "map", colorConfiguration) :
         configuration->decorate(defaultCell, (userHere ? "reverse" : "none"),

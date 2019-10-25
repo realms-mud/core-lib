@@ -8,6 +8,7 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setInterior("/lib/environment/interiors/limestone-interior-shop.c");
+    addItem("/lib/environment/items/lighting/sconce.c", "east");
     addItem("/lib/environment/items/lighting/window.c", "west");
 
     addExitWithDoor("west", "/lib/tutorial/eledhel/southern-city/17x8.c");

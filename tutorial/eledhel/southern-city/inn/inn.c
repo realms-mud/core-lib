@@ -11,6 +11,6 @@ public void Setup()
     setRegionType("wooden building");
     setDimensions(5, 5);
 
-    setCoordinate(0, 0,
-        "/lib/tutorial/eledhel/southern-city/inn/0x0.c", "room");
+    setCoordinate(0, 1,
+        "/lib/tutorial/eledhel/southern-city/inn/0x1.c", "room");
 }

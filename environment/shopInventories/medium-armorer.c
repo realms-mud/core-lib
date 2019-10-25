@@ -2,15 +2,13 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/lib/environment/shopInventories/baseShop.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
-    addBuilding("/lib/environment/buildings/shops/armorer.c",
-        "east", "/lib/tutorial/eledhel/southern-city/18x6.c");
-
-    addExit("north", "/lib/tutorial/eledhel/southern-city/17x7.c");
-    addExit("south", "/lib/tutorial/eledhel/southern-city/17x5.c");
+    name("The Armorer");
+    welcomeMessage("Welcome to the armorer's shop");
+    shopType("armor");
+    shopSubType("medium armor");
 }
