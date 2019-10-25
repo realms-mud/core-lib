@@ -28,6 +28,14 @@ private mapping alwaysGenerate = ([
         "heavy armor":({ "breastplate", "brigandine", "plate-armor", "scale-armor", "splint-mail", "plate-leg-greaves", "plate-arm-greaves"}),
         "clothing":({ "cloak", "robes", "dress", "shirt", "pants", "skirt", "gown"}),
         "accessories":({ "belt", "boots", "helmet" }),
+    ]),
+]);
+
+private mapping consumables = ([
+    "potions":([
+        "permanent": ({ "/lib/instances/items/potions/healing.c" , 
+            "/lib/instances/items/potions/mana.c" }),
+        "base dir": "/lib/instances/items/potions/"
     ])
 ]);
 
@@ -351,13 +359,57 @@ public nomask void generateRandomItems(object shop)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs void generateConsumableItems(object shop, 
+    int excludePermanent)
+{
+    string type = shop->shopType();
+    if (!excludePermanent && member(consumables, type))
+    {
+        foreach(string itemName in consumables[type]["permanent"])
+        {
+            object item = clone_object(itemName);
+
+            item->identify();
+            shop->storeItem(item, 1);
+            destruct(item);
+        }
+    }
+
+    int numItems = shop->randomItemsToGenerate();
+
+    string *itemBlueprints = 
+        filter(get_dir(consumables[type]["base dir"], 0x10),
+            (: sizeof(regexp(({ $1 }), "\.c$")) :));
+
+    itemBlueprints -= consumables[type]["permanent"];
+
+    for (int i = 0; i < numItems; i++)
+    {
+        object item = 
+            clone_object(itemBlueprints[random(sizeof(itemBlueprints))]);
+
+        item->identify();
+        item->set("quantity", 10 + random(91));
+        shop->storeItem(item);
+        destruct(item);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void generateInventory(object shop)
 {
-    if (shop->shopSubType() != "all")
+    if (shop->shopSellsConsumables())
     {
-        generateRandomItems(shop);
+        generateConsumableItems(shop);
     }
-    generateDefaultItems(shop);
+    else
+    {
+        if (shop->shopSubType() != "all")
+        {
+            generateRandomItems(shop);
+        }
+        generateDefaultItems(shop);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

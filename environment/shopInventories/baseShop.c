@@ -10,11 +10,18 @@ private string WelcomeMessage = "Welcome";
 private string ShopType = "unknown";
 private string ShopItemSubType = "all";
 private int ItemsToGenerate = 15;
+private string *equipmentTypes = ({ "armor", "instruments", "weapons" });
 
 /////////////////////////////////////////////////////////////////////////////
 public string Type()
 {
     return "shop";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int shopSellsConsumables()
+{
+    return member(equipmentTypes, ShopType) == -1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -80,25 +87,35 @@ public nomask varargs int storeItem(object item, int isPermanent)
         ret = 1;
         object dictionary = load_object("/lib/dictionaries/materialsDictionary.c");
 
-        list[object_name(item)] = ([
-            "name": item->query("name"),
-            "description": item->long(1),
-            "value": item->query("value"),
-            "type": item->query("type"),
-            "subType": dictionary->getBlueprintDetails(item, "subtype"),
-            "quality": dictionary->getMaterialQualityFormatter(item),
-            "summary": dictionary->getItemSummary(item),
-            "data": item->query("all")
-        ]);
+        string key = item->query("quantity") ?
+            program_name(item) : object_name(item);
 
+        if (member(list, key))
+        {
+            list[key]["quantity"] += item->query("quantity");
+        }
+        else
+        {
+            list[key] = ([
+                "name": item->query("name"),
+                "description": item->long(1),
+                "value": item->query("value"),
+                "type": item->query("type"),
+                "quantity": item->query("quantity"),
+                "subType": dictionary->getBlueprintDetails(item, "subtype"),
+                "quality": dictionary->getMaterialQualityFormatter(item),
+                "summary": dictionary->getItemSummary(item),
+                "data": item->query("all")
+            ]);
+        }
         if (item->query("enchanted") || item->query("craftsmanship"))
         {
-            list[object_name(item)]["do not prune"] = 1;
+            list[key]["do not prune"] = 1;
         }
         if (isPermanent)
         {
-            list[object_name(item)]["permanent"] = 1;
-            list[object_name(item)]["do not prune"] = 1;
+            list[key]["permanent"] = 1;
+            list[key]["do not prune"] = 1;
         }
     }
     return ret;
@@ -112,7 +129,13 @@ public nomask varargs int buyItem(string key)
     if (member(list, key))
     {
         ret = 1;
-        if (!member(list[key], "permanent"))
+
+        if (list[key]["quantity"] > 0)
+        {
+            list[key]["quantity"]--;
+        }
+
+        if (!member(list[key], "permanent") && (list[key]["quantity"] < 1))
         {
             m_delete(list, key);
         }
@@ -186,6 +209,14 @@ public void updateShopInventory()
     {
         ItemsToGenerate = 16 - inventorySize + random(6);
         object dictionary = load_object("/lib/dictionaries/shopDictionary.c");
-        dictionary->generateRandomItems(this_object());
+
+        if (shopSellsConsumables())
+        {
+            dictionary->generateConsumableItems(this_object(), 1);
+        }
+        else
+        {
+            dictionary->generateRandomItems(this_object());
+        }
     }
 }

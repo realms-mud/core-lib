@@ -108,6 +108,26 @@ void BuyItemRemovesItemFromInventory()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void BuyItemWithQuantityRemovesItemWhenQuantityBecomesZero()
+{
+    object potion = load_object("/lib/instances/items/potions/healing.c");
+    potion->set("quantity", 2);
+
+    ExpectEq(0, sizeof(Shop->storeInventory()));
+
+    ExpectTrue(Shop->storeItem(potion));
+    ExpectEq(1, sizeof(Shop->storeInventory()));
+
+    ExpectTrue(Shop->buyItem("lib/instances/items/potions/healing.c"));
+    ExpectEq(1, sizeof(Shop->storeInventory()));
+
+    ExpectTrue(Shop->buyItem("lib/instances/items/potions/healing.c"));
+    ExpectEq(0, sizeof(Shop->storeInventory()));
+
+    destruct(potion);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void BuyItemDoesNotRemovePermanentItemsFromInventory()
 {
     object sword = load_object("/lib/instances/items/weapons/swords/long-sword.c");
@@ -206,4 +226,21 @@ void UpdateShopInventoryAddsEquipment()
     ExpectEq(0, sizeof(Shop->storeInventory()));
     Shop->updateShopInventory();
     ExpectTrue(15 < sizeof(Shop->storeInventory()));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanUpdateNonEquipmentShops()
+{
+    Shop->shopType("potions");
+
+    ExpectEq(0, sizeof(Shop->storeInventory()));
+    load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Shop);
+
+    string currentInventory = sprintf("%O\n", Shop->storeInventory());
+    int shopSize = sizeof(Shop->storeInventory());
+    ExpectTrue(2 < shopSize);
+
+    Shop->updateShopInventory();
+    ExpectTrue(shopSize <= sizeof(Shop->storeInventory()));
+    ExpectNotEq(currentInventory, sprintf("%O\n", Shop->storeInventory()));
 }
