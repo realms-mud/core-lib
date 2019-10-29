@@ -1379,4 +1379,15 @@ private nosave mapping food =
         ]),
         "base experience": 5,
     ]),
+    "basil": ([
+        "type": "herb",
+        "subtype": "basil",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "basil seed": 1
+        ]),
+        "base experience": 1,
+    ]),
 ]);

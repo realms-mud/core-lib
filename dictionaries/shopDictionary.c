@@ -37,6 +37,10 @@ private mapping consumables = ([
             "lib/instances/items/potions/mana.c" }),
         "base dir": "/lib/instances/items/potions/"
     ]),
+    "herbs":([
+        "permanent": ({  }),
+        "base dir": "/lib/instances/items/food/plants/herbs/"
+    ]),
     "drinks":([
         "permanent": ({ }),
         "base dir": "/lib/instances/items/drinks/"
@@ -47,6 +51,10 @@ private mapping consumables = ([
             "lib/instances/items/materials/metal/cast-iron.c",
             "lib/instances/items/materials/metal/bronze.c" }),
         "base dir": "/lib/instances/items/materials/metal/"
+    ]),
+    "gems":([
+        "permanent": ({  }),
+        "base dir": "/lib/instances/items/materials/crystal/"
     ]),
 ]);
 
