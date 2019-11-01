@@ -11,7 +11,7 @@ public void Setup()
     addItem("/lib/environment/items/lighting/window.c", "west");
     addItem("/lib/environment/items/shops/grocer.c");
 
-    addDecorator("2x1 building 0x0 door");
+    addDecorator("2x1 grocer 0x0");
     addExit("west", "/lib/tutorial/eledhel/southern-city/20x9.c");
     addExitWithDoor("east", "/lib/tutorial/eledhel/southern-city/22x9.c");
 }

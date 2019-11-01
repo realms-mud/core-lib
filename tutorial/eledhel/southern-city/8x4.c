@@ -9,5 +9,5 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
-    addDecorator("tall southwest tower");
+    addDecorator("scion guild 1x1");
 }

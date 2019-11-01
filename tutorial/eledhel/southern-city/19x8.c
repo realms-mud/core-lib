@@ -9,5 +9,5 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
-    addDecorator("2x1 building 1x0 door");
+    addDecorator("2x1 sword smith 1x0");
 }

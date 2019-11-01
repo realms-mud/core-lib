@@ -13,7 +13,7 @@ public void Setup()
     addItem("/lib/environment/items/lighting/window.c", "south");
     addItem("/lib/environment/items/lighting/sconce.c", "north");
 
-    addDecorator("2x1 building 1x0 door");
+    addDecorator("2x1 bowyer 1x0");
     addExitWithDoor("west", "/lib/tutorial/eledhel/southern-city/15x9.c");
     addExitWithDoor("east", "/lib/tutorial/eledhel/southern-city/17x9.c");
 }

@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    addBuilding("/lib/environment/buildings/guilds/scion-of-dhuras.c", "west");
 
-    addDecorator("tall southwest tower");
+    addExit("north", "/lib/tutorial/eledhel/southern-city/9x5.c");
+    addExit("south", "/lib/tutorial/eledhel/southern-city/9x3.c");
 }

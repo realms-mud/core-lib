@@ -13,6 +13,6 @@ public void Setup()
     addItem("/lib/environment/items/lighting/window.c", "south");
     addItem("/lib/environment/items/lighting/sconce.c", "north");
 
-    addDecorator("1x1 building type 1");
+    addDecorator("1x1 building armorer 2");
     addExitWithDoor("west", "/lib/tutorial/eledhel/southern-city/17x6.c");
 }
