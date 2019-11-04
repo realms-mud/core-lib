@@ -10,4 +10,6 @@ public void Setup()
     setTerrain("/lib/environment/terrain/city.c");
 
     addDecorator("inner east-west wall");
+    addExit("east", "/lib/tutorial/eledhel/southern-city/18x1.c");
+    addExit("west", "/lib/tutorial/eledhel/southern-city/16x1.c");
 }

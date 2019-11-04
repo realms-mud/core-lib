@@ -11,6 +11,31 @@ private string ShopType = "unknown";
 private string ShopItemSubType = "all";
 private int ItemsToGenerate = 15;
 private string *equipmentTypes = ({ "armor", "instruments", "weapons" });
+private mapping *specifiedItems = ({});
+
+/////////////////////////////////////////////////////////////////////////////
+public int itemListIsSpecified()
+{
+    return sizeof(specifiedItems) > 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void addInventoryItem(string type, string subType, string *items)
+{
+    specifiedItems += ({
+        ([
+            "type": type,
+            "sub type": subType,
+            "items": items
+        ])
+    });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public mapping *specifiedItems()
+{
+    return specifiedItems + ({});
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public string Type()

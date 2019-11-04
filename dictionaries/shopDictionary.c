@@ -365,11 +365,24 @@ public nomask void generateRandomItems(object shop)
 
     object materials = load_object("/lib/dictionaries/materialsDictionary.c");
 
+    mapping *specifiedItems = shop->specifiedItems();
+    string shopType = shop->shopType();
+    string subType = shop->shopSubType();
+    string *listOfItems = 0;
+
     for (int i = 0; i < numItems; i++)
     {
-        object item = materials->generateRandomItem(shop->shopType(),
-            (shop->shopSubType() != "all") ? shop->shopSubType() : "",
-            100);
+        if (shop->itemListIsSpecified())
+        {
+            mapping currentItem =
+                specifiedItems[random(sizeof(specifiedItems))];
+
+            shopType = currentItem["type"];
+            subType = currentItem["sub type"];
+            listOfItems = currentItem["items"];
+        }
+        object item = materials->generateRandomItem(shopType,
+            (subType != "all") ? subType : "", 100, listOfItems);
 
         item->identify();
         shop->storeItem(item);
@@ -422,11 +435,16 @@ public nomask void generateInventory(object shop)
     }
     else
     {
-        if (shop->shopSubType() != "all")
+        if (shop->itemListIsSpecified() ||
+            (shop->shopSubType() != "all"))
         {
             generateRandomItems(shop);
         }
-        generateDefaultItems(shop);
+
+        if (!shop->itemListIsSpecified())
+        {
+            generateDefaultItems(shop);
+        }
     }
 }
 

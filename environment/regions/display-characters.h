@@ -30,6 +30,10 @@ private mapping displayCharacter = ([
         "ascii": "#",
         "unicode": "\xe2\x96\xa3"
     ]),
+    "training ground": ([
+        "ascii": "O",
+        "unicode": "\xe2\x9c\xa0"
+    ]),
     "shop": ([
         "ascii": "$",
         "unicode": "$"

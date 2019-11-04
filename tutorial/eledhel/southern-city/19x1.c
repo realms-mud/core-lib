@@ -13,4 +13,5 @@ public void Setup()
 
     addDecorator("inner east-west wall");
     addExit("north", "/lib/tutorial/eledhel/southern-city/19x2.c");
+    addExit("west", "/lib/tutorial/eledhel/southern-city/18x1.c");
 }

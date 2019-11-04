@@ -1068,6 +1068,11 @@ private nosave mapping decorators = ([
         ]),
     ]),
     "map": ([
+        "none": ([
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;245m",
+            "24-bit": "\x1b[0;38;2;138;138;138m"
+        ]),
         "corridor": ([
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;240m",
@@ -1093,6 +1098,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;48;5;52;38;5;10m",
             "24-bit": "\x1b[0;48;2;90;0;0;38;2;0;255;0m",
         ]),
+        "training ground": ([
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;190m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
         "reverse": ([
             "3-bit": "\x1b[0;41m",
             "8-bit": "\x1b[0;48;5;52m",
@@ -1110,8 +1120,8 @@ private nosave mapping decorators = ([
         ]),
         "wood building": ([
             "3-bit": "\x1b[0;32m",
-            "8-bit": "\x1b[0;38;5;212m",
-            "24-bit": "\x1b[0;38;2;100;200;10m"
+            "8-bit": "\x1b[0;38;5;190m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
         ]),
         "stone building": ([
             "3-bit": "\x1b[0;36;1m",

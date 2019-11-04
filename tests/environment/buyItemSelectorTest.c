@@ -399,3 +399,27 @@ void DisplayIsCorrectForConsumables()
     ExpectSubStringMatch("Healing Potion.*Mana Potion",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSpecifyExactInventoryItems()
+{
+    destruct(Store);
+
+    Store = clone_object("/lib/environment/shopInventories/baseShop.c");
+    Store->name("Bob's Stuff");
+    Store->welcomeMessage("Remember: Nobody outsells Bob");
+    Store->shopType("weapons");
+    Store->setRandomItemsToGenerate(40);
+    Store->addInventoryItem("weapons", "staffs", ({ "rod", "staff", "wand", "ornate staff" }));
+    Store->addInventoryItem("armor", "accessories", ({ "bracers", "amulet", "hat", "ring", "circlet" }));
+    Store->addInventoryItem("armor", "clothing", ({ "robes", "ornate robes" }));
+
+    load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Store);
+    Selector->setStore(Store);
+
+    Selector->initiateSelector(Player);
+    move_object(Selector, Player);
+
+    ExpectSubStringMatch("Armors - Accessory.*Armors - Clothing.*Weapons - Staff",
+        Player->caughtMessage());
+}

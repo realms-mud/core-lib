@@ -1285,9 +1285,14 @@ private nomask varargs string *getListOfBlueprints(string type, string subtype,
     {
         foreach(string file in listOfPotentialItems)
         {
-            itemBlueprints += ({ sprintf("/lib/instances/items/%s%s/%s.c",
+            string item = sprintf("/lib/instances/items/%s%s/%s.c",
                 type, (subtype && (subtype != "")) ? "/" + subtype : "",
-                file) });
+                file);
+
+            item = regreplace(item, " ", "-", 1);
+            item = regreplace(item, "'", "", 1);
+
+            itemBlueprints += ({ item });
         }
     }
     else

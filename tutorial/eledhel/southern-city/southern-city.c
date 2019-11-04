@@ -330,7 +330,7 @@ public void Setup()
     setCoordinate(15, 0,
         "/lib/tutorial/eledhel/southern-city/15x0.c", "none");
     setCoordinate(15, 1,
-        "/lib/tutorial/eledhel/southern-city/15x1.c", "none");
+        "/lib/tutorial/eledhel/southern-city/15x1.c", "training ground");
     setCoordinate(15, 2,
         "/lib/tutorial/eledhel/southern-city/15x2.c", "path");
     setCoordinate(15, 3,
@@ -351,7 +351,7 @@ public void Setup()
     setCoordinate(16, 0,
         "/lib/tutorial/eledhel/southern-city/16x0.c", "none");
     setCoordinate(16, 1,
-        "/lib/tutorial/eledhel/southern-city/16x1.c", "none");
+        "/lib/tutorial/eledhel/southern-city/16x1.c", "path");
     setCoordinate(16, 2,
         "/lib/tutorial/eledhel/southern-city/16x2.c", "path");
     setCoordinate(16, 3,
@@ -372,7 +372,7 @@ public void Setup()
     setCoordinate(17, 0,
         "/lib/tutorial/eledhel/southern-city/17x0.c", "none");
     setCoordinate(17, 1,
-        "/lib/tutorial/eledhel/southern-city/17x1.c", "none");
+        "/lib/tutorial/eledhel/southern-city/17x1.c", "path");
     setCoordinate(17, 2,
         "/lib/tutorial/eledhel/southern-city/17x2.c", "path");
     setCoordinate(17, 3,
@@ -393,7 +393,7 @@ public void Setup()
     setCoordinate(18, 0,
         "/lib/tutorial/eledhel/southern-city/18x0.c", "none");
     setCoordinate(18, 1,
-        "/lib/tutorial/eledhel/southern-city/18x1.c", "none");
+        "/lib/tutorial/eledhel/southern-city/18x1.c", "training ground");
     setCoordinate(18, 2,
         "/lib/tutorial/eledhel/southern-city/18x2.c", "path");
     setCoordinate(18, 3,
