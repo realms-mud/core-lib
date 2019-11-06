@@ -45,6 +45,10 @@ private mapping consumables = ([
         "permanent": ({ }),
         "base dir": "/lib/instances/items/drinks/"
     ]),
+    "books":([
+        "permanent": ({ }),
+        "base dir": "/lib/instances/items/books/"
+    ]),
     "metal":([
         "permanent": ({ "lib/instances/items/materials/metal/iron.c",
             "lib/instances/items/materials/metal/copper.c",

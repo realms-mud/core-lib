@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    addBuilding("/lib/environment/buildings/civic/university-building.c",
+        "north");
 
     addExit("east", "/lib/tutorial/eledhel/southern-city/3x5.c");
     addExit("west", "/lib/tutorial/eledhel/southern-city/1x5.c");

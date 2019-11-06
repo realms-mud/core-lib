@@ -7,7 +7,12 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
+    setInterior("/lib/environment/interiors/opulent-shop.c");
+    addShop("/lib/environment/shopInventories/mage-shop.c");
+    addItem("/lib/environment/items/lighting/window.c", "west");
+    addItem("/lib/environment/items/lighting/window.c", "south");
+    addItem("/lib/environment/items/lighting/sconce.c", "north");
 
-    addDecorator("tall southwest tower");
+    addDecorator("1x1 building arcane");
+    addExitWithDoor("west", "/lib/tutorial/eledhel/southern-city/6x7.c");
 }

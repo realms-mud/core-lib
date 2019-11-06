@@ -7,7 +7,12 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
+    setInterior("/lib/environment/interiors/wood-interior-shop.c");
+    addShop("/lib/environment/shopInventories/books.c");
+    addItem("/lib/environment/items/lighting/window.c", "west");
+    addItem("/lib/environment/items/lighting/window.c", "south");
+    addItem("/lib/environment/items/lighting/sconce.c", "north");
 
-    addDecorator("tall southwest tower");
+    addDecorator("1x1 building books");
+    addExitWithDoor("west", "/lib/tutorial/eledhel/southern-city/6x6.c");
 }
