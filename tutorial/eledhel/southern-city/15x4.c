@@ -8,4 +8,6 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+
+    addDecorator("1x1 deciduous trees");
 }

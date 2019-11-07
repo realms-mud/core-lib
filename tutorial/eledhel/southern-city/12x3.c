@@ -12,6 +12,9 @@ public void Setup()
     addBuilding("/lib/environment/buildings/shops/apothecary.c", 
         "west", "/lib/tutorial/eledhel/southern-city/11x3.c");
 
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
+
     addExit("north", "/lib/tutorial/eledhel/southern-city/12x4.c");
     addExit("south", "/lib/tutorial/eledhel/southern-city/12x2.c");
 }

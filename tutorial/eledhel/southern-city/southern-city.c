@@ -71,7 +71,7 @@ public void Setup()
     setCoordinate(2, 7,
         "/lib/tutorial/eledhel/southern-city/2x7.c", "none");
     setCoordinate(2, 8,
-        "/lib/tutorial/eledhel/southern-city/2x8.c", "none");
+        "/lib/tutorial/eledhel/southern-city/2x8.c", "path");
     setCoordinate(2, 9,
         "/lib/tutorial/eledhel/southern-city/2x9.c", "none");
 
@@ -92,7 +92,7 @@ public void Setup()
     setCoordinate(3, 7,
         "/lib/tutorial/eledhel/southern-city/3x7.c", "none");
     setCoordinate(3, 8,
-        "/lib/tutorial/eledhel/southern-city/3x8.c", "none");
+        "/lib/tutorial/eledhel/southern-city/3x8.c", "path");
     setCoordinate(3, 9,
         "/lib/tutorial/eledhel/southern-city/3x9.c", "none");
 
@@ -113,7 +113,7 @@ public void Setup()
     setCoordinate(4, 7,
         "/lib/tutorial/eledhel/southern-city/4x7.c", "none");
     setCoordinate(4, 8,
-        "/lib/tutorial/eledhel/southern-city/4x8.c", "none");
+        "/lib/tutorial/eledhel/southern-city/4x8.c", "path");
     setCoordinate(4, 9,
         "/lib/tutorial/eledhel/southern-city/4x9.c", "none");
 
@@ -134,7 +134,7 @@ public void Setup()
     setCoordinate(5, 7,
         "/lib/tutorial/eledhel/southern-city/5x7.c", "none");
     setCoordinate(5, 8,
-        "/lib/tutorial/eledhel/southern-city/5x8.c", "none");
+        "/lib/tutorial/eledhel/southern-city/5x8.c", "path");
     setCoordinate(5, 9,
         "/lib/tutorial/eledhel/southern-city/5x9.c", "none");
 
@@ -176,7 +176,7 @@ public void Setup()
     setCoordinate(7, 7,
         "/lib/tutorial/eledhel/southern-city/7x7.c", "none");
     setCoordinate(7, 8,
-        "/lib/tutorial/eledhel/southern-city/7x8.c", "none");
+        "/lib/tutorial/eledhel/southern-city/7x8.c", "path");
     setCoordinate(7, 9,
         "/lib/tutorial/eledhel/southern-city/7x9.c", "none");
 
@@ -197,7 +197,7 @@ public void Setup()
     setCoordinate(8, 7,
         "/lib/tutorial/eledhel/southern-city/8x7.c", "none");
     setCoordinate(8, 8,
-        "/lib/tutorial/eledhel/southern-city/8x8.c", "none");
+        "/lib/tutorial/eledhel/southern-city/8x8.c", "path");
     setCoordinate(8, 9,
         "/lib/tutorial/eledhel/southern-city/8x9.c", "none");
 
@@ -336,7 +336,7 @@ public void Setup()
     setCoordinate(15, 3,
         "/lib/tutorial/eledhel/southern-city/15x3.c", "none");
     setCoordinate(15, 4,
-        "/lib/tutorial/eledhel/southern-city/15x4.c", "none");
+        "/lib/tutorial/eledhel/southern-city/15x4.c", "plants");
     setCoordinate(15, 5,
         "/lib/tutorial/eledhel/southern-city/15x5.c", "path");
     setCoordinate(15, 6,

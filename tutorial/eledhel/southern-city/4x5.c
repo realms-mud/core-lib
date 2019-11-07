@@ -11,6 +11,9 @@ public void Setup()
     addBuilding("/lib/environment/buildings/civic/university-building.c",
         "north", "/lib/tutorial/eledhel/southern-city/university/15x0.c");
 
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "east");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");
+
     addExit("east", "/lib/tutorial/eledhel/southern-city/5x5.c");
     addExit("west", "/lib/tutorial/eledhel/southern-city/3x5.c");
 }

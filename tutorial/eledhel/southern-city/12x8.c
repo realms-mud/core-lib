@@ -9,6 +9,9 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
+
     addExit("north", "/lib/tutorial/eledhel/southern-city/12x9.c");
     addExit("south", "/lib/tutorial/eledhel/southern-city/12x7.c");
 }

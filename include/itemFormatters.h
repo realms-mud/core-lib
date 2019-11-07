@@ -1103,6 +1103,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;190m",
             "24-bit": "\x1b[0;38;2;200;200;0m"
         ]),
+        "plants": ([
+            "3-bit": "\x1b[0;32;1m",
+            "8-bit": "\x1b[0;38;5;35m",
+            "24-bit": "\x1b[0;38;2;0;175;90m",
+        ]),
         "reverse": ([
             "3-bit": "\x1b[0;41m",
             "8-bit": "\x1b[0;48;5;52m",

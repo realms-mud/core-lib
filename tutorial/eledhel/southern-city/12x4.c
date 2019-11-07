@@ -13,6 +13,9 @@ public void Setup()
     addBuilding("/lib/environment/buildings/shops/herbalist.c",
         "west", "/lib/tutorial/eledhel/southern-city/11x4.c");
 
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
+
     addExit("north", "/lib/tutorial/eledhel/southern-city/12x5.c");
     addExit("south", "/lib/tutorial/eledhel/southern-city/12x3.c");
 }

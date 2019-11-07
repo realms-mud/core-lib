@@ -11,6 +11,9 @@ public void Setup()
     addBuilding("/lib/environment/buildings/guilds/scion-of-dhuras.c",
         "south", "/lib/tutorial/eledhel/southern-city/scion-of-dhuras/5x5.c");
 
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "east");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");
+
     addExit("east", "/lib/tutorial/eledhel/southern-city/9x5.c");
     addExit("west", "/lib/tutorial/eledhel/southern-city/7x5.c");
 }

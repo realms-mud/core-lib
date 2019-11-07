@@ -8,7 +8,11 @@
 public nomask varargs string decorate(string text, string textClass, string type, string configuration)
 {
     string ret = 0;
-    if (member(decorators, type) && member(decorators[type], textClass) &&
+    if (sizeof(regexp(({ textClass }), "\x1b", 1)))
+    {
+        ret = textClass;
+    }
+    else if (member(decorators, type) && member(decorators[type], textClass) &&
         member(decorators[type][textClass], configuration))
     {
         ret = decorators[type][textClass][configuration];

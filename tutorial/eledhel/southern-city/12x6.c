@@ -11,6 +11,9 @@ public void Setup()
     addBuilding("/lib/environment/buildings/shops/jeweler.c",
         "east", "/lib/tutorial/eledhel/southern-city/13x6.c");
 
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
+
     addExit("north", "/lib/tutorial/eledhel/southern-city/12x7.c");
     addExit("south", "/lib/tutorial/eledhel/southern-city/12x5.c");
 }
