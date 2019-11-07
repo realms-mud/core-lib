@@ -7,7 +7,8 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
+    setInterior("/lib/environment/interiors/opulent-entry.c");
+    addItem("/lib/environment/items/lighting/window.c", "west");
 
-    addDecorator("1x1 building type 2");
+    addExitWithDoor("south", "/lib/tutorial/eledhel/southern-city/1x4.c");
 }

@@ -8,6 +8,13 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    addBuilding("/lib/environment/buildings/military/military-training-ground.c",
+        "south");
+    addBuilding("/lib/environment/buildings/military/city-wall.c", "south");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "east");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
 
     addExit("north", "/lib/tutorial/eledhel/southern-city/16x3.c");
     addExit("south", "/lib/tutorial/eledhel/southern-city/16x1.c");

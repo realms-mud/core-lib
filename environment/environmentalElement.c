@@ -9,7 +9,7 @@ protected int isLegacy = 0;
 protected int LightLevelWhenDetailsVisible = 6;
 
 protected int suppressAction = 0; 
-private string elementName = 0;
+protected string elementName = 0;
 protected string State = "default";
 private int MimicExteriorLighting = 0;
 

@@ -2,12 +2,13 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/lib/environment/buildings/baseBuilding.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
+    Name("city wall");
+    setFloorPlanType("military");
 
-    addDecorator("1x1 building type 2");
+    addDescriptionTemplate("the city wall");
 }

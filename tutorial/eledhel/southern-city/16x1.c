@@ -9,6 +9,9 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
+    addBuilding("/lib/environment/buildings/military/city-wall.c", "south");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+
     addDecorator("inner east-west wall");
     addExit("north", "/lib/tutorial/eledhel/southern-city/16x2.c");
     addExit("east", "/lib/tutorial/eledhel/southern-city/17x1.c");

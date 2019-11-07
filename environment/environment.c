@@ -892,7 +892,8 @@ private nomask int getElementLighting()
 {
     int ret = 0;
 
-    foreach(string elementType in({ "terrain", "feature", "building", "item" }))
+    foreach(string elementType in({ "terrain", "feature", "building", 
+        "item", "door" }))
     {
         if (sizeof(environmentalElements[elementType]))
         {

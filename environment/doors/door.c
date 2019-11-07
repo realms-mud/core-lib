@@ -7,7 +7,7 @@ inherit "/lib/environment/doors/baseDoor.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("generic door");
+    Name("door");
 
     addDescriptionTemplate("a door");
 }

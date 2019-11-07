@@ -8,8 +8,15 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    addBuilding("/lib/environment/buildings/military/archery-range.c",
+        "south");
+    addBuilding("/lib/environment/buildings/military/city-wall.c", "south");
+    addBuilding("/lib/environment/buildings/homes/large-ornate-house.c",
+        "north", "/lib/tutorial/eledhel/southern-city/anguleith/3x0.c");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "east");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");
+    addFeature("/lib/environment/features/paths/entry-path.c", "north");
 
-    addDecorator("tall southwest tower");
     addExit("west", "/lib/tutorial/eledhel/southern-city/4x2.c");
     addExit("east", "/lib/tutorial/eledhel/southern-city/6x2.c");
 }

@@ -17,7 +17,7 @@ void Setup()
     Dictionary->setDay(92);
     Dictionary->timeOfDay("noon");
 
-    Door = clone_object("/lib/environment/doors/baseDoor.c");
+    Door = clone_object("/lib/environment/doors/door.c");
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User->Name("Bob");

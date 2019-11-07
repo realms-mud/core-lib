@@ -2,12 +2,12 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/lib/environment/interiors/baseInterior.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
+    Name("opulent entry");
 
-    addDecorator("1x1 building type 2");
+    addDescriptionTemplate("the entry to the mansion");
 }

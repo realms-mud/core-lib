@@ -10,6 +10,11 @@ public void Setup()
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/military/tall-stone-wall.c",
         "west");
+    addBuilding("/lib/environment/buildings/homes/manor.c", "east",
+        "/lib/tutorial/eledhel/southern-city/hrongar/0x3.c");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
+    addFeature("/lib/environment/features/paths/entry-path.c", "east");
 
     addDecorator("inner north-south wall");
 

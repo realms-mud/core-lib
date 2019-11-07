@@ -10,6 +10,10 @@ public void Setup()
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/military/tall-stone-wall.c",
         "west");
+    addBuilding("/lib/environment/buildings/homes/large-ornate-house.c", 
+        "east", "/lib/tutorial/eledhel/southern-city/thuenach/0x3.c");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
 
     addDecorator("inner north-south wall");
 

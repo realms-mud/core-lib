@@ -2,12 +2,15 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/lib/environment/region.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
+    setRegionName("Anguleith-home");
+    setRegionType("wooden building");
+    setDimensions(5, 5);
 
-    addDecorator("1x1 building type 2");
+    setCoordinate(3, 0,
+        "/lib/tutorial/eledhel/southern-city/anguleith/3x0.c", "room");
 }

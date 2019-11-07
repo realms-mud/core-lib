@@ -10,6 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/military/tall-stone-wall.c",
         "west");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
 
     addDecorator("inner north-south wall");
 
