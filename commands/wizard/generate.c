@@ -28,9 +28,9 @@ private string getName(string command, object initiator)
 {
     string name;
 
-    if (sizeof(regexp(({ command }), "-n(ame)* [0-9A-Za-z_.\-]+")))
+    if (sizeof(regexp(({ command }), "-n(ame)* [0-9A-Za-z_\.\-]+")))
     {
-        name = regreplace(command, ".*-n(ame)* ([0-9A-Za-z_.\-]+).*", "\\2", 1);
+        name = regreplace(command, ".*-n(ame)* ([0-9A-Za-z_\.\-]+).*", "\\2", 1);
     }
     else
     {
@@ -47,9 +47,9 @@ private string getName(string command, object initiator)
 private string getPath(string command, object initiator)
 {
     string path;
-    if (sizeof(regexp(({ command }), "-p(ath)* [0-9A-Za-z_./\-]+")))
+    if (sizeof(regexp(({ command }), "-p(ath)* [0-9A-Za-z_\./\-]+")))
     {
-        path = regreplace(command, ".*-p(ath)* ([0-9A-Za-z_./\-]+).*", "\\2", 1);
+        path = regreplace(command, ".*-p(ath)* ([0-9A-Za-z_\./\-]+).*", "\\2", 1);
 
         if (!initiator->hasWriteAccess(path))
         {
@@ -160,30 +160,43 @@ private string getDestination(string command)
 {
     string destination;
 
-    if (sizeof(regexp(({ command }), "-de(stination)* [0-9A-Za-z_./\-]+")))
+    if (sizeof(regexp(({ command }), "-de(stination)* [0-9A-Za-z_\./\-]+")))
     {
         destination = regreplace(command,
-            ".*-de(stination)* ([0-9A-Za-z_./\-]+) .*", "\\2", 1);
+            ".*-de(stination)* ([0-9A-Za-z_\./\-]+).*", "\\2", 1);
     }
     return destination;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void generateRegion(object region, object initiator,
-    string direction, string destination)
+private nomask void generateRegion(object initiator, string name, string type,
+    int x, int y, int settlementChance, string direction, string destination,
+    string path)
 {
+    object region = clone_object("/lib/environment/region.c");
+    region->setRegionName(name);
+    region->setRegionType(type);
+    region->setDimensions(x, y);
+
+    if (settlementChance != NotSet)
+    {
+        region->setSettlementChange(settlementChance);
+    }
+
     region->createRegion(direction, destination);
     tell_object(initiator, region->displayMap(initiator));
     tell_object(initiator, configuration->decorate(format("\nType 'C' to create, "
         "'R' to generate a different region, or anything else to abort.\n", 78),
         "directory", "wizard commands", initiator->colorConfiguration()));
 
-    input_to("responseToGenerate", 1 | 2, region, initiator, direction, destination);
+    input_to("responseToGenerate", 1 | 2, region, initiator, name, type,
+        x, y, settlementChance, direction, destination, path);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask void responseToGenerate(string response, object region,
-    object initiator, string direction, string destination)
+    object initiator, string name, string type, int x, int y, 
+    int settlementChance, string direction, string destination, string path)
 {
     response = lower_case(response);
     if (response == "c")
@@ -191,13 +204,17 @@ static nomask void responseToGenerate(string response, object region,
         tell_object(initiator, configuration->decorate("You have "
             "generated this region.\n",
             "normal", "wizard commands", initiator->colorConfiguration()));
+        region->generateStaticFiles(path);
+        destruct(region);
     }
     else if (response == "r")
     {
+        destruct(region);
         tell_object(initiator, configuration->decorate("Regenerating "
             "region...\n",
             "normal", "wizard commands", initiator->colorConfiguration()));
-        generateRegion(region, initiator, direction, destination);
+        generateRegion(initiator, name, type, x, y, settlementChance,
+            direction, destination, path);
     }
     else
     {
@@ -241,17 +258,8 @@ public nomask int execute(string command, object initiator)
 
             if (x && y && type && (settlementChance != Invalid))
             {
-                object region = clone_object("/lib/environment/region.c");
-                region->setRegionName(name);
-                region->setRegionType(type);
-                region->setDimensions(x, y);
-                
-                if (settlementChance != NotSet)
-                {
-                    region->setSettlementChange(settlementChance);
-                }
-
-                generateRegion(region, initiator, direction, destination);
+                generateRegion(initiator, name, type, x, y, settlementChance,
+                    direction, destination, path);
             }
         }
     }
