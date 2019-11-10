@@ -445,3 +445,9 @@ public nomask string iconColor(string name, string colorConfiguration)
 
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validDimensions(int x, int y)
+{
+    return (x <= 25) && (y <= 25) && (x >= 5) && (y >= 5);
+}

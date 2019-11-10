@@ -15,7 +15,7 @@ protected mapping RegionTypes = ([
         "potential features": Trees + Terrain,
         "potential items": ([ ]),
         "potential objects": ({ }),
-        "settlement chance": 100,
+        "settlement chance": 15,
         "settlement size": 12,
         "potential encounters": ([
             "white-tail deer": 100,

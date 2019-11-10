@@ -12,5 +12,5 @@ public void Setup()
 
     addExit("north", "/lib/tutorial/eledhel/southern-city/19x5.c");
     addExit("south", "/lib/tutorial/eledhel/southern-city/19x3.c");
-    addExit("east", "/lib/tutorial/eledhel/southern-city/20x3.c");
+    addExit("east", "/lib/tutorial/eledhel/southern-city/20x4.c");
 }
