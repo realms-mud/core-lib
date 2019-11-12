@@ -233,6 +233,8 @@ public nomask mapping generateRoomData(object region, mapping data)
             generateEncounters(regionType, 
                 RegionTypes[regionType]["potential encounters"]) : ([]);
 
+        ret["room type"] = data["room type"];
+
         foreach(string creature in ret["creatures"])
         {
             ret["room objects"][creature] = ([

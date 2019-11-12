@@ -181,6 +181,7 @@ private nomask string generateStaticExits(mapping room, string fileTemplate,
     
     if (member(room, "exits") && sizeof(room["exits"]))
     {
+        string pathType = "";
         foreach(string direction in m_indices(room["exits"]))
         {
             exitText += sprintf("    addExit(\"%s\", \"%s%s.c\");\n",
@@ -188,8 +189,21 @@ private nomask string generateStaticExits(mapping room, string fileTemplate,
 
             if (member(room["exits"][direction], "path type"))
             {
+                pathType = room["exits"][direction]["path type"];
                 exitText += sprintf("    addFeature(\"%s\", \"%s\");\n",
                     room["exits"][direction]["path type"], direction);
+            }
+        }
+
+        if (sizeof(entry) && (room["room type"] == "entry"))
+        {
+            exitText += sprintf("    addExit(\"%s\", \"%s\");\n",
+                EnterFrom, EntryPoint);
+
+            if (pathType)
+            {
+                exitText += sprintf("    addFeature(\"%s\", \"%s\");\n",
+                    pathType, EnterFrom);
             }
         }
     }
@@ -248,6 +262,7 @@ private nomask string *generateStaticRoomFiles(string roomPath)
 
         string roomFile = roomPath + room["name"] + ".c";
         write_file(roomFile, file);
+        load_object(roomFile);
 
         ret += ({ roomFile });
     }
@@ -292,16 +307,19 @@ private nomask void generateStaticRegionFile(string roomPath,
     file = regreplace(file, "(\r*\n)+}", "\n}", 1);
 
     write_file(roomPath + "region.c", file);
+    load_object(roomPath + "region.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void generateStaticFiles(string rootPath)
+public nomask varargs void generateStaticFiles(string rootPath, 
+    int useRootPath)
 {
     if (file_size(rootPath) == -2)
     {
-        string regionPath = sprintf("%s%s%s/",
-            rootPath, (rootPath[sizeof(rootPath) - 1] == '/') ? "" : "/",
-            regionIdentifier());
+        string regionPath = useRootPath ? rootPath :
+            sprintf("%s%s%s/", rootPath, 
+                (rootPath[sizeof(rootPath) - 1] == '/') ? "" : "/",
+                regionIdentifier());
 
         if (file_size(regionPath) == -1)
         {

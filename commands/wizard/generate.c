@@ -19,7 +19,7 @@ public nomask void reset(int arg)
         addCommandTemplate("generate region [-n(ame|) ##Value##] "
             "[-p(ath|) ##Value##] [-t(ype|) \"##Value##\"] [-x ##Value##] "
             "[-y ##Value##] [-dir(ection|) ##Value##] "
-            "[-de(stination|) ##Value##] [-s(ettlement chance|) ##Value##][.*]");
+            "[-de(stination|) ##Value##] [-s(ettlement chance|) ##Value##] [.*]");
     }
 }
 
@@ -51,21 +51,21 @@ private string getPath(string command, object initiator)
     {
         path = regreplace(command, ".*-p(ath)* ([0-9A-Za-z_\./\-]+).*", "\\2", 1);
 
-        if (!initiator->hasWriteAccess(path))
-        {
-            path = 0;
-            tell_object(initiator, configuration->decorate(
-                format("You do not have write access to the specified save "
-                    "location.\n", 78), "error message", "wizard commands",
-                initiator->colorConfiguration()));
-        }
-        else if (file_size(path) == -1)
+        if (file_size(path) == -1)
         {
             path = 0;
             tell_object(initiator, configuration->decorate(
                 format("The directory specified with the -p(ath) flag does not "
                     "exist. Please create it before continuing.\n", 78), 
                 "error message", "wizard commands", initiator->colorConfiguration()));
+        }
+        else if (!initiator->hasWriteAccess(path))
+        {
+            path = 0;
+            tell_object(initiator, configuration->decorate(
+                format("You do not have write access to the specified save "
+                    "location.\n", 78), "error message", "wizard commands",
+                initiator->colorConfiguration()));
         }
     }
     else
@@ -90,9 +90,10 @@ private string getType(string command, object initiator)
 {
     string type = "forest";
 
-    if (sizeof(regexp(({ command }), "-t(ype)* \"[^\"]+\"")))
+    if (sizeof(regexp(({ command }), "-t(ype)* (\"[^\"]+\"|[^ ]+)")))
     {
-        type = regreplace(command, ".*-t(ype)* \"([^\"]+)\".*", "\\2", 1);
+        type = regreplace(command, ".*-t(ype)* (\"[^\"]+\"|[^ ]+).*", "\\2", 1);
+        type -= "\"";
 
         if (!regionDictionary->isValidRegionType(type))
         {
@@ -125,10 +126,10 @@ private int getSettlementChance(string command, object initiator)
 {
     int settlementChance = NotSet;
 
-    if (sizeof(regexp(({ command }), "-s(ettlement chance)* [0-9]+")))
+    if (sizeof(regexp(({ command }), "-s(ettlement chance)* -*[0-9]+")))
     {
         settlementChance = to_int(regreplace(command,
-            ".*-s(ettlement chance)* [0-9]+.*", "\\2", 1));
+            ".*-s(ettlement chance)* (-*[0-9]+).*", "\\2", 1));
 
         if ((settlementChance < 0) || settlementChance > 100)
         {
@@ -204,7 +205,7 @@ static nomask void responseToGenerate(string response, object region,
         tell_object(initiator, configuration->decorate("You have "
             "generated this region.\n",
             "normal", "wizard commands", initiator->colorConfiguration()));
-        region->generateStaticFiles(path);
+        region->generateStaticFiles(path, 1);
         destruct(region);
     }
     else if (response == "r")
@@ -269,18 +270,84 @@ public nomask int execute(string command, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 protected string synopsis(string displayCommand, string colorConfiguration)
 {
-    return "Create a directory.";
+    return "Create a randomly-generated region.";
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected string description(string displayCommand, string colorConfiguration)
 {
-    return format("The mkdir command will create the specified directory "
-        "provided the user has write access.", 78);
+    return format("The generate region command will create a randomly-generated "
+        "region and place the source files in the supplied path provided the "
+        "user has write access.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+    switch (parsedFlag)
+    {
+        case "-n":
+        {
+            ret = "This option will set the name of the region. This is a "
+                "required parameter.";
+            break;
+        }
+        case "-dir":
+        {
+            ret = "This option sets the exit direction for the region - in "
+                "other words, the direction of the exit to the location "
+                "specified by the -de(stination) flag. This parameter, while "
+                "optional, must be paired with the -de flag.";
+            break;
+        }
+        case "-de":
+        {
+            ret = "This option sets the destination of the exit for the region. "
+                "This parameter, while optional, must be paired with the -dir "
+                "flag.";
+            break;
+        }
+        case "-p":
+        {
+            ret = "This option will set the path to which the generated region "
+                "will be written. You must have write access to this path. "
+                "This is a required parameter.";
+            break;
+        }
+        case "-s":
+        {
+            ret = "For those region types that can generate settlements, this "
+                "parameter will override the default chance that a settlement "
+                "will be generated.";
+            break;
+        }
+        case "-t":
+        {
+            ret = "This option will set the type of the region. Valid values are "
+                "specified in /lib/dictionaries/regions/region-types.h. If "
+                "no value is set, this will default to 'forest'.";
+            break;
+        }
+        case "-x":
+        {
+            ret = "This option will set the x dimension for the region. This value "
+                "must range from 5 to 25. The default value is 25.";
+            break;
+        }
+        case "-y":
+        {
+            ret = "This option will set the y dimension for the region. This value "
+                "must range from 5 to 25. The default value is 10.";
+            break;
+        }
+    }
+    return format(ret, 72);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected string notes(string displayCommand, string colorConfiguration)
 {
-    return "See also: rm, cp, and mv";
+    return "See also: /lib/dictionaries/regions/region-types.h";
 }
