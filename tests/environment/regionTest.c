@@ -343,13 +343,14 @@ void CanEnterTemplatedRegion()
     ToggleCallOutBypass();
 
     object region = 
-        load_object("/lib/tutorial/eledhel/southern-city/southern-city.c");
+        load_object("/lib/tutorial/eledhel/central-city/central-city.c");
 
     ExpectEq("x", region->displayMap(Player));
 
     ToggleCallOutBypass();
 }
 */
+
 /////////////////////////////////////////////////////////////////////////////
 /*void L()
 {
