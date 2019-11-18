@@ -6,7 +6,6 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object Selector;
-object Location;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
@@ -14,16 +13,12 @@ void Setup()
     Selector = clone_object("/lib/modules/domains/buildSelector.c");
     Selector->setLocation("argalach castle");
 
-    Location = load_object("/lib/dictionaries/domains/rooms/keep-1x1.c");
-
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->addCommands();
     Player->colorConfiguration("none");
     Player->charsetConfiguration("ascii");
     Player->addPlayerHolding("argalach castle");
-
-    Location->enterEnvironment(Player);
 
     move_object(Selector, Player);
 }
@@ -33,7 +28,6 @@ void CleanUp()
 {
     destruct(Selector);
     destruct(Player);
-    destruct(Location);
 }
 
 /////////////////////////////////////////////////////////////////////////////
