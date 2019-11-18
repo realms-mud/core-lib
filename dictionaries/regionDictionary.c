@@ -410,8 +410,8 @@ public nomask mapping getFloorPlan(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string **getMapIcon(string name, string colorConfiguration,
-    string charset)
+public nomask string **getMapIcon(object region, string name, 
+    string colorConfiguration, string charset)
 {
     string **ret = ({ ({ " ", " ", " " }),
         ({ " ", " ", " " }),
@@ -430,6 +430,10 @@ public nomask string **getMapIcon(string name, string colorConfiguration,
                 ret[x][y] = icon[x][y];
             }
         }
+    }
+    else if (region->isDomainRegion())
+    {
+        ret = region->getDomainMapIcon(name);
     }
     return ret;
 }

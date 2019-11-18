@@ -134,10 +134,11 @@ private nomask mapping getUnbuiltDomain(string type, string highlightComponent,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void applyDomainUpgrades(mapping domains, object player, 
-    string location, string type, string highlightComponent, 
-    string colorConfiguration, string charset)
+    string location, string highlightComponent, string colorConfiguration, 
+    string charset)
 {
-    mapping upgrades = player->getDomainUpgrades(location, type);
+    mapping upgrades = player->getDomainUpgrades(location);
+
     if (sizeof(upgrades))
     {
         foreach(string upgrade in m_indices(upgrades))
@@ -173,7 +174,7 @@ private nomask void applyCurrentComponent(mapping domains, string component,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs mapping getPlayerDomain(object player, string location,
+public nomask varargs mapping getPlayerDomain(object player, string location,
     string type, string highlightComponent, string currentComponent)
 {
     string colorConfiguration = player->colorConfiguration();
@@ -182,7 +183,7 @@ protected nomask varargs mapping getPlayerDomain(object player, string location,
     mapping ret = 
         getUnbuiltDomain(type, highlightComponent, colorConfiguration, charset);
 
-    applyDomainUpgrades(ret, player, location, type, highlightComponent,
+    applyDomainUpgrades(ret, player, location, highlightComponent,
         colorConfiguration, charset);
 
     applyCurrentComponent(ret, currentComponent, highlightComponent,

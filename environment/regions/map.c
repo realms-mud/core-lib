@@ -84,10 +84,10 @@ private nomask varargs string displayMapSection(object user, int startX,
                     int userHere = objectp(present(user, location["environment"]));
 
                     string decoratorType = objectp(location["environment"]) ?
-                        location["environment"]->decoratorType() : "none";
+                        location["environment"]->decoratorType() : location["room type"];
 
-                    string **icon = Dictionary->getMapIcon(decoratorType,
-                        colorConfiguration, charset);
+                    string **icon = Dictionary->getMapIcon(this_object(), 
+                        decoratorType, colorConfiguration, charset);
 
                     row[0] += sprintf("%s%s%s", 
                         displayCell(location, icon[0][0], colorConfiguration, 

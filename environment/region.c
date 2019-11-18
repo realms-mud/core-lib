@@ -3,6 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/environment/regions/core.c";
+virtual inherit "/lib/environment/regions/domain.c";
 virtual inherit "/lib/environment/regions/generate-region.c";
 virtual inherit "/lib/environment/regions/persist-region.c";
 virtual inherit "/lib/environment/regions/map.c";

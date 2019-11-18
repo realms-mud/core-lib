@@ -17,19 +17,22 @@ protected int getRoomCount()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void createEmptyGrid(int x, int y)
 {
-    for (int i = 0; i < x; i++)
+    if(sizeof(grid) != MaxX)
     {
-        grid[i] = ([]);
-        for (int j = 0; j < y; j++)
+        for (int i = 0; i < x; i++)
         {
-            grid[i][j] = ([
-                "x": i,
-                "y": j,
-                "room type": "none",
-                "is placed": 0,
-                "exits": ([]),
-                "environment": 0
-            ]);
+            grid[i] = ([]);
+            for (int j = 0; j < y; j++)
+            {
+                grid[i][j] = ([
+                    "x": i,
+                    "y": j,
+                    "room type": "none",
+                    "is placed": 0,
+                    "exits": ([]),
+                    "environment": 0
+                ]);
+            }
         }
     }
 }
