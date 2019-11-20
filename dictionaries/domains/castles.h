@@ -207,7 +207,7 @@ protected mapping CastleBlueprints = ([
         "type": "castle",
         "dimensions":"17x15",
         "x-offset": 9,
-        "y-offset": 2,
+        "y-offset": 1,
         "description": "",
         "layout": ({
             "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",

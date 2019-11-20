@@ -78,7 +78,7 @@ private nomask void generateIconsForDomain(mapping domainInfo)
 public nomask void loadDomain(object user, string domainName)
 {
     MaxX = 25;
-    MaxY = 12;
+    MaxY = 10;
 
     object domainDictionary =
         load_object("/lib/dictionaries/domainDictionary.c");
