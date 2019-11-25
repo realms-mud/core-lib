@@ -227,8 +227,9 @@ void CannotSetInvalidSkillsPrerequisite()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetGuildPrerequisite()
 {
+    load_object("/lib/tests/support/guilds/fighterGuild.c");
     mapping guilds = (["guilds":([
-            "allowed" : ({ "fighter" }),
+            "allowed" : ({ "fake fighter" }),
             "message": "blarg"
         ])
     ]);
@@ -346,11 +347,12 @@ void CanEquipReturnsTrueIfNoConditionsSet()
 /////////////////////////////////////////////////////////////////////////////
 void CanEquipReturnsTrueIfAllConditionsMet()
 {
+    load_object("/lib/tests/support/guilds/fighterGuild.c");
     mapping prereqs = ([
         "quests":([ "/lib/tests/support/quests/mockQuest.c":1 ]),
         "research":([ "/lib/tests/support/research/mockResearch.c":1 ]),
         "guilds" : ([
-            "allowed":({ "fighter" }),
+            "allowed":({ "fake fighter" }),
             "message" : "blarg"
         ]),
         "skills" : ([ "long sword":5 ]),
@@ -362,7 +364,7 @@ void CanEquipReturnsTrueIfAllConditionsMet()
     object owner = clone_object("/lib/tests/support/services/combatWithMockServices.c");
     move_object(Equipment, owner);
     owner->ToggleMockGuilds();
-    owner->SetGuild("fighter");
+    owner->SetGuild("fake fighter");
     owner->Race("elf");
     owner->Str(10);
     owner->ToggleMockQuests();
@@ -501,9 +503,10 @@ void CanEquipReturnsTrueIfResearchPrerequisiteNotMet()
 /////////////////////////////////////////////////////////////////////////////
 void CanEquipReturnsTrueIfInGuild()
 {
+    load_object("/lib/tests/support/guilds/fighterGuild.c");
     mapping prereqs = ([
         "guilds":([
-            "allowed":({ "fighter" }),
+            "allowed":({ "fake fighter" }),
             "message" : "blarg"
         ]),
     ]);
@@ -512,7 +515,7 @@ void CanEquipReturnsTrueIfInGuild()
     object owner = clone_object("/lib/tests/support/services/mockUserWithInventory.c");
     setRestoreCaller(owner);
     move_object(Equipment, owner);
-    owner->joinGuild("fighter");
+    owner->joinGuild("fake fighter");
 
     ExpectTrue(Equipment->canEquip(owner));
 }
@@ -520,9 +523,10 @@ void CanEquipReturnsTrueIfInGuild()
 /////////////////////////////////////////////////////////////////////////////
 void CanEquipReturnsFalseIfNotInGuild()
 {
+    load_object("/lib/tests/support/guilds/fighterGuild.c");
     mapping prereqs = ([
         "guilds":([
-            "allowed":({ "fighter" }),
+            "allowed":({ "fake fighter" }),
             "message" : "blarg"
         ]),
     ]);
@@ -537,9 +541,10 @@ void CanEquipReturnsFalseIfNotInGuild()
 /////////////////////////////////////////////////////////////////////////////
 void CanEquipReturnsFalseIfInProhibitedGuild()
 {
+    load_object("/lib/tests/support/guilds/fighterGuild.c");
     mapping prereqs = ([
         "guilds":([
-            "prohibited":({ "fighter" }),
+            "prohibited":({ "fake fighter" }),
             "message" : "blarg"
         ]),
     ]);
@@ -547,7 +552,7 @@ void CanEquipReturnsFalseIfInProhibitedGuild()
 
     object owner = clone_object("/lib/tests/support/services/mockUserWithInventory.c");
     move_object(Equipment, owner);
-    owner->joinGuild("fighter");
+    owner->joinGuild("fake fighter");
 
     ExpectFalse(Equipment->canEquip(owner));
 }
