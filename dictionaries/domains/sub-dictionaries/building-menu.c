@@ -13,15 +13,18 @@ private nomask string *getComponents(object user, string location,
 
     if (member(Locations, location) && (member(components, type) > -1))
     {
-        if (highlightComponent && member(CastleComponents, 
-            sprintf("unbuilt %s", highlightComponent)))
+        if (highlightComponent && (member(CastleComponents, 
+            sprintf("unbuilt %s", highlightComponent)) ||
+            member(CastleComponents,
+                sprintf("ruined %s", highlightComponent))))
         {
             components = sort_array(
                 filter(m_indices(CastleComponents),
                 (: CastleComponents[$1]["type"] == $2 :), highlightComponent),
                     (: $1 > $2 :));
 
-            components -= ({ sprintf("unbuilt %s", highlightComponent) });
+            components -= ({ sprintf("unbuilt %s", highlightComponent),
+                sprintf("ruined %s", highlightComponent) });
         }
         else if (domainType && member(CastleBlueprints, domainType))
         {
