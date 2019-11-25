@@ -22,4 +22,10 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## alder trees");
+
+    harvestableResource("alder", 25, "/lib/instances/items/materials/wood/alder.c",
+        "a heavily-forested stand of alder trees. Several trees remain");
+    harvestRequiresTool("alder", "axe");
+    harvestableResource("alder catkins", 25, 
+        "/lib/instances/items/food/plants/seeds/alder-catkin.c");
 }

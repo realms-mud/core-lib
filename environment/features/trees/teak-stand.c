@@ -22,4 +22,10 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## teak trees");
+
+    harvestableResource("teak", 25, "/lib/instances/items/materials/wood/teak.c",
+        "a heavily-forested stand of teak trees. Several trees remain");
+    harvestRequiresTool("teak", "axe");
+    harvestableResource("teak fruit", 25,
+        "/lib/instances/items/food/plants/fruit/teak-fruit.c");
 }

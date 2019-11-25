@@ -22,4 +22,10 @@ public void Setup()
         " with leaves in of yellow and brown" }));
 
     addDescriptionTemplate("a stand of ##Adjective## poplar trees");
+
+    harvestableResource("poplar", 25, "/lib/instances/items/materials/wood/poplar.c",
+        "a heavily-forested stand of poplar trees. Several trees remain");
+    harvestRequiresTool("poplar", "axe");
+    harvestableResource("poplar catkins", 25,
+        "/lib/instances/items/food/plants/seeds/poplar-catkin.c");
 }

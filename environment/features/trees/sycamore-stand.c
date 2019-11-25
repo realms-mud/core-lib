@@ -22,4 +22,10 @@ public void Setup()
         " with leaves in a vivid array of yellow and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## sycamore trees");
+
+    harvestableResource("sycamore", 25, "/lib/instances/items/materials/wood/sycamore.c",
+        "a heavily-forested stand of sycamore trees. Several trees remain");
+    harvestRequiresTool("sycamore", "axe");
+    harvestableResource("sycamore fruit", 25,
+        "/lib/instances/items/food/plants/fruit/sycamore-fruit.c");
 }

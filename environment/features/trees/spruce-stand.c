@@ -22,4 +22,10 @@ public void Setup()
         " with cones and some needles carpeting the ground" }));
 
     addDescriptionTemplate("a stand of ##Adjective## spruce trees");
+
+    harvestableResource("spruce", 25, "/lib/instances/items/materials/wood/spruce.c",
+        "a heavily-forested stand of spruce trees. Several trees remain");
+    harvestRequiresTool("spruce", "axe");
+    harvestableResource("spruce cone", 25,
+        "/lib/instances/items/food/plants/seeds/spruce-cone.c");
 }

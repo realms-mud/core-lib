@@ -26,4 +26,10 @@ public void Setup()
         " with leaves in a vivid array of yellow orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## swamp ash trees");
+
+    harvestableResource("swamp ash", 25, "/lib/instances/items/materials/wood/swamp-ash.c",
+        "a heavily-forested stand of swamp ash trees. Several trees remain");
+    harvestRequiresTool("swamp ash", "axe");
+    harvestableResource("ash samaras", 25, 
+        "/lib/instances/items/food/plants/seeds/ash-samaras.c");
 }

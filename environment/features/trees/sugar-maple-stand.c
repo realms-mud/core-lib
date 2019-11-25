@@ -26,4 +26,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## sugar maple trees");
+
+    harvestableResource("sugar maple", 25, "/lib/instances/items/materials/wood/maple.c",
+        "a heavily-forested stand of sugar maple trees. Several trees remain");
+    harvestRequiresTool("sugar maple", "axe");
+    harvestableResource("maple sap", 25,
+        "/lib/instances/items/food/plants/sap/maple-sap.c");
+    harvestableResource("maple samaras", 25,
+        "/lib/instances/items/food/plants/seeds/maple-samaras.c");
 }

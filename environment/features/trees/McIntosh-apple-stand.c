@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## McIntosh apple trees");
+
+    harvestableResource("mcintosh apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
+        "a heavily-forested stand of McIntosh apple trees. Several trees remain");
+    harvestRequiresTool("mcintosh apple tree", "axe");
+
+    harvestableResource("mcintosh apple", 10,
+        "/lib/instances/items/food/plants/fruit/mcintosh-apple.c");
 }

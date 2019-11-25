@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## paper birch trees");
+
+    harvestableResource("paper birch", 25, "/lib/instances/items/materials/wood/birch.c",
+        "a heavily-forested stand of paper birch trees. Several trees remain");
+    harvestRequiresTool("paper birch", "axe");
+    harvestableResource("paper birch catkins", 25,
+        "/lib/instances/items/food/plants/seeds/paper-birch-catkin.c");
+    harvestableResource("paper birch bark", 10,
+        "/lib/instances/items/materials/wood/paper-birch-bark.c");
 }

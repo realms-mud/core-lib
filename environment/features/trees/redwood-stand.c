@@ -22,4 +22,10 @@ public void Setup()
         " with cones and some needles carpeting the ground" }));
 
     addDescriptionTemplate("a stand of ##Adjective## redwood trees");
+
+    harvestableResource("redwood", 25, "/lib/instances/items/materials/wood/redwood.c",
+        "a heavily-forested stand of redwood trees. Several trees remain");
+    harvestRequiresTool("redwood", "axe");
+    harvestableResource("redwood cone", 25,
+        "/lib/instances/items/food/plants/seeds/redwood-cone.c");
 }

@@ -22,4 +22,10 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## rosewood trees");
+
+    harvestableResource("rosewood", 25, "/lib/instances/items/materials/wood/rosewood.c",
+        "a heavily-forested stand of rosewood trees. Several trees remain");
+    harvestRequiresTool("rosewood", "axe");
+    harvestableResource("rosewood seed", 25,
+        "/lib/instances/items/food/plants/seeds/rosewood-seed.c");
 }

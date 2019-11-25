@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## red apple trees");
+
+    harvestableResource("red apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
+        "a heavily-forested stand of red apple trees. Several trees remain");
+    harvestRequiresTool("red apple tree", "axe");
+
+    harvestableResource("red apple", 10,
+        "/lib/instances/items/food/plants/fruit/red-apple.c");
 }

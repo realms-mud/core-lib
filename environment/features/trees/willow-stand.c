@@ -22,4 +22,10 @@ public void Setup()
         " with leaves in of yellow and brown" }));
 
     addDescriptionTemplate("a stand of ##Adjective## willow trees");
+
+    harvestableResource("willow", 25, "/lib/instances/items/materials/wood/willow.c",
+        "a heavily-forested stand of willow trees. Several trees remain");
+    harvestRequiresTool("willow", "axe");
+    harvestableResource("willow catkins", 25,
+        "/lib/instances/items/food/plants/seeds/willow-catkin.c");
 }

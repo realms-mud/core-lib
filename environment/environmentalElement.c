@@ -4,6 +4,7 @@
 //*****************************************************************************
 
 protected mapping descriptionData = ([ ]);
+protected mapping harvestData = ([ ]);
 
 protected int isLegacy = 0;
 protected int LightLevelWhenDetailsVisible = 6;
@@ -636,4 +637,29 @@ public nomask void setUpForEnvironment(string state, object environment)
     {
         activateLightSource(state, environment);
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void harvestableResource(string name, int quantity,
+    string resourceFile, string harvestedDescription)
+{
+    
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitHarvestBySeason(string name, string season)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitHarvestByTimeOfDay(string name, string timeOfDay)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void harvestRequiresTool(string name, string tool)
+{
+
 }

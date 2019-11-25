@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## purple heart trees");
+
+    harvestableResource("purple heart", 25, 
+        "/lib/instances/items/materials/wood/purple-heart.c",
+        "a heavily-forested stand of purple hear trees. Several trees remain");
+    harvestRequiresTool("purple heart", "axe");
+    harvestableResource("purple heart seed pod", 25,
+        "/lib/instances/items/food/plants/seeds/purple-heart-seed-pod.c");
 }

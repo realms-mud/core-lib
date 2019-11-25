@@ -22,4 +22,10 @@ public void Setup()
         " with leaves in a vivid array of red and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## red oak trees");
+
+    harvestableResource("red oak", 25, "/lib/instances/items/materials/wood/oak.c",
+        "a heavily-forested stand of red oak trees. Several trees remain");
+    harvestRequiresTool("red oak", "axe");
+    harvestableResource("acorn", 25,
+        "/lib/instances/items/food/plants/nuts/acorn.c");
 }

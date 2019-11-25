@@ -21,4 +21,10 @@ public void Setup()
     addSeasonDescription("autumn", ({ " with cones fallen to the ground wide open" }));
 
     addDescriptionTemplate("a stand of ##Adjective## yew trees");
+    harvestableResource("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain");
+    harvestRequiresTool("yew", "axe");
+
+    harvestableResource("yew cone", 25,
+        "/lib/instances/items/food/plants/seeds/yew-cone.c");
 }

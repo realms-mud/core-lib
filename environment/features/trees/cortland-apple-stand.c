@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## cortland apple trees");
+
+    harvestableResource("cortland apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
+        "a heavily-forested stand of cortland apple trees. Several trees remain");
+    harvestRequiresTool("cortland apple tree", "axe");
+
+    harvestableResource("cortland apple", 10,
+        "/lib/instances/items/food/plants/fruit/cortland-apple.c");
 }
