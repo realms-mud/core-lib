@@ -22,4 +22,15 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## magnolia trees");
+
+    harvestableResource("magnolia", 25, "/lib/instances/items/materials/wood/magnolia.c",
+        "a heavily-forested stand of magnolia trees. Several trees remain");
+    harvestRequiresTool("magnolia", "axe");
+    harvestableResource("magnolia fruit", 25,
+        "/lib/instances/items/food/plants/fruit/magnolia-fruit.c");
+    limitHarvestBySeason("magnolia fruit", "summer");
+
+    harvestableResource("magnolia flower", 25,
+        "/lib/instances/items/food/plants/flowers/magnolia-flower.c");
+    limitHarvestBySeason("magnolia flower", "spring");
 }

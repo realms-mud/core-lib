@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## bubinga trees");
+
+    harvestableResource("bubinga", 25, "/lib/instances/items/materials/wood/bubinga.c",
+        "a heavily-forested stand of bubinga trees. Several trees remain");
+    harvestRequiresTool("bubinga", "axe");
+    harvestableResource("bubinga seed pod", 25,
+        "/lib/instances/items/food/plants/seeds/bubinga-seed-pod.c");
+    limitHarvestBySeason("bubinga seed pod", "summer");
 }

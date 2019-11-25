@@ -28,4 +28,5 @@ public void Setup()
     harvestRequiresTool("redwood", "axe");
     harvestableResource("redwood cone", 25,
         "/lib/instances/items/food/plants/seeds/redwood-cone.c");
+    limitHarvestBySeason("redwood cone", "summer");
 }

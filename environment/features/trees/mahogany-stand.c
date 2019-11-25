@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## mahogany trees");
+
+    harvestableResource("mahogany", 25, "/lib/instances/items/materials/wood/mahogany.c",
+        "a heavily-forested stand of mahogany trees. Several trees remain");
+    harvestRequiresTool("mahogany", "axe");
+    harvestableResource("mahogany fruit", 25,
+        "/lib/instances/items/food/plants/fruit/mahogany-fruit.c");
+    limitHarvestBySeason("mahogany fruit", "summer");
 }

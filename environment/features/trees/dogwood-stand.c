@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## dogwood trees");
+
+    harvestableResource("dogwood", 25, "/lib/instances/items/materials/wood/dogwood.c",
+        "a heavily-forested stand of dogwood trees. Several trees remain");
+    harvestRequiresTool("dogwood", "axe");
+    harvestableResource("dogwood fruit", 25,
+        "/lib/instances/items/food/plants/fruit/dogwood-fruit.c");
+    limitHarvestBySeason("dogwood fruit", "summer");
 }

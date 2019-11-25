@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## bing cherry trees");
+
+    harvestableResource("bing cherry tree", 25, "/lib/instances/items/materials/wood/cherry.c",
+        "a heavily-forested stand of bing cherry trees. Several trees remain");
+    harvestRequiresTool("bing cherry tree", "axe");
+
+    harvestableResource("bing cherry", 20,
+        "/lib/instances/items/food/plants/fruit/bing-cherry.c");
+    limitHarvestBySeason("bing cherry", "summer");
 }

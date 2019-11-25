@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## ebony trees");
+
+    harvestableResource("ebony", 25, "/lib/instances/items/materials/wood/ebony.c",
+        "a heavily-forested stand of ebony trees. Several trees remain");
+    harvestRequiresTool("ebony", "axe");
+    harvestableResource("ebony seed pod", 25,
+        "/lib/instances/items/food/plants/seeds/ebony-seed-pod.c");
+    limitHarvestBySeason("ebony seed pod", "summer");
 }

@@ -29,4 +29,5 @@ public void Setup()
     harvestRequiresTool("purple heart", "axe");
     harvestableResource("purple heart seed pod", 25,
         "/lib/instances/items/food/plants/seeds/purple-heart-seed-pod.c");
+    limitHarvestBySeason("purple heart seed pod", "summer");
 }

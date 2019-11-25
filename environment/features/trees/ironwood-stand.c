@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## ironwood trees");
+
+    harvestableResource("ironwood", 25, "/lib/instances/items/materials/wood/ironwood.c",
+        "a heavily-forested stand of ironwood trees. Several trees remain");
+    harvestRequiresTool("ironwood", "axe");
+    harvestableResource("ironwood catkins", 25,
+        "/lib/instances/items/food/plants/seeds/ironwood-catkin.c");
+    limitHarvestBySeason("ironwood catkins", "summer");
 }

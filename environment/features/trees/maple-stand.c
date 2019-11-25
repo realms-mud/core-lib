@@ -26,4 +26,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## maple trees");
+
+    harvestableResource("maple", 25, "/lib/instances/items/materials/wood/maple.c",
+        "a heavily-forested stand of maple trees. Several trees remain");
+    harvestRequiresTool("maple", "axe");
+    harvestableResource("maple samaras", 25,
+        "/lib/instances/items/food/plants/seeds/maple-samaras.c");
+    limitHarvestBySeason("maple samaras", "summer");
 }

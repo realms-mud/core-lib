@@ -28,4 +28,5 @@ public void Setup()
     harvestRequiresTool("spruce", "axe");
     harvestableResource("spruce cone", 25,
         "/lib/instances/items/food/plants/seeds/spruce-cone.c");
+    limitHarvestBySeason("spruce cone", "summer");
 }

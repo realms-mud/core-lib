@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## buckeye trees");
+
+    harvestableResource("buckeye", 25, "/lib/instances/items/materials/wood/buckeye.c",
+        "a heavily-forested stand of buckeye trees. Several trees remain");
+    harvestRequiresTool("buckeye", "axe");
+    harvestableResource("buckeye globose", 25,
+        "/lib/instances/items/food/plants/seeds/buckeye-globose.c");
+    limitHarvestBySeason("buckeye globose", "summer");
 }

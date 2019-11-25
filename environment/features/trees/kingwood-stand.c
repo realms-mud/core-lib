@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## kingwood trees");
+
+    harvestableResource("kingwood", 25, "/lib/instances/items/materials/wood/kingwood.c",
+        "a heavily-forested stand of kingwood trees. Several trees remain");
+    harvestRequiresTool("kingwood", "axe");
+    harvestableResource("kingwood seed pod", 25,
+        "/lib/instances/items/food/plants/seeds/kingwood-seed-pod.c");
+    limitHarvestBySeason("kingwood seed pod", "summer");
 }

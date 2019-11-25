@@ -29,4 +29,5 @@ public void Setup()
 
     harvestableResource("ambrosia apple", 10,
         "/lib/instances/items/food/plants/fruit/ambrosia-apple.c");
+    limitHarvestBySeason("ambrosia apple", "summer");
 }

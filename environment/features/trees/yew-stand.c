@@ -27,4 +27,5 @@ public void Setup()
 
     harvestableResource("yew cone", 25,
         "/lib/instances/items/food/plants/seeds/yew-cone.c");
+    limitHarvestBySeason("yew cone", "summer");
 }

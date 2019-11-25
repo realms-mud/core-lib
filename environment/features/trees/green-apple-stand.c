@@ -29,4 +29,5 @@ public void Setup()
 
     harvestableResource("green apple", 10,
         "/lib/instances/items/food/plants/fruit/green-apple.c");
+    limitHarvestBySeason("green apple", "summer");
 }

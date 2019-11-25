@@ -26,4 +26,11 @@ public void Setup()
         " with leaves in a vivid array of yellow orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## ash trees");
+
+    harvestableResource("ash", 25, "/lib/instances/items/materials/wood/ash.c",
+        "a heavily-forested stand of ash trees. Several trees remain");
+    harvestRequiresTool("ash", "axe");
+    harvestableResource("ash samaras", 25,
+        "/lib/instances/items/food/plants/seeds/ash-samaras.c");
+    limitHarvestBySeason("ash samaras", "summer");
 }

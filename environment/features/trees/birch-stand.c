@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## birch trees");
+
+    harvestableResource("birch", 25, "/lib/instances/items/materials/wood/birch.c",
+        "a heavily-forested stand of birch trees. Several trees remain");
+    harvestRequiresTool("birch", "axe");
+    harvestableResource("birch catkins", 25,
+        "/lib/instances/items/food/plants/seeds/birch-catkin.c");
+    limitHarvestBySeason("birch catkins", "summer");
 }

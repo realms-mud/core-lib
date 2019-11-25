@@ -34,4 +34,5 @@ public void Setup()
         "/lib/instances/items/food/plants/sap/maple-sap.c");
     harvestableResource("maple samaras", 25,
         "/lib/instances/items/food/plants/seeds/maple-samaras.c");
+    limitHarvestBySeason("maple samaras", "summer");
 }

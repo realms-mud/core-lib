@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## beech trees");
+
+    harvestableResource("beech", 25, "/lib/instances/items/materials/wood/beech.c",
+        "a heavily-forested stand of beech trees. Several trees remain");
+    harvestRequiresTool("beech", "axe");
+    harvestableResource("beech nut", 25,
+        "/lib/instances/items/food/plants/nuts/beech-nut.c");
+    limitHarvestBySeason("beech nut", "summer");
 }

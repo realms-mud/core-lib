@@ -29,4 +29,5 @@ public void Setup()
 
     harvestableResource("crabapple", 10,
         "/lib/instances/items/food/plants/fruit/crab-apple.c");
+    limitHarvestBySeason("crabapple", "summer");
 }

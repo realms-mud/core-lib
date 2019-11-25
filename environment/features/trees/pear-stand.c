@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## pear trees");
+
+    harvestableResource("pear tree", 25, "/lib/instances/items/materials/wood/pear.c",
+        "a heavily-forested stand of pear trees. Several trees remain");
+    harvestRequiresTool("pear tree", "axe");
+
+    harvestableResource("pear", 10,
+        "/lib/instances/items/food/plants/fruit/pear.c");
+    limitHarvestBySeason("pear", "summer");
 }

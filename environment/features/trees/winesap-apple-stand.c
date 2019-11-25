@@ -28,4 +28,5 @@ public void Setup()
 
     harvestableResource("winesap apple", 10,
         "/lib/instances/items/food/plants/fruit/winesap-apple.c");
+    limitHarvestBySeason("winesap apple", "summer");
 }

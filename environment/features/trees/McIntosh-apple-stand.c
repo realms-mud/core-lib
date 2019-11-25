@@ -29,4 +29,5 @@ public void Setup()
 
     harvestableResource("mcintosh apple", 10,
         "/lib/instances/items/food/plants/fruit/mcintosh-apple.c");
+    limitHarvestBySeason("mcintosh apple", "summer");
 }

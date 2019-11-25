@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## hickory trees");
+
+    harvestableResource("hickory", 25, "/lib/instances/items/materials/wood/hickory.c",
+        "a heavily-forested stand of hickory trees. Several trees remain");
+    harvestRequiresTool("hickory", "axe");
+    harvestableResource("hickory globose", 25,
+        "/lib/instances/items/food/plants/seeds/hickory-globose.c");
+    limitHarvestBySeason("hickory globose", "summer");
 }

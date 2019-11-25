@@ -29,4 +29,5 @@ public void Setup()
 
     harvestableResource("honeycrisp apple", 10,
         "/lib/instances/items/food/plants/fruit/honeycrisp-apple.c");
+    limitHarvestBySeason("honeycrisp apple", "summer");
 }

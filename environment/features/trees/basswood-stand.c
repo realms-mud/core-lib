@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## basswood trees");
+
+    harvestableResource("basswood", 25, "/lib/instances/items/materials/wood/basswood.c",
+        "a heavily-forested stand of basswood trees. Several trees remain");
+    harvestRequiresTool("basswood", "axe");
+    harvestableResource("basswood nut", 25,
+        "/lib/instances/items/food/plants/nuts/basswood-nut.c");
+    limitHarvestBySeason("basswood nut", "summer");
+
 }

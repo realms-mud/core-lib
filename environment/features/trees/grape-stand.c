@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## grape trees");
+
+    harvestableResource("grape tree", 25, "/lib/instances/items/materials/wood/grape.c",
+        "a heavily-forested stand of grape trees. Several trees remain");
+    harvestRequiresTool("grape tree", "axe");
+
+    harvestableResource("grape", 10,
+        "/lib/instances/items/food/plants/fruit/grape.c");
+    limitHarvestBySeason("grape", "summer");
 }

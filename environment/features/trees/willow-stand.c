@@ -28,4 +28,5 @@ public void Setup()
     harvestRequiresTool("willow", "axe");
     harvestableResource("willow catkins", 25,
         "/lib/instances/items/food/plants/seeds/willow-catkin.c");
+    limitHarvestBySeason("willow catkins", "summer");
 }

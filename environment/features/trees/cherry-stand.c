@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## cherry trees");
+
+    harvestableResource("cherry tree", 25, "/lib/instances/items/materials/wood/cherry.c",
+        "a heavily-forested stand of cherry trees. Several trees remain");
+    harvestRequiresTool("cherry tree", "axe");
+
+    harvestableResource("cherry", 20,
+        "/lib/instances/items/food/plants/fruit/cherry.c");
+    limitHarvestBySeason("cherry", "summer");
 }

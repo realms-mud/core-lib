@@ -22,4 +22,15 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## lilac trees");
+
+    harvestableResource("lilac", 25, "/lib/instances/items/materials/wood/lilac.c",
+        "a heavily-forested stand of lilac trees. Several trees remain");
+    harvestRequiresTool("lilac", "axe");
+    harvestableResource("lilac fruit", 25,
+        "/lib/instances/items/food/plants/fruit/lilac-fruit.c");
+    limitHarvestBySeason("lilac fruit", "summer");
+
+    harvestableResource("lilac flower", 25,
+        "/lib/instances/items/food/plants/flowers/lilac-flower.c");
+    limitHarvestBySeason("lilac flower", "spring");
 }

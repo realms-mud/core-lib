@@ -28,4 +28,5 @@ public void Setup()
     harvestRequiresTool("alder", "axe");
     harvestableResource("alder catkins", 25, 
         "/lib/instances/items/food/plants/seeds/alder-catkin.c");
+    limitHarvestBySeason("alder catkins", "summer");
 }

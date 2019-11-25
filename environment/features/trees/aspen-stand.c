@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## aspen trees");
+
+    harvestableResource("aspen", 25, "/lib/instances/items/materials/wood/aspen.c",
+        "a heavily-forested stand of aspen trees. Several trees remain");
+    harvestRequiresTool("aspen", "axe");
+    harvestableResource("aspen catkins", 25,
+        "/lib/instances/items/food/plants/seeds/aspen-catkin.c");
+    limitHarvestBySeason("aspen catkins", "summer");
 }

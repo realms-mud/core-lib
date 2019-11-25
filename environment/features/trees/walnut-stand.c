@@ -28,4 +28,5 @@ public void Setup()
     harvestRequiresTool("walnut tree", "axe");
     harvestableResource("walnut", 25,
         "/lib/instances/items/food/plants/nuts/walnut.c");
+    limitHarvestBySeason("walnut", "summer");
 }

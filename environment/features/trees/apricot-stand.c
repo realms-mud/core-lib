@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## apricot trees");
+
+    harvestableResource("apricot tree", 25, "/lib/instances/items/materials/wood/apricot.c",
+        "a heavily-forested stand of apricot trees. Several trees remain");
+    harvestRequiresTool("apricot tree", "axe");
+
+    harvestableResource("apricot", 20,
+        "/lib/instances/items/food/plants/fruit/apricot.c");
+    limitHarvestBySeason("apricot", "summer");
 }

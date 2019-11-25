@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## mesquite trees");
+
+    harvestableResource("mesquite", 25, "/lib/instances/items/materials/wood/mesquite.c",
+        "a heavily-forested stand of mesquite trees. Several trees remain");
+    harvestRequiresTool("mesquite", "axe");
+    harvestableResource("mesquite seed pod", 25,
+        "/lib/instances/items/food/plants/seeds/mesquite-seed-pod.c");
+    limitHarvestBySeason("mesquite seed pod", "summer");
 }

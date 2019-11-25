@@ -28,4 +28,5 @@ public void Setup()
     harvestRequiresTool("rosewood", "axe");
     harvestableResource("rosewood seed", 25,
         "/lib/instances/items/food/plants/seeds/rosewood-seed.c");
+    limitHarvestBySeason("rosewood seed", "summer");
 }

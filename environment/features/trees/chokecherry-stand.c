@@ -21,5 +21,13 @@ public void Setup()
     addSeasonDescription("autumn", ({ " carpeting the ground in fruit and fallen leaves of red, yellow, and orange",
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
-    addDescriptionTemplate("a stand of ##Adjective## black cherry trees");
+    addDescriptionTemplate("a stand of ##Adjective## choke cherry trees");
+
+    harvestableResource("choke cherry tree", 25, "/lib/instances/items/materials/wood/cherry.c",
+        "a heavily-forested stand of choke cherry trees. Several trees remain");
+    harvestRequiresTool("choke cherry tree", "axe");
+
+    harvestableResource("choke cherry", 10,
+        "/lib/instances/items/food/plants/fruit/choke-cherry.c");
+    limitHarvestBySeason("choke cherry", "summer");
 }

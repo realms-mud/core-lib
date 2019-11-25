@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## peach trees");
+
+    harvestableResource("peach tree", 25, "/lib/instances/items/materials/wood/peach.c",
+        "a heavily-forested stand of peach trees. Several trees remain");
+    harvestRequiresTool("peach tree", "axe");
+
+    harvestableResource("peach", 10,
+        "/lib/instances/items/food/plants/fruit/peach.c");
+    limitHarvestBySeason("peach", "summer");
 }

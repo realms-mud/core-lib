@@ -21,4 +21,11 @@ public void Setup()
     addSeasonDescription("autumn", ({ " with cones fallen to the ground wide open" }));
 
     addDescriptionTemplate("a stand of ##Adjective## cedar trees");
+
+    harvestableResource("cedar", 25, "/lib/instances/items/materials/wood/cedar.c",
+        "a heavily-forested stand of cedar trees. Several trees remain");
+    harvestRequiresTool("cedar", "axe");
+    harvestableResource("cedar cone", 25,
+        "/lib/instances/items/food/plants/seeds/cedar-cone.c");
+    limitHarvestBySeason("cedar cone", "summer");
 }

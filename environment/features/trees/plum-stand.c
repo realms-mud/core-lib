@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## plum trees");
+
+    harvestableResource("plum tree", 25, "/lib/instances/items/materials/wood/plum.c",
+        "a heavily-forested stand of plum trees. Several trees remain");
+    harvestRequiresTool("plum tree", "axe");
+
+    harvestableResource("plum", 10,
+        "/lib/instances/items/food/plants/fruit/plum.c");
+    limitHarvestBySeason("plum", "summer");
 }

@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## marblewood trees");
+
+    harvestableResource("marblewood", 25, "/lib/instances/items/materials/wood/marblewood.c",
+        "a heavily-forested stand of marblewood trees. Several trees remain");
+    harvestRequiresTool("marblewood", "axe");
+    harvestableResource("marblewood seed pod", 25,
+        "/lib/instances/items/food/plants/seeds/marblewood-seed-pod.c");
+    limitHarvestBySeason("marblewood seed pod", "summer");
 }

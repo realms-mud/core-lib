@@ -29,4 +29,5 @@ public void Setup()
 
     harvestableResource("cortland apple", 10,
         "/lib/instances/items/food/plants/fruit/cortland-apple.c");
+    limitHarvestBySeason("cortland apple", "summer");
 }

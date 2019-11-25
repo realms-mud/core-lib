@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in of yellow and brown" }));
 
     addDescriptionTemplate("a stand of ##Adjective## cottonwood trees");
+
+    harvestableResource("cottonwood", 25, "/lib/instances/items/materials/wood/cottonwood.c",
+        "a heavily-forested stand of cottonwood trees. Several trees remain");
+    harvestRequiresTool("cottonwood", "axe");
+    harvestableResource("cottonwood catkins", 25,
+        "/lib/instances/items/food/plants/seeds/cottonwood-catkin.c");
+    limitHarvestBySeason("cottonwood catkins", "summer");
 }

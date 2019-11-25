@@ -22,4 +22,15 @@ public void Setup()
         " with leaves in a vivid array of yellow, purple, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## malorn trees");
+
+    harvestableResource("malorn", 25, "/lib/instances/items/materials/wood/malorn.c",
+        "a heavily-forested stand of malorn trees. Several trees remain");
+    harvestRequiresTool("malorn", "axe");
+    harvestableResource("malorn fruit", 25,
+        "/lib/instances/items/food/plants/fruit/malorn-fruit.c");
+    limitHarvestBySeason("malorn fruit", "summer");
+
+    harvestableResource("malorn flower", 25,
+        "/lib/instances/items/food/plants/flowers/malorn-flower.c");
+    limitHarvestBySeason("malorn flower", "spring");
 }

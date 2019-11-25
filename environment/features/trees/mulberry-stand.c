@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## mulberry trees");
+
+    harvestableResource("mulberry tree", 25, "/lib/instances/items/materials/wood/mulberry.c",
+        "a heavily-forested stand of mulberry trees. Several trees remain");
+    harvestRequiresTool("mulberry tree", "axe");
+
+    harvestableResource("mulberry", 10,
+        "/lib/instances/items/food/plants/fruit/mulberry.c");
+    limitHarvestBySeason("mulberry", "summer");
 }

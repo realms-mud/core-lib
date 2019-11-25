@@ -28,4 +28,5 @@ public void Setup()
     harvestRequiresTool("poplar", "axe");
     harvestableResource("poplar catkins", 25,
         "/lib/instances/items/food/plants/seeds/poplar-catkin.c");
+    limitHarvestBySeason("poplar catkins", "summer");
 }

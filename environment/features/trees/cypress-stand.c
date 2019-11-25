@@ -22,4 +22,11 @@ public void Setup()
         " with cones and some needles carpeting the ground" }));
 
     addDescriptionTemplate("a stand of ##Adjective## fir trees");
+
+    harvestableResource("cypress", 25, "/lib/instances/items/materials/wood/cypress.c",
+        "a heavily-forested stand of cypress trees. Several trees remain");
+    harvestRequiresTool("cypress", "axe");
+    harvestableResource("cypress cone", 25,
+        "/lib/instances/items/food/plants/seeds/cypress-cone.c");
+    limitHarvestBySeason("cypress cone", "summer");
 }

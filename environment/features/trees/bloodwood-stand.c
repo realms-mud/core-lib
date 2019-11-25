@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## bloodwood trees");
+
+    harvestableResource("bloodwood", 25, "/lib/instances/items/materials/wood/bloodwood.c",
+        "a heavily-forested stand of bloodwood trees. Several trees remain");
+    harvestRequiresTool("bloodwood", "axe");
+    harvestableResource("bloodwood seed", 25,
+        "/lib/instances/items/food/plants/seeds/bloodwood-seed.c");
+    limitHarvestBySeason("bloodwood seed", "summer");
 }

@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## buckthorn trees");
+
+    harvestableResource("buckthorn", 25, "/lib/instances/items/materials/wood/buckthorn.c",
+        "a heavily-forested stand of buckthorn trees. Several trees remain");
+    harvestRequiresTool("buckthorn", "axe");
+    harvestableResource("buckthorn fruit", 25,
+        "/lib/instances/items/food/plants/fruit/buckthorn-fruit.c");
+    limitHarvestBySeason("buckthorn fruit", "summer");
 }

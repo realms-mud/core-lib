@@ -21,4 +21,11 @@ public void Setup()
     addSeasonDescription("autumn", ({ " with cones fallen to the ground wide open" }));
 
     addDescriptionTemplate("a stand of ##Adjective## hemlock trees");
+
+    harvestableResource("hemlock", 25, "/lib/instances/items/materials/wood/hemlock.c",
+        "a heavily-forested stand of hemlock trees. Several trees remain");
+    harvestRequiresTool("hemlock", "axe");
+    harvestableResource("hemlock cone", 25,
+        "/lib/instances/items/food/plants/seeds/hemlock-cone.c");
+    limitHarvestBySeason("hemlock cone", "summer");
 }

@@ -22,4 +22,11 @@ public void Setup()
         " with cones and some needles carpeting the ground" }));
 
     addDescriptionTemplate("a stand of ##Adjective## pine trees");
+
+    harvestableResource("pine", 25, "/lib/instances/items/materials/wood/pine.c",
+        "a heavily-forested stand of pine trees. Several trees remain");
+    harvestRequiresTool("pine", "axe");
+    harvestableResource("pine cone", 25,
+        "/lib/instances/items/food/plants/seeds/pine-cone.c");
+    limitHarvestBySeason("pine cone", "summer");
 }

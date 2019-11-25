@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## pecan trees");
+
+    harvestableResource("pecan tree", 25, "/lib/instances/items/materials/wood/pecan.c",
+        "a heavily-forested stand of pecan trees. Several trees remain");
+    harvestRequiresTool("pecan tree", "axe");
+
+    harvestableResource("pecan", 10,
+        "/lib/instances/items/food/plants/nuts/pecan.c");
+    limitHarvestBySeason("pecan", "summer");
 }

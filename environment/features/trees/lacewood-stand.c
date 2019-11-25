@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## lacewood trees");
+
+    harvestableResource("lacewood", 25, "/lib/instances/items/materials/wood/lacewood.c",
+        "a heavily-forested stand of lacewood trees. Several trees remain");
+    harvestRequiresTool("lacewood", "axe");
+    harvestableResource("lacewood seed pod", 25,
+        "/lib/instances/items/food/plants/seeds/lacewood-seed-pod.c");
+    limitHarvestBySeason("lacewood seed pod", "summer");
 }

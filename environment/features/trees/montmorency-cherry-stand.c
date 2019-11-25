@@ -22,4 +22,12 @@ public void Setup()
         " with leaves in a vivid array of yellow, red, and orange colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## montmorency cherry trees");
+
+    harvestableResource("montmorency cherry tree", 25, "/lib/instances/items/materials/wood/cherry.c",
+        "a heavily-forested stand of montmorency cherry trees. Several trees remain");
+    harvestRequiresTool("montmorency cherry tree", "axe");
+
+    harvestableResource("montmorency cherry", 20,
+        "/lib/instances/items/food/plants/fruit/montmorency-cherry.c");
+    limitHarvestBySeason("montmorency cherry", "summer");
 }

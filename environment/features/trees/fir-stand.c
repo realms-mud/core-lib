@@ -22,4 +22,11 @@ public void Setup()
         " with cones and some needles carpeting the ground" }));
 
     addDescriptionTemplate("a stand of ##Adjective## fir trees");
+
+    harvestableResource("fir", 25, "/lib/instances/items/materials/wood/fir.c",
+        "a heavily-forested stand of fir trees. Several trees remain");
+    harvestRequiresTool("fir", "axe");
+    harvestableResource("fir cone", 25,
+        "/lib/instances/items/food/plants/seeds/fir-cone.c");
+    limitHarvestBySeason("fir cone", "summer");
 }

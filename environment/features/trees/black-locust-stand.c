@@ -22,4 +22,11 @@ public void Setup()
         " with leaves in a vivid array of yellow and brown colors" }));
 
     addDescriptionTemplate("a stand of ##Adjective## black locust trees");
+
+    harvestableResource("black locust", 25, "/lib/instances/items/materials/wood/black-locust.c",
+        "a heavily-forested stand of black locust trees. Several trees remain");
+    harvestRequiresTool("black locust", "axe");
+    harvestableResource("black locust seed pod", 25,
+        "/lib/instances/items/food/plants/seeds/black-locust-seed-pod.c");
+    limitHarvestBySeason("black locust seed pod", "summer");
 }
