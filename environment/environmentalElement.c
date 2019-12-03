@@ -15,12 +15,16 @@ protected string elementName = 0;
 protected string State = "default";
 private int MimicExteriorLighting = 0;
 
-private object environmentDictionary =
-    load_object("/lib/dictionaries/environmentDictionary.c");
+private object environmentDictionary;
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask object environmentDictionary()
 {
+    if (!environmentDictionary)
+    {
+        environmentDictionary =
+            load_object("/lib/dictionaries/environmentDictionary.c");
+    }
     return environmentDictionary;
 }
 

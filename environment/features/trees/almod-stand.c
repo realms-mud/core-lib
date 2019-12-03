@@ -7,7 +7,7 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("pecan stand");
+    Name("almond stand");
     addAdjectives(({ "majestic", "towering", "tall", "massive" }));
     addTimeOfDayDescription("dawn", ({ " that the faint dawn light is just beginning to illuminate" }));
     addTimeOfDayDescription("dusk", ({ ", the details of which the last failing light of the day barely show" }));
@@ -27,7 +27,7 @@ public void Setup()
         "a heavily-forested stand of almond trees. Several trees remain");
     harvestRequiresTool("almond tree", "axe");
 
-    harvestableResource("pecan", 10,
+    harvestableResource("almond", 10,
         "/lib/instances/items/food/plants/nuts/almond.c");
     limitHarvestBySeason("almond", "summer");
 }

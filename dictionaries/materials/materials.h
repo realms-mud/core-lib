@@ -843,6 +843,19 @@ private nosave mapping materials =
         "experience modifier": 1.05,
         "default value": 10,
     ]),
+    "almond": ([
+        "class": "wood",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 2]),
+        ]),
+        "value multiplier": 1.2,
+        "default description": "This is a plank of almond.",
+        "scarcity": "common",
+        "experience modifier": 1.05,
+        "default value": 10,
+    ]),
     "plum": ([
         "class": "wood",
         "crafting skill required": 2,
