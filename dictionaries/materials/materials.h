@@ -744,6 +744,18 @@ private nosave mapping materials =
         "experience modifier": 1,
         "default value": 5,
     ]),
+    "paper birch bark": ([
+        "class": "wood",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftCommonWood.c":(["type":"research"]),
+            "wood crafting": (["type":"skill", "value": 1]),
+        ]),
+        "default description": "This is a piece of birch bark.",
+        "scarcity": "common",
+        "experience modifier": 1,
+        "default value": 5,
+    ]),
     "sycamore": ([
         "class": "wood",
         "crafting skill required": 2,

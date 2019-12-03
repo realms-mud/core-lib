@@ -176,8 +176,7 @@ public nomask int isValidFoodBlueprint(string type)
 {
     return (food && mappingp(food) && member(food, type) &&
         member(food[type], "crafting prerequisites") && 
-        member(food[type], "type") &&
-        member(food[type], "crafting materials"));
+        member(food[type], "type"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

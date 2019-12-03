@@ -28,4 +28,7 @@ public void Setup()
     harvestableResource("hemlock cone", 25,
         "/lib/instances/items/food/plants/seeds/hemlock-cone.c");
     limitHarvestBySeason("hemlock cone", "summer");
+    harvestableResource("pine nut", 25,
+        "/lib/instances/items/food/plants/nuts/pine-nut.c");
+    limitHarvestBySeason("pine nut", "summer");
 }

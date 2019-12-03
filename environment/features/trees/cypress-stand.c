@@ -29,4 +29,7 @@ public void Setup()
     harvestableResource("cypress cone", 25,
         "/lib/instances/items/food/plants/seeds/cypress-cone.c");
     limitHarvestBySeason("cypress cone", "summer");
+    harvestableResource("pine nut", 25,
+        "/lib/instances/items/food/plants/nuts/pine-nut.c");
+    limitHarvestBySeason("pine nut", "summer");
 }

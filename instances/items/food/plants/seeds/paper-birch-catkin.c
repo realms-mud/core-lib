@@ -1,0 +1,18 @@
+//*****************************************************************************
+// Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
+virtual inherit "/lib/items/food.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void reset(int arg) 
+{
+    if (!arg) 
+    {
+        set("name", "Paper Birch Catkins");
+        set("short", "Paper Birch Catkins");
+        set("aliases", ({ "paper birch catkins", "paper birch catkin", "catkins", "catkin",
+            "birch catkins", "birch catkin", }));
+        set("blueprint", "paper birch catkins");
+    }
+}

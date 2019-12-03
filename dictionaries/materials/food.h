@@ -1390,4 +1390,596 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
+    "alder catkins": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "willow catkins": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "cottonwood catkins": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "poplar catkins": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "paper birch catkins": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "birch catkins": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "ironwood catkins": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "yew cone": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "pine cone": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "fir cone": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "spruce cone": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "redwood cone": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "hemlock cone": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "cypress cone": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "cedar cone": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "ash samaras": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "elm samaras": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "maple samaras": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "rosewood seed": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "purple heart seed pod": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "mesquite seed pod": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "marblewood seed pod": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "lacewood seed pod": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "koa seed pod": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "ebony seed pod": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "bubinga seed pod": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "black locust seed pod": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "bloodwood seed": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "hickory globose": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "buckeye globose": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "kingwood seed pod": ([
+        "type": "seed",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "maple sap": ([
+        "type": "sap",
+        "subtype": "maple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "winesap apple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "red apple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "mcintosh apple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "honeycrisp apple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "green apple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "golden apple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "cortland apple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "ambrosia apple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "crabapple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "apple": ([
+        "type": "fruit",
+        "subtype": "apple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "grape": ([
+        "type": "fruit",
+        "subtype": "grape",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "plum": ([
+        "type": "fruit",
+        "subtype": "plum",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "pear": ([
+        "type": "fruit",
+        "subtype": "pear",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "apricot": ([
+        "type": "fruit",
+        "subtype": "apricot",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "peach": ([
+        "type": "fruit",
+        "subtype": "peach",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "persimmon": ([
+        "type": "fruit",
+        "subtype": "persimmon",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "nectarine": ([
+        "type": "fruit",
+        "subtype": "nectarine",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "mulberry": ([
+        "type": "fruit",
+        "subtype": "mulberry",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "montmorency cherry": ([
+        "type": "fruit",
+        "subtype": "cherry",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "choke cherry": ([
+        "type": "fruit",
+        "subtype": "cherry",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "black cherry": ([
+        "type": "fruit",
+        "subtype": "cherry",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "bing cherry": ([
+        "type": "fruit",
+        "subtype": "cherry",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "cherry": ([
+        "type": "fruit",
+        "subtype": "cherry",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "malorn fruit": ([
+        "type": "fruit",
+        "subtype": "malorn",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "magnolia fruit": ([
+        "type": "fruit",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "lilac fruit": ([
+        "type": "fruit",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "holly fruit": ([
+        "type": "fruit",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "buckthorn fruit": ([
+        "type": "fruit",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "dogwood fruit": ([
+        "type": "fruit",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "teak fruit": ([
+        "type": "fruit",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "sycamore fruit": ([
+        "type": "fruit",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "mahogany fruit": ([
+        "type": "fruit",
+        "subtype": "inedible",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "malorn flower": ([
+        "type": "flower",
+        "subtype": "malorn",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "magnolia flower": ([
+        "type": "flower",
+        "subtype": "magnolia",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "lilac flower": ([
+        "type": "flower",
+        "subtype": "lilac",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "walnut": ([
+        "type": "nut",
+        "subtype": "walnut",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "pine nut": ([
+        "type": "nut",
+        "subtype": "pine nut",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "acorn": ([
+        "type": "nut",
+        "subtype": "acorn",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "pecan": ([
+        "type": "nut",
+        "subtype": "pecan",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "almond": ([
+        "type": "nut",
+        "subtype": "almond",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "beech nut": ([
+        "type": "nut",
+        "subtype": "beech",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
+    "basswood nut": ([
+        "type": "nut",
+        "subtype": "basswood",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
 ]);

@@ -945,6 +945,16 @@ void EtiquetteIsAValidSkill()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ForestryIsAValidSkill()
+{
+    ExpectTrue(Dictionary->isValidSkill("forestry"), "forestry is a valid skill");
+    ExpectEq("general", Dictionary->skillType("forestry"), "returns proper skill type");
+    ExpectEq("wisdom", Dictionary->attributeForSkill("forestry"), "returns proper attribute");
+    ExpectEq(5, Dictionary->skillBonus("forestry", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(0, Dictionary->skillBonus("forestry", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void PersuasionIsAValidSkill()
 {
     ExpectTrue(Dictionary->isValidSkill("persuasion"), "persuasion is a valid skill");

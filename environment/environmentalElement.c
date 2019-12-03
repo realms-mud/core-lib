@@ -2,6 +2,7 @@
 // Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+inherit "/lib/core/prerequisites.c";
 
 protected mapping descriptionData = ([ ]);
 protected mapping harvestData = ([ ]);
@@ -14,10 +15,13 @@ protected string elementName = 0;
 protected string State = "default";
 private int MimicExteriorLighting = 0;
 
+private object environmentDictionary =
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
 /////////////////////////////////////////////////////////////////////////////
-protected object environmentDictionary()
+protected nomask object environmentDictionary()
 {
-    return load_object("/lib/dictionaries/environmentDictionary.c");
+    return environmentDictionary;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -643,19 +647,75 @@ public nomask void setUpForEnvironment(string state, object environment)
 protected nomask varargs void harvestableResource(string name, int quantity,
     string resourceFile, string harvestedDescription)
 {
-    
+//    if (load_object(resourceFile))
+    {
+        harvestData[name] = ([
+            "initial quantity": quantity,
+            "available quantity": quantity,
+            "resource file": resourceFile,
+            "description when harvested": harvestedDescription
+        ]);
+    }
+ /*   else
+    {
+        raise_error(sprintf("EnvironmentalElement: The resource %O must "
+            "exist and be clonable.\n", resourceFile));
+    }
+    */
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void limitHarvestBySeason(string name, string season)
 {
-
+    if (member(harvestData, name))
+    {
+        if (environmentDictionary()->isValidSeason(season))
+        {
+            if (!member(harvestData[name], "limited to seasons"))
+            {
+                harvestData[name]["limited to seasons"] = ({});
+            }
+            harvestData[name]["limited to seasons"] += ({ season });
+        }
+        else
+        {
+            raise_error("EnvironmentalElement: A valid season must be "
+                "specified.\n");
+        }
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
+            "It must be added via the harvestableResource(...) method before "
+            "adding a season.\n", name));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void limitHarvestByTimeOfDay(string name, string timeOfDay)
 {
-
+    if (member(harvestData, name))
+    {
+        if (environmentDictionary()->isValidTimeOfDay(timeOfDay))
+        {
+            if (!member(harvestData[name], "limited to time of day"))
+            {
+                harvestData[name]["limited to time of day"] = ({});
+            }
+            harvestData[name]["limited to time of day"] += ({ timeOfDay });
+        }
+        else
+        {
+            raise_error("EnvironmentalElement: A valid time of day must be "
+                "specified.\n");
+        }
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
+            "It must be added via the harvestableResource(...) method before "
+            "adding a season.\n", name));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

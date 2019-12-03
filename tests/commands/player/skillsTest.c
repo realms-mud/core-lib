@@ -270,17 +270,18 @@ void SFlagOnlyDisplaysSubterfugeSkills()
 /////////////////////////////////////////////////////////////////////////////
 void GeneralFlagOnlyDisplaysGeneralSkills()
 {
-    Player->addSkillPoints(102);
+    Player->addSkillPoints(110);
     PrepSkillsOfType("general");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
         sprintf(SkillsRow, "Agriculture", 0, "", "Animal handling", 1, "") +
         sprintf(SkillsRow, "Barter", 2, "", "Camp skills", 3, "") +
         sprintf(SkillsRow, "Cooking", 4, "", "Diplomacy", 5, "") +
-        sprintf(SkillsRow, "Etiquette", 6, "", "Hunting", 7, "") +
-        sprintf(SkillsRow, "Intimidation", 8, "", "Nautical skills", 9, "") +
-        sprintf(SkillsRow, "Persuasion", 0, "", "Rope skills", 1, "") +
-        sprintf(SkillsRow, "Swimming", 2, "", "Weather sense", 3, "") +
+        sprintf(SkillsRow, "Etiquette", 6, "", "Forestry", 7, "") +
+        sprintf(SkillsRow, "Hunting", 8, "", "Intimidation", 9, "") +
+        sprintf(SkillsRow, "Nautical skills", 0, "", "Persuasion", 1, "") +
+        sprintf(SkillsRow, "Rope skills", 2, "", "Swimming", 3, "") +
+        sprintf(HalfRow, "Weather sense", 4, "", "") +
         EndBar + sprintf(SkillPoints, 0);
 
     ExpectTrue(Player->executeCommand("skills -general"));
@@ -290,17 +291,18 @@ void GeneralFlagOnlyDisplaysGeneralSkills()
 /////////////////////////////////////////////////////////////////////////////
 void GFlagOnlyDisplaysGeneralSkills()
 {
-    Player->addSkillPoints(102);
+    Player->addSkillPoints(110);
     PrepSkillsOfType("general");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
         sprintf(SkillsRow, "Agriculture", 0, "", "Animal handling", 1, "") +
         sprintf(SkillsRow, "Barter", 2, "", "Camp skills", 3, "") +
         sprintf(SkillsRow, "Cooking", 4, "", "Diplomacy", 5, "") +
-        sprintf(SkillsRow, "Etiquette", 6, "", "Hunting", 7, "") +
-        sprintf(SkillsRow, "Intimidation", 8, "", "Nautical skills", 9, "") +
-        sprintf(SkillsRow, "Persuasion", 0, "", "Rope skills", 1, "") +
-        sprintf(SkillsRow, "Swimming", 2, "", "Weather sense", 3, "") +
+        sprintf(SkillsRow, "Etiquette", 6, "", "Forestry", 7, "") +
+        sprintf(SkillsRow, "Hunting", 8, "", "Intimidation", 9, "") +
+        sprintf(SkillsRow, "Nautical skills", 0, "", "Persuasion", 1, "") +
+        sprintf(SkillsRow, "Rope skills", 2, "", "Swimming", 3, "") +
+        sprintf(HalfRow, "Weather sense", 4, "", "") +
         EndBar + sprintf(SkillPoints, 0);
 
     ExpectTrue(Player->executeCommand("skills -g"));
@@ -394,7 +396,7 @@ void LFlagOnlyDisplaysLanguageSkills()
 /////////////////////////////////////////////////////////////////////////////
 void AllFlagDisplaysAllSkills()
 {
-    Player->addSkillPoints(1060);
+    Player->addSkillPoints(1068);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -451,10 +453,11 @@ void AllFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Agriculture", 0, "", "Animal handling", 1, "") +
         sprintf(SkillsRow, "Barter", 2, "", "Camp skills", 3, "") +
         sprintf(SkillsRow, "Cooking", 4, "", "Diplomacy", 5, "") +
-        sprintf(SkillsRow, "Etiquette", 6, "", "Hunting", 7, "") +
-        sprintf(SkillsRow, "Intimidation", 8, "", "Nautical skills", 9, "") +
-        sprintf(SkillsRow, "Persuasion", 0, "", "Rope skills", 1, "") +
-        sprintf(SkillsRow, "Swimming", 2, "", "Weather sense", 3, "");
+        sprintf(SkillsRow, "Etiquette", 6, "", "Forestry", 7, "") +
+        sprintf(SkillsRow, "Hunting", 8, "", "Intimidation", 9, "") +
+        sprintf(SkillsRow, "Nautical skills", 0, "", "Persuasion", 1, "") +
+        sprintf(SkillsRow, "Rope skills", 2, "", "Swimming", 3, "") +
+        sprintf(HalfRow, "Weather sense", 4, "", "");
 
     message += "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +
@@ -493,7 +496,7 @@ void AllFlagDisplaysAllSkills()
 /////////////////////////////////////////////////////////////////////////////
 void NoFlagDisplaysAllSkills()
 {
-    Player->addSkillPoints(1060);
+    Player->addSkillPoints(1068);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -550,10 +553,11 @@ void NoFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Agriculture", 0, "", "Animal handling", 1, "") +
         sprintf(SkillsRow, "Barter", 2, "", "Camp skills", 3, "") +
         sprintf(SkillsRow, "Cooking", 4, "", "Diplomacy", 5, "") +
-        sprintf(SkillsRow, "Etiquette", 6, "", "Hunting", 7, "") +
-        sprintf(SkillsRow, "Intimidation", 8, "", "Nautical skills", 9, "") +
-        sprintf(SkillsRow, "Persuasion", 0, "", "Rope skills", 1, "") +
-        sprintf(SkillsRow, "Swimming", 2, "", "Weather sense", 3, "");
+        sprintf(SkillsRow, "Etiquette", 6, "", "Forestry", 7, "") +
+        sprintf(SkillsRow, "Hunting", 8, "", "Intimidation", 9, "") +
+        sprintf(SkillsRow, "Nautical skills", 0, "", "Persuasion", 1, "") +
+        sprintf(SkillsRow, "Rope skills", 2, "", "Swimming", 3, "") +
+        sprintf(HalfRow, "Weather sense", 4, "", "");
 
     message += "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
         sprintf(SkillsRow, "Andurathi", 0, "", "Common", 1, "") +

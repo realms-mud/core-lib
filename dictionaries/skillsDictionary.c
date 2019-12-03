@@ -921,6 +921,14 @@ private mapping skills = ([
             "of the proper things say and do during confrontations in a "
             "diplomatic sense.\n"
     ]),
+    "forestry": ([
+        "type": "general",
+        "attribute": "wisdom",
+        "bonus calculator": "one for two",
+        "untrained penalty": 0,
+        "description": "This skill allows a character knowledge of basic "
+            "forestry: sustainable logging, identifying trees, and so on.\n"
+    ]),
     "persuasion": ([
         "type": "general",
         "attribute": "charisma",
