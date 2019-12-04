@@ -26,7 +26,7 @@ public void Setup()
     harvestableResource("alder", 25, "/lib/instances/items/materials/wood/alder.c",
         "a heavily-forested stand of alder trees. Several trees remain");
     harvestRequiresTool("alder", "axe");
-    harvestableResource("alder catkins", 25, 
+    harvestableResource("alder catkin", 25, 
         "/lib/instances/items/food/plants/seeds/alder-catkin.c");
-    limitHarvestBySeason("alder catkins", "summer");
+    limitHarvestBySeason("alder catkin", "summer");
 }

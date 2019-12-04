@@ -26,7 +26,7 @@ public void Setup()
     harvestableResource("cottonwood", 25, "/lib/instances/items/materials/wood/cottonwood.c",
         "a heavily-forested stand of cottonwood trees. Several trees remain");
     harvestRequiresTool("cottonwood", "axe");
-    harvestableResource("cottonwood catkins", 25,
+    harvestableResource("cottonwood catkin", 25,
         "/lib/instances/items/food/plants/seeds/cottonwood-catkin.c");
-    limitHarvestBySeason("cottonwood catkins", "summer");
+    limitHarvestBySeason("cottonwood catkin", "summer");
 }

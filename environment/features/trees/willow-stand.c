@@ -26,7 +26,7 @@ public void Setup()
     harvestableResource("willow", 25, "/lib/instances/items/materials/wood/willow.c",
         "a heavily-forested stand of willow trees. Several trees remain");
     harvestRequiresTool("willow", "axe");
-    harvestableResource("willow catkins", 25,
+    harvestableResource("willow catkin", 25,
         "/lib/instances/items/food/plants/seeds/willow-catkin.c");
-    limitHarvestBySeason("willow catkins", "summer");
+    limitHarvestBySeason("willow catkin", "summer");
 }

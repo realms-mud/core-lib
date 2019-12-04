@@ -9,9 +9,9 @@ public void reset(int arg)
 {
     if (!arg) 
     {
-        set("name", "Alder Catkin");
-        set("short", "Alder Catkin");
-        set("aliases", ({ "alder catkins", "alder catkin", "catkins", "catkin" }));
-        set("blueprint", "alder catkin");
+        set("name", "Ash Samara");
+        set("short", "Ash Samara");
+        set("aliases", ({ "ash samaras", "ash samara", "samaras", "samara" }));
+        set("blueprint", "ash samara");
     }
 }

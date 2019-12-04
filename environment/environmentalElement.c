@@ -651,7 +651,7 @@ public nomask void setUpForEnvironment(string state, object environment)
 protected nomask varargs void harvestableResource(string name, int quantity,
     string resourceFile, string harvestedDescription)
 {
-//    if (load_object(resourceFile))
+    if (load_object(resourceFile))
     {
         harvestData[name] = ([
             "initial quantity": quantity,
@@ -660,12 +660,11 @@ protected nomask varargs void harvestableResource(string name, int quantity,
             "description when harvested": harvestedDescription
         ]);
     }
- /*   else
+    else
     {
         raise_error(sprintf("EnvironmentalElement: The resource %O must "
             "exist and be clonable.\n", resourceFile));
     }
-    */
 }
 
 /////////////////////////////////////////////////////////////////////////////

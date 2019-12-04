@@ -26,7 +26,7 @@ public void Setup()
     harvestableResource("ironwood", 25, "/lib/instances/items/materials/wood/ironwood.c",
         "a heavily-forested stand of ironwood trees. Several trees remain");
     harvestRequiresTool("ironwood", "axe");
-    harvestableResource("ironwood catkins", 25,
+    harvestableResource("ironwood catkin", 25,
         "/lib/instances/items/food/plants/seeds/ironwood-catkin.c");
-    limitHarvestBySeason("ironwood catkins", "summer");
+    limitHarvestBySeason("ironwood catkin", "summer");
 }

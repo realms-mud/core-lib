@@ -30,7 +30,7 @@ public void Setup()
     harvestableResource("ash", 25, "/lib/instances/items/materials/wood/ash.c",
         "a heavily-forested stand of ash trees. Several trees remain");
     harvestRequiresTool("ash", "axe");
-    harvestableResource("ash samaras", 25,
-        "/lib/instances/items/food/plants/seeds/ash-samaras.c");
-    limitHarvestBySeason("ash samaras", "summer");
+    harvestableResource("ash samara", 25,
+        "/lib/instances/items/food/plants/seeds/ash-samara.c");
+    limitHarvestBySeason("ash samara", "summer");
 }

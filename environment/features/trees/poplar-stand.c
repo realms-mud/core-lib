@@ -26,7 +26,7 @@ public void Setup()
     harvestableResource("poplar", 25, "/lib/instances/items/materials/wood/poplar.c",
         "a heavily-forested stand of poplar trees. Several trees remain");
     harvestRequiresTool("poplar", "axe");
-    harvestableResource("poplar catkins", 25,
+    harvestableResource("poplar catkin", 25,
         "/lib/instances/items/food/plants/seeds/poplar-catkin.c");
-    limitHarvestBySeason("poplar catkins", "summer");
+    limitHarvestBySeason("poplar catkin", "summer");
 }

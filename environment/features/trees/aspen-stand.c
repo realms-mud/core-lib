@@ -26,7 +26,7 @@ public void Setup()
     harvestableResource("aspen", 25, "/lib/instances/items/materials/wood/aspen.c",
         "a heavily-forested stand of aspen trees. Several trees remain");
     harvestRequiresTool("aspen", "axe");
-    harvestableResource("aspen catkins", 25,
+    harvestableResource("aspen catkin", 25,
         "/lib/instances/items/food/plants/seeds/aspen-catkin.c");
-    limitHarvestBySeason("aspen catkins", "summer");
+    limitHarvestBySeason("aspen catkin", "summer");
 }

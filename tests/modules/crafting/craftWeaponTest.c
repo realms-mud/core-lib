@@ -129,7 +129,7 @@ void CraftSword()
     command("2", Player);
     command("16", Player);
     command("3", Player);
-    command("27", Player);
+    command("28", Player);
     command("11", Player);
     command("4", Player);
     command("13", Player);

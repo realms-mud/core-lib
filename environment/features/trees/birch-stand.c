@@ -26,7 +26,7 @@ public void Setup()
     harvestableResource("birch", 25, "/lib/instances/items/materials/wood/birch.c",
         "a heavily-forested stand of birch trees. Several trees remain");
     harvestRequiresTool("birch", "axe");
-    harvestableResource("birch catkins", 25,
+    harvestableResource("birch catkin", 25,
         "/lib/instances/items/food/plants/seeds/birch-catkin.c");
-    limitHarvestBySeason("birch catkins", "summer");
+    limitHarvestBySeason("birch catkin", "summer");
 }

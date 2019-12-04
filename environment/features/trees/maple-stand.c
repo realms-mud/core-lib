@@ -30,7 +30,7 @@ public void Setup()
     harvestableResource("maple", 25, "/lib/instances/items/materials/wood/maple.c",
         "a heavily-forested stand of maple trees. Several trees remain");
     harvestRequiresTool("maple", "axe");
-    harvestableResource("maple samaras", 25,
-        "/lib/instances/items/food/plants/seeds/maple-samaras.c");
-    limitHarvestBySeason("maple samaras", "summer");
+    harvestableResource("maple samara", 25,
+        "/lib/instances/items/food/plants/seeds/maple-samara.c");
+    limitHarvestBySeason("maple samara", "summer");
 }

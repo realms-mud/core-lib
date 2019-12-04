@@ -1390,57 +1390,57 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
-    "alder catkins": ([
+    "alder catkin": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "alder",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),
         "base experience": 1,
     ]),
-    "willow catkins": ([
+    "willow catkin": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "willow",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),
         "base experience": 1,
     ]),
-    "cottonwood catkins": ([
+    "cottonwood catkin": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "cottonwood",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),
         "base experience": 1,
     ]),
-    "poplar catkins": ([
+    "poplar catkin": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "poplar",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),
         "base experience": 1,
     ]),
-    "paper birch catkins": ([
+    "paper birch catkin": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "paper birch",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),
         "base experience": 1,
     ]),
-    "birch catkins": ([
+    "birch catkin": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "birch",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),
         "base experience": 1,
     ]),
-    "ironwood catkins": ([
+    "ironwood catkin": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "ironwood",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),
@@ -1510,25 +1510,33 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
-    "ash samaras": ([
+    "ash samara": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "ash",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),
         "base experience": 1,
     ]),
-    "elm samaras": ([
+    "elm samara": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "elm",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),
         "base experience": 1,
     ]),
-    "maple samaras": ([
+    "maple samara": ([
         "type": "seed",
-        "subtype": "inedible",
+        "subtype": "maple",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),    
+    "sugar maple samara": ([
+        "type": "seed",
+        "subtype": "sugar maple",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),

@@ -30,7 +30,7 @@ public void Setup()
     harvestableResource("elm", 25, "/lib/instances/items/materials/wood/elm.c",
         "a heavily-forested stand of elm trees. Several trees remain");
     harvestRequiresTool("elm", "axe");
-    harvestableResource("elm samaras", 25,
-        "/lib/instances/items/food/plants/seeds/elm-samaras.c");
-    limitHarvestBySeason("elm samaras", "summer");
+    harvestableResource("elm samara", 25,
+        "/lib/instances/items/food/plants/seeds/elm-samara.c");
+    limitHarvestBySeason("elm samara", "summer");
 }
