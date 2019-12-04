@@ -1398,6 +1398,14 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
+    "aspen catkin": ([
+        "type": "seed",
+        "subtype": "alder",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
     "willow catkin": ([
         "type": "seed",
         "subtype": "willow",
