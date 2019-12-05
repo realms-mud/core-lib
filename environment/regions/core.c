@@ -4,6 +4,8 @@
 //*****************************************************************************
 protected int MaxX = 25;
 protected int MaxY = 10;
+protected int roomCount = 0;
+
 protected string RegionName = 0;
 protected string RegionType = 0;
 protected string EnterFrom = 0;

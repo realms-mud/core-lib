@@ -25,6 +25,7 @@ public nomask void setDimensions(int x, int y)
     {
         MaxX = x;
         MaxY = y;
+        roomCount = 0;
     }
 }
 

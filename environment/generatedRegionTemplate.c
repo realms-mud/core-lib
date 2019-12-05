@@ -11,6 +11,9 @@ public void Setup()
     // RegionType
     // Dimensions
     // EntryCoordinate
+    // SettlementChance
+    // RegionLevel
+    // RoomCount
 
     // Rooms
     // MapIcons

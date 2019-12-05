@@ -11,7 +11,28 @@ virtual inherit "/lib/environment/regions/generate-settlement.c";
 /////////////////////////////////////////////////////////////////////////////
 protected int getRoomCount()
 {
-    return MaxX + random(MaxX);
+    return roomCount ? roomCount : (MaxX + random(MaxX));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void setRoomCount(int count)
+{
+    int min = (MaxX > MaxY) ? MaxX : MaxY;
+    int max = to_int(sqrt(MaxX * MaxY) * 3.0);
+
+    if ((count >= min) && (count <= max))
+    {
+        roomCount = count;
+    }
+    else
+    {
+        raise_error(format(sprintf("Region: The room count (%d) must be in "
+            "the range of %d to %d. This range is calculated based on the "
+            "values of x (%d) and y (%d). Values outside of this range can "
+            "adversely affect the performance of the pathing algorithm or "
+            "lead to poorly-devised regions.\n",
+            count, min, max, MaxX, MaxY), 78));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -167,9 +188,4 @@ public nomask void createRegionFromTemplate(mapping data,
         "key": data["key"],
         "region": connectedRegion
     ]);
-
-    foreach(mapping room in rooms)
-    {
- //       generateRoomDetails(room);
-    }
 }

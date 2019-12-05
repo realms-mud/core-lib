@@ -122,11 +122,29 @@ void WarningDisplayedIfInvalidSettlementChanceSet()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void WarningDisplayedIfInvalidLevelSet()
+{
+    ExpectTrue(Wizard->executeCommand("generate region -n blah -p "
+        "/players/earl -x 5 -y 5 -l 0"));
+    ExpectSubStringMatch("The level must be in the range of 1 to 200",
+        Wizard->caughtMessages());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WarningDisplayedIfInvalidRoomNumber()
+{
+    ExpectTrue(Wizard->executeCommand("generate region -n blah -p "
+        "/players/earl -x 5 -y 5 -r 100"));
+    ExpectSubStringMatch("The room count.*must be in the range of 5 to 15",
+        Wizard->caughtMessages());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void PromptedToGenerateRegionWhenAllParametersValid()
 {
     ExpectTrue(Wizard->executeCommand("generate region -n george -p "
         "/players/earl -x 5 -y 5 -t forest -s 100 -direction east -de "
-        "/players/maeglin/shop.c"));
+        "/players/maeglin/shop.c -l 40 -r 15"));
     ExpectSubStringMatch("Type 'C' to create, 'R' to generate a different "
         "region, or anything", Wizard->caughtMessage());
 }

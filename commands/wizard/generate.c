@@ -19,7 +19,8 @@ public nomask void reset(int arg)
         addCommandTemplate("generate region [-n(ame|) ##Value##] "
             "[-p(ath|) ##Value##] [-t(ype|) \"##Value##\"] [-x ##Value##] "
             "[-y ##Value##] [-dir(ection|) ##Value##] "
-            "[-de(stination|) ##Value##] [-s(ettlement chance|) ##Value##] [.*]");
+            "[-de(stination|) ##Value##] [-s(ettlement chance|) ##Value##] "
+            "[-l(evel|) ##Value##] [-r(ooms|) ##Value##] [.*]");
     }
 }
 
@@ -144,6 +145,57 @@ private int getSettlementChance(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private int getRegionLevel(string command, object initiator)
+{
+    int level = 0;
+
+    if (sizeof(regexp(({ command }), "-l(evel)* [0-9]+")))
+    {
+        level = to_int(regreplace(command,
+            ".*-l(evel)* ([0-9]+).*", "\\2", 1));
+
+        if ((level < 1) || level > 200)
+        {
+            level = 0;
+            tell_object(initiator, configuration->decorate(
+                format("The level must be in the range of 1 to "
+                    "200.\n", 78),
+                "error message", "wizard commands", initiator->colorConfiguration()));
+        }
+    }
+    return level;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int getRoomsInRegion(string command, object initiator, int x, int y)
+{
+    int rooms = 0;
+
+    if (sizeof(regexp(({ command }), "-r(ooms)* [0-9]+")))
+    {
+        rooms = to_int(regreplace(command,
+            ".*-r(ooms)* ([0-9]+).*", "\\2", 1));
+
+        int min = (x > y) ? x : y;
+        int max = to_int(sqrt(x * y) * 3.0);
+
+        if ((rooms < min) || rooms > max)
+        {
+            tell_object(initiator, configuration->decorate(
+                format(sprintf("The room count (%d) must be in the range of %d to "
+                    "%d. This range is calculated based on the values of x "
+                    "(%d) and y (%d). Values outside of this range can "
+                    "adversely affect the performance of the pathing "
+                    "algorithm or lead to poorly-devised regions.\n",
+                    rooms, min, max, x, y), 78),
+                "error message", "wizard commands", initiator->colorConfiguration()));
+            rooms = 0;
+        }
+    }
+    return rooms;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private string getDirection(string command)
 {
     string direction;
@@ -172,7 +224,7 @@ private string getDestination(string command)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void generateRegion(object initiator, string name, string type,
     int x, int y, int settlementChance, string direction, string destination,
-    string path)
+    string path, int level, int rooms)
 {
     object region = clone_object("/lib/environment/region.c");
     region->setRegionName(name);
@@ -181,7 +233,17 @@ private nomask void generateRegion(object initiator, string name, string type,
 
     if (settlementChance != NotSet)
     {
-        region->setSettlementChange(settlementChance);
+        region->setSettlementChance(settlementChance);
+    }
+
+    if (level)
+    {
+        region->setRegionLevel(level);
+    }
+
+    if (rooms)
+    {
+        region->setRoomCount(rooms);
     }
 
     region->createRegion(direction, destination);
@@ -191,13 +253,14 @@ private nomask void generateRegion(object initiator, string name, string type,
         "directory", "wizard commands", initiator->colorConfiguration()));
 
     input_to("responseToGenerate", 1 | 2, region, initiator, name, type,
-        x, y, settlementChance, direction, destination, path);
+        x, y, settlementChance, direction, destination, path, level, rooms);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask void responseToGenerate(string response, object region,
     object initiator, string name, string type, int x, int y, 
-    int settlementChance, string direction, string destination, string path)
+    int settlementChance, string direction, string destination, string path,
+    int level, int rooms)
 {
     response = lower_case(response);
     if (response == "c")
@@ -215,7 +278,7 @@ static nomask void responseToGenerate(string response, object region,
             "region...\n",
             "normal", "wizard commands", initiator->colorConfiguration()));
         generateRegion(initiator, name, type, x, y, settlementChance,
-            direction, destination, path);
+            direction, destination, path, level, rooms);
     }
     else
     {
@@ -256,11 +319,13 @@ public nomask int execute(string command, object initiator)
             int settlementChance = getSettlementChance(command, initiator);
             string direction = getDirection(command);
             string destination = getDestination(command);
+            int level = getRegionLevel(command, initiator);
+            int rooms = getRoomsInRegion(command, initiator, x, y);
 
             if (x && y && type && (settlementChance != Invalid))
             {
                 generateRegion(initiator, name, type, x, y, settlementChance,
-                    direction, destination, path);
+                    direction, destination, path, level, rooms);
             }
         }
     }
@@ -340,6 +405,23 @@ protected string flagInformation(string flag, string colorConfiguration)
         {
             ret = "This option will set the y dimension for the region. This value "
                 "must range from 5 to 25. The default value is 10.";
+            break;
+        }
+        case "-l":
+        {
+            ret = "This option will set the level of the NPCs generated for this "
+                "region. There will be some variance in levels due to the "
+                "external constraints of potential encounters.";
+            break;
+        }
+        case "-r":
+        {
+            ret = "This option will set the number of rooms with encounters that are "
+                "generated for the region. This value must range between the larger "
+                "of the X or Y dimension as a minimum to three times the square root "
+                "of the area of the region as a maximum. The reason for this is because "
+                "the pathing algorithm can become unperformant in scenarios outside of "
+                "those bounds.";
             break;
         }
     }

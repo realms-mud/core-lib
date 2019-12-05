@@ -271,6 +271,72 @@ private nomask string *generateStaticRoomFiles(string roomPath)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string generateSetEntryCoordinate(string fileTemplate,
+    string roomPath)
+{
+    string ret = fileTemplate;
+
+    if (sizeof(entry))
+    {
+        ret = regreplace(ret, "// EntryCoordinate",
+            sprintf("setEntryCoordinate(%d, %d,\n"
+                "        \"%s\", \"%s\"\n"
+                "        \"%s\");", entry[0], entry[1],
+                sprintf("%s%s.c", roomPath, getEntryCoordinates()),
+                EnterFrom, EntryPoint));
+    }
+    else
+    {
+        ret = regreplace(ret, "// EntryCoordiante", "");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string generateSettlementChance(string fileTemplate)
+{
+    return regreplace(fileTemplate, "// SettlementChance",
+        sprintf("setSettlementChance(%d);", 
+            this_object()->settlementChance()));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string generateSetRegionLevel(string fileTemplate)
+{
+    string ret = fileTemplate;
+
+    if (RegionLevel)
+    {
+        ret = regreplace(ret, "// RegionLevel",
+            sprintf("setRegionLevel(%d);", RegionLevel));
+    }
+    else
+    {
+        ret = regreplace(ret, "    // RegionLevel\r*\n", "");
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string generateSetRoomCount(string fileTemplate)
+{
+    string ret = fileTemplate;
+
+    if (roomCount)
+    {
+        ret = regreplace(ret, "// RoomCount",
+            sprintf("setRoomCount(%d);", roomCount));
+    }
+    else
+    {
+        ret = regreplace(ret, "    // RoomCount\r*\n", "");
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void generateStaticRegionFile(string roomPath, 
     string *coordinateList)
 {
@@ -284,15 +350,10 @@ private nomask void generateStaticRegionFile(string roomPath,
     file = regreplace(file, "// Dimensions",
         sprintf("setDimensions(%d, %d);", MaxX, MaxY));
 
-    if (sizeof(entry))
-    {
-        file = regreplace(file, "// EntryCoordinate",
-            sprintf("setEntryCoordinate(%d, %d,\n"
-                "        \"%s\", \"%s\"\n"
-                "        \"%s\");", entry[0], entry[1],
-                sprintf("%s%s.c", roomPath, getEntryCoordinates()),
-                EnterFrom, EntryPoint));
-    }
+    file = generateSetEntryCoordinate(file, roomPath);
+    file = generateSettlementChance(file);
+    file = generateSetRegionLevel(file);
+    file = generateSetRoomCount(file);
 
     string rooms = "";
     foreach(string roomFile in coordinateList)

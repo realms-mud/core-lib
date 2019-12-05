@@ -88,6 +88,7 @@ void CorrectNumberOfRoomsGenerated()
     Region->setRegionType("forest");
 
     Region->setDimensions(5, 5);
+    Region->setRoomCount(5);
     Region->createRegion();
 
     // At least 5 rooms and an entrance are created. There may also be an
@@ -286,6 +287,8 @@ void CanGenerateFiles()
 
     Region->setDimensions(10, 10);
     Region->setSettlementChance(0);
+    Region->setRegionLevel(35);
+    Region->setRoomCount(25);
     Region->createRegion("west", "/lib/tests/support/environment/startingRoom.c");
 
     Region->generateStaticFiles("/lib/generated_region");
