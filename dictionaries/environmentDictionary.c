@@ -183,6 +183,13 @@ public nomask int isValidTimeOfDay(string time)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int isValidMoonPhase(string phase)
+{
+    return phase && stringp(phase) &&
+        (member(m_indices(moonLightLevel), phase) > -1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string moonPhase()
 {
     // Approximation is officially close enough...

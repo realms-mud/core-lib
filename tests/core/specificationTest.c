@@ -601,3 +601,81 @@ void LimitorsFallBackToSkillWhenInCorrectSubType()
 
     destruct(chainmail);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySkillReturnsTrueWithLimitorForTimeOfDay()
+{
+    mapping limitor = (["time of day": "dusk"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+
+    object environmentDictionary = 
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    environmentDictionary->timeOfDay("dusk");
+    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+
+    environmentDictionary->timeOfDay("noon");
+    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySkillReturnsTrueWithLimitorForSeason()
+{
+    mapping limitor = (["season": "autumn"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+
+    object environmentDictionary =
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    environmentDictionary->season("autumn");
+    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+
+    environmentDictionary->season("spring");
+    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySkillReturnsTrueWithLimitorForMoonPhase()
+{
+    mapping limitor = (["moon phase": "waning gibbous"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+
+    object environmentDictionary =
+        load_object("/lib/dictionaries/environmentDictionary.c");
+
+    environmentDictionary->setDay(17);
+    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+
+    environmentDictionary->setDay(24);
+    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForTimeOfDay()
+{
+    mapping limitor = (["time of day":"dusk"]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when time of day is dusk.\n\x1b[0m", 
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForSeason()
+{
+    mapping limitor = (["season":"autumn"]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when season is autumn.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForMoonPhase()
+{
+    mapping limitor = (["moon phase":"waning gibbous"]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when moon phase is waning gibbous.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}

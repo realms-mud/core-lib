@@ -17,6 +17,9 @@ protected mapping researchData = ([
     // "limited by": ([
     //      "opponent race": <valid race>
     //      "opponent guild": <valid guild>
+    //      "time of day": <valid time of day>
+    //      "season": <valid season>
+    //      "moon phase": <valid phase>
     //      "environment": <valid environment type>
     //      "intoxicated": <level>
     //      "drugged": <level>
@@ -88,6 +91,36 @@ protected nomask int validLimitor(mapping limitor)
                         if (factionDictionary)
                         {
                             ret &&= factionDictionary->isValidFaction(
+                                limitor[key]);
+                        }
+                        break;
+                    }
+                    case "time of day":
+                    {
+                        object environmentDictionary = getDictionary("environment");
+                        if (environmentDictionary)
+                        {
+                            ret &&= environmentDictionary->isValidTimeOfDay(
+                                limitor[key]);
+                        }
+                        break;
+                    }
+                    case "season":
+                    {
+                        object environmentDictionary = getDictionary("environment");
+                        if (environmentDictionary)
+                        {
+                            ret &&= environmentDictionary->isValidSeason(
+                                limitor[key]);
+                        }
+                        break;
+                    }
+                    case "moon phase":
+                    {
+                        object environmentDictionary = getDictionary("environment");
+                        if (environmentDictionary)
+                        {
+                            ret &&= environmentDictionary->isValidMoonPhase(
                                 limitor[key]);
                         }
                         break;
@@ -235,6 +268,325 @@ protected int blockSkillApplication(string skill, object owner, object target)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int checkOpponentRaceLimitor(object target, int verbose)
+{
+    int ret = 1;
+ 
+    if (member(researchData["limited by"], "opponent race"))
+    {
+        ret &&= target && objectp(target) &&
+            function_exists("Race", target) && (target->Race() ==
+                researchData["limited by"]["opponent race"]);
+
+        if (!ret && verbose)
+        {
+            printf("Your opponent is not of the %s race.\n",
+                researchData["limited by"]["opponent race"]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkOpponentGuildLimitor(object target, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "opponent guild"))
+    {
+        ret &&= target && objectp(target) &&
+            function_exists("memberOfGuild", target) &&
+            target->memberOfGuild(
+                researchData["limited by"]["opponent guild"]);
+
+        if (!ret && verbose)
+        {
+            printf("Your opponent is not of the %s guild.\n",
+                researchData["limited by"]["opponent guild"]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkOpponentFactionLimitor(object target, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "opponent faction"))
+    {
+        ret &&= target && objectp(target) &&
+            function_exists("memberOfFaction", target) &&
+            target->memberOfFaction(
+                researchData["limited by"]["opponent faction"]);
+
+        if (!ret && verbose)
+        {
+            object faction = getDictionary("factions")->factionObject(
+                researchData["limited by"]["opponent faction"]);
+
+            if (faction)
+            {
+                printf("Your opponent is not of the %s faction.\n",
+                    faction->name());
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkCraftingTypeLimitor(object target, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "crafting type"))
+    {
+        ret &&= objectp(target);
+
+        if (stringp(researchData["limited by"]["crafting type"]) &&
+            target)
+        {
+            ret &&= ((target->query("crafting type") ==
+                researchData["limited by"]["crafting type"]) ||
+                (getDictionary("materials")->getBlueprintDetails(target,
+                    "skill to use") == 
+                    researchData["limited by"]["crafting type"]));
+        }
+        else if (pointerp(researchData["limited by"]["crafting type"]) &&
+            target)
+        {
+            int checkList = 0;
+            object materials = getDictionary("materials");
+
+            foreach(string key in researchData["limited by"]["crafting type"])
+            {
+                checkList += ((target->query("crafting type") == key) ||
+                    (materials->getBlueprintDetails(target,
+                        "skill to use") == key));
+            }
+            ret &&= checkList;
+        }
+        if (!ret && verbose)
+        {
+            printf("The item is of the wrong type to be affected by this research.\n");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkEnvironmentLimitor(object owner, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "environment"))
+    {
+        object environmentDictionary =
+            getDictionary("environment");
+        if (environmentDictionary)
+        {
+            ret &&= environment(owner) &&
+                environmentDictionary->isEnvironmentOfType(environment(owner),
+                    researchData["limited by"]["environment"]);
+        }
+        if (!ret && verbose)
+        {
+            printf("You are not in the correct environment (%s) to do that.\n",
+                researchData["limited by"]["environment"]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkIntoxicatedLimitor(object owner, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "intoxicated"))
+    {
+        ret &&= function_exists("Intoxicated", owner) &&
+            (owner->Intoxicated() >=
+                researchData["limited by"]["intoxicated"]);
+        if (!ret && verbose)
+        {
+            printf("You are not intoxicated enough to do that.\n");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkDruggedLimitor(object owner, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "drugged"))
+    {
+        ret &&= function_exists("Drugged", owner) &&
+            (owner->Drugged() >= researchData["limited by"]["drugged"]);
+        if (!ret && verbose)
+        {
+            printf("You are not drugged enough to do that.\n");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkNearDeathLimitor(object owner, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "near death"))
+    {
+        ret &&= function_exists("hitPoints", owner) &&
+            (owner->hitPoints() <= researchData["limited by"]["near death"]);
+        if (!ret && verbose)
+        {
+            printf("You are not injured enough to do that.\n");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkStaminaDrainedLimitor(object owner, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "stamina drained"))
+    {
+        ret &&= function_exists("staminaPoints", owner) &&
+            (owner->staminaPoints() <= researchData["limited by"]["stamina drained"]);
+        if (!ret && verbose)
+        {
+            printf("You are not weary enough to do that.\n");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkSpellPointsDrainedLimitor(object owner, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "spell points drained"))
+    {
+        ret &&= function_exists("spellPoints", owner) &&
+            (owner->spellPoints() <= researchData["limited by"]["spell points drained"]);
+        if (!ret && verbose)
+        {
+            printf("You are not drained enough to do that.\n");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkEquipmentLimitor(object owner, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "equipment"))
+    {
+        if (pointerp(researchData["limited by"]["equipment"]) &&
+            sizeof(researchData["limited by"]["equipment"]))
+        {
+            int hasEquipment = 0;
+            string *list = researchData["limited by"]["equipment"];
+            foreach(string equipment in list)
+            {
+                hasEquipment ||= owner->usingEquipmentOfType(equipment);
+            }
+            ret &&= hasEquipment;
+        }
+        else
+        {
+            ret &&= function_exists("usingEquipmentOfType", owner) &&
+                owner->usingEquipmentOfType(researchData["limited by"]["equipment"]);
+        }
+
+        if (!ret && verbose)
+        {
+            printf("You must be using the proper equipment for that (%s).\n",
+                stringp(researchData["limited by"]["equipment"]) ? 
+                    researchData["limited by"]["equipment"] :
+                    implode(researchData["limited by"]["equipment"], ", "));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkTimeOfDayLimitor(int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "time of day"))
+    {
+        object environmentDictionary = getDictionary("environment");
+        if (environmentDictionary)
+        {
+            ret &&= (environmentDictionary->timeOfDay() ==
+                    researchData["limited by"]["time of day"]);
+        }
+        if (!ret && verbose)
+        {
+            printf("It is not the proper time of day (%s) to do that.\n",
+                researchData["limited by"]["time of day"]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkSeasonLimitor(int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "season"))
+    {
+        object environmentDictionary = getDictionary("environment");
+        if (environmentDictionary)
+        {
+            ret &&= (environmentDictionary->season() ==
+                researchData["limited by"]["season"]);
+        }
+        if (!ret && verbose)
+        {
+            printf("It is not the proper season (%s) to do that.\n",
+                researchData["limited by"]["season"]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkMoonPhaseLimitor(int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "moon phase"))
+    {
+        object environmentDictionary = getDictionary("environment");
+        if (environmentDictionary)
+        {
+            ret &&= (environmentDictionary->moonPhase() ==
+                researchData["limited by"]["moon phase"]);
+        }
+        if (!ret && verbose)
+        {
+            printf("It is not the proper moon phase (%s) to do that.\n",
+                researchData["limited by"]["moon phase"]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs int canApplySkill(string skill, object owner, object target, int verbose)
 {
     int ret = 1;
@@ -242,168 +594,20 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
 
     if (member(researchData, "limited by") && owner && objectp(owner))
     {
-        if (member(researchData["limited by"], "opponent race"))
-        {
-            ret &&= target && objectp(target) &&
-                function_exists("Race", target) && (target->Race() ==
-                    researchData["limited by"]["opponent race"]);
-            if (!ret && verbose)
-            {
-                printf("Your opponent is not of the %s race.\n",
-                    researchData["limited by"]["opponent race"]);
-            }
-        }
-        if (member(researchData["limited by"], "opponent guild"))
-        {
-            ret &&= target && objectp(target) &&
-                function_exists("memberOfGuild", target) &&
-                target->memberOfGuild(
-                    researchData["limited by"]["opponent guild"]);
-            if (!ret && verbose)
-            {
-                printf("Your opponent is not of the %s guild.\n",
-                    researchData["limited by"]["opponent guild"]);
-            }
-        }
-        if (member(researchData["limited by"], "opponent faction"))
-        {
-            ret &&= target && objectp(target) &&
-                function_exists("memberOfFaction", target) &&
-                target->memberOfFaction(
-                    researchData["limited by"]["opponent faction"]);
-            if (!ret && verbose)
-            {
-                object faction = getDictionary("factions")->factionObject(
-                    researchData["limited by"]["opponent faction"]);
-
-                if (faction)
-                {
-                    printf("Your opponent is not of the %s faction.\n",
-                        faction->name());
-                }
-            }
-        }
-        if (member(researchData["limited by"], "crafting type"))
-        {
-            ret &&= objectp(target);
-
-            if (stringp(researchData["limited by"]["crafting type"]) &&
-                target)
-            {
-                ret &&= ((target->query("crafting type") ==
-                    researchData["limited by"]["crafting type"]) ||
-                    (getDictionary("materials")->getBlueprintDetails(target,
-                        "skill to use") == 
-                        researchData["limited by"]["crafting type"]));
-            }
-            else if (pointerp(researchData["limited by"]["crafting type"]) &&
-                target)
-            {
-                int checkList = 0;
-                object materials = getDictionary("materials");
-
-                foreach(string key in researchData["limited by"]["crafting type"])
-                {
-                    checkList += ((target->query("crafting type") == key) ||
-                        (materials->getBlueprintDetails(target,
-                           "skill to use") == key));
-                }
-                ret &&= checkList;
-            }
-            if (!ret && verbose)
-            {
-                printf("The item is of the wrong type to be affected by this research.\n");
-            }
-        }
-        if (member(researchData["limited by"], "environment"))
-        {
-            object environmentDictionary =
-                getDictionary("environment");
-            if (environmentDictionary)
-            {
-                ret &&= environment(owner) &&
-                    environmentDictionary->isEnvironmentOfType(environment(owner),
-                        researchData["limited by"]["environment"]);
-            }
-            if (!ret && verbose)
-            {
-                printf("You are not in the correct environment (%s) to do that.\n",
-                    researchData["limited by"]["environment"]);
-            }
-        }
-        if (member(researchData["limited by"], "intoxicated"))
-        {
-            ret &&= function_exists("Intoxicated", owner) &&
-                (owner->Intoxicated() >=
-                    researchData["limited by"]["intoxicated"]);
-            if (!ret && verbose)
-            {
-                printf("You are not intoxicated enough to do that.\n");
-            }
-        }
-        if (member(researchData["limited by"], "drugged"))
-        {
-            ret &&= function_exists("Drugged", owner) &&
-                (owner->Drugged() >= researchData["limited by"]["drugged"]);
-            if (!ret && verbose)
-            {
-                printf("You are not drugged enough to do that.\n");
-            }
-        }
-        if (member(researchData["limited by"], "near death"))
-        {
-            ret &&= function_exists("hitPoints", owner) &&
-                (owner->hitPoints() <= researchData["limited by"]["near death"]);
-            if (!ret && verbose)
-            {
-                printf("You are not injured enough to do that.\n");
-            }
-        }
-        if (member(researchData["limited by"], "stamina drained"))
-        {
-            ret &&= function_exists("staminaPoints", owner) &&
-                (owner->staminaPoints() <= researchData["limited by"]["stamina drained"]);
-            if (!ret && verbose)
-            {
-                printf("You are not weary enough to do that.\n");
-            }
-        }
-        if (member(researchData["limited by"], "spell points drained"))
-        {
-            ret &&= function_exists("spellPoints", owner) &&
-                (owner->spellPoints() <= researchData["limited by"]["spell points drained"]);
-            if (!ret && verbose)
-            {
-                printf("You are not drained enough to do that.\n");
-            }
-        }
-        if (member(researchData["limited by"], "equipment"))
-        {
-            if (pointerp(researchData["limited by"]["equipment"]) &&
-                sizeof(researchData["limited by"]["equipment"]))
-            {
-                int hasEquipment = 0;
-                string *list = researchData["limited by"]["equipment"];
-                foreach(string equipment in list)
-                {
-                    hasEquipment ||= owner->usingEquipmentOfType(equipment);
-                }
-                ret &&= hasEquipment;
-            }
-            else
-            {
-                ret &&= function_exists("usingEquipmentOfType", owner) &&
-                    owner->usingEquipmentOfType(researchData["limited by"]["equipment"]);
-            }
-
-            if (!ret && verbose)
-            {
-                printf("You must be using the proper equipment for that (%s).\n",
-                    stringp(researchData["limited by"]["equipment"]) ? 
-                        researchData["limited by"]["equipment"] :
-                        implode(researchData["limited by"]["equipment"], ", "));
-            }
-        }
+        ret &&= checkOpponentRaceLimitor(target, verbose) &&
+                checkOpponentGuildLimitor(target, verbose) &&
+                checkOpponentFactionLimitor(target, verbose) &&
+                checkCraftingTypeLimitor(target, verbose) &&
+                checkEnvironmentLimitor(owner, verbose) &&
+                checkIntoxicatedLimitor(owner, verbose) &&
+                checkDruggedLimitor(owner, verbose) &&
+                checkNearDeathLimitor(owner, verbose) &&
+                checkStaminaDrainedLimitor(owner, verbose) &&
+                checkSpellPointsDrainedLimitor(owner, verbose) &&
+                checkEquipmentLimitor(owner, verbose) &&
+                checkTimeOfDayLimitor(verbose) &&
+                checkSeasonLimitor(verbose) &&
+                checkMoonPhaseLimitor(verbose);
     }
     return ret && !blockSkillApplication(skill, owner, target);
 }
@@ -503,6 +707,9 @@ public nomask string displayLimiters(string colorConfiguration, object configura
             case "opponent guild":
             case "crafting type":
             case "environment":
+            case "time of day":
+            case "season":
+            case "moon phase":
             {
                 string types = stringp(researchData["limited by"][key]) ?
                     researchData["limited by"][key] :
