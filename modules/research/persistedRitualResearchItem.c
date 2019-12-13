@@ -2,7 +2,7 @@
 // Class: persistedRitualResearchItem
 // File Name: persistedRitualResearchItem.c
 //
-// Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/modules/research/ritualResearchItem.c";

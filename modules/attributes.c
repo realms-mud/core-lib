@@ -2,7 +2,7 @@
 // Class: attributes
 // File Name: attributes.c
 //
-// Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: This object encapsulates all functionality surrounding the

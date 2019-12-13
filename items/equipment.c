@@ -2,7 +2,7 @@
 // Class: equipment
 // File Name: equipment.c
 //
-// Copyright (c) 2019 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: This class defines exactly what equipment is and as such,
