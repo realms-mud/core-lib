@@ -16,7 +16,7 @@ void Setup()
     Attributes->colorConfiguration("none");
     setUsers(({ Attributes }));
 
-    move_object(Attributes, "/lib/tests/support/environment/fakeEnvironment.c");
+    move_object(Attributes, "/lib/tests/support/environment/externalLightEnvironment.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -493,7 +493,7 @@ void CanSeeReturnsEnvironmentIlluminationByDefault()
 {
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
-    move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
+    move_object(Attributes, clone_object("/lib/tests/support/environment/externalLightEnvironment.c"));
     ExpectFalse(Attributes->canSee(5));
 
     dictionary->timeOfDay("noon");
@@ -506,7 +506,7 @@ void CanSeeReturnsTrueWhenDarkvisionPresent()
 {
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
-    move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
+    move_object(Attributes, clone_object("/lib/tests/support/environment/externalLightEnvironment.c"));
     ExpectFalse(Attributes->canSee(5));
 
     Attributes->addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
@@ -519,7 +519,7 @@ void CanSeeReturnsFalseWhenBlindTraitPresent()
 {
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("noon");
-    move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
+    move_object(Attributes, clone_object("/lib/tests/support/environment/externalLightEnvironment.c"));
     ExpectTrue(Attributes->canSee(5));
 
     Attributes->addTrait("/lib/instances/traits/diseases/cataracts.c");
@@ -532,7 +532,7 @@ void CanSeeReturnsTrueWhenItemWithLightPresent()
 {
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     dictionary->timeOfDay("midnight");
-    move_object(Attributes, clone_object("/lib/tests/support/environment/fakeEnvironment.c"));
+    move_object(Attributes, clone_object("/lib/tests/support/environment/externalLightEnvironment.c"));
     ExpectFalse(Attributes->canSee(5));
 
     object weapon = clone_object("/lib/items/weapon");

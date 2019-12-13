@@ -2,7 +2,8 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/core/prerequisites.c";
+virtual inherit "/lib/core/specification.c";
+virtual inherit "/lib/core/prerequisites.c";
 
 protected mapping descriptionData = ([ ]);
 protected mapping harvestData = ([ ]);

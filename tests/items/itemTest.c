@@ -661,7 +661,7 @@ void ShortReturnsCorrectMessageInFullLight()
 void ShortReturnsCorrectMessageInNearDarkness()
 {
     object environment = 
-        load_object("/lib/tests/support/environment/fakeEnvironment.c");
+        load_object("/lib/tests/support/environment/externalLightEnvironment.c");
     object dictionary = 
         load_object("/lib/dictionaries/environmentDictionary.c");
 
@@ -686,7 +686,7 @@ void ShortReturnsCorrectMessageInNearDarkness()
 void ShortReturnsCorrectMessageInLowLight()
 {
     object environment =
-        load_object("/lib/tests/support/environment/fakeEnvironment.c");
+        load_object("/lib/tests/support/environment/externalLightEnvironment.c");
     object dictionary =
         load_object("/lib/dictionaries/environmentDictionary.c");
 
@@ -711,7 +711,7 @@ void ShortReturnsCorrectMessageInLowLight()
 void ShortReturnsCorrectMessageInDimLight()
 {
     object environment =
-        load_object("/lib/tests/support/environment/fakeEnvironment.c");
+        load_object("/lib/tests/support/environment/externalLightEnvironment.c");
     object dictionary =
         load_object("/lib/dictionaries/environmentDictionary.c");
 
@@ -737,7 +737,7 @@ void ShortReturnsCorrectMessageInDimLight()
 void ShortReturnsCorrectMessageInSomeLight()
 {
     object environment =
-        load_object("/lib/tests/support/environment/fakeEnvironment.c");
+        load_object("/lib/tests/support/environment/externalLightEnvironment.c");
     object dictionary =
         load_object("/lib/dictionaries/environmentDictionary.c");
 
