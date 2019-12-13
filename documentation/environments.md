@@ -253,6 +253,14 @@ void setCoordinates(string region, int x, int y);
 ```
 TBD
 
+##### Region Auto-Generation
+
+TBD
+
+##### Map Decorators
+
+TBD
+
 #### Additional Descriptions
 ```
 varargs void setAdditionalLongDescription(string description, string state);

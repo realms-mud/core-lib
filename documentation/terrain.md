@@ -123,6 +123,9 @@ public void Setup()
 ```
 Interiors are specified in exactly the same manner.
 
+##### Interactable Items
+TBD
+
 ##### Lighting
 For terrains, lighting is tied directly to the time-of-day and weather while for interiors, the default behavior
 is to have no light by default. What that means is that either an environmental object that is a light source
@@ -145,5 +148,11 @@ TBD
 
 TBD
 
+##### Light Level Descriptions
+TBD
+
 ##### State Machines
+TBD
+
+##### Harvestable Resources
 TBD
