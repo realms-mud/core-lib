@@ -20,7 +20,7 @@ public nomask string wizardLevel()
 /////////////////////////////////////////////////////////////////////////////
 public nomask string wizardInformation()
 {
-    // TODO - add wizard info such as GM duties, etc.
+    // 668: TODO - add wizard info such as GM duties, etc.
     string ret = "";
 
     string colorConfiguration = colorConfiguration();

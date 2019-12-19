@@ -975,6 +975,7 @@ public varargs string long(string item)
 
     string ret = getBaseDescriptionForType("terrain", illuminationLevel);
     int isOutside = 1;
+
     if (!ret)
     {
         ret = getBaseDescriptionForType("interior", illuminationLevel);
@@ -992,6 +993,7 @@ public varargs string long(string item)
         {
             ret += " " + environmentalElements["description"][currentState()];
         }
+
         ret = regreplace(ret,
             "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
             #'parseEfunCall,1);
@@ -1085,6 +1087,53 @@ public int id(string item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int moveToDestination(object player, string direction,
+    string destination, object region, string state)
+{
+    int canMove = 1;
+    if (destination)
+    {
+        object door = 0;
+        object originalLocation = environment(this_player());
+
+        if (member(environmentalElements["doors"], state) &&
+            member(environmentalElements["doors"][state], destination))
+        {
+            door = environmentalElements["doors"][state][destination];
+
+            if (door->isLocked())
+            {
+                canMove = 0;
+                door->displayLockedMessage(this_player());
+            }
+            else
+            {
+                door->displayMoveMessage(this_player(), direction);
+            }
+        }
+
+        if (canMove)
+        {
+            this_player()->move(destination, direction, objectp(door), region);
+
+            object party = this_player()->getParty();
+            if (party)
+            {
+                party->moveFollowers(this_player(), destination, direction, region);
+            }
+
+            if (door)
+            {
+                door->displayOpenMessage(this_player());
+                door->displayCloseMessage(this_player(), originalLocation);
+            }
+        }
+    }
+
+    return destination && stringp(destination);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int move(string str)
 {
     string direction = query_verb();
@@ -1117,47 +1166,8 @@ public nomask int move(string str)
         region = exits[state][direction]["region"];
     }
 
-    int canMove = 1;
-    if (destination)
-    {
-        object door = 0;
-        object originalLocation = environment(this_player());
-
-        if (member(environmentalElements["doors"], state) &&
-            member(environmentalElements["doors"][state], destination))
-        {
-            door =  environmentalElements["doors"][state][destination];
-
-            if (door->isLocked())
-            {
-                canMove = 0;
-                door->displayLockedMessage(this_player());
-            }
-            else
-            {
-                door->displayMoveMessage(this_player(), direction);
-            }
-        }
-
-        if (canMove)
-        {
-            this_player()->move(destination, direction, objectp(door), region);
-
-            object party = this_player()->getParty();
-            if (party)
-            {
-                party->moveFollowers(this_player(), destination, direction, region);
-            }
-
-            if (door)
-            {
-                door->displayOpenMessage(this_player());
-                door->displayCloseMessage(this_player(), originalLocation);
-            }
-        }
-    }
-
-    return destination && stringp(destination);
+    return moveToDestination(this_player(), direction, destination, 
+        region, state);
 }
 
 /////////////////////////////////////////////////////////////////////////////

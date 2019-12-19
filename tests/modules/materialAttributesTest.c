@@ -16,6 +16,9 @@ void Setup()
     Attributes->colorConfiguration("none");
     setUsers(({ Attributes }));
 
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("noon");
+
     move_object(Attributes, "/lib/tests/support/environment/externalLightEnvironment.c");
 }
 

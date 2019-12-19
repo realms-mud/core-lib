@@ -72,13 +72,17 @@ public nomask int execute(string command, object initiator)
         else
         {
             object target = getTarget(initiator, command);
+
+            int brief = 0;
             if (!target && (getTargetString(initiator, command) == ""))
             {
                 target = environment(initiator);
             }
-
-            int brief = sizeof(regexp(({ command }), "-b")) ||
-                sizeof(regexp(({ command }), "glance"));
+            else
+            {
+                brief = sizeof(regexp(({ command }), "-b")) ||
+                    sizeof(regexp(({ command }), "glance"));
+            }
 
             if (target)
             {

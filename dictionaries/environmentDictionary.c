@@ -480,6 +480,7 @@ public nomask string convertNumberToString(int number)
     {
         ret = numbersAsString[number];
     }
+
     return ret;
 }
 
