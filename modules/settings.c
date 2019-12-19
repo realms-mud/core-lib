@@ -95,12 +95,15 @@ public nomask void setEarmuffs(string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setMiniMap(string state)
+public nomask void setMiniMap(string state, int suppressMessage)
 {
     DisplayMiniMap = (state == "on");
-    tell_object(this_object(), sprintf("You have set your display mini map "
-        "flag to '%s'.\n",
-        DisplayMiniMap ? "on" : "off"));
+    if (!suppressMessage)
+    {
+        tell_object(this_object(), 
+            sprintf("You have set your display mini map flag to '%s'.\n",
+            DisplayMiniMap ? "on" : "off"));
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

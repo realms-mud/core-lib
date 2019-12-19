@@ -8,6 +8,7 @@ private object Player = 0;
 private string *selectors = ({
     "/lib/modules/creation/colorSelector.c",
     "/lib/modules/creation/charsetSelector.c",
+    "/lib/modules/creation/minimapSelector.c",
     "/lib/modules/creation/genderSelector.c",
     "/lib/modules/creation/raceSelector.c",
     "/lib/modules/creation/subraceSelector.c",
@@ -30,7 +31,7 @@ private nomask void movePlayerToStart(object player)
     }
     else
     {
-        move_object(player, "/room/city/central_park.c");
+        move_object(player, "/lib/tutorial/eledhel/southern-city/12x2.c");
         tell_object(player, "Doh! The room you were last in during your "
             "previous session is broken.\nYou have been moved to a different "
             "location.\n");

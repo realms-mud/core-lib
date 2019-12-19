@@ -795,7 +795,7 @@ private varargs string getBaseDescriptionForType(string type,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string getExitDescription()
+private string getExitDescription(object viewer)
 {
     string ret = "";
 
@@ -811,10 +811,10 @@ private string getExitDescription()
     }
     exitList = sort_array(m_indices(mkmapping(exitList)), (: $1 > $2 :));
 
-    int showUnicode = this_player() ? 
-        this_player()->charsetConfiguration() == "unicode" : 0;
-    string colorConfiguration = this_player() ?
-        this_player()->colorConfiguration() : "none";
+    int showUnicode = viewer ?
+        viewer->charsetConfiguration() == "unicode" : 0;
+    string colorConfiguration = viewer ?
+        viewer->colorConfiguration() : "none";
 
     int numExits = sizeof(exitList);
 
@@ -830,26 +830,26 @@ private string getExitDescription()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string getInventoryDescription(int illuminationLevel)
+private string getInventoryDescription(int illuminationLevel, object viewer)
 {
     string ret = "";
     object *environmentInventory = all_inventory(this_object());
     if (sizeof(environmentInventory))
     {
-        string colorConfiguration = this_player() ?
-            this_player()->colorConfiguration() : "none";
+        string colorConfiguration = viewer ?
+            viewer->colorConfiguration() : "none";
 
         object *infraInventory = ({});
-        if ((illuminationLevel < 7) && this_player() &&
-            this_player()->hasTraitOfRoot("infravision"))
+        if ((illuminationLevel < 7) && viewer &&
+            viewer->hasTraitOfRoot("infravision"))
         {
             infraInventory = filter(environmentInventory,
                 (: $1->isRealizationOfLiving() &&
                     !$1->hasTraitOfRoot("ethereal") &&
                     !$1->hasTraitOfRoot("undead") :));
 
-            environmentInventory -= ({ this_player() });
-            infraInventory -= ({ this_player() });
+            environmentInventory -= ({ viewer });
+            infraInventory -= ({ viewer });
 
             if (sizeof(infraInventory))
             {
@@ -950,7 +950,79 @@ public nomask object getRegion()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs string long(string item)
+private nomask string displayMap(string description, string *map,
+    string colorConfiguration)
+{
+    string ret = "";
+    string *splitDesc = explode(description, "\n");
+
+    int shortest = sizeof(map) < sizeof(splitDesc) ? 
+        sizeof(map) : sizeof(splitDesc);
+
+    int count = 0;
+    for (int i = 0; i < shortest; i++)
+    {
+        ret += map[i] + " " + 
+            configuration->decorate(splitDesc[i],
+                "description", "environment", colorConfiguration) + "\n";
+        count++;
+    }
+
+    if (sizeof(map) > sizeof(splitDesc))
+    {
+        ret += implode(map[count..(sizeof(map) - 1)], "\n");
+    }
+    else
+    {
+        for (int i = count; i < sizeof(splitDesc); i++)
+        {
+            ret += sprintf("%18s %s\n", "", 
+                configuration->decorate(splitDesc[i],
+                    "description", "environment", colorConfiguration));
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string displayLongDetails(string description, string *map,
+    int illuminationLevel, int descriptionWidth,
+    string colorConfiguration)
+{
+    string ret = description;
+
+    ret += getElementDescriptions("feature", illuminationLevel) +
+        getElementDescriptions("item", illuminationLevel) +
+        getElementDescriptions("building", illuminationLevel) +
+        getElementDescriptions("door", illuminationLevel);
+
+    if (member(environmentalElements["description"], currentState()))
+    {
+        ret += " " + environmentalElements["description"][currentState()];
+    }
+
+    ret = regreplace(ret,
+        "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
+        #'parseEfunCall,1);
+    ret = capitalizeSentences(ret);
+    ret = format(ret, descriptionWidth);
+
+    if(map)
+    {
+        ret = displayMap(ret, map, colorConfiguration);
+    }
+    else
+    {
+        ret = sprintf(configuration->decorate(ret,
+            "description", "environment", colorConfiguration));
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs string long(string item, object viewer)
 {
     int illuminationLevel = isIlluminated();
     int descriptionWidth = 78;
@@ -958,17 +1030,22 @@ public varargs string long(string item)
 
     string colorConfiguration = "none";
 
-    if (this_player())
+    if (!viewer)
     {
-        colorConfiguration = this_player()->colorConfiguration();
-        if (this_player()->hasTraitOfRoot("darkvision"))
+        viewer = this_player();
+    }
+
+    if (viewer)
+    {
+        colorConfiguration = viewer->colorConfiguration();
+        if (viewer->hasTraitOfRoot("darkvision"))
         {
             illuminationLevel = 10;
         }
-        if (this_player()->displayMiniMap() && getRegion())
+        if (viewer->displayMiniMap() && getRegion())
         {
             descriptionWidth = 66;
-            map = getRegion()->getMiniMap(this_object(), this_player(),
+            map = getRegion()->getMiniMap(this_object(), viewer,
                 currentState());
         }
     }
@@ -984,58 +1061,8 @@ public varargs string long(string item)
 
     if (ret)
     {
-        ret += getElementDescriptions("feature", illuminationLevel) +
-            getElementDescriptions("item", illuminationLevel) +
-            getElementDescriptions("building", illuminationLevel) +
-            getElementDescriptions("door", illuminationLevel);
-
-        if (member(environmentalElements["description"], currentState()))
-        {
-            ret += " " + environmentalElements["description"][currentState()];
-        }
-
-        ret = regreplace(ret,
-            "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
-            #'parseEfunCall,1);
-        ret = capitalizeSentences(ret);
-        ret = format(ret, descriptionWidth);
-
-        if(map)
-        {
-            string *splitDesc = explode(ret, "\n");
-
-            int shortest = sizeof(map) < sizeof(splitDesc) ? 
-                sizeof(map) : sizeof(splitDesc);
-
-            ret = "";
-            int count = 0;
-            for (int i = 0; i < shortest; i++)
-            {
-                ret += map[i] + " " + 
-                    configuration->decorate(splitDesc[i],
-                        "description", "environment", colorConfiguration) + "\n";
-                count++;
-            }
-
-            if (sizeof(map) > sizeof(splitDesc))
-            {
-                ret += implode(map[count..(sizeof(map) - 1)], "\n");
-            }
-            else
-            {
-                for (int i = count; i < sizeof(splitDesc); i++)
-                {
-                    ret += sprintf("%18s %s\n", "", 
-                        configuration->decorate(splitDesc[i],
-                            "description", "environment", colorConfiguration));
-                }
-            }
-        }
-        else
-        {
-            ret = sprintf(configuration->decorate(ret,
-                "description", "environment", colorConfiguration));
-        }
+        ret = displayLongDetails(ret, map, illuminationLevel,
+            descriptionWidth, colorConfiguration);
     }
     else
     {
@@ -1046,8 +1073,8 @@ public varargs string long(string item)
     return ret + (isOutside ? 
             environmentDictionary()->timeOfDayMessage(colorConfiguration) :
             "") +
-        getExitDescription() + 
-        getInventoryDescription(illuminationLevel) + "\n";
+        getExitDescription(viewer) +
+        getInventoryDescription(illuminationLevel, viewer) + "\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////

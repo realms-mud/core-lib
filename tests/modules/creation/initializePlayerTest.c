@@ -136,5 +136,5 @@ void PlayerSeesWelcomeMessageOnCompletion()
             "command. Enjoy your time here and don't hesitate\nto contact "
             "any of the game administrators with your questions or "
             "comments.\n\x1b[0m",
-        User->caughtMessages()[10], "Final message is correct");
+        User->caughtMessages()[11], "Final message is correct");
 }
