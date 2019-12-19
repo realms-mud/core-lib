@@ -174,6 +174,9 @@ void MoveIsPreventedWhenAllowToIsProhibited()
 /////////////////////////////////////////////////////////////////////////////
 void MovingIntoClonedEnvironmentCreatesClone()
 {
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("noon");
+
     object initialRoom = load_object("/lib/tests/support/environment/clonedRoom.c");
 
     ExpectTrue(Movement->move("/lib/tests/support/environment/clonedRoom.c"), "move called");
@@ -190,6 +193,9 @@ void MovingIntoClonedEnvironmentCreatesClone()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyMovesFromCloneToClone()
 {
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("noon");
+
     object initialRoom = load_object("/lib/tests/support/environment/clonedRoom.c");
 
     ExpectTrue(Movement->move("/lib/tests/support/environment/clonedRoom.c"), "move called");
@@ -207,6 +213,9 @@ void CorrectlyMovesFromCloneToClone()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyMovesFromCloneToNotClonedRoom()
 {
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("noon");
+
     object initialRoom = load_object("/lib/tests/support/environment/clonedRoom.c");
 
     ExpectTrue(Movement->move("/lib/tests/support/environment/clonedRoom.c"), "move called");
@@ -224,6 +233,9 @@ void CorrectlyMovesFromCloneToNotClonedRoom()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyMovesFromNotClonedToCloneRoom()
 {
+    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    dictionary->timeOfDay("noon");
+
     object initialRoom = load_object("/lib/tests/support/environment/notClonedRoom.c");
 
     ExpectTrue(Movement->move("/lib/tests/support/environment/notClonedRoom.c"), "move called");

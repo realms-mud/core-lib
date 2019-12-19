@@ -651,7 +651,7 @@ void ShortReturnsCorrectMessageInNearDarkness()
     Attributes->Gender(1);
 
     dictionary->timeOfDay("midnight");
-    dictionary->setDay(0);
+    dictionary->setDay(363);
 
     ExpectEq("A silhouette of something unidentifiable", Attributes->short());
 
