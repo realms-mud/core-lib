@@ -1913,10 +1913,3 @@ BEGIN
 RETURN elementId;
 END;
 ##
-insert into players (id,name,race,age,gender) values (1,'maeglin','high elf',1,1);
-##
-insert into wizards (playerid,typeid) values (1, (select id from wizardTypes where type='owner'));
-##
-insert into players (id,name,race,age,gender) values (2,'sonja','high elf',1,2);
-##
-insert into wizards (playerid,typeid) values (2, (select id from wizardTypes where type='owner'));

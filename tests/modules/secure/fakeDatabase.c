@@ -86,7 +86,7 @@ public nomask mapping Gorthaur()
         "onKillList": 1,
         "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
         "page size": 20,
-        "playerId": 3,
+        "playerId": 2,
         "pretitle": "Weasel Lord",
         "quests": ([ 
             "lib/tests/support/quests/fakeQuestItem.c": ([ 
@@ -178,7 +178,8 @@ public nomask void PrepDatabase()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs mapping GetWizardOfLevel(string level, string *groups)
+public nomask varargs mapping GetWizardOfLevel(string level, string name,
+    string *groups)
 {
     return ([ 
         "age": 1,
@@ -256,11 +257,11 @@ public nomask varargs mapping GetWizardOfLevel(string level, string *groups)
         "messageIn": "is now here",
         "messageOut": "leaves",
         "money": 12345,
-        "name": "earl",
+        "name": (name ? name : "earl"),
         "onKillList": 1,
         "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
         "page size": 20,
-        "playerId": 4,
+        "playerId": 3,
         "pretitle": "Weasel Lord",
         "quests": ([ 
             "lib/tests/support/quests/fakeQuestItem.c": ([ 
