@@ -11,7 +11,7 @@ private object StateMachineDictionary =
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void Setup()
 {
-    setStartingLocation("/lib/tutorial/rooms/battleScene.c");
+    setStartingLocation("/lib/tutorial/rooms/entryPoint.c");
 
     stateMachine = StateMachineDictionary->getStateMachine(
         "/lib/tutorial/stateMachines/introStateMachine.c");

@@ -10,5 +10,10 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/oak-stand.c", "south");
 
+    setAdditionalLongDescription("\nThis is the default start location.\n"
+        "If you go north, you can test out an (incomplete) background story.\n"
+        "If you go south, you will be placed in the (incomplete) city of Eledhel.\n");
+
     addExit("north", "/lib/tutorial/rooms/battleScene.c");
+    addExit("south", "/lib/tutorial/eledhel/southern-city/12x2.c");
 }

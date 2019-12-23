@@ -85,7 +85,8 @@ private nomask void initiateSelector()
                 "with your questions or comments.\n", 78),
                 "details", "selector", colorConfiguration));
 
-        backgroundDictionary->initiateBackground(Player);
+        //backgroundDictionary->initiateBackground(Player);
+        move_object(Player, "/lib/tutorial/eledhel/southern-city/12x2.c");
         destruct(this_object());
     }
     else

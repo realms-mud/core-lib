@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private nosave string DefaultStart = "/room/city/central_park.c";
+private nosave string DefaultStart = "/lib/tutorial/eledhel/southern-city/12x2.c";
 
 private string name = "";
 private string shortDescription = "";

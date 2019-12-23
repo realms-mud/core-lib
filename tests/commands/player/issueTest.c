@@ -119,7 +119,7 @@ void CanLogIssueWithTeleport()
 
     command("issue -teleport -c I feel lonely. Talk to me.", Player);
 
-    ExpectEq(load_object("/room/city/central_park.c"),
+    ExpectEq(load_object("/lib/tutorial/eledhel/southern-city/12x2.c"),
         environment(Player));
 
     ExpectEq("\x1b[0;32;1mYour issue details have been logged.\n\x1b[0m",

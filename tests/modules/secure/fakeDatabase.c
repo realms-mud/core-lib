@@ -69,7 +69,7 @@ public nomask mapping Gorthaur()
         "invisible": 0,
         "inventory": ([ 
         ]),
-        "location": "/room/city/central_park.c",
+        "location": "/lib/tutorial/eledhel/southern-city/12x2.c",
         "longDescription": "This is a long description",
         "magicalMessageIn": "blah",
         "magicalMessageOut": "de-blahs",
@@ -244,7 +244,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
         "invisible": 0,
         "inventory": ([ 
         ]),
-        "location": "/room/city/central_park.c",
+        "location": "/lib/tutorial/eledhel/southern-city/12x2.c",
         "longDescription": "This is a long description",
         "magicalMessageIn": "blah",
         "magicalMessageOut": "de-blahs",
