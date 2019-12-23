@@ -7,7 +7,7 @@
 public void slipIntoUnconsciousnessPartThree(object player)
 {
     load_object("/lib/dictionaries/guildsDictionary.c");
-    load_object("/lib/guilds/background/background.c");
+    load_object("/guilds/background/background.c");
 
     if (!player->memberOfGuild("background"))
     {

@@ -10,7 +10,7 @@ object Player;
 void Init()
 {
     load_object("/lib/dictionaries/guildsDictionary.c");
-    load_object("/lib/guilds/scion/scionOfDhuras.c");
+    load_object("/guilds/scion/scionOfDhuras.c");
     load_object("/lib/tests/support/guilds/fighterGuild.c");
 }
 
@@ -268,9 +268,9 @@ void CanSelectResearchChoice()
     command("level up", Player);
     command("1", Player);
     command("4", Player);
-    ExpectFalse(Player->isResearched("lib/guilds/scion/paths/sword/root.c"));
+    ExpectFalse(Player->isResearched("guilds/scion/paths/sword/root.c"));
     ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
-        "lib/guilds/scion/common/mana-shield/mana-shield.c" }), 
+        "guilds/scion/common/mana-shield/mana-shield.c" }), 
         Player->availableResearchTrees());
 
     ExpectEq("A new research choice is available: The Focus\n"
@@ -286,10 +286,10 @@ void CanSelectResearchChoice()
         Player->caughtMessage());
 
     command("1", Player);
-    ExpectTrue(Player->isResearched("lib/guilds/scion/paths/sword/root.c"));
+    ExpectTrue(Player->isResearched("guilds/scion/paths/sword/root.c"));
     ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
-        "lib/guilds/scion/common/mana-shield/mana-shield.c",
-        "lib/guilds/scion/paths/sword.c" }),
+        "guilds/scion/common/mana-shield/mana-shield.c",
+        "guilds/scion/paths/sword.c" }),
         Player->availableResearchTrees());
 
     ExpectEq("Advancement - Scion of Dhuras Menu:\n"
@@ -319,11 +319,11 @@ void CanSelectResearchWhenAllChoicesMade()
     command("3", Player);
     command("1", Player);
 
-    ExpectTrue(Player->isResearched("lib/guilds/scion/paths/sword/root.c"));
-    ExpectTrue(Player->isResearched("lib/guilds/scion/paths/sword/flame/root.c"));
+    ExpectTrue(Player->isResearched("guilds/scion/paths/sword/root.c"));
+    ExpectTrue(Player->isResearched("guilds/scion/paths/sword/flame/root.c"));
     ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
-        "lib/guilds/scion/paths/sword.c", "lib/guilds/scion/paths/sword/flame.c",
-        "lib/guilds/scion/common/mana-shield/mana-shield.c" }),
+        "guilds/scion/paths/sword.c", "guilds/scion/paths/sword/flame.c",
+        "guilds/scion/common/mana-shield/mana-shield.c" }),
         Player->availableResearchTrees());
 
     ExpectEq("Advancement - Scion of Dhuras Menu:\n"

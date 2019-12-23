@@ -416,7 +416,7 @@ void CanLeaveGuildFailsIfMemberIsAnathema()
 /////////////////////////////////////////////////////////////////////////////
 void CannotReJoinGuildsThatHaveDoNotAllowReJoinOfGuildSet()
 {
-    object guild = load_object("/lib/guilds/background/background.c");
+    object guild = load_object("/guilds/background/background.c");
 
     ExpectTrue(User->joinGuild("background"));
     ExpectTrue(User->leaveGuild("background"));
