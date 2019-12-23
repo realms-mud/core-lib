@@ -25,7 +25,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 29 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/dagger/forms/changing-through.c",
+        addPrerequisite("guilds/scion/paths/dagger/forms/changing-through.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

@@ -23,7 +23,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 3 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/mace/forms/from-the-roof.c",
+        addPrerequisite("guilds/scion/paths/mace/forms/from-the-roof.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

@@ -23,7 +23,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 13 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/dagger/forms/side-stepping.c",
+        addPrerequisite("guilds/scion/paths/dagger/forms/side-stepping.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

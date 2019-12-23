@@ -26,9 +26,9 @@ public void reset(int arg)
             "energy that swarms around and harries a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/shocking-tendrils.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/shocking-tendrils.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -39,7 +39,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType),
                 "name" : "Static Barrier",
                 "formula" : "additive",
                 "base value" : 2,
@@ -47,7 +47,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType),
                 "name" : "Ionized Barrier",
                 "formula" : "additive",
                 "base value" : 2,
@@ -55,7 +55,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/plasma-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/plasma-barrier.c", WeaponType),
                 "name" : "Plasma Barrier",
                 "formula" : "additive",
                 "base value" : 5,

@@ -23,7 +23,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 27 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/hammer/forms/dance-of-death.c",
+        addPrerequisite("guilds/scion/paths/hammer/forms/dance-of-death.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

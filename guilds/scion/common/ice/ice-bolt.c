@@ -26,9 +26,9 @@ public void reset(int arg)
             "discharge at a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/ice/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/ice/root.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("scope", "targeted");
@@ -52,7 +52,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
                 "name" : "Chill the Blood",
                 "formula" : "additive",
                 "base value" : 5,
@@ -60,7 +60,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
                 "name" : "Freezing Mark",
                 "formula" : "additive",
                 "base value" : 5,

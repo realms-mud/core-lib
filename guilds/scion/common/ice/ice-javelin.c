@@ -26,9 +26,9 @@ public void reset(int arg)
             "of super-cooled ice at a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/ice/ice-bolt.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/ice/ice-bolt.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -58,7 +58,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
                 "name" : "Chill the Blood",
                 "formula" : "additive",
                 "base value" : 5,
@@ -66,7 +66,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
                 "name" : "Freezing Mark",
                 "formula" : "additive",
                 "base value" : 5,
@@ -74,7 +74,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/ice/winters-rage.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/ice/winters-rage.c", WeaponType),
                 "name" : "Winter's Rage",
                 "formula" : "additive",
                 "base value" : 5,
@@ -82,7 +82,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/ice/wind-chill.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/ice/wind-chill.c", WeaponType),
                 "name" : "Wind Chill",
                 "formula" : "additive",
                 "base value" : 10,
@@ -90,7 +90,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/ice/icy-mark.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/ice/icy-mark.c", WeaponType),
                 "name" : "Icy Mark",
                 "formula" : "additive",
                 "base value" : 10,

@@ -26,7 +26,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 8 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/mace/forms/eisenport.c",
+        addPrerequisite("guilds/scion/paths/mace/forms/eisenport.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

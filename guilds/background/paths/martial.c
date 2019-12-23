@@ -43,8 +43,8 @@ public void reset(int arg)
         Name("A Childhood of Structured Military Learning");
         Description("");
         Source("background");
-        addResearchElement("lib/guilds/background/paths/martial/root.c");
-        TreeRoot("lib/guilds/background/paths/martial/root.c");
+        addResearchElement("guilds/background/paths/martial/root.c");
+        TreeRoot("guilds/background/paths/martial/root.c");
 
         FirstLevel();
         SecondLevel();

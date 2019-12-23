@@ -24,7 +24,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 17 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/staff/forms/over-smite.c",
+        addPrerequisite("guilds/scion/paths/staff/forms/over-smite.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

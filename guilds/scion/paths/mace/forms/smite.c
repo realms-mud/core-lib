@@ -21,7 +21,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 5 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/mace/forms/mauling.c",
+        addPrerequisite("guilds/scion/paths/mace/forms/mauling.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

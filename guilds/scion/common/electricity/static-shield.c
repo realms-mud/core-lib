@@ -28,7 +28,7 @@ public void reset(int arg)
             (["type":"level", 
               "guild": "Scion of Dhuras",
               "value": 31 ]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/electric-shroud.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/electric-shroud.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");

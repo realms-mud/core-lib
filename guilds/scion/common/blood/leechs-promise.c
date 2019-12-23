@@ -29,7 +29,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 13 ]));
         addPrerequisite(
-            sprintf("lib/guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
+            sprintf("guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");

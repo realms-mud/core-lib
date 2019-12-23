@@ -23,7 +23,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 16 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/staff/forms/striking.c",
+        addPrerequisite("guilds/scion/paths/staff/forms/striking.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

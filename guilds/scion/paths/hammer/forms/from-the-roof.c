@@ -17,7 +17,7 @@ public void reset(int arg)
             "held above the head.");
         addSpecification("limited by", (["equipment":({ "hammer" })]));
 
-        addPrerequisite("lib/guilds/scion/paths/hammer/root.c",
+        addPrerequisite("guilds/scion/paths/hammer/root.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

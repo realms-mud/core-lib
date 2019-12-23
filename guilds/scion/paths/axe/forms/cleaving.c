@@ -16,7 +16,7 @@ public void reset(int arg)
             "knowledge of how to more effectively cleave with axes.");
         addSpecification("limited by", (["equipment":({ "axe" })]));
 
-        addPrerequisite("lib/guilds/scion/paths/axe/root.c",
+        addPrerequisite("guilds/scion/paths/axe/root.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

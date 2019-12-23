@@ -26,9 +26,9 @@ public void reset(int arg)
             "available stamina.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/blood/shockstrike.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/blood/shockstrike.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -39,7 +39,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/sweeping-torment.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/sweeping-torment.c", WeaponType),
                 "name" : "sweeping torment",
                 "formula" : "additive",
                 "base value" : 2,
@@ -47,7 +47,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/soul-brand.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/soul-brand.c", WeaponType),
                 "name" : "soul brand",
                 "formula" : "additive",
                 "base value" : 2,
@@ -55,7 +55,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/scourge-strike.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/scourge-strike.c", WeaponType),
                 "name" : "scourge strike",
                 "formula" : "additive",
                 "base value" : 2,
@@ -63,7 +63,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/wicked-edge.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/wicked-edge.c", WeaponType),
                 "name" : "wicked edge",
                 "formula" : "additive",
                 "base value" : 2,
@@ -71,7 +71,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/tortured-curse.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/tortured-curse.c", WeaponType),
                 "name" : "tortured curse",
                 "formula" : "additive",
                 "base value" : 5,

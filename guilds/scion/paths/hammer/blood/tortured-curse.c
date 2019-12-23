@@ -2,7 +2,7 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/guilds/scion/common/blood/tortured-curse.c";
+inherit "/guilds/scion/common/blood/tortured-curse.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()

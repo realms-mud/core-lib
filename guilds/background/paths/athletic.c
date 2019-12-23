@@ -43,8 +43,8 @@ public void reset(int arg)
         Name("An Athlete");
         Description("");
         Source("background");
-        addResearchElement("lib/guilds/background/paths/athletic/root.c");
-        TreeRoot("lib/guilds/background/paths/athletic/root.c");
+        addResearchElement("guilds/background/paths/athletic/root.c");
+        TreeRoot("guilds/background/paths/athletic/root.c");
 
         FirstLevel();
         SecondLevel();

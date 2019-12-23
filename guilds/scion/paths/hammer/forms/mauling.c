@@ -16,7 +16,7 @@ public void reset(int arg)
             "knowledge of how to more effectively maul with hammers.");
         addSpecification("limited by", (["equipment":({ "hammer" })]));
 
-        addPrerequisite("lib/guilds/scion/paths/hammer/root.c",
+        addPrerequisite("guilds/scion/paths/hammer/root.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

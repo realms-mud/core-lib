@@ -22,7 +22,7 @@ public void reset(int arg)
             "value": 11 
         ]));
 
-        addPrerequisite("lib/guilds/scion/common/mana-shield/gift-of-dhuras.c",
+        addPrerequisite("guilds/scion/common/mana-shield/gift-of-dhuras.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");

@@ -26,9 +26,9 @@ public void reset(int arg)
             "energy that swarms around a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/evocation/magical-strike.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/magical-strike.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -39,7 +39,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/evocation/static-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/evocation/static-barrier.c", WeaponType),
                 "name" : "Static Barrier",
                 "formula" : "additive",
                 "base value" : 2,
@@ -47,7 +47,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/evocation/kinetic-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/evocation/kinetic-barrier.c", WeaponType),
                 "name" : "Kinetic Barrier",
                 "formula" : "additive",
                 "base value" : 2,
@@ -55,7 +55,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/evocation/energy-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/evocation/energy-barrier.c", WeaponType),
                 "name" : "Energy Barrier",
                 "formula" : "additive",
                 "base value" : 5,

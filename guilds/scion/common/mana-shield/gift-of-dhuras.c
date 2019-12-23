@@ -22,7 +22,7 @@ public void reset(int arg)
             "value": 7 
         ]));
 
-        addPrerequisite("lib/guilds/scion/common/mana-shield/root.c",
+        addPrerequisite("guilds/scion/common/mana-shield/root.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");

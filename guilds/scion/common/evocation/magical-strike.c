@@ -25,15 +25,15 @@ public void reset(int arg)
             "weapon. Doing so is wearying and will decrease available stamina.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/evocation/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/root.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/evocation/sweeping-energy.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/evocation/sweeping-energy.c", WeaponType),
                 "name" : "sweeping energy",
                 "formula" : "additive",
                 "base value" : 2,
@@ -41,7 +41,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/evocation/mystic-brand.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/evocation/mystic-brand.c", WeaponType),
                 "name" : "mystic brand",
                 "formula" : "additive",
                 "base value" : 2,
@@ -49,7 +49,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/evocation/energized-strike.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/evocation/energized-strike.c", WeaponType),
                 "name" : "energized strike",
                 "formula" : "additive",
                 "base value" : 2,
@@ -57,7 +57,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/evocation/magical-edge.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/evocation/magical-edge.c", WeaponType),
                 "name" : "shocking edge",
                 "formula" : "additive",
                 "base value" : 2,
@@ -65,7 +65,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/evocation/dalreths-might.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/evocation/dalreths-might.c", WeaponType),
                 "name" : "Dalreth's Might",
                 "formula" : "additive",
                 "base value" : 5,

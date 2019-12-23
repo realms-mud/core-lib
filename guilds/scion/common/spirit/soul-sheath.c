@@ -28,7 +28,7 @@ public void reset(int arg)
             (["type":"level", 
               "guild": "Scion of Dhuras",
               "value": 11 ]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/spirit/tendrils-of-laiwyth.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/spirit/tendrils-of-laiwyth.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");

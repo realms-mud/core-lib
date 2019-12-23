@@ -26,7 +26,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 25 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/dagger/forms/off-setting.c",
+        addPrerequisite("guilds/scion/paths/dagger/forms/off-setting.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

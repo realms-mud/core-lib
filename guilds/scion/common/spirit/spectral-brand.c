@@ -29,7 +29,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 7 ]));
         addPrerequisite(
-            sprintf("lib/guilds/scion/paths/%s/spirit/sweeping-caress.c", WeaponType),
+            sprintf("guilds/scion/paths/%s/spirit/sweeping-caress.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");

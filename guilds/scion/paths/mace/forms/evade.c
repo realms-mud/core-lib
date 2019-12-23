@@ -22,7 +22,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 3 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/mace/root.c",
+        addPrerequisite("guilds/scion/paths/mace/root.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

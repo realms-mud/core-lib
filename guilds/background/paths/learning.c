@@ -43,8 +43,8 @@ public void reset(int arg)
         Name("A Studious Childhood");
         Description("");
         Source("background");
-        addResearchElement("lib/guilds/background/paths/learning/root.c");
-        TreeRoot("lib/guilds/background/paths/learning/root.c");
+        addResearchElement("guilds/background/paths/learning/root.c");
+        TreeRoot("guilds/background/paths/learning/root.c");
 
         FirstLevel();
         SecondLevel();

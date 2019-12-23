@@ -22,7 +22,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 9 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/mace/forms/smite.c",
+        addPrerequisite("guilds/scion/paths/mace/forms/smite.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

@@ -26,9 +26,9 @@ public void reset(int arg)
             "powerful firestorm that harries a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/flame/burning-barrier.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/flame/burning-barrier.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -39,7 +39,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/flaming-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/flaming-barrier.c", WeaponType),
                 "name" : "Flaming Barrier",
                 "formula" : "additive",
                 "base value" : 2,
@@ -47,7 +47,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/blazing-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/blazing-barrier.c", WeaponType),
                 "name" : "Blazing Barrier",
                 "formula" : "additive",
                 "base value" : 2,
@@ -55,7 +55,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/inferno-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/inferno-barrier.c", WeaponType),
                 "name" : "Inferno Barrier",
                 "formula" : "additive",
                 "base value" : 5,

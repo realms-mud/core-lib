@@ -17,7 +17,7 @@ public void reset(int arg)
             "held above the head.");
         addSpecification("limited by", (["equipment":({ "axe" })]));
 
-        addPrerequisite("lib/guilds/scion/paths/axe/root.c",
+        addPrerequisite("guilds/scion/paths/axe/root.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

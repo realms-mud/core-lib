@@ -17,7 +17,7 @@ public void reset(int arg)
         addSpecification("limited by", (["equipment":({
             "dagger", "short sword" })]));
 
-        addPrerequisite("lib/guilds/scion/paths/dagger/root.c",
+        addPrerequisite("guilds/scion/paths/dagger/root.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

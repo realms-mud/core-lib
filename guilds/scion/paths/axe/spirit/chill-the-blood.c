@@ -2,7 +2,7 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/guilds/scion/common/spirit/chill-the-blood.c";
+inherit "/guilds/scion/common/spirit/chill-the-blood.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()

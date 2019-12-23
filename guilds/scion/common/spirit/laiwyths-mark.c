@@ -28,7 +28,7 @@ public void reset(int arg)
             (["type":"level", 
               "guild": "Scion of Dhuras",
               "value": 39 ]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/spirit/nienwyns-kiss.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/spirit/nienwyns-kiss.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");

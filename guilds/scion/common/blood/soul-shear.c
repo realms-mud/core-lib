@@ -26,9 +26,9 @@ public void reset(int arg)
             "of negative energy at a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/sparks.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/sparks.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -58,7 +58,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
                 "name" : "Parasitic Charge",
                 "formula" : "additive",
                 "base value" : 5,
@@ -66,7 +66,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/leechs-promise.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/leechs-promise.c", WeaponType),
                 "name" : "The Leech's Promise",
                 "formula" : "additive",
                 "base value" : 5,
@@ -74,7 +74,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/enervation.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/enervation.c", WeaponType),
                 "name" : "Enervation",
                 "formula" : "additive",
                 "base value" : 5,
@@ -82,7 +82,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/malefic-discharge.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/malefic-discharge.c", WeaponType),
                 "name" : "Malefic Discharge",
                 "formula" : "additive",
                 "base value" : 10,
@@ -90,7 +90,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/crimson-eruption.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/crimson-eruption.c", WeaponType),
                 "name" : "Crimson Eruption",
                 "formula" : "additive",
                 "base value" : 10,

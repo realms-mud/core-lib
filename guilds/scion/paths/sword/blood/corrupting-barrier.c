@@ -2,7 +2,7 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/guilds/scion/common/blood/corrupting-barrier.c";
+inherit "/guilds/scion/common/blood/corrupting-barrier.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()

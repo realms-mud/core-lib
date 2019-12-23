@@ -28,7 +28,7 @@ public void reset(int arg)
             (["type":"level",
                 "guild" : "Scion of Dhuras",
                 "value" : 15]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/evocation/energized-strike.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/energized-strike.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");

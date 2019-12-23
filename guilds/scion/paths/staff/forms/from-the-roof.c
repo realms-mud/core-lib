@@ -17,7 +17,7 @@ public void reset(int arg)
             "held above the head.");
         addSpecification("limited by", (["equipment":({ "staff" })]));
 
-        addPrerequisite("lib/guilds/scion/paths/staff/root.c",
+        addPrerequisite("guilds/scion/paths/staff/root.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

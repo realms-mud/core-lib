@@ -7,286 +7,286 @@ inherit "/lib/modules/research/researchTree.c";
 /////////////////////////////////////////////////////////////////////////////
 private void FirstLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/mauling.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/striking.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/from-the-roof.c");
+    addResearchElement("guilds/scion/paths/mace/forms/mauling.c");
+    addResearchElement("guilds/scion/paths/mace/forms/striking.c");
+    addResearchElement("guilds/scion/paths/mace/forms/from-the-roof.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/mauling.c",
-        "lib/guilds/scion/paths/mace/root.c");
-    addChild("lib/guilds/scion/paths/mace/forms/striking.c",
-        "lib/guilds/scion/paths/mace/root.c");
-    addChild("lib/guilds/scion/paths/mace/forms/from-the-roof.c",
-        "lib/guilds/scion/paths/mace/root.c");
+    addChild("guilds/scion/paths/mace/forms/mauling.c",
+        "guilds/scion/paths/mace/root.c");
+    addChild("guilds/scion/paths/mace/forms/striking.c",
+        "guilds/scion/paths/mace/root.c");
+    addChild("guilds/scion/paths/mace/forms/from-the-roof.c",
+        "guilds/scion/paths/mace/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SecondLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/the-ox.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/the-stag.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/the-unicorn.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/wechsel.c");
+    addResearchElement("guilds/scion/paths/mace/forms/the-ox.c");
+    addResearchElement("guilds/scion/paths/mace/forms/the-stag.c");
+    addResearchElement("guilds/scion/paths/mace/forms/the-unicorn.c");
+    addResearchElement("guilds/scion/paths/mace/forms/wechsel.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/the-ox.c",
-        "lib/guilds/scion/paths/mace/forms/from-the-roof.c");
-    addChild("lib/guilds/scion/paths/mace/forms/the-stag.c",
-        "lib/guilds/scion/paths/mace/forms/from-the-roof.c");
-    addChild("lib/guilds/scion/paths/mace/forms/the-unicorn.c",
-        "lib/guilds/scion/paths/mace/forms/from-the-roof.c");
-    addChild("lib/guilds/scion/paths/mace/forms/wechsel.c",
-        "lib/guilds/scion/paths/mace/forms/from-the-roof.c");
+    addChild("guilds/scion/paths/mace/forms/the-ox.c",
+        "guilds/scion/paths/mace/forms/from-the-roof.c");
+    addChild("guilds/scion/paths/mace/forms/the-stag.c",
+        "guilds/scion/paths/mace/forms/from-the-roof.c");
+    addChild("guilds/scion/paths/mace/forms/the-unicorn.c",
+        "guilds/scion/paths/mace/forms/from-the-roof.c");
+    addChild("guilds/scion/paths/mace/forms/wechsel.c",
+        "guilds/scion/paths/mace/forms/from-the-roof.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirdLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/evade.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/over-bash.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/undercut.c");
+    addResearchElement("guilds/scion/paths/mace/forms/evade.c");
+    addResearchElement("guilds/scion/paths/mace/forms/over-bash.c");
+    addResearchElement("guilds/scion/paths/mace/forms/undercut.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/evade.c",
-        "lib/guilds/scion/paths/mace/root.c");
-    addChild("lib/guilds/scion/paths/mace/forms/over-bash.c",
-        "lib/guilds/scion/paths/mace/root.c");
-    addChild("lib/guilds/scion/paths/mace/forms/undercut.c",
-        "lib/guilds/scion/paths/mace/root.c");
+    addChild("guilds/scion/paths/mace/forms/evade.c",
+        "guilds/scion/paths/mace/root.c");
+    addChild("guilds/scion/paths/mace/forms/over-bash.c",
+        "guilds/scion/paths/mace/root.c");
+    addChild("guilds/scion/paths/mace/forms/undercut.c",
+        "guilds/scion/paths/mace/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FourthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/the-plough.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/the-crown.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/near-guard.c");
+    addResearchElement("guilds/scion/paths/mace/forms/the-plough.c");
+    addResearchElement("guilds/scion/paths/mace/forms/the-crown.c");
+    addResearchElement("guilds/scion/paths/mace/forms/near-guard.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/the-plough.c",
-        "lib/guilds/scion/paths/mace/forms/the-ox.c");
-    addChild("lib/guilds/scion/paths/mace/forms/the-crown.c",
-        "lib/guilds/scion/paths/mace/forms/the-ox.c");
-    addChild("lib/guilds/scion/paths/mace/forms/near-guard.c",
-        "lib/guilds/scion/paths/mace/forms/the-ox.c");
+    addChild("guilds/scion/paths/mace/forms/the-plough.c",
+        "guilds/scion/paths/mace/forms/the-ox.c");
+    addChild("guilds/scion/paths/mace/forms/the-crown.c",
+        "guilds/scion/paths/mace/forms/the-ox.c");
+    addChild("guilds/scion/paths/mace/forms/near-guard.c",
+        "guilds/scion/paths/mace/forms/the-ox.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FifthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/barrier-guard.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/wrath-guard.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/hanging-fist.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/smite.c");
+    addResearchElement("guilds/scion/paths/mace/forms/barrier-guard.c");
+    addResearchElement("guilds/scion/paths/mace/forms/wrath-guard.c");
+    addResearchElement("guilds/scion/paths/mace/forms/hanging-fist.c");
+    addResearchElement("guilds/scion/paths/mace/forms/smite.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/barrier-guard.c",
-        "lib/guilds/scion/paths/mace/forms/the-plough.c");
-    addChild("lib/guilds/scion/paths/mace/forms/wrath-guard.c",
-        "lib/guilds/scion/paths/mace/forms/the-plough.c");
-    addChild("lib/guilds/scion/paths/mace/forms/hanging-fist.c",
-        "lib/guilds/scion/paths/mace/forms/the-plough.c");
-    addChild("lib/guilds/scion/paths/mace/forms/smite.c",
-        "lib/guilds/scion/paths/mace/forms/mauling.c");
+    addChild("guilds/scion/paths/mace/forms/barrier-guard.c",
+        "guilds/scion/paths/mace/forms/the-plough.c");
+    addChild("guilds/scion/paths/mace/forms/wrath-guard.c",
+        "guilds/scion/paths/mace/forms/the-plough.c");
+    addChild("guilds/scion/paths/mace/forms/hanging-fist.c",
+        "guilds/scion/paths/mace/forms/the-plough.c");
+    addChild("guilds/scion/paths/mace/forms/smite.c",
+        "guilds/scion/paths/mace/forms/mauling.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SixthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/the-fool.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/eisenport.c");
+    addResearchElement("guilds/scion/paths/mace/forms/the-fool.c");
+    addResearchElement("guilds/scion/paths/mace/forms/eisenport.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/the-fool.c",
-        "lib/guilds/scion/paths/mace/forms/the-plough.c");
-    addChild("lib/guilds/scion/paths/mace/forms/eisenport.c",
-        "lib/guilds/scion/paths/mace/forms/the-plough.c");
+    addChild("guilds/scion/paths/mace/forms/the-fool.c",
+        "guilds/scion/paths/mace/forms/the-plough.c");
+    addChild("guilds/scion/paths/mace/forms/eisenport.c",
+        "guilds/scion/paths/mace/forms/the-plough.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/side-stepping.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/porta-di-ferro-alta.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/porta-di-ferro-e-stretta.c");
+    addResearchElement("guilds/scion/paths/mace/forms/side-stepping.c");
+    addResearchElement("guilds/scion/paths/mace/forms/porta-di-ferro-alta.c");
+    addResearchElement("guilds/scion/paths/mace/forms/porta-di-ferro-e-stretta.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/side-stepping.c",
-        "lib/guilds/scion/paths/mace/forms/evade.c");
-    addChild("lib/guilds/scion/paths/mace/forms/porta-di-ferro-alta.c",
-        "lib/guilds/scion/paths/mace/forms/eisenport.c");
-    addChild("lib/guilds/scion/paths/mace/forms/porta-di-ferro-e-stretta.c",
-        "lib/guilds/scion/paths/mace/forms/eisenport.c");
+    addChild("guilds/scion/paths/mace/forms/side-stepping.c",
+        "guilds/scion/paths/mace/forms/evade.c");
+    addChild("guilds/scion/paths/mace/forms/porta-di-ferro-alta.c",
+        "guilds/scion/paths/mace/forms/eisenport.c");
+    addChild("guilds/scion/paths/mace/forms/porta-di-ferro-e-stretta.c",
+        "guilds/scion/paths/mace/forms/eisenport.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void EighthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/hanging-parry.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/langort.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/the-boar.c");
+    addResearchElement("guilds/scion/paths/mace/forms/hanging-parry.c");
+    addResearchElement("guilds/scion/paths/mace/forms/langort.c");
+    addResearchElement("guilds/scion/paths/mace/forms/the-boar.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/hanging-parry.c",
-        "lib/guilds/scion/paths/mace/forms/the-fool.c");
-    addChild("lib/guilds/scion/paths/mace/forms/langort.c",
-        "lib/guilds/scion/paths/mace/forms/the-fool.c");
-    addChild("lib/guilds/scion/paths/mace/forms/the-boar.c",
-        "lib/guilds/scion/paths/mace/forms/eisenport.c");
+    addChild("guilds/scion/paths/mace/forms/hanging-parry.c",
+        "guilds/scion/paths/mace/forms/the-fool.c");
+    addChild("guilds/scion/paths/mace/forms/langort.c",
+        "guilds/scion/paths/mace/forms/the-fool.c");
+    addChild("guilds/scion/paths/mace/forms/the-boar.c",
+        "guilds/scion/paths/mace/forms/eisenport.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/over-smite.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/middle-smite.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/under-smite.c");
+    addResearchElement("guilds/scion/paths/mace/forms/over-smite.c");
+    addResearchElement("guilds/scion/paths/mace/forms/middle-smite.c");
+    addResearchElement("guilds/scion/paths/mace/forms/under-smite.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/over-smite.c",
-        "lib/guilds/scion/paths/mace/forms/smite.c");
-    addChild("lib/guilds/scion/paths/mace/forms/middle-smite.c",
-        "lib/guilds/scion/paths/mace/forms/smite.c");
-    addChild("lib/guilds/scion/paths/mace/forms/under-smite.c",
-        "lib/guilds/scion/paths/mace/forms/smite.c");
+    addChild("guilds/scion/paths/mace/forms/over-smite.c",
+        "guilds/scion/paths/mace/forms/smite.c");
+    addChild("guilds/scion/paths/mace/forms/middle-smite.c",
+        "guilds/scion/paths/mace/forms/smite.c");
+    addChild("guilds/scion/paths/mace/forms/under-smite.c",
+        "guilds/scion/paths/mace/forms/smite.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TenthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/doubling.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/reverse-strike.c");
+    addResearchElement("guilds/scion/paths/mace/forms/doubling.c");
+    addResearchElement("guilds/scion/paths/mace/forms/reverse-strike.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/doubling.c",
-        "lib/guilds/scion/paths/mace/forms/smite.c");
-    addChild("lib/guilds/scion/paths/mace/forms/reverse-strike.c",
-        "lib/guilds/scion/paths/mace/forms/the-boar.c");
+    addChild("guilds/scion/paths/mace/forms/doubling.c",
+        "guilds/scion/paths/mace/forms/smite.c");
+    addChild("guilds/scion/paths/mace/forms/reverse-strike.c",
+        "guilds/scion/paths/mace/forms/the-boar.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwelfthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/zerschlagen.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/displacement.c");
+    addResearchElement("guilds/scion/paths/mace/forms/zerschlagen.c");
+    addResearchElement("guilds/scion/paths/mace/forms/displacement.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/zerschlagen.c",
-        "lib/guilds/scion/paths/mace/forms/smite.c");
-    addChild("lib/guilds/scion/paths/mace/forms/displacement.c",
-        "lib/guilds/scion/paths/mace/forms/the-ox.c");
+    addChild("guilds/scion/paths/mace/forms/zerschlagen.c",
+        "guilds/scion/paths/mace/forms/smite.c");
+    addChild("guilds/scion/paths/mace/forms/displacement.c",
+        "guilds/scion/paths/mace/forms/the-ox.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirteenLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/crooked-smite.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/dance-of-death.c");
+    addResearchElement("guilds/scion/paths/mace/forms/crooked-smite.c");
+    addResearchElement("guilds/scion/paths/mace/forms/dance-of-death.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/crooked-smite.c",
-        "lib/guilds/scion/paths/mace/forms/middle-smite.c");
-    addChild("lib/guilds/scion/paths/mace/forms/dance-of-death.c",
-        "lib/guilds/scion/paths/mace/forms/side-stepping.c");
+    addChild("guilds/scion/paths/mace/forms/crooked-smite.c",
+        "guilds/scion/paths/mace/forms/middle-smite.c");
+    addChild("guilds/scion/paths/mace/forms/dance-of-death.c",
+        "guilds/scion/paths/mace/forms/side-stepping.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FourteenLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/mutating-attack.c");
+    addResearchElement("guilds/scion/paths/mace/forms/mutating-attack.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/mutating-attack.c",
-        "lib/guilds/scion/paths/mace/forms/doubling.c");
+    addChild("guilds/scion/paths/mace/forms/mutating-attack.c",
+        "guilds/scion/paths/mace/forms/doubling.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FifteenthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/wrath-smite.c");
+    addResearchElement("guilds/scion/paths/mace/forms/wrath-smite.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/wrath-smite.c",
-        "lib/guilds/scion/paths/mace/forms/over-smite.c");
+    addChild("guilds/scion/paths/mace/forms/wrath-smite.c",
+        "guilds/scion/paths/mace/forms/over-smite.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SixteenthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/nachreisen.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/over-running.c");
+    addResearchElement("guilds/scion/paths/mace/forms/nachreisen.c");
+    addResearchElement("guilds/scion/paths/mace/forms/over-running.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/nachreisen.c",
-        "lib/guilds/scion/paths/mace/forms/striking.c");
-    addChild("lib/guilds/scion/paths/mace/forms/over-running.c",
-        "lib/guilds/scion/paths/mace/forms/dance-of-death.c");
+    addChild("guilds/scion/paths/mace/forms/nachreisen.c",
+        "guilds/scion/paths/mace/forms/striking.c");
+    addChild("guilds/scion/paths/mace/forms/over-running.c",
+        "guilds/scion/paths/mace/forms/dance-of-death.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SeventeenthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/off-setting.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/thwart-smite.c");
+    addResearchElement("guilds/scion/paths/mace/forms/off-setting.c");
+    addResearchElement("guilds/scion/paths/mace/forms/thwart-smite.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/off-setting.c",
-        "lib/guilds/scion/paths/mace/forms/dance-of-death.c");
-    addChild("lib/guilds/scion/paths/mace/forms/thwart-smite.c",
-        "lib/guilds/scion/paths/mace/forms/over-smite.c");
+    addChild("guilds/scion/paths/mace/forms/off-setting.c",
+        "guilds/scion/paths/mace/forms/dance-of-death.c");
+    addChild("guilds/scion/paths/mace/forms/thwart-smite.c",
+        "guilds/scion/paths/mace/forms/over-smite.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/changing-through.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/running-through.c");
+    addResearchElement("guilds/scion/paths/mace/forms/changing-through.c");
+    addResearchElement("guilds/scion/paths/mace/forms/running-through.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/changing-through.c",
-        "lib/guilds/scion/paths/mace/forms/dance-of-death.c");
-    addChild("lib/guilds/scion/paths/mace/forms/running-through.c",
-        "lib/guilds/scion/paths/mace/forms/dance-of-death.c");
+    addChild("guilds/scion/paths/mace/forms/changing-through.c",
+        "guilds/scion/paths/mace/forms/dance-of-death.c");
+    addChild("guilds/scion/paths/mace/forms/running-through.c",
+        "guilds/scion/paths/mace/forms/dance-of-death.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentiethLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/squinting-smite.c");
+    addResearchElement("guilds/scion/paths/mace/forms/squinting-smite.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/squinting-smite.c",
-        "lib/guilds/scion/paths/mace/forms/over-smite.c");
+    addChild("guilds/scion/paths/mace/forms/squinting-smite.c",
+        "guilds/scion/paths/mace/forms/over-smite.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/part-smite.c");
+    addResearchElement("guilds/scion/paths/mace/forms/part-smite.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/part-smite.c",
-        "lib/guilds/scion/paths/mace/forms/over-smite.c");
+    addChild("guilds/scion/paths/mace/forms/part-smite.c",
+        "guilds/scion/paths/mace/forms/over-smite.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFifthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/zucken.c");
-    addResearchElement("lib/guilds/scion/paths/mace/forms/winding.c");
+    addResearchElement("guilds/scion/paths/mace/forms/zucken.c");
+    addResearchElement("guilds/scion/paths/mace/forms/winding.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/zucken.c",
-        "lib/guilds/scion/paths/mace/forms/changing-through.c");
-    addChild("lib/guilds/scion/paths/mace/forms/winding.c",
-        "lib/guilds/scion/paths/mace/forms/off-setting.c");
+    addChild("guilds/scion/paths/mace/forms/zucken.c",
+        "guilds/scion/paths/mace/forms/changing-through.c");
+    addChild("guilds/scion/paths/mace/forms/winding.c",
+        "guilds/scion/paths/mace/forms/off-setting.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentySeventhLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/mordstreich.c");
+    addResearchElement("guilds/scion/paths/mace/forms/mordstreich.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/mordstreich.c",
-        "lib/guilds/scion/paths/mace/forms/dance-of-death.c");
+    addChild("guilds/scion/paths/mace/forms/mordstreich.c",
+        "guilds/scion/paths/mace/forms/dance-of-death.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyNinthLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/advanced-changing.c");
+    addResearchElement("guilds/scion/paths/mace/forms/advanced-changing.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/advanced-changing.c",
-        "lib/guilds/scion/paths/mace/forms/changing-through.c");
+    addChild("guilds/scion/paths/mace/forms/advanced-changing.c",
+        "guilds/scion/paths/mace/forms/changing-through.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtiethLevel()
 {
-    addResearchElement("lib/guilds/scion/paths/mace/forms/pressing-of-hands.c");
+    addResearchElement("guilds/scion/paths/mace/forms/pressing-of-hands.c");
 
-    addChild("lib/guilds/scion/paths/mace/forms/pressing-of-hands.c",
-        "lib/guilds/scion/paths/mace/forms/changing-through.c");
+    addChild("guilds/scion/paths/mace/forms/pressing-of-hands.c",
+        "guilds/scion/paths/mace/forms/changing-through.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -298,9 +298,9 @@ public void reset(int arg)
         Name("The Way of the Mace");
         Description("");
         Source("Scion of Dhuras Guild");
-        addResearchElement("lib/guilds/scion/paths/mace/root.c");
+        addResearchElement("guilds/scion/paths/mace/root.c");
 
-        TreeRoot("lib/guilds/scion/paths/mace/root.c");
+        TreeRoot("guilds/scion/paths/mace/root.c");
 
         FirstLevel();
         SecondLevel();

@@ -21,7 +21,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 5 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/axe/forms/cleaving.c",
+        addPrerequisite("guilds/scion/paths/axe/forms/cleaving.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

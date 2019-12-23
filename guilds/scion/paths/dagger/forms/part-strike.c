@@ -26,9 +26,9 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 23 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/dagger/forms/the-fool.c",
+        addPrerequisite("guilds/scion/paths/dagger/forms/the-fool.c",
             (["type":"research"]));
-        addPrerequisite("lib/guilds/scion/paths/dagger/forms/over-strike.c",
+        addPrerequisite("guilds/scion/paths/dagger/forms/over-strike.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

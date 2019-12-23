@@ -26,9 +26,9 @@ public void reset(int arg)
             "energy that swarms around a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/blood/soulstrike.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/blood/soulstrike.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -39,7 +39,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/malefic-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/malefic-barrier.c", WeaponType),
                 "name" : "Malefic Barrier",
                 "formula" : "additive",
                 "base value" : 2,
@@ -47,7 +47,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/corrupting-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/corrupting-barrier.c", WeaponType),
                 "name" : "Corrupting Barrier",
                 "formula" : "additive",
                 "base value" : 2,
@@ -55,7 +55,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/blood/nefarious-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/blood/nefarious-barrier.c", WeaponType),
                 "name" : "Nefarious Barrier",
                 "formula" : "additive",
                 "base value" : 5,

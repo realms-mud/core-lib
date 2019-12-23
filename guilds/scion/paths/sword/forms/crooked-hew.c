@@ -26,7 +26,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 13 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/sword/forms/middle-hew.c",
+        addPrerequisite("guilds/scion/paths/sword/forms/middle-hew.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

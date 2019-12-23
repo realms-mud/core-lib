@@ -43,8 +43,8 @@ public void reset(int arg)
         Name("A Dutiful Child");
         Description("");
         Source("background");
-        addResearchElement("lib/guilds/background/paths/dutiful/root.c");
-        TreeRoot("lib/guilds/background/paths/dutiful/root.c");
+        addResearchElement("guilds/background/paths/dutiful/root.c");
+        TreeRoot("guilds/background/paths/dutiful/root.c");
 
         FirstLevel();
         SecondLevel();

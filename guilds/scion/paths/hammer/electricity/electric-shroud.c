@@ -2,7 +2,7 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/guilds/scion/common/electricity/electric-shroud.c";
+inherit "/guilds/scion/common/electricity/electric-shroud.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()

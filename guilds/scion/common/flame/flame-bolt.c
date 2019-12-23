@@ -26,9 +26,9 @@ public void reset(int arg)
             "discharge at a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/flame/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/flame/root.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("scope", "targeted");
@@ -52,7 +52,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/fuel-the-flames.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/fuel-the-flames.c", WeaponType),
                 "name" : "Fuel the Flames",
                 "formula" : "additive",
                 "base value" : 5,
@@ -60,7 +60,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/scorching-mark.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/scorching-mark.c", WeaponType),
                 "name" : "Scorching Mark",
                 "formula" : "additive",
                 "base value" : 5,

@@ -25,15 +25,15 @@ public void reset(int arg)
             "weapon. Doing so is wearying and will decrease available stamina.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/flame/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/flame/root.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/sweeping-flames.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/sweeping-flames.c", WeaponType),
                 "name" : "sweeping flames",
                 "formula" : "additive",
                 "base value" : 2,
@@ -41,7 +41,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/burning-brand.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/burning-brand.c", WeaponType),
                 "name" : "burning brand",
                 "formula" : "additive",
                 "base value" : 2,
@@ -49,7 +49,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/inferno-strike.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/inferno-strike.c", WeaponType),
                 "name" : "inferno strike",
                 "formula" : "additive",
                 "base value" : 2,
@@ -57,7 +57,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/blazing-edge.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/blazing-edge.c", WeaponType),
                 "name" : "blazing edge",
                 "formula" : "additive",
                 "base value" : 2,
@@ -65,7 +65,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/flame/ferianths-boon.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/flame/ferianths-boon.c", WeaponType),
                 "name" : "Ferianth's Boon",
                 "formula" : "additive",
                 "base value" : 5,

@@ -26,9 +26,9 @@ public void reset(int arg)
             "powerful soul blight that harries a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/spirit/spectral-barrier.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/spirit/spectral-barrier.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -39,7 +39,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/spirit/soul-sheath.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/spirit/soul-sheath.c", WeaponType),
                 "name" : "Soul Sheath",
                 "formula" : "additive",
                 "base value" : 2,
@@ -47,7 +47,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/spirit/strangle-the-soul.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/spirit/strangle-the-soul.c", WeaponType),
                 "name" : "Strangle the Soul",
                 "formula" : "additive",
                 "base value" : 2,
@@ -55,7 +55,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/spirit/shadow-barrier.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/spirit/shadow-barrier.c", WeaponType),
                 "name" : "Shadow Barrier",
                 "formula" : "additive",
                 "base value" : 5,

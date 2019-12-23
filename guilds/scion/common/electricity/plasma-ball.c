@@ -26,9 +26,9 @@ public void reset(int arg)
             "of plasma at a foe.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/lightning-blast.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/lightning-blast.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -69,7 +69,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
                 "name" : "Static Charge",
                 "formula" : "additive",
                 "base value" : 10,
@@ -77,7 +77,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
                 "name" : "Electrostatic Induction",
                 "formula" : "additive",
                 "base value" : 10,
@@ -85,7 +85,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/ionization.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/ionization.c", WeaponType),
                 "name" : "Ionization",
                 "formula" : "additive",
                 "base value" : 10,
@@ -93,7 +93,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/enhanced-discharge.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/enhanced-discharge.c", WeaponType),
                 "name" : "Enhanced Discharge",
                 "formula" : "additive",
                 "base value" : 20,
@@ -101,7 +101,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/plasma-eruption.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/plasma-eruption.c", WeaponType),
                 "name" : "Plasma Eruption",
                 "formula" : "additive",
                 "base value" : 30,

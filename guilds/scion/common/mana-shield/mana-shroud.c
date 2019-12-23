@@ -20,7 +20,7 @@ public void reset(int arg)
             (["type":"level", 
               "guild": "Scion of Dhuras",
               "value": 15 ]));
-        addPrerequisite("lib/guilds/scion/common/mana-shield/boon-of-dhuras.c",
+        addPrerequisite("guilds/scion/common/mana-shield/boon-of-dhuras.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");

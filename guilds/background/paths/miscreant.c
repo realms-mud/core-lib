@@ -43,8 +43,8 @@ public void reset(int arg)
         Name("A Miscreant");
         Description("");
         Source("background");
-        addResearchElement("lib/guilds/background/paths/miscreant/root.c");
-        TreeRoot("lib/guilds/background/paths/miscreant/root.c");
+        addResearchElement("guilds/background/paths/miscreant/root.c");
+        TreeRoot("guilds/background/paths/miscreant/root.c");
 
         FirstLevel();
         SecondLevel();

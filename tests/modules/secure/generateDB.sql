@@ -6,6 +6,8 @@ drop view if exists traitsView;
 ##
 drop view if exists componentsView;
 ##
+drop view if exists environmentView;
+##
 drop function if exists savePlayerDomain;
 ##
 drop function if exists saveDomainSection;
@@ -191,7 +193,7 @@ CREATE TABLE `issues` (
   `status` smallint NOT NULL DEFAULT '0',
   `loggedBy` varchar(40) NOT NULL,
   `assignedTo` varchar(40),
-  `firstLoggedTime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `firstLoggedTime` datetime NOT NULL DEFAULT now(),
   `affectedObject` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
   `data` text NOT NULL,
@@ -222,8 +224,8 @@ CREATE TABLE `players` (
   `constitution` int(11) NOT NULL DEFAULT '0',
   `charisma` int(11) NOT NULL DEFAULT '0',
   `invisible` tinyint NOT NULL DEFAULT '0',
-  `whenCreated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `LastLogin` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `whenCreated` datetime NOT NULL DEFAULT now(),
+  `LastLogin` datetime NOT NULL DEFAULT now(),
   `location` varchar(200) NOT NULL,
   `attributePoints` smallint NOT NULL DEFAULT '0',
   `skillPoints` smallint NOT NULL DEFAULT '0',

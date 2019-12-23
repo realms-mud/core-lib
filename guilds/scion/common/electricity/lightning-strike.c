@@ -25,9 +25,9 @@ public void reset(int arg)
             "weapon. Doing so is wearying and will decrease available stamina.");
         Setup();
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/electricity/shockstrike.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/shockstrike.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -38,7 +38,7 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/sweeping-shock.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/sweeping-shock.c", WeaponType),
                 "name" : "sweeping shock",
                 "formula" : "additive",
                 "base value" : 3,
@@ -46,7 +46,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/shock-brand.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/shock-brand.c", WeaponType),
                 "name" : "shock brand",
                 "formula" : "additive",
                 "base value" : 3,
@@ -54,7 +54,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
                 "name" : "energized strike",
                 "formula" : "additive",
                 "base value" : 3,
@@ -62,7 +62,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/shocking-edge.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/shocking-edge.c", WeaponType),
                 "name" : "shocking edge",
                 "formula" : "additive",
                 "base value" : 3,
@@ -70,7 +70,7 @@ public void reset(int arg)
             ]),
             ([
                 "type":"research",
-                "research item": sprintf("lib/guilds/scion/paths/%s/electricity/thunders-boon.c", WeaponType),
+                "research item": sprintf("guilds/scion/paths/%s/electricity/thunders-boon.c", WeaponType),
                 "name" : "Thunder's Boon",
                 "formula" : "additive",
                 "base value" : 6,

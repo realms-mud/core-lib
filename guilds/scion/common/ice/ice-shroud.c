@@ -28,10 +28,10 @@ public void reset(int arg)
             "barrier. Doing so is very taxing and will decrease hit points, "
             "spell points, and stamina.", WeaponType));
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
         addPrerequisite(
-            sprintf("lib/guilds/scion/paths/%s/ice/root.c", WeaponType),
+            sprintf("guilds/scion/paths/%s/ice/root.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -43,7 +43,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": 
-                    sprintf("lib/guilds/scion/paths/%s/ice/freezing-shield.c", WeaponType),
+                    sprintf("guilds/scion/paths/%s/ice/freezing-shield.c", WeaponType),
                 "name" : "freezing shield",
                 "formula" : "additive",
                 "base value" : 5,
@@ -52,7 +52,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": 
-                    sprintf(sprintf("lib/guilds/scion/paths/%s/ice/ice-shield.c", WeaponType), WeaponType),
+                    sprintf(sprintf("guilds/scion/paths/%s/ice/ice-shield.c", WeaponType), WeaponType),
                 "name" : "ice shield",
                 "formula" : "additive",
                 "base value" : 5,

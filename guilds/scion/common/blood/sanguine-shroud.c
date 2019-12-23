@@ -28,10 +28,10 @@ public void reset(int arg)
             "barrier. Doing so is very taxing and will decrease hit points, "
             "spell points, and stamina.", WeaponType));
 
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/root.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
         addPrerequisite(
-            sprintf("lib/guilds/scion/paths/%s/blood/root.c", WeaponType),
+            sprintf("guilds/scion/paths/%s/blood/root.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -43,7 +43,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": 
-                    sprintf("lib/guilds/scion/paths/%s/blood/soul-shield.c", WeaponType),
+                    sprintf("guilds/scion/paths/%s/blood/soul-shield.c", WeaponType),
                 "name" : "soul shield",
                 "formula" : "additive",
                 "base value" : 5,
@@ -52,7 +52,7 @@ public void reset(int arg)
             ([
                 "type":"research",
                 "research item": 
-                    sprintf(sprintf("lib/guilds/scion/paths/%s/blood/shield-of-corruption.c", WeaponType), WeaponType),
+                    sprintf(sprintf("guilds/scion/paths/%s/blood/shield-of-corruption.c", WeaponType), WeaponType),
                 "name" : "shield of corruption",
                 "formula" : "additive",
                 "base value" : 5,

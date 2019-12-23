@@ -28,7 +28,7 @@ public void reset(int arg)
             (["type":"level", 
               "guild": "Scion of Dhuras",
               "value": 21 ]));
-        addPrerequisite(sprintf("lib/guilds/scion/paths/%s/flame/flaming-barrier.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/flame/flaming-barrier.c", WeaponType),
             (["type":"research"]));
 
         addSpecification("research type", "points");

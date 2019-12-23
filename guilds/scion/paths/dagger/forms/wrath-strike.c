@@ -26,11 +26,11 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 15 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/dagger/forms/over-strike.c",
+        addPrerequisite("guilds/scion/paths/dagger/forms/over-strike.c",
             (["type":"research"]));
-        addPrerequisite("lib/guilds/scion/paths/dagger/forms/wrath-guard.c",
+        addPrerequisite("guilds/scion/paths/dagger/forms/wrath-guard.c",
             (["type":"research"]));
-        addPrerequisite("lib/guilds/scion/paths/dagger/forms/wechsel.c",
+        addPrerequisite("guilds/scion/paths/dagger/forms/wechsel.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

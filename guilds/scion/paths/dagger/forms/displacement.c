@@ -22,7 +22,7 @@ public void reset(int arg)
               "guild": "Scion of Dhuras",
               "value": 12 ]));
 
-        addPrerequisite("lib/guilds/scion/paths/dagger/forms/the-ox.c",
+        addPrerequisite("guilds/scion/paths/dagger/forms/the-ox.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
