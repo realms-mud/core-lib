@@ -13,27 +13,27 @@ public void Setup()
     addFeature("/lib/environment/features/trees/cottonwood-stand.c", "south");
 
     // First test
-    addExit("east", "/lib/tutorial/rooms/onTheTrailPart3.c", "on the trail");
-    addExit("west", "/lib/tutorial/rooms/onTheTrailPart5.c", "on the trail");
-    addObject("/lib/tutorial/characters/not-so-animated-corpse.c", "on the trail");
+    addExit("east", "/tutorial/rooms/onTheTrailPart3.c", "on the trail");
+    addExit("west", "/tutorial/rooms/onTheTrailPart5.c", "on the trail");
+    addObject("/tutorial/characters/not-so-animated-corpse.c", "on the trail");
 
-    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
+    setStateMachine("/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void initiateAmbush()
 {
-    object keeper = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
+    object keeper = clone_object("/tutorial/characters/keeper-of-the-night.c");
     move_object(keeper, this_object());
     keeper->registerEvent(this_object());
 
-    object zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    object zombie = clone_object("/tutorial/characters/animated-corpse.c");
     move_object(zombie, this_object());
     keeper->registerEvent(zombie);
 
     this_player()->attack(zombie);
 
-    zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    zombie = clone_object("/tutorial/characters/animated-corpse.c");
     move_object(zombie, this_object());
     keeper->registerEvent(zombie);
     if (present("alberich"))
@@ -41,7 +41,7 @@ public void initiateAmbush()
         present("alberich")->attack(zombie);
     }
 
-    zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    zombie = clone_object("/tutorial/characters/animated-corpse.c");
     move_object(zombie, this_object());
     keeper->registerEvent(zombie);
     if (present("thomas"))
@@ -107,14 +107,14 @@ public void runHeadlongIntoTrap()
     foreach(object ally in allies)
     {
         ally->hitPoints(ally->maxHitPoints());
-        ally->move("/lib/tutorial/rooms/onTheTrailPart5.c", "", 1);
+        ally->move("/tutorial/rooms/onTheTrailPart5.c", "", 1);
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
-    if (caller && (program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c"))
+    if (caller && (program_name(caller) == "tutorial/characters/keeper-of-the-night.c"))
     {
         StateMachine->beginConversation("the corpse is human");
         call_out("runHeadlongIntoTrap", 0);

@@ -8,22 +8,22 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     cloneEnvironment();
-    setInterior("/lib/tutorial/temple/environment/interiors/pedestal-chamber.c");
-    addFeature("lib/tutorial/temple/environment/features/amethyst-floor.c");
-    addFeature("lib/tutorial/temple/environment/features/amethyst-ceiling.c");
-    addFeature("lib/tutorial/temple/environment/features/purple-liquid.c");
+    setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
+    addFeature("tutorial/temple/environment/features/amethyst-floor.c");
+    addFeature("tutorial/temple/environment/features/amethyst-ceiling.c");
+    addFeature("tutorial/temple/environment/features/purple-liquid.c");
 
     // First test
-    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-square.c", "first test");
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x5.c", "first test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-square.c", "first test");
+    addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x5.c", "first test");
 
     // Fourth test
-    addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-1x4.c", "fourth test");
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x5.c", "fourth test");
+    addExit("west", "/tutorial/temple/environment/rooms/pedestal-1x4.c", "fourth test");
+    addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x5.c", "fourth test");
 
     // Seventh test
-    addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-1x4.c", "seventh test");
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x5.c", "seventh test");
+    addExit("west", "/tutorial/temple/environment/rooms/pedestal-1x4.c", "seventh test");
+    addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x5.c", "seventh test");
 
-    setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+    setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }

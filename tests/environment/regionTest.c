@@ -181,7 +181,7 @@ void MapsChangeWithStateTransitions()
     Player->colorConfiguration("none");
     Player->charsetConfiguration("ascii");
     move_object(Player,
-        "/lib/tutorial/temple/environment/rooms/entry-to-pedestal.c");
+        "/tutorial/temple/environment/rooms/entry-to-pedestal.c");
 
     command("s", Player);
     
@@ -346,7 +346,7 @@ void CanEnterTemplatedRegion()
     ToggleCallOutBypass();
 
     object region = 
-        load_object("/lib/tutorial/eledhel/central-city/central-city.c");
+        load_object("/areas/eledhel/central-city/central-city.c");
 
     ExpectEq("x", region->displayMap(Player));
 
@@ -357,9 +357,9 @@ void CanEnterTemplatedRegion()
 /////////////////////////////////////////////////////////////////////////////
 /*void L()
 {
-    Region = clone_object("/lib/tutorial/eledhel/southwest-rural-one/region.c");
+    Region = clone_object("/areas/eledhel/southwest-rural-one/region.c");
 
-    string originalDir = "/lib/tutorial/eledhel/";
+    string originalDir = "/areas/eledhel/";
     mkdir(originalDir);
 
     Player->colorConfiguration("none");
@@ -370,9 +370,9 @@ void CanEnterTemplatedRegion()
 
     Region->setDimensions(25, 5);
     Region->setSettlementChance(100);
-    Region->createRegion("east", "/lib/tutorial/eledhel/southwest-rural-one/0x2.c");
+    Region->createRegion("east", "/areas/eledhel/southwest-rural-one/0x2.c");
 
-    Region->generateStaticFiles("/lib/tutorial/eledhel/");
+    Region->generateStaticFiles("/areas/eledhel/");
     ExpectEq("x", Region->displayMap(Player));
 }
 */

@@ -20,8 +20,8 @@ protected void Setup()
     move_object(equipment, this_object());
     this_object()->equip(equipment);
 
-    object generator = load_object("/lib/tutorial/characters/aegis-equipment.c");
+    object generator = load_object("/tutorial/characters/aegis-equipment.c");
     generator->CreateAegisEquipment(this_object());
 
-    addConversation("/lib/tutorial/characters/alberich/startingConversation.c");
+    addConversation("/tutorial/characters/alberich/startingConversation.c");
 }

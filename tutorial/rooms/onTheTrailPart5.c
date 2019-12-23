@@ -13,10 +13,10 @@ public void Setup()
     addFeature("/lib/environment/features/trees/sugar-maple-stand.c", "south");
 
     // First test
-    addExit("east", "/lib/tutorial/rooms/onTheTrailPart4.c", "on the trail");
-    addExit("west", "/lib/tutorial/rooms/onTheTrailPart6.c", "on the trail");
+    addExit("east", "/tutorial/rooms/onTheTrailPart4.c", "on the trail");
+    addExit("west", "/tutorial/rooms/onTheTrailPart6.c", "on the trail");
 
-    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
+    setStateMachine("/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ public void continueOnTrail()
         "A flash of black can be seen to the west.\n");
 
     StateMachine->moveSquad("west",
-        "/lib/tutorial/rooms/onTheTrailPart6.c");
+        "/tutorial/rooms/onTheTrailPart6.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

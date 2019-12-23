@@ -3,9 +3,9 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/core/stateMachine.c";
-inherit "/lib/tutorial/stateMachines/actors.c";
-inherit "/lib/tutorial/stateMachines/introductionDisplay.c";
-inherit "/lib/tutorial/stateMachines/initiateBackgroundStory.c";
+inherit "/tutorial/stateMachines/actors.c";
+inherit "/tutorial/stateMachines/introductionDisplay.c";
+inherit "/tutorial/stateMachines/initiateBackgroundStory.c";
 
 private object Player;
 
@@ -105,8 +105,8 @@ public void berenarBeginsConversation()
 /////////////////////////////////////////////////////////////////////////////
 public void displayIntroduction()
 {
-    actors["galadhel"]->move("/lib/tutorial/rooms/battleScene.c", "", 1);
-    actors["berenar"]->move("/lib/tutorial/rooms/battleScene.c", "", 1);
+    actors["galadhel"]->move("/tutorial/rooms/battleScene.c", "", 1);
+    actors["berenar"]->move("/tutorial/rooms/battleScene.c", "", 1);
     call_out("partOne", 0, Player);
 }
 
@@ -150,7 +150,7 @@ public void galadhelExclaims()
 /////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
-    if (caller && (program_name(caller) == "lib/tutorial/characters/jerith.c"))
+    if (caller && (program_name(caller) == "tutorial/characters/jerith.c"))
     {
         handleJerithDeath(environment(Player));
         m_delete(actors, "jerith");
@@ -158,7 +158,7 @@ public void onDeath(object caller)
         call_out("galadhelExclaims", 0);
     }
 
-    else if (caller && (program_name(caller) == "lib/tutorial/characters/keeper-of-the-night.c"))
+    else if (caller && (program_name(caller) == "tutorial/characters/keeper-of-the-night.c"))
     {
         object *corpses = filter(all_inventory(environment(Player)),
             (: (member(inherit_list($1), "lib/items/corpse.c") > -1) :));
@@ -182,7 +182,7 @@ public void onTheTrailPartTwo()
     {
         actors["berenar"]->onTriggerConversation(Player, "on the trail");
         move_object(Player, environment(Player));
-        moveSquad("west", "/lib/tutorial/rooms/fallenAegis.c");
+        moveSquad("west", "/tutorial/rooms/fallenAegis.c");
     }
 }
 

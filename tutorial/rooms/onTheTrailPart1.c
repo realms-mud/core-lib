@@ -13,18 +13,18 @@ public void Setup()
     addFeature("/lib/environment/features/trees/cottonwood-stand.c", "south");
 
     // First test
-    addExit("east", "/lib/tutorial/rooms/fallenAegis.c", "on the trail");
-    addExit("north", "/lib/tutorial/rooms/onTheTrailPart2.c", "on the trail");
-    addExit("south", "/lib/tutorial/rooms/onTheTrailPart1b.c", "on the trail");
+    addExit("east", "/tutorial/rooms/fallenAegis.c", "on the trail");
+    addExit("north", "/tutorial/rooms/onTheTrailPart2.c", "on the trail");
+    addExit("south", "/tutorial/rooms/onTheTrailPart1b.c", "on the trail");
 
-    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
+    setStateMachine("/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void continueOnTrailPart2()
 {
     StateMachine->moveSquad("north",
-        "/lib/tutorial/rooms/onTheTrailPart2.c");
+        "/tutorial/rooms/onTheTrailPart2.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

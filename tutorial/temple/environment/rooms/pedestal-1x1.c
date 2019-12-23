@@ -10,48 +10,48 @@ object Uhrdalen;
 public void Setup()
 {
     cloneEnvironment();
-    setInterior("/lib/tutorial/temple/environment/interiors/pedestal-chamber.c");
-    addFeature("lib/tutorial/temple/environment/features/amethyst-floor.c");
-    addFeature("lib/tutorial/temple/environment/features/amethyst-ceiling.c");
-    addFeature("lib/tutorial/temple/environment/features/purple-liquid.c");
-    addFeature("lib/tutorial/temple/environment/features/pedestal.c");
+    setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
+    addFeature("tutorial/temple/environment/features/amethyst-floor.c");
+    addFeature("tutorial/temple/environment/features/amethyst-ceiling.c");
+    addFeature("tutorial/temple/environment/features/purple-liquid.c");
+    addFeature("tutorial/temple/environment/features/pedestal.c");
 
-    addExit("north", "/lib/tutorial/temple/environment/rooms/entry-to-pedestal.c",
+    addExit("north", "/tutorial/temple/environment/rooms/entry-to-pedestal.c",
         "entered room");
 
-    addObject("/lib/tutorial/temple/objects/rune-wall.c");
-    addObject("/lib/tutorial/temple/objects/pedestal.c");
+    addObject("/tutorial/temple/objects/rune-wall.c");
+    addObject("/tutorial/temple/objects/pedestal.c");
 
-    addObject("/lib/tutorial/temple/objects/rune-resistance.c", "entered room");
+    addObject("/tutorial/temple/objects/rune-resistance.c", "entered room");
 
-    setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+    setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 
     // First test
-    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-1x2.c", "first test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x2.c", "first test");
 
     // Second test
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x1.c", "second test");
+    addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x1.c", "second test");
 
     // Third test
-    addExit("southeast", "/lib/tutorial/temple/environment/rooms/pedestal-2x2.c", "third test");
+    addExit("southeast", "/tutorial/temple/environment/rooms/pedestal-2x2.c", "third test");
 
     // Fourth test
-    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-1x2.c", "fourth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x2.c", "fourth test");
 
     // Fifth test
-    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-1x2.c", "fifth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x2.c", "fifth test");
 
     // Sixth test
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x1.c", "sixth test");
+    addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x1.c", "sixth test");
 
     // Seventh test
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-2x1.c", "seventh test");
+    addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x1.c", "seventh test");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void spawnUhrdalen(object stateMachine, object player)
 {
-    Uhrdalen = clone_object("/lib/tutorial/temple/characters/uhrdalen/uhrdalen.c");
+    Uhrdalen = clone_object("/tutorial/temple/characters/uhrdalen/uhrdalen.c");
     Uhrdalen->registerEvent(this_object());
     move_object(Uhrdalen, this_object());
     command("talk uhrdalen", player);
@@ -64,7 +64,7 @@ public int canGet(object target)
     {
         if (this_player())
         {
-            this_player()->beginQuest("lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+            this_player()->beginQuest("tutorial/temple/stateMachine/obedienceStateMachine.c");
 
             if (StateMachine)
             {
@@ -147,8 +147,8 @@ public int resetEverything(string command)
 
     destruct(Uhrdalen);
     pedestal()->pressPlateOfDeath(1);
-    this_player()->resetQuest("lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
-    load_object("/lib/tutorial/temple/characters/uhrdalen/uhrdalen.c")->resetConversationState();
+    this_player()->resetQuest("tutorial/temple/stateMachine/obedienceStateMachine.c");
+    load_object("/tutorial/temple/characters/uhrdalen/uhrdalen.c")->resetConversationState();
     StateMachine->startStateMachine();
     return 1;
 }

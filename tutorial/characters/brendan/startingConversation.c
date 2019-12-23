@@ -55,7 +55,7 @@ private void YouAreABitSimple()
     addResponseTopic("villain", "Speak @A@Diplomacy@E@", "you are a simpleton");
 
     addTopicInterjection("you are a simpleton",
-        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "/tutorial/characters/galadhel/galadhel.c",
         "brendan - need a decorator", 1);
 
     addResponse("you are a simpleton", "Seriously?", "@D@@C@##InitiatorName## "
@@ -87,7 +87,7 @@ private void BadHost()
         "bad host");
 
     addTopicInterjection("bad host",
-        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "/tutorial/characters/galadhel/galadhel.c",
         "threaten brendan", 1);
 
     addTopic("slow down, Sparky", "@D@The figure snorts, @S@`You would ensure "
@@ -123,7 +123,7 @@ private void IAmAFarmer()
     addResponseTopic("bad host", "Are you keeping score?", "I'm a farmer");
 
     addTopicInterjection("I'm a farmer",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "not communicative", 1);
 
     addTopic("besotted fool", "@D@The figure gasps in pain. @S@`My memories? "
@@ -165,7 +165,7 @@ private void YouKnowMe()
         "would prefer to leave this world.'");
 
     addTopicInterjection("my death is nigh",
-        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "/tutorial/characters/galadhel/galadhel.c",
         "you know me?", 1);
 
     addTopic("yes, I know you", "@D@The figure shrugs, @S@`Your resemblance to "
@@ -193,7 +193,7 @@ private void StopInterrupting()
         "Do you wish to hear it or no?'");
 
     addTopicInterjection("stop interrupting",
-        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "/tutorial/characters/galadhel/galadhel.c",
         "Interruptions aren't your only concern", 1);
 
     addResponseTopic("yes, I know you", "Galadhel?", "stop interrupting");
@@ -262,7 +262,7 @@ private void SoThenWhat()
         "so then what");
 
     addTopicInterjection("so then what",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "we waste time on this bastard", 1);
 }
 

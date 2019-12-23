@@ -269,7 +269,7 @@ public void finishPress()
             string owner = party ? party->partyName() : this_player()->RealName();
 
             object stateMachine = stateMachineDictionary->getStateMachine(
-                "/lib/tutorial/temple/stateMachine/obedienceStateMachine.c",
+                "/tutorial/temple/stateMachine/obedienceStateMachine.c",
                 owner);
 
             stateMachine->receiveEvent(this_player(),

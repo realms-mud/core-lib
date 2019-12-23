@@ -20,10 +20,10 @@ protected nomask void setUpUserForSelection()
     Description = "Would you like to display a mini map in room\n"
         "descriptions that support it?\nWithout mini map:\n";
 
-    load_object("/lib/tutorial/eledhel/southern-city/southern-city.c");
+    load_object("/areas/eledhel/southern-city/southern-city.c");
 
     object exampleRoom = 
-        load_object("/lib/tutorial/eledhel/southern-city/12x1.c");
+        load_object("/areas/eledhel/southern-city/12x1.c");
 
     User->setMiniMap("off", 1);
     Description += exampleRoom->long(0, User) + "With mini map:\n";

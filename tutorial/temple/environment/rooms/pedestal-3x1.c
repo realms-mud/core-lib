@@ -8,14 +8,14 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     cloneEnvironment();
-    setInterior("/lib/tutorial/temple/environment/interiors/pedestal-chamber.c");
-    addFeature("lib/tutorial/temple/environment/features/amethyst-floor.c");
-    addFeature("lib/tutorial/temple/environment/features/amethyst-ceiling.c");
-    addFeature("lib/tutorial/temple/environment/features/purple-liquid.c");
+    setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
+    addFeature("tutorial/temple/environment/features/amethyst-floor.c");
+    addFeature("tutorial/temple/environment/features/amethyst-ceiling.c");
+    addFeature("tutorial/temple/environment/features/purple-liquid.c");
 
     // Seventh test
-    addExit("north", "/lib/tutorial/temple/environment/rooms/pedestal-2x1.c", "seventh test");
-    addExit("south", "/lib/tutorial/temple/environment/rooms/pedestal-4x1.c", "seventh test");
+    addExit("north", "/tutorial/temple/environment/rooms/pedestal-2x1.c", "seventh test");
+    addExit("south", "/tutorial/temple/environment/rooms/pedestal-4x1.c", "seventh test");
 
-    setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+    setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }

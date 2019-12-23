@@ -22,7 +22,7 @@ private void Haldor()
     addResponseTopic("Does it matter", "I guess not", "what are we dealing with");
 
     addTopicInterjection("what are we dealing with",
-        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "/tutorial/characters/galadhel/galadhel.c",
         "look over there", 1);
 }
 
@@ -33,7 +33,7 @@ private void LetsGetTheseBastards()
         "his path, @S@`What the hell is going on? How can...' @D@he places "
         "emphasis on his next word, @S@`HE be dead?'");
     addTopicInterjection("how can he be dead",
-        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "/tutorial/characters/halgaladh/halgaladh.c",
         "stinks too", 1);
 
     addTopic("the enemy is upon us", "\n@D@Donald jumps up as he hears "
@@ -43,21 +43,21 @@ private void LetsGetTheseBastards()
     addTopic("let's get these bastards", "@D@Donald snarls, @S@`Enough of "
         "this! Let's get these bastards!' @D@Donald rushes off to the west.");
     addTopicInterjection("let's get these bastards",
-        "/lib/tutorial/characters/alberich/alberich.c",
+        "/tutorial/characters/alberich/alberich.c",
         "donald is enthusiatic", 1);
 
     addTopic("take him out", "@D@Donald nods and perhaps a bit too "
         "loudly says, @S@`Aye, take 'im down but leave him able to talk. The "
         "rest of you, with me.' @D@Donald prepares to attack.");
     addTopicInterjection("take him out",
-        "/lib/tutorial/characters/alberich/alberich.c",
+        "/tutorial/characters/alberich/alberich.c",
         "wait you ninny", 1);
 
     addTopic("ignore and attack", "@D@Donald seems to not notice "
         "Alberich. At the top of his lungs, he bellows, @S@`Charge!' @D@He "
         "lunges out of the cover and rushes the enemy.");
     addTopicInterjection("ignore and attack",
-        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "/tutorial/characters/galadhel/galadhel.c",
         "I guess I'll just kill this guy", 1);
 }
 
@@ -71,7 +71,7 @@ private void BrendanOeldhen()
         "his blade, he snarls, @S@`Are your memories becoming clearer now?'");
 
     addTopicInterjection("not communicative",
-        "/lib/tutorial/characters/brendan/brendan.c",
+        "/tutorial/characters/brendan/brendan.c",
         "besotted fool", 1);
 }
 
@@ -88,7 +88,7 @@ private void WeWasteTime()
     addTopicEvent("we waste time on this bastard", "killPoorBrendan");
 
     addTopicInterjection("we waste time on this bastard",
-        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "/tutorial/characters/galadhel/galadhel.c",
         "did it mean anything to me?", 1);
 }
 
@@ -106,7 +106,7 @@ private void IWantAnswers()
         "is wearing thinner by the second.'");
 
     addTopicInterjection("stay your sword, boy",
-        "/lib/tutorial/characters/bregar/bregar.c",
+        "/tutorial/characters/bregar/bregar.c",
         "what is this place", 1);
 
     addTopic("you get that for free", "@D@As ##InitiatorName## "
@@ -121,7 +121,7 @@ private void IWantAnswers()
         "I have an idea. We have a pair of robes. Put them on.'");
 
     addTopicInterjection("I have a great idea",
-        "/lib/tutorial/characters/thomas/thomas.c",
+        "/tutorial/characters/thomas/thomas.c",
         "yeah no thanks", 1);
 }
 
@@ -172,7 +172,7 @@ private void WakeUp()
         "donald regains consciousness part two");
 
     addTopicInterjection("donald regains consciousness part two",
-        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "/tutorial/characters/halgaladh/halgaladh.c",
         "think before you leap", 1);
 }
 
@@ -183,7 +183,7 @@ private void GrantHisRelease()
         "Aye. Grant him his release. Kill him. We cannot leave one such as "
         "this behind and we cannot carry him with us.'");
     addTopicInterjection("grant him his release",
-        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "/tutorial/characters/halgaladh/halgaladh.c",
         "grant him his release", 1);
 
     addTopic("grant him his release part 2", "@D@Donald looks livid. He walks "

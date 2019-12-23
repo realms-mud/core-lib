@@ -11,37 +11,37 @@ protected void setUpActors()
 {
     if (!actors["galadhel"])
     {
-        actors["galadhel"] = clone_object("/lib/tutorial/characters/galadhel/galadhel.c");
+        actors["galadhel"] = clone_object("/tutorial/characters/galadhel/galadhel.c");
         actors["galadhel"]->registerEvent(this_object());
     }
 
     if (!actors["berenar"])
     {
-        actors["berenar"] = clone_object("/lib/tutorial/characters/berenar/berenar.c");
+        actors["berenar"] = clone_object("/tutorial/characters/berenar/berenar.c");
         actors["berenar"]->registerEvent(this_object());
     }
 
     if (!actors["alberich"])
     {
-        actors["alberich"] = clone_object("/lib/tutorial/characters/alberich/alberich.c");
+        actors["alberich"] = clone_object("/tutorial/characters/alberich/alberich.c");
         actors["alberich"]->registerEvent(this_object());
     }
 
     if (!actors["donald"])
     {
-        actors["donald"] = clone_object("/lib/tutorial/characters/donald/donald.c");
+        actors["donald"] = clone_object("/tutorial/characters/donald/donald.c");
         actors["donald"]->registerEvent(this_object());
     }
 
     if (!actors["halgaladh"])
     {
-        actors["halgaladh"] = clone_object("/lib/tutorial/characters/halgaladh/halgaladh.c");
+        actors["halgaladh"] = clone_object("/tutorial/characters/halgaladh/halgaladh.c");
         actors["halgaladh"]->registerEvent(this_object());
     }
 
     if (!actors["thomas"])
     {
-        actors["thomas"] = clone_object("/lib/tutorial/characters/thomas/thomas.c");
+        actors["thomas"] = clone_object("/tutorial/characters/thomas/thomas.c");
         actors["thomas"]->registerEvent(this_object());
     }
 }
@@ -83,19 +83,19 @@ protected void handleJerithDeath(object location)
 /////////////////////////////////////////////////////////////////////////////
 protected void addBattleSceneBadGuys(object location)
 {
-    actors["keeper"] = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
+    actors["keeper"] = clone_object("/tutorial/characters/keeper-of-the-night.c");
     move_object(actors["keeper"], location);
     actors["keeper"]->registerEvent(this_object());
 
-    actors["jerith"] = clone_object("/lib/tutorial/characters/jerith.c");
+    actors["jerith"] = clone_object("/tutorial/characters/jerith.c");
     move_object(actors["jerith"], location);
     actors["jerith"]->hit(140, "physical");
     actors["jerith"]->registerEvent(this_object());
 
-    actors["zombie 1"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    actors["zombie 1"] = clone_object("/tutorial/characters/animated-corpse.c");
     move_object(actors["zombie 1"], location);
 
-    actors["zombie 2"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    actors["zombie 2"] = clone_object("/tutorial/characters/animated-corpse.c");
     move_object(actors["zombie 2"], location);
     actors["keeper"]->registerEvent(actors["zombie 1"]);
     actors["keeper"]->registerEvent(actors["zombie 2"]);
@@ -104,7 +104,7 @@ protected void addBattleSceneBadGuys(object location)
 /////////////////////////////////////////////////////////////////////////////
 protected void addEntranceBadGuys(object location, object player)
 {
-    actors["keeper"] = clone_object("/lib/tutorial/characters/bregar/bregar.c");
+    actors["keeper"] = clone_object("/tutorial/characters/bregar/bregar.c");
     move_object(actors["keeper"], location);
     actors["keeper"]->registerEvent(this_object());
 
@@ -112,15 +112,15 @@ protected void addEntranceBadGuys(object location, object player)
     actors["donald"]->attack(actors["keeper"]);
     actors["halgaladh"]->attack(actors["keeper"]);
 
-    actors["zombie 1"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    actors["zombie 1"] = clone_object("/tutorial/characters/animated-corpse.c");
     move_object(actors["zombie 1"], location);
     actors["galadhel"]->attack(actors["zombie 1"]);
 
-    actors["zombie 2"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    actors["zombie 2"] = clone_object("/tutorial/characters/animated-corpse.c");
     move_object(actors["zombie 2"], location);
     actors["thomas"]->attack(actors["zombie 2"]);
 
-    actors["zombie 3"] = clone_object("/lib/tutorial/characters/animated-corpse.c");
+    actors["zombie 3"] = clone_object("/tutorial/characters/animated-corpse.c");
     move_object(actors["zombie 3"], location);
     player->attack(actors["zombie 3"]);
 

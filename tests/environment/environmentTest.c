@@ -348,7 +348,7 @@ void MoveToLocationShowsCorrectMessageForTimeAndSeason()
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
     move_object(player, "/lib/tests/support/environment/startingRoom.c");
 
-    object x = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
+    object x = clone_object("/tutorial/characters/keeper-of-the-night.c");
 
     command("south", player);
     ExpectSubStringMatch("It is too dark", player->caughtMessage());

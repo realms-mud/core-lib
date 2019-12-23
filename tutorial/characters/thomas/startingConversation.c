@@ -24,6 +24,6 @@ protected void Setup()
         "to the blood-soaked cloth.");
 
     addTopicInterjection("yeah no thanks",
-        "/lib/tutorial/characters/alberich/alberich.c",
+        "/tutorial/characters/alberich/alberich.c",
         "hell with that", 1);
 }

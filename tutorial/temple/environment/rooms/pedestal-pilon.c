@@ -8,18 +8,18 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     cloneEnvironment();
-    setInterior("/lib/tutorial/temple/environment/interiors/pedestal-chamber.c");
-    addFeature("lib/tutorial/temple/environment/features/amethyst-floor.c");
-    addFeature("lib/tutorial/temple/environment/features/amethyst-ceiling.c");
-    addFeature("lib/tutorial/temple/environment/features/purple-liquid.c");
+    setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
+    addFeature("tutorial/temple/environment/features/amethyst-floor.c");
+    addFeature("tutorial/temple/environment/features/amethyst-ceiling.c");
+    addFeature("tutorial/temple/environment/features/purple-liquid.c");
 
     // Second test
-    addExit("west", "/lib/tutorial/temple/environment/rooms/pedestal-2x5.c", "second test");
-    addExit("east", "/lib/tutorial/temple/environment/rooms/pedestal-exit-2.c", "second test");
+    addExit("west", "/tutorial/temple/environment/rooms/pedestal-2x5.c", "second test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-2.c", "second test");
 
-    addObject("/lib/tutorial/temple/objects/pilon.c");
+    addObject("/tutorial/temple/objects/pilon.c");
 
-    setStateMachine("/lib/tutorial/temple/stateMachine/obedienceStateMachine.c");
+    setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -14,7 +14,7 @@ public void Setup()
         "intricate runes have been carved. In the center of the "
         "room stands a table carved of onxy. On its surface sits a "
         "grid with several glowing runes.\n"
-        "##call_other::key::/lib/tutorial/temple/objects/magic-square.c::displayMagicSquare::"
+        "##call_other::key::/tutorial/temple/objects/magic-square.c::displayMagicSquare::"
         "\nTo the right of the grid, there is another grid of slightly raised cubes of "
         "onyx that look like they can be pushed into its surface. ");
     addSourceOfLight(10);

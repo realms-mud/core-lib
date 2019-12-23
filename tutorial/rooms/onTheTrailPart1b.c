@@ -12,9 +12,9 @@ public void Setup()
     addFeature("/lib/environment/features/trees/cottonwood-stand.c", "north");
 
     // First test
-    addExit("north", "/lib/tutorial/rooms/onTheTrailPart1.c", "on the trail");
+    addExit("north", "/tutorial/rooms/onTheTrailPart1.c", "on the trail");
 
-    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
+    setStateMachine("/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

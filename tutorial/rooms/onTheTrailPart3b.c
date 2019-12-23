@@ -14,9 +14,9 @@ public void Setup()
     addFeature("/lib/environment/features/trees/oak-stand.c", "east");
 
     // First test
-    addExit("south", "/lib/tutorial/rooms/onTheTrailPart3.c", "on the trail");
+    addExit("south", "/tutorial/rooms/onTheTrailPart3.c", "on the trail");
 
-    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
+    setStateMachine("/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

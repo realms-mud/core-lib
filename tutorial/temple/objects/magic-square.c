@@ -366,7 +366,7 @@ public void finishPress()
                 "\x1b[0;34;1mA rune appears on the table.\x1b[0m", 78));
 
             object rune = 
-                clone_object("/lib/tutorial/temple/objects/rune-negation.c");
+                clone_object("/tutorial/temple/objects/rune-negation.c");
             move_object(rune, environment(this_object()));
 
             object stateMachineDictionary =
@@ -376,7 +376,7 @@ public void finishPress()
             string owner = party ? party->partyName() : this_player()->RealName();
 
             object stateMachine = stateMachineDictionary->getStateMachine(
-                "/lib/tutorial/temple/stateMachine/obedienceStateMachine.c",
+                "/tutorial/temple/stateMachine/obedienceStateMachine.c",
                 owner);
 
             buttonsCanBePressed = 0;

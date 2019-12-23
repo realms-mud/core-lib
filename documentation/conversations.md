@@ -157,4 +157,4 @@ in as the third parameter.
 
 ###### Additional information
 
-There are many concrete examples of conversations in the /lib/tutorial/characters directory.
+There are many concrete examples of conversations in the /tutorial/characters directory.

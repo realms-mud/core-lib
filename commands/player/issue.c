@@ -78,7 +78,7 @@ public nomask int execute(string command, object initiator)
             }
             if (teleportUser)
             {
-                move_object(initiator, "/lib/tutorial/eledhel/southern-city/12x2.c");
+                move_object(initiator, "/areas/eledhel/southern-city/12x2.c");
                 command("look", initiator);
             }
 

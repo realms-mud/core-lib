@@ -14,7 +14,7 @@ private void QuestionThisOne()
         "to ##InitiatorName## and says, @S@`Here is another one to question!'");
 
     addTopicInterjection("shall we question this one?",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "stay your sword, boy", 1);
 }
 
@@ -25,7 +25,7 @@ private void WakeDonaldUp()
         "between anger and the need to move on before the enemy renews their "
         "attack. He walks over to Donald and shakes him. @S@`Sir?'");
     addTopicInterjection("wake up sir",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "donald regains consciousness", 1);
 
     addTopic("think before you leap", "@D@Halgaladh grabs hold of Donald's "
@@ -35,7 +35,7 @@ private void WakeDonaldUp()
         "you have every right to be angry, but keep your anger focused on "
         "our foes! You and Donald can discuss this later.'");
     addTopicInterjection("think before you leap",
-        "/lib/tutorial/characters/alberich/alberich.c",
+        "/tutorial/characters/alberich/alberich.c",
         "good. a blissful interlude", 1);
 }
 
@@ -64,7 +64,7 @@ private void WalkingCorpsesStink()
     addResponseTopic("stinks too", "@I@Examine corpse@E@", "stinks part two");
     addResponseTopic("stinks too", "It does stink...", "stinks part two");
     addTopicInterjection("stinks part two",
-        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "/tutorial/characters/galadhel/galadhel.c",
         "What are we missing", 1);
 }
 
@@ -80,7 +80,7 @@ private void GrantHisRelease()
         "You know this.'");
 
     addTopicInterjection("grant him his release",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "grant him his release part 2", 1);
 }
 
@@ -90,7 +90,7 @@ protected void Setup()
     addTopic("aye but how", "@S@`Aye, but how?' @D@asks "
         "Halgaladh as he steps up next to Galadhel.");
     addTopicInterjection("aye but how",
-        "/lib/tutorial/characters/galadhel/galadhel.c",
+        "/tutorial/characters/galadhel/galadhel.c",
         "I do not know", 1);
 
     addTopic("no more mushroom farmers", "@D@As Halgaladh sees Galadhel train "

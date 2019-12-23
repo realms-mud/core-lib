@@ -519,10 +519,10 @@ void UniqueCharacterInstancesHaveDistinctConversations()
     Catch->beginShadow(actor2);
     move_object(actor2, "/lib/tests/support/environment/startingRoom.c");
 
-    object brendan = clone_object("/lib/tutorial/characters/brendan/brendan.c");
+    object brendan = clone_object("/tutorial/characters/brendan/brendan.c");
     move_object(brendan, Room);
 
-    object brendan2 = clone_object("/lib/tutorial/characters/brendan/brendan.c");
+    object brendan2 = clone_object("/tutorial/characters/brendan/brendan.c");
     move_object(brendan2, "/lib/tests/support/environment/startingRoom.c");
 
     command("talk brendan", Actor);

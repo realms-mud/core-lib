@@ -36,7 +36,7 @@ protected void Setup()
     addTrait("lib/instances/traits/personality/sardonic.c");
     addTrait("lib/instances/traits/personality/stubborn.c");
 
-    addConversation("/lib/tutorial/temple/characters/vilias/startingConversation.c");
+    addConversation("/tutorial/temple/characters/vilias/startingConversation.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

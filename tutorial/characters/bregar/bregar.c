@@ -26,7 +26,7 @@ protected void Setup()
 
     setUpRandomEquipment(0);
 
-    addConversation("/lib/tutorial/characters/bregar/startingConversation.c");
+    addConversation("/tutorial/characters/bregar/startingConversation.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

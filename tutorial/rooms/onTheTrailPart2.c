@@ -12,10 +12,10 @@ public void Setup()
     addFeature("/lib/environment/features/trees/sycamore-stand.c", "north");
 
     // First test
-    addExit("south", "/lib/tutorial/rooms/onTheTrailPart1.c", "on the trail");
-    addExit("northwest", "/lib/tutorial/rooms/onTheTrailPart3.c", "on the trail");
+    addExit("south", "/tutorial/rooms/onTheTrailPart1.c", "on the trail");
+    addExit("northwest", "/tutorial/rooms/onTheTrailPart3.c", "on the trail");
 
-    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
+    setStateMachine("/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ public void continueOnTrail()
     tell_room(this_object(),
         "A flash of black can be seen to the northwest.\n");
     StateMachine->moveSquad("northwest",
-        "/lib/tutorial/rooms/onTheTrailPart3.c");
+        "/tutorial/rooms/onTheTrailPart3.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

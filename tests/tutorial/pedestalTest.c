@@ -15,7 +15,7 @@ void Setup()
     Player->Name("Gorthaur");
     Player->addCommands();
 
-    Pedestal = clone_object("/lib/tutorial/temple/objects/pedestal.c");
+    Pedestal = clone_object("/tutorial/temple/objects/pedestal.c");
     move_object(Player, this_object());
     move_object(Pedestal, this_object());
 }

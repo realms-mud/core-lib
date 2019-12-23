@@ -14,6 +14,6 @@ public void Setup()
         "If you go north, you can test out an (incomplete) background story.\n"
         "If you go south, you will be placed in the (incomplete) city of Eledhel.\n");
 
-    addExit("north", "/lib/tutorial/rooms/battleScene.c");
-    addExit("south", "/lib/tutorial/eledhel/southern-city/12x2.c");
+    addExit("north", "/tutorial/rooms/battleScene.c");
+    addExit("south", "/areas/eledhel/southern-city/12x2.c");
 }

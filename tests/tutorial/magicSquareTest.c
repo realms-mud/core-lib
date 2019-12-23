@@ -17,7 +17,7 @@ void Setup()
     Player->addCommands();
     Player->colorConfiguration("none");
 
-    MagicSquare = clone_object("/lib/tutorial/temple/objects/magic-square.c");
+    MagicSquare = clone_object("/tutorial/temple/objects/magic-square.c");
     move_object(Player, this_object());
     move_object(MagicSquare, this_object());
 }

@@ -11,13 +11,13 @@ private void FindingHaldor()
         "Haldor has fallen.' @D@She intently examines an arrow that is "
         "protruding from Haldor's temple.");
     addTopicInterjection("haldor is dead",
-        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "/tutorial/characters/halgaladh/halgaladh.c",
         "aye but how", 1);
 
     addTopic("I do not know", "@D@Galadhel grimaces, @S@`Good question. Given "
         "the signs here, that arrow was fired from the west.'");
     addTopicInterjection("I do not know",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "Does it matter", 1);
 
     addTopic("look over there", "@D@Galadhel points to the west and hisses, "
@@ -33,14 +33,14 @@ private void FindingHaldor()
         "corpse is human. Male. Seems to have a taste for sinister-looking "
         "accessories.'");
     addTopicInterjection("the corpse is human",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "let's get these bastards", 1);
 
     addTopic("whisper about dead to Donald", "@D@Galadhel crouches beside "
         "Donald and whispers, @S@`Do we still want any alive? Certainly "
         "the dead are worthless. There are the robed ones, however.'");
     addTopicInterjection("whisper about dead to Donald",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "take him out", 1);
 
     addTopic("I guess I'll just kill this guy", "@D@Galadhel sighs in "
@@ -50,7 +50,7 @@ private void FindingHaldor()
         "one of the walking corpses falls to the ground as though it were "
         "a marionette whose strings had been cut.");
     addTopicInterjection("I guess I'll just kill this guy",
-        "/lib/tutorial/characters/alberich/alberich.c",
+        "/tutorial/characters/alberich/alberich.c",
         "daft bastard", 1);
 }
 
@@ -63,7 +63,7 @@ private void YouKnowMe()
         "a moment and she says softly, @S@`You know me? Who are you?'");
 
     addTopicInterjection("you know me?",
-        "/lib/tutorial/characters/brendan/brendan.c",
+        "/tutorial/characters/brendan/brendan.c",
         "yes, I know you", 1);
 
     addTopic("Interruptions aren't your only concern", 
@@ -73,11 +73,11 @@ private void YouKnowMe()
         "ready and aimed right between the legs of her prey. @S@`Speak now.'");
 
     addTopicInterjection("Interruptions aren't your only concern", 
-        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "/tutorial/characters/halgaladh/halgaladh.c",
         "no more mushroom farmers", 1);
 
     addTopicInterjection("Interruptions aren't your only concern",
-        "/lib/tutorial/characters/brendan/brendan.c",
+        "/tutorial/characters/brendan/brendan.c",
         "I was Phaedra", 1);
 }
 
@@ -133,7 +133,7 @@ protected void Setup()
         "bow as she interjects, @S@`Given your handiness with corpses, you also "
         "seem to share the same talent as the one who attacked our camp.'");
     addTopicInterjection("threaten brendan",
-        "/lib/tutorial/characters/brendan/brendan.c",
+        "/tutorial/characters/brendan/brendan.c",
         "slow down, Sparky", 1);
 
     FindingHaldor();

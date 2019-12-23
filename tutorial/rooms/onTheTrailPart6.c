@@ -13,10 +13,10 @@ public void Setup()
     addFeature("/lib/environment/features/trees/oak-stand.c", "south");
 
     // First test
-    addExit("east", "/lib/tutorial/rooms/onTheTrailPart5.c", "on the trail");
-    addExit("west", "/lib/tutorial/rooms/onTheTrailPart7.c", "on the trail");
+    addExit("east", "/tutorial/rooms/onTheTrailPart5.c", "on the trail");
+    addExit("west", "/tutorial/rooms/onTheTrailPart7.c", "on the trail");
 
-    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
+    setStateMachine("/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ public void continueOnTrail()
         "The sound of a heated conversation can be heard to the west.\n");
 
     StateMachine->moveSquad("west",
-        "/lib/tutorial/rooms/onTheTrailPart7.c");
+        "/tutorial/rooms/onTheTrailPart7.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

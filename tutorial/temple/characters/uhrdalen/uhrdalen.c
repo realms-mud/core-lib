@@ -20,7 +20,7 @@ protected void Setup()
     Race("maegenstryd");
     SetUpPersonaOfLevel("wraith", 20);
 
-    addConversation("/lib/tutorial/temple/characters/uhrdalen/startingConversation.c");
+    addConversation("/tutorial/temple/characters/uhrdalen/startingConversation.c");
 
     registerEventHandler("uhrdalenLeft");
     registerEventHandler("startFirstTest");

@@ -16,7 +16,7 @@ public void Setup()
     addExit("north", "/lib/tests/support/environment/startingRoom.c");
 
     addObject("/lib/items/weapon.c", "someState");
-    addObject("/lib/tutorial/characters/keeper-of-the-night.c");
+    addObject("/tutorial/characters/keeper-of-the-night.c");
     setAdditionalLongDescription("This is an extra long description to be "
         "displayed after the feature descriptions");
 }

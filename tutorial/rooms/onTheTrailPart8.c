@@ -10,16 +10,16 @@ public void Setup()
     cloneEnvironment();
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/cottonwood-stand.c", "north");
-    addFeature("/lib/tutorial/features/obedience-temple-near.c", "north");
+    addFeature("/tutorial/features/obedience-temple-near.c", "north");
 
     // First test
-    addExit("east", "/lib/tutorial/rooms/onTheTrailPart7.c", "on the trail");
-    addObject("/lib/tutorial/characters/brendan/brendan.c", "on the trail");
+    addExit("east", "/tutorial/rooms/onTheTrailPart7.c", "on the trail");
+    addObject("/tutorial/characters/brendan/brendan.c", "on the trail");
 
-    addExit("north", "/lib/tutorial/temple/environment/rooms/entry-to-pedestal.c", 
+    addExit("north", "/tutorial/temple/environment/rooms/entry-to-pedestal.c", 
         "enter the lair");
 
-    setStateMachine("/lib/tutorial/stateMachines/introStateMachine.c");
+    setStateMachine("/tutorial/stateMachines/introStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -31,17 +31,17 @@ public void init()
     if (brendan && this_player() && this_player()->isRealizationOfPlayer() &&
         present(this_player()) && !present("zombie"))
     {
-        object keeper = clone_object("/lib/tutorial/characters/keeper-of-the-night.c");
+        object keeper = clone_object("/tutorial/characters/keeper-of-the-night.c");
         move_object(keeper, this_object());
         keeper->registerEvent(brendan);
 
-        object zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
+        object zombie = clone_object("/tutorial/characters/animated-corpse.c");
         move_object(zombie, this_object());
         keeper->registerEvent(zombie);
 
         this_player()->attack(zombie);
 
-        zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
+        zombie = clone_object("/tutorial/characters/animated-corpse.c");
         move_object(zombie, this_object());
         keeper->registerEvent(zombie);
         if (present("alberich"))
@@ -49,7 +49,7 @@ public void init()
             present("alberich")->attack(zombie);
         }
 
-        zombie = clone_object("/lib/tutorial/characters/animated-corpse.c");
+        zombie = clone_object("/tutorial/characters/animated-corpse.c");
         move_object(zombie, this_object());
         keeper->registerEvent(zombie);
         if (present("thomas"))

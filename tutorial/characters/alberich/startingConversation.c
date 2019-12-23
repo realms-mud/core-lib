@@ -15,14 +15,14 @@ protected void Setup()
         "less excitement, Alberich follows Donald.");
 
     addTopicInterjection("donald is enthusiatic",
-        "/lib/tutorial/characters/thomas/thomas.c",
+        "/tutorial/characters/thomas/thomas.c",
         "donald is a dipshit", 1);
 
     addTopic("wait you ninny", "@D@Alberich grabs Donald's shoulder "
         "and harshly whispers, @S@`Half a minute, there might be others.'");
 
     addTopicInterjection("wait you ninny",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "ignore and attack", 1);
 
     addTopic("daft bastard", "@D@Alberich looks livid as he angrily "
@@ -39,6 +39,6 @@ protected void Setup()
         "states, @S@`Hell with that! Wear it your damned self, sir!'");
 
     addTopicInterjection("hell with that",
-        "/lib/tutorial/characters/bregar/bregar.c",
+        "/tutorial/characters/bregar/bregar.c",
         "that's distracting", 1);
 }

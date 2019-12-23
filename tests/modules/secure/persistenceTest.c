@@ -69,7 +69,7 @@ void PlayerMaterialAttributesRestored()
     ExpectEq("blah", Player->short());
     ExpectEq("This is a long description", Player->description());
     ExpectTrue(Player->creationDate());
-    ExpectEq("/lib/tutorial/eledhel/southern-city/12x2.c", Player->savedLocation());
+    ExpectEq("/areas/eledhel/southern-city/12x2.c", Player->savedLocation());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -651,7 +651,7 @@ void HeartBeatChecksForLinkDeathThenSavesAndDestroysTheLinkDead()
     Player->heart_beat();
 
     ExpectTrue(Player);
-    ExpectEq("/lib/tutorial/eledhel/southern-city/12x2.c", Player->savedLocation());
+    ExpectEq("/areas/eledhel/southern-city/12x2.c", Player->savedLocation());
 
     move_object(Player, "/lib/environment/environment.c");
     setUsers(({ }));

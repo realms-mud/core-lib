@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 private int SetupCompleted = 0;
-private string StartLocation = "/lib/tutorial/eledhel/southern-city/12x2.c";
+private string StartLocation = "/areas/eledhel/southern-city/12x2.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()

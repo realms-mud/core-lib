@@ -11,7 +11,7 @@ private void ThatHurts()
         "ground, seriously wounded.");
 
     addTopicInterjection("first conversation",
-        "/lib/tutorial/characters/halgaladh/halgaladh.c",
+        "/tutorial/characters/halgaladh/halgaladh.c",
         "shall we question this one?", 1);
 
     addTopic("what is this place", "@D@The black-robed figure "
@@ -42,7 +42,7 @@ private void SoIPickMyDeath()
     addResponseTopic("first conversation", "Why not?", "not that");
 
     addTopicInterjection("not that",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "you get that for free", 1);
 
     addResponse("not that", "And what of us?", "@D@@C@##InitiatorName## "
@@ -78,7 +78,7 @@ private void ThatIsDistracting()
     addResponseTopic("so I pick my death", "And?", "and what?");
 
     addTopicInterjection("and what?",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "I have a great idea", 1);
 
     addTopic("that's distracting", "@D@Despite his current predicament, the "
@@ -206,7 +206,7 @@ private void GutsEqualSpilledPartTwo()
         "please don't kill me part 2");
 
     addTopicInterjection("please don't kill me part 2",
-        "/lib/tutorial/characters/donald/donald.c",
+        "/tutorial/characters/donald/donald.c",
         "grant him his release", 1);
 }
 
