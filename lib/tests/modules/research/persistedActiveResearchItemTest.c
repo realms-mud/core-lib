@@ -710,7 +710,7 @@ void DisplayDetailsShowCorrectInformation()
         "two-handed sword.\n"
         "Prerequisites:\n"
         "          Level: Level of 33 in Scion of Dhuras\n"
-        "       Research: Shocking Barrier\n"
-        "       Research: The Way of the Sword\n", research->researchDetails());
+        "       Research: The Way of the Sword\n"
+        "       Research: Shocking Barrier\n", research->researchDetails());
     destruct(research);
 }

@@ -680,7 +680,9 @@ public nomask string displayPrerequisites(string colorConfiguration,
         ret = configuration->decorate("Prerequisites:\n",
             "field header", "research", colorConfiguration);
 
-        string *prereqKeys = sort_array(m_indices(prerequisites), (: $1 > $2 :));
+        string *prereqKeys = sort_array(m_indices(prerequisites), 
+            (: ($3[$1]["type"] > $3[$2]["type"]) :), prerequisites);
+
         foreach(string key in prereqKeys)
         {
             string prereq = "";
