@@ -227,9 +227,31 @@ void DescribeShowsDetailsAboutWeaponWithPrerequisitesAndMaterials()
     command("12", Player);
     command("? 10", Player);
 
-    ExpectSubStringMatch("This option lets you craft: long sword"
-        ".*Blacksmithing of 1.*Craft Long Swords.*Metal crafting of 1"
-        ".*Weapon smithing of 8.*Optional.*Crystal can be"
+    ExpectSubStringMatch("This option lets you craft: long sword",
+        Player->caughtMessage());
+
+    ExpectSubStringMatch(".*Blacksmithing of 1",
+        Player->caughtMessage());
+
+    ExpectSubStringMatch("Craft Long Swords",
+        Player->caughtMessage());
+
+    ExpectSubStringMatch("Metal crafting of 1",
+        Player->caughtMessage());
+
+    ExpectSubStringMatch("Weapon smithing of 8",
+        Player->caughtMessage());
+
+    ExpectSubStringMatch("Optional.*Crystal can be"
         ".*Leather needed.*1.*Metal needed.*10.*Wood needed.*1",
+        Player->caughtMessage());
+
+    ExpectSubStringMatch("Leather needed.*1",
+        Player->caughtMessage());
+
+    ExpectSubStringMatch("Metal needed.*10",
+        Player->caughtMessage());
+
+    ExpectSubStringMatch("Wood needed.*1",
         Player->caughtMessage());
 }

@@ -71,7 +71,7 @@ void LsWithLFlagListsLongContentsOfCurrentDirectory()
 /////////////////////////////////////////////////////////////////////////////
 void LsDisplaysNormalFilesCorrectly()
 {
-    ExpectTrue(Wizard->executeCommand("ls /lib/"));
+    ExpectTrue(Wizard->executeCommand("ls /"));
     ExpectSubStringMatch("0;33mLICENSE[^\*]", Wizard->caughtMessages());
 }
 

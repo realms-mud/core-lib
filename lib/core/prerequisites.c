@@ -681,7 +681,7 @@ public nomask string displayPrerequisites(string colorConfiguration,
             "field header", "research", colorConfiguration);
 
         string *prereqKeys = sort_array(m_indices(prerequisites), 
-            (: ($3[$1]["type"] > $3[$2]["type"]) :), prerequisites);
+            (: (($3[$1]["type"] > $3[$2]["type"]) && ($1 > $2)) :), prerequisites);
 
         foreach(string key in prereqKeys)
         {

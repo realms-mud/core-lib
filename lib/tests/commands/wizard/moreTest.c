@@ -50,16 +50,20 @@ void ExecuteRegexpIsNotGreedy()
 /////////////////////////////////////////////////////////////////////////////
 void MoreDisplaysShortFileWithoutPaging()
 {
-    ExpectTrue(Wizard->executeCommand("more /lib/README"));
+    string fileContents = "This is a file\n\nIt has 4 lines\n";
+    write_file("/players/earl/stuff", fileContents);
 
-    ExpectEq(11, sizeof(explode(Wizard->caughtMessage(), "\n")));
+    ExpectTrue(Wizard->executeCommand("more /players/earl/stuff"));
+
+    ExpectEq(4, sizeof(explode(Wizard->caughtMessage(), "\n")));
     ExpectFalse(sizeof(regexp(({ Wizard->caughtMessage() }), "More? [q to quit]")));
+    rm("/players/earl/stuff");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MorePagesLargeFiles()
 {
-    ExpectTrue(Wizard->executeCommand("more /lib/README.md"));
+    ExpectTrue(Wizard->executeCommand("more /README.md"));
 
     string firstPage = Wizard->caughtMessages();
     ExpectEq(22, sizeof(explode(firstPage, "\n")));
