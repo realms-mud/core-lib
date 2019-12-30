@@ -140,6 +140,26 @@ void WarningDisplayedIfInvalidRoomNumber()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CannotUseDestinationWithoutDirection()
+{
+    ExpectTrue(Wizard->executeCommand("generate region -n george -p "
+        "/players/earl -x 5 -y 5 -t forest -s 100 -de "
+        "/players/maeglin/shop.c -l 40 -r 15"));
+    ExpectSubStringMatch("The direction and destination flags must be used "
+        "in conjunction", Wizard->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotUseDirectionWithoutDestination()
+{
+    ExpectTrue(Wizard->executeCommand("generate region -n george -p "
+        "/players/earl -x 5 -y 5 -t forest -s 100 -direction east "
+        "-l 40 -r 15"));
+    ExpectSubStringMatch("The direction and destination flags must be used "
+        "in conjunction", Wizard->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void PromptedToGenerateRegionWhenAllParametersValid()
 {
     ExpectTrue(Wizard->executeCommand("generate region -n george -p "

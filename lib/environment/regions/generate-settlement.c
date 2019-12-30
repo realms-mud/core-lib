@@ -14,9 +14,10 @@ public void setSettlementChance(int chance)
     {
         GenerateSettlementsChance = chance;
     }
-    else
+    else if(chance != GenerateSettlementsChance)
     {
-        raise_error("Region: settlement chance must be between 0 and 100.\n");
+        raise_error(sprintf("Region: settlement chance (%d) must be between "
+            "0 and 100.\n", chance));
     }
 }
 

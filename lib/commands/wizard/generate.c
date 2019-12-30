@@ -231,7 +231,7 @@ private nomask void generateRegion(object initiator, string name, string type,
     region->setRegionType(type);
     region->setDimensions(x, y);
 
-    if (settlementChance != NotSet)
+    if (settlementChance > NotSet)
     {
         region->setSettlementChance(settlementChance);
     }
@@ -313,16 +313,31 @@ public nomask int execute(string command, object initiator)
                     format("The x and y dimensions must be between 5-25. "
                         "The best visualization occurs when the dimensions "
                         "are 25x10.\n", 78),
-                    "error message", "wizard commands", initiator->colorConfiguration()));
+                    "error message", "wizard commands", 
+                    initiator->colorConfiguration()));
             }
 
             int settlementChance = getSettlementChance(command, initiator);
+
             string direction = getDirection(command);
             string destination = getDestination(command);
+            int hasDirectionAndDestination = 1;
+            if ((!direction && destination) || (direction && !destination))
+            {
+                hasDirectionAndDestination = 0;
+                tell_object(initiator, configuration->decorate(
+                    format("The direction and destination flags must be used "
+                        "in conjunction with one another.\n", 78),
+                    "error message", "wizard commands", 
+                    initiator->colorConfiguration()));
+
+            }
+
             int level = getRegionLevel(command, initiator);
             int rooms = getRoomsInRegion(command, initiator, x, y);
 
-            if (x && y && type && (settlementChance != Invalid))
+            if (x && y && type && (settlementChance != Invalid) &&
+                hasDirectionAndDestination)
             {
                 generateRegion(initiator, name, type, x, y, settlementChance,
                     direction, destination, path, level, rooms);

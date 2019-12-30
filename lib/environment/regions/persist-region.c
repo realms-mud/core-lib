@@ -195,7 +195,8 @@ private nomask string generateStaticExits(mapping room, string fileTemplate,
             }
         }
 
-        if (sizeof(entry) && (room["room type"] == "entry"))
+        if (sizeof(entry) && (room["room type"] == "entry") && EnterFrom &&
+            EntryPoint)
         {
             exitText += sprintf("    addExit(\"%s\", \"%s\");\n",
                 EnterFrom, EntryPoint);
@@ -276,7 +277,7 @@ private nomask string generateSetEntryCoordinate(string fileTemplate,
 {
     string ret = fileTemplate;
 
-    if (sizeof(entry))
+    if (sizeof(entry) && EnterFrom && EntryPoint)
     {
         ret = regreplace(ret, "// EntryCoordinate",
             sprintf("setEntryCoordinate(%d, %d,\n"
