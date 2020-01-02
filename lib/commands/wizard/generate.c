@@ -262,6 +262,7 @@ static nomask void responseToGenerate(string response, object region,
     int settlementChance, string direction, string destination, string path,
     int level, int rooms)
 {
+    notify_fail("");
     response = lower_case(response);
     if (response == "c")
     {
