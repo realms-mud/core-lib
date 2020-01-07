@@ -2,78 +2,151 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include <driver_hook.h>
 
 /////////////////////////////////////////////////////////////////////////////
-static string _include_dirs_hook(string include_name, string current_file)
+static string includeDirectories(string includeFile, string currentFile)
 {
-    return "";
+    string ret = file_size(includeFile) ? includeFile : 0;
+
+    if (!ret)
+    {
+        string *locations = ({ "/include", "/lib/include", "/sys" });
+        foreach(string location in locations)
+        {
+            string name = sprintf("%s/%s", location, includeFile);
+            if (file_size(name))
+            {
+                ret = name;
+                break;
+            }
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-static void _move_hook_fun(object item, object dest)
+static void moveHook(object item, object destination)
 {
+    if (objectp(item) && objectp(destination))
+    {
+        efun::set_environment(item, destination);
 
+        if (living(item))
+        {
+            efun::set_this_player(item);
+            destination->init();
+
+            if (!item)
+            {
+                raise_error(sprintf("Destination (%O) init() call "
+                    "destructed moved item.\n", destination));
+            }
+        }
+
+        if (environment(item) == destination)
+        {
+            object *otherItems = all_inventory(destination) - ({ item });
+            foreach(object otherItem in otherItems)
+            {
+                if (living(otherItem))
+                {
+                    efun::set_this_player(otherItem);
+                    item->init();
+                }
+                if (!item)
+                {
+                    raise_error(sprintf("(%O) init() call "
+                        "destructed moved item.\n", item));
+                }
+            }
+
+            if (living(item))
+            {
+                efun::set_this_player(item);
+                filter_objects(otherItems, "init");
+            }
+            if (living(destination) && item)
+            {
+                efun::set_this_player(destination);
+                item->init();
+            }
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-static mixed _load_uids_fun(mixed object_name, object prev)
+static mixed loadUIDs(string objectName, object previousObject)
 {
-    return 0;
+    string uid = 0;
+
+    if (sizeof(regexp(({ objectName }), "^/*players")))
+    {
+        uid = regreplace(objectName, "^/*players/([^/]+)/.*", "\\1", 1);
+    }
+
+    if (!uid && previousObject)
+    {
+        uid = getuid(previousObject);
+    }
+    return uid ? uid : 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-static mixed _clone_uids_fun(object blueprint, string new_name, object prev)
+static mixed cloneUIDs(object blueprint, string name, object previousObject)
 {
-    return 0;
+    return getuid(blueprint) || getuid(previousObject) || 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void addDriverHooks()
 {
-/*  set_driver_hook(
-        H_MOVE_OBJECT0,
+    // Set up the move hook
+    set_driver_hook(H_MOVE_OBJECT0,
         unbound_lambda( ({'item, 'dest}),
-        ({#'_move_hook_fun, 'item, 'dest })
-                      )
-                 );
-  set_driver_hook(
-    H_LOAD_UIDS,
-    unbound_lambda( ({'object_name}), ({
-      #'_load_uids_fun, 'object_name, ({#'previous_object}) })
-                  )
-  );
-  set_driver_hook(
-    H_CLONE_UIDS,
-    unbound_lambda( ({ 'blueprint, 'new_name}), ({
-      #'_clone_uids_fun, 'blueprint, 'new_name, ({#'previous_object}) })
-                  )
-  );
-  set_driver_hook(H_CREATE_SUPER, "reset");
-  set_driver_hook(H_CREATE_OB,    "reset");
-  set_driver_hook(H_CREATE_CLONE, "reset");
+            ({#'moveHook, 'item, 'dest })
+        )
+    );
 
-  set_driver_hook(H_RESET,        "reset");
-  set_driver_hook(H_CLEAN_UP,     "clean_up");
-  set_driver_hook(H_MODIFY_COMMAND,
-    ([ "e":"east", "w":"west", "s":"south", "n":"north"
-     , "d":"down", "u":"up", "nw":"northwest", "ne":"northeast"
-     , "sw":"southwest", "se":"southeast" ]));
-  set_driver_hook(H_MODIFY_COMMAND_FNAME, "modify_command");
-  set_driver_hook(H_NOTIFY_FAIL, "What?\n");
-//set_driver_hook(H_INCLUDE_DIRS, INCLUDE_DIRS_LIST);
-  set_driver_hook(H_INCLUDE_DIRS, 
-    unbound_lambda( ({'included, 'file}),
-      ({#'_include_dirs_hook,'included,'file }) ));
+    // Load UIDs hook
+    set_driver_hook(H_LOAD_UIDS,
+        unbound_lambda( ({'object_name}), ({
+            #'loadUIDs, 'object_name, ({#'previous_object}) })
+        )
+    );
 
-#if ! __EFUN_DEFINED__(query_ip_name)
-  set_driver_hook(H_AUTO_INCLUDE,
-#else
-  set_auto_include_string(
-#endif
-    "#pragma combine_strings\n"
-    "#pragma local_scopes\n" // Required for local variable scopes - Kilan
-//  "#pragma strict_types\n" // To stop untyped crappy code - Kilan
-// WAY too much crappy code to turn strict types on.
-  );
-  */
+    // Clone UIDs hook
+    set_driver_hook(H_CLONE_UIDS,
+        unbound_lambda( ({ 'blueprint, 'new_name}), ({
+            #'cloneUIDs, 'blueprint, 'new_name, ({#'previous_object}) })
+        )
+    );
+
+    // Various create / clone hooks
+    set_driver_hook(H_CREATE_SUPER, "reset");
+    set_driver_hook(H_CREATE_OB,    "reset");
+    set_driver_hook(H_CREATE_CLONE, "reset");
+
+    set_driver_hook(H_RESET,        "reset");
+    set_driver_hook(H_CLEAN_UP,     "clean_up");
+
+    // Add directional abbreviations
+    set_driver_hook(H_MODIFY_COMMAND, ([ 
+        "e":"east", "w":"west", "s":"south", "n":"north", "d":"down", 
+        "u":"up", "nw":"northwest", "ne":"northeast", "sw":"southwest", 
+        "se":"southeast" ]));
+
+    set_driver_hook(H_MODIFY_COMMAND_FNAME, "modify_command");
+    set_driver_hook(H_NOTIFY_FAIL, "What?\n");
+
+    // Add system include directories
+    set_driver_hook(H_INCLUDE_DIRS, 
+        unbound_lambda( ({'included, 'file}),
+            ({#'includeDirectories,'included,'file }) 
+        )
+    );
+
+    set_driver_hook(H_AUTO_INCLUDE,
+    "#pragma pedantic\n"
+    "#pragma warn_rtt_checks\n");
 }

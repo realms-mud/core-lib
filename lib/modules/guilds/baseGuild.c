@@ -540,7 +540,8 @@ public nomask int canAdvanceLevel(object guildMember)
     {
         int curLevel = guildMember->guildLevel(guildName());
 
-        ret = checkPrerequisites(guildMember, "level", to_string(curLevel + 1)) &&
+        ret = checkPrerequisites(guildMember, 
+            sprintf("level %d", curLevel + 1)) &&
             (guildMember->guildExperience(guildName()) >=
                 experienceToNextLevel(curLevel));
     }
@@ -587,8 +588,8 @@ public nomask int canAdvanceRank(object guildMember, string rank)
             int rankDelay = guildMember->ageWhenRankAdvanced(guildName()) +
                 delayUntilNextRank(guildMember->guildRank(guildName()));
 
-            ret = checkPrerequisites(guildMember, "rank", 
-                advancementRank) && (rankDelay <= guildMember->Age());
+            ret = checkPrerequisites(guildMember, advancementRank) && 
+                (rankDelay <= guildMember->Age());
         }
     }
     return ret;

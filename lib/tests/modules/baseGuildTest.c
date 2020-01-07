@@ -354,6 +354,63 @@ void AttributePointsCriteriaAppliedCorrectly()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanAdvanceOnlyWhenPrerequisitesAreMet()
+{
+    mapping prerequisites = ([
+        "long sword": (["type":"skill", "value": 10])
+    ]);
+
+    Guild->guildName("fake mage");
+    User->addSkillPoints(20);
+
+    User->SetExperience(5000);
+    ExpectTrue(Guild->testAddLevelPrerequisite(3, prerequisites));
+    ExpectTrue(Guild->canAdvanceLevel(User));
+
+    User->SetLevel(2);
+    ExpectFalse(Guild->canAdvanceLevel(User));
+
+    User->advanceSkill("long sword", 10);
+    ExpectTrue(Guild->canAdvanceLevel(User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAdvanceRankOnlyWhenPrerequisitesAreMet()
+{
+    mapping prerequisites = ([
+        "long sword" : (["type":"skill", "value" : 10])
+    ]);
+    Guild->guildName("fake mage");
+
+    mapping rank = ([
+        "name":"lesser squid",
+        "title" : "the title of titliness",
+        "pretitle" : "Squid",
+        "next rank" : "grand master squid"
+    ]);
+    ExpectTrue(Guild->testAddRank("lesser squid", rank));
+
+    rank = ([
+        "name":"grand master squid",
+        "title" : "the title of titliness",
+        "pretitle" : "Grand Master Squid",
+        "previous rank" : "lesser squid",
+        "next rank" : "squid divine",
+        "delay for next promotion" : 0
+    ]);
+    ExpectTrue(Guild->testAddRank("grand master squid", rank));
+    Guild->testAddRankPrerequisite("grand master squid", prerequisites);
+
+    ExpectEq("lesser squid", Guild->advanceRank(User, "lesser squid"));
+
+    ExpectFalse(Guild->canAdvanceRank(User, "lesser squid"));
+
+    User->addSkillPoints(20);
+    User->advanceSkill("long sword", 10);
+    ExpectTrue(Guild->canAdvanceRank(User, "lesser squid"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void MultipleAttributePointCriteriaWithBeginAtLevelAddedCumulatively()
 {
     mapping criteria = ([

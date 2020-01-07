@@ -281,7 +281,7 @@ private nomask string generateSetEntryCoordinate(string fileTemplate,
     {
         ret = regreplace(ret, "// EntryCoordinate",
             sprintf("setEntryCoordinate(%d, %d,\n"
-                "        \"%s\", \"%s\"\n"
+                "        \"%s\", \"%s\",\n"
                 "        \"%s\");", entry[0], entry[1],
                 sprintf("%s%s.c", roomPath, getEntryCoordinates()),
                 EnterFrom, EntryPoint));

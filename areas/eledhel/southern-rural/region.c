@@ -11,7 +11,7 @@ public void Setup()
     setRegionType("rural");
     setDimensions(5, 10);
     setEntryCoordinate(3, 9,
-        "/areas/eledhel/southern-rural/3x9.c", "north"
+        "/areas/eledhel/southern-rural/3x9.c", "north",
         "/areas/eledhel/southern-city/12x0.c");
 
     setCoordinate(0, 0,
