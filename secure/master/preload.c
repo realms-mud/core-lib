@@ -55,7 +55,8 @@ private nomask string *LoadCoreLib()
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *LoadInitFile(string initFile, string *exclusions)
 {
-    return filter(explode(read_file(initFile), "\n"),
+    string initFileData = read_file(initFile) - "\r";
+    return filter(explode(initFileData, "\n"),
         (: ((sizeof($1) > 1) && ($1[0] != '#') && (member($2, $1) < 0)) :), exclusions);
 }
 
@@ -80,5 +81,17 @@ public nomask string *epilog(int eflag)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void preload(string file)
 {
+    int previousTime = currentTime;
 
+    debug_message(sprintf("Preloading file: %s", file), 0x5);
+    object compiledFile = load_object(file);
+
+    if (objectp(compiledFile) &&
+        function_exists("executeTests", compiledFile) &&
+        (file != "/lib/tests/framework/testFixture.c"))
+    {
+        catch (compiledFile->executeTests());
+    }
+
+    debug_message(sprintf(" %.2f\n", executionTime(previousTime) / 1000.0), 0x5);
 }
