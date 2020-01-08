@@ -2,12 +2,12 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#include <driver_hook.h>
+#include "/sys/driver_hook.h"
 
 /////////////////////////////////////////////////////////////////////////////
-static nomask string includeDirectories(string includeFile, string currentFile)
+static string includeDirectories(string includeFile, string currentFile)
 {
-    string ret = file_size(includeFile) ? includeFile : 0;
+    string ret = (file_size(includeFile) > 0) ? includeFile : 0;
 
     if (!ret)
     {
@@ -15,6 +15,7 @@ static nomask string includeDirectories(string includeFile, string currentFile)
         foreach(string location in locations)
         {
             string name = sprintf("%s/%s", location, includeFile);
+
             if (file_size(name))
             {
                 ret = name;
@@ -142,8 +143,8 @@ protected nomask void addDriverHooks()
 
     // Add system include directories
     set_driver_hook(H_INCLUDE_DIRS, 
-        unbound_lambda( ({'included, 'file}),
-            ({#'includeDirectories,'included,'file }) 
+        unbound_lambda( ({'includeFile, 'currentFile }),
+            ({#'includeDirectories,'includeFile,'currentFile }) 
         )
     );
 

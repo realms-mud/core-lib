@@ -22,6 +22,7 @@ void Setup()
 {
     Preload = clone_object("/lib/tests/support/master/preloadHelper.c");
     Preload->SwapInitFile("/lib/tests/support/master/fake_init_file");
+    Preload->AutoLoadCoreLib(1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
