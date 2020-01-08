@@ -17,6 +17,6 @@ void reset(int arg) {
         "players/gor/castle/guard1", "west",
     }));
     add_clone("players/gor/monsters/guard", 1);
-    ::reset();
+    ::reset(arg);
     replace_program("room/room");
 }

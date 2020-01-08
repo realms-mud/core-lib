@@ -303,7 +303,7 @@ mixed valid_read(string path, string eff_user, string call_fun, object caller) {
                 return error[0];
             }
             path = "/"+path;
-        case "file_size":
+        case "file_size": return 1;
            temp = previous_object();
            if(temp && (source(temp,"obj/player") || source(temp,"secure/player/player") || sizeof(regexp(({ object_name(caller) }), "^lib/"))))
              return 1;
