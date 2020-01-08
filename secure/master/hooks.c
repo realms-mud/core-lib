@@ -5,7 +5,7 @@
 #include <driver_hook.h>
 
 /////////////////////////////////////////////////////////////////////////////
-static string includeDirectories(string includeFile, string currentFile)
+static nomask string includeDirectories(string includeFile, string currentFile)
 {
     string ret = file_size(includeFile) ? includeFile : 0;
 
@@ -26,7 +26,7 @@ static string includeDirectories(string includeFile, string currentFile)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-static void moveHook(object item, object destination)
+static nomask void moveHook(object item, object destination)
 {
     if (objectp(item) && objectp(destination))
     {
@@ -76,7 +76,7 @@ static void moveHook(object item, object destination)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-static mixed loadUIDs(string objectName, object previousObject)
+static nomask mixed loadUIDs(string objectName, object previousObject)
 {
     string uid = 0;
 
@@ -93,7 +93,8 @@ static mixed loadUIDs(string objectName, object previousObject)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-static mixed cloneUIDs(object blueprint, string name, object previousObject)
+static nomask mixed cloneUIDs(object blueprint, string name, 
+    object previousObject)
 {
     return getuid(blueprint) || getuid(previousObject) || 1;
 }
