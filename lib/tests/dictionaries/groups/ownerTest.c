@@ -202,22 +202,22 @@ void OwnerIsOwnerOfFilesInOpen()
 /////////////////////////////////////////////////////////////////////////////
 void OwnerCanReadFilesInGuild()
 {
-    ExpectTrue(Wizard->hasReadAccess("/guild"));
-    ExpectTrue(Wizard->hasReadAccess("/guild/mage/blah.c"));
+    ExpectTrue(Wizard->hasReadAccess("/guilds"));
+    ExpectTrue(Wizard->hasReadAccess("/guilds/mage/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OwnerCanWriteFilesInGuild()
 {
-    ExpectTrue(Wizard->hasWriteAccess("/guild"));
-    ExpectTrue(Wizard->hasWriteAccess("/guild/priest/blah.c"));
+    ExpectTrue(Wizard->hasWriteAccess("/guilds"));
+    ExpectTrue(Wizard->hasWriteAccess("/guilds/priest/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OwnerIsOwnerOfFilesInGuild()
 {
-    ExpectTrue(Wizard->hasOwnershipAccess("/guild"));
-    ExpectTrue(Wizard->hasOwnershipAccess("/guild/fighter/blah.c"));
+    ExpectTrue(Wizard->hasOwnershipAccess("/guilds"));
+    ExpectTrue(Wizard->hasOwnershipAccess("/guilds/fighter/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -62,7 +62,7 @@ void PreloadCompilesNormalFiles()
     string finalLogFile = read_file(logFile);
     finalLogFile = finalLogFile[sizeof(initialLogFile)..];
 
-    ExpectSubStringMatch("Preloading file: /lib/realizations/player.c", 
+    ExpectSubStringMatch("Compiling file: /lib/realizations/player.c", 
         finalLogFile);
 }
 
@@ -96,6 +96,6 @@ void PreloadDoesNotExecuteTestFixtureExecuteTestsMethod()
     string finalLogFile = read_file(logFile);
     finalLogFile = finalLogFile[sizeof(initialLogFile)..];
 
-    ExpectSubStringMatch("Preloading file: /lib/tests/framework/testFixture", 
+    ExpectSubStringMatch("Compiling file: /lib/tests/framework/testFixture", 
         finalLogFile);
 }

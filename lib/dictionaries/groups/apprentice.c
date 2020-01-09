@@ -16,7 +16,7 @@ protected nomask void applyGroupDetails()
     addPermission("/mail", None);
     addPermission("/banish", None);
     addPermission("/godstf", None);
-    addPermission("/guild", None);
+    addPermission("/guilds", None);
     addPermission("/lib/modules/secure", None);
     addPermission("/lib/tests/modules/secure", None);
     addPermission("/lib/dictionaries/groups", None);

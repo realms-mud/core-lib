@@ -16,4 +16,6 @@ protected nomask void applyGroupDetails()
     addPermission("/lib/tests/modules/secure", None);
     addPermission("/lib/dictionaries/groups", None);
     addPermission("/lib/tests/dictionaries/groups", None);
+
+    addCommand("query-snoop");
 }

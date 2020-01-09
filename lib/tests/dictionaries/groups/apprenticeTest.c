@@ -234,22 +234,22 @@ void ApprenticeIsNotOwnerOfFilesInOpen()
 /////////////////////////////////////////////////////////////////////////////
 void ApprenticeCanNotReadFilesInGuild()
 {
-    ExpectFalse(Wizard->hasReadAccess("/guild"));
-    ExpectFalse(Wizard->hasReadAccess("/guild/mage/blah.c"));
+    ExpectFalse(Wizard->hasReadAccess("/guilds"));
+    ExpectFalse(Wizard->hasReadAccess("/guilds/mage/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ApprenticeCanNotWriteFilesInGuild()
 {
-    ExpectFalse(Wizard->hasWriteAccess("/guild"));
-    ExpectFalse(Wizard->hasWriteAccess("/guild/priest/blah.c"));
+    ExpectFalse(Wizard->hasWriteAccess("/guilds"));
+    ExpectFalse(Wizard->hasWriteAccess("/guilds/priest/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ApprenticeIsNotOwnerOfFilesInGuild()
 {
-    ExpectFalse(Wizard->hasOwnershipAccess("/guild"));
-    ExpectFalse(Wizard->hasOwnershipAccess("/guild/fighter/blah.c"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/guilds"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/guilds/fighter/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

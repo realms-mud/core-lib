@@ -83,7 +83,7 @@ public nomask void preload(string file)
 {
     int previousTime = currentTime;
 
-    debug_message(sprintf("Preloading file: %s", file), 0x5);
+    debug_message(sprintf("Compiling file: %s", file), 0x5);
     object compiledFile = load_object(file);
 
     if (objectp(compiledFile) &&
@@ -93,5 +93,6 @@ public nomask void preload(string file)
         catch (compiledFile->executeTests());
     }
 
-    debug_message(sprintf(" %.2f\n", executionTime(previousTime) / 1000.0), 0x5);
+    debug_message(sprintf(" -> built in %d ms.\n", 
+        executionTime(previousTime)), 0x5);
 }

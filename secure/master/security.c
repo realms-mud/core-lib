@@ -4,44 +4,47 @@
 //*****************************************************************************
 #include "/sys/interactive_info.h"
 
-static int source(object ob, string file)
+/////////////////////////////////////////////////////////////////////////////
+private int isPriviledgedObject(object caller)
 {
-    int tmp;
-    if (!objectp(ob)) return 0;
-    return sscanf(object_name(ob), file + "#%d", tmp);
+    int ret = 0;
+
+    string name = object_name(caller);
+    if (sizeof(regexp(({ name }), 
+        "^(lib/modules/secure|secure|lib/tests/modules/secure|lib/tests/secure)")))
+    {
+        ret = 1;
+    }
+    return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 int valid_snoop(object snooper, object snoopee)
 {
-    if (source(previous_object(), "godstf/s"))
-        return 1;
-    else
-        return interactive(previous_object());
+    return isPriviledgedObject(previous_object()) ||
+        (interactive(previous_object() &&
+            previous_object()->hasExecuteAccess("snoop")));
 }
 
-int valid_query_snoop(object wiz)
+/////////////////////////////////////////////////////////////////////////////
+int valid_query_snoop(object caller)
 {
-    if (source(previous_object(), "godstf/s") ||
-        previous_object() == this_object())
-        return 1;
-    else
-        return interactive(previous_object());
+    return isPriviledgedObject(previous_object()) || 
+        (interactive(previous_object() && 
+            previous_object()->hasExecuteAccess("query-snoop")));
 }
 
-/*
- * The master object is asked if it is ok to shadow object ob. Use
- * previous_object() to find out who is asking.
- *
- * In this example, we allow shadowing as long as the victim object
- * hasn't denied it with a query_prevent_shadow() returning 1.
- */
-int query_allow_shadow(object ob)
+/////////////////////////////////////////////////////////////////////////////
+int query_allow_shadow(object caller)
 {
-    if (function_exists("valid_read", previous_object()) ||
-        function_exists("valid_write", previous_object()) ||
-        function_exists("users", previous_object()))
-        return 0;
-    return !ob->query_prevent_shadow(previous_object());
+    int ret = !caller->preventShadows();
+
+    if (isPriviledgedObject(caller))
+    {
+        ret = 0;
+    }
+
+    return ret;
 }
 
 mixed creator_file(string object_name)
@@ -105,180 +108,61 @@ int valid_trace(string name)
     return 1;
   return 0;
 }
- 
-void w_log(string str) {        
-        write_file("/godstf/secure_writes",str);
-        return;
-}
- 
-void pl_log(string str) {        
-        write_file("/godstf/player_writes",str);
-        return;
-}
- 
-void misc_log(string str) {        
-        write_file("/godstf/misc_writes",str);
-        return;
-}
 
-void gu_log(string str) {
-  write_file("/godstf/guild_writes", str);
-  return;
-}
-
-mixed valid_write(mixed path, string eff_user, string call_fun, object caller)
+/////////////////////////////////////////////////////////////////////////////
+private nomask string sanitizePath(string path)
 {
-    string user,file,intern;
-    object inter;
- 
-  if(this_interactive()) {
-     inter=this_interactive();
-     intern=inter->query_real_name();
-  }
- 
- if(inter && inter->query_debug() && intern && caller && path && call_fun)
-   tell_object(inter, "master_valid_write->path: "+to_string(path)+
-               " call_func: "+call_fun+" caller: "+object_name(caller)+
-               " interactive: "+intern+"\n");
- 
- if(inter && path && call_fun && call_fun != "save_object"
-    && call_fun != "write_file" && intern && 
-    intern != "someone trying to log on") {
-        string pathh, whoo, whooo;
-        pathh=inter->query_path();
-        path=to_string(path);
-    if(sscanf(path,"/secure/%s",whoo) == 1 || 
-       sscanf(path,"secure/%s",whoo) == 1) {
-               w_log(sprintf("WRITE->path: %s call_func: %s "+
-               "name: %s caller: %s on %s\n", path, call_fun, 
-               intern, object_name(inter), ctime(time())));
-    } else if(sscanf(path, "/guild/%s", whoo) == 1 ||
-              sscanf(path, "guild/%s", whoo) == 1) {
-               gu_log(sprintf("WRITE->path: %s call_func: %s "+
-               "name: %s caller: %s on %s\n", path, call_fun, 
-               intern, object_name(inter), ctime(time())));
-    } else if((sscanf(path,"/players/%s/%s",whoo,whooo) == 2 || 
-               sscanf(path,"players/%s/%s",whoo,whooo) == 2) && 
-               whoo != intern) {
-               pl_log(sprintf("WRITE->path: %s call_func: %s "+
-               "name: %s caller: %s on %s\n", path, call_fun, 
-               intern, object_name(inter), ctime(time())));
-    }
- }
- 
-    switch ( call_fun ) {
-        case "save_object":
-            path = explode(path,"/")-({"","."});
-            if (member(path, "..")>=0)
-                return 0;
-            file = object_name(previous_object());
-            if ( stringp(user = creator_file(file)) ) {
-                if (user[0]>='A' && user[0]<='Z')
-                {
-                    if (sizeof(path)>=3 && path[0]=="domains" &&
-                        path[1]==lower_case(user))
-                        return implode(path,"/");
-                }
-                else
-                {
-                    if (sizeof(path)>=3 && path[0]=="players" &&
-                        path[1]==user)
-                        return implode(path,"/");
-                } 
-        } else
-                {
-          if ((sizeof(path)>=2 && (path[0]=="p" || path[0]=="secure")) 
-                && !(source(previous_object(),"obj/player") 
-                || source(previous_object(), "lib/realizations/player")
-                || source(previous_object(), "secure/player/player")
-                || source(previous_object(), "secure/login")
-                || source(previous_object(), "secure/simul_efun")
-                || source(previous_object(), "secure/ipbanish")
-                || source(previous_object(), "secure/player/harbplayer")
-                || source(previous_object(), "secure/master")))
-                   return 0;
-                if (file[0..3] == "obj/"  ||
-                    file[0..4] == "room/" ||
-                    file[0..3] == "std/" || file[0..6] == "secure/" || 
-                    file[0..5] == "guild/")
-                        return implode(path,"/");
-                if ((file[0..6] == "nobles/") && sizeof(path) >= 2 &&
-                    path[0] == "nobles" && path[1] == "data")
-                        return implode(path, "/");
-        }
-        default:
-            return 0; /* deny access */
-        case "copy_file":
-        case "write_file":
-            if (path[0..2]=="/p/" &&
-            !(source(previous_object(),"obj/player")  || 
-            source(previous_object(), "secure/player/player") 
-            || source(previous_object(), "lib/realizations/player")
-            || source(previous_object(), "secure/login")
-            || source(previous_object(), "secure/simul_efun")
-            || previous_object()->query_level() < 10050))
-                return 0;
-            if(path[0..4] == "/log/" &&
-              member(path[5..],'/') < 0 &&
-              path[5] != '.' &&
-              sizeof(path) <= 35
-            ) {
-                return path;
+    string *traversePath = explode(path, "/") - ({ "." }) - ({ "" });
+
+    int depth = sizeof(traversePath);
+    if (depth > 0)
+    {
+        int i = 1;
+        // First pass, strip out any ".." except for the leading one.
+        // It's OK if this results in "/../../../blah"
+        while ((i != depth) && (depth > 0) && (i >= 0))
+        {
+            if (traversePath[i] == "..")
+            {
+                traversePath[i - 1 ..i] = ({ });
+                i--;
+                depth = sizeof(traversePath);
             }
-            if (caller == this_object()) return 1;
-            break;
-        case "ed_start":
-            if (path[0]!='/') path = "/"+path;  /* 930115 Herp */
-            break;
-        case "mkdir":
-            file = object_name(previous_object());
-            if ( file[0..10] == "nobles/obj/" && path[0..11] == "nobles/data/")
-                return path;
-	 if(file == "secure/master")     
-         return path;
-            break;
-        case "rmdir":
-        case "write_bytes":
-        case "remove_file":
-            if (caller == this_object()) return 1;
-        case "cindent":
-            break;
-        case "rename_from":
-        case "rename_to":
-        case "do_rename": /* foslay 7-19-92 */
-            if (object_name(caller)=="secure/simul_efun")
-                return path;
-            break;
-    }
-    set_this_object(caller);
-#if ! __EFUN_DEFINED__(query_ip_name)
-    if( this_player() && efun::interactive_info(this_player(), II_IP_NUMBER)) {
-#else
-    if( this_player() && query_ip_number(this_player()) ) {
-#endif
-    if(!this_player()->hasWriteAccess(path))
-    {
-        path = 0;
-    }
-
-//        path = (string)this_player()->valid_write(path);
-        if (!stringp(path)) {
-            write("Bad file name (master::valid_write): "+path+" "+call_fun+".\n");
-            return 0;
+            else
+            {
+                i++;
+            }
         }
-        return path;
-    }
-//    path = ({string})"obj/player"->valid_write(path);
-    if(this_player() && !this_player()->hasWriteAccess(path))
-    {
-        path = 0;
+        traversePath -= ({ ".." });
     }
 
-    if (stringp(path))
-        return path;
-    /* else return 0, denying access */
+    return "/" + implode(traversePath, "/");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string valid_write(string path, string uid, string method, 
+    object caller)
+{
+    string sanitizedPath = 0;
+
+    if (isPriviledgedObject(caller) ||
+        (this_player() && interactive(this_player()) &&
+            interactive_info(this_player(), II_IP_NUMBER) &&
+            this_player()->hasWriteAccess(path)))
+    {
+        sanitizedPath = sanitizePath(path);
+    }
+
+    if (!stringp(sanitizedPath))
+    {
+
+        printf("Bad file name (master::valid_write): %O (%O), caller %O\n",
+            path, method, caller);
+    }
+    return sanitizedPath;
 }
  
+/////////////////////////////////////////////////////////////////////////////
 mixed valid_read(string path, string eff_user, string call_fun, object caller) {
   string user, x, y;
   object temp;
@@ -305,8 +189,8 @@ mixed valid_read(string path, string eff_user, string call_fun, object caller) {
             path = "/"+path;
         case "file_size": return 1;
            temp = previous_object();
-           if(temp && (source(temp,"obj/player") || source(temp,"secure/player/player") || sizeof(regexp(({ object_name(caller) }), "^lib/"))))
-             return 1;
+//           if(temp && (source(temp,"obj/player") || source(temp,"secure/player/player") || sizeof(regexp(({ object_name(caller) }), "^lib/"))))
+//             return 1;
 
            if(eff_user && 
              (sizeof(regexp(({ path, object_name(caller) }), eff_user)) == 2))
@@ -342,7 +226,8 @@ mixed valid_read(string path, string eff_user, string call_fun, object caller) {
 #else
     if( this_player() && query_ip_number(this_player()) &&
 #endif
-                source(this_player(),"lib/realizations/wizard")) {
+        1) {
+//                source(this_player(),"lib/realizations/wizard")) {
 //              path = ({string})this_player()->valid_read(path);
               path = ({string})this_player()->hasReadAccess(path);
               if (!stringp(path)) {

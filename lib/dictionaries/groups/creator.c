@@ -8,5 +8,5 @@ inherit "/lib/dictionaries/groups/baseGroup.c";
 protected nomask void applyGroupDetails()
 {
     setName("Wizard");
-    addPermission("/guild", Read);
+    addPermission("/guilds", Read);
 }

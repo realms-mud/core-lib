@@ -143,11 +143,11 @@ void HasReadAccessReturnsCorrectlyIfRecursivePermissionRemoved()
 /////////////////////////////////////////////////////////////////////////////
 void HasReadAccessReturnsCorrectlyForANYDirective()
 {
-    Group->testAddPermission("/guild", Read);
-    Group->testAddPermission("/guild/$ANY/stuff", None);
-    ExpectFalse(Group->hasReadAccess(Wizard, "/guild/something/stuff/x.c"));
-    ExpectFalse(Group->hasReadAccess(Wizard, "/guild/weasel/stuff/x.c"));
-    ExpectTrue(Group->hasReadAccess(Wizard, "/guild/something/blarg/x.c"));
+    Group->testAddPermission("/guilds", Read);
+    Group->testAddPermission("/guilds/$ANY/stuff", None);
+    ExpectFalse(Group->hasReadAccess(Wizard, "/guilds/something/stuff/x.c"));
+    ExpectFalse(Group->hasReadAccess(Wizard, "/guilds/weasel/stuff/x.c"));
+    ExpectTrue(Group->hasReadAccess(Wizard, "/guilds/something/blarg/x.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -198,11 +198,11 @@ void HasWriteAccessReturnsCorrectlyIfRecursivePermissionRemoved()
 /////////////////////////////////////////////////////////////////////////////
 void HasWriteAccessReturnsCorrectlyForANYDirective()
 {
-    Group->testAddPermission("/guild", Write);
-    Group->testAddPermission("/guild/$ANY/stuff", None);
-    ExpectFalse(Group->hasWriteAccess(Wizard, "/guild/something/stuff/x.c"));
-    ExpectFalse(Group->hasWriteAccess(Wizard, "/guild/weasel/stuff/x.c"));
-    ExpectTrue(Group->hasWriteAccess(Wizard, "/guild/something/blarg/x.c"));
+    Group->testAddPermission("/guilds", Write);
+    Group->testAddPermission("/guilds/$ANY/stuff", None);
+    ExpectFalse(Group->hasWriteAccess(Wizard, "/guilds/something/stuff/x.c"));
+    ExpectFalse(Group->hasWriteAccess(Wizard, "/guilds/weasel/stuff/x.c"));
+    ExpectTrue(Group->hasWriteAccess(Wizard, "/guilds/something/blarg/x.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -253,11 +253,11 @@ void HasOwnershipAccessReturnsCorrectlyIfRecursivePermissionRemoved()
 /////////////////////////////////////////////////////////////////////////////
 void HasOwnershipAccessReturnsCorrectlyForANYDirective()
 {
-    Group->testAddPermission("/guild", Read | Write | Owner);
-    Group->testAddPermission("/guild/$ANY/stuff", None);
-    ExpectFalse(Group->hasOwnershipAccess(Wizard, "/guild/something/stuff/x.c"));
-    ExpectFalse(Group->hasOwnershipAccess(Wizard, "/guild/weasel/stuff/x.c"));
-    ExpectTrue(Group->hasOwnershipAccess(Wizard, "/guild/something/blarg/x.c"));
+    Group->testAddPermission("/guilds", Read | Write | Owner);
+    Group->testAddPermission("/guilds/$ANY/stuff", None);
+    ExpectFalse(Group->hasOwnershipAccess(Wizard, "/guilds/something/stuff/x.c"));
+    ExpectFalse(Group->hasOwnershipAccess(Wizard, "/guilds/weasel/stuff/x.c"));
+    ExpectTrue(Group->hasOwnershipAccess(Wizard, "/guilds/something/blarg/x.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

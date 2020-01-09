@@ -240,22 +240,22 @@ void PlayerIsNotOwnerOfFilesInOpen()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerCanNotReadFilesInGuild()
 {
-    ExpectFalse(Player->hasReadAccess("/guild"));
-    ExpectFalse(Player->hasReadAccess("/guild/mage/blah.c"));
+    ExpectFalse(Player->hasReadAccess("/guilds"));
+    ExpectFalse(Player->hasReadAccess("/guilds/mage/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PlayerCanNotWriteFilesInGuild()
 {
-    ExpectFalse(Player->hasWriteAccess("/guild"));
-    ExpectFalse(Player->hasWriteAccess("/guild/priest/blah.c"));
+    ExpectFalse(Player->hasWriteAccess("/guilds"));
+    ExpectFalse(Player->hasWriteAccess("/guilds/priest/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PlayerIsNotOwnerOfFilesInGuild()
 {
-    ExpectFalse(Player->hasOwnershipAccess("/guild"));
-    ExpectFalse(Player->hasOwnershipAccess("/guild/fighter/blah.c"));
+    ExpectFalse(Player->hasOwnershipAccess("/guilds"));
+    ExpectFalse(Player->hasOwnershipAccess("/guilds/fighter/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

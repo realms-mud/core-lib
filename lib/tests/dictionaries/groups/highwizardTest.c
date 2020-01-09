@@ -244,22 +244,22 @@ void HighWizardIsNotOwnerOfFilesInOpen()
 /////////////////////////////////////////////////////////////////////////////
 void HighWizardCanReadFilesInGuild()
 {
-    ExpectTrue(Wizard->hasReadAccess("/guild"));
-    ExpectTrue(Wizard->hasReadAccess("/guild/mage/blah.c"));
+    ExpectTrue(Wizard->hasReadAccess("/guilds"));
+    ExpectTrue(Wizard->hasReadAccess("/guilds/mage/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HighWizardCanNotWriteFilesInGuild()
 {
-    ExpectFalse(Wizard->hasWriteAccess("/guild"));
-    ExpectFalse(Wizard->hasWriteAccess("/guild/priest/blah.c"));
+    ExpectFalse(Wizard->hasWriteAccess("/guilds"));
+    ExpectFalse(Wizard->hasWriteAccess("/guilds/priest/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HighWizardIsNotOwnerOfFilesInGuild()
 {
-    ExpectFalse(Wizard->hasOwnershipAccess("/guild"));
-    ExpectFalse(Wizard->hasOwnershipAccess("/guild/fighter/blah.c"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/guilds"));
+    ExpectFalse(Wizard->hasOwnershipAccess("/guilds/fighter/blah.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

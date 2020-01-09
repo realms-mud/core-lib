@@ -30,7 +30,7 @@ public nomask mixed get_master_uid()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int query_prevent_shadow()
+public nomask int preventShadows()
 {
     return 1;
 }
@@ -227,8 +227,8 @@ int query_allow_command(object obj1, object obj2)
     if (obj1 == obj2) return 1;
     if (!obj1 || !obj2) return 0;
 
-    l1 = (int)obj1->query_level();
-    l2 = (int)obj2->query_level();
+    l1 = obj1->query_level();
+    l2 = obj2->query_level();
 
     /* A monster is never allowed to force a wiz, no matter what monster-level */
     if ((!interactive(obj1) && l2 > 30) ||

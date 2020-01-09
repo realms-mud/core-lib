@@ -304,7 +304,7 @@ public nomask int BonusSkillModifier(string guild, string skill, int level,
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping *extraAttacks(string guild, int level, string rank)
 {
-    mapping *ret = 0;
+    mapping *ret = ({ });
 
     if (valueIsCached(guild, "extra attacks", level, rank))
     {

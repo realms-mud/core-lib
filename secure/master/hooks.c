@@ -148,7 +148,7 @@ protected nomask void addDriverHooks()
         )
     );
 
-    set_driver_hook(H_AUTO_INCLUDE,
-    "#pragma pedantic\n"
-    "#pragma warn_rtt_checks\n");
+//    set_driver_hook(H_AUTO_INCLUDE,
+//    "#pragma pedantic\n"
+//    "#pragma warn_rtt_checks\n");
 }
