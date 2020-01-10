@@ -215,7 +215,6 @@ void ResearchInProcessOfBeingResearchedShowsTimeLeft()
 void ResearchTreesAreProperlyDisplayed()
 {
     Player->addResearchPoints(1);
-    Player->charsetConfiguration("unicode");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/itemWithModifier.c"), "d");
     Selector->initiateSelector(Player);
@@ -227,37 +226,38 @@ void ResearchTreesAreProperlyDisplayed()
         "\x1b[0m\x1b[0;33mthis is the land-loving mother pigeon of all research trees\n\n"
         "\x1b[0m\x1b[0;33mThe tree offers the following research items:\n"
         "\x1b[0m\x1b[0;30;1m\x1b[0m\x1b[0;34;1mSpiffy tree root\n"
-        "\x1b[0m\x1b[0;30;1m\xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;33mIntox research\n"
-        "\x1b[0m\x1b[0;30;1m  \xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;31mHand of fist\n"
-        "\x1b[0m\x1b[0;30;1m  \xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;31mGrebe of obstinance\n"
-        "\x1b[0m\x1b[0;30;1m        \xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;31mGrog's revenge\n"
-        "\x1b[0m\x1b[0;30;1m\xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;34;1mZorlak's revenge\n"
-        "\x1b[0m\x1b[0;30;1m\xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;35mMock research\n"
-        "\x1b[0m\x1b[0;30;1m\xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;33mWeasel inversion\n"
-        "\x1b[0m\x1b[0;30;1m\xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;33mTurnip seclusion\n"
-        "\x1b[0m\x1b[0;30;1m  \xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;31mGrebe of obstinance\n"
-        "\x1b[0m\x1b[0;30;1m        \xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;31mGrog's revenge\n"
-        "\x1b[0m\x1b[0;30;1m  \xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;31mZap thingy\n"
-        "\x1b[0m\x1b[0;30;1m        \xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;31mFlambe-maker\n"
-        "\x1b[0m\x1b[0;30;1m        \xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 \x1b[0m\x1b[0;31mGrog's revenge\n"
+        "\x1b[0m\x1b[0;30;1m|-- \x1b[0m\x1b[0;33mIntox research\n"
+        "\x1b[0m\x1b[0;30;1m    |-- \x1b[0m\x1b[0;31mHand of fist\n"
+        "\x1b[0m\x1b[0;30;1m    |-- \x1b[0m\x1b[0;31mGrebe of obstinance\n"
+        "\x1b[0m\x1b[0;30;1m        |-- \x1b[0m\x1b[0;31mGrog's revenge\n"
+        "\x1b[0m\x1b[0;30;1m|-- \x1b[0m\x1b[0;34;1mZorlak's revenge\n"
+        "\x1b[0m\x1b[0;30;1m|-- \x1b[0m\x1b[0;35mMock research\n"
+        "\x1b[0m\x1b[0;30;1m|-- \x1b[0m\x1b[0;33mWeasel inversion\n"
+        "\x1b[0m\x1b[0;30;1m|-- \x1b[0m\x1b[0;33mTurnip seclusion\n"
+        "\x1b[0m\x1b[0;30;1m    |-- \x1b[0m\x1b[0;31mGrebe of obstinance\n"
+        "\x1b[0m\x1b[0;30;1m        |-- \x1b[0m\x1b[0;31mGrog's revenge\n"
+        "\x1b[0m\x1b[0;30;1m    |-- \x1b[0m\x1b[0;31mZap thingy\n"
+        "\x1b[0m\x1b[0;30;1m        |-- \x1b[0m\x1b[0;31mFlambe-maker\n"
+        "\x1b[0m\x1b[0;30;1m        |-- \x1b[0m\x1b[0;31mGrog's revenge\n"
         "\x1b[0m\x1b[0m\n"
-        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSpiffy tree root    \x1b[0m\x1b[0;34;1m (\xe2\x98\x85)\x1b[0m\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlambe-maker        \x1b[0m\x1b[0;31m (\xe2\x95\xb3)\x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mGrebe of obstinance \x1b[0m\x1b[0;31m (\xe2\x95\xb3)\x1b[0m\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mGrog's revenge      \x1b[0m\x1b[0;31m (\xe2\x95\xb3)\x1b[0m\n"
-        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mHand of fist        \x1b[0m\x1b[0;31m (\xe2\x95\xb3)\x1b[0m\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mIntox research      \x1b[0m\n"
-        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mMock research       \x1b[0m\x1b[0;35m (\xe2\x8c\x9b)\x1b[0m\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mTurnip seclusion    \x1b[0m\n"
-        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mWeasel inversion    \x1b[0m\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mZap thingy          \x1b[0m\x1b[0;31m (\xe2\x95\xb3)\x1b[0m\n"
-        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mZorlak's revenge    \x1b[0m\x1b[0;34;1m (\xe2\x98\x85)\x1b[0m\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
+        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mSpiffy tree root    \x1b[0m\x1b[0;34;1m (*)\x1b[0m\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mFlambe-maker        \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mGrebe of obstinance \x1b[0m\x1b[0;31m (X)\x1b[0m\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mGrog's revenge      \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mHand of fist        \x1b[0m\x1b[0;31m (X)\x1b[0m\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mIntox research      \x1b[0m\n"
+        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mMock research       \x1b[0m\x1b[0;35m (!)\x1b[0m\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mTurnip seclusion    \x1b[0m\n"
+        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mWeasel inversion    \x1b[0m\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mZap thingy          \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
+        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mZorlak's revenge    \x1b[0m\x1b[0;34;1m (*)\x1b[0m\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "\x1b[0m\x1b[0;32;1m"
-        "\x1b[0;34;1m(\xe2\x98\x85)\x1b[0m\x1b[0;32m denotes already-chosen research, "
-        "\x1b[0m\x1b[0;32;1m(\xe2\x87\xa8)\x1b[0m\x1b[0;32m denotes an available research tree,\n"
-        "\x1b[0m\x1b[0;35m(\xe2\x8c\x9b)\x1b[0m\x1b[0;32m denotes research in progress, and "
-        "\x1b[0m\x1b[0;31m(\xe2\x95\xb3)\x1b[0m\x1b[0;32m indicates that learning this research\n"
+        "\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research, "
+        "\x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available research tree,\n"
+        "\x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress, and "
+        "\x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research\n"
         "requires prerequisites that are missing - view description for details.\n\x1b[0m\x1b[0m",
         Player->caughtMessage());
+
 }
 
 /////////////////////////////////////////////////////////////////////////////

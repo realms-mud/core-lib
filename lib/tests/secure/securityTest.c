@@ -132,3 +132,19 @@ void WizardsHaveAppropriateWriteAccess()
         Security->valid_write("/guilds/stuff.c", "earl",
         "write_file", Wizard));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void PriviledgedEscalatedObjectsCanOnlyExecuteAuthorizedMethodsInEscaltedDirectories()
+{
+    ExpectFalse(Security->valid_write("/secure/master.c", "fred",
+        "write_file", load_object("/lib/tests/commands/wizard/cpTest.c")));
+
+    ExpectFalse(Security->valid_write("/secure/master.c", "fred",
+        "copy_file", load_object("/lib/tests/commands/wizard/cpTest.c")));
+
+    ExpectFalse(Security->valid_write("/players/earl/blah.c", "fred",
+        "write_file", load_object("/lib/tests/commands/wizard/cpTest.c")));
+
+    ExpectEq("/players/earl/blah.c", Security->valid_write("/players/earl/blah.c", "fred",
+        "copy_file", load_object("/lib/tests/commands/wizard/cpTest.c")));
+}

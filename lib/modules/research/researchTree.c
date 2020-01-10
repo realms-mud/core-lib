@@ -331,7 +331,7 @@ private nomask string getNodeInfo(string element, object owner,
         }
 
         ret += configuration->decorate(
-            sprintf("%" + (level * 6) + "s", level ? 
+            sprintf("%" + (level * 4) + "s", level ? 
             ((owner->charsetConfiguration() == "unicode") ?
                 "\xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 " : "|-- ") : ""),
             "tree indentation", "research", colorConfiguration) +

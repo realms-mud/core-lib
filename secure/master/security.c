@@ -4,12 +4,16 @@
 //*****************************************************************************
 #include "/sys/interactive_info.h"
 
+private object priviledgedObjects = 
+    load_object("/secure/master/security/priviledgedObjects.c");
+
 /////////////////////////////////////////////////////////////////////////////
 private int isPriviledgedObject(object caller)
 {
     int ret = 0;
 
     string name = object_name(caller);
+
     if (sizeof(regexp(({ name }), 
         "^(lib/modules/secure|secure|lib/tests/modules/secure|lib/tests/secure)")))
     {
@@ -140,15 +144,22 @@ private nomask string sanitizePath(string path)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int userHasWriteAccess(string path)
+{
+    return this_player() && interactive(this_player()) &&
+        interactive_info(this_player(), II_IP_NUMBER) &&
+        this_player()->hasWriteAccess(path);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string valid_write(string path, string uid, string method, 
     object caller)
 {
     string sanitizedPath = 0;
 
     if (isPriviledgedObject(caller) ||
-        (this_player() && interactive(this_player()) &&
-            interactive_info(this_player(), II_IP_NUMBER) &&
-            this_player()->hasWriteAccess(path)))
+        userHasWriteAccess(path) ||
+        priviledgedObjects->hasPermission(path, method, caller, "write"))
     {
         sanitizedPath = sanitizePath(path);
     }
@@ -166,6 +177,11 @@ public nomask string valid_write(string path, string uid, string method,
 mixed valid_read(string path, string eff_user, string call_fun, object caller) {
   string user, x, y;
   object temp;
+
+  if (isPriviledgedObject(caller))
+  {
+      return path;
+  }
 
   if(this_player() && interactive(this_player()) && this_player()->query_debug() && caller && call_fun && path)
     tell_object(this_player(),"master_valid_read->path: "+to_string(path)+" call_func: "+call_fun+" caller: "+object_name(caller)+"\n"); 
