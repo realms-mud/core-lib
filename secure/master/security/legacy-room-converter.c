@@ -1,21 +1,17 @@
 //*****************************************************************************
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-// Translated with permission, originally written by: AUTHOR @ RealmsMUD
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/secure/master/security/priviledgeGroup.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected nomask void applyGroupDetails()
 {
-    setTerrain("/lib/environment/terrain/legacy.c");
-    setShortDescription("##ShortDescription##");
-    setAdditionalLongDescription(
-        "##LongDescription##");
+    setName("lib/environment/legacyRoomConverter");
+    addPermission("/lib/environment/legacyRoomTemplate.c", Read);
+    addPermission("/lib/tests", Read);
+    addPermission("/players", Read);
+    allowInheritedPermissions();
 
-// AddItems
-// AddExits
-// AddObjects
+    addPriviledgedEfun("read_file");
 }
-// IsLight
-// AddMethods

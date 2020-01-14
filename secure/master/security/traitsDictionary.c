@@ -7,11 +7,13 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/tests/commands/wizard/catTest");
-    addPermission("/players/earl", Read | Write);
-    addPermission("/brokenFile.c", Read | Write);
+    setName("lib/dictionaries/traitsDictionary");
+    addPermission("/lib/modules/traits/baseTrait.c", Read);
+    addPermission("/lib/instances", Read);
+    addPermission("/lib/tests", Read);
+    addPermission("/areas", Read);
+    addPermission("/guilds", Read);
+    addPermission("/players", Read);
 
-    addPriviledgedEfun("copy_file");
-    addPriviledgedEfun("remove_file");
     addPriviledgedEfun("file_size");
 }

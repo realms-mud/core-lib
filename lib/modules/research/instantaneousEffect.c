@@ -12,19 +12,6 @@ virtual inherit "/lib/commands/baseCommand.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object attackDictionary()
-{
-    object ret = 0;
-    
-    string dictionary = "/lib/dictionaries/attacksDictionary.c";
-    if(file_size(dictionary) > -1)
-    {
-        ret = load_object(dictionary);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask int isValidFormula(mapping *formulas)
 {
     int ret = 0;
@@ -179,7 +166,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
         }      
         case "damage type":
         {
-            object attacks = attackDictionary();
+            object attacks = getDictionary("attacks");
             if(stringp(value) && attacks && attacks->isValidDamageType(value))
             {
                 researchData[type] = value;

@@ -2,8 +2,8 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-private string PlayerCommands = "/lib/commands/player/";
-private string WizardCommands = "/lib/commands/wizard/";
+private string PlayerCommands = "/lib/commands/player/*";
+private string WizardCommands = "/lib/commands/wizard/*";
 private string CannedEmotes = "/lib/commands/soul.c";
 private string BaseCommand = "lib/commands/baseCommand.c";
 private string Wizard = "lib/realizations/wizard.c";
@@ -31,12 +31,14 @@ private nomask void registerCommandAsType(object commandObj,
 /////////////////////////////////////////////////////////////////////////////
 private nomask void registerPlayerCommands()
 {
-    string *commandFiles = get_dir(PlayerCommands);
+    string *commandFiles = get_dir(PlayerCommands, 0x10) - 
+        ({ "lib/commands/player/.", "lib/commands/player/.." });
+
     if(sizeof(commandFiles))
     {
         foreach(string command in commandFiles)
         {
-            string fullyQualifiedFile = sprintf("%s%s", PlayerCommands, command);
+            string fullyQualifiedFile = sprintf("/%s", command);
 
             if(file_size(fullyQualifiedFile))
             { 
@@ -55,12 +57,14 @@ private nomask void registerPlayerCommands()
 /////////////////////////////////////////////////////////////////////////////
 private nomask void registerWizardCommands()
 {
-    string *commandFiles = get_dir(WizardCommands);
+    string *commandFiles = get_dir(WizardCommands, 0x10) - 
+        ({ "lib/commands/wizard/.", "lib/commands/wizard/.." });
+
     if (sizeof(commandFiles))
     {
         foreach(string command in commandFiles)
         {
-            string fullyQualifiedFile = sprintf("%s/%s", WizardCommands, command);
+            string fullyQualifiedFile = sprintf("/%s", command);
 
             if (file_size(fullyQualifiedFile))
             {

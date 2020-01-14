@@ -129,23 +129,6 @@ private mapping criteriaMap = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask object getDictionary(string service)
-{
-    object ret = 0;
-    
-    if(service && stringp(service))
-    {
-        string dictionary = sprintf("/lib/dictionaries/%sDictionary.c",
-            service);
-        if(file_size(dictionary) > -1)
-        {
-            ret = load_object(dictionary);
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public void SetupGuild()
 {   
 }

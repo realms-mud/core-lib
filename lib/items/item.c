@@ -6,11 +6,9 @@ virtual inherit "/lib/core/thing.c";
 
 private nosave string AttacksBlueprint = "/lib/dictionaries/attacksDictionary.c";
 private nosave string BonusesBlueprint = "/lib/dictionaries/bonusesDictionary.c";
-private nosave string CraftingDictionary = "/lib/dictionaries/craftingDictionary.c";
 protected nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDictionary.c";
-
-protected nosave string MessageParser = "/lib/core/messageParser.c";
-private object MaterialsObject = load_object(MaterialsBlueprint);
+protected nosave object MessageParser = load_object("/lib/core/messageParser.c");
+private nosave object MaterialsObject = load_object(MaterialsBlueprint);
 
 protected mapping itemData = ([ 
 //  "aliases": ({ }),  // string array of alternate names for item
@@ -59,17 +57,6 @@ private string *prohibitedKeys = ({ "armor class", "defense class",
     "unequip message", "unequip method", "cursed" });
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask object loadBlueprint(string blueprint)
-{
-    object ret = 0;
-    if(blueprint && stringp(blueprint) && (file_size(blueprint) > 0))
-    {
-        ret = load_object(blueprint);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask object materialsObject()
 {
     return MaterialsObject;
@@ -79,7 +66,7 @@ protected nomask object materialsObject()
 protected nomask int isValidBonus(string bonus, int amount)
 {
     int ret = 0;
-    object bonusesDictionary = loadBlueprint(BonusesBlueprint);
+    object bonusesDictionary = getDictionary("bonuses");
     if(bonus && stringp(bonus) && amount && intp(amount) && bonusesDictionary)
     {
         ret = bonusesDictionary->isValidBonusModifier(bonus, amount);
@@ -229,7 +216,7 @@ public mixed query(string element)
                     materialsObject()->getBlueprintDetails(
                         this_object(), "subtype");
 
-               if (!load_object(CraftingDictionary)->isValidType(ret))
+               if (!getDictionary("crafting")->isValidType(ret))
                 {
                     ret = materialsObject()->getBlueprintDetails(
                         this_object(), "skill to use");
@@ -239,7 +226,7 @@ public mixed query(string element)
             }
             case "crafting guilds":
             {
-                object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+                object guilds = getDictionary("guilds");
                 if (guilds)
                 {
                     ret = guilds->guildsInClass("crafting");
@@ -333,7 +320,7 @@ private nomask int checkDamageType(string element, mapping data)
     if(data && mappingp(data))
     {
         ret = 1;
-        object damageType = loadBlueprint(AttacksBlueprint);
+        object damageType = getDictionary("attacks");
         if(damageType)
         {
             foreach(string dmgType in m_indices(data))
@@ -366,7 +353,7 @@ private nomask int checkDamageType(string element, mapping data)
 private nomask int checkMaterial(string data)
 {
     int ret = 0;
-    object materials = loadBlueprint(MaterialsBlueprint);
+    object materials = getDictionary("materials");
     if(data && stringp(data) && materials && objectp(materials))
     {
         ret = materials->isValidMaterial(data);
@@ -571,19 +558,18 @@ public int unset(string element)
 static nomask string parseTemplate(string template)
 {
     string message = template;
-    object parser = loadBlueprint(MessageParser);
-    if(parser && objectp(parser))
+    if(MessageParser && objectp(MessageParser))
     {
-        message = parser->parseEfunCall(message);
+        message = MessageParser->parseEfunCall(message);
 
         object owner = environment(this_object());    
         if(owner && objectp(owner))
         {
             int isSecondPerson = 1;
-            message = parser->parseTargetInfo(message, "User", owner, 
+            message = MessageParser->parseTargetInfo(message, "User", owner,
                 isSecondPerson);
-            message = parser->parseVerbs(message, isSecondPerson);
-            message = parser->capitalizeSentences(message);
+            message = MessageParser->parseVerbs(message, isSecondPerson);
+            message = MessageParser->capitalizeSentences(message);
         }
     }
     return message;
@@ -609,10 +595,9 @@ static nomask void outputMessageFromTemplate(string template)
     // ##efun::key|file|target|this::object|filename|this::function##
 
     // Replace method calls
-    object parser = loadBlueprint(MessageParser);
-    if (parser && objectp(parser))
+    if (MessageParser && objectp(MessageParser))
     {
-        string message = parser->parseEfunCall(template);
+        string message = MessageParser->parseEfunCall(template);
 
         object owner = environment(this_object());
         if (owner && objectp(owner) && function_exists("isEquipped", owner) &&
@@ -628,17 +613,20 @@ static nomask void outputMessageFromTemplate(string template)
                 {
                     if (person == owner)
                     {
-                        parsedMessage = parser->parseVerbs(message, 1);
-                        parsedMessage = parser->parseTargetInfo(parsedMessage, "User",
+                        parsedMessage = MessageParser->parseVerbs(message, 1);
+                        parsedMessage = 
+                            MessageParser->parseTargetInfo(parsedMessage, "User",
                             owner, 1);
                     }
                     else
                     {
-                        parsedMessage = parser->parseVerbs(message, 0);
-                        parsedMessage = parser->parseTargetInfo(parsedMessage, "User",
+                        parsedMessage = MessageParser->parseVerbs(message, 0);
+                        parsedMessage = 
+                            MessageParser->parseTargetInfo(parsedMessage, "User",
                             owner, 0);
                     }
-                    tell_object(person, parser->capitalizeSentences(parsedMessage));
+                    tell_object(person, 
+                        MessageParser->capitalizeSentences(parsedMessage));
                 }
             }
         }
@@ -703,10 +691,10 @@ public varargs string short(int useLight)
 protected string itemStatistics(int doNotApplyUserStatistics)
 {
     string ret = "";
-    object itemTypes = load_object(MaterialsBlueprint);
-    if (itemTypes && objectp(itemTypes))
+    object itemTypes = MaterialsObject;
+    if (MaterialsObject && objectp(MaterialsObject))
     {
-        ret = itemTypes->getEquipmentStatistics(this_object(), 
+        ret = MaterialsObject->getEquipmentStatistics(this_object(),
             (doNotApplyUserStatistics ? 0 : this_player()));
     }
     return ret;
@@ -717,7 +705,7 @@ protected string describeCraftingMaterials()
 {
     string ret = "";
 
-    object itemTypes = load_object(CraftingDictionary);
+    object itemTypes = getDictionary("crafting");
     if (itemTypes && objectp(itemTypes))
     {
         ret = itemTypes->getEquipmentMaterials(this_object());
@@ -731,7 +719,7 @@ public varargs string long(int doNotApplyUserStatistics)
     string description = "";
     if (query("long") && (query("long") != ""))
     {
-        object itemTypes = load_object(CraftingDictionary);
+        object itemTypes = getDictionary("crafting");
         if (itemTypes && objectp(itemTypes))
         {
             description += itemTypes->addMaterialsToDescription(this_object());

@@ -1,21 +1,18 @@
 //*****************************************************************************
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
-// Translated with permission, originally written by: AUTHOR @ RealmsMUD
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/secure/master/security/priviledgeGroup.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected nomask void applyGroupDetails()
 {
-    setTerrain("/lib/environment/terrain/legacy.c");
-    setShortDescription("##ShortDescription##");
-    setAdditionalLongDescription(
-        "##LongDescription##");
+    setName("lib/dictionaries/researchDictionary");
+    addPermission("/lib/instances", Read);
+    addPermission("/lib/tests", Read);
+    addPermission("/areas", Read);
+    addPermission("/guilds", Read);
+    addPermission("/players", Read);
 
-// AddItems
-// AddExits
-// AddObjects
+    addPriviledgedEfun("file_size");
 }
-// IsLight
-// AddMethods

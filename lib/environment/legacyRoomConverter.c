@@ -148,7 +148,7 @@ private string annotateAuthor(string inputFile)
     }
     else
     {
-        ret = regreplace(inputFile, "// Translated with permission, originally written by: AUTHOR @ RealmsMUD\n", "");
+        ret = regreplace(inputFile, "// Translated with permission, originally written by: AUTHOR @ RealmsMUD(\r)*\n", "");
     }
 
     return ret;
@@ -159,7 +159,7 @@ private string sanitizeString(string inputString)
 {
     string ret = regreplace(inputString, "([&*$^])", "\\\\1", 1);
     ret = regreplace(ret, "\"", "'", 1);
-    ret = regreplace(ret, "\n", "\\n\"\n        \"", 1);
+    ret = regreplace(ret, "(\r)*\n", "\\n\"\n        \"", 1);
     ret = regreplace(ret, "\"\n +\"+$", "", 1);
     return ret;
 }
@@ -191,7 +191,8 @@ private string generateExits(string inputFile)
     {
         exitList += "\n";
     }
-    return regreplace(inputFile, "[/][*] AddExits [*][/]\n", exitList);
+
+    return regreplace(inputFile, "// AddExits(\r)*\n", exitList);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -203,7 +204,7 @@ private string generateLightMethod(string inputFile)
         light = "\n/////////////////////////////////////////////////////////////////////////////\n"
             "protected int alwaysLight()\n{\n    return 1;\n}\n\n";
     }
-    return regreplace(inputFile, "[/][*] IsLight [*][/]\n", light);
+    return regreplace(inputFile, "// IsLight(\r)*\n", light);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -223,7 +224,7 @@ private string generateObjects(string inputFile)
         }
     }
 
-    return regreplace(inputFile, "[/][*] AddObjects [*][/]\n", objectList);
+    return regreplace(inputFile, "// AddObjects(\r)*\n", objectList);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -252,7 +253,7 @@ private string generateItems(string inputFile)
     {
         itemList += "\n";
     }
-    return regreplace(inputFile, "[/][*] AddItems [*][/]\n", itemList);
+    return regreplace(inputFile, "// AddItems(\r)*\n", itemList);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -331,7 +332,7 @@ private string generateCustomMethods(string inputFile)
 
     methods = replaceObjectMethods(methods);
     methods = regreplace(methods, "\"\/*players\/", "\"/lib/legacy\/", 1);
-    return regreplace(inputFile, "[/][*] AddMethods [*][/]\n", methods);
+    return regreplace(inputFile, "// AddMethods(\r)*\n", methods);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -348,5 +349,5 @@ public string generateNewRoom()
     newFile = generateItems(newFile);
     newFile = generateCustomMethods(newFile);
 
-    return newFile;
+    return regreplace(newFile, "\r", "", 1);
 }

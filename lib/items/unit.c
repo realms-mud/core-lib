@@ -241,16 +241,14 @@ private nomask string checkMorale(int damage, object target)
 private string getCombatMessage(string message, object target, object leader,
     object targetLeader, int perspective)
 {
-    object parser = loadBlueprint(MessageParser);
-
-    string ret = parser->parseTargetInfo(message, "Initiator",
+    string ret = MessageParser->parseTargetInfo(message, "Initiator",
         leader, perspective);
 
-    ret = parser->parseTargetInfo(ret, "Target", targetLeader, !perspective);
+    ret = MessageParser->parseTargetInfo(ret, "Target", targetLeader, !perspective);
     ret = regreplace(ret, "##InitiatorUnit##", query("name"), 1);
     ret = regreplace(ret, "##TargetUnit##", target->query("name"), 1);
 
-    return format(parser->capitalizeSentences(ret), 78);
+    return format(MessageParser->capitalizeSentences(ret), 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -312,8 +310,6 @@ private void displayCombatMessage(object leader, object targetLeader,
     object target, int attackerCarnage, int targetCarnage, 
     int attackerTroopCount, int targetTroopCount)
 {
-    object parser = loadBlueprint(MessageParser);
-
     string extraAttackerMessage = 
         getExtraMessage(this_object(), targetCarnage, attackerTroopCount);
     string extraTargetMessage =

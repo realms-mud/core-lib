@@ -12,6 +12,7 @@
 //
 //*****************************************************************************
 private nosave string LibDirectory = "lib";
+private nosave object MessageParser = 0;
 
 //-----------------------------------------------------------------------------
 // Method: has
@@ -66,33 +67,6 @@ protected object getService(string service)
 }
 
 //-----------------------------------------------------------------------------
-// Method: getDictionary
-// Description: This method returns the dictionary object for the queried
-//              service or null if the dictionary does not exist. It will load
-//              the dictionary blueprint if it is not already loaded by the
-//              driver.
-//
-// Parameters: service - the dictioary to check for
-//
-// Returns: the dictionary object if it's a valid dictionary.
-//-----------------------------------------------------------------------------
-protected object getDictionary(string service)
-{
-    object ret = 0;
-    
-    if(service && stringp(service))
-    {
-        string dictionary = sprintf("/lib/dictionaries/%sDictionary.c", 
-            service);
-        if(file_size(dictionary) > -1)
-        {
-            ret = load_object(dictionary);
-        }
-    }
-    return ret;
-}
-
-//-----------------------------------------------------------------------------
 // Method: getMessageParser
 // Description: This method returns the core lib message parser object. It will 
 //              load the message parser blueprint if it is not already loaded 
@@ -102,13 +76,12 @@ protected object getDictionary(string service)
 //-----------------------------------------------------------------------------
 protected object getMessageParser()
 {
-    object ret = 0;
-    string parser = sprintf("/%s/core/messageParser.c", LibDirectory);
-    if(file_size(parser) > -1)
+    if (!MessageParser)
     {
-        ret = load_object(parser);
+        MessageParser = 
+            load_object(sprintf("/%s/core/messageParser.c", LibDirectory));
     }
-    return ret;
+    return MessageParser;
 }
 
 /////////////////////////////////////////////////////////////////////////////

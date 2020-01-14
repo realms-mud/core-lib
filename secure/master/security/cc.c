@@ -8,7 +8,9 @@ inherit "/secure/master/security/priviledgeGroup.c";
 protected nomask void applyGroupDetails()
 {
     setName("lib/commands/wizard/cc");
+    addPermission("/", Read);
     addPermission("/log", Read | Write);
 
     addPriviledgedEfun("remove_file");
+    addPriviledgedEfun("file_size");
 }

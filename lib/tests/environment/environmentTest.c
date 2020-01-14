@@ -381,8 +381,8 @@ void MoveToLocationShowsDescriptionWhenEnteringArtificiallyLightedArea()
 /////////////////////////////////////////////////////////////////////////////
 void AddFeatureRaisesErrorWhenUnableToRegiterObject()
 {
-    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testAddFeature("/some/bad/path.c", "north"));
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testAddFeature("/lib/tests/some/bad/path.c", "north"));
     ExpectEq(expected, err);
 }
 
@@ -407,8 +407,8 @@ void AddFeatureRaisesErrorOnFailure()
 /////////////////////////////////////////////////////////////////////////////
 void AddItemRaisesErrorWhenUnableToRegiterObject()
 {
-    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testAddItem("/some/bad/path.c", "north"));
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testAddItem("/lib/tests/some/bad/path.c", "north"));
     ExpectEq(expected, err);
 }
 
@@ -441,8 +441,8 @@ void AddExitRaisesErrorOnFailure()
 /////////////////////////////////////////////////////////////////////////////
 void AddBuildingRaisesErrorWhenUnableToRegiterObject()
 {
-    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testAddBuilding("/some/bad/path.c", "north"));
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testAddBuilding("/lib/tests/some/bad/path.c", "north"));
     ExpectEq(expected, err);
 }
 
@@ -467,8 +467,8 @@ void AddBuildingRaisesErrorOnFailure()
 /////////////////////////////////////////////////////////////////////////////
 void SetTerrainRaisesErrorWhenUnableToRegiterObject()
 {
-    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testSetTerrain("/some/bad/path.c"));
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testSetTerrain("/lib/tests/some/bad/path.c"));
     ExpectEq(expected, err);
 }
 
@@ -520,8 +520,8 @@ void SetInteriorCannotBeCalledIfTerrainSet()
 /////////////////////////////////////////////////////////////////////////////
 void SetInteriorRaisesErrorWhenUnableToRegiterObject()
 {
-    string expected = "*ERROR in environment.c: Unable to register '/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testSetInterior("/some/bad/path.c"));
+    string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
+    string err = catch (Environment->testSetInterior("/lib/tests/some/bad/path.c"));
     ExpectEq(expected, err);
 }
 
@@ -555,8 +555,8 @@ void SetInteriorCanOnlyBeCalledOnce()
 /////////////////////////////////////////////////////////////////////////////
 void AddObjectRaisesErrorOnFailure()
 {
-    string expected = "*ERROR in environment.c: '/bad/path.c' is not a valid file.\n";
-    string err = catch (Environment->testAddObject("/bad/path.c"));
+    string expected = "*ERROR in environment.c: '/lib/tests/bad/path.c' is not a valid file.\n";
+    string err = catch (Environment->testAddObject("/lib/tests/bad/path.c"));
     ExpectEq(expected, err);
 }
 
@@ -590,8 +590,8 @@ void CanOnlyAddOneShop()
 /////////////////////////////////////////////////////////////////////////////
 void AddShopRaisesErrorIfInvalidObjectPassed()
 {
-    string expected = "*ERROR in environment.c: '/bad/path.c' is not a valid shop.\n";
-    string err = catch (Environment->testAddShop("/bad/path.c"));
+    string expected = "*ERROR in environment.c: '/lib/tests/bad/path.c' is not a valid shop.\n";
+    string err = catch (Environment->testAddShop("/lib/tests/bad/path.c"));
     ExpectEq(expected, err);
 }
 

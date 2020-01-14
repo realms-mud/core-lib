@@ -103,6 +103,7 @@ private nomask int getPermissionForPath(string path, mapping root)
 public nomask string hasReadAccess(string path)
 {
     string ret = 0;
+
     if (getPermissionForPath(path, Permissions) & Read)
     {
         ret = path;

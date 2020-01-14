@@ -1296,13 +1296,14 @@ private nomask varargs string *getListOfBlueprints(string type, string subtype,
     }
     else
     {
-        string directory = sprintf("/lib/instances/items/%s%s/", type,
+        string directory = sprintf("lib/instances/items/%s%s/", type,
             ((subtype && (subtype != "")) ? "/" + subtype : ""));
 
         directory = regreplace(directory, " ", "-", 1);
         directory = regreplace(directory, "'", "", 1);
 
-        itemBlueprints = get_dir(directory, 0x10);
+        itemBlueprints = get_dir("/" + directory + "*", 0x10) - 
+            ({ directory + ".", directory + ".." });
     }
     return itemBlueprints;
 }
@@ -1322,7 +1323,8 @@ private nomask varargs object getRandomItemOfType(string type, string subtype,
 
         if (file_size(blueprint) == -2)
         {
-            string *subList = get_dir(blueprint + "/");
+            string *subList = get_dir(blueprint + "/*") - 
+                ({ ".", ".." });
             blueprint += "/" + subList[random(sizeof(subList))];
         }
 

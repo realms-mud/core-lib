@@ -175,7 +175,7 @@ private nomask int checkSetGuilds(mapping guilds)
     }
     else
     {
-        object guildDictionary = loadBlueprint(GuildsBlueprint);
+        object guildDictionary = getDictionary("guilds");
         if(!guildDictionary || (member(guilds, "prohibited") &&
            !guildDictionary->isValidGuildSet(guilds["prohibited"])) ||
            (member(guilds, "allowed") &&
@@ -196,7 +196,7 @@ private nomask int checkSetGuilds(mapping guilds)
 private nomask int checkSkills(mapping data)
 {
     int ret = 0;
-    object skills = loadBlueprint(SkillsBlueprint);
+    object skills = getDictionary("skills");
     if(data && mappingp(data) && skills && objectp(skills))
     {
         ret = 1;
@@ -230,7 +230,7 @@ private nomask int checkValidPrerequisites(mapping data)
     }
     if(member(data, "race"))
     {
-        object races = loadBlueprint(RacesBlueprint);
+        object races = getDictionary("racial");
         if(races)
         {
             ret &&= races->isValidRace(data["race"]);

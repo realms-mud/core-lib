@@ -35,30 +35,30 @@ private mapping consumables = ([
     "potions":([
         "permanent": ({ "lib/instances/items/potions/healing.c" , 
             "lib/instances/items/potions/mana.c" }),
-        "base dir": "/lib/instances/items/potions/"
+        "base dir": "/lib/instances/items/potions/*"
     ]),
     "herbs":([
         "permanent": ({  }),
-        "base dir": "/lib/instances/items/food/plants/herbs/"
+        "base dir": "/lib/instances/items/food/plants/herbs/*"
     ]),
     "drinks":([
         "permanent": ({ }),
-        "base dir": "/lib/instances/items/drinks/"
+        "base dir": "/lib/instances/items/drinks/*"
     ]),
     "books":([
         "permanent": ({ }),
-        "base dir": "/lib/instances/items/books/"
+        "base dir": "/lib/instances/items/books/*"
     ]),
     "metal":([
         "permanent": ({ "lib/instances/items/materials/metal/iron.c",
             "lib/instances/items/materials/metal/copper.c",
             "lib/instances/items/materials/metal/cast-iron.c",
             "lib/instances/items/materials/metal/bronze.c" }),
-        "base dir": "/lib/instances/items/materials/metal/"
+        "base dir": "/lib/instances/items/materials/metal/*"
     ]),
     "gems":([
         "permanent": ({  }),
-        "base dir": "/lib/instances/items/materials/crystal/"
+        "base dir": "/lib/instances/items/materials/crystal/*"
     ]),
 ]);
 

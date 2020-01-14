@@ -29,23 +29,6 @@ private mapping functionsToBonuses = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object getDictionary(string service)
-{
-    object ret = 0;
-    
-    if(service && stringp(service))
-    {
-        string dictionary = sprintf("/%s/%sDictionary.c", LibDirectory,
-            service);
-        if(file_size(dictionary) > -1)
-        {
-            ret = load_object(dictionary);
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask string *bonusList()
 {
     if(!bonuses)
