@@ -50,7 +50,7 @@ void CanSetSourceForResearchTree()
 /////////////////////////////////////////////////////////////////////////////
 void AddingInvalidResearchElementThrowsError()
 {
-    string err = catch (ResearchTree->addResearchElement("blah"));
+    string err = catch (ResearchTree->addResearchElement("/lib/blah"));
     string expectedError = "*ERROR - researchTree: The research element must exist in the location passed to this method and be a valid object before it can be added to any trees.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");

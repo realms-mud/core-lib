@@ -75,16 +75,20 @@ private nomask varargs int compile(string path, object initiator,
     string colorConfiguration, int recurse)
 {
     int ret = 0;
+
+    string directoryPath = path;
     if (recurse && (file_size(path) == -2))
     {
-        path += "/";
+        path += "/*";
     }
-    else if (file_size(path) < 0)
+    else if ((file_size(path) < 0) && (path[sizeof(path)-2..] != ".c"))
     {
         path += ".c";
     }
 
-    string *files = get_dir(path, 0x10);
+    string *files = get_dir(path, 0x10) - 
+        ({ (directoryPath[1..] + "/."), (directoryPath[1..] + "/..") });
+
     if (!sizeof(files) || !initiator->hasReadAccess(path))
     {
         notify_fail("No file(s) matching that criteria could be found.\n");
@@ -146,7 +150,7 @@ public nomask int execute(string command, object initiator)
         {
             ret = compile(targetPath, initiator, 
                 initiator->colorConfiguration(),
-                sizeof(regexp(({ command }), "-r")));
+                sizeof(regexp(({ command }), "-r")), 0);
         }
         else
         {

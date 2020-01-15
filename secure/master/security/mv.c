@@ -10,6 +10,7 @@ protected nomask void applyGroupDetails()
     setName("lib/commands/wizard/mv");
     addPermission("/", Read | Write);
 
+    addPriviledgedEfun("file_size");
     addPriviledgedEfun("rename_from");
     addPriviledgedEfun("rename_to");
 }

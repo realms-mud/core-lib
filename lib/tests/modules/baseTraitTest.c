@@ -244,7 +244,7 @@ void CanSetCost()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidResearchTreeThrowsError()
 {
-    string err = catch (Trait->addSpecification("research tree", "fake/research/tree.c"));
+    string err = catch (Trait->addSpecification("research tree", "lib/fake/research/tree.c"));
     string expectedError = "*ERROR - trait: The 'research tree' value must be a valid research tree.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid opinion");

@@ -9,6 +9,8 @@ protected nomask void applyGroupDetails()
 {
     setName("lib/tests/commands/wizard/mkdirTest");
     addPermission("/players/earl", Read | Write);
+    addPermission("/secure/newDir", Read);
 
     addPriviledgedEfun("rmdir");
+    addPriviledgedEfun("file_size");
 }

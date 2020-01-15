@@ -11,4 +11,5 @@ protected nomask void applyGroupDetails()
     addPermission("/", Read | Write);
 
     addPriviledgedEfun("copy_file");
+    addPriviledgedEfun("file_size");
 }

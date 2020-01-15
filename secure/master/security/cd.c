@@ -7,12 +7,8 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/dictionaries/researchDictionary");
-    addPermission("/lib/instances", Read);
-    addPermission("/lib/tests", Read);
-    addPermission("/areas", Read);
-    addPermission("/guilds", Read);
-    addPermission("/players", Read);
+    setName("lib/commands/wizard/cd");
+    addPermission("/", Read);
 
     addPriviledgedEfun("file_size");
 }

@@ -9,7 +9,9 @@ protected nomask void applyGroupDetails()
 {
     setName("lib/tests/commands/wizard/headTest");
     addPermission("/players/earl", Read | Write);
+    addPermission("/brokenFile.c", Read);
 
     addPriviledgedEfun("copy_file");
     addPriviledgedEfun("remove_file");
+    addPriviledgedEfun("file_size");
 }

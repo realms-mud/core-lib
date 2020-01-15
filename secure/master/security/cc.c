@@ -12,5 +12,7 @@ protected nomask void applyGroupDetails()
     addPermission("/log", Read | Write);
 
     addPriviledgedEfun("remove_file");
+    addPriviledgedEfun("read_file");
     addPriviledgedEfun("file_size");
+    addPriviledgedEfun("get_dir");
 }

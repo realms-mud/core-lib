@@ -16,4 +16,5 @@ protected nomask void applyGroupDetails()
     addPermission("/players", Read);
 
     addPriviledgedEfun("file_size");
+    addPriviledgedEfun("get_dir");
 }

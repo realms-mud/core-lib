@@ -61,6 +61,8 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Quester = clone_object("/lib/tests/support/services/combatWithMockServices.c");
     Quester->ToggleMockQuests();
@@ -298,7 +300,8 @@ void AddTransitionThrowsWhenAnInvalidInitiatorIsPassed()
     QuestItem->testAddState("a", "do a stuff");
     QuestItem->testAddState("b", "do b stuff");
 
-    string err = catch (QuestItem->testAddTransition("a", "b", "someEvent", "invalidInitiator"));
+    string err = catch (QuestItem->testAddTransition("a", "b", "someEvent", 
+        "/lib/invalidInitiator"));
     ExpectEq("*ERROR - stateMachine: the transition initiator must be a valid program name.", err);
 }
 

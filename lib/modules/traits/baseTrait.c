@@ -62,14 +62,16 @@ protected int addSpecification(string type, mixed value)
 
     if (sscanf(type, "bonus %s", bonusToCheck))
     {
-        if (getDictionary("bonuses") &&
-            getDictionary("bonuses")->isValidBonusModifier(bonusToCheck, value))
+        object bonusDictionary = getDictionary("bonuses");
+
+        if (bonusDictionary &&
+            bonusDictionary->isValidBonusModifier(bonusToCheck, value))
         {
             researchData["enhanced"] = 1;
             researchData[type] = value * applyModifier;
             ret = 1;
         }
-        else if (getDictionary("bonuses"))
+        else if (bonusDictionary)
         {
             raise_error(sprintf("ERROR - trait: the '%s' "
                 "specification must be a valid modifier as defined in %s\n",
@@ -82,8 +84,10 @@ protected int addSpecification(string type, mixed value)
         {
             case "type":
             {
-                if (value && stringp(value) && getDictionary("traits") &&
-                    getDictionary("traits")->isValidTraitType(value))
+                object traitsDictionary = getDictionary("traits");
+
+                if (value && stringp(value) && traitsDictionary &&
+                    traitsDictionary->isValidTraitType(value))
                 {
                     ret = 1;
                     researchData[type] = value;
@@ -150,8 +154,10 @@ protected int addSpecification(string type, mixed value)
             }
             case "research tree":
             {
-                if(getDictionary("research") &&
-                    getDictionary("research")->researchTree(value))
+                object researchDictionary = getDictionary("research");
+
+                if(researchDictionary &&
+                    researchDictionary->researchTree(value))
                 {
                     ret = 1;
                     researchData[type] = value;
@@ -165,8 +171,10 @@ protected int addSpecification(string type, mixed value)
             }
             case "triggering research":
             {
-                if(getDictionary("research") &&
-                    getDictionary("research")->isSustainedResearchItem(value))
+                object researchDictionary = getDictionary("research");
+
+                if(researchDictionary &&
+                    researchDictionary->isSustainedResearchItem(value))
                 {
                     ret = 1;
                     researchData[type] = value;
@@ -192,11 +200,13 @@ private nomask int isBonusAttack(string bonusItem)
 {
     int ret = 0;
     string attackType = 0;
+
+    object attacksDictionary = getDictionary("attacks");
     if(bonusItem && stringp(bonusItem) && member(researchData, bonusItem) &&
        sscanf(bonusItem, "bonus %s attack", attackType) && 
-       getDictionary("attacks"))
+        attacksDictionary)
     {
-        ret = (getDictionary("attacks")->getAttack(attackType) != 0) || 
+        ret = (attacksDictionary->getAttack(attackType) != 0) ||
               (attackType == "weapon");
     }
     return ret;
@@ -246,8 +256,10 @@ public nomask int queryBonus(string bonus)
     string bonusToCheck;
     if(sscanf(bonus, "bonus %s", bonusToCheck))
     {
-        if(getDictionary("bonuses") && objectp(getDictionary("bonuses")) &&
-           getDictionary("bonuses")->isValidBonus(bonusToCheck) &&
+        object bonusDictionary = getDictionary("bonuses");
+
+        if(bonusDictionary && objectp(bonusDictionary) &&
+            bonusDictionary->isValidBonus(bonusToCheck) &&
            member(researchData, bonus))
         {
             ret = researchData[bonus];

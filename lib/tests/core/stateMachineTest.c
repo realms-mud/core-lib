@@ -212,7 +212,7 @@ void AddTransitionThrowsWhenAnInvalidInitiatorIsPassed()
     StateMachine->testAddState("a", "do a stuff");
     StateMachine->testAddState("b", "do b stuff");
 
-    string err = catch (StateMachine->testAddTransition("a", "b", "someEvent", "invalidInitiator"));
+    string err = catch (StateMachine->testAddTransition("a", "b", "someEvent", "/lib/invalidInitiator"));
     ExpectEq("*ERROR - stateMachine: the transition initiator must be a valid program name.", err);
 }
 

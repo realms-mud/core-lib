@@ -8,6 +8,9 @@
 virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/quests.h"
 
+private object questsDictionary =
+    load_object("/lib/dictionaries/questsDictionary.c");
+
 //-----------------------------------------------------------------------------
 // Method: questNotification
 // Description: This method is used to broadcast all quest-related events
@@ -43,27 +46,7 @@ private nomask int isValidQuest(string questItem)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object getQuestObject(string questItem)
 {
-    // The passed in value for questItem must be a file containing a valid
-    // questItem object.
-    object ret = 0;
-
-    if (questItem && stringp(questItem) && sizeof(questItem))
-    {
-        if(questItem[0] != '/')
-        {
-            questItem = "/" + questItem;
-        }
-
-        if(file_size(questItem) > 0)
-        { 
-            ret = load_object(questItem);
-            if(!ret || (member(inherit_list(ret), BaseQuest) < 0))
-            {
-                ret = 0;
-            }
-        }
-    }
-    return ret;
+    return questsDictionary->questObject(questItem);
 }
 
 /////////////////////////////////////////////////////////////////////////////

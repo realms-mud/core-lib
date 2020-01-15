@@ -242,6 +242,7 @@ void MapsChangeWithStateTransitions()
 /////////////////////////////////////////////////////////////////////////////
 void CanGenerateSettlement()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
     ToggleCallOutBypass();
     Player->colorConfiguration("none");
     Player->charsetConfiguration("unicode");
@@ -276,7 +277,9 @@ void CanGenerateFiles()
     string originalDir = "/lib/generated_region/";
     mkdir(originalDir);
 
-    string *files = get_dir(originalDir, 0x10);
+    string *files = get_dir(originalDir + "/*", 0x10) -
+        ({ "lib/generated_region/.", "lib/generated_region/.." });
+
     ExpectEq(({ }), files);
 
     Player->colorConfiguration("none");
@@ -293,12 +296,15 @@ void CanGenerateFiles()
 
     Region->generateStaticFiles("/lib/generated_region");
 
-    files = get_dir(originalDir, 0x10);
+    files = get_dir(originalDir + "/*", 0x10) -
+        ({ "lib/generated_region/.", "lib/generated_region/.." });
+
     ExpectEq(({ "lib/generated_region/a-forest--lib-tests-support-environment-startingRoom-c" }), 
         files);
     string dirToDelete = files[0];
 
-    files = get_dir(files[0] + "/", 0x10);
+    files = get_dir(files[0] + "/*", 0x10) - ({ (files[0] + "/."),
+        (files[0] + "/..") });
 
     // This is one for each room file and one for the region
     ExpectEq(sizeof(Region->rooms()) + 1, sizeof(files));
@@ -316,6 +322,8 @@ void CanGenerateFiles()
 /////////////////////////////////////////////////////////////////////////////
 void CanEnterTemplatedRegion()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Player->colorConfiguration("none");
     Player->charsetConfiguration("unicode");
@@ -343,6 +351,8 @@ void CanEnterTemplatedRegion()
 /////////////////////////////////////////////////////////////////////////////
 /*void Y()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
 
     object region = 

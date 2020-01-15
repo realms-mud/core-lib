@@ -10,6 +10,8 @@ object MagicSquare;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("Gorthaur");

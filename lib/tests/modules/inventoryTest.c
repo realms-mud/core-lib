@@ -10,6 +10,8 @@ object Inventory;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     Inventory = clone_object("/lib/tests/support/services/mockPlayer.c");
     Inventory->Name("Bob");
     Inventory->Gender(1);

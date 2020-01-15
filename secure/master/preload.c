@@ -32,7 +32,8 @@ protected nomask string *traverseDirectoryForSourceFiles(string *baseDir)
         }
         else if (file_size(file) == -2)
         {
-            ret += traverseDirectoryForSourceFiles(get_dir(file + "/", 0x10));
+            ret += traverseDirectoryForSourceFiles(get_dir(file + "/*", 0x10) -
+                ({ (file + "/."), (file + "/..") }));
         }
     }
 
@@ -45,7 +46,9 @@ private nomask string *LoadCoreLib()
     string *ret = ({});
     if (ShouldAutoLoadCoreLib)
     {
-        string *files = get_dir("/lib/", 0x10);
+        string *files = get_dir("/lib/*", 0x10) -
+            ({ "lib/.", "lib/.." });
+
         ret += traverseDirectoryForSourceFiles(files);
     }
 

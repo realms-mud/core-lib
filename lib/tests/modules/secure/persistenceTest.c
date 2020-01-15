@@ -485,6 +485,8 @@ void ModifierObjectsAreSavedAndRestored()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerInventoryMaintainsWieldedAndWornStateWhenEquippedAtSave()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Player->restore("gorthaur");
 

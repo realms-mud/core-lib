@@ -8,8 +8,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 protected nomask void applyGroupDetails()
 {
     setName("lib/dictionaries/researchDictionary");
-    addPermission("/lib/instances", Read);
-    addPermission("/lib/tests", Read);
+    addPermission("/lib", Read);
     addPermission("/areas", Read);
     addPermission("/guilds", Read);
     addPermission("/players", Read);

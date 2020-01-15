@@ -17,13 +17,14 @@ protected int addSpecification(string type, mixed value)
         sscanf(type, "penalty to %s", bonusToCheck) ||
         sscanf(type, "apply %s", bonusToCheck))
     {
-        if(getDictionary("bonuses") &&
-           getDictionary("bonuses")->isValidBonusModifier(bonusToCheck, value))
+        object bonusDictionary = getDictionary("bonuses");
+        if(bonusDictionary &&
+            bonusDictionary->isValidBonusModifier(bonusToCheck, value))
         {
             researchData[type] = value;
             ret = 1;
         }
-        else if(getDictionary("bonuses"))
+        else if(bonusDictionary)
         {
             raise_error(sprintf("ERROR - persistedRitualResearchItem: the '%s' "
                 "specification must be a valid modifier as defined in %s\n",
@@ -32,8 +33,9 @@ protected int addSpecification(string type, mixed value)
     }
     else if (member(({ "trait", "negative trait" }), type) > -1)
     {
-        if (stringp(value) && getDictionary("traits") &&
-            getDictionary("traits")->isValidPersistedTrait(value))
+        object traitsDictionary = getDictionary("traits");
+        if (stringp(value) && traitsDictionary &&
+            traitsDictionary->isValidPersistedTrait(value))
         {
             researchData[type] = value;
             ret = 1;

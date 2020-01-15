@@ -7,11 +7,9 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/tests/commands/wizard/tailTest");
-    addPermission("/players/earl", Read | Write);
-    addPermission("/brokenFile.c", Read);
+    setName("lib/commands/wizard/ls");
+    addPermission("/", Read);
 
     addPriviledgedEfun("file_size");
-    addPriviledgedEfun("copy_file");
-    addPriviledgedEfun("remove_file");
+    addPriviledgedEfun("get_dir");
 }

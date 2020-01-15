@@ -10,6 +10,8 @@ object Character;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Character = clone_object("/lib/tests/support/services/mockPlayer");
     Character->Name("Bob");

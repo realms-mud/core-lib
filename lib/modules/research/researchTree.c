@@ -6,7 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/prerequisites.c";
-private string ResearchDictionary = "/lib/dictionaries/researchDictionary.c";
+private object ResearchDictionary;
 
 private string name;
 private string description;
@@ -31,12 +31,13 @@ public void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object researchDictionary()
 {
-    object ret = 0;
-    if (file_size(ResearchDictionary) > -1)
+    if (!ResearchDictionary)
     {
-        ret = load_object(ResearchDictionary);
+        ResearchDictionary = 
+            load_object("/lib/dictionaries/researchDictionary.c");
     }
-    return ret;
+
+    return ResearchDictionary;
 }
 
 /////////////////////////////////////////////////////////////////////////////

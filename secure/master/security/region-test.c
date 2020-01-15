@@ -7,11 +7,11 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/tests/commands/wizard/tailTest");
-    addPermission("/players/earl", Read | Write);
-    addPermission("/brokenFile.c", Read);
+    setName("lib/tests/environment/regionTest");
+    addPermission("/lib/generated_region", Read | Write);
 
-    addPriviledgedEfun("file_size");
-    addPriviledgedEfun("copy_file");
+    addPriviledgedEfun("get_dir");
+    addPriviledgedEfun("mkdir");
+    addPriviledgedEfun("rmdir");
     addPriviledgedEfun("remove_file");
 }

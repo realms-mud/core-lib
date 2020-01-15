@@ -31,13 +31,14 @@ protected int addSpecification(string type, mixed value)
 
     if(sscanf(type, "bonus %s", bonusToCheck))
     {
-        if(getDictionary("bonuses") &&
-           getDictionary("bonuses")->isValidBonusModifier(bonusToCheck, value))
+        object bonusDictionary = getDictionary("bonuses");
+        if(objectp(bonusDictionary) &&
+            bonusDictionary->isValidBonusModifier(bonusToCheck, value))
         {
             researchData[type] = value * applyModifier;
             ret = 1;
         }
-        else if(getDictionary("bonuses"))
+        else if(bonusDictionary)
         {
             raise_error(sprintf("ERROR - passiveResearchItem: the '%s' "
                 "specification must be a valid modifier as defined in %s\n",
@@ -56,11 +57,14 @@ private nomask int isBonusAttack(string bonusItem)
 {
     int ret = 0;
     string attackType = 0;
+
+    object attacksDictionary = getDictionary("attacks");
+
     if(bonusItem && stringp(bonusItem) && member(researchData, bonusItem) &&
        sscanf(bonusItem, "bonus %s attack", attackType) && 
-       getDictionary("attacks"))
+        attacksDictionary)
     {
-        ret = (getDictionary("attacks")->getAttack(attackType) != 0) || 
+        ret = (attacksDictionary->getAttack(attackType) != 0) ||
               (attackType == "weapon");
     }
     return ret;
@@ -110,8 +114,10 @@ public nomask int queryBonus(string bonus)
     string bonusToCheck;
     if(sscanf(bonus, "bonus %s", bonusToCheck))
     {
-        if(getDictionary("bonuses") && objectp(getDictionary("bonuses")) &&
-           getDictionary("bonuses")->isValidBonus(bonusToCheck) &&
+        object bonusDictionary = getDictionary("bonuses");
+
+        if(bonusDictionary && objectp(bonusDictionary) &&
+            bonusDictionary->isValidBonus(bonusToCheck) &&
            member(researchData, bonus))
         {
             ret = researchData[bonus];

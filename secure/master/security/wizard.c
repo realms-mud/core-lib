@@ -8,8 +8,8 @@ inherit "/secure/master/security/priviledgeGroup.c";
 protected nomask void applyGroupDetails()
 {
     setName("lib/realizations/wizard");
-    addPermission("/lib/dictionaries/groups", Read);
-    addPermission("/lib/commands", Read);
+    addPermission("/lib", Read);
+    addPermission("/players", Read);
     allowInheritedPermissions();
 
     addPriviledgedEfun("file_size");

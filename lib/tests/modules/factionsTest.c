@@ -53,7 +53,7 @@ void JoinFactionReturnsFalseIfCalledWhenAlreadyJoined()
 /////////////////////////////////////////////////////////////////////////////
 void FactionDispositionIsNeutralWhenEncounteringInvalidFaction()
 {
-    ExpectEq("invalid", Faction->factionDispositionToward("badFaction"));
+    ExpectEq("invalid", Faction->factionDispositionToward("/lib/badFaction"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

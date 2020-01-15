@@ -11,6 +11,8 @@ object QuestItem;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     Quests = clone_object("/lib/realizations/player");
     Quests->Name("Bob");
 

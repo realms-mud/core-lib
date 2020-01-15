@@ -10,6 +10,8 @@ object Skills;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Skills = clone_object("/lib/tests/support/services/skillsWithMockServices");
     Skills->Name("Bob");

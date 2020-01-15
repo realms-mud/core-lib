@@ -11,5 +11,6 @@ protected nomask void applyGroupDetails()
     addPermission("/players/earl", Read | Write);
 
     addPriviledgedEfun("copy_file");
+    addPriviledgedEfun("file_size");
     addPriviledgedEfun("mkdir");
 }

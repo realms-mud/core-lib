@@ -12,4 +12,6 @@ protected nomask void applyGroupDetails()
 
     addPriviledgedEfun("rmdir");
     addPriviledgedEfun("remove_file");
+    addPriviledgedEfun("file_size");
+    addPriviledgedEfun("get_dir");
 }

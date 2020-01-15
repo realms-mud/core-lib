@@ -30,6 +30,7 @@ void Init()
     dict->resetCache();
 
     Guild = load_object("/lib/tests/support/guilds/testGuild.c");
+    load_object("/lib/dictionaries/environmentDictionary.c");
 
     ignoreList += ({ "AdvanceToLevel" });
 }

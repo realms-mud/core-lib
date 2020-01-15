@@ -72,6 +72,7 @@ void QuittingSendsStatusMessage()
 /////////////////////////////////////////////////////////////////////////////
 void LoginSendsStatusMessage()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
     ToggleCallOutBypass();
     object login = load_object("/lib/modules/secure/login.c");
     object player = login->getPlayerObject("earl");

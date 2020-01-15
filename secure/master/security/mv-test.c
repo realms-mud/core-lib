@@ -12,4 +12,5 @@ protected nomask void applyGroupDetails()
 
     addPriviledgedEfun("copy_file");
     addPriviledgedEfun("remove_file");
+    addPriviledgedEfun("file_size");
 }

@@ -29,6 +29,8 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void DisplaysPlayerHoldingInRegionMap()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Player->addPlayerHolding("argalach castle");
     Player->buildDomainUpgrade("argalach castle", "keep", "stone keep");

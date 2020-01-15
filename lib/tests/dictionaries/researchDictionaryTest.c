@@ -21,8 +21,8 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ResearchObjectReturnsNullIfNotResearchItem()
 {
-    ExpectFalse(Dictionary->researchObject("/obj/player.c"));
-    ExpectFalse(Dictionary->researchObject("not_a_file"));
+    ExpectFalse(Dictionary->researchObject("/lib/realizations/player.c"));
+    ExpectFalse(Dictionary->researchObject("/lib/not_a_file"));
     ExpectFalse(Dictionary->researchObject("/lib/modules/research.c"));
 }
 

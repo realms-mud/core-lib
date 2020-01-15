@@ -109,13 +109,10 @@ private nomask varargs int listFiles(string path, object initiator,
     int recurse, int maxWidth, string colorConfiguration, int numFiles)
 {
     int ret = 0;
-    string *files = get_dir(path, 0x10);
+    string *files = get_dir(path, 0x10) -
+        ({ (path[1..] + "."), (path[1..] + "..") });
 
-    if (!sizeof(files))
-    {
-        notify_fail("No file(s) matching that criteria could be found.\n");
-    }
-    else if ((sizeof(files) == 1) || !recurse)
+    if ((sizeof(files) == 1) || !recurse)
     {
         ret = 1;
 
@@ -163,6 +160,10 @@ private nomask varargs int listFiles(string path, object initiator,
                 "message", "wizard commands", colorConfiguration));
         }
         tell_object(initiator, "\n");
+    }
+    else if (!sizeof(files))
+    {
+        notify_fail("No file(s) matching that criteria could be found.\n");
     }
     else
     {

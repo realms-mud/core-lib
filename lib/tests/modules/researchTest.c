@@ -57,6 +57,8 @@ void InitiatePointBasedResearchSucceedsWhenAllConditionsMet()
 /////////////////////////////////////////////////////////////////////////////
 void InitiatePointBasedResearchFiresOnResearchCompletedEventOnSucceess()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Research->addResearchPoints(1);
     Research->advanceSkill("long sword", 10);
@@ -79,6 +81,8 @@ void InitiateGrantBasedResearchSucceedsWhenAllConditionsMet()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchFiresOnResearchCompletedEventOnSucceess()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
     string err = catch (Research->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
@@ -110,6 +114,8 @@ void InitiateTimedBasedResearchSucceedsWhenAllConditionsMet()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchFiresOnResearchStartedEventOnSucceess()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
     string err = catch (Research->initiateResearch("lib/tests/support/research/testTimedResearchItem.c"));
@@ -122,6 +128,8 @@ void InitiateGrantBasedResearchFiresOnResearchStartedEventOnSucceess()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchFiresOnResearchCompletedEventWhenTimeExceeded()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Research->initiateResearch("lib/tests/support/research/testTimedResearchItem.c");
     Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
@@ -333,6 +341,8 @@ void TargetedResearchWithoutAtRunsOnResearcher()
 /////////////////////////////////////////////////////////////////////////////
 void CustomEventFiredWhenResearchUsed()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     // This is a laziness thing - I don't want to create a granted research 
     ExpectTrue(Research->initiateResearch("lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
@@ -363,6 +373,8 @@ void CannotAddNegativeResearchPoints()
 /////////////////////////////////////////////////////////////////////////////
 void AddingResearchPointsFiresOnResearchPointsAdded()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
 
@@ -569,6 +581,8 @@ void ResearchInProgressTransitionsToCompletedWhenCompleted()
 /////////////////////////////////////////////////////////////////////////////
 void AddResearchChoiceBroadcastsCorrectEventWithData()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     mapping researchChoice = ([
         "type": "research choice",
@@ -607,6 +621,8 @@ void AddResearchChoiceBroadcastsCorrectEventWithData()
 /////////////////////////////////////////////////////////////////////////////
 void AddResearchChoiceHandlesResearchPath()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     mapping researchChoice = ([
         "type":"research path",
@@ -654,6 +670,8 @@ void SelectResearchChoiceDoesNotAddResearchWhithoutChoiceSetUp()
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchChoiceFiresCorrectEvent()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     mapping researchChoice = ([
         "type":"research choice",
@@ -698,6 +716,8 @@ void SelectResearchPathSelectsCorrectResearchTree()
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchPathFiresCorrectEvent()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     mapping researchChoice = ([
         "type":"research path",

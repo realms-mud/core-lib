@@ -134,6 +134,8 @@ void TraitNamesReturnsListOfTraits()
 /////////////////////////////////////////////////////////////////////////////
 void AddTraitFiresOnTraitAddedEvent()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Traits->registerEvent(clone_object("/lib/tests/support/events/traitEventSubscriber.c"));
     string err = catch (Traits->addTrait("lib/tests/support/traits/testTrait.c"));
@@ -163,6 +165,8 @@ void RemoveTraitRemovesSpecifiedTrait()
 /////////////////////////////////////////////////////////////////////////////
 void RemoveTraitFiresOnTraitRemovedEvent()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"));
 

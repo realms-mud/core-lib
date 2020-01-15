@@ -40,7 +40,7 @@ public nomask int hasPermission(string path, string method, object caller,
         Initialize();
     }
 
-    string key = object_name(caller);
+    string key = regreplace(object_name(caller), "#[0-9]+", "", 1);
     object permission;
 
     if (member(priviledgedObjects, key) && objectp(priviledgedObjects[key]))

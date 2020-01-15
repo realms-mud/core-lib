@@ -231,6 +231,8 @@ void HitPointsDoesNotDecreaseValue()
 /////////////////////////////////////////////////////////////////////////////
 void HitPointsFiresOnHitPointsChangedEvent()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     ExpectEq(100, Attacker->hitPoints(100));
 
@@ -421,6 +423,8 @@ void SpellPointsDecreaseIncludesBonusReduceSpellPoints()
 /////////////////////////////////////////////////////////////////////////////
 void SpellPointsFiresOnSpellPointsChangedEvent()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     ExpectEq(100, Attacker->spellPoints(100));
 
@@ -508,6 +512,8 @@ void StaminaPointsDecreaseIncludesBonusReduceStaminaPoints()
 /////////////////////////////////////////////////////////////////////////////
 void StaminaPointsFiresOnStaminaPointsChangedEvent()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     ExpectEq(100, Attacker->staminaPoints(100));
 
@@ -1461,6 +1467,8 @@ void PlayersCanToggleKillList()
 /////////////////////////////////////////////////////////////////////////////
 void AttackFiresOnAttackEvent()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
@@ -1473,6 +1481,8 @@ void AttackFiresOnAttackEvent()
 /////////////////////////////////////////////////////////////////////////////
 void AttackFiresOnAttackedEvent()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
@@ -1537,6 +1547,8 @@ void AttackInvolvingDeathOfPlayerCreatesCorpseButDoesNotDestroyPlayer()
 /////////////////////////////////////////////////////////////////////////////
 void OnHitFiresWhenLegalHitIsDone()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
@@ -1558,6 +1570,8 @@ void HitAddsCorrectExperience()
 /////////////////////////////////////////////////////////////////////////////
 void OnDeathFiresWhenKillingBlowLands()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/onDeathSubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
@@ -1582,6 +1596,8 @@ void SettingWimpyWorksCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
 
@@ -1600,6 +1616,8 @@ void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
 /////////////////////////////////////////////////////////////////////////////
 void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
 
@@ -1619,6 +1637,8 @@ void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
 /////////////////////////////////////////////////////////////////////////////
 void AttackerAttacksDuringHeartBeat()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
@@ -1637,6 +1657,8 @@ void AttackerAttacksDuringHeartBeat()
 /////////////////////////////////////////////////////////////////////////////
 void TargetAttackedDuringHeartBeat()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
@@ -1821,6 +1843,8 @@ void HeartBeatHealsStaminaAtDifferentRatesWhenBonusApplied()
 /////////////////////////////////////////////////////////////////////////////
 void DamageReflectionIsTriggered()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
@@ -1847,6 +1871,8 @@ void DamageReflectionIsTriggered()
 /////////////////////////////////////////////////////////////////////////////
 void SlowDoesNotAttackEveryRound()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Attacker->hitPoints(Attacker->maxHitPoints());
     Target->hitPoints(Target->maxHitPoints());
@@ -1877,6 +1903,8 @@ void SlowDoesNotAttackEveryRound()
 /////////////////////////////////////////////////////////////////////////////
 void HasteAddsAnExtraAttack()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ToggleCallOutBypass();
     Attacker->Con(30);
     Attacker->hitPoints(Attacker->maxHitPoints());
@@ -1979,6 +2007,8 @@ void AttackSucceedsWhenTargetEtherealAndHasNonWeaponAttackThatCanDamageEthereal(
 /////////////////////////////////////////////////////////////////////////////
 void TargetAttacksWhenAttackerReturnsToArea()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     Target->setMaxHitPoints(1000);
     ToggleCallOutBypass();
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");

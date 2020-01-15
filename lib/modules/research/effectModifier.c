@@ -181,18 +181,6 @@ protected void deactivateModifierObject(object modifierToDeactivate)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object getBonusDictionary()
-{
-    object ret = 0;
-
-    if (file_size("/lib/dictionaries/bonusesDictionary.c") > -1)
-    {
-        ret = load_object("/lib/dictionaries/bonusesDictionary.c");
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected int ritualMultiplier(string type, int value)
 {
     return value;
@@ -214,7 +202,7 @@ protected nomask object getModifierObject(object owner, mapping researchData)
 
         ret->set("fully qualified name", fullyQualifiedName);
         string *listOfSpecifications = m_indices(researchData);
-        object bonusDictionary = getBonusDictionary();
+        object bonusDictionary = getDictionary("bonuses");
         if (bonusDictionary && listOfSpecifications)
         {
             string bonusToCheck;
