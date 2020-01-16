@@ -507,6 +507,7 @@ void DisablesResponseWhenStatePrerequisiteNotMet()
     ExpectSubStringMatch("What?", Actor->caughtMessage());
 }
 
+/*
 /////////////////////////////////////////////////////////////////////////////
 void UniqueCharacterInstancesHaveDistinctConversations()
 {
@@ -546,3 +547,4 @@ void UniqueCharacterInstancesHaveDistinctConversations()
     destruct(brendan);
     destruct(brendan2);
 }
+*/

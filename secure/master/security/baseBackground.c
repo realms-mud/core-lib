@@ -7,16 +7,13 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/dictionaries/environmentDictionary");
-    addPermission("/lib/dictionaries", Read);
-    addPermission("/lib/environment", Read);
-    addPermission("/lib/items", Read);
-    addPermission("/lib/tests", Read);
+    setName("lib/dictionaries/backgrounds/baseBackground");
+    addPermission("/lib", Read);
     addPermission("/areas", Read);
     addPermission("/guilds", Read);
     addPermission("/players", Read);
     addPermission("/tutorial", Read);
+    allowInheritedPermissions();
 
-    addPriviledgedEfun("get_dir");
     addPriviledgedEfun("file_size");
 }
