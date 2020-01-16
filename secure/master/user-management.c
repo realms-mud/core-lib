@@ -4,6 +4,8 @@
 //*****************************************************************************
 #include "/sys/interactive_info.h"
 
+// TODO [675]: Rewrite this horrendous code... it doesn't actually work anyway.
+
 int verify_create_wizard(object ob)
 {
     return (ob && file_size("players/" + ob->query_real_name()) == -2 &&

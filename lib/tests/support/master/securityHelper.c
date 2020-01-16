@@ -4,18 +4,18 @@
 //*****************************************************************************
 #include "/sys/interactive_info.h"
 
-private int isInteractive = 0;
+private object isInteractive = 0;
 
 /////////////////////////////////////////////////////////////////////////////
-public void ToggleInteractive()
+public void ToggleInteractive(object user)
 {
-    isInteractive = !isInteractive;
+    isInteractive = user;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public int interactive(object user)
 {
-    return isInteractive;
+    return isInteractive == user;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@ public mixed interactive_info(object user, int value)
 {
     mixed ret = 0;
 
-    if (isInteractive)
+    if (isInteractive == user)
     {
         switch (value)
         {
@@ -39,3 +39,4 @@ public mixed interactive_info(object user, int value)
 }
 
 #include "/secure/master/security.c"
+#include "/secure/master/destruct.c"

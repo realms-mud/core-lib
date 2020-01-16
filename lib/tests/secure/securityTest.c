@@ -32,7 +32,6 @@ void Init()
 void Setup()
 {
     Security = clone_object("/lib/tests/support/master/securityHelper.c");
-
     Wizard = clone_object("/lib/realizations/wizard.c");
     Wizard->restore("earl");
     setUsers(({ Wizard }));
@@ -62,10 +61,17 @@ void PriviledgedObjectsCanExecuteWriteFunctions()
 /////////////////////////////////////////////////////////////////////////////
 void UnpriviledgedObjectsCannotExecuteWriteFunctions()
 {
+    object player = load_object("/lib/realizations/player.c");
+    set_this_player(player);
+    clone_object("/lib/tests/support/services/catchShadow.c")->beginShadow(player);
+
     string writePath = Security->valid_write("/secure/master.c", "fred",
-        "write_file", load_object("/lib/realizations/player.c"));
+        "write_file", player);
 
     ExpectFalse(writePath);
+    ExpectEq("Bad file name (master::valid_write): \"/secure/master.c\" "
+        "(\"write_file\"), caller lib/realizations/player\n", 
+        player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -102,7 +108,7 @@ void NonInteractiveWizardsHaveNoWriteAccess()
 void WizardsHaveAppropriateWriteAccess()
 {
     set_this_player(Wizard);
-    Security->ToggleInteractive();
+    Security->ToggleInteractive(Wizard);
 
     ExpectEq("/lpmud.log", Security->valid_write("/lpmud.log", "earl",
         "write_file", Wizard));
@@ -136,15 +142,144 @@ void WizardsHaveAppropriateWriteAccess()
 /////////////////////////////////////////////////////////////////////////////
 void PriviledgedEscalatedObjectsCanOnlyExecuteAuthorizedMethodsInEscaltedDirectories()
 {
-    ExpectFalse(Security->valid_write("/secure/master.c", "fred",
-        "write_file", load_object("/lib/tests/commands/wizard/cpTest.c")));
+    object cpTest = load_object("/lib/tests/commands/wizard/cpTest.c");
+    set_this_player(cpTest);
+    clone_object("/lib/tests/support/services/catchShadow.c")->beginShadow(cpTest);
 
     ExpectFalse(Security->valid_write("/secure/master.c", "fred",
-        "copy_file", load_object("/lib/tests/commands/wizard/cpTest.c")));
+        "write_file", cpTest));
+
+    ExpectEq("Bad file name (master::valid_write): \"/secure/master.c\" "
+        "(\"write_file\"), caller lib/tests/commands/wizard/cpTest\n",
+        cpTest->caughtMessage());
+    cpTest->resetCatchList();
+
+    ExpectFalse(Security->valid_write("/secure/master.c", "fred",
+        "copy_file", cpTest));
+
+    ExpectEq("Bad file name (master::valid_write): \"/secure/master.c\" "
+        "(\"copy_file\"), caller lib/tests/commands/wizard/cpTest\n",
+        cpTest->caughtMessage());
+    cpTest->resetCatchList();
 
     ExpectFalse(Security->valid_write("/players/earl/blah.c", "fred",
-        "write_file", load_object("/lib/tests/commands/wizard/cpTest.c")));
+        "write_file", cpTest));
+
+    ExpectEq("Bad file name (master::valid_write): \"/players/earl/blah.c\" "
+        "(\"write_file\"), caller lib/tests/commands/wizard/cpTest\n",
+        cpTest->caughtMessage());
+    cpTest->resetCatchList();
+
+    ExpectFalse(Security->valid_read("/players/earl", "fred",
+        "get_dir", cpTest));
+
+    ExpectEq("Bad file name (master::valid_read): \"/players/earl\" "
+        "(\"get_dir\"), caller lib/tests/commands/wizard/cpTest\n",
+        cpTest->caughtMessage());
+    cpTest->resetCatchList();
 
     ExpectEq("/players/earl/blah.c", Security->valid_write("/players/earl/blah.c", "fred",
-        "copy_file", load_object("/lib/tests/commands/wizard/cpTest.c")));
+        "copy_file", cpTest));
+
+    ExpectEq(0, cpTest->caughtMessage());
+
+    ExpectEq("/players/earl/blah.c", Security->valid_read("/players/earl/blah.c", "fred",
+        "file_size", cpTest));
+
+    ExpectEq(0, cpTest->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PriviledgedObjectsCanExecuteReadFunctions()
+{
+    string readPath = Security->valid_write("/secure/master.c", "fred", 
+        "read_file", load_object("/secure/master.c"));
+
+    ExpectEq("/secure/master.c", readPath);
+
+    readPath = Security->valid_read("/secure/master.c", "fred",
+        "read_file", load_object("/lib/modules/secure/persistence.c"));
+
+    ExpectEq("/secure/master.c", readPath);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnpriviledgedObjectsCannotExecuteReadFunctions()
+{
+    object player = load_object("/lib/realizations/player.c");
+    set_this_player(player);
+    clone_object("/lib/tests/support/services/catchShadow.c")->beginShadow(player);
+
+    string readPath = Security->valid_read("/secure/master.c", "fred",
+        "read_file", player);
+
+    ExpectFalse(readPath);
+    ExpectEq("Bad file name (master::valid_read): \"/secure/master.c\" "
+        "(\"read_file\"), caller lib/realizations/player\n", 
+        player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NonInteractiveWizardsHaveNoReadAccess()
+{
+    set_this_player(Wizard);
+
+    ExpectEq(0, Security->valid_read("/lpmud.log", "earl",
+        "read_file", Wizard));
+
+    ExpectEq(0, Security->valid_read("/players/earl/x.c", "earl",
+        "read_file", Wizard));
+
+    ExpectEq(0, Security->valid_read("/lib/modules/secure/persistence.c", "earl",
+        "read_file", Wizard));
+
+    ExpectEq(0, Security->valid_read("/secure/master.c", "earl",
+        "read_file", Wizard));
+
+    ExpectEq(0, Security->valid_read("/areas/eledhel", "earl",
+        "get_dir", Wizard));
+
+    ExpectEq(0, Security->valid_read("/secure/master.c", "earl",
+        "file_size", Wizard));
+
+    ExpectEq(0, Security->valid_read("/tutorial/temple/fred.c", "earl",
+        "read_file", Wizard));
+
+    ExpectEq(0, Security->valid_read("/guilds/stuff.c", "earl",
+        "read_file", Wizard));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WizardsHaveAppropriateReadAccess()
+{
+    set_this_player(Wizard);
+    Security->ToggleInteractive(Wizard);
+
+    ExpectEq("/lpmud.log", Security->valid_read("/lpmud.log", "earl",
+        "read_file", Wizard));
+
+    ExpectEq("/players/earl/x.c", Security->valid_read("/players/earl/x.c", "earl",
+        "read_file", Wizard));
+
+    ExpectEq(0, 
+        Security->valid_read("/lib/modules/secure/persistence.c", "earl",
+        "read_file", Wizard));
+
+    ExpectEq(0, Security->valid_read("/secure/master.c", "earl",
+        "read_file", Wizard));
+
+    ExpectEq("/areas/eledhel", Security->valid_read("/areas/eledhel", "earl",
+        "get_dir", Wizard));
+
+    ExpectEq("/lib/realizations/player.c", 
+        Security->valid_read("/lib/realizations/player.c", "earl",
+        "file_size", Wizard));
+
+    ExpectEq("/tutorial/temple/fred.c", 
+        Security->valid_read("/tutorial/temple/fred.c", "earl",
+        "read_file", Wizard));
+
+    ExpectEq("/guilds/stuff.c", 
+        Security->valid_read("/guilds/stuff.c", "earl",
+        "read_file", Wizard));
 }

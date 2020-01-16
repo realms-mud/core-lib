@@ -15,8 +15,7 @@ private int isPriviledgedObject(object caller)
 
     string name = object_name(caller);
 
-    if (sizeof(regexp(({ name }), 
-        "^(lib/modules/secure|secure|lib/tests/modules/secure|lib/tests/secure)")))
+    if (sizeof(regexp(({ name }), "^(lib/modules/secure|secure)")))
     {
         ret = 1;
     }
@@ -179,8 +178,8 @@ public nomask string valid_read(string path, string uid, string method,
 
     if (!stringp(sanitizedPath))
     {
-        printf("Bad file name (master::valid_read): %O (%O), caller %O, %O\n",
-            path, method, caller, this_object());
+        printf("Bad file name (master::valid_read): %O (%O), caller %O\n",
+            path, method, caller);
     }
 
     return sanitizedPath;

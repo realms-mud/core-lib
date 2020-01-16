@@ -2,19 +2,14 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+inherit "/secure/master/security/priviledgeGroup.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object connect()
+protected nomask void applyGroupDetails()
 {
-    object ret;
-    string errorMessage;
+    setName("lib/tests/secure/preloadTest");
+    addPermission("/", Read);
 
-    errorMessage = catch (ret = clone_object("secure/login"));
-    write("\n");
-    if (errorMessage)
-    {
-        write(errorMessage + "\n");
-        ret =0;
-    }
-    return ret;
+    addPriviledgedEfun("get_dir");
+    addPriviledgedEfun("read_file");
 }

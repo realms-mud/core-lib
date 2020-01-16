@@ -2,34 +2,35 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+private nomask object logDictionary = 0;
 
-/*
- * Get the owner of a file. This is called from the game driver, so as
- * to be able to know which wizard should have the error.
- */
-string get_wiz_name(string file)
+/////////////////////////////////////////////////////////////////////////////
+public nomask string get_wiz_name(string file)
 {
-    string name, rest;
+    string ret = 0;
+    string wizardName, restOfPath;
 
-    if (sscanf(file, "players/%s/%s", name, rest) == 2)
+    if (sizeof(regexp(({ file }), "^/*players/[^/]/")))
     {
-        return name;
+        ret = regreplace(file, "^/*players/([^/]+)/.*", "\\1", 1);
     }
-    return 0;
+    return ret;
 }
 
-/*
- * Write an error message into a log file. The error occured in the object
- * 'file', giving the error message 'message'.
- */
-void log_error(string file, string message)
+/////////////////////////////////////////////////////////////////////////////
+public nomask void log_error(string file, string message)
 {
-    string name;
- 
-    name = get_wiz_name(file);
-     if (!name)
-         name = "log";
-    "secure/simul_efun"->log_file(name, message);   
-    "secure/dblog"->log_error(previous_object(),"",0,message);
+    string logName = get_wiz_name(file);
+    if (!logName)
+    {
+        logName = "log";
+    }
+
+    if (!logDictionary)
+    {
+        logDictionary =
+            load_object("/secure/simul_efun.c")->getDictionary("log");
+    }
+
+    logDictionary->log(logName, message);
 }
- 

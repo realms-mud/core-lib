@@ -35,4 +35,5 @@ public string caughtMessages()
 public void resetCatchList()
 {
     catchList = "";
+    lastCatch = 0;
 }

@@ -2,19 +2,15 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+inherit "/secure/master/security/priviledgeGroup.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object connect()
+protected nomask void applyGroupDetails()
 {
-    object ret;
-    string errorMessage;
+    setName("lib/tests/modules/secure/fakeDatabase");
+    addPermission("/log", Read | Write);
+    addPermission("/lib/tests/modules/secure/generateDB.sql", Read);
 
-    errorMessage = catch (ret = clone_object("secure/login"));
-    write("\n");
-    if (errorMessage)
-    {
-        write(errorMessage + "\n");
-        ret =0;
-    }
-    return ret;
+    addPriviledgedEfun("read_file");
+    addPriviledgedEfun("write_file");
 }

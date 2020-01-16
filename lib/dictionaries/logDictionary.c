@@ -75,15 +75,7 @@ public nomask void logDeath(object victim, object murderer)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs void log(string file, object actor, string message,
-    mixed data)
+public nomask varargs void log(string logFile, string message)
 {
-    if (objectp(actor) && stringp(message))
-    {
-        string logMessage = sprintf("%s -> %s %s%s\n", ctime(),
-            (actor->isRealizationOfPlayer() ? actor->Name() : object_name(actor)),
-            message, (data ? (" :" + convertDataToString(data)) : ""));
-
-        write_file(sprintf("%s/%s", BaseLogDir, file), logMessage);
-    }
+    write_file(sprintf("%s/%s", BaseLogDir, logFile), message);
 }
