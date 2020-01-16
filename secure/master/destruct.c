@@ -45,15 +45,16 @@ private nomask void moveOrDestruct(object actor, object destination)
 {
     string temp;
 
-    if (actor->drop() || !actor->short())
+    string shortDescription = 0;
+    catch (shortDescription = actor->short());
+
+    if (actor->drop() || !shortDescription)
     {
-        printf("Destroying owned item -> %O\n", actor);
         destroyActor(actor);
     }
     else if (catch (move_object(actor, destination)) ||
         (environment(actor) != destination))
     {
-        printf("Moving this crap istead of nuking -> %O\n", actor);
         moveInteractiveObjectToSafety(actor);
     }
 }
