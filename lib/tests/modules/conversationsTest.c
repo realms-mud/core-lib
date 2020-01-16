@@ -23,7 +23,7 @@ varargs object PrepActor(int useMock, string characterName)
     if (useMock)
     {
         actor = clone_object("/lib/tests/support/services/mockPlayer.c");
-        actor->Name("Gorthaur");
+        actor->Name(characterName);
     }
     else
     {
@@ -38,6 +38,8 @@ varargs object PrepActor(int useMock, string characterName)
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
     ignoreList += ({ "PrepActor" });
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
@@ -46,6 +48,10 @@ void Init()
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
     dataAccess->savePlayerData(database->Gorthaur());
 
+    mapping secondActor = database->Gorthaur();
+    secondActor["name"] = "maeglin";
+    dataAccess->savePlayerData(secondActor);
+
     destruct(dataAccess);
     destruct(database);
 }
@@ -53,6 +59,7 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    ToggleCallOutBypass();
     Room = clone_object("/lib/tests/support/environment/fakeEnvironment.c");
 
     Owner = clone_object("/lib/tests/support/services/mockNPC.c");
@@ -60,16 +67,15 @@ void Setup()
     Owner->Gender(2);
 
     move_object(Owner, Room);
-    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    ToggleCallOutBypass();
     destruct(Owner);
     destruct(Actor);
     destruct(Room);
+    ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -507,17 +513,12 @@ void DisablesResponseWhenStatePrerequisiteNotMet()
     ExpectSubStringMatch("What?", Actor->caughtMessage());
 }
 
-/*
 /////////////////////////////////////////////////////////////////////////////
 void UniqueCharacterInstancesHaveDistinctConversations()
 {
-    Actor = PrepActor();
-    object Catch = clone_object("/lib/tests/support/services/catchShadow.c");
-    Catch->beginShadow(Actor);
+    Actor = PrepActor(1);
 
-    object actor2 = PrepActor(0, "maeglin");
-    Catch = clone_object("/lib/tests/support/services/catchShadow.c");
-    Catch->beginShadow(actor2);
+    object actor2 = PrepActor(1, "maeglin");
     move_object(actor2, "/lib/tests/support/environment/startingRoom.c");
 
     object brendan = clone_object("/tutorial/characters/brendan/brendan.c");
@@ -537,14 +538,13 @@ void UniqueCharacterInstancesHaveDistinctConversations()
     ExpectEq("villain", Actor->stateFor(brendan), "brendan villain not advanced");
     ExpectEq("villain", actor2->stateFor(brendan2), "brendan2 villain advanced");
     command("1", actor2);
-    ExpectEq("villain", Actor->stateFor(brendan));
-    ExpectEq("you are a simpleton", actor2->stateFor(brendan2));
+    ExpectEq("villain", Actor->stateFor(brendan), "brendan still is in villain state");
+    ExpectEq("you are a simpleton", actor2->stateFor(brendan2), "brendan2 is advanced to simpleton");
     command("1", Actor);
-    ExpectEq("you are a simpleton", Actor->stateFor(brendan));
-    ExpectEq("you are a simpleton", actor2->stateFor(brendan2));
+    ExpectEq("you are a simpleton", Actor->stateFor(brendan), "brendan is advanced to simpleton");
+    ExpectEq("you are a simpleton", actor2->stateFor(brendan2), "brendan2 is not advanced past simpleton");
 
     destruct(actor2);
     destruct(brendan);
     destruct(brendan2);
 }
-*/
