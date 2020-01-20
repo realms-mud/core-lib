@@ -61,15 +61,16 @@ public nomask void setWizardLevel(string level, object granter)
         int canGrantLevel = (member(granterGroups, level) > -1) &&
             interactive(granter);
 
+        object logs = getDictionary("log");
         if (canGrantLevel)
         {
             wizardLevel = level;
-            log_file("setWizardLevel", sprintf("%s promoted %s to %s.\n",
+            logs->log("setWizardLevel", sprintf("%s promoted %s to %s.\n",
                 granter->Name(), this_object()->Name(), level));
         }
         else
         {
-            log_file("setWizardLevel", 
+            logs->log("setWizardLevel", 
                 sprintf("%s failed to promote %s to %s.\n",
                 granter->Name(), this_object()->Name(), level));
         }

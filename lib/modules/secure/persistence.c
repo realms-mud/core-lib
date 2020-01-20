@@ -135,7 +135,7 @@ public nomask void restore(string name)
             this_object()->Name(name);
             this_object()->notifySynchronous("onRestoreFailed");
         }
-        set_living_name(name);
+        addUser(this_object());
     }
     else
     {

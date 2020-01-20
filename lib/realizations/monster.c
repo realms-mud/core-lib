@@ -39,6 +39,17 @@ public nomask int effectiveExperience()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public varargs string Name(string newName)
+{
+    string ret = "materialAttributes"::Name(newName);
+    if (newName && (ret == newName))
+    {
+        addLiving(this_object());
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -46,7 +57,7 @@ public void reset(int arg)
         Setup();
         if (this_object()->Name() && (this_object()->Name() != ""))
         {
-            set_living_name(this_object()->Name());
+            addLiving(this_object());
         }
         "living"::reset(arg);
     }

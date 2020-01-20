@@ -32,7 +32,7 @@ public nomask int execute(string command, object initiator)
         }
         else
         {
-            target = find_living(targetString);
+            target = findLiving(targetString);
         }
 
         object destination = 0;

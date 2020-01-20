@@ -79,7 +79,8 @@ static nomask mapping sendInventory()
         "inventory": ([]) 
     ]);
 
-    object *registeredObjects = m_values(itemRegistry["guild objects"]);
+    object *registeredObjects = m_values(itemRegistry["guild objects"]) - 
+        ({ 0 });
     if (sizeof(registeredObjects))
     {
         foreach(object registeredObject in registeredObjects)

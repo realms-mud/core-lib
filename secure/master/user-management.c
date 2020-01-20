@@ -32,8 +32,8 @@ status suicide(string victim, object me) {
     mixed ipAddr = query_ip_number(me);
 #endif
 
- "secure/simul_efun"->log_file("SUICIDE",to_string(ipAddr)+" suicided on "+
-     ctime(time())+". Name of "+victim+"\n");
+ //"secure/simul_efun"->log_file("SUICIDE",to_string(ipAddr)+" suicided on "+
+ //    ctime(time())+". Name of "+victim+"\n");
   command("quit",me);
   return(1);
 }

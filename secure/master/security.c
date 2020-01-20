@@ -9,11 +9,19 @@ private object priviledgedObjects =
 private mapping accessCache = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
-private int isPriviledgedObject(object caller)
+private int isPriviledgedObject(mixed caller)
 {
     int ret = 0;
 
-    string name = object_name(caller);
+    string name = 0;
+    if (objectp(caller))
+    {
+        name = object_name(caller);
+    }
+    else if (stringp(caller))
+    {
+        name = caller;
+    }
 
     if (sizeof(regexp(({ name }), "^(lib/modules/secure|secure)")))
     {
@@ -189,8 +197,7 @@ public nomask string valid_read(string path, string uid, string method,
 public nomask int privilege_violation(string what, mixed who, mixed where, 
     mixed argument)
 {
-    object caller = objectp(who) ? who : load_object(who);
-    int ret = (objectp(caller) && isPriviledgedObject(caller)) ? 1 : -1;
+    int ret = isPriviledgedObject(who) ? 1 : -1;
 
     switch(what) 
     {
