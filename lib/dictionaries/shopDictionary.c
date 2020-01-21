@@ -435,7 +435,7 @@ public nomask void generateInventory(object shop)
 {
     if (shop->shopSellsConsumables())
     {
-        generateConsumableItems(shop);
+        generateConsumableItems(shop, 0);
     }
     else
     {

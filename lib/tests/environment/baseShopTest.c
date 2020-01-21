@@ -234,13 +234,13 @@ void CanUpdateNonEquipmentShops()
     Shop->shopType("potions");
 
     ExpectEq(0, sizeof(Shop->storeInventory()));
+    ExpectTrue(Shop->shopSellsConsumables());
     load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Shop);
 
     string currentInventory = sprintf("%O\n", Shop->storeInventory());
-    int shopSize = sizeof(Shop->storeInventory());
-    ExpectTrue(2 < shopSize);
+    ExpectTrue(2 < sizeof(Shop->storeInventory()), "initial size");
 
     Shop->updateShopInventory();
-    ExpectTrue(shopSize <= sizeof(Shop->storeInventory()));
+    ExpectTrue(2 <= sizeof(Shop->storeInventory()), "update called");
     ExpectNotEq(currentInventory, sprintf("%O\n", Shop->storeInventory()));
 }
