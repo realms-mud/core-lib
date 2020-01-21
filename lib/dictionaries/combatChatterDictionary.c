@@ -20,12 +20,6 @@ private nomask int isValidLiving(object livingCheck)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string formatText(string text, int colorInfo, object viewer)
-{
-    return color(viewer->query("term"), viewer, colorInfo, format(text, 78));
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask string parseTemplate(string template, string perspective,
                                     object initiator, object target)
 {
@@ -86,7 +80,6 @@ private nomask varargs void displayMessage(string message, object initiator,
             if (person && objectp(person))
             {
                 string parsedMessage;
-                int colorInfo = 8;
                 if (person == initiator)
                 {
                     parsedMessage = parseTemplate(message, "initiator", initiator,
@@ -102,8 +95,12 @@ private nomask varargs void displayMessage(string message, object initiator,
                     parsedMessage = parseTemplate(message, "other",
                         initiator, target);
                 }
-                tell_object(person, formatText(parsedMessage, colorInfo,
-                    person));
+
+                object configuration = getDictionary("configuration");
+
+                tell_object(person, configuration->decorate(
+                    format(parsedMessage, 78), "message", "say",
+                    person->colorConfiguration()));
             }
         }
     }

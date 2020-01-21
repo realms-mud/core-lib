@@ -6,7 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////
 public nomask string RealmsDatabase()
 {
-    return "RealmsQA";
+    return "RealmsLib";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,8 +26,10 @@ public nomask int canAccessDatabase(object previous)
         {
             programsWithPermission += ({ program_name(restoreCaller) });
         }
+        programsWithPermission += 
+            ({ "lib/tests/support/services/mockPlayer.c" });
     }
-
+    
     return member(programsWithPermission, program_name(previous)) > -1;
 }
 

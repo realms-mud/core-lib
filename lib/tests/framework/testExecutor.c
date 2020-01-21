@@ -34,7 +34,7 @@ private int Failure;
 /////////////////////////////////////////////////////////////////////////////
 void delayedExecute(string fileToTest)
 {
-    int cur = (int)call_other(fileToTest, "executeTests");
+    int cur = call_other(fileToTest, "executeTests");
     Failure ||= cur;
     if (Failure)
     {

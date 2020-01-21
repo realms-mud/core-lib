@@ -325,7 +325,7 @@ void ItemDetailsShowLongPlusValue()
         "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m7\x1b[0m\n"
         "\x1b[0;33m\tBonus armor class: 5\n"
         "\x1b[0m\x1b[0;36m\tWeight: \x1b[0m\x1b[0;33m7\x1b[0m\n\n"
-        "\x1b[0;32mYou can sell this item for 42.\n\x1b[0m\x1b[0m",
+        "\x1b[0;32mYou can sell this item for 42.\n\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
 

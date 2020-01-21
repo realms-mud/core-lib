@@ -11,7 +11,7 @@ public string *customGroups(object user)
     if (member(inherit_list(this_object()),
         "secure/simulated-efuns/testing.c") > -1)
     {
-        object restoreCaller = call_direct(this_object(), "testingGroups");
+        ret = call_direct(this_object(), "testingGroups");
     }
 
     return ret;

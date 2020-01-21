@@ -44,7 +44,7 @@ private nomask string formatColoredString(string data, int length)
 {
     string ret = "";
     string *splitString = 
-        regexplode(data, "\x1b[[0-9;]+m");
+        regexplode(data, "(\x1b[[0-9;]+m|\n)");
 
     string partialLine = "";
     int lengthOfPartialLine = 0;
@@ -52,7 +52,14 @@ private nomask string formatColoredString(string data, int length)
 
     foreach(string item in splitString)
     {
-        if (sizeof(regexp(({ item }), "\x1b[[0-9;]+m")))
+        if (item == "\n")
+        {
+            ret += partialLine + item;
+            partialLine = "";
+            lengthOfPartialLine = 0;
+            sizeOfUnprintableCharacters = 0;
+        }
+        else if (sizeof(regexp(({ item }), "\x1b[[0-9;]+m")))
         {
             partialLine += item;
             sizeOfUnprintableCharacters += sizeof(item);
@@ -114,16 +121,22 @@ public nomask varargs string format(string data, int length)
         data = to_string(data);
     }
 
-    return (sizeof(regexp(({ data }), "\x1b[[0-9;]+m"))) ?
+    ret = (sizeof(regexp(({ data }), "\x1b[[0-9;]+m"))) ?
         formatColoredString(data, length) :
-        (regreplace(sprintf("%=-*s", length, data), " *$", "", 1) + "\n");
+        (regreplace(sprintf("%=-*s", length, data), " *$", "", 1));
+
+    if (ret[sizeof(ret) - 1] != '\n')
+    {
+        ret += "\n";
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string regreplace(string inputString, string search,
     string replace, int flags)
 {
-    if (!stringp(inputString) || !stringp(search) || !stringp(replace))
+    if (!stringp(inputString) || !stringp(search))
     {
         raise_error(sprintf("*Bad arg to regreplace(%O, %O, %O, %O)\n",
             inputString, search, replace, flags));

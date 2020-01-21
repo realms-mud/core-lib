@@ -183,7 +183,7 @@ void DescribeDraconidDisplaysDraconidDescription()
         "\x1b[0m\x1b[0;32m\tBonus Magical essence skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;32m\tBonus Spellcraft skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;34;1m\tA special research tree only available to this race is unlocked.\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -195,7 +195,7 @@ void DescribeDwarfDisplaysDwarfDescription()
     ExpectEq("\x1b[0;36mThe dwarves are a short, stocky race of people. They generally "
         "live in hilly\nor mountainous areas, usually inside caves or "
         "similar dwellings. Dwarven\ncraftsmanship is world renowned "
-        "for it's durability and functionality. Dwarven\nstructures are "
+        "for it's durability and functionality.\nDwarven structures are "
         "built to last through war and the elements.\n\n"
         "The dwarf race incurs the following in-game bonuses/penalties:\n"
         "\x1b[0;32m\tStarting skill points: \x1b[0m\x1b[0;34;1m8\x1b[0m\n"
@@ -212,7 +212,7 @@ void DescribeDwarfDisplaysDwarfDescription()
         "\x1b[0m\x1b[0;32m\tBonus Common skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;32m\tBonus Dwarven skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\x1b[0;32m\tBonus Hammer skill \x1b[0m\x1b[0;34;1m+3\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -222,14 +222,14 @@ void DescribeElfDisplaysElfDescription()
     Selector->initiateSelector(User);
     Selector->applySelection("describe 3");
     ExpectEq("\x1b[0;36mIn appearance, elves typically have grey or blue eyes and blond "
-        "hair. They are\nfair to look upon and typically stand taller than "
-        "humans. In all ways, their\nbearing is majestic and sight of them "
-        "demands attention. Elves, while they can\nbe slain in battle or by "
-        "mishap, do not age in the way that most races do - in\nfact, some "
-        "consider them 'immortal'. The elves also tend to be aloof and\n"
-        "somewhat detached from the outside world, seemingly only interested "
-        "in their\nown lives. Elves also favor nature and natural beauty, "
-        "their buildings and art\nreflect this.\n\n"
+        "hair. They\nare fair to look upon and typically stand taller than "
+        "humans. In all ways,\ntheir bearing is majestic and sight of them "
+        "demands attention. Elves, while\nthey can be slain in battle or by "
+        "mishap, do not age in the way that most\nraces do - in fact, some "
+        "consider them 'immortal'. The elves also tend to be\naloof and "
+        "somewhat detached from the outside world, seemingly only interested\n"
+        "in their own lives. Elves also favor nature and natural beauty, "
+        "their\nbuildings and art reflect this.\n\n"
         "The elf race incurs the following in-game bonuses/penalties:\n"
         "\x1b[0;32m\tStarting skill points: \x1b[0m\x1b[0;34;1m10\x1b[0m\n"
         "\x1b[0;32m\tBonus to trait selection: \x1b[0m\x1b[0;34;1m4\x1b[0m\n"
@@ -243,7 +243,7 @@ void DescribeElfDisplaysElfDescription()
         "\x1b[0m\x1b[0;32m\tSpell points \x1b[0m\x1b[0;34;1m+25\n"
         "\x1b[0m\x1b[0;32m\tBonus Common skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;32m\tBonus Elven skill \x1b[0m\x1b[0;34;1m+8\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -255,8 +255,8 @@ void DescribeFaerieDisplaysFaerieDescription()
     Selector->applySelection("describe 4");
     ExpectEq("\x1b[0;36mThe faeries are a magical race of winged humanoids. They are "
         "smaller than\nhumans, and are generally friendly to all. The "
-        "faeries enjoy conversation, and\nenjoy companionship. They "
-        "tend to have their own personal agendas, that they\nkeep to "
+        "faeries enjoy conversation,\nand enjoy companionship. They "
+        "tend to have their own personal agendas, that\nthey keep to "
         "themselves, faeries like secrets. The faeries tend to reside "
         "in\nforests or prairies, though they hide their existence well.\n\n"
         "The faerie race incurs the following in-game bonuses/penalties:\n"
@@ -275,7 +275,7 @@ void DescribeFaerieDisplaysFaerieDescription()
         "\x1b[0m\x1b[0;32m\tBonus Elven skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\x1b[0;32m\tBonus Magical essence skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;32m\tBonus Spellcraft skill \x1b[0m\x1b[0;34;1m+5\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -302,7 +302,7 @@ void DescribeGnomeDisplaysGnomeDescription()
         "\x1b[0m\x1b[0;32m\tBonus Common skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\x1b[0;32m\tBonus Engineering skill \x1b[0m\x1b[0;34;1m+2\n"
         "\x1b[0m\x1b[0;32m\tBonus Spellcraft skill \x1b[0m\x1b[0;34;1m+3\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -321,7 +321,7 @@ void DescribeHalfElfDisplaysHalfElfDescription()
         "\x1b[0m\x1b[0;32m\tBonus Common skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\x1b[0;32m\tBonus Elven skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\x1b[0;32m\tBonus Spellcraft skill \x1b[0m\x1b[0;34;1m+3\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -345,7 +345,7 @@ void DescribeHalfOrcDisplaysHalfOrcDescription()
         "\x1b[0m\x1b[0;32m\tSpell points \x1b[0m\x1b[0;31m-50\n"
         "\x1b[0m\x1b[0;32m\tStamina points \x1b[0m\x1b[0;34;1m+50\n"
         "\x1b[0m\x1b[0;32m\tBonus Orcish skill \x1b[0m\x1b[0;34;1m+8\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -355,7 +355,7 @@ void DescribeHalfTrollDisplaysHalfTrollDescription()
     Selector->initiateSelector(User);
     Selector->applySelection("describe 8");
     ExpectEq("\x1b[0;36mHalf-trolls are people that have both human and troll parents. "
-        "Half trolls are\noften seen by other trolls in much the same light as "
+        "Half trolls\nare often seen by other trolls in much the same light as "
         "pure-blood trolls -\ntrolls simply don't seem to care if half-trolls "
         "have a human parent.\nHalf-trolls generally live with trolls, which "
         "is wherever they feel like\nliving.\n\n"
@@ -376,7 +376,7 @@ void DescribeHalfTrollDisplaysHalfTrollDescription()
         "\x1b[0m\x1b[0;32m\tSpell points \x1b[0m\x1b[0;31m-100\n"
         "\x1b[0m\x1b[0;32m\tStamina points \x1b[0m\x1b[0;34;1m+25\n"
         "\x1b[0m\x1b[0;32m\tBonus Orcish skill \x1b[0m\x1b[0;34;1m+8\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -402,7 +402,7 @@ void DescribeHalflingDisplaysHalflingDescription()
         "\x1b[0m\x1b[0;32m\tBonus Common skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;32m\tBonus Hide skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\x1b[0;32m\tBonus Move silently skill \x1b[0m\x1b[0;34;1m+3\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -415,11 +415,11 @@ void DescribeHighElfDisplaysHighElfDescription()
         "and in\nthe learning of knowledge, few surpass the high elves. Indeed, "
         "written\nlanguage was first used by them. Industrious, no other race did "
         "more to\nbeautify the lands of the world. So honored were they that the once "
-        "lived with\nthe very gods of the world. Little is here recorded of their deeds "
-        "in those\ntimes save that many high elves left the blessed lands on the heels "
-        "of a great\nenemy and that a darkness, both of deeds and of the soul, enshrouds "
-        "them. In\nappearance, high elves typically have grey or blue eyes and black hair. "
-        "They\nare fair to look upon and stand nigh on 7 feet tall. In all ways, their\n"
+        "lived\nwith the very gods of the world. Little is here recorded of their deeds "
+        "in\nthose times save that many high elves left the blessed lands on the heels "
+        "of\na great enemy and that a darkness, both of deeds and of the soul, enshrouds\n"
+        "them. In appearance, high elves typically have grey or blue eyes and black\nhair. "
+        "They are fair to look upon and stand nigh on 7 feet tall. In all ways,\ntheir "
         "bearing is majestic and sight of them demands attention.\n\n"
         "The high elf race incurs the following in-game bonuses/penalties:\n"
         "\x1b[0;32m\tStarting skill points: \x1b[0m\x1b[0;34;1m6\x1b[0m\n"
@@ -441,7 +441,7 @@ void DescribeHighElfDisplaysHighElfDescription()
         "\x1b[0m\x1b[0;32m\tBonus Spellcraft skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;32m\tBonus Weapon smithing skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\x1b[0;34;1m\tA special research tree only available to this race is unlocked.\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -460,7 +460,7 @@ void DescribeHumanDisplaysHumanDescription()
         "\x1b[0;32m\tStarting skill points: \x1b[0m\x1b[0;34;1m14\x1b[0m\n"
         "\x1b[0;32m\tBonus to trait selection: \x1b[0m\x1b[0;34;1m6\x1b[0m\n"
         "\x1b[0;32m\tBonus Common skill \x1b[0m\x1b[0;34;1m+5\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -474,10 +474,10 @@ void DescribeMaegenstrydDisplaysMaegenstrydDescription()
         "the high king\nof the elves and Eadwyn, a goddess of hope and the mistress "
         "of desires - fell\nin love with Maerwena, the daughter of the human king of "
         "Tirnen. While the\nensuing millenia have diluted their blood as they mate "
-        "most often with humans,\nthe touch of the gods and the elves is ever-present. "
-        "In appearance, they\ntypically have grey or blue eyes and black hair, much "
-        "like their elven and\nhuman forbears did. They are typically taller than "
-        "humans - few, indeed are\nless than six feet tall. About three thousand years "
+        "most often with\nhumans, the touch of the gods and the elves is ever-present. "
+        "In appearance,\nthey typically have grey or blue eyes and black hair, much "
+        "like their elven\nand human forbears did. They are typically taller than "
+        "humans - few, indeed\nare less than six feet tall. About three thousand years "
         "ago after a great war\nshattered their realms to the far west, the remnants of "
         "their 'race'\nestablished the Kingdom of Eledhel and most of that land's "
         "nobility are of\nthis race.\n\n"
@@ -501,7 +501,7 @@ void DescribeMaegenstrydDisplaysMaegenstrydDescription()
         "\x1b[0m\x1b[0;32m\tBonus Perception skill \x1b[0m\x1b[0;34;1m+1\n"
         "\x1b[0m\x1b[0;32m\tBonus Spellcraft skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\x1b[0;34;1m\tA special research tree only available to this race is unlocked.\n"
-        "\x1b[0m\x1b[0m",
+        "\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 

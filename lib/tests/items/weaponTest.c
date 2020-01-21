@@ -384,7 +384,7 @@ void SetComponentCorrectlySetsComponents()
         "protecting the user's hand. The hilt is a hilt of gold covered with a slightly\n"
         "ovular grip made out of koa and wrapped in spiraled gold wire. The pommel is\n"
         "an exquisite steel pommel that has been intricately sculpted to resemble a\n"
-        "dragon's talon. Clutched in its grip is a beautifully cut garnet. \n"
+        "dragon's talon. Clutched in its grip is a beautifully cut garnet.\n"
         "This long sword is typical for its type.\n"
         "\tMaterial: Iron\n"
         "\tAttack: 5 to 105\n"

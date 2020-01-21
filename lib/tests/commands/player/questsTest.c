@@ -120,7 +120,7 @@ void DescriptionOfQuestChangesWithStateAdvancement()
 
     ExpectEq("\x1b[0;36mQuest - \x1b[0m\x1b[0;37;1mDetails:\n"
         "\x1b[0;33mName:  \x1b[0m\x1b[0;33;1mHail to the king, baby!\x1b[0m\n"
-        "\x1b[0;36m\x1b[0;36mI've been asked to meet the king!\n\x1b[0m\x1b[0m\n\x1b[0m\n"
+        "\x1b[0;36m\x1b[0;36mI've been asked to meet the king!\x1b[0m\n\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
@@ -134,9 +134,9 @@ void DescriptionOfQuestChangesWithStateAdvancement()
     command("1", Player);
     ExpectEq("\x1b[0;36mQuest - \x1b[0m\x1b[0;37;1mDetails:\n"
         "\x1b[0;33mName:  \x1b[0m\x1b[0;33;1mHail to the king, baby!\x1b[0m\n"
-        "\x1b[0;36m\x1b[0;36mI've been asked to meet the king! I met King Tantor the Unclean of\n"
-        "Thisplace. He seems to like me. The king asked me - ME - to be his personal\n"
-        "manservant. Yay me!\n\x1b[0m\x1b[0m\n\x1b[0m\n"
+        "\x1b[0;36m\x1b[0;36mI've been asked to meet the king! I met King Tantor the Unclean of "
+        "Thisplace.\nHe seems to like me. The king asked me - ME - to be his personal "
+        "manservant.\nYay me!\x1b[0m\n\x1b[0m\n\x1b[0m\n"
         "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"

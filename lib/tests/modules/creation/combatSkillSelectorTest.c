@@ -147,7 +147,7 @@ void DescribeAxeDisplaysDescription()
         "axes, hand axes, crescent axes, war axes, and other weapons of that "
         "nature -\nweapons that can be wielded with one or two hands.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -159,7 +159,7 @@ void DescribeBlindFightingDisplaysDescription()
 
     ExpectEq("\x1b[0;36mThis skill provides proficiency in attacking and defending when you cannot\nsee.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mWisdom\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -172,7 +172,7 @@ void DescribeBowDisplaysDescription()
     ExpectEq("\x1b[0;36mThis skill provides proficiency in all arm-drawn bows. This includes short\n"
         "bows, long bows, composite bows, recurves, and compound bows.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mDexterity\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -186,7 +186,7 @@ void DescribeChainmailDisplaysDescription()
         "chain\nmail and any other armor fashioned of interlocking or interwoven rings of\n"
         "material. This allows for good mobility in a fairly heavy/strong armor.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -199,7 +199,7 @@ void DescribeCrossbowDisplaysDescription()
     ExpectEq("\x1b[0;36mThis skill provides proficiency in all mechanically drawn/held bows. This\n"
         "includes all crossbows, ballista, etc.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mDexterity\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -210,10 +210,10 @@ void DescribeDaggerDisplaysDescription()
     Selector->applySelection("describe 6");
 
     ExpectEq("\x1b[0;36mThis skill provides proficiency in the use of bladed weapons that are\n"
-        "typically less than 18\" long. This includes daggers, knives, dirks, stilletos,\n"
+        "typically less than 18\" long. This includes daggers, knives, dirks,\nstilletos, "
         "and other weapons of this nature.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mDexterity\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -236,7 +236,7 @@ void DescribeDualWieldDisplaysDescription()
 
     ExpectEq("\x1b[0;36mThis skill provides proficiency in attacking with an offhand weapon.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mDexterity\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -250,7 +250,7 @@ void DescribeFlailDisplaysDescription()
         "style\nweapons. This includes weapons such as flails, whips, chains, and other "
         "such\nweapons.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -264,7 +264,7 @@ void DescribeHammerDisplaysDescription()
         "hammers including war hammers, mauls, luscerne hammers, and other weapons of\n"
         "that nature.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -275,11 +275,11 @@ void DescribeHandHalfSwordDisplaysDescription()
     Selector->applySelection("describe 11");
 
     ExpectEq("\x1b[0;36mThis skill provides proficiency in the use of larger swords (upper end "
-        "of long\nswords and larger) that could be wielded with either one or two hands. "
-        "Using\ntwo hands with a weapon of this type provides a bonus on attack and damage\n"
+        "of\nlong swords and larger) that could be wielded with either one or two hands.\n"
+        "Using two hands with a weapon of this type provides a bonus on attack and\ndamage "
         "attempts. Swords of this type include bastard swords and claymores.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -294,7 +294,7 @@ void DescribeHardLeatherDisplaysDescription()
         "leather,\nbut at the sacrifice of mobility. Often times, studs are sewn into the "
         "armor\nto provide extra protection against weapons.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -305,11 +305,11 @@ void DescribeLongSwordDisplaysDescription()
     Selector->applySelection("describe 13");
 
     ExpectEq("\x1b[0;36mThis skill provides proficiency in the use of most swords ranging from\n"
-        "two-and-a-half foot long swords to about four-and-a-half foot long swords with\n"
-        "respect to an average 5'6\" human. This includes (but is not limited to) long\n"
-        "swords, scimitars, cutlasses, rapiers, katanas, broadswords, and sabres.\n"
+        "two-and-a-half foot long swords to about four-and-a-half foot long swords\nwith "
+        "respect to an average 5'6\" human. This includes (but is not limited to)\nlong "
+        "swords, scimitars, cutlasses, rapiers, katanas, broadswords, and sabres.\n\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -323,7 +323,7 @@ void DescribeMaceDisplaysDescription()
         "less entirely of a single material. This includes maces, clubs, and morning\n"
         "stars.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -336,7 +336,7 @@ void DescribeNoArmorDisplaysDescription()
     ExpectEq("\x1b[0;36mArmors that fall in this category are padded armors made of cloth, robes, "
         "and\nevery day clothing.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mDexterity\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -361,7 +361,7 @@ void DescribePlateArmorDisplaysDescription()
         "plates of\nmaterial, typically, but not exclusively, of metal. Armors of this "
         "family\ninclude full plate, field plate, plate mail, and breastplates.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -375,7 +375,7 @@ void DescribePoleArmDisplaysDescription()
         "a\nmetal head attached to a long pole. This includes halberds, spears, pikes,\n"
         "glaives, bardiches, pole axes, bills, etc.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -391,7 +391,7 @@ void DescribeScalemailDisplaysDescription()
         "scales.) Armors of this nature typically afford decent protection at the cost\n"
         "of mobility.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -402,12 +402,12 @@ void DescribeShieldDisplaysDescription()
     Selector->applySelection("describe 20");
 
     ExpectEq("\x1b[0;36mThis skill provides proficiency in the use of shields as both an "
-        "offensive and\ndefensive weapon, though the use of shields much larger than a "
-        "kite shield\nhave very limited usefulness offensively. This skill encompasses "
-        "shields with\nattached blades and spikes as well as those without any overt "
-        "signs of\noffensive capabilities.\n"
+        "offensive\nand defensive weapon, though the use of shields much larger than a "
+        "kite\nshield have very limited usefulness offensively. This skill encompasses\n"
+        "shields with attached blades and spikes as well as those without any overt\n"
+        "signs of offensive capabilities.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -417,11 +417,11 @@ void DescribeShortSwordDisplaysDescription()
     Selector->initiateSelector(User);
     Selector->applySelection("describe 21");
 
-    ExpectEq("\x1b[0;36mThis skill provides proficiency in the use of short swords -- swords "
-        "typically\nranging from two-and-a-half feet and under for a typical human (5'6\"). "
-        "This\nwould include short swords, any form of gladus, machettes, etc.\n"
+    ExpectEq("\x1b[0;36mThis skill provides proficiency in the use of short swords -- swords\n"
+        "typically ranging from two-and-a-half feet and under for a typical human\n(5'6\"). "
+        "This would include short swords, any form of gladus, machettes, etc.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mDexterity\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -434,7 +434,7 @@ void DescribeSlingDisplaysDescription()
     ExpectEq("\x1b[0;36mThis skill provides proficiency in all sling and slinglike weapons (such "
         "as\nslingshots and staff slings).\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mDexterity\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -448,7 +448,7 @@ void DescribeSoftLeatherDisplaysDescription()
         "armors. The armor offers a great deal of mobility but offers only modest\n"
         "protection from harm.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mDexterity\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -462,7 +462,7 @@ void DescribeSplintArmorDisplaysDescription()
         "are\ntypically fashioned out of long bands - or splints - of metal attached to a\n"
         "substrate of leather, cloth, or chain.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -475,7 +475,7 @@ void DescribeStaffDisplaysDescription()
     ExpectEq("\x1b[0;36mThis skill provides proficiency in the use of all staves and other "
         "'blunt'\npole arms such as a quarterstaff.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -486,10 +486,10 @@ void DescribeThrownDisplaysDescription()
     Selector->applySelection("describe 26");
 
     ExpectEq("\x1b[0;36mThis skill provides proficiency in all thrown weapons. This includes rocks,\n"
-        "bolos, hand axes, swords, daggers, hammers, javelins, as well as those weapons\n"
+        "bolos, hand axes, swords, daggers, hammers, javelins, as well as those\nweapons "
         "thrown with the aid of some other device such as a spear thrower.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -499,13 +499,13 @@ void DescribeTwoHandSwordDisplaysDescription()
     Selector->initiateSelector(User);
     Selector->applySelection("describe 27");
 
-    ExpectEq("\x1b[0;36mThis skill provides proficiency in the use of large (roughly the length of "
-        "the\nwielder's body) swords such as great swords or those swords known as\n"
+    ExpectEq("\x1b[0;36mThis skill provides proficiency in the use of large (roughly the length of\n"
+        "the wielder's body) swords such as great swords or those swords known as\n"
         "'two-handed swords' They are weapons that could only be wielded by its user\n"
         "one-handed with great difficulty. If this isn't the case, the sword in\nquestion "
         "is likely a hand & a half sword.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
@@ -518,6 +518,6 @@ void DescribeUnarmedDisplaysDescription()
     ExpectEq("\x1b[0;36mThis skill provides proficiency in unarmed combat. This includes punching\n"
         "wrestling, kicking, and other tactics of this nature.\n"
         "\x1b[0;32m\tAffecting attribute: \x1b[0m\x1b[0;34;1mStrength\x1b[0m\n"
-        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\x1b[0m",
+        "\x1b[0;31;1m\tAttempting to use this skill untrained will incur a penalty.\n\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }

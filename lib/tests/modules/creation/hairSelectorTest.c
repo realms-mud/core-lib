@@ -207,7 +207,7 @@ void GoldenDescriptionIsCorrect()
     User->Race("human");
     Selector->initiateSelector(User);
     Selector->applySelection("describe 16");
-    ExpectSubStringMatch("Your hair is yellow-orange with very vibrant sheen and reddish\nhighlights", User->caughtMessage());
+    ExpectSubStringMatch("Your hair is yellow-orange with very vibrant sheen and reddish highlights", User->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////

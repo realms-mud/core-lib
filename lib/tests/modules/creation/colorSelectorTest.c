@@ -61,7 +61,7 @@ void ThreeBitDescriptionIsCorrect()
     ExpectEq("\x1b[0;36mThis option sends the user's client text "
         "with basic ASNI color support for\neight colors. Early "
         "clients often only supported these colors. \x1b[0;32mIf "
-        "your\nclient supports this, you should see this message "
+        "your client\nsupports this, you should see this message "
         "in green.\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
@@ -72,9 +72,9 @@ void EightBitDescriptionIsCorrect()
     Selector->initiateSelector(User);
     Selector->applySelection("describe 3");
     ExpectEq("\x1b[0;36mThis option sends the user's client text "
-        "with basic ASNI color support for 256\ncolors. Many "
+        "with basic ASNI color support for\n256 colors. Many "
         "modern clients support these colors. \x1b[0;38;5;30mIf "
-        "your client\nsupports this, you should see this message "
+        "your client supports\nthis, you should see this message "
         "in turquoise.\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
@@ -88,7 +88,7 @@ void TwentyFourBitDescriptionIsCorrect()
         "with basic ASNI color support for\n16,777,216 colors. Some "
         "modern clients support these colors, but many do not.\n"
         "\x1b[0;38;2;0;95;135mIf your client supports this, you "
-        "should see this message in\nblue-green.\x1b[0m\n\x1b[0m",
+        "should see this message in blue-green.\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 
