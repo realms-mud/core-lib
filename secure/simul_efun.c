@@ -32,13 +32,6 @@ public nomask object find_object(string objectName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-int shouldAutoLoadCoreLib()
-{
-    return (member(inherit_list(this_object()),
-        "secure/simulated-efuns/testing.c") > -1) ? 0 : 1;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask void shutdown()
 {
     map(efun::db_handles(), #'db_close); // closes all other orphaned db handles
@@ -98,3 +91,9 @@ public nomask void disable_commands()
 }
 
 #endif
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int preventShadows()
+{
+    return 1;
+}

@@ -24,6 +24,8 @@ drop function if exists saveEnvironmentalElement;
 ##
 drop function if exists saveEnvironmentalObject;
 ##
+drop function if exists authenticateUser;
+##
 drop procedure if exists saveEnvironmentExit;
 ##
 drop procedure if exists saveRegionMapDecorators;
@@ -98,7 +100,11 @@ drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
 ##
-drop table if exists environmentDescriptions;
+drop table if exists temporaryBans;
+##
+drop table if exists IPAddresses;
+##
+drop table if exists users;
 ##
 drop table if exists environmentShops;
 ##
@@ -188,6 +194,36 @@ drop table if exists environment;
 ##
 drop table if exists issues;
 ##
+CREATE TABLE `temporaryBans` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `IPAddress` varchar(15) NOT NULL,
+  `BannedUntil` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(40) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `isDisabled` tinyint(1) NOT NULL DEFAULT '0',
+  `lastIPAddress` varchar(15) NOT NULL,
+  `LastLogin` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE TABLE `IPAddresses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `IPAddress` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  CONSTRAINT `IPAddresses_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) 
+  ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
 CREATE TABLE `issues` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` smallint NOT NULL DEFAULT '0',
@@ -232,9 +268,12 @@ CREATE TABLE `players` (
   `researchPoints` smallint NOT NULL DEFAULT '0',
   `unassignedExperience` bigint DEFAULT NULL,
   `playerMoney` bigint DEFAULT NULL,
+  `userId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  CONSTRAINT `players_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) 
+  ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE TABLE `biological` (
@@ -1913,5 +1952,46 @@ BEGIN
         where environmentId = p_environmentId and path = p_path;
     end if;
 RETURN elementId;
+END;
+##
+CREATE FUNCTION `authenticateUser` (p_user varchar(40), p_password varchar(80))
+    returns varchar(40)
+BEGIN
+    declare ret varchar(20);
+    declare userId int;
+    declare hashedPassword varchar(20);
+    declare storedPassword varchar(20);
+
+    select id into userId from users
+    where login = p_user;
+
+    if userId is not null then
+        select password into storedPassword from users
+		where login = p_user;
+
+        select cast((select encrypt(p_password, storedPassword)) as char) into hashedPassword;
+        if hashedPassword = storedPassword then
+            set ret = 'authenticated';
+        else
+            set ret = 'failed';
+        end if;
+    else
+        set ret = 'no user';
+    end if;
+RETURN ret;
+END;
+##
+CREATE PROCEDURE `createUser`(p_user varchar(40), p_password varchar(80),
+    p_address varchar(15))
+BEGIN
+    declare userId int;
+
+    select id into userId from users
+    where login = p_user;
+    
+    if userId is null then
+        insert into users (login, password, lastIPAddress, LastLogin)
+        values (p_user, cast(encrypt(p_password) as char), p_address, now());
+    end if;    
 END;
 ##
