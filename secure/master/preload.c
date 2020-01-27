@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 protected string initFile = "room/init_file";
-protected int ShouldAutoLoadCoreLib = 0;
+protected int ShouldAutoLoadCoreLib = 1;
 
 static int currentTime;
 

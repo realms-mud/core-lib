@@ -74,7 +74,7 @@ void CCOfDirectoryWithoutRecurseFlagReturnsFalse()
 /////////////////////////////////////////////////////////////////////////////
 void CCOfDirectoryRecursivelyBuilds()
 {
-    ExpectEq(6, Wizard->executeCommand("cc -r /obj"));
+    ExpectEq(4, Wizard->executeCommand("cc -r /lib/modules/guilds"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

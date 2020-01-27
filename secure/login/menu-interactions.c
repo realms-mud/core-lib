@@ -5,10 +5,17 @@
 virtual inherit "/secure/login/core.c";
 
 /////////////////////////////////////////////////////////////////////////////
+static nomask void terminateWhoConnection()
+{
+    destruct(this_object());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void executeWhoCommand()
 {
-    object whoCommand = load_object("/lib/commands/players/who.c");
+    object whoCommand = load_object("/lib/commands/player/who.c");
     whoCommand->execute("who", this_object());
+    call_out("terminateWhoConnection", 0);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -29,6 +36,8 @@ private nomask void execCharacter(string characterName, string userName)
     if (objectp(player))
     {
         exec(player, this_object());
+        addUser(player);
+
         command("l", player);
     }
     else

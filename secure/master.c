@@ -2,12 +2,6 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#include "/obj/security.h"
-#include "master.h"
-#include "/secure/wizlist.h"
-#include "/sys/driver_hook.h"
-#include "/sys/interactive_info.h"
-
 virtual inherit "/secure/master/command-parser.c";
 virtual inherit "/secure/master/connect.c";
 virtual inherit "/secure/master/destruct.c";

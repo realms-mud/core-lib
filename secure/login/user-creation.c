@@ -38,6 +38,24 @@ protected nomask int isValidUserName(string userName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void execNewPlayer(string password, string userName)
+{
+    authenticationService->createUser(userName, password, ipAddress);
+
+    object loginModule = load_object("/lib/modules/secure/login.c");
+    object player = loginModule->getPlayerObject(userName);
+
+    if (objectp(player))
+    {
+        player->save();
+        exec(player, this_object());
+        addUser(player);
+
+        command("l", player);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 static nomask void confirmPassword(string confirmPassword, string password,
     string userName)
 {
@@ -52,7 +70,7 @@ static nomask void confirmPassword(string confirmPassword, string password,
     }
     else
     {
-        authenticationService->createUser(userName, password, ipAddress);
+        execNewPlayer(password, userName);
     }
 }
 

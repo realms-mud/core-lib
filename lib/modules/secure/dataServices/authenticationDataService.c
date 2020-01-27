@@ -9,7 +9,7 @@ public nomask string authenticateUser(string userName, string password)
 {
     string ret = "error";
     string query = sprintf("select authenticateUser('%s', '%s');",
-        userName, password);
+        sanitizeString(userName), sanitizeString(password));
 
     int dbHandle = connect();
     db_exec(dbHandle, query);
@@ -28,8 +28,8 @@ public nomask string authenticateUser(string userName, string password)
 public nomask int userExists(string userName)
 {
     int ret = 0;
-    string query = sprintf("select id from users where login = %s;",
-        userName);
+    string query = sprintf("select id from users where login = '%s';",
+        sanitizeString(userName));
 
     int dbHandle = connect();
     db_exec(dbHandle, query);
@@ -49,7 +49,9 @@ public nomask void createUser(string userName, string password,
     string address)
 {
     string query = sprintf("call createUser('%s', '%s', '%s');",
-        userName, password, address);
+        sanitizeString(userName), 
+        sanitizeString(password), 
+        sanitizeString(address));
 
     int dbHandle = connect();
     db_exec(dbHandle, query);

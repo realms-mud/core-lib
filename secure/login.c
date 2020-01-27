@@ -12,7 +12,7 @@ private int totalAuthFailures = 0;
 /////////////////////////////////////////////////////////////////////////////
 private nomask void displayBanner()
 {
-    string *bannerArt = get_dir("/art/*", 0x10) - ({ "/art/.", "/art/.." });
+    string *bannerArt = get_dir("/art/*", 0x10) - ({ "art/.", "art/.." });
 
     if (sizeof(bannerArt))
     {
@@ -139,6 +139,7 @@ public nomask int logon()
     int wizardCount = sizeof(wizards());
     int playerCount = sizeof(players());
 
+    ipAddress = query_ip_number(this_object());
     displayBanner();
 
     printf("There are %d wizards and %d mortals online.\n\n", wizardCount,

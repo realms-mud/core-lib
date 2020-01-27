@@ -30,6 +30,12 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanFormatEmptyLine()
+{
+    ExpectEq("", Strings->format("", 10));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanFormatASimpleLine()
 {
     ExpectEq("This is\nthe land\nloving\nmother\npigeon of\nall\nstrings.\n", 

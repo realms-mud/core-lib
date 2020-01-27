@@ -157,9 +157,11 @@ private nomask object *groupObjects()
     foreach(string group in groups())
     {
         string groupFile = sprintf(GroupObj, group);
-        if (file_size(groupFile) > 0)
+        object groupObject;
+        string error = catch (groupObject = load_object(groupFile));
+        if (!error)
         {
-            list += ({ load_object(groupFile) });
+            list += ({ groupObject });
         }
     }
     return list;

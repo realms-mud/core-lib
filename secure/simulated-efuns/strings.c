@@ -125,7 +125,7 @@ public nomask varargs string format(string data, int length)
         formatColoredString(data, length) :
         (regreplace(sprintf("%=-*s", length, data), " *$", "", 1));
 
-    if (ret[sizeof(ret) - 1] != '\n')
+    if ((sizeof(ret) > 0) && ret[sizeof(ret) - 1] != '\n')
     {
         ret += "\n";
     }

@@ -96,6 +96,8 @@ drop procedure if exists saveHolding;
 ##
 drop procedure if exists saveDomainBuilding;
 ##
+drop procedure if exists createUser;
+##
 drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
@@ -210,7 +212,7 @@ CREATE TABLE `users` (
   `lastIPAddress` varchar(15) NOT NULL,
   `LastLogin` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`),
+  UNIQUE KEY `name_UNIQUE` (`login`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
@@ -268,12 +270,10 @@ CREATE TABLE `players` (
   `researchPoints` smallint NOT NULL DEFAULT '0',
   `unassignedExperience` bigint DEFAULT NULL,
   `playerMoney` bigint DEFAULT NULL,
-  `userId` int(11) NOT NULL,
+  `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  CONSTRAINT `players_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) 
-  ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE TABLE `biological` (

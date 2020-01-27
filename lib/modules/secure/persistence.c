@@ -119,13 +119,23 @@ private nomask void setPlayerInfo(mapping playerData)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int validatePlayerData(mapping playerData)
+{
+    return (sizeof(playerData) > 1) &&
+        (playerData["strength"] > 0) &&
+        (playerData["race"] != "") &&
+        (sizeof(playerData["skills"]) > 1) &&
+        (sizeof(playerData["traits"]) > 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void restore(string name)
 {
     if (canAccessDatabase(previous_object()))
     {
         mapping playerData = DataAccess()->getPlayerData(name);
 
-        if (sizeof(playerData) > 1)
+        if (validatePlayerData(playerData))
         {
             setPlayerInfo(playerData);
             this_object()->notifySynchronous("onRestoreSucceeded");
@@ -135,7 +145,6 @@ public nomask void restore(string name)
             this_object()->Name(name);
             this_object()->notifySynchronous("onRestoreFailed");
         }
-        addUser(this_object());
     }
     else
     {

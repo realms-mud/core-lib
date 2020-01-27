@@ -4,7 +4,7 @@
 //*****************************************************************************
 #include "/sys/input_to.h"
 
-protected string ipAddress = query_ip_number(this_object());
+protected string ipAddress;
 
 protected object authenticationService = 
     load_object("/lib/modules/secure/dataServices/authenticationDataService.c");
