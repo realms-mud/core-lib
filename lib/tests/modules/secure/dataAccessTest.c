@@ -196,9 +196,9 @@ void Init()
 
     object dataAccess = 
         clone_object("/lib/modules/secure/dataServices/authenticationDataService.c");
-    dataAccess->createUser("maeglin", "maeglin", "127.0.0.1");
-    dataAccess->createUser("gorthaur", "gorthaur", "127.0.0.1");
-    dataAccess->createUser("earl", "earl", "127.0.0.1");
+    dataAccess->saveUser("maeglin", "maeglin", "127.0.0.1");
+    dataAccess->saveUser("gorthaur", "gorthaur", "127.0.0.1");
+    dataAccess->saveUser("earl", "earl", "127.0.0.1");
     destruct(dataAccess);
 
     dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
