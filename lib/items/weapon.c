@@ -126,8 +126,7 @@ public nomask varargs int set(string element, mixed data)
         {
             case "primary damage type":
             {
-                object attacks = 
-                    load_object("/lib/dictionaries/attacksDictionary.c");
+                object attacks = getDictionary("attacks");
                 if(attacks && member(attacks->validAttackTypes(),
                     data) > -1)
                 {

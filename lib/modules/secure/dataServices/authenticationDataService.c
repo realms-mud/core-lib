@@ -45,10 +45,56 @@ public nomask int userExists(string userName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void createUser(string userName, string password, 
+public nomask int characterExists(string name)
+{
+    int ret = 0;
+    string query = sprintf("select id from players where name = '%s';",
+        sanitizeString(name));
+
+    int dbHandle = connect();
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+
+    if (result && result[0])
+    {
+        ret = 1;
+    }
+    disconnect(dbHandle);
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getCharacters(string userName)
+{
+    string *ret = ({});
+    string query = sprintf("select name from players "
+        "inner join users on users.id = players.userId "
+        "where login = '%s';",
+        sanitizeString(userName));
+
+    int dbHandle = connect();
+    db_exec(dbHandle, query);
+    mixed result = 0;
+    do
+    {
+        result = db_fetch(dbHandle);
+
+        if (result && result[0])
+        {
+            ret += ({ result[0] });
+        }
+    } while (result);
+
+    disconnect(dbHandle);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void saveUser(string userName, string password, 
     string address)
 {
-    string query = sprintf("call createUser('%s', '%s', '%s');",
+    string query = sprintf("select saveUser('%s', '%s', '%s');",
         sanitizeString(userName), 
         sanitizeString(password), 
         sanitizeString(address));

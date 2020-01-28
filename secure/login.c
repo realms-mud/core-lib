@@ -55,13 +55,13 @@ static nomask void enterPassword(string password, string userName,
             case "authenticated":
             {
                 removeTimeout();
-                displayMenu(userName);
+                displayMenu(userName, password);
                 break;
             }
             case "failed":
             {
                 totalAuthFailures++;
-                printf("Authentication for user '%s' failed. Please "
+                printf("\nAuthentication for user '%s' failed. Please "
                     "try again.\n", userName);
                 write("Please enter your password: ");
                 input_to("enterPassword", INPUT_NOECHO | INPUT_IGNORE_BANG,

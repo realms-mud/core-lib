@@ -11,7 +11,7 @@ inherit "/lib/core/events.c";
 private object User = 0;
 private mapping Data = 0;
 private string ResearchTitle = 0;
-private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+private object configuration = getDictionary("configuration");
 private string colorConfiguration = "none";
 private object Parent = 0;
 

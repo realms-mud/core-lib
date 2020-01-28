@@ -33,7 +33,7 @@ public nomask void reset(int arg)
         NumColumns = 1;
         SuppressColon = 1;
         Type = "Buy Items";
-        Dictionary = load_object("/lib/dictionaries/shopDictionary.c");
+        Dictionary = getDictionary("shop");
 
         Data = ([]);
     }

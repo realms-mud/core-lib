@@ -5,7 +5,7 @@
 virtual inherit "/lib/environment/regions/core.c";
 #include "/lib/environment/regions/display-characters.h"
 
-private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+private object configuration = getDictionary("configuration");
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int hasExit(mapping location, string direction)

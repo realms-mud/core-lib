@@ -31,7 +31,7 @@ public nomask void reset(int arg)
         Description = "From this menu, you can view and sell your character's items";
         Type = "Sell Items";
 
-        Dictionary = load_object("/lib/dictionaries/shopDictionary.c");
+        Dictionary = getDictionary("shop");
         Data = ([]);
     }
 }

@@ -22,6 +22,8 @@ private nomask void movePlayerToStart(object player)
             "previous session is broken.\nYou have been moved to a different "
             "location.\n");
     }
+
+    say(sprintf("%s has arrived.\n", player->Name()));
 }
 
 /////////////////////////////////////////////////////////////////////////////

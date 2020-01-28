@@ -5,6 +5,7 @@
 virtual inherit "/lib/core/thing.c"; 
 
 private nosave object dataAccess;
+private string UserName = "";
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask object DataAccess()
@@ -19,7 +20,9 @@ private nomask object DataAccess()
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping getPlayerInfo()
 {
-    mapping ret = ([]);
+    mapping ret = ([
+        "userName": UserName
+    ]);
 
     string *services = ({ "materialAttributes", "attributes",
         "biological", "combat", "races", "guilds", "quests",
@@ -104,6 +107,8 @@ private nomask void setPlayerInfo(mapping playerData)
         "research", "skills", "traits", "inventory", "factions",
         "settings", "wizard", "domains"
     });
+
+    UserName = extractSaveData("userName", playerData);
 
     foreach(string service in services)
     {
@@ -265,4 +270,20 @@ public void savePlayerDomains(string player, mapping data)
 public mapping getPlayerDomains(string player)
 {
     return DataAccess()->getPlayerDomains(player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string UserName()
+{
+    return UserName;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setUserName(string name)
+{
+    if (sizeof(regexp(({ object_name(previous_object()) }), 
+        "secure/login")))
+    {
+        UserName = name;
+    }
 }

@@ -31,7 +31,7 @@ public nomask void reset(int arg)
         AllowUndo = 0;
         NumColumns = 2;
         Type = "Sell Items";
-        Dictionary = load_object("/lib/dictionaries/shopDictionary.c");
+        Dictionary = getDictionary("shop");
 
         Data = ([]);
     }

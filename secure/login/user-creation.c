@@ -6,47 +6,16 @@
 virtual inherit "/secure/login/core.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int containsInappropriateLanguage(string userName)
-{
-    return 0;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int isReservedName(string userName)
-{
-    return 0;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int hasNoInvalidCharacters(string userName)
-{
-    int ret = (userName == regreplace(userName, "([^A-Za-z'-])", "", 1));
-
-    if (!ret)
-    {
-        write("The only valid characters for a name are: a-z, ', and -\n");
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask int isValidUserName(string userName)
-{
-    return hasNoInvalidCharacters(userName) &&
-        !containsInappropriateLanguage(userName) &&
-        !isReservedName(userName);
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private nomask void execNewPlayer(string password, string userName)
 {
-    authenticationService->createUser(userName, password, ipAddress);
+    authenticationService->saveUser(userName, password, ipAddress);
 
     object loginModule = load_object("/lib/modules/secure/login.c");
     object player = loginModule->getPlayerObject(userName);
 
     if (objectp(player))
     {
+        player->setUserName(userName);
         player->save();
         exec(player, this_object());
         addUser(player);
@@ -66,7 +35,6 @@ static nomask void confirmPassword(string confirmPassword, string password,
         write("The entered passwords do not match. Please enter your password: ");
         input_to("setPassword", INPUT_NOECHO | INPUT_IGNORE_BANG,
             userName);
-        call_out("timeout", 90);
     }
     else
     {

@@ -144,7 +144,7 @@ public mixed query(string element)
         }
         case "crafting guilds":
         {
-            object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+            object guilds = getDictionary("guilds");
             if (guilds)
             {
                 ret = guilds->guildsInClass("smithing");

@@ -6,8 +6,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/items/equipment.c";
-
-private nosave string ItemTypesBlueprint = "/lib/dictionaries/materialsDictionary.c";
     
 /////////////////////////////////////////////////////////////////////////////
 public nomask mixed query(string element)

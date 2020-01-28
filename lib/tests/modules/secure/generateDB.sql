@@ -96,7 +96,7 @@ drop procedure if exists saveHolding;
 ##
 drop procedure if exists saveDomainBuilding;
 ##
-drop procedure if exists createUser;
+drop function if exists saveUser;
 ##
 drop function if exists saveBasicPlayerInformation;
 ##
@@ -867,10 +867,12 @@ CREATE VIEW `basicPlayerData` AS select `players`.`name` AS `name`,
                                         `players`.`researchPoints` AS `availableResearchPoints`,
                                         `players`.`unassignedExperience` AS `unassignedExperience`,
                                         `players`.`playerMoney` AS `playerMoney`,
-                                        `players`.`id` AS `playerId` 
-                               from ((`players` 
-                               join `biological` on((`players`.`id` = `biological`.`playerid`))) 
-                               join `playerCombatData` on((`players`.`id` = `playerCombatData`.`playerid`)));
+                                        `players`.`id` AS `playerId`,
+                                        `users`.`login` AS `userName`
+                               from `players` 
+                               left outer join `users` on `players`.`userId` = `users`.`id`
+                               inner join `biological` on `players`.`id` = `biological`.`playerid`
+                               inner join `playerCombatData` on `players`.`id` = `playerCombatData`.`playerid`;
 ##
 CREATE VIEW `researchChoicesView` AS select `researchChoices`.`playerId` AS `playerId`,
                                             `researchChoices`.`name` AS `Choice`,
@@ -936,12 +938,18 @@ CREATE FUNCTION `saveBasicPlayerInformation`(p_name varchar(40),
 p_race varchar(20), p_age int, p_gender int, p_ghost int, p_strength int,
 p_intelligence int, p_dexterity int, p_wisdom int, p_constitution int,
 p_charisma int, p_invisible int, p_attributes int, p_skill int,
-p_research int, p_unassigned int, p_location varchar(200), p_money int) RETURNS int(11)
+p_research int, p_unassigned int, p_location varchar(200), p_money int,
+p_userName varchar(40)) 
+RETURNS int(11)
 BEGIN
     declare pid int;
-    
+    declare localUserId int;
+
     select id into pid
     from players where name = p_name;
+
+    select id into localUserId
+    from users where login = p_userName;
     
     if pid is not null then
         update players set race = p_race,
@@ -961,16 +969,18 @@ BEGIN
                            unassignedExperience = p_unassigned,
                            location = p_location,
                            playerMoney = p_money,
-                           LastLogin = now()
+                           LastLogin = now(),
+                           userId = localUserId
         where id = pid;
     else
         insert into players (name, race, age, gender, ghost, strength,
         intelligence, dexterity, wisdom, constitution, charisma, invisible,
         attributePoints, skillPoints, researchPoints, unassignedExperience, 
-        whenCreated, LastLogin, location, playerMoney)
+        whenCreated, LastLogin, location, playerMoney, userId)
         values (p_name, p_race, p_age, p_gender, p_ghost, p_strength, 
         p_intelligence, p_dexterity, p_wisdom, p_constitution, p_charisma, 
-        p_invisible, p_attributes, p_skill, p_research, p_unassigned, now(), now(), p_location, p_money);
+        p_invisible, p_attributes, p_skill, p_research, p_unassigned, now(), now(), 
+        p_location, p_money, localUserId);
     
         select id into pid from players where name = p_name;
     end if;
@@ -1565,7 +1575,7 @@ BEGIN
         set isNemesis = 0, isBestKill = 0
         where playerid = lPlayerId;
         
-        -- Stupid MySQL can handle this as an embedded query???
+        -- Stupid MySQL can't handle this as an embedded query???
         select id into statId 
         from combatStatistics
         where playerId = lPlayerId
@@ -1983,8 +1993,9 @@ BEGIN
 RETURN ret;
 END;
 ##
-CREATE PROCEDURE `createUser`(p_user varchar(40), p_password varchar(80),
+CREATE FUNCTION `saveUser`(p_user varchar(40), p_password varchar(80),
     p_address varchar(15))
+    returns int
 BEGIN
     declare userId int;
 
@@ -1994,6 +2005,15 @@ BEGIN
     if userId is null then
         insert into users (login, password, lastIPAddress, LastLogin)
         values (p_user, cast(encrypt(p_password) as char), p_address, now());
-    end if;    
+
+        select id into userId from users
+        where login = p_user;
+    else
+        update users set password = cast(encrypt(p_password) as char),
+                         lastIPAddress = p_address,
+                         LastLogin = now()
+        where login = p_user;
+    end if; 
+RETURN userId;
 END;
 ##

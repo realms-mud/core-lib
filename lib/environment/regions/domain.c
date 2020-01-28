@@ -80,8 +80,7 @@ public nomask void loadDomain(object user, string domainName)
     MaxX = 25;
     MaxY = 10;
 
-    object domainDictionary =
-        load_object("/lib/dictionaries/domainDictionary.c");
+    object domainDictionary = getDictionary("domain");
 
     mapping domainInfo = domainDictionary->getPlayerDomain(
         user, domainName, user->getDomainType(domainName));

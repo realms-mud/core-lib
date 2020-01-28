@@ -8,7 +8,7 @@ private nosave string AttacksBlueprint = "/lib/dictionaries/attacksDictionary.c"
 private nosave string BonusesBlueprint = "/lib/dictionaries/bonusesDictionary.c";
 protected nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDictionary.c";
 protected nosave object MessageParser = load_object("/lib/core/messageParser.c");
-private nosave object MaterialsObject = load_object(MaterialsBlueprint);
+private nosave object MaterialsObject = getDictionary("materials");
 
 protected mapping itemData = ([ 
 //  "aliases": ({ }),  // string array of alternate names for item

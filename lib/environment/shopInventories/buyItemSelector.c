@@ -24,7 +24,7 @@ public nomask void reset(int arg)
         Description = "From this menu, you can view and purchase items";
         Type = "Purchase Items";
 
-        Dictionary = load_object("/lib/dictionaries/shopDictionary.c");
+        Dictionary = getDictionary("shop");
         Data = ([]);
     }
 }

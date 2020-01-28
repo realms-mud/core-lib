@@ -25,7 +25,7 @@ protected mapping oppositeDirection = ([
     "east": "west"
 ]);
 
-protected object Dictionary = load_object("/lib/dictionaries/regionDictionary.c");
+protected object Dictionary = getDictionary("region");
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs string getDirectionOfEntry(string enterFrom)

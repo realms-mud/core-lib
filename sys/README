@@ -1,0 +1,5 @@
+This directory should contain the system include files as packaged by your 
+chosen mud driver.
+
+For LDMud, you will want to copy the contents of mudlib/sys into this
+directory.

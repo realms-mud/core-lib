@@ -28,3 +28,54 @@ static nomask void timeout()
         "Please try again.\n");
     destruct(this_object());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void pruneOtherCharacters(string userName, 
+    string characterName)
+{
+    string *charactersForUser = 
+        authenticationService->getCharacters(userName);
+
+    object *characterObjects = filter(efun::users(),
+        (: (member($2, $1->RealName()) > -1) :), charactersForUser);
+
+    foreach(object character in characterObjects)
+    {
+        tell_object(character,
+            sprintf("The character '%s' just logged in with this account.\n",
+                characterName));
+        command("quit", character);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int containsInappropriateLanguage(string userName)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int isReservedName(string userName)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int hasNoInvalidCharacters(string userName)
+{
+    int ret = (userName == regreplace(userName, "([^A-Za-z'-])", "", 1));
+
+    if (!ret)
+    {
+        write("The only valid characters for a name are: a-z, ', and -\n");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask int isValidUserName(string userName)
+{
+    return hasNoInvalidCharacters(userName) &&
+        !containsInappropriateLanguage(userName) &&
+        !isReservedName(userName);
+}

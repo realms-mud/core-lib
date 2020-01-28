@@ -194,7 +194,14 @@ void Init()
     Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
     Database->PrepDatabase();
 
-    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    object dataAccess = 
+        clone_object("/lib/modules/secure/dataServices/authenticationDataService.c");
+    dataAccess->createUser("maeglin", "maeglin", "127.0.0.1");
+    dataAccess->createUser("gorthaur", "gorthaur", "127.0.0.1");
+    dataAccess->createUser("earl", "earl", "127.0.0.1");
+    destruct(dataAccess);
+
+    dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
     dataAccess->savePlayerData(Database->GetWizardOfLevel("owner", "maeglin"));
     destruct(dataAccess);
 }
