@@ -9,6 +9,7 @@
 private string BaseResearch = "lib/modules/research/researchItem.c";
 private string BaseResearchTree = "lib/modules/research/researchTree.c";
 private mapping researchCache = ([]);
+private mapping researchItemCache = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs int valueIsCached(string research, string element, 
@@ -43,6 +44,23 @@ private nomask varargs void cacheValue(mixed value, string research,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask object getResearchItem(string researchItem)
+{
+    object ret = 0;
+    if (member(researchItemCache, researchItem) &&
+        objectp(researchItemCache[researchItem]))
+    {
+        ret = researchItemCache[researchItem];
+    }
+    else
+    {
+        researchItemCache[researchItem] = load_object(researchItem);
+        ret = researchItemCache[researchItem];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask object researchObject(string researchItem)
 {
     // The passed in value for researchItem must be a file containing a valid
@@ -56,7 +74,7 @@ public nomask object researchObject(string researchItem)
     }
     if(researchItem && stringp(researchItem) && (file_size(researchItem) > 0))
     { 
-        ret = load_object(researchItem);
+        ret = getResearchItem(researchItem);
 
         if(!ret || (member(inherit_list(ret), BaseResearch) < 0) ||
            !ret->isValidResearchItem())
@@ -86,7 +104,7 @@ public nomask object researchTree(string tree)
 
     if(tree && stringp(tree) && (file_size(tree) > 0))
     {
-        ret = load_object(tree);
+        ret = getResearchItem(tree);
 
         if(member(inherit_list(ret), BaseResearchTree) < 0)
         {
@@ -129,7 +147,7 @@ public nomask int isSustainedResearchItem(string researchItem)
             researchItem = (researchItem[0] == '/') ? researchItem :
                 "/" + researchItem;
             ret = (file_size(researchItem) > 0) &&
-                (member(inherit_list(load_object(researchItem)),
+                (member(inherit_list(getResearchItem(researchItem)),
                     "lib/modules/research/sustainedResearchItem.c") > -1);
             cacheValue(ret, researchItem, "sustained research");
         }
@@ -657,8 +675,7 @@ public nomask string displayTreePrerequisites(string researchItem, object user)
     if (objectp(user) && objectp(researchObj))
     {
         string colorConfiguration = user->colorConfiguration();
-        object configuration = 
-            load_object("/lib/dictionaries/configurationDictionary.c");
+        object configuration = getDictionary("configuration");
 
         string parentInfo = "";
         string *trees = user->availableResearchTrees();

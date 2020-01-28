@@ -96,7 +96,7 @@ private nomask void SetTraits(object character, string persona)
 
     if (sizeof(traits))
     {
-        object traitsDictionary = load_object("/lib/dictionaries/traitsDictionary.c");
+        object traitsDictionary = getDictionary("traits");
 
         foreach(string trait in traits)
         {
@@ -115,7 +115,7 @@ private nomask void SetRandomTraits(object character, string persona)
     string *potentialTraits = personaBlueprints()[persona]["potential traits"] + ({});
     if (sizeof(potentialTraits))
     {
-        object traitsDictionary = load_object("/lib/dictionaries/traitsDictionary.c");
+        object traitsDictionary = getDictionary("traits");
         int numberOfPossibleTraits = random(sizeof(potentialTraits));
 
         while (numberOfPossibleTraits > 0)
@@ -180,8 +180,7 @@ private int minimumLevelMet(object character, string persona)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void SetRace(object character, string persona)
 {
-    object racialDictionary =
-        load_object("/lib/dictionaries/racialDictionary.c");
+    object racialDictionary = getDictionary("racial");
 
     if (!character->Race())
     {
@@ -259,7 +258,7 @@ private mapping getEquipmentList(string personaTrait)
     mapping equipmentList = 0;
 
     object personaObj = 
-        load_object("/lib/dictionaries/traitsDictionary.c")->traitObject(personaTrait);
+        getDictionary("traits")->traitObject(personaTrait);
 
     if(personaObj)
     {
@@ -289,8 +288,7 @@ public nomask object *getRandomEquipment(object persona, int chanceForMagicalIte
 
         if(sizeof(personas))
         {
-            object materialsDictionary =
-                load_object("/lib/dictionaries/materialsDictionary.c");
+            object materialsDictionary = getDictionary("materials");
         
             mapping equipmentList = getEquipmentList(personas[0]);
             if (equipmentList)

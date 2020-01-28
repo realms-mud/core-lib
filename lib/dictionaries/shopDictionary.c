@@ -4,7 +4,7 @@
 //*****************************************************************************
 
 private string BaseShop = "lib/environment/shopInventories/baseShop.c";
-private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+private object configuration = getDictionary("configuration");
 
 private mapping alwaysGenerate = ([
     "weapons":([
@@ -195,7 +195,7 @@ public nomask mapping getSellItemDetailsForType(object user, string type, object
         (: (($1->query("type") == $2) && !$3->isModifierItem($1)) :), 
         type, user);
 
-    object materials = load_object("/lib/dictionaries/materialsDictionary.c");
+    object materials = getDictionary("materials");
     if (sizeof(items))
     {
         string colorConfiguration = user->colorConfiguration() ?
@@ -347,7 +347,7 @@ private nomask void generateDefaultItems(object shop)
         }
     }
 
-    object craftingDictionary = load_object("/lib/dictionaries/craftingDictionary.c");
+    object craftingDictionary = getDictionary("crafting");
     if (sizeof(defaultItems))
     {
         foreach(string itemName in defaultItems)
@@ -367,7 +367,7 @@ public nomask void generateRandomItems(object shop)
 {
     int numItems = shop->randomItemsToGenerate();
 
-    object materials = load_object("/lib/dictionaries/materialsDictionary.c");
+    object materials = getDictionary("materials");
 
     mapping *specifiedItems = shop->specifiedItems();
     string shopType = shop->shopType();
@@ -528,7 +528,7 @@ public nomask mapping getBuyItemDetailsForType(object user, object store,
         int menuItem = 1;
 
         string colorConfiguration = user->colorConfiguration();
-        object materials = load_object("/lib/dictionaries/materialsDictionary.c");
+        object materials = getDictionary("materials");
 
         foreach(string item in itemList)
         {

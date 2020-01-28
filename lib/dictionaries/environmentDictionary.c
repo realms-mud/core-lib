@@ -27,8 +27,8 @@ private mapping numbersAsString = ([ 0:"no", 1:"one", 2:"two", 3:"three",
     11:"eleven", 12:"twelve", 13:"thirteen", 14:"fourteen", 
     15:"fifteen", 16:"sixteen" ]);
 
-private object configuration =
-    load_object("/lib/dictionaries/configurationDictionary.c");
+private object configuration = getDictionary("configuration");
+private mapping environmentObjects = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidLocation(mixed location)
@@ -50,6 +50,24 @@ public nomask mapping getLocation(string location)
     return ret;
 }
 
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask object getEnvironmentObject(string item)
+{
+    object ret = 0;
+    if (member(environmentObjects, item) &&
+        objectp(environmentObjects[item]))
+    {
+        ret = environmentObjects[item];
+    }
+    else
+    {
+        environmentObjects[item] = load_object(item);
+        ret = environmentObjects[item];
+    }
+    return ret;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask object getEnvironment(string location)
 {
@@ -62,7 +80,7 @@ public nomask object getEnvironment(string location)
 
     if (location && stringp(location) && (file_size(location) > 0))
     {
-        ret = load_object(location);
+        ret = getEnvironmentObject(location);
 
         if (!ret || (member(inherit_list(ret), BaseEnvironment) < 0))
         {
@@ -80,7 +98,7 @@ public nomask object environmentalObject(string element)
     if (element && stringp(element) && member(elementList, element) &&
         (file_size(elementList[element]) > 0))
     {
-        ret = load_object(elementList[element]);
+        ret = getEnvironmentObject(elementList[element]);
         if (member(inherit_list(ret), BaseElement) < 0)
         {
             ret = 0;
@@ -121,7 +139,7 @@ public nomask varargs int registerElement(string location, string type)
 
     if (location && file_size(location) > 0)
     {
-        object element = load_object(location);
+        object element = getEnvironmentObject(location);
         element->Setup();
 
         if (element && objectp(element) &&

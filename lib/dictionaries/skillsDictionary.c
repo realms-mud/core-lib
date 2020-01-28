@@ -1396,7 +1396,7 @@ public nomask mapping creationListForSkillType(string type, object user)
     mapping ret = ([]);
 
     string colorConfiguration = user->colorConfiguration();
-    object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+    object configuration = getDictionary("configuration");
 
     string *skillsList = validSkillsOfType(type);
     if (sizeof(skillsList))

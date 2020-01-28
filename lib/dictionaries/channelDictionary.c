@@ -10,7 +10,7 @@ private nomask object configuration()
 {
     if (!Configuration)
     {
-        Configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+        Configuration = getDictionary("configuration");
     }
     return Configuration;
 }

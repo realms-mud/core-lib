@@ -8,6 +8,7 @@
 private string BaseGuild = "lib/modules/guilds/baseGuild.c";
 private mapping guildList = ([]);
 private mapping guildBonusCache = ([]);
+private mapping guildObjects = ([]);
 
 private mapping guildClassEntries = ([
     "combat":({}),
@@ -19,6 +20,23 @@ private mapping guildClassEntries = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask object getGuildObject(string guild)
+{
+    object ret = 0;
+    if (member(guildObjects, guild) &&
+        objectp(guildObjects[guild]))
+    {
+        ret = guildObjects[guild];
+    }
+    else
+    {
+        guildObjects[guild] = load_object(guild);
+        ret = guildObjects[guild];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask object guildObject(string guild)
 {
     object ret = 0;
@@ -26,7 +44,7 @@ public nomask object guildObject(string guild)
     if(guild && stringp(guild) && member(guildList, guild) &&
        (file_size(guildList[guild]) > 0))
     {
-        ret = load_object(guildList[guild]);     
+        ret = getGuildObject(guildList[guild]);
         if(member(inherit_list(ret), BaseGuild) < 0)
         {
             ret = 0;
@@ -75,7 +93,7 @@ public nomask int registerGuild(string location)
 
     if (file_size(location) > 0)
     {
-        object guild = load_object(location);
+        object guild = getGuildObject(location);
         guild->SetupGuild();
 
         if (guild && objectp(guild) &&

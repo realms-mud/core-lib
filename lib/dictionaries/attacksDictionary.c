@@ -10,7 +10,25 @@ private string WeaponBlueprint = "lib/items/weapon.c";
 private string AttacksDir = "/lib/modules/combat/attacks";
 private string AttackBlueprint = "lib/modules/combat/attacks/baseAttack.c";
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
-private string MessageParser = "lib/core/messageParser.c";
+private mapping attackObjects = ([]);
+private object MessageParser = 0;
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask object getAttackObject(string type)
+{
+    object ret = 0;
+    if (member(attackObjects, type) &&
+        objectp(attackObjects[type]))
+    {
+        ret = attackObjects[type];
+    }
+    else
+    {
+        attackObjects[type] = load_object(type);
+        ret = attackObjects[type];
+    }
+    return ret;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object getAttack(string type)
@@ -25,7 +43,7 @@ public nomask object getAttack(string type)
     string fileName = sprintf("%s/%sAttack.c", AttacksDir, type);
     if(file_size(fileName) > 0)
     {
-        ret = load_object(fileName);        
+        ret = getAttackObject(fileName);
     }
     return ret;
 }
@@ -108,7 +126,11 @@ public nomask int isAttack(object potentialAttack)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object messageParser()
 {
-    return load_object(MessageParser);
+    if (!objectp(MessageParser))
+    {
+        MessageParser = load_object("/lib/core/messageParser.c");
+    }
+    return MessageParser;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -285,8 +307,7 @@ public nomask void displayMessage(object attacker, object foe,
             object *characters = filter(all_inventory(environment(attacker)),
                 (: $1->isRealizationOfLiving() :));
 
-            object configuration = 
-                load_object("/lib/dictionaries/configurationDictionary.c");
+            object configuration = getDictionary("configuration");
 
             string damageLevel = getColorForDamage(damageInflicted);
 

@@ -174,8 +174,7 @@ private nomask string *generateEncounters(string regionType, mapping encounters)
 {
     string *ret = ({});
 
-    object personaDictionary =
-        load_object("/lib/dictionaries/personaDictionary.c");
+    object personaDictionary = getDictionary("persona");
 
     mapping personas = personaDictionary->personaBlueprints();
 

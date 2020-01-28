@@ -276,8 +276,7 @@ private nomask string getDescriptionDetails(object blueprintObj)
 {
     string colorConfiguration = this_player() ?
         this_player()->colorConfiguration() : "none";
-    object configuration =
-        load_object("/lib/dictionaries/configurationDictionary.c");
+    object configuration = getDictionary("configuration");
 
     return blueprintObj->displayPrerequisites(colorConfiguration, configuration) +
         blueprintObj->displayNeededMaterials(colorConfiguration, configuration);
@@ -475,7 +474,7 @@ private nomask mapping getMaterialsOfTypeOnHand(string type, object user,
     object *inventory = filter(deep_inventory(user),
         (: ((member(inherit_list($1), "lib/items/material.c") > -1) &&
             (member($2, $1->query("class")) > -1)) :), 
-        load_object("/lib/dictionaries/materialsDictionary.c")->getTypes(type, user));
+        getDictionary("materials")->getTypes(type, user));
 
     if (sizeof(inventory))
     {
@@ -502,19 +501,19 @@ public nomask mapping getMaterialsOfType(string type, object user,
     int quantity, object craftingItem)
 {
     mapping ret = ([]);
+
+    object materialDictionary = getDictionary("materials");
+
     mapping materialsOnHand = getMaterialsOfTypeOnHand(type, user, craftingItem);
     string *materialsOfType = sort_array(filter(m_indices(materials),
         (: (member($2, materials[$1]["class"]) > -1) :), 
-        load_object("/lib/dictionaries/materialsDictionary.c")->getTypes(type, user)),
+        materialDictionary->getTypes(type, user)),
         (: $1 > $2 :));
 
     if(sizeof(materialsOfType))
     {
         int menuItem = 1;
         string currentMaterial = craftingItem->query("material");
-
-        object materialDictionary = 
-            load_object("/lib/dictionaries/materialsDictionary.c");
 
         foreach(string material in materialsOfType)
         {
@@ -651,8 +650,7 @@ public nomask varargs void setCraftingMaterial(object item, string materialClass
         materialSelections[component][materialClass] = material;
     }
 
-    object materialsDictionary = 
-        load_object("/lib/dictionaries/materialsDictionary.c");
+    object materialsDictionary = getDictionary("materials");
 
     if ((component == primaryComponent) && 
         (materialsDictionary->getMaterialTypeForMaterial(item->query("material")) == 
@@ -1076,7 +1074,7 @@ public nomask mapping getEnchantmentsOfType(string type, object user,
                 "name": capitalize(nameDesc),
                 "type": enchantment,
                 "description" : sprintf("This option lets you craft using: %s\n%s\n",
-                    enchantment, load_object("/lib/dictionaries/materialsDictionary.c")->getEquipmentStatistics(craftingItem)),
+                    enchantment, getDictionary("materials")->getEquipmentStatistics(craftingItem)),
                 "has materials" : hasMaterials,
                 "prerequisites met" : prerequisites,
                 "canShow" : (hasMaterials && prerequisites)
@@ -1148,8 +1146,7 @@ private nomask string getRandomCraftingElement(mapping elements,
 private nomask string getRandomMaterial(string materialClass, 
     string defaultMaterial)
 {
-    object materialsDictionary =
-        load_object("/lib/dictionaries/materialsDictionary.c");
+    object materialsDictionary = getDictionary("materials");
 
     string *materialList = filter(m_indices(materials),
         (: $2[$1]["class"] == $3 :), materials, materialClass);

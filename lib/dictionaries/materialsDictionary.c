@@ -30,7 +30,7 @@ private nosave string *validWeaponTypes = ({ "shield", "axe", "long sword",
     "hand and a half sword", "short sword", "dagger", "bow", "crossbow", "sling",
     "thrown", "two-handed sword", "pole arm", "mace", "hammer", "flail", "staff" });
 private nosave string *validDamageTypes = ({ "slash", "bludgeon", "thrust" });
-private nosave object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+private nosave object configuration = getDictionary("configuration");
 
 private mapping defaultValues = ([
     "armor": 250,
@@ -1242,7 +1242,7 @@ private nomask string *bonusList(object item)
     else
     {
         bonuses +=
-            load_object("/lib/dictionaries/skillsDictionary.c")->validBonusSkills();
+            getDictionary("skills")->validBonusSkills();
     }
     return bonuses;
 }
@@ -1369,7 +1369,7 @@ public nomask varargs object generateRandomItem(string type, string subtype,
 {
     object item = 0;
 
-    object craftingDictionary = load_object("/lib/dictionaries/craftingDictionary.c");
+    object craftingDictionary = getDictionary("crafting");
 
     item = getRandomItemOfType(type, subtype, listOfPotentialItems);
     if (objectp(item))

@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+private object configuration = getDictionary("configuration");
 
 /////////////////////////////////////////////////////////////////////////////
 private string buildBaseBanner(string location, string charset, int noGap)

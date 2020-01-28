@@ -11,11 +11,11 @@ private string *validTraitTypes = ({ "health", "educational", "personality",
     "genetic", "professional", "guild", "role", "effect", "sustained effect",
     "background", "racial", "persona" });
 
-object configuration =
-    load_object("/lib/dictionaries/configurationDictionary.c");
+object configuration = getDictionary("configuration");
 
 private mapping traits = ([]);
 private mapping traitCache = ([]);
+private mapping traitObjects = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs int valueIsCached(string trait, string element,
@@ -50,6 +50,23 @@ private nomask varargs void cacheValue(mixed value, string trait,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask object getTraitObject(string trait)
+{
+    object ret = 0;
+    if (member(traitObjects, trait) &&
+        objectp(traitObjects[trait]))
+    {
+        ret = traitObjects[trait];
+    }
+    else
+    {
+        traitObjects[trait] = load_object(trait);
+        ret = traitObjects[trait];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask object traitObject(string trait)
 {
     // The passed in value for trait must be a file containing a valid
@@ -63,7 +80,7 @@ public nomask object traitObject(string trait)
 
     if(trait && stringp(trait) && (file_size(trait) > 0))
     { 
-        ret = load_object(trait);
+        ret = getTraitObject(trait);
 
         if(!ret || (member(inherit_list(ret), BaseTrait) < 0) ||
            !ret->isValidTrait())
@@ -95,7 +112,7 @@ public nomask int registerTrait(object trait)
 
     if ((file_size(location) > 0) && !traitIsRegistered(program_name(trait)))
     {
-        trait = load_object(location);
+        trait = getTraitObject(location);
 
         if (trait && objectp(trait) &&
             (member(inherit_list(trait), BaseTrait) > -1) &&
@@ -529,8 +546,7 @@ private nomask string displayResearchTree(object trait,
     string tree = trait->query("research tree");
     if (tree)
     {
-        object researchDictionary =
-            load_object("/lib/dictionaries/researchDictionary.c");
+        object researchDictionary = getDictionary("research");
 
         if (researchDictionary)
         {

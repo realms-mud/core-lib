@@ -12,8 +12,7 @@
 private string SubraceRoot = "/lib/instances/traits/racial/";
 private string TraitRoot = "/lib/instances/traits/%s/";
 
-private object configuration = 
-    load_object("/lib/dictionaries/configurationDictionary.c");
+private object configuration = getDictionary("configuration");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidRace(string race)
@@ -389,7 +388,7 @@ public nomask mapping characterCreationSubraces(string race)
     {
         string *raceList = sort_array(m_indices(races[race]["subraces"]), (: $1 > $2 :));
         int i = 1;
-        object traitDictionary = load_object("/lib/dictionaries/traitsDictionary.c");
+        object traitDictionary = getDictionary("traits");
 
         foreach(string subrace in raceList)
         {
@@ -426,7 +425,7 @@ private nomask mapping characterCreationTraitOfType(string type,
         (: $1 > $2 :));
 
     int i = 1;
-    object traitDictionary = load_object("/lib/dictionaries/traitsDictionary.c");
+    object traitDictionary = getDictionary("traits");
     foreach(string item in dataList)
     {
         string path = sprintf(TraitRoot, type) + data[item]["file"];
