@@ -107,6 +107,12 @@ public nomask void onRestoreFailed(object caller)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void onCreationIncomplete(object caller)
+{
+    onRestoreFailed(caller);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
     caller->cleanUp();

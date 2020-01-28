@@ -135,16 +135,25 @@ public nomask void restore(string name)
     {
         mapping playerData = DataAccess()->getPlayerData(name);
 
-        if (validatePlayerData(playerData))
+        if (sizeof(playerData) > 1)
         {
             setPlayerInfo(playerData);
-            this_object()->notifySynchronous("onRestoreSucceeded");
+
+            if (!validatePlayerData(playerData))
+            {
+                this_object()->notifySynchronous("onCreationIncomplete");
+            }
+            else
+            {
+                this_object()->notifySynchronous("onRestoreSucceeded");
+            }
         }
         else
         {
             this_object()->Name(name);
             this_object()->notifySynchronous("onRestoreFailed");
         }
+        addUser(this_object());
     }
     else
     {

@@ -41,6 +41,7 @@ void PlayerSavedWhenSaveIsCalled()
     object persistedPlayer = clone_object("/lib/realizations/player.c");
     persistedPlayer->restore("bob");
     ExpectEq(0, persistedPlayer->Race());
+    destruct(persistedPlayer);
 
     ExpectTrue(Player->executeCommand("save"));
     ExpectEq("Saving character...\n", Player->caughtMessage());

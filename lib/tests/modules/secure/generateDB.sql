@@ -116,6 +116,8 @@ drop table if exists environmentalObjects;
 ##
 drop table if exists environmentExits;
 ##
+drop table if exists environmentDescriptions;
+##
 drop table if exists regionExits;
 ##
 drop table if exists regionMapDecorators;
