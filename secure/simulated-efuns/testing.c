@@ -70,3 +70,10 @@ public nomask void call_out(string method, int delay, varargs mixed *data)
         apply(#'efun::call_out,method,delay,data);
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public int exec(object newObject, object oldObject)
+{
+    printf("Exec of %O to %O.\n", oldObject, newObject);
+    return 1;
+}

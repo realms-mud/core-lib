@@ -9,7 +9,6 @@ virtual inherit "/secure/master/hooks.c";
 virtual inherit "/secure/master/logging.c";
 virtual inherit "/secure/master/preload.c";
 virtual inherit "/secure/master/security.c";
-virtual inherit "/secure/master/user-management.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void inaugurate_master(int arg)

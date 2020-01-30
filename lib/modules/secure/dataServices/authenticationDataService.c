@@ -107,6 +107,49 @@ public nomask void saveUser(string userName, string password,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int removeCharacter(string name)
+{
+    int ret = 0;
+    if (objectp(previous_object()) &&
+        sizeof(regexp(({ object_name(previous_object()) }), 
+            "^/*secure/master")))
+    {
+        string query = sprintf("call removePlayer('%s');",
+            sanitizeString(name));
+
+        int dbHandle = connect();
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+
+        disconnect(dbHandle);
+        ret = 1;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int setWizardLevel(string name, string level)
+{
+    int ret = 0;
+    if (objectp(previous_object()) &&
+        sizeof(regexp(({ object_name(previous_object()) }),
+            "^/*secure/master")))
+    {
+        string query = sprintf("select setWizardLevel('%s', '%s');",
+            sanitizeString(name),
+            sanitizeString(level));
+
+        int dbHandle = connect();
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+        ret = result && (to_int(result[0]) > 0);
+
+        disconnect(dbHandle);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int addressTemporarilyBanished(string address)
 {
     return 0;

@@ -26,6 +26,7 @@ protected nomask varargs void executeWhoCommand(int doNotDestruct)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void execCharacter(string characterName, string userName)
 {
+    printf("\n");
     object loginModule = load_object("/lib/modules/secure/login.c");
 
     pruneOtherCharacters(userName, characterName);

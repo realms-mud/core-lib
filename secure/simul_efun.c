@@ -38,8 +38,8 @@ public nomask void shutdown()
 
         string previousObject = object_name(previous_object());
 
-    if (member(({ "obj/shut", "room/church", "secure/master",
-       "lib/commands/wizard/reboot" }), previousObject) > -1)
+    if (member(({ "secure/master", "lib/commands/wizard/reboot" }), 
+        previousObject) > -1)
     {
         efun::shutdown();
     }

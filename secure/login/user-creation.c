@@ -8,6 +8,7 @@ virtual inherit "/secure/login/core.c";
 /////////////////////////////////////////////////////////////////////////////
 private nomask void execNewPlayer(string password, string userName)
 {
+    printf("\n");
     authenticationService->saveUser(userName, password, ipAddress);
 
     object loginModule = load_object("/lib/modules/secure/login.c");

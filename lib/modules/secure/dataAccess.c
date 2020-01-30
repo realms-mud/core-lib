@@ -62,7 +62,7 @@ public nomask void savePlayerData(mapping playerData)
 {
     if (canAccessDatabase(previous_object()))
     {
-        if (member(playerData, "name"))
+        if (member(playerData, "name") && (playerData["name"] != ""))
         {
             int dbHandle = connect();
             int playerId = saveBasicPlayerData(dbHandle, playerData);
@@ -92,10 +92,45 @@ public nomask void savePlayerData(mapping playerData)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void checkInitialization(string name)
+{
+    string query = "select count(id) from users";
+
+    int dbHandle = connect();
+    db_exec(dbHandle, query);
+
+    mixed result = db_fetch(dbHandle);
+
+    if (result)
+    {
+        if (to_int(result[0]) <= 1)
+        {
+            query = sprintf("insert into players (name) values ('%s');", name);
+            db_exec(dbHandle, query);
+            result = db_fetch(dbHandle);
+
+            query = sprintf("insert into wizards (playerId, typeId) "
+                "values ((select id from players where name = '%s'), "
+                "(select id from wizardTypes where type = 'owner'));", name);
+            db_exec(dbHandle, query);
+            result = db_fetch(dbHandle);
+
+            printf(format("\n\n\x1b0;37;1mNOTICE: Since you are the first "
+                "character to log on to this MUD, the owner account has "
+                "been set up with your information. After you have gone "
+                "through the player creation process, you must log out and "
+                "log back in to use your wizardly powers.\x1b[0m\n\n", 78));
+        }
+    }
+    disconnect(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string playerType(string name)
 {
     string ret = "player";
 
+    checkInitialization(name);
     string query = sprintf("select wizardTypes.type from wizards "
         "inner join wizardTypes on wizards.typeId = wizardTypes.id "
         "inner join players on wizards.playerid = players.id "

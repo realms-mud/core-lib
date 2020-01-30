@@ -15,7 +15,7 @@ public nomask int canAccessDatabase(object previous)
     string *programsWithPermission = ({ "lib/realizations/player.c",
         "lib/realizations/wizard.c", "lib/commands/player/save.c",
         "lib/commands/player/quit.c", "secure/login.c",
-        "lib/modules/secure/login.c",
+        "lib/modules/secure/login.c", "secure/master/user-management.c",
         "lib/modules/creation/initializePlayer.c" });
 
     if (member(inherit_list(this_object()),

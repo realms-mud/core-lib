@@ -8,6 +8,8 @@ drop view if exists componentsView;
 ##
 drop view if exists environmentView;
 ##
+drop function if exists setWizardLevel;
+##
 drop function if exists savePlayerDomain;
 ##
 drop function if exists saveDomainSection;
@@ -95,6 +97,22 @@ drop procedure if exists saveIssue;
 drop procedure if exists saveHolding;
 ##
 drop procedure if exists saveDomainBuilding;
+##
+drop procedure if exists removeResearch;
+##
+drop procedure if exists removeTraits;
+##
+drop procedure if exists removeDomainUnits;
+##
+drop procedure if exists removeDomainHenchmen;
+##
+drop procedure if exists removeDomainComponents;
+##
+drop procedure if exists removeDomainSection;
+##
+drop procedure if exists removeDomains;
+##
+drop procedure if exists removePlayer;
 ##
 drop function if exists saveUser;
 ##
@@ -897,7 +915,7 @@ CREATE VIEW `traitsView` AS select `traits`.`playerid` AS `playerid`,
 CREATE VIEW `componentsView` AS 
     select `domainSectionComponents`.`sectionid` AS `sectionId`,
         `domainSectionComponents`.`id` AS `componentId`,
-		`domainSectionComponents`.`type` AS `componentType`,
+        `domainSectionComponents`.`type` AS `componentType`,
         `domainSectionComponents`.`name` AS `componentName`,
         `domainSectionComponents`.`maximumStructure` AS `maximumStructure`,
         `domainSectionComponents`.`currentStructure` AS `currentStructure`,
@@ -908,13 +926,13 @@ CREATE VIEW `componentsView` AS
         `wood`.`name` as `wood`
     from `domainSectionComponents` 
     left outer join `domainComponentMaterials` as `metal`
-		on `domainSectionComponents`.`id` = `metal`.`componentId` and `metal`.`type` = 'metal'
+        on `domainSectionComponents`.`id` = `metal`.`componentId` and `metal`.`type` = 'metal'
     left outer join `domainComponentMaterials` as `stone`
-		on `domainSectionComponents`.`id` = `stone`.`componentId` and `stone`.`type` = 'stone'
+        on `domainSectionComponents`.`id` = `stone`.`componentId` and `stone`.`type` = 'stone'
     left outer join `domainComponentMaterials` as `textile`
-		on `domainSectionComponents`.`id` = `textile`.`componentId` and `textile`.`type` = 'textile'
+        on `domainSectionComponents`.`id` = `textile`.`componentId` and `textile`.`type` = 'textile'
     left outer join `domainComponentMaterials` as `wood`
-		on `domainSectionComponents`.`id` = `wood`.`componentId` and `wood`.`type` = 'wood';
+        on `domainSectionComponents`.`id` = `wood`.`componentId` and `wood`.`type` = 'wood';
 ##
 CREATE VIEW `environmentView` AS
     select `environmentInstances`.`id` AS `environmentId`,
@@ -1979,7 +1997,7 @@ BEGIN
 
     if userId is not null then
         select password into storedPassword from users
-		where login = p_user;
+        where login = p_user;
 
         select cast((select encrypt(p_password, storedPassword)) as char) into hashedPassword;
         if hashedPassword = storedPassword then
@@ -2015,5 +2033,240 @@ BEGIN
         where login = p_user;
     end if; 
 RETURN userId;
+END;
+##
+CREATE PROCEDURE `removeResearch` ( p_playerid int )
+BEGIN
+    declare choiceId int;
+    declare finished int default 0;
+
+    declare researchChoicesList cursor for
+        select id from researchChoices
+        where playerId = p_playerid;
+    declare continue handler for not found set finished = 1;
+
+    open researchChoicesList;
+    LoopResearchChoices: loop
+        fetch researchChoicesList into choiceId;
+        if finished = 1 then
+            leave LoopResearchChoices;
+        end if;
+        delete from researchChoiceItems where researchChoiceId = choiceId;
+    end loop LoopResearchChoices;
+    close researchChoicesList;
+
+    delete from researchChoices where playerId = p_playerid;
+    delete from research where playerId = p_playerid;
+    delete from openResearchTrees where playerId = p_playerid;
+END;
+##
+CREATE PROCEDURE `removeTraits` ( p_playerid int )
+BEGIN
+    declare localTraitId int;
+    declare finished int default 0;
+
+    declare traitsList cursor for
+        select id from traits
+        where playerId = p_playerid;
+    declare continue handler for not found set finished = 1;
+
+    open traitsList;
+    LoopTraitsList: loop
+        fetch traitsList into localTraitId;
+        if finished = 1 then
+            leave LoopTraitsList;
+        end if;
+        delete from timedtraits where traitid = localTraitId;
+    end loop LoopTraitsList;
+    close traitsList;
+
+    delete from temporaryTraits where playerId = p_playerid;
+    delete from traits where playerId = p_playerid;
+END;
+##
+CREATE PROCEDURE `removeDomainUnits` ( p_locationId int, p_leaderId int )
+BEGIN
+    declare localUnitId int;
+    declare finished int default 0;
+
+    declare unitList cursor for
+        select id from domainUnits
+        where (leaderId = p_leaderId or leaderId is null)
+            and locationId = p_locationId;
+    declare continue handler for not found set finished = 1;
+
+    open unitList;
+    LoopUnitList: loop
+        fetch unitList into localUnitId;
+        if finished = 1 then
+            leave LoopUnitList;
+        end if;
+        delete from domainUnitTraits where unitId = localUnitId;
+        delete from domainUnits where id = localUnitId;
+    end loop LoopUnitList;
+    close unitList;
+END;
+##
+CREATE PROCEDURE `removeDomainHenchmen` ( p_locationId int )
+BEGIN
+    declare localHenchmanId int;
+    declare finished int default 0;
+
+    declare henchmanList cursor for
+        select id from domainHenchmen
+        where originatingLocationId = p_locationId;
+    declare continue handler for not found set finished = 1;
+
+    open henchmanList;
+    LoopHenchmenList: loop
+        fetch henchmanList into localHenchmanId;
+        if finished = 1 then
+            leave LoopHenchmenList;
+        end if;
+        call removeDomainUnits(p_locationId, localHenchmanId);
+        delete from domainHenchmanSkills where henchmanId = localHenchmanId;
+        delete from domainHenchmanTraits where henchmanId = localHenchmanId;
+        delete from domainHenchmen where id = localHenchmanId;
+    end loop LoopHenchmenList;
+    close henchmanList;
+END;
+##
+CREATE PROCEDURE `removeDomainComponents` ( p_sectionId int )
+BEGIN
+    declare localComponentId int;
+    declare finished int default 0;
+
+    declare componentList cursor for
+        select id from domainSectionComponents
+        where sectionid = p_sectionId;
+    declare continue handler for not found set finished = 1;
+
+    open componentList;
+    LoopComponentList: loop
+        fetch componentList into localComponentId;
+        if finished = 1 then
+            leave LoopComponentList;
+        end if;
+        call removeDomainHenchmen(localComponentId);
+        call removeDomainUnits(localComponentId, null);
+        delete from domainComponentMaterials where componentId = localComponentId;
+        delete from domainComponentUpgrades where componentId = localComponentId;
+        delete from domainSectionComponents where id = localComponentId;
+    end loop LoopComponentList;
+    close componentList;
+END;
+##
+CREATE PROCEDURE `removeDomainSection` ( p_domainId int )
+BEGIN
+    declare localSectionId int;
+    declare finished int default 0;
+
+    declare sectionList cursor for
+        select id from domainSections
+        where domainId = p_domainId;
+    declare continue handler for not found set finished = 1;
+
+    open sectionList;
+    LoopSectionList: loop
+        fetch sectionList into localSectionId;
+        if finished = 1 then
+            leave LoopSectionList;
+        end if;
+        call removeDomainComponents(localSectionId);
+        delete from domainSections where id = localSectionId;
+    end loop LoopSectionList;
+    close sectionList;
+END;
+##
+CREATE PROCEDURE `removeDomains` ( p_playerid int )
+BEGIN
+    declare localDomainId int;
+    declare finished int default 0;
+
+    declare domainList cursor for
+        select id from domains
+        where playerid = p_playerid;
+    declare continue handler for not found set finished = 1;
+
+    open domainList;
+    LoopDomainList: loop
+        fetch domainList into localDomainId;
+        if finished = 1 then
+            leave LoopDomainList;
+        end if;
+        call removeDomainSection(localDomainId);
+        delete from domains where id = localDomainId;
+    end loop LoopDomainList;
+    close domainList;
+END;
+##
+CREATE PROCEDURE `removePlayer` ( p_name varchar(40) )
+BEGIN
+    declare localUserId int;
+    declare localPlayerId int;
+    declare characterCount int;
+
+    select id, userId into localPlayerId, localUserId
+    from players where name = p_name;
+
+    if localPlayerId is not null then
+        delete from biological where playerId = localPlayerId;
+        delete from combatStatistics where playerId = localPlayerId;
+        delete from combatStatisticsForRace where playerId = localPlayerId;
+        delete from guilds where playerId = localPlayerId;
+        delete from materialAttributes where playerId = localPlayerId;
+        delete from playerCombatData where playerId = localPlayerId;
+        delete from quests where playerId = localPlayerId;
+        delete from wizards where playerId = localPlayerId;
+        delete from skills where playerId = localPlayerId;
+        delete from factions where playerId = localPlayerId;
+        delete from inventory where playerId = localPlayerId;
+        delete from opinions where playerId = localPlayerId;
+        delete from characterStates where playerId = localPlayerId;
+        delete from settings where playerId = localPlayerId;
+        delete from blockedUsers where playerId = localPlayerId;
+        call removeResearch(localPlayerId);
+        call removeTraits(localPlayerId);
+        call removeDomains(localPlayerId);
+
+        delete from players where id = localPlayerId;
+
+        if localUserId is not null then
+            select count(id) into characterCount
+            from players where userId = localUserId;
+
+            if characterCount = 0 then
+                delete from users where id = localUserId;
+            end if;
+        end if;
+    end if;
+END;
+##
+CREATE FUNCTION `setWizardLevel` (p_name varchar(40), p_level varchar(20))
+    returns int
+BEGIN
+    declare localPlayerId int;
+    declare localWizardTypeId int;
+    declare wizardId int;
+
+    select id into localPlayerId from players
+    where name = p_name;
+
+    select id into localWizardTypeId from wizardTypes
+    where type = p_level;
+
+    if (localPlayerId is not null) and (localWizardTypeId is not null) then
+        select id into wizardId
+        from wizards where playerId = localPlayerId;
+
+        if wizardId is not null then
+            update wizards set typeId = localWizardTypeId
+            where playerId = localPlayerId;
+        else
+            insert into wizards (playerId, typeId)
+            values (localPlayerId, localWizardTypeId);
+        end if;
+    end if;
+RETURN localPlayerId;
 END;
 ##

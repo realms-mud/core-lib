@@ -70,9 +70,10 @@ private nomask object loadNewPlayerObject(string name)
         case "apprentice":
         {
             ret = clone_object("/lib/realizations/wizard.c");
+            ret->registerEvent(clone_object(
+                "/lib/modules/creation/initializePlayer.c"));
             ret->restore(name);
             ret->updateLoginTime();
-            movePlayerToStart(ret);
             break;
         }
         default:
