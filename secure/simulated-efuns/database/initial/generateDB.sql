@@ -216,6 +216,17 @@ drop table if exists environment;
 ##
 drop table if exists issues;
 ##
+drop table if exists versionInfo;
+##
+CREATE TABLE `versionInfo` (    
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `versionType` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+insert into versionInfo (versionType) values ('database');
+##
 CREATE TABLE `temporaryBans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `IPAddress` varchar(15) NOT NULL,

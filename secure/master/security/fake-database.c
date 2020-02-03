@@ -9,7 +9,7 @@ protected nomask void applyGroupDetails()
 {
     setName("lib/tests/modules/secure/fakeDatabase");
     addPermission("/log", Read | Write);
-    addPermission("/lib/tests/modules/secure/generateDB.sql", Read);
+    addPermission("/secure/simulated-efuns/database/", Read);
 
     addPriviledgedEfun("read_file");
     addPriviledgedEfun("write_file");

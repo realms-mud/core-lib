@@ -11,7 +11,7 @@ virtual inherit "/secure/simulated-efuns/interactive-info.c";
 virtual inherit "/secure/simulated-efuns/object-info.c";
 virtual inherit "/secure/simulated-efuns/strings.c";
 virtual inherit "/secure/simulated-efuns/users.c";
-virtual inherit "/secure/simulated-efuns/testing.c";
+//virtual inherit "/secure/simulated-efuns/testing.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void start_simul_efun()

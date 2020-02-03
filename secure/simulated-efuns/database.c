@@ -2,6 +2,13 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+private int hasBeenValidated = 0;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int DatabaseVersion()
+{
+    return 1;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string RealmsDatabase()
@@ -55,6 +62,65 @@ public nomask int db_exec(int dbHandle, string sqlQuery)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void createDatabase(int dbHandle)
+{
+    string dbScript =
+        read_file("/secure/simulated-efuns/database/initial/generateDB.sql");
+
+    db_exec(dbHandle, sprintf("show databases like '%s';", 
+        db_conv_string(RealmsDatabase())));
+
+    mixed result = db_fetch(dbHandle);
+    if (!result || !result[0])
+    {
+        raise_error("ERROR dataAccess: The Realms database does not exist.\n"
+            "Please create it using the following script from outside the MUD:\n"
+            "    '/secure/simulated-efuns/database/installDatabase'\n");
+    }
+
+    string *commands = explode(dbScript, "##");
+    db_exec(dbHandle, "use " + db_conv_string(RealmsDatabase()) + ";");
+
+    foreach(string command in commands)
+    {
+        db_exec(dbHandle, command);
+    }
+    while (db_fetch(dbHandle));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void migrateDatabase(int dbHandle, int currentVersion,
+    int requiredVersion)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs void validateDatabase(int dbHandle)
+{
+    string query = "select id from versionInfo "
+        "where versionType = 'database';";
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+
+    if (result && result[0])
+    {
+        int currentVersion = to_int(result[0]);
+        int requiredVersion = DatabaseVersion();
+        if (currentVersion < requiredVersion)
+        {
+            migrateDatabase(dbHandle, currentVersion, requiredVersion);
+        }
+    }
+    else
+    {
+        createDatabase(dbHandle);
+        migrateDatabase(dbHandle, 1, DatabaseVersion());
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs int db_connect(string database, string user, 
     string password)
 {
@@ -73,6 +139,12 @@ public nomask varargs int db_connect(string database, string user,
         // handle = efun::db_connect(database, DBUSER, DBPASS);
         handle = efun::db_connect(database);
     }
+
+    if (!hasBeenValidated)
+    {
+        validateDatabase(handle);
+    }
+
     return handle;
 }
 

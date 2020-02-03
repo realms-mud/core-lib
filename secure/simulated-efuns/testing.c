@@ -2,6 +2,8 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+virtual inherit "/secure/simulated-efuns/database.c";
+
 private object *CannedUserList = ({});
 private object RestoreCaller = 0;
 private string *TestingGroups = ({ });
@@ -76,4 +78,15 @@ public int exec(object newObject, object oldObject)
 {
     printf("Exec of %O to %O.\n", oldObject, newObject);
     return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void validateTestDatabase()
+{
+    int dbHandle = efun::db_connect(RealmsDatabase());
+
+    createDatabase(dbHandle);
+    migrateDatabase(dbHandle, 1, DatabaseVersion());
+
+    db_close(dbHandle);
 }

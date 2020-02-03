@@ -163,19 +163,7 @@ public nomask mapping Gorthaur()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void PrepDatabase()
 {
-    string dbScript = read_file("/lib/tests/modules/secure/generateDB.sql");
-
-    string *commands = explode(dbScript, "##");
-
-    int dbHandle = db_connect(RealmsDatabase());
-    db_exec(dbHandle, "use " + RealmsDatabase() + ";");
-
-    foreach(string command in commands)
-    {
-        db_exec(dbHandle, command);
-    }
-    while (db_fetch(dbHandle));
-    db_close(dbHandle);
+    catch(validateTestDatabase());
 }
 
 /////////////////////////////////////////////////////////////////////////////

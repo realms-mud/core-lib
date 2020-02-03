@@ -54,7 +54,7 @@ monsters, sophisticated NPCs, etc)
     - quests contains the quest definition and visualization components
     - research contains all of the definition objects for the different types of research.
     - secure is a replaceable section for data persistence of the player object. It's currently a pretty 
-    straightforward data access layer tying to the database/stored procedures defined in /tests/modules/secure/generateDB.sql. 
+    straightforward data access layer tying to the database/stored procedures defined in /secure/simulated-efuns/database. 
     I've got a fluent ORM implemented in LPC that I'm not ready to share yet. 
     - traits contains the trait definition component and a whole lot of traits (many are only shells - others such as 
     those in /lib/modules/traits/educational are fully defined.)
