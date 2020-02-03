@@ -52,6 +52,10 @@ public nomask int createWizard(object player)
         string homeDir = sprintf("/players/%s", wizardName);
         if (file_size(homeDir) == -1)
         {
+            if (file_size("/players") == -1)
+            {
+                mkdir("/players");
+            }
             mkdir(homeDir);
         }
         tell_object(newWizardObject,

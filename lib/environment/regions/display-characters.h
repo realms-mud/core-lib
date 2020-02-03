@@ -22,6 +22,22 @@ private mapping displayCharacter = ([
         "ascii": "-",
         "unicode": "\xe2\x94\x80"
     ]),
+    "northwest":([
+        "ascii": "\\",
+        "unicode": "\xe2\x95\xb2"
+    ]),
+    "southeast":([
+        "ascii": "\\",
+        "unicode": "\xe2\x95\xb2"
+    ]),
+    "northeast":([
+        "ascii": "/",
+        "unicode": "\xe2\x95\xb1"
+    ]),
+    "southwest":([
+        "ascii": "/",
+        "unicode": "\xe2\x95\xb1"
+    ]),
     "path": ([
         "ascii": "o",
         "unicode": "\xe2\x97\x87"

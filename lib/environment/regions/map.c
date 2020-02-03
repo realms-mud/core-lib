@@ -91,11 +91,11 @@ private nomask varargs string displayMapSection(object user, int startX,
 
                     row[0] += sprintf("%s%s%s", 
                         displayCell(location, icon[0][0], colorConfiguration, 
-                            charset, userHere),
+                            charset, userHere, "northwest"),
                         displayCell(location, icon[0][1], colorConfiguration,
                             charset, userHere, "north"),
                         displayCell(location, icon[0][2], colorConfiguration,
-                            charset, userHere));
+                            charset, userHere, "northeast"));
 
                     string roomType = location["room type"];
                     int useRoom = member(displayCharacter, roomType) &&
@@ -119,11 +119,11 @@ private nomask varargs string displayMapSection(object user, int startX,
 
                     row[2] += sprintf("%s%s%s",
                         displayCell(location, icon[2][0], colorConfiguration,
-                            charset, userHere),
+                            charset, userHere, "southwest"),
                         displayCell(location, icon[2][1], colorConfiguration,
                             charset, userHere, "south"),
                         displayCell(location, icon[2][2], colorConfiguration,
-                            charset, userHere));
+                            charset, userHere, "southeast"));
                 }
             }
 

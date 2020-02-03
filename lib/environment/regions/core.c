@@ -22,7 +22,11 @@ protected mapping oppositeDirection = ([
     "north": "south",
     "south": "north",
     "west": "east",
-    "east": "west"
+    "east": "west",
+    "northwest": "southeast",
+    "northeast": "southwest",
+    "southeast": "northwest",
+    "southwest": "northeast"
 ]);
 
 protected object Dictionary = getDictionary("region");

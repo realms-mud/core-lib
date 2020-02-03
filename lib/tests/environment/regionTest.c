@@ -152,6 +152,7 @@ void CanCreateManualRegions()
         "path");
     Region->setCoordinate(1, 2, "/lib/tests/support/environment/region/1x2.c",
         "path");
+    Region->setCoordinate(2, 0, "/lib/tests/support/environment/region/0x2.c");
     Region->setCoordinate(2, 2, "/lib/tests/support/environment/region/2x2.c");
     Region->setCoordinate(1, 3, "/lib/tests/support/environment/region/1x3.c",
         "path");
@@ -169,9 +170,9 @@ void CanCreateManualRegions()
         "    |          \n"
         "    |          \n"
         " #--o          \n"
-        "    |          \n"
-        "    |          \n"
-        "-#--o          \n"
+        "    |\\         \n"
+        "    | \\        \n"
+        "-#--o  #       \n"
         "               \n", Region->displayMap(Player));
 }
 

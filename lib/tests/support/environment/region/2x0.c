@@ -12,8 +12,5 @@ public void Setup()
     addFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
     addFeature("fake feature", "east");
 
-    addExit("west", "/lib/tests/support/environment/region/0x1.c");
-    addExit("north", "/lib/tests/support/environment/region/1x2.c");
-    addExit("south", "/lib/tests/support/environment/region/1x0.c");
-    addExit("southeast", "/lib/tests/support/environment/region/0x2.c");
+    addExit("northwest", "/lib/tests/support/environment/region/1x1.c");
 }
