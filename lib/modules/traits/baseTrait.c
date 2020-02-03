@@ -7,8 +7,6 @@
 //*****************************************************************************
 virtual inherit "/lib/core/specification.c";
 virtual inherit "/lib/core/prerequisites.c";
-    
-private string TraitItemLocation = "lib/modules/traits";
 
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)

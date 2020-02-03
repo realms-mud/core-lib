@@ -57,7 +57,7 @@ monsters, sophisticated NPCs, etc)
     straightforward data access layer tying to the database/stored procedures defined in /secure/simulated-efuns/database. 
     I've got a fluent ORM implemented in LPC that I'm not ready to share yet. 
     - traits contains the trait definition component and a whole lot of traits (many are only shells - others such as 
-    those in /lib/modules/traits/educational are fully defined.)
+    those in /lib/instances/traits/educational are fully defined.)
 - /lib/realizations are built-up collections of modules. For example, living identified the modules all living creatures 
 have, player.c adds player-only elements, wizard.c adds wiz-level stuff, etc.
 - /tutorial contains the in-game player tutorial. While it's a halfway decent introduction into how to create content 
