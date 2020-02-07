@@ -21,7 +21,64 @@ To this end, this lib has implemented a custom system including:
 - Faction support: Players/monsters can belong to factions, allowing for complex interactions.
 
 ![A quest](http://RealmsMUD.org/images/intro_new.gif)
-# Getting Started 
+# Getting Started
+The following is by no means a comprehensive installation/setup guide but it should give you details
+about a fairly straightforward means of getting a mud running using the library. 
+
+### Database
+For various reasons, I decided that a database was the best approach for persisting game data. I
+chose MySQL not because I particularly like it, but because it was the path of least resistence.
+This should be the only major prerequisite for compiling the mud driver. When you install it, be
+sure to note both where it was installed and what the login/password for the administrator account
+for it is.
+
+### Mud Driver
+I have not tested this mudlib with drivers other than the LDMud driver. When compiling it, you 
+will need to keep a few things in mind:
+
+This mudlib does not have any compat-mode dependencies that I am immediately aware of. However,
+there are some native mode dependencies that are also not in place and it has been a very low
+priority for me to resolve these issues. When compiling the driver, be sure to use the --compat flag
+
+There is a great deal more executional complexity when using this mudlib over typical libs. On the
+down side, there are most definitely many activities that will require more evaluation time and
+call stack depth than is customary on a standard mud. On the bright side, this isn't the early 1990s.
+In order to add some of the more intricate game mechanics using what I felt was a good approach,
+several of the default driver values proved to be woefully inadequate.
+
+You can use the perl script I created in /secure/simulated-efuns/database/installDatabase.pl if you want a semi-automated means of doing so. This script will create a user named 'realmslib' with the password it echoes out and will also create and empty RealmsLib database. Otherwise, you can manually add a user and database. After you create a database user for the library, you will need to make sure that the credentials can be used by the driver. Getting access to your database is a security problem. This can be resolved in a couple ways. The
+more secure method is to modify pkg_mysql.c in the LDMud source. Search for the call to mysql_real_connect in that file and modify the call. For example, I did this: 
+```
+if ( !mysql_real_connect( tmp->mysql_dat, "localhost"
+    , user ? get_txt(user) : "My DB user"
+    , password ? get_txt(password) : "My DB password"
+    , get_txt(database)
+    , 0, 0, 0))
+```
+Another less secure option would be to modify db_connect in the mudlib itself (in /secure/simulated-efuns/database.c) If you search the db_connect() method, you will see the following:  
+```
+// handle = efun::db_connect(database, DBUSER, DBPASS);
+handle = efun::db_connect(database);
+```
+Simply uncomment the top line and remove/comment out the second. Change DBUSER and DBPASS as appropriate. For example:
+```
+handle = efun::db_connect(database, "My DB", "My Password");
+// handle = efun::db_connect(database);
+```
+Rather than go through all of the intricacies of which options can/should be set to what, here's an example that led to a successful installation. I admit that several values are overkill:
+```
+# <install mysql>
+# <get the LDMud source code tarball and extract it>
+# <get the Realms Lib and place it in a directory>
+# <lib dir>/secure/simulated-efuns/database/installDatabase.pl
+# cd <location of extracted LDMud/src>
+# ./update-autoconf.sh
+# ./configure --prefix=<your mudlib directory> --with-read-file-max-size=0 --with-portno=<your port> --enable-erq=xerq --with-catch-reserved-cost=10000 --with-malloc=smalloc --enable-dynamic-costs --enable-opcprof --enable-verbose-opcprof --with-evaluator-stack-size=131072 --with-max-user-trace=131072 --with-max-trace=131172 --with-compiler-stack-size=65536 --with-max-cost=268435456 --with-max-array-size=0 --with-max-mapping-size=0 --with-htable-size=65536 --with-itable-size=32768 --with-otable-size=65536 --with-hard-malloc-limit=0 --enable-use-mysql=<path to mysql>
+# make
+```
+When you run the driver for the first time, it will create your database schema and will give the first user created ownership access to the MUD.
+
+# Lib Structure
 The mudlib has been broken down into what I felt was a sensible directory structure:
 
 - /lib/commands is the area where player and wizard actions/commands have been implemented. Commands all inherit from 
