@@ -220,7 +220,7 @@ public void reset(int arg)
     if (!arg)
     {
         researchTree::reset(arg);
-        Name("Path of the Flame");
+        Name("Path of the Frost");
         Source("Scion of Dhuras Guild");
         Description("This skill provides the user with the "
             "knowledge to express their raw magical energy as ices.");

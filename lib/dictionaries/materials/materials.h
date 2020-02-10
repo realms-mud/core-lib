@@ -3868,11 +3868,11 @@ private nosave mapping materials =
             "graphite": 1
         ]),
         "attack": ([
-            "physical": 10,
+            "physical": 12,
             "electricity": 5,
             "magical": 6
         ]),
-        "attack rating": 8,
+        "attack rating": 9,
         "defense": ([
             "physical": 10,
             "electricity": 10
@@ -3905,11 +3905,11 @@ private nosave mapping materials =
             "graphite": 1
         ]),
         "attack": ([
-            "physical": 10,
+            "physical": 12,
             "earth": 5,
             "magical": 6
         ]),
-        "attack rating": 8,
+        "attack rating": 9,
         "defense": ([
             "physical": 10,
             "earth": 10
@@ -3946,7 +3946,7 @@ private nosave mapping materials =
             "evil": 5,
             "magical": 6
         ]),
-        "attack rating": 8,
+        "attack rating": 9,
         "defense": ([
             "physical": 12,
             "good": 10
@@ -3983,7 +3983,7 @@ private nosave mapping materials =
             "good": 5,
             "magical": 6
         ]),
-        "attack rating": 8,
+        "attack rating": 9,
         "defense": ([
             "physical": 12,
             "good": 10
@@ -4016,11 +4016,11 @@ private nosave mapping materials =
             "graphite": 1
         ]),
         "attack": ([
-            "physical": 10,
+            "physical": 12,
             "fire": 5,
             "magical": 6
         ]),
-        "attack rating": 8,
+        "attack rating": 9,
         "defense": ([
             "physical": 10,
             "fire": 10
@@ -4053,11 +4053,11 @@ private nosave mapping materials =
             "graphite": 1
         ]),
         "attack": ([
-            "physical": 10,
+            "physical": 12,
             "energy": 5,
             "magical": 6
         ]),
-        "attack rating": 8,
+        "attack rating": 9,
         "defense": ([
             "physical": 10,
             "energy": 10
@@ -4090,11 +4090,11 @@ private nosave mapping materials =
             "graphite": 1
         ]),
         "attack": ([
-            "physical": 10,
+            "physical": 12,
             "water": 5,
             "magical": 6
         ]),
-        "attack rating": 8,
+        "attack rating": 9,
         "defense": ([
             "physical": 10,
             "water": 10
@@ -4127,11 +4127,11 @@ private nosave mapping materials =
             "graphite": 1
         ]),
         "attack": ([
-            "physical": 10,
+            "physical": 12,
             "cold": 5,
             "magical": 6
         ]),
-        "attack rating": 8,
+        "attack rating": 9,
         "defense": ([
             "physical": 10,
             "cold": 10
