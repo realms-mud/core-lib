@@ -86,7 +86,7 @@ private nomask string getDescription()
         string *enchantmentList = m_indices(enchantments);
         foreach(string enchantment in enchantmentList)
         {
-            ret += configuration->decorate(sprintf("\t%s (x%d)\n", 
+            ret += configuration->decorate(sprintf("    %s (x%d)\n", 
                 capitalize(enchantment), enchantments[enchantment]),
                 "information", "selector", colorConfiguration); 
         }
@@ -292,7 +292,7 @@ protected string choiceFormatter(string choice)
         Data[choice]["is disabled"]) ? "choice disabled" : "choice enabled";
 
     return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "\t" : "",
+        (NumColumns < 3) ? "    " : "",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
         configuration->decorate("%-20s", displayType, "selector", colorConfiguration),

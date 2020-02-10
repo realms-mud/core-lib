@@ -125,7 +125,7 @@ void LookAtLivingShowsInventory()
     ExpectTrue(Player->executeCommand("look at bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
-        "Bob has a shiny blah!\n\tCarrying:\n" + 
+        "Bob has a shiny blah!\n    Carrying:\n" + 
         expectedInventory, Player->caughtMessage());
 }
 
@@ -149,7 +149,7 @@ void LookInLivingShowsInventory()
     ExpectTrue(Player->executeCommand("look in bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
-        "Bob has a shiny blah!\n\tCarrying:\n" +
+        "Bob has a shiny blah!\n    Carrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -173,7 +173,7 @@ void LAtLivingShowsInventory()
     ExpectTrue(Player->executeCommand("l at bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
-        "Bob has a shiny blah!\n\tCarrying:\n" +
+        "Bob has a shiny blah!\n    Carrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -197,7 +197,7 @@ void LInLivingShowsInventory()
     ExpectTrue(Player->executeCommand("l in bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
-        "Bob has a shiny blah!\n\tCarrying:\n" +
+        "Bob has a shiny blah!\n    Carrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -221,7 +221,7 @@ void ExaLivingShowsInventory()
     ExpectTrue(Player->executeCommand("exa bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
-        "Bob has a shiny blah!\n\tCarrying:\n" +
+        "Bob has a shiny blah!\n    Carrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -245,7 +245,7 @@ void ExamineLivingShowsInventory()
     ExpectTrue(Player->executeCommand("examine bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
-        "Bob has a shiny blah!\n\tCarrying:\n" +
+        "Bob has a shiny blah!\n    Carrying:\n" +
         expectedInventory, Player->caughtMessage());
 }
 
@@ -301,12 +301,12 @@ void LookAtItemShowsDetails()
     ExpectTrue(command("look at blah", Player));
     ExpectEq("This is a sword with a blade that is about 40 inches (100 cm) long.\n" + 
         "This long sword is typical for its type.\n"
-        "\tMaterial: Iron\n"
-        "\tAttack: 8 to 108\n"
-        "\tDamage: 9 to 12\n"
-        "\tDefense: 2 to 3\n"
-        "\tEncumberance: 2\n"
-        "\tWeight: 5\n\n",
+        "    Material: Iron\n"
+        "    Attack: 8 to 108\n"
+        "    Damage: 9 to 12\n"
+        "    Defense: 2 to 3\n"
+        "    Encumberance: 2\n"
+        "    Weight: 5\n\n",
         Player->caughtMessage());
 }
 
@@ -457,7 +457,7 @@ void LooksSupportsColorsAndUnicode()
     ExpectEq("\x1b[0;38;5;190mBob the title-less\x1b[0m\x1b[0;38;5;238m (male)\x1b[0m\x1b[0;38;5;2m (elf)\x1b[0m\n"
         "\x1b[0;38;5;9;1mHe is in good shape.\n"
         "\x1b[0mBob has a shiny blah!\n"
-        "\x1b[0;38;5;80m\tCarrying:\n"
+        "\x1b[0;38;5;80m    Carrying:\n"
         "\x1b[0m\x1b[0;38;5;124m\xe2\x95\x94\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\xa1 Wielded Weapons \xe2\x95\x9e\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x97\n"
         "\x1b[0m\x1b[0;38;5;124m\xe2\x95\x91\x1b[0m \x1b[0;38;5;80mPrimary Weapon: \x1b[0m\x1b[0;38;5;231;1mSword of Blah        \x1b[0m \x1b[0;38;5;80mOffhand Weapon: \x1b[0m\x1b[0;38;5;238;1mnothing              \x1b[0m \x1b[0;38;5;124m\xe2\x95\x91\x1b[0m\n"
         "\x1b[0;38;5;124m\xe2\x95\xa0\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\xa1 Worn Items \xe2\x95\x9e\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\xa3\n"

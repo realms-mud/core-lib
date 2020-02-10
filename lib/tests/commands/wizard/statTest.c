@@ -143,11 +143,11 @@ void CanStatAnItem()
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Detailed Information +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "This is a roughly 5 foot long (152 cm) staff.\n"
         "This ornate staff is a masterwork item.\n"
-        "\tMaterial: Malorn\n"
-        "\tAttack: 22 to 122\n"
-        "\tDamage: 19 to 24 [+16 magical]\n"
-        "\tDefense: 15 to 20\n"
-        "\tEncumberance: 2\n"
-        "\tWeight: 4\n\n",
+        "    Material: Malorn\n"
+        "    Attack: 22 to 122\n"
+        "    Damage: 19 to 24 [+16 magical]\n"
+        "    Defense: 15 to 20\n"
+        "    Encumberance: 2\n"
+        "    Weight: 4\n\n",
         Wizard->caughtMessage());
 }

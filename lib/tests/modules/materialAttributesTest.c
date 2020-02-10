@@ -364,7 +364,7 @@ void LongReturnsInventoryBasedUserDescriptions()
     Attributes->Gender(1);
 
     string expected = "Tantor the title-less (male)\nHe is in good shape.\n"
-        "Tantor has a shiny blah!\n\tCarrying:\n"
+        "Tantor has a shiny blah!\n    Carrying:\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Wielded Weapons +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Primary Weapon: A Sword               Offhand Weapon: nothing               |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Worn Items +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
@@ -390,7 +390,7 @@ void LongReturnsInventoryWithDetails()
 
     Attributes->Name("Tantor");
     Attributes->Gender(1);
-    ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n\tCarrying:\n"
+    ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n    Carrying:\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Miscellaneous Items +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| A Sword                                                                     |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+  +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n",

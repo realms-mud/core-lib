@@ -42,7 +42,7 @@ protected nomask void setUpUserForSelection()
         foreach(string source in sources)
         {
             Data[to_string(menuItem)] = ([
-                "name":capitalize(source),
+                "name": capitalize(source),
                 "type": source,
                 "description": "This option will allow you to view the details of\n"
                     "research gained from " + source + ".\n"

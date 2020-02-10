@@ -72,7 +72,7 @@ protected string padSelectionDisplay(string selection)
 protected string choiceFormatter(string choice)
 {
     return sprintf("%s[%s]%s - %s%s",
-        (NumColumns < 3) ? "\t" : "",
+        (NumColumns < 3) ? "    " : "",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
         configuration->decorate("%-20s", "choice enabled", "selector", colorConfiguration),

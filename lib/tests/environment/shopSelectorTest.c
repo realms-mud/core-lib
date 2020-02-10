@@ -38,9 +38,9 @@ void TopLevelMenuDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mBob's Swords - \x1b[0m\x1b[0;37;1mRemember: Nobody outsells Bob\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mPurchase Items      \x1b[0m\n"
-        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mSell Items          \x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mExit Shop Menu      \x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mPurchase Items      \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mSell Items          \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mExit Shop Menu      \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
@@ -62,7 +62,7 @@ void SelectingPurchaseDisplaysBuyMenu()
     Selector->initiateSelector(Player);
     command("1", Player);
     ExpectEq("\x1b[0;36mPurchase Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and purchase items\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mExit Buy Item Menu  \x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mExit Buy Item Menu  \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
@@ -76,7 +76,7 @@ void SelectingSellItemsDisplaysSellMenu()
     Selector->initiateSelector(Player);
     command("2", Player);
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and sell your character's items\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mExit Sell Item Menu \x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mExit Sell Item Menu \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"

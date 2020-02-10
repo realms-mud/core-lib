@@ -64,7 +64,7 @@ public string displayMessage()
         string *choices = sort_array(m_indices(Data), (: $1 > $2 :));
         foreach(string choice in choices)
         {
-            ret += sprintf("\t[%s]%s - %s\n",
+            ret += sprintf("    [%s]%s - %s\n",
                 configuration->decorate(choice, "number", "selector", colorConfiguration),
                 padSelectionDisplay(choice),
                 configuration->decorate(Data[choice]["name"],

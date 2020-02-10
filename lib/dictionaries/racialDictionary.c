@@ -249,14 +249,14 @@ private nomask string startingSkillsAndTraits(string race, string colorConfigura
 
     if (member(races[race], "starting skill points"))
     {
-        ret += configuration->decorate("\tStarting skill points: ", 
+        ret += configuration->decorate("    Starting skill points: ", 
                 "information", "races", colorConfiguration) +
             configuration->decorate(races[race]["starting skill points"],
                 "bonus modifier", "races", colorConfiguration) + "\n";
     }
     if (member(races[race], "background trait value"))
     {
-        ret += configuration->decorate("\tBonus to trait selection: ", 
+        ret += configuration->decorate("    Bonus to trait selection: ", 
                 "information", "races", colorConfiguration) +
             configuration->decorate(races[race]["background trait value"],
                 "bonus modifier", "races", colorConfiguration) + "\n";
@@ -288,7 +288,7 @@ private nomask string bonusAttributeDescription(string race, string colorConfigu
     {
         if (member(races[race], attribute))
         {
-            ret += decoratedElement(sprintf("\t%-12s ", capitalize(attribute)),
+            ret += decoratedElement(sprintf("    %-12s ", capitalize(attribute)),
                 races[race][attribute], colorConfiguration);
         }
     }
@@ -307,7 +307,7 @@ private nomask string bonusSkillDescription(string race, string colorConfigurati
 
         foreach(string skill in skills)
         {
-            ret += decoratedElement(sprintf("\tBonus %s skill ", 
+            ret += decoratedElement(sprintf("    Bonus %s skill ", 
                 capitalize(skill)), races[race]["skills"][skill],
                 colorConfiguration);
         }
@@ -330,7 +330,7 @@ private nomask string otherBonusesDescription(string race, string colorConfigura
     {
         if (member(races[race], bonus))
         {
-            ret += decoratedElement(sprintf("\t%-12s ", capitalize(bonus)),
+            ret += decoratedElement(sprintf("    %-12s ", capitalize(bonus)),
                 races[race][bonus], colorConfiguration);
         }
     }
@@ -351,7 +351,7 @@ private nomask string racialDescription(string race, string colorConfiguration)
     if (member(races[race], "research trees"))
     {
         ret += configuration->decorate(
-            "\tA special research tree only available to this race is unlocked.\n",
+            "    A special research tree only available to this race is unlocked.\n",
             "bonus modifier", "races", colorConfiguration);
     }
     return ret;

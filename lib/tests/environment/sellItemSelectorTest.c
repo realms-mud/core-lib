@@ -37,8 +37,8 @@ void TopLevelMenuDisplaysCorrectly()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and sell your character's items\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mWeapons             \x1b[0m\n"
-        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mExit Sell Item Menu \x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mWeapons             \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mExit Sell Item Menu \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 2.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
@@ -63,20 +63,20 @@ void TopLevelMenuDisplaysOptionsForEachInventoryType()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and sell your character's items\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mArmors              \x1b[0m\n"
-        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mBooks               \x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mContainers          \x1b[0m\n"
-        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mDrinks              \x1b[0m\n"
-        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mFoods               \x1b[0m\n"
-        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mIngredients         \x1b[0m\n"
-        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mInstruments         \x1b[0m\n"
-        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mMaterials           \x1b[0m\n"
-        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mPotions             \x1b[0m\n"
-        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mScrolls             \x1b[0m\n"
-        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mTreasures           \x1b[0m\n"
-        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mVessels             \x1b[0m\n"
-        "\t[\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mWeapons             \x1b[0m\n"
-        "\t[\x1b[0;31;1m14\x1b[0m] - \x1b[0;32mExit Sell Item Menu \x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mArmors              \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mBooks               \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mContainers          \x1b[0m\n"
+        "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mDrinks              \x1b[0m\n"
+        "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mFoods               \x1b[0m\n"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mIngredients         \x1b[0m\n"
+        "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mInstruments         \x1b[0m\n"
+        "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mMaterials           \x1b[0m\n"
+        "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mPotions             \x1b[0m\n"
+        "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mScrolls             \x1b[0m\n"
+        "    [\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mTreasures           \x1b[0m\n"
+        "    [\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mVessels             \x1b[0m\n"
+        "    [\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mWeapons             \x1b[0m\n"
+        "    [\x1b[0;31;1m14\x1b[0m] - \x1b[0;32mExit Sell Item Menu \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 14.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
@@ -102,16 +102,16 @@ void TopLevelMenuDoesNotDisplayProhibitedTypes()
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and sell your character's items\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mArmors              \x1b[0m\n"
-        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mBooks               \x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mContainers          \x1b[0m\n"
-        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mInstruments         \x1b[0m\n"
-        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mMaterials           \x1b[0m\n"
-        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mScrolls             \x1b[0m\n"
-        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mTreasures           \x1b[0m\n"
-        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mVessels             \x1b[0m\n"
-        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mWeapons             \x1b[0m\n"
-        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mExit Sell Item Menu \x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mArmors              \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mBooks               \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mContainers          \x1b[0m\n"
+        "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mInstruments         \x1b[0m\n"
+        "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mMaterials           \x1b[0m\n"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mScrolls             \x1b[0m\n"
+        "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mTreasures           \x1b[0m\n"
+        "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mVessels             \x1b[0m\n"
+        "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mWeapons             \x1b[0m\n"
+        "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mExit Sell Item Menu \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 10.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
@@ -318,13 +318,13 @@ void ItemDetailsShowLongPlusValue()
     command("? 1", Player);
     ExpectEq("\x1b[0;36mThis is the sword of weasels. It's neat.\n"
         "\x1b[0;35mThis long sword is enchanted.\n"
-        "\x1b[0m\x1b[0;36m\tMaterial: \x1b[0m\x1b[0;33mGalvorn\x1b[0m\n"
-        "\x1b[0;36m\tAttack: \x1b[0m\x1b[0;33m10\x1b[0m\x1b[0;33m to 110\x1b[0m\n"
-        "\x1b[0;36m\tDamage: \x1b[0m\x1b[0;33m15\x1b[0m\x1b[0;33m to 20\x1b[0m\x1b[0;31m [+5 magical]\x1b[0m\n"
-        "\x1b[0;36m\tDefense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"
-        "\x1b[0;36m\tEncumberance: \x1b[0m\x1b[0;33m7\x1b[0m\n"
-        "\x1b[0;33m\tBonus armor class: 5\n"
-        "\x1b[0m\x1b[0;36m\tWeight: \x1b[0m\x1b[0;33m7\x1b[0m\n\n"
+        "\x1b[0m\x1b[0;36m    Material: \x1b[0m\x1b[0;33mGalvorn\x1b[0m\n"
+        "\x1b[0;36m    Attack: \x1b[0m\x1b[0;33m10\x1b[0m\x1b[0;33m to 110\x1b[0m\n"
+        "\x1b[0;36m    Damage: \x1b[0m\x1b[0;33m15\x1b[0m\x1b[0;33m to 20\x1b[0m\x1b[0;31m [+5 magical]\x1b[0m\n"
+        "\x1b[0;36m    Defense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"
+        "\x1b[0;36m    Encumberance: \x1b[0m\x1b[0;33m7\x1b[0m\n"
+        "\x1b[0;33m    Bonus armor class: 5\n"
+        "\x1b[0m\x1b[0;36m    Weight: \x1b[0m\x1b[0;33m7\x1b[0m\n\n"
         "\x1b[0;32mYou can sell this item for 42.\n\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
@@ -495,15 +495,32 @@ void SelectSubMenuDisplaysSellListWithNoColorCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithEightBitColorCorrectly()
 {
+    string name = object_name(Weapon);
+    object sword = clone_object("/lib/tests/support/items/testSword.c");
+    sword->set("name", "Sword of really long namedness");
+    sword->identify();
+    sword->set("cursed", ([
+        "equip message":"blah",
+            "failed unequip message" : "halb"
+    ]));
+    move_object(sword, Player);
+
+    sword = clone_object("/lib/tests/support/items/testSword.c");
+    sword->set("name", "Sword of Swinginess");
+    sword->identify();
+    move_object(sword, Player);
+
     Player->colorConfiguration("8-bit");
     Selector->initiateSelector(Player);
     Selector->applySelection("1");
 
     ExpectEq("\x1b[0;38;5;80mSell Items - \x1b[0m\x1b[0;38;5;15;1mSelect an item to sell\x1b[0m:\n"
-        "    [\x1b[0;38;5;9;1m1\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;31mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;38;5;31m (?)\x1b[0m"
-        "    [\x1b[0;38;5;9;1m2\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;238;1mSell all unused    \x1b[0m\x1b[0m    \n"
-        "    [\x1b[0;38;5;9;1m3\x1b[0m] - \x1b[0;38;5;2mReturn to previous menu\x1b[0m    \n"
-        "\x1b[0;38;5;2;1mYou must select a number from 1 to 3.\n\x1b[0m"
+        "    [\x1b[0;38;5;9;1m1\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;31mSword of Swinginess\x1b[0m\x1b[0m    "
+        "    [\x1b[0;38;5;9;1m2\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;31mSword of really ...\x1b[0m\x1b[0m\x1b[0;38;5;238;1m (C)\x1b[0m\n"
+        "    [\x1b[0;38;5;9;1m3\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;31mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;38;5;31m (?)\x1b[0m"
+        "    [\x1b[0;38;5;9;1m4\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;238;1mSell all unused    \x1b[0m\x1b[0m    \n"
+        "    [\x1b[0;38;5;9;1m5\x1b[0m] - \x1b[0;38;5;2mReturn to previous menu\x1b[0m    \n"
+        "\x1b[0;38;5;2;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
         Player->caughtMessage());
@@ -512,15 +529,32 @@ void SelectSubMenuDisplaysSellListWithEightBitColorCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithTwentyFourBitColorCorrectly()
 {
+    string name = object_name(Weapon);
+    object sword = clone_object("/lib/tests/support/items/testSword.c");
+    sword->set("name", "Sword of really long namedness");
+    sword->identify();
+    sword->set("cursed", ([
+        "equip message":"blah",
+            "failed unequip message" : "halb"
+    ]));
+    move_object(sword, Player);
+
+    sword = clone_object("/lib/tests/support/items/testSword.c");
+    sword->set("name", "Sword of Swinginess");
+    sword->identify();
+    move_object(sword, Player);
+
     Player->colorConfiguration("24-bit");
     Selector->initiateSelector(Player);
     Selector->applySelection("1");
 
     ExpectEq("\x1b[0;38;2;180;180;190mSell Items - \x1b[0m\x1b[0;38;2;255;255;255;1mSelect an item to sell\x1b[0m:\n"
-        "    [\x1b[0;38;2;220;40;0;1m1\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;50;75;195mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;38;2;80;155;175m (?)\x1b[0m"
-        "    [\x1b[0;38;2;220;40;0;1m2\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;70;60;60;1mSell all unused    \x1b[0m\x1b[0m    \n"
-        "    [\x1b[0;38;2;220;40;0;1m3\x1b[0m] - \x1b[0;38;2;170;180;110mReturn to previous menu\x1b[0m    \n"
-        "\x1b[0;38;2;160;220;60;1mYou must select a number from 1 to 3.\n\x1b[0m"
+        "    [\x1b[0;38;2;220;40;0;1m1\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;50;75;195mSword of Swinginess\x1b[0m\x1b[0m    "
+        "    [\x1b[0;38;2;220;40;0;1m2\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;50;75;195mSword of really ...\x1b[0m\x1b[0m\x1b[0;38;2;70;60;60;1m (C)\x1b[0m\n"
+        "    [\x1b[0;38;2;220;40;0;1m3\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;50;75;195mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;38;2;80;155;175m (?)\x1b[0m"
+        "    [\x1b[0;38;2;220;40;0;1m4\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;70;60;60;1mSell all unused    \x1b[0m\x1b[0m    \n"
+        "    [\x1b[0;38;2;220;40;0;1m5\x1b[0m] - \x1b[0;38;2;170;180;110mReturn to previous menu\x1b[0m    \n"
+        "\x1b[0;38;2;160;220;60;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;38;2;100;180;150mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;38;2;100;180;150mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;38;2;160;220;60;1m\x1b[0m",
         Player->caughtMessage());

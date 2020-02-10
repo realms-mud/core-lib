@@ -94,7 +94,7 @@ public nomask string *selection()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string displayDetails(string choice)
 {
-    string ret = "";
+    string ret = "    ";
 
     int skillLevel = User->getSkill(lower_case(Data[choice]["skill"]), 1);
     if (isLevelAdvance && skillLevel)
@@ -104,7 +104,7 @@ protected nomask string displayDetails(string choice)
     }
     else if (skillLevel)
     {
-        ret = configuration->decorate("(*)",
+        ret = configuration->decorate(" (*)",
             "selected", "selector", colorConfiguration);
     }
     return ret;

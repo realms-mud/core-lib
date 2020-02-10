@@ -150,9 +150,7 @@ public void Techniques()
     addResearchElement("lib/instances/research/crafting/weapons/swords/daedruns-gift.c");
     addChild("lib/instances/research/crafting/weapons/swords/daedruns-gift.c",
         "lib/instances/research/crafting/weapons/swords/enhance-the-essence.c");
-
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)

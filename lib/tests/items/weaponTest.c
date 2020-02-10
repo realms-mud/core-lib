@@ -386,12 +386,12 @@ void SetComponentCorrectlySetsComponents()
         "an exquisite steel pommel that has been intricately sculpted to resemble a\n"
         "dragon's talon. Clutched in its grip is a beautifully cut garnet.\n"
         "This long sword is typical for its type.\n"
-        "\tMaterial: Iron\n"
-        "\tAttack: 5 to 105\n"
-        "\tDamage: 8 to 11\n"
-        "\tDefense: 1 to 2\n"
-        "\tEncumberance: 5\n"
-        "\tWeight: 5\n\n", 
+        "    Material: Iron\n"
+        "    Attack: 5 to 105\n"
+        "    Damage: 8 to 11\n"
+        "    Defense: 1 to 2\n"
+        "    Encumberance: 5\n"
+        "    Weight: 5\n\n", 
         Weapon->long());
 }
 

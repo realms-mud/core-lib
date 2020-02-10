@@ -34,10 +34,10 @@ void InitialCreationDisplayIsCorrectForHighElf()
     User->Race("high elf");
     Selector->initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your subrace\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mHalf elf            \x1b[0m\n"
-        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mHillgarathi elf     \x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mMoon elf            \x1b[0m\n"
-        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mHalf elf            \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mHillgarathi elf     \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mMoon elf            \x1b[0m\n"
+        "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 4.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         User->caughtMessage());
@@ -92,11 +92,11 @@ void InitialCreationDisplayIsCorrectForElf()
     User->Race("elf");
     Selector->initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your subrace\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mDark elf            \x1b[0m\n"
-        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mGrey elf            \x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mSea elf             \x1b[0m\n"
-        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mWood elf            \x1b[0m\n"
-        "\t[\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mDark elf            \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mGrey elf            \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mSea elf             \x1b[0m\n"
+        "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mWood elf            \x1b[0m\n"
+        "    [\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         User->caughtMessage());
@@ -148,9 +148,9 @@ void InitialCreationDisplayIsCorrectForDwarf()
     User->Race("dwarf");
     Selector->initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your subrace\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mKhazurathi dwarf    \x1b[0m\n"
-        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mMirosti dwarf       \x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mKhazurathi dwarf    \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mMirosti dwarf       \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         User->caughtMessage());
@@ -259,18 +259,18 @@ void InitialCreationDisplayIsCorrectForHuman()
     User->Race("human");
     Selector->initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your subrace\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mAndurathi           \x1b[0m\n"
-        "\t[\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mCelebnosti          \x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mEledhelean          \x1b[0m\n"
-        "\t[\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mEndurgish           \x1b[0m\n"
-        "\t[\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mHelcarish           \x1b[0m\n"
-        "\t[\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mHillgarathi         \x1b[0m\n"
-        "\t[\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mIarwathean          \x1b[0m\n"
-        "\t[\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mLinmiri             \x1b[0m\n"
-        "\t[\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mMenadrosti          \x1b[0m\n"
-        "\t[\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mTirnosti            \x1b[0m\n"
-        "\t[\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mZhenduli            \x1b[0m\n"
-        "\t[\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mAndurathi           \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mCelebnosti          \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m]  - \x1b[0;32mEledhelean          \x1b[0m\n"
+        "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mEndurgish           \x1b[0m\n"
+        "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mHelcarish           \x1b[0m\n"
+        "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mHillgarathi         \x1b[0m\n"
+        "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mIarwathean          \x1b[0m\n"
+        "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mLinmiri             \x1b[0m\n"
+        "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mMenadrosti          \x1b[0m\n"
+        "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mTirnosti            \x1b[0m\n"
+        "    [\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mZhenduli            \x1b[0m\n"
+        "    [\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         User->caughtMessage());

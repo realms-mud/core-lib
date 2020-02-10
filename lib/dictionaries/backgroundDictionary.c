@@ -11,15 +11,15 @@ private mapping personalityQuestionnaire = ([
         "answers": ([
             "1": ([
                 "name": "Excite and energize you. This is, after all, your element and you\n"
-                    "\t      love meeting new people.\n",
+                    "          love meeting new people.\n",
                 "type": "extravert"
             ]),
             "2": ([
                 "name": "Fill you with a sense of dread. People suck and you really would\n"
-                    "\t      rather stay home doing something far more interesting\n"
-                    "\t      like rearranging your sock drawer. The thought of\n"
-                    "\t      listening to the bemoanings of all these self-absorbed\n"
-                    "\t      assholes you'll never see again just doesn't excite you.\n",
+                    "          rather stay home doing something far more interesting\n"
+                    "          like rearranging your sock drawer. The thought of\n"
+                    "          listening to the bemoanings of all these self-absorbed\n"
+                    "          assholes you'll never see again just doesn't excite you.\n",
                 "type": "introvert"
             ])
         ])
@@ -30,15 +30,15 @@ private mapping personalityQuestionnaire = ([
         "answers": ([
             "1": ([
                 "name": "Get on with it. If you hurry up and work through the problem as\n"
-                    "\t      convention dictates, it shouldn't take too long ere you're done\n"
-                    "\t      and able to move on to more enjoyable activities.\n",
+                    "          convention dictates, it shouldn't take too long ere you're done\n"
+                    "          and able to move on to more enjoyable activities.\n",
                 "type": "sensing"
             ]),
             "2": ([
                 "name": "Reject convention. If you think about the problem for a while,\n"
-                    "\t      you may well come up with a better way of solving the problem. Of\n"
-                    "\t      course, maybe you won't and you could end up wasting time\n"
-                    "\t      needlessly.\n",
+                    "          you may well come up with a better way of solving the problem. Of\n"
+                    "          course, maybe you won't and you could end up wasting time\n"
+                    "          needlessly.\n",
                 "type": "intuition"
             ])
         ])
@@ -52,12 +52,12 @@ private mapping personalityQuestionnaire = ([
         "answers": ([
             "1": ([
                 "name": "Thoroughly discuss all of the pros and cons of both projects and\n"
-                    "\t      clearly detail why the well is the only logical choice.\n",
+                    "          clearly detail why the well is the only logical choice.\n",
                 "type": "thinking"
             ]),
             "2": ([
                 "name": "Seek to understand why the others want the statue and work toward\n"
-                    "\t      the consensus opinion in the end.\n",
+                    "          the consensus opinion in the end.\n",
                 "type": "feeling"
             ])
         ])
@@ -70,13 +70,13 @@ private mapping personalityQuestionnaire = ([
         "answers": ([
             "1": ([
                 "name": "Meticulously and methodically organize your plan of attack. You\n"
-                    "\t      will only get one chance, so this had best be perfect.\n",
+                    "          will only get one chance, so this had best be perfect.\n",
                 "type": "judging"
             ]),
             "2": ([
                 "name": "Prepare for the attack with those resources you have on hand. The\n"
-                    "\t      plan may not be perfect, but it is not rigid and you trust in\n"
-                    "\t      yourself to adapt as new information comes your way.\n",
+                    "          plan may not be perfect, but it is not rigid and you trust in\n"
+                    "          yourself to adapt as new information comes your way.\n",
                 "type": "perceiving"
             ])
         ])
@@ -92,26 +92,26 @@ private mapping personalityQuestionnaire = ([
         "answers": ([
             "1": ([
                 "name": "Honor your contract and bring the man to justice knowing that he\n"
-                    "\t      faces executioner for acting with compassion and honor in\n"
-                    "\t      protecting innocents.\n",
+                    "          faces executioner for acting with compassion and honor in\n"
+                    "          protecting innocents.\n",
                 "type": "loyal"
             ]),
             "2": ([
                 "name": "Free him knowing that, at best, your quest will fail and at worst,\n"
-                    "\t      your duplicity will be discovered.\n",
+                    "          your duplicity will be discovered.\n",
                 "type": "compassionate"
             ]),
             "3": ([
                 "name": "Take up arms against the local lord and bring him to justice\n"
-                    "\t      before the king, knowing full well that the king would judge his\n"
-                    "\t      deed the act of a criminal.\n",
+                    "          before the king, knowing full well that the king would judge his\n"
+                    "          deed the act of a criminal.\n",
                 "type": "just"
             ]),
             "4": ([
                 "name": "Inform the local lord that you have uncovered the true nature of\n"
-                    "\t      the man's crimes and that you still intend to bring the man in but\n"
-                    "\t      require additional money lest you inadvertently mention this\n"
-                    "\t      episode to the king.\n",
+                    "          the man's crimes and that you still intend to bring the man in but\n"
+                    "          require additional money lest you inadvertently mention this\n"
+                    "          episode to the king.\n",
                 "type": "corrupt"
             ]),
         ])
@@ -125,21 +125,21 @@ private mapping personalityQuestionnaire = ([
         "answers": ([
             "1": ([
                 "name": "Silently offer a toast to yourself. It appears that the treasure\n"
-                    "\t      really is all yours!\n",
+                    "          really is all yours!\n",
                 "type": "dishonest"
             ]),
             "2": ([
                 "name": "Turn yourself in. If you tell the constable what happened and\n"
-                    "\t      return the treasure, it's no harm, no foul, right? They wouldn't\n"
-                    "\t      execute you for this, would they? Regardless, you can't let that\n"
-                    "\t      poor soul pay for your crime.\n",
+                    "          return the treasure, it's no harm, no foul, right? They wouldn't\n"
+                    "          execute you for this, would they? Regardless, you can't let that\n"
+                    "          poor soul pay for your crime.\n",
                 "type": "honest"
             ]),
             "3": ([
                 "name": "You realize that life will be short for you if you're caught,\n"
-                    "\t      but you can't let that poor bastard take the fall for you so...\n"
-                    "\t      there's nothing for it but to plot a daring rescue. The jail\n"
-                    "\t      doesn't look all that sturdy.\n",
+                    "          but you can't let that poor bastard take the fall for you so...\n"
+                    "          there's nothing for it but to plot a daring rescue. The jail\n"
+                    "          doesn't look all that sturdy.\n",
                 "type": "greedy"
             ])
         ])
@@ -153,24 +153,24 @@ private mapping personalityQuestionnaire = ([
         "answers": ([
             "1": ([
                 "name": "Ser Osis of D'Liver can kiss my arse. That wretched dung-beast\n"
-                    "\t      spilled her own wine!\n",
+                    "          spilled her own wine!\n",
                 "type": "vulgar"
             ]),
             "2": ([
                 "name": "Ser Osis of D'Liver is a drunkard and a buffoon. I will not punish\n"
-                    "\t      others for her inability to hold her liquor.\n",
+                    "          others for her inability to hold her liquor.\n",
                 "type": "abrasive"
             ]),
             "3": ([
                 "name": "The kind of woman who wants to enforce her ideas on others is\n"
-                    "\t      the kind of woman whose ideas are idiotic.\n",
+                    "          the kind of woman whose ideas are idiotic.\n",
                 "type": "witty"
             ]),
             "4": ([
                 "name": "Ser Osis of D'Liver believes in the ideal that her birthright\n"
-                    "\t      allows her to step on others. An idealist is one who, on\n"
-                    "\t      noticing that a rose smells better than a cabbage, concludes\n"
-                    "\t      that it also makes a better soup.\n",
+                    "          allows her to step on others. An idealist is one who, on\n"
+                    "          noticing that a rose smells better than a cabbage, concludes\n"
+                    "          that it also makes a better soup.\n",
                 "type": "orator"
             ])
 

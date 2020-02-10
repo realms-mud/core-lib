@@ -1404,13 +1404,13 @@ public nomask mapping creationListForSkillType(string type, object user)
         int i = 1;
         foreach(string skill in skillsList)
         {
-            string attribute = configuration->decorate("\tAffecting attribute: ",
+            string attribute = configuration->decorate("    Affecting attribute: ",
                     "information", "skills", colorConfiguration) +
                 configuration->decorate(capitalize(skills[skill]["attribute"]),
                     "modifier", "skills", colorConfiguration) + "\n";
 
             string penalty = skills[skill]["untrained penalty"] ?
-                configuration->decorate("\tAttempting to use this skill "
+                configuration->decorate("    Attempting to use this skill "
                     "untrained will incur a penalty.\n",
                     "penalty", "skills", colorConfiguration) : "";
 

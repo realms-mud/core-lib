@@ -216,12 +216,12 @@ public nomask varargs string displayNeededMaterials(string colorConfiguration,
             foreach(string material in materials)
             {
                 ret += ((neededMaterials[material] > 0) ?
-                    (configuration->decorate(sprintf("\t%s needed: ",
+                    (configuration->decorate(sprintf("    %s needed: ",
                         capitalize(material)), "field data", "research", 
                         colorConfiguration) +
                     configuration->decorate(to_string(neededMaterials[material]),
                         "prerequisite", "research", colorConfiguration)) :
-                    (configuration->decorate("\t(Optional) ",
+                    (configuration->decorate("    (Optional) ",
                         "formula type", "research", colorConfiguration) +
                      configuration->decorate(sprintf("%s can be used to embellish "
                             "the design", capitalize(material)),

@@ -145,7 +145,7 @@ public nomask string selection()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string displayDetails(string choice)
 {
-    string ret = "";
+    string ret = "    ";
 
     int useUnicode = User->charsetConfiguration() == "unicode";
 

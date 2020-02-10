@@ -30,13 +30,13 @@ void InitialCreationDisplayIsCorrect()
 {
     Selector->initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose a class of skills to advance\x1b[0m:\n"
-        "\t[\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mCombat              \x1b[0m\n"
-        "\t[\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mCrafting            \x1b[0m\n"
-        "\t[\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mErudite             \x1b[0m\n"
-        "\t[\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mGeneral             \x1b[0m\n"
-        "\t[\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mLanguage            \x1b[0m\n"
-        "\t[\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mMagic               \x1b[0m\n"
-        "\t[\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mSubterfuge          \x1b[0m\n"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mCombat              \x1b[0m\n"
+        "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mCrafting            \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mErudite             \x1b[0m\n"
+        "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mGeneral             \x1b[0m\n"
+        "    [\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mLanguage            \x1b[0m\n"
+        "    [\x1b[0;31;1m6\x1b[0m] - \x1b[0;32mMagic               \x1b[0m\n"
+        "    [\x1b[0;31;1m7\x1b[0m] - \x1b[0;32mSubterfuge          \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 7. You may also undo or reset.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou have 14 skills left to assign.\n\x1b[0m",

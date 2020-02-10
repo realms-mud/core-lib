@@ -698,7 +698,7 @@ private nomask int getAttackData(object weapon, object initiator)
 private nomask varargs string detailsText(string colorConfiguration, 
     string name, string value, string range)
 {
-    string ret = configuration->decorate(sprintf("\t%s: ", name),
+    string ret = configuration->decorate(sprintf("    %s: ", name),
         "field", "equipment", colorConfiguration);
 
     if (value && stringp(value))
@@ -931,7 +931,7 @@ private nomask string applyBonusDetails(object item, object initiator)
 
         foreach(string bonus in bonuses)
         {
-            ret += configuration->decorate(sprintf("\t%s: %d\n",
+            ret += configuration->decorate(sprintf("    %s: %d\n",
                 capitalize(bonus), item->query(bonus)), "value", "equipment",
                 colorConfiguration);
         }
@@ -1013,13 +1013,13 @@ private nomask string applyNonEquipmentDetails(object item, object initiator)
     string enchantments = applyEnchantments(item, initiator);
     if (enchantments)
     {
-        ret += configuration->decorate("\tEnchantments: ", "value",
+        ret += configuration->decorate("    Enchantments: ", "value",
             "equipment", colorConfiguration) + enchantments;
     }
     string resistances = applyResistances(item, initiator);
     if (resistances)
     {
-        ret += configuration->decorate("\tResistances: ", "value",
+        ret += configuration->decorate("    Resistances: ", "value",
             "equipment", colorConfiguration) + resistances;
     }
     return ret;

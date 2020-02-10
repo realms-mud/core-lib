@@ -546,7 +546,7 @@ private string inventoryLongDescription(int brief, object configuration,
 
             if(inventoryText && inventoryText != "")
             {
-                ret += configuration->decorate("\tCarrying:\n",
+                ret += configuration->decorate("    Carrying:\n",
                     "carry header", "long description", colorConfiguration) +
                     inventoryText;
             }
