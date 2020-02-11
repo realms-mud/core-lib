@@ -15,8 +15,7 @@ static string includeDirectories(string includeFile, string currentFile)
         foreach(string location in locations)
         {
             string name = sprintf("%s/%s", location, includeFile);
-
-            if (file_size(name))
+            if (file_size(name) > -1)
             {
                 ret = name;
                 break;
