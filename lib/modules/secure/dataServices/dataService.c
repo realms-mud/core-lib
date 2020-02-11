@@ -29,7 +29,7 @@ protected nomask int connect()
     }
     if (db_error(ret))
     {
-        getDictionary("log")->log("/log/DBERROR", db_error(ret));
+        getDictionary("log")->log("DBERROR", db_error(ret));
     }
 
     if (ret)
