@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## honeycrisp apple trees");
 
     harvestableResource("honeycrisp apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
-        "a heavily-forested stand of honecrisp apple trees. Several trees remain");
+        "a heavily-forested stand of honecrisp apple trees. Several trees remain",
+        ({ "apple tree", "tree" }));
     harvestRequiresTool("honeycrisp apple tree", "axe");
 
     harvestableResource("honeycrisp apple", 10,
-        "/lib/instances/items/food/plants/fruit/honeycrisp-apple.c");
+        "/lib/instances/items/food/plants/fruit/honeycrisp-apple.c",
+        ({ "apple" }));
     limitHarvestBySeason("honeycrisp apple", "summer");
 }

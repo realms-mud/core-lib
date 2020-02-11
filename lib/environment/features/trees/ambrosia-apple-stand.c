@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## ambrosia apple trees");
 
     harvestableResource("ambrosia apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
-        "a heavily-forested stand of ambrosia apple trees. Several trees remain");
+        "a heavily-forested stand of ambrosia apple trees. Several trees remain",
+        ({ "apple tree", "tree" }));
     harvestRequiresTool("ambrosia apple tree", "axe");
 
     harvestableResource("ambrosia apple", 10,
-        "/lib/instances/items/food/plants/fruit/ambrosia-apple.c");
+        "/lib/instances/items/food/plants/fruit/ambrosia-apple.c",
+        ({ "apple" }));
     limitHarvestBySeason("ambrosia apple", "summer");
 }

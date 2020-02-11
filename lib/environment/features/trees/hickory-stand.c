@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## hickory trees");
 
     harvestableResource("hickory", 25, "/lib/instances/items/materials/wood/hickory.c",
-        "a heavily-forested stand of hickory trees. Several trees remain");
+        "a heavily-forested stand of hickory trees. Several trees remain",
+        ({ "deciduous tree", "hickory tree", "tree" }));
     harvestRequiresTool("hickory", "axe");
     harvestableResource("hickory globose", 25,
-        "/lib/instances/items/food/plants/seeds/hickory-globose.c");
+        "/lib/instances/items/food/plants/seeds/hickory-globose.c",
+        ({ "globose" }));
     limitHarvestBySeason("hickory globose", "summer");
 }

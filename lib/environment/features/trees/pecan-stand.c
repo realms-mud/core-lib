@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## pecan trees");
 
     harvestableResource("pecan tree", 25, "/lib/instances/items/materials/wood/pecan.c",
-        "a heavily-forested stand of pecan trees. Several trees remain");
+        "a heavily-forested stand of pecan trees. Several trees remain",
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("pecan tree", "axe");
 
     harvestableResource("pecan", 10,
-        "/lib/instances/items/food/plants/nuts/pecan.c");
+        "/lib/instances/items/food/plants/nuts/pecan.c",
+        ({ "nut" }));
     limitHarvestBySeason("pecan", "summer");
 }

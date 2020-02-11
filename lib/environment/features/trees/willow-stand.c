@@ -24,9 +24,15 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## willow trees");
 
     harvestableResource("willow", 25, "/lib/instances/items/materials/wood/willow.c",
-        "a heavily-forested stand of willow trees. Several trees remain");
+        "a heavily-forested stand of willow trees. Several trees remain",
+        ({ "deciduous tree", "willow tree", "tree" }));
     harvestRequiresTool("willow", "axe");
     harvestableResource("willow catkin", 25,
-        "/lib/instances/items/food/plants/seeds/willow-catkin.c");
+        "/lib/instances/items/food/plants/seeds/willow-catkin.c",
+        ({ "catkin" }));
     limitHarvestBySeason("willow catkin", "summer");
+
+    harvestableResource("willow bark", 25,
+        "/lib/instances/items/food/plants/bark/willow-bark.c",
+        ({ "bark" }));
 }

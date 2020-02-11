@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         set("name", "Mesquite Seed Pod");
         set("short", "Mesquite Seed Pod");
-        set("aliases", ({ "mesquite seed pod", "seed pod", "seed",
+        set("aliases", ({ "mesquite seed pod", "seed pod", "pod", "seed",
             "mesquite seed" }));
         set("blueprint", "mesquite seed pod");
     }

@@ -1742,6 +1742,14 @@ private nosave mapping food =
         ]),
         "base experience": 1,
     ]),
+    "willow bark": ([
+        "type": "bark",
+        "subtype": "willow",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "base experience": 1,
+    ]),
     "grape": ([
         "type": "fruit",
         "subtype": "grape",

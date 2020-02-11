@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## golden apple trees");
 
     harvestableResource("golden apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
-        "a heavily-forested stand of golden apple trees. Several trees remain");
+        "a heavily-forested stand of golden apple trees. Several trees remain",
+        ({ "apple tree", "tree" }));
     harvestRequiresTool("golden apple tree", "axe");
 
     harvestableResource("golden apple", 10,
-        "/lib/instances/items/food/plants/fruit/golden-apple.c");
+        "/lib/instances/items/food/plants/fruit/golden-apple.c",
+        ({ "apple" }));
     limitHarvestBySeason("golden apple", "summer");
 }

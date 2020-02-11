@@ -24,7 +24,8 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## apple trees");
 
     harvestableResource("apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
-        "a heavily-forested stand of apple trees. Several trees remain");
+        "a heavily-forested stand of apple trees. Several trees remain",
+        ({ "tree" }));
     harvestRequiresTool("apple tree", "axe");
 
     harvestableResource("apple", 10,

@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## plum trees");
 
     harvestableResource("plum tree", 25, "/lib/instances/items/materials/wood/plum.c",
-        "a heavily-forested stand of plum trees. Several trees remain");
+        "a heavily-forested stand of plum trees. Several trees remain",
+        ({ "deciduous tree","tree" }));
     harvestRequiresTool("plum tree", "axe");
 
     harvestableResource("plum", 10,
-        "/lib/instances/items/food/plants/fruit/plum.c");
+        "/lib/instances/items/food/plants/fruit/plum.c",
+        ({ "fruit" }));
     limitHarvestBySeason("plum", "summer");
 }

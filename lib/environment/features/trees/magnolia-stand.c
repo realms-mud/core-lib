@@ -24,13 +24,16 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## magnolia trees");
 
     harvestableResource("magnolia", 25, "/lib/instances/items/materials/wood/magnolia.c",
-        "a heavily-forested stand of magnolia trees. Several trees remain");
+        "a heavily-forested stand of magnolia trees. Several trees remain",
+        ({ "deciduous tree", "magnolia tree", "tree" }));
     harvestRequiresTool("magnolia", "axe");
     harvestableResource("magnolia fruit", 25,
-        "/lib/instances/items/food/plants/fruit/magnolia-fruit.c");
+        "/lib/instances/items/food/plants/fruit/magnolia-fruit.c",
+        ({ "fruit" }));
     limitHarvestBySeason("magnolia fruit", "summer");
 
     harvestableResource("magnolia flower", 25,
-        "/lib/instances/items/food/plants/flowers/magnolia-flower.c");
+        "/lib/instances/items/food/plants/flowers/magnolia-flower.c",
+        ({ "flower" }));
     limitHarvestBySeason("magnolia flower", "spring");
 }

@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## pear trees");
 
     harvestableResource("pear tree", 25, "/lib/instances/items/materials/wood/pear.c",
-        "a heavily-forested stand of pear trees. Several trees remain");
+        "a heavily-forested stand of pear trees. Several trees remain",
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("pear tree", "axe");
 
     harvestableResource("pear", 10,
-        "/lib/instances/items/food/plants/fruit/pear.c");
+        "/lib/instances/items/food/plants/fruit/pear.c",
+        ({ "fruit" }));
     limitHarvestBySeason("pear", "summer");
 }

@@ -25,9 +25,11 @@ public void Setup()
 
     harvestableResource("purple heart", 25, 
         "/lib/instances/items/materials/wood/purple-heart.c",
-        "a heavily-forested stand of purple hear trees. Several trees remain");
+        "a heavily-forested stand of purple hear trees. Several trees remain",
+        ({ "deciduous tree", "purple heart tree", "tree" }));
     harvestRequiresTool("purple heart", "axe");
     harvestableResource("purple heart seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/purple-heart-seed-pod.c");
+        "/lib/instances/items/food/plants/seeds/purple-heart-seed-pod.c",
+        ({ "seed", "pod", "seed pod" }));
     limitHarvestBySeason("purple heart seed pod", "summer");
 }

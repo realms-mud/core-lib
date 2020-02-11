@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## choke cherry trees");
 
     harvestableResource("choke cherry tree", 25, "/lib/instances/items/materials/wood/cherry.c",
-        "a heavily-forested stand of choke cherry trees. Several trees remain");
+        "a heavily-forested stand of choke cherry trees. Several trees remain",
+        ({ "deciduous tree", "chokecherry cherry tree", "cherry tree", "tree" }));
     harvestRequiresTool("choke cherry tree", "axe");
 
     harvestableResource("choke cherry", 10,
-        "/lib/instances/items/food/plants/fruit/choke-cherry.c");
+        "/lib/instances/items/food/plants/fruit/choke-cherry.c",
+        ({ "chokecherry", "cherry", "fruit" }));
     limitHarvestBySeason("choke cherry", "summer");
 }

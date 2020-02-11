@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## kingwood trees");
 
     harvestableResource("kingwood", 25, "/lib/instances/items/materials/wood/kingwood.c",
-        "a heavily-forested stand of kingwood trees. Several trees remain");
+        "a heavily-forested stand of kingwood trees. Several trees remain",
+        ({ "deciduous tree", "kingwood tree", "tree" }));
     harvestRequiresTool("kingwood", "axe");
     harvestableResource("kingwood seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/kingwood-seed-pod.c");
+        "/lib/instances/items/food/plants/seeds/kingwood-seed-pod.c",
+        ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("kingwood seed pod", "summer");
 }

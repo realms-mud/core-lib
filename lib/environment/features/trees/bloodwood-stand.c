@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## bloodwood trees");
 
     harvestableResource("bloodwood", 25, "/lib/instances/items/materials/wood/bloodwood.c",
-        "a heavily-forested stand of bloodwood trees. Several trees remain");
+        "a heavily-forested stand of bloodwood trees. Several trees remain",
+        ({ "deciduous tree", "bloodwood tree", "tree" }));
     harvestRequiresTool("bloodwood", "axe");
     harvestableResource("bloodwood seed", 25,
-        "/lib/instances/items/food/plants/seeds/bloodwood-seed.c");
+        "/lib/instances/items/food/plants/seeds/bloodwood-seed.c",
+        ({ "seed" }));
     limitHarvestBySeason("bloodwood seed", "summer");
 }

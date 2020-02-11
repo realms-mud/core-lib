@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## rosewood trees");
 
     harvestableResource("rosewood", 25, "/lib/instances/items/materials/wood/rosewood.c",
-        "a heavily-forested stand of rosewood trees. Several trees remain");
+        "a heavily-forested stand of rosewood trees. Several trees remain",
+        ({ "deciduous tree", "rosewood tree", "tree" }));
     harvestRequiresTool("rosewood", "axe");
     harvestableResource("rosewood seed", 25,
-        "/lib/instances/items/food/plants/seeds/rosewood-seed.c");
+        "/lib/instances/items/food/plants/seeds/rosewood-seed.c",
+        ({ "seed" }));
     limitHarvestBySeason("rosewood seed", "summer");
 }

@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## poplar trees");
 
     harvestableResource("poplar", 25, "/lib/instances/items/materials/wood/poplar.c",
-        "a heavily-forested stand of poplar trees. Several trees remain");
+        "a heavily-forested stand of poplar trees. Several trees remain",
+        ({ "deciduous tree", "poplar tree", "tree" }));
     harvestRequiresTool("poplar", "axe");
     harvestableResource("poplar catkin", 25,
-        "/lib/instances/items/food/plants/seeds/poplar-catkin.c");
+        "/lib/instances/items/food/plants/seeds/poplar-catkin.c",
+        ({ "catkin" }));
     limitHarvestBySeason("poplar catkin", "summer");
 }

@@ -28,9 +28,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## ash trees");
 
     harvestableResource("ash", 25, "/lib/instances/items/materials/wood/ash.c",
-        "a heavily-forested stand of ash trees. Several trees remain");
+        "a heavily-forested stand of ash trees. Several trees remain",
+        ({ "deciduous tree", "ash tree", "tree" }));
     harvestRequiresTool("ash", "axe");
     harvestableResource("ash samara", 25,
-        "/lib/instances/items/food/plants/seeds/ash-samara.c");
+        "/lib/instances/items/food/plants/seeds/ash-samara.c",
+        ({ "samara" }));
     limitHarvestBySeason("ash samara", "summer");
 }

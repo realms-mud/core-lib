@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## apricot trees");
 
     harvestableResource("apricot tree", 25, "/lib/instances/items/materials/wood/apricot.c",
-        "a heavily-forested stand of apricot trees. Several trees remain");
+        "a heavily-forested stand of apricot trees. Several trees remain",
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("apricot tree", "axe");
 
     harvestableResource("apricot", 20,
-        "/lib/instances/items/food/plants/fruit/apricot.c");
+        "/lib/instances/items/food/plants/fruit/apricot.c",
+        ({ "fruit" }));
     limitHarvestBySeason("apricot", "summer");
 }

@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## bubinga trees");
 
     harvestableResource("bubinga", 25, "/lib/instances/items/materials/wood/bubinga.c",
-        "a heavily-forested stand of bubinga trees. Several trees remain");
+        "a heavily-forested stand of bubinga trees. Several trees remain",
+        ({ "deciduous tree", "bubinga tree", "tree" }));
     harvestRequiresTool("bubinga", "axe");
     harvestableResource("bubinga seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/bubinga-seed-pod.c");
+        "/lib/instances/items/food/plants/seeds/bubinga-seed-pod.c",
+        ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("bubinga seed pod", "summer");
 }

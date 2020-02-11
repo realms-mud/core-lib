@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## dogwood trees");
 
     harvestableResource("dogwood", 25, "/lib/instances/items/materials/wood/dogwood.c",
-        "a heavily-forested stand of dogwood trees. Several trees remain");
+        "a heavily-forested stand of dogwood trees. Several trees remain",
+        ({ "deciduous tree", "dogwood tree", "tree" }));
     harvestRequiresTool("dogwood", "axe");
     harvestableResource("dogwood fruit", 25,
-        "/lib/instances/items/food/plants/fruit/dogwood-fruit.c");
+        "/lib/instances/items/food/plants/fruit/dogwood-fruit.c",
+        ({ "fruit" }));
     limitHarvestBySeason("dogwood fruit", "summer");
 }

@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## McIntosh apple trees");
 
     harvestableResource("mcintosh apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
-        "a heavily-forested stand of McIntosh apple trees. Several trees remain");
+        "a heavily-forested stand of McIntosh apple trees. Several trees remain",
+        ({ "apple tree", "tree" }));
     harvestRequiresTool("mcintosh apple tree", "axe");
 
     harvestableResource("mcintosh apple", 10,
-        "/lib/instances/items/food/plants/fruit/mcintosh-apple.c");
+        "/lib/instances/items/food/plants/fruit/mcintosh-apple.c",
+        ({ "apple" }));
     limitHarvestBySeason("mcintosh apple", "summer");
 }

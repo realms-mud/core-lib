@@ -28,9 +28,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## elm trees");
 
     harvestableResource("elm", 25, "/lib/instances/items/materials/wood/elm.c",
-        "a heavily-forested stand of elm trees. Several trees remain");
+        "a heavily-forested stand of elm trees. Several trees remain",
+        ({ "deciduous tree", "elm tree", "tree" }));
     harvestRequiresTool("elm", "axe");
     harvestableResource("elm samara", 25,
-        "/lib/instances/items/food/plants/seeds/elm-samara.c");
+        "/lib/instances/items/food/plants/seeds/elm-samara.c",
+        ({ "samara" }));
     limitHarvestBySeason("elm samara", "summer");
 }

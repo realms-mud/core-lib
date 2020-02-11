@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## almond trees");
 
     harvestableResource("almond tree", 25, "/lib/instances/items/materials/wood/almond.c",
-        "a heavily-forested stand of almond trees. Several trees remain");
+        "a heavily-forested stand of almond trees. Several trees remain",
+        ({ "deciduous tree","tree" }));
     harvestRequiresTool("almond tree", "axe");
 
     harvestableResource("almond", 10,
-        "/lib/instances/items/food/plants/nuts/almond.c");
+        "/lib/instances/items/food/plants/nuts/almond.c",
+        ({ "nut" }));
     limitHarvestBySeason("almond", "summer");
 }

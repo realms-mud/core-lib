@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## green apple trees");
 
     harvestableResource("green apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
-        "a heavily-forested stand of green apple trees. Several trees remain");
+        "a heavily-forested stand of green apple trees. Several trees remain",
+        ({ "apple tree", "tree" }));
     harvestRequiresTool("green apple tree", "axe");
 
     harvestableResource("green apple", 10,
-        "/lib/instances/items/food/plants/fruit/green-apple.c");
+        "/lib/instances/items/food/plants/fruit/green-apple.c",
+        ({ "apple" }));
     limitHarvestBySeason("green apple", "summer");
 }

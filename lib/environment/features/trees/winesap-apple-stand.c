@@ -23,10 +23,12 @@ public void Setup()
 
     addDescriptionTemplate("a stand of ##Adjective## winesap apple trees");
     harvestableResource("winesap apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
-        "a heavily-forested stand of winesap apple trees. Several trees remain");
+        "a heavily-forested stand of winesap apple trees. Several trees remain",
+        ({ "apple tree", "tree" }));
     harvestRequiresTool("winesap apple tree", "axe");
 
     harvestableResource("winesap apple", 10,
-        "/lib/instances/items/food/plants/fruit/winesap-apple.c");
+        "/lib/instances/items/food/plants/fruit/winesap-apple.c",
+        ({ "apple" }));
     limitHarvestBySeason("winesap apple", "summer");
 }

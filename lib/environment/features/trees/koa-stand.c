@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## koa trees");
 
     harvestableResource("koa", 25, "/lib/instances/items/materials/wood/koa.c",
-        "a heavily-forested stand of koa trees. Several trees remain");
+        "a heavily-forested stand of koa trees. Several trees remain",
+        ({ "deciduous tree", "koa tree", "tree" }));
     harvestRequiresTool("koa", "axe");
     harvestableResource("koa seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/koa-seed-pod.c");
+        "/lib/instances/items/food/plants/seeds/koa-seed-pod.c",
+        ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("koa seed pod", "summer");
 }

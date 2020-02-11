@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## lacewood trees");
 
     harvestableResource("lacewood", 25, "/lib/instances/items/materials/wood/lacewood.c",
-        "a heavily-forested stand of lacewood trees. Several trees remain");
+        "a heavily-forested stand of lacewood trees. Several trees remain",
+        ({ "deciduous tree", "lacewood tree", "tree" }));
     harvestRequiresTool("lacewood", "axe");
     harvestableResource("lacewood seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/lacewood-seed-pod.c");
+        "/lib/instances/items/food/plants/seeds/lacewood-seed-pod.c",
+        ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("lacewood seed pod", "summer");
 }

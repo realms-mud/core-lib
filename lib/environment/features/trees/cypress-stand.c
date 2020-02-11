@@ -24,12 +24,15 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## fir trees");
 
     harvestableResource("cypress", 25, "/lib/instances/items/materials/wood/cypress.c",
-        "a heavily-forested stand of cypress trees. Several trees remain");
+        "a heavily-forested stand of cypress trees. Several trees remain",
+        ({ "conifer", "evergreen", "cypress tree", "tree" }));
     harvestRequiresTool("cypress", "axe");
     harvestableResource("cypress cone", 25,
-        "/lib/instances/items/food/plants/seeds/cypress-cone.c");
+        "/lib/instances/items/food/plants/seeds/cypress-cone.c",
+        ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("cypress cone", "summer");
     harvestableResource("pine nut", 25,
-        "/lib/instances/items/food/plants/nuts/pine-nut.c");
+        "/lib/instances/items/food/plants/nuts/pine-nut.c",
+        ({ "nut", "cypress nut" }));
     limitHarvestBySeason("pine nut", "summer");
 }

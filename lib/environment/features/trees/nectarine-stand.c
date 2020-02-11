@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## nectarine trees");
 
     harvestableResource("nectarine tree", 25, "/lib/instances/items/materials/wood/nectarine.c",
-        "a heavily-forested stand of nectarine trees. Several trees remain");
+        "a heavily-forested stand of nectarine trees. Several trees remain",
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("nectarine tree", "axe");
 
     harvestableResource("nectarine", 10,
-        "/lib/instances/items/food/plants/fruit/nectarine.c");
+        "/lib/instances/items/food/plants/fruit/nectarine.c",
+        ({ "fruit" }));
     limitHarvestBySeason("nectarine", "summer");
 }

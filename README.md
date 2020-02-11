@@ -42,11 +42,17 @@ priority for me to resolve these issues. When compiling the driver, be sure to u
 
 There is a great deal more executional complexity when using this mudlib over typical libs. On the
 down side, there are most definitely many activities that will require more evaluation time and
-call stack depth than is customary on a standard mud. On the bright side, this isn't the early 1990s.
-In order to add some of the more intricate game mechanics using what I felt was a good approach,
-several of the default driver values proved to be woefully inadequate.
+call stack depth than is customary on a standard mud. On the bright side, this isn't the early 1990s
+and processors are significantly more powerful than they were 30 years ago. However, in order to add some of the more intricate game mechanics using what I felt was a good approach,
+several of the default driver values proved to be woefully inadequate and quite a few configurable parameters
+should either be set to unlimited or significantly bumped above the default values. See the 
+"configure script" flags I used below for reasonable suggestions.
 
-You can use the perl script I created in /secure/simulated-efuns/database/installDatabase.pl if you want a semi-automated means of doing so. This script will create a user named 'realmslib' with the password it echoes out and will also create and empty RealmsLib database. Otherwise, you can manually add a user and database. After you create a database user for the library, you will need to make sure that the credentials can be used by the driver. Getting access to your database is a security problem. This can be resolved in a couple ways. The
+You will need to set up a database user/password and grant it several database actions. 
+To do this, you can use the perl script I created in /secure/simulated-efuns/database/installDatabase.pl if you want a semi-automated means of doing so. This script 
+will create a user named 'realmslib' with the password it echoes out and will also create and empty RealmsLib database. Otherwise, you can manually add 
+a user and database. After you create a database user for the library, you will need to make sure that the credentials 
+can be used by the driver. Getting access to your database is a security problem. This can be resolved in a couple ways. The
 more secure method is to modify pkg_mysql.c in the LDMud source. Search for the call to mysql_real_connect in that file and modify the call. For example, I did this: 
 ```
 if ( !mysql_real_connect( tmp->mysql_dat, "localhost"

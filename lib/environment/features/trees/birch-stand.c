@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## birch trees");
 
     harvestableResource("birch", 25, "/lib/instances/items/materials/wood/birch.c",
-        "a heavily-forested stand of birch trees. Several trees remain");
+        "a heavily-forested stand of birch trees. Several trees remain",
+        ({ "deciduous tree", "birch tree", "tree" }));
     harvestRequiresTool("birch", "axe");
     harvestableResource("birch catkin", 25,
-        "/lib/instances/items/food/plants/seeds/birch-catkin.c");
+        "/lib/instances/items/food/plants/seeds/birch-catkin.c",
+        ({ "catkin" }));
     limitHarvestBySeason("birch catkin", "summer");
 }

@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## teak trees");
 
     harvestableResource("teak", 25, "/lib/instances/items/materials/wood/teak.c",
-        "a heavily-forested stand of teak trees. Several trees remain");
+        "a heavily-forested stand of teak trees. Several trees remain",
+        ({ "deciduous tree", "teak tree", "tree" }));
     harvestRequiresTool("teak", "axe");
     harvestableResource("teak fruit", 25,
-        "/lib/instances/items/food/plants/fruit/teak-fruit.c");
+        "/lib/instances/items/food/plants/fruit/teak-fruit.c",
+        ({ "fruit" }));
     limitHarvestBySeason("teak fruit", "summer");
 }

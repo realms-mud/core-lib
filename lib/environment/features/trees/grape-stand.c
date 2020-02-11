@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## grape trees");
 
     harvestableResource("grape tree", 25, "/lib/instances/items/materials/wood/grape.c",
-        "a heavily-forested stand of grape trees. Several trees remain");
+        "a heavily-forested stand of grape trees. Several trees remain",
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("grape tree", "axe");
 
     harvestableResource("grape", 10,
-        "/lib/instances/items/food/plants/fruit/grape.c");
+        "/lib/instances/items/food/plants/fruit/grape.c",
+        ({ "fruit" }));
     limitHarvestBySeason("grape", "summer");
 }

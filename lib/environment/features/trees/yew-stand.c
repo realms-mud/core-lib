@@ -22,13 +22,16 @@ public void Setup()
 
     addDescriptionTemplate("a stand of ##Adjective## yew trees");
     harvestableResource("yew", 25, "/lib/instances/items/materials/wood/yew.c",
-        "a heavily-forested stand of yew trees. Several trees remain");
+        "a heavily-forested stand of yew trees. Several trees remain", 
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
     harvestRequiresTool("yew", "axe");
 
     harvestableResource("yew cone", 25,
-        "/lib/instances/items/food/plants/seeds/yew-cone.c");
+        "/lib/instances/items/food/plants/seeds/yew-cone.c",
+        ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("yew cone", "summer");
     harvestableResource("pine nut", 25,
-        "/lib/instances/items/food/plants/nuts/pine-nut.c");
+        "/lib/instances/items/food/plants/nuts/pine-nut.c",
+        ({ "nut", "yew nut" }));
     limitHarvestBySeason("pine nut", "summer");
 }

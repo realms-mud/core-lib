@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## bing cherry trees");
 
     harvestableResource("bing cherry tree", 25, "/lib/instances/items/materials/wood/cherry.c",
-        "a heavily-forested stand of bing cherry trees. Several trees remain");
+        "a heavily-forested stand of bing cherry trees. Several trees remain",
+        ({ "deciduous tree", "cherry tree", "tree" }));
     harvestRequiresTool("bing cherry tree", "axe");
 
     harvestableResource("bing cherry", 20,
-        "/lib/instances/items/food/plants/fruit/bing-cherry.c");
+        "/lib/instances/items/food/plants/fruit/bing-cherry.c",
+        ({ "cherry", "fruit" }));
     limitHarvestBySeason("bing cherry", "summer");
 }

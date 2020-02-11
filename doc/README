@@ -1,0 +1,5 @@
+This directory should contain the documentation files as packaged by your 
+chosen mud driver.
+
+For LDMud, you will want to copy the contents of <ldmud root>/doc into this
+directory.

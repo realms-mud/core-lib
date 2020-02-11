@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## aspen trees");
 
     harvestableResource("aspen", 25, "/lib/instances/items/materials/wood/aspen.c",
-        "a heavily-forested stand of aspen trees. Several trees remain");
+        "a heavily-forested stand of aspen trees. Several trees remain",
+        ({ "deciduous tree", "aspen tree", "tree" }));
     harvestRequiresTool("aspen", "axe");
     harvestableResource("aspen catkin", 25,
-        "/lib/instances/items/food/plants/seeds/aspen-catkin.c");
+        "/lib/instances/items/food/plants/seeds/aspen-catkin.c",
+        ({ "catkin" }));
     limitHarvestBySeason("aspen catkin", "summer");
 }

@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## persimmon trees");
 
     harvestableResource("persimmon tree", 25, "/lib/instances/items/materials/wood/persimmon.c",
-        "a heavily-forested stand of persimmon trees. Several trees remain");
+        "a heavily-forested stand of persimmon trees. Several trees remain",
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("persimmon tree", "axe");
 
     harvestableResource("persimmon", 10,
-        "/lib/instances/items/food/plants/fruit/persimmon.c");
+        "/lib/instances/items/food/plants/fruit/persimmon.c",
+        ({ "fruit" }));
     limitHarvestBySeason("persimmon", "summer");
 }

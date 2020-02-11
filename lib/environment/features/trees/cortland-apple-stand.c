@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## cortland apple trees");
 
     harvestableResource("cortland apple tree", 25, "/lib/instances/items/materials/wood/apple.c",
-        "a heavily-forested stand of cortland apple trees. Several trees remain");
+        "a heavily-forested stand of cortland apple trees. Several trees remain",
+        ({ "apple tree", "tree" }));
     harvestRequiresTool("cortland apple tree", "axe");
 
     harvestableResource("cortland apple", 10,
-        "/lib/instances/items/food/plants/fruit/cortland-apple.c");
+        "/lib/instances/items/food/plants/fruit/cortland-apple.c",
+        ({ "apple" }));
     limitHarvestBySeason("cortland apple", "summer");
 }

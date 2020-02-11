@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## ironwood trees");
 
     harvestableResource("ironwood", 25, "/lib/instances/items/materials/wood/ironwood.c",
-        "a heavily-forested stand of ironwood trees. Several trees remain");
+        "a heavily-forested stand of ironwood trees. Several trees remain",
+        ({ "deciduous tree", "ironwood tree", "tree" }));
     harvestRequiresTool("ironwood", "axe");
     harvestableResource("ironwood catkin", 25,
-        "/lib/instances/items/food/plants/seeds/ironwood-catkin.c");
+        "/lib/instances/items/food/plants/seeds/ironwood-catkin.c",
+        ({ "catkin" }));
     limitHarvestBySeason("ironwood catkin", "summer");
 }

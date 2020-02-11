@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## cottonwood trees");
 
     harvestableResource("cottonwood", 25, "/lib/instances/items/materials/wood/cottonwood.c",
-        "a heavily-forested stand of cottonwood trees. Several trees remain");
+        "a heavily-forested stand of cottonwood trees. Several trees remain",
+        ({ "deciduous tree", "cottonwood tree", "tree" }));
     harvestRequiresTool("cottonwood", "axe");
     harvestableResource("cottonwood catkin", 25,
-        "/lib/instances/items/food/plants/seeds/cottonwood-catkin.c");
+        "/lib/instances/items/food/plants/seeds/cottonwood-catkin.c",
+        ({ "catkin" }));
     limitHarvestBySeason("cottonwood catkin", "summer");
 }

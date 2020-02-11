@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## montmorency cherry trees");
 
     harvestableResource("montmorency cherry tree", 25, "/lib/instances/items/materials/wood/cherry.c",
-        "a heavily-forested stand of montmorency cherry trees. Several trees remain");
+        "a heavily-forested stand of montmorency cherry trees. Several trees remain",
+        ({ "deciduous tree", "cherry tree", "tree" }));
     harvestRequiresTool("montmorency cherry tree", "axe");
 
     harvestableResource("montmorency cherry", 20,
-        "/lib/instances/items/food/plants/fruit/montmorency-cherry.c");
+        "/lib/instances/items/food/plants/fruit/montmorency-cherry.c",
+        ({ "cherry", "fruit" }));
     limitHarvestBySeason("montmorency cherry", "summer");
 }

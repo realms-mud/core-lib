@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## mulberry trees");
 
     harvestableResource("mulberry tree", 25, "/lib/instances/items/materials/wood/mulberry.c",
-        "a heavily-forested stand of mulberry trees. Several trees remain");
+        "a heavily-forested stand of mulberry trees. Several trees remain",
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("mulberry tree", "axe");
 
     harvestableResource("mulberry", 10,
-        "/lib/instances/items/food/plants/fruit/mulberry.c");
+        "/lib/instances/items/food/plants/fruit/mulberry.c",
+        ({ "berry", "fruit" }));
     limitHarvestBySeason("mulberry", "summer");
 }

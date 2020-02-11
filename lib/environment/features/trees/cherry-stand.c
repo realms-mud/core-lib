@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## cherry trees");
 
     harvestableResource("cherry tree", 25, "/lib/instances/items/materials/wood/cherry.c",
-        "a heavily-forested stand of cherry trees. Several trees remain");
+        "a heavily-forested stand of cherry trees. Several trees remain",
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("cherry tree", "axe");
 
     harvestableResource("cherry", 20,
-        "/lib/instances/items/food/plants/fruit/cherry.c");
+        "/lib/instances/items/food/plants/fruit/cherry.c",
+        ({ "fruit" }));
     limitHarvestBySeason("cherry", "summer");
 }

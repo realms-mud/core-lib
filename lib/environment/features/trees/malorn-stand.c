@@ -27,10 +27,12 @@ public void Setup()
         "a heavily-forested stand of malorn trees. Several trees remain");
     harvestRequiresTool("malorn", "axe");
     harvestableResource("malorn fruit", 25,
-        "/lib/instances/items/food/plants/fruit/malorn-fruit.c");
+        "/lib/instances/items/food/plants/fruit/malorn-fruit.c",
+        ({ "deciduous tree", "malorn tree", "tree" }));
     limitHarvestBySeason("malorn fruit", "summer");
 
     harvestableResource("malorn flower", 25,
-        "/lib/instances/items/food/plants/flowers/malorn-flower.c");
+        "/lib/instances/items/food/plants/flowers/malorn-flower.c",
+        ({ "flower" }));
     limitHarvestBySeason("malorn flower", "spring");
 }

@@ -28,11 +28,14 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## sugar maple trees");
 
     harvestableResource("sugar maple", 25, "/lib/instances/items/materials/wood/maple.c",
-        "a heavily-forested stand of sugar maple trees. Several trees remain");
+        "a heavily-forested stand of sugar maple trees. Several trees remain",
+        ({ "deciduous tree", "sugar maple tree", "maple tree", "maple", "tree" }));
     harvestRequiresTool("sugar maple", "axe");
     harvestableResource("maple sap", 25,
-        "/lib/instances/items/food/plants/sap/maple-sap.c");
+        "/lib/instances/items/food/plants/sap/maple-sap.c",
+        ({ "sap" }));
     harvestableResource("maple samara", 25,
-        "/lib/instances/items/food/plants/seeds/maple-samara.c");
+        "/lib/instances/items/food/plants/seeds/maple-samara.c",
+        ({ "samara" }));
     limitHarvestBySeason("maple samara", "summer");
 }

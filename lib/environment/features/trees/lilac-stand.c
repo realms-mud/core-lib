@@ -24,13 +24,16 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## lilac trees");
 
     harvestableResource("lilac", 25, "/lib/instances/items/materials/wood/lilac.c",
-        "a heavily-forested stand of lilac trees. Several trees remain");
+        "a heavily-forested stand of lilac trees. Several trees remain",
+        ({ "deciduous tree", "lilac tree", "tree" }));
     harvestRequiresTool("lilac", "axe");
     harvestableResource("lilac fruit", 25,
-        "/lib/instances/items/food/plants/fruit/lilac-fruit.c");
+        "/lib/instances/items/food/plants/fruit/lilac-fruit.c",
+        ({ "fruit" }));
     limitHarvestBySeason("lilac fruit", "summer");
 
     harvestableResource("lilac flower", 25,
-        "/lib/instances/items/food/plants/flowers/lilac-flower.c");
+        "/lib/instances/items/food/plants/flowers/lilac-flower.c",
+        ({ "flower" }));
     limitHarvestBySeason("lilac flower", "spring");
 }

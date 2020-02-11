@@ -24,12 +24,15 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## redwood trees");
 
     harvestableResource("redwood", 25, "/lib/instances/items/materials/wood/redwood.c",
-        "a heavily-forested stand of redwood trees. Several trees remain");
+        "a heavily-forested stand of redwood trees. Several trees remain",
+        ({ "conifer", "evergreen", "redwood tree", "tree" }));
     harvestRequiresTool("redwood", "axe");
     harvestableResource("redwood cone", 25,
-        "/lib/instances/items/food/plants/seeds/redwood-cone.c");
+        "/lib/instances/items/food/plants/seeds/redwood-cone.c",
+        ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("redwood cone", "summer");
     harvestableResource("pine nut", 25,
-        "/lib/instances/items/food/plants/nuts/pine-nut.c");
+        "/lib/instances/items/food/plants/nuts/pine-nut.c",
+        ({ "nut", "redwood nut" }));
     limitHarvestBySeason("pine nut", "summer");
 }

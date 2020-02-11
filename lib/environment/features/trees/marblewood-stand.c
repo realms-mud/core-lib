@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## marblewood trees");
 
     harvestableResource("marblewood", 25, "/lib/instances/items/materials/wood/marblewood.c",
-        "a heavily-forested stand of marblewood trees. Several trees remain");
+        "a heavily-forested stand of marblewood trees. Several trees remain",
+        ({ "deciduous tree", "marblewood tree", "tree" }));
     harvestRequiresTool("marblewood", "axe");
     harvestableResource("marblewood seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/marblewood-seed-pod.c");
+        "/lib/instances/items/food/plants/seeds/marblewood-seed-pod.c",
+        ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("marblewood seed pod", "summer");
 }

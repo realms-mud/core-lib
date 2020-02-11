@@ -1,0 +1,25 @@
+#*****************************************************************************
+# Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
+#                      the accompanying LICENSE file for details.
+#*****************************************************************************
+
+/tutorial/stateMachines/introStateMachine.c
+/tutorial/temple/environment/rooms/entry-to-pedestal.c
+/areas/eledhel/central-city/central-city.c
+/areas/eledhel/northern-city/northern-city.c
+/areas/eledhel/southern-city/southern-city.c
+/areas/eledhel/southern-city/anguleith/anguleith.c
+/areas/eledhel/southern-city/axe-and-hammer/axe-and-hammer.c
+/areas/eledhel/southern-city/church-of-ilyrth/church-of-ilyrth.c
+/areas/eledhel/southern-city/hrongar/hrongar.c
+/areas/eledhel/southern-city/inn/inn.c
+/areas/eledhel/southern-city/swordsmith/swordsmith.c
+/areas/eledhel/southern-city/thuenach/thuenach.c
+/areas/eledhel/southern-city/wainwright/wainwright.c
+/areas/eledhel/southern-rural/region.c
+/areas/eledhel/southwest-rural-one/region.c
+/areas/eledhel/southwest-rural-three/region.c
+/areas/eledhel/southwest-rural-two/region.c
+/guilds/background/background.c
+/guilds/fighter/fighter.c
+/guilds/scion/scionOfDhuras.c

@@ -24,12 +24,15 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## paper birch trees");
 
     harvestableResource("paper birch", 25, "/lib/instances/items/materials/wood/birch.c",
-        "a heavily-forested stand of paper birch trees. Several trees remain");
+        "a heavily-forested stand of paper birch trees. Several trees remain",
+        ({ "deciduous tree", "paper birch tree", "birch tree", "birch", "tree" }));
     harvestRequiresTool("paper birch", "axe");
     harvestableResource("paper birch catkin", 25,
-        "/lib/instances/items/food/plants/seeds/paper-birch-catkin.c");
+        "/lib/instances/items/food/plants/seeds/paper-birch-catkin.c",
+        ({ "birch catkin", "catkin" }));
     limitHarvestBySeason("paper birch catkin", "summer");
 
     harvestableResource("paper birch bark", 10,
-        "/lib/instances/items/materials/wood/paper-birch-bark.c");
+        "/lib/instances/items/materials/wood/paper-birch-bark.c",
+        ({ "birch bark", "bark" }));
 }

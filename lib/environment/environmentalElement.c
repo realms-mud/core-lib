@@ -15,6 +15,7 @@ protected int suppressAction = 0;
 protected string elementName = 0;
 protected string State = "default";
 private int MimicExteriorLighting = 0;
+private string HarvestedDescription = 0;
 
 private object environmentDictionary;
 
@@ -96,6 +97,18 @@ public nomask void reset(int arg)
             !environmentDictionary()->isValidEnvironmentItem(elementName))
         {
             environmentDictionary()->registerElement(program_name(this_object()));
+        }
+    }
+
+    string *harvestItems = filter(m_indices(harvestData),
+        (: member($2[$1], "initial quantity") :), harvestData);
+    if (sizeof(harvestItems))
+    {
+        foreach(string harvestItem in harvestItems)
+        {
+            harvestData[harvestItem]["available quantity"] =
+                harvestData[harvestItem]["initial quantity"];
+            HarvestedDescription = 0;
         }
     }
 }
@@ -376,8 +389,12 @@ public nomask varargs string description(string state, int illuminationLevel,
     else
     {
         string templateKey = getTemplateKey(illuminationLevel);
-
-        if (member(descriptionData, state) && member(descriptionData[state],
+        if (HarvestedDescription)
+        {
+            ret = parseTemplate(HarvestedDescription,
+                descriptionData[state], illuminationLevel);
+        }
+        else if (member(descriptionData, state) && member(descriptionData[state],
             templateKey))
         {
             ret = parseTemplate(descriptionData[state][templateKey],
@@ -649,7 +666,7 @@ public nomask void setUpForEnvironment(string state, object environment)
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs void harvestableResource(string name, int quantity,
-    string resourceFile, string harvestedDescription)
+    string resourceFile, string harvestedDescription, string *aliases)
 {
     if (load_object(resourceFile))
     {
@@ -657,8 +674,18 @@ protected nomask varargs void harvestableResource(string name, int quantity,
             "initial quantity": quantity,
             "available quantity": quantity,
             "resource file": resourceFile,
-            "description when harvested": harvestedDescription
+            "description when harvested": harvestedDescription,
         ]);
+
+        if (pointerp(aliases) && sizeof(aliases))
+        {
+            foreach(string alias in aliases)
+            {
+                harvestData[alias] = ([
+                    "alias": name
+                ]);
+            }
+        }
     }
     else
     {
@@ -670,7 +697,7 @@ protected nomask varargs void harvestableResource(string name, int quantity,
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void limitHarvestBySeason(string name, string season)
 {
-    if (member(harvestData, name))
+    if (member(harvestData, name) && !member(harvestData[name], "alias"))
     {
         if (environmentDictionary()->isValidSeason(season))
         {
@@ -697,7 +724,7 @@ protected nomask void limitHarvestBySeason(string name, string season)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void limitHarvestByTimeOfDay(string name, string timeOfDay)
 {
-    if (member(harvestData, name))
+    if (member(harvestData, name) && !member(harvestData[name], "alias"))
     {
         if (environmentDictionary()->isValidTimeOfDay(timeOfDay))
         {
@@ -724,5 +751,83 @@ protected nomask void limitHarvestByTimeOfDay(string name, string timeOfDay)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void harvestRequiresTool(string name, string tool)
 {
+    if (member(harvestData, name) && stringp(tool) && 
+        !member(harvestData[name], "alias"))
+    {
+        if (!member(harvestData[name], "requires tool"))
+        {
+            harvestData[name]["requires tool"] = ({});
+        }
+        harvestData[name]["requires tool"] += ({ tool });
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
+            "It must be added via the harvestableResource(...) method before "
+            "adding a required tool.\n", name));
+    }
+}
 
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void harvestRequiresOneOfTool(string name, string *tools)
+{
+    if (member(harvestData, name) && pointerp(tools) && 
+        !member(harvestData[name], "alias"))
+    {
+        if (!member(harvestData[name], "requires one of tool"))
+        {
+            harvestData[name]["requires one of tool"] = ({});
+        }
+        harvestData[name]["requires one of tool"] += tools;
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
+            "It must be added via the harvestableResource(...) method before "
+            "adding a required tool.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getHarvestableResource(string resource)
+{
+    mapping ret = 0;
+
+    if (member(harvestData, resource))
+    {
+        if (member(harvestData[resource], "alias"))
+        {
+            ret = harvestData[harvestData[resource]["alias"]] + ([]);
+        }
+        else
+        {
+            ret = harvestData[resource] + ([]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object harvestResource(string resource)
+{
+    object ret = 0;
+
+    if (member(harvestData, resource))
+    {
+        string key = member(harvestData[resource], "alias") ?
+            harvestData[resource]["alias"] : resource;
+
+        if (harvestData[key]["available quantity"] > 0)
+        {
+            harvestData[key]["available quantity"] -= 1;
+            ret = clone_object(harvestData[key]["resource file"]);
+
+            if (member(harvestData[key], "description when harvested"))
+            {
+                HarvestedDescription =
+                    harvestData[key]["description when harvested"];
+            }
+        }
+    }
+    return ret;
 }

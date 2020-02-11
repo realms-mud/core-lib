@@ -24,10 +24,12 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## crabapple trees");
 
     harvestableResource("crabapple tree", 25, "/lib/instances/items/materials/wood/apple.c",
-        "a heavily-forested stand of crabapple trees. Several trees remain");
+        "a heavily-forested stand of crabapple trees. Several trees remain",
+        ({ "apple tree", "tree" }));
     harvestRequiresTool("crabapple tree", "axe");
 
     harvestableResource("crabapple", 10,
-        "/lib/instances/items/food/plants/fruit/crab-apple.c");
+        "/lib/instances/items/food/plants/fruit/crab-apple.c",
+        ({ "apple" }));
     limitHarvestBySeason("crabapple", "summer");
 }

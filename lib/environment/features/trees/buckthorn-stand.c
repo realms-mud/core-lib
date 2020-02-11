@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## buckthorn trees");
 
     harvestableResource("buckthorn", 25, "/lib/instances/items/materials/wood/buckthorn.c",
-        "a heavily-forested stand of buckthorn trees. Several trees remain");
+        "a heavily-forested stand of buckthorn trees. Several trees remain",
+        ({ "deciduous tree", "buckthorn tree", "tree" }));
     harvestRequiresTool("buckthorn", "axe");
     harvestableResource("buckthorn fruit", 25,
-        "/lib/instances/items/food/plants/fruit/buckthorn-fruit.c");
+        "/lib/instances/items/food/plants/fruit/buckthorn-fruit.c",
+        ({ "fruit" }));
     limitHarvestBySeason("buckthorn fruit", "summer");
 }

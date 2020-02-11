@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## walnut trees");
 
     harvestableResource("walnut tree", 25, "/lib/instances/items/materials/wood/walnut.c",
-        "a heavily-forested stand of walnut trees. Several trees remain");
+        "a heavily-forested stand of walnut trees. Several trees remain",
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("walnut tree", "axe");
     harvestableResource("walnut", 25,
-        "/lib/instances/items/food/plants/nuts/walnut.c");
+        "/lib/instances/items/food/plants/nuts/walnut.c",
+        ({ "nut" }));
     limitHarvestBySeason("walnut", "summer");
 }

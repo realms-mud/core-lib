@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## alder trees");
 
     harvestableResource("alder", 25, "/lib/instances/items/materials/wood/alder.c",
-        "a heavily-forested stand of alder trees. Several trees remain");
+        "a heavily-forested stand of alder trees. Several trees remain",
+        ({ "deciduous tree", "alder tree", "tree" }));
     harvestRequiresTool("alder", "axe");
     harvestableResource("alder catkin", 25, 
-        "/lib/instances/items/food/plants/seeds/alder-catkin.c");
+        "/lib/instances/items/food/plants/seeds/alder-catkin.c",
+        ({ "catkin" }));
     limitHarvestBySeason("alder catkin", "summer");
 }

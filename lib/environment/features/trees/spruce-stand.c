@@ -24,12 +24,15 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## spruce trees");
 
     harvestableResource("spruce", 25, "/lib/instances/items/materials/wood/spruce.c",
-        "a heavily-forested stand of spruce trees. Several trees remain");
+        "a heavily-forested stand of spruce trees. Several trees remain",
+        ({ "conifer", "evergreen", "spruce tree", "tree" }));
     harvestRequiresTool("spruce", "axe");
     harvestableResource("spruce cone", 25,
-        "/lib/instances/items/food/plants/seeds/spruce-cone.c");
+        "/lib/instances/items/food/plants/seeds/spruce-cone.c",
+        ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("spruce cone", "summer");
     harvestableResource("pine nut", 25,
-        "/lib/instances/items/food/plants/nuts/pine-nut.c");
+        "/lib/instances/items/food/plants/nuts/pine-nut.c",
+        ({ "nut", "spruce nut" }));
     limitHarvestBySeason("pine nut", "summer");
 }

@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## red oak trees");
 
     harvestableResource("red oak", 25, "/lib/instances/items/materials/wood/oak.c",
-        "a heavily-forested stand of red oak trees. Several trees remain");
+        "a heavily-forested stand of red oak trees. Several trees remain",
+        ({ "deciduous tree", "red oak tree", "oak tree", "oak", "tree" }));
     harvestRequiresTool("red oak", "axe");
     harvestableResource("acorn", 25,
-        "/lib/instances/items/food/plants/nuts/acorn.c");
+        "/lib/instances/items/food/plants/nuts/acorn.c",
+        ({ "acorn nut", "nut" }));
     limitHarvestBySeason("acorn", "summer");
 }

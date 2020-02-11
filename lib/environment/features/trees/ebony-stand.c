@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## ebony trees");
 
     harvestableResource("ebony", 25, "/lib/instances/items/materials/wood/ebony.c",
-        "a heavily-forested stand of ebony trees. Several trees remain");
+        "a heavily-forested stand of ebony trees. Several trees remain",
+        ({ "deciduous tree", "ebony tree", "tree" }));
     harvestRequiresTool("ebony", "axe");
     harvestableResource("ebony seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/ebony-seed-pod.c");
+        "/lib/instances/items/food/plants/seeds/ebony-seed-pod.c",
+        ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("ebony seed pod", "summer");
 }

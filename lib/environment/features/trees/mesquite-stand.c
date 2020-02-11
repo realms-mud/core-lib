@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## mesquite trees");
 
     harvestableResource("mesquite", 25, "/lib/instances/items/materials/wood/mesquite.c",
-        "a heavily-forested stand of mesquite trees. Several trees remain");
+        "a heavily-forested stand of mesquite trees. Several trees remain",
+        ({ "deciduous tree", "mesquite tree", "tree" }));
     harvestRequiresTool("mesquite", "axe");
     harvestableResource("mesquite seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/mesquite-seed-pod.c");
+        "/lib/instances/items/food/plants/seeds/mesquite-seed-pod.c",
+        ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("mesquite seed pod", "summer");
 }

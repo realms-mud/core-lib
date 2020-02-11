@@ -24,9 +24,11 @@ public void Setup()
     addDescriptionTemplate("a stand of ##Adjective## buckeye trees");
 
     harvestableResource("buckeye", 25, "/lib/instances/items/materials/wood/buckeye.c",
-        "a heavily-forested stand of buckeye trees. Several trees remain");
+        "a heavily-forested stand of buckeye trees. Several trees remain",
+        ({ "deciduous tree", "buckeye tree", "tree" }));
     harvestRequiresTool("buckeye", "axe");
     harvestableResource("buckeye globose", 25,
-        "/lib/instances/items/food/plants/seeds/buckeye-globose.c");
+        "/lib/instances/items/food/plants/seeds/buckeye-globose.c",
+        ({ "globose" }));
     limitHarvestBySeason("buckeye globose", "summer");
 }
