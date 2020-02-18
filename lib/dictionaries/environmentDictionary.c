@@ -50,7 +50,6 @@ public nomask mapping getLocation(string location)
     return ret;
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 private nomask object getEnvironmentObject(string item)
 {

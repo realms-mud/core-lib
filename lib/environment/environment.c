@@ -44,6 +44,8 @@ protected object configuration =
 protected object StateMachineDictionary = 
     load_object("/lib/dictionaries/stateMachineDictionary.c");
 
+private mapping harvestData = ([]);
+
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
@@ -202,6 +204,23 @@ private nomask mapping getLocation(mixed location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void addHarvestInformation(object environmentalElement)
+{
+    string *resources = environmentalElement->harvestableResources();
+    if (sizeof(resources))
+    {
+        foreach(string resource in resources)
+        {
+            if (!member(harvestData, resource))
+            {
+                harvestData[resource] = ({});
+            }
+            harvestData[resource] += ({ environmentalElement });
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask varargs int addEnvironmentalElement(string element, string type, mixed location)
 {
     int ret = 1;
@@ -212,6 +231,7 @@ private nomask varargs int addEnvironmentalElement(string element, string type, 
         {
             object elementObj = load_object(element);
             elementObj->setUpForEnvironment(currentState(), this_object());
+            addHarvestInformation(elementObj);
 
             element = elementObj->Name();
 
@@ -1496,4 +1516,30 @@ public nomask string decoratorType()
 {
     return member(environmentalElements, "decorator") ?
         environmentalElements["decorator"] : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object harvestResource(string resource)
+{
+    object ret = 0;
+
+    if (member(harvestData, resource) && sizeof(harvestData[resource]))
+    {
+        foreach(object element in harvestData[resource])
+        {
+            if (objectp(element) &&
+                element->isHarvestableResource(resource, this_object()))
+            {
+                ret = element->harvestResource(resource, this_object());
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string harvestStatistics()
+{
+    return "";
 }

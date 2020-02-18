@@ -50,8 +50,9 @@ should either be set to unlimited or significantly bumped above the default valu
 
 You will need to set up a database user/password and grant it several database actions. 
 To do this, you can use the perl script I created in /secure/simulated-efuns/database/installDatabase.pl if you want a semi-automated means of doing so. This script 
-will create a user named 'realmslib' with the password it echoes out and will also create and empty RealmsLib database. Otherwise, you can manually add 
-a user and database. After you create a database user for the library, you will need to make sure that the credentials 
+will create a user named 'realmslib' with the password it echoes out and will also create an empty database named RealmsLib. Otherwise, you can manually add 
+a user and database. The database can be named anything you'd like, but if it is not named RealmsLib, you will need to modify the RealmsDatabase() method in
+/secure/simulated-efuns/database.c to return your desired name. After you create a database user for the library, you will need to make sure that the credentials 
 can be used by the driver. Getting access to your database is a security problem. This can be resolved in a couple ways. The
 more secure method is to modify pkg_mysql.c in the LDMud source. Search for the call to mysql_real_connect in that file and modify the call. For example, I did this: 
 ```
@@ -79,7 +80,7 @@ Rather than go through all of the intricacies of which options can/should be set
 # <lib dir>/secure/simulated-efuns/database/installDatabase.pl
 # cd <location of extracted LDMud/src>
 # ./update-autoconf.sh
-# ./configure --prefix=<your mudlib directory> --with-read-file-max-size=0 --with-portno=<your port> --enable-erq=xerq --with-catch-reserved-cost=10000 --with-malloc=smalloc --enable-dynamic-costs --enable-opcprof --enable-verbose-opcprof --with-evaluator-stack-size=131072 --with-max-user-trace=131072 --with-max-trace=131172 --with-compiler-stack-size=65536 --with-max-cost=268435456 --with-max-array-size=0 --with-max-mapping-size=0 --with-htable-size=65536 --with-itable-size=32768 --with-otable-size=65536 --with-hard-malloc-limit=0 --enable-use-mysql=<path to mysql>
+# ./configure --prefix=<your mudlib directory> --enable-compat-mode --with-read-file-max-size=0 --with-portno=<your port> --enable-erq=xerq --with-catch-reserved-cost=10000 --with-malloc=smalloc --enable-dynamic-costs --enable-opcprof --enable-verbose-opcprof --with-evaluator-stack-size=32768 --with-max-user-trace=32768 --with-max-trace=32868 --with-compiler-stack-size=65536 --with-max-cost=268435456 --with-max-array-size=0 --with-max-mapping-size=0 --with-htable-size=65536 --with-itable-size=32768 --with-otable-size=65536 --with-hard-malloc-limit=0 --enable-use-mysql=<path to mysql>
 # make
 ```
 When you run the driver for the first time, it will create your database schema and will give the first user created ownership access to the MUD.

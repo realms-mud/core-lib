@@ -106,9 +106,13 @@ public nomask void reset(int arg)
     {
         foreach(string harvestItem in harvestItems)
         {
-            harvestData[harvestItem]["available quantity"] =
-                harvestData[harvestItem]["initial quantity"];
-            HarvestedDescription = 0;
+            foreach(object environment in
+                m_indices(harvestData[harvestItem]["available quantity"]))
+            {
+                harvestData[harvestItem]["available quantity"][environment] =
+                    harvestData[harvestItem]["initial quantity"];
+                HarvestedDescription = 0;
+            }
         }
     }
 }
@@ -662,6 +666,17 @@ public nomask void setUpForEnvironment(string state, object environment)
     {
         activateLightSource(state, environment);
     }
+
+    string *harvestItems = filter(m_indices(harvestData),
+        (: member($2[$1], "initial quantity") :), harvestData);
+    if (sizeof(harvestItems))
+    {
+        foreach(string harvestItem in harvestItems)
+        {
+            harvestData[harvestItem]["available quantity"][environment] =
+                harvestData[harvestItem]["initial quantity"];
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -672,7 +687,7 @@ protected nomask varargs void harvestableResource(string name, int quantity,
     {
         harvestData[name] = ([
             "initial quantity": quantity,
-            "available quantity": quantity,
+            "available quantity": ([]),
             "resource file": resourceFile,
             "description when harvested": harvestedDescription,
         ]);
@@ -744,7 +759,34 @@ protected nomask void limitHarvestByTimeOfDay(string name, string timeOfDay)
     {
         raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
             "It must be added via the harvestableResource(...) method before "
-            "adding a season.\n", name));
+            "adding a time of day.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitHarvestByState(string name, string state)
+{
+    if (member(harvestData, name) && !member(harvestData[name], "alias"))
+    {
+        if (member(states(), state) > -1)
+        {
+            if (!member(harvestData[name], "limited to state"))
+            {
+                harvestData[name]["limited to state"] = ({});
+            }
+            harvestData[name]["limited to state"] += ({ state });
+        }
+        else
+        {
+            raise_error("EnvironmentalElement: A valid state must be "
+                "specified.\n");
+        }
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
+            "It must be added via the harvestableResource(...) method before "
+            "adding a state.\n", name));
     }
 }
 
@@ -789,26 +831,39 @@ protected nomask void harvestRequiresOneOfTool(string name, string *tools)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getHarvestableResource(string resource)
+public nomask int isHarvestableResource(string resource, object environment)
 {
-    mapping ret = 0;
-
-    if (member(harvestData, resource))
+    int ret = 0;
+    if (member(harvestData, resource) && objectp(environment))
     {
-        if (member(harvestData[resource], "alias"))
+        string key = member(harvestData[resource], "alias") ?
+            harvestData[resource]["alias"] : resource;
+
+        if (member(harvestData[key], "limited to state") &&
+            sizeof(harvestData[key]["limited to state"]))
         {
-            ret = harvestData[harvestData[resource]["alias"]] + ([]);
+            ret = member(harvestData[key]["limited to state"], 
+                currentState()) > -1;
         }
         else
         {
-            ret = harvestData[resource] + ([]);
+            ret = 1;
         }
+
+        ret &&= (member(harvestData[key]["available quantity"], environment) &&
+            (harvestData[key]["available quantity"][environment] > 0));
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object harvestResource(string resource)
+public nomask string *harvestableResources()
+{
+    return sizeof(harvestData) ? m_indices(harvestData) : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object harvestResource(string resource, object environment)
 {
     object ret = 0;
 
@@ -817,9 +872,9 @@ public nomask object harvestResource(string resource)
         string key = member(harvestData[resource], "alias") ?
             harvestData[resource]["alias"] : resource;
 
-        if (harvestData[key]["available quantity"] > 0)
+        if (isHarvestableResource(key, environment))
         {
-            harvestData[key]["available quantity"] -= 1;
+            harvestData[key]["available quantity"][environment] -= 1;
             ret = clone_object(harvestData[key]["resource file"]);
 
             if (member(harvestData[key], "description when harvested"))
@@ -830,4 +885,10 @@ public nomask object harvestResource(string resource)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getHarvestStatistics(object user)
+{
+    return "";
 }

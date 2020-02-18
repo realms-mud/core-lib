@@ -23,7 +23,7 @@ private int isPriviledgedObject(mixed caller)
         name = caller;
     }
 
-    if (sizeof(regexp(({ name }), "^(lib/modules/secure|secure)")))
+    if (sizeof(regexp(({ name }), "^/*(lib/modules/secure|secure)")))
     {
         ret = 1;
     }
