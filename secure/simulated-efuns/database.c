@@ -50,9 +50,14 @@ public nomask int isValidPersistenceObject(object persistence)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int db_exec(int dbHandle, string sqlQuery)
 {
-    int returnedHandle = efun::db_exec(dbHandle, sqlQuery);
+    int returnedHandle = dbHandle;
+    
+    if (stringp(sqlQuery) && sizeof(sqlQuery))
+    {
+        dbHandle = efun::db_exec(dbHandle, sqlQuery);
+    }
 
-    if (dbHandle != returnedHandle)
+    if (dbHandle && (dbHandle != returnedHandle))
     {
         write_file("/log/DBERROR",
             sprintf("%s:\n%s\n%s\nCall stack:%O\n", ctime(time()),

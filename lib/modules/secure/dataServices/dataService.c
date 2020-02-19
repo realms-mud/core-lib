@@ -29,7 +29,9 @@ protected nomask int connect()
     }
     if (db_error(ret))
     {
-        getDictionary("log")->log("DBERROR", db_error(ret));
+        getDictionary("log")->log("DBERROR", 
+            sprintf("%s:\n%s\n%s\nCall stack:%O\n", ctime(time()),
+            db_error(ret), "Connecting to database", caller_stack()));
     }
 
     if (ret)

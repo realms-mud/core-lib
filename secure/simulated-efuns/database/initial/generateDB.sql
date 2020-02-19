@@ -238,7 +238,7 @@ CREATE TABLE `temporaryBans` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(40) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(64) NOT NULL,
   `isDisabled` tinyint(1) NOT NULL DEFAULT '0',
   `lastIPAddress` varchar(15) NOT NULL,
   `LastLogin` datetime NOT NULL,
@@ -282,8 +282,8 @@ INSERT INTO environment (currentTime, currentDay, currentYear) values (660, 92, 
 CREATE TABLE `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
-  `race` varchar(20) NOT NULL,
-  `age` bigint unsigned NOT NULL,
+  `race` varchar(20) NOT NULL DEFAULT 'human',
+  `age` bigint unsigned NOT NULL DEFAULT '0',
   `gender` tinyint unsigned NOT NULL DEFAULT '0',
   `ghost` tinyint unsigned NOT NULL DEFAULT '0',
   `strength` int(11) NOT NULL DEFAULT '0',
@@ -293,9 +293,9 @@ CREATE TABLE `players` (
   `constitution` int(11) NOT NULL DEFAULT '0',
   `charisma` int(11) NOT NULL DEFAULT '0',
   `invisible` tinyint NOT NULL DEFAULT '0',
-  `whenCreated` datetime NOT NULL,
-  `LastLogin` datetime NOT NULL,
-  `location` varchar(200) NOT NULL,
+  `whenCreated` datetime DEFAULT NULL,
+  `LastLogin` datetime DEFAULT NULL,
+  `location` varchar(200) DEFAULT NULL,
   `attributePoints` smallint NOT NULL DEFAULT '0',
   `skillPoints` smallint NOT NULL DEFAULT '0',
   `researchPoints` smallint NOT NULL DEFAULT '0',
@@ -969,7 +969,8 @@ p_intelligence int, p_dexterity int, p_wisdom int, p_constitution int,
 p_charisma int, p_invisible int, p_attributes int, p_skill int,
 p_research int, p_unassigned int, p_location varchar(200), p_money int,
 p_userName varchar(40)) 
-RETURNS int(11)
+RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare pid int;
     declare localUserId int;
@@ -1016,7 +1017,9 @@ BEGIN
 RETURN pid;
 END;
 ##
-CREATE FUNCTION `savePlayerDomain` (p_player varchar(40), p_name varchar(128)) RETURNS int(11)
+CREATE FUNCTION `savePlayerDomain` (p_player varchar(40), p_name varchar(128)) 
+RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare pid int;
     declare domainId int;
@@ -1040,7 +1043,9 @@ RETURN domainId;
 END;
 ##
 CREATE FUNCTION `saveDomainSection` ( p_domainId int,  p_type varchar(100), 
-    p_name varchar(100), p_start int, p_end int, p_timeLeft int) RETURNS int(11)
+    p_name varchar(100), p_start int, p_end int, p_timeLeft int) 
+    RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare sectionId int;
 
@@ -1066,7 +1071,9 @@ RETURN sectionId;
 END;
 ##
 CREATE FUNCTION `saveDomainComponent` ( p_sectionId int,  p_type varchar(100), 
-    p_name varchar(100), p_max int, p_current int, p_time int) RETURNS int(11)
+    p_name varchar(100), p_max int, p_current int, p_time int) 
+    RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare componentId int;
 
@@ -1096,7 +1103,9 @@ END;
 CREATE FUNCTION `saveDomainHenchman` ( p_locationId int,  p_name varchar(128), 
     p_gender int,  p_race varchar(45), p_age int, p_currentLocation varchar(256),
     p_activity varchar(64), p_persona varchar(64), p_level int, p_experience int, 
-    p_opinion int, p_opinionType varchar(45)) RETURNS int(11)
+    p_opinion int, p_opinionType varchar(45)) 
+    RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare henchmanId int;
 
@@ -1130,7 +1139,9 @@ END;
 CREATE FUNCTION `saveDomainUnit` ( p_locationId int,  p_type varchar(45),
     p_name varchar(100), p_morale int, p_maxTroops int, p_currentTroops int,
     p_movement int, p_skill int, p_leaderId int, p_leaderIsOwner int, 
-    p_currentLocation varchar(256)) RETURNS int(11)
+    p_currentLocation varchar(256)) 
+    RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare unitId int;
 
@@ -1359,7 +1370,7 @@ BEGIN
     if guildId is not null then
         update guilds set title = p_title,
                           pretitle = p_pretitle,
-                          rank = p_rank,
+                          `rank` = p_rank,
                           level = p_level,
                           experience = p_experience,
                           leftGuild = p_leftGuild,
@@ -1371,7 +1382,7 @@ BEGIN
                                       name,
                                       title,
                                       pretitle,
-                                      rank,
+                                      `rank`,
                                       level,
                                       experience,
                                       leftGuild,
@@ -1437,7 +1448,8 @@ BEGIN
 END;
 ##
 CREATE FUNCTION `saveResearchChoice` (p_playerid int, p_name varchar(45))
-RETURNS INTEGER
+RETURNS INTEGER NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare choiceId int;
     
@@ -1796,7 +1808,9 @@ BEGIN
 END;
 ##
 CREATE FUNCTION `saveRegion` ( p_name varchar(256), p_type varchar(45), 
-    p_x int, p_y int, p_entryPoint varchar(256), p_direction varchar(20)) RETURNS int(11)
+    p_x int, p_y int, p_entryPoint varchar(256), p_direction varchar(20)) 
+    RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare regionId int;
 
@@ -1821,7 +1835,9 @@ END;
 ##
 CREATE FUNCTION `saveEnvironmentInstance` ( p_regionId int, p_x int, p_y int, 
     p_type varchar(40), p_identifier varchar(256), p_name varchar(128), p_cloned binary, 
-    p_description longtext, p_shop varchar(256), p_state varchar(80)) RETURNS int(11)
+    p_description longtext, p_shop varchar(256), p_state varchar(80)) 
+    RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare lEnvironmentId int;
     declare childId int;
@@ -1937,7 +1953,9 @@ END;
 ##
 CREATE FUNCTION `saveEnvironmentalElement` ( p_environmentId int, p_type varchar(45),
     p_value varchar(256), p_state varchar(80), p_location varchar(40), p_x int, 
-    p_y int, p_z int, p_x_rot int, p_y_rot int, p_z_rot int) RETURNS int(11)
+    p_y int, p_z int, p_x_rot int, p_y_rot int, p_z_rot int) 
+    RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare elementId int;
 
@@ -1970,7 +1988,8 @@ END;
 CREATE FUNCTION `saveEnvironmentalObject` ( p_environmentId int, p_state varchar(80),
     p_path varchar(256), p_random binary, p_probability tinyint, p_quantity tinyint,
     p_type varchar(10)) 
-    RETURNS int(11)
+    RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare elementId int;
 
@@ -1996,12 +2015,13 @@ RETURN elementId;
 END;
 ##
 CREATE FUNCTION `authenticateUser` (p_user varchar(40), p_password varchar(80))
-    returns varchar(40)
+    returns varchar(40) NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare ret varchar(20);
     declare userId int;
-    declare hashedPassword varchar(20);
-    declare storedPassword varchar(20);
+    declare hashedPassword varchar(64);
+    declare storedPassword varchar(64);
 
     select id into userId from users
     where login = p_user;
@@ -2010,7 +2030,7 @@ BEGIN
         select password into storedPassword from users
         where login = p_user;
 
-        select cast((select encrypt(p_password, storedPassword)) as char) into hashedPassword;
+        select sha2(p_password, 256) into hashedPassword;
         if hashedPassword = storedPassword then
             set ret = 'authenticated';
         else
@@ -2024,7 +2044,8 @@ END;
 ##
 CREATE FUNCTION `saveUser`(p_user varchar(40), p_password varchar(80),
     p_address varchar(15))
-    returns int
+    returns int NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare userId int;
 
@@ -2033,12 +2054,12 @@ BEGIN
     
     if userId is null then
         insert into users (login, password, lastIPAddress, LastLogin)
-        values (p_user, cast(encrypt(p_password) as char), p_address, now());
+        values (p_user, sha2(p_password, 256), p_address, now());
 
         select id into userId from users
         where login = p_user;
     else
-        update users set password = cast(encrypt(p_password) as char),
+        update users set password = sha2(p_password, 256),
                          lastIPAddress = p_address,
                          LastLogin = now()
         where login = p_user;
@@ -2254,7 +2275,8 @@ BEGIN
 END;
 ##
 CREATE FUNCTION `setWizardLevel` (p_name varchar(40), p_level varchar(20))
-    returns int
+    returns int NOT DETERMINISTIC
+    READS SQL DATA
 BEGIN
     declare localPlayerId int;
     declare localWizardTypeId int;
