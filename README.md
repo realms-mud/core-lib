@@ -30,7 +30,12 @@ For various reasons, I decided that a database was the best approach for persist
 chose MySQL not because I particularly like it, but because it was the path of least resistence.
 This should be the only major prerequisite for compiling the mud driver. When you install it, be
 sure to note both where it was installed and what the login/password for the administrator account
-for it is.
+for it is. 
+
+WARNING: There is currently an issue with MySQL 8 support that I am working through. Until this is 
+resolved, the stored functions used by this mudlib do not get automatically generated. It is still
+possible to add these manually, but as a result, I would only use MySQL 8 with this library if you
+are comfortable with doing that. For all others, I strongly encourage you to use MySQL 5.7.x.
 
 ### Mud Driver
 I have not tested this mudlib with drivers other than the LDMud driver. When compiling it, you 
