@@ -40,11 +40,11 @@ public nomask mapping getPlayerData(string name)
             data += getSkills(data["playerId"], dbHandle);
             data += getTraits(data["playerId"], dbHandle);
             data += getTemporaryTraits(data["playerId"], dbHandle);
-            data += getInventory(data["playerId"], dbHandle);
             data += getFactions(data["playerId"], dbHandle);
             data += getWizardLevel(data["playerId"], dbHandle);
             data += getPlayerSettings(dbHandle, name);
 //            data += getPlayerDomains(data["playerId"], dbHandle);
+            data += getInventory(data["playerId"], dbHandle);
         }
 
         disconnect(dbHandle);
@@ -76,11 +76,11 @@ public nomask void savePlayerData(mapping playerData)
             saveOpenResearchTrees(dbHandle, playerId, playerData);
             saveSkills(dbHandle, playerId, playerData);
             saveTraits(dbHandle, playerId, playerData);
-            saveInventory(dbHandle, playerId, playerData);
             saveFactions(dbHandle, playerId, playerData);
             saveWizardLevel(dbHandle, playerId, playerData);
             saveSettings(dbHandle, playerData);
 //            saveDomains(dbHandle, playerId, playerData);
+            saveInventory(dbHandle, playerId, playerData);
             db_close(dbHandle);
         }
     }

@@ -45,27 +45,59 @@ static nomask void loadInventory(mapping data, object persistence)
             string *itemList = m_indices(items);
             if (sizeof(itemList))
             {
+                int haveLoadErrors = 0;
+                string errors = 0;
+                string failedLoad = "";
+                object configuration = getDictionary("configuration");
+                string colorConfig = this_player()->colorConfiguration();
+
                 foreach(string item in itemList)
                 {
-                    object itemObject = clone_object(regreplace(item, "#[0-9]+$", ".c", 1));
+                    object itemObject;
+                    errors = catch(itemObject = 
+                        clone_object(regreplace(item, "#[0-9]+$", ".c", 1)));
+
                     if (itemObject && objectp(itemObject))
                     {
                         itemObject->set("all", items[item]["data"]);
-                        move_object(itemObject, this_object());
+                        errors = catch(move_object(itemObject, this_object()));
 
-                        if (items[item]["isEquipped"] && 
+                        if (!errors && items[item]["isEquipped"] &&
                             ((member(inherit_list(itemObject), ArmorBlueprint) > -1) ||
                             (member(inherit_list(itemObject), WeaponBlueprint) > -1)))
                         {
                             itemObject->equip(itemObject->query("name"));
                         }
-                        else if (items[item]["isEquipped"] &&
+                        else if (!errors && items[item]["isEquipped"] &&
                             (member(inherit_list(itemObject), ModifierBlueprint) > -1))
                         {
                             this_object()->registerObjectAsInventory(itemObject);
                         }
+                        if (errors && itemObject)
+                        {
+                            destruct(itemObject);
+                        }
+                    }
+
+                    if (errors)
+                    {
+                        failedLoad += configuration->decorate(
+                            sprintf("    %O\n", item),
+                                "value", "equipment", colorConfig);
+                        haveLoadErrors = 1;
+                        errors = 0;
                     }
                 }
+
+                if (haveLoadErrors && this_player())
+                {
+                    tell_object(this_player(),
+                        configuration->decorate(
+                            "Failed to load an item in your inventory: \n",
+                            "error message", "equipment", colorConfig) +
+                        failedLoad + "\n");
+                }
+
             }
         }
     }

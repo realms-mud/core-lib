@@ -456,6 +456,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;9m",
             "24-bit": "\x1b[0;38;2;200;0;0m"
         ]),
+        "error message":([
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;9m",
+            "24-bit": "\x1b[0;38;2;200;0;0m"
+        ]),
     ]),
     "shop":([
         "unidentified":([
