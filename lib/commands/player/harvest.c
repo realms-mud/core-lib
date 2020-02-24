@@ -28,6 +28,17 @@ public nomask int execute(string command, object initiator)
             ret = 1;
             tell_object(initiator, location->harvestStatistics());
         }
+        else
+        {
+            object element = location->findHarvestableResource(resource);
+            if (element)
+            {
+            }
+            else
+            {
+
+            }
+        }
     }
     return ret;
 }

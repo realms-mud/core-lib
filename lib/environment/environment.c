@@ -1519,7 +1519,7 @@ public nomask string decoratorType()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object harvestResource(string resource)
+public nomask object findHarvestableResource(string resource)
 {
     object ret = 0;
 
@@ -1530,7 +1530,7 @@ public nomask object harvestResource(string resource)
             if (objectp(element) &&
                 element->isHarvestableResource(resource, this_object()))
             {
-                ret = element->harvestResource(resource, this_object());
+                ret = element;
                 break;
             }
         }

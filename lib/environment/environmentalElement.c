@@ -24,8 +24,7 @@ protected nomask object environmentDictionary()
 {
     if (!environmentDictionary)
     {
-        environmentDictionary =
-            load_object("/lib/dictionaries/environmentDictionary.c");
+        environmentDictionary = getDictionary("environment");
     }
     return environmentDictionary;
 }
