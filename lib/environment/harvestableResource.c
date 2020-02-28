@@ -9,13 +9,14 @@ private string HarvestedDescription = 0;
 private object owningElement;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setup(int quantity, string resourceFile, 
+public nomask void setup(string name, int quantity, string resourceFile, 
     string harvestedDescription, object owner)
 {
     if (load_object(resourceFile))
     {
         owningElement = owner;
         harvestData = ([
+            "name": name,
             "initial quantity": quantity,
             "available quantity": ([]),
             "resource file": resourceFile,
@@ -27,6 +28,32 @@ public nomask void setup(int quantity, string resourceFile,
         raise_error(sprintf("EnvironmentalElement: The resource %O must "
             "exist and be clonable.\n", resourceFile));
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs void resetQuantity(object environment)
+{
+    if (objectp(environment))
+    {
+        harvestData["available quantity"][environment] =
+            harvestData["initial quantity"];
+    }
+    else
+    {
+        foreach(object listedEnvironment in
+            m_indices(harvestData["available quantity"]))
+        {
+            harvestData["available quantity"][listedEnvironment] =
+                harvestData["initial quantity"];
+            HarvestedDescription = 0;
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string name()
+{
+    return harvestData["name"];
 }
 
 /////////////////////////////////////////////////////////////////////////////

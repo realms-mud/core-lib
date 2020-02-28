@@ -96,19 +96,13 @@ public nomask void reset(int arg)
         }
     }
 
-    string *harvestItems = filter(m_indices(harvestData),
-        (: member($2[$1], "initial quantity") :), harvestData);
+    object *harvestItems = m_values(
+        filter(harvestData, (: $1 == $2->name() :)));
     if (sizeof(harvestItems))
     {
-        foreach(string harvestItem in harvestItems)
+        foreach(object harvestItem in harvestItems)
         {
-            foreach(object environment in
-                m_indices(harvestData[harvestItem]["available quantity"]))
-            {
-                harvestData[harvestItem]["available quantity"][environment] =
-                    harvestData[harvestItem]["initial quantity"];
-                HarvestedDescription = 0;
-            }
+            harvestItem->resetQuantity();
         }
     }
 }
@@ -663,14 +657,13 @@ public nomask void setUpForEnvironment(string state, object environment)
         activateLightSource(state, environment);
     }
 
-    string *harvestItems = filter(m_indices(harvestData),
-        (: member($2[$1], "initial quantity") :), harvestData);
+    object *harvestItems = m_values(
+        filter(harvestData, (: $1 == $2->name() :)));
     if (sizeof(harvestItems))
     {
-        foreach(string harvestItem in harvestItems)
+        foreach(object harvestItem in harvestItems)
         {
-            harvestData[harvestItem]["available quantity"][environment] =
-                harvestData[harvestItem]["initial quantity"];
+            harvestItem->resetQuantity(environment);
         }
     }
 }
@@ -685,7 +678,7 @@ protected nomask varargs void harvestableResource(string name, int quantity,
         {
             object resource =
                 clone_object("/lib/environment/harvestableResource.c");
-            resource->setup(quantity, resourceFile, harvestedDescription,
+            resource->setup(name, quantity, resourceFile, harvestedDescription,
                 this_object());
             harvestData[name] = resource;
 
@@ -708,9 +701,9 @@ protected nomask varargs void harvestableResource(string name, int quantity,
         }
         else
         {
-            raise_error(sprintf("EnvironmentalElement: The name "
-                "of the harvestable resource (%O) is already in use.\n",
-                name));
+//            raise_error(sprintf("EnvironmentalElement: The name "
+//                "of the harvestable resource (%O) is already in use.\n",
+//                name));
         }
     }
     else
