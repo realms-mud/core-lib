@@ -162,13 +162,18 @@ protected nomask int validLimitor(mapping limitor)
                     }
                     case "environment":
                     {
-                        object environmentDictionary =
-                            getDictionary("environment");
+                        object environmentDictionary = getDictionary("environment");
                         if (environmentDictionary)
                         {
                             ret &&= environmentDictionary->isValidType(
                                 limitor[key]);
                         }
+                        break;
+                    }
+                    case "environment state":
+                    {
+                        ret &&= (pointerp(limitor[key]) && sizeof(limitor[key])) ||
+                            stringp(limitor[key]);
                         break;
                     }
                     case "equipment":
@@ -425,6 +430,36 @@ private nomask int checkEnvironmentLimitor(object owner, int verbose)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int checkEnvironmentStateLimitor(object owner, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "environment state"))
+    {
+        object environment = environment(owner);
+        if (environment)
+        {
+            if (!pointerp(researchData["limited by"]["environment state"]))
+            {
+                researchData["limited by"]["environment state"] =
+                    ({ researchData["limited by"]["environment state"] });
+            }
+
+            ret &&= (member(researchData["limited by"]["environment state"],
+                environment->currentState()) > -1);
+        }
+        if (!ret && verbose)
+        {
+            printf(format("You are not in the correct environment state "
+                "(%s) to do that.\n",
+                implode(researchData["limited by"]["environment state"], ", "),
+                78));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkIntoxicatedLimitor(object owner, int verbose)
 {
     int ret = 1;
@@ -624,6 +659,7 @@ public nomask varargs int canApplySkill(string skill, object owner, object targe
                 checkOpponentFactionLimitor(target, verbose) &&
                 checkCraftingTypeLimitor(target, verbose) &&
                 checkEnvironmentLimitor(owner, verbose) &&
+                checkEnvironmentStateLimitor(owner, verbose) &&
                 checkIntoxicatedLimitor(owner, verbose) &&
                 checkDruggedLimitor(owner, verbose) &&
                 checkNearDeathLimitor(owner, verbose) &&
@@ -732,6 +768,7 @@ public nomask string displayLimiters(string colorConfiguration, object configura
             case "opponent guild":
             case "crafting type":
             case "environment":
+            case "environment state":
             case "time of day":
             case "season":
             case "moon phase":

@@ -151,6 +151,14 @@ void CanSetLimitorForEnvironment()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForEnvironmentState()
+{
+    mapping limitor = (["environment state": "deadified"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanSetLimitorForIntoxication()
 {
     mapping limitor = (["intoxicated":1]);
@@ -301,6 +309,22 @@ void CanApplySkillReturnsTrueWithLimitorForEnvironment()
     ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
     move_object(Attacker, room);
 
+    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySkillReturnsTrueWithLimitorForEnvironmentState()
+{
+    object room = clone_object("/lib/environment/environment");
+
+    mapping limitor = (["environment state": "blargish" ]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    move_object(Attacker, room);
+
+    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+
+    room->currentState("blargish");
     ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
 }
 
@@ -507,6 +531,16 @@ void  DisplayLimitersStringCorrectWithLimitorForEnvironment()
     mapping limitor = (["environment":"forest"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("\x1b[0;36mThis is only applied when environment is forest.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void  DisplayLimitersStringCorrectWithLimitorForEnvironmentState()
+{
+    mapping limitor = (["environment state":"deadified"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when environment state is "
+        "deadified.\n\x1b[0m", 
+        Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////

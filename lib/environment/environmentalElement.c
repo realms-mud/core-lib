@@ -2,8 +2,6 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/core/specification.c";
-
 protected mapping descriptionData = ([ ]);
 protected mapping harvestData = ([ ]);
 
@@ -683,21 +681,36 @@ protected nomask varargs void harvestableResource(string name, int quantity,
 {
     if (load_object(resourceFile))
     {
-        harvestData[name] = ([
-            "initial quantity": quantity,
-            "available quantity": ([]),
-            "resource file": resourceFile,
-            "description when harvested": harvestedDescription,
-        ]);
-
-        if (pointerp(aliases) && sizeof(aliases))
+        if (!member(harvestData, name))
         {
-            foreach(string alias in aliases)
+            object resource =
+                clone_object("/lib/environment/harvestableResource.c");
+            resource->setup(quantity, resourceFile, harvestedDescription,
+                this_object());
+            harvestData[name] = resource;
+
+            if (pointerp(aliases) && sizeof(aliases))
             {
-                harvestData[alias] = ([
-                    "alias": name
-                ]);
+                foreach(string alias in aliases)
+                {
+                    if (member(harvestData, alias))
+                    {
+                        raise_error(sprintf("EnvironmentalElement: The alias "
+                            "of the harvestable resource (%O) is already in use.\n",
+                            alias));
+                    }
+                    else
+                    {
+                        harvestData[alias] = resource;
+                    }
+                }
             }
+        }
+        else
+        {
+            raise_error(sprintf("EnvironmentalElement: The name "
+                "of the harvestable resource (%O) is already in use.\n",
+                name));
         }
     }
     else
@@ -710,21 +723,9 @@ protected nomask varargs void harvestableResource(string name, int quantity,
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void limitHarvestBySeason(string name, string season)
 {
-    if (member(harvestData, name) && !member(harvestData[name], "alias"))
+    if (member(harvestData, name) && objectp(harvestData[name]))
     {
-        if (environmentDictionary()->isValidSeason(season))
-        {
-            if (!member(harvestData[name], "limited to seasons"))
-            {
-                harvestData[name]["limited to seasons"] = ({});
-            }
-            harvestData[name]["limited to seasons"] += ({ season });
-        }
-        else
-        {
-            raise_error("EnvironmentalElement: A valid season must be "
-                "specified.\n");
-        }
+        harvestData[name]->limitHarvestBySeason(season);
     }
     else
     {
@@ -737,21 +738,24 @@ protected nomask void limitHarvestBySeason(string name, string season)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void limitHarvestByTimeOfDay(string name, string timeOfDay)
 {
-    if (member(harvestData, name) && !member(harvestData[name], "alias"))
+    if (member(harvestData, name) && objectp(harvestData[name]))
     {
-        if (environmentDictionary()->isValidTimeOfDay(timeOfDay))
-        {
-            if (!member(harvestData[name], "limited to time of day"))
-            {
-                harvestData[name]["limited to time of day"] = ({});
-            }
-            harvestData[name]["limited to time of day"] += ({ timeOfDay });
-        }
-        else
-        {
-            raise_error("EnvironmentalElement: A valid time of day must be "
-                "specified.\n");
-        }
+        harvestData[name]->limitHarvestByTimeOfDay(timeOfDay);
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
+            "It must be added via the harvestableResource(...) method before "
+            "adding a time of day.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitHarvestByMoonPhase(string name, string moonPhase)
+{
+    if (member(harvestData, name) && objectp(harvestData[name]))
+    {
+        harvestData[name]->limitHarvestByMoonPhase(moonPhase);
     }
     else
     {
@@ -764,21 +768,9 @@ protected nomask void limitHarvestByTimeOfDay(string name, string timeOfDay)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void limitHarvestByState(string name, string state)
 {
-    if (member(harvestData, name) && !member(harvestData[name], "alias"))
+    if (member(harvestData, name) && objectp(harvestData[name]))
     {
-        if (member(states(), state) > -1)
-        {
-            if (!member(harvestData[name], "limited to state"))
-            {
-                harvestData[name]["limited to state"] = ({});
-            }
-            harvestData[name]["limited to state"] += ({ state });
-        }
-        else
-        {
-            raise_error("EnvironmentalElement: A valid state must be "
-                "specified.\n");
-        }
+        harvestData[name]->limitHarvestByState(state);
     }
     else
     {
@@ -791,14 +783,9 @@ protected nomask void limitHarvestByState(string name, string state)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void harvestRequiresTool(string name, string tool)
 {
-    if (member(harvestData, name) && stringp(tool) && 
-        !member(harvestData[name], "alias"))
+    if (member(harvestData, name) && objectp(harvestData[name]))
     {
-        if (!member(harvestData[name], "requires tool"))
-        {
-            harvestData[name]["requires tool"] = ({});
-        }
-        harvestData[name]["requires tool"] += ({ tool });
+        harvestData[name]->limitHarvestByTool(tool);
     }
     else
     {
@@ -811,14 +798,9 @@ protected nomask void harvestRequiresTool(string name, string tool)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void harvestRequiresOneOfTool(string name, string *tools)
 {
-    if (member(harvestData, name) && pointerp(tools) && 
-        !member(harvestData[name], "alias"))
+    if (member(harvestData, name) && objectp(harvestData[name]))
     {
-        if (!member(harvestData[name], "requires one of tool"))
-        {
-            harvestData[name]["requires one of tool"] = ({});
-        }
-        harvestData[name]["requires one of tool"] += tools;
+        harvestData[name]->limitHarvestByOneOfTools(tools);
     }
     else
     {
