@@ -66,5 +66,3 @@ generic conversation trees that a humanoid or dragon will have. See `/lib/dictio
 for details. 
 
 [Adding conversations to the creatures you make is discussed here.](conversations.md)
-
-
