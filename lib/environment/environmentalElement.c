@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/specification.c";
-virtual inherit "/lib/core/prerequisites.c";
 
 protected mapping descriptionData = ([ ]);
 protected mapping harvestData = ([ ]);

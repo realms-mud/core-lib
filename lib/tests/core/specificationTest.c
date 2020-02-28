@@ -553,9 +553,9 @@ void DisplayLimitorsCorrectWithMultipleCraftingItems()
     ExpectTrue(Specification->addSpecification("limited by", limitor), 
         "set the limitor");
 
-    ExpectEq("\x1b[0;36mThis is only applied when crafting type is sword, "
-        "dagger, pole arm, staff,\naxe, hammer, mace, flail, crossbow, bow, "
-        "sling, thrown, shield.\n\x1b[0m", 
+    ExpectEq("\x1b[0;36mThis is only applied when crafting type is one of axe, "
+        "bow, crossbow, dagger,\nflail, hammer, mace, pole arm, shield, sling, "
+        "staff, sword, or thrown.\n\x1b[0m", 
         Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
@@ -661,6 +661,16 @@ void DisplayLimitersStringCorrectWithLimitorForTimeOfDay()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForListOfTimesOfDay()
+{
+    mapping limitor = (["time of day":({ "dawn", "dusk" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when time of day is dawn or dusk.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DisplayLimitersStringCorrectWithLimitorForSeason()
 {
     mapping limitor = (["season":"autumn"]);
@@ -671,11 +681,32 @@ void DisplayLimitersStringCorrectWithLimitorForSeason()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForListOfSeasons()
+{
+    mapping limitor = (["season":({ "summer", "autumn" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when season is autumn or summer.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DisplayLimitersStringCorrectWithLimitorForMoonPhase()
 {
     mapping limitor = (["moon phase":"waning gibbous"]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("\x1b[0;36mThis is only applied when moon phase is waning gibbous.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForListOfMoonPhases()
+{
+    mapping limitor = (["moon phase":({ "waning gibbous", "waning crescent", "new moon" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when moon phase is one of new moon, "
+        "waning crescent, or\nwaning gibbous.\n\x1b[0m",
         Specification->displayLimiters(colorConfiguration, Configuration));
 }

@@ -83,8 +83,22 @@ protected nomask int validLimitor(mapping limitor)
                         object environmentDictionary = getDictionary("environment");
                         if (environmentDictionary)
                         {
-                            ret &&= environmentDictionary->isValidTimeOfDay(
-                                limitor[key]);
+                            if (pointerp(limitor[key]) && sizeof(limitor[key]))
+                            {
+                                int isValid = 0;
+                                string *list = limitor[key];
+                                foreach(string timeOfDay in list)
+                                {
+                                    isValid ||= environmentDictionary->isValidTimeOfDay(
+                                        timeOfDay);
+                                }
+                                ret &&= isValid;
+                            }
+                            else
+                            {
+                                ret &&= environmentDictionary->isValidTimeOfDay(
+                                    limitor[key]);
+                            }
                         }
                         break;
                     }
@@ -93,8 +107,22 @@ protected nomask int validLimitor(mapping limitor)
                         object environmentDictionary = getDictionary("environment");
                         if (environmentDictionary)
                         {
-                            ret &&= environmentDictionary->isValidSeason(
-                                limitor[key]);
+                            if (pointerp(limitor[key]) && sizeof(limitor[key]))
+                            {
+                                int isValid = 0;
+                                string *list = limitor[key];
+                                foreach(string season in list)
+                                {
+                                    isValid ||= environmentDictionary->isValidSeason(
+                                        season);
+                                }
+                                ret &&= isValid;
+                            }
+                            else
+                            {
+                                ret &&= environmentDictionary->isValidSeason(
+                                    limitor[key]);
+                            }
                         }
                         break;
                     }
@@ -103,8 +131,22 @@ protected nomask int validLimitor(mapping limitor)
                         object environmentDictionary = getDictionary("environment");
                         if (environmentDictionary)
                         {
-                            ret &&= environmentDictionary->isValidMoonPhase(
-                                limitor[key]);
+                            if (pointerp(limitor[key]) && sizeof(limitor[key]))
+                            {
+                                int isValid = 0;
+                                string *list = limitor[key];
+                                foreach(string moonPhase in list)
+                                {
+                                    isValid ||= environmentDictionary->isValidMoonPhase(
+                                        moonPhase);
+                                }
+                                ret &&= isValid;
+                            }
+                            else
+                            {
+                                ret &&= environmentDictionary->isValidMoonPhase(
+                                    limitor[key]);
+                            }
                         }
                         break;
                     }
@@ -694,11 +736,18 @@ public nomask string displayLimiters(string colorConfiguration, object configura
             case "season":
             case "moon phase":
             {
-                string types = stringp(researchData["limited by"][key]) ?
-                    researchData["limited by"][key] :
-                    implode(researchData["limited by"][key], ", ");
+                int isList = pointerp(researchData["limited by"][key]);
+                string types = isList ?
+                    implode(sort_array(researchData["limited by"][key],
+                        (: $1 > $2 :)), 
+                        (sizeof(researchData["limited by"][key]) == 2) ? 
+                        " or " : ", ") :
+                    researchData["limited by"][key];
+                types = regreplace(types, ", ([^,]+)$", ", or \\1", 1);
 
-                ret += sprintf(limiter, key, "is", types);
+                ret += sprintf(limiter, key, ((isList &&
+                    sizeof(researchData["limited by"][key]) > 2) ? 
+                        "is one of": "is"), types);
                 break;
             }
             case "opponent faction":
