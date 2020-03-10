@@ -1216,6 +1216,33 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;200;0;0m"
         ]),
     ]),
+    "harvestable resources":([
+        "missing prerequisites":([
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;9m",
+            "24-bit": "\x1b[0;38;2;200;0;0m"
+        ]),
+        "field header": ([
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;80m",
+            "24-bit": "\x1b[0;38;2;180;180;190m"
+        ]),
+        "field data":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;190m",
+            "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+        "quantity left":([
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;20;1m",
+            "24-bit": "\x1b[0;38;2;10;20;100;1m"
+        ]),
+        "quantity zero":([
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;9;1m",
+            "24-bit": "\x1b[0;38;2;200;0;0;1m"
+        ]),
+    ]),
 ]);
 
 #endif
