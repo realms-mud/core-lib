@@ -115,15 +115,41 @@ public nomask void limitHarvestByState(string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void limitHarvestByTool(string tool)
+public nomask void limitHarvestByTool(string tool)
 {
     addToLimitors("equipment", tool);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void limitHarvestByOneOfTools(string *tools)
+public nomask void limitHarvestByOneOfTools(string *tools)
 {
     addToLimitors("equipment", tools);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitHarvestBySkill(string skill, int value)
+{
+    if (!member(researchData, "limited by"))
+    {
+        researchData["limited by"] = ([]);
+    }
+
+    if (validLimitor((["skill": ([ skill: value ]) ])))
+    {
+        if (!member(researchData["limited by"], "skill"))
+        {
+            researchData["limited by"]["skill"] = ([ skill: value ]);
+        }
+        else
+        {
+            researchData["limited by"]["skill"] += ([ skill: value ]);
+        }
+    }
+    else
+    {
+        raise_error("EnvironmentalElement: A valid skill and value "
+            "must be specified.\n");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

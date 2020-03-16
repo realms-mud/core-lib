@@ -231,6 +231,14 @@ void CanSetLimitorForEquipmentThatIsValidListType()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForSkills()
+{
+    mapping limitor = (["skill": ([ "dodge": 3, "parry": 5 ]) ]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanSetLimitorThatIsAList()
 {
     mapping limitor = ([
@@ -502,6 +510,21 @@ void CanApplySkillReturnsTrueWithLimitorForSpellPointsDrained()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanApplySkillReturnsTrueWithLimitorForSkill()
+{
+    mapping limitor = (["skill":(["dodge":3, "parry" : 5])]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+
+    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+
+    Attacker->addSkillPoints(20);
+    Attacker->advanceSkill("dodge", 5);
+    Attacker->advanceSkill("parry", 5);
+    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DisplayLimitersStringCorrectWithLimitorForOpponentRace()
 {
     mapping limitor = (["opponent race":"elf"]);
@@ -742,5 +765,16 @@ void DisplayLimitersStringCorrectWithLimitorForListOfMoonPhases()
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("\x1b[0;36mThis is only applied when the moon phase is one of new moon, "
         "waning crescent,\nor waning gibbous.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForListOfSkills()
+{
+    mapping limitor = (["skill":(["dodge":3, "parry" : 5])]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when your dodge skill is at least 3.\n"
+        "This is only applied when your parry skill is at least 5.\n\x1b[0m",
         Specification->displayLimiters(colorConfiguration, Configuration));
 }

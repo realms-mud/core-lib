@@ -121,3 +121,21 @@ void CanLimitHarvestableResourceByState()
         "This can only be harvested when the environment state is exploited.\n",
         Resource->getHarvestStatistics(Environment, Player));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitHarvestableResourceBySkills()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->limitHarvestBySkill("forestry", 5);
+    Resource->limitHarvestBySkill("agriculture", 3);
+
+    Resource->resetQuantity(Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 25 yew available for harvest.\n"
+        "This can only be harvested when your agriculture skill is at least 3.\n"
+        "This can only be harvested when your forestry skill is at least 5.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+}

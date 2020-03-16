@@ -78,6 +78,20 @@ protected nomask int validLimitor(mapping limitor)
                         }
                         break;
                     }
+                    case "skill":
+                    {
+                        object skillsDictionary = getDictionary("skills");
+                        if (skillsDictionary && mappingp(limitor[key]) &&
+                            sizeof(limitor[key]))
+                        {
+                            foreach(string skill in m_indices(limitor[key]))
+                            {
+                                ret &&= skillsDictionary->isValidSkill(skill) && 
+                                    intp(limitor[key][skill]);
+                            }
+                        }
+                        break;
+                    }
                     case "time of day":
                     {
                         object environmentDictionary = getDictionary("environment");
@@ -410,7 +424,7 @@ private nomask int checkCraftingTypeLimitor(object target, int verbose,
         if (!ret && verbose)
         {
             write(configuration->decorate(
-                sprintf("The item is of the wrong type to be affected by this research.\n"),
+                "The item is of the wrong type to be affected by this research.\n",
                 "missing prerequisites", "research", colorConfiguration));
         }
     }
@@ -491,7 +505,7 @@ private nomask int checkIntoxicatedLimitor(object owner, int verbose,
         if (!ret && verbose)
         {
             write(configuration->decorate(
-                sprintf("You are not intoxicated enough to do that.\n"),
+                "You are not intoxicated enough to do that.\n",
                 "missing prerequisites", "research", colorConfiguration));
         }
     }
@@ -511,7 +525,7 @@ private nomask int checkDruggedLimitor(object owner, int verbose,
         if (!ret && verbose)
         {
             write(configuration->decorate(
-                sprintf("You are not drugged enough to do that.\n"),
+                "You are not drugged enough to do that.\n",
                 "missing prerequisites", "research", colorConfiguration));
         }
     }
@@ -531,7 +545,7 @@ private nomask int checkNearDeathLimitor(object owner, int verbose,
         if (!ret && verbose)
         {
             write(configuration->decorate(
-                sprintf("You are not injured enough to do that.\n"),
+                "You are not injured enough to do that.\n",
                 "missing prerequisites", "research", colorConfiguration));
         }
     }
@@ -551,7 +565,7 @@ private nomask int checkStaminaDrainedLimitor(object owner, int verbose,
         if (!ret && verbose)
         {
             write(configuration->decorate(
-                sprintf("You are not weary enough to do that.\n"),
+                "You are not weary enough to do that.\n",
                 "missing prerequisites", "research", colorConfiguration));
         }
     }
@@ -571,7 +585,7 @@ private nomask int checkSpellPointsDrainedLimitor(object owner, int verbose,
         if (!ret && verbose)
         {
             write(configuration->decorate(
-                sprintf("You are not drained enough to do that.\n"),
+                "You are not drained enough to do that.\n",
                 "missing prerequisites", "research", colorConfiguration));
         }
     }
@@ -722,6 +736,33 @@ private nomask int checkMoonPhaseLimitor(int verbose,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int checkSkillLimitor(object owner, int verbose,
+    string colorConfiguration, object configuration)
+{
+    int ret = 1;
+
+    if (member(researchData["limited by"], "skill"))
+    {
+        foreach(string skill in 
+            m_indices(researchData["limited by"]["skill"]))
+        {
+            int skillCheck = (owner->getSkill(skill) >=
+                researchData["limited by"]["skill"][skill]);
+
+            ret &&= skillCheck;
+            if (!skillCheck && verbose)
+            {
+                write(configuration->decorate(
+                    sprintf("You need a minimum of %d in %s to do that.\n",
+                        researchData["limited by"]["skill"][skill], skill),
+                    "missing prerequisites", "research", colorConfiguration));
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs int canApplySkill(string skill, object owner, 
     object target, int verbose)
 {
@@ -756,6 +797,8 @@ public nomask varargs int canApplySkill(string skill, object owner,
                 checkSpellPointsDrainedLimitor(owner, verbose, 
                     colorConfiguration, configuration) &&
                 checkEquipmentLimitor(owner, verbose, 
+                    colorConfiguration, configuration) &&
+                checkSkillLimitor(owner, verbose, 
                     colorConfiguration, configuration) &&
                 checkTimeOfDayLimitor(verbose, 
                     colorConfiguration, configuration) &&
@@ -851,7 +894,7 @@ public nomask varargs string displayLimiters(string colorConfiguration,
     if (member(researchData, "limited by") &&
         sizeof(researchData["limited by"]))
     {
-        string limiter = "This is only applied when %s %s %s.";
+        string limiter = "This is only applied when %s %s %s.\n";
         string *prereqKeys = sort_array(
             m_indices(researchData["limited by"]), (: $1 > $2 :));
 
@@ -914,6 +957,17 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                         equipment = researchData["limited by"][key];
                     }
                     ret += sprintf(limiter, "you're", "using:", equipment);
+                    break;
+                }
+                case "skill":
+                {
+                    foreach(string skill in 
+                        m_indices(researchData["limited by"]["skill"]))
+                    {
+                        ret += sprintf(limiter, "your", skill,
+                            sprintf("skill is at least %d", 
+                                researchData["limited by"]["skill"][skill]));
+                    }
                     break;
                 }
             }
