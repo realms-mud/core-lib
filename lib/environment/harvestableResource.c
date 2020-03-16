@@ -217,9 +217,9 @@ public nomask string getHarvestStatistics(object environment, object user)
                 "quantity zero", "harvestable resources", colorConfiguration);
     }
 
-    ret += displayLimiters(colorConfiguration, charset);
+    ret += displayLimiters(colorConfiguration, configuration, 1);
     ret = regreplace(ret, "This is only applied when",
         "This can only be harvested when", 1);
 
-    return ret;
+    return format(ret, 78);
 }

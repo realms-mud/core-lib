@@ -298,7 +298,8 @@ protected int blockSkillApplication(string skill, object owner, object target)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkOpponentRaceLimitor(object target, int verbose)
+private nomask int checkOpponentRaceLimitor(object target, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
  
@@ -310,15 +311,18 @@ private nomask int checkOpponentRaceLimitor(object target, int verbose)
 
         if (!ret && verbose)
         {
-            printf("Your opponent is not of the %s race.\n",
-                researchData["limited by"]["opponent race"]);
+            write(configuration->decorate(
+                sprintf("Your opponent is not of the %s race.\n",
+                researchData["limited by"]["opponent race"]),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkOpponentGuildLimitor(object target, int verbose)
+private nomask int checkOpponentGuildLimitor(object target, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -331,15 +335,18 @@ private nomask int checkOpponentGuildLimitor(object target, int verbose)
 
         if (!ret && verbose)
         {
-            printf("Your opponent is not of the %s guild.\n",
-                researchData["limited by"]["opponent guild"]);
+            write(configuration->decorate(
+                sprintf("Your opponent is not of the %s guild.\n",
+                researchData["limited by"]["opponent guild"]),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkOpponentFactionLimitor(object target, int verbose)
+private nomask int checkOpponentFactionLimitor(object target, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -357,8 +364,10 @@ private nomask int checkOpponentFactionLimitor(object target, int verbose)
 
             if (faction)
             {
-                printf("Your opponent is not of the %s faction.\n",
-                    faction->name());
+                write(configuration->decorate(
+                    sprintf("Your opponent is not of the %s faction.\n",
+                    faction->name()),
+                    "missing prerequisites", "research", colorConfiguration));
             }
         }
     }
@@ -366,7 +375,8 @@ private nomask int checkOpponentFactionLimitor(object target, int verbose)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkCraftingTypeLimitor(object target, int verbose)
+private nomask int checkCraftingTypeLimitor(object target, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -399,14 +409,17 @@ private nomask int checkCraftingTypeLimitor(object target, int verbose)
         }
         if (!ret && verbose)
         {
-            printf("The item is of the wrong type to be affected by this research.\n");
+            write(configuration->decorate(
+                sprintf("The item is of the wrong type to be affected by this research.\n"),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkEnvironmentLimitor(object owner, int verbose)
+private nomask int checkEnvironmentLimitor(object owner, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -422,15 +435,18 @@ private nomask int checkEnvironmentLimitor(object owner, int verbose)
         }
         if (!ret && verbose)
         {
-            printf("You are not in the correct environment (%s) to do that.\n",
-                researchData["limited by"]["environment"]);
+            write(configuration->decorate(
+                sprintf("You are not in the correct environment (%s) to do that.\n",
+                researchData["limited by"]["environment"]),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkEnvironmentStateLimitor(object owner, int verbose)
+private nomask int checkEnvironmentStateLimitor(object owner, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -450,17 +466,20 @@ private nomask int checkEnvironmentStateLimitor(object owner, int verbose)
         }
         if (!ret && verbose)
         {
-            printf(format("You are not in the correct environment state "
+            write(configuration->decorate(
+                sprintf(format("You are not in the correct environment state "
                 "(%s) to do that.\n",
                 implode(researchData["limited by"]["environment state"], ", "),
-                78));
+                78)),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkIntoxicatedLimitor(object owner, int verbose)
+private nomask int checkIntoxicatedLimitor(object owner, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -471,14 +490,17 @@ private nomask int checkIntoxicatedLimitor(object owner, int verbose)
                 researchData["limited by"]["intoxicated"]);
         if (!ret && verbose)
         {
-            printf("You are not intoxicated enough to do that.\n");
+            write(configuration->decorate(
+                sprintf("You are not intoxicated enough to do that.\n"),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkDruggedLimitor(object owner, int verbose)
+private nomask int checkDruggedLimitor(object owner, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -488,14 +510,17 @@ private nomask int checkDruggedLimitor(object owner, int verbose)
             (owner->Drugged() >= researchData["limited by"]["drugged"]);
         if (!ret && verbose)
         {
-            printf("You are not drugged enough to do that.\n");
+            write(configuration->decorate(
+                sprintf("You are not drugged enough to do that.\n"),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkNearDeathLimitor(object owner, int verbose)
+private nomask int checkNearDeathLimitor(object owner, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -505,14 +530,17 @@ private nomask int checkNearDeathLimitor(object owner, int verbose)
             (owner->hitPoints() <= researchData["limited by"]["near death"]);
         if (!ret && verbose)
         {
-            printf("You are not injured enough to do that.\n");
+            write(configuration->decorate(
+                sprintf("You are not injured enough to do that.\n"),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkStaminaDrainedLimitor(object owner, int verbose)
+private nomask int checkStaminaDrainedLimitor(object owner, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -522,14 +550,17 @@ private nomask int checkStaminaDrainedLimitor(object owner, int verbose)
             (owner->staminaPoints() <= researchData["limited by"]["stamina drained"]);
         if (!ret && verbose)
         {
-            printf("You are not weary enough to do that.\n");
+            write(configuration->decorate(
+                sprintf("You are not weary enough to do that.\n"),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkSpellPointsDrainedLimitor(object owner, int verbose)
+private nomask int checkSpellPointsDrainedLimitor(object owner, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -539,14 +570,17 @@ private nomask int checkSpellPointsDrainedLimitor(object owner, int verbose)
             (owner->spellPoints() <= researchData["limited by"]["spell points drained"]);
         if (!ret && verbose)
         {
-            printf("You are not drained enough to do that.\n");
+            write(configuration->decorate(
+                sprintf("You are not drained enough to do that.\n"),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkEquipmentLimitor(object owner, int verbose)
+private nomask int checkEquipmentLimitor(object owner, int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -571,17 +605,20 @@ private nomask int checkEquipmentLimitor(object owner, int verbose)
 
         if (!ret && verbose)
         {
-            printf("You must be using the proper equipment for that (%s).\n",
+            write(configuration->decorate(
+                sprintf("You must be using the proper equipment for that (%s).\n",
                 stringp(researchData["limited by"]["equipment"]) ? 
                     researchData["limited by"]["equipment"] :
-                    implode(researchData["limited by"]["equipment"], ", "));
+                    implode(researchData["limited by"]["equipment"], ", ")),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkTimeOfDayLimitor(int verbose)
+private nomask int checkTimeOfDayLimitor(int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -590,20 +627,33 @@ private nomask int checkTimeOfDayLimitor(int verbose)
         object environmentDictionary = getDictionary("environment");
         if (environmentDictionary)
         {
-            ret &&= (environmentDictionary->timeOfDay() ==
+            if (pointerp(researchData["limited by"]["time of day"]))
+            {
+                ret &&= (member(researchData["limited by"]["time of day"],
+                    environmentDictionary->timeOfDay()) > -1);
+            }
+            else
+            {
+                ret &&= (environmentDictionary->timeOfDay() ==
                     researchData["limited by"]["time of day"]);
+            }
         }
         if (!ret && verbose)
         {
-            printf("It is not the proper time of day (%s) to do that.\n",
-                researchData["limited by"]["time of day"]);
+            write(configuration->decorate(
+                sprintf("It is not the proper time of day (%s) to do that.\n",
+                    pointerp(researchData["limited by"]["time of day"]) ?
+                        implode(researchData["limited by"]["time of day"], ", ") :
+                        researchData["limited by"]["time of day"]),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkSeasonLimitor(int verbose)
+private nomask int checkSeasonLimitor(int verbose,
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -612,20 +662,33 @@ private nomask int checkSeasonLimitor(int verbose)
         object environmentDictionary = getDictionary("environment");
         if (environmentDictionary)
         {
-            ret &&= (environmentDictionary->season() ==
-                researchData["limited by"]["season"]);
+            if (pointerp(researchData["limited by"]["season"]))
+            {
+                ret &&= (member(researchData["limited by"]["season"],
+                    environmentDictionary->season()) > -1);
+            }
+            else
+            {
+                ret &&= (environmentDictionary->season() ==
+                    researchData["limited by"]["season"]);
+            }
         }
         if (!ret && verbose)
         {
-            printf("It is not the proper season (%s) to do that.\n",
-                researchData["limited by"]["season"]);
+            write(configuration->decorate(
+                sprintf("It is not the proper season (%s) to do that.\n",
+                    pointerp(researchData["limited by"]["season"]) ?
+                        implode(researchData["limited by"]["season"], ", ") :
+                        researchData["limited by"]["season"]),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkMoonPhaseLimitor(int verbose)
+private nomask int checkMoonPhaseLimitor(int verbose, 
+    string colorConfiguration, object configuration)
 {
     int ret = 1;
 
@@ -634,41 +697,72 @@ private nomask int checkMoonPhaseLimitor(int verbose)
         object environmentDictionary = getDictionary("environment");
         if (environmentDictionary)
         {
-            ret &&= (environmentDictionary->moonPhase() ==
-                researchData["limited by"]["moon phase"]);
+            if (pointerp(researchData["limited by"]["moon phase"]))
+            {
+                ret &&= (member(researchData["limited by"]["moon phase"],
+                    environmentDictionary->moonPhase()) > -1);
+            }
+            else
+            {
+                ret &&= (environmentDictionary->moonPhase() ==
+                    researchData["limited by"]["moon phase"]);
+            }
         }
         if (!ret && verbose)
         {
-            printf("It is not the proper moon phase (%s) to do that.\n",
-                researchData["limited by"]["moon phase"]);
+            write(configuration->decorate(
+                sprintf("It is not the proper moon phase (%s) to do that.\n",
+                    pointerp(researchData["limited by"]["moon phase"]) ?
+                        implode(researchData["limited by"]["moon phase"], ", ") :
+                        researchData["limited by"]["moon phase"]),
+                "missing prerequisites", "research", colorConfiguration));
         }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs int canApplySkill(string skill, object owner, object target, int verbose)
+public nomask varargs int canApplySkill(string skill, object owner, 
+    object target, int verbose)
 {
     int ret = 1;
     notify_fail("");
 
     if (member(researchData, "limited by") && owner && objectp(owner))
     {
-        ret &&= checkOpponentRaceLimitor(target, verbose) &&
-                checkOpponentGuildLimitor(target, verbose) &&
-                checkOpponentFactionLimitor(target, verbose) &&
-                checkCraftingTypeLimitor(target, verbose) &&
-                checkEnvironmentLimitor(owner, verbose) &&
-                checkEnvironmentStateLimitor(owner, verbose) &&
-                checkIntoxicatedLimitor(owner, verbose) &&
-                checkDruggedLimitor(owner, verbose) &&
-                checkNearDeathLimitor(owner, verbose) &&
-                checkStaminaDrainedLimitor(owner, verbose) &&
-                checkSpellPointsDrainedLimitor(owner, verbose) &&
-                checkEquipmentLimitor(owner, verbose) &&
-                checkTimeOfDayLimitor(verbose) &&
-                checkSeasonLimitor(verbose) &&
-                checkMoonPhaseLimitor(verbose);
+        string colorConfiguration = owner->colorConfiguration();
+        object configuration = getDictionary("configuration");
+
+        ret &&= checkOpponentRaceLimitor(target, verbose, 
+                    colorConfiguration, configuration) &&
+                checkOpponentGuildLimitor(target, verbose, 
+                    colorConfiguration, configuration) &&
+                checkOpponentFactionLimitor(target, verbose, 
+                    colorConfiguration, configuration) &&
+                checkCraftingTypeLimitor(target, verbose, 
+                    colorConfiguration, configuration) &&
+                checkEnvironmentLimitor(owner, verbose, 
+                    colorConfiguration, configuration) &&
+                checkEnvironmentStateLimitor(owner, verbose, 
+                    colorConfiguration, configuration) &&
+                checkIntoxicatedLimitor(owner, verbose, 
+                    colorConfiguration, configuration) &&
+                checkDruggedLimitor(owner, verbose, 
+                    colorConfiguration, configuration) &&
+                checkNearDeathLimitor(owner, verbose, 
+                    colorConfiguration, configuration) &&
+                checkStaminaDrainedLimitor(owner, verbose, 
+                    colorConfiguration, configuration) &&
+                checkSpellPointsDrainedLimitor(owner, verbose, 
+                    colorConfiguration, configuration) &&
+                checkEquipmentLimitor(owner, verbose, 
+                    colorConfiguration, configuration) &&
+                checkTimeOfDayLimitor(verbose, 
+                    colorConfiguration, configuration) &&
+                checkSeasonLimitor(verbose, 
+                    colorConfiguration, configuration) &&
+                checkMoonPhaseLimitor(verbose, 
+                    colorConfiguration, configuration);
     }
     return ret && !blockSkillApplication(skill, owner, target);
 }
@@ -749,7 +843,8 @@ public mixed query(string element)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayLimiters(string colorConfiguration, object configuration)
+public nomask varargs string displayLimiters(string colorConfiguration, 
+    object configuration, int doNotFormat)
 {
     string ret = "";
 
@@ -764,70 +859,70 @@ public nomask string displayLimiters(string colorConfiguration, object configura
         {
             switch (key)
             {
-            case "opponent race":
-            case "opponent guild":
-            case "crafting type":
-            case "environment":
-            case "environment state":
-            case "time of day":
-            case "season":
-            case "moon phase":
-            {
-                int isList = pointerp(researchData["limited by"][key]);
-                string types = isList ?
-                    implode(sort_array(researchData["limited by"][key],
-                        (: $1 > $2 :)), 
-                        (sizeof(researchData["limited by"][key]) == 2) ? 
-                        " or " : ", ") :
-                    researchData["limited by"][key];
-                types = regreplace(types, ", ([^,]+)$", ", or \\1", 1);
+                case "opponent race":
+                case "opponent guild":
+                case "crafting type":
+                case "environment":
+                case "environment state":
+                case "time of day":
+                case "season":
+                case "moon phase":
+                {
+                    int isList = pointerp(researchData["limited by"][key]);
+                    string types = isList ?
+                        implode(sort_array(researchData["limited by"][key],
+                            (: $1 > $2 :)), 
+                            (sizeof(researchData["limited by"][key]) == 2) ? 
+                            " or " : ", ") :
+                        researchData["limited by"][key];
+                    types = regreplace(types, ", ([^,]+)$", ", or \\1", 1);
 
-                ret += sprintf(limiter, key, ((isList &&
-                    sizeof(researchData["limited by"][key]) > 2) ? 
-                        "is one of": "is"), types);
-                break;
-            }
-            case "opponent faction":
-            {
-                object faction = getDictionary("factions")->factionObject(
-                    researchData["limited by"][key]);
-                if (faction)
-                {
-                    ret += sprintf(limiter, key, "is", faction->name());
+                    ret += sprintf(limiter, "the " + key, ((isList &&
+                        sizeof(researchData["limited by"][key]) > 2) ? 
+                            "is one of": "is"), types);
+                    break;
                 }
-                break;
-            }
-            case "intoxicated":
-            case "drugged":
-            case "near death":
-            case "stamina drained":
-            case "spell points drained":
-            {
-                ret += sprintf(limiter, "you", "are", key);
-                break;
-            }
-            case "equipment":
-            {
-                string equipment = "";
-                if (pointerp(researchData["limited by"][key]) &&
-                    sizeof(researchData["limited by"][key]))
+                case "opponent faction":
                 {
-                    equipment = implode(researchData["limited by"][key], " or ");
+                    object faction = getDictionary("factions")->factionObject(
+                        researchData["limited by"][key]);
+                    if (faction)
+                    {
+                        ret += sprintf(limiter, key, "is", faction->name());
+                    }
+                    break;
                 }
-                else
+                case "intoxicated":
+                case "drugged":
+                case "near death":
+                case "stamina drained":
+                case "spell points drained":
                 {
-                    equipment = researchData["limited by"][key];
+                    ret += sprintf(limiter, "you", "are", key);
+                    break;
                 }
-                ret += sprintf(limiter, "you're", "using:", equipment);
-                break;
-            }
+                case "equipment":
+                {
+                    string equipment = "";
+                    if (pointerp(researchData["limited by"][key]) &&
+                        sizeof(researchData["limited by"][key]))
+                    {
+                        equipment = implode(researchData["limited by"][key], " or ");
+                    }
+                    else
+                    {
+                        equipment = researchData["limited by"][key];
+                    }
+                    ret += sprintf(limiter, "you're", "using:", equipment);
+                    break;
+                }
             }
         }
     }
 
     if (ret != "")
     {
-        ret = configuration->decorate(format(ret, 78),
+        ret = configuration->decorate(doNotFormat ? ret : format(ret, 78),
             "field header", "research", colorConfiguration);
     }
     return ret;

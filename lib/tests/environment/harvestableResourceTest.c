@@ -54,3 +54,38 @@ void CanSetUpHarvestableResource()
         "There are 25 yew available for harvest.\n", 
         Resource->getHarvestStatistics(Environment, Player));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitHarvestableResourceBySeason()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->limitHarvestBySeason("autumn");
+
+    Resource->resetQuantity(Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 25 yew available for harvest.\n"
+        "This can only be harvested when the season is autumn.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitHarvestableResourceByMoonPhase()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->limitHarvestByMoonPhase("new moon");
+    Resource->limitHarvestByMoonPhase("waxing crescent");
+    Resource->limitHarvestByMoonPhase("waning crescent");
+
+    Resource->resetQuantity(Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 25 yew available for harvest.\n"
+        "This can only be harvested when the moon phase is one of new moon, "
+        "waning\ncrescent, or waxing crescent.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+}
