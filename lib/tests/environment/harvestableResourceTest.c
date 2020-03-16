@@ -89,3 +89,35 @@ void CanLimitHarvestableResourceByMoonPhase()
         "waning\ncrescent, or waxing crescent.\n",
         Resource->getHarvestStatistics(Environment, Player));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitHarvestableResourceByTimeOfDay()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->limitHarvestByTimeOfDay("noon");
+
+    Resource->resetQuantity(Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 25 yew available for harvest.\n"
+        "This can only be harvested when the time of day is noon.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitHarvestableResourceByState()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->limitHarvestByState("exploited");
+
+    Resource->resetQuantity(Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 25 yew available for harvest.\n"
+        "This can only be harvested when the environment state is exploited.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+}

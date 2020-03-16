@@ -569,7 +569,7 @@ void TraitDetailsDisplayTraitLimiters()
         "\x1b[0m\x1b[0;34;1m(+10)\x1b[0m\x1b[0;33m Bonus Resist fire\n"
         "\x1b[0m\x1b[0;34;1m(+2)\x1b[0m\x1b[0;33m Bonus Strength\n"
         "\x1b[0m\x1b[0;34;1m(+1)\x1b[0m\x1b[0;33m Bonus Weapon attack\n\x1b[0m"
-        "\x1b[0;36mThis is only applied when opponent race is elf.\n\x1b[0m";
+        "\x1b[0;36mThis is only applied when the opponent race is elf.\n\x1b[0m";
     object trait = load_object("/lib/tests/support/traits/testTrait.c");
     trait->init();
 
