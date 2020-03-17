@@ -22,7 +22,7 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CurrentTimeDayANdYearCorrectlyDisplayed()
+void CurrentTimeDayAndYearCorrectlyDisplayed()
 {
     ExpectEq(660, Dictionary->currentTime());
     ExpectEq(92, Dictionary->currentDay());

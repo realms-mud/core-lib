@@ -679,7 +679,7 @@ protected nomask varargs void harvestableResource(string name, int quantity,
             object resource =
                 clone_object("/lib/environment/harvestableResource.c");
             resource->setup(name, quantity, resourceFile, harvestedDescription,
-                this_object());
+                aliases, this_object());
             harvestData[name] = resource;
 
             if (pointerp(aliases) && sizeof(aliases))

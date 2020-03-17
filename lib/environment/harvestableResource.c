@@ -10,7 +10,7 @@ private object owningElement;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setup(string name, int quantity, string resourceFile, 
-    string harvestedDescription, object owner)
+    string harvestedDescription, string *aliases, object owner)
 {
     object resourceObj;
     catch (resourceObj = load_object(resourceFile));
@@ -23,8 +23,13 @@ public nomask void setup(string name, int quantity, string resourceFile,
             "initial quantity": quantity,
             "available quantity": ([]),
             "resource file": resourceFile,
-            "description when harvested": harvestedDescription,
+            "description when harvested": harvestedDescription
         ]);
+
+        if (sizeof(aliases))
+        {
+            harvestData["aliases"] = aliases;
+        }
     }
     else
     {
@@ -57,6 +62,14 @@ public nomask varargs void resetQuantity(object environment)
 public nomask string name()
 {
     return harvestData["name"];
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int hasNameOf(string name)
+{
+    return (harvestData["name"] == name) ||
+        (member(harvestData, "aliases") && sizeof(harvestData["aliases"]) &&
+        (member(harvestData["aliases"], name) > -1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -153,51 +166,31 @@ public nomask void limitHarvestBySkill(string skill, int value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isHarvestableResource(string resource, object environment)
+public nomask int isHarvestableResource(string resource, object user,
+    object environment)
 {
-    int ret = 0;
-    if (member(harvestData, resource) && objectp(environment))
-    {
-        string key = member(harvestData[resource], "alias") ?
-            harvestData[resource]["alias"] : resource;
-
-        if (member(harvestData[key], "limited to state") &&
-            sizeof(harvestData[key]["limited to state"]))
-        {
-            ret = member(harvestData[key]["limited to state"], 
-                owningElement->currentState()) > -1;
-        }
-        else
-        {
-            ret = 1;
-        }
-
-        ret &&= (member(harvestData[key]["available quantity"], environment) &&
-            (harvestData[key]["available quantity"][environment] > 0));
-    }
-    return ret;
+    return hasNameOf(resource) && 
+        (member(harvestData["available quantity"], environment) &&
+        (harvestData["available quantity"][environment] > 0)) &&
+        environmentalFactorsMet(user);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object harvestResource(string resource, object environment)
+public nomask object harvestResource(string resource, object user,
+    object environment)
 {
     object ret = 0;
 
-    if (member(harvestData, resource))
+    if (isHarvestableResource(resource, user, environment) &&
+        userFactorsMet(user, user))
     {
-        string key = member(harvestData[resource], "alias") ?
-            harvestData[resource]["alias"] : resource;
+        harvestData["available quantity"][environment] -= 1;
+        ret = clone_object(harvestData["resource file"]);
 
-        if (isHarvestableResource(key, environment))
+        if (member(harvestData, "description when harvested"))
         {
-            harvestData[key]["available quantity"][environment] -= 1;
-            ret = clone_object(harvestData[key]["resource file"]);
-
-            if (member(harvestData[key], "description when harvested"))
-            {
-                HarvestedDescription =
-                    harvestData[key]["description when harvested"];
-            }
+            HarvestedDescription =
+                harvestData["description when harvested"];
         }
     }
     return ret;

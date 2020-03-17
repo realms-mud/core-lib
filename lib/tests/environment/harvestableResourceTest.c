@@ -139,3 +139,136 @@ void CanLimitHarvestableResourceBySkills()
         "This can only be harvested when your forestry skill is at least 5.\n",
         Resource->getHarvestStatistics(Environment, Player));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitHarvestableResourceByTool()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->limitHarvestByTool("axe");
+
+    Resource->resetQuantity(Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 25 yew available for harvest.\n"
+        "This can only be harvested when you're using: axe.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitHarvestableResourceByOneOfTools()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->limitHarvestByOneOfTools(({ "axe", "sword", "pole-arm" }));
+
+    Resource->resetQuantity(Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 25 yew available for harvest.\n"
+        "This can only be harvested when you're using: axe, sword, or pole-arm.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IsHarvestableResourceReturnsCorrectly()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    ExpectFalse(Resource->isHarvestableResource("yew", Player, Environment));
+    ExpectFalse(Resource->isHarvestableResource("conifer", Player, Environment));
+    ExpectFalse(Resource->isHarvestableResource("evergreen", Player, Environment));
+    ExpectFalse(Resource->isHarvestableResource("yew tree", Player, Environment));
+    ExpectFalse(Resource->isHarvestableResource("tree", Player, Environment));
+
+    Resource->resetQuantity(Environment);
+
+    ExpectTrue(Resource->isHarvestableResource("yew", Player, Environment));
+    ExpectTrue(Resource->isHarvestableResource("conifer", Player, Environment));
+    ExpectTrue(Resource->isHarvestableResource("evergreen", Player, Environment));
+    ExpectTrue(Resource->isHarvestableResource("yew tree", Player, Environment));
+    ExpectTrue(Resource->isHarvestableResource("tree", Player, Environment));
+    ExpectFalse(Resource->isHarvestableResource("weasel", Player, Environment));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IsHarvestableResourceReturnsCorrectlyWhenStateSet()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->resetQuantity(Environment);
+    Resource->limitHarvestByState("exploited");
+
+    ExpectFalse(Resource->isHarvestableResource("yew", Player, Environment));
+
+    Environment->currentState("exploited");
+    ExpectTrue(Resource->isHarvestableResource("yew", Player, Environment));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IsHarvestableResourceReturnsCorrectlyWhenMoonPhaseSet()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->resetQuantity(Environment);
+    Resource->limitHarvestByMoonPhase("waxing crescent");
+
+    ExpectFalse(Resource->isHarvestableResource("yew", Player, Environment));
+
+    object dictionary = getDictionary("environment");
+    dictionary->setDay(2);
+
+    ExpectTrue(Resource->isHarvestableResource("yew", Player, Environment));
+
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IsHarvestableResourceReturnsCorrectlyWhenTimeOfDaySet()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->resetQuantity(Environment);
+    Resource->limitHarvestByTimeOfDay("noon");
+
+    object dictionary = getDictionary("environment");
+    dictionary->timeOfDay("morning");
+
+    ExpectFalse(Resource->isHarvestableResource("yew", Player, Environment));
+
+    dictionary->timeOfDay("noon");
+    ExpectTrue(Resource->isHarvestableResource("yew", Player, Environment));
+
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IsHarvestableResourceReturnsCorrectlyWhenSeasonSet()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->resetQuantity(Environment);
+    Resource->limitHarvestBySeason("autumn");
+
+    object dictionary = getDictionary("environment");
+    dictionary->setDay(20);
+
+    ExpectFalse(Resource->isHarvestableResource("yew", Player, Environment));
+
+    dictionary->setDay(260);
+    ExpectTrue(Resource->isHarvestableResource("yew", Player, Environment));
+
+    destruct(dictionary);
+}

@@ -763,11 +763,34 @@ private nomask int checkSkillLimitor(object owner, int verbose,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs int canApplySkill(string skill, object owner, 
+protected nomask varargs int environmentalFactorsMet(object owner, int verbose)
+{
+    int ret = 1;
+
+    if (member(researchData, "limited by") && owner && objectp(owner))
+    {
+        string colorConfiguration = owner->colorConfiguration();
+        object configuration = getDictionary("configuration");
+
+        ret &&= checkEnvironmentLimitor(owner, verbose,
+                colorConfiguration, configuration) &&
+            checkEnvironmentStateLimitor(owner, verbose,
+                colorConfiguration, configuration) &&
+            checkTimeOfDayLimitor(verbose,
+                colorConfiguration, configuration) &&
+            checkSeasonLimitor(verbose,
+                colorConfiguration, configuration) &&
+            checkMoonPhaseLimitor(verbose,
+                colorConfiguration, configuration);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs int userFactorsMet(object owner, 
     object target, int verbose)
 {
     int ret = 1;
-    notify_fail("");
 
     if (member(researchData, "limited by") && owner && objectp(owner))
     {
@@ -782,10 +805,6 @@ public nomask varargs int canApplySkill(string skill, object owner,
                     colorConfiguration, configuration) &&
                 checkCraftingTypeLimitor(target, verbose, 
                     colorConfiguration, configuration) &&
-                checkEnvironmentLimitor(owner, verbose, 
-                    colorConfiguration, configuration) &&
-                checkEnvironmentStateLimitor(owner, verbose, 
-                    colorConfiguration, configuration) &&
                 checkIntoxicatedLimitor(owner, verbose, 
                     colorConfiguration, configuration) &&
                 checkDruggedLimitor(owner, verbose, 
@@ -799,13 +818,25 @@ public nomask varargs int canApplySkill(string skill, object owner,
                 checkEquipmentLimitor(owner, verbose, 
                     colorConfiguration, configuration) &&
                 checkSkillLimitor(owner, verbose, 
-                    colorConfiguration, configuration) &&
-                checkTimeOfDayLimitor(verbose, 
-                    colorConfiguration, configuration) &&
-                checkSeasonLimitor(verbose, 
-                    colorConfiguration, configuration) &&
-                checkMoonPhaseLimitor(verbose, 
                     colorConfiguration, configuration);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int canApplySkill(string skill, object owner, 
+    object target, int verbose)
+{
+    int ret = 1;
+    notify_fail("");
+
+    if (member(researchData, "limited by") && owner && objectp(owner))
+    {
+        string colorConfiguration = owner->colorConfiguration();
+        object configuration = getDictionary("configuration");
+
+        ret &&= environmentalFactorsMet(owner, verbose) &&
+            userFactorsMet(owner, target, verbose);
     }
     return ret && !blockSkillApplication(skill, owner, target);
 }
@@ -950,7 +981,10 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                     if (pointerp(researchData["limited by"][key]) &&
                         sizeof(researchData["limited by"][key]))
                     {
-                        equipment = implode(researchData["limited by"][key], " or ");
+                        equipment = implode(researchData["limited by"][key], 
+                            (sizeof(researchData["limited by"][key]) == 2) ?
+                            " or " : ", ");
+                        equipment = regreplace(equipment, ", ([^,]+)$", ", or \\1", 1);
                     }
                     else
                     {
