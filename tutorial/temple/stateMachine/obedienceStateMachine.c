@@ -23,6 +23,7 @@ void reset(int arg)
     if (!arg)
     {
         questItem::reset(arg);
+        
         setName("The Test of Obedience");
         setType("primary");
         setDescription("In order to retrieve the Heart of Decay, I have been "
