@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of buckeye trees. Several trees remain",
         ({ "deciduous tree", "buckeye tree", "tree" }));
     harvestRequiresTool("buckeye", "axe");
+
     harvestableResource("buckeye globose", 25,
         "/lib/instances/items/food/plants/seeds/buckeye-globose.c",
         ({ "globose" }));

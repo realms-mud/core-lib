@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of black locust trees. Several trees remain",
         ({ "deciduous tree", "black locust tree", "locust", "locust tree", "tree" }));
     harvestRequiresTool("black locust", "axe");
+
     harvestableResource("black locust seed pod", 25,
         "/lib/instances/items/food/plants/seeds/black-locust-seed-pod.c",
         ({ "locust seed pod", "seed pod", "pod", "seed" }));

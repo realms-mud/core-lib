@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of koa trees. Several trees remain",
         ({ "deciduous tree", "koa tree", "tree" }));
     harvestRequiresTool("koa", "axe");
+
     harvestableResource("koa seed pod", 25,
         "/lib/instances/items/food/plants/seeds/koa-seed-pod.c",
         ({ "seed pod", "pod", "seed" }));

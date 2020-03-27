@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of walnut trees. Several trees remain",
         ({ "deciduous tree", "tree" }));
     harvestRequiresTool("walnut tree", "axe");
+
     harvestableResource("walnut", 25,
         "/lib/instances/items/food/plants/nuts/walnut.c",
         ({ "nut" }));

@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of kingwood trees. Several trees remain",
         ({ "deciduous tree", "kingwood tree", "tree" }));
     harvestRequiresTool("kingwood", "axe");
+
     harvestableResource("kingwood seed pod", 25,
         "/lib/instances/items/food/plants/seeds/kingwood-seed-pod.c",
         ({ "seed pod", "pod", "seed" }));

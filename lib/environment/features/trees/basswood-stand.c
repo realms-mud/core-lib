@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of basswood trees. Several trees remain",
         ({ "deciduous tree", "basswood tree", "tree" }));
     harvestRequiresTool("basswood", "axe");
+
     harvestableResource("basswood nut", 25,
         "/lib/instances/items/food/plants/nuts/basswood-nut.c",
         ({ "nut" }));

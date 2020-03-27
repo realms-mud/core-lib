@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of beech trees. Several trees remain",
         ({ "deciduous tree", "beech tree", "tree" }));
     harvestRequiresTool("beech", "axe");
+
     harvestableResource("beech nut", 25,
         "/lib/instances/items/food/plants/nuts/beech-nut.c",
         ({ "nut" }));

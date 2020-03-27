@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of ironwood trees. Several trees remain",
         ({ "deciduous tree", "ironwood tree", "tree" }));
     harvestRequiresTool("ironwood", "axe");
+
     harvestableResource("ironwood catkin", 25,
         "/lib/instances/items/food/plants/seeds/ironwood-catkin.c",
         ({ "catkin" }));

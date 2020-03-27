@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of hickory trees. Several trees remain",
         ({ "deciduous tree", "hickory tree", "tree" }));
     harvestRequiresTool("hickory", "axe");
+
     harvestableResource("hickory globose", 25,
         "/lib/instances/items/food/plants/seeds/hickory-globose.c",
         ({ "globose" }));

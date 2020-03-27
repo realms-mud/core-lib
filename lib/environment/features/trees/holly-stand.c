@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of holly trees. Several trees remain",
         ({ "deciduous tree", "holly tree", "tree" }));
     harvestRequiresTool("holly", "axe");
+
     harvestableResource("holly fruit", 25,
         "/lib/instances/items/food/plants/fruit/holly-fruit.c",
         ({ "fruit" }));

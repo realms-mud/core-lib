@@ -27,10 +27,12 @@ public void Setup()
         "a heavily-forested stand of pine trees. Several trees remain",
         ({ "conifer", "evergreen", "pine tree", "tree" }));
     harvestRequiresTool("pine", "axe");
+
     harvestableResource("pine cone", 25,
         "/lib/instances/items/food/plants/seeds/pine-cone.c",
         ({ "cone", "pinecone", "conifer cone" }));
     limitHarvestBySeason("pine cone", "summer");
+
     harvestableResource("pine nut", 25,
         "/lib/instances/items/food/plants/nuts/pine-nut.c",
         ({ "nut" }));

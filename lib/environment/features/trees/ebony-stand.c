@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of ebony trees. Several trees remain",
         ({ "deciduous tree", "ebony tree", "tree" }));
     harvestRequiresTool("ebony", "axe");
+
     harvestableResource("ebony seed pod", 25,
         "/lib/instances/items/food/plants/seeds/ebony-seed-pod.c",
         ({ "seed pod", "pod", "seed" }));

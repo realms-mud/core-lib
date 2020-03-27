@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of aspen trees. Several trees remain",
         ({ "deciduous tree", "aspen tree", "tree" }));
     harvestRequiresTool("aspen", "axe");
+
     harvestableResource("aspen catkin", 25,
         "/lib/instances/items/food/plants/seeds/aspen-catkin.c",
         ({ "catkin" }));

@@ -31,6 +31,7 @@ public void Setup()
         "a heavily-forested stand of swamp ash trees. Several trees remain",
         ({ "deciduous tree", "swamp ash tree", "ash tree", "tree" }));
     harvestRequiresTool("swamp ash", "axe");
+
     harvestableResource("ash samara", 25, 
         "/lib/instances/items/food/plants/seeds/ash-samara.c",
         ({ "samara" }));

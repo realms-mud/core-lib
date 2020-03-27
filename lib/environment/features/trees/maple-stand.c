@@ -31,6 +31,7 @@ public void Setup()
         "a heavily-forested stand of maple trees. Several trees remain",
         ({ "deciduous tree", "tree" }));
     harvestRequiresTool("maple", "axe");
+
     harvestableResource("maple samara", 25,
         "/lib/instances/items/food/plants/seeds/maple-samara.c",
         ({ "samara" }));

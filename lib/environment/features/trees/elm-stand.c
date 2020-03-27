@@ -31,6 +31,7 @@ public void Setup()
         "a heavily-forested stand of elm trees. Several trees remain",
         ({ "deciduous tree", "elm tree", "tree" }));
     harvestRequiresTool("elm", "axe");
+
     harvestableResource("elm samara", 25,
         "/lib/instances/items/food/plants/seeds/elm-samara.c",
         ({ "samara" }));

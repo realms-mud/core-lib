@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of bloodwood trees. Several trees remain",
         ({ "deciduous tree", "bloodwood tree", "tree" }));
     harvestRequiresTool("bloodwood", "axe");
+
     harvestableResource("bloodwood seed", 25,
         "/lib/instances/items/food/plants/seeds/bloodwood-seed.c",
         ({ "seed" }));

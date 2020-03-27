@@ -30,6 +30,7 @@ public void Setup()
         "/lib/instances/items/food/plants/seeds/yew-cone.c",
         ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("yew cone", "summer");
+
     harvestableResource("pine nut", 25,
         "/lib/instances/items/food/plants/nuts/pine-nut.c",
         ({ "nut", "yew nut" }));

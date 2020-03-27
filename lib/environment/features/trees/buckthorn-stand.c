@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of buckthorn trees. Several trees remain",
         ({ "deciduous tree", "buckthorn tree", "tree" }));
     harvestRequiresTool("buckthorn", "axe");
+
     harvestableResource("buckthorn fruit", 25,
         "/lib/instances/items/food/plants/fruit/buckthorn-fruit.c",
         ({ "fruit" }));

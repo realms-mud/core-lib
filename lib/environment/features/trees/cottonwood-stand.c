@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of cottonwood trees. Several trees remain",
         ({ "deciduous tree", "cottonwood tree", "tree" }));
     harvestRequiresTool("cottonwood", "axe");
+
     harvestableResource("cottonwood catkin", 25,
         "/lib/instances/items/food/plants/seeds/cottonwood-catkin.c",
         ({ "catkin" }));

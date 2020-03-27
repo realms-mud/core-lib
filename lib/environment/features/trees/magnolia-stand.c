@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of magnolia trees. Several trees remain",
         ({ "deciduous tree", "magnolia tree", "tree" }));
     harvestRequiresTool("magnolia", "axe");
+
     harvestableResource("magnolia fruit", 25,
         "/lib/instances/items/food/plants/fruit/magnolia-fruit.c",
         ({ "fruit" }));

@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of willow trees. Several trees remain",
         ({ "deciduous tree", "willow tree", "tree" }));
     harvestRequiresTool("willow", "axe");
+
     harvestableResource("willow catkin", 25,
         "/lib/instances/items/food/plants/seeds/willow-catkin.c",
         ({ "catkin" }));

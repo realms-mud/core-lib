@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of lilac trees. Several trees remain",
         ({ "deciduous tree", "lilac tree", "tree" }));
     harvestRequiresTool("lilac", "axe");
+
     harvestableResource("lilac fruit", 25,
         "/lib/instances/items/food/plants/fruit/lilac-fruit.c",
         ({ "fruit" }));

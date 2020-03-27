@@ -26,6 +26,7 @@ public void Setup()
     harvestableResource("malorn", 25, "/lib/instances/items/materials/wood/malorn.c",
         "a heavily-forested stand of malorn trees. Several trees remain");
     harvestRequiresTool("malorn", "axe");
+
     harvestableResource("malorn fruit", 25,
         "/lib/instances/items/food/plants/fruit/malorn-fruit.c",
         ({ "deciduous tree", "malorn tree", "tree" }));

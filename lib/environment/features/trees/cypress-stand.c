@@ -27,10 +27,12 @@ public void Setup()
         "a heavily-forested stand of cypress trees. Several trees remain",
         ({ "conifer", "evergreen", "cypress tree", "tree" }));
     harvestRequiresTool("cypress", "axe");
+
     harvestableResource("cypress cone", 25,
         "/lib/instances/items/food/plants/seeds/cypress-cone.c",
         ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("cypress cone", "summer");
+
     harvestableResource("pine nut", 25,
         "/lib/instances/items/food/plants/nuts/pine-nut.c",
         ({ "nut", "cypress nut" }));

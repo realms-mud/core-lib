@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of mahogany trees. Several trees remain",
         ({ "deciduous tree", "mahogany tree", "tree" }));
     harvestRequiresTool("mahogany", "axe");
+
     harvestableResource("mahogany fruit", 25,
         "/lib/instances/items/food/plants/fruit/mahogany-fruit.c",
         ({ "fruit" }));

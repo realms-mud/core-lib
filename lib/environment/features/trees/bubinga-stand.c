@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of bubinga trees. Several trees remain",
         ({ "deciduous tree", "bubinga tree", "tree" }));
     harvestRequiresTool("bubinga", "axe");
+
     harvestableResource("bubinga seed pod", 25,
         "/lib/instances/items/food/plants/seeds/bubinga-seed-pod.c",
         ({ "seed pod", "pod", "seed" }));

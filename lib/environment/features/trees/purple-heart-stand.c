@@ -28,6 +28,7 @@ public void Setup()
         "a heavily-forested stand of purple hear trees. Several trees remain",
         ({ "deciduous tree", "purple heart tree", "tree" }));
     harvestRequiresTool("purple heart", "axe");
+
     harvestableResource("purple heart seed pod", 25,
         "/lib/instances/items/food/plants/seeds/purple-heart-seed-pod.c",
         ({ "seed", "pod", "seed pod" }));

@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of sycamore trees. Several trees remain",
         ({ "deciduous tree", "sycamore tree", "tree" }));
     harvestRequiresTool("sycamore", "axe");
+
     harvestableResource("sycamore fruit", 25,
         "/lib/instances/items/food/plants/fruit/sycamore-fruit.c",
         ({ "fruit" }));

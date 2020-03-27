@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of teak trees. Several trees remain",
         ({ "deciduous tree", "teak tree", "tree" }));
     harvestRequiresTool("teak", "axe");
+
     harvestableResource("teak fruit", 25,
         "/lib/instances/items/food/plants/fruit/teak-fruit.c",
         ({ "fruit" }));

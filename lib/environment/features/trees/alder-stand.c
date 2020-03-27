@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of alder trees. Several trees remain",
         ({ "deciduous tree", "alder tree", "tree" }));
     harvestRequiresTool("alder", "axe");
+
     harvestableResource("alder catkin", 25, 
         "/lib/instances/items/food/plants/seeds/alder-catkin.c",
         ({ "catkin" }));

@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of rosewood trees. Several trees remain",
         ({ "deciduous tree", "rosewood tree", "tree" }));
     harvestRequiresTool("rosewood", "axe");
+
     harvestableResource("rosewood seed", 25,
         "/lib/instances/items/food/plants/seeds/rosewood-seed.c",
         ({ "seed" }));

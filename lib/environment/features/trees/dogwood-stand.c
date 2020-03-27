@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of dogwood trees. Several trees remain",
         ({ "deciduous tree", "dogwood tree", "tree" }));
     harvestRequiresTool("dogwood", "axe");
+
     harvestableResource("dogwood fruit", 25,
         "/lib/instances/items/food/plants/fruit/dogwood-fruit.c",
         ({ "fruit" }));

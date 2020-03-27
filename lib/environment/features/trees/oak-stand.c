@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of oak trees. Several trees remain",
         ({ "deciduous tree", "oak tree", "tree" }));
     harvestRequiresTool("oak", "axe");
+
     harvestableResource("acorn", 25,
         "/lib/instances/items/food/plants/nuts/acorn.c",
         ({ "acorn nut", "nut" }));

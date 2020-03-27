@@ -26,10 +26,12 @@ public void Setup()
         "a heavily-forested stand of hemlock trees. Several trees remain",
         ({ "conifer", "evergreen", "hemlock tree", "tree" }));
     harvestRequiresTool("hemlock", "axe");
+
     harvestableResource("hemlock cone", 25,
         "/lib/instances/items/food/plants/seeds/hemlock-cone.c",
         ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("hemlock cone", "summer");
+
     harvestableResource("pine nut", 25,
         "/lib/instances/items/food/plants/nuts/pine-nut.c",
         ({ "nut", "hemlock nut" }));

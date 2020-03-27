@@ -26,6 +26,7 @@ public void Setup()
         "a heavily-forested stand of cedar trees. Several trees remain",
         ({ "conifer", "evergreen", "cedar tree", "tree" }));
     harvestRequiresTool("cedar", "axe");
+
     harvestableResource("cedar cone", 25,
         "/lib/instances/items/food/plants/seeds/cedar-cone.c",
         ({ "cone", "conifer cone" }));

@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of marblewood trees. Several trees remain",
         ({ "deciduous tree", "marblewood tree", "tree" }));
     harvestRequiresTool("marblewood", "axe");
+
     harvestableResource("marblewood seed pod", 25,
         "/lib/instances/items/food/plants/seeds/marblewood-seed-pod.c",
         ({ "seed pod", "pod", "seed" }));

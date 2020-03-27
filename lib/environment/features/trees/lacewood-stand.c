@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of lacewood trees. Several trees remain",
         ({ "deciduous tree", "lacewood tree", "tree" }));
     harvestRequiresTool("lacewood", "axe");
+
     harvestableResource("lacewood seed pod", 25,
         "/lib/instances/items/food/plants/seeds/lacewood-seed-pod.c",
         ({ "seed pod", "pod", "seed" }));

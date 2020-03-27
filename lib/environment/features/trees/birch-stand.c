@@ -27,6 +27,7 @@ public void Setup()
         "a heavily-forested stand of birch trees. Several trees remain",
         ({ "deciduous tree", "birch tree", "tree" }));
     harvestRequiresTool("birch", "axe");
+
     harvestableResource("birch catkin", 25,
         "/lib/instances/items/food/plants/seeds/birch-catkin.c",
         ({ "catkin" }));
