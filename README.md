@@ -88,7 +88,8 @@ Rather than go through all of the intricacies of which options can/should be set
 # ./configure --prefix=<your mudlib directory> --enable-compat-mode --with-read-file-max-size=0 --with-portno=<your port> --enable-erq=xerq --with-catch-reserved-cost=10000 --with-malloc=smalloc --enable-dynamic-costs --enable-opcprof --enable-verbose-opcprof --with-evaluator-stack-size=32768 --with-max-user-trace=32768 --with-max-trace=32868 --with-compiler-stack-size=65536 --with-max-cost=268435456 --with-max-array-size=0 --with-max-mapping-size=0 --with-htable-size=65536 --with-itable-size=32768 --with-otable-size=65536 --with-hard-malloc-limit=0 --enable-use-mysql=<path to mysql>
 # make
 ```
-When you run the driver for the first time, it will create your database schema and will give the first user created ownership access to the MUD.
+When you run the driver for the first time, it will create your database schema and will give the first user created ownership access to the MUD. 
+Additional wizards can be added from within the MUD.
 
 # Lib Structure
 The mudlib has been broken down into what I felt was a sensible directory structure:
