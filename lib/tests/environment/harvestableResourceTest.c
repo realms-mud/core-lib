@@ -272,3 +272,152 @@ void IsHarvestableResourceReturnsCorrectlyWhenSeasonSet()
 
     destruct(dictionary);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void IsHarvestableResourceNotAffectedByNonEnvironmentalLimitors()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->resetQuantity(Environment);
+    Resource->limitHarvestBySeason("autumn");
+    Resource->limitHarvestByOneOfTools(({ "axe", "sword", "pole-arm" }));
+    Resource->limitHarvestBySkill("forestry", 5);
+
+    object dictionary = getDictionary("environment");
+    dictionary->setDay(260);
+
+    ExpectTrue(Resource->isHarvestableResource("yew", Player, Environment));
+
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HarvestResourceCorrectlyHarvestsResources()
+{
+    Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->resetQuantity(Environment);
+    Resource->limitHarvestBySeason("autumn");
+    Resource->limitHarvestByOneOfTools(({ "axe", "sword", "pole-arm" }));
+    Resource->limitHarvestBySkill("forestry", 5);
+    ExpectEq("Name: Yew\n"
+        "There are 25 yew available for harvest.\n"
+        "This can only be harvested when you're using: axe, sword, or pole-arm.\n"
+        "This can only be harvested when the season is autumn.\n"
+        "This can only be harvested when your forestry skill is at least 5.\n", 
+        Resource->getHarvestStatistics(Environment, Player));
+
+    ExpectFalse(Resource->harvestResource("yew", Player, Environment));
+
+    object dictionary = getDictionary("environment");
+    dictionary->setDay(260);
+    ExpectFalse(Resource->harvestResource("yew", Player, Environment));
+
+    Player->addSkillPoints(20);
+    Player->advanceSkill("forestry", 5);
+    ExpectFalse(Resource->harvestResource("yew", Player, Environment));
+
+    object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
+    move_object(axe, Player);
+    command("equip axe", Player);
+
+    ExpectEq("lib/instances/items/materials/wood/yew.c", 
+        program_name(Resource->harvestResource("yew", Player, Environment)));
+
+    ExpectEq("Name: Yew\n"
+        "There are 24 yew available for harvest.\n"
+        "This can only be harvested when you're using: axe, sword, or pole-arm.\n"
+        "This can only be harvested when the season is autumn.\n"
+        "This can only be harvested when your forestry skill is at least 5.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+    destruct(dictionary);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotHarvestResourceWhenNoResourcesLeft()
+{
+    Resource->setup("yew", 2, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    ExpectFalse(Resource->harvestResource("yew", Player, Environment));
+    Resource->resetQuantity(Environment);
+
+    ExpectEq("Name: Yew\n"
+        "There are 2 yew available for harvest.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+
+    object yew1 = Resource->harvestResource("yew", Player, Environment);
+    ExpectEq("Name: Yew\n"
+        "There is 1 yew available for harvest.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+
+    object yew2 = Resource->harvestResource("yew", Player, Environment);
+    ExpectEq("Name: Yew\n"
+        "There are currently no yew available for harvest.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+    
+    ExpectEq("lib/instances/items/materials/wood/yew.c", program_name(yew1));
+    ExpectEq("lib/instances/items/materials/wood/yew.c", program_name(yew2));
+    ExpectNotEq(object_name(yew1), object_name(yew2));
+
+    ExpectFalse(Resource->harvestResource("yew", Player, Environment));
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResetWillResetAvailableQuantity()
+{
+    Resource->setup("yew", 10, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->resetQuantity(Environment);
+
+    ExpectEq("Name: Yew\n"
+        "There are 10 yew available for harvest.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+
+    object yew1 = Resource->harvestResource("yew", Player, Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 9 yew available for harvest.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+
+    Resource->resetQuantity(Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 10 yew available for harvest.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EachEnvironmentHasUniqueInstanceOfResource()
+{
+    object environment = 
+        clone_object("/lib/tests/support/environment/harvestRoom.c");
+
+    Resource->setup("yew", 10, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->resetQuantity(Environment);
+    Resource->resetQuantity(environment);
+
+    ExpectEq("Name: Yew\n"
+        "There are 10 yew available for harvest.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+    ExpectEq("Name: Yew\n"
+        "There are 10 yew available for harvest.\n",
+        Resource->getHarvestStatistics(environment, Player));
+
+    object yew1 = Resource->harvestResource("yew", Player, Environment);
+    ExpectEq("Name: Yew\n"
+        "There are 9 yew available for harvest.\n",
+        Resource->getHarvestStatistics(Environment, Player));
+    ExpectEq("Name: Yew\n"
+        "There are 10 yew available for harvest.\n",
+        Resource->getHarvestStatistics(environment, Player));
+}
