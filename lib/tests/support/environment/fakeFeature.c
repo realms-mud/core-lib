@@ -46,6 +46,27 @@ public void Setup()
     addAlias("charred stumps", "deadified");
     addAlias("tree stumps", "deadified");
     addAlias("stumps", "deadified");
+
+    harvestableResource("oak", 25, "/lib/instances/items/materials/wood/oak.c",
+        "a heavily-forested stand of oak trees. Several trees remain",
+        ({ "deciduous tree", "oak tree", "tree" }));
+    harvestRequiresTool("oak", "axe");
+    limitHarvestByState("oak", "default");
+    limitHarvestBySkill("oak", "forestry", 5);
+
+    harvestableResource("acorn", 25,
+        "/lib/instances/items/food/plants/nuts/acorn.c",
+        ({ "acorn nut", "nut" }));
+    limitHarvestBySeason("acorn", "summer");
+
+    harvestableResource("mana", 5, "/lib/instances/items/potions/mana.c",
+        "a heavily-forested stand of oak trees. Several trees remain");
+    harvestRequiresOneOfTool("mana", ({ "staff", "rod", "wand" }));
+    limitHarvestByState("mana", "deadified");
+    limitHarvestBySkill("mana", "spellcraft", 5);
+    limitHarvestByTimeOfDay("mana", "midnight");
+    limitHarvestByMoonPhase("mana", "full moon");
+    limitHarvestBySeason("mana", "winter");
 }
 
 /////////////////////////////////////////////////////////////////////////////

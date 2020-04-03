@@ -245,3 +245,44 @@ void GetDescriptionFromSetReturnsCorrectItemDescription()
         "red coals of a small camp fire.\n",
         Element->long());
 }
+
+
+/////////////////////////////////////////////////////////////////////////////
+void HarvestableResourcesCorrectlySetUp()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("bob");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->charsetConfiguration("ascii");
+
+    object environment =
+        clone_object("/lib/tests/support/environment/harvestRoom.c");
+    move_object(player, environment);
+
+    Element->reset();
+    ExpectEq("Name: Oak\n"
+        "This can only be harvested when the environment state is default.\n"
+        "This can only be harvested when you're using: axe.\n"
+        "This can only be harvested when your forestry skill is at least 5.\n"
+        "\n"
+        "Name: Acorn\n"
+        "This can only be harvested when the season is summer.\n"
+        "\n"
+        "Name: Mana\n"
+        "This can only be harvested when the environment state is deadified.\n"
+        "This can only be harvested when you're using: staff, rod, or wand.\n"
+        "This can only be harvested when the moon phase is full moon.\n"
+        "This can only be harvested when the season is winter.\n"
+        "This can only be harvested when your spellcraft skill is at least 5.\n"
+        "This can only be harvested when the time of day is midnight.\n"
+        "\n", 
+        Element->getHarvestStatistics(player, environment));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HarvestableResourcesReturnsListOfResources()
+{
+    ExpectEq(({ "acorn", "deciduous tree", "mana", "oak", "oak tree", "tree" }), 
+        Element->harvestableResources());
+}

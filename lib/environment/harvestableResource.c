@@ -59,6 +59,16 @@ public nomask varargs void resetQuantity(object environment)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string description(object environment)
+{
+    return (member(harvestData["available quantity"], environment) &&
+        (harvestData["initial quantity"] !=
+            harvestData["available quantity"][environment]) &&
+        member(harvestData, "description when harvested")) ?
+        harvestData["description when harvested"] : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string name()
 {
     return harvestData["name"];

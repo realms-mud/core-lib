@@ -774,6 +774,22 @@ protected nomask void limitHarvestByState(string name, string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void limitHarvestBySkill(string name, string skill,
+    int value)
+{
+    if (member(harvestData, name) && objectp(harvestData[name]))
+    {
+        harvestData[name]->limitHarvestBySkill(skill, value);
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
+            "It must be added via the harvestableResource(...) method before "
+            "adding a state.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void harvestRequiresTool(string name, string tool)
 {
     if (member(harvestData, name) && objectp(harvestData[name]))
@@ -836,32 +852,42 @@ public nomask string *harvestableResources()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object harvestResource(string resource, object environment)
+public nomask object harvestResource(string resource, object user,
+    object environment)
 {
     object ret = 0;
 
     if (member(harvestData, resource))
     {
-        string key = member(harvestData[resource], "alias") ?
-            harvestData[resource]["alias"] : resource;
-
-        if (isHarvestableResource(key, environment))
-        {
-            harvestData[key]["available quantity"][environment] -= 1;
-            ret = clone_object(harvestData[key]["resource file"]);
-
-            if (member(harvestData[key], "description when harvested"))
-            {
-                HarvestedDescription =
-                    harvestData[key]["description when harvested"];
-            }
-        }
+        ret = harvestData[resource]->harvestResource(resource,
+            user, environment);
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getHarvestStatistics(object user)
+public nomask varargs string getHarvestStatistics(object user,
+    object environment, string item)
 {
-    return "";
+    string ret = "";
+
+    if (member(harvestData, item) && objectp(harvestData[item]))
+    {
+        ret = harvestData[item]->getHarvestStatistics(environment, user);
+    }
+    else if (!item)
+    {
+        object *harvestItems = m_values(
+            filter(harvestData, (: $1 == $2->name() :)));
+
+        if (sizeof(harvestItems))
+        {
+            foreach(object harvestItem in harvestItems)
+            {
+                ret += 
+                    harvestItem->getHarvestStatistics(environment, user) + "\n";
+            }
+        }
+    }
+    return ret;
 }
