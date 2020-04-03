@@ -884,8 +884,8 @@ public nomask varargs string getHarvestStatistics(object user,
         {
             foreach(object harvestItem in harvestItems)
             {
-                ret += 
-                    harvestItem->getHarvestStatistics(environment, user) + "\n";
+                ret += harvestItem->getHarvestStatistics(environment, user) + 
+                    "\n";
             }
         }
     }
