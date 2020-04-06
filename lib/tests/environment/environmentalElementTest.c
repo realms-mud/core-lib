@@ -286,3 +286,36 @@ void HarvestableResourcesReturnsListOfResources()
     ExpectEq(({ "acorn", "deciduous tree", "mana", "oak", "oak tree", "tree" }), 
         Element->harvestableResources());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void HarvestingUpdatesDescription()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("bob");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->charsetConfiguration("ascii");
+
+    player->addSkillPoints(20);
+    player->advanceSkill("forestry", 5);
+
+    object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
+    move_object(axe, player);
+    command("equip axe", player);
+
+    object element = 
+        load_object("/lib/tests/support/environment/fakeFeature.c");
+    object environment =
+        clone_object("/lib/tests/support/environment/harvestRoom.c");
+    move_object(player, environment);
+
+    ExpectEq("a stand of majestic oak trees with branches laden with "
+        "acorns, noonishly glowing",
+        element->description(0, Dictionary->ambientLight(), environment));
+
+    element->harvestResource("oak", player, environment);
+
+    ExpectEq("a heavily-forested stand of oak trees. Several trees "
+        "remain with branches laden with acorns, noonishly glowing",
+        element->description(0, Dictionary->ambientLight(), environment));
+}

@@ -1997,3 +1997,70 @@ void EnvironmentsIndependentlyHandleTheSameLightSource()
 
     destruct(environment2);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void HarvestDescriptionIsShown()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("bob");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->charsetConfiguration("ascii");
+
+    player->addSkillPoints(20);
+    player->advanceSkill("forestry", 5);
+
+    object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
+    move_object(axe, player);
+    command("equip axe", player);
+
+    object element =
+        load_object("/lib/tests/support/environment/fakeFeature.c");
+    object environment =
+        clone_object("/lib/tests/support/environment/harvestRoom.c");
+    move_object(player, environment);
+
+    string longDesc = regreplace(environment->long(), "\n", " ", 1);
+    ExpectSubStringMatch("a stand of [^ ]+ oak trees with branches laden "
+        "with acorns", longDesc);
+    environment->harvestResource("oak", player);
+
+    longDesc = regreplace(environment->long(), "\n", " ", 1);
+    ExpectSubStringMatch("a heavily-forested stand of oak trees. Several "
+        "trees remain with branches laden with acorns", longDesc);
+
+    destruct(environment);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HarvestResourceReturnsCorrectResource()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("bob");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->charsetConfiguration("ascii");
+
+    player->addSkillPoints(20);
+    player->advanceSkill("forestry", 5);
+
+    object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
+    move_object(axe, player);
+    command("equip axe", player);
+
+    object element =
+        load_object("/lib/tests/support/environment/fakeFeature.c");
+    object environment =
+        clone_object("/lib/tests/support/environment/harvestRoom.c");
+    move_object(player, environment);
+
+    ExpectEq("lib/instances/items/materials/wood/oak.c", 
+        program_name(environment->harvestResource("oak tree", player)));
+    ExpectEq("lib/instances/items/food/plants/nuts/acorn.c", 
+        program_name(environment->harvestResource("acorn", player)));
+    ExpectEq("lib/instances/items/materials/wood/alder.c", 
+        program_name(environment->harvestResource("alder", player)));
+    ExpectFalse(environment->harvestResource("weasel", player));
+
+    destruct(environment);
+}

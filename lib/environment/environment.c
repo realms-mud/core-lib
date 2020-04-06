@@ -1519,7 +1519,7 @@ public nomask string decoratorType()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object findHarvestableResource(string resource)
+public nomask object harvestResource(string resource, object user)
 {
     object ret = 0;
 
@@ -1528,9 +1528,11 @@ public nomask object findHarvestableResource(string resource)
         foreach(object element in harvestData[resource])
         {
             if (objectp(element) &&
-                element->isHarvestableResource(resource, this_object()))
+                element->isHarvestableResource(resource, this_object(),
+                    user))
             {
-                ret = element;
+                ret = element->harvestResource(resource, user,
+                    this_object());
                 break;
             }
         }
@@ -1539,7 +1541,28 @@ public nomask object findHarvestableResource(string resource)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string harvestStatistics()
+public nomask varargs string harvestStatistics(object user, string item)
 {
-    return "";
+    string ret = 0;
+
+    if (sizeof(harvestData))
+    {
+        ret = "";
+
+        string *items = (item && pointerp(item)) ?
+            ({ item }) : m_indices(harvestData);
+
+        foreach(string resource in items)
+        {
+            foreach(object element in harvestData[resource])
+            {
+                if (objectp(element))
+                {
+                    ret += element->getHarvestStatistics(resource,
+                        user, this_object());
+                }
+            }
+        }
+    }
+    return ret;
 }

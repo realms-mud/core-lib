@@ -682,6 +682,7 @@ public nomask void setUpForEnvironment(string state, object environment)
 
     object *harvestItems = m_values(
         filter(harvestData, (: $1 == $2->name() :)));
+
     if (sizeof(harvestItems))
     {
         foreach(object harvestItem in harvestItems)
@@ -837,27 +838,15 @@ protected nomask void harvestRequiresOneOfTool(string name, string *tools)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isHarvestableResource(string resource, object environment)
+public nomask int isHarvestableResource(string resource, object environment,
+    object user)
 {
     int ret = 0;
-    if (member(harvestData, resource) && objectp(environment))
+    if (member(harvestData, resource) && objectp(harvestData[resource]) &&
+        objectp(environment))
     {
-        string key = member(harvestData[resource], "alias") ?
-            harvestData[resource]["alias"] : resource;
-
-        if (member(harvestData[key], "limited to state") &&
-            sizeof(harvestData[key]["limited to state"]))
-        {
-            ret = member(harvestData[key]["limited to state"], 
-                currentState()) > -1;
-        }
-        else
-        {
-            ret = 1;
-        }
-
-        ret &&= (member(harvestData[key]["available quantity"], environment) &&
-            (harvestData[key]["available quantity"][environment] > 0));
+        ret = harvestData[resource]->isHarvestableResource(resource,
+            user, environment);
     }
     return ret;
 }

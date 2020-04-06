@@ -11,5 +11,7 @@ public void Setup()
     setTerrain("/lib/tests/support/environment/fakeTerrain.c");
     addFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     addFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
+    addFeature("/lib/environment/features/trees/alder-stand.c", "north");
+
     addFeature("fake feature", "east");
 }
