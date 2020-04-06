@@ -207,6 +207,15 @@ public nomask object harvestResource(string resource, object user,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string harvestedDescription(object environment)
+{
+    return (member(harvestData["available quantity"], environment) &&
+        (harvestData["available quantity"][environment] <
+        harvestData["initial quantity"])) ?
+        harvestData["description when harvested"] : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string capitalizeName()
 {
     string *words = explode(harvestData["name"], " ");

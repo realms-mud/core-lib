@@ -421,3 +421,21 @@ void EachEnvironmentHasUniqueInstanceOfResource()
         "There are 10 yew available for harvest.\n",
         Resource->getHarvestStatistics(environment, Player));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void HarvestedDescriptionReturnsValueWhenSomethingHasBeenHarvested()
+{
+    Resource->setup("yew", 10, "/lib/instances/items/materials/wood/yew.c",
+        "a heavily-forested stand of yew trees. Several trees remain",
+        ({ "conifer", "evergreen", "yew tree", "tree" }));
+
+    Resource->resetQuantity(Environment);
+    ExpectFalse(Resource->harvestedDescription(Environment));
+
+    object yew1 = Resource->harvestResource("yew", Player, Environment);
+    ExpectEq("a heavily-forested stand of yew trees. Several trees remain", 
+        Resource->harvestedDescription(Environment));
+
+    Resource->resetQuantity(Environment);
+    ExpectFalse(Resource->harvestedDescription(Environment));
+}

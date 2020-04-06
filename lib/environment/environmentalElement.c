@@ -12,7 +12,6 @@ protected int suppressAction = 0;
 protected string elementName = 0;
 protected string State = "default";
 private int MimicExteriorLighting = 0;
-private string HarvestedDescription = 0;
 
 private object environmentDictionary;
 
@@ -365,6 +364,28 @@ public nomask void deactivateLightSource(string state, object environment)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string getHarvestedDescriptions(object environment)
+{
+    string ret = 0;
+
+    object *harvestItems = m_values(
+        filter(harvestData, (: (($1 == $2->name()) && 
+            $2->harvestedDescription($3)) :), environment));
+
+    if (sizeof(harvestItems))
+    {
+        string *descriptions = ({});
+        foreach(object item in harvestItems)
+        {
+            descriptions += 
+                ({ item->harvestedDescription(environment) });
+        }
+        ret = implode(descriptions, " ");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs string description(string state, int illuminationLevel,
     object environment)
 {
@@ -383,9 +404,11 @@ public nomask varargs string description(string state, int illuminationLevel,
     else
     {
         string templateKey = getTemplateKey(illuminationLevel);
-        if (HarvestedDescription)
+        string harvestedDescriptions = getHarvestedDescriptions(environment);
+
+        if (harvestedDescriptions)
         {
-            ret = parseTemplate(HarvestedDescription,
+            ret = parseTemplate(harvestedDescriptions,
                 descriptionData[state], illuminationLevel);
         }
         else if (member(descriptionData, state) && member(descriptionData[state],
@@ -698,12 +721,6 @@ protected nomask varargs void harvestableResource(string name, int quantity,
                     }
                 }
             }
-        }
-        else
-        {
-//            raise_error(sprintf("EnvironmentalElement: The name "
-//                "of the harvestable resource (%O) is already in use.\n",
-//                name));
         }
     }
     else
