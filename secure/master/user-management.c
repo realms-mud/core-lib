@@ -35,8 +35,9 @@ public nomask int createWizard(object player)
     object sponsor = this_player();
     if (sponsor && player && interactive(sponsor) && interactive(player) &&
         (member(inherit_list(sponsor), "lib/realizations/wizard.c") > -1) &&
+        (member(inherit_list(player), "lib/realizations/player.c") > -1) &&
         (member(inherit_list(player), "lib/realizations/wizard.c") < 0) &&
-        (member(sponsor->groups(), "admin") > -1))
+        (member(sponsor->groups(), "elder") > -1))
     {
         string wizardName = player->RealName();
 

@@ -1250,7 +1250,6 @@ protected nomask string usageDetails(string displayCommand, string colorConfigur
     string *command = filter(commands,
         (: sizeof(regexp(({ $1 }), "^" + displayCommand + " ")) :));
 
-    printf("commad = %O\n", command);
     if (sizeof(command) && member(emoteTemplates, displayCommand))
     {
         string *commandText = ({});

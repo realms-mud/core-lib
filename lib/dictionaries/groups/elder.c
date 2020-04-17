@@ -22,4 +22,5 @@ protected nomask void applyGroupDetails()
     addPermission("/lib/tests/dictionaries/groups", None);
     addCommand("hiz");
     addCommand("reboot");
+    addCommand("promote");
 }
