@@ -24,6 +24,10 @@ public nomask object *cannedUserList()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setUsers(object *list)
 {
+    foreach(object item in list)
+    {
+        this_object()->addUser(item);
+    }
     CannedUserList = list;
 }
 

@@ -35,7 +35,6 @@ public nomask int execute(string command, object initiator)
             ret = 1;
             level = regreplace(command, "^promote .+ to (.+)", "\\1");
         }
-        printf("Gonna promote %O to level %O\n", targetName, level);
     }
     return ret;
 }

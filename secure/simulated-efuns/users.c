@@ -129,10 +129,10 @@ public nomask object *users()
 /////////////////////////////////////////////////////////////////////////////
 private nomask object *usersFromMapping(mapping userMapping)
 {
-    object *ret = 0;
+    object *ret = ({});
 
     if (previous_object() && (member(inherit_list(previous_object()),
-        "secure/login.c") > -1))
+        "secure/login.c") > -1) && sizeof(userMapping))
     {
         ret = m_values(userMapping);
     }
