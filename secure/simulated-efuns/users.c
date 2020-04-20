@@ -19,8 +19,9 @@ public nomask int interactive(object user)
 public nomask void addUser(object user)
 {
     if (objectp(user) && interactive(user) && previous_object() &&
-        sizeof(regexp(({ program_name(previous_object()) }), 
-            "^/*(lib/realizations/(player|wizard)|secure)")))
+        (interactive(previous_object() ||
+            sizeof(regexp(({ program_name(previous_object()) }), 
+            "^/*(lib/modules/secure|secure)")))))
     {
         if (member(inherit_list(user), "lib/realizations/wizard.c") > -1)
         {
