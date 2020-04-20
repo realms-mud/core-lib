@@ -29,39 +29,74 @@ public nomask int removeCharacter(object character)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int createWizard(object player)
+public nomask varargs int createWizard(string wizardName, string level)
 {
     int ret = 0;
     object sponsor = this_player();
-    if (sponsor && player && interactive(sponsor) && interactive(player) &&
+
+    if (sponsor && stringp(wizardName) && interactive(sponsor) &&
         (member(inherit_list(sponsor), "lib/realizations/wizard.c") > -1) &&
-        (member(inherit_list(player), "lib/realizations/player.c") > -1) &&
-        (member(inherit_list(player), "lib/realizations/wizard.c") < 0) &&
         (member(sponsor->groups(), "elder") > -1))
     {
-        string wizardName = player->RealName();
-
-        object userService =
-            load_object("/lib/modules/secure/dataServices/authenticationDataService.c");
-        userService->setWizardLevel(wizardName, "apprentice");
-
-        object newWizardObject = clone_object("/lib/realizations/wizard.c");
-        newWizardObject->restore(wizardName);
-        exec(newWizardObject, player);
-        destruct(player);
-
-        string homeDir = sprintf("/players/%s", wizardName);
-        if (file_size(homeDir) == -1)
+        object player = efun::findPlayer(wizardName);
+        if (player)
         {
-            if (file_size("/players") == -1)
-            {
-                mkdir("/players");
-            }
-            mkdir(homeDir);
+            player->save();
         }
-        tell_object(newWizardObject,
-            "Congratulations! You are now an apprentice wizard.\n");
-        ret = 1;
+
+        object newWizardObject = 
+            clone_object("/lib/realizations/wizard.c");
+        newWizardObject->restore(wizardName);
+
+        if (newWizardObject->wizardLevel() == "player")
+        {
+            ret = 1;
+            object userService =
+                load_object("/lib/modules/secure/dataServices/authenticationDataService.c");
+            
+            userService->setWizardLevel(wizardName, level);
+        }
+
+        if (player &&
+            (member(inherit_list(player), "lib/realizations/player.c") > -1) &&
+            (member(inherit_list(player), "lib/realizations/wizard.c") < 0))
+        {
+            object currentEnvironment = environment(player);
+            newWizardObject->restore(wizardName);
+            exec(newWizardObject, player);
+            destruct(player);
+
+            if (currentEnvironment)
+            {
+                move_object(newWizardObject, currentEnvironment);
+            }
+        }
+        else if(!player)
+        {
+            destruct(newWizardObject);
+        }
+
+        if (ret)
+        {
+            string homeDir = sprintf("/players/%s", wizardName);
+            if (file_size(homeDir) == -1)
+            {
+                if (file_size("/players") == -1)
+                {
+                    mkdir("/players");
+                }
+                mkdir(homeDir);
+            }
+
+            object logs = getDictionary("log");
+            if (ret && logs)
+            {
+                logs->log("CreateWizard",
+                    sprintf("%O promoted %O to %O (%s)\n",
+                        sponsor->RealName(), wizardName, level,
+                        ctime(time())));
+            }
+        }
     }
     return ret;
 }

@@ -18,7 +18,9 @@ public nomask int interactive(object user)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void addUser(object user)
 {
-    if (objectp(user) && interactive(user))
+    if (objectp(user) && interactive(user) && previous_object() &&
+        sizeof(regexp(({ program_name(previous_object()) }), 
+            "^/*(lib/realizations/(player|wizard)|secure)")))
     {
         if (member(inherit_list(user), "lib/realizations/wizard.c") > -1)
         {
@@ -67,7 +69,7 @@ public nomask object findPlayer(string name)
 
     if (member(players, name))
     {
-        if (objectp(players[name]))
+        if (objectp(players[name]) && interactive(players[name]))
         {
             ret = players[name];
         }
@@ -76,9 +78,10 @@ public nomask object findPlayer(string name)
             m_delete(players, name);
         }
     }
-    else if (member(wizards, name))
+
+    if (!ret && member(wizards, name))
     {
-        if (objectp(wizards[name]))
+        if (objectp(wizards[name]) && interactive(wizards[name]))
         {
             ret = wizards[name];
         }
@@ -87,6 +90,7 @@ public nomask object findPlayer(string name)
             m_delete(wizards, name);
         }
     }
+
     return ret;
 }
 
@@ -149,4 +153,21 @@ public nomask object *players()
 public nomask object *wizards()
 {
     return usersFromMapping(wizards);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int removeCharacter(object character)
+{
+    object userManagement = load_object("/secure/master/user-management.c");
+
+    return userManagement ? userManagement->removeCharacter(character) : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int createWizard(string wizardName, string level)
+{
+    object userManagement = load_object("/secure/master/user-management.c");
+
+    return userManagement ?
+        userManagement->createWizard(wizardName, level) : 0;
 }

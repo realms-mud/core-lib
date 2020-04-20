@@ -25,6 +25,9 @@ void Init()
     playerData["name"] = "fred";
     dataAccess->savePlayerData(playerData);
 
+    playerData["name"] = "dwight";
+    dataAccess->savePlayerData(playerData);
+
     dataAccess->savePlayerData(database->GetWizardOfLevel("elder"));
     dataAccess->savePlayerData(database->GetWizardOfLevel("senior", "harold"));
 
@@ -82,24 +85,50 @@ void RemoveCharacterCorrectlyRemovesCharacter()
 /////////////////////////////////////////////////////////////////////////////
 void CreateWizardFailsIfSponsorNotValid()
 {
-    object wizard = clone_object("/lib/realizations/wizard.c");
-    wizard->restore("harold");
-
     object player = clone_object("/lib/realizations/player.c");
     player->restore("fred");
 
+    object wizard = clone_object("/lib/realizations/wizard.c");
+    wizard->restore("harold");
+
     set_this_player(player);
-    ExpectFalse(Users->createWizard(Player), "fred failed to wiz gorthaur");
+    ExpectFalse(Users->createWizard("gorthaur"), "fred failed to wiz gorthaur");
 
     set_this_player(wizard);
-    ExpectFalse(Users->createWizard(Player), "harold failed to wiz gorthaur");
+    ExpectFalse(Users->createWizard("gorthaur"), "harold failed to wiz gorthaur");
+
+    destruct(player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CreateWizardSucceedsIfSponsorValid()
 {
-    ExpectFalse(Users->createWizard(Player), "no sponsor set");
+    ExpectEq("lib/realizations/player.c",
+        program_name(findPlayer("gorthaur")));
+
+    ExpectFalse(Users->createWizard("gorthaur"), "no sponsor set");
 
     set_this_player(Wizard);
-    ExpectTrue(Users->createWizard(Player), "earl wizzed gorthaur");
+    ExpectTrue(Users->createWizard("gorthaur"), "earl wizzed gorthaur");
+    ExpectEq("lib/realizations/wizard.c",
+        program_name(findPlayer("gorthaur")));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CreateWizardSucceedsForOfflineWizard()
+{
+    destruct(Player);
+    ExpectFalse(findPlayer("dwight"));
+
+    object wizard = clone_object("/lib/realizations/wizard.c");
+    wizard->restore("dwight");
+    ExpectEq("player", wizard->wizardLevel());
+    destruct(wizard);
+
+    set_this_player(Wizard);
+    ExpectTrue(Users->createWizard("dwight", "creator"), "earl wizzed dwight");
+
+    wizard = clone_object("/lib/realizations/wizard.c");
+    wizard->restore("dwight");
+    ExpectEq("creator", wizard->wizardLevel());
 }

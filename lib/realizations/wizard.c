@@ -53,7 +53,8 @@ private nomask int validWizardLevel(string level)
 public nomask void setWizardLevel(string level, object granter)
 {
     if (granter && validWizardLevel(level) && 
-        (program_name(granter) == "lib/realizations/wizard.c"))
+        (program_name(granter) == "lib/realizations/wizard.c") &&
+        (granter == this_player()))
     {
         string *granterGroups = granter->groups() -
             ({ granter->wizardLevel() });
@@ -65,6 +66,7 @@ public nomask void setWizardLevel(string level, object granter)
         if (canGrantLevel)
         {
             wizardLevel = level;
+            this_object()->save();
             logs->log("setWizardLevel", sprintf("%s promoted %s to %s.\n",
                 granter->Name(), this_object()->Name(), level));
         }
