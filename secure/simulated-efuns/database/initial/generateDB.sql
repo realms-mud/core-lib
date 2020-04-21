@@ -2303,3 +2303,30 @@ BEGIN
 RETURN localPlayerId;
 END;
 ##
+CREATE FUNCTION `demoteWizardToPlayer` (p_target varchar(40), p_sponsor varchar(40))
+    returns int NOT DETERMINISTIC
+    READS SQL DATA
+BEGIN
+    declare targetTypeId int;
+    declare sponsorTypeId int;
+    declare ret int default 0;
+
+    select case when wizards.typeId <> 
+            (select id from wizardTypes where type = 'emeritus')
+        then wizards.TypeId else 0 end 
+    into sponsorTypeId from players
+    inner join wizards on players.id = wizards.playerId
+    where players.name = p_sponsor;
+
+    select wizards.typeId into targetTypeId from players
+    inner join wizards on players.id = wizards.playerId
+    where players.name = p_target;
+
+    if (targetTypeId is not null) and (sponsorTypeId > targetTypeId) then
+        set ret = 1;
+        delete from wizards where playerId =
+            (select id from players where players.name = p_target);
+    end if;
+RETURN ret;
+END;
+##

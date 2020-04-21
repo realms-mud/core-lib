@@ -53,6 +53,11 @@ void Setup()
 
     Wizard = clone_object("/lib/realizations/wizard.c");
     Wizard->restore("earl");
+
+    clone_object("/lib/tests/support/services/catchShadow.c")->beginShadow(Wizard);
+
+    setUsers(({ Wizard, Player }));
+
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -23,8 +23,7 @@ public nomask void reportUserPromotion(object initiator, object target,
     {
         channels->registerUser(target);
         channels->broadcastMessage("status", 
-            sprintf("%s: %s has just promoted %s to %s\n",
-                ctime(time()),
+            sprintf("%s has just promoted %s to %s.\n",
                 capitalize(initiator->RealName()), 
                 capitalize(target->RealName()), 
                 level));
@@ -62,11 +61,7 @@ public nomask int execute(string command, object initiator)
         {
             object target = findPlayer(targetName);
 
-            if (!target || (function_exists("wizardLevel", target) &&
-                (target->wizardLevel() == "player")))
-            {
-                ret = createWizard(targetName, level);
-            }
+            ret = createWizard(targetName, level);
 
             // The target needs to be re-acquired since createWizard could
             // exec them into a new object.
@@ -99,7 +94,7 @@ public nomask int execute(string command, object initiator)
                 }
             }
 
-            if (wizard)
+            if (target)
             {
                 reportUserPromotion(initiator, target, level);
             }

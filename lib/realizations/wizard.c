@@ -54,9 +54,10 @@ public nomask void setWizardLevel(string level, object granter)
 {
     if (granter && validWizardLevel(level) && 
         (program_name(granter) == "lib/realizations/wizard.c") &&
-        (granter == this_player()))
+        (granter == this_player()) &&
+        granter->hasExecuteAccess("promote"))
     {
-        string *granterGroups = granter->groups() -
+        string *granterGroups = granter->groups(1) -
             ({ granter->wizardLevel() });
 
         int canGrantLevel = (member(granterGroups, level) > -1) &&
@@ -80,7 +81,7 @@ public nomask void setWizardLevel(string level, object granter)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *groups()
+public nomask varargs string *groups(int ignoreCustomGroups)
 {
     string *wizardGroups = ({ });
 
@@ -144,7 +145,7 @@ public nomask string *groups()
     }
 
     string *custom = customGroups(this_object());
-    if (custom && sizeof(custom))
+    if (custom && sizeof(custom) && !ignoreCustomGroups)
     {
         wizardGroups += custom;
     }
@@ -160,6 +161,7 @@ private nomask object *groupObjects()
     {
         string groupFile = sprintf(GroupObj, group);
         object groupObject;
+
         string error = catch (groupObject = load_object(groupFile));
         if (!error)
         {
@@ -241,8 +243,9 @@ public nomask int hasOwnershipAccess(string path)
 public nomask int hasExecuteAccess(string command)
 {
     PathToCheck = command;
+
     return sizeof(filter(groupObjects(),
-        (: return $1->hasExecuteAccess(this_object(), PathToCheck); :)));
+        (: $1->hasExecuteAccess(this_object(), PathToCheck) :)));
 }
 
 /////////////////////////////////////////////////////////////////////////////

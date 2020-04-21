@@ -150,6 +150,28 @@ public nomask int setWizardLevel(string name, string level)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int demoteWizardToPlayer(string target, string sponsor)
+{
+    int ret = 0;
+    if (objectp(previous_object()) &&
+        sizeof(regexp(({ object_name(previous_object()) }),
+            "^/*secure/master")))
+    {
+        string query = sprintf("select demoteWizardToPlayer('%s', '%s');",
+            sanitizeString(target),
+            sanitizeString(sponsor));
+
+        int dbHandle = connect();
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+        ret = result && (to_int(result[0]) > 0);
+
+        disconnect(dbHandle);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int addressTemporarilyBanished(string address)
 {
     return 0;

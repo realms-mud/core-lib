@@ -15,7 +15,7 @@ private nomask void movePlayerToStart(object player)
     }
     else
     {
-        startingLocation = load_object("/areas/eledhel/southern-city/12x2.c");
+        startingLocation = load_object(StartLocation());
         startingLocation->enterEnvironment(player);
 
         tell_object(player, "Doh! The room you were last in during your "

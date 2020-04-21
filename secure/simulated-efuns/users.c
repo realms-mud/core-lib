@@ -172,3 +172,18 @@ public nomask varargs int createWizard(string wizardName, string level)
     return userManagement ?
         userManagement->createWizard(wizardName, level) : 0;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int demoteWizardToPlayer(string wizardName)
+{
+    object userManagement = load_object("/secure/master/user-management.c");
+
+    return userManagement ?
+        userManagement->demoteWizardToPlayer(wizardName) : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string StartLocation()
+{
+    return "/areas/eledhel/southern-city/12x2.c";
+}

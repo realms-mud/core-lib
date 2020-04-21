@@ -8,23 +8,31 @@ object Wizard;
 object Wizard2;
 object Player;
 object Catch;
+mapping Gorthaur;
+object DataAccess;
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
     setRestoreCaller(this_object());
-    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    object Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    Database->PrepDatabase();
 
-    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->GetWizardOfLevel("creator"));
-    dataAccess->savePlayerData(database->Gorthaur());
+    DataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    DataAccess->savePlayerData(Database->GetWizardOfLevel("creator"));
+    Gorthaur = Database->Gorthaur();
+    Gorthaur["wizard level"] = "player";
 
-    dataAccess->savePlayerData(database->GetWizardOfLevel("creator", "fred"));
-    dataAccess->savePlayerData(database->GetWizardOfLevel("elder"));
+    DataAccess->savePlayerData(Database->GetWizardOfLevel("creator", "fred"));
+    DataAccess->savePlayerData(Database->GetWizardOfLevel("elder"));
 
-    destruct(dataAccess);
-    destruct(database);
+    destruct(Database);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TearDown()
+{
+    destruct(DataAccess);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,6 +51,7 @@ void Setup()
     clone_object("/lib/tests/support/services/catchShadow.c")->beginShadow(Wizard2);
 
     Player = clone_object("/lib/realizations/player.c");
+    DataAccess->savePlayerData(Gorthaur);
     Player->restore("gorthaur");
     Player->addCommands();
 
@@ -52,6 +61,8 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    set_this_player(Wizard);
+    demoteWizardToPlayer("gorthaur");
     destruct(Wizard);
     destruct(Wizard2);
     destruct(Player);
@@ -80,13 +91,4 @@ void PromoteOfPlayerToSpecificLevelCorrectlySetsLevel()
 
     object newWizard = findPlayer("gorthaur");
     ExpectEq("senior", newWizard->wizardLevel());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanPromoteWizardToANewLevel()
-{
-    command("promote fred to admin", Wizard);
-
-    object newWizard = findPlayer("fred");
-    ExpectEq("admin", newWizard->wizardLevel());
 }

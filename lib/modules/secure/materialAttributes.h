@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private nosave string DefaultStart = "/areas/eledhel/southern-city/12x2.c";
+private nosave string DefaultStart = StartLocation();
 
 private string name = "";
 private string shortDescription = "";

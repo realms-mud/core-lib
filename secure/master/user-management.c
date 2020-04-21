@@ -36,7 +36,7 @@ public nomask varargs int createWizard(string wizardName, string level)
 
     if (sponsor && stringp(wizardName) && interactive(sponsor) &&
         (member(inherit_list(sponsor), "lib/realizations/wizard.c") > -1) &&
-        (member(sponsor->groups(), "elder") > -1))
+        sponsor->hasExecuteAccess("promote"))
     {
         object player = efun::findPlayer(wizardName);
         if (player)
@@ -57,13 +57,14 @@ public nomask varargs int createWizard(string wizardName, string level)
             userService->setWizardLevel(wizardName, level);
         }
 
-        if (player &&
+        if (player && ret &&
             (member(inherit_list(player), "lib/realizations/player.c") > -1) &&
             (member(inherit_list(player), "lib/realizations/wizard.c") < 0))
         {
             object currentEnvironment = environment(player);
             newWizardObject->restore(wizardName);
             exec(newWizardObject, player);
+            addUser(newWizardObject);
             destruct(player);
 
             if (currentEnvironment)
@@ -71,7 +72,7 @@ public nomask varargs int createWizard(string wizardName, string level)
                 move_object(newWizardObject, currentEnvironment);
             }
         }
-        else if(!player)
+        else
         {
             destruct(newWizardObject);
         }
@@ -91,10 +92,61 @@ public nomask varargs int createWizard(string wizardName, string level)
             object logs = getDictionary("log");
             if (ret && logs)
             {
-                logs->log("CreateWizard",
-                    sprintf("%O promoted %O to %O (%s)\n",
-                        sponsor->RealName(), wizardName, level,
-                        ctime(time())));
+                logs->log("Promotions",
+                    sprintf("(%s) %O created wizard %O to level %O\n", 
+                        ctime(time()), sponsor->RealName(), wizardName, level));
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int demoteWizardToPlayer(string wizardName)
+{
+    int ret = 0;
+    object sponsor = this_player();
+
+    if (sponsor && stringp(wizardName) && interactive(sponsor) &&
+        (member(inherit_list(sponsor), "lib/realizations/wizard.c") > -1) &&
+        sponsor->hasExecuteAccess("promote"))
+    {
+        ret = 1;
+        object wizard = efun::findPlayer(wizardName);
+
+        object userService =
+            load_object("/lib/modules/secure/dataServices/authenticationDataService.c");
+
+        userService->demoteWizardToPlayer(wizardName, sponsor->RealName());
+
+        object newPlayerObject = clone_object("/lib/realizations/player.c");
+        newPlayerObject->restore(wizardName);
+        foreach(object item in deep_inventory(newPlayerObject))
+        {
+            destruct(item);
+        }
+        move_object(newPlayerObject, StartLocation());
+        newPlayerObject->save();
+
+        if (wizard)
+        {
+            exec(newPlayerObject, wizard);
+            addUser(newPlayerObject);
+            destruct(wizard);
+        }
+        else if (!wizard)
+        {
+            destruct(newPlayerObject);
+        }
+
+        if (ret)
+        {
+            object logs = getDictionary("log");
+            if (ret && logs)
+            {
+                logs->log("Promotions",
+                    sprintf("(%s) %O demoted %O to player\n", ctime(time()),
+                        sponsor->RealName(), wizardName));
             }
         }
     }

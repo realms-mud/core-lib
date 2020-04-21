@@ -31,7 +31,7 @@ private nomask void movePlayerToStart(object player)
     }
     else
     {
-        move_object(player, "/areas/eledhel/southern-city/12x2.c");
+        move_object(player, StartLocation());
         tell_object(player, "Doh! The room you were last in during your "
             "previous session is broken.\nYou have been moved to a different "
             "location.\n");
@@ -86,7 +86,7 @@ private nomask void initiateSelector()
                 "details", "selector", colorConfiguration));
 
         //backgroundDictionary->initiateBackground(Player);
-        move_object(Player, "/areas/eledhel/southern-city/12x2.c");
+        move_object(Player, StartLocation());
         destruct(this_object());
     }
     else

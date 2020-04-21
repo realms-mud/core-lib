@@ -10,10 +10,15 @@ string Fail = "\x1b[0;31m[  FAILED  ]\x1b[0m ";
 
 int CurrentTestPassed = 0;
 int AnyFailure = 0;
-string *ignoreList = ({ "__INIT", "Init", "Setup", "CleanUp" });
+string *ignoreList = ({ "__INIT", "Init", "Setup", "CleanUp", "TearDown" });
 
 /////////////////////////////////////////////////////////////////////////////
 public void Init()
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void TearDown()
 {
 }
 
@@ -62,6 +67,8 @@ public int executeTests()
 
         CleanUp();
     }
+
+    TearDown();
     debug_message(sprintf("Test executed: %s -> %s\n", object_name(),
         AnyFailure ? Fail : Pass), 0x5);
 
