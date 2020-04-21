@@ -23,7 +23,8 @@ public nomask void reportUserPromotion(object initiator, object target,
     {
         channels->registerUser(target);
         channels->broadcastMessage("status", 
-            sprintf("%s has just promoted %s to %s\n",
+            sprintf("%s: %s has just promoted %s to %s\n",
+                ctime(time()),
                 capitalize(initiator->RealName()), 
                 capitalize(target->RealName()), 
                 level));
@@ -38,6 +39,13 @@ public nomask int execute(string command, object initiator)
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("promote"))
     {
         string targetName = 0;
+        int canDemote = 0;
+
+        if (sizeof(regexp(({ command }), "-d")))
+        {
+            canDemote = 1;
+        }
+
         if (sizeof(regexp(({ command }), "promote [^ ]+( to .+$|$)")))
         {
             targetName =
@@ -52,10 +60,18 @@ public nomask int execute(string command, object initiator)
 
         if (targetName)
         {
-            ret = createWizard(targetName, level);
-            object wizard = findPlayer(targetName);
+            object target = findPlayer(targetName);
 
-            printf("%O\n", wizard);
+            if (!target || (function_exists("wizardLevel", target) &&
+                (target->wizardLevel() == "player")))
+            {
+                ret = createWizard(targetName, level);
+            }
+
+            // The target needs to be re-acquired since createWizard could
+            // exec them into a new object.
+            target = findPlayer(targetName);
+
             if (ret)
             {
                 object logs = getDictionary("log");
@@ -69,9 +85,11 @@ public nomask int execute(string command, object initiator)
             else
             {
                 // The wizard already exists - simply promote them
-                if (wizard)
+                if (target)
                 {
-                    ret = wizard->setWizardLevel(level, initiator);
+                    ret = 1;
+                    target->setWizardLevel(level, initiator);
+                    command("save", target);
                 }
                 else
                 {
@@ -83,8 +101,7 @@ public nomask int execute(string command, object initiator)
 
             if (wizard)
             {
-                reportUserPromotion(initiator, wizard, level);
-                //call_out("reportUserPromotion", 1, initiator, wizard, level);
+                reportUserPromotion(initiator, target, level);
             }
         }
     }

@@ -75,7 +75,7 @@ private nomask void removeInventory(object player)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void checkForLinkDeath(object player)
 {
-    if (member(users(), player) < 0)
+    if ((member(users(), player) < 0) && interactive(this_object()))
     {
         player->save();
         removeInventory(player);
