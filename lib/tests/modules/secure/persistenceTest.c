@@ -648,6 +648,7 @@ void CharacterStateReturnsCorrectValue()
 /////////////////////////////////////////////////////////////////////////////
 void HeartBeatChecksForLinkDeathThenSavesAndDestroysTheLinkDead()
 {
+    ToggleInteractive();
     Player->restore("gorthaur");
     setUsers(({ Player }));
     Player->heart_beat();
@@ -665,6 +666,7 @@ void HeartBeatChecksForLinkDeathThenSavesAndDestroysTheLinkDead()
     Player->restore("gorthaur");
 
     ExpectEq("/lib/environment/environment", Player->savedLocation());
+    ToggleInteractive();
 }
 
 /////////////////////////////////////////////////////////////////////////////

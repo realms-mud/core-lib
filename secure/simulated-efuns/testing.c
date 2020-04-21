@@ -6,8 +6,21 @@ virtual inherit "/secure/simulated-efuns/database.c";
 
 private object *CannedUserList = ({});
 private object RestoreCaller = 0;
+private int isInteractive = 1;
 private string *TestingGroups = ({ });
 private int ShortCircuitCallOuts;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int testingInteractive()
+{
+    return isInteractive;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void ToggleInteractive()
+{
+    isInteractive = !isInteractive;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setUpForTesting()

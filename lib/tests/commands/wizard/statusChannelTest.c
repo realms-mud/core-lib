@@ -56,10 +56,13 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void GoingLinkDeadSendsStatusMessage()
 {
+    ToggleInteractive();
+
     setUsers(({ Wizard2 }));
 
     Wizard->heart_beat();
     ExpectSubStringMatch("Earl.*???.*has gone link dead", Wizard2->caughtMessages());
+    ToggleInteractive();
 }
 
 /////////////////////////////////////////////////////////////////////////////

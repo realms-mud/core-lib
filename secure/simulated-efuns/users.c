@@ -11,7 +11,8 @@ private mapping wizards = ([]);
 public nomask int interactive(object user)
 {
     return (member(inherit_list(this_object()),
-        "secure/simulated-efuns/testing.c") > -1) ? 1 :
+        "secure/simulated-efuns/testing.c") > -1) ? 
+        this_object()->testingInteractive() :
         efun::interactive(user);
 }
 
