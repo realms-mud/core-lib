@@ -74,6 +74,11 @@ public nomask varargs int createWizard(string wizardName, string level)
         }
         else
         {
+            // Need to re-add old wizard object back into user list
+            if (player)
+            {
+                addUser(player);
+            }
             destruct(newWizardObject);
         }
 

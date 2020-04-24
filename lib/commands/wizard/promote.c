@@ -11,20 +11,22 @@ public nomask void reset(int arg)
     {
         CommandType = "Wizard";
         addCommandTemplate("promote ##Target## [to ##Value##]");
+        addCommandTemplate("demote ##Target## [to ##Value##]");
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reportUserPromotion(object initiator, object target,
-    string level)
+    string action, string level)
 {
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
     if (channels)
     {
         channels->registerUser(target);
         channels->broadcastMessage("status", 
-            sprintf("%s has just promoted %s to %s.\n",
-                capitalize(initiator->RealName()), 
+            sprintf("%s has just %s %s to %s.\n",
+                capitalize(initiator->RealName()),
+                action,
                 capitalize(target->RealName()), 
                 level));
     }
@@ -38,53 +40,71 @@ public nomask int execute(string command, object initiator)
     if (canExecuteCommand(command) && initiator->hasExecuteAccess("promote"))
     {
         string targetName = 0;
-        int canDemote = 0;
+        int isDemotion = 0;
 
-        if (sizeof(regexp(({ command }), "-d")))
+        if (sizeof(regexp(({ command }), "^demote")))
         {
-            canDemote = 1;
+            isDemotion = 1;
         }
 
-        if (sizeof(regexp(({ command }), "promote [^ ]+( to .+$|$)")))
+        if (sizeof(regexp(({ command }), "(pro|de)mote [^ ]+( to .+$|$)")))
         {
             targetName =
-                regreplace(command, "^promote ([^ ]+)( to .+$|$)", "\\1");
+                regreplace(command, "^(pro|de)mote ([^ ]+)( to .+$|$)", "\\2");
         }
 
-        string level = "apprentice";
+        string level = isDemotion ? "player" : "apprentice";
         if (sizeof(regexp(({ command }), "to (.+)")))
         {
-            level = regreplace(command, "^promote .+ to (.+)", "\\1");
+            level = regreplace(command, "^(pro|de)mote .+ to (.+)", "\\2");
         }
 
-        if (targetName)
+        string message = 0;
+
+        if ((level != "player") && !initiator->validWizardLevel(level))
+        {
+            notify_fail(configuration->decorate(
+                sprintf("%s is not a valid wizard level.\n", capitalize(level)),
+                "error details", "wizard commands"));
+        }
+        else if (targetName)
         {
             object target = findPlayer(targetName);
-
-            ret = createWizard(targetName, level);
-
-            // The target needs to be re-acquired since createWizard could
-            // exec them into a new object.
-            target = findPlayer(targetName);
-
-            if (ret)
+            if (isDemotion && (level == "player"))
             {
-                object logs = getDictionary("log");
-                if (ret && logs)
+                ret = demoteWizardToPlayer(targetName);
+
+                if (ret)
                 {
-                    logs->log("CreateWizard",
-                        sprintf("%O promoted %O to %O\n",
-                            initiator->RealName(), targetName, level));
+                    message = "##InitiatorName## ##Infinitive::demote## "
+                        "##TargetName## to player.";
                 }
             }
             else
             {
+                ret = createWizard(targetName, level);
+                if (ret)
+                {
+                    message = sprintf("##InitiatorName## ##Infinitive::promote## "
+                        "##TargetName## to %s.", level);
+                }
+            }
+
+            // The target needs to be re-acquired since createWizard could
+            // exec them into a new object.
+            target = findPlayer(targetName);
+            string* groups = (target && (member(inherit_list(target),
+                "lib/realizations/wizard.c") > -1)) ? target->groups() : ({});
+
+            if(!ret && ((!isDemotion && (member(groups, level) < 0)) || 
+                (isDemotion && (member(groups, level) > -1))))
+            {
                 // The wizard already exists - simply promote them
                 if (target)
                 {
-                    ret = 1;
-                    target->setWizardLevel(level, initiator);
+                    ret = target->setWizardLevel(level, initiator);
                     command("save", target);
+                    printf("Here -> %O\n", ret);
                 }
                 else
                 {
@@ -92,11 +112,64 @@ public nomask int execute(string command, object initiator)
                         load_object("/lib/modules/secure/dataServices/authenticationDataService.c");
                     ret = userService->setWizardLevel(targetName, level);
                 }
+
+                if (ret)
+                {
+                    message = sprintf("##InitiatorName## ##Infinitive::%s## "
+                        "##TargetName## to %s.",
+                        isDemotion ? "demote" : "promote",
+                        level);
+
+                    object logs = getDictionary("log");
+                    if (logs)
+                    {
+                        logs->log("Promotions",
+                            sprintf("(%s) %O %s wizard %O to level %O\n",
+                                ctime(time()),
+                                initiator->RealName(),
+                                isDemotion ? "demoted" : "promoted",
+                                targetName, level));
+                    }
+                }
+            }
+   
+            printf("%O -> %O\n", sizeof(groups), groups);
+            if (message)
+            {
+                tell_object(initiator, configuration->decorate(
+                    format(parseTemplate(message, "initiator", initiator, target), 78), 
+                    "text", "command", initiator->colorConfiguration()));
+                if (target)
+                {
+                    tell_object(target, configuration->decorate(
+                        format(parseTemplate(message, "target", initiator, target), 78),
+                        "text", "command", target->colorConfiguration()));
+                }
+            }
+            else if (sizeof(groups) && member(groups, level) > -1)
+            {
+                notify_fail(configuration->decorate(
+                    sprintf("%s is already a %s or higher. Use "
+                        "demote instead if this is intended.\n", 
+                        capitalize(target->RealName()), level),
+                        "error details", "wizard commands"));
+            }
+            else if (isDemotion && sizeof(groups) &&
+                (member(groups, level) < 0))
+            {
+                notify_fail(configuration->decorate(
+                    sprintf("%s is already a lower wizard level than %s.\n"
+                        "If this was intended, use promote instead.\n", 
+                        capitalize(target->RealName()), level),
+                    "error details", "wizard commands"));
             }
 
-            if (target)
+            if (ret && target)
             {
-                reportUserPromotion(initiator, target, level);
+                reportUserPromotion(initiator, 
+                    target, 
+                    isDemotion ? "demoted": "promoted",
+                    level);
             }
         }
     }

@@ -44,14 +44,15 @@ public nomask string wizardInformation()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int validWizardLevel(string level)
+public nomask int validWizardLevel(string level)
 {
     return member(m_indices(validWizardLevels), level) > -1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setWizardLevel(string level, object granter)
+public nomask int setWizardLevel(string level, object granter)
 {
+    int ret = 0;
     if (granter && validWizardLevel(level) && 
         (program_name(granter) == "lib/realizations/wizard.c") &&
         (granter == this_player()) &&
@@ -66,18 +67,20 @@ public nomask void setWizardLevel(string level, object granter)
         object logs = getDictionary("log");
         if (canGrantLevel)
         {
+            ret = 1;
             wizardLevel = level;
             this_object()->save();
-            logs->log("setWizardLevel", sprintf("%s promoted %s to %s.\n",
-                granter->Name(), this_object()->Name(), level));
+            logs->log("Promotions", sprintf("(%s) %s promoted %s to %s.\n",
+                ctime(time()), granter->Name(), this_object()->Name(), level));
         }
         else
         {
-            logs->log("setWizardLevel", 
-                sprintf("%s failed to promote %s to %s.\n",
-                granter->Name(), this_object()->Name(), level));
+            logs->log("Promotions", 
+                sprintf("(%s) %s failed to promote %s to %s.\n",
+                ctime(time()), granter->Name(), this_object()->Name(), level));
         }
     }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
