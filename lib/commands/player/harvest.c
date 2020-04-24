@@ -30,14 +30,8 @@ public nomask int execute(string command, object initiator)
         }
         else
         {
-            object element = location->findHarvestableResource(resource);
-            if (element)
-            {
-            }
-            else
-            {
-
-            }
+            object element = location->harvestResource(resource, initiator);
+            ret = objectp(element);
         }
     }
     return ret;

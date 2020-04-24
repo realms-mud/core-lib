@@ -133,7 +133,6 @@ public nomask int execute(string command, object initiator)
                 }
             }
    
-            printf("%O -> %O\n", sizeof(groups), groups);
             if (message)
             {
                 tell_object(initiator, configuration->decorate(
