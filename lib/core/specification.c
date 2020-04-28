@@ -481,10 +481,11 @@ private nomask int checkEnvironmentStateLimitor(object owner, int verbose,
         if (!ret && verbose)
         {
             write(configuration->decorate(
-                sprintf(format("You are not in the correct environment state "
+                format(sprintf("You are not in the correct environment state "
                 "(%s) to do that.\n",
-                implode(researchData["limited by"]["environment state"], ", "),
-                78)),
+                pointerp(researchData["limited by"]["environment state"]) ?
+                    implode(researchData["limited by"]["environment state"], ", ") :
+                    researchData["limited by"]["environment state"]), 78),
                 "missing prerequisites", "research", colorConfiguration));
         }
     }
@@ -623,7 +624,8 @@ private nomask int checkEquipmentLimitor(object owner, int verbose,
                 sprintf("You must be using the proper equipment for that (%s).\n",
                 stringp(researchData["limited by"]["equipment"]) ? 
                     researchData["limited by"]["equipment"] :
-                    implode(researchData["limited by"]["equipment"], ", ")),
+                    implode(sort_array(researchData["limited by"]["equipment"], 
+                        (: $1 > $2 :)), ", ")),
                 "missing prerequisites", "research", colorConfiguration));
         }
     }
@@ -772,16 +774,16 @@ protected nomask varargs int environmentalFactorsMet(object owner, int verbose)
         string colorConfiguration = owner->colorConfiguration();
         object configuration = getDictionary("configuration");
 
-        ret &&= checkEnvironmentLimitor(owner, verbose,
-                colorConfiguration, configuration) &&
-            checkEnvironmentStateLimitor(owner, verbose,
-                colorConfiguration, configuration) &&
-            checkTimeOfDayLimitor(verbose,
-                colorConfiguration, configuration) &&
-            checkSeasonLimitor(verbose,
-                colorConfiguration, configuration) &&
-            checkMoonPhaseLimitor(verbose,
-                colorConfiguration, configuration);
+        ret = checkEnvironmentLimitor(owner, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkEnvironmentStateLimitor(owner, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkTimeOfDayLimitor(verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkSeasonLimitor(verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkMoonPhaseLimitor(verbose,
+            colorConfiguration, configuration) && ret;
     }
     return ret;
 }
@@ -797,29 +799,33 @@ protected nomask varargs int userFactorsMet(object owner,
         string colorConfiguration = owner->colorConfiguration();
         object configuration = getDictionary("configuration");
 
-        ret &&= checkOpponentRaceLimitor(target, verbose, 
-                    colorConfiguration, configuration) &&
-                checkOpponentGuildLimitor(target, verbose, 
-                    colorConfiguration, configuration) &&
-                checkOpponentFactionLimitor(target, verbose, 
-                    colorConfiguration, configuration) &&
-                checkCraftingTypeLimitor(target, verbose, 
-                    colorConfiguration, configuration) &&
-                checkIntoxicatedLimitor(owner, verbose, 
-                    colorConfiguration, configuration) &&
-                checkDruggedLimitor(owner, verbose, 
-                    colorConfiguration, configuration) &&
-                checkNearDeathLimitor(owner, verbose, 
-                    colorConfiguration, configuration) &&
-                checkStaminaDrainedLimitor(owner, verbose, 
-                    colorConfiguration, configuration) &&
-                checkSpellPointsDrainedLimitor(owner, verbose, 
-                    colorConfiguration, configuration) &&
-                checkEquipmentLimitor(owner, verbose, 
-                    colorConfiguration, configuration) &&
-                checkSkillLimitor(owner, verbose, 
-                    colorConfiguration, configuration);
+        // This slice of yuck allows all of the limitors to
+        // display failure messages rather than only the first
+        // that evaluates to false if they were all AND-ed together
+        ret = checkOpponentRaceLimitor(target, verbose, 
+            colorConfiguration, configuration) && ret;
+        ret = checkOpponentGuildLimitor(target, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkOpponentFactionLimitor(target, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkCraftingTypeLimitor(target, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkIntoxicatedLimitor(owner, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkDruggedLimitor(owner, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkNearDeathLimitor(owner, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkStaminaDrainedLimitor(owner, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkSpellPointsDrainedLimitor(owner, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkEquipmentLimitor(owner, verbose,
+            colorConfiguration, configuration) && ret;
+        ret = checkSkillLimitor(owner, verbose,
+            colorConfiguration, configuration) && ret;
     }
+
     return ret;
 }
 
@@ -981,7 +987,8 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                     if (pointerp(researchData["limited by"][key]) &&
                         sizeof(researchData["limited by"][key]))
                     {
-                        equipment = implode(researchData["limited by"][key], 
+                        equipment = implode(sort_array(
+                            researchData["limited by"][key], (: $1 > $2 :)), 
                             (sizeof(researchData["limited by"][key]) == 2) ?
                             " or " : ", ");
                         equipment = regreplace(equipment, ", ([^,]+)$", ", or \\1", 1);

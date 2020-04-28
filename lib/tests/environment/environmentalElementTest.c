@@ -262,6 +262,7 @@ void HarvestableResourcesCorrectlySetUp()
 
     Element->reset();
     ExpectEq("Name: Oak\n"
+        "Alias(es): deciduous tree, oak tree, tree\n"
         "This can only be harvested when the environment state is default.\n"
         "This can only be harvested when you're using: axe.\n"
         "This can only be harvested when your forestry skill is at least 5.\n"
@@ -271,7 +272,7 @@ void HarvestableResourcesCorrectlySetUp()
         "\n"
         "Name: Mana\n"
         "This can only be harvested when the environment state is deadified.\n"
-        "This can only be harvested when you're using: staff, rod, or wand.\n"
+        "This can only be harvested when you're using: rod, staff, or wand.\n"
         "This can only be harvested when the moon phase is full moon.\n"
         "This can only be harvested when the season is winter.\n"
         "This can only be harvested when your spellcraft skill is at least 5.\n"

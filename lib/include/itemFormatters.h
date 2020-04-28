@@ -726,6 +726,16 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;20;1m",
             "24-bit": "\x1b[0;38;2;0;0;220;1m"
         ]),
+        "limiter passed":([
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;20;1m",
+            "24-bit": "\x1b[0;38;2;0;0;220;1m"
+        ]),
+        "limiter failed":([
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;9;1m",
+            "24-bit": "\x1b[0;38;2;200;0;0;1m"
+        ]),
         "in progress":([
             "3-bit": "\x1b[0;35m",
             "8-bit": "\x1b[0;38;5;31m",

@@ -7,34 +7,39 @@ virtual inherit "/lib/core/specification.c";
 protected mapping harvestData = ([ ]);
 private string HarvestedDescription = 0;
 private object owningElement;
+private int isSetUp = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setup(string name, int quantity, string resourceFile, 
     string harvestedDescription, string *aliases, object owner)
 {
-    object resourceObj;
-    catch (resourceObj = load_object(resourceFile));
-    if (resourceObj && stringp(name) && sizeof(name) &&
-        (member(inherit_list(resourceObj), "lib/items/item.c") > -1))
+    if (!isSetUp)
     {
-        owningElement = owner;
-        harvestData = ([
-            "name": name,
-            "initial quantity": quantity,
-            "available quantity": ([]),
-            "resource file": resourceFile,
-            "description when harvested": harvestedDescription
-        ]);
-
-        if (sizeof(aliases))
+        object resourceObj;
+        catch (resourceObj = load_object(resourceFile));
+        if (resourceObj && stringp(name) && sizeof(name) &&
+            (member(inherit_list(resourceObj), "lib/items/item.c") > -1))
         {
-            harvestData["aliases"] = aliases;
+            owningElement = owner;
+            harvestData = ([
+                "name":name,
+                "initial quantity" : quantity,
+                "available quantity" : ([]),
+                "resource file" : resourceFile,
+                "description when harvested" : harvestedDescription
+            ]);
+
+            if (sizeof(aliases))
+            {
+                harvestData["aliases"] = aliases;
+            }
+            isSetUp = 1;
         }
-    }
-    else
-    {
-        raise_error(sprintf("EnvironmentalElement: The resource %O must "
-            "exist and be clonable.\n", resourceFile));
+        else
+        {
+            raise_error(sprintf("EnvironmentalElement: The resource %O must "
+                "exist and be clonable.\n", resourceFile));
+        }
     }
 }
 
@@ -105,6 +110,8 @@ private nomask void addToLimitors(string key, mixed value)
         {
             researchData["limited by"][key] += value;
         }
+        researchData["limited by"][key] =
+            m_indices(mkmapping(researchData["limited by"][key]));
     }
     else
     {
@@ -176,13 +183,24 @@ public nomask void limitHarvestBySkill(string skill, int value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int isHarvestableResource(string resource, object user,
-    object environment)
+public nomask varargs int isHarvestableResource(string resource, object user,
+    object environment, int displayMessage)
 {
-    return hasNameOf(resource) && 
-        (member(harvestData["available quantity"], environment) &&
-        (harvestData["available quantity"][environment] > 0)) &&
-        environmentalFactorsMet(user);
+    int quantityExists =
+        member(harvestData["available quantity"], environment) &&
+        (harvestData["available quantity"][environment] > 0);
+    if (displayMessage && !quantityExists)
+    {
+        object configuration = getDictionary("configuration");
+
+        write(configuration->decorate(
+            sprintf("There is currently no %O available to harvest.\n",
+                resource),
+            "missing prerequisites", "research", user->colorConfiguration()));
+    }
+
+    return hasNameOf(resource) && quantityExists &&
+        environmentalFactorsMet(user, displayMessage);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -191,8 +209,8 @@ public nomask object harvestResource(string resource, object user,
 {
     object ret = 0;
 
-    if (isHarvestableResource(resource, user, environment) &&
-        userFactorsMet(user, user))
+    if (isHarvestableResource(resource, user, environment, 1) &&
+        userFactorsMet(user, user, 1))
     {
         harvestData["available quantity"][environment] -= 1;
         ret = clone_object(harvestData["resource file"]);
@@ -236,10 +254,18 @@ public nomask string getHarvestStatistics(object environment, object user)
     object configuration = getDictionary("configuration");
 
     string ret = configuration->decorate("Name: ", "field header",
-        "harvestable resources", colorConfiguration) +
+            "harvestable resources", colorConfiguration) +
         configuration->decorate(capitalizeName(), "field data",
             "harvestable resources", colorConfiguration) + "\n";
 
+    if (member(harvestData, "aliases"))
+    {
+        ret += configuration->decorate("Alias(es): ", "field header",
+                "harvestable resources", colorConfiguration) +
+            configuration->decorate(implode(harvestData["aliases"], ", "), 
+                "field data", "harvestable resources", 
+                colorConfiguration) + "\n";
+    }
     if (member(harvestData["available quantity"], environment))
     {
         int quantity = harvestData["available quantity"][environment];

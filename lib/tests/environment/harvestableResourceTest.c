@@ -51,6 +51,7 @@ void CanSetUpHarvestableResource()
 
     Resource->resetQuantity(Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 25 yew available for harvest.\n", 
         Resource->getHarvestStatistics(Environment, Player));
 }
@@ -66,6 +67,7 @@ void CanLimitHarvestableResourceBySeason()
 
     Resource->resetQuantity(Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 25 yew available for harvest.\n"
         "This can only be harvested when the season is autumn.\n",
         Resource->getHarvestStatistics(Environment, Player));
@@ -84,6 +86,7 @@ void CanLimitHarvestableResourceByMoonPhase()
 
     Resource->resetQuantity(Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 25 yew available for harvest.\n"
         "This can only be harvested when the moon phase is one of new moon, "
         "waning\ncrescent, or waxing crescent.\n",
@@ -101,6 +104,7 @@ void CanLimitHarvestableResourceByTimeOfDay()
 
     Resource->resetQuantity(Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 25 yew available for harvest.\n"
         "This can only be harvested when the time of day is noon.\n",
         Resource->getHarvestStatistics(Environment, Player));
@@ -117,6 +121,7 @@ void CanLimitHarvestableResourceByState()
 
     Resource->resetQuantity(Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 25 yew available for harvest.\n"
         "This can only be harvested when the environment state is exploited.\n",
         Resource->getHarvestStatistics(Environment, Player));
@@ -134,6 +139,7 @@ void CanLimitHarvestableResourceBySkills()
 
     Resource->resetQuantity(Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 25 yew available for harvest.\n"
         "This can only be harvested when your agriculture skill is at least 3.\n"
         "This can only be harvested when your forestry skill is at least 5.\n",
@@ -151,6 +157,7 @@ void CanLimitHarvestableResourceByTool()
 
     Resource->resetQuantity(Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 25 yew available for harvest.\n"
         "This can only be harvested when you're using: axe.\n",
         Resource->getHarvestStatistics(Environment, Player));
@@ -167,8 +174,9 @@ void CanLimitHarvestableResourceByOneOfTools()
 
     Resource->resetQuantity(Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 25 yew available for harvest.\n"
-        "This can only be harvested when you're using: axe, sword, or pole-arm.\n",
+        "This can only be harvested when you're using: axe, pole-arm, or sword.\n",
         Resource->getHarvestStatistics(Environment, Player));
 }
 
@@ -296,6 +304,7 @@ void IsHarvestableResourceNotAffectedByNonEnvironmentalLimitors()
 /////////////////////////////////////////////////////////////////////////////
 void HarvestResourceCorrectlyHarvestsResources()
 {
+    set_this_player(Player);
     Resource->setup("yew", 25, "/lib/instances/items/materials/wood/yew.c",
         "a heavily-forested stand of yew trees. Several trees remain",
         ({ "conifer", "evergreen", "yew tree", "tree" }));
@@ -305,8 +314,9 @@ void HarvestResourceCorrectlyHarvestsResources()
     Resource->limitHarvestByOneOfTools(({ "axe", "sword", "pole-arm" }));
     Resource->limitHarvestBySkill("forestry", 5);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 25 yew available for harvest.\n"
-        "This can only be harvested when you're using: axe, sword, or pole-arm.\n"
+        "This can only be harvested when you're using: axe, pole-arm, or sword.\n"
         "This can only be harvested when the season is autumn.\n"
         "This can only be harvested when your forestry skill is at least 5.\n", 
         Resource->getHarvestStatistics(Environment, Player));
@@ -329,8 +339,9 @@ void HarvestResourceCorrectlyHarvestsResources()
         program_name(Resource->harvestResource("yew", Player, Environment)));
 
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 24 yew available for harvest.\n"
-        "This can only be harvested when you're using: axe, sword, or pole-arm.\n"
+        "This can only be harvested when you're using: axe, pole-arm, or sword.\n"
         "This can only be harvested when the season is autumn.\n"
         "This can only be harvested when your forestry skill is at least 5.\n",
         Resource->getHarvestStatistics(Environment, Player));
@@ -340,6 +351,8 @@ void HarvestResourceCorrectlyHarvestsResources()
 /////////////////////////////////////////////////////////////////////////////
 void CannotHarvestResourceWhenNoResourcesLeft()
 {
+    set_this_player(Player);
+
     Resource->setup("yew", 2, "/lib/instances/items/materials/wood/yew.c",
         "a heavily-forested stand of yew trees. Several trees remain",
         ({ "conifer", "evergreen", "yew tree", "tree" }));
@@ -348,16 +361,19 @@ void CannotHarvestResourceWhenNoResourcesLeft()
     Resource->resetQuantity(Environment);
 
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 2 yew available for harvest.\n",
         Resource->getHarvestStatistics(Environment, Player));
 
     object yew1 = Resource->harvestResource("yew", Player, Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There is 1 yew available for harvest.\n",
         Resource->getHarvestStatistics(Environment, Player));
 
     object yew2 = Resource->harvestResource("yew", Player, Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are currently no yew available for harvest.\n",
         Resource->getHarvestStatistics(Environment, Player));
     
@@ -379,16 +395,19 @@ void ResetWillResetAvailableQuantity()
     Resource->resetQuantity(Environment);
 
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 10 yew available for harvest.\n",
         Resource->getHarvestStatistics(Environment, Player));
 
     object yew1 = Resource->harvestResource("yew", Player, Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 9 yew available for harvest.\n",
         Resource->getHarvestStatistics(Environment, Player));
 
     Resource->resetQuantity(Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 10 yew available for harvest.\n",
         Resource->getHarvestStatistics(Environment, Player));
 }
@@ -407,17 +426,21 @@ void EachEnvironmentHasUniqueInstanceOfResource()
     Resource->resetQuantity(environment);
 
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 10 yew available for harvest.\n",
         Resource->getHarvestStatistics(Environment, Player));
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 10 yew available for harvest.\n",
         Resource->getHarvestStatistics(environment, Player));
 
     object yew1 = Resource->harvestResource("yew", Player, Environment);
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 9 yew available for harvest.\n",
         Resource->getHarvestStatistics(Environment, Player));
     ExpectEq("Name: Yew\n"
+        "Alias(es): conifer, evergreen, yew tree, tree\n"
         "There are 10 yew available for harvest.\n",
         Resource->getHarvestStatistics(environment, Player));
 }

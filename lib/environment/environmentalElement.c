@@ -852,9 +852,13 @@ public nomask int isHarvestableResource(string resource, object environment,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *harvestableResources()
+public nomask varargs string *harvestableResources(int noAliases)
 {
-    return sizeof(harvestData) ? m_indices(harvestData) : 0;
+    string *ret = noAliases ?
+        m_indices(filter(harvestData, (: $1 == $2->name() :))) :
+        m_indices(harvestData);
+
+    return sizeof(ret) ? ret : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////

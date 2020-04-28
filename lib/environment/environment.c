@@ -1527,9 +1527,7 @@ public nomask object harvestResource(string resource, object user)
     {
         foreach(object element in harvestData[resource])
         {
-            if (objectp(element) &&
-                element->isHarvestableResource(resource, this_object(),
-                    user))
+            if (objectp(element))
             {
                 ret = element->harvestResource(resource, user,
                     this_object());
@@ -1549,17 +1547,18 @@ public nomask varargs string harvestStatistics(object user, string item)
     {
         ret = "";
 
-        string *items = (item && pointerp(item)) ?
-            ({ item }) : m_indices(harvestData);
+        string *items = (item && member(harvestData, item)) ?
+            ({ item }) : sort_array(m_indices(harvestData), (: $1 > $2 :));
 
         foreach(string resource in items)
         {
             foreach(object element in harvestData[resource])
             {
-                if (objectp(element))
+                if (objectp(element) && 
+                    (member(element->harvestableResources(1), resource) > -1))
                 {
-                    ret += element->getHarvestStatistics(resource,
-                        user, this_object());
+                    ret += element->getHarvestStatistics(
+                        user, this_object(), resource) + "\n";
                 }
             }
         }
