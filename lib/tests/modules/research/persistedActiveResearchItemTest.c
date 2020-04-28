@@ -706,7 +706,7 @@ void DisplayDetailsShowCorrectInformation()
         "                  Modified -> 1.10 * your spellcraft skill (logarithmic)\n"
         "                  Modified -> 1.10 * your level level (logarithmic)\n"
         "                  Modified -> 1.05 * your intelligence attribute (additive)\n"
-        "This is only applied when you're using: long sword, hand and a half sword, or\n"
+        "This is only applied when you're using: hand and a half sword, long sword, or\n"
         "two-handed sword.\n"
         "Prerequisites:\n"
         "          Level: Level of 33 in Scion of Dhuras\n"
