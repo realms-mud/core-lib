@@ -559,6 +559,24 @@ private nosave mapping materials =
         "experience modifier": 1,
         "default value": 4,
     ]),
+    "bauxite": ([
+        "class": "stone",
+        "crafting skill required": 35,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
+            "blacksmithing": (["type":"skill", "value": 5]),
+            "metal crafting": (["type":"skill", "value": 5]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 20])
+        ]),
+        "default description": "This is a piece of bauxite.",
+        "scarcity": "common",
+        "experience modifier": 1,
+        "ore": ([
+            "aluminum": 1,
+        ]),
+        "default value": 4, 
+    ]),
     "flint": ([
         "class": "stone",
         "crafting skill required": 10,
@@ -2093,10 +2111,10 @@ private nosave mapping materials =
         "encumberance": -2,
         "attack rating": 1,
         "attack": ([
-            "physical": -3
+            "physical": -1
         ]),
         "defense": ([
-            "physical": -3
+            "physical": -1
         ]),
         "crafting skill required": 35,
         "crafting prerequisites": ([
@@ -2616,6 +2634,29 @@ private nosave mapping materials =
         "experience modifier": 1,
         "default value": 25,
     ]),
+    "pyrite": ([
+        "class": "crystal",
+        "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "lib/instances/research/crafting/materials/craftGems.c":(["type":"research"]),
+            "gem crafting": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "attack": ([
+            "physical": 2,
+            "fire": 1,
+        ]),
+        "defense": ([
+            "physical": 2
+        ]),
+        "value multiplier": 1.1,
+        "default description": "This is a golden yellow, cubic crystal of pyrite.",
+        "scarcity": "rare",
+        "experience modifier": 1,
+        "default value": 25,
+    ]),
+
     "opal": ([
         "class": "crystal",
         "crafting skill required": 25,
