@@ -211,7 +211,7 @@ void CannotSelectComponentUntilMaterialsChosen()
     ExpectSubStringMatch("31mConfirm", Player->caughtMessage());
 
     command("1", Player);
-    command("25", Player);
+    command("26", Player);
     ExpectSubStringMatch("31mConfirm", Player->caughtMessage());
 
     command("2", Player);
@@ -244,7 +244,7 @@ void CanCraftItemWithBothPrimaryMaterialAndComponent()
     command("2", Player);
     command("7", Player);
     command("1", Player);
-    command("25", Player);
+    command("26", Player);
     command("2", Player);
     command("16", Player);
     command("19", Player);
