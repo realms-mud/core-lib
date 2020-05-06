@@ -57,7 +57,7 @@ void LongMergesDuplicateItems()
     Container->set("long", "Blah blah blah");
     Container->set("additional long", "even more blah");
 
-    ExpectSubStringMatch("Blah blah blah.*This item contains the following.*.3. Long sword",
+    ExpectSubStringMatch("Blah blah blah.*This item contains the following.*3. Long sword",
         Container->long(), "long() returns correct value");
     destruct(load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }
@@ -86,7 +86,7 @@ void LongDisplaysManyItemsCorrectly()
     Container->set("additional long", "even more blah");
 
     ExpectSubStringMatch("Blah blah blah.*This item contains the following.*"
-        "Battle axe.*Healing.*.3. Long sword.*Mana.*Short",
+        "Battle axe.*Healing.*3. Long sword.*Mana.*Short",
         Container->long(), "long() returns correct value");
     destruct(load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }

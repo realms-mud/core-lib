@@ -928,7 +928,7 @@ void DescriptionDisplaysCorrectlyForObjectsWithoutDescriptions()
     Environment->testAddItem("/lib/tests/support/environment/itemWithoutDescription.c");
 
     ExpectEq("a stone hallway.\n -=-=- There are no obvious exits. \n\n",
-        regreplace(Environment->long(), ".+ (a stone.+)", "\\1"));
+        regreplace(Environment->long(), ".+(a stone.+)", "\\1"));
     ExpectTrue(Environment->id("descriptionless sign"));
 }
 
@@ -939,7 +939,7 @@ void DescriptionDisplaysCorrectlyForObjectsWithEmptyDescriptions()
     Environment->testAddItem("/lib/tests/support/environment/itemWithEmptyDescription.c");
 
     ExpectEq("a stone hallway.\n -=-=- There are no obvious exits. \n\n",
-        regreplace(Environment->long(), ".+ (a stone.+)", "\\1"));
+        regreplace(Environment->long(), ".+(a stone.+)", "\\1"));
     ExpectTrue(Environment->id("descriptionless sign"));
 }
 
@@ -998,10 +998,10 @@ void ThreeBitColorCorrectlyDisplayed()
     move_object(weapon, Environment);
 
     command("look", person);
-    ExpectSubStringMatch("0;33m.*a deciduous forest. To the north.*"
+    ExpectSubStringMatch("33m.*a deciduous forest.*To the north.*"
         "trees.*laden with acorns.*glowing.*"
-        "0m..0;35m -=-=- There is one obvious exit: north\n"
-        "..0m..0;36mSword of Blah..0m\n",
+        "35m -=-=- There is one obvious exit: north\n"
+        ".*36mSword of Blah",
         person->caughtMessage());
 }
 
@@ -1024,10 +1024,10 @@ void EightBitColorCorrectlyDisplayed()
     move_object(weapon, Environment);
 
     command("look", person);
-    ExpectSubStringMatch("0;38;5;186m.*a deciduous forest. To the north.*"
+    ExpectSubStringMatch("0;38;5;186m.*a deciduous forest.*To the north.*"
         "trees.*laden with acorns.*glowing.*"
-        "0m..0;38;5;238;1m -=-=- There is one obvious exit: north\n"
-        "..0m..0;38;5;80mSword of Blah..0m\n",
+        "0;38;5;238;1m -=-=- There is one obvious exit: north\n"
+        ".*0;38;5;80mSword of Blah..0m\n",
         person->caughtMessage());
 }
 
@@ -1050,10 +1050,10 @@ void TwentyFourBitColorCorrectlyDisplayed()
     move_object(weapon, Environment);
 
     command("look", person);
-    ExpectSubStringMatch("0;38;2;200;200;0m.*a deciduous forest. To the north.*"
+    ExpectSubStringMatch("0;38;2;200;200;0m.*a deciduous forest.*To the north.*"
         "trees.*laden with acorns.*glowing.*"
-        "0m..0;38;2;60;60;70;1m -=-=- There is one obvious exit: north\n"
-        "..0m..0;38;2;180;180;190mSword of Blah..0m\n",
+        "0;38;2;60;60;70;1m -=-=- There is one obvious exit: north\n"
+        ".*0;38;2;180;180;190mSword of Blah..0m\n",
         person->caughtMessage());
 }
 

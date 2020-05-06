@@ -423,7 +423,7 @@ void ComponentsAreEnabledWhenPrerequisitesAreMet()
     command("2", Player);
     command("11", Player);
 
-    ExpectSubStringMatch("32mDracolich Form.*[*].*Dragon",
+    ExpectSubStringMatch("Dracolich Form[^*]+\\*.*Dragon",
         Player->caughtMessage());
 }
 

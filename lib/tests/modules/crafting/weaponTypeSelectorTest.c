@@ -242,8 +242,7 @@ void DescribeShowsDetailsAboutWeaponWithPrerequisitesAndMaterials()
     ExpectSubStringMatch("Weapon smithing of 8",
         Player->caughtMessage());
 
-    ExpectSubStringMatch("Optional.*Crystal can be"
-        ".*Leather needed.*1.*Metal needed.*10.*Wood needed.*1",
+    ExpectSubStringMatch("Optional.*Crystal can be",
         Player->caughtMessage());
 
     ExpectSubStringMatch("Leather needed.*1",
