@@ -118,7 +118,7 @@ void CraftSword()
     command("2", Player);
     command("11", Player);
     command("1", Player);
-    command("25", Player);
+    command("26", Player);
     command("2", Player);
     command("15", Player);
     command("25", Player);
@@ -136,7 +136,7 @@ void CraftSword()
     command("2", Player);
     command("35", Player);
     command("1", Player);
-    command("25", Player);
+    command("26", Player);
     command("27", Player);
 }
 

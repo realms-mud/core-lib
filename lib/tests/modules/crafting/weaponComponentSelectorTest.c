@@ -591,7 +591,7 @@ void CanOnlySelectOptionalMaterialWhenEnabled()
 
     command("11", Player);
     command("1", Player);
-    command("25", Player);
+    command("26", Player);
     ExpectSubStringMatch("32mSelect crystal.*ruby",
         Player->caughtMessage());
 }
@@ -616,7 +616,7 @@ void SelectingComponentThatDoesNotUseOptionalResetsOptional()
 
     command("11", Player);
     command("1", Player);
-    command("25", Player);
+    command("26", Player);
     ExpectSubStringMatch("32mSelect crystal.*ruby",
         Player->caughtMessage());
 

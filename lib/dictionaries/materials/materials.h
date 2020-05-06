@@ -560,7 +560,7 @@ private nosave mapping materials =
         "default value": 4,
     ]),
     "bauxite": ([
-        "class": "stone",
+        "class": "ore",
         "crafting skill required": 35,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
