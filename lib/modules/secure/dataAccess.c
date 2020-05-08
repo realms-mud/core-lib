@@ -70,7 +70,7 @@ public nomask void savePlayerData(mapping playerData)
     if (canAccessDatabase(previous_object()))
     {
         if (member(playerData, "name") && (playerData["name"] != "") &&
-            !member(playerData, "is guest"))
+            (!member(playerData, "is guest") || !playerData["is guest"]))
         {
             int dbHandle = connect();
             int playerId = saveBasicPlayerData(dbHandle, playerData);

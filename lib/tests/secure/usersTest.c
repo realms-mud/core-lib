@@ -109,15 +109,18 @@ void CanGetGuestNameReturnsNextAvailableName()
     object player1 = clone_object("/lib/realizations/player.c");
     player1->Name("guest");
 
-    ExpectEq("guest-01", getGuestName(player));
-    ExpectEq("guest-02", getGuestName(player1));
-    ExpectEq("guest-03", getGuestName(player));
-    ExpectEq("guest-04", getGuestName(player1));
+    ExpectEq("guest01", getGuestName(player));
+    ExpectEq("guest02", getGuestName(player1));
+    ExpectEq("guest03", getGuestName(player));
+    ExpectEq("guest04", getGuestName(player1));
 
     destruct(player1);
 
     player1 = clone_object("/lib/realizations/player.c");
     player1->Name("guest");
 
-    ExpectEq("guest-02", getGuestName(player1));
+    ExpectEq("guest02", getGuestName(player1));
+
+    destruct(player);
+    destruct(player1);
 }

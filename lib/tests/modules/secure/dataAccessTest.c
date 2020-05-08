@@ -258,7 +258,10 @@ void GetPlayerDataReturnsDataFromDatabase()
 /////////////////////////////////////////////////////////////////////////////
 void GetPlayerDataForGuestReturnsSimpleMap()
 {
-    mapping expected = ([ "name": "guest", "is guest": 1 ]);
+    mapping expected = ([ 
+        "name": "guest", 
+        "is guest": 1,
+        "location": StartLocation() ]);
 
     mapping result = DataAccess->getPlayerData("guest");
 
