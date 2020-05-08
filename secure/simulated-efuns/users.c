@@ -6,6 +6,7 @@
 private mapping livingObjects = ([]);
 private mapping players = ([]);
 private mapping wizards = ([]);
+private mapping guests = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int interactive(object user)
@@ -187,4 +188,25 @@ public nomask varargs int demoteWizardToPlayer(string wizardName)
 public nomask string StartLocation()
 {
     return "/areas/eledhel/southern-city/12x2.c";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getGuestName(object player)
+{
+    if (!sizeof(guests))
+    {
+        for (int i = 1; i < 100; i++)
+        {
+            guests[sprintf("guest%02d", i)] = 0;
+        }
+    }
+
+    string *possibleNames = sort_array(filter(m_indices(guests),
+        (: !objectp($2[$1]) :), guests), (: $1 > $2 :));
+
+    string guestName = sizeof(possibleNames) ? possibleNames[0] :
+        "guest";
+    guests[guestName] = player;
+
+    return guestName;
 }

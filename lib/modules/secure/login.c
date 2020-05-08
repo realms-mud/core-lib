@@ -82,6 +82,7 @@ private nomask object loadNewPlayerObject(string name)
             ret->registerEvent(clone_object(
                 "/lib/modules/creation/initializePlayer.c"));
             ret->restore(name);
+
             break;
         }
     }

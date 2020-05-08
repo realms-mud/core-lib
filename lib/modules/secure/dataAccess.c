@@ -22,37 +22,44 @@ virtual inherit "/lib/modules/secure/dataServices/domainsDataService.c";
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getPlayerData(string name)
 {
-    mapping data = (["name":name]);
-
-    if (canAccessDatabase(previous_object()))
+    mapping data = (["name": name]);
+    if (name == "guest")
     {
-        int dbHandle = connect();
-        data += getBasicPlayerData(name, dbHandle);
-
-        if (member(data, "playerId"))
-        {
-            data += getGuildData(data["playerId"], dbHandle);
-            data += getMaterialAttributes(data["playerId"], dbHandle);
-            data += getQuestData(data["playerId"], dbHandle);
-            data += getResearch(data["playerId"], dbHandle);
-            data += getResearchChoices(data["playerId"], dbHandle);
-            data += getOpenResearchTrees(data["playerId"], dbHandle);
-            data += getSkills(data["playerId"], dbHandle);
-            data += getTraits(data["playerId"], dbHandle);
-            data += getTemporaryTraits(data["playerId"], dbHandle);
-            data += getFactions(data["playerId"], dbHandle);
-            data += getWizardLevel(data["playerId"], dbHandle);
-            data += getPlayerSettings(dbHandle, name);
-//            data += getPlayerDomains(data["playerId"], dbHandle);
-            data += getInventory(data["playerId"], dbHandle);
-        }
-
-        disconnect(dbHandle);
+        data["is guest"] = 1;
+        data["location"] = StartLocation();
     }
     else
     {
-        write("This is where a stern message about trying to circumvent "
-            "security should probably go: " + program_name(previous_object()) + "\n");
+        if (canAccessDatabase(previous_object()))
+        {
+            int dbHandle = connect();
+            data += getBasicPlayerData(name, dbHandle);
+
+            if (member(data, "playerId"))
+            {
+                data += getGuildData(data["playerId"], dbHandle);
+                data += getMaterialAttributes(data["playerId"], dbHandle);
+                data += getQuestData(data["playerId"], dbHandle);
+                data += getResearch(data["playerId"], dbHandle);
+                data += getResearchChoices(data["playerId"], dbHandle);
+                data += getOpenResearchTrees(data["playerId"], dbHandle);
+                data += getSkills(data["playerId"], dbHandle);
+                data += getTraits(data["playerId"], dbHandle);
+                data += getTemporaryTraits(data["playerId"], dbHandle);
+                data += getFactions(data["playerId"], dbHandle);
+                data += getWizardLevel(data["playerId"], dbHandle);
+                data += getPlayerSettings(dbHandle, name);
+                // data += getPlayerDomains(data["playerId"], dbHandle);
+                data += getInventory(data["playerId"], dbHandle);
+            }
+
+            disconnect(dbHandle);
+        }
+        else
+        {
+            write("This is where a stern message about trying to circumvent "
+                "security should probably go: " + program_name(previous_object()) + "\n");
+        }
     }
     return data + ([]);
 }
@@ -62,7 +69,8 @@ public nomask void savePlayerData(mapping playerData)
 {
     if (canAccessDatabase(previous_object()))
     {
-        if (member(playerData, "name") && (playerData["name"] != ""))
+        if (member(playerData, "name") && (playerData["name"] != "") &&
+            !member(playerData, "is guest"))
         {
             int dbHandle = connect();
             int playerId = saveBasicPlayerData(dbHandle, playerData);

@@ -105,6 +105,7 @@ static nomask void getUserLogin(string userName)
             }
             case "guest":
             {
+                execGuestPlayer();
                 break;
             }
             default:

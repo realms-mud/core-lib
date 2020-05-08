@@ -26,6 +26,22 @@ private nomask void execNewPlayer(string password, string userName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void execGuestPlayer()
+{
+    printf("\n");
+    object loginModule = load_object("/lib/modules/secure/login.c");
+    object player = loginModule->getPlayerObject("guest");
+
+    if (objectp(player))
+    {
+        exec(player, this_object());
+        addUser(player);
+
+        command("l", player);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 static nomask void confirmPassword(string confirmPassword, string password,
     string userName)
 {

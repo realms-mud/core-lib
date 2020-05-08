@@ -139,12 +139,16 @@ public nomask void restore(string name)
     if (canAccessDatabase(previous_object()))
     {
         mapping playerData = DataAccess()->getPlayerData(name);
+        if (name == "guest")
+        {
+            playerData["name"] = getGuestName(this_object());
+        }
 
         if (sizeof(playerData) > 1)
         {
             setPlayerInfo(playerData);
 
-            if (!validatePlayerData(playerData))
+            if ((name != "guest") && !validatePlayerData(playerData))
             {
                 this_object()->notifySynchronous("onCreationIncomplete");
             }

@@ -256,6 +256,16 @@ void GetPlayerDataReturnsDataFromDatabase()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void GetPlayerDataForGuestReturnsSimpleMap()
+{
+    mapping expected = ([ "name": "guest", "is guest": 1 ]);
+
+    mapping result = DataAccess->getPlayerData("guest");
+
+    ExpectEq(expected, result);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void GetPlayerDataForWizardReturnsDataFromDatabase()
 {
     mapping expected = Database->GetWizardOfLevel("creator");

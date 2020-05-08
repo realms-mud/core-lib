@@ -25,6 +25,7 @@ private mapping properties = ([]);
 private string whenCreated;
 private string LastLogin;
 private string location = DefaultStart;
+private int isGuest = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 private nosave mapping genderPronouns = ([
@@ -74,6 +75,7 @@ static nomask void loadMaterialAttributes(mapping data, object persistence)
         whenCreated = persistence->extractSaveData("whenCreated", data);
         LastLogin = persistence->extractSaveData("LastLogin", data);
         location = persistence->extractSaveData("location", data);
+        isGuest = persistence->extractSaveData("is guest", data);
     }
 }
 
@@ -97,6 +99,7 @@ static nomask mapping sendMaterialAttributes()
     ret["title"] = title;
     ret["pretitle"] = pretitle;
     ret["invisible"] = invisibility;
+    ret["is guest"] = isGuest;
 
     ret["location"] = environment() && environment()->environmentName() ? 
         environment()->environmentName() : DefaultStart;

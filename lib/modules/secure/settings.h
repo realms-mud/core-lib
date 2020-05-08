@@ -49,6 +49,11 @@ static nomask void loadSettings(mapping data, object persistence)
     {
         characterSet = "ascii";
     }
+
+    if (!mappingp(blocks))
+    {
+        blocks = ([]);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
