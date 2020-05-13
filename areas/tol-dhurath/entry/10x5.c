@@ -8,7 +8,7 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/landforms/knoll.c", "south");
+    addFeature("/lib/environment/features/landforms/knoll.c", "north");
     addFeature("/lib/environment/features/landforms/hollow.c", "south");
 
     addExit("east", "/areas/tol-dhurath/entry/11x5.c");

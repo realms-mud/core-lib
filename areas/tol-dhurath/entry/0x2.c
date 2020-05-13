@@ -9,12 +9,12 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/water/canyon-dry-bed.c", "south");
-    addFeature("/lib/environment/features/landforms/mound.c", "south");
+    addFeature("/lib/environment/features/landforms/mound.c", "east");
 
     addExit("south", "/areas/tol-dhurath/entry/0x1.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
     addExit("north", "/areas/tol-dhurath/entry/0x3.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 
-    addRandomCreature(({"mountain lion","outlaw","kit fox"}));
+    addRandomCreature(({"muskrat","outlaw","kit fox"}));
 }

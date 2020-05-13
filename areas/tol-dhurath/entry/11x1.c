@@ -8,7 +8,7 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/water/canyon-creek.c", "east");
+    addFeature("/lib/environment/features/water/canyon-creek.c", "north");
     addFeature("/lib/environment/features/landforms/butte.c", "east");
 
     addExit("south", "/areas/tol-dhurath/entry/11x0.c");

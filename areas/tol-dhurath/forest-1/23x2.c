@@ -9,10 +9,10 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/hillock.c", "southeast");
-    addFeature("/lib/environment/features/water/brook.c", "southeast");
+    addFeature("/lib/environment/features/water/brook.c", "west");
 
     addExit("south", "/areas/tol-dhurath/forest-1/23x1.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 
-    addRandomCreature(({"ruffian","keeper of the night","outlaw"}));
+    addRandomCreature(({"ruffian","hunter","outlaw"}));
 }

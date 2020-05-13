@@ -9,8 +9,8 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/tor.c", "west");
-    addFeature("/lib/environment/features/water/creek.c", "west");
-    addFeature("/lib/environment/features/landforms/glen.c", "west");
+    addFeature("/lib/environment/features/water/creek.c", "southwest");
+    addFeature("/lib/environment/features/landforms/glen.c", "southeast");
 
     addExit("west", "/areas/tol-dhurath/forest-2/11x9.c");
     addFeature("/lib/environment/features/paths/path.c", "west");

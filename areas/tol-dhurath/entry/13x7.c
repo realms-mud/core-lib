@@ -13,5 +13,5 @@ public void Setup()
     addExit("south", "/areas/tol-dhurath/entry/13x6.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 
-    addRandomCreature(({"hunter","coyote","outlaw","warg","timber wolf","boar"}));
+    addRandomCreature(({"hunter","coyote","outlaw","white-tail deer"}));
 }

@@ -9,8 +9,8 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/knoll.c", "south");
-    addFeature("/lib/environment/features/landforms/hollow.c", "south");
-    addFeature("/lib/environment/features/water/brook.c", "south");
+    addFeature("/lib/environment/features/landforms/hollow.c", "north");
+    addFeature("/lib/environment/features/water/brook.c", "east");
 
     addExit("east", "/areas/tol-dhurath/forest-2/16x9.c");
     addFeature("/lib/environment/features/paths/path.c", "east");

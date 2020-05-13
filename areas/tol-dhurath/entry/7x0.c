@@ -9,11 +9,11 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/dell.c", "west");
-    addFeature("/lib/environment/features/water/sandy-lake-beach.c", "west");
-    addFeature("/lib/environment/features/water/brook.c", "west");
+    addFeature("/lib/environment/features/trees/chokecherry-stand.c", "east");
+    addFeature("/lib/environment/features/water/brook.c", "north");
 
     addExit("east", "/areas/tol-dhurath/entry/8x0.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
-    addRandomCreature(({"ruffian","knight of the storm","outlaw","timber wolf","boar","wolverine"}));
+    addRandomCreature(({"ruffian","outlaw","gray fox"}));
 }

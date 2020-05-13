@@ -20,6 +20,11 @@
 /areas/eledhel/southwest-rural-one/region.c
 /areas/eledhel/southwest-rural-three/region.c
 /areas/eledhel/southwest-rural-two/region.c
+/areas/eledhel/tol-dhurath/entry/region.c
+/areas/eledhel/tol-dhurath/forest-1/region.c
+/areas/eledhel/tol-dhurath/forest-2/region.c
+/areas/eledhel/tol-dhurath/forest-3/region.c
+/areas/eledhel/tol-dhurath/temple/region.c
 /guilds/background/background.c
 /guilds/fighter/fighter.c
 /guilds/scion/scionOfDhuras.c

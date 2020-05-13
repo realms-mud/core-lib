@@ -9,8 +9,8 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/water/creek.c", "north");
-    addFeature("/lib/environment/features/trees/sugar-maple-stand.c", "north");
-    addFeature("/lib/environment/features/trees/maple-stand.c", "north");
+    addFeature("/lib/environment/features/trees/sugar-maple-stand.c", "west");
+    addFeature("/lib/environment/features/trees/maple-stand.c", "southwest");
 
     addExit("east", "/areas/tol-dhurath/entry/24x4.c");
     addFeature("/lib/environment/features/paths/path.c", "east");

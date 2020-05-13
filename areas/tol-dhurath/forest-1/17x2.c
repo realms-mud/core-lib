@@ -8,7 +8,7 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/water/gulley-creek.c", "northwest");
+    addFeature("/lib/environment/features/water/gulley-creek.c", "north");
 
     addExit("south", "/areas/tol-dhurath/forest-1/17x1.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
@@ -17,5 +17,5 @@ public void Setup()
     addExit("east", "/areas/tol-dhurath/forest-1/18x2.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
-    addRandomCreature(({"hunter","ruffian","outlaw","skeleton"}));
+    addRandomCreature(({"hunter","ruffian","outlaw","skunk"}));
 }

@@ -8,8 +8,8 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/landforms/precipice.c", "northwest");
-    addFeature("/lib/environment/features/trees/elm-stand.c", "northwest");
+    addFeature("/lib/environment/features/landforms/precipice.c", "west");
+    addFeature("/lib/environment/features/trees/elm-stand.c", "north");
 
     addExit("west", "/areas/tol-dhurath/entry/21x3.c");
     addFeature("/lib/environment/features/paths/path.c", "west");

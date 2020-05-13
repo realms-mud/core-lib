@@ -18,14 +18,12 @@ void Setup()
 
     Region = clone_object("/lib/tests/support/environment/regionHelper.c");
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     destruct(Region);
     destruct(Player);
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidRegionTypeThrowsError()
 {
@@ -35,7 +33,6 @@ void SettingInvalidRegionTypeThrowsError()
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CannotGenerateRegionWithoutType()
 {
@@ -46,7 +43,6 @@ void CannotGenerateRegionWithoutType()
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CannotGenerateRegionWithoutName()
 {
@@ -57,7 +53,6 @@ void CannotGenerateRegionWithoutName()
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void SendingEntryCreatesMapWithCorrectEntryPoint()
 {
@@ -68,7 +63,6 @@ void SendingEntryCreatesMapWithCorrectEntryPoint()
     ExpectEq("north", Region->createRegion("south"));
     ExpectEq("west", Region->createRegion("east"));
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CanCreateWithSpecificEntryPoint()
 {
@@ -80,7 +74,6 @@ void CanCreateWithSpecificEntryPoint()
 
     ExpectEq(({ 3, 0 }), Region->EntryLocation());
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CorrectNumberOfRoomsGenerated()
 {
@@ -95,7 +88,6 @@ void CorrectNumberOfRoomsGenerated()
     // exit, but this is not guaranteed.
     ExpectTrue(Region->generatedRoomCount() >= 6);
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void AllGeneratedRoomsHaveExits()
 {
@@ -110,7 +102,6 @@ void AllGeneratedRoomsHaveExits()
         ExpectTrue(sizeof(room["exits"]));
     }
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CanCreateGeneratedRegionFromRealEnvironment()
 {
@@ -130,7 +121,6 @@ void CanCreateGeneratedRegionFromRealEnvironment()
 
     destruct(environment);
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CanCreateManualRegions()
 {
@@ -152,7 +142,7 @@ void CanCreateManualRegions()
         "path");
     Region->setCoordinate(1, 2, "/lib/tests/support/environment/region/1x2.c",
         "path");
-    Region->setCoordinate(2, 0, "/lib/tests/support/environment/region/0x2.c");
+    Region->setCoordinate(2, 0, "/lib/tests/support/environment/region/2x0.c");
     Region->setCoordinate(2, 2, "/lib/tests/support/environment/region/2x2.c");
     Region->setCoordinate(1, 3, "/lib/tests/support/environment/region/1x3.c",
         "path");
@@ -175,7 +165,6 @@ void CanCreateManualRegions()
         "-#--o  #       \n"
         "               \n", Region->displayMap(Player));
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void MapsChangeWithStateTransitions()
 {
@@ -239,7 +228,6 @@ void MapsChangeWithStateTransitions()
         "                     \n"
         "                     \n", region->displayMap(Player, stateMachine->getCurrentState()));
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CanGenerateSettlement()
 {
@@ -271,7 +259,6 @@ void CanGenerateSettlement()
 
     ToggleCallOutBypass();
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CanGenerateFiles()
 {
@@ -319,7 +306,6 @@ void CanGenerateFiles()
     rmdir(dirToDelete);
     rmdir(originalDir);
 }
-
 /////////////////////////////////////////////////////////////////////////////
 void CanEnterTemplatedRegion()
 {
@@ -348,9 +334,40 @@ void CanEnterTemplatedRegion()
 
     ToggleCallOutBypass();
 }
-
 /////////////////////////////////////////////////////////////////////////////
 /*void Y()
+{
+    string *files = get_dir("/areas/tol-dhurath/temple-exterior/*") -
+        ({ ".", "..", "region.c" });
+
+    foreach(string file in files)
+    {
+        string *directions = ({ "north", "north", "north", "north", "south",
+            "south", "south","south","east","east","east",
+            "east", "west", "west", "west","west","northwest", "northeast", "southwest",
+            "southeast" });
+
+        string fileData = read_file(sprintf("/areas/tol-dhurath/temple-exterior/%s", file));
+        string *fileLines = explode(fileData, "\n");
+
+        fileData = "";
+        foreach(string line in fileLines)
+        {
+            string newDir = directions[random(sizeof(directions))];
+            if (sizeof(regexp(({ line }), "(addFeature../lib/environment/features/(trees|landforms|water)[^\"]+\", \")([^\"]+)")))
+            {
+                line = regreplace(line,
+                    "(addFeature../lib/environment/features/(trees|landforms|water)[^\"]+\", \")([^\"]+)",
+                    "\\1" + newDir, 1);
+                directions -= ({ newDir });
+            }
+            fileData += line + "\n";
+        }
+        write_file(sprintf("/areas/tol-dhurath/temple-exterior/%s", file), fileData, 1);
+    }
+}
+/////////////////////////////////////////////////////////////////////////////
+void Y()
 {
     load_object("/lib/dictionaries/environmentDictionary.c");
 

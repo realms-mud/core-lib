@@ -8,9 +8,9 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "southeast");
-    addFeature("/lib/environment/features/landforms/ridge.c", "southeast");
-    addFeature("/lib/environment/features/landforms/glen.c", "southeast");
+    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "east");
+    addFeature("/lib/environment/features/landforms/ridge.c", "north");
+    addFeature("/lib/environment/features/landforms/glen.c", "west");
 
     addExit("east", "/areas/tol-dhurath/entry/12x5.c");
     addFeature("/lib/environment/features/paths/path.c", "east");

@@ -8,9 +8,9 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/montmorency-cherry-stand.c", "northeast");
-    addFeature("/lib/environment/features/water/canyon-stream.c", "northeast");
-    addFeature("/lib/environment/features/trees/ash-stand.c", "northeast");
+    addFeature("/lib/environment/features/trees/montmorency-cherry-stand.c", "northwest");
+    addFeature("/lib/environment/features/water/canyon-stream.c", "west");
+    addFeature("/lib/environment/features/trees/ash-stand.c", "south");
 
     addExit("west", "/areas/tol-dhurath/forest-1/14x9.c");
     addFeature("/lib/environment/features/paths/path.c", "west");

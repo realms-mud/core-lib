@@ -8,8 +8,8 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/sycamore-stand.c", "north");
-    addFeature("/lib/environment/features/landforms/promontory.c", "north");
+    addFeature("/lib/environment/features/trees/sycamore-stand.c", "west");
+    addFeature("/lib/environment/features/landforms/promontory.c", "south");
 
     addExit("south", "/areas/tol-dhurath/forest-2/16x4.c");
     addFeature("/lib/environment/features/paths/path.c", "south");

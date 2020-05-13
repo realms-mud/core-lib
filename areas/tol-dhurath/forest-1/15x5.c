@@ -8,9 +8,9 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/pine-stand.c", "northeast");
-    addFeature("/lib/environment/features/landforms/hillock.c", "northeast");
-    addFeature("/lib/environment/features/water/canyon-dry-bed.c", "northeast");
+    addFeature("/lib/environment/features/trees/pine-stand.c", "west");
+    addFeature("/lib/environment/features/landforms/hillock.c", "southwest");
+    addFeature("/lib/environment/features/water/canyon-dry-bed.c", "south");
 
     addExit("east", "/areas/tol-dhurath/forest-1/16x5.c");
     addFeature("/lib/environment/features/paths/path.c", "east");

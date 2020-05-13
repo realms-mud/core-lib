@@ -8,7 +8,7 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/landforms/hillock.c", "north");
+    addFeature("/lib/environment/features/landforms/hillock.c", "west");
 
     addExit("west", "/areas/tol-dhurath/forest-1/11x9.c");
     addFeature("/lib/environment/features/paths/path.c", "west");

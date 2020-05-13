@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/alp.c", "south");
-    addFeature("/lib/environment/features/water/ravine-dry-creek.c", "south");
+    addFeature("/lib/environment/features/water/ravine-dry-creek.c", "east");
 
     addExit("west", "/areas/tol-dhurath/entry/19x0.c");
     addFeature("/lib/environment/features/paths/path.c", "west");

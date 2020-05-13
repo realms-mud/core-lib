@@ -8,9 +8,9 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/water/ravine-waterfall.c", "northwest");
-    addFeature("/lib/environment/features/trees/ash-stand.c", "northwest");
-    addFeature("/lib/environment/features/water/brook.c", "northwest");
+    addFeature("/lib/environment/features/water/ravine-waterfall.c", "east");
+    addFeature("/lib/environment/features/trees/ash-stand.c", "south");
+    addFeature("/lib/environment/features/water/brook.c", "west");
 
     addExit("north", "/areas/tol-dhurath/entry/7x8.c");
     addFeature("/lib/environment/features/paths/path.c", "north");

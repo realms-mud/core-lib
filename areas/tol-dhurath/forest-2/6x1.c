@@ -8,9 +8,9 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/landforms/sinkhole.c", "southwest");
-    addFeature("/lib/environment/features/landforms/glen.c", "southwest");
-    addFeature("/lib/environment/features/landforms/hollow.c", "southwest");
+    addFeature("/lib/environment/features/landforms/sinkhole.c", "west");
+    addFeature("/lib/environment/features/landforms/glen.c", "north");
+    addFeature("/lib/environment/features/landforms/hollow.c", "east");
 
     addExit("north", "/areas/tol-dhurath/forest-2/6x2.c");
     addFeature("/lib/environment/features/paths/path.c", "north");

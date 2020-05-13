@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/water/brook.c", "south");
-    addFeature("/lib/environment/features/trees/spruce-stand.c", "south");
+    addFeature("/lib/environment/features/trees/spruce-stand.c", "east");
 
     addExit("north", "/areas/tol-dhurath/forest-1/23x4.c");
     addFeature("/lib/environment/features/paths/path.c", "north");

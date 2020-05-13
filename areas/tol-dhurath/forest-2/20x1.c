@@ -8,8 +8,8 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/water/brook.c", "south");
-    addFeature("/lib/environment/features/landforms/hollow.c", "south");
+    addFeature("/lib/environment/features/water/brook.c", "east");
+    addFeature("/lib/environment/features/landforms/hollow.c", "north");
 
     addExit("south", "/areas/tol-dhurath/forest-2/20x0.c");
     addFeature("/lib/environment/features/paths/path.c", "south");

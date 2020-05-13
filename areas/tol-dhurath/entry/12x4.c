@@ -9,10 +9,10 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/crag.c", "west");
-    addFeature("/lib/environment/features/water/gulley-creek.c", "west");
+    addFeature("/lib/environment/features/water/gulley-creek.c", "east");
 
     addExit("south", "/areas/tol-dhurath/entry/12x3.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 
-    addRandomCreature(({"keeper of the night","warg","outlaw","timber wolf","white-tail deer","wolverine"}));
+    addRandomCreature(({"outlaw","red fox","white-tail deer"}));
 }

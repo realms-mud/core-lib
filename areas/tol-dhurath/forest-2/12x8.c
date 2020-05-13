@@ -8,7 +8,7 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "southeast");
+    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "northeast");
 
     addExit("west", "/areas/tol-dhurath/forest-2/11x8.c");
     addFeature("/lib/environment/features/paths/path.c", "west");

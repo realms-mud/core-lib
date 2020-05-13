@@ -9,8 +9,8 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/birch-stand.c", "southwest");
-    addFeature("/lib/environment/features/trees/buckeye-stand.c", "southwest");
-    addFeature("/lib/environment/features/trees/ash-stand.c", "southwest");
+    addFeature("/lib/environment/features/trees/buckeye-stand.c", "northeast");
+    addFeature("/lib/environment/features/trees/ash-stand.c", "south");
 
     addExit("north", "/areas/tol-dhurath/entry/1x1.c");
     addFeature("/lib/environment/features/paths/path.c", "north");

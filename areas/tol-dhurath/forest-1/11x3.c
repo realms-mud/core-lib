@@ -9,8 +9,8 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/cottonwood-stand.c", "northeast");
-    addFeature("/lib/environment/features/landforms/mound.c", "northeast");
-    addFeature("/lib/environment/features/water/canyon-brook.c", "northeast");
+    addFeature("/lib/environment/features/landforms/mound.c", "northwest");
+    addFeature("/lib/environment/features/water/canyon-brook.c", "west");
 
     addExit("south", "/areas/tol-dhurath/forest-1/11x2.c");
     addFeature("/lib/environment/features/paths/path.c", "south");

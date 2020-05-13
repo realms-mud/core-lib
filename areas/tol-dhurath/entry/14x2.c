@@ -8,10 +8,10 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/sycamore-stand.c", "southeast");
+    addFeature("/lib/environment/features/trees/sycamore-stand.c", "east");
 
     addExit("west", "/areas/tol-dhurath/entry/13x2.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
-    addRandomCreature(({"skeleton","mule deer","keeper of the night"}));
+    addRandomCreature(({"white-tail deer","mule deer"}));
 }

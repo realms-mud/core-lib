@@ -9,10 +9,10 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/hemlock-stand.c", "south");
-    addFeature("/lib/environment/features/landforms/glen.c", "south");
+    addFeature("/lib/environment/features/landforms/glen.c", "east");
 
     addExit("south", "/areas/tol-dhurath/forest-1/10x2.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 
-    addRandomCreature(({"black bear","ruffian","knight of the storm","keeper of the night","white-tail deer","gray wolf"}));
+    addRandomCreature(({"ruffian","white-tail deer","gray fox"}));
 }

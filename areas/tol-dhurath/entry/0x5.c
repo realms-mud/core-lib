@@ -8,9 +8,9 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/elm-stand.c", "southeast");
-    addFeature("/lib/environment/features/landforms/crag.c", "southeast");
-    addFeature("/lib/environment/features/water/brook.c", "southeast");
+    addFeature("/lib/environment/features/trees/elm-stand.c", "southwest");
+    addFeature("/lib/environment/features/landforms/crag.c", "east");
+    addFeature("/lib/environment/features/water/brook.c", "northeast");
 
     addExit("south", "/areas/tol-dhurath/entry/0x4.c");
     addFeature("/lib/environment/features/paths/path.c", "south");

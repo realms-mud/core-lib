@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/ridge.c", "southeast");
-    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "southeast");
+    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "west");
 
     addExit("north", "/areas/tol-dhurath/forest-2/24x6.c");
     addFeature("/lib/environment/features/paths/path.c", "north");

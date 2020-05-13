@@ -8,8 +8,8 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/willow-stand.c", "southeast");
-    addFeature("/lib/environment/features/trees/chokecherry-stand.c", "southeast");
+    addFeature("/lib/environment/features/trees/willow-stand.c", "southwest");
+    addFeature("/lib/environment/features/trees/chokecherry-stand.c", "east");
 
     addExit("north", "/areas/tol-dhurath/forest-1/7x8.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
@@ -18,5 +18,5 @@ public void Setup()
     addExit("east", "/areas/tol-dhurath/forest-1/8x7.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
-    addRandomCreature(({"ruffian","warg","mule deer","white-tail deer","timber wolf"}));
+    addRandomCreature(({"ruffian","otter","white-tail deer","badger"}));
 }

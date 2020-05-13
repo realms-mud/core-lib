@@ -9,8 +9,8 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/dell.c", "north");
-    addFeature("/lib/environment/features/water/waterfall.c", "north");
-    addFeature("/lib/environment/features/trees/hemlock-stand.c", "north");
+    addFeature("/lib/environment/features/water/waterfall.c", "east");
+    addFeature("/lib/environment/features/trees/hemlock-stand.c", "southeast");
 
     addExit("south", "/areas/tol-dhurath/forest-1/6x6.c");
     addFeature("/lib/environment/features/paths/path.c", "south");

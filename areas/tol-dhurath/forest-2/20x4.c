@@ -8,9 +8,9 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/landforms/knoll.c", "east");
-    addFeature("/lib/environment/features/trees/ash-stand.c", "east");
-    addFeature("/lib/environment/features/water/brook.c", "east");
+    addFeature("/lib/environment/features/landforms/knoll.c", "north");
+    addFeature("/lib/environment/features/trees/ash-stand.c", "south");
+    addFeature("/lib/environment/features/water/brook.c", "southwest");
 
     addExit("south", "/areas/tol-dhurath/forest-2/20x3.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
@@ -19,5 +19,5 @@ public void Setup()
     addExit("west", "/areas/tol-dhurath/forest-2/19x4.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
-    addRandomCreature(({"ruffian","black bear","knight of the storm","outlaw","white-tail deer"}));
+    addRandomCreature(({"ruffian","outlaw","white-tail deer"}));
 }

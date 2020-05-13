@@ -8,8 +8,8 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/birch-stand.c", "southeast");
-    addFeature("/lib/environment/features/landforms/ridge.c", "east");
+    addFeature("/lib/environment/features/trees/birch-stand.c", "south");
+    addFeature("/lib/environment/features/landforms/ridge.c", "northwest");
 
     addExit("south", "/areas/tol-dhurath/entry/7x9.c");
     addFeature("/lib/environment/features/paths/path.c", "south");

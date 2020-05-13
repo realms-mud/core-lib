@@ -8,14 +8,14 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/water/canyon-creek.c", "west");
-    addFeature("/lib/environment/features/landforms/knoll.c", "west");
-    addFeature("/lib/environment/features/trees/spruce-stand.c", "west");
+    addFeature("/lib/environment/features/water/canyon-creek.c", "east");
+    addFeature("/lib/environment/features/landforms/knoll.c", "north");
+    addFeature("/lib/environment/features/trees/spruce-stand.c", "south");
 
     addExit("north", "/areas/tol-dhurath/forest-2/22x5.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
     addExit("south", "/areas/tol-dhurath/forest-2/22x3.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 
-    addRandomCreature(({"ruffian","keeper of the night","coyote","knight of the storm"}));
+    addRandomCreature(({"ruffian","coyote"}));
 }

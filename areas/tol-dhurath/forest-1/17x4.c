@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/elm-stand.c", "west");
-    addFeature("/lib/environment/features/trees/hickory-stand.c", "west");
+    addFeature("/lib/environment/features/trees/hickory-stand.c", "east");
 
     addExit("south", "/areas/tol-dhurath/forest-1/17x3.c");
     addFeature("/lib/environment/features/paths/path.c", "south");

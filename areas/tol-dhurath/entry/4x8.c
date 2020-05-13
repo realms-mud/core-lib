@@ -8,9 +8,9 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/ambrosia-apple-stand.c", "west");
-    addFeature("/lib/environment/features/trees/pine-stand.c", "west");
-    addFeature("/lib/environment/features/landforms/glen.c", "west");
+    addFeature("/lib/environment/features/trees/ambrosia-apple-stand.c", "north");
+    addFeature("/lib/environment/features/trees/pine-stand.c", "east");
+    addFeature("/lib/environment/features/landforms/glen.c", "northeast");
 
     addExit("south", "/areas/tol-dhurath/entry/4x7.c");
     addFeature("/lib/environment/features/paths/path.c", "south");

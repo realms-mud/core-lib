@@ -8,14 +8,14 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/beech-stand.c", "northeast");
-    addFeature("/lib/environment/features/trees/cedar-stand.c", "northeast");
-    addFeature("/lib/environment/features/water/brook.c", "northeast");
+    addFeature("/lib/environment/features/trees/beech-stand.c", "southwest");
+    addFeature("/lib/environment/features/trees/cedar-stand.c", "south");
+    addFeature("/lib/environment/features/water/brook.c", "west");
 
     addExit("east", "/areas/tol-dhurath/forest-2/3x3.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
     addExit("west", "/areas/tol-dhurath/forest-2/1x3.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
-    addRandomCreature(({"ruffian","mule deer","outlaw","skeleton"}));
+    addRandomCreature(({"ruffian","white-tail deer","outlaw","badger"}));
 }

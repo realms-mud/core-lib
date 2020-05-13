@@ -8,10 +8,10 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/beech-stand.c", "north");
+    addFeature("/lib/environment/features/trees/beech-stand.c", "south");
 
     addExit("north", "/areas/tol-dhurath/entry/18x1.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 
-    addRandomCreature(({"ruffian","hunter","coyote","skeleton","timber wolf"}));
+    addRandomCreature(({"ruffian","hunter","coyote"}));
 }

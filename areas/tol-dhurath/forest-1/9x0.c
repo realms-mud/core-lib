@@ -9,11 +9,11 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/water/creek.c", "southeast");
-    addFeature("/lib/environment/features/trees/oak-stand.c", "southeast");
-    addFeature("/lib/environment/features/water/gorge-creek.c", "southeast");
+    addFeature("/lib/environment/features/trees/oak-stand.c", "south");
+    addFeature("/lib/environment/features/water/gorge-creek.c", "east");
 
     addExit("east", "/areas/tol-dhurath/forest-1/10x0.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
-    addRandomCreature(({"outlaw","coyote","white-tail deer","timber wolf","red wolf","mountain lion"}));
+    addRandomCreature(({"outlaw","coyote","white-tail deer","beaver","mink"}));
 }

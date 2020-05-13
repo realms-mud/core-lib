@@ -9,8 +9,8 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/ridge.c", "north");
-    addFeature("/lib/environment/features/trees/ash-stand.c", "north");
-    addFeature("/lib/environment/features/water/gulley-creek.c", "north");
+    addFeature("/lib/environment/features/trees/ash-stand.c", "south");
+    addFeature("/lib/environment/features/water/gulley-creek.c", "east");
 
     addExit("west", "/areas/tol-dhurath/forest-2/3x6.c");
     addFeature("/lib/environment/features/paths/path.c", "west");

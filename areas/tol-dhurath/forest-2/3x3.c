@@ -8,7 +8,7 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "east");
+    addFeature("/lib/environment/features/trees/cottonwood-stand.c", "south");
     addFeature("/lib/environment/features/landforms/glen.c", "east");
 
     addExit("north", "/areas/tol-dhurath/forest-2/3x4.c");
@@ -16,5 +16,5 @@ public void Setup()
     addExit("west", "/areas/tol-dhurath/forest-2/2x3.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
-    addRandomCreature(({"ruffian","black bear","keeper of the night","white-tail deer","gray wolf"}));
+    addRandomCreature(({"ruffian","white-tail deer","gray squirrel"}));
 }

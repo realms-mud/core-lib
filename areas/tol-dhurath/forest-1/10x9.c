@@ -8,9 +8,9 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/chokecherry-stand.c", "northeast");
-    addFeature("/lib/environment/features/trees/birch-stand.c", "northeast");
-    addFeature("/lib/environment/features/water/lake.c", "northeast");
+    addFeature("/lib/environment/features/trees/chokecherry-stand.c", "west");
+    addFeature("/lib/environment/features/trees/birch-stand.c", "north");
+    addFeature("/lib/environment/features/water/lake.c", "south");
 
     addExit("west", "/areas/tol-dhurath/forest-1/9x9.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
