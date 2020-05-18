@@ -12,7 +12,7 @@ public void reset(int arg)
         addSpecification("type", "persona");
         addSpecification("name", "weasel");
         addSpecification("description", "You are a weasel.");
-        addSpecification("root", "creature persona");
+        addSpecification("root", "small animal persona");
         "baseTrait"::reset(arg);
     }
 }

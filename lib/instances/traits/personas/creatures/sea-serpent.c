@@ -12,7 +12,7 @@ public void reset(int arg)
         addSpecification("type", "persona");
         addSpecification("name", "sea serpent");
         addSpecification("description", "You are a sea serpent.");
-        addSpecification("root", "creature persona");
+        addSpecification("root", "large creature persona");
         "baseTrait"::reset(arg);
     }
 }

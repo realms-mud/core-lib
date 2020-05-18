@@ -12,7 +12,7 @@ public void reset(int arg)
         addSpecification("type", "persona");
         addSpecification("name", "purple dragon");
         addSpecification("description", "You are a purple dragon.");
-        addSpecification("root", "creature persona");
+        addSpecification("root", "large creature persona");
         addSpecification("bonus resist psionic", 75);
         addSpecification("bonus resist electricity", 75);
         "baseTrait"::reset(arg);

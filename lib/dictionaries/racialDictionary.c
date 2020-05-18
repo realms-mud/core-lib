@@ -29,6 +29,32 @@ public nomask int isCreatureRace(string race)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string racialType(object creature)
+{
+    string ret = isValidRace(creature->Race()) ? 
+        "humanoid" : "creature";
+
+    if (creature->hasTraitOfRoot("small animal persona"))
+    {
+        ret = "small animal";
+    }
+    else if (creature->hasTraitOfRoot("animal persona"))
+    {
+        ret = "animal";
+    }
+    else if (creature->hasTraitOfRoot("creature persona"))
+    {
+        // This allows a humanoid to be overloaded to a creature
+        ret = "creature";
+    }
+    else if (creature->hasTraitOfRoot("large creature persona"))
+    {
+        ret = "large creature";
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int lookUpBonus(string race, string bonus)
 {
     int ret = 0;

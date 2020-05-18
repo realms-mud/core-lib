@@ -10,9 +10,9 @@ public void reset(int arg)
     if (!arg)
     {
         addSpecification("type", "persona");
-        addSpecification("name", "bear");
-        addSpecification("description", "You are a bear.");
-        addSpecification("root", "creature persona");
+        addSpecification("name", "mule deer");
+        addSpecification("description", "You are a mule deer.");
+        addSpecification("root", "animal persona");
         "baseTrait"::reset(arg);
     }
 }

@@ -12,7 +12,7 @@ public void reset(int arg)
         addSpecification("type", "persona");
         addSpecification("name", "manticore");
         addSpecification("description", "You are a manticore.");
-        addSpecification("root", "creature persona");
+        addSpecification("root", "large creature persona");
         addSpecification("bonus soak", 3);
         "baseTrait"::reset(arg);
     }

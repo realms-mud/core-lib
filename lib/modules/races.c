@@ -48,6 +48,12 @@ public nomask varargs string Race(string newRace)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string racialType()
+{
+    return racialDictionary()->racialType(this_object());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping *racesExtraAttacks()
 {
     return racialDictionary()->extraAttacks(Race());

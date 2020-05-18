@@ -12,7 +12,7 @@ public void reset(int arg)
         addSpecification("type", "persona");
         addSpecification("name", "cat");
         addSpecification("description", "You are a cat.");
-        addSpecification("root", "creature persona");
+        addSpecification("root", "small animal persona");
         "baseTrait"::reset(arg);
     }
 }

@@ -12,7 +12,7 @@ public void reset(int arg)
         addSpecification("type", "persona");
         addSpecification("name", "chimera");
         addSpecification("description", "You are a chimera.");
-        addSpecification("root", "creature persona");
+        addSpecification("root", "large creature persona");
         addSpecification("bonus resist physical", 15);
         "baseTrait"::reset(arg);
     }

@@ -13,6 +13,6 @@ public void Setup()
 
     addExit("south", "/areas/tol-dhurath/forest-1/7x0.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("north", "/areas/tol-dhurath/forest-1/7x2.c");
-    addFeature("/lib/environment/features/paths/path.c", "north");
+    addExit("east", "/areas/tol-dhurath/forest-1/8x1.c");
+    addFeature("/lib/environment/features/paths/path.c", "east");
 }

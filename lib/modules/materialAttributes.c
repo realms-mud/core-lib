@@ -322,7 +322,7 @@ public varargs string short(string newShort)
         {
             object race = getService("races");
             ret = "The silhouette of a " +
-                ((race && race->apparentRace()) ? "humanoid" : "creature");
+                (objectp(race) ? race->racialType() : "creature");
             break;
         }
         case 4:
