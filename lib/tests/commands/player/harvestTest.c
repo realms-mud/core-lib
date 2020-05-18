@@ -43,6 +43,7 @@ private string statusMessage()
         "This can only be harvested when you're using: axe.\n"
         "\n"
         "Name: Alder Catkin\n"
+        "Alias(es): catkin\n"
         "There are 25 alder catkin available for harvest.\n"
         "This can only be harvested when the season is summer.\n"
         "\n"

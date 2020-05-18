@@ -189,7 +189,7 @@ public void Setup()
     setCoordinate(23, 9,
         "/areas/tol-dhurath/forest-3/23x9.c", "path");
     setCoordinate(24, 3,
-        "/areas/tol-dhurath/forest-3/24x3.c", "entry");
+        "/areas/tol-dhurath/forest-3/24x3.c", "path");
     setCoordinate(24, 4,
         "/areas/tol-dhurath/forest-3/24x4.c", "entry");
     setCoordinate(24, 5,
