@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("teak", "axe");
 
     harvestableResource("teak fruit", 25,
-        "/lib/instances/items/food/plants/fruit/teak-fruit.c",
+        "/lib/instances/items/food/plants/fruit/teak-fruit.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("teak fruit", "summer");
 }

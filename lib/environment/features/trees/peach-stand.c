@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("peach tree", "axe");
 
     harvestableResource("peach", 10,
-        "/lib/instances/items/food/plants/fruit/peach.c",
+        "/lib/instances/items/food/plants/fruit/peach.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("peach", "summer");
 }

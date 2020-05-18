@@ -27,12 +27,12 @@ public void Setup()
     harvestRequiresTool("yew", "axe");
 
     harvestableResource("yew cone", 25,
-        "/lib/instances/items/food/plants/seeds/yew-cone.c",
+        "/lib/instances/items/food/plants/seeds/yew-cone.c", 0,
         ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("yew cone", "summer");
 
     harvestableResource("pine nut", 25,
-        "/lib/instances/items/food/plants/nuts/pine-nut.c",
+        "/lib/instances/items/food/plants/nuts/pine-nut.c", 0,
         ({ "nut", "yew nut" }));
     limitHarvestBySeason("pine nut", "summer");
 }

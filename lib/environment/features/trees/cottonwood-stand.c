@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("cottonwood", "axe");
 
     harvestableResource("cottonwood catkin", 25,
-        "/lib/instances/items/food/plants/seeds/cottonwood-catkin.c",
+        "/lib/instances/items/food/plants/seeds/cottonwood-catkin.c", 0,
         ({ "catkin" }));
     limitHarvestBySeason("cottonwood catkin", "summer");
 }

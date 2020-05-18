@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("beech", "axe");
 
     harvestableResource("beech nut", 25,
-        "/lib/instances/items/food/plants/nuts/beech-nut.c",
+        "/lib/instances/items/food/plants/nuts/beech-nut.c", 0,
         ({ "nut" }));
     limitHarvestBySeason("beech nut", "summer");
 }

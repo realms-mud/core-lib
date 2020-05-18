@@ -1563,5 +1563,10 @@ public nomask varargs string harvestStatistics(object user, string item)
             }
         }
     }
+
+    if (!ret)
+    {
+        ret = "There is nothing in this environment that can be harvested.\n";
+    }
     return ret;
 }

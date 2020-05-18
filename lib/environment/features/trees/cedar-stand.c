@@ -28,7 +28,7 @@ public void Setup()
     harvestRequiresTool("cedar", "axe");
 
     harvestableResource("cedar cone", 25,
-        "/lib/instances/items/food/plants/seeds/cedar-cone.c",
+        "/lib/instances/items/food/plants/seeds/cedar-cone.c", 0,
         ({ "cone", "conifer cone" }));
     limitHarvestBySeason("cedar cone", "summer");
 }

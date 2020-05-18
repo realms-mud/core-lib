@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("buckeye", "axe");
 
     harvestableResource("buckeye globose", 25,
-        "/lib/instances/items/food/plants/seeds/buckeye-globose.c",
+        "/lib/instances/items/food/plants/seeds/buckeye-globose.c", 0,
         ({ "globose" }));
     limitHarvestBySeason("buckeye globose", "summer");
 }

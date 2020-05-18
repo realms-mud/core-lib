@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("kingwood", "axe");
 
     harvestableResource("kingwood seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/kingwood-seed-pod.c",
+        "/lib/instances/items/food/plants/seeds/kingwood-seed-pod.c", 0,
         ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("kingwood seed pod", "summer");
 }

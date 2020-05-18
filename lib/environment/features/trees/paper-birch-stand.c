@@ -29,11 +29,11 @@ public void Setup()
     harvestRequiresTool("paper birch", "axe");
 
     harvestableResource("paper birch catkin", 25,
-        "/lib/instances/items/food/plants/seeds/paper-birch-catkin.c",
+        "/lib/instances/items/food/plants/seeds/paper-birch-catkin.c", 0,
         ({ "birch catkin", "catkin" }));
     limitHarvestBySeason("paper birch catkin", "summer");
 
     harvestableResource("paper birch bark", 10,
-        "/lib/instances/items/materials/wood/paper-birch-bark.c",
+        "/lib/instances/items/materials/wood/paper-birch-bark.c", 0,
         ({ "birch bark", "bark" }));
 }

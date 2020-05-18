@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("ambrosia apple tree", "axe");
 
     harvestableResource("ambrosia apple", 10,
-        "/lib/instances/items/food/plants/fruit/ambrosia-apple.c",
+        "/lib/instances/items/food/plants/fruit/ambrosia-apple.c", 0,
         ({ "apple" }));
     limitHarvestBySeason("ambrosia apple", "summer");
 }

@@ -28,12 +28,12 @@ public void Setup()
     harvestRequiresTool("malorn", "axe");
 
     harvestableResource("malorn fruit", 25,
-        "/lib/instances/items/food/plants/fruit/malorn-fruit.c",
+        "/lib/instances/items/food/plants/fruit/malorn-fruit.c", 0,
         ({ "deciduous tree", "malorn tree", "tree" }));
     limitHarvestBySeason("malorn fruit", "summer");
 
     harvestableResource("malorn flower", 25,
-        "/lib/instances/items/food/plants/flowers/malorn-flower.c",
+        "/lib/instances/items/food/plants/flowers/malorn-flower.c", 0,
         ({ "flower" }));
     limitHarvestBySeason("malorn flower", "spring");
 }

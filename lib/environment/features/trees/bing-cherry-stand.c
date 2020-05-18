@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("bing cherry tree", "axe");
 
     harvestableResource("bing cherry", 20,
-        "/lib/instances/items/food/plants/fruit/bing-cherry.c",
+        "/lib/instances/items/food/plants/fruit/bing-cherry.c", 0,
         ({ "cherry", "fruit" }));
     limitHarvestBySeason("bing cherry", "summer");
 }

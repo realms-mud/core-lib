@@ -28,12 +28,12 @@ public void Setup()
     harvestRequiresTool("hemlock", "axe");
 
     harvestableResource("hemlock cone", 25,
-        "/lib/instances/items/food/plants/seeds/hemlock-cone.c",
+        "/lib/instances/items/food/plants/seeds/hemlock-cone.c", 0,
         ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("hemlock cone", "summer");
 
     harvestableResource("pine nut", 25,
-        "/lib/instances/items/food/plants/nuts/pine-nut.c",
+        "/lib/instances/items/food/plants/nuts/pine-nut.c", 0,
         ({ "nut", "hemlock nut" }));
     limitHarvestBySeason("pine nut", "summer");
 }

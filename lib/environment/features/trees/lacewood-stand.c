@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("lacewood", "axe");
 
     harvestableResource("lacewood seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/lacewood-seed-pod.c",
+        "/lib/instances/items/food/plants/seeds/lacewood-seed-pod.c", 0,
         ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("lacewood seed pod", "summer");
 }

@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("oak", "axe");
 
     harvestableResource("acorn", 25,
-        "/lib/instances/items/food/plants/nuts/acorn.c",
+        "/lib/instances/items/food/plants/nuts/acorn.c", 0,
         ({ "acorn nut", "nut" }));
     limitHarvestBySeason("acorn", "summer");
 }

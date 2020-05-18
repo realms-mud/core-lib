@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("holly", "axe");
 
     harvestableResource("holly fruit", 25,
-        "/lib/instances/items/food/plants/fruit/holly-fruit.c",
+        "/lib/instances/items/food/plants/fruit/holly-fruit.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("holly fruit", "summer");
 }

@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("mulberry tree", "axe");
 
     harvestableResource("mulberry", 10,
-        "/lib/instances/items/food/plants/fruit/mulberry.c",
+        "/lib/instances/items/food/plants/fruit/mulberry.c", 0,
         ({ "berry", "fruit" }));
     limitHarvestBySeason("mulberry", "summer");
 }

@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("ebony", "axe");
 
     harvestableResource("ebony seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/ebony-seed-pod.c",
+        "/lib/instances/items/food/plants/seeds/ebony-seed-pod.c", 0,
         ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("ebony seed pod", "summer");
 }

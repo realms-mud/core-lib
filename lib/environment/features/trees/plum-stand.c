@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("plum tree", "axe");
 
     harvestableResource("plum", 10,
-        "/lib/instances/items/food/plants/fruit/plum.c",
+        "/lib/instances/items/food/plants/fruit/plum.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("plum", "summer");
 }

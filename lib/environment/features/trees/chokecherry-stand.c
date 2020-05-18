@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("choke cherry tree", "axe");
 
     harvestableResource("choke cherry", 10,
-        "/lib/instances/items/food/plants/fruit/choke-cherry.c",
+        "/lib/instances/items/food/plants/fruit/choke-cherry.c", 0,
         ({ "chokecherry", "cherry", "fruit" }));
     limitHarvestBySeason("choke cherry", "summer");
 }

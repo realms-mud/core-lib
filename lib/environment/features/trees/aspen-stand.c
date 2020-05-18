@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("aspen", "axe");
 
     harvestableResource("aspen catkin", 25,
-        "/lib/instances/items/food/plants/seeds/aspen-catkin.c",
+        "/lib/instances/items/food/plants/seeds/aspen-catkin.c", 0,
         ({ "catkin" }));
     limitHarvestBySeason("aspen catkin", "summer");
 }

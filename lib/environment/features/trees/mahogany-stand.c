@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("mahogany", "axe");
 
     harvestableResource("mahogany fruit", 25,
-        "/lib/instances/items/food/plants/fruit/mahogany-fruit.c",
+        "/lib/instances/items/food/plants/fruit/mahogany-fruit.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("mahogany fruit", "summer");
 }

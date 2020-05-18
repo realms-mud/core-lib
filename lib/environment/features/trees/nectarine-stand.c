@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("nectarine tree", "axe");
 
     harvestableResource("nectarine", 10,
-        "/lib/instances/items/food/plants/fruit/nectarine.c",
+        "/lib/instances/items/food/plants/fruit/nectarine.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("nectarine", "summer");
 }

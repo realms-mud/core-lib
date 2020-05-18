@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("black cherry tree", "axe");
 
     harvestableResource("black cherry", 20,
-        "/lib/instances/items/food/plants/fruit/black-cherry.c",
+        "/lib/instances/items/food/plants/fruit/black-cherry.c", 0,
         ({ "cherry", "fruit" }));
     limitHarvestBySeason("black cherry", "summer");
 }

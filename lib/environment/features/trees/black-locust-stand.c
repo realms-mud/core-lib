@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("black locust", "axe");
 
     harvestableResource("black locust seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/black-locust-seed-pod.c",
+        "/lib/instances/items/food/plants/seeds/black-locust-seed-pod.c", 0,
         ({ "locust seed pod", "seed pod", "pod", "seed" }));
     limitHarvestBySeason("black locust seed pod", "summer");
 }

@@ -29,12 +29,12 @@ public void Setup()
     harvestRequiresTool("magnolia", "axe");
 
     harvestableResource("magnolia fruit", 25,
-        "/lib/instances/items/food/plants/fruit/magnolia-fruit.c",
+        "/lib/instances/items/food/plants/fruit/magnolia-fruit.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("magnolia fruit", "summer");
 
     harvestableResource("magnolia flower", 25,
-        "/lib/instances/items/food/plants/flowers/magnolia-flower.c",
+        "/lib/instances/items/food/plants/flowers/magnolia-flower.c", 0,
         ({ "flower" }));
     limitHarvestBySeason("magnolia flower", "spring");
 }

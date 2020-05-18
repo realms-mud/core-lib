@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("buckthorn", "axe");
 
     harvestableResource("buckthorn fruit", 25,
-        "/lib/instances/items/food/plants/fruit/buckthorn-fruit.c",
+        "/lib/instances/items/food/plants/fruit/buckthorn-fruit.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("buckthorn fruit", "summer");
 }

@@ -29,12 +29,12 @@ public void Setup()
     harvestRequiresTool("fir", "axe");
 
     harvestableResource("fir cone", 25,
-        "/lib/instances/items/food/plants/seeds/fir-cone.c",
+        "/lib/instances/items/food/plants/seeds/fir-cone.c", 0,
         ({ "cone", "pinecone", "conifer cone", "pine cone" }));
     limitHarvestBySeason("fir cone", "summer");
 
     harvestableResource("pine nut", 25,
-        "/lib/instances/items/food/plants/nuts/pine-nut.c",
+        "/lib/instances/items/food/plants/nuts/pine-nut.c", 0,
         ({ "nut", "fir nut" }));
     limitHarvestBySeason("pine nut", "summer");
 }

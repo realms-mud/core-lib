@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("golden apple tree", "axe");
 
     harvestableResource("golden apple", 10,
-        "/lib/instances/items/food/plants/fruit/golden-apple.c",
+        "/lib/instances/items/food/plants/fruit/golden-apple.c", 0,
         ({ "apple" }));
     limitHarvestBySeason("golden apple", "summer");
 }

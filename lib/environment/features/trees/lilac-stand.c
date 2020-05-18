@@ -29,12 +29,12 @@ public void Setup()
     harvestRequiresTool("lilac", "axe");
 
     harvestableResource("lilac fruit", 25,
-        "/lib/instances/items/food/plants/fruit/lilac-fruit.c",
+        "/lib/instances/items/food/plants/fruit/lilac-fruit.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("lilac fruit", "summer");
 
     harvestableResource("lilac flower", 25,
-        "/lib/instances/items/food/plants/flowers/lilac-flower.c",
+        "/lib/instances/items/food/plants/flowers/lilac-flower.c", 0,
         ({ "flower" }));
     limitHarvestBySeason("lilac flower", "spring");
 }

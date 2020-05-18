@@ -33,7 +33,7 @@ public void Setup()
     harvestRequiresTool("elm", "axe");
 
     harvestableResource("elm samara", 25,
-        "/lib/instances/items/food/plants/seeds/elm-samara.c",
+        "/lib/instances/items/food/plants/seeds/elm-samara.c", 0,
         ({ "samara" }));
     limitHarvestBySeason("elm samara", "summer");
 }

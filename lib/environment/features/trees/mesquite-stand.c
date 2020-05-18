@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("mesquite", "axe");
 
     harvestableResource("mesquite seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/mesquite-seed-pod.c",
+        "/lib/instances/items/food/plants/seeds/mesquite-seed-pod.c", 0,
         ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("mesquite seed pod", "summer");
 }

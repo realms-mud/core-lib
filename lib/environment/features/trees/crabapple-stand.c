@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("crabapple tree", "axe");
 
     harvestableResource("crabapple", 10,
-        "/lib/instances/items/food/plants/fruit/crab-apple.c",
+        "/lib/instances/items/food/plants/fruit/crab-apple.c", 0,
         ({ "apple" }));
     limitHarvestBySeason("crabapple", "summer");
 }

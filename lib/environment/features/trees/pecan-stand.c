@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("pecan tree", "axe");
 
     harvestableResource("pecan", 10,
-        "/lib/instances/items/food/plants/nuts/pecan.c",
+        "/lib/instances/items/food/plants/nuts/pecan.c", 0,
         ({ "nut" }));
     limitHarvestBySeason("pecan", "summer");
 }

@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("bloodwood", "axe");
 
     harvestableResource("bloodwood seed", 25,
-        "/lib/instances/items/food/plants/seeds/bloodwood-seed.c",
+        "/lib/instances/items/food/plants/seeds/bloodwood-seed.c", 0,
         ({ "seed" }));
     limitHarvestBySeason("bloodwood seed", "summer");
 }

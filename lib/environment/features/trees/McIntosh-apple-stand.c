@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("mcintosh apple tree", "axe");
 
     harvestableResource("mcintosh apple", 10,
-        "/lib/instances/items/food/plants/fruit/mcintosh-apple.c",
+        "/lib/instances/items/food/plants/fruit/mcintosh-apple.c", 0,
         ({ "apple" }));
     limitHarvestBySeason("mcintosh apple", "summer");
 }

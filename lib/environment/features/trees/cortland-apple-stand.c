@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("cortland apple tree", "axe");
 
     harvestableResource("cortland apple", 10,
-        "/lib/instances/items/food/plants/fruit/cortland-apple.c",
+        "/lib/instances/items/food/plants/fruit/cortland-apple.c", 0,
         ({ "apple" }));
     limitHarvestBySeason("cortland apple", "summer");
 }

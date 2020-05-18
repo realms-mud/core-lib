@@ -33,7 +33,7 @@ public void Setup()
     harvestRequiresTool("swamp ash", "axe");
 
     harvestableResource("ash samara", 25, 
-        "/lib/instances/items/food/plants/seeds/ash-samara.c",
+        "/lib/instances/items/food/plants/seeds/ash-samara.c", 0,
         ({ "samara" }));
     limitHarvestBySeason("ash samara", "summer");
 }

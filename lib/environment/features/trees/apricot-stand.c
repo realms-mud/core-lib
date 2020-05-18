@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("apricot tree", "axe");
 
     harvestableResource("apricot", 20,
-        "/lib/instances/items/food/plants/fruit/apricot.c",
+        "/lib/instances/items/food/plants/fruit/apricot.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("apricot", "summer");
 }

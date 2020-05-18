@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("almond tree", "axe");
 
     harvestableResource("almond", 10,
-        "/lib/instances/items/food/plants/nuts/almond.c",
+        "/lib/instances/items/food/plants/nuts/almond.c", 0,
         ({ "nut" }));
     limitHarvestBySeason("almond", "summer");
 }

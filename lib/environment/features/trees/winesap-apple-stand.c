@@ -28,7 +28,7 @@ public void Setup()
     harvestRequiresTool("winesap apple tree", "axe");
 
     harvestableResource("winesap apple", 10,
-        "/lib/instances/items/food/plants/fruit/winesap-apple.c",
+        "/lib/instances/items/food/plants/fruit/winesap-apple.c", 0,
         ({ "apple" }));
     limitHarvestBySeason("winesap apple", "summer");
 }

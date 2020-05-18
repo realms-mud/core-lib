@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("montmorency cherry tree", "axe");
 
     harvestableResource("montmorency cherry", 20,
-        "/lib/instances/items/food/plants/fruit/montmorency-cherry.c",
+        "/lib/instances/items/food/plants/fruit/montmorency-cherry.c", 0,
         ({ "cherry", "fruit" }));
     limitHarvestBySeason("montmorency cherry", "summer");
 }

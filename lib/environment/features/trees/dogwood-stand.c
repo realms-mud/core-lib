@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("dogwood", "axe");
 
     harvestableResource("dogwood fruit", 25,
-        "/lib/instances/items/food/plants/fruit/dogwood-fruit.c",
+        "/lib/instances/items/food/plants/fruit/dogwood-fruit.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("dogwood fruit", "summer");
 }

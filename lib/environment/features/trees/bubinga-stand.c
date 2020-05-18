@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("bubinga", "axe");
 
     harvestableResource("bubinga seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/bubinga-seed-pod.c",
+        "/lib/instances/items/food/plants/seeds/bubinga-seed-pod.c", 0,
         ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("bubinga seed pod", "summer");
 }

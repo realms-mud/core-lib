@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("persimmon tree", "axe");
 
     harvestableResource("persimmon", 10,
-        "/lib/instances/items/food/plants/fruit/persimmon.c",
+        "/lib/instances/items/food/plants/fruit/persimmon.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("persimmon", "summer");
 }

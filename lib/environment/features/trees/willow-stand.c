@@ -29,11 +29,11 @@ public void Setup()
     harvestRequiresTool("willow", "axe");
 
     harvestableResource("willow catkin", 25,
-        "/lib/instances/items/food/plants/seeds/willow-catkin.c",
+        "/lib/instances/items/food/plants/seeds/willow-catkin.c", 0,
         ({ "catkin" }));
     limitHarvestBySeason("willow catkin", "summer");
 
     harvestableResource("willow bark", 25,
-        "/lib/instances/items/food/plants/bark/willow-bark.c",
+        "/lib/instances/items/food/plants/bark/willow-bark.c", 0,
         ({ "bark" }));
 }

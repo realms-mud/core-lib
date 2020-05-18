@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("sycamore", "axe");
 
     harvestableResource("sycamore fruit", 25,
-        "/lib/instances/items/food/plants/fruit/sycamore-fruit.c",
+        "/lib/instances/items/food/plants/fruit/sycamore-fruit.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("sycamore fruit", "summer");
 }

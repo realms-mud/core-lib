@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("koa", "axe");
 
     harvestableResource("koa seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/koa-seed-pod.c",
+        "/lib/instances/items/food/plants/seeds/koa-seed-pod.c", 0,
         ({ "seed pod", "pod", "seed" }));
     limitHarvestBySeason("koa seed pod", "summer");
 }

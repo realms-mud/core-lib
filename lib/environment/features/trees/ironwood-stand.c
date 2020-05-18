@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("ironwood", "axe");
 
     harvestableResource("ironwood catkin", 25,
-        "/lib/instances/items/food/plants/seeds/ironwood-catkin.c",
+        "/lib/instances/items/food/plants/seeds/ironwood-catkin.c", 0,
         ({ "catkin" }));
     limitHarvestBySeason("ironwood catkin", "summer");
 }

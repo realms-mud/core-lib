@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("basswood", "axe");
 
     harvestableResource("basswood nut", 25,
-        "/lib/instances/items/food/plants/nuts/basswood-nut.c",
+        "/lib/instances/items/food/plants/nuts/basswood-nut.c", 0,
         ({ "nut" }));
     limitHarvestBySeason("basswood nut", "summer");
 

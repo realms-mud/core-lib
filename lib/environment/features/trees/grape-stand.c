@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("grape tree", "axe");
 
     harvestableResource("grape", 10,
-        "/lib/instances/items/food/plants/fruit/grape.c",
+        "/lib/instances/items/food/plants/fruit/grape.c", 0,
         ({ "fruit" }));
     limitHarvestBySeason("grape", "summer");
 }

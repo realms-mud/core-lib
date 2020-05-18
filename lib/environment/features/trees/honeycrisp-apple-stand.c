@@ -29,7 +29,7 @@ public void Setup()
     harvestRequiresTool("honeycrisp apple tree", "axe");
 
     harvestableResource("honeycrisp apple", 10,
-        "/lib/instances/items/food/plants/fruit/honeycrisp-apple.c",
+        "/lib/instances/items/food/plants/fruit/honeycrisp-apple.c", 0,
         ({ "apple" }));
     limitHarvestBySeason("honeycrisp apple", "summer");
 }

@@ -33,11 +33,11 @@ public void Setup()
     harvestRequiresTool("sugar maple", "axe");
 
     harvestableResource("maple sap", 25,
-        "/lib/instances/items/food/plants/sap/maple-sap.c",
+        "/lib/instances/items/food/plants/sap/maple-sap.c", 0,
         ({ "sap" }));
 
     harvestableResource("maple samara", 25,
-        "/lib/instances/items/food/plants/seeds/maple-samara.c",
+        "/lib/instances/items/food/plants/seeds/maple-samara.c", 0,
         ({ "samara" }));
     limitHarvestBySeason("maple samara", "summer");
 }
