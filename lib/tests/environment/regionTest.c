@@ -334,6 +334,7 @@ void CanEnterTemplatedRegion()
 
     ToggleCallOutBypass();
 }
+
 /////////////////////////////////////////////////////////////////////////////
 /*void Y()
 {
@@ -366,6 +367,9 @@ void CanEnterTemplatedRegion()
         write_file(sprintf("/areas/tol-dhurath/temple-exterior/%s", file), fileData, 1);
     }
 }
+*/
+
+/*
 /////////////////////////////////////////////////////////////////////////////
 void Y()
 {
@@ -374,14 +378,13 @@ void Y()
     ToggleCallOutBypass();
 
     object region = 
-        load_object("/areas/eledhel/central-city/central-city.c");
+        load_object("/areas/tol-dhurath/temple-exterior/region.c");
 
-    ExpectEq("x", region->displayMap(Player));
+    ExpectEq("U+00C2", region->displayMap(Player));
 
     ToggleCallOutBypass();
 }
 */
-
 /////////////////////////////////////////////////////////////////////////////
 /*void L()
 {

@@ -7,11 +7,9 @@ inherit "/lib/environment/region.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setRegionName("Tol");
+    setRegionName("Tol-Dhurath Temple Entrance");
     setRegionType("forest");
     setDimensions(25, 10);
-    // EntryCoordinate
-    setSettlementChance(-1);
 
     setCoordinate(0, 4,
         "/areas/tol-dhurath/temple-exterior/0x4.c", "room");
@@ -208,7 +206,7 @@ public void Setup()
     setCoordinate(24, 7,
         "/areas/tol-dhurath/temple-exterior/24x7.c", "path");
     setCoordinate(24, 8,
-        "/areas/tol-dhurath/temple-exterior/24x7.c", "exit");
+        "/areas/tol-dhurath/temple-exterior/24x8.c", "exit");
     setCoordinate(2, 3,
         "/areas/tol-dhurath/temple-exterior/2x3.c", "room");
     setCoordinate(2, 4,
@@ -262,4 +260,3 @@ public void Setup()
 
     // MapIcons
 }
-
