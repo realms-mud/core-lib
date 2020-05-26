@@ -231,32 +231,71 @@ public void Setup()
         "/areas/tol-dhurath/temple-exterior/4x4.c", "path");
     setCoordinate(4, 5,
         "/areas/tol-dhurath/temple-exterior/4x5.c", "room");
+    setCoordinate(4, 7,
+        "/areas/tol-dhurath/temple-exterior/4x7.c", "none");
+    setCoordinate(4, 8,
+        "/areas/tol-dhurath/temple-exterior/4x8.c", "none");
+    setCoordinate(4, 9,
+        "/areas/tol-dhurath/temple-exterior/4x9.c", "none");
     setCoordinate(5, 0,
         "/areas/tol-dhurath/temple-exterior/5x0.c", "room");
     setCoordinate(5, 3,
         "/areas/tol-dhurath/temple-exterior/5x3.c", "path");
     setCoordinate(5, 4,
         "/areas/tol-dhurath/temple-exterior/5x4.c", "path");
+    setCoordinate(5, 7,
+        "/areas/tol-dhurath/temple-exterior/5x7.c", "none");
+    setCoordinate(5, 8,
+        "/areas/tol-dhurath/temple-exterior/5x8.c", "none");
+    setCoordinate(5, 9,
+        "/areas/tol-dhurath/temple-exterior/5x9.c", "none");
     setCoordinate(6, 3,
         "/areas/tol-dhurath/temple-exterior/6x3.c", "path");
     setCoordinate(6, 4,
         "/areas/tol-dhurath/temple-exterior/6x4.c", "path");
+    setCoordinate(6, 5,
+        "/areas/tol-dhurath/temple-exterior/6x5.c", "path");
+    setCoordinate(6, 6,
+        "/areas/tol-dhurath/temple-exterior/6x6.c", "path");
+    setCoordinate(6, 7,
+        "/areas/tol-dhurath/temple-exterior/6x7.c", "path");
+    setCoordinate(6, 8,
+        "/areas/tol-dhurath/temple-exterior/6x8.c", "none");
+    setCoordinate(6, 9,
+        "/areas/tol-dhurath/temple-exterior/6x9.c", "none");
     setCoordinate(7, 3,
         "/areas/tol-dhurath/temple-exterior/7x3.c", "path");
     setCoordinate(7, 4,
         "/areas/tol-dhurath/temple-exterior/7x4.c", "path");
+    setCoordinate(7, 7,
+        "/areas/tol-dhurath/temple-exterior/7x7.c", "none");
+    setCoordinate(7, 8,
+        "/areas/tol-dhurath/temple-exterior/7x8.c", "none");
+    setCoordinate(7, 9,
+        "/areas/tol-dhurath/temple-exterior/7x9.c", "none");
     setCoordinate(8, 3,
         "/areas/tol-dhurath/temple-exterior/8x3.c", "path");
     setCoordinate(8, 4,
         "/areas/tol-dhurath/temple-exterior/8x4.c", "path");
     setCoordinate(8, 5,
         "/areas/tol-dhurath/temple-exterior/8x5.c", "path");
+    setCoordinate(8, 7,
+        "/areas/tol-dhurath/temple-exterior/8x7.c", "none");
+    setCoordinate(8, 8,
+        "/areas/tol-dhurath/temple-exterior/8x8.c", "none");
+    setCoordinate(8, 9,
+        "/areas/tol-dhurath/temple-exterior/8x9.c", "none");
     setCoordinate(9, 3,
         "/areas/tol-dhurath/temple-exterior/9x3.c", "path");
     setCoordinate(9, 4,
         "/areas/tol-dhurath/temple-exterior/9x4.c", "room");
     setCoordinate(9, 5,
         "/areas/tol-dhurath/temple-exterior/9x5.c", "path");
-
+    setCoordinate(9, 7,
+        "/areas/tol-dhurath/temple-exterior/9x7.c", "none");
+    setCoordinate(9, 8,
+        "/areas/tol-dhurath/temple-exterior/9x8.c", "none");
+    setCoordinate(9, 9,
+        "/areas/tol-dhurath/temple-exterior/9x9.c", "none");
     // MapIcons
 }

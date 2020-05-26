@@ -13,7 +13,7 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->addCommands();
-    Player->colorConfiguration("8-bit");
+    Player->colorConfiguration("24-bit");
     Player->charsetConfiguration("unicode");
 
     Region = clone_object("/lib/tests/support/environment/regionHelper.c");
@@ -380,11 +380,12 @@ void Y()
     object region = 
         load_object("/areas/tol-dhurath/temple-exterior/region.c");
 
-    ExpectEq("U+00C2", region->displayMap(Player));
+    ExpectEq("x", region->displayMap(Player));
 
     ToggleCallOutBypass();
 }
 */
+
 /////////////////////////////////////////////////////////////////////////////
 /*void L()
 {
