@@ -426,7 +426,7 @@ private nomask string getSectionWithColor(string colorConfiguration,
 
         section = regreplace(iconSection, "#[^#]+#(.*)", "\\1", 1);
     }
-    else
+    else if(iconSection != " ")
     {
         color = colors[colorConfiguration];
     }
