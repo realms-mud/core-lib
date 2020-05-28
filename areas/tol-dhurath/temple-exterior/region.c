@@ -297,5 +297,4 @@ public void Setup()
         "/areas/tol-dhurath/temple-exterior/9x8.c", "none");
     setCoordinate(9, 9,
         "/areas/tol-dhurath/temple-exterior/9x9.c", "none");
-    // MapIcons
 }

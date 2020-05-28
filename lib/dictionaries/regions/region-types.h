@@ -74,6 +74,16 @@ protected mapping RegionTypes = ([
             "skeleton": 40
         ])
     ]),
+    "tol-dhurath":([
+        "interior": "/lib/environment/interiors/ruin.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "potential encounters": ([
+            "zombie": 40,
+            "skeleton": 40
+        ])
+    ]),
     "hilly forest":([
         "terrain": "/lib/environment/terrain/forest-hill.c",
         "potential features": Trees + Terrain,

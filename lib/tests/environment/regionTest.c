@@ -306,6 +306,7 @@ void CanGenerateFiles()
     rmdir(dirToDelete);
     rmdir(originalDir);
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CanEnterTemplatedRegion()
 {
@@ -333,6 +334,54 @@ void CanEnterTemplatedRegion()
         object_name(environment(Player)));
 
     ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetMapIconReturnsWithNoColorWithASCII()
+{
+    object region =
+        load_object("/areas/tol-dhurath/temple-interior/region.c");
+
+    object dictionary =
+        load_object("/lib/dictionaries/regionDictionary.c");
+
+    ExpectEq(({ ({ "+", " ", "+" }),
+            ({ "+", "-", "+" }),
+            ({ "+", "-", "+" }) }),
+        dictionary->getMapIcon(region,
+            "ruined interior south gatehouse", "none", "ascii"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetMapIconReturnsWithCustomThreeBitColors()
+{
+    object region =
+        load_object("/areas/tol-dhurath/temple-interior/region.c");
+
+    object dictionary = 
+        load_object("/lib/dictionaries/regionDictionary.c");
+
+    ExpectEq(({ ({ "\x1b[0;36;1m\xe2\x97\x8e\x1b[0m", "\x1b[0;36m \x1b[0m", "\x1b[0;36;1m\xe2\x97\x8e\x1b[0m" }),
+            ({ "\x1b[0;36m\xe2\x95\x94\x1b[0m", "\x1b[0;31;1m\xe2\x95\x8c\x1b[0m", "\x1b[0;36m\xe2\x95\x97\x1b[0m" }),
+            ({ "\x1b[0;36m\xe2\x95\xac\x1b[0m", "\x1b[0;36m\xe2\x96\x81\x1b[0m", "\x1b[0;36m\xe2\x95\xac\x1b[0m" }) }), 
+        dictionary->getMapIcon(region,
+        "ruined interior south gatehouse", "3-bit", "unicode"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetMapIconReturnsWithCustomTwentyFourBitColors()
+{
+    object region =
+        load_object("/areas/tol-dhurath/temple-interior/region.c");
+
+    object dictionary =
+        load_object("/lib/dictionaries/regionDictionary.c");
+
+    ExpectEq(({ ({ "\x1b[0;38;2;118;118;128;1m\xe2\x97\x8e\x1b[0m", "\x1b[0;38;2;56;62;56m \x1b[0m", "\x1b[0;38;2;118;118;128;1m\xe2\x97\x8e\x1b[0m" }),
+            ({ "\x1b[0;38;2;56;62;56m\xe2\x95\x94\x1b[0m", "\x1b[0;38;2;72;38;38m\xe2\x95\x8c\x1b[0m", "\x1b[0;38;2;56;62;56m\xe2\x95\x97\x1b[0m" }),
+            ({ "\x1b[0;38;2;56;62;56m\xe2\x95\xac\x1b[0m", "\x1b[0;38;2;102;102;38m\xe2\x96\x81\x1b[0m", "\x1b[0;38;2;56;62;56m\xe2\x95\xac\x1b[0m" }) }),
+        dictionary->getMapIcon(region,
+            "ruined interior south gatehouse", "24-bit", "unicode"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -378,7 +427,7 @@ void Y()
     ToggleCallOutBypass();
 
     object region = 
-        load_object("/areas/tol-dhurath/temple-exterior/region.c");
+        load_object("/areas/tol-dhurath/temple-interior/region.c");
 
     ExpectEq("x", region->displayMap(Player));
 

@@ -409,6 +409,32 @@ public nomask mapping getFloorPlan(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string getSectionWithColor(string colorConfiguration, 
+    string iconSection, mapping colors)
+{
+    string color = "";
+    string section = iconSection;
+
+    if (sizeof(regexp(({ iconSection }), "#[^#]+#")))
+    {
+        string colorLookup = 
+            regreplace(iconSection, "#([^#]+)#.*", "\\1", 1);
+
+        color = member(colors["icons"], colorLookup) ?
+            colors["icons"][colorLookup][colorConfiguration] :
+            colors[colorConfiguration];
+
+        section = regreplace(iconSection, "#[^#]+#(.*)", "\\1", 1);
+    }
+    else
+    {
+        color = colors[colorConfiguration];
+    }
+
+    return color + section + ((color != "") ? "\x1b[0m" : "");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string **getMapIcon(object region, string name, 
     string colorConfiguration, string charset)
 {
@@ -426,7 +452,8 @@ public nomask string **getMapIcon(object region, string name,
         {
             for (int y = 0; y < 3; y++)
             {
-                ret[x][y] = icon[x][y];
+                ret[x][y] = getSectionWithColor(colorConfiguration,
+                    icon[x][y], MapIcons[name]["colors"]);
             }
         }
     }
