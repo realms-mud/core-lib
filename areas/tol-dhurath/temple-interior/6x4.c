@@ -15,5 +15,5 @@ public void Setup()
     addExitWithDoor("south", 
         "/areas/tol-dhurath/temple-exterior/6x7.c");
 
-    addDecorator("ruined interior 4-way hallway");
+    addDecorator("ruined interior west entry alcove");
 }

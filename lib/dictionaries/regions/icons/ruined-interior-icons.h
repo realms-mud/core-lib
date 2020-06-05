@@ -107,6 +107,294 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
             ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
     ]),
+    "ruined interior south alcove": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "|", "#floor# ", "|", }),
+            ({ "|", "#floor# ", "|", }),
+            ({ "+", "=", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x9d" }) })
+    ]),
+    "ruined interior north alcove": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "+", "+", "+", }),
+            ({ "|", "#floor# ", "|", }),
+            ({ "|", "#floor# ", "|", }) }),
+        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\x97" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+    ]),
+    "ruined interior east alcove": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "+", "=", "=", }),
+            ({ "|", "#floor# ", "#floor# ", }),
+            ({ "+", "=", "=", }) }),
+        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\x90" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+    ]),
+    "ruined interior west alcove": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "=", "=", "+", }),
+            ({ "#floor# ", "#floor# ", "|", }),
+            ({ "=", "=", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x97" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x9d" }) })
+    ]),
+    "ruined interior west T-intersection": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#floor# ", "|", }),
+            ({ "#floor# ", "#floor# ", "|", }),
+            ({ "+", "#floor# ", "|", }) }),
+        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+    ]),
+    "ruined interior east T-intersection": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "|", "#floor# ", "+", }),
+            ({ "|", "#floor# ", "#floor# ", }),
+            ({ "|", "#floor# ", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+    ]),
+    "ruined interior south T-intersection": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "=", "=", "=", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "+", "#floor# ", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+    ]),
+    "ruined interior north T-intersection": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "=", "=", "=", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "+", "#floor# ", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+    ]),
+    "ruined interior north entry alcove": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#door#\\", "+", }),
+            ({ "|", "#floor# ", "|", }),
+            ({ "|", "#floor# ", "|", }) }),
+        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xac" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+    ]),
+    "ruined interior south entry alcove": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "|", "#floor# ", "|", }),
+            ({ "|", "#floor# ", "|", }),
+            ({ "+", "#door#/", "+", }), }),
+        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xac" }), })
+    ]),
+    "ruined interior east entry alcove": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "=", "=", }),
+            ({ "#door#/", "#floor# ", "#floor# ", }),
+            ({ "+", "=", "=", }) }),
+        "unicode": ({ ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\x90" }),
+            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+    ]),
+    "ruined interior west entry alcove": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "=", "=", }),
+            ({ "#floor# ", "#floor# ", "#door#/", }),
+            ({ "+", "=", "=", }) }),
+        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\xac", }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83", }),
+            ({ "\xe2\x95\x90", "\xe2\x95\x90","\xe2\x95\xac", }) })
+    ]),
 
 ]);
 
