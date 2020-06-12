@@ -40,6 +40,8 @@ private mapping RuinedInteriorIcons = ([
             ({ "\xe2\x95\x94", "#portcullis#\xe2\x95\x8c", "\xe2\x95\x97" }),
             ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xac" }) })
     ]),
+
+    // Hallways
     "ruined interior east-west hallway": ([
         "colors": ([
             "none": "",
@@ -898,7 +900,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83", }),
             ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81","\xe2\x95\xac", }) })
     ]),
-    "ruined interior north-west corner": ([
+    "ruined interior north-west corner hallway": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -920,7 +922,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
             ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x9d" }) })
     ]),
-    "ruined interior north-west corner south entry": ([
+    "ruined interior north-west corner hallway south entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -948,7 +950,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
             ({ "\xe2\x95\x97", "#door#\xe2\x96\x81", "\xe2\x95\xa3" }) })
     ]),
-    "ruined interior north-west corner east entry": ([
+    "ruined interior north-west corner hallway east entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -976,7 +978,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
             ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\xa9" }) })
     ]),
-    "ruined interior north-west corner south-east entry": ([
+    "ruined interior north-west corner hallway south-east entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1004,7 +1006,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
             ({ "\xe2\x95\x97", "#door#\xe2\x96\x81", "\xe2\x95\xac" }) })
     ]),
-    "ruined interior south-west corner": ([
+    "ruined interior south-west corner hallway": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1026,7 +1028,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
             ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
     ]),
-    "ruined interior south-west corner north entry": ([
+    "ruined interior south-west corner hallway north entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1049,12 +1051,12 @@ private mapping RuinedInteriorIcons = ([
         ]),
         "ascii": ({ ({ "+", "#door#/", "+", }),
             ({ "#floor# ", "#floor# ", "|", }),
-            ({ "-", "#floor# ", "+", }) }),
+            ({ "+", "#floor# ", "+", }) }),
         "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94","\xe2\x95\xa3" }),
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
             ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
     ]),
-    "ruined interior south-west corner east entry": ([
+    "ruined interior south-west corner hallway east entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1075,14 +1077,14 @@ private mapping RuinedInteriorIcons = ([
                 ])
             ])
         ]),
-        "ascii": ({ ({ "+", "#floor# ", "|", }),
+        "ascii": ({ ({ "-", "-", "+" }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
-            ({ "-", "-", "+", }) }),
+            ({ "+", "#floor# ", "|", }) }),
         "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90","\xe2\x95\xa6" }),
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
             ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
     ]),
-    "ruined interior south-west corner north-east entry": ([
+    "ruined interior south-west corner hallway north-east entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1110,7 +1112,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
             ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
     ]),
-    "ruined interior north-east corner": ([
+    "ruined interior north-east corner hallway": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1132,7 +1134,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
             ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x90" }) })
     ]),
-    "ruined interior north-east corner west entry": ([
+    "ruined interior north-east corner hallway west entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1160,7 +1162,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
             ({ "\xe2\x95\xa9", "\xe2\x95\x90", "\xe2\x95\x90" }) })
     ]),
-    "ruined interior north-east corner south entry": ([
+    "ruined interior north-east corner hallway south entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1188,7 +1190,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
             ({ "\xe2\x95\xa0", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
     ]),
-    "ruined interior north-east corner south-west entry": ([
+    "ruined interior north-east corner hallway south-west entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1216,7 +1218,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
             ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
     ]),
-    "ruined interior south-east corner": ([
+    "ruined interior south-east corner hallway": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1238,7 +1240,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
     ]),
-    "ruined interior south-east corner west entry": ([
+    "ruined interior south-east corner hallway west entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1266,7 +1268,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
             ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
     ]),
-    "ruined interior south-east corner north entry": ([
+    "ruined interior south-east corner hallway north entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1294,7 +1296,7 @@ private mapping RuinedInteriorIcons = ([
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
     ]),
-    "ruined interior south-east corner north-west entry": ([
+    "ruined interior south-east corner hallway north-west entry": ([
         "colors": ([
             "none": "",
             "3-bit": "\x1b[0;36m",
@@ -1321,6 +1323,632 @@ private mapping RuinedInteriorIcons = ([
         "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
             ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
             ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+    ]),
+
+    // Large Rooms
+    "ruined interior southeast corner": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "#floor# ", "#floor# ", "|", }),
+            ({ "#floor# ", "#floor# ", "|", }),
+            ({ "-", "-", "+", }) }),
+        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x9d" }) })
+    ]),
+    "ruined interior southeast corner south entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor# ", "#floor# ", "|", }),
+            ({ "#floor# ", "#floor# ", "|", }),
+            ({ "-", "#door#/", "+", }) }),
+        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "\xe2\x95\x97", "#door#\xe2\x96\x81", "\xe2\x95\xa3" }) })
+    ]),
+    "ruined interior southeast corner east entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor# ", "#floor# ", "|", }),
+            ({ "#floor# ", "#floor# ", "#door#/", }),
+            ({ "-", "-", "+", }) }),
+        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
+            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\xa9" }) })
+    ]),
+    "ruined interior southeast corner south-east entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor# ", "#floor# ", "|", }),
+            ({ "#floor# ", "#floor# ", "#door#/", }),
+            ({ "-", "#door#/", "+", }) }),
+        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
+            ({ "\xe2\x95\x97", "#door#\xe2\x96\x81", "\xe2\x95\xac" }) })
+    ]),
+    "ruined interior northeast corner": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "-", "-", "+", }),
+            ({ "#floor# ", "#floor# ", "|", }),
+            ({ "#floor# ", "#floor# ", "|", }) }),
+        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x97" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+    ]),
+    "ruined interior northeast corner north entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#door#/", "+", }),
+            ({ "#floor# ", "#floor# ", "|", }),
+            ({ "#floor# ", "#floor# ", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94","\xe2\x95\xa3" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+    ]),
+    "ruined interior northeast corner east entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "-", "-", "+", }),
+            ({ "#floor# ", "#floor# ", "#door#/", }),
+            ({ "#floor# ", "#floor# ", "|", }) }),
+        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90","\xe2\x95\xa6" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+    ]),
+    "ruined interior northeast corner north-east entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#door#/", "+", }),
+            ({ "#floor# ", "#floor# ", "#door#/", }),
+            ({ "#floor# ", "#floor# ", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94","\xe2\x95\xac" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+    ]),
+    "ruined interior southwest corner": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "|", "#floor# ", "#floor# ", }),
+            ({ "|", "#floor# ", "#floor# ", }),
+            ({ "-", "-", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
+            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+    ]),
+    "ruined interior southwest corner west entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#floor# ", "#floor# ", }),
+            ({ "#door#\\", "#floor# ", "#floor# ", }),
+            ({ "-", "-", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
+            ({ "\xe2\x95\xa9", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+    ]),
+    "ruined interior southwest corner south entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "|", "#floor# ", "#floor# ", }),
+            ({ "|", "#floor# ", "#floor# ", }),
+            ({ "-", "#door#/", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
+            ({ "\xe2\x95\xa0", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+    ]),
+    "ruined interior southwest corner south-west entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#floor# ", "#floor# ", }),
+            ({ "#door#\\", "#floor# ", "#floor# ", }),
+            ({ "+", "#door#/", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
+            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+    ]),
+    "ruined interior northwest corner": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "+", "-", "-", }),
+            ({ "|", "#floor# ", "#floor# ", }),
+            ({ "|", "#floor# ", "#floor# ", }) }),
+        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\x90" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+    ]),
+    "ruined interior northwest corner west entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "-", "-", }),
+            ({ "#door#\\", "#floor# ", "#floor# ", }),
+            ({ "+", "#floor# ", "#floor# ", }) }),
+        "unicode": ({ ({ "\xe2\x95\xa6", "\xe2\x95\x90", "\xe2\x95\x90" }),
+            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
+            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+    ]),
+    "ruined interior northwest corner north entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#door#\\", "+", }),
+            ({ "|", "#floor# ", "#floor# ", }),
+            ({ "|", "#floor# ", "#floor# ", }) }),
+        "unicode": ({ ({ "\xe2\x95\xa0", "#door#\xe2\x96\x94","\xe2\x95\xa9" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+    ]),
+    "ruined interior northwest corner north-west entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#door#\\", "+", }),
+            ({ "#door#\\", "#floor# ", "#floor# ", }),
+            ({ "+", "#floor# ", "#floor# ", }) }),
+        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
+            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
+            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+    ]),
+    "ruined interior west wall": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "|", "#floor# ", "#floor# ", }),
+            ({ "|", "#floor# ", "#floor# ", }),
+            ({ "|", "#floor# ", "#floor# ", }) }),
+        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+    ]),
+    "ruined interior west wall entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#floor# ", "#floor# " }),
+            ({ "#door#/", "#floor# ", "#floor# " }),
+            ({ "+", "#floor# ", "#floor# " }) }),
+        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+    ]),
+    "ruined interior east wall": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "#floor# ", "#floor# ", "|" }),
+            ({ "#floor# ", "#floor# ", "|" }),
+            ({ "#floor# ", "#floor# ", "|" }) }),
+        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+    ]),
+    "ruined interior east wall entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor# ", "#floor# ", "+", }),
+            ({ "#floor# ", "#floor# ", "#door#/", }),
+            ({ "#floor# ", "#floor# ", "+", }) }),
+        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+    ]),
+    "ruined interior north wall": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "=", "=", "=", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }) }),
+        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+    ]),
+    "ruined interior north wall entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "+", "#door#\\", "+", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }) }),
+        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+    ]),
+    "ruined interior south wall": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "=", "=", "=", }) }),
+        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+    ]),
+    "ruined interior south wall entry": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36m",
+                    "8-bit": "\x1b[0;38;5;236m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "+", "#door#\\", "+", }) }),
+        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
     ]),
 ]);
 
