@@ -1950,6 +1950,51 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
             ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
     ]),
+    "ruined interior-to-exterior north-south hallway west exit": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "|", "#floor# ", "|", }),
+            ({ "|", "#floor# ", "#floor# ", }),
+            ({ "|", "#floor# ", "|", }) }),
+        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa8" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa5" }) })
+    ]),
+    "ruined interior-to-exterior north-corner hallway west exit": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "+", "=", "=", }),
+            ({ "|", "#floor# ", "#floor# ", }),
+            ({ "|", "#floor# ", "|", }) }),
+        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\xa6" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa5" }) })
+    ]),
+
 ]);
 
 #endif

@@ -7,7 +7,7 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setInterior("/lib/environment/interiors/opulent-entry.c");
+    setInterior("/lib/environment/interiors/ruin.c");
     addItem("/lib/environment/items/lighting/window.c", "south");
     addItem("/lib/environment/items/lighting/sconce.c", "east");
     addItem("/lib/environment/items/lighting/sconce.c", "west");
