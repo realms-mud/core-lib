@@ -8,4 +8,5 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setInterior("/lib/environment/interiors/ruin.c");
+    addDecorator("ruined interior west wall dais");
 }

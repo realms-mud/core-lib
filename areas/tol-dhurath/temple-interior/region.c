@@ -61,11 +61,11 @@ public void Setup()
         "/areas/tol-dhurath/temple-interior/3x8.c", "none");
     setCoordinate(3, 9,
         "/areas/tol-dhurath/temple-interior/3x9.c", "none");
-/*    setCoordinate(4, 0,
+    setCoordinate(4, 0,
         "/areas/tol-dhurath/temple-interior/4x0.c", "none");
     setCoordinate(4, 1,
         "/areas/tol-dhurath/temple-interior/4x1.c", "none");
-    setCoordinate(4, 2,
+/*    setCoordinate(4, 2,
         "/areas/tol-dhurath/temple-interior/4x2.c", "none");
     setCoordinate(4, 3,
         "/areas/tol-dhurath/temple-interior/4x3.c", "none");
