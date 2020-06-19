@@ -376,7 +376,7 @@ void GetMapIconReturnsWithCustomThreeBitColors()
 
     ExpectEq(({ ({ "\x1b[0;36;1m\xe2\x97\x8e\x1b[0m", " ", "\x1b[0;36;1m\xe2\x97\x8e\x1b[0m" }),
             ({ "\x1b[0;36m\xe2\x95\x94\x1b[0m", "\x1b[0;31;1m\xe2\x95\x8c\x1b[0m", "\x1b[0;36m\xe2\x95\x97\x1b[0m" }),
-            ({ "\x1b[0;36m\xe2\x95\xac\x1b[0m", "\x1b[0;36m\xe2\x96\x81\x1b[0m", "\x1b[0;36m\xe2\x95\xac\x1b[0m" }) }), 
+            ({ "\x1b[0;36m\xe2\x95\xac\x1b[0m", "\x1b[0;33m\xe2\x96\x81\x1b[0m", "\x1b[0;36m\xe2\x95\xac\x1b[0m" }) }), 
         dictionary->getMapIcon(region,
         "ruined interior south gatehouse", "3-bit", "unicode"));
 }
