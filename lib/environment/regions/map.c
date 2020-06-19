@@ -34,6 +34,15 @@ private nomask varargs string displayCell(mapping location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int validateCustomIcon(string **icon)
+{
+    return pointerp(icon) && (sizeof(icon) == 3) &&
+        (sizeof(icon[0]) == 3) &&
+        (sizeof(icon[1]) == 3) &&
+        (sizeof(icon[2]) == 3);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask varargs string displayMapSection(object user, int startX, 
     int startY, int endX, int endY, string state, int addDivider)
 {
@@ -88,6 +97,22 @@ private nomask varargs string displayMapSection(object user, int startX,
 
                     string **icon = Dictionary->getMapIcon(this_object(), 
                         decoratorType, colorConfiguration, charset);
+                    if (objectp(location["environment"]))
+                    {
+                        string **customIcon = 
+                            location["environment"]->customIcon(icon, 
+                                colorConfiguration, charset);
+
+                        if (validateCustomIcon(customIcon))
+                        {
+                            icon = customIcon;
+                        }
+                        else
+                        {
+                            raise_error(sprintf("Map.c: Custom icon returned by %O "
+                                "was not valid.\n", location["environment"]));
+                        }
+                    }
 
                     row[0] += sprintf("%s%s%s", 
                         displayCell(location, icon[0][0], colorConfiguration, 

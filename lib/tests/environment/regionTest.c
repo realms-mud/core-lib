@@ -18,12 +18,14 @@ void Setup()
 
     Region = clone_object("/lib/tests/support/environment/regionHelper.c");
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     destruct(Region);
     destruct(Player);
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidRegionTypeThrowsError()
 {
@@ -33,6 +35,7 @@ void SettingInvalidRegionTypeThrowsError()
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CannotGenerateRegionWithoutType()
 {
@@ -43,6 +46,7 @@ void CannotGenerateRegionWithoutType()
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CannotGenerateRegionWithoutName()
 {
@@ -53,6 +57,7 @@ void CannotGenerateRegionWithoutName()
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void SendingEntryCreatesMapWithCorrectEntryPoint()
 {
@@ -63,6 +68,7 @@ void SendingEntryCreatesMapWithCorrectEntryPoint()
     ExpectEq("north", Region->createRegion("south"));
     ExpectEq("west", Region->createRegion("east"));
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CanCreateWithSpecificEntryPoint()
 {
@@ -74,6 +80,7 @@ void CanCreateWithSpecificEntryPoint()
 
     ExpectEq(({ 3, 0 }), Region->EntryLocation());
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CorrectNumberOfRoomsGenerated()
 {
@@ -88,6 +95,7 @@ void CorrectNumberOfRoomsGenerated()
     // exit, but this is not guaranteed.
     ExpectTrue(Region->generatedRoomCount() >= 6);
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void AllGeneratedRoomsHaveExits()
 {
@@ -102,6 +110,7 @@ void AllGeneratedRoomsHaveExits()
         ExpectTrue(sizeof(room["exits"]));
     }
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CanCreateGeneratedRegionFromRealEnvironment()
 {
@@ -121,6 +130,7 @@ void CanCreateGeneratedRegionFromRealEnvironment()
 
     destruct(environment);
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CanCreateManualRegions()
 {
@@ -165,6 +175,7 @@ void CanCreateManualRegions()
         "-#--o  #       \n"
         "               \n", Region->displayMap(Player));
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void MapsChangeWithStateTransitions()
 {
@@ -228,6 +239,7 @@ void MapsChangeWithStateTransitions()
         "                     \n"
         "                     \n", region->displayMap(Player, stateMachine->getCurrentState()));
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CanGenerateSettlement()
 {
@@ -259,6 +271,7 @@ void CanGenerateSettlement()
 
     ToggleCallOutBypass();
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CanGenerateFiles()
 {
@@ -385,6 +398,36 @@ void GetMapIconReturnsWithCustomTwentyFourBitColors()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void MapsDisplayCustomIcons()
+{
+    Player->colorConfiguration("none");
+    Player->charsetConfiguration("ascii");
+
+    Region->setRegionName("a forest");
+    Region->setRegionType("forest");
+
+    Region->setDimensions(5, 5);
+
+    Region->setCoordinate(0, 1, "/lib/tests/support/environment/custom-icon.c");
+
+    ExpectEq("\n               \n"
+        "               \n"
+        "               \n"
+        "               \n"
+        "               \n"
+        "               \n"
+        "               \n"
+        "               \n"
+        "               \n"
+        "|\\             \n"
+        "|*             \n"
+        "|/             \n"
+        "               \n"
+        "               \n"
+        "               \n", Region->displayMap(Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 /*void Y()
 {
     string *files = get_dir("/areas/tol-dhurath/temple-exterior/*") -
@@ -417,6 +460,7 @@ void GetMapIconReturnsWithCustomTwentyFourBitColors()
     }
 }
 */
+
 /*
 /////////////////////////////////////////////////////////////////////////////
 void Y()
@@ -433,6 +477,7 @@ void Y()
     ToggleCallOutBypass();
 }
 */
+
 /////////////////////////////////////////////////////////////////////////////
 /*void L()
 {

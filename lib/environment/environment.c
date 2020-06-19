@@ -1570,3 +1570,9 @@ public nomask varargs string harvestStatistics(object user, string item)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public string **customIcon(string **baseIcon, string color, string charset)
+{
+    return baseIcon;
+}
