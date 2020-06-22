@@ -8,7 +8,7 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setInterior("/lib/environment/interiors/ruin.c");
-    addDecorator("ruined interior east alcove");
+    addDecorator("ruined interior east-west hallway");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -19,10 +19,10 @@ public string **customIcon(string **baseIcon, string color, string charset)
 
     mapping colors = ([
         "door":([
-            "none":"",
-                "3-bit" : "\x1b[0;33m",
-                "8-bit" : "\x1b[0;38;5;100m",
-                "24-bit" : "\x1b[0;38;2;102;102;38m",
+            "none": "",
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;100m",
+            "24-bit": "\x1b[0;38;2;102;102;38m",
         ]),
     ]);
 
