@@ -8,5 +8,18 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setInterior("/lib/environment/interiors/ruin.c");
-    addDecorator("ruined interior west T-intersection");
+    addDecorator("ruined interior east-west hallway");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string **customIcon(string **baseIcon, string color, string charset)
+{
+    string baseColor = getDictionary("region")->iconColor(
+        decoratorType(), color);
+
+    baseIcon[0][2] = sprintf("%s%s%s", baseColor,
+        (charset == "unicode") ? "\xe2\x95\xac" : "+",
+        (baseColor != "") ? "\x1b[0m" : "");
+
+    return baseIcon;
 }
