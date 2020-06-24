@@ -8,6 +8,13 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setInterior("/lib/environment/interiors/ruin.c");
+    addExit("west",
+        "/areas/tol-dhurath/temple-interior/5x2.c");
+    addExitWithDoor("north",
+        "/areas/tol-dhurath/temple-interior/6x3.c");
+    addExitWithDoor("south",
+        "/areas/tol-dhurath/temple-interior/6x1.c");
+
     addDecorator("ruined interior east alcove");
 }
 
