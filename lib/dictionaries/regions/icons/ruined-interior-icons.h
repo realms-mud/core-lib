@@ -6,41 +6,6 @@
 #define ruinedInteriorIcons_h
 
 private mapping RuinedInteriorIcons = ([
-    "ruined interior south gatehouse": ([
-        "colors": ([
-            "none": "",
-            "3-bit": "\x1b[0;36m",
-            "8-bit": "\x1b[0;38;5;235m",
-            "24-bit": "\x1b[0;38;2;56;62;56m",
-            "icons": ([
-                "pillar":([
-                    "none": "",
-                    "3-bit": "\x1b[0;36;1m",
-                    "8-bit": "\x1b[0;38;5;243;1m",
-                    "24-bit": "\x1b[0;38;2;118;118;128;1m",
-                ]),
-                "portcullis":([
-                    "none": "",
-                    "3-bit": "\x1b[0;31;1m",
-                    "8-bit": "\x1b[0;38;5;238m",
-                    "24-bit": "\x1b[0;38;2;72;38;38m",
-                ]),
-                "door":([
-                    "none": "",
-                    "3-bit": "\x1b[0;33m",
-                    "8-bit": "\x1b[0;38;5;100m",
-                    "24-bit": "\x1b[0;38;2;102;102;38m",
-                ])
-            ])
-        ]),
-        "ascii": ({ ({ "#pillar#+", " ", "#pillar#+", }),
-            ({ "+", "#portcullis#-", "+", }),
-            ({ "+", "#door#-", "+", }) }),
-        "unicode": ({ ({ "#pillar#\xe2\x97\x8e", " ", "#pillar#\xe2\x97\x8e" }),
-            ({ "\xe2\x95\x94", "#portcullis#\xe2\x95\x8c", "\xe2\x95\x97" }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xac" }) })
-    ]),
-
     // Hallways
     "ruined interior east-west hallway": ([
         "colors": ([
@@ -2470,6 +2435,122 @@ private mapping RuinedInteriorIcons = ([
         "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\xa6" }),
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa5" }) })
+    ]),
+
+    // Other locations
+    "ruined interior south gatehouse": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "pillar":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36;1m",
+                    "8-bit": "\x1b[0;38;5;243;1m",
+                    "24-bit": "\x1b[0;38;2;118;118;128;1m",
+                ]),
+                "portcullis":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31;1m",
+                    "8-bit": "\x1b[0;38;5;238m",
+                    "24-bit": "\x1b[0;38;2;72;38;38m",
+                ]),
+                "door":([
+                    "none": "",
+                    "3-bit": "\x1b[0;33m",
+                    "8-bit": "\x1b[0;38;5;100m",
+                    "24-bit": "\x1b[0;38;2;102;102;38m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#pillar#+", " ", "#pillar#+", }),
+            ({ "+", "#portcullis#-", "+", }),
+            ({ "+", "#door#-", "+", }) }),
+        "unicode": ({ ({ "#pillar#\xe2\x97\x8e", " ", "#pillar#\xe2\x97\x8e" }),
+            ({ "\xe2\x95\x94", "#portcullis#\xe2\x95\x8c", "\xe2\x95\x97" }),
+            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xac" }) })
+    ]),
+    "ruined interior large staired entrance right": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "pillar":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36;1m",
+                    "8-bit": "\x1b[0;38;5;243;1m",
+                    "24-bit": "\x1b[0;38;2;118;118;128;1m",
+                ]),
+                "stairs":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31;1m",
+                    "8-bit": "\x1b[0;38;5;237m",
+                    "24-bit": "\x1b[0;38;2;40;42;45m",
+                ]),
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;23m",
+                    "24-bit": "\x1b[0;38;2;8;10;12m",
+                ]),
+                "floor2":([
+                    "none": "",
+                    "3-bit": "\x1b[0;30;1m",
+                    "8-bit": "\x1b[0;38;5;23m",
+                    "24-bit": "\x1b[0;38;2;8;12;8m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ " ", " ", " ", }),
+            ({ "#floor# ", "#floor2# ", "#floor# ", }),
+            ({ "#stairs#-", "#stairs#-", "#pillar#+", }) }),
+        "unicode": ({ ({ " ", " ", " " }),
+            ({ "#floor#\xe2\x96\x85", "#floor2#\xe2\x96\x85", "#floor#\xe2\x96\x85" }),
+            ({ "#stairs#\xe2\x8c\xb8", "#stairs#\xe2\x8c\xb8", "#pillar#\xe2\x8e\x8a" }) })
+    ]),
+    "ruined interior large staired entrance left": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "pillar":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36;1m",
+                    "8-bit": "\x1b[0;38;5;243;1m",
+                    "24-bit": "\x1b[0;38;2;118;118;128;1m",
+                ]),
+                "stairs":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31;1m",
+                    "8-bit": "\x1b[0;38;5;237m",
+                    "24-bit": "\x1b[0;38;2;40;42;45m",
+                ]),
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;23m",
+                    "24-bit": "\x1b[0;38;2;8;10;12m",
+                ]),
+                "floor2":([
+                    "none": "",
+                    "3-bit": "\x1b[0;30;1m",
+                    "8-bit": "\x1b[0;38;5;23m",
+                    "24-bit": "\x1b[0;38;2;8;12;8m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ " ", " ", " ", }),
+            ({ "#floor# ", "#floor2# ", "#floor# ", }),
+            ({ "#stairs#-", "#stairs#-", "#pillar#|", }) }),
+        "unicode": ({ ({ " ", " ", " " }),
+            ({ "#floor#\xe2\x96\x85", "#floor2#\xe2\x96\x85", "#floor#\xe2\x96\x85" }),
+            ({ "#stairs#\xe2\x8c\xb8", "#stairs#\xe2\x8c\xb8", "#pillar#\xe2\x8e\x8a" }) })
     ]),
 ]);
 
