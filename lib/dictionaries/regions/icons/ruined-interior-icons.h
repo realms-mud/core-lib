@@ -2375,12 +2375,6 @@ private mapping RuinedInteriorIcons = ([
                     "3-bit": "\x1b[0;31m",
                     "8-bit": "\x1b[0;38;5;234m",
                     "24-bit": "\x1b[0;38;2;28;36;28m",
-                ]),
-                "door":([
-                    "none": "",
-                    "3-bit": "\x1b[0;33m",
-                    "8-bit": "\x1b[0;38;5;100m",
-                    "24-bit": "\x1b[0;38;2;102;102;38m",
                 ])
             ])
         ]),
@@ -2391,7 +2385,85 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
             ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
     ]),
+   "ruined interior courtyard": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "grass":([
+                    "none": "",
+                    "3-bit": "\x1b[0;32m",
+                    "8-bit": "\x1b[0;38;5;22m",
+                    "24-bit": "\x1b[0;38;2;30;50;20m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "#grass# ", "#grass# ", "#grass# ", }),
+            ({ "#grass# ", "#grass# ", "#grass# ", }),
+            ({ "#grass# ", "#grass# ", "#grass# ", }) }),
+        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
+            ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
+            ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }) })
+    ]),
+   "ruined interior courtyard with path": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none":"",
+                        "3-bit" : "\x1b[0;31m",
+                        "8-bit" : "\x1b[0;38;5;234m",
+                        "24-bit" : "\x1b[0;38;2;28;36;28m",
+                ]),
+                "grass":([
+                    "none": "",
+                    "3-bit": "\x1b[0;32m",
+                    "8-bit": "\x1b[0;38;5;22m",
+                    "24-bit": "\x1b[0;38;2;30;50;20m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "#grass# ", "#floor# ", "#grass# ", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "#grass# ", "#floor# ", "#grass# ", }) }),
+        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "#grass#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#grass#\xe2\x96\x91" }) })
+    ]),
 
+    "ruined interior courtyard with pillar": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "grass":([
+                    "none": "",
+                    "3-bit": "\x1b[0;32m",
+                    "8-bit": "\x1b[0;38;5;22m",
+                    "24-bit": "\x1b[0;38;2;30;50;20m",
+                ]),
+                "pillar":([
+                    "none": "",
+                    "3-bit": "\x1b[0;36;1m",
+                    "8-bit": "\x1b[0;38;5;243;1m",
+                    "24-bit": "\x1b[0;38;2;118;118;128;1m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "#grass# ", "#grass# ", "#grass# ", }),
+            ({ "#grass# ", "#pillar#+", "#grass# ", }),
+            ({ "#grass# ", "#grass# ", "#grass# ", }) }),
+        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
+            ({ "#grass#\xe2\x96\x91", "#pillar#\xe2\x97\x8e", "#grass#\xe2\x96\x91" }),
+            ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }) })
+    ]),
     "ruined interior-to-exterior north-south hallway west exit": ([
         "colors": ([
             "none": "",
@@ -2413,6 +2485,28 @@ private mapping RuinedInteriorIcons = ([
         "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa8" }),
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
             ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa5" }) })
+    ]),
+    "ruined interior-to-exterior east-west hallway south exit": ([
+        "colors": ([
+            "none": "",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;56;62;56m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "3-bit": "\x1b[0;31m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;28;36;28m",
+                ]),
+            ])
+        ]),
+        "ascii": ({ ({ "=", "=", "=", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "+", "#floor# ", "+", }) }),
+        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }),
+            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
+            ({ "\xe2\x95\xa1", "#floor#\xe2\x96\x91", "\xe2\x95\x9e" }) })
     ]),
     "ruined interior-to-exterior north-corner hallway west exit": ([
         "colors": ([
@@ -2503,12 +2597,18 @@ private mapping RuinedInteriorIcons = ([
                     "8-bit": "\x1b[0;38;5;23m",
                     "24-bit": "\x1b[0;38;2;8;12;8m",
                 ]),
+                "grass":([
+                    "none": "",
+                    "3-bit": "\x1b[0;32m",
+                    "8-bit": "\x1b[0;38;5;22m",
+                    "24-bit": "\x1b[0;38;2;30;50;20m",
+                ]),
             ])
         ]),
-        "ascii": ({ ({ " ", " ", " ", }),
+        "ascii": ({ ({ "#grass# ", "#grass# ", "#grass# ", }),
             ({ "#floor# ", "#floor2# ", "#floor# ", }),
             ({ "#stairs#-", "#stairs#-", "#pillar#+", }) }),
-        "unicode": ({ ({ " ", " ", " " }),
+        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
             ({ "#floor#\xe2\x96\x85", "#floor2#\xe2\x96\x85", "#floor#\xe2\x96\x85" }),
             ({ "#stairs#\xe2\x8c\xb8", "#stairs#\xe2\x8c\xb8", "#pillar#\xe2\x8e\x8a" }) })
     ]),
@@ -2519,12 +2619,6 @@ private mapping RuinedInteriorIcons = ([
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m",
             "icons": ([
-                "pillar":([
-                    "none": "",
-                    "3-bit": "\x1b[0;36;1m",
-                    "8-bit": "\x1b[0;38;5;243;1m",
-                    "24-bit": "\x1b[0;38;2;118;118;128;1m",
-                ]),
                 "stairs":([
                     "none": "",
                     "3-bit": "\x1b[0;31;1m",
@@ -2543,14 +2637,20 @@ private mapping RuinedInteriorIcons = ([
                     "8-bit": "\x1b[0;38;5;23m",
                     "24-bit": "\x1b[0;38;2;8;12;8m",
                 ]),
+                "grass":([
+                    "none": "",
+                    "3-bit": "\x1b[0;32m",
+                    "8-bit": "\x1b[0;38;5;22m",
+                    "24-bit": "\x1b[0;38;2;30;50;20m",
+                ]),
             ])
         ]),
-        "ascii": ({ ({ " ", " ", " ", }),
+        "ascii": ({ ({ "#grass# ", "#grass# ", "#grass# ", }),
             ({ "#floor# ", "#floor2# ", "#floor# ", }),
-            ({ "#stairs#-", "#stairs#-", "#pillar#|", }) }),
-        "unicode": ({ ({ " ", " ", " " }),
-            ({ "#floor#\xe2\x96\x85", "#floor2#\xe2\x96\x85", "#floor#\xe2\x96\x85" }),
-            ({ "#stairs#\xe2\x8c\xb8", "#stairs#\xe2\x8c\xb8", "#pillar#\xe2\x8e\x8a" }) })
+            ({ "#stairs#-", "#stairs#-", "#stairs#-", }) }),
+        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
+            ({ "#floor2#\xe2\x96\x85", "#floor#\xe2\x96\x85", "#floor2#\xe2\x96\x85" }),
+            ({ "#stairs#\xe2\x8c\xb8", "#stairs#\xe2\x8c\xb8", "#stairs#\xe2\x8c\xb8" }) })
     ]),
 ]);
 
