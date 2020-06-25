@@ -137,6 +137,10 @@ public void Setup()
         "/areas/tol-dhurath/temple-interior/7x8.c", "none");
     setCoordinate(7, 9,
         "/areas/tol-dhurath/temple-interior/7x9.c", "none");
+    setCoordinate(8, 0,
+        "/areas/tol-dhurath/temple-interior/8x0.c", "none");
+    setCoordinate(8, 1,
+        "/areas/tol-dhurath/temple-interior/8x1.c", "none");
     setCoordinate(8, 2,
         "/areas/tol-dhurath/temple-interior/8x2.c", "none");
     setCoordinate(8, 3,
@@ -153,6 +157,14 @@ public void Setup()
         "/areas/tol-dhurath/temple-interior/8x8.c", "none");
     setCoordinate(8, 9,
         "/areas/tol-dhurath/temple-interior/8x9.c", "none");
+    setCoordinate(9, 0,
+        "/areas/tol-dhurath/temple-interior/9x0.c", "none");
+    setCoordinate(9, 1,
+        "/areas/tol-dhurath/temple-interior/9x1.c", "none");
+    setCoordinate(9, 2,
+        "/areas/tol-dhurath/temple-interior/9x2.c", "none");
+    setCoordinate(9, 3,
+        "/areas/tol-dhurath/temple-interior/9x3.c", "none");
     setCoordinate(9, 4,
         "/areas/tol-dhurath/temple-interior/9x4.c", "none");
     setCoordinate(9, 5,
@@ -165,6 +177,14 @@ public void Setup()
         "/areas/tol-dhurath/temple-interior/9x8.c", "none");
     setCoordinate(9, 9,
         "/areas/tol-dhurath/temple-interior/9x9.c", "none");
+    setCoordinate(10, 0,
+        "/areas/tol-dhurath/temple-interior/10x0.c", "none");
+    setCoordinate(10, 1,
+        "/areas/tol-dhurath/temple-interior/10x1.c", "none");
+    setCoordinate(10, 2,
+        "/areas/tol-dhurath/temple-interior/10x2.c", "none");
+    setCoordinate(10, 3,
+        "/areas/tol-dhurath/temple-interior/10x3.c", "none");
     setCoordinate(10, 4,
         "/areas/tol-dhurath/temple-interior/10x4.c", "none");
     setCoordinate(10, 5,
