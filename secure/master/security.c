@@ -144,6 +144,12 @@ static nomask void pruneAccessCache()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+static nomask void resetAccessCache()
+{
+    accessCache = ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string valid_write(string path, string uid, string method, 
     object caller)
 {
@@ -155,13 +161,19 @@ public nomask string valid_write(string path, string uid, string method,
         priviledgedObjects->hasPermission(path, method, caller, "write"))
     {
         sanitizedPath = sanitizePath(path);
-        accessCache[sprintf("%O%O%O%O", "write", path, method, caller)] = 
-            time();
+
+        string error = catch (
+            accessCache[sprintf("%O%O%O%O", "write", path, method, caller)] = 
+                time());
+
+        if (error)
+        {
+            resetAccessCache();
+        }
     }
 
     if (!stringp(sanitizedPath))
     {
-
         printf("Bad file name (master::valid_write): %O (%O), caller %O\n",
             path, method, caller);
     }
@@ -180,8 +192,15 @@ public nomask string valid_read(string path, string uid, string method,
         priviledgedObjects->hasPermission(path, method, caller, "read"))
     {
         sanitizedPath = sanitizePath(path);
-        accessCache[sprintf("%O%O%O%O", "read", path, method, caller)] =
-            time();
+
+        string error = catch (
+            accessCache[sprintf("%O%O%O%O", "read", path, method, caller)] =
+            time());
+
+        if (error)
+        {
+            resetAccessCache();
+        }
     }
 
     if (!stringp(sanitizedPath))

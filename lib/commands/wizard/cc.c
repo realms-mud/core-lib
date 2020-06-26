@@ -94,7 +94,7 @@ private nomask varargs int compile(string path, object initiator,
         notify_fail("No file(s) matching that criteria could be found.\n");
     }
     else if (((sizeof(files) == 1) || !recurse) &&
-        (file_size(path) != -2))
+        (file_size(path) > -1))
     {
         ret = 1;
         compileOneItem(path, initiator, colorConfiguration);

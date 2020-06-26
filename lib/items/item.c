@@ -57,6 +57,12 @@ private string *prohibitedKeys = ({ "armor class", "defense class",
     "unequip message", "unequip method", "cursed" });
 
 /////////////////////////////////////////////////////////////////////////////
+public void reset(int arg)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask object materialsObject()
 {
     return MaterialsObject;
@@ -236,6 +242,11 @@ public mixed query(string element)
             case "short":
             {
                 ret = itemData["short"] ? itemData["short"] : query("name");
+
+                if (!ret)
+                {
+                    ret = "";
+                }
                 break;
             }
             case "bonuses":
@@ -642,7 +653,7 @@ public varargs string short(int useLight)
     }
 
     string shortTemplate = (query("light") || useLight) ? query("short") : "";
-    if (shortTemplate == "")
+    if (!shortTemplate || (shortTemplate == ""))
     {
         switch (isIlluminated())
         {
@@ -680,7 +691,7 @@ public varargs string short(int useLight)
         }
     }
 
-    if (shortTemplate != "")
+    if (shortTemplate && (shortTemplate != ""))
     {
         shortTemplate = parseTemplate(shortTemplate);
     }

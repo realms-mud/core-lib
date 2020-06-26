@@ -331,9 +331,9 @@ private nomask string parseEfun(string match)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string parseEfunCall(string message)
 {
-    return regreplace(message,
+    return stringp(message) ? regreplace(message,
         "##([^:]+)::(file|target|this)::([^:]+)::([a-zA-Z0-9_])+",
-        #'parseEfun,1);
+        #'parseEfun,1) : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
