@@ -242,11 +242,6 @@ public mixed query(string element)
             case "short":
             {
                 ret = itemData["short"] ? itemData["short"] : query("name");
-
-                if (!ret)
-                {
-                    ret = "";
-                }
                 break;
             }
             case "bonuses":
@@ -569,7 +564,7 @@ public int unset(string element)
 static nomask string parseTemplate(string template)
 {
     string message = template;
-    if(MessageParser && objectp(MessageParser))
+    if(message && MessageParser && objectp(MessageParser))
     {
         message = MessageParser->parseEfunCall(message);
 
@@ -653,7 +648,7 @@ public varargs string short(int useLight)
     }
 
     string shortTemplate = (query("light") || useLight) ? query("short") : "";
-    if (!shortTemplate || (shortTemplate == ""))
+    if (shortTemplate == "")
     {
         switch (isIlluminated())
         {
