@@ -8,7 +8,7 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/ruin-exterior.c");
-    addExitWithDoor("south", 
+    addExitWithDoor("south",
         "/areas/tol-dhurath/temple-interior/5x2.c");
     addExit("east",
         "/areas/tol-dhurath/temple-interior/6x2.c");

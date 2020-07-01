@@ -7,6 +7,10 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setInterior("/lib/environment/interiors/ruin.c");
+    setTerrain("/lib/environment/terrain/ruin-exterior.c");
     addDecorator("ruined interior courtyard with path");
+
+    addExit("west", "/areas/tol-dhurath/temple-interior/6x4.c");
+    addExitWithDoor("south",
+        "/areas/tol-dhurath/temple-interior/7x3.c");
 }

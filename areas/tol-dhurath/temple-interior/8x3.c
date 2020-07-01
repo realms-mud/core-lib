@@ -7,7 +7,7 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setInterior("/lib/environment/interiors/opulent-entry.c");
+    setTerrain("/lib/environment/terrain/ruin-exterior.c");
     addDecorator("ruined interior large staired entrance left");
 }
 

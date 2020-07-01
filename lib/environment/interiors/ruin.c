@@ -10,4 +10,5 @@ public void Setup()
     Name("ruin");
 
     addDescriptionTemplate("a ruin");
+    useExteriorLighting();
 }

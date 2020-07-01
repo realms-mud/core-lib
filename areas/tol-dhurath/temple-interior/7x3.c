@@ -12,6 +12,8 @@ public void Setup()
     addItem("/lib/environment/items/lighting/sconce.c", "east");
     addItem("/lib/environment/items/lighting/sconce.c", "west");
 
+    addExitWithDoor("north",
+        "/areas/tol-dhurath/temple-interior/7x4.c");
     addExitWithDoor("south", 
         "/areas/tol-dhurath/temple-exterior/6x7.c");
 

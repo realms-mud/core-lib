@@ -12,6 +12,7 @@ public void Setup()
         "/areas/tol-dhurath/temple-interior/6x2.c");
     addExit("west",
         "/areas/tol-dhurath/temple-interior/5x3.c");
+    addExit("north", "/areas/tol-dhurath/temple-interior/6x4.c");
 
     addDecorator("ruined interior large staired entrance right");
 }
