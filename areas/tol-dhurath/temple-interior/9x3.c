@@ -8,10 +8,12 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/ruin-exterior.c");
-    addExitWithDoor("south", 
-        "/areas/tol-dhurath/temple-interior/6x2.c");
+
     addExit("west",
-        "/areas/tol-dhurath/temple-interior/5x3.c");
+        "/areas/tol-dhurath/temple-interior/8x3.c");
+    addExitWithDoor("south", 
+        "/areas/tol-dhurath/temple-interior/9x2.c");
+    addExit("north", "/areas/tol-dhurath/temple-interior/9x4.c");
 
     addDecorator("ruined interior large staired entrance left");
 }

@@ -9,6 +9,12 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/ruin-exterior.c");
     addDecorator("ruined interior large staired entrance left");
+
+    addExitWithDoor("south",
+        "/areas/tol-dhurath/temple-interior/8x2.c");
+    addExit("east",
+        "/areas/tol-dhurath/temple-interior/9x3.c");
+    addExit("north", "/areas/tol-dhurath/temple-interior/8x4.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -482,7 +482,7 @@ void RegionDisplaysCurrentUserLocationWithCorrectBackground()
 //void Y()
 //{
 //    Player->colorConfiguration("24-bit");
-//    Player->charsetConfiguration("ascii");
+//    Player->charsetConfiguration("unicode");
 //    load_object("/lib/dictionaries/environmentDictionary.c");
 //
 //    ToggleCallOutBypass();

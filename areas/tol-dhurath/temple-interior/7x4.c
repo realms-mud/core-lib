@@ -11,6 +11,9 @@ public void Setup()
     addDecorator("ruined interior courtyard with path");
 
     addExit("west", "/areas/tol-dhurath/temple-interior/6x4.c");
+    addExit("east", "/areas/tol-dhurath/temple-interior/8x4.c");
+    addExit("north", "/areas/tol-dhurath/temple-interior/7x5.c");
+
     addExitWithDoor("south",
         "/areas/tol-dhurath/temple-interior/7x3.c");
 }

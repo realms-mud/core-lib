@@ -9,4 +9,9 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/ruin-exterior.c");
     addDecorator("ruined interior courtyard with path");
+
+    addExit("west", "/areas/tol-dhurath/temple-interior/6x8.c");
+    addExit("east", "/areas/tol-dhurath/temple-interior/8x8.c");
+    addExit("north", "/areas/tol-dhurath/temple-interior/7x9.c");
+    addExit("south", "/areas/tol-dhurath/temple-interior/7x7.c");
 }
