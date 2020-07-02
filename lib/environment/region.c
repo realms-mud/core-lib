@@ -9,6 +9,13 @@ virtual inherit "/lib/environment/regions/persist-region.c";
 virtual inherit "/lib/environment/regions/map.c";
 
 private int setupCompleted = 0;
+private int manualRegion = 0;
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void asManualRegion()
+{
+    manualRegion = 1;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setDimensions(int x, int y)
@@ -17,7 +24,7 @@ public nomask void setDimensions(int x, int y)
     {
         raise_error("Region: The largest area that can be generated is 25x25.\n");
     }
-    else if ((x < 5) || (y < 5))
+    else if (!manualRegion && ((x < 5) || (y < 5)))
     {
         raise_error("Region: The smallest area that can be generated is 5x5.\n");
     }

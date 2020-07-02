@@ -494,7 +494,7 @@ private mapping RuinedInteriorIcons = ([
                 ]),
             ])
         ]),
-        "ascii": ({ ({ ({ "+", "#floor# ", "+", }), }),
+        "ascii": ({ ({ "+", "#floor# ", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "=", "=", "=", }) }),
         "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
@@ -1194,7 +1194,7 @@ private mapping RuinedInteriorIcons = ([
                 ])
             ])
         ]),
-        "ascii": ({ ({ "+", "#door\\", "=", }),
+        "ascii": ({ ({ "+", "#door#\\", "=", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "+", "=", "=", }) }),
         "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94", "\xe2\x95\xac", }),

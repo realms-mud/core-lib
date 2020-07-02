@@ -428,73 +428,92 @@ void MapsDisplayCustomIcons()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-/*void Y()
-{
-    string *files = get_dir("/areas/tol-dhurath/temple-exterior/*") -
-        ({ ".", "..", "region.c" });
-
-    foreach(string file in files)
-    {
-        string *directions = ({ "north", "north", "north", "north", "south",
-            "south", "south","south","east","east","east",
-            "east", "west", "west", "west","west","northwest", "northeast", "southwest",
-            "southeast" });
-
-        string fileData = read_file(sprintf("/areas/tol-dhurath/temple-exterior/%s", file));
-        string *fileLines = explode(fileData, "\n");
-
-        fileData = "";
-        foreach(string line in fileLines)
-        {
-            string newDir = directions[random(sizeof(directions))];
-            if (sizeof(regexp(({ line }), "(addFeature../lib/environment/features/(trees|landforms|water)[^\"]+\", \")([^\"]+)")))
-            {
-                line = regreplace(line,
-                    "(addFeature../lib/environment/features/(trees|landforms|water)[^\"]+\", \")([^\"]+)",
-                    "\\1" + newDir, 1);
-                directions -= ({ newDir });
-            }
-            fileData += line + "\n";
-        }
-        write_file(sprintf("/areas/tol-dhurath/temple-exterior/%s", file), fileData, 1);
-    }
-}
-*/
-/*
-/////////////////////////////////////////////////////////////////////////////
-void Y()
+void RegionDisplaysCurrentUserLocationWithCorrectBackground()
 {
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
 
-    object region = 
-        load_object("/areas/tol-dhurath/temple-interior/region.c");
+    move_object(Player, "/areas/tol-dhurath/temple-interior/7x3.c");
+    object region =
+        load_object("/lib/tests/support/environment/fakeRegion.c");
 
-    ExpectEq("x", region->displayMap(Player));
-
+    ExpectEq("\n\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;118;118;128;1m\xe2\x97\x8e\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0m \x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;118;118;128;1m\xe2\x97\x8e\x1b[0m\x1b[0m\n"
+        "\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\xe2\x95\x94\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0;38;2;0;255;0m\xe2\x99\x99\x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\xe2\x95\x97\x1b[0m\x1b[0m\n"
+        "\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\xe2\x95\xac\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;102;102;38m\xe2\x96\x81\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\xe2\x95\xac\x1b[0m\x1b[0m\n",
+        region->displayMap(Player));
     ToggleCallOutBypass();
 }
-*/
+
 /////////////////////////////////////////////////////////////////////////////
-/*void L()
-{
-    Region = clone_object("/areas/eledhel/southwest-rural-one/region.c");
+//void Y()
+//{
+//    string *files = get_dir("/areas/tol-dhurath/temple-exterior/*") -
+//        ({ ".", "..", "region.c" });
+//
+//    foreach(string file in files)
+//    {
+//        string *directions = ({ "north", "north", "north", "north", "south",
+//            "south", "south","south","east","east","east",
+//            "east", "west", "west", "west","west","northwest", "northeast", "southwest",
+//            "southeast" });
+//
+//        string fileData = read_file(sprintf("/areas/tol-dhurath/temple-exterior/%s", file));
+//        string *fileLines = explode(fileData, "\n");
+//
+//        fileData = "";
+//        foreach(string line in fileLines)
+//        {
+//            string newDir = directions[random(sizeof(directions))];
+//            if (sizeof(regexp(({ line }), "(addFeature../lib/environment/features/(trees|landforms|water)[^\"]+\", \")([^\"]+)")))
+//            {
+//                line = regreplace(line,
+//                    "(addFeature../lib/environment/features/(trees|landforms|water)[^\"]+\", \")([^\"]+)",
+//                    "\\1" + newDir, 1);
+//                directions -= ({ newDir });
+//            }
+//            fileData += line + "\n";
+//        }
+//        write_file(sprintf("/areas/tol-dhurath/temple-exterior/%s", file), fileData, 1);
+//    }
+//}
 
-    string originalDir = "/areas/eledhel/";
-    mkdir(originalDir);
+///////////////////////////////////////////////////////////////////////////////
+//void Y()
+//{
+//    Player->colorConfiguration("24-bit");
+//    Player->charsetConfiguration("ascii");
+//    load_object("/lib/dictionaries/environmentDictionary.c");
+//
+//    ToggleCallOutBypass();
+//
+//    move_object(Player, "/areas/tol-dhurath/temple-interior/7x3.c");
+//    object region = 
+//        load_object("/areas/tol-dhurath/temple-interior/region.c");
+//
+//    ExpectEq("x", region->displayMap(Player));
+//
+//    ToggleCallOutBypass();
+//}
 
-    Player->colorConfiguration("none");
-    Player->charsetConfiguration("unicode");
-
-    Region->setRegionName("southwest-rural-x");
-    Region->setRegionType("rural");
-
-    Region->setDimensions(25, 5);
-    Region->setSettlementChance(100);
-    Region->createRegion("east", "/areas/eledhel/southwest-rural-one/0x2.c");
-
-    Region->generateStaticFiles("/areas/eledhel/");
-    ExpectEq("x", Region->displayMap(Player));
-}
-*/
+/////////////////////////////////////////////////////////////////////////////
+//void L()
+//{
+//    Region = clone_object("/areas/eledhel/southwest-rural-one/region.c");
+//
+//    string originalDir = "/areas/eledhel/";
+//    mkdir(originalDir);
+//
+//    Player->colorConfiguration("none");
+//    Player->charsetConfiguration("unicode");
+//
+//    Region->setRegionName("southwest-rural-x");
+//    Region->setRegionType("rural");
+//
+//    Region->setDimensions(25, 5);
+//    Region->setSettlementChance(100);
+//    Region->createRegion("east", "/areas/eledhel/southwest-rural-one/0x2.c");
+//
+//    Region->generateStaticFiles("/areas/eledhel/");
+//    ExpectEq("x", Region->displayMap(Player));
+//}

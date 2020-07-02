@@ -25,6 +25,36 @@ private nomask varargs string displayCell(mapping location,
         direction = "none";
     }
 
+    if ((location["room type"] == "none") && userHere)
+    {
+        string backgroundColor = "";
+        switch (colorConfiguration)
+        {
+            case "3-bit":
+            {
+                backgroundColor = "41;";
+                break;
+            }
+            case "8-bit":
+            {
+                backgroundColor = "48;5;52;";
+                break;
+            }
+            case "24-bit":
+            {
+                backgroundColor = "48;2;90;0;0;";
+                break;
+            }
+        }
+
+        defaultCell =
+            !sizeof(regexp(({ defaultCell }), "[[]0;(41;|48;5|48;2)")) ?
+                regreplace(defaultCell, "(\x1b[[]0;)([^m]+)",
+                    "\\1" + backgroundColor + "\\2", 1) :
+                regreplace(defaultCell, "(\x1b[[]0;)(4[0-9];(5;[0-9]+;|2;[0-9]+;[0-9]+;[0-9]+;|))([^m]+)",
+                    "\\1" + backgroundColor + "\\4", 1);
+    }
+
     return (hasExit(location, direction) && (member(({ "room", "path", "entry", 
         "exit", "training ground" }), location["room type"]) > -1)) ?
         configuration->decorate(displayCharacter[direction][charset],
