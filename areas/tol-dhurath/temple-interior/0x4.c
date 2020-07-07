@@ -9,4 +9,7 @@ public void Setup()
 {
     setInterior("/lib/environment/interiors/ruin.c");
     addDecorator("ruined interior northwest corner");
+
+    addExitWithDoor("south",
+        "/areas/tol-dhurath/temple-interior/0x3.c");
 }

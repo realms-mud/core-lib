@@ -9,4 +9,11 @@ public void Setup()
 {
     setInterior("/lib/environment/interiors/ruin.c");
     addDecorator("ruined interior east-west hallway south entry");
+
+    addExit("west",
+        "/areas/tol-dhurath/temple-interior/0x3.c");
+    addExit("east",
+        "/areas/tol-dhurath/temple-interior/2x3.c");
+    addExitWithDoor("south",
+        "/areas/tol-dhurath/temple-interior/1x2.c");
 }

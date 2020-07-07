@@ -12,5 +12,4 @@ public void Setup()
 
     addExit("east", "/areas/tol-dhurath/temple-interior/10x9.c");
     addExit("west", "/areas/tol-dhurath/temple-interior/8x9.c");
-    addExit("south", "/areas/tol-dhurath/temple-interior/9x8.c");
 }
