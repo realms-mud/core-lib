@@ -91,8 +91,9 @@ Rather than go through all of the intricacies of which options can/should be set
 When you run the driver for the first time, it will create your database schema and will give the first user created ownership access to the MUD. 
 Additional wizards can be added from within the MUD.
 
-For LDMud: you will need to copy the contents of the mudlib/sys directory for the version of the LDMud driver you are using into the /sys directory of your install of this mudlib. The latest is here: https://github.com/ldmud/ldmud/tree/master/mudlib/sys
-For other drivers: There are some LD-specific efuns that are being used (interactive_info, set_driver_hook, configure_object, call_direct, almost certainly others). If you want to use a non-LD driver, you will need to change these to a comparable method for your
+Other installation notes:
+- For LDMud: you will need to copy the contents of the mudlib/sys directory for the version of the LDMud driver you are using into the /sys directory of your install of this mudlib. The latest is here: https://github.com/ldmud/ldmud/tree/master/mudlib/sys
+- For other drivers: There are some LD-specific efuns that are being used (interactive_info, set_driver_hook, configure_object, call_direct, almost certainly others). If you want to use a non-LD driver, you will need to change these to a comparable method for your
 driver of choice. Your mileage may vary on making these modifications. If you're at all wary of making these changes by yourself, I'd highly
 recommend using the LDMud driver instead.
 
