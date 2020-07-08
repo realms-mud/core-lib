@@ -7,7 +7,8 @@ inherit "/lib/environment/items/baseItem.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("candle");
+    Name("lit candle");
+    addAlias("candle");
 
     addDescriptionTemplate("an unlit candle");
     addActiveSourceOfLight(8, "a lit candle", 1);

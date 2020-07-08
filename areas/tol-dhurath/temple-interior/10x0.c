@@ -7,7 +7,7 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setInterior("/lib/environment/interiors/ruin.c");
+    setInterior("/lib/environment/interiors/ruin-great-hall.c");
     addDecorator("ruined interior south wall");
 }
 

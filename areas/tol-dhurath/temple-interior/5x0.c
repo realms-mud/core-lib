@@ -7,13 +7,8 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setInterior("/lib/environment/interiors/ruin.c");
+    setInterior("/lib/environment/interiors/ruin-room.c");
     addDecorator("ruined interior southwest corner");
-
-    addExit("west",
-        "/areas/tol-dhurath/temple-interior/4x0.c");
-    addExit("north",
-        "/areas/tol-dhurath/temple-interior/5x1.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

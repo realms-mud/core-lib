@@ -7,8 +7,20 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setInterior("/lib/environment/interiors/ruin.c");
+    setInterior("/lib/environment/interiors/ruin-great-hall.c");
+    addFeature("/lib/environment/features/floors/ruined-marble-floor.c");
+    addItem("/lib/environment/items/lighting/skylight.c");
+
     addDecorator("ruined interior floor");
+
+    addExit("east",
+        "/areas/tol-dhurath/temple-interior/11x1.c");
+    addExit("west",
+        "/areas/tol-dhurath/temple-interior/8x1.c");
+    addExit("north",
+        "/areas/tol-dhurath/temple-interior/9x2.c");
+    addExit("south",
+        "/areas/tol-dhurath/temple-interior/9x0.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

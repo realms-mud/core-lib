@@ -8,6 +8,7 @@ inherit "/lib/environment/items/baseItem.c";
 public void Setup()
 {
     Name("unlit sconce");
+    addAlias("sconce");
 
     addDescriptionTemplate("an unlit sconce");
     addActiveSourceOfLight(8, "a lit sconce");
