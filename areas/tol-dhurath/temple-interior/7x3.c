@@ -9,8 +9,8 @@ public void Setup()
 {
     setInterior("/lib/environment/interiors/ruin.c");
     addItem("/lib/environment/items/lighting/window.c", "south");
-    addItem("/lib/environment/items/lighting/sconce.c", "east");
-    addItem("/lib/environment/items/lighting/sconce.c", "west");
+    addItem("/lib/environment/items/lighting/lit-sconce.c", "east");
+    addItem("/lib/environment/items/lighting/lit-sconce.c", "west");
 
     addExitWithDoor("north",
         "/areas/tol-dhurath/temple-interior/7x4.c");

@@ -10,6 +10,7 @@ protected int LightLevelWhenDetailsVisible = 6;
 
 protected int suppressAction = 0; 
 protected string elementName = 0;
+protected string displayName = 0;
 protected string State = "default";
 private int MimicExteriorLighting = 0;
 
@@ -32,7 +33,19 @@ public nomask varargs string Name(string newName)
     {
         elementName = newName;
     }
+
     return elementName;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string displayName(string newName)
+{
+    if (newName && stringp(newName))
+    {
+        displayName = newName;
+    }
+
+    return displayName ? displayName : elementName;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -53,7 +66,7 @@ public nomask string *aliases(string state)
         state = currentState();
     }
 
-    string *ret = ({ elementName });
+    string *ret = ({ elementName, displayName });
     if (member(descriptionData[state], "aliases"))
     {
         ret += descriptionData[state]["aliases"];

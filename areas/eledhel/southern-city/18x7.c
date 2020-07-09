@@ -11,7 +11,7 @@ public void Setup()
     addShop("/lib/environment/shopInventories/medium-armorer.c");
     addItem("/lib/environment/items/lighting/window.c", "west");
     addItem("/lib/environment/items/lighting/window.c", "east");
-    addItem("/lib/environment/items/lighting/sconce.c", "south");
+    addItem("/lib/environment/items/lighting/lit-sconce.c", "south");
 
     addDecorator("1x1 building armorer");
 

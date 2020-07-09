@@ -8,6 +8,7 @@ inherit "/lib/environment/items/baseItem.c";
 public void Setup()
 {
     Name("lit candle");
+    displayName("candle");
     addAlias("candle");
 
     addDescriptionTemplate("an unlit candle");

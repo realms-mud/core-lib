@@ -10,5 +10,5 @@ public void Setup()
     Name("sconce");
 
     addDescriptionTemplate("an unlit sconce");
-    addActiveSourceOfLight(8, "a lit sconce", 1);
+    addActiveSourceOfLight(8, "a lit sconce");
 }

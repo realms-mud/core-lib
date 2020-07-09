@@ -9,7 +9,7 @@ public void Setup()
 {
     setInterior("/lib/environment/interiors/ruin-hallway.c");
     addFeature("/lib/environment/features/floors/ruined-marble-floor.c");
-    addItem("/lib/environment/items/lighting/unlit-sconce.c", "east");
+    addItem("/lib/environment/items/lighting/sconce.c", "east");
     addDecorator("ruined interior west T-intersection");
 
     addExit("west",

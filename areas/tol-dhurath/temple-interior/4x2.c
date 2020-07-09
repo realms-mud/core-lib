@@ -9,7 +9,7 @@ public void Setup()
 {
     setInterior("/lib/environment/interiors/ruin-hallway.c");
     addFeature("/lib/environment/features/floors/ruined-marble-floor.c");
-    addItem("/lib/environment/items/lighting/unlit-sconce.c", "south");    addDecorator("ruined interior east-west hallway");
+    addItem("/lib/environment/items/lighting/sconce.c", "south");    addDecorator("ruined interior east-west hallway");
 
     addExit("east",
         "/areas/tol-dhurath/temple-interior/5x2.c");

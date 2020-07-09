@@ -1475,7 +1475,6 @@ private nomask int manipulateLights(string whichLights, string action,
 
     if (sizeof(elements))
     {
-        activatedItems += elements;
         foreach(string element in elements)
         {
             object elementObj =
@@ -1483,6 +1482,7 @@ private nomask int manipulateLights(string whichLights, string action,
 
             if (elementObj)
             {
+                activatedItems += ({ elementObj->displayName() });
                 call_direct(elementObj, sprintf("%sLightSource", action),
                     currentState(), this_object());
             }

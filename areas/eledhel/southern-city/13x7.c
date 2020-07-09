@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addShop("/lib/environment/shopInventories/gem-crafter.c");
-    addItem("/lib/environment/items/lighting/sconce.c", "east");
+    addItem("/lib/environment/items/lighting/lit-sconce.c", "east");
     addItem("/lib/environment/items/lighting/window.c", "west");
 
     addDecorator("1x1 building gem merchant");
