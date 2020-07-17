@@ -13,6 +13,6 @@ public void Setup()
     addDescriptionTemplate("the ceiling is hard to discern from this distance, "
         "but it appears to be solid amethyst");
 
-    addItemTemplate("that the ceiling appears to be made of solid amethyst, but "
+    addItemTemplate("The ceiling appears to be made of solid amethyst, but "
         "from this distance, it is impossible to tell for sure");
 }

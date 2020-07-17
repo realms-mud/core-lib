@@ -10,7 +10,7 @@ public void Setup()
     Name("ruin hallway");
     addAdjectives(({ "derelict hallway",
         "hallway. The stone walls are in disrepair",
-        "corridor. Small piles of debris has fallen from what were once "
+        "corridor. Small piles of debris have fallen from what were once "
             "artfully-crafted walls",
         "hallway. The battered wall has seen better days",
         "ruined corridor with pockmarked walls",

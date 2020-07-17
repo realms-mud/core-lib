@@ -10,6 +10,8 @@ public void Setup()
     setInterior("/lib/environment/interiors/ruin-great-hall.c");
     addFeature("/lib/environment/features/floors/ruined-marble-floor.c");
     addItem("/lib/environment/items/lighting/skylight.c");
+    addItem("/lib/environment/items/columns/ruined-pillar.c", "west");
+    addItem("/lib/environment/items/furniture/dais-with-thrones.c", "south");
     addDecorator("ruined interior south wall");
 
     addExit("east",
