@@ -13,7 +13,7 @@ protected void Setup()
         "pants. Both are made of coarse, thread-bare linen and show signs "
         "of excessive mistreatment. There are many stains - some of blood "
         "and some of what appear to be porridge. She smells of sweat, urine, "
-        "feces, and rotting food. Her amber hair is disheveled and rather "
+        "feces, and rotting food. Her auburn hair is disheveled and rather "
         "filthy. Dirt, bruises, and abrasions mark her face. "
         "All of the abuse and neglect does not obscure the fact that she "
         "is an incredibly attractive woman. Her pale blue eyes open a window "
@@ -24,7 +24,7 @@ protected void Setup()
 
     Gender(2);
     Race("deity");
-    apparentRace("maegenstryd")
+    apparentRace("maegenstryd");
     SetUpPersonaOfLevel("aeromancer", 80);
     addTrait("lib/instances/traits/archetypes/intj.c");
     addTrait("lib/instances/traits/educational/tactician.c");
@@ -36,7 +36,7 @@ protected void Setup()
     addTrait("lib/instances/traits/eyes/light-blue.c");
     addTrait("lib/instances/traits/genetic/attractive.c");
     addTrait("lib/instances/traits/genetic/genius.c");
-    addTrait("lib/instances/traits/hair/amber.c");
+    addTrait("lib/instances/traits/hair/auburn.c");
     addTrait("lib/instances/traits/personality/cold.c");
     addTrait("lib/instances/traits/personality/feared.c");
 

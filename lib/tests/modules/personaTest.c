@@ -473,7 +473,7 @@ void DoesNotDisplayPersonaComparerWhenDisabled()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ShowPersonaCompererWhenEnabled()
+void ShowPersonaComparerWhenEnabled()
 {
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
     player->Name("Frank");
@@ -510,4 +510,14 @@ void ShowPersonaCompererWhenEnabled()
     Setup();
     Persona->SetUpPersonaOfLevel("oneiromancer", 50);
     ExpectEq(" [Suicidal]", Persona->getCombatComparison(Persona, player));
+
+    destruct(Persona);
+    Persona = clone_object("/lib/tests/support/services/mockNPC.c");
+    Persona->Name("Bob");
+    Persona->Gender(1);
+    move_object(Persona, this_object());
+    Persona->SetUpPersonaOfLevel("oneiromancer", 50);
+    ExpectEq(" [Suicidal]", Persona->getCombatComparison(Persona, player));
+    Persona->testCustomCombatAssessment("henchman");
+    ExpectEq(" [Henchman]", Persona->getCombatComparison(Persona, player));
 }

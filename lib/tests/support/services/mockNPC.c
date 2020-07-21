@@ -9,3 +9,9 @@ public void testAddConversation(string conversation)
 {
     addConversation(conversation);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void testCustomCombatAssessment(string assessment)
+{
+    customCombatAssessment(assessment);
+}

@@ -6,6 +6,7 @@ virtual inherit "/lib/core/thing.c";
 
 private nosave int researchFrequency = 35;
 private nosave string Persona = 0;
+private nosave string overrideAssessment = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string persona()
@@ -203,7 +204,12 @@ public nomask varargs string getCombatComparison(object persona, object player)
 
         object configuration = getDictionary("configuration");
 
-        if (comparison < -0.8)
+        if (persona->overrideCombatAssessment())
+        {
+            ret = configuration->decorate(persona->overrideCombatAssessment(),
+                "override", "combat assessment", player->colorConfiguration());
+        }
+        else if (comparison < -0.8)
         {
             ret = configuration->decorate(" [Very Easy]",
                 "very easy", "combat assessment", player->colorConfiguration());
@@ -243,4 +249,30 @@ public nomask varargs string getCombatComparison(object persona, object player)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string overrideCombatAssessment()
+{
+    return overrideAssessment;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void customCombatAssessment(string assessment)
+{
+    overrideAssessment = assessment;
+    if (overrideAssessment)
+    {
+        overrideAssessment = regreplace(overrideAssessment,
+            "(\\[|\\])", "", 1);
+
+        string *words = explode(overrideAssessment, " ");
+        int size = sizeof(words);
+        for (int i = 0; i < size; i++)
+        {
+            words[i] = capitalize(words[i]);
+        }
+
+        overrideAssessment = sprintf(" [%s]", implode(words, " "));
+    }
 }

@@ -1032,6 +1032,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;9m",
             "24-bit": "\x1b[0;38;2;200;0;0m"
         ]),
+        "override":([
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;44m",
+            "24-bit": "\x1b[0;38;2;0;200;200m"
+        ]),
     ]),
     "party":([
         "active member":([

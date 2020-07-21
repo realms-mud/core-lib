@@ -29,12 +29,12 @@ public nomask int isRealizationOfHenchman()
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
-    if (arg)
+    if (!arg)
     {
-        return;
+        "living"::reset(arg);
+        registerHeartBeat("henchman");
+        customCombatAssessment("henchman");
     }
-    "living"::reset(arg);
-    registerHeartBeat("henchman");
 }
 
 /////////////////////////////////////////////////////////////////////////////
