@@ -23,7 +23,7 @@ inherit "/lib/realizations/monster.c";
 public void Setup()
 {
     Name("Ralph");
-    Gender(1);
+    Gender("male");
     Race("vairaug");
     SetUpPersonaOfLevel("oneiromancer", 30);
     setUpRandomEquipment(100);

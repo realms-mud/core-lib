@@ -8,7 +8,7 @@ virtual inherit "/lib/realizations/npc.c";
 protected void Setup()
 {
     Name("halgaladh");
-    Gender(1);
+    Gender("male");
     description("Halgaladh Arthellyn is very tall (7'4\") and strong.He's "
         "not the type to pick up a bow and dance around the perimeter. "
         "He'd rather get into the mix with his sword. Only a few in the "

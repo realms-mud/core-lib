@@ -15,14 +15,14 @@ void Setup()
 {
     AttackingOwner = clone_object("/lib/tests/support/services/mockPlayer.c");
     AttackingOwner->Name("fred");
-    AttackingOwner->Gender(1);
+    AttackingOwner->Gender("male");
     AttackingOwner->colorConfiguration("none");
     AttackingUnit = clone_object("/lib/tests/support/tactical-combat/testKnight.c");
     AttackingUnit->set("unit leader", "fred");
 
     DefendingOwner = clone_object("/lib/tests/support/services/mockPlayer.c");
     DefendingOwner->Name("henrietta");
-    DefendingOwner->Gender(2);
+    DefendingOwner->Gender("female");
     DefendingOwner->colorConfiguration("none");
     DefendingUnit = clone_object("/lib/tests/support/tactical-combat/testArcher.c");
     DefendingUnit->set("unit leader", "henrietta");

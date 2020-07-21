@@ -37,7 +37,7 @@ void Setup()
 
     Owner = clone_object("/lib/realizations/npc.c");
     Owner->Name("Gertrude");
-    Owner->Gender(2);
+    Owner->Gender("female");
     Owner->Con(20);
     Owner->hitPoints(Owner->maxHitPoints());
     move_object(Owner, room);

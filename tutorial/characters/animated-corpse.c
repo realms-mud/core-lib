@@ -12,7 +12,7 @@ protected void Setup()
     addAlias("animated corpse");
     addAlias("corpse");
 
-    Gender(1);
+    Gender("male");
     Race("maegenstryd");
     SetUpPersonaOfLevel("swordsman", 1);
     setUpRandomEquipment(0);

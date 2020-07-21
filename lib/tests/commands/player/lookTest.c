@@ -18,7 +18,7 @@ string *Slots = ({ "Primary Weapon", "Equipped Offhand", "Worn Armor", "Worn Hel
 string PrepPlayerWithInventory()
 {
     Player->Race("elf");
-    Player->Gender(1);
+    Player->Gender("male");
     Player->hitPoints(Player->maxHitPoints());
     Player->colorConfiguration("none");
 
@@ -369,7 +369,7 @@ void LookWhenDarkSucceedsWhenUserHasDarkvision()
 {
     object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
     elf->Name("gertrude");
-    elf->Gender(2);
+    elf->Gender("female");
     elf->Race("elf");
     move_object(elf, environment(Player));
 
@@ -390,7 +390,7 @@ void LookWhenDarkShowsLifeSignaturesWithInfravision()
 {
     object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
     elf->Name("gertrude");
-    elf->Gender(2);
+    elf->Gender("female");
     elf->Race("elf");
     move_object(elf, environment(Player));
 
@@ -413,7 +413,7 @@ void LookWhenDarkDoesNotShowEtherealSignaturesWithInfravision()
 
     object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
     elf->Name("gertrude");
-    elf->Gender(2);
+    elf->Gender("female");
     elf->Race("elf");
     move_object(elf, environment(Player));
 
@@ -433,7 +433,7 @@ void LookWhenDarkDoesNotShowUndeadSignaturesWithInfravision()
 
     object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
     elf->Name("gertrude");
-    elf->Gender(2);
+    elf->Gender("female");
     elf->Race("elf");
     move_object(elf, environment(Player));
 

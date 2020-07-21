@@ -8,6 +8,6 @@ virtual inherit "/lib/realizations/npc.c";
 protected void Setup()
 {
     Name("fred");
-    Gender(1);
+    Gender("male");
     addConversation("/lib/tests/support/conversations/testConversation.c");
 }

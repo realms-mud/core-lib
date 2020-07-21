@@ -8,7 +8,7 @@ virtual inherit "/lib/realizations/npc.c";
 protected void Setup()
 {
     Name("donald");
-    Gender(1);
+    Gender("male");
     description("Donald Belathon appears to be about 32 years old. He is "
         "6'8\" tall and around 280 lbs.\n\nDonald's physical form is "
         "beginning to show the signs of middle-age that often accompany "

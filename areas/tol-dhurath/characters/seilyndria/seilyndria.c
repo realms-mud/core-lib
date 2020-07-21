@@ -22,7 +22,7 @@ protected void Setup()
     addAlias("attractive woman");
     addAlias("unkempt woman");
 
-    Gender(2);
+    Gender("female");
     Race("deity");
     apparentRace("maegenstryd");
     SetUpPersonaOfLevel("aeromancer", 80);

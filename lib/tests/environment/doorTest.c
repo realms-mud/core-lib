@@ -21,7 +21,7 @@ void Setup()
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User->Name("Bob");
-    User->Gender(1);
+    User->Gender("male");
     User->Str(20);
     User->Dex(20);
     User->Con(20);
@@ -32,7 +32,7 @@ void Setup()
 
     Observer = clone_object("/lib/tests/support/services/mockPlayer.c");
     Observer->Name("Henrietta");
-    Observer->Gender(2);
+    Observer->Gender("female");
     move_object(Observer, this_object());
 }
 

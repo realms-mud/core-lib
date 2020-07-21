@@ -12,7 +12,7 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->Race("human");
-    Player->Gender(1);
+    Player->Gender("male");
     Player->pageSize(200);
     Player->addCommands();
     move_object(Player, this_object());
@@ -72,7 +72,7 @@ void HelpAsWizardDisplaysMainHelpMenuWithWizardCommands()
     object wizard = clone_object("/lib/tests/support/services/mockWizard.c");
     wizard->Name("bob");
     wizard->Race("human");
-    wizard->Gender(1);
+    wizard->Gender("male");
     wizard->pageSize(200);
     wizard->addCommands();
     move_object(wizard, this_object());
@@ -92,7 +92,7 @@ void HelpAsWizardDisplaysSpecificHelpForWizardCommands()
     object wizard = clone_object("/lib/tests/support/services/mockWizard.c");
     wizard->Name("bob");
     wizard->Race("human");
-    wizard->Gender(1);
+    wizard->Gender("male");
     wizard->pageSize(200);
     wizard->addCommands();
     move_object(wizard, this_object());

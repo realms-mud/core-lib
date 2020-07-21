@@ -16,7 +16,7 @@ protected void Setup()
     addAlias("wispy figure");
     addAlias("figure");
 
-    Gender(1);
+    Gender("male");
     Race("maegenstryd");
     SetUpPersonaOfLevel("wraith", 20);
 

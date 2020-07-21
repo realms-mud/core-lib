@@ -16,7 +16,7 @@ protected void Setup()
     addAlias("figure");
     addAlias("brendan");
     short("Black-robed figure");
-    Gender(1);
+    Gender("male");
     Race("maegenstryd");
     SetUpPersonaOfLevel("keeper of the night", 5);
     addTrait("lib/instances/traits/educational/educated.c");

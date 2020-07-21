@@ -64,7 +64,7 @@ void Setup()
 
     Owner = clone_object("/lib/tests/support/services/mockNPC.c");
     Owner->Name("Gertrude");
-    Owner->Gender(2);
+    Owner->Gender("female");
 
     move_object(Owner, Room);
 }

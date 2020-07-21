@@ -11,7 +11,7 @@ void Setup()
 {
     Persona = clone_object("/lib/realizations/monster");
     Persona->Name("Bob");
-    Persona->Gender(1);
+    Persona->Gender("male");
     move_object(Persona, this_object());
 }
 
@@ -319,7 +319,7 @@ void CanExecuteAddedResearch()
     object target = clone_object("/lib/realizations/monster");
     target->Name("Frank");
     target->SetUpPersonaOfLevel("skeleton", 50);
-    target->Gender(1);
+    target->Gender("male");
     move_object(target, this_object());
     object shadow = clone_object("/lib/tests/support/services/catchShadow.c");
     shadow->beginShadow(target);
@@ -341,7 +341,7 @@ void CreaturesCanExecuteBreathWeapons()
     object target = clone_object("/lib/realizations/monster");
     target->Name("Frank");
     target->SetUpPersonaOfLevel("skeleton", 50);
-    target->Gender(1);
+    target->Gender("male");
     move_object(target, this_object());
     object shadow = clone_object("/lib/tests/support/services/catchShadow.c");
     shadow->beginShadow(target);
@@ -362,7 +362,7 @@ void PersonasWithSpacesInNamesAndResearchCanExecuteResearch()
     object target = clone_object("/lib/realizations/monster");
     target->Name("Frank");
     target->SetUpPersonaOfLevel("skeleton", 50);
-    target->Gender(1);
+    target->Gender("male");
     move_object(target, this_object());
     object shadow = clone_object("/lib/tests/support/services/catchShadow.c");
     shadow->beginShadow(target);
@@ -385,13 +385,13 @@ void AreaEffectSpellsHitAllTargetsButCasterInArea()
     object target = clone_object("/lib/realizations/monster");
     target->Name("Frank");
     target->SetUpPersonaOfLevel("skeleton", 50);
-    target->Gender(1);
+    target->Gender("male");
     move_object(target, this_object());
 
     object target2 = clone_object("/lib/realizations/monster");
     target2->Name("Jim");
     target2->SetUpPersonaOfLevel("skeleton", 50);
-    target2->Gender(2);
+    target2->Gender("female");
     move_object(target2, this_object());
 
     int initialTargetOneHP = target->hitPoints();
@@ -416,7 +416,7 @@ void WillExecuteResearchBasedOnFrequency()
     object target = clone_object("/lib/realizations/monster");
     target->Name("Frank");
     target->SetUpPersonaOfLevel("skeleton", 50);
-    target->Gender(1);
+    target->Gender("male");
     move_object(target, this_object());
 
     ExpectEq(target->hitPoints(), target->maxHitPoints());
@@ -514,7 +514,7 @@ void ShowPersonaComparerWhenEnabled()
     destruct(Persona);
     Persona = clone_object("/lib/tests/support/services/mockNPC.c");
     Persona->Name("Bob");
-    Persona->Gender(1);
+    Persona->Gender("male");
     move_object(Persona, this_object());
     Persona->SetUpPersonaOfLevel("oneiromancer", 50);
     ExpectEq(" [Suicidal]", Persona->getCombatComparison(Persona, player));

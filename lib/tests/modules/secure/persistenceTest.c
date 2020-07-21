@@ -54,7 +54,7 @@ void PlayerMaterialAttributesRestored()
 
     Player->restore("gorthaur");
     ExpectEq("Gorthaur", Player->Name());
-    ExpectEq("male", Player->GenderDesc());
+    ExpectEq("male", Player->Gender());
     ExpectEq(1, Player->Age());
     ExpectEq(0, Player->Ghost());
     ExpectEq(0, Player->Invisibility());
@@ -199,7 +199,7 @@ void PlayerMaterialAttributesSaved()
 {
     Player->restore("gorthaur");
     Player->Invisibility(1);
-    Player->Gender(2);
+    Player->Gender("female");
     Player->MessageIn("a");
     Player->MessageOut("b");
     Player->MagicalMessageIn("c");
@@ -217,7 +217,7 @@ void PlayerMaterialAttributesSaved()
     Player->restore("gorthaur");
     move_object(Player, "/lib/tests/support/environment/fakeEnvironment.c");
     ExpectEq("Gorthaur", Player->Name());
-    ExpectEq("female", Player->GenderDesc());
+    ExpectEq("female", Player->Gender());
     ExpectTrue(Player->Invisibility());
     ExpectEq("a", Player->MessageIn());
     ExpectEq("b", Player->MessageOut());

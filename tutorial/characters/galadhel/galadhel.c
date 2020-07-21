@@ -29,7 +29,7 @@ protected void Setup()
         "She has always done her best to stay in the periphery although, "
         "when called upon, she certainly can speak her peace.");
 
-    Gender(2);
+    Gender("female");
     Race("maegenstryd");
     SetUpPersonaOfLevel("archer", 3);
     addTrait("lib/instances/traits/background/human/eledhelean/noble/marannuminas.c");

@@ -34,7 +34,7 @@ void Setup()
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
-    Player->Gender(1);
+    Player->Gender("male");
     Player->addCommands();
 
     move_object(Wizard, "/lib/tests/support/environment/fakeEnvironment.c");

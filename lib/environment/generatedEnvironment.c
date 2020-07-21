@@ -338,7 +338,7 @@ protected void setUpEncounter(object player)
                 encounter->SetUpPersonaOfLevel(
                     personaDictionary->getRandomPersona(name, level), level, 1);
 
-                encounter->Gender(1 + random(2));
+                encounter->Gender(random(2) ? "female" : "male");
                 encounter->addAlias(name);
 
                 if (encounter->Race() == "deity")

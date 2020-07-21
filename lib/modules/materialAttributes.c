@@ -50,18 +50,19 @@ public nomask string savedLocation()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs int Gender(int newGender)
+public varargs string Gender(string newGender)
 {
     if(newGender)
     {
-        if(intp(newGender) && (newGender < 3) && (newGender > -1))
+        newGender = lower_case(newGender);
+        if (member(({ "neuter", "male", "female" }), newGender) > -1)
         {
             gender = newGender;
         }
         else
         {
             raise_error("materialAttributes: gender can only be set to "
-                "0, 1, or 2.\n");
+                "neuter, male, or female.\n");
         }
     }
     
@@ -72,9 +73,9 @@ public varargs int Gender(int newGender)
 private nomask string pronounByType(string type)
 {
     string ret = 0;
-    if(member(({ 0, 1, 2}), gender) < 0)
+    if (member(({ "neuter", "male", "female" }), gender) < 0)
     {
-        gender = 0;
+        gender = "neuter";
     }
     
     if(member(m_indices(genderPronouns[gender]), type) > -1)
@@ -86,15 +87,6 @@ private nomask string pronounByType(string type)
         raise_error("materialAttributes: Illegal gender pronoun request.\n");
     }
     return ret;
-}
-
-
-/////////////////////////////////////////////////////////////////////////////
-public string GenderDesc()
-{
-    // Obviously not really a pronoun... laziness intercedes and makes this the
-    // correct way to do this despite the name.
-    return pronounByType("name");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -351,7 +343,7 @@ public varargs string short(string newShort)
                 raceName = to_string(race->apparentRace());
             }
 
-            ret = sprintf("The silhouette of a %s %s", GenderDesc(), raceName);
+            ret = sprintf("The silhouette of a %s %s", Gender(), raceName);
             break;
         }
         case 7..8:
@@ -363,7 +355,7 @@ public varargs string short(string newShort)
                 raceName = to_string(race->apparentRace());
             }
 
-            ret = sprintf("A %s %s", GenderDesc(), raceName);
+            ret = sprintf("A %s %s", Gender(), raceName);
             break;
         }
         case 9..1000:
@@ -510,7 +502,7 @@ private string basicLongDescription(object configuration,
     ret = configuration->decorate(ret, "name", "long description", 
         colorConfiguration);
 
-    ret += configuration->decorate(sprintf(" (%s)", GenderDesc()),
+    ret += configuration->decorate(sprintf(" (%s)", Gender()),
         "gender", "long description", colorConfiguration);
 
     object race = getService("races");

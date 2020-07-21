@@ -8,7 +8,7 @@ virtual inherit "/lib/realizations/npc.c";
 protected void Setup()
 {
     Name("berenar");
-    Gender(1);
+    Gender("male");
     Race("maegenstryd");
     SetUpPersonaOfLevel("swordsman", 3);
 

@@ -13,7 +13,7 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->Race("human");
-    Player->Gender(1);
+    Player->Gender("male");
     Player->colorConfiguration("none");
     Player->addCommands();
     move_object(Player, this_object());

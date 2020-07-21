@@ -14,7 +14,7 @@ void Setup()
 
     Inventory = clone_object("/lib/tests/support/services/mockPlayer.c");
     Inventory->Name("Bob");
-    Inventory->Gender(1);
+    Inventory->Gender("male");
     move_object(Inventory, this_object());
 }
 

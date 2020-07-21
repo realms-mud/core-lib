@@ -11,7 +11,7 @@ void Setup()
 {
     Faction = clone_object("/lib/realizations/player");
     Faction->Name("Bob");
-    Faction->Gender(1);
+    Faction->Gender("male");
 }
 
 /////////////////////////////////////////////////////////////////////////////

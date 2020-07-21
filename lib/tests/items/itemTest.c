@@ -646,7 +646,7 @@ void ShortReturnsCorrectMessageInFullLight()
 
     object owner = clone_object("/lib/modules/materialAttributes");
     owner->Name("Harold");
-    owner->Gender(1);
+    owner->Gender("male");
     move_object(Item, owner);
     move_object(owner, "/lib/tests/support/environment/fakeEnvironment.c");
 
@@ -669,7 +669,7 @@ void ShortReturnsCorrectMessageInNearDarkness()
 
     object owner = clone_object("/lib/tests/support/services/mockPlayer.c");
     owner->Name("Harold");
-    owner->Gender(1);
+    owner->Gender("male");
     move_object(Item, owner);
     move_object(owner, environment);
     dictionary->timeOfDay("midnight");
@@ -694,7 +694,7 @@ void ShortReturnsCorrectMessageInLowLight()
 
     object owner = clone_object("/lib/tests/support/services/mockPlayer.c");
     owner->Name("Harold");
-    owner->Gender(1);
+    owner->Gender("male");
     move_object(Item, owner);
     move_object(owner, environment);
     dictionary->timeOfDay("midnight");
@@ -721,7 +721,7 @@ void ShortReturnsCorrectMessageInDimLight()
 
     object owner = clone_object("/lib/tests/support/services/mockPlayer.c");
     owner->Name("Harold");
-    owner->Gender(1);
+    owner->Gender("male");
     move_object(Item, owner);
     move_object(owner, environment);
     dictionary->timeOfDay("midnight");
@@ -747,7 +747,7 @@ void ShortReturnsCorrectMessageInSomeLight()
 
     object owner = clone_object("/lib/tests/support/services/mockPlayer.c");
     owner->Name("Harold");
-    owner->Gender(1);
+    owner->Gender("male");
     move_object(Item, owner);
     move_object(owner, environment);
     dictionary->timeOfDay("dawn");

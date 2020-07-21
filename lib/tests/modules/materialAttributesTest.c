@@ -56,130 +56,130 @@ void RealNameIsAlwaysName()
 /////////////////////////////////////////////////////////////////////////////
 void MaleGenderCanBeSet()
 {
-    ExpectEq(1, Attributes->Gender(1));
+    ExpectEq("male", Attributes->Gender("male"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void FemaleGenderCanBeSet()
 {
-    ExpectEq(2, Attributes->Gender(2));
+    ExpectEq("female", Attributes->Gender("female"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NeuterGenderCanBeSet()
 {
-    ExpectEq(0, Attributes->Gender(0));
+    ExpectEq("neuter", Attributes->Gender("neuter"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OtherGendersCannotBeSet()
 {
     string err = catch(ExpectFalse(Attributes->Gender(-2)));
-    ExpectEq("*materialAttributes: gender can only be set to 0, 1, or 2.\n", err);
+    ExpectEq("*materialAttributes: gender can only be set to neuter, male, or female.\n", err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void MaleGenderDescIsMale()
+void MaleGenderIsMale()
 {
-    ExpectEq(1, Attributes->Gender(1));
-    ExpectEq("male", Attributes->GenderDesc());
+    ExpectEq("male", Attributes->Gender("male"));
+    ExpectEq("male", Attributes->Gender());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void FemaleGenderDescIsFemale()
+void FemaleGenderIsFemale()
 {
-    ExpectEq(2, Attributes->Gender(2));
-    ExpectEq("female", Attributes->GenderDesc());
+    ExpectEq("female", Attributes->Gender("female"));
+    ExpectEq("female", Attributes->Gender());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void NeuterGenderDescIsNeuter()
+void NeuterGenderIsNeuter()
 {
-    ExpectEq(0, Attributes->Gender(0));
-    ExpectEq("neuter", Attributes->GenderDesc());
+    ExpectEq("neuter", Attributes->Gender("neuter"));
+    ExpectEq("neuter", Attributes->Gender());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MalePronounIsMale()
 {
-    ExpectEq(1, Attributes->Gender(1));
+    ExpectEq("male", Attributes->Gender("male"));
     ExpectEq("he", Attributes->Pronoun());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void FemalePronounIsFemale()
 {
-    ExpectEq(2, Attributes->Gender(2));
+    ExpectEq("female", Attributes->Gender("female"));
     ExpectEq("she", Attributes->Pronoun());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NeuterPronounIsNeuter()
 {
-    ExpectEq(0, Attributes->Gender(0));
+    ExpectEq("neuter", Attributes->Gender("neuter"));
     ExpectEq("it", Attributes->Pronoun());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MaleObjectiveIsMale()
 {
-    ExpectEq(1, Attributes->Gender(1));
+    ExpectEq("male", Attributes->Gender("male"));
     ExpectEq("him", Attributes->Objective());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void FemaleObjectiveIsFemale()
 {
-    ExpectEq(2, Attributes->Gender(2));
+    ExpectEq("female", Attributes->Gender("female"));
     ExpectEq("her", Attributes->Objective());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NeuterObjectiveIsNeuter()
 {
-    ExpectEq(0, Attributes->Gender(0));
+    ExpectEq("neuter", Attributes->Gender("neuter"));
     ExpectEq("it", Attributes->Objective());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MalePossessiveIsMale()
 {
-    ExpectEq(1, Attributes->Gender(1));
+    ExpectEq("male", Attributes->Gender("male"));
     ExpectEq("his", Attributes->Possessive());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void FemalePossessiveIsFemale()
 {
-    ExpectEq(2, Attributes->Gender(2));
+    ExpectEq("female", Attributes->Gender("female"));
     ExpectEq("her", Attributes->Possessive());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NeuterPossessiveIsNeuter()
 {
-    ExpectEq(0, Attributes->Gender(0));
+    ExpectEq("neuter", Attributes->Gender("neuter"));
     ExpectEq("its", Attributes->Possessive());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MaleReflexiveIsMale()
 {
-    ExpectEq(1, Attributes->Gender(1));
+    ExpectEq("male", Attributes->Gender("male"));
     ExpectEq("himself", Attributes->Reflexive());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void FemaleReflexiveIsFemale()
 {
-    ExpectEq(2, Attributes->Gender(2));
+    ExpectEq("female", Attributes->Gender("female"));
     ExpectEq("herself", Attributes->Reflexive());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NeuterReflexiveIsNeuter()
 {
-    ExpectEq(0, Attributes->Gender(0));
+    ExpectEq("neuter", Attributes->Gender("neuter"));
     ExpectEq("itself", Attributes->Reflexive());
 }
 
@@ -313,7 +313,7 @@ void DescriptionCanBeSetAndReturnsCorrectValue()
 void MaterialAttributeLongDataReturnedByLong()
 {
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n", Attributes->long());
 }
 
@@ -321,7 +321,7 @@ void MaterialAttributeLongDataReturnedByLong()
 void LongReturnsTitle()
 {
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     Attributes->Title("the Unclean");
     ExpectEq("Tantor the Unclean (male)\nHe is in good shape.\n", Attributes->long());
 }
@@ -330,7 +330,7 @@ void LongReturnsTitle()
 void LongReturnsRace()
 {
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     Attributes->Race("elf");
     Attributes->hitPoints(200);
     ExpectEq("Tantor the title-less (male) (elf)\nHe is in good shape.\n", Attributes->long());
@@ -340,7 +340,7 @@ void LongReturnsRace()
 void LongReturnsDescription()
 {
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     Attributes->Race("elf");
     Attributes->hitPoints(200);
     Attributes->description("This is a description.");
@@ -361,7 +361,7 @@ void LongReturnsInventoryBasedUserDescriptions()
     ExpectTrue(weapon->equip("blah"));
 
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
 
     string expected = "Tantor the title-less (male)\nHe is in good shape.\n"
         "Tantor has a shiny blah!\n    Carrying:\n"
@@ -389,7 +389,7 @@ void LongReturnsInventoryWithDetails()
     move_object(weapon, Attributes);
 
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     ExpectEq("Tantor the title-less (male)\nHe is in good shape.\n    Carrying:\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Miscellaneous Items +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| A Sword                                                                     |\n"
@@ -403,7 +403,7 @@ void LongReturnsWizardInformation()
     destruct(Attributes);
     Attributes = clone_object("/lib/tests/support/services/mockWizard.c");
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     ExpectSubStringMatch("Player", Attributes->long());
 }
 
@@ -554,7 +554,7 @@ void LongDescriptionCorrectlyDisplaysNoColor()
 {
     Attributes->colorConfiguration("none");
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     Attributes->Race("elf");
     Attributes->hitPoints(200);
     Attributes->description("This is a really long description. I mean, "
@@ -576,7 +576,7 @@ void LongDescriptionCorrectlyDisplaysThreeBitColor()
 {
     Attributes->colorConfiguration("3-bit");
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     Attributes->Race("elf");
     Attributes->hitPoints(200);
     Attributes->description("This is a really long description. I mean, "
@@ -599,7 +599,7 @@ void LongDescriptionCorrectlyDisplaysEightBitColor()
 {
     Attributes->colorConfiguration("8-bit");
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     Attributes->Race("elf");
     Attributes->hitPoints(200);
     Attributes->description("This is a really long description. I mean, "
@@ -622,7 +622,7 @@ void LongDescriptionCorrectlyDisplaysTwentyFourBitColor()
 {
     Attributes->colorConfiguration("24-bit");
     Attributes->Name("Tantor");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
     Attributes->Race("elf");
     Attributes->hitPoints(200);
     Attributes->description("This is a really long description. I mean, "
@@ -648,7 +648,7 @@ void ShortReturnsCorrectMessageInNearDarkness()
 
     Attributes->Name("Bob");
     Attributes->Race("high elf");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
 
     dictionary->timeOfDay("midnight");
     dictionary->setDay(363);
@@ -666,7 +666,7 @@ void ShortReturnsCorrectMessageInLowLight()
 
     Attributes->Name("Bob");
     Attributes->Race("high elf");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
 
     dictionary->timeOfDay("midnight");
     dictionary->setDay(6);
@@ -687,7 +687,7 @@ void ShortReturnsCorrectMessageInDimLight()
 
     Attributes->Name("Bob");
     Attributes->Race("high elf");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
 
     dictionary->timeOfDay("midnight");
     dictionary->setDay(13);
@@ -705,7 +705,7 @@ void ShortReturnsCorrectMessageInSomeLight()
 
     Attributes->Name("Bob");
     Attributes->Race("high elf");
-    Attributes->Gender(1);
+    Attributes->Gender("male");
 
     dictionary->timeOfDay("dawn");
 

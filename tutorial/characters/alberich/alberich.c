@@ -8,7 +8,7 @@ virtual inherit "/lib/realizations/npc.c";
 protected void Setup()
 {
     Name("alberich");
-    Gender(1);
+    Gender("male");
     Race("human");
     SetUpPersonaOfLevel("knifeman", 3);
     addTrait("lib/instances/traits/racial/eledhelHuman.c");

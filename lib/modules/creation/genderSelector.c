@@ -28,7 +28,7 @@ public nomask void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int processSelection(string selection)
 {
-    return User->Gender(to_int(selection)) != 0;
+    return User->Gender(lower_case(Data[selection]["name"])) != 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////

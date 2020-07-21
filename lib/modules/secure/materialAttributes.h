@@ -14,7 +14,7 @@ private string magicalMessageIn = "";
 private string magicalMessageOut = "";
 private string messageHome = "";
 private string messageClone = "";
-private int gender;
+private string gender = "neuter";
 private int age;
 private string *aliases = ({});
 private int ghost = 0;
@@ -29,27 +29,33 @@ private int isGuest = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 private nosave mapping genderPronouns = ([
-    1: ([ 
+    1: "male",
+    2: "female",
+    0: "neuter",
+    "male": ([ 
         "name": "male",
+        "index": 1,
         "nominative": "he",
         "genitive": "his",
         "dative": "him",
         "reflexive": "himself"
     ]),
-    2: ([
+    "female": ([
         "name": "female",
+        "index": 2,
         "nominative": "she",
         "genitive": "her",
         "dative": "her",
         "reflexive": "herself"
     ]),
-    0: ([
+    "neuter": ([
         "name": "neuter",
+        "index": 0,
         "nominative": "it",
         "genitive": "its",
         "dative": "it",
         "reflexive": "itself"
-    ])
+    ]),
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +72,7 @@ static nomask void loadMaterialAttributes(mapping data, object persistence)
         magicalMessageOut = persistence->extractSaveData("magicalMessageOut", data);
         messageHome = persistence->extractSaveData("messageHome", data);
         messageClone = persistence->extractSaveData("messageClone", data);
-        gender = persistence->extractSaveData("gender", data);
+        gender = genderPronouns[persistence->extractSaveData("gender", data)];
         age = persistence->extractSaveData("age", data);
         ghost = persistence->extractSaveData("ghost", data);
         title = persistence->extractSaveData("title", data);
@@ -93,7 +99,7 @@ static nomask mapping sendMaterialAttributes()
     ret["magicalMessageOut"] = magicalMessageOut;
     ret["messageHome"] = messageHome;
     ret["messageClone"] = messageClone;
-    ret["gender"] = gender;
+    ret["gender"] = genderPronouns[gender]["index"];
     ret["age"] = age;
     ret["ghost"] = ghost;
     ret["title"] = title;

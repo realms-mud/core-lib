@@ -19,7 +19,7 @@ protected void Setup()
     addAlias("bregar");
     addAlias("keeper of the night");
 
-    Gender(1);
+    Gender("male");
     Race("human");
     SetUpPersonaOfLevel("keeper of the night", 3);
     addTrait("lib/instances/traits/educational/educated.c");

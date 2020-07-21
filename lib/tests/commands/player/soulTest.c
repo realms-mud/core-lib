@@ -14,7 +14,7 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->Race("human");
-    Player->Gender(1);
+    Player->Gender("male");
     Player->colorConfiguration("none");
     Player->resetCatchList();
     Player->addCommands();
@@ -23,7 +23,7 @@ void Setup()
     Target = clone_object("/lib/tests/support/services/mockPlayer.c");
     Target->Name("earl");
     Target->Race("human");
-    Target->Gender(1);
+    Target->Gender("male");
     Target->colorConfiguration("none");
     Target->resetCatchList();
     Target->addCommands();
@@ -32,7 +32,7 @@ void Setup()
     Bystander = clone_object("/lib/tests/support/services/mockPlayer.c");
     Bystander->Name("frank");
     Bystander->Race("human");
-    Bystander->Gender(1);
+    Bystander->Gender("male");
     Bystander->colorConfiguration("none");
     Bystander->resetCatchList();
     Bystander->addCommands();
@@ -2984,7 +2984,7 @@ void HostileActionsTriggerRetaliation()
     Target = clone_object("/lib/realizations/monster.c");
     Target->Name("earl");
     Target->Race("human");
-    Target->Gender(1);
+    Target->Gender("male");
 
     object shadow = clone_object("/lib/tests/support/services/catchShadow.c");
     shadow->beginShadow(Target);

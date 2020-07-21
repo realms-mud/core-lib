@@ -14,7 +14,7 @@ protected void Setup()
     addAlias("woman");
     addAlias("raven-haired woman");
 
-    Gender(2);
+    Gender("female");
     Race("deity");
     SetUpPersonaOfLevel("oneiromancer", 80);
     addTrait("lib/instances/traits/archetypes/intj.c");

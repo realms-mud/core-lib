@@ -29,7 +29,7 @@ private mapping methodsToReplace = ([
     "query_pronoun": "Pronoun",
     "query_possessive": "Possessive",
     "query_gender": "Gender",
-    "query_gender_string": "GenderDesc",
+    "query_gender_string": "Gender",
     "query_hp": "hitPoints",
     "query_sp": "spellPoints",
     "query_level": "effectiveLevel",

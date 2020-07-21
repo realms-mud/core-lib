@@ -47,7 +47,7 @@ void SelectionOfMaleSetsGenderToMale()
     Selector->initiateSelector(User);
     Selector->applySelection("1");
     ExpectEq("\x1b[0;36mYou have selected 'Male'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq(1, User->Gender());
+    ExpectEq("male", User->Gender());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@ void SelectionOfFemaleSetsGenderToFemale()
     Selector->initiateSelector(User);
     Selector->applySelection("2");
     ExpectEq("\x1b[0;36mYou have selected 'Female'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq(2, User->Gender());
+    ExpectEq("female", User->Gender());
 }
 
 /////////////////////////////////////////////////////////////////////////////
