@@ -723,3 +723,26 @@ void AddResponseEffectAllowsAndAppliesExperienceToSpecificGuild()
     ExpectSubStringMatch("You have gained 500 experience.*fake mage only", 
         Actor->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanHandleCallOthers()
+{
+    object shadow =
+        clone_object("/lib/tests/support/services/conversationShadow.c");
+    shadow->beginShadow(Owner);
+
+    Conversation->testAddTopic("test", "@D@##TargetName## ##Infinitive::glare## "
+        "at ##InitiatorName## and ##Infinitive::snarl##, @S@`"
+        "##CallOther::firstOne##, aka ##CallOther::secondOne##! That was "
+        "really rude!' @D@You ##ResponseInfinitive::laugh##. "
+        "@A@Annoyed@E@");
+
+    move_object(Actor, this_object());
+    move_object(Owner, this_object());
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    ExpectEq("\n\x1b[0;36mGertrude glares at you and snarls, \x1b[0m\x1b[0;33m"
+        "`Gorthaur, aka Ser Arseling! That was\nreally rude!' \x1b[0m\x1b[0;36mYou "
+        "laugh. \x1b[0m\x1b[0;34;1m[Annoyed]\x1b[0m\n",
+        Actor->caughtMessage());
+}

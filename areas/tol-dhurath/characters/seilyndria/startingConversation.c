@@ -5,7 +5,7 @@
 virtual inherit "/lib/modules/conversations/baseConversation.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private void SeilyndriaAppears()
+private void MaiwynIntroduced()
 {
     addTopic("first conversation", "@D@A rather surprised-looking woman "
         "dressed in a dirty tan-ish shirt and equally dirty pants stands "
@@ -39,10 +39,34 @@ private void SeilyndriaAppears()
         "@D@Maiwyn takes a ragged breath and appears to be making a valiant "
         "effort to hold back tears. @S@'I do not know much, but it feels like a "
         "lifetime ago... ");
+    addTopicEvent("gave name", "playerGaveName");
+    addResponseTopic("first conversation", "I am...", "gave name");
+    addResponse("gave name", "@I@Continue@E@", "@I@Continue@E@");
+
+    addTopic("gave title", "@D@She smirks slightly and says, @S@'Well, you're "
+        "certainly dressed the part. I am Maiwyn of House Belectar. I must "
+        "have been captured a very long time indeed, for the Aegis Guard I "
+        "remember would not think so little of their mission and the kingdom "
+        "they serve so as to hide their identity. There is As for what's going on here...' "
+        "@D@Maiwyn takes a ragged breath and appears to be making a valiant "
+        "effort to hold back tears. @S@'I do not know much, but it feels like a "
+        "lifetime ago... ");
+    addResponseTopic("first conversation", "I am an agent of the king...", 
+        "gave title");
+    addResponse("gave title", "@I@Continue@E@", "@I@Continue@E@");
+
+    addTopic("was rude", "@D@She smiles warmly and says, @S@'Well met, "
+        "##ActorName##. I am Maiwyn. As for what's going on here...' "
+        "@D@Maiwyn takes a ragged breath and appears to be making a valiant "
+        "effort to hold back tears. @S@'I do not know much, but it feels like a "
+        "lifetime ago... ");
+    addResponseTopic("first conversation", "No, who are you?",
+        "was rude");
+    addResponse("was rude", "@I@Continue@E@", "@I@Continue@E@");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    SeilyndriaAppears();
+    MaiwynIntroduced();
 }

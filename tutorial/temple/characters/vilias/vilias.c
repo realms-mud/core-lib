@@ -17,7 +17,7 @@ protected void Setup()
     Gender("female");
     Race("deity");
     SetUpPersonaOfLevel("oneiromancer", 80);
-    addTrait("lib/instances/traits/archetypes/intj.c");
+    addTrait("lib/instances/traits/archetypes/iitj.c");
     addTrait("lib/instances/traits/educational/tactician.c");
     addTrait("lib/instances/traits/educational/architect.c");
     addTrait("lib/instances/traits/educational/articulate.c");

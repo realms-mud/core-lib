@@ -356,6 +356,20 @@ private nomask int isValidLiving(object livingCheck)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string parseCallOthers(string template, object initiator,
+    object target)
+{
+    string ret = template;
+    while(sizeof(regexp(({ ret }), "##CallOther::[^#]+##")))
+    {
+        string method = regreplace(ret, ".*##CallOther::([^#]+)##.*", "\\1");
+        ret = regreplace(ret, "(.*)##CallOther::([^#]+)##",
+            "\\1" + call_other(target, method, initiator));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask string parseTemplate(string template, string perspective,
     object initiator, object target, string colorConfiguration)
 {
@@ -373,6 +387,7 @@ protected nomask string parseTemplate(string template, string perspective,
     // dictionary calls must be done first!
     int isSecondPerson = (perspective == "initiator");
 
+    message = parseCallOthers(message, initiator, target);
     message = messageParser()->parseVerbs(message, perspective == "target");
     message = regreplace(message, "##ResponseInfinitive::([^#]+)##", "##Infinitive::\\1##", 1);
     message = messageParser()->parseVerbs(message, isSecondPerson);

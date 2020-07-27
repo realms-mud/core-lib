@@ -4,6 +4,8 @@
 //*****************************************************************************
 virtual inherit "/lib/realizations/npc.c";
 
+private int playerGaveName = 0;
+
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
@@ -22,11 +24,12 @@ protected void Setup()
     addAlias("attractive woman");
     addAlias("unkempt woman");
 
+    customCombatAssessment("Unknown");
     Gender("female");
     Race("deity");
     apparentRace("maegenstryd");
     SetUpPersonaOfLevel("aeromancer", 80);
-    addTrait("lib/instances/traits/archetypes/intj.c");
+    addTrait("lib/instances/traits/archetypes/iitj.c");
     addTrait("lib/instances/traits/educational/tactician.c");
     addTrait("lib/instances/traits/educational/architect.c");
     addTrait("lib/instances/traits/educational/articulate.c");
@@ -46,5 +49,11 @@ protected void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void revealName()
 {
-    short("Seilyndria");
+    short("Maiwyn");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void playerGaveName()
+{
+    playerGaveName = 1;
 }
