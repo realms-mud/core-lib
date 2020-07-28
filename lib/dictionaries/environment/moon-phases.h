@@ -2,6 +2,8 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef moon_phases_h
+#define moon_phases_h
 
 private mapping moonPhases = ([
     0: "new moon",
@@ -44,3 +46,5 @@ private mapping moonLightLevel = ([
     "last quarter": 3,
     "waning crescent": 2,
 ]);
+
+#endif

@@ -2,6 +2,8 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef times_of_day_h
+#define times_of_day_h
 
 private mapping timesOfDay = ([
     "midnight":([
@@ -68,3 +70,5 @@ private mapping timesOfDay = ([
         "next": "midnight"
     ])
 ]);
+
+#endif

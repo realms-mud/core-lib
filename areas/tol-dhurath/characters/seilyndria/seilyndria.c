@@ -50,10 +50,23 @@ protected void Setup()
 public void revealName()
 {
     short("Maiwyn");
+    addAlias("maiwyn");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void playerGaveName()
 {
     playerGaveName = 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string speakPlayerName(object actor)
+{
+    return playerGaveName ? capitalize(actor->RealName()) : "unnamed ser";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string getDateAndTime(object actor)
+{
+    return getDictionary("environment")->currentDayAndYear();
 }

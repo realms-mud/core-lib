@@ -4,6 +4,7 @@
 //*****************************************************************************
 #include "/lib/dictionaries/environment/locations.h"
 #include "/lib/dictionaries/environment/times-of-day.h"
+#include "/lib/dictionaries/environment/months.h"
 #include "/lib/dictionaries/environment/moon-phases.h"
 #include "/lib/modules/secure/environment.h"
 
@@ -306,6 +307,16 @@ private nomask void calculateSeason()
             break;
         }
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string currentDayAndYear()
+{
+    int *monthDates = sort_array(filter(m_indices(Months), 
+        (: $1 <= $2 :), currentDayOfYear), (: $1 < $2 :));
+
+    return sprintf("%s %d, %d", Months[monthDates[0]], 
+        (1 + currentDayOfYear - monthDates[0]), currentYear);
 }
 
 /////////////////////////////////////////////////////////////////////////////
