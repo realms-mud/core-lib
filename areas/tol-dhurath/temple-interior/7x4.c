@@ -16,4 +16,7 @@ public void Setup()
 
     addExitWithDoor("south",
         "/areas/tol-dhurath/temple-interior/7x3.c");
+
+    addObject("/areas/tol-dhurath/characters/seilyndria/seilyndria.c");
+    addObject("/areas/tol-dhurath/characters/galadhel/galadhel.c");
 }

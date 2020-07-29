@@ -9,7 +9,7 @@ private int playerGaveName = 0;
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    Name("seilyndria");
+    Name("woman");
     short("An attractive, but unkempt woman");
     description("A woman dressed in a dirty tan-ish shirt and equally dirty "
         "pants. Both are made of coarse, thread-bare linen and show signs "
@@ -44,11 +44,16 @@ protected void Setup()
     addTrait("lib/instances/traits/personality/feared.c");
 
     addConversation("/areas/tol-dhurath/characters/seilyndria/startingConversation.c");
+
+    registerEvent(this_object());
+    registerEventHandler("revealName");
+    registerEventHandler("playerGaveName");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void revealName()
 {
+    Name("maiwyn");
     short("Maiwyn");
     addAlias("maiwyn");
 }

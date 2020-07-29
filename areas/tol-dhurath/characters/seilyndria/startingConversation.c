@@ -40,6 +40,7 @@ private void MaiwynIntroduced()
         "effort to hold back tears. @S@'I do not know much, but it feels like a "
         "lifetime ago... ");
     addTopicEvent("gave name", "playerGaveName");
+    addTopicEvent("gave name", "revealName");
     addResponseTopic("first conversation", "I am...", "gave name");
     addResponse("gave name", "@I@Continue@E@", "@I@Continue@E@");
 
@@ -52,6 +53,7 @@ private void MaiwynIntroduced()
         "@D@Maiwyn takes a ragged breath and appears to be making a valiant "
         "effort to hold back tears. @S@'I do not know much, but it feels like a "
         "lifetime ago... ");
+    addTopicEvent("gave title", "revealName");
     addResponseTopic("first conversation", "I am an agent of the king...", 
         "gave title");
     addResponse("gave title", "I am...", "@D@@C@##InitiatorName## "
@@ -66,6 +68,7 @@ private void MaiwynIntroduced()
         "@D@Maiwyn takes a ragged breath and appears to be making a valiant "
         "effort to hold back tears. @S@'I do not know much, but it feels like a "
         "lifetime ago... ");
+    addTopicEvent("was rude", "revealName");
     addResponseTopic("first conversation", "No, who are you?",
         "was rude");
     addResponse("was rude", "I am...", "@D@@C@##InitiatorName## "
@@ -74,7 +77,8 @@ private void MaiwynIntroduced()
     addResponse("was rude", "@I@Continue@E@", "@I@Continue@E@");
 
     addTopic("gave name second chance", "@D@She smiles warmly and says, "
-        "@S@'Well met, ##ActorName##. There is wisdom in caution...");
+        "@S@'Well met, ##ActorName##. There is wisdom in caution... I "
+        "am honored that you have chosen to trust me with your name.");
     addResponseTopic("gave title", "I am...", "gave name second chance");
     addResponseTopic("was rude", "I am...", "gave name second chance");
     addTopicEvent("gave name second chance", "playerGaveName");
@@ -104,10 +108,11 @@ private void MaiwynStoryPartTwo()
     addTopic("story part two", "@S@'You cannot be serious! I have been "
         "here for eight years then. They have stolen so much of my life..."
         "' @D@Maiwyn trails off, deep in contemplation. @S@'I and a dozen "
-        "others have been held here... over the years, many have been "
+        "others have been held here... over the years, many others have been "
         "killed, many... abused. The periods of simple neglect are the "
-        "best. I would say a good two score of these outlaws live in "
-        "this ruin, though many are constantly coming and going.'");
+        "best. I would say a good score or so of these outlaws are in "
+        "this ruin at any given time, though many more are constantly "
+        "coming and going.'");
     addResponseTopic("story part one", "It is...", "story part two");
 
     addResponse("story part two", "Your escape...", "@D@@C@##InitiatorName## "
@@ -117,10 +122,9 @@ private void MaiwynStoryPartTwo()
         "##ResponseInfinitive::ask##, @S@'What can you tell me about these "
         "outlaws? What are they doing here?'");
     addResponse("story part two", "This ruin...", "@D@@C@##InitiatorName## "
-        "##ResponseInfinitive::note##, @S@'I know that Tol-Dhurath was once "
-        "a fastness of the Scions of Dhuras and were built to commemorate "
-        "the defeat the invading armies of the Kingdom of Andurath at this "
-        "very site. What can you tell me of its more recent uses?'");
+        "##ResponseInfinitive::note##, @S@'I know that this ruin was once a "
+        "fastness of the Scions of Dhuras. What can you tell me of its more "
+        "recent uses?'");
     addResponse("story part two", "The other captives...", 
         "@D@@C@##InitiatorName## ##ResponseInfinitive::inquire##, @S@'You "
         "mentioned other captives. What can you tell me of them?'");
@@ -135,9 +139,125 @@ private void MaiwynStoryPartTwo()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void MaiwynDiscussionEscape()
+{
+    addTopic("my escape", "@S@'It was one of the outlaw's...' @D@Maiwyn's "
+        "face flashes a hint of pain that is quickly sealed behind a wall. "
+        "She continues levelly, @S@'time to be with me. He threw me down "
+        "and I was fortunate enough to find this rock. After I killed him, "
+        "I fled his alcove and met up with you as I was about to leave "
+        "this place. I know that it looks like I am running to save only "
+        "myself, but please believe me - I was going to report this as "
+        "soon as I got to safety. You being here opened up another "
+        "possibility.'");
+    addResponseTopic("story part two", "Your escape...", "my escape");
+    addResponse("my escape", "@I@Continue@E@", "@I@Continue@E@");
+    addResponseTopic("my escape", "@I@Continue@E@", "story part two");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void MaiwynDiscussionOutlaws()
+{
+    addTopic("the outlaws", "@S@'They are brutal and efficient. They're "
+        "led by a man known as \"Lord Sullath\". In all the time I have "
+        "been here, I've seen him but a couple times. He does not pay "
+        "any attention to us prisoners, but he exudes a darkness about "
+        "himself.' @D@Maiwyn shudders at this and then continues. @S@'"
+        "When I first met him, he stated that he has set himself to "
+        "seize control of Eledhel. He practically swooned as he mentioned "
+        "his devoted worship of his mistress - one he calls Seilyndria...");
+
+    addTopicInterjection("the outlaws",
+        "/areas/tol-dhurath/characters/galadhel/galadhel.c",
+        "seilyndria", 1);
+    addResponseTopic("story part two", "About these outlaws...", "the outlaws");
+
+    addResponse("the outlaws", "Did you say Seilyndria? @A@Theology@E@",
+        "@S@'Did you say Seilyndria? As in the Goddess of Destruction?' "
+        "@C@##InitiatorName## ##ResponseInfinitive::trail## off, "
+        "seemingly deep in thought.");
+    addResponsePrerequisite("the outlaws",
+        "Did you say Seilyndria? @A@Theology@E@",
+        (["theology":(["type":"skill", "value" : 1])]), 1);
+
+    addResponse("the outlaws", "Galadhel?",
+        "@S@'You are familiar with this Seilyndria, Galadhel?' @D@"
+        "@C@##InitiatorName## ##ResponseInfinitive::ask## in a troubled "
+        "voice.");
+    addResponsePrerequisite("the outlaws", "Galadhel?",
+        (["presence":(["type":"presence", "value" : ({ "galadhel" })])]));
+
+    addResponse("the outlaws", "@I@Continue@E@", "@I@Continue@E@");
+
+    addTopic("outlaws - seilyndria", "@D@Maiwyn's face is very difficult "
+        "to read. She bites down on her lip before interjecting, @S@'"
+        "Lord Sullath told me a tale, about why he has taken this place "
+        "for his own. It was built by the Scions of Dhuras on the site "
+        "where Queen Bryleth the Vain of Andurath was defeated and "
+        "captured.' @D@Maiwyn looks a little skeptical as she continues, "
+        "@S@'Lord Sullath claims that Bryleth was actually Seilyndria "
+        "and he chose this place to honor her as he carries out his "
+        "work. He gave us two options: go through the Trial of Obedience "
+        "and join his cause or serve his cause in death.'");
+    addResponseTopic("the outlaws", "Did you say Seilyndria? @A@Theology@E@", 
+        "outlaws - seilyndria");
+    addResponseTopic("the outlaws", "Galadhel?",
+        "outlaws - seilyndria");
+
+    addResponse("outlaws - seilyndria", "And yet you live...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at Maiwyn "
+        "and ##ResponseInfinitive::state##, @S@'And here you are. "
+        "Alive...'");
+    addResponse("outlaws - seilyndria", "Did you join him?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at Maiwyn "
+        "and ##ResponseInfinitive::say##, @S@'How do you come to be "
+        "here? I want to believe that you didn't join him, but you are "
+        "here, very much alive.'");
+    addResponse("outlaws - seilyndria", "His cause...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::look## at Maiwyn "
+        "and ##ResponseInfinitive::ask##, @S@'You said he wishes to "
+        "seize control of Eledhel. Do you know how?'");
+
+    addTopic("maiwyn offended", "@D@Maiwyn erupts into tears. She "
+        "angrily wipes them away and snarls, @S@'How dare you!? I only "
+        "wish that these bastards had killed me! Those wretched monsters "
+        "kill all the men they capture. The women, they find other uses "
+        "for!' @D@She glares at ##InitiatorName## most unfriendily and "
+        "suggests that ##InitiatorSubjective## do something that "
+        "##InitiatorSubjective## ##ResponseInfinitive::be## anatomically "
+        "ill-equipped to do.");
+    addResponseTopic("outlaws - seilyndria", "And yet you live...",
+        "maiwyn offended");
+    addResponseTopic("outlaws - seilyndria", "Did you join him?",
+        "maiwyn offended");
+
+    addTopicInterjection("maiwyn offended",
+        "/areas/tol-dhurath/characters/galadhel/galadhel.c",
+        "maiwyn offended", 1);
+    addResponse("maiwyn offended", "@I@Continue@E@", "@I@Continue@E@");
+
+    addTopic("seizing eledhel", "@D@Maiwyn sighs and forces herself to "
+        "move forward with her conversation. @S@'I know only that they "
+        "are raising an army. I do not know where, how many, how "
+        "organized, how anything! I am simply their plaything and not "
+        "considered human enough to discuss such things with.'");
+    addResponseTopic("maiwyn offended", "@I@Continue@E@",
+        "seizing eledhel");
+    addResponseTopic("outlaws - seilyndria", "His cause...",
+        "seizing eledhel");
+    addResponseTopic("the outlaws", "@I@Continue@E@", "seizing eledhel");
+
+    addResponse("seizing eledhel", "@I@Continue@E@", "@I@Continue@E@");
+
+    addResponseTopic("seizing eledhel", "@I@Continue@E@", "story part two");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     MaiwynIntroduced();
     MaiwynStoryPartOne();
     MaiwynStoryPartTwo();
+    MaiwynDiscussionEscape();
+    MaiwynDiscussionOutlaws();
 }
