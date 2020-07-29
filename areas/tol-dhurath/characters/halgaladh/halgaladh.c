@@ -35,6 +35,7 @@ protected void Setup()
     SetUpPersonaOfLevel("swordsman", 3);
     addSkillPoints(8);
     advanceSkill("long sword", 8);
+    customCombatAssessment("Companion");
 
     addTrait("lib/instances/traits/educational/educated.c");
     addTrait("lib/instances/traits/background/human/eledhelean/noble/arthellyn.c");
