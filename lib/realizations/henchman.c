@@ -111,7 +111,23 @@ public nomask void setMaxStaminaPoints(int value)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLeader(object player)
 {
-    Leader = player;
+    if (objectp(player))
+    {
+        Leader = player;
+
+        object partyDictionary = getDictionary("party");
+        if (!Leader->getParty())
+        {
+            partyDictionary->createParty(
+                sprintf("%s's Party", capitalize(Leader->RealName())), Leader);
+        }
+        
+        object partyObj = Leader->getParty();
+        if (partyObj)
+        {
+            partyObj->addNPC(this_object());
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

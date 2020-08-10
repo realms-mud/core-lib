@@ -17,7 +17,23 @@ public nomask int isRealizationOfNpc()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLeader(object player)
 {
-    leader = player;
+    if (objectp(player))
+    {
+        leader = player;
+
+        object partyDictionary = getDictionary("party");
+        if (!leader->getParty())
+        {
+            partyDictionary->createParty(
+                sprintf("%s's Party", capitalize(leader->RealName())), leader);
+        }
+
+        object partyObj = leader->getParty();
+        if (partyObj)
+        {
+            partyObj->addNPC(this_object());
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

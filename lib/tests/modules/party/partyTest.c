@@ -201,3 +201,148 @@ void PlayersUnexpectedlyLeavingAreAutomaticallyPrunedDuringAllocation()
     ExpectEq(({ Member }), party->members());
     ExpectEq(Member, party->creator());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAddHenchman()
+{
+    Dictionary->createParty("Test party", Creator);
+    object party = Creator->getParty();
+
+    party->joinParty(Member);
+
+    object henchman = clone_object("/lib/realizations/henchman.c");
+    henchman->Name("Earl");
+    henchman->setLeader(Creator);
+
+    ExpectEq(({ Creator, Member }), party->members());
+    ExpectEq(({ Creator, Member, henchman }), party->members(1));
+    ExpectEq(Creator->getParty(), henchman->getParty());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAddCompanion()
+{
+    Dictionary->createParty("Test party", Creator);
+    object party = Creator->getParty();
+
+    party->joinParty(Member);
+
+    object companion = clone_object("/lib/realizations/companion.c");
+    companion->Name("Earl");
+    companion->setLeader(Creator);
+
+    ExpectEq(({ Creator, Member }), party->members());
+    ExpectEq(({ Creator, Member, companion }), party->members(1));
+    ExpectEq(Creator->getParty(), companion->getParty());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAddNPC()
+{
+    Dictionary->createParty("Test party", Creator);
+    object party = Creator->getParty();
+
+    party->joinParty(Member);
+
+    object npc = 
+        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+    npc->setLeader(Creator);
+
+    ExpectEq(({ Creator, Member }), party->members());
+    ExpectEq(({ Creator, Member, npc }), party->members(1));
+    ExpectEq(Creator->getParty(), npc->getParty());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AdvancingALevelIgnoresHenchmenAndNPCs()
+{
+    Dictionary->createParty("Test party", Creator);
+    object party = Creator->getParty();
+
+    object npc =
+        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+    npc->setLeader(Creator);
+
+    object companion = clone_object("/lib/realizations/companion.c");
+    companion->Name("Earl");
+    companion->setLeader(Creator);
+
+    object henchman = clone_object("/lib/realizations/henchman.c");
+    henchman->Name("Ralph");
+    henchman->setLeader(Creator);
+
+    party->joinParty(Member);
+
+    Creator->addExperience(3000);
+    ExpectEq(8000, Creator->effectiveExperience());
+    ExpectEq(2000, Member->effectiveExperience());
+    ExpectEq(7000, npc->effectiveExperience());
+    ExpectEq(1000, companion->effectiveExperience());
+    ExpectEq(1000, henchman->effectiveExperience());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void FollowingShowsCorrectList()
+{
+    Dictionary->createParty("Test party", Creator);
+    object party = Creator->getParty();
+
+    object npc =
+        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+    npc->setLeader(Creator);
+
+    object companion = clone_object("/lib/realizations/companion.c");
+    companion->Name("Earl");
+    companion->setLeader(Creator);
+
+    object henchman = clone_object("/lib/realizations/henchman.c");
+    henchman->Name("Ralph");
+    henchman->setLeader(Creator);
+
+    party->joinParty(Member);
+    party->follow(Creator, Member);
+
+    ExpectEq("Bob", party->following(npc));
+    ExpectEq("Bob", party->following(companion));
+    ExpectEq("Bob", party->following(henchman));
+    ExpectEq("Bob", party->following(Member));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MoveFollowersMovesAllFollowers()
+{
+    Dictionary->createParty("Test party", Creator);
+    object party = Creator->getParty();
+
+    object npc =
+        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+    npc->setLeader(Creator);
+
+    object companion = clone_object("/lib/realizations/companion.c");
+    companion->Name("Earl");
+    companion->setLeader(Creator);
+
+    object henchman = clone_object("/lib/realizations/henchman.c");
+    henchman->Name("Ralph");
+    henchman->setLeader(Creator);
+
+    party->joinParty(Member);
+    party->follow(Creator, Member);
+
+    object room = 
+        load_object("/lib/tests/support/environment/startingRoom.c");
+
+    move_object(Creator, room);
+    move_object(npc, room);
+    move_object(companion, room);
+    move_object(henchman, room);
+    move_object(Member, room);
+
+    command("w", Creator);
+    ExpectEq(load_object("/lib/tests/support/environment/not-so-dark-room.c"), 
+        environment(Creator));
+    ExpectEq(environment(Creator), environment(npc));
+    ExpectEq(environment(Creator), environment(companion));
+    ExpectEq(environment(Creator), environment(henchman));
+    ExpectEq(environment(Creator), environment(Member));
+}

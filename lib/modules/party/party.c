@@ -18,6 +18,7 @@ private mapping information = ([
     "experience earned": ([]),
     "best kill": ([]),
     "following": ([]),
+    "npcs": ({})
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,9 +40,15 @@ public nomask object creator()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object *members()
+public nomask varargs object *members(int includeNPCs)
 {
-    return m_indices(Members);
+    object *ret = m_indices(Members);
+
+    if (includeNPCs)
+    {
+        ret += information["npcs"];
+    }
+    return ret + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -58,6 +65,8 @@ public nomask void refresh()
             TotalWeight += newLevel;
         }
     }
+
+    information["npcs"] -= ({ 0 });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -239,7 +248,7 @@ private nomask string getMemberInformation(string colorConfiguration,
 {
     string ret = memberBanner(colorConfiguration, charset);
 
-    object *currentMembers = members();
+    object *currentMembers = members(1);
     string *memberList = m_indices(information["experience earned"]);
     if (sizeof(memberList))
     {
@@ -380,5 +389,38 @@ public nomask varargs void moveFollowers(object leader, string destination,
         {
             follower->move(destination, direction, silently, region);
         }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void removeNPC(object npc)
+{
+    stopFollowing(npc);
+    information["npcs"] -= ({ npc });
+    m_delete(information["experience earned"], npc->RealName());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void addNPC(object npc)
+{
+    if (npc &&
+        ((member(inherit_list(npc), "lib/realizations/henchman.c") > -1) ||
+        (member(inherit_list(npc), "lib/realizations/npc.c") > -1)))
+    {
+        object *npcsWithSameName = filter(information["npcs"],
+            (: $1->RealName() == $2 :), npc->RealName());
+        if (sizeof(npcsWithSameName))
+        {
+            foreach(object duplicateNPC in npcsWithSameName)
+            {
+                removeNPC(duplicateNPC);
+            }
+        }
+
+        information["npcs"] += ({ npc });
+        information["experience earned"][npc->RealName()] = 0;
+        follow(Creator, npc);
+
+        refresh();
     }
 }
