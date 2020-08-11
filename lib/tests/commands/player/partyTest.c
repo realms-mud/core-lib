@@ -282,3 +282,35 @@ void PartyShowsUnicodeCorrectly()
     ExpectSubStringMatch("\xe2\x95\x94",
         Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void PartyShowsNPCsAndHenchmen()
+{
+    destruct(Bystander);
+    Player->addExperience(1);
+
+    object npc =
+        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+    npc->setLeader(Player);
+
+    object companion = clone_object("/lib/realizations/companion.c");
+    companion->Name("Earl");
+    companion->setLeader(Player);
+
+    object henchman = clone_object("/lib/realizations/henchman.c");
+    henchman->Name("Ralph");
+    henchman->setLeader(Player);
+
+    Player->colorConfiguration("none");
+    ExpectTrue(Player->executeCommand("party -i"));
+    ExpectEq("+-=-=-=-=-=-=-=-=-=-=-=-=+ Members of 'Weasels' Party +-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Name               | Location           | Following          | Exp Earned   |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
+        "| Bob                | fakeEnvironment    | Nobody             |           1  |\n"
+        "| Frank              | No longer in party | Nobody             |           0  |\n"
+        "| Ralph              | Nowhere            | Bob                |         N/A  |\n"
+        "| Earl               | Nowhere            | Bob                |         N/A  |\n"
+        "| Galadhel           | Nowhere            | Bob                |         N/A  |\n"
+        "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n",
+        Player->caughtMessage());
+}

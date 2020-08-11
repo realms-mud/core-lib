@@ -243,6 +243,26 @@ private nomask string memberBanner(string colorConfiguration, string charset)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string following(object initiator)
+{
+    string ret = 0;
+
+    object *potentialLeaders = m_indices(information["following"]);
+    if (sizeof(potentialLeaders))
+    {
+        foreach(object leader in potentialLeaders)
+        {
+            if (member(information["following"][leader], initiator) > -1)
+            {
+                ret = capitalize(leader->RealName());
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string getMemberInformation(string colorConfiguration,
     string charset, object initiator)
 {
@@ -270,6 +290,14 @@ private nomask string getMemberInformation(string colorConfiguration,
             displayColor = (memberObj[0] == Creator) ? "creator" :
                 "active member";
 
+            if ((member(inherit_list(memberObj[0]), 
+                    "lib/realizations/henchman.c") > -1) ||
+                (member(inherit_list(memberObj[0]), 
+                    "lib/realizations/npc.c") > -1))
+            {
+                displayColor = "npc";
+            }
+
             location = "Nowhere";
             object memberLocation = environment(memberObj[0]);
             if (memberLocation)
@@ -292,14 +320,16 @@ private nomask string getMemberInformation(string colorConfiguration,
                 "data", "party", colorConfiguration) +
             commands->divider(colorConfiguration, charset) +
             configuration->decorate(sprintf(" %-18s ",
-                (sizeof(memberObj) && member(information["following"], memberObj[0]) ?
-                capitalize(information["following"][memberObj[0]]->RealName()) :
+                (sizeof(memberObj) && following(memberObj[0]) ?
+                following(memberObj[0]) :
                 "Nobody")),
                 "data", "party", colorConfiguration) +
             commands->divider(colorConfiguration, charset) +
-            configuration->decorate(sprintf(" %11d ",
-                (member(information["experience earned"], member) ?
-                information["experience earned"][member] : 0)),
+            configuration->decorate(sprintf(" %11s ",
+                ((member(information["experience earned"], member) &&
+                    (displayColor != "npc")) ?
+                to_string(information["experience earned"][member]) : 
+                    "N/A")),
                 "data", "party", colorConfiguration)
         );
     }
@@ -322,26 +352,6 @@ public nomask string partyStatistics(object initiator)
         ret += getMemberInformation(colorConfiguration, charset, initiator);
     }
 
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask string following(object initiator)
-{
-    string ret = 0;
-
-    object *potentialLeaders = m_indices(information["following"]);
-    if (sizeof(potentialLeaders))
-    {
-        foreach(object leader in potentialLeaders)
-        {
-            if (member(information["following"][leader], initiator) > -1)
-            {
-                ret = capitalize(leader->RealName());
-                break;
-            }
-        }
-    }
     return ret;
 }
 
@@ -418,7 +428,7 @@ public nomask void addNPC(object npc)
         }
 
         information["npcs"] += ({ npc });
-        information["experience earned"][npc->RealName()] = 0;
+        information["experience earned"][npc->RealName()] = -1;
         follow(Creator, npc);
 
         refresh();

@@ -746,3 +746,23 @@ void CanHandleCallOthers()
         "laugh. \x1b[0m\x1b[0;34;1m[Annoyed]\x1b[0m\n",
         Actor->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEffectAllowsAndAppliesJoin()
+{
+    Conversation->testAddTopic("test", "This is a test message");
+    Conversation->testAddResponse("test", "Another", "This is another test response");
+    Conversation->testAddResponseEffect("test", "Another", (["join":1]));
+
+    object room = load_object("/lib/tests/support/environment/fakeEnvironment.c");
+    ExpectEq(0, Actor->partyName());
+    ExpectEq(0, Owner->partyName());
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
+    Conversation->displayResponse("1", Actor, Owner);
+    ExpectEq("Gorthaur's Party", Actor->partyName());
+    ExpectEq("Gorthaur's Party", Owner->partyName());
+    ExpectTrue(object_name(Actor->getParty()) == object_name(Owner->getParty()));
+    ExpectEq(2, sizeof(Owner->getParty()->members(1)));
+    ExpectEq(2, sizeof(Actor->getParty()->members(1)));
+    ExpectSubStringMatch("Gertrude has joined your party", Actor->caughtMessage());
+}

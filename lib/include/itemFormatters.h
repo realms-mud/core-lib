@@ -946,6 +946,11 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;124m",
             "24-bit": "\x1b[0;38;2;100;10;0m"
         ]),
+        "effect":([
+            "3-bit": "\x1b[0;32;1m",
+            "8-bit": "\x1b[0;38;5;190;1m",
+            "24-bit": "\x1b[0;38;2;220;200;0;1m"
+        ]),
     ]),
     "grid":([
         "display":([
@@ -1043,6 +1048,11 @@ private nosave mapping decorators = ([
             "3-bit": "\x1b[0;33m",
             "8-bit": "\x1b[0;38;5;190m",
             "24-bit": "\x1b[0;38;2;200;200;0m"
+        ]),
+        "npc":([
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;147m",
+            "24-bit": "\x1b[0;38;2;190;200;255m"
         ]),
         "creator":([
             "3-bit": "\x1b[0;33;1m",

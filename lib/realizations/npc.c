@@ -42,7 +42,7 @@ public nomask string partyName()
     string ret = 0;
     if (leader)
     {
-        ret = leader->RealName();
+        ret = leader->partyName() ? leader->partyName() : leader->RealName();
     }
     return ret;
 }

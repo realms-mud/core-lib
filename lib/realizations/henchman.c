@@ -186,7 +186,7 @@ public nomask string partyName()
     string ret = 0;
     if (Leader)
     {
-        ret = Leader->RealName();
+        ret = Leader->partyName() ? Leader->partyName() : Leader->RealName();
     }
     return ret;
 }

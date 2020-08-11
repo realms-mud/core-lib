@@ -269,7 +269,7 @@ private int isValidEffect(mapping effectMap)
 {
     int ret = 0;
     string *validEffects = ({ "opinion", "attack", "move", "give", "vanish",
-        "experience" });
+        "experience", "join" });
     string *effects = m_indices(effectMap);
     if (sizeof(effects))
     {
@@ -493,6 +493,15 @@ private nomask void executeResponseEffect(mapping effects,
     if (member(effects, "opinion"))
     {
         owner->alterOpinionOf(actor, effects["opinion"]);
+    }
+    if (member(effects, "join"))
+    {
+        owner->setLeader(actor);
+
+        tell_object(actor, Configuration->decorate(
+            sprintf("%s has joined your party.\n",
+                capitalize(owner->RealName())), "effect", "conversation",
+            actor->colorConfiguration()));
     }
     if (member(effects, "attack"))
     {
