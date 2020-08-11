@@ -166,7 +166,7 @@ public nomask varargs int pageSize(int newSize)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string colorConfiguration(string newColorSetting)
 {
-    if(member(({ "none", "3-bit", "8-bit", "24-bit" }), newColorSetting) > -1)
+    if(member(({ "none", "3-bit", "8-bit", "24-bit", "grayscale" }), newColorSetting) > -1)
     {
         colorSetting = newColorSetting;
         tell_object(this_object(), sprintf("You have set your color to '%s'.\n",

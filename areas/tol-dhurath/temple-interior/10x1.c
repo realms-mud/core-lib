@@ -17,6 +17,7 @@ public string **customIcon(string **baseIcon, string color, string charset)
     mapping colors = ([
         "pillar":([
             "none": "",
+            "grayscale": "\x1b[0;38;5;240m",
             "3-bit": "\x1b[0;36;1m",
             "8-bit": "\x1b[0;38;5;243;1m",
             "24-bit": "\x1b[0;38;2;118;118;128;1m",

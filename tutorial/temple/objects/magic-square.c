@@ -11,6 +11,7 @@ private mapping squareDisplay = ([
         ]),
         "color":([
             "none": "",
+            "grayscale": "\x1b[0;38;5;240m",
             "3-bit": "\x1b[0;32;1m",
             "8-bit": "\x1b[0;38;5;28;1m",
             "24-bit": "\x1b[0;38;2;0;180;0;1m"
@@ -24,6 +25,7 @@ private mapping squareDisplay = ([
         ]),
         "color":([
             "none": "",
+            "grayscale": "\x1b[0;38;5;240m",
             "3-bit": "\x1b[0;37;1m",
             "8-bit": "\x1b[0;38;5;15;1m",
             "24-bit": "\x1b[0;38;2;255;255;255;1m"
@@ -37,6 +39,7 @@ private mapping squareDisplay = ([
         ]),
         "color":([
             "none": "",
+            "grayscale": "\x1b[0;38;5;240m",
             "3-bit": "\x1b[0;31;1m",
             "8-bit": "\x1b[0;38;5;124;1m",
             "24-bit": "\x1b[0;38;2;180;0;0;1m"
@@ -50,6 +53,7 @@ private mapping squareDisplay = ([
         ]),
         "color": ([
             "none": "",
+            "grayscale": "\x1b[0;38;5;240m",
             "3-bit": "\x1b[0;34;1m",
             "8-bit": "\x1b[0;38;5;20;1m",
             "24-bit": "\x1b[0;38;2;0;0;220;1m"
@@ -63,6 +67,7 @@ private mapping squareDisplay = ([
         ]),
         "color":([
             "none": "",
+            "grayscale": "\x1b[0;38;5;240m",
             "3-bit": "\x1b[0;35m",
             "8-bit": "\x1b[0;38;5;244;1m",
             "24-bit": "\x1b[0;38;2;120;120;120;1m"
@@ -71,12 +76,14 @@ private mapping squareDisplay = ([
     ]),
     "grid":([
         "none": "",
+        "grayscale": "\x1b[0;38;5;240m",
         "3-bit": "\x1b[0;31m",
         "8-bit": "\x1b[0;38;5;9m",
         "24-bit": "\x1b[0;38;2;200;0;0m"
     ]),
     "button":([
         "none": "",
+        "grayscale": "\x1b[0;38;5;240m",
         "3-bit": "\x1b[0;35m",
         "8-bit": "\x1b[0;38;5;244m",
         "24-bit": "\x1b[0;38;2;120;120;160m"
