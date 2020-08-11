@@ -126,6 +126,7 @@ private mapping parametersToFunction = ([
         "method": "colorConfiguration",
         "description": "Sets the user's color configuration. This can be:\n"
             "none - Use this option for no color support\n"
+            "grayscale - Use this option for grayscale\n        (26 shades) support\n"
             "3-bit - Use this option for basic 3-bit\n        (8 color) support\n"
             "8-bit - Use this option for 8-bit (256\n        color) support\n"
             "24-bit - Use this option for true color\n        (16,777,216 color) support\n"

@@ -34,7 +34,8 @@ void ColorCreationDisplaysCorrectMenu()
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m3-bit (8 colors)    \x1b[0m\n"
         "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32m8-bit (256 colors)  \x1b[0m\n"
         "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32m24-bit (true color) \x1b[0m\n"
-        "\x1b[0;32;1mYou must select a number from 1 to 4.\n\x1b[0m"
+        "    [\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mGrayscale (26 colors)\x1b[0m\n"
+        "\x1b[0;32;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') "
         "where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou can change this value after character creation using the 'set' command.\n\x1b[0m",
@@ -89,6 +90,19 @@ void TwentyFourBitDescriptionIsCorrect()
         "modern clients support these colors, but many do not.\n"
         "\x1b[0;38;2;0;95;135mIf your client supports this, you "
         "should see this message in blue-green.\x1b[0m\n\x1b[0m",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GrayscaleDescriptionIsCorrect()
+{
+    Selector->initiateSelector(User);
+    Selector->applySelection("describe 5");
+    ExpectEq("\x1b[0;36mThis option sends the user's client text "
+        "with basic ASNI color support for 26\ngrayscale colors. Some "
+        "modern clients support these colors, but many do not.\n"
+        "\x1b[0;38;5;240mIf your client supports this, you "
+        "should see this message in medium gray.\x1b[0m\n\x1b[0m",
         User->caughtMessage());
 }
 

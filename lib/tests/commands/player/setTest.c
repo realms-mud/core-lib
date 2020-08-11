@@ -594,6 +594,16 @@ void PlayerCanSetColorToEightBit()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void PlayerCanSetColorToGrayscale()
+{
+    Player->executeCommand("set -p color -v grayscale");
+    ExpectSubStringMatch("You have set your color to 'grayscale'.", Player->caughtMessage());
+    ExpectEq("grayscale", Player->colorConfiguration());
+    Player->executeCommand("shout Hi!");
+    ExpectEq("You shout, `Hi!'\n", Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void PlayerCanSetColorToTwentyFourBit()
 {
     Player->executeCommand("set -p color -v 24-bit");
@@ -682,6 +692,8 @@ void PlayerHelpDisplaysCorrectly()
         "\tcolor                - Sets the user's color configuration. This\n"
         "\t                       can be:\n"
         "\t                       none - Use this option for no color support\n"
+        "\t                       grayscale - Use this option for grayscale\n"
+        "\t                               (26 shades) support\n"
         "\t                       3-bit - Use this option for basic 3-bit\n"
         "\t                               (8 color) support\n"
         "\t                       8-bit - Use this option for 8-bit (256\n"
@@ -808,6 +820,8 @@ void WizardHelpDisplaysCorrectly()
         "\tcolor                - Sets the user's color configuration. This\n"
         "\t                       can be:\n"
         "\t                       none - Use this option for no color support\n"
+        "\t                       grayscale - Use this option for grayscale\n"
+        "\t                               (26 shades) support\n"
         "\t                       3-bit - Use this option for basic 3-bit\n"
         "\t                               (8 color) support\n"
         "\t                       8-bit - Use this option for 8-bit (256\n"
