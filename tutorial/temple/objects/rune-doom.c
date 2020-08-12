@@ -14,7 +14,7 @@ public void reset(int arg)
         set("aliases", ({ "rune", "rune of doom", "doom" }));
         set("long", "A fist-sized slab of amethyst has some intricately carved "
             "runes on it. You can distinguish the Khazdic symbol for the word "
-            "'doom' and see the words, \x1b[0;35;3mMy doom awaits me\x1b[0m "
+            "'doom' and see the words, 'My doom awaits me' "
             "next to it.\n");
     }
 }

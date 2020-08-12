@@ -24,6 +24,51 @@ private mapping verses = ([
     "envy" : "I long for freedom restored"
 ]);
 
+private mapping colors = ([
+    "description": ([
+        "none": "",
+        "grayscale": "\x1b[0;38;5;250m",
+        "3-bit": "\x1b[0;33m",
+        "8-bit": "\x1b[0;38;5;42m",
+        "24-bit": "\x1b[0;38;2;10;200;100m"
+    ]),
+    "border":([
+        "none": "",
+        "grayscale": "\x1b[0;38;5;234m",
+        "3-bit": "\x1b[0;35m",
+        "8-bit": "\x1b[0;38;5;23m",
+        "24-bit": "\x1b[0;38;2;0;85;90m"
+    ]), 
+    "message": ([
+        "none": "",
+        "grayscale": "\x1b[0;38;5;245m",
+        "3-bit": "\x1b[0;35;1m",
+        "8-bit": "\x1b[0;38;5;126m",
+        "24-bit": "\x1b[0;38;2;170;20;180m"
+    ]), 
+    "missing": ([
+        "none": "",
+        "grayscale": "\x1b[0;38;5;237m",
+        "3-bit": "\x1b[0;31m",
+        "8-bit": "\x1b[0;38;5;124m",
+        "24-bit": "\x1b[0;38;2;180;0;0m"
+    ]), 
+    "placed": ([
+        "none": "",
+        "grayscale": "\x1b[0;38;5;248;1m",
+        "3-bit": "\x1b[0;35;1m",
+        "8-bit": "\x1b[0;38;5;128;1m",
+        "24-bit": "\x1b[0;38;2;190;90;210;1m"
+    ]),
+    "instructions": ([
+        "none": "",
+        "grayscale": "\x1b[0;38;5;250;1m",
+        "3-bit": "\x1b[0;32;1m",
+        "8-bit": "\x1b[0;38;5;2;1m",
+        "24-bit": "\x1b[0;38;2;160;220;60;1m"
+    ]),
+]);
+
 private mapping wall = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -231,8 +276,37 @@ public string short()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private string runeEntry(string message, string colorConfiguration)
+{
+    string ret = message;
+
+    if (sizeof(regexp(({ message }), "<missing>")))
+    {
+        ret = colors["message"][colorConfiguration] + 
+            regreplace(sprintf("%-35s", ret),
+            "(<missing>)",
+            colors["missing"][colorConfiguration] + "\\1" +
+            colors["message"][colorConfiguration], 1);
+    }                            
+    else
+    {
+        ret = colors["placed"][colorConfiguration] + sprintf("%-35s", ret);
+    }
+
+    return "\t\t" + colors["border"][colorConfiguration] + "|   " + ret +
+        colors["border"][colorConfiguration] + "   |" +
+        ((colorConfiguration == "none") ? "" : "\x1b[0m") + "\n";
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public string long()
 {
+    string colorConfiguration = 
+        (this_player() && this_player()->colorConfiguration()) ?
+        this_player()->colorConfiguration() : "none";
+
+    string closing = (colorConfiguration == "none") ? "" : "\x1b[0m";
+
     string missing = getPiecesMissing();
     if (missing != "")
     {
@@ -242,51 +316,40 @@ public string long()
             "puzzle were missing");
     }
 
-    string long = sprintf("\x1b[0;33mYou gaze at the wall of runes. As you "
-        "decipher them, you note that they form a poem.%s\x1b[0m\nAs near "
+    string poem = runeEntry(wall["weakness"], colorConfiguration) +
+        runeEntry(wall["strength"], colorConfiguration) +
+        runeEntry(wall["flame"], colorConfiguration) +
+        runeEntry(wall["frost"], colorConfiguration) +
+        runeEntry(wall["aegis"], colorConfiguration) +
+        runeEntry(wall["negation"], colorConfiguration) +
+        runeEntry("", colorConfiguration) +
+        runeEntry(wall["senses"], colorConfiguration) +
+        runeEntry(wall["wisdom"], colorConfiguration) +
+        runeEntry(wall["endurance"], colorConfiguration) +
+        runeEntry(wall["resistance"], colorConfiguration) +
+        runeEntry(wall["death"], colorConfiguration) +
+        runeEntry(wall["torment"], colorConfiguration) +
+        runeEntry("", colorConfiguration) +
+        runeEntry(wall["doom"], colorConfiguration) +
+        runeEntry(wall["phantom"], colorConfiguration) +
+        runeEntry(wall["fear"], colorConfiguration) +
+        runeEntry(wall["domination"], colorConfiguration) +
+        runeEntry(wall["sanctuary"], colorConfiguration) +
+        runeEntry(wall["envy"], colorConfiguration);
+
+    string long = sprintf("%sYou gaze at the wall of runes. As you "
+        "decipher them, you note that they form a poem.%s\n\nAs near "
         "as you can tell, this is what the runes spell out:\n"
-        "\t\t\x1b[0;35m+-----------------------------------------+\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m|   %-35s   |\x1b[0m\n"
-        "\t\t\x1b[0;35m+-----------------------------------------+\x1b[0m\n%s",
+        "\t\t%s+-----------------------------------------+%s\n%s"
+        "\t\t%s+-----------------------------------------+%s\n%s%s%s",
+        colors["description"][colorConfiguration],
         missing,
-        wall["weakness"],
-        wall["strength"],
-        wall["flame"],
-        wall["frost"],
-        wall["aegis"],
-        wall["negation"], "",
-        wall["senses"],
-        wall["wisdom"],
-        wall["endurance"],
-        wall["resistance"],
-        wall["death"],
-        wall["torment"], "",
-        wall["doom"],
-        wall["phantom"],
-        wall["fear"],
-        wall["domination"],
-        wall["sanctuary"],
-        wall["envy"],
+        colors["border"][colorConfiguration], closing,
+        poem,
+        colors["border"][colorConfiguration], closing,
+        colors["instructions"][colorConfiguration],
         (missing == "") ? "" : "If you find some runes, perhaps you can place"
-        " them...");
+        " them...",
+        closing);
     return format(long, 78);
 }

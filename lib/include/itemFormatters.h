@@ -401,7 +401,7 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;0;5;170m"
         ]),
         "instructions":([
-            "grayscale": "\x1b[0;38;5;250m",
+            "grayscale": "\x1b[0;38;5;250;1m",
             "3-bit": "\x1b[0;32;1m",
             "8-bit": "\x1b[0;38;5;2;1m",
             "24-bit": "\x1b[0;38;2;160;220;60;1m"

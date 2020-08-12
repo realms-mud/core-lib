@@ -14,7 +14,7 @@ public void reset(int arg)
         set("aliases", ({ "rune", "rune of negation", "negation" }));
         set("long", "A fist-sized slab of amethyst has some intricately carved "
             "runes on it. You can distinguish the Khazdic symbol for the word "
-            "'negation' and see the words, \x1b[0;35;3mI negate my greatest fears\x1b[0m "
+            "'negation' and see the words, 'I negate my greatest fears' "
             "next to it.\n");
     }
 }
