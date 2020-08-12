@@ -40,7 +40,7 @@ static nomask void loadSettings(mapping data, object persistence)
         PageSize = 20;
     }
 
-    if (member(({ "none", "3-bit", "8-bit", "24-bit" }), colorSetting) < 0)
+    if (member(({ "none", "3-bit", "8-bit", "24-bit", "grayscale" }), colorSetting) < 0)
     {
         colorSetting = "3-bit";
     }

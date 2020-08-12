@@ -28,10 +28,11 @@ public string **customIcon(string **baseIcon, string color, string charset)
 
     mapping colors = ([
         "door":([
-            "none":"",
-            "3-bit" : "\x1b[0;33m",
-            "8-bit" : "\x1b[0;38;5;100m",
-            "24-bit" : "\x1b[0;38;2;102;102;38m",
+            "none": "",
+            "grayscale": "\x1b[0;38;5;251m",
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;100m",
+            "24-bit": "\x1b[0;38;2;102;102;38m",
         ]),
     ]);
 
