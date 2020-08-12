@@ -24,7 +24,7 @@ public string **customIcon(string **baseIcon, string color, string charset)
     mapping colors = ([
         "stairs":([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;253m",
             "3-bit": "\x1b[0;32m",
             "8-bit": "\x1b[0;38;5;226m",
             "24-bit": "\x1b[0;38;2;180;180;60m",

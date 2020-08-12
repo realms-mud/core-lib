@@ -24,7 +24,7 @@ private mapping CityIcons = ([
     "north-south tower 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -39,7 +39,7 @@ private mapping CityIcons = ([
     "tall southwest tower 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -54,7 +54,7 @@ private mapping CityIcons = ([
     "tall southwest tower 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -69,7 +69,7 @@ private mapping CityIcons = ([
     "tall southwest tower 0x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -84,7 +84,7 @@ private mapping CityIcons = ([
     "tall southwest tower 1x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -99,7 +99,7 @@ private mapping CityIcons = ([
     "tall southeast tower 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -114,7 +114,7 @@ private mapping CityIcons = ([
     "tall southeast tower 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -129,7 +129,7 @@ private mapping CityIcons = ([
     "tall southeast tower 0x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -144,7 +144,7 @@ private mapping CityIcons = ([
     "tall southeast tower 1x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -159,7 +159,7 @@ private mapping CityIcons = ([
     "tall south tower 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -174,7 +174,7 @@ private mapping CityIcons = ([
     "tall south tower 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -189,7 +189,7 @@ private mapping CityIcons = ([
     "tall south tower 0x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -204,7 +204,7 @@ private mapping CityIcons = ([
     "tall south tower 1x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -219,7 +219,7 @@ private mapping CityIcons = ([
     "inner east-west wall": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -234,7 +234,7 @@ private mapping CityIcons = ([
     "outer east-west wall": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -249,7 +249,7 @@ private mapping CityIcons = ([
     "inner north-south wall": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -264,7 +264,7 @@ private mapping CityIcons = ([
     "outer north-south wall": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -279,7 +279,7 @@ private mapping CityIcons = ([
     "south gate house": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -294,7 +294,7 @@ private mapping CityIcons = ([
     "building vertical left": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -309,7 +309,7 @@ private mapping CityIcons = ([
     "building vertical right": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -324,7 +324,7 @@ private mapping CityIcons = ([
     "building horizontal north": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -339,7 +339,7 @@ private mapping CityIcons = ([
     "building horizontal south": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -354,7 +354,7 @@ private mapping CityIcons = ([
     "2x2 building 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -369,7 +369,7 @@ private mapping CityIcons = ([
     "2x2 building 0x0 with door": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -384,7 +384,7 @@ private mapping CityIcons = ([
     "2x2 building 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -399,7 +399,7 @@ private mapping CityIcons = ([
     "2x2 building 1x0 with door": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -414,7 +414,7 @@ private mapping CityIcons = ([
     "2x2 building 0x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -429,7 +429,7 @@ private mapping CityIcons = ([
     "2x2 building 0x1 with door": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -444,7 +444,7 @@ private mapping CityIcons = ([
     "1x2 building 0x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -459,7 +459,7 @@ private mapping CityIcons = ([
     "1x2 building 0x1 right door": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -474,7 +474,7 @@ private mapping CityIcons = ([
     "1x2 building 0x0 with door": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -489,7 +489,7 @@ private mapping CityIcons = ([
     "1x2 building 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -504,7 +504,7 @@ private mapping CityIcons = ([
     "2x2 building 1x1 well": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -519,7 +519,7 @@ private mapping CityIcons = ([
     "2x2 building 1x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -534,7 +534,7 @@ private mapping CityIcons = ([
     "2x1 building 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -549,7 +549,7 @@ private mapping CityIcons = ([
     "2x1 building 1x0 door": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -564,7 +564,7 @@ private mapping CityIcons = ([
     "2x1 building 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -579,7 +579,7 @@ private mapping CityIcons = ([
     "2x1 building 0x0 door": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -594,14 +594,14 @@ private mapping CityIcons = ([
     "2x1 sword shop 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;245m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit" : "\x1b[0;38;5;46;1m",
                     "24-bit" : "\x1b[0;38;2;0;255;0;1m",
@@ -618,14 +618,14 @@ private mapping CityIcons = ([
     "2x1 sword smith 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;245m",
                     "3-bit": "\x1b[0;41;33m",
                     "8-bit": "\x1b[0;48;5;52;38;5;190m",
                     "24-bit": "\x1b[0;48;2;95;0;0;38;2;255;255;0m",
@@ -642,14 +642,14 @@ private mapping CityIcons = ([
     "2x1 axe shop 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;245m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit" : "\x1b[0;38;5;46;1m",
                     "24-bit" : "\x1b[0;38;2;0;255;0;1m",
@@ -666,14 +666,14 @@ private mapping CityIcons = ([
     "2x1 hammer shop 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;245m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit" : "\x1b[0;38;5;46;1m",
                     "24-bit" : "\x1b[0;38;2;0;255;0;1m",
@@ -690,14 +690,14 @@ private mapping CityIcons = ([
     "2x1 bowyer 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;245m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit" : "\x1b[0;38;5;46;1m",
                     "24-bit" : "\x1b[0;38;2;0;255;0;1m",
@@ -715,14 +715,14 @@ private mapping CityIcons = ([
     "2x1 shipwright 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;245m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit" : "\x1b[0;38;5;46;1m",
                     "24-bit" : "\x1b[0;38;2;0;255;0;1m",
@@ -739,14 +739,14 @@ private mapping CityIcons = ([
     "2x1 grocer 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;245m",
                     "3-bit" : "\x1b[0;33;1m",
                     "8-bit" : "\x1b[0;38;5;226;1m",
                     "24-bit" : "\x1b[0;38;2;255;255;0;1m",
@@ -763,7 +763,7 @@ private mapping CityIcons = ([
     "1x1 building type 1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -778,7 +778,7 @@ private mapping CityIcons = ([
     "1x1 building type 2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -793,14 +793,14 @@ private mapping CityIcons = ([
     "1x1 building type 3": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "tree":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;239m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit": "\x1b[0;38;5;35m",
                     "24-bit": "\x1b[0;38;2;0;175;90m",
@@ -817,14 +817,14 @@ private mapping CityIcons = ([
     "1x1 building type 4": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "tree":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;239m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit": "\x1b[0;38;5;35m",
                     "24-bit": "\x1b[0;38;2;0;175;90m",
@@ -841,14 +841,14 @@ private mapping CityIcons = ([
     "1x1 building type 5": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "tree":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;239m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit": "\x1b[0;38;5;35m",
                     "24-bit": "\x1b[0;38;2;0;175;90m",
@@ -865,7 +865,7 @@ private mapping CityIcons = ([
     "1x1 building type 6": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -880,14 +880,14 @@ private mapping CityIcons = ([
     "1x1 building type 7": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "tree":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;239m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit": "\x1b[0;38;5;35m",
                     "24-bit": "\x1b[0;38;2;0;175;90m",
@@ -904,7 +904,7 @@ private mapping CityIcons = ([
     "1x1 building type 8": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -919,7 +919,7 @@ private mapping CityIcons = ([
     "1x1 building type 9": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -934,7 +934,7 @@ private mapping CityIcons = ([
     "1x1 deciduous trees": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;241m",
             "3-bit": "\x1b[0;32;1m",
             "8-bit": "\x1b[0;38;5;35m",
             "24-bit": "\x1b[0;38;2;0;175;90m",
@@ -949,7 +949,7 @@ private mapping CityIcons = ([
     "1x1 evergreen trees": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;239m",
             "3-bit": "\x1b[0;32;1m",
             "8-bit": "\x1b[0;38;5;35m",
             "24-bit": "\x1b[0;38;2;0;175;90m",
@@ -980,14 +980,14 @@ private mapping CityIcons = ([
     "1x1 church of ilyrth": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "church":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;253m",
                     "3-bit": "\x1b[0;35;1m",
                     "8-bit": "\x1b[0;38;5;99;1m",
                     "24-bit": "\x1b[0;38;2;112;128;174;1m",
@@ -1004,14 +1004,14 @@ private mapping CityIcons = ([
     "1x1 building jeweler": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;251m",
                     "3-bit" : "\x1b[0;34;1m",
                     "8-bit" : "\x1b[0;38;5;20;1m",
                     "24-bit" : "\x1b[0;38;2;20;20;215;1m"
@@ -1028,14 +1028,14 @@ private mapping CityIcons = ([
     "1x1 building gem merchant": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;249m",
                     "3-bit" : "\x1b[0;34m",
                     "8-bit" : "\x1b[0;38;5;20m",
                     "24-bit" : "\x1b[0;38;2;20;20;215m"
@@ -1052,14 +1052,14 @@ private mapping CityIcons = ([
     "1x1 building herbalist": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;247m",
                     "3-bit": "\x1b[0;32m",
                     "8-bit": "\x1b[0;38;5;46m",
                     "24-bit": "\x1b[0;38;2;100;200;100m"
@@ -1076,14 +1076,14 @@ private mapping CityIcons = ([
     "1x1 building apothecary": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;246m",
                     "3-bit" : "\x1b[0;32m",
                     "8-bit" : "\x1b[0;38;5;46m",
                     "24-bit" : "\x1b[0;38;2;100;200;100m"
@@ -1100,14 +1100,14 @@ private mapping CityIcons = ([
     "1x1 building books": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;243m",
                     "3-bit" : "\x1b[0;32m",
                     "8-bit" : "\x1b[0;38;5;46m",
                     "24-bit" : "\x1b[0;38;2;100;200;100m"
@@ -1124,14 +1124,14 @@ private mapping CityIcons = ([
     "1x1 building arcane": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;241m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit" : "\x1b[0;38;5;46;1m",
                     "24-bit" : "\x1b[0;38;2;0;255;0;1m",
@@ -1149,14 +1149,14 @@ private mapping CityIcons = ([
     "1x1 building healer": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;239m",
                     "3-bit" : "\x1b[0;32m",
                     "8-bit" : "\x1b[0;38;5;46m",
                     "24-bit" : "\x1b[0;38;2;100;200;100m"
@@ -1173,14 +1173,14 @@ private mapping CityIcons = ([
     "1x1 building armorer": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;238m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit" : "\x1b[0;38;5;46;1m",
                     "24-bit" : "\x1b[0;38;2;0;255;0;1m",
@@ -1197,14 +1197,14 @@ private mapping CityIcons = ([
     "1x1 building armorer 2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "merchant":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;238m",
                     "3-bit": "\x1b[0;32;1m",
                     "8-bit" : "\x1b[0;38;5;46;1m",
                     "24-bit" : "\x1b[0;38;2;0;255;0;1m",
@@ -1221,7 +1221,7 @@ private mapping CityIcons = ([
     "dock": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1236,7 +1236,7 @@ private mapping CityIcons = ([
     "dock end": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1251,7 +1251,7 @@ private mapping CityIcons = ([
     "palace west gate": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1266,7 +1266,7 @@ private mapping CityIcons = ([
     "palace 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1281,7 +1281,7 @@ private mapping CityIcons = ([
     "palace 0x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1296,7 +1296,7 @@ private mapping CityIcons = ([
     "palace 0x4": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1311,7 +1311,7 @@ private mapping CityIcons = ([
     "palace 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1326,7 +1326,7 @@ private mapping CityIcons = ([
     "palace 1x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1341,7 +1341,7 @@ private mapping CityIcons = ([
     "palace 1x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1356,7 +1356,7 @@ private mapping CityIcons = ([
     "palace 1x3": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1371,7 +1371,7 @@ private mapping CityIcons = ([
     "palace 1x4": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1386,7 +1386,7 @@ private mapping CityIcons = ([
     "palace 2x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1401,7 +1401,7 @@ private mapping CityIcons = ([
     "palace 2x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1416,7 +1416,7 @@ private mapping CityIcons = ([
     "palace 2x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1431,7 +1431,7 @@ private mapping CityIcons = ([
     "palace 2x3": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1446,7 +1446,7 @@ private mapping CityIcons = ([
     "palace 2x4": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1461,7 +1461,7 @@ private mapping CityIcons = ([
     "palace 3x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1476,7 +1476,7 @@ private mapping CityIcons = ([
     "palace 3x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1491,7 +1491,7 @@ private mapping CityIcons = ([
     "palace 3x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1506,7 +1506,7 @@ private mapping CityIcons = ([
     "palace 3x3": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1521,7 +1521,7 @@ private mapping CityIcons = ([
     "palace 3x4": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1536,7 +1536,7 @@ private mapping CityIcons = ([
     "palace 4x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1551,7 +1551,7 @@ private mapping CityIcons = ([
     "palace 4x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1566,7 +1566,7 @@ private mapping CityIcons = ([
     "palace 4x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1581,7 +1581,7 @@ private mapping CityIcons = ([
     "palace 4x3": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1596,7 +1596,7 @@ private mapping CityIcons = ([
     "palace 4x4": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1611,7 +1611,7 @@ private mapping CityIcons = ([
     "palace 5x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1626,7 +1626,7 @@ private mapping CityIcons = ([
     "palace 5x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1641,7 +1641,7 @@ private mapping CityIcons = ([
     "palace 5x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1656,7 +1656,7 @@ private mapping CityIcons = ([
     "palace south garden 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1671,7 +1671,7 @@ private mapping CityIcons = ([
     "palace south garden 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1686,7 +1686,7 @@ private mapping CityIcons = ([
     "palace south garden 2x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1701,7 +1701,7 @@ private mapping CityIcons = ([
     "palace south garden 0x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1716,7 +1716,7 @@ private mapping CityIcons = ([
     "palace south garden 0x3": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1731,7 +1731,7 @@ private mapping CityIcons = ([
     "palace south garden 1x3": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1746,7 +1746,7 @@ private mapping CityIcons = ([
     "palace south garden 2x3": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1761,7 +1761,7 @@ private mapping CityIcons = ([
     "palace interior": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1776,14 +1776,14 @@ private mapping CityIcons = ([
     "scion guild 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "statue":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;253;1m",
                     "3-bit": "\x1b[0;36;1m",
                     "8-bit" : "\x1b[0;38;5;14;1m",
                     "24-bit" : "\x1b[0;38;2;0;235;255;1m",
@@ -1800,7 +1800,7 @@ private mapping CityIcons = ([
     "scion guild 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1815,14 +1815,14 @@ private mapping CityIcons = ([
     "scion guild 0x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "statue":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;253;1m",
                     "3-bit": "\x1b[0;36;1m",
                     "8-bit" : "\x1b[0;38;5;14;1m",
                     "24-bit" : "\x1b[0;38;2;0;235;255;1m",
@@ -1839,7 +1839,7 @@ private mapping CityIcons = ([
     "scion guild 1x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1855,14 +1855,14 @@ private mapping CityIcons = ([
     "mage guild 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "statue":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;243;1m",
                     "3-bit": "\x1b[0;34;1m",
                     "8-bit" : "\x1b[0;38;5;12;1m",
                     "24-bit" : "\x1b[0;38;2;120;180;255;1m",
@@ -1879,14 +1879,14 @@ private mapping CityIcons = ([
     "mage guild 0x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "statue":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;243;1m",
                     "3-bit": "\x1b[0;34;1m",
                     "8-bit" : "\x1b[0;38;5;2;1m",
                     "24-bit" : "\x1b[0;38;2;200;255;120;1m",
@@ -1903,7 +1903,7 @@ private mapping CityIcons = ([
     "mage guild 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1918,7 +1918,7 @@ private mapping CityIcons = ([
     "mage guild 1x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1933,7 +1933,7 @@ private mapping CityIcons = ([
     "mage guild 2x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1948,7 +1948,7 @@ private mapping CityIcons = ([
     "mage guild 2x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -1963,14 +1963,14 @@ private mapping CityIcons = ([
     "mage guild 3x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "statue":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;243;1m",
                     "3-bit": "\x1b[0;34;1m",
                     "8-bit" : "\x1b[0;38;5;130;1m",
                     "24-bit" : "\x1b[0;38;2;255;200;120;1m",
@@ -1987,14 +1987,14 @@ private mapping CityIcons = ([
     "mage guild 3x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m",
             "icons": ([
                 "statue":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;240m",
+                    "grayscale": "\x1b[0;38;5;243;1m",
                     "3-bit": "\x1b[0;34;1m",
                     "8-bit" : "\x1b[0;38;5;200;1m",
                     "24-bit" : "\x1b[0;38;2;250;100;205;1m",
@@ -2011,7 +2011,7 @@ private mapping CityIcons = ([
     "2x1 manor 0x0 door": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -2026,7 +2026,7 @@ private mapping CityIcons = ([
     "2x1 manor 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -2041,7 +2041,7 @@ private mapping CityIcons = ([
     "2x1 residence 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -2056,7 +2056,7 @@ private mapping CityIcons = ([
     "2x1 residence 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"

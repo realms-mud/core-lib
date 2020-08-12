@@ -9,7 +9,7 @@ private mapping TempleIcons = ([
     "temple 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"
@@ -24,7 +24,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 0x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -39,7 +39,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 0x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -54,7 +54,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 0x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -69,7 +69,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 1x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -84,7 +84,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 1x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -99,7 +99,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 1x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -114,7 +114,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 2x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -129,7 +129,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 2x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -144,7 +144,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 3x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -159,7 +159,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 3x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -174,7 +174,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 3x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -189,7 +189,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 4x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -204,7 +204,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 4x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -219,7 +219,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 4x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -234,7 +234,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 5x0": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -249,7 +249,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 5x1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"
@@ -264,7 +264,7 @@ private mapping TempleIcons = ([
     "tol-dhurath 5x2": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;235m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;235m",
             "24-bit": "\x1b[0;38;2;56;62;56m"

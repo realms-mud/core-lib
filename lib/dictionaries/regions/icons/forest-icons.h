@@ -9,7 +9,7 @@ private mapping ForestIcons = ([
     "deciduous forest 1": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;240m",
+            "grayscale": "\x1b[0;38;5;245m",
             "3-bit": "\x1b[0;36m",
             "8-bit": "\x1b[0;38;5;245m",
             "24-bit": "\x1b[0;38;2;138;138;138m"

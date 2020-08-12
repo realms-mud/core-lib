@@ -600,7 +600,7 @@ void PlayerCanSetColorToGrayscale()
     ExpectSubStringMatch("You have set your color to 'grayscale'.", Player->caughtMessage());
     ExpectEq("grayscale", Player->colorConfiguration());
     Player->executeCommand("shout Hi!");
-    ExpectEq("You shout, `Hi!'\n", Player->caughtMessage());
+    ExpectEq("\x1b[0;38;5;252mYou shout, `Hi!'\n\x1b[0m", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
