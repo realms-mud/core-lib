@@ -8,7 +8,8 @@ inherit "/lib/environment/interiors/baseInterior.c";
 public void Setup()
 {
     Name("pedestal chamber");
+    suppressEntryMessage();
 
-    addDescriptionTemplate("a very large and cavernous chamber - easily two "
-        "hundred yards wide by two hundred yards long");
+    addDescriptionTemplate("this is a very large and cavernous chamber - "
+        "easily two hundred yards wide by two hundred yards long");
 }

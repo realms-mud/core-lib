@@ -692,7 +692,8 @@ private nomask string parseEfunCall(string match)
                         object stateObj = present_clone(arguments[2]);
                         if (stateObj)
                         {
-                            ret = call_other(stateObj, arguments[3]) + "\x1b[0;33m";
+                            ret = "##CLEAR##" + call_other(stateObj, arguments[3]) + 
+                                "##DESC COLOR##";
                         }
                         else
                         {
@@ -704,13 +705,15 @@ private nomask string parseEfunCall(string match)
                     {
                         if (file_size(arguments[2]) > 0)
                         {
-                            ret = call_other(arguments[2], arguments[3]) + "\x1b[0;33m";
+                            ret = "##CLEAR##" + call_other(arguments[2], arguments[3]) + 
+                                "##DESC COLOR##";
                         }
                         break;
                     }
                     case "room":
                     {
-                        ret = call_other(this_object(), arguments[3]) + "\x1b[0;33m";
+                        ret = "##CLEAR##" + call_other(this_object(), arguments[3]) + 
+                            "##DESC COLOR##";
                         break;
                     }
                     default:
@@ -977,7 +980,7 @@ private nomask string displayMap(string description, string *map,
     string *splitDesc = explode(description, "\n");
 
     int shortest = sizeof(map) < sizeof(splitDesc) ? 
-        sizeof(map) : sizeof(splitDesc);
+        sizeof(map) - 1 : sizeof(splitDesc) - 1;
 
     int count = 0;
     for (int i = 0; i < shortest; i++)
@@ -994,12 +997,9 @@ private nomask string displayMap(string description, string *map,
     }
     else
     {
-        for (int i = count; i < sizeof(splitDesc); i++)
-        {
-            ret += sprintf("%18s %s\n", "", 
-                configuration->decorate(splitDesc[i],
-                    "description", "environment", colorConfiguration));
-        }
+        ret += configuration->decorate(format(
+            implode(splitDesc[count..(sizeof(splitDesc) - 1)], " "), 78),
+            "description", "environment", colorConfiguration);
     }
 
     return ret;
@@ -1022,9 +1022,6 @@ private nomask string displayLongDetails(string description, string *map,
         ret += " " + environmentalElements["description"][currentState()];
     }
 
-    ret = regreplace(ret,
-        "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
-        #'parseEfunCall,1);
     ret = capitalizeSentences(ret);
     ret = format(ret, descriptionWidth);
 
@@ -1037,6 +1034,24 @@ private nomask string displayLongDetails(string description, string *map,
         ret = sprintf(configuration->decorate(ret,
             "description", "environment", colorConfiguration));
     }
+
+    // This will only handle one efun call. The likelihood of needing more
+    // was deemed remote enough that getting this working for N invocations
+    // did not seem worth the effort.
+    ret = regreplace(ret,
+        "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
+        #'parseEfunCall);
+
+    ret = regreplace(ret, "##CLEAR##", 
+        (colorConfiguration != "none") ? "\x1b[0m" : "", 1);
+
+    string trailingDesc = 
+        regreplace(ret, ".*##DESC COLOR##(.*$)", "\\1", 1);
+    trailingDesc = format(implode(explode(trailingDesc, "\n"), " "), 78);
+
+    ret = regreplace(ret, "##DESC COLOR##(.*$)",
+        configuration->decorate(trailingDesc,
+            "description", "environment", colorConfiguration), 1);
 
     return ret;
 }

@@ -8,10 +8,12 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("purple liquid");
+    suppressEntryMessage();
+
     addAdjectives(({ "thick, glowing", "luminous, roiling", 
         "viscous, incandescent" }));
 
-    addDescriptionTemplate("that a ##Adjective## purple liquid fills the room, "
+    addDescriptionTemplate("a luminous, roiling purple liquid fills the room, "
         "occasion ripples gyrating along the visible surface where a path "
         "has been sliced through it. The liquid is held at bay from the "
         "path by some unseen barrier - or perhaps, despite its appearance, "

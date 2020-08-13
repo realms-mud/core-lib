@@ -2093,3 +2093,45 @@ void HarvestResourceReturnsCorrectResource()
 
     destruct(environment);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void VeryLongRoomDescriptionsDisplayCorrectly()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("bob");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->charsetConfiguration("ascii");
+
+    object environment =
+        load_object("/tutorial/temple/environment/rooms/entry-to-pedestal.c");
+    move_object(player, environment);
+
+    command("s", player);
+    ExpectEq(" |       ' This is a very large and cavernous chamber - easily two hundred\n"
+        " #  o  o ' yards wide by two hundred yards long the ceiling is hard to\n"
+        "         ' discern from this distance, but it appears to be solid amethyst.\n"
+        "         ' The floor is fashioned out of what appears to be solid amethyst. A\n"
+        " o  o  o ' luminous, roiling purple liquid fills the room, occasion ripples\n"
+        "         ' gyrating along the visible surface where a path has been sliced\n"
+        "         ' through it. The liquid is held at bay from the path by some unseen\n"
+        " o  o  o ' barrier - or perhaps, despite its appearance, it is as solid as\n"
+        "         ' rock. It is impossible to tell for sure - the constant bursts of\n"
+        "lightning coursing through the substance are enough to keep even the most\n"
+        "foolhardy away. Along the wall near the entry, many intricate runes have been\n"
+        "carved. In the center of the liquid-free area stand four three-foot tall\n"
+        "pedestals. Each has been placed at a cardinal point and about a ten foot gaps\n"
+        "stands between one to its nearest neighbor. Scintilating orbs of energy sit\n"
+        "atop each pedestal, pulsating with magical energies.\n"
+        "                                 @\n"
+        "                              @     @\n"
+        "                                 @\n"
+        "Beside each of the pedestals, a glowing circle of etched stone lies: to the\n"
+        "north, blue; to the south, red; to the east, green; and to the west, white. In\n"
+        "the middle of all the pedestals, another sits, emitting a sickly black glow.\n"
+        " -=-=- There is one obvious exit: north\n"
+        "A wall with many runes etched into it\n"
+        "Rune of Resistance\n\n", 
+        player->caughtMessage());
+    destruct(environment);
+}
