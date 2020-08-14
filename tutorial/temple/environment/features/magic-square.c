@@ -13,7 +13,7 @@ public void Setup()
     addDescriptionTemplate("along the wall near the entry, many "
         "intricate runes have been carved. In the center of the "
         "room stands a table carved of onxy. On its surface sits a "
-        "grid with several glowing runes.\n"
+        "grid with several glowing runes.\n\n"
         "##call_other::key::/tutorial/temple/objects/magic-square.c::displayMagicSquare::"
         "\nTo the right of the grid, there is another grid of slightly raised cubes of "
         "onyx that look like they can be pushed into its surface. ");

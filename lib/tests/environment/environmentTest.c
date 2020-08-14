@@ -2122,7 +2122,7 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
         "carved. In the center of the liquid-free area stand four three-foot tall\n"
         "pedestals. Each has been placed at a cardinal point and about a ten foot gaps\n"
         "stands between one to its nearest neighbor. Scintilating orbs of energy sit\n"
-        "atop each pedestal, pulsating with magical energies.\n"
+        "atop each pedestal, pulsating with magical energies.\n\n"
         "                                 @\n"
         "                              @     @\n"
         "                                 @\n"

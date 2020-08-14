@@ -676,7 +676,7 @@ private nomask string parseEfunCall(string match)
     // obj is either this OR a file path.
     // function is a method on the called object. That method MUST return a
     // string. 
-    match = regreplace(match, "\n", "", 1);
+    match = regreplace(match, "(\n| )", "", 1);
 
     string *arguments = explode(match, "::");
     if (sizeof(arguments) >= 4)
@@ -730,7 +730,7 @@ private nomask string parseEfunCall(string match)
         }
     }
 
-    return ret;
+    return regreplace(regreplace(ret, "\n", "\x1f", 1), " ", "\x1e", 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1024,6 +1024,9 @@ private nomask string displayLongDetails(string description, string *map,
 
     ret = capitalizeSentences(ret);
     ret = format(ret, descriptionWidth);
+    ret = regreplace(ret,
+        "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
+        #'parseEfunCall);
 
     if(map)
     {
@@ -1038,9 +1041,7 @@ private nomask string displayLongDetails(string description, string *map,
     // This will only handle one efun call. The likelihood of needing more
     // was deemed remote enough that getting this working for N invocations
     // did not seem worth the effort.
-    ret = regreplace(ret,
-        "##([^:]+)::(key|filename|room)::([^:]+)::([a-zA-Z0-9_\n]+)::",
-        #'parseEfunCall);
+    ret = regreplace(regreplace(ret, "\x1f", "\n", 1), "\x1e", " ", 1);
 
     ret = regreplace(ret, "##CLEAR##", 
         (colorConfiguration != "none") ? "\x1b[0m" : "", 1);

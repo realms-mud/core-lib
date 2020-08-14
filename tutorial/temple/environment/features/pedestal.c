@@ -16,7 +16,7 @@ public void Setup()
         "Each has been placed at a cardinal point and about a ten "
         "foot gaps stands between one to its nearest "
         "neighbor. Scintilating orbs of energy sit atop each "
-        "pedestal, pulsating with magical energies."
+        "pedestal, pulsating with magical energies.\n"
         "##call_other::key::/tutorial/temple/objects/pedestal.c::displayOrbs::"
         "Beside each of the pedestals, a glowing circle of etched "
         "stone lies: to the north, blue; to the south, red; to the "
