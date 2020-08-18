@@ -107,3 +107,19 @@ public nomask varargs void validateTestDatabase()
 
     db_close(dbHandle);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int DatabaseVersionFromDatabase()
+{
+    int dbHandle = efun::db_connect(RealmsDatabase());
+
+    string query = "select id from versionInfo "
+        "where versionType = 'database' order by id desc limit 1;";
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+
+    db_close(dbHandle);
+
+    return (result && result[0]) ? to_int(result[0]) : 0;
+}

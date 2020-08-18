@@ -7,7 +7,7 @@ private int hasBeenValidated = 0;
 /////////////////////////////////////////////////////////////////////////////
 public nomask int DatabaseVersion()
 {
-    return 1;
+    return 2;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,9 +67,23 @@ public nomask int db_exec(int dbHandle, string sqlQuery)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void executeDatabaseScript(int dbHandle, string script)
+{
+    string *commands = explode(script, "##");
+    db_exec(dbHandle, "use " + db_conv_string(RealmsDatabase()) + ";");
+
+    foreach(string command in commands)
+    {
+        db_exec(dbHandle, command);
+    }
+    while (db_fetch(dbHandle));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void createDatabase(int dbHandle)
 {
     string dbScript =
+        read_file("/secure/simulated-efuns/database/initial/dropDBContents.sql") + 
         read_file("/secure/simulated-efuns/database/initial/generateDB.sql");
 
     db_exec(dbHandle, sprintf("show databases like '%s';", 
@@ -83,28 +97,39 @@ protected nomask void createDatabase(int dbHandle)
             "    '/secure/simulated-efuns/database/installDatabase'\n");
     }
 
-    string *commands = explode(dbScript, "##");
-    db_exec(dbHandle, "use " + db_conv_string(RealmsDatabase()) + ";");
-
-    foreach(string command in commands)
-    {
-        db_exec(dbHandle, command);
-    }
-    while (db_fetch(dbHandle));
+    executeDatabaseScript(dbHandle, dbScript);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void migrateDatabase(int dbHandle, int currentVersion,
     int requiredVersion)
 {
+    string migrationDir = "/secure/simulated-efuns/database/migrations/";
 
+    string *scripts = sort_array(get_dir(migrationDir + "*.sql"), (: $1 > $2 :));
+
+    foreach(string scriptFile in scripts)
+    {
+        int version = to_int(regreplace(scriptFile, "([0-9]+)_.*", "\\1", 1));
+        if ((version <= requiredVersion) && (version > currentVersion))
+        {
+            string script = read_file(migrationDir + scriptFile);
+            executeDatabaseScript(dbHandle, script);
+
+            db_exec(dbHandle, sprintf(
+                "update versionInfo set id=%d where versionType='database';",
+                version));
+
+            mixed result = db_fetch(dbHandle);
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs void validateDatabase(int dbHandle)
 {
     string query = "select id from versionInfo "
-        "where versionType = 'database';";
+        "where versionType = 'database' order by id desc limit 1;";
 
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);

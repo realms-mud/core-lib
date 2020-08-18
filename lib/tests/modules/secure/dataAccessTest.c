@@ -219,6 +219,12 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void DatabaseVersionIsCorrect()
+{
+    ExpectEq(DatabaseVersion(), DatabaseVersionFromDatabase());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void PlayerTypeReturnsCorrectWizardValueFromDatabase()
 {
     ExpectEq("owner", DataAccess->playerType("maeglin"));
