@@ -75,6 +75,14 @@ private nomask void executeDatabaseScript(int dbHandle, string script)
     foreach(string command in commands)
     {
         db_exec(dbHandle, command);
+
+        string error = db_error(dbHandle);
+        if (error)
+        {
+            raise_error(
+                sprintf("ERROR dataAccess - While executing: %s\n%s\n",
+                    command, error));
+        }
     }
     while (db_fetch(dbHandle));
 }

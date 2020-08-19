@@ -122,6 +122,8 @@ drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
 ##
+drop table if exists npcs;
+##
 drop table if exists temporaryBans;
 ##
 drop table if exists IPAddresses;
@@ -219,6 +221,4 @@ drop table if exists environment;
 drop table if exists issues;
 ##
 drop table if exists versionInfo;
-##
-drop table if exists npcData;
 ##
