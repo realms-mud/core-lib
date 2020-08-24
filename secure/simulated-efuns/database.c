@@ -52,7 +52,8 @@ public nomask int db_exec(int dbHandle, string sqlQuery)
 {
     int returnedHandle = dbHandle;
     
-    if (stringp(sqlQuery) && sizeof(sqlQuery))
+    if (stringp(sqlQuery) && 
+        (sizeof(regreplace(sqlQuery, " ", "", 1)) > 1))
     {
         dbHandle = efun::db_exec(dbHandle, sqlQuery);
     }
