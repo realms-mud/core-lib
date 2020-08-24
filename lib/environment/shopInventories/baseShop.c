@@ -12,6 +12,7 @@ private string ShopItemSubType = "all";
 private int ItemsToGenerate = 15;
 private string *equipmentTypes = ({ "armor", "instruments", "weapons" });
 private mapping *specifiedItems = ({});
+private mapping *individualItems = ({});
 
 /////////////////////////////////////////////////////////////////////////////
 public int itemListIsSpecified()
@@ -29,6 +30,22 @@ public void addInventoryItem(string type, string subType, string *items)
             "items": items
         ])
     });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void addItem(string fileName)
+{
+    object item;
+    string error = catch (item = load_object(fileName));
+    if (!error && (member(inherit_list(item), "lib/items/item.c") > -1))
+    {
+        individualItems += ({ fileName });
+    }
+    else
+    {
+        raise_error(error ? error :
+            "ERROR baseShop: Items must inherit '/lib/items/item.c'");
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -216,6 +233,31 @@ public void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void updateCustomItems()
+{
+    if (sizeof(individualItems))
+    {
+        foreach(string item in individualItems)
+        {
+            string keyCheck = 
+                regreplace(item, "/*([^.]+)([.]c)*", "\\1", 1);
+
+            string *inventoryItems = filter(m_indices(list),
+                (: sizeof(regexp(({ $1 }), $2)) :), keyCheck);
+
+            if (!sizeof(inventoryItems))
+            {
+                object itemObj = clone_object(item);
+
+                itemObj->identify();
+                storeItem(itemObj);
+                destruct(itemObj);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void updateShopInventory()
 {
     int inventorySize = sizeof(list);
@@ -245,4 +287,6 @@ public void updateShopInventory()
             dictionary->generateRandomItems(this_object());
         }
     }
+
+    updateCustomItems();
 }

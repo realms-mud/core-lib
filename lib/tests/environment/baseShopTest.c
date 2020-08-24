@@ -244,3 +244,51 @@ void CanUpdateNonEquipmentShops()
     ExpectTrue(2 <= sizeof(Shop->storeInventory()), "update called");
     ExpectNotEq(currentInventory, sprintf("%O\n", Shop->storeInventory()));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGenerateEquipmentForCustomShops()
+{
+    Shop->shopType("weapons");
+    Shop->shopSubType("staffs");
+    Shop->addInventoryItem("unknown", "all", ({
+        "/lib/tests/support/items/testSword.c", }));
+
+    ExpectEq(0, sizeof(Shop->storeInventory()));
+    load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Shop);
+
+    ExpectEq(15, sizeof(Shop->storeInventory()), "initial size");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAddCustomItemsToShops()
+{
+    Shop->shopType("unknown");
+    Shop->shopSubType("all");
+    Shop->addItem("/lib/tests/support/items/testSword.c");
+
+    ExpectEq(0, sizeof(Shop->storeInventory()));
+    load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Shop);
+
+    ExpectEq(1, sizeof(Shop->storeInventory()), "initial size");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CustomItemsUpdateCorrectly()
+{
+    Shop->shopType("unknown");
+    Shop->shopSubType("all");
+    Shop->addItem("lib/tests/support/items/testSword.c");
+
+    ExpectEq(0, sizeof(Shop->storeInventory()));
+
+    load_object("/lib/dictionaries/shopDictionary.c")->generateInventory(Shop);
+    Shop->updateCustomItems();
+    ExpectEq(1, sizeof(Shop->storeInventory()), "initial size");
+
+    string itemToGet = m_indices(Shop->storeInventory())[0];
+    Shop->buyItem(itemToGet);
+    ExpectEq(0, sizeof(Shop->storeInventory()), "bought item");
+
+    Shop->updateCustomItems();
+    ExpectEq(1, sizeof(Shop->storeInventory()), "update called");
+}

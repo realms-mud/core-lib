@@ -81,7 +81,7 @@ private nomask void executeDatabaseScript(int dbHandle, string script)
         {
             raise_error(
                 sprintf("ERROR dataAccess - While executing: %s\n%s\n",
-                    command, error));
+                    command[0..((sizeof(command) > 78) ? 78 : (sizeof(command) - 1))], error));
         }
     }
     while (db_fetch(dbHandle));

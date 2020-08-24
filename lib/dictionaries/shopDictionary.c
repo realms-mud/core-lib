@@ -399,34 +399,37 @@ public nomask varargs void generateConsumableItems(object shop,
     int excludePermanent)
 {
     string type = shop->shopType();
-    if (!excludePermanent && member(consumables, type))
+    if(member(consumables, type))
     {
-        foreach(string itemName in consumables[type]["permanent"])
+        if (!excludePermanent)
         {
-            object item = clone_object(itemName);
+            foreach(string itemName in consumables[type]["permanent"])
+            {
+                object item = clone_object(itemName);
+
+                item->identify();
+                shop->storeItem(item, 1);
+                destruct(item);
+            }
+        }
+
+        int numItems = shop->randomItemsToGenerate();
+
+        string *itemBlueprints =
+            filter(get_dir(consumables[type]["base dir"], 0x10),
+            (: sizeof(regexp(({ $1 }), "\.c$")) && (member($2, $1) == -1) :), 
+                consumables[type]["permanent"]);
+
+        for (int i = 0; i < numItems; i++)
+        {
+            object item = 
+                clone_object(itemBlueprints[random(sizeof(itemBlueprints))]);
 
             item->identify();
-            shop->storeItem(item, 1);
+            item->set("quantity", 10 + random(16));
+            shop->storeItem(item);
             destruct(item);
         }
-    }
-
-    int numItems = shop->randomItemsToGenerate();
-
-    string *itemBlueprints =
-        filter(get_dir(consumables[type]["base dir"], 0x10),
-        (: sizeof(regexp(({ $1 }), "\.c$")) && (member($2, $1) == -1) :), 
-            consumables[type]["permanent"]);
-
-    for (int i = 0; i < numItems; i++)
-    {
-        object item = 
-            clone_object(itemBlueprints[random(sizeof(itemBlueprints))]);
-
-        item->identify();
-        item->set("quantity", 10 + random(16));
-        shop->storeItem(item);
-        destruct(item);
     }
 }
 
@@ -450,6 +453,7 @@ public nomask void generateInventory(object shop)
             generateDefaultItems(shop);
         }
     }
+    shop->updateCustomItems();
 }
 
 /////////////////////////////////////////////////////////////////////////////
