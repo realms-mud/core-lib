@@ -8,6 +8,8 @@ drop view if exists componentsView;
 ##
 drop view if exists environmentView;
 ##
+drop function if exists getPartyIdentifier;
+##
 drop function if exists setWizardLevel;
 ##
 drop function if exists savePlayerDomain;
@@ -51,6 +53,10 @@ drop procedure if exists saveCombatInformation;
 drop procedure if exists saveMaterialAttributes;
 ##
 drop procedure if exists saveMaterialAttribute;
+##
+drop procedure if exists savePartyMember;
+##
+drop procedure if exists saveParty;
 ##
 drop procedure if exists saveNPCData;
 ##
@@ -121,6 +127,10 @@ drop function if exists saveUser;
 drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
+##
+drop table if exists partyMembers;
+##
+drop table if exists parties;
 ##
 drop table if exists npcs;
 ##

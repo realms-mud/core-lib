@@ -2,24 +2,20 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "/lib/modules/secure/party.h"
 
-private string Name;
-private object Creator;
-private mapping Members = ([]);
-private int TotalWeight = 0;
-private object Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
-private object channels = load_object("/lib/dictionaries/channelDictionary.c");
+private object Dictionary = 
+    load_object("/lib/dictionaries/partyDictionary.c");
+
+private object channels = 
+    load_object("/lib/dictionaries/channelDictionary.c");
+
 private object configuration = 
     load_object("/lib/dictionaries/configurationDictionary.c");
+
 private object commands =
     load_object("/lib/dictionaries/commandsDictionary.c");
 
-private mapping information = ([
-    "experience earned": ([]),
-    "best kill": ([]),
-    "following": ([]),
-    "npcs": ({})
-]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string partyName()
@@ -76,6 +72,7 @@ private nomask void addMember(object newMember)
     Members[newMember] = 1;
     information["experience earned"][newMember->RealName()] = 0;
     refresh();
+    saveParty();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -115,6 +112,14 @@ public nomask void joinParty(object newMember)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void dissolveParty()
+{
+    Dictionary->dissolveParty(this_object());
+    channels->unregisterChannel(Name);
+    removeParty();
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void leaveParty(object member)
 {
     if (Dictionary->leaveParty(this_object(), member))
@@ -131,20 +136,16 @@ public nomask void leaveParty(object member)
 
     if (!sizeof(Members))
     {
-        Dictionary->dissolveParty(this_object());
-        channels->unregisterChannel(Name);
+        dissolveParty();
     }
-    else if (member == Creator)
+    else
     {
-        Creator = m_indices(Members)[0];
+        if (member == Creator)
+        {
+            Creator = m_indices(Members)[0];
+        }
+        saveParty();
     }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void dissolveParty()
-{
-    Dictionary->dissolveParty(this_object());
-    channels->unregisterChannel(Name);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -409,6 +410,7 @@ public nomask void removeNPC(object npc)
     stopFollowing(npc);
     information["npcs"] -= ({ npc });
     m_delete(information["experience earned"], npc->RealName());
+    saveParty();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -433,5 +435,6 @@ public nomask void addNPC(object npc)
         follow(Creator, npc);
 
         refresh();
+        saveParty();
     }
 }

@@ -2,14 +2,14 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/core/organizations.c";
+virtual inherit "/lib/core/thing.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object getParty()
 {
     object ret = 0;
 
-    object dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+    object dictionary = getDictionary("party");
     if (dictionary)
     {
         ret = dictionary->getParty(this_object());

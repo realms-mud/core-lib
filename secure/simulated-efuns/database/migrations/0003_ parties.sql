@@ -1,8 +1,9 @@
 CREATE TABLE `parties` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(11) NOT NULL AUTO_INCREMENT,
   `creatorid` int(11) NOT NULL,
   `partyName` varchar(256) NOT NULL,
-  KEY `parties_id_idx` (`id`),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `parties_creatorid` FOREIGN KEY (`creatorid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
@@ -14,7 +15,46 @@ CREATE TABLE `partyMembers` (
   `experienceEarned` int(11) NOT NULL,
   `bestKill` varchar(256) NOT NULL,
   `memberFollowing` varchar(256),
-  KEY `partyMembers_id_idx` (`id`),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `partyMembers_partyid` FOREIGN KEY (`partyid`) REFERENCES `parties` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+##
+CREATE PROCEDURE `saveParty` (p_playerid int, p_partyName varchar(256))
+BEGIN
+    declare alreadyPersisted int;
+
+    select playerid into alreadyPersisted
+    from parties 
+    where creatorid = p_playerid and partyName = p_partyName;
+    
+    if alreadyPersisted is null then
+        insert into npcs (creatorid,partyName) 
+            values (p_playerid,p_partyName);
+    end if;
+END;
+##
+CREATE PROCEDURE `savePartyMember` (p_partyid int,
+p_member varchar(256), p_memberType varchar(12), p_experience int,
+p_bestKill varchar(256), p_isFollowing varchar(256))
+BEGIN
+    declare MemberId int;
+
+    select id into MemberId
+    from partyMembers 
+    where partyid = p_partyid and member = p_member 
+        and memberType = p_memberType;
+    
+    if MemberId is not null then
+        update partyMembers set experienceEarned = p_experience, 
+                                bestKill = p_bestKill,
+                                memberFollowing = p_isFollowing
+        where id = MemberId;
+    else
+        insert into partyMembers (partyid,member,memberType,
+            experienceEarned,bestKill,memberFollowing) 
+        values (p_partyid,p_member,p_memberType,
+            p_experience,p_bestKill,p_isFollowing);
+    end if;
+END;
 ##
