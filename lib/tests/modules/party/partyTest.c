@@ -24,6 +24,11 @@ int AdvanceToLevel(object user, int level, string guild)
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
+    setRestoreCaller(this_object());
+    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    database->PrepDatabase();
+    destruct(database);
+
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     dict->resetCache();

@@ -2,7 +2,6 @@ CREATE TABLE `npcs` (
   `playerid` int(11) NOT NULL,
   `fileName` varchar(256) NOT NULL,
   `data` blob NOT NULL,
-  `inParty` tinyint NOT NULL DEFAULT '0',
   KEY `npcs_playerid_idx` (`playerid`),
   CONSTRAINT `npcs_playerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -17,11 +16,11 @@ BEGIN
     where playerid = p_playerid and filename = p_filename;
     
     if alreadyPersisted is not null then
-        update npcs set data = p_data, inParty = p_inParty
+        update npcs set data = p_data
         where playerid = p_playerid and filename = p_filename;
     else
-        insert into npcs (playerid,filename,data,inParty) 
-            values (p_playerid,p_filename,p_data,p_inParty);
+        insert into npcs (playerid,filename,data) 
+            values (p_playerid,p_filename,p_data);
     end if;
 END;
 ##

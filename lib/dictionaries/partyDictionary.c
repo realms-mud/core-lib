@@ -5,6 +5,10 @@
 
 private mapping PlayerParties = ([]);
 private mapping PendingRequests = ([]);
+private mapping PersistentParties = ([]);
+
+private object partyService = 
+    load_object("/lib/modules/secure/dataServices/partyDataService.c");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object getParty(object player)
@@ -121,5 +125,14 @@ public nomask void acceptPartyRequest(object target)
     {
         PendingRequests[target]->joinParty(target);
         m_delete(PendingRequests, target);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void reset(int arg)
+{
+    if (!arg)
+    {
+        PersistentParties = partyService->loadParties();
     }
 }

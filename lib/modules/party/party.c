@@ -116,7 +116,7 @@ public nomask void dissolveParty()
 {
     Dictionary->dissolveParty(this_object());
     channels->unregisterChannel(Name);
-    removeParty();
+    deleteParty();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -124,6 +124,7 @@ public nomask void leaveParty(object member)
 {
     if (Dictionary->leaveParty(this_object(), member))
     {
+        removePartyMember(member->RealName());
         m_delete(Members, member);
 
         channels->unregisterUserFromPartyChannel(member);
@@ -411,6 +412,7 @@ public nomask void removeNPC(object npc)
     information["npcs"] -= ({ npc });
     m_delete(information["experience earned"], npc->RealName());
     saveParty();
+    removePartyMember(npc->RealName());
 }
 
 /////////////////////////////////////////////////////////////////////////////
