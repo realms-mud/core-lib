@@ -4,18 +4,11 @@
 //*****************************************************************************
 #include "/lib/modules/secure/party.h"
 
-private object Dictionary = 
-    load_object("/lib/dictionaries/partyDictionary.c");
-
-private object channels = 
-    load_object("/lib/dictionaries/channelDictionary.c");
-
-private object configuration = 
-    load_object("/lib/dictionaries/configurationDictionary.c");
-
-private object commands =
-    load_object("/lib/dictionaries/commandsDictionary.c");
-
+/////////////////////////////////////////////////////////////////////////////
+public nomask int identifier()
+{
+    return Identifier;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string partyName()

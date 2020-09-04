@@ -285,3 +285,15 @@ static nomask varargs void henchmanHeartBeat()
         Leader = 0;
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getFollowerData()
+{
+    return save_object(2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int restoreFollowerData(string data)
+{
+    return restore_object(data);
+}

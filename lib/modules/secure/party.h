@@ -19,6 +19,18 @@ private mapping information = ([
 private object service =
     load_object("/lib/modules/secure/dataServices/partyDataService.c");
 
+private object Dictionary = 
+    load_object("/lib/dictionaries/partyDictionary.c");
+
+private object channels = 
+    load_object("/lib/dictionaries/channelDictionary.c");
+
+private object configuration = 
+    load_object("/lib/dictionaries/configurationDictionary.c");
+
+private object commands =
+    load_object("/lib/dictionaries/commandsDictionary.c");
+
 /////////////////////////////////////////////////////////////////////////////
 private nomask void deleteParty()
 {
@@ -119,4 +131,84 @@ private nomask void saveParty()
     ]);
 
     Identifier = service->savePartyData(saveData);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask object leaderPresent(object *partyMembers, 
+    string leaderName)
+{
+    object ret = 0;
+    if (sizeof(partyMembers))
+    {
+        object *leaderObjs = filter(partyMembers, (: $1->RealName() == $2 :),
+            leaderName);
+
+        if (sizeof(leaderObjs))
+        {
+            ret = leaderObjs[0];
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void loadCreator(object *partyMembers, string leaderName)
+{
+    if (sizeof(partyMembers))
+    {
+        object leaderObj = leaderPresent(partyMembers, leaderName);
+
+        if (leaderObj)
+        {
+            Creator = leaderObj;
+        }
+        else if (!Creator)
+        {
+            Creator = partyMembers[0];
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void loadNPCs(mapping npcData, object *partyMembers)
+{
+    if (sizeof(npcData))
+    {
+        string *npcs = m_indices(npcData);
+        foreach(string npc in npcs)
+        {
+            object leader = leaderPresent(partyMembers,
+                information["npcs"][npc]["following"]);
+
+            if (leader && !sizeof(filter(information["npcs"],
+                (: program_name($1) == $2 :), npc)))
+            {
+                //object npcObj = clone_object(npc);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void loadParty(mapping partyData)
+{
+    if (!Identifier)
+    {
+        Identifier = partyData["ID"];
+        Name = partyData["name"];
+        channels->registerChannel(Name);
+    }
+
+    object *partyMembers = partyData["active members"];
+    loadCreator(partyMembers, partyData["leader"]);
+
+    foreach(object member in partyMembers)
+    {
+        Members[member] = 1;
+        information["experience earned"][member->RealName()] = 0;
+        channels->registerUser(member);
+    }
+
+    loadNPCs(filter(partyData["members"], 
+        (: (partyData["members"][$1]["type"] != "player") :)), partyMembers);
 }

@@ -4,6 +4,7 @@
 //*****************************************************************************
 
 private mapping PlayerParties = ([]);
+private mapping PartiesById = ([]);
 private mapping PendingRequests = ([]);
 private mapping PersistentParties = ([]);
 
@@ -135,4 +136,39 @@ public nomask void reset(int arg)
     {
         PersistentParties = partyService->loadParties();
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object loadParty(string player)
+{
+    object ret = 0;
+    mapping partyData = partyService->loadPartyData(player);
+
+    if (partyData && sizeof(partyData))
+    {
+        if (member(PersistentParties, player) &&
+            (partyData["ID"] == PersistentParties[player]))
+        {
+            ret = (member(PartiesById, partyData["ID"]) &&
+                objectp(PartiesById[partyData["ID"]])) ?
+                PartiesById[partyData["ID"]] :
+                clone_object("/lib/modules/party/party.c");
+
+            partyData["active members"] = filter(users(),
+                (: (member(PersistentParties, $1->RealName()) &&
+                    (PersistentParties[$1->RealName()] == $2)) :), 
+                    partyData["ID"]);
+
+            if (sizeof(partyData["active members"]))
+            {
+                foreach(object playerObj in partyData["active members"])
+                {
+                    PlayerParties[playerObj->RealName()] = ret;
+                }
+            }
+            ret->loadParty(partyData);
+            PartiesById[partyData["ID"]] = ret;
+        }
+    }
+    return ret;
 }
