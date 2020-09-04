@@ -25,21 +25,24 @@ CREATE FUNCTION `saveParty` (p_creatorName varchar(256), p_partyName varchar(256
     READS SQL DATA
 BEGIN
     declare partyId int;
+    declare playerId int;
+
+    select id into playerId from players
+    where name = p_creatorName;
 
     select id into partyId
-    from parties p
-    inner join players pl on p.creatorid = pl.id
-    where pl.name = p_creatorName and p.partyName = p_partyName;
+    from parties
+    where creatorid = playerId and partyName = p_partyName;
     
     if partyId is null then
         insert into parties (creatorid,partyName) 
-        values (p_creatorid,p_partyName);
+        values (playerId,p_partyName);
 
         select id into partyId from parties 
-        where creatorid = p_creatorid and partyName = p_partyName;
+        where creatorid = playerId and partyName = p_partyName;
 
     end if;
-RETURN ret;
+RETURN partyId;
 END;
 ##
 CREATE PROCEDURE `savePartyMember` (p_partyid int,

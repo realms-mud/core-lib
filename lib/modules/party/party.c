@@ -107,9 +107,9 @@ public nomask void joinParty(object newMember)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void dissolveParty()
 {
-    Dictionary->dissolveParty(this_object());
     channels->unregisterChannel(Name);
     deleteParty();
+    Dictionary->dissolveParty(this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////

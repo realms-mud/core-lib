@@ -125,7 +125,7 @@ private nomask void saveParty()
     mapping saveData = ([
         "ID": Identifier,
         "name": Name,
-        "leader": Creator,
+        "leader": Creator->RealName(),
         "members": memberInfo(m_indices(Members)) +
                    memberInfo(information["npcs"])
     ]);
@@ -178,7 +178,7 @@ private nomask void loadNPCs(mapping npcData, object *partyMembers)
         foreach(string npc in npcs)
         {
             object leader = leaderPresent(partyMembers,
-                information["npcs"][npc]["following"]);
+                npcData[npc]["following"]);
 
             if (leader && !sizeof(filter(information["npcs"],
                 (: program_name($1) == $2 :), npc)))
@@ -211,4 +211,6 @@ public nomask void loadParty(mapping partyData)
 
     loadNPCs(filter(partyData["members"], 
         (: (partyData["members"][$1]["type"] != "player") :)), partyMembers);
+
+    TotalWeight = 1;
 }

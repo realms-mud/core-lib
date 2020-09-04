@@ -8,7 +8,9 @@ drop view if exists componentsView;
 ##
 drop view if exists environmentView;
 ##
-drop function if exists getPartyIdentifier;
+drop function if exists demoteWizardToPlayer;
+##
+drop function if exists saveParty;
 ##
 drop function if exists setWizardLevel;
 ##
@@ -56,7 +58,7 @@ drop procedure if exists saveMaterialAttribute;
 ##
 drop procedure if exists savePartyMember;
 ##
-drop procedure if exists saveParty;
+drop procedure if exists deleteParty;
 ##
 drop procedure if exists saveNPCData;
 ##

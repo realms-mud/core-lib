@@ -12,13 +12,54 @@ private object partyService =
     load_object("/lib/modules/secure/dataServices/partyDataService.c");
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask object loadParty(string player)
+{
+    object ret = 0;
+    mapping partyData = partyService->loadPartyData(player);
+
+    if (partyData && sizeof(partyData))
+    {
+        if (member(PersistentParties, player) &&
+            (partyData["ID"] == PersistentParties[player]))
+        {
+            ret = (member(PartiesById, partyData["ID"]) &&
+                objectp(PartiesById[partyData["ID"]])) ?
+                PartiesById[partyData["ID"]] :
+                clone_object("/lib/modules/party/party.c");
+
+            partyData["active members"] = filter(users(),
+                (: (member(PersistentParties, $1->RealName()) &&
+                    (PersistentParties[$1->RealName()] == $2)) :), 
+                    partyData["ID"]);
+
+            if (sizeof(partyData["active members"]))
+            {
+                foreach(object playerObj in partyData["active members"])
+                {
+                    PlayerParties[playerObj->RealName()] = ret;
+                }
+            }
+
+            ret->loadParty(partyData);
+            PartiesById[partyData["ID"]] = ret;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask object getParty(object player)
 {
     object ret = 0;
 
-    if (member(PlayerParties, player->RealName()))
+    if (member(PlayerParties, player->RealName()) &&
+        objectp(PlayerParties[player->RealName()]))
     {
         ret = PlayerParties[player->RealName()];
+    }
+    else if (member(PersistentParties, player->RealName()))
+    {
+        ret = loadParty(player->RealName());
     }
     return ret;
 }
@@ -43,6 +84,7 @@ public nomask int createParty(string name, object creator)
         object newParty = clone_object("/lib/modules/party/party.c");
         PlayerParties[creator->RealName()] = newParty;
         newParty->createParty(name, creator);
+        PersistentParties = partyService->loadPartyList();
     }
     return ret;
 }
@@ -57,6 +99,7 @@ public nomask int joinParty(object party, object newMember)
     {
         ret = 1;
         PlayerParties[newMember->RealName()] = party;
+        PersistentParties = partyService->loadPartyList();
     }
     return ret;
 }
@@ -70,6 +113,7 @@ public nomask int leaveParty(object party, object removedMember)
     {
         ret = 1;
         m_delete(PlayerParties, removedMember->RealName());
+        PersistentParties = partyService->loadPartyList();
     }
     return ret;
 }
@@ -103,6 +147,7 @@ public nomask void dissolveParty(object party)
             }
         }
         destruct(party);
+        PersistentParties = partyService->loadPartyList();
     }
 }
 
@@ -134,41 +179,6 @@ public nomask void reset(int arg)
 {
     if (!arg)
     {
-        PersistentParties = partyService->loadParties();
+        PersistentParties = partyService->loadPartyList();
     }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask object loadParty(string player)
-{
-    object ret = 0;
-    mapping partyData = partyService->loadPartyData(player);
-
-    if (partyData && sizeof(partyData))
-    {
-        if (member(PersistentParties, player) &&
-            (partyData["ID"] == PersistentParties[player]))
-        {
-            ret = (member(PartiesById, partyData["ID"]) &&
-                objectp(PartiesById[partyData["ID"]])) ?
-                PartiesById[partyData["ID"]] :
-                clone_object("/lib/modules/party/party.c");
-
-            partyData["active members"] = filter(users(),
-                (: (member(PersistentParties, $1->RealName()) &&
-                    (PersistentParties[$1->RealName()] == $2)) :), 
-                    partyData["ID"]);
-
-            if (sizeof(partyData["active members"]))
-            {
-                foreach(object playerObj in partyData["active members"])
-                {
-                    PlayerParties[playerObj->RealName()] = ret;
-                }
-            }
-            ret->loadParty(partyData);
-            PartiesById[partyData["ID"]] = ret;
-        }
-    }
-    return ret;
 }

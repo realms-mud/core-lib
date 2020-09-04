@@ -4,7 +4,6 @@
 //*****************************************************************************
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
-
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs mapping getMembersOfParty(int dbHandle, int partyId, 
     int excludeDetails)
@@ -28,7 +27,7 @@ private nomask varargs mapping getMembersOfParty(int dbHandle, int partyId,
             {
                 ret[convertString(result[0])] = partyId;
             }
-            else
+            else if(!excludeDetails)
             {
                 ret[convertString(result[0])] = ([
                     "party ID": partyId,
@@ -51,7 +50,7 @@ public nomask mapping loadPartyData(string playerName)
     int dbHandle = connect();
 
     string query = sprintf("select p.id, p.partyName, c.name from parties p "
-        "inner join partyMembers pm on p.id = pm.party id "
+        "inner join partyMembers pm on p.id = pm.partyid "
         "inner join players c on c.id = p.creatorid "
         "inner join players pl on pm.member = pl.name and pm.memberType = 'player' "
         "where pl.name = '%s';", playerName);
@@ -147,7 +146,7 @@ public nomask int savePartyData(mapping data)
     if (!ret)
     {
         string query = sprintf("select saveParty('%s','%s');",
-            sanitizeString(data["leader"]->RealName()),
+            sanitizeString(data["leader"]),
             sanitizeString(data["name"]));
 
         db_exec(dbHandle, query);

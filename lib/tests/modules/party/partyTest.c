@@ -53,6 +53,8 @@ void Setup()
     AdvanceToLevel(Member, 2, "test");
 
     Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+
+    setUsers(({ Creator, Member }));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -124,8 +126,8 @@ void DissolvePartyDestroysParty()
     party->joinParty(Member);
 
     party->dissolveParty();
-    ExpectEq(0, Creator->getParty());
-    ExpectEq(0, Member->getParty());
+    ExpectEq(0, Creator->getParty(), "creator party");
+    ExpectEq(0, Member->getParty(), "member party");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -350,4 +352,40 @@ void MoveFollowersMovesAllFollowers()
     ExpectEq(environment(Creator), environment(companion));
     ExpectEq(environment(Creator), environment(henchman));
     ExpectEq(environment(Creator), environment(Member));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PartyDetailsArePersisted()
+{
+    // Need to first make sure the database is cleaned out
+    Dictionary->createParty("Test party", Creator);
+    object party = Creator->getParty();
+    party->dissolveParty();
+
+    Dictionary->createParty("Test party", Creator);
+    party = Creator->getParty();
+
+    object npc =
+        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+    npc->setLeader(Creator);
+
+    object companion = clone_object("/lib/realizations/companion.c");
+    companion->Name("Earl");
+    companion->setLeader(Creator);
+
+    object henchman = clone_object("/lib/realizations/henchman.c");
+    henchman->Name("Ralph");
+    henchman->setLeader(Creator);
+
+    party->joinParty(Member);
+    party->follow(Creator, Member);
+
+    ExpectEq(5, sizeof(party->members(1)));
+
+    // This ensures that the party is re-loaded from the DB
+    /*
+    destruct(party);
+    party = Dictionary->getParty(Creator);
+    ExpectEq("c", party->members(1));
+    */
 }
