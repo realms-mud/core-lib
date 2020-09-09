@@ -280,8 +280,8 @@ void ResearchCommandExecutesCommandBasedResearch()
     move_object(target, room);
 
     ExpectEq(5, target->getSkill("long sword"));
-    ExpectTrue(Research->researchCommand("throw turnip at frank"));
-    ExpectTrue(target->registeredInventoryObject("lib/tests/support/research/testTimedResearchItem.c" + "#" + program_name(Research)));
+    ExpectTrue(Research->researchCommand("throw turnip at frank"), "command executed");
+    ExpectTrue(target->registeredInventoryObject("lib/tests/support/research/testTimedResearchItem.c#Bob"));
     ExpectEq(10, target->getSkill("long sword"));
     ExpectTrue(Research->sustainedResearchIsActive("lib/tests/support/research/testTimedResearchItem.c"), "research is active");
 }
@@ -333,7 +333,7 @@ void TargetedResearchWithoutAtRunsOnResearcher()
 
     ExpectEq(5, Research->getSkill("long sword"));
     ExpectTrue(Research->researchCommand("throw turnip"));
-    ExpectTrue(Research->registeredInventoryObject("lib/tests/support/research/testTimedResearchItem.c" + "#" + program_name(Research)));
+    ExpectTrue(Research->registeredInventoryObject("lib/tests/support/research/testTimedResearchItem.c#Bob"));
     ExpectEq(10, Research->getSkill("long sword"));
     ExpectTrue(Research->sustainedResearchIsActive("lib/tests/support/research/testTimedResearchItem.c"), "research is active");
 }
