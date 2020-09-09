@@ -156,6 +156,7 @@ void PlayerResearchRestored()
     Player->restore("gorthaur");
     ExpectEq(3, Player->researchPoints());
     ExpectTrue(Player->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"));
+    ExpectTrue(Player->isResearched("/lib/tests/support/research/testSustainedResearchItem.c"));
     ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c" }), Player->availableResearchTrees());
     ExpectTrue(Player->selectResearchChoice("/lib/tests/support/research/testPersistedActiveTraitResearch.c",
         "Test", "1"));
@@ -370,6 +371,7 @@ void PlayerResearchSaved()
     Player->restore("gorthaur");
     ExpectEq(4, Player->researchPoints());
     ExpectTrue(Player->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"));
+    ExpectTrue(Player->isResearched("/lib/tests/support/research/testSustainedResearchItem.c"));
     ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c" }), Player->availableResearchTrees());
     ExpectTrue(Player->selectResearchChoice("/lib/tests/support/research/testPersistedActiveTraitResearch.c",
         "Test", "1"));
@@ -382,6 +384,8 @@ void PlayerResearchSaved()
     ExpectEq(3, Player->researchPoints());
     ExpectTrue(Player->isResearched("/lib/tests/support/research/testPointsResearchItem.c"));
     ExpectTrue(Player->isResearched("/lib/tests/support/research/testPersistedActiveTraitResearch.c"));
+    ExpectTrue(Player->isResearched("/lib/tests/support/research/testSustainedResearchItem.c"));
+    ExpectTrue(Player->sustainedResearchIsActive("/lib/tests/support/research/testSustainedResearchItem.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

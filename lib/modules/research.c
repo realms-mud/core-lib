@@ -113,17 +113,20 @@ public nomask varargs int activateSustainedResearch(object researchObj,
         
         if(member(research[researchItem], "active modifier object") &&
            research[researchItem]["active modifier object"] &&
-           objectp(research[researchItem]["active modifier object"]))
+           objectp(inventory->registeredInventoryObject(
+               research[researchItem]["active modifier object"])))
         {
             object modifierToDestroy = 
-                research[researchItem]["active modifier object"];
+                inventory->registeredInventoryObject(
+                    research[researchItem]["active modifier object"]);
             m_delete(research[researchItem], "active modifier object");
             modifierToDestroy->unregisterModifierFromTargetList();
             destruct(modifierToDestroy);
         }
-        if(modifierObject)
+        if (modifierObject)
         {
-            research[researchItem]["active modifier object"] = modifierObject;
+            research[researchItem]["active modifier object"] = 
+                modifierObject->get("fully qualified name");
         }
 
         object state = getService("state");
@@ -146,12 +149,16 @@ public nomask int deactivateSustainedResearch(string researchItem)
         m_delete(research[researchItem], "sustained active");
         ret = 1;
         
+        object inventory = getService("inventory");
         if(member(research[researchItem], "active modifier object") &&
            research[researchItem]["active modifier object"] &&
-           objectp(research[researchItem]["active modifier object"]))
+            inventory && objectp(inventory->registeredInventoryObject(
+                research[researchItem]["active modifier object"])))
         {
-            object modifierToDestroy = 
-                research[researchItem]["active modifier object"];
+            object modifierToDestroy =
+                inventory->registeredInventoryObject(
+                    research[researchItem]["active modifier object"]);
+
             m_delete(research[researchItem], "active modifier object");
             modifierToDestroy->unregisterModifierFromTargetList();
             destruct(modifierToDestroy);        

@@ -9,8 +9,10 @@ protected nomask mapping getResearch(int playerId, int dbHandle)
 {
     mapping ret = (["research":([])]);
 
-    string query = sprintf("select * from research "
-        "where playerid = '%d'", playerId);
+    string query = sprintf("select r.*, s.sustainedActive, "
+        "s.activeCount, s.ModifierFQN from research r "
+        "left outer join sustainedEffects s on r.id = s.researchId "
+        "where r.playerid = '%d'", playerId);
     db_exec(dbHandle, query);
 
     mixed result;
@@ -26,8 +28,24 @@ protected nomask mapping getResearch(int playerId, int dbHandle)
                 "time spent learning": to_int(result[5]),
                 "research complete": to_int(result[6]),
                 "time to complete learning": to_int(result[7]),
-                "cooldown": to_int(result[8])
+                "cooldown": to_int(result[8]),
+                "sustained active": to_int(result[9]),
+                "active count": to_int(result[10]),
+                "active modifier object": result[11]
             ]);
+
+            if (!ret["research"][result[2]]["sustained active"])
+            {
+                m_delete(ret["research"][result[2]], "sustained active");
+            }
+            if (!ret["research"][result[2]]["active count"])
+            {
+                m_delete(ret["research"][result[2]], "active count");
+            }
+            if (!ret["research"][result[2]]["active modifier object"])
+            {
+                m_delete(ret["research"][result[2]], "active modifier object");
+            }
         }
     } while (result);
 
@@ -111,8 +129,33 @@ protected nomask void saveResearch(int dbHandle, int playerId, mapping playerDat
                 playerData["research"][research]["research complete"],
                 playerData["research"][research]["time to complete learning"],
                 playerData["research"][research]["cooldown"]);
+
             db_exec(dbHandle, query);
             mixed result = db_fetch(dbHandle);
+
+            if (member(playerData["research"][research], "sustained active"))
+            {
+                query = sprintf("call saveSustainedEffect("
+                    "%d,'%s',%d,%d,'%s');",
+                    playerId,
+                    sanitizeString(research),
+                    playerData["research"][research]["sustained active"],
+                    playerData["research"][research]["active count"],
+                    sanitizeString(playerData["research"][research]["active modifier object"]));
+
+                db_exec(dbHandle, query);
+                result = db_fetch(dbHandle);
+            }
+            else
+            {
+                query = sprintf("call deleteSustainedEffect("
+                    "%d,'%s');",
+                    playerId,
+                    sanitizeString(research));
+
+                db_exec(dbHandle, query);
+                result = db_fetch(dbHandle);
+            }
         }
     }
 }

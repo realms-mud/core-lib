@@ -72,6 +72,10 @@ drop procedure if exists saveTraits;
 ##
 drop procedure if exists saveTemporaryTraits;
 ##
+drop procedure if exists saveSustainedEffect;
+##
+drop procedure if exists deleteSustainedEffect;
+##
 drop procedure if exists saveResearch;
 ##
 drop procedure if exists pruneResearchChoices;
@@ -203,6 +207,8 @@ drop table if exists openResearchTrees;
 drop table if exists playerCombatData;
 ##
 drop table if exists quests;
+##
+drop table if exists sustainedEffects;
 ##
 drop table if exists research;
 ##

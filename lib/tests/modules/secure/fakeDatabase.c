@@ -108,6 +108,17 @@ public nomask mapping Gorthaur()
                 "when research began": 3,
                 "when research complete": 4,
             ]),
+            "/lib/tests/support/research/testSustainedResearchItem.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+                "sustained active": 1,
+                "active count": 2,
+                "active modifier object": "/lib/items/modifierObject#blarf"
+            ]),
         ]),
         "researchChoices": ([ 
             "Test": ([ 
@@ -271,6 +282,17 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
                 "time to complete learning": 0,
                 "when research began": 3,
                 "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/testSustainedResearchItem.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+                "sustained active": 1,
+                "active count": 2,
+                "active modifier object": "/lib/items/modifierObject#blarf"
             ]),
         ]),
         "researchChoices": ([ 
