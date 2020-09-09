@@ -9,6 +9,15 @@ object Member;
 object Dictionary;
 
 /////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    setRestoreCaller(this_object());
+    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    database->PrepDatabase();
+    destruct(database);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
