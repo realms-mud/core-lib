@@ -66,41 +66,43 @@ public nomask int execute(string command, object initiator)
 
             if (target->isRealizationOfPlayer())
             {
-                target->save();
+                command("quit", target);
             }
-
-            string currentLocation = object_name(environment(initiator));
-
-            object *containedItems = all_inventory(target);
-            object *movedItems = ({});
-
-            if (sizeof(containedItems))
+            else
             {
-                foreach(object item in containedItems)
+                string currentLocation = object_name(environment(initiator));
+
+                object *containedItems = all_inventory(target);
+                object *movedItems = ({});
+
+                if (sizeof(containedItems))
                 {
-                    if (item->isRealizationOfPlayer())
+                    foreach(object item in containedItems)
                     {
-                        movedItems += ({ item });
-                        move_object(item, "/secure/master.c");
-                    }
-                    else
-                    {
-                        // This has to be nested to most cleanly separate
-                        // players and their stuff from "just stuff"
-                        destroyItem(item);
+                        if (item->isRealizationOfPlayer())
+                        {
+                            movedItems += ({ item });
+                            move_object(item, "/secure/master.c");
+                        }
+                        else
+                        {
+                            // This has to be nested to most cleanly separate
+                            // players and their stuff from "just stuff"
+                            destroyItem(item);
+                        }
                     }
                 }
-            }
 
-            tell_object(initiator, sprintf("Destroying object '%O'.\n",
-                target));
-            destruct(target);
+                tell_object(initiator, sprintf("Destroying object '%O'.\n",
+                    target));
+                destruct(target);
 
-            if (sizeof(movedItems))
-            {
-                foreach(object item in movedItems)
+                if (sizeof(movedItems))
                 {
-                    move_object(item, currentLocation);
+                    foreach(object item in movedItems)
+                    {
+                        move_object(item, currentLocation);
+                    }
                 }
             }
         }

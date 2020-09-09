@@ -438,13 +438,10 @@ public nomask object *registeredInventoryObjects()
        member(itemRegistry, "guild objects") &&
        mappingp(itemRegistry["guild objects"]))
     {
-        ret = m_values(itemRegistry["guild objects"]);
-        if(sizeof(ret) && !objectp(ret[0]))
-        {
-            ret = 0;
-        }
+        ret = filter(m_values(itemRegistry["guild objects"]),
+            (: objectp($1) :));
     }
-    return ret + ({ });
+    return ret ? ret + ({ }) : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
