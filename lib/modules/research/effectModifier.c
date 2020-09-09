@@ -193,7 +193,7 @@ protected nomask object getModifierObject(object owner, mapping researchData)
 
     if (ret)
     {
-        string fullyQualifiedName = program_name(this_object()) + "#" + program_name(owner);
+        string fullyQualifiedName = program_name(this_object()) + "#" + owner->RealName();
         object previousModifier = owner->registeredInventoryObject(fullyQualifiedName);
         if (previousModifier)
         {

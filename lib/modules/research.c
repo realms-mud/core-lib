@@ -126,7 +126,7 @@ public nomask varargs int activateSustainedResearch(object researchObj,
         if (modifierObject)
         {
             research[researchItem]["active modifier object"] = 
-                modifierObject->get("fully qualified name");
+                modifierObject->query("fully qualified name");
         }
 
         object state = getService("state");
