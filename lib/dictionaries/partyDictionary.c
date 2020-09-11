@@ -57,9 +57,13 @@ public nomask object getParty(object player)
     {
         ret = PlayerParties[player->RealName()];
     }
-    else if (member(PersistentParties, player->RealName()))
+    else
     {
-        ret = loadParty(player->RealName());
+        PersistentParties = partyService->loadPartyList();
+        if (member(PersistentParties, player->RealName()))
+        {
+            ret = loadParty(player->RealName());
+        }
     }
     return ret;
 }

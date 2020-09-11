@@ -109,6 +109,12 @@ private nomask mapping memberInfo(object *memberList)
                     information["best kill"][member->RealName()],
             ]);
 
+            if (memberType != "player")
+            {
+                ret[key]["leader"] = member->leaderName();
+                ret[key]["data"] = member->getFollowerData();
+            }
+
             string following = followingMember(member);
             if (following)
             {
@@ -178,12 +184,14 @@ private nomask void loadNPCs(mapping npcData, object *partyMembers)
         foreach(string npc in npcs)
         {
             object leader = leaderPresent(partyMembers,
-                npcData[npc]["following"]);
+                npcData[npc]["leader"]);
 
             if (leader && !sizeof(filter(information["npcs"],
                 (: program_name($1) == $2 :), npc)))
             {
-                //object npcObj = clone_object(npc);
+                object npcObj = clone_object(npc);
+                npcObj->restoreFollowerData(npcData[npc]["data"]);
+                npcObj->setLeader(leader);
             }
         }
     }

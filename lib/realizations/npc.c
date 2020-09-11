@@ -37,6 +37,12 @@ public nomask void setLeader(object player)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string leaderName()
+{
+    return objectp(leader) ? leader->RealName() : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string partyName()
 {
     string ret = 0;

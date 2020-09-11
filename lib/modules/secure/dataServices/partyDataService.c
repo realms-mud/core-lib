@@ -5,14 +5,13 @@
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask varargs mapping getMembersOfParty(int dbHandle, int partyId, 
-    int excludeDetails)
+private nomask mapping getPlayersInParty(int dbHandle, int partyId)
 {
     mapping ret = ([]);
 
-    string query = sprintf("select member, memberType, "
-        "experienceEarned, bestKill, memberFollowing "
-        "from partyMembers where partyid = %d;", partyId);
+    string query = sprintf("select p.name, p.id from players p "
+        "inner join partyMembers pm on p.name = pm.member "
+        "where pm.partyid = %d;", partyId);
 
     db_exec(dbHandle, query);
     mixed result;
@@ -22,14 +21,43 @@ private nomask varargs mapping getMembersOfParty(int dbHandle, int partyId,
         result = db_fetch(dbHandle);
         if (result)
         {
+            ret[result[1]] = convertString(result[0]);
+        }
+    } while (result);
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs mapping getMembersOfParty(int dbHandle, int partyId, 
+    int excludeDetails)
+{
+    mapping ret = ([]);
+
+    mapping playerIdsToName = getPlayersInParty(dbHandle, partyId);
+
+    string query = sprintf("select member, memberType, "
+        "experienceEarned, bestKill, memberFollowing "
+        "from partyMembers where partyid = %d;", partyId);
+
+    db_exec(dbHandle, query);
+    mixed result; 
+
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            string key = convertString(result[0]);
             string type = convertString(result[1]);
+
             if (excludeDetails && (type == "player"))
             {
-                ret[convertString(result[0])] = partyId;
+                ret[key] = partyId;
             }
             else if(!excludeDetails)
             {
-                ret[convertString(result[0])] = ([
+                ret[key] = ([
                     "party ID": partyId,
                     "type": type,
                     "experience earned": to_int(result[2]),
@@ -40,6 +68,31 @@ private nomask varargs mapping getMembersOfParty(int dbHandle, int partyId,
         }
     } while (result);
 
+    if (!excludeDetails && sizeof(ret))
+    {
+        foreach(string key in m_indices(ret))
+        {
+            if (ret[key]["type"] != "player")
+            {
+                query = sprintf("select playerId, data from npcs "
+                    "where fileName = '%s' and playerId in (%s);",
+                    key, implode(m_indices(playerIdsToName), ","));
+
+                db_exec(dbHandle, query);
+                mixed npcResult;
+                do
+                {
+                    npcResult = db_fetch(dbHandle);
+                    if (npcResult)
+                    {
+                        ret[key]["leader"] =
+                            playerIdsToName[convertString(npcResult[0])];
+                        ret[key]["data"] = convertString(npcResult[1]);
+                    }
+                } while (npcResult);
+            }
+        }
+    }
     return ret;
 }
 
@@ -132,6 +185,17 @@ private nomask void savePartyMembers(int dbHandle, int partyId,
 
             db_exec(dbHandle, query);
             mixed result = db_fetch(dbHandle);
+
+            if (members[member]["type"] != "player")
+            {
+                query = sprintf("call saveNPCData('%s','%s','%s');",
+                    sanitizeString(members[member]["leader"]),
+                    sanitizeString(member),
+                    sanitizeString(members[member]["data"]));
+
+                db_exec(dbHandle, query);
+                result = db_fetch(dbHandle);
+            }
         }
     }
 }

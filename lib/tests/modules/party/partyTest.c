@@ -383,9 +383,8 @@ void PartyDetailsArePersisted()
     ExpectEq(5, sizeof(party->members(1)));
 
     // This ensures that the party is re-loaded from the DB
-    /*
     destruct(party);
+
     party = Dictionary->getParty(Creator);
-    ExpectEq("c", party->members(1));
-    */
+    ExpectEq(5, sizeof(party->members(1)));
 }

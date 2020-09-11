@@ -131,6 +131,12 @@ public nomask void setLeader(object player)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string leaderName()
+{
+    return objectp(Leader) ? Leader->RealName() : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
 {
     if (Leader && Leader->getDomainType(location))
