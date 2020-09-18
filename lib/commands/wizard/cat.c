@@ -56,3 +56,48 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string wildcardMeaning(string colorConfiguration)
+{
+    return configuration->decorate("<File to view>",
+        "wildcard", "help", colorConfiguration);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Display the contents of a file";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+    switch (parsedFlag)
+    {
+        case "-n":
+        {
+            ret = "This option will display only the first N lines of the "
+                "file";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The 'cat' command displays the contents of the selected "
+        "file provided that the viewing wizard has read permission. When "
+        "the optional -n flag is selected, only the first N lines of the "
+        "file are displayed.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: more, head, and tail";
+}

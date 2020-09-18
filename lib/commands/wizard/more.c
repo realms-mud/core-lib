@@ -79,3 +79,33 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string wildcardMeaning(string colorConfiguration)
+{
+    return configuration->decorate("<File to view>",
+        "wildcard", "help", colorConfiguration);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Display the contents of a file with pagination";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The 'more' command displays the contents of the selected "
+        "file provided that the viewing wizard has read permission. The number "
+        "of lines displayed per page defaults to 20, but can be altered "
+        "by setting the 'page size' setting:\n     > " +
+        configuration->decorate("set -p page size -v <lines>\n",
+            "parameter", "help", colorConfiguration), 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: set, cat, head, and tail";
+}
