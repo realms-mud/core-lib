@@ -60,11 +60,29 @@ protected string synopsis(string displayCommand, string colorConfiguration)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+    switch (parsedFlag)
+    {
+        case "-r":
+        {
+            ret = "This option will recursively copy a directory from the "
+                "source to the destination path instead of a file.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected string description(string displayCommand, string colorConfiguration)
 {
     return format("The cp command will copy the source file to the destination "
         "file provided that the user has read access to the source file "
-        "and write access to the destination location.", 78);
+        "and write access to the destination location. If the -r flag is "
+        "used, a directory and its recursive contents are instead copied.", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////

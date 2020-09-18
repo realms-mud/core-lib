@@ -227,3 +227,47 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "List a file or directory";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+    switch (parsedFlag)
+    {
+        case "-r":
+        {
+            ret = "This option will recursively list the contents "
+                "of a directory.";
+            break;
+        }
+        case "-l":
+        {
+            ret = "This option will list a directory/file with 'long "
+                "details' such as permissions and modified date.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The ls command will display the contents of a directory "
+        "filtered by the <target> data displayed provided that the wizard "
+        "using this command has read access to the file/directory "
+        "specified.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: pwd, cd, more, cat, head, and tail";
+}

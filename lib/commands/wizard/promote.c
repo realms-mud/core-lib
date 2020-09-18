@@ -104,7 +104,6 @@ public nomask int execute(string command, object initiator)
                 {
                     ret = target->setWizardLevel(level, initiator);
                     command("save", target);
-                    printf("Here -> %O\n", ret);
                 }
                 else
                 {
@@ -173,4 +172,22 @@ public nomask int execute(string command, object initiator)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Promote/demote a wizard";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The promote command will promote a player to the rank of "
+        "apprentice wizard and set up their home directory and wizard "
+        "permissions. If the optional 'to <level>' syntax is used, the player "
+        "(or already-existing wizard) is set to the wizard level specified."
+        "\n\nThe demote version of this command will reduce the level of the "
+        "selected wizard to a player or, if the optional 'to <level>' "
+        "syntax is used, to the specified wizard level.", 78);
 }

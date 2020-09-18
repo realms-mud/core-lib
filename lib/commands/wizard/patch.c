@@ -175,3 +175,51 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Call a function on an object";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+    switch (parsedFlag)
+    {
+        case "-t":
+        {
+            ret = "Specify the target object that the method is going "
+                "to be called on.";
+            break;
+        }
+        case "-f":
+        {
+            ret = "Specify the method to execute.";
+            break;
+        }
+        case "-v":
+        {
+            ret = "Specify a comma-delimited list of parameters to be "
+                "passed into the function being executed.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The patch command will execute the function (-f "
+        "<function>) on a target object/blueprint file (-t <target>) using "
+        "the parameters specified (-p <parameters>).", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: clone";
+}

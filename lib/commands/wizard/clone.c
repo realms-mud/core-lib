@@ -61,3 +61,26 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Clone an object into the game.";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The clone command takes a blueprint program as input and "
+        "instantiates an instance and places it into the game provided that "
+        "the wizard has read access to the file in question. If the object is "
+        "carryable, such as a piece of armor or a potion, the item will be "
+        "placed in the wizard's inventory. If it is not, it will be placed "
+        "in the wizard's environment.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: destruct";
+}

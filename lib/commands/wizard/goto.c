@@ -75,3 +75,25 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Go to the specified target object";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The goto command will move the wizard to the specified "
+        "environment or person. If the target is an in-game person, the "
+        "command will place the wizard in the same environment as the target. "
+        "If the target is a file or a non-player object, the command will "
+        "place the wizard inside the selected file or object.", 78);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string notes(string displayCommand, string colorConfiguration)
+{
+    return "See also: transport";
+}

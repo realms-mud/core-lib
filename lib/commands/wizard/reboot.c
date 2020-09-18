@@ -107,3 +107,32 @@ public nomask int execute(string command, object initiator)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string synopsis(string displayCommand, string colorConfiguration)
+{
+    return "Reboot the mud";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string flagInformation(string flag, string colorConfiguration)
+{
+    string ret = "";
+    string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
+    switch (parsedFlag)
+    {
+        case "-t":
+        {
+            ret = "This option will overrid the default time of 60 seconds.";
+            break;
+        }
+    }
+    return format(ret, 72);
+}
+/////////////////////////////////////////////////////////////////////////////
+protected string description(string displayCommand, string colorConfiguration)
+{
+    return format("The reboot command will reboot the mud. If the optional "
+        "-t parameter is passed, the chosen time will be used for the "
+        "countdown instead of the default 60 seconds.", 78);
+}
