@@ -15,7 +15,7 @@ public nomask void runAway()
     {
         string *possibleDestinations = originalLocation->exits();
         object materialAttributes = getService("materialAttributes");
-        
+
         if(possibleDestinations && materialAttributes &&
             !materialAttributes->queryProperty("no fear"))
         {

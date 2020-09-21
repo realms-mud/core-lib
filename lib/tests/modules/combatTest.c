@@ -1585,6 +1585,7 @@ void OnDeathFiresWhenKillingBlowLands()
 /////////////////////////////////////////////////////////////////////////////
 void SettingWimpyWorksCorrectly()
 {
+    clone_object("/lib/tests/support/services/catchShadow.c")->beginShadow(Attacker);
     ExpectEq(0, Attacker->Wimpy(), "Wimpy is initially 0");
     ExpectEq(70, Attacker->Wimpy("70"), "A wimpy of 70 can be set");
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
@@ -1607,9 +1608,10 @@ void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
 
     object handler = clone_object("/lib/tests/support/events/onRunAwaySubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
-    
+    ExpectEq(0, handler->TimesRunAwayEventReceived());
+
     string err = catch(Attacker->heart_beat());
-    ExpectEq(0, err, "onRunAway event fired");
+    ExpectEq(0, handler->TimesRunAwayEventReceived());
     ToggleCallOutBypass();
 }
 
@@ -1621,16 +1623,24 @@ void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
     ToggleCallOutBypass();
     ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
 
+    object combatRoom = load_object("/lib/tests/support/environment/startingRoom.c");
+    move_object(Attacker, combatRoom);
+    move_object(Target, combatRoom);
+
     Attacker->hitPoints(50);
     Target->hitPoints(Target->maxHitPoints());
     Attacker->registerAttacker(Target);
 
     object handler = clone_object("/lib/tests/support/events/onRunAwaySubscriber");
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
+    ExpectEq(0, handler->TimesRunAwayEventReceived());
+
+    ExpectEq(combatRoom, environment(Attacker));
 
     string err = catch (Attacker->heart_beat());
-    ExpectEq("*event handler: onRunAway called: lib/tests/support/services/combatWithMockServices.c",
-        err, "onRunAway event fired");
+    ExpectNotEq(object_name(combatRoom), object_name(environment(Attacker)));
+    ExpectEq(1, handler->TimesRunAwayEventReceived());
+
     ToggleCallOutBypass();
 }
 

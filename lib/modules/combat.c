@@ -1906,7 +1906,6 @@ static nomask void combatHeartBeat()
         }
 
         object movement = getService("movement");
-
         if(attacker && present(attacker) && triggerWimpy() && movement)
         {
             movement->runAway();

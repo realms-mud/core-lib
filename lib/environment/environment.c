@@ -631,6 +631,24 @@ public nomask varargs mapping getExitDirections()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string *exits()
+{
+    string *exitList = ({});
+
+    if (member(exits, currentState()))
+    {
+        exitList += m_indices(exits[currentState()]);
+    }
+    if (member(exits, "default"))
+    {
+        exitList += m_indices(exits["default"]);
+    }
+    exitList = sort_array(m_indices(mkmapping(exitList)), (: $1 > $2 :));
+
+    return exitList;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void setCoordinates(object region, int x, int y)
 {
     if (objectp(region) && 

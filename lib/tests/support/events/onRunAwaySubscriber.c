@@ -3,10 +3,16 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
+private int NumTimesCalled;
+
+/////////////////////////////////////////////////////////////////////////////
+public int TimesRunAwayEventReceived()
+{
+    return NumTimesCalled;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public void onRunAway(object caller)
 {
-    raise_error(sprintf("event handler: onRunAway called: %s", program_name(caller)));
+    NumTimesCalled++;
 }
-
-
