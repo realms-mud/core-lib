@@ -150,8 +150,11 @@ public string banneredContent(string colorConfiguration, string charset,
     string content)
 {
     string divider = divider(colorConfiguration, charset);
-    int padding = sizeof(content) - sizeof(regreplace(content, "(\x1b[^m]+m)", "", 1));
-    string formatString = "%s %-" + to_string(75 + padding) + "s %s\n";
+
+    int textLength = unicodeIsSingleCharacter() ? textWidth(content) :
+        (75 + sizeof(content) - textWidth(content));
+
+    string formatString = "%s %-" + to_string(textLength) + "s %s\n";
 
     return sprintf(formatString, divider, content, divider);
 }

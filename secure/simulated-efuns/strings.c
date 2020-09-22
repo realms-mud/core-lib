@@ -4,6 +4,23 @@
 //*****************************************************************************
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int unicodeIsSingleCharacter()
+{
+    return (__VERSION_MAJOR__ >= 3) && (__VERSION_MINOR__ >= 6) &&
+        (__VERSION_MICRO__ >= 3);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int textWidth(string text)
+{
+#if ! __EFUN_DEFINED__(text_width)
+    return sizeof(regreplace(text, "(\x1b[^m]+m)", "", 1));
+#else
+    return text_width(text);
+#endif
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string convertDataToString(mixed data)
 {
     string ret = "";

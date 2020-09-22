@@ -109,8 +109,11 @@ private nomask varargs int listFiles(string path, object initiator,
     int recurse, int maxWidth, string colorConfiguration, int numFiles)
 {
     int ret = 0;
-    string *files = get_dir(path, 0x10) -
-        ({ (path[1..] + "."), (path[1..] + "..") });
+    string *files = get_dir(path, 0x10);
+    if (sizeof(files) && pointerp(files))
+    {
+        files -= ({ (path[1..] + "."), (path[1..] + "..") });
+    }
 
     if ((sizeof(files) == 1) || !recurse)
     {
@@ -125,6 +128,11 @@ private nomask varargs int listFiles(string path, object initiator,
         if (maxWidth)
         {
             int numColumns = (80 / maxWidth);
+            if (numColumns < 1)
+            {
+                numColumns = 1;
+            }
+
             tell_object(initiator, getFileState(files[0],
                 regreplace(files[0], ".*/([^/]+)$", "\\1", 1), initiator,
                 colorConfiguration, maxWidth));
@@ -181,12 +189,14 @@ private nomask int maxWidth(string path, string command)
         string *files = get_dir(path);
         foreach(string file in files)
         {
-            if (sizeof(file) > maxWidth)
+            int lengthOfFileWithPadding = textWidth(file) + 5;
+            if (lengthOfFileWithPadding > maxWidth)
             {
-                maxWidth = sizeof(file) + 9;
+                maxWidth = lengthOfFileWithPadding;
             }
         }
     }
+
     return maxWidth;
 }
 
