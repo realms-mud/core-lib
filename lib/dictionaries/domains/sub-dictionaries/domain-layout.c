@@ -272,20 +272,22 @@ private nomask int getWorkerDurations(int initialValue, mapping workers)
     float multiplier = 0.0;
     int numWorkers = 0;
 
-    foreach(string workerType in m_indices(workers))
+    if (sizeof(workers))
     {
-        foreach(string worker in m_indices(workers[workerType]))
+        foreach(string workerType in m_indices(workers))
         {
-            if (member(workers[workerType][worker], "benefits") &&
-                member(workers[workerType][worker]["benefits"], "duration"))
+            foreach(string worker in m_indices(workers[workerType]))
             {
-                numWorkers++;
-                multiplier -= 
-                    to_float(workers[workerType][worker]["benefits"]["duration"]);
+                if (member(workers[workerType][worker], "benefits") &&
+                    member(workers[workerType][worker]["benefits"], "duration"))
+                {
+                    numWorkers++;
+                    multiplier -=
+                        to_float(workers[workerType][worker]["benefits"]["duration"]);
+                }
             }
         }
     }
-
     return to_int(initialValue * (100.0 + (multiplier / 
         (numWorkers ? numWorkers : 1))) / 100.0);
 }

@@ -237,7 +237,7 @@ public nomask int cost()
 public nomask void setHenchmanData(mapping data, object leader)
 {
     Name(data["name"]);
-    Gender(data["gender"] == "male" ? 1 : 2);
+    Gender(data["gender"]);
     if (member(data, "house"))
     {
         Title(data["house"]);

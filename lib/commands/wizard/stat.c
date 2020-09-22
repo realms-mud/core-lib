@@ -257,8 +257,9 @@ private string getLivingDetails(object target,
         ret += Dictionary->buildBanner(colorConfiguration, charset,
                 "center", "Persona Details") + 
             Dictionary->banneredContent(colorConfiguration, charset,
-                configuration->decorate(sprintf("This character has "
-                    "the '%s' persona.", target->persona()),
+                configuration->decorate(sprintf("%-75s",
+                    sprintf("This character has "
+                    "the '%s' persona.", target->persona())),
                     "content", "score", colorConfiguration));
     }
 
@@ -279,7 +280,7 @@ private string getLivingDetails(object target,
                     "weapon", "score", colorConfiguration) +
                 configuration->decorate("Age: ",
                     "content", "score", colorConfiguration) +
-                configuration->decorate(target->ageString(),
+                configuration->decorate(sprintf("%-48s", target->ageString()),
                     "weapon", "score", colorConfiguration));
     }
     else
@@ -290,7 +291,8 @@ private string getLivingDetails(object target,
             Dictionary->banneredContent(colorConfiguration, charset,
                 configuration->decorate("Filename: ",
                     "content", "score", colorConfiguration) +
-                configuration->decorate(program_name(target),
+                configuration->decorate(sprintf("%-65s",
+                    program_name(target)),
                     "weapon", "score", colorConfiguration));
     }
 
@@ -338,7 +340,8 @@ public nomask int execute(string command, object initiator)
                     Dictionary->banneredContent(colorConfiguration, charset,
                         configuration->decorate("Filename: ",
                             "content", "score", colorConfiguration) +
-                        configuration->decorate(program_name(target),
+                        configuration->decorate(sprintf("%-65s",
+                            program_name(target)),
                             "weapon", "score", colorConfiguration));
 
                 score += Dictionary->buildBanner(colorConfiguration, charset,

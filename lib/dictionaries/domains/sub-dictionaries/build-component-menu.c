@@ -50,7 +50,7 @@ private nomask mapping getConstructionOptions(mapping componentData)
         foreach(string section in sections)
         {
             string name = generateTitle(section);
-            if (sizeof(name) > 23)
+            if (textWidth(name) > 23)
             {
                 name = name[0..19] + "...";
             }

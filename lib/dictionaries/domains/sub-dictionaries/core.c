@@ -54,7 +54,7 @@ protected nomask string generateBuildInfo(string *leftColumn, string *rightColum
 
     for (int i = 0; i < sharedRows; i++)
     {
-        ret += sprintf("%" + sizeof(leftColumn[i]) + "s%s\n",
+        ret += sprintf("%" + textWidth(leftColumn[i]) + "s%s\n",
             leftColumn[i], rightColumn[i]);
     }
     if (leftColumnSize > rightColumnSize)
