@@ -6,7 +6,7 @@
 private mapping pilonDisplay = ([
     "green":([
         "character":([
-            "unicode": "\xe2\x8a\x9b",
+            "unicode": "\u229b",
             "ascii": "="
         ]),
         "color":([
@@ -18,7 +18,7 @@ private mapping pilonDisplay = ([
     ]),
     "default":([
         "character":([
-            "unicode": "\xe2\x8a\x9b",
+            "unicode": "\u229b",
             "ascii": "-"
         ]),
         "color":([

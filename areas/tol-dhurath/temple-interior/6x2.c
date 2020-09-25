@@ -37,13 +37,13 @@ public string **customIcon(string **baseIcon, string color, string charset)
     ]);
 
     baseIcon[0][0] = sprintf("%s%s%s", colors["door"][color],
-        (charset == "unicode") ? "\xe2\x96\x94" : "-",
+        (charset == "unicode") ? "\u2594" : "-",
         (colors["door"][color] != "") ? "\x1b[0m" : "");
     baseIcon[0][1] = sprintf("%s%s%s", colors["door"][color],
-        (charset == "unicode") ? "\xe2\x96\x94" : "-",
+        (charset == "unicode") ? "\u2594" : "-",
         (colors["door"][color] != "") ? "\x1b[0m" : "");
     baseIcon[0][2] = sprintf("%s%s%s", baseColor,
-        (charset == "unicode") ? "\xe2\x95\xac" : "+",
+        (charset == "unicode") ? "\u256c" : "+",
         (baseColor != "") ? "\x1b[0m" : "");
 
     return baseIcon;

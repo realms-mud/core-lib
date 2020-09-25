@@ -48,15 +48,15 @@ private mapping CastleBuildings = ([
         "components":([
             "MMM": ([
                 "ascii": "~~~",
-                "unicode": "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91",
+                "unicode": "\u2591\u2591\u2591",
             ]),
             "WSM": ([
                 "ascii": "  ~",
-                "unicode": " \xe2\x96\x91\xe2\x96\x91",
+                "unicode": " \u2591\u2591",
             ]),
             "ESM": ([
                 "ascii": "~  ",
-                "unicode": "\xe2\x96\x91\xe2\x96\x91 ",
+                "unicode": "\u2591\u2591 ",
             ]),
         ]),
         "construction": ([
@@ -85,11 +85,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".?.",
-                "unicode": "\xe2\x94\x8a\xe2\x81\x87\xe2\x94\x8a",
+                "unicode": "\u250a\u2047\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
     ]),
@@ -109,11 +109,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".M.",
-                "unicode": "\xe2\x94\x8a\xe2\x9c\xa0\xe2\x94\x8a",
+                "unicode": "\u250a\u2720\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -146,11 +146,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".C.",
-                "unicode": "\xe2\x94\x8a\xe2\x8d\x8d\xe2\x94\x8a",
+                "unicode": "\u250a\u234d\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -183,11 +183,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".N.",
-                "unicode": "\xe2\x94\x8aN\xe2\x94\x8a",
+                "unicode": "\u250aN\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -219,11 +219,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".K.",
-                "unicode": "\xe2\x94\x8aK\xe2\x94\x8a",
+                "unicode": "\u250aK\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -256,11 +256,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".S.",
-                "unicode": "\xe2\x94\x8aS\xe2\x94\x8a",
+                "unicode": "\u250aS\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -293,11 +293,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".$.",
-                "unicode": "\xe2\x94\x8a$\xe2\x94\x8a",
+                "unicode": "\u250a$\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -330,11 +330,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".G.",
-                "unicode": "\xe2\x94\x8aG\xe2\x94\x8a",
+                "unicode": "\u250aG\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -367,11 +367,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".W.",
-                "unicode": "\xe2\x94\x8aW\xe2\x94\x8a",
+                "unicode": "\u250aW\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -405,11 +405,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".L.",
-                "unicode": "\xe2\x94\x8aL\xe2\x94\x8a",
+                "unicode": "\u250aL\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -442,11 +442,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".T.",
-                "unicode": "\xe2\x94\x8aT\xe2\x94\x8a",
+                "unicode": "\u250aT\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -479,11 +479,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".A.",
-                "unicode": "\xe2\x94\x8aA\xe2\x94\x8a",
+                "unicode": "\u250aA\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -517,11 +517,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".H.",
-                "unicode": "\xe2\x94\x8aH\xe2\x94\x8a",
+                "unicode": "\u250aH\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -554,11 +554,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC1": ([
                 "ascii": ".V.",
-                "unicode": "\xe2\x94\x8aV\xe2\x94\x8a",
+                "unicode": "\u250aV\u250a",
             ]),
             "NC2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -590,11 +590,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".?.",
-                "unicode": "\xe2\x94\x8a\xe2\x81\x87\xe2\x94\x8a",
+                "unicode": "\u250a\u2047\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
     ]),
@@ -614,11 +614,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".M.",
-                "unicode": "\xe2\x94\x8a\xe2\x9c\xa0\xe2\x94\x8a",
+                "unicode": "\u250a\u2720\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -651,11 +651,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".C.",
-                "unicode": "\xe2\x94\x8a\xe2\x8d\x8d\xe2\x94\x8a",
+                "unicode": "\u250a\u234d\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -688,11 +688,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".N.",
-                "unicode": "\xe2\x94\x8aN\xe2\x94\x8a",
+                "unicode": "\u250aN\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -724,11 +724,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".K.",
-                "unicode": "\xe2\x94\x8aK\xe2\x94\x8a",
+                "unicode": "\u250aK\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -761,11 +761,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".S.",
-                "unicode": "\xe2\x94\x8aS\xe2\x94\x8a",
+                "unicode": "\u250aS\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -798,11 +798,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".$.",
-                "unicode": "\xe2\x94\x8a$\xe2\x94\x8a",
+                "unicode": "\u250a$\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -835,11 +835,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".G.",
-                "unicode": "\xe2\x94\x8aG\xe2\x94\x8a",
+                "unicode": "\u250aG\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -872,11 +872,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".W.",
-                "unicode": "\xe2\x94\x8aW\xe2\x94\x8a",
+                "unicode": "\u250aW\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -910,11 +910,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".L.",
-                "unicode": "\xe2\x94\x8aL\xe2\x94\x8a",
+                "unicode": "\u250aL\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -947,11 +947,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".T.",
-                "unicode": "\xe2\x94\x8aT\xe2\x94\x8a",
+                "unicode": "\u250aT\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -984,11 +984,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".A.",
-                "unicode": "\xe2\x94\x8aA\xe2\x94\x8a",
+                "unicode": "\u250aA\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -1022,11 +1022,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".H.",
-                "unicode": "\xe2\x94\x8aH\xe2\x94\x8a",
+                "unicode": "\u250aH\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -1059,11 +1059,11 @@ private mapping CastleBuildings = ([
         "components":([
             "NC3": ([
                 "ascii": ".V.",
-                "unicode": "\xe2\x94\x8aV\xe2\x94\x8a",
+                "unicode": "\u250aV\u250a",
             ]),
             "NC4": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -1095,15 +1095,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "?. ",
-                "unicode": "\xe2\x81\x87\xe2\x94\x8a ",
+                "unicode": "\u2047\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
     ]),
@@ -1123,15 +1123,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "M. ",
-                "unicode": "\xe2\x9c\xa0\xe2\x94\x8a ",
+                "unicode": "\u2720\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1164,15 +1164,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "C. ",
-                "unicode": "\xe2\x8d\x8d\xe2\x94\x8a ",
+                "unicode": "\u234d\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1205,15 +1205,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "N. ",
-                "unicode": "N\xe2\x94\x8a ",
+                "unicode": "N\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1245,15 +1245,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "K. ",
-                "unicode": "K\xe2\x94\x8a ",
+                "unicode": "K\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1286,15 +1286,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "S. ",
-                "unicode": "S\xe2\x94\x8a ",
+                "unicode": "S\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1327,15 +1327,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "$. ",
-                "unicode": "$\xe2\x94\x8a ",
+                "unicode": "$\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1368,15 +1368,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "G. ",
-                "unicode": "G\xe2\x94\x8a ",
+                "unicode": "G\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1409,15 +1409,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "W. ",
-                "unicode": "W\xe2\x94\x8a ",
+                "unicode": "W\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1451,15 +1451,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "L. ",
-                "unicode": "L\xe2\x94\x8a ",
+                "unicode": "L\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1492,15 +1492,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "T. ",
-                "unicode": "T\xe2\x94\x8a ",
+                "unicode": "T\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1533,15 +1533,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "A. ",
-                "unicode": "A\xe2\x94\x8a ",
+                "unicode": "A\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1575,15 +1575,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "H. ",
-                "unicode": "H\xe2\x94\x8a ",
+                "unicode": "H\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1616,15 +1616,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC2": ([
                 "ascii": "V. ",
-                "unicode": "V\xe2\x94\x8a ",
+                "unicode": "V\u250a ",
             ]),
             "WC3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1656,15 +1656,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "?. ",
-                "unicode": "\xe2\x81\x87\xe2\x94\x8a ",
+                "unicode": "\u2047\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
     ]),
@@ -1684,15 +1684,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "M. ",
-                "unicode": "\xe2\x9c\xa0\xe2\x94\x8a ",
+                "unicode": "\u2720\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1725,15 +1725,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "C. ",
-                "unicode": "\xe2\x8d\x8d\xe2\x94\x8a ",
+                "unicode": "\u234d\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1766,15 +1766,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "N. ",
-                "unicode": "N\xe2\x94\x8a ",
+                "unicode": "N\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1806,15 +1806,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "K. ",
-                "unicode": "K\xe2\x94\x8a ",
+                "unicode": "K\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1847,15 +1847,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "S. ",
-                "unicode": "S\xe2\x94\x8a ",
+                "unicode": "S\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1888,15 +1888,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "$. ",
-                "unicode": "$\xe2\x94\x8a ",
+                "unicode": "$\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1929,15 +1929,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "G. ",
-                "unicode": "G\xe2\x94\x8a ",
+                "unicode": "G\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1970,15 +1970,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "W. ",
-                "unicode": "W\xe2\x94\x8a ",
+                "unicode": "W\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2012,15 +2012,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "L. ",
-                "unicode": "L\xe2\x94\x8a ",
+                "unicode": "L\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2053,15 +2053,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "T. ",
-                "unicode": "T\xe2\x94\x8a ",
+                "unicode": "T\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2094,15 +2094,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "A. ",
-                "unicode": "A\xe2\x94\x8a ",
+                "unicode": "A\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2136,15 +2136,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "H. ",
-                "unicode": "H\xe2\x94\x8a ",
+                "unicode": "H\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2177,15 +2177,15 @@ private mapping CastleBuildings = ([
         "components":([
             "WC4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WC5": ([
                 "ascii": "V. ",
-                "unicode": "V\xe2\x94\x8a ",
+                "unicode": "V\u250a ",
             ]),
             "WC6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2217,15 +2217,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .?",
-                "unicode": " \xe2\x94\x8a\xe2\x81\x87",
+                "unicode": " \u250a\u2047",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
     ]),
@@ -2245,15 +2245,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .M",
-                "unicode": " \xe2\x94\x8a\xe2\x9c\xa0",
+                "unicode": " \u250a\u2720",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2286,15 +2286,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .C",
-                "unicode": " \xe2\x94\x8a\xe2\x8d\x8d",
+                "unicode": " \u250a\u234d",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2327,15 +2327,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .N",
-                "unicode": " \xe2\x94\x8aN",
+                "unicode": " \u250aN",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2367,15 +2367,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .K",
-                "unicode": " \xe2\x94\x8aK",
+                "unicode": " \u250aK",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2408,15 +2408,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .S",
-                "unicode": " \xe2\x94\x8aS",
+                "unicode": " \u250aS",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2449,15 +2449,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .$",
-                "unicode": " \xe2\x94\x8a$",
+                "unicode": " \u250a$",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2490,15 +2490,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .G",
-                "unicode": " \xe2\x94\x8aG",
+                "unicode": " \u250aG",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2531,15 +2531,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .W",
-                "unicode": " \xe2\x94\x8aW",
+                "unicode": " \u250aW",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2573,15 +2573,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .L",
-                "unicode": " \xe2\x94\x8aL",
+                "unicode": " \u250aL",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2614,15 +2614,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .T",
-                "unicode": " \xe2\x94\x8aT",
+                "unicode": " \u250aT",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2655,15 +2655,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .A",
-                "unicode": " \xe2\x94\x8aA",
+                "unicode": " \u250aA",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2697,15 +2697,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .H",
-                "unicode": " \xe2\x94\x8aH",
+                "unicode": " \u250aH",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2738,15 +2738,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC2": ([
                 "ascii": " .V",
-                "unicode": " \xe2\x94\x8aV",
+                "unicode": " \u250aV",
             ]),
             "EC3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2778,15 +2778,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .?",
-                "unicode": " \xe2\x94\x8a\xe2\x81\x87",
+                "unicode": " \u250a\u2047",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
     ]),
@@ -2806,15 +2806,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .M",
-                "unicode": " \xe2\x94\x8a\xe2\x9c\xa0",
+                "unicode": " \u250a\u2720",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2847,15 +2847,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .C",
-                "unicode": " \xe2\x94\x8a\xe2\x8d\x8d",
+                "unicode": " \u250a\u234d",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2888,15 +2888,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .N",
-                "unicode": " \xe2\x94\x8aN",
+                "unicode": " \u250aN",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2928,15 +2928,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .K",
-                "unicode": " \xe2\x94\x8aK",
+                "unicode": " \u250aK",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2969,15 +2969,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .S",
-                "unicode": " \xe2\x94\x8aS",
+                "unicode": " \u250aS",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3010,15 +3010,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .$",
-                "unicode": " \xe2\x94\x8a$",
+                "unicode": " \u250a$",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3051,15 +3051,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .G",
-                "unicode": " \xe2\x94\x8aG",
+                "unicode": " \u250aG",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3092,15 +3092,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .W",
-                "unicode": " \xe2\x94\x8aW",
+                "unicode": " \u250aW",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3134,15 +3134,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .L",
-                "unicode": " \xe2\x94\x8aL",
+                "unicode": " \u250aL",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3175,15 +3175,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .T",
-                "unicode": " \xe2\x94\x8aT",
+                "unicode": " \u250aT",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3216,15 +3216,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .A",
-                "unicode": " \xe2\x94\x8aA",
+                "unicode": " \u250aA",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3258,15 +3258,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .H",
-                "unicode": " \xe2\x94\x8aH",
+                "unicode": " \u250aH",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3299,15 +3299,15 @@ private mapping CastleBuildings = ([
         "components":([
             "EC4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EC5": ([
                 "ascii": " .V",
-                "unicode": " \xe2\x94\x8aV",
+                "unicode": " \u250aV",
             ]),
             "EC6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3339,11 +3339,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x8c\xe2\x94\x88\xe2\x94\x90",
+                "unicode": "\u250c\u2508\u2510",
             ]),
             "SC2": ([
                 "ascii": ".?.",
-                "unicode": "\xe2\x94\x8a\xe2\x81\x87\xe2\x94\x8a",
+                "unicode": "\u250a\u2047\u250a",
             ]),
         ]),
     ]),
@@ -3363,11 +3363,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".M.",
-                "unicode": "\xe2\x94\x8a\xe2\x9c\xa0\xe2\x94\x8a",
+                "unicode": "\u250a\u2720\u250a",
             ]),
         ]),
         "construction": ([
@@ -3400,11 +3400,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".C.",
-                "unicode": "\xe2\x94\x8a\xe2\x8d\x8d\xe2\x94\x8a",
+                "unicode": "\u250a\u234d\u250a",
             ]),
         ]),
         "construction": ([
@@ -3437,11 +3437,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1":([
                 "ascii":"...",
-                    "unicode" : "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                    "unicode" : "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".N.",
-                "unicode": "\xe2\x94\x8aN\xe2\x94\x8a",
+                "unicode": "\u250aN\u250a",
             ]),
         ]),
         "construction": ([
@@ -3473,11 +3473,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".K.",
-                "unicode": "\xe2\x94\x8aK\xe2\x94\x8a",
+                "unicode": "\u250aK\u250a",
             ]),
         ]),
         "construction": ([
@@ -3510,11 +3510,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".S.",
-                "unicode": "\xe2\x94\x8aS\xe2\x94\x8a",
+                "unicode": "\u250aS\u250a",
             ]),
         ]),
         "construction": ([
@@ -3547,11 +3547,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".$.",
-                "unicode": "\xe2\x94\x8a$\xe2\x94\x8a",
+                "unicode": "\u250a$\u250a",
             ]),
         ]),
         "construction": ([
@@ -3584,11 +3584,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".G.",
-                "unicode": "\xe2\x94\x8aG\xe2\x94\x8a",
+                "unicode": "\u250aG\u250a",
             ]),
         ]),
         "construction": ([
@@ -3621,11 +3621,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".W.",
-                "unicode": "\xe2\x94\x8aW\xe2\x94\x8a",
+                "unicode": "\u250aW\u250a",
             ]),
         ]),
         "construction": ([
@@ -3659,11 +3659,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".L.",
-                "unicode": "\xe2\x94\x8aL\xe2\x94\x8a",
+                "unicode": "\u250aL\u250a",
             ]),
         ]),
         "construction": ([
@@ -3696,11 +3696,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".T.",
-                "unicode": "\xe2\x94\x8aT\xe2\x94\x8a",
+                "unicode": "\u250aT\u250a",
             ]),
         ]),
         "construction": ([
@@ -3733,11 +3733,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".A.",
-                "unicode": "\xe2\x94\x8aA\xe2\x94\x8a",
+                "unicode": "\u250aA\u250a",
             ]),
         ]),
         "construction": ([
@@ -3771,11 +3771,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".H.",
-                "unicode": "\xe2\x94\x8aH\xe2\x94\x8a",
+                "unicode": "\u250aH\u250a",
             ]),
         ]),
         "construction": ([
@@ -3808,11 +3808,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".V.",
-                "unicode": "\xe2\x94\x8aV\xe2\x94\x8a",
+                "unicode": "\u250aV\u250a",
             ]),
         ]),
         "construction": ([
@@ -3844,11 +3844,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x8c\xe2\x94\x88\xe2\x94\x90",
+                "unicode": "\u250c\u2508\u2510",
             ]),
             "SC4": ([
                 "ascii": ".?.",
-                "unicode": "\xe2\x94\x8a\xe2\x81\x87\xe2\x94\x8a",
+                "unicode": "\u250a\u2047\u250a",
             ]),
         ]),
     ]),
@@ -3868,11 +3868,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".M.",
-                "unicode": "\xe2\x94\x8a\xe2\x9c\xa0\xe2\x94\x8a",
+                "unicode": "\u250a\u2720\u250a",
             ]),
         ]),
         "construction": ([
@@ -3905,11 +3905,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".C.",
-                "unicode": "\xe2\x94\x8a\xe2\x8d\x8d\xe2\x94\x8a",
+                "unicode": "\u250a\u234d\u250a",
             ]),
         ]),
         "construction": ([
@@ -3942,11 +3942,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3":([
                 "ascii":"...",
-                    "unicode" : "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                    "unicode" : "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".N.",
-                "unicode": "\xe2\x94\x8aN\xe2\x94\x8a",
+                "unicode": "\u250aN\u250a",
             ]),
         ]),
         "construction": ([
@@ -3978,11 +3978,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".K.",
-                "unicode": "\xe2\x94\x8aK\xe2\x94\x8a",
+                "unicode": "\u250aK\u250a",
             ]),
         ]),
         "construction": ([
@@ -4015,11 +4015,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".S.",
-                "unicode": "\xe2\x94\x8aS\xe2\x94\x8a",
+                "unicode": "\u250aS\u250a",
             ]),
         ]),
         "construction": ([
@@ -4052,11 +4052,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".$.",
-                "unicode": "\xe2\x94\x8a$\xe2\x94\x8a",
+                "unicode": "\u250a$\u250a",
             ]),
         ]),
         "construction": ([
@@ -4089,11 +4089,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".G.",
-                "unicode": "\xe2\x94\x8aG\xe2\x94\x8a",
+                "unicode": "\u250aG\u250a",
             ]),
         ]),
         "construction": ([
@@ -4126,11 +4126,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".W.",
-                "unicode": "\xe2\x94\x8aW\xe2\x94\x8a",
+                "unicode": "\u250aW\u250a",
             ]),
         ]),
         "construction": ([
@@ -4164,11 +4164,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".L.",
-                "unicode": "\xe2\x94\x8aL\xe2\x94\x8a",
+                "unicode": "\u250aL\u250a",
             ]),
         ]),
         "construction": ([
@@ -4201,11 +4201,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".T.",
-                "unicode": "\xe2\x94\x8aT\xe2\x94\x8a",
+                "unicode": "\u250aT\u250a",
             ]),
         ]),
         "construction": ([
@@ -4238,11 +4238,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".A.",
-                "unicode": "\xe2\x94\x8aA\xe2\x94\x8a",
+                "unicode": "\u250aA\u250a",
             ]),
         ]),
         "construction": ([
@@ -4276,11 +4276,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC4": ([
                 "ascii": ".H.",
-                "unicode": "\xe2\x94\x8aH\xe2\x94\x8a",
+                "unicode": "\u250aH\u250a",
             ]),
         ]),
         "construction": ([
@@ -4313,11 +4313,11 @@ private mapping CastleBuildings = ([
         "components":([
             "SC1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SC2": ([
                 "ascii": ".V.",
-                "unicode": "\xe2\x94\x8aV\xe2\x94\x8a",
+                "unicode": "\u250aV\u250a",
             ]),
         ]),
         "construction": ([

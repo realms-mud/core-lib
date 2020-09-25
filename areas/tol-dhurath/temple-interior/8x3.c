@@ -31,7 +31,7 @@ public string **customIcon(string **baseIcon, string color, string charset)
     ]);
 
     baseIcon[2][0] = sprintf("%s%s%s", colors["pillar"][color],
-        (charset == "unicode") ? "\xe2\x8e\x8a" : "*",
+        (charset == "unicode") ? "\u238a" : "*",
         (colors["pillar"][color] != "") ? "\x1b[0m" : "");
 
     return baseIcon;

@@ -18,10 +18,10 @@ public string **customIcon(string **baseIcon, string color, string charset)
         decoratorType(), color);
 
     baseIcon[2][0] = sprintf("%s%s%s", baseColor,
-        (charset == "unicode") ? "\xe2\x95\x97" : "+",
+        (charset == "unicode") ? "\u2557" : "+",
         (baseColor != "") ? "\x1b[0m" : baseColor);
     baseIcon[2][2] = sprintf("%s%s%s", baseColor,
-        (charset == "unicode") ? "\xe2\x95\x94" : "+",
+        (charset == "unicode") ? "\u2554" : "+",
         (baseColor != "") ? "\x1b[0m" : baseColor);
 
     return baseIcon;

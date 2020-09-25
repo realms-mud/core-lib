@@ -34,13 +34,13 @@ public string **customIcon(string **baseIcon, string color, string charset)
     ]);
 
     baseIcon[0][1] = sprintf("%s%s%s", colors["arms"][color],
-        (charset == "unicode") ? "\xe2\x95\xb2" : "\\",
+        (charset == "unicode") ? "\u2572" : "\\",
         (colors["arms"][color] != "") ? "\x1b[0m" : "");
     baseIcon[1][1] = sprintf("%s%s%s", colors["dais"][color],
-        (charset == "unicode") ? "\xf0\x9f\x94\xae" : "*",
+        (charset == "unicode") ? "\u2384" : "*",
         (colors["arms"][color] != "") ? "\x1b[0m" : "");
     baseIcon[2][1] = sprintf("%s%s%s", colors["arms"][color],
-        (charset == "unicode") ? "\xe2\x95\xb1" : "/",
+        (charset == "unicode") ? "\u2571" : "/",
         (colors["arms"][color] != "") ? "\x1b[0m" : "");
 
     return baseIcon;

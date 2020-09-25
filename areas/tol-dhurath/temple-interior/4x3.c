@@ -39,27 +39,27 @@ public string **customIcon(string **baseIcon, string color, string charset)
     ]);
 
     baseIcon[1][0] = sprintf("%s%s%s", colors["wall"][color],
-        (charset == "unicode") ? "\xe2\x95\x94" : " ",
+        (charset == "unicode") ? "\u2554" : " ",
         (colors["wall"][color] != "") ? "\x1b[0m" : "");
 
     baseIcon[1][1] = sprintf("%s%s%s", colors["wall"][color],
-        (charset == "unicode") ? "\xe2\x95\x97" : " ",
+        (charset == "unicode") ? "\u2557" : " ",
         (colors["wall"][color] != "") ? "\x1b[0m" : "");
 
     baseIcon[2][0] = sprintf("%s%s%s", colors["wall"][color],
-        (charset == "unicode") ? "\xe2\x95\xac" : " ",
+        (charset == "unicode") ? "\u256c" : " ",
         (colors["wall"][color] != "") ? "\x1b[0m" : "");
 
     baseIcon[2][1] = sprintf("%s%s%s", colors["wall"][color],
-        (charset == "unicode") ? "\xe2\x95\xac" : " ",
+        (charset == "unicode") ? "\u256c" : " ",
         (colors["wall"][color] != "") ? "\x1b[0m" : "");
 
     baseIcon[1][2] = sprintf("%s%s%s", colors["floor"][color],
-        (charset == "unicode") ? "\xe2\x96\x85" : " ",
+        (charset == "unicode") ? "\u2585" : " ",
         (colors["floor"][color] != "") ? "\x1b[0m" : "");
 
     baseIcon[2][2] = sprintf("%s%s%s", colors["pillar"][color],
-        (charset == "unicode") ? "\xe2\x8e\x8a" : "*",
+        (charset == "unicode") ? "\u238a" : "*",
         (colors["pillar"][color] != "") ? "\x1b[0m" : "");
 
     return baseIcon;

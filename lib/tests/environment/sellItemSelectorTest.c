@@ -162,7 +162,7 @@ void UnicodeDisplaysSellListWithUnidentifiedItemsDenotedCorrectly()
     Selector->applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;35m (\xe2\x81\x87)\x1b[0m"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;35m (\u2047)\x1b[0m"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m\x1b[0;30;1mSell all unused    \x1b[0m\x1b[0m    \n"
         "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
@@ -216,7 +216,7 @@ void UnicodeDisplaysSellListWithEquippedItemsDenotedCorrectly()
     Selector->applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;34;1m (\xe2\x80\xa0)\x1b[0m"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;34;1m (\u2020)\x1b[0m"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m\x1b[0;30;1mSell all unused    \x1b[0m\x1b[0m    \n"
         "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
@@ -294,7 +294,7 @@ void UnicodeDisplaysSellListWithKnownCursedtemsDenotedCorrectly()
     Selector->applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
-        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;30;1m (\xe2\x98\xa0)\x1b[0m"
+        "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;30;1m (\u2620)\x1b[0m"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32m\x1b[0;30;1mSell all unused    \x1b[0m\x1b[0m    \n"
         "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"

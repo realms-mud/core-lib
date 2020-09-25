@@ -1979,8 +1979,8 @@ private nomask string vitalsDetails(string vital, object configuration,
 
         if (charset == "unicode")
         {
-            bar = regreplace(bar, "=", "\xe2\x96\xac", 1);
-            emptyBar = regreplace(emptyBar, "[.]", "\xe2\x88\xb7", 1);
+            bar = regreplace(bar, "=", "\u25ac", 1);
+            emptyBar = regreplace(emptyBar, "[.]", "\u2237", 1);
         }
     }
     else

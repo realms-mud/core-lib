@@ -27,9 +27,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "=", "=", "=", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "=", "=", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u2550" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2550", "\u2550", "\u2550" }) })
     ]),
     "keep interior east-west hallway north entry": ([
         "colors": ([
@@ -58,9 +58,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "=", "=", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594", "\u2569" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2550", "\u2550", "\u2550" }) })
     ]),
     "keep interior east-west hallway south entry": ([
         "colors": ([
@@ -89,9 +89,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "=", "=", "=", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#door#\\", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u2550" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2566", "#door#\u2581", "\u2566" }) })
     ]),
     "keep interior east-west hallway north-south entry": ([
         "colors": ([
@@ -120,9 +120,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#door#\\", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594", "\u2569" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2566", "#door#\u2581", "\u2566" }) })
     ]),
     "keep interior north-south hallway": ([
         "colors": ([
@@ -144,9 +144,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "|", "#floor# ", "|", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u2551" }),
+            ({ "\u2551", "#floor#\u2591", "\u2551" }),
+            ({ "\u2551", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior north-south hallway east entry": ([
         "colors": ([
@@ -175,9 +175,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "+", }),
             ({ "|", "#floor# ", "#door#/", }),
             ({ "|", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u2560" }),
+            ({ "\u2551", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2551", "#floor#\u2591", "\u2560" }) })
     ]),
     "keep interior north-south hallway west entry": ([
         "colors": ([
@@ -206,9 +206,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "|", }),
             ({ "#door#/", "#floor# ", "|", }),
             ({ "+", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u2563", "#floor#\u2591", "\u2551" }),
+            ({ "#door#\u2503", "#floor#\u2591", "\u2551" }),
+            ({ "\u2563", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior north-south hallway east-west entry": ([
         "colors": ([
@@ -237,9 +237,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "+", }),
             ({ "#door#/", "#floor# ", "#door#/", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+        "unicode": ({ ({ "\u2563", "#floor#\u2591", "\u2560" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2563", "#floor#\u2591", "\u2560" }) })
     ]),
     "keep interior 4-way hallway": ([
         "colors": ([
@@ -261,9 +261,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u255a" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2557", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior south alcove": ([
         "colors": ([
@@ -285,9 +285,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "|", "#floor# ", "|", }),
             ({ "+", "=", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x9d" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u2551" }),
+            ({ "\u2551", "#floor#\u2591", "\u2551" }),
+            ({ "\u255a", "\u2550", "\u255d" }) })
     ]),
     "keep interior north alcove": ([
         "colors": ([
@@ -309,9 +309,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "=", "+", }),
             ({ "|", "#floor# ", "|", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\x97" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u2554", "\u2550", "\u2557" }),
+            ({ "\u2551", "#floor#\u2591", "\u2551" }),
+            ({ "\u2551", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior west alcove": ([
         "colors": ([
@@ -333,9 +333,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "=", "=", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "+", "=", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u2554", "\u2550", "\u2550" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u255a", "\u2550", "\u2550" }) })
     ]),
     "keep interior east alcove": ([
         "colors": ([
@@ -357,9 +357,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "=", "=", "+", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "=", "=", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x97" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x9d" }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u2557" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2550", "\u2550", "\u255d" }) })
     ]),
     "keep interior west T-intersection": ([
         "colors": ([
@@ -381,9 +381,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "+", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2557", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior west T-intersection east entry": ([
         "colors": ([
@@ -412,9 +412,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u255a" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2557", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior east T-intersection": ([
         "colors": ([
@@ -436,9 +436,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "+", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u255a" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior east T-intersection west entry": ([
         "colors": ([
@@ -467,9 +467,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u255a" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2557", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior south T-intersection": ([
         "colors": ([
@@ -491,9 +491,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "=", "=", "=", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u2550" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2557", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior south T-intersection north entry": ([
         "colors": ([
@@ -522,9 +522,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#/", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#door#\xe2\x96\x94", "\xe2\x95\x9a" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u255d", "#door#\u2594", "\u255a" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2557", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior north T-intersection": ([
         "colors": ([
@@ -546,9 +546,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "=", "=", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u255a" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2550", "\u2550", "\u2550" }) })
     ]),
     "keep interior north T-intersection south entry": ([
         "colors": ([
@@ -577,9 +577,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u255a" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2557", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior north entry alcove": ([
         "colors": ([
@@ -608,9 +608,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "|", "#floor# ", "|", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xac" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u256c" }),
+            ({ "\u2551", "#floor#\u2591", "\u2551" }),
+            ({ "\u2551", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior north-east entry alcove": ([
         "colors": ([
@@ -639,9 +639,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "|", "#floor# ", "#door#/", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xac" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u256c" }),
+            ({ "\u2551", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2551", "#floor#\u2591", "\u2560" }) })
     ]),
     "keep interior north-west entry alcove": ([
         "colors": ([
@@ -670,9 +670,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "#door#/", "#floor# ", "|", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xac" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u256c" }),
+            ({ "#door#\u2503", "#floor#\u2591", "\u2551" }),
+            ({ "\u2563", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior north-east-west entry alcove": ([
         "colors": ([
@@ -701,9 +701,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "#door#/", "#floor# ", "#door#/", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xac" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u256c" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2563", "#floor#\u2591", "\u2560" }) })
     ]),
     "keep interior north alcove west entry": ([
         "colors": ([
@@ -732,9 +732,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "+", "+", }),
             ({ "#door#/", "#floor# ", "|", }),
             ({ "+", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\x97" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xac", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u256c", "\u2550", "\u2557" }),
+            ({ "#door#\u2503", "#floor#\u2591", "\u2551" }),
+            ({ "\u256c", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior north alcove east entry": ([
         "colors": ([
@@ -763,9 +763,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "+", "+", }),
             ({ "|", "#floor# ", "#door#/", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\xac" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xac" }) })
+        "unicode": ({ ({ "\u2554", "\u2550", "\u256c" }),
+            ({ "\u2551", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2551", "#floor#\u2591", "\u256c" }) })
     ]),
     "keep interior north alcove east-west entry": ([
         "colors": ([
@@ -794,9 +794,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "+", "+", }),
             ({ "#door#/", "#floor# ", "#door#/", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\xac" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\xac", "#floor#\xe2\x96\x91", "\xe2\x95\xac" }) })
+        "unicode": ({ ({ "\u256c", "\u2550", "\u256c" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u256c", "#floor#\u2591", "\u256c" }) })
     ]),
     "keep interior south entry alcove": ([
         "colors": ([
@@ -825,9 +825,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "|", "#floor# ", "|", }),
             ({ "+", "#door#/", "+", }), }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xac" }), })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u2551" }),
+            ({ "\u2551", "#floor#\u2591", "\u2551" }),
+            ({ "\u256c", "#door#\u2581", "\u256c" }), })
     ]),
     "keep interior south-east entry alcove": ([
         "colors": ([
@@ -856,9 +856,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "|", "#floor# ", "#door#/", }),
             ({ "+", "#door#/", "+", }), }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xac" }), })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u2560" }),
+            ({ "\u2551", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u256c", "#door#\u2581", "\u256c" }), })
     ]),
     "keep interior south-west entry alcove": ([
         "colors": ([
@@ -887,9 +887,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "#door#/", "#floor# ", "|", }),
             ({ "+", "#door#/", "+", }), }),
-        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xac" }), })
+        "unicode": ({ ({ "\u2563", "#floor#\u2591", "\u2551" }),
+            ({ "#door#\u2503", "#floor#\u2591", "\u2551" }),
+            ({ "\u256c", "#door#\u2581", "\u256c" }), })
     ]),
     "keep interior south-east-west entry alcove": ([
         "colors": ([
@@ -918,9 +918,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "#door#/", "#floor# ", "#door#/", }),
             ({ "+", "#door#/", "+", }), }),
-        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xac" }), })
+        "unicode": ({ ({ "\u2563", "#floor#\u2591", "\u2560" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u256c", "#door#\u2581", "\u256c" }), })
     ]),
     "keep interior south alcove west entry": ([
         "colors": ([
@@ -949,9 +949,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "|", }),
             ({ "#door#/", "#floor# ", "|", }),
             ({ "+", "-", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\x9d" }) })
+        "unicode": ({ ({ "\u256c", "#floor#\u2591", "\u2551" }),
+            ({ "#door#\u2503", "#floor#\u2591", "\u2551" }),
+            ({ "\u256c", "\u2550", "\u255d" }) })
     ]),
     "keep interior south alcove east entry": ([
         "colors": ([
@@ -980,9 +980,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "|", "#floor# ", "#door#/", }),
             ({ "+", "-", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xac" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\xac" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u256c" }),
+            ({ "\u2551", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u255a", "\u2550", "\u256c" }) })
     ]),
     "keep interior south alcove east-west entry": ([
         "colors": ([
@@ -1011,9 +1011,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "#door#/", "#floor# ", "#door#/", }),
             ({ "+", "=", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#floor#\xe2\x96\x91", "\xe2\x95\xac" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\xac" }) })
+        "unicode": ({ ({ "\u256c", "#floor#\u2591", "\u256c" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u256c", "\u2550", "\u256c" }) })
     ]),
     "keep interior west entry alcove": ([
         "colors": ([
@@ -1042,9 +1042,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "=", "=", }),
             ({ "#door#/", "#floor# ", "#floor# ", }),
             ({ "+", "=", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u256c", "\u2550", "\u2550" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u256c", "\u2550", "\u2550" }) })
     ]),
     "keep interior west-north entry alcove": ([
         "colors": ([
@@ -1073,9 +1073,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "=", }),
             ({ "#door#/", "#floor# ", "#floor# ", }),
             ({ "+", "=", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u2569" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u256c", "\u2550", "\u2550" }) })
     ]),
     "keep interior west-south entry alcove": ([
         "colors": ([
@@ -1104,9 +1104,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "=", "=", }),
             ({ "#door#/", "#floor# ", "#floor# ", }),
             ({ "+", "#door#\\", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "\u256c", "\u2550", "\u2550" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u256c", "#door#\u2581", "\u2566" }) })
     ]),
     "keep interior west-south-north entry alcove": ([
         "colors": ([
@@ -1135,9 +1135,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "=", }),
             ({ "#door#/", "#floor# ", "#floor# ", }),
             ({ "+", "#door#\\", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u2569" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u256c", "#door#\u2581", "\u2566" }) })
     ]),
     "keep interior west alcove north entry": ([
         "colors": ([
@@ -1166,9 +1166,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#/", "+", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "+", "=", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u2569" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u255a", "\u2550", "\u2550" }) })
     ]),
     "keep interior west alcove": ([
         "colors": ([
@@ -1197,9 +1197,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "=", "=", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "+", "#door#/", "+" }) }),
-        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "\u2554", "\u2550", "\u2550" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u256c", "#door#\u2581", "\u2566" }) })
     ]),
     "keep interior west alcove north-south entry": ([
         "colors": ([
@@ -1228,9 +1228,9 @@ private mapping KeepInteriorIcons = ([
             "ascii": ({ ({ "+", "#door#/", "+" }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "+", "#door#/", "+" }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u2569" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u255a", "\u2550", "\u2550" }) })
     ]),
     "keep interior east entry alcove": ([
         "colors": ([
@@ -1259,9 +1259,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "=", "=", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "+", "=", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\xac", }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83", }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90","\xe2\x95\xac", }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u256c", }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503", }),
+            ({ "\u2550", "\u2550","\u256c", }) })
     ]),
     "keep interior east-south entry alcove": ([
         "colors": ([
@@ -1290,9 +1290,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "=", "=", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "+", "#door#\\", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\xac", }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83", }),
-            ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81","\xe2\x95\xac", }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u256c", }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503", }),
+            ({ "\u2566", "#door#\u2581","\u256c", }) })
     ]),
     "keep interior east-north entry alcove": ([
         "colors": ([
@@ -1321,9 +1321,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "=", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "+", "=", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94", "\xe2\x95\xac", }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83", }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\xac", }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594", "\u256c", }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503", }),
+            ({ "\u2550", "\u2550", "\u256c", }) })
     ]),
     "keep interior east-south-north entry alcove": ([
         "colors": ([
@@ -1352,9 +1352,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "+", "#door#\\", "=", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94", "\xe2\x95\xac", }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83", }),
-            ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81","\xe2\x95\xac", }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594", "\u256c", }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503", }),
+            ({ "\u2566", "#door#\u2581","\u256c", }) })
     ]),
     "keep interior east alcove north entry": ([
         "colors": ([
@@ -1383,9 +1383,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+" }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "=", "=", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94", "\xe2\x95\xac" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81","\xe2\x95\xac" }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594", "\u256c" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2566", "#door#\u2581","\u256c" }) })
     ]),
     "keep interior east alcove south entry": ([
         "colors": ([
@@ -1414,9 +1414,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "=", "=", "+", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "+", "#door#\\", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x97" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81","\xe2\x95\xac" }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u2557" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2566", "#door#\u2581","\u256c" }) })
     ]),
     "keep interior east alcove north-south entry": ([
         "colors": ([
@@ -1445,9 +1445,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "+", "#door#\\", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94", "\xe2\x95\xac" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81","\xe2\x95\xac" }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594", "\u256c" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2566", "#door#\u2581","\u256c" }) })
     ]),
     "keep interior north-west corner hallway": ([
         "colors": ([
@@ -1469,9 +1469,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "-", "-", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x9d" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2550", "\u2550", "\u255d" }) })
     ]),
     "keep interior north-west corner hallway south entry": ([
         "colors": ([
@@ -1500,9 +1500,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "-", "#door#/", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x97", "#door#\xe2\x96\x81", "\xe2\x95\xa3" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2557", "#door#\u2581", "\u2563" }) })
     ]),
     "keep interior north-west corner hallway east entry": ([
         "colors": ([
@@ -1531,9 +1531,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "-", "-", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\xa9" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u2560" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2550", "\u2550", "\u2569" }) })
     ]),
     "keep interior north-west corner hallway south-east entry": ([
         "colors": ([
@@ -1562,9 +1562,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "-", "#door#/", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x9d", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x97", "#door#\xe2\x96\x81", "\xe2\x95\xac" }) })
+        "unicode": ({ ({ "\u255d", "#floor#\u2591", "\u2560" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2557", "#door#\u2581", "\u256c" }) })
     ]),
     "keep interior south-west corner hallway": ([
         "colors": ([
@@ -1586,9 +1586,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "-", "-", "+", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "+", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x97" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u2557" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2557", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior south-west corner hallway north entry": ([
         "colors": ([
@@ -1617,9 +1617,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#/", "+", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94","\xe2\x95\xa3" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594","\u2563" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2557", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior south-west corner hallway east entry": ([
         "colors": ([
@@ -1648,9 +1648,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "-", "-", "+" }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "+", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90","\xe2\x95\xa6" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+        "unicode": ({ ({ "\u2550", "\u2550","\u2566" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2557", "#floor#\u2591", "\u2560" }) })
     ]),
     "keep interior south-west corner hallway north-east entry": ([
         "colors": ([
@@ -1679,9 +1679,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#/", "+", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94","\xe2\x95\xac" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x97", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594","\u256c" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2557", "#floor#\u2591", "\u2560" }) })
     ]),
     "keep interior north-east corner hallway": ([
         "colors": ([
@@ -1703,9 +1703,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "+", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "-", "-", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u255a" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u255a", "\u2550", "\u2550" }) })
     ]),
     "keep interior north-east corner hallway west entry": ([
         "colors": ([
@@ -1734,9 +1734,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "+", }),
             ({ "#door#\\", "#floor# ", "#floor# ", }),
             ({ "-", "-", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xa9", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u2563", "#floor#\u2591", "\u255a" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u2569", "\u2550", "\u2550" }) })
     ]),
     "keep interior north-east corner hallway south entry": ([
         "colors": ([
@@ -1765,9 +1765,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "+", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "-", "#door#/", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xa0", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u255a" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u2560", "#door#\u2581", "\u2566" }) })
     ]),
     "keep interior north-east corner hallway south-west entry": ([
         "colors": ([
@@ -1796,9 +1796,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "+", }),
             ({ "#door#\\", "#floor# ", "#floor# ", }),
             ({ "+", "#door#/", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x9a" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "\u2563", "#floor#\u2591", "\u255a" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u256c", "#door#\u2581", "\u2566" }) })
     ]),
     "keep interior south-east corner hallway": ([
         "colors": ([
@@ -1820,9 +1820,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "-", "-", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u2554", "\u2550", "\u2550" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior south-east corner hallway west entry": ([
         "colors": ([
@@ -1851,9 +1851,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "-", "-", }),
             ({ "#door#\\", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa6", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u2566", "\u2550", "\u2550" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u2563", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior south-east corner hallway north entry": ([
         "colors": ([
@@ -1882,9 +1882,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa0", "#door#\xe2\x96\x94","\xe2\x95\xa9" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u2560", "#door#\u2594","\u2569" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "\u2554" }) })
     ]),
     "keep interior south-east corner hallway north-west entry": ([
         "colors": ([
@@ -1913,9 +1913,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "#door#\\", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "\xe2\x95\x94" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u2569" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u2563", "#floor#\u2591", "\u2554" }) })
     ]),
 
     // Large Rooms
@@ -1939,9 +1939,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#floor# ", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "-", "-", "+", }) }),
-        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x9d" }) })
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2550", "\u2550", "\u255d" }) })
     ]),
     "keep interior southeast corner south entry": ([
         "colors": ([
@@ -1970,9 +1970,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#floor# ", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "-", "#door#/", "+", }) }),
-        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\x97", "#door#\xe2\x96\x81", "\xe2\x95\xa3" }) })
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2557", "#door#\u2581", "\u2563" }) })
     ]),
     "keep interior southeast corner east entry": ([
         "colors": ([
@@ -2001,9 +2001,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#floor# ", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "-", "-", "+", }) }),
-        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\xa9" }) })
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "\u2560" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2550", "\u2550", "\u2569" }) })
     ]),
     "keep interior southeast corner south-east entry": ([
         "colors": ([
@@ -2032,9 +2032,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#floor# ", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "-", "#door#/", "+", }) }),
-        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "\xe2\x95\x97", "#door#\xe2\x96\x81", "\xe2\x95\xac" }) })
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "\u2560" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503" }),
+            ({ "\u2557", "#door#\u2581", "\u256c" }) })
     ]),
     "keep interior northeast corner": ([
         "colors": ([
@@ -2056,9 +2056,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "-", "-", "+", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x97" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u2557" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior northeast corner north entry": ([
         "colors": ([
@@ -2087,9 +2087,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#/", "+", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94","\xe2\x95\xa3" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594","\u2563" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior northeast corner east entry": ([
         "colors": ([
@@ -2118,9 +2118,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "-", "-", "+", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "#floor# ", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90","\xe2\x95\xa6" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+        "unicode": ({ ({ "\u2550", "\u2550","\u2566" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2560" }) })
     ]),
     "keep interior northeast corner north-east entry": ([
         "colors": ([
@@ -2149,9 +2149,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#/", "+", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "#floor# ", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94","\xe2\x95\xac" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594","\u256c" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2560" }) })
     ]),
     "keep interior southwest corner": ([
         "colors": ([
@@ -2173,9 +2173,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "-", "-", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\x9a", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u255a", "\u2550", "\u2550" }) })
     ]),
     "keep interior southwest corner west entry": ([
         "colors": ([
@@ -2204,9 +2204,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "#floor# ", }),
             ({ "#door#\\", "#floor# ", "#floor# ", }),
             ({ "-", "-", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xa9", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "\u2563", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u2569", "\u2550", "\u2550" }) })
     ]),
     "keep interior southwest corner south entry": ([
         "colors": ([
@@ -2235,9 +2235,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "-", "#door#/", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xa0", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u2560", "#door#\u2581", "\u2566" }) })
     ]),
     "keep interior southwest corner south-west entry": ([
         "colors": ([
@@ -2266,9 +2266,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "#floor# ", }),
             ({ "#door#\\", "#floor# ", "#floor# ", }),
             ({ "+", "#door#/", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "\u2563", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u256c", "#door#\u2581", "\u2566" }) })
     ]),
     "keep interior northwest corner": ([
         "colors": ([
@@ -2290,9 +2290,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "-", "-", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "#floor# ", }) }),
-        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "\u2554", "\u2550", "\u2550" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
     "keep interior northwest corner west entry": ([
         "colors": ([
@@ -2321,9 +2321,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "-", "-", }),
             ({ "#door#\\", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "#floor# ", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa6", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "\u2566", "\u2550", "\u2550" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u2563", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
     "keep interior northwest corner north entry": ([
         "colors": ([
@@ -2352,9 +2352,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "#floor# ", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa0", "#door#\xe2\x96\x94","\xe2\x95\xa9" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "\u2560", "#door#\u2594","\u2569" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
     "keep interior northwest corner north-west entry": ([
         "colors": ([
@@ -2383,9 +2383,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "#door#\\", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "#floor# ", }) }),
-        "unicode": ({ ({ "\xe2\x95\xac", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", }),
-            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "\u256c", "#door#\u2594", "\u2569" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591", }),
+            ({ "\u2563", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
     "keep interior west wall": ([
         "colors": ([
@@ -2407,9 +2407,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "#floor# ", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
     "keep interior west wall entry": ([
         "colors": ([
@@ -2438,9 +2438,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#floor# ", "#floor# " }),
             ({ "#door#/", "#floor# ", "#floor# " }),
             ({ "+", "#floor# ", "#floor# " }) }),
-        "unicode": ({ ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#door#\xe2\x94\x83", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\xa3", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "\u2563", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#door#\u2503", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2563", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
     "keep interior east wall": ([
         "colors": ([
@@ -2462,9 +2462,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#floor# ", "#floor# ", "|" }),
             ({ "#floor# ", "#floor# ", "|" }),
             ({ "#floor# ", "#floor# ", "|" }) }),
-        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior east wall entry": ([
         "colors": ([
@@ -2493,9 +2493,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#floor# ", "#floor# ", "+", }),
             ({ "#floor# ", "#floor# ", "#door#/", }),
             ({ "#floor# ", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#door#\xe2\x94\x83" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa0" }) })
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "\u2560" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#door#\u2503" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2560" }) })
     ]),
     "keep interior north wall": ([
         "colors": ([
@@ -2517,9 +2517,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "=", "=", "=", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u2550" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
     "keep interior north wall entry": ([
         "colors": ([
@@ -2548,9 +2548,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "#door#\\", "+", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa9", "#door#\xe2\x96\x94", "\xe2\x95\xa9" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "\u2569", "#door#\u2594", "\u2569" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
     "keep interior south wall": ([
         "colors": ([
@@ -2572,9 +2572,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "=", "=", "=", }) }),
-        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }) })
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2550", "\u2550", "\u2550" }) })
     ]),
     "keep interior south wall entry": ([
         "colors": ([
@@ -2603,9 +2603,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#door#\\", "+", }) }),
-        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\xa6", "#door#\xe2\x96\x81", "\xe2\x95\xa6" }) })
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2566", "#door#\u2581", "\u2566" }) })
     ]),
    "keep interior floor": ([
         "colors": ([
@@ -2627,9 +2627,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }) }),
-        "unicode": ({ ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
    "keep interior courtyard": ([
         "colors": ([
@@ -2651,9 +2651,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#grass# ", "#grass# ", "#grass# ", }),
             ({ "#grass# ", "#grass# ", "#grass# ", }),
             ({ "#grass# ", "#grass# ", "#grass# ", }) }),
-        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
-            ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
-            ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "#grass#\u2591", "#grass#\u2591", "#grass#\u2591" }),
+            ({ "#grass#\u2591", "#grass#\u2591", "#grass#\u2591" }),
+            ({ "#grass#\u2591", "#grass#\u2591", "#grass#\u2591" }) })
     ]),
    "keep interior courtyard with path": ([
         "colors": ([
@@ -2682,9 +2682,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#grass# ", "#floor# ", "#grass# ", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "#grass# ", "#floor# ", "#grass# ", }) }),
-        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "#grass#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#grass#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "#grass#\u2591", "#floor#\u2591", "#grass#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#grass#\u2591", "#floor#\u2591", "#grass#\u2591" }) })
     ]),
 
     "keep interior courtyard with pillar": ([
@@ -2714,9 +2714,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#grass# ", "#grass# ", "#grass# ", }),
             ({ "#grass# ", "#pillar#+", "#grass# ", }),
             ({ "#grass# ", "#grass# ", "#grass# ", }) }),
-        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
-            ({ "#grass#\xe2\x96\x91", "#pillar#\xe2\x97\x8e", "#grass#\xe2\x96\x91" }),
-            ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }) })
+        "unicode": ({ ({ "#grass#\u2591", "#grass#\u2591", "#grass#\u2591" }),
+            ({ "#grass#\u2591", "#pillar#\u25ce", "#grass#\u2591" }),
+            ({ "#grass#\u2591", "#grass#\u2591", "#grass#\u2591" }) })
     ]),
     "keep interior-to-exterior north-south hallway west exit": ([
         "colors": ([
@@ -2738,9 +2738,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa8" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa5" }) })
+        "unicode": ({ ({ "\u2551", "#floor#\u2591", "\u2568" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "\u2565" }) })
     ]),
     "keep interior-to-exterior north-south hallway east exit": ([
         "colors": ([
@@ -2762,9 +2762,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "|", "#floor# ", "|", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa8", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xa5", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u2568", "#floor#\u2591", "\u2551" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2565", "#floor#\u2591", "\u2551" }) })
     ]),
     "keep interior-to-exterior east-west hallway south exit": ([
         "colors": ([
@@ -2786,9 +2786,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "=", "=", "=", }),
             ({ "#floor# ", "#floor# ", "#floor# ", }),
             ({ "+", "#floor# ", "+", }) }),
-        "unicode": ({ ({ "\xe2\x95\x90", "\xe2\x95\x90", "\xe2\x95\x90" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\xa1", "#floor#\xe2\x96\x91", "\xe2\x95\x9e" }) })
+        "unicode": ({ ({ "\u2550", "\u2550", "\u2550" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2561", "#floor#\u2591", "\u255e" }) })
     ]),
     "keep interior-to-exterior north-corner hallway east exit": ([
         "colors": ([
@@ -2810,9 +2810,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "+", "=", "=", }),
             ({ "|", "#floor# ", "#floor# ", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\x94", "\xe2\x95\x90", "\xe2\x95\xa6" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91" }),
-            ({ "\xe2\x95\x91", "#floor#\xe2\x96\x91", "\xe2\x95\xa5" }) })
+        "unicode": ({ ({ "\u2554", "\u2550", "\u2566" }),
+            ({ "\u2551", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2551", "#floor#\u2591", "\u2565" }) })
     ]),
     "keep interior-to-exterior north-corner hallway west exit": ([
         "colors": ([
@@ -2834,9 +2834,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "=", "=", "+", }),
             ({ "#floor# ", "#floor# ", "|", }),
             ({ "|", "#floor# ", "|", }) }),
-        "unicode": ({ ({ "\xe2\x95\xa6", "\xe2\x95\x90", "\xe2\x95\x97" }),
-            ({ "#floor#\xe2\x96\x91", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }),
-            ({ "\xe2\x95\xa5", "#floor#\xe2\x96\x91", "\xe2\x95\x91" }) })
+        "unicode": ({ ({ "\u2566", "\u2550", "\u2557" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "\u2551" }),
+            ({ "\u2565", "#floor#\u2591", "\u2551" }) })
     ]),
 
     // Other locations
@@ -2874,9 +2874,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#pillar#+", " ", "#pillar#+", }),
             ({ "+", "#portcullis#-", "+", }),
             ({ "+", "#door#-", "+", }) }),
-        "unicode": ({ ({ "#pillar#\xe2\x97\x8e", " ", "#pillar#\xe2\x97\x8e" }),
-            ({ "\xe2\x95\x94", "#portcullis#\xe2\x95\x8c", "\xe2\x95\x97" }),
-            ({ "\xe2\x95\xac", "#door#\xe2\x96\x81", "\xe2\x95\xac" }) })
+        "unicode": ({ ({ "#pillar#\u25ce", " ", "#pillar#\u25ce" }),
+            ({ "\u2554", "#portcullis#\u254c", "\u2557" }),
+            ({ "\u256c", "#door#\u2581", "\u256c" }) })
     ]),
     "keep interior large staired entrance right": ([
         "colors": ([
@@ -2926,9 +2926,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#grass# ", "#grass# ", "#grass# ", }),
             ({ "#floor# ", "#floor2# ", "#floor# ", }),
             ({ "#stairs#-", "#stairs#-", "#pillar#+", }) }),
-        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
-            ({ "#floor#\xe2\x96\x85", "#floor2#\xe2\x96\x85", "#floor#\xe2\x96\x85" }),
-            ({ "#stairs#\xe2\x8c\xb8", "#stairs#\xe2\x8c\xb8", "#pillar#\xe2\x8e\x8a" }) })
+        "unicode": ({ ({ "#grass#\u2591", "#grass#\u2591", "#grass#\u2591" }),
+            ({ "#floor#\u2585", "#floor2#\u2585", "#floor#\u2585" }),
+            ({ "#stairs#\u2338", "#stairs#\u2338", "#pillar#\u238a" }) })
     ]),
     "keep interior large staired entrance left": ([
         "colors": ([
@@ -2971,9 +2971,9 @@ private mapping KeepInteriorIcons = ([
         "ascii": ({ ({ "#grass# ", "#grass# ", "#grass# ", }),
             ({ "#floor# ", "#floor2# ", "#floor# ", }),
             ({ "#stairs#-", "#stairs#-", "#stairs#-", }) }),
-        "unicode": ({ ({ "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91", "#grass#\xe2\x96\x91" }),
-            ({ "#floor2#\xe2\x96\x85", "#floor#\xe2\x96\x85", "#floor2#\xe2\x96\x85" }),
-            ({ "#stairs#\xe2\x8c\xb8", "#stairs#\xe2\x8c\xb8", "#stairs#\xe2\x8c\xb8" }) })
+        "unicode": ({ ({ "#grass#\u2591", "#grass#\u2591", "#grass#\u2591" }),
+            ({ "#floor2#\u2585", "#floor#\u2585", "#floor2#\u2585" }),
+            ({ "#stairs#\u2338", "#stairs#\u2338", "#stairs#\u2338" }) })
     ]),
 ]);
 

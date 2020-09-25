@@ -109,23 +109,26 @@ public nomask void setMaxStaminaPoints(int value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setLeader(object player)
+public nomask varargs void setLeader(object player, int doNotJoinParty)
 {
     if (objectp(player))
     {
         Leader = player;
 
-        object partyDictionary = getDictionary("party");
-        if (!Leader->getParty())
+        if (!doNotJoinParty)
         {
-            partyDictionary->createParty(
-                sprintf("%s's Party", capitalize(Leader->RealName())), Leader);
-        }
-        
-        object partyObj = Leader->getParty();
-        if (partyObj)
-        {
-            partyObj->addNPC(this_object());
+            object partyDictionary = getDictionary("party");
+            if (!Leader->getParty())
+            {
+                partyDictionary->createParty(
+                    sprintf("%s's Party", capitalize(Leader->RealName())), Leader);
+            }
+
+            object partyObj = Leader->getParty();
+            if (partyObj)
+            {
+                partyObj->addNPC(this_object());
+            }
         }
     }
 }
@@ -246,7 +249,7 @@ public nomask void setHenchmanData(mapping data, object leader)
     {
         Pretitle(data["pre-title"]);
     }
-    setLeader(leader);
+    setLeader(leader, 1);
     setLocation(data["location"]);
     SetUpPersonaOfLevel(data["persona"], data["level"]);
     setUpRandomEquipment(data["level"] * 2);

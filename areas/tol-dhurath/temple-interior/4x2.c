@@ -24,7 +24,7 @@ public string **customIcon(string **baseIcon, string color, string charset)
         decoratorType(), color);
 
     baseIcon[0][2] = sprintf("%s%s%s", baseColor,
-        (charset == "unicode") ? "\xe2\x95\xac" : "+",
+        (charset == "unicode") ? "\u256c" : "+",
         (baseColor != "") ? "\x1b[0m" : "");
 
     return baseIcon;

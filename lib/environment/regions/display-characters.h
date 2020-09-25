@@ -8,47 +8,47 @@
 private mapping displayCharacter = ([
     "north":([
         "ascii": "|",
-        "unicode": "\xe2\x94\x82"
+        "unicode": "\u2502"
     ]),
     "south":([
         "ascii": "|",
-        "unicode": "\xe2\x94\x82"
+        "unicode": "\u2502"
     ]),
     "east":([
         "ascii": "-",
-        "unicode": "\xe2\x94\x80"
+        "unicode": "\u2500"
     ]),
     "west":([
         "ascii": "-",
-        "unicode": "\xe2\x94\x80"
+        "unicode": "\u2500"
     ]),
     "northwest":([
         "ascii": "\\",
-        "unicode": "\xe2\x95\xb2"
+        "unicode": "\u2572"
     ]),
     "southeast":([
         "ascii": "\\",
-        "unicode": "\xe2\x95\xb2"
+        "unicode": "\u2572"
     ]),
     "northeast":([
         "ascii": "/",
-        "unicode": "\xe2\x95\xb1"
+        "unicode": "\u2571"
     ]),
     "southwest":([
         "ascii": "/",
-        "unicode": "\xe2\x95\xb1"
+        "unicode": "\u2571"
     ]),
     "path": ([
         "ascii": "o",
-        "unicode": "\xe2\x97\x87"
+        "unicode": "\u25c7"
     ]),
     "room": ([
         "ascii": "#",
-        "unicode": "\xe2\x96\xa3"
+        "unicode": "\u25a3"
     ]),
     "training ground": ([
         "ascii": "O",
-        "unicode": "\xe2\x9c\xa0"
+        "unicode": "\u2720"
     ]),
     "shop": ([
         "ascii": "$",
@@ -56,19 +56,19 @@ private mapping displayCharacter = ([
     ]),
     "entry": ([
         "ascii": "#",
-        "unicode": "\xe2\x96\xa3"
+        "unicode": "\u25a3"
     ]),
     "exit": ([
         "ascii": "X",
-        "unicode": "\xe2\x8c\xa7"
+        "unicode": "\u2327"
     ]),
     "player": ([
         "ascii": "P",
-        "unicode": "\xe2\x99\x99"
+        "unicode": "\u2659"
     ]),
     "divider": ([
         "ascii": "'",
-        "unicode": "\xe2\x95\x91"
+        "unicode": "\u2551"
     ]),
     "none": ([
         "ascii": " ",

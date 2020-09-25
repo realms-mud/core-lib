@@ -6,7 +6,7 @@
 private mapping orbDisplay = ([
     "green":([
         "character":([
-            "unicode": "\xe2\x8a\x9b",
+            "unicode": "\u229b",
             "ascii": "G"
         ]),
         "color":([
@@ -18,7 +18,7 @@ private mapping orbDisplay = ([
     ]),
     "white":([
         "character":([
-            "unicode": "\xe2\x8a\x9b",
+            "unicode": "\u229b",
             "ascii": "W"
         ]),
         "color":([
@@ -30,7 +30,7 @@ private mapping orbDisplay = ([
     ]),
     "red":([
         "character":([
-            "unicode": "\xe2\x8a\x9b",
+            "unicode": "\u229b",
             "ascii": "R"
         ]),
         "color":([
@@ -42,7 +42,7 @@ private mapping orbDisplay = ([
     ]),
     "blue":([
         "character":([
-            "unicode": "\xe2\x8a\x9b",
+            "unicode": "\u229b",
             "ascii": "B"
         ]),
         "color": ([
@@ -54,7 +54,7 @@ private mapping orbDisplay = ([
     ]),
     "default":([
         "character":([
-            "unicode": "\xe2\x8a\x9b",
+            "unicode": "\u229b",
             "ascii": "@"
         ]),
         "color":([

@@ -1076,7 +1076,7 @@ void UnicodeCorrectlyDisplayed()
     move_object(weapon, Environment);
 
     command("look", person);
-    ExpectSubStringMatch("\xe2\x95\x98\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9b",
+    ExpectSubStringMatch("\u2558\u2550\u2550\u2550\u255b",
         person->caughtMessage());
 }
 

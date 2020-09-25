@@ -181,6 +181,7 @@ public nomask varargs string charsetConfiguration(string newCharSet)
     if (member(({ "ascii", "unicode", "screen reader" }), newCharSet) > -1)
     {
         characterSet = newCharSet;
+        configureCharset(this_object(), newCharSet);
         tell_object(this_object(), sprintf("You have set your character set to '%s'.\n",
             characterSet));
     }

@@ -17,8 +17,8 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->addCommands();
-    Player->colorConfiguration("none");
-    Player->charsetConfiguration("ascii");
+    Player->colorConfiguration("24-bit");
+    Player->charsetConfiguration("unicode");
     Player->addPlayerHolding("argalach castle");
 
     move_object(Selector, Player);

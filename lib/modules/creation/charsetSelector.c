@@ -27,7 +27,7 @@ public nomask void reset(int arg)
                     "with unicode support. Early clients often do not "
                     "support these characters. If your client supports "
                     "this, you should see a skull and crossbones here -> "
-                    "\xe2\x98\xa0\n",
+                    "\u2620\n",
                 "value": "unicode",
             ]),
         ]);

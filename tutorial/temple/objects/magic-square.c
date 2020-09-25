@@ -6,7 +6,7 @@
 private mapping squareDisplay = ([
     "Y":([
         "character":([
-            "unicode": "\xe1\x9a\xa1",
+            "unicode": "\u16a1",
             "ascii": "Y"
         ]),
         "color":([
@@ -20,7 +20,7 @@ private mapping squareDisplay = ([
     ]),
     "A":([
         "character":([
-            "unicode": "\xe1\x9a\xa3",
+            "unicode": "\u16a3",
             "ascii": "A"
         ]),
         "color":([
@@ -34,7 +34,7 @@ private mapping squareDisplay = ([
     ]),
     "F":([
         "character":([
-            "unicode": "\xe1\x9a\xab",
+            "unicode": "\u16ab",
             "ascii": "F"
         ]),
         "color":([
@@ -48,7 +48,7 @@ private mapping squareDisplay = ([
     ]),
     "H":([
         "character":([
-            "unicode": "\xe1\x9a\xbb",
+            "unicode": "\u16bb",
             "ascii": "H"
         ]),
         "color": ([
@@ -62,7 +62,7 @@ private mapping squareDisplay = ([
     ]),
     "E":([
         "character":([
-            "unicode": "\xe2\x88\xb7",
+            "unicode": "\u2237",
             "ascii": "."
         ]),
         "color":([
@@ -92,47 +92,47 @@ private mapping squareDisplay = ([
 
 private mapping gridDisplay = ([
     "/":([
-        "unicode": "\xe2\x95\x94",
+        "unicode": "\u2554",
         "ascii": "+"
     ]),
     "`":([
-        "unicode": "\xe2\x95\x97",
+        "unicode": "\u2557",
         "ascii": "+"
     ]),
     "~":([
-        "unicode": "\xe2\x95\x90",
+        "unicode": "\u2550",
         "ascii": "="
     ]),
     "-":([
-        "unicode": "\xe2\x94\x88",
+        "unicode": "\u2508",
         "ascii": "-"
     ]),
     "T":([
-        "unicode": "\xe2\x95\xa6",
+        "unicode": "\u2566",
         "ascii": "+"
     ]),
     "t":([
-        "unicode": "\xe2\x95\xa4",
+        "unicode": "\u2564",
         "ascii": "+"
     ]),
     "I":([
-        "unicode": "\xe2\x95\x91",
+        "unicode": "\u2551",
         "ascii": "|"
     ]),
     ":":([
-        "unicode": "\xe2\x94\x8a",
+        "unicode": "\u250a",
         "ascii": ":"
     ]),
     "<":([
-        "unicode": "\xe2\x95\x9f",
+        "unicode": "\u255f",
         "ascii": "+"
     ]),
     ">":([
-        "unicode": "\xe2\x95\xa2",
+        "unicode": "\u2562",
         "ascii": "+"
     ]),
     "#":([
-        "unicode": "\xe2\x95\xab",
+        "unicode": "\u256b",
         "ascii": "+"
     ]),
     "v":([
@@ -140,27 +140,27 @@ private mapping gridDisplay = ([
         "ascii": "+"
     ]),
     "x":([
-        "unicode": "\xe2\x95\xaa",
+        "unicode": "\u256a",
         "ascii": "+"
     ]),
     "X":([
-        "unicode": "\xe2\x95\xac",
+        "unicode": "\u256c",
         "ascii": "+"
     ]),
     "L":([
-        "unicode": "\xe2\x95\x9a",
+        "unicode": "\u255a",
         "ascii": "+"
     ]),
     "l":([
-        "unicode": "\xe2\x95\x9d",
+        "unicode": "\u255d",
         "ascii": "+"
     ]),
     "U":([
-        "unicode": "\xe2\x95\xa9",
+        "unicode": "\u2569",
         "ascii": "+"
     ]),
     "u":([
-        "unicode": "\xe2\x95\xa7",
+        "unicode": "\u2567",
         "ascii": "+"
     ]),
 ]);

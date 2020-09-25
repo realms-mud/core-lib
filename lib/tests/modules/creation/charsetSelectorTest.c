@@ -60,7 +60,7 @@ void UnicodeDescriptionIsCorrect()
         "with unicode support. Early clients\noften do not "
         "support these characters. If your client supports "
         "this, you\nshould see a skull and crossbones here -> "
-        "\xe2\x98\xa0\n\x1b[0m",
+        "\u2620\n\x1b[0m",
         User->caughtMessage());
 }
 

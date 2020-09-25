@@ -236,7 +236,7 @@ void CanSeeUnicodeCharacters()
     Player->charsetConfiguration("unicode");
     Pedestal->startFirstTest();
     command("press envy", Player);
-    ExpectSubStringMatch("\xe2\x8a\x9b.*\xe2\x8a\x9b.*\xe2\x8a\x9b.*\xe2\x8a\x9b", Player->caughtMessage());
+    ExpectSubStringMatch("\u229b.*\u229b.*\u229b.*\u229b", Player->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////

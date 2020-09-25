@@ -374,9 +374,9 @@ void GetMapIconReturnsWithCustomThreeBitColors()
     object dictionary = 
         load_object("/lib/dictionaries/regionDictionary.c");
 
-    ExpectEq(({ ({ "\x1b[0;36;1m\xe2\x97\x8e\x1b[0m", " ", "\x1b[0;36;1m\xe2\x97\x8e\x1b[0m" }),
-            ({ "\x1b[0;36m\xe2\x95\x94\x1b[0m", "\x1b[0;31;1m\xe2\x95\x8c\x1b[0m", "\x1b[0;36m\xe2\x95\x97\x1b[0m" }),
-            ({ "\x1b[0;36m\xe2\x95\xac\x1b[0m", "\x1b[0;33m\xe2\x96\x81\x1b[0m", "\x1b[0;36m\xe2\x95\xac\x1b[0m" }) }), 
+    ExpectEq(({ ({ "\x1b[0;36;1m\u25ce\x1b[0m", " ", "\x1b[0;36;1m\u25ce\x1b[0m" }),
+            ({ "\x1b[0;36m\u2554\x1b[0m", "\x1b[0;31;1m\u254c\x1b[0m", "\x1b[0;36m\u2557\x1b[0m" }),
+            ({ "\x1b[0;36m\u256c\x1b[0m", "\x1b[0;33m\u2581\x1b[0m", "\x1b[0;36m\u256c\x1b[0m" }) }), 
         dictionary->getMapIcon(region,
         "ruined interior south gatehouse", "3-bit", "unicode"));
 }
@@ -390,9 +390,9 @@ void GetMapIconReturnsWithCustomTwentyFourBitColors()
     object dictionary =
         load_object("/lib/dictionaries/regionDictionary.c");
 
-    ExpectEq(({ ({ "\x1b[0;38;2;118;118;128;1m\xe2\x97\x8e\x1b[0m", " ", "\x1b[0;38;2;118;118;128;1m\xe2\x97\x8e\x1b[0m" }),
-            ({ "\x1b[0;38;2;56;62;56m\xe2\x95\x94\x1b[0m", "\x1b[0;38;2;72;38;38m\xe2\x95\x8c\x1b[0m", "\x1b[0;38;2;56;62;56m\xe2\x95\x97\x1b[0m" }),
-            ({ "\x1b[0;38;2;56;62;56m\xe2\x95\xac\x1b[0m", "\x1b[0;38;2;102;102;38m\xe2\x96\x81\x1b[0m", "\x1b[0;38;2;56;62;56m\xe2\x95\xac\x1b[0m" }) }),
+    ExpectEq(({ ({ "\x1b[0;38;2;118;118;128;1m\u25ce\x1b[0m", " ", "\x1b[0;38;2;118;118;128;1m\u25ce\x1b[0m" }),
+            ({ "\x1b[0;38;2;56;62;56m\u2554\x1b[0m", "\x1b[0;38;2;72;38;38m\u254c\x1b[0m", "\x1b[0;38;2;56;62;56m\u2557\x1b[0m" }),
+            ({ "\x1b[0;38;2;56;62;56m\u256c\x1b[0m", "\x1b[0;38;2;102;102;38m\u2581\x1b[0m", "\x1b[0;38;2;56;62;56m\u256c\x1b[0m" }) }),
         dictionary->getMapIcon(region,
             "ruined interior south gatehouse", "24-bit", "unicode"));
 }
@@ -438,9 +438,9 @@ void RegionDisplaysCurrentUserLocationWithCorrectBackground()
     object region =
         load_object("/lib/tests/support/environment/fakeRegion.c");
 
-    ExpectEq("\n\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;118;118;128;1m\xe2\x97\x8e\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0m \x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;118;118;128;1m\xe2\x97\x8e\x1b[0m\x1b[0m\n"
-        "\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\xe2\x95\x94\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0;38;2;0;255;0m\xe2\x99\x99\x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\xe2\x95\x97\x1b[0m\x1b[0m\n"
-        "\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\xe2\x95\xac\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;102;102;38m\xe2\x96\x81\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\xe2\x95\xac\x1b[0m\x1b[0m\n",
+    ExpectEq("\n\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;118;118;128;1m\u25ce\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0m \x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;118;118;128;1m\u25ce\x1b[0m\x1b[0m\n"
+        "\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\u2554\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0;38;2;0;255;0m\u2659\x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\u2557\x1b[0m\x1b[0m\n"
+        "\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\u256c\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;102;102;38m\u2581\x1b[0m\x1b[0m\x1b[0;48;2;90;0;0m\x1b[0;48;2;90;0;0;38;2;56;62;56m\u256c\x1b[0m\x1b[0m\n",
         region->displayMap(Player));
     ToggleCallOutBypass();
 }

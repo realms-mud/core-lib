@@ -860,7 +860,7 @@ private string getExitDescription(object viewer)
     int numExits = sizeof(exitList);
 
     ret = configuration->decorate(sprintf(" %s There %s %s obvious exit%s%s %s\n",
-        (showUnicode ? "\xe2\x95\x98\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9b" : 
+        (showUnicode ? "\u2558\u2550\u2550\u2550\u255b" : 
             "-=-=-"), numExits == 1 ? "is" : "are",
         environmentDictionary()->convertNumberToString(numExits),
         (numExits == 1 ? "" : "s"), (numExits ? ":" : "."),

@@ -42,23 +42,23 @@ public string **customIcon(string **baseIcon, string color, string charset)
     ]);
 
     baseIcon[0][2] = sprintf("%s%s%s", colors["pillar"][color],
-        (charset == "unicode") ? "\xe2\x97\x8e" : "*",
+        (charset == "unicode") ? "\u25ce" : "*",
         (colors["pillar"][color] != "") ? "\x1b[0m" : "");
     baseIcon[0][1] = sprintf("%s%s%s", colors["dais"][color],
-        (charset == "unicode") ? "\xe2\x94\x90" : "*",
+        (charset == "unicode") ? "\u2510" : "*",
         (colors["dais"][color] != "") ? "\x1b[0m" : "");
     baseIcon[0][0] = sprintf("%s%s%s", colors["dais"][color],
-        (charset == "unicode") ? "\xe2\x96\xa4" : "*",
+        (charset == "unicode") ? "\u25a4" : "*",
         (colors["dais"][color] != "") ? "\x1b[0m" : "");
     baseIcon[1][1] = sprintf("%s%s%s", colors["dais"][color],
-        (charset == "unicode") ? "\xe2\x94\x82" : "*",
+        (charset == "unicode") ? "\u2502" : "*",
         (colors["dais"][color] != "") ? "\x1b[0m" : "");
     baseIcon[1][0] = sprintf("%s%s%s", colors["throne"][color],
-        (charset == "unicode") ? "\xe2\x99\x94" : "L",
+        (charset == "unicode") ? "\u2654" : "L",
         (colors["throne"][color] != "") ? "\x1b[0m" : "");
 
     baseIcon[2][1] = sprintf("%s%s%s", baseColor,
-        (charset == "unicode") ? "\xe2\x95\xa7" : "*",
+        (charset == "unicode") ? "\u2567" : "*",
         (baseColor != "") ? "\x1b[0m" : "");
 
     return baseIcon;

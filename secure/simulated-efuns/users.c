@@ -2,6 +2,7 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "/sys/configuration.h"
 
 private mapping livingObjects = ([]);
 private mapping players = ([]);
@@ -209,4 +210,20 @@ public nomask string getGuestName(object player)
     guests[guestName] = player;
 
     return guestName;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void configureCharset(object player, string charset)
+{
+    if (efun::interactive(player))
+    {
+        if (charset == "unicode")
+        {
+            configure_interactive(player, IC_ENCODING, "UTF-8//TRANSLIT");
+        }
+        else
+        {
+            configure_interactive(player, IC_ENCODING, "ISO8859-1//TRANSLIT");
+        }
+    }
 }

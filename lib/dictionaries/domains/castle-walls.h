@@ -21,8 +21,8 @@ private mapping CastleWalls = ([
         "components":([
             "NWMWAL": ([
                 "ascii": "......",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237",
             ]),
         ]),
     ]),
@@ -53,8 +53,8 @@ private mapping CastleWalls = ([
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -90,8 +90,8 @@ private mapping CastleWalls = ([
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -126,8 +126,8 @@ private mapping CastleWalls = ([
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -162,8 +162,8 @@ private mapping CastleWalls = ([
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -198,8 +198,8 @@ private mapping CastleWalls = ([
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -235,8 +235,8 @@ private mapping CastleWalls = ([
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -273,8 +273,8 @@ private mapping CastleWalls = ([
         "components":([
             "NWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -294,8 +294,8 @@ private mapping CastleWalls = ([
         "components":([
             "NEMWAL": ([
                 "ascii": "......",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237",
             ]),
         ]),
     ]),
@@ -326,8 +326,8 @@ private mapping CastleWalls = ([
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -363,8 +363,8 @@ private mapping CastleWalls = ([
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -400,8 +400,8 @@ private mapping CastleWalls = ([
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -436,8 +436,8 @@ private mapping CastleWalls = ([
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -472,8 +472,8 @@ private mapping CastleWalls = ([
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -509,8 +509,8 @@ private mapping CastleWalls = ([
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -547,8 +547,8 @@ private mapping CastleWalls = ([
         "components":([
             "NEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -568,8 +568,8 @@ private mapping CastleWalls = ([
         "components":([
             "SWMWAL": ([
                 "ascii": "......",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237",
             ]),
         ]),
     ]),
@@ -600,8 +600,8 @@ private mapping CastleWalls = ([
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -637,8 +637,8 @@ private mapping CastleWalls = ([
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -674,8 +674,8 @@ private mapping CastleWalls = ([
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -710,8 +710,8 @@ private mapping CastleWalls = ([
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -746,8 +746,8 @@ private mapping CastleWalls = ([
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -783,8 +783,8 @@ private mapping CastleWalls = ([
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -821,8 +821,8 @@ private mapping CastleWalls = ([
         "components":([
             "SWMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -842,8 +842,8 @@ private mapping CastleWalls = ([
         "components":([
             "SEMWAL": ([
                 "ascii": "......",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237",
             ]),
         ]),
     ]),
@@ -874,8 +874,8 @@ private mapping CastleWalls = ([
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -911,8 +911,8 @@ private mapping CastleWalls = ([
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -948,8 +948,8 @@ private mapping CastleWalls = ([
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -984,8 +984,8 @@ private mapping CastleWalls = ([
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -1020,8 +1020,8 @@ private mapping CastleWalls = ([
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -1057,8 +1057,8 @@ private mapping CastleWalls = ([
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -1095,8 +1095,8 @@ private mapping CastleWalls = ([
         "components":([
             "SEMWAL": ([
                 "ascii": "======",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550",
             ]),
         ]),
     ]),
@@ -1116,7 +1116,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWI": ([
                 "ascii": " . ",
-                "unicode":  " \xe2\x88\xb7 ",
+                "unicode":  " \u2237 ",
             ]),
         ]),
     ]),
@@ -1147,7 +1147,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWI": ([
                 "ascii": "  |",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1183,7 +1183,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1218,7 +1218,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1253,7 +1253,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1288,7 +1288,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1324,7 +1324,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1361,7 +1361,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1381,7 +1381,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWI": ([
                 "ascii": " . ",
-                "unicode":  " \xe2\x88\xb7 ",
+                "unicode":  " \u2237 ",
             ]),
         ]),
     ]),
@@ -1412,7 +1412,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1448,7 +1448,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1483,7 +1483,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1518,7 +1518,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1553,7 +1553,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1589,7 +1589,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1626,7 +1626,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWI": ([
                 "ascii": " | ",
-                "unicode":  "  \xe2\x95\x91",
+                "unicode":  "  \u2551",
             ]),
         ]),
     ]),
@@ -1646,7 +1646,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEI": ([
                 "ascii": " . ",
-                "unicode":  " \xe2\x88\xb7 ",
+                "unicode":  " \u2237 ",
             ]),
         ]),
     ]),
@@ -1677,7 +1677,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -1713,7 +1713,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -1748,7 +1748,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -1783,7 +1783,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -1818,7 +1818,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -1854,7 +1854,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -1891,7 +1891,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -1911,7 +1911,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEI": ([
                 "ascii": " . ",
-                "unicode":  " \xe2\x88\xb7 ",
+                "unicode":  " \u2237 ",
             ]),
         ]),
     ]),
@@ -1942,7 +1942,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -1978,7 +1978,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -2013,7 +2013,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -2048,7 +2048,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -2083,7 +2083,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -2119,7 +2119,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -2156,7 +2156,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEI": ([
                 "ascii": " | ",
-                "unicode":  "\xe2\x95\x91  ",
+                "unicode":  "\u2551  ",
             ]),
         ]),
     ]),
@@ -2176,10 +2176,10 @@ private mapping CastleWalls = ([
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "............",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237",
             ]),
         ]),
     ]),
@@ -2210,9 +2210,9 @@ private mapping CastleWalls = ([
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2248,9 +2248,9 @@ private mapping CastleWalls = ([
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2285,9 +2285,9 @@ private mapping CastleWalls = ([
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2322,9 +2322,9 @@ private mapping CastleWalls = ([
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2359,9 +2359,9 @@ private mapping CastleWalls = ([
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2397,9 +2397,9 @@ private mapping CastleWalls = ([
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2436,9 +2436,9 @@ private mapping CastleWalls = ([
         "components":([
             "NWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2458,10 +2458,10 @@ private mapping CastleWalls = ([
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "............",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237",
             ]),
         ]),
     ]),
@@ -2492,9 +2492,9 @@ private mapping CastleWalls = ([
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2530,9 +2530,9 @@ private mapping CastleWalls = ([
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2567,9 +2567,9 @@ private mapping CastleWalls = ([
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2604,9 +2604,9 @@ private mapping CastleWalls = ([
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2641,9 +2641,9 @@ private mapping CastleWalls = ([
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2679,9 +2679,9 @@ private mapping CastleWalls = ([
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2718,9 +2718,9 @@ private mapping CastleWalls = ([
         "components":([
             "NECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2740,10 +2740,10 @@ private mapping CastleWalls = ([
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "............",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237",
             ]),
         ]),
     ]),
@@ -2774,9 +2774,9 @@ private mapping CastleWalls = ([
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2812,9 +2812,9 @@ private mapping CastleWalls = ([
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2849,9 +2849,9 @@ private mapping CastleWalls = ([
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2886,9 +2886,9 @@ private mapping CastleWalls = ([
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2923,9 +2923,9 @@ private mapping CastleWalls = ([
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -2961,9 +2961,9 @@ private mapping CastleWalls = ([
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -3000,9 +3000,9 @@ private mapping CastleWalls = ([
         "components":([
             "SWCASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -3022,10 +3022,10 @@ private mapping CastleWalls = ([
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "............",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237",
             ]),
         ]),
     ]),
@@ -3056,9 +3056,9 @@ private mapping CastleWalls = ([
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -3094,9 +3094,9 @@ private mapping CastleWalls = ([
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -3131,9 +3131,9 @@ private mapping CastleWalls = ([
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -3168,9 +3168,9 @@ private mapping CastleWalls = ([
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -3205,9 +3205,9 @@ private mapping CastleWalls = ([
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -3243,9 +3243,9 @@ private mapping CastleWalls = ([
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -3282,9 +3282,9 @@ private mapping CastleWalls = ([
         "components":([
             "SECASTLEWALL": ([
                 "ascii": "============",
-                "unicode": "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90",
+                "unicode": "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550",
             ]),
         ]),
     ]),
@@ -3304,7 +3304,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWX": ([
                 "ascii": " . ",
-                "unicode":  " \xe2\x88\xb7 ",
+                "unicode":  " \u2237 ",
             ]),
         ]),
     ]),
@@ -3335,7 +3335,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3371,7 +3371,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3406,7 +3406,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3441,7 +3441,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3476,7 +3476,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3512,7 +3512,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3549,7 +3549,7 @@ private mapping CastleWalls = ([
         "components":([
             "NWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3569,7 +3569,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWX": ([
                 "ascii": " . ",
-                "unicode":  " \xe2\x88\xb7 ",
+                "unicode":  " \u2237 ",
             ]),
         ]),
     ]),
@@ -3600,7 +3600,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3636,7 +3636,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3671,7 +3671,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3706,7 +3706,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3741,7 +3741,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3777,7 +3777,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3814,7 +3814,7 @@ private mapping CastleWalls = ([
         "components":([
             "SWX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3834,7 +3834,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEX": ([
                 "ascii": " . ",
-                "unicode":  " \xe2\x88\xb7 ",
+                "unicode":  " \u2237 ",
             ]),
         ]),
     ]),
@@ -3865,7 +3865,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3901,7 +3901,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3936,7 +3936,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -3971,7 +3971,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4006,7 +4006,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4042,7 +4042,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4079,7 +4079,7 @@ private mapping CastleWalls = ([
         "components":([
             "NEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4099,7 +4099,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEX": ([
                 "ascii": " . ",
-                "unicode":  " \xe2\x88\xb7 ",
+                "unicode":  " \u2237 ",
             ]),
         ]),
     ]),
@@ -4130,7 +4130,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4166,7 +4166,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4201,7 +4201,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4236,7 +4236,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4271,7 +4271,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4307,7 +4307,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),
@@ -4344,7 +4344,7 @@ private mapping CastleWalls = ([
         "components":([
             "SEX": ([
                 "ascii": " | ",
-                "unicode":  " \xe2\x95\x91 ",
+                "unicode":  " \u2551 ",
             ]),
         ]),
     ]),

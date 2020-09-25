@@ -279,7 +279,7 @@ void PartyShowsUnicodeCorrectly()
     Player->addExperience(1000);
 
     ExpectTrue(Player->executeCommand("party -i"));
-    ExpectSubStringMatch("\xe2\x95\x94",
+    ExpectSubStringMatch("\u2554",
         Player->caughtMessage());
 }
 

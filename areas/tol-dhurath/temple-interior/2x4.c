@@ -34,11 +34,11 @@ public string **customIcon(string **baseIcon, string color, string charset)
         decoratorType(), color);
 
     baseIcon[0][0] = sprintf("%s%s%s", baseColor,
-        (charset == "unicode") ? "\xe2\x95\xa6" : "+",
+        (charset == "unicode") ? "\u2566" : "+",
         (baseColor != "") ? "\x1b[0m" : baseColor);
 
     baseIcon[1][1] = sprintf("%s%s%s", colors["stairs"][color],
-        (charset == "unicode") ? "\xe2\x96\xa4" : "+",
+        (charset == "unicode") ? "\u25a4" : "+",
         (colors["stairs"][color] != "") ? "\x1b[0m" : "");
 
     return baseIcon;

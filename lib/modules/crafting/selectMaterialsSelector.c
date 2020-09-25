@@ -323,7 +323,7 @@ public nomask void onSelectorCompleted(object caller)
 protected nomask string additionalInstructions()
 {
     return configuration->decorate((User->charsetConfiguration() == "unicode") ?
-            "   (\xe2\x80\xa0)" : "(*)", "selected", "selector", colorConfiguration) +
+            "   (\u2020)" : "(*)", "selected", "selector", colorConfiguration) +
         configuration->decorate(" denotes that a specific component type has "
             "been chosen.\n", "details", "selector", colorConfiguration);
 }

@@ -334,7 +334,7 @@ private nomask string getNodeInfo(string element, object owner,
         ret += configuration->decorate(
             sprintf("%" + (level * 4) + "s", level ? 
             ((owner->charsetConfiguration() == "unicode") ?
-                "\xe2\x95\x98\xe2\x95\x90\xe2\x87\x92 " : "|-- ") : ""),
+                "\u2558\u2550\u21d2 " : "|-- ") : ""),
             "tree indentation", "research", colorConfiguration) +
             configuration->decorate(
                 capitalize(researchItem->query("name")) + "\n",

@@ -102,19 +102,19 @@ protected nomask string displayDetails(string choice)
     }
     else if (Data[choice]["is equipped"])
     {
-        ret = configuration->decorate(showUnicode ? " (\xe2\x80\xa0)" : " (*)", 
+        ret = configuration->decorate(showUnicode ? " (\u2020)" : " (*)", 
             "selected", "selector", colorConfiguration);
     }
     else if (member(Data[choice], "identified") &&
         !Data[choice]["identified"])
     {
-        ret = configuration->decorate(showUnicode ? " (\xe2\x81\x87)" : " (?)", 
+        ret = configuration->decorate(showUnicode ? " (\u2047)" : " (?)", 
             "note", "selector", colorConfiguration);
     }
     else if (member(Data[choice], "known cursed item") &&
         Data[choice]["known cursed item"])
     {
-        ret = configuration->decorate(showUnicode ? " (\xe2\x98\xa0)" : " (C)", 
+        ret = configuration->decorate(showUnicode ? " (\u2620)" : " (C)", 
             "warning", "selector", colorConfiguration);
     }
     else

@@ -108,7 +108,7 @@ protected nomask string displayDetails(string choice)
     if (User->questIsActive(Data[choice]["type"]))
     {
         ret = configuration->decorate(
-            useUnicode ? " (\xe2\x8c\x9b)" : " (!)",
+            useUnicode ? " (\u231b)" : " (!)",
             "active quest", "quests", colorConfiguration); 
     }
     else if (User->questIsCompleted(Data[choice]["type"]))
@@ -118,7 +118,7 @@ protected nomask string displayDetails(string choice)
         if (questObj && questObj->questSucceeded(User))
         {
             ret = configuration->decorate(
-                useUnicode ? " (\xe2\x98\x85)" : " (*)",
+                useUnicode ? " (\u2605)" : " (*)",
                 "selected", "selector", colorConfiguration); 
         }
         else if (questObj &&
@@ -126,7 +126,7 @@ protected nomask string displayDetails(string choice)
             !questObj->questSucceeded(User))
         {
             ret = configuration->decorate(
-                useUnicode ? " (\xe2\x95\xb3)" : " (X)",
+                useUnicode ? " (\u2573)" : " (X)",
                 "failure", "selector", colorConfiguration);
         }
     }

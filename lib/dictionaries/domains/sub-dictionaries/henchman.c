@@ -311,27 +311,27 @@ private nomask string getDecorator(string type, string charset)
         {
             case "duration":
             {
-                ret = "\xe2\x8c\x9b";
+                ret = "\u231b";
                 break;
             }
             case "materials":
             {
-                ret = "\xe2\x99\xbb";
+                ret = "\u267b";
                 break;
             }
             case "structure":
             {
-                ret = "\xe2\x99\x9c";
+                ret = "\u265c";
                 break;
             }
             case "units":
             {
-                ret = "\xe2\x99\x98";
+                ret = "\u2658";
                 break;
             }
             case "combat":
             {
-                ret = "\xe2\x80\xa0";
+                ret = "\u2020";
                 break;
             }
         }

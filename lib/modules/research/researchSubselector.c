@@ -151,24 +151,24 @@ protected nomask string displayDetails(string choice)
 
     if (User->isResearched(Data[choice]["type"]))
     {
-        ret = configuration->decorate(useUnicode ? " (\xe2\x98\x85)" : " (*)", 
+        ret = configuration->decorate(useUnicode ? " (\u2605)" : " (*)", 
             "known", "research", colorConfiguration);
     }
     else if (member(User->availableResearchTrees(), Data[choice]["type"]) > -1)
     {
-        ret = configuration->decorate(useUnicode ? " (\xe2\x87\xa8)" : " (T)",
+        ret = configuration->decorate(useUnicode ? " (\u21e8)" : " (T)",
             "available tree", "research", colorConfiguration);
     }
     else if (User->isResearching(Data[choice]["type"]))
     {
-        ret = configuration->decorate(useUnicode ? " (\xe2\x8c\x9b)" : " (!)", 
+        ret = configuration->decorate(useUnicode ? " (\u231b)" : " (!)", 
             "in progress", "research", colorConfiguration);
     }
     else if (!User->canResearch(Data[choice]["type"]) &&
         (member(({ "Return to previous menu", "Research this item" }),
             Data[choice]["name"]) < 0))
     {
-        ret = configuration->decorate(useUnicode ? " (\xe2\x95\xb3)" : " (X)", 
+        ret = configuration->decorate(useUnicode ? " (\u2573)" : " (X)", 
             "missing prerequisites", "research", colorConfiguration);
     }
     return ret;
@@ -185,19 +185,19 @@ protected nomask string additionalInstructions()
     }
 
     int useUnicode = User->charsetConfiguration() == "unicode";
-    return ret + configuration->decorate(useUnicode ? "(\xe2\x98\x85)" : "(*)",
+    return ret + configuration->decorate(useUnicode ? "(\u2605)" : "(*)",
         "known", "research", colorConfiguration) +
         configuration->decorate(" denotes already-chosen research, ",
             "details", "selector", colorConfiguration) +
-        configuration->decorate(useUnicode ? "(\xe2\x87\xa8)" : "(T)",
+        configuration->decorate(useUnicode ? "(\u21e8)" : "(T)",
             "available tree", "research", colorConfiguration) +
         configuration->decorate(" denotes an available research tree,\n",
             "details", "selector", colorConfiguration) +
-        configuration->decorate(useUnicode ? "(\xe2\x8c\x9b)" : "(!)",
+        configuration->decorate(useUnicode ? "(\u231b)" : "(!)",
             "in progress", "research", colorConfiguration) +
         configuration->decorate(" denotes research in progress, and ",
             "details", "selector", colorConfiguration) +
-        configuration->decorate(useUnicode ? "(\xe2\x95\xb3)" : "(X)",
+        configuration->decorate(useUnicode ? "(\u2573)" : "(X)",
             "missing prerequisites", "research", colorConfiguration) +
         configuration->decorate(" indicates that learning this research\n"
             "requires prerequisites that are missing - view description "

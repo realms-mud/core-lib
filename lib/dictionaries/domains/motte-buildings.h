@@ -20,11 +20,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".?.",
-                "unicode": "\xe2\x94\x8a\xe2\x81\x87\xe2\x94\x8a",
+                "unicode": "\u250a\u2047\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
     ]),
@@ -44,11 +44,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".M.",
-                "unicode": "\xe2\x94\x8a\xe2\x9c\xa0\xe2\x94\x8a",
+                "unicode": "\u250a\u2720\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -81,11 +81,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".C.",
-                "unicode": "\xe2\x94\x8a\xe2\x8d\x8d\xe2\x94\x8a",
+                "unicode": "\u250a\u234d\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -118,11 +118,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".N.",
-                "unicode": "\xe2\x94\x8aN\xe2\x94\x8a",
+                "unicode": "\u250aN\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -154,11 +154,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".K.",
-                "unicode": "\xe2\x94\x8aK\xe2\x94\x8a",
+                "unicode": "\u250aK\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -191,11 +191,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".S.",
-                "unicode": "\xe2\x94\x8aS\xe2\x94\x8a",
+                "unicode": "\u250aS\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -228,11 +228,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".$.",
-                "unicode": "\xe2\x94\x8a$\xe2\x94\x8a",
+                "unicode": "\u250a$\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -265,11 +265,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".G.",
-                "unicode": "\xe2\x94\x8aG\xe2\x94\x8a",
+                "unicode": "\u250aG\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -302,11 +302,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".W.",
-                "unicode": "\xe2\x94\x8aW\xe2\x94\x8a",
+                "unicode": "\u250aW\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -340,11 +340,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".L.",
-                "unicode": "\xe2\x94\x8aL\xe2\x94\x8a",
+                "unicode": "\u250aL\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -377,11 +377,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".T.",
-                "unicode": "\xe2\x94\x8aT\xe2\x94\x8a",
+                "unicode": "\u250aT\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -414,11 +414,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".A.",
-                "unicode": "\xe2\x94\x8aA\xe2\x94\x8a",
+                "unicode": "\u250aA\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -452,11 +452,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".H.",
-                "unicode": "\xe2\x94\x8aH\xe2\x94\x8a",
+                "unicode": "\u250aH\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -489,11 +489,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NW1": ([
                 "ascii": ".V.",
-                "unicode": "\xe2\x94\x8aV\xe2\x94\x8a",
+                "unicode": "\u250aV\u250a",
             ]),
             "NW2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -525,11 +525,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".?.",
-                "unicode": "\xe2\x94\x8a\xe2\x81\x87\xe2\x94\x8a",
+                "unicode": "\u250a\u2047\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
     ]),
@@ -549,11 +549,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".M.",
-                "unicode": "\xe2\x94\x8a\xe2\x9c\xa0\xe2\x94\x8a",
+                "unicode": "\u250a\u2720\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -586,11 +586,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".C.",
-                "unicode": "\xe2\x94\x8a\xe2\x8d\x8d\xe2\x94\x8a",
+                "unicode": "\u250a\u234d\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -623,11 +623,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".N.",
-                "unicode": "\xe2\x94\x8aN\xe2\x94\x8a",
+                "unicode": "\u250aN\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -659,11 +659,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".K.",
-                "unicode": "\xe2\x94\x8aK\xe2\x94\x8a",
+                "unicode": "\u250aK\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -696,11 +696,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".S.",
-                "unicode": "\xe2\x94\x8aS\xe2\x94\x8a",
+                "unicode": "\u250aS\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -733,11 +733,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".$.",
-                "unicode": "\xe2\x94\x8a$\xe2\x94\x8a",
+                "unicode": "\u250a$\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -770,11 +770,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".G.",
-                "unicode": "\xe2\x94\x8aG\xe2\x94\x8a",
+                "unicode": "\u250aG\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -807,11 +807,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".W.",
-                "unicode": "\xe2\x94\x8aW\xe2\x94\x8a",
+                "unicode": "\u250aW\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -845,11 +845,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".L.",
-                "unicode": "\xe2\x94\x8aL\xe2\x94\x8a",
+                "unicode": "\u250aL\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -882,11 +882,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".T.",
-                "unicode": "\xe2\x94\x8aT\xe2\x94\x8a",
+                "unicode": "\u250aT\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -919,11 +919,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".A.",
-                "unicode": "\xe2\x94\x8aA\xe2\x94\x8a",
+                "unicode": "\u250aA\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -957,11 +957,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".H.",
-                "unicode": "\xe2\x94\x8aH\xe2\x94\x8a",
+                "unicode": "\u250aH\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -994,11 +994,11 @@ private mapping MotteBuildings = ([
         "components":([
             "NE1": ([
                 "ascii": ".V.",
-                "unicode": "\xe2\x94\x8aV\xe2\x94\x8a",
+                "unicode": "\u250aV\u250a",
             ]),
             "NE2": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
         ]),
         "construction": ([
@@ -1030,15 +1030,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "?. ",
-                "unicode": "\xe2\x81\x87\xe2\x94\x8a ",
+                "unicode": "\u2047\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
     ]),
@@ -1058,15 +1058,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "M. ",
-                "unicode": "\xe2\x9c\xa0\xe2\x94\x8a ",
+                "unicode": "\u2720\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1099,15 +1099,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "C. ",
-                "unicode": "\xe2\x8d\x8d\xe2\x94\x8a ",
+                "unicode": "\u234d\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1140,15 +1140,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "N. ",
-                "unicode": "N\xe2\x94\x8a ",
+                "unicode": "N\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1180,15 +1180,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "K. ",
-                "unicode": "K\xe2\x94\x8a ",
+                "unicode": "K\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1221,15 +1221,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "S. ",
-                "unicode": "S\xe2\x94\x8a ",
+                "unicode": "S\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1262,15 +1262,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "$. ",
-                "unicode": "$\xe2\x94\x8a ",
+                "unicode": "$\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1303,15 +1303,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "G. ",
-                "unicode": "G\xe2\x94\x8a ",
+                "unicode": "G\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1344,15 +1344,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "W. ",
-                "unicode": "W\xe2\x94\x8a ",
+                "unicode": "W\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1386,15 +1386,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "L. ",
-                "unicode": "L\xe2\x94\x8a ",
+                "unicode": "L\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1427,15 +1427,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "T. ",
-                "unicode": "T\xe2\x94\x8a ",
+                "unicode": "T\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1468,15 +1468,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "A. ",
-                "unicode": "A\xe2\x94\x8a ",
+                "unicode": "A\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1510,15 +1510,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "H. ",
-                "unicode": "H\xe2\x94\x8a ",
+                "unicode": "H\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1551,15 +1551,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB1": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB2": ([
                 "ascii": "V. ",
-                "unicode": "V\xe2\x94\x8a ",
+                "unicode": "V\u250a ",
             ]),
             "WB3": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1591,15 +1591,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "?. ",
-                "unicode": "\xe2\x81\x87\xe2\x94\x8a ",
+                "unicode": "\u2047\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
     ]),
@@ -1619,15 +1619,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "M. ",
-                "unicode": "\xe2\x9c\xa0\xe2\x94\x8a ",
+                "unicode": "\u2720\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1660,15 +1660,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "C. ",
-                "unicode": "\xe2\x8d\x8d\xe2\x94\x8a ",
+                "unicode": "\u234d\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1701,15 +1701,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "N. ",
-                "unicode": "N\xe2\x94\x8a ",
+                "unicode": "N\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1741,15 +1741,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "K. ",
-                "unicode": "K\xe2\x94\x8a ",
+                "unicode": "K\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1782,15 +1782,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "S. ",
-                "unicode": "S\xe2\x94\x8a ",
+                "unicode": "S\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1823,15 +1823,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "$. ",
-                "unicode": "$\xe2\x94\x8a ",
+                "unicode": "$\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1864,15 +1864,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "G. ",
-                "unicode": "G\xe2\x94\x8a ",
+                "unicode": "G\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1905,15 +1905,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "W. ",
-                "unicode": "W\xe2\x94\x8a ",
+                "unicode": "W\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1947,15 +1947,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "L. ",
-                "unicode": "L\xe2\x94\x8a ",
+                "unicode": "L\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -1988,15 +1988,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "T. ",
-                "unicode": "T\xe2\x94\x8a ",
+                "unicode": "T\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2029,15 +2029,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "A. ",
-                "unicode": "A\xe2\x94\x8a ",
+                "unicode": "A\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2071,15 +2071,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "H. ",
-                "unicode": "H\xe2\x94\x8a ",
+                "unicode": "H\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2112,15 +2112,15 @@ private mapping MotteBuildings = ([
         "components":([
             "WB4": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x90 ",
+                "unicode": "\u2508\u2510 ",
             ]),
             "WB5": ([
                 "ascii": "V. ",
-                "unicode": "V\xe2\x94\x8a ",
+                "unicode": "V\u250a ",
             ]),
             "WB6": ([
                 "ascii": ".. ",
-                "unicode": "\xe2\x94\x88\xe2\x94\x98 ",
+                "unicode": "\u2508\u2518 ",
             ]),
         ]),
         "construction": ([
@@ -2152,15 +2152,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB1": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB2": ([
                 "ascii": " .?",
-                "unicode": " \xe2\x94\x8a\xe2\x81\x87",
+                "unicode": " \u250a\u2047",
             ]),
             "EB3": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
     ]),
@@ -2180,15 +2180,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .M",
-                "unicode": " \xe2\x94\x8a\xe2\x9c\xa0",
+                "unicode": " \u250a\u2720",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2221,15 +2221,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .C",
-                "unicode": " \xe2\x94\x8a\xe2\x8d\x8d",
+                "unicode": " \u250a\u234d",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2262,15 +2262,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .N",
-                "unicode": " \xe2\x94\x8aN",
+                "unicode": " \u250aN",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2302,15 +2302,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .K",
-                "unicode": " \xe2\x94\x8aK",
+                "unicode": " \u250aK",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2343,15 +2343,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .S",
-                "unicode": " \xe2\x94\x8aS",
+                "unicode": " \u250aS",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2384,15 +2384,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .$",
-                "unicode": " \xe2\x94\x8a$",
+                "unicode": " \u250a$",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2425,15 +2425,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .G",
-                "unicode": " \xe2\x94\x8aG",
+                "unicode": " \u250aG",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2466,15 +2466,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .W",
-                "unicode": " \xe2\x94\x8aW",
+                "unicode": " \u250aW",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2508,15 +2508,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .L",
-                "unicode": " \xe2\x94\x8aL",
+                "unicode": " \u250aL",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2549,15 +2549,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .T",
-                "unicode": " \xe2\x94\x8aT",
+                "unicode": " \u250aT",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2590,15 +2590,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .A",
-                "unicode": " \xe2\x94\x8aA",
+                "unicode": " \u250aA",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2632,15 +2632,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .H",
-                "unicode": " \xe2\x94\x8aH",
+                "unicode": " \u250aH",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2673,15 +2673,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .V",
-                "unicode": " \xe2\x94\x8aV",
+                "unicode": " \u250aV",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2713,15 +2713,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .?",
-                "unicode": " \xe2\x94\x8a\xe2\x81\x87",
+                "unicode": " \u250a\u2047",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
     ]),
@@ -2741,15 +2741,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .M",
-                "unicode": " \xe2\x94\x8a\xe2\x9c\xa0",
+                "unicode": " \u250a\u2720",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2782,15 +2782,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .C",
-                "unicode": " \xe2\x94\x8a\xe2\x8d\x8d",
+                "unicode": " \u250a\u234d",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2823,15 +2823,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .N",
-                "unicode": " \xe2\x94\x8aN",
+                "unicode": " \u250aN",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2863,15 +2863,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .K",
-                "unicode": " \xe2\x94\x8aK",
+                "unicode": " \u250aK",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2904,15 +2904,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .S",
-                "unicode": " \xe2\x94\x8aS",
+                "unicode": " \u250aS",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2945,15 +2945,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .$",
-                "unicode": " \xe2\x94\x8a$",
+                "unicode": " \u250a$",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -2986,15 +2986,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .G",
-                "unicode": " \xe2\x94\x8aG",
+                "unicode": " \u250aG",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3027,15 +3027,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .W",
-                "unicode": " \xe2\x94\x8aW",
+                "unicode": " \u250aW",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3069,15 +3069,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .L",
-                "unicode": " \xe2\x94\x8aL",
+                "unicode": " \u250aL",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3110,15 +3110,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .T",
-                "unicode": " \xe2\x94\x8aT",
+                "unicode": " \u250aT",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3151,15 +3151,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .A",
-                "unicode": " \xe2\x94\x8aA",
+                "unicode": " \u250aA",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3193,15 +3193,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .H",
-                "unicode": " \xe2\x94\x8aH",
+                "unicode": " \u250aH",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3234,15 +3234,15 @@ private mapping MotteBuildings = ([
         "components":([
             "EB4": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x8c\xe2\x94\x88",
+                "unicode": " \u250c\u2508",
             ]),
             "EB5": ([
                 "ascii": " .V",
-                "unicode": " \xe2\x94\x8aV",
+                "unicode": " \u250aV",
             ]),
             "EB6": ([
                 "ascii": " ..",
-                "unicode": " \xe2\x94\x94\xe2\x94\x88",
+                "unicode": " \u2514\u2508",
             ]),
         ]),
         "construction": ([
@@ -3274,11 +3274,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x8c\xe2\x94\x88\xe2\x94\x90",
+                "unicode": "\u250c\u2508\u2510",
             ]),
             "SW2": ([
                 "ascii": ".?.",
-                "unicode": "\xe2\x94\x8a\xe2\x81\x87\xe2\x94\x8a",
+                "unicode": "\u250a\u2047\u250a",
             ]),
         ]),
     ]),
@@ -3298,11 +3298,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".M.",
-                "unicode": "\xe2\x94\x8a\xe2\x9c\xa0\xe2\x94\x8a",
+                "unicode": "\u250a\u2720\u250a",
             ]),
         ]),
         "construction": ([
@@ -3335,11 +3335,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".C.",
-                "unicode": "\xe2\x94\x8a\xe2\x8d\x8d\xe2\x94\x8a",
+                "unicode": "\u250a\u234d\u250a",
             ]),
         ]),
         "construction": ([
@@ -3372,11 +3372,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1":([
                 "ascii":"...",
-                    "unicode" : "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                    "unicode" : "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".N.",
-                "unicode": "\xe2\x94\x8aN\xe2\x94\x8a",
+                "unicode": "\u250aN\u250a",
             ]),
         ]),
         "construction": ([
@@ -3408,11 +3408,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".K.",
-                "unicode": "\xe2\x94\x8aK\xe2\x94\x8a",
+                "unicode": "\u250aK\u250a",
             ]),
         ]),
         "construction": ([
@@ -3445,11 +3445,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".S.",
-                "unicode": "\xe2\x94\x8aS\xe2\x94\x8a",
+                "unicode": "\u250aS\u250a",
             ]),
         ]),
         "construction": ([
@@ -3482,11 +3482,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".$.",
-                "unicode": "\xe2\x94\x8a$\xe2\x94\x8a",
+                "unicode": "\u250a$\u250a",
             ]),
         ]),
         "construction": ([
@@ -3519,11 +3519,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".G.",
-                "unicode": "\xe2\x94\x8aG\xe2\x94\x8a",
+                "unicode": "\u250aG\u250a",
             ]),
         ]),
         "construction": ([
@@ -3556,11 +3556,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".W.",
-                "unicode": "\xe2\x94\x8aW\xe2\x94\x8a",
+                "unicode": "\u250aW\u250a",
             ]),
         ]),
         "construction": ([
@@ -3594,11 +3594,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".L.",
-                "unicode": "\xe2\x94\x8aL\xe2\x94\x8a",
+                "unicode": "\u250aL\u250a",
             ]),
         ]),
         "construction": ([
@@ -3631,11 +3631,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".T.",
-                "unicode": "\xe2\x94\x8aT\xe2\x94\x8a",
+                "unicode": "\u250aT\u250a",
             ]),
         ]),
         "construction": ([
@@ -3668,11 +3668,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".A.",
-                "unicode": "\xe2\x94\x8aA\xe2\x94\x8a",
+                "unicode": "\u250aA\u250a",
             ]),
         ]),
         "construction": ([
@@ -3706,11 +3706,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".H.",
-                "unicode": "\xe2\x94\x8aH\xe2\x94\x8a",
+                "unicode": "\u250aH\u250a",
             ]),
         ]),
         "construction": ([
@@ -3743,11 +3743,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SW1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SW2": ([
                 "ascii": ".V.",
-                "unicode": "\xe2\x94\x8aV\xe2\x94\x8a",
+                "unicode": "\u250aV\u250a",
             ]),
         ]),
         "construction": ([
@@ -3779,11 +3779,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x8c\xe2\x94\x88\xe2\x94\x90",
+                "unicode": "\u250c\u2508\u2510",
             ]),
             "SE2": ([
                 "ascii": ".?.",
-                "unicode": "\xe2\x94\x8a\xe2\x81\x87\xe2\x94\x8a",
+                "unicode": "\u250a\u2047\u250a",
             ]),
         ]),
     ]),
@@ -3803,11 +3803,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".M.",
-                "unicode": "\xe2\x94\x8a\xe2\x9c\xa0\xe2\x94\x8a",
+                "unicode": "\u250a\u2720\u250a",
             ]),
         ]),
         "construction": ([
@@ -3840,11 +3840,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".C.",
-                "unicode": "\xe2\x94\x8a\xe2\x8d\x8d\xe2\x94\x8a",
+                "unicode": "\u250a\u234d\u250a",
             ]),
         ]),
         "construction": ([
@@ -3877,11 +3877,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3":([
                 "ascii":"...",
-                    "unicode" : "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                    "unicode" : "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".N.",
-                "unicode": "\xe2\x94\x8aN\xe2\x94\x8a",
+                "unicode": "\u250aN\u250a",
             ]),
         ]),
         "construction": ([
@@ -3913,11 +3913,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".K.",
-                "unicode": "\xe2\x94\x8aK\xe2\x94\x8a",
+                "unicode": "\u250aK\u250a",
             ]),
         ]),
         "construction": ([
@@ -3950,11 +3950,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".S.",
-                "unicode": "\xe2\x94\x8aS\xe2\x94\x8a",
+                "unicode": "\u250aS\u250a",
             ]),
         ]),
         "construction": ([
@@ -3987,11 +3987,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".$.",
-                "unicode": "\xe2\x94\x8a$\xe2\x94\x8a",
+                "unicode": "\u250a$\u250a",
             ]),
         ]),
         "construction": ([
@@ -4024,11 +4024,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".G.",
-                "unicode": "\xe2\x94\x8aG\xe2\x94\x8a",
+                "unicode": "\u250aG\u250a",
             ]),
         ]),
         "construction": ([
@@ -4061,11 +4061,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".W.",
-                "unicode": "\xe2\x94\x8aW\xe2\x94\x8a",
+                "unicode": "\u250aW\u250a",
             ]),
         ]),
         "construction": ([
@@ -4099,11 +4099,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".L.",
-                "unicode": "\xe2\x94\x8aL\xe2\x94\x8a",
+                "unicode": "\u250aL\u250a",
             ]),
         ]),
         "construction": ([
@@ -4136,11 +4136,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".T.",
-                "unicode": "\xe2\x94\x8aT\xe2\x94\x8a",
+                "unicode": "\u250aT\u250a",
             ]),
         ]),
         "construction": ([
@@ -4173,11 +4173,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".A.",
-                "unicode": "\xe2\x94\x8aA\xe2\x94\x8a",
+                "unicode": "\u250aA\u250a",
             ]),
         ]),
         "construction": ([
@@ -4211,11 +4211,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE3": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE4": ([
                 "ascii": ".H.",
-                "unicode": "\xe2\x94\x8aH\xe2\x94\x8a",
+                "unicode": "\u250aH\u250a",
             ]),
         ]),
         "construction": ([
@@ -4248,11 +4248,11 @@ private mapping MotteBuildings = ([
         "components":([
             "SE1": ([
                 "ascii": "...",
-                "unicode": "\xe2\x94\x94\xe2\x94\x88\xe2\x94\x98",
+                "unicode": "\u2514\u2508\u2518",
             ]),
             "SE2": ([
                 "ascii": ".V.",
-                "unicode": "\xe2\x94\x8aV\xe2\x94\x8a",
+                "unicode": "\u250aV\u250a",
             ]),
         ]),
         "construction": ([

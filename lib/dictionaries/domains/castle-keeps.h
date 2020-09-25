@@ -21,25 +21,25 @@ private mapping CastleKeeps = ([
         "components":([
             "KEEP    1":([
                 "ascii": ".........",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237\u2237\u2237",
             ]),
             "KEEP    2":([
                 "ascii": ".       .",
-                "unicode": "\xe2\x88\xb7       \xe2\x88\xb7",
+                "unicode": "\u2237       \u2237",
             ]),
             "KEEP    3":([
                 "ascii": ".       .",
-                "unicode": "\xe2\x88\xb7       \xe2\x88\xb7",
+                "unicode": "\u2237       \u2237",
             ]),
             "KEEP    4":([
                 "ascii": ".       .",
-                "unicode": "\xe2\x88\xb7       \xe2\x88\xb7",
+                "unicode": "\u2237       \u2237",
             ]),
             "KEEP    5":([
                 "ascii": ".........",
-                "unicode": "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7"
-                    "\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7\xe2\x88\xb7",
+                "unicode": "\u2237\u2237\u2237\u2237"
+                    "\u2237\u2237\u2237\u2237\u2237",
             ]),
         ]),
     ]),
@@ -77,28 +77,28 @@ private mapping CastleKeeps = ([
         "components":([
             "KEEP    1":([
                 "ascii": "+-------+",
-                "unicode": "\xe2\x94\x8c\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80"
-                    "\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x90",
+                "unicode": "\u250c\u2500\u2500\u2500"
+                    "\u2500\u2500\u2500\u2500\u2510",
             ]),
             "KEEP    2":([
                 "ascii": "|       |",
-                "unicode": "\xe2\x94\x82\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x94\x82",
+                "unicode": "\u2502\u2591\u2591\u2591"
+                    "\u2591\u2591\u2591\u2591\u2502",
             ]),
             "KEEP    3":([
                 "ascii": "|       |",
-                "unicode": "\xe2\x94\x82\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x94\x82",
+                "unicode": "\u2502\u2591\u2591\u2591"
+                    "\u2591\u2591\u2591\u2591\u2502",
             ]),
             "KEEP    4":([
                 "ascii": "|       |",
-                "unicode": "\xe2\x94\x82\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x94\x82",
+                "unicode": "\u2502\u2591\u2591\u2591"
+                    "\u2591\u2591\u2591\u2591\u2502",
             ]),
             "KEEP    5":([
                 "ascii": "+-------+",
-                "unicode": "\xe2\x94\x94\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80"
-                    "\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x98",
+                "unicode": "\u2514\u2500\u2500\u2500"
+                    "\u2500\u2500\u2500\u2500\u2518",
             ]),
         ]),
     ]),
@@ -137,28 +137,28 @@ private mapping CastleKeeps = ([
         "components":([ 
             "KEEP    1":([
                 "ascii": "+~~~~~~~+",
-                "unicode": "\xe2\x94\x8f\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81"
-                    "\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x93",
+                "unicode": "\u250f\u2501\u2501\u2501"
+                    "\u2501\u2501\u2501\u2501\u2513",
             ]),
             "KEEP    2":([
                 "ascii": "|       |",
-                "unicode": "\xe2\x94\x83\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x94\x83",
+                "unicode": "\u2503\u2591\u2591\u2591"
+                    "\u2591\u2591\u2591\u2591\u2503",
             ]),
             "KEEP    3":([
                 "ascii": "|       |",
-                "unicode": "\xe2\x94\x83\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x94\x83",
+                "unicode": "\u2503\u2591\u2591\u2591"
+                    "\u2591\u2591\u2591\u2591\u2503",
             ]),
             "KEEP    4":([
                 "ascii": "|       |",
-                "unicode": "\xe2\x94\x83\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x94\x83",
+                "unicode": "\u2503\u2591\u2591\u2591"
+                    "\u2591\u2591\u2591\u2591\u2503",
             ]),
             "KEEP    5":([
                 "ascii": "+~~~~~~~+",
-                "unicode": "\xe2\x94\x97\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81"
-                    "\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x9b",
+                "unicode": "\u2517\u2501\u2501\u2501"
+                    "\u2501\u2501\u2501\u2501\u251b",
             ]),
         ]),
     ]),
@@ -197,28 +197,28 @@ private mapping CastleKeeps = ([
         "components":([ 
             "KEEP    1":([
                 "ascii": "+=======+",
-                "unicode": "\xe2\x94\x8f\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81"
-                    "\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x93",
+                "unicode": "\u250f\u2501\u2501\u2501"
+                    "\u2501\u2501\u2501\u2501\u2513",
             ]),
             "KEEP    2":([
                 "ascii": "|       |",
-                "unicode": "\xe2\x94\x83\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x94\x83",
+                "unicode": "\u2503\u2591\u2591\u2591"
+                    "\u2591\u2591\u2591\u2591\u2503",
             ]),
             "KEEP    3":([
                 "ascii": "|       |",
-                "unicode": "\xe2\x94\x83\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x94\x83",
+                "unicode": "\u2503\u2591\u2591\u2591"
+                    "\u2591\u2591\u2591\u2591\u2503",
             ]),
             "KEEP    4":([
                 "ascii": "|       |",
-                "unicode": "\xe2\x94\x83\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x96\x91\xe2\x94\x83",
+                "unicode": "\u2503\u2591\u2591\u2591"
+                    "\u2591\u2591\u2591\u2591\u2503",
             ]),
             "KEEP    5":([
                 "ascii": "+=======+",
-                "unicode": "\xe2\x94\x97\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81"
-                    "\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x9b",
+                "unicode": "\u2517\u2501\u2501\u2501"
+                    "\u2501\u2501\u2501\u2501\u251b",
             ]),
         ]),
     ]),
@@ -258,28 +258,28 @@ private mapping CastleKeeps = ([
         "components":([ 
             "KEEP    1":([
                 "ascii": "+=======+",
-                "unicode": "\xe2\x95\x94\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x97",
+                "unicode": "\u2554\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550\u2557",
             ]),
             "KEEP    2":([
                 "ascii": "| +---+ |",
-                "unicode": "\xe2\x95\x91 \xe2\x94\x8f\xe2\x94\x81"
-                    "\xe2\x94\x81\xe2\x94\x81\xe2\x94\x93 \xe2\x95\x91",
+                "unicode": "\u2551 \u250f\u2501"
+                    "\u2501\u2501\u2513 \u2551",
             ]),
             "KEEP    3":([
                 "ascii": "| |   | |",
-                "unicode": "\xe2\x95\x91 \xe2\x94\x83roof\xe2\x96\x91"
-                    "\xe2\x96\x91\xe2\x96\x91default\xe2\x94\x83 \xe2\x95\x91",
+                "unicode": "\u2551 \u2503roof\u2591"
+                    "\u2591\u2591default\u2503 \u2551",
             ]),
             "KEEP    4":([
                 "ascii": "| +---+ |",
-                "unicode": "\xe2\x95\x91 \xe2\x94\x97\xe2\x94\x81"
-                    "\xe2\x94\x81\xe2\x94\x81\xe2\x94\x9b \xe2\x95\x91",
+                "unicode": "\u2551 \u2517\u2501"
+                    "\u2501\u2501\u251b \u2551",
             ]),
             "KEEP    5":([
                 "ascii": "+=======+",
-                "unicode": "\xe2\x95\x9a\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
-                    "\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9d",
+                "unicode": "\u255a\u2550\u2550\u2550"
+                    "\u2550\u2550\u2550\u2550\u255d",
             ]),
         ]),
     ]),

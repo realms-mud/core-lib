@@ -82,7 +82,7 @@ public nomask mapping getWorkersMenu(object user, string location,
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getComponentWorkerInfo(object user, mapping componentData)
 {
-    // Unicode character is: \xe2\x99\x99
+    // Unicode character is: \u2659
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
 

@@ -19,29 +19,24 @@ private string buildBaseBanner(string location, string charset, int noGap)
             ret = "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
                 "-=-=-=-=-=-=-=-=-";
 
-            if (!noGap)
-            {
-                ret += "=-=-";
-            }
-
             switch (location)
             {
                 case "top":
                 {
-                    leftCharacter = "\xe2\x95\x94";
-                    rightCharacter = "\xe2\x95\x97";
+                    leftCharacter = "\u2554";
+                    rightCharacter = "\u2557";
                     break;
                 }
                 case "bottom":
                 {
-                    leftCharacter = "\xe2\x95\x9a";
-                    rightCharacter = "\xe2\x95\x9d";
+                    leftCharacter = "\u255a";
+                    rightCharacter = "\u255d";
                     break;
                 }
                 default:
                 {
-                    leftCharacter = "\xe2\x95\xa0";
-                    rightCharacter = "\xe2\x95\xa3";
+                    leftCharacter = "\u2560";
+                    rightCharacter = "\u2563";
                     break;
                 }
             }
@@ -85,8 +80,8 @@ public varargs string buildBanner(string colorConfiguration, string charset,
         }
         case "unicode": 
         {
-            leftDivider = "\xe2\x95\xa1";
-            rightDivider = "\xe2\x95\x9e";
+            leftDivider = "\u2561";
+            rightDivider = "\u255e";
             break;
         }
         default:
@@ -113,7 +108,7 @@ public varargs string buildBanner(string colorConfiguration, string charset,
 
     if (charset == "unicode")
     {
-        ret = regreplace(ret, "(-|=)", "\xe2\x95\x90", 1);
+        ret = regreplace(ret, "(-|=)", "\u2550", 1);
     }
 
     return configuration->decorate(ret, "any", "dividers", colorConfiguration);
@@ -132,7 +127,7 @@ public string divider(string colorConfiguration, string charset)
         }
         case "unicode": 
         {
-            divider = "\xe2\x95\x91";
+            divider = "\u2551";
             break;
         }
         default:

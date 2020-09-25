@@ -192,8 +192,8 @@ void CanDisplayUnicode()
     command("7", Player);
 
     ExpectEq("\x1b[0;38;5;80mQuest - \x1b[0m\x1b[0;38;5;15;1mSelect a quest to view in more detail\x1b[0m:\n"
-        "    [\x1b[0;38;5;9;1m1\x1b[0m] - \x1b[0;38;5;2mAnother quest       \x1b[0m\x1b[0;38;5;20;1m (\xe2\x98\x85)\x1b[0m"
-        "    [\x1b[0;38;5;9;1m2\x1b[0m] - \x1b[0;38;5;2mHail to the king,...\x1b[0m\x1b[0;38;5;124m (\xe2\x95\xb3)\x1b[0m\n"
+        "    [\x1b[0;38;5;9;1m1\x1b[0m] - \x1b[0;38;5;2mAnother quest       \x1b[0m\x1b[0;38;5;20;1m (\u2605)\x1b[0m"
+        "    [\x1b[0;38;5;9;1m2\x1b[0m] - \x1b[0;38;5;2mHail to the king,...\x1b[0m\x1b[0;38;5;124m (\u2573)\x1b[0m\n"
         "    [\x1b[0;38;5;9;1m3\x1b[0m] - \x1b[0;38;5;2mReturn to previous menu\x1b[0m\n"
         "\x1b[0;38;5;2;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"

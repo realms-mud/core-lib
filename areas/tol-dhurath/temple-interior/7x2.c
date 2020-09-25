@@ -24,7 +24,7 @@ public string **customIcon(string **baseIcon, string color, string charset)
     ]);
 
     baseIcon[0][1] = sprintf("%s%s%s", colors["exit"][color],
-        (charset == "unicode") ? "\xe2\x87\x93" : "-",
+        (charset == "unicode") ? "\u21d3" : "-",
         (colors["exit"][color] != "") ? "\x1b[0m" : "");
 
     return baseIcon;
