@@ -134,6 +134,8 @@ public mixed query(string element)
         {
             ret = member(itemData, "material") ? itemData["material"] :
                 materialsObject()->getBlueprintDetails(this_object(), "default material");
+            itemData["primary crafting material"] = ret;
+            getDictionary("crafting")->updateMaterial(this_object());
             break;
         }
         case "equipment locations":

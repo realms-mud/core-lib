@@ -228,14 +228,10 @@ protected nomask string *displayLayout(string component,
 
     if (sizeof(ret))
     {
-        string padding = sprintf("%" + to_string(21 - sizeof(
-            CastleComponents[component]["components"]
-                [m_indices(CastleComponents[component]["components"])[0]]["ascii"])) +
-            "s", "");
-
         for (int i = 0; i < sizeof(ret); i++)
         {
-            ret[i] = "        " + ret[i] + padding;
+            ret[i] = "        " + ret[i] +
+                sprintf("%-" + to_string(21 - textWidth(ret[i])) + "s", "");
         }
 
         ret[0] = regreplace(ret[0], "        ",
@@ -370,7 +366,9 @@ protected nomask string *displayWorkerData(object user, mapping workerData,
 
     foreach(string worker in workers)
     {
-        int currentNumber = (member(workerData, "assigned workers") &&
+        int currentNumber = (mappingp(workerData) &&
+            member(workerData, "assigned workers") &&
+            mappingp(workerData["assigned workers"]) &&
             member(workerData["assigned workers"], worker)) ?
             sizeof(workerData["assigned workers"][worker]) : 0;
 
@@ -479,7 +477,7 @@ private nomask string *formatUnits(string *layout, mapping componentData,
 
     mapping units = aggregateUnitList(constructionData, componentData);
 
-    int componentSize = 9 - sizeof(CastleComponents[componentData["name"]]["components"]
+    int componentSize = 9 - textWidth(CastleComponents[componentData["name"]]["components"]
         [m_indices(CastleComponents[componentData["name"]]["components"])[0]]["ascii"]);
 
     if (sizeof(units))
@@ -488,7 +486,6 @@ private nomask string *formatUnits(string *layout, mapping componentData,
             configuration->decorate(sprintf("%-9s %-19s", "Layout:", "Units:"),
                 "heading", "player domains", colorConfiguration)
         });
-
 
         foreach(string unit in m_indices(units))
         {
@@ -517,10 +514,9 @@ private nomask string *formatUnits(string *layout, mapping componentData,
         {
             ret += ({ 
                 (sizeof(layout) > offset) ? (layout[i] + 
-                sprintf("%-" + to_string(20 + componentSize) + "s", "")) : 
+                sprintf("%-" + to_string(29 - textWidth(layout[i])) + "s", "")) : 
                 sprintf("%-29s", "") });
         }
-
     }
 
     return ret;

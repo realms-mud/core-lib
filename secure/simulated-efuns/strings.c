@@ -13,11 +13,22 @@ public nomask int unicodeIsSingleCharacter()
 /////////////////////////////////////////////////////////////////////////////
 public nomask int textWidth(string text)
 {
-#if ! __EFUN_DEFINED__(text_width)
-    return sizeof(regreplace(text, "(\x1b[^m]+m)", "", 1));
-#else
-    return text_width(text);
-#endif
+    string *characters = explode(regreplace(text, "(\x1b[^m]+m)", "", 1), "");
+    string *prunedString = ({});
+
+    foreach(string character in characters)
+    {
+        if ((character[0] >= 32) && (character[0] <= 126) || (character[0] == 27))
+        {
+            prunedString += ({ character });
+        }
+        else if (character[0] == '\xe2')
+        {
+            prunedString += ({ " " });
+        }
+    }
+
+    return sizeof(prunedString);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -36,6 +36,7 @@ private mapping CastleBuildings = ([
     "simple moat":([
         "type": "moat",
         "dimensions": "17x15",
+        "display name": "Simple Moat",
         "description": "",
         "colors": ([
             "default":([
@@ -56,6 +57,16 @@ private mapping CastleBuildings = ([
             "ESM": ([
                 "ascii": "~  ",
                 "unicode": "\xe2\x96\x91\xe2\x96\x91 ",
+            ]),
+        ]),
+        "construction": ([
+            "duration": 400,
+            "materials": ([
+                "building type": ([ "stone": 5, "wood": 5, ]),
+            ]),
+            "workers": ([
+                "stonemason": 1,
+                "carpenter": 1,
             ]),
         ]),
     ]),

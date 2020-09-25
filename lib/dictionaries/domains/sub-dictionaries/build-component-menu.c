@@ -118,28 +118,27 @@ public nomask mapping getBuildComponentMenu(object user, string location,
         string *details = getComponentInfo(user, componentData);
 
         int count = 1;
-        int offset = 0;
         int sectionSize = (sizeof(details) + 1);
         if (sectionSize < 22)
         {
             sectionSize = 22;
         }
         string *firstSection = playerDomain["layout"][0..sectionSize];
+        int firstSectionSize = sizeof(firstSection);
 
         int size;
         string *extraData = ({});
 
-        for (int i = 0; i < sizeof(firstSection); i++)
+        for (int i = 0; i < firstSectionSize; i++)
         {
-            extraData += ({ sprintf("%29s%s",
-                sizeof(details) > i ? details[i] : "", firstSection[i]) });
+            extraData += ({ sprintf("%s%s",
+                sizeof(details) > i ? details[i] : sprintf("%29s", ""), firstSection[i]) });
             size = i;
         }
 
-        offset = sizeof(firstSection);
-        if (sizeof(details) > offset)
+        if (sizeof(details) > firstSectionSize)
         {
-            for (int i = offset; i < sizeof(details); i++)
+            for (int i = firstSectionSize; i < sizeof(details); i++)
             {
                 extraData += ({ details[i] });
             }
@@ -159,8 +158,9 @@ public nomask mapping getBuildComponentMenu(object user, string location,
         {
             if (mappingp(ret[key]))
             {
-                ret[key]["layout panel"] = (sizeof(playerDomain["layout"]) > count+offset) ?
-                    playerDomain["layout"][count + offset] : "";
+                ret[key]["layout panel"] = 
+                    (sizeof(playerDomain["layout"]) > (count + firstSectionSize)) ?
+                    playerDomain["layout"][count + firstSectionSize] : "";
 
                 if (firstSection)
                 {

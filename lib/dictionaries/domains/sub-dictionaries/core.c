@@ -52,10 +52,19 @@ protected nomask string generateBuildInfo(string *leftColumn, string *rightColum
     int sharedRows = (leftColumnSize > rightColumnSize) ?
         rightColumnSize : leftColumnSize;
 
+    int leftColumnWidth = sizeof(leftColumn) ? textWidth(leftColumn[0]) : 29;
+    string screenFormat = "%-" + to_string(leftColumnWidth) + "s" +
+        "%-" + to_string(78 - leftColumnWidth) + "s\n";
+
+    for(int i = 0; i < sizeof(rightColumn); i++)
+    {
+        rightColumn[i] = sprintf("%-" + 
+            to_string(78 - leftColumnWidth) + "s", rightColumn[i]);
+    }
+
     for (int i = 0; i < sharedRows; i++)
     {
-        ret += sprintf("%" + textWidth(leftColumn[i]) + "s%s\n",
-            leftColumn[i], rightColumn[i]);
+        ret += leftColumn[i] + rightColumn[i] + "\n";
     }
     if (leftColumnSize > rightColumnSize)
     {
@@ -65,7 +74,7 @@ protected nomask string generateBuildInfo(string *leftColumn, string *rightColum
     {
         for (int i = leftColumnSize; i < rightColumnSize; i++)
         {
-            ret += sprintf("%29s%s\n", "", rightColumn[i]);
+            ret += sprintf(screenFormat, "", rightColumn[i]);
         }
     }
     return ret;

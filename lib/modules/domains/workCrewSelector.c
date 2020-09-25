@@ -78,13 +78,15 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
-        if (!member(ConstructionData, "assigned workers"))
+        if (mappingp(ConstructionData))
         {
-            ConstructionData["assigned workers"] = ([]);
+            if (!member(ConstructionData, "assigned workers"))
+            {
+                ConstructionData["assigned workers"] = ([]);
+            }
+            ConstructionData["assigned workers"][caller->WorkerType()] =
+                caller->Selections();
         }
-        ConstructionData["assigned workers"][caller->WorkerType()] =
-            caller->Selections();
-
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }

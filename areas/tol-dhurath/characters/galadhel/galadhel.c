@@ -36,7 +36,7 @@ protected void Setup()
     addTrait("lib/instances/traits/educational/hunter.c");
     customCombatAssessment("Companion");
     object equipment = clone_object("/lib/instances/items/weapons/bows/bow.c");
-    equipment->set("craftsmanship", 50);
+    equipment->set("craftsmanship", 75);
     equipment->set("material", "kingwood");
     move_object(equipment, this_object());
     this_object()->equip(equipment);

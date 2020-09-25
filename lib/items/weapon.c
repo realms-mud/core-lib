@@ -104,6 +104,8 @@ private nomask int checkBlueprint(string data)
     if (ret)
     {
         itemData["blueprint"] = data;
+        getDictionary("crafting")->getRandomCraftingMaterial(
+            this_object(), 1);
     }
     else
     {
