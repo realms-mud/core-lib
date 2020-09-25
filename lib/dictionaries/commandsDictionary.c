@@ -99,7 +99,7 @@ public varargs string buildBanner(string colorConfiguration, string charset,
             (area ? " " + capitalize(area) : ""), rightDivider);
     }
 
-    int startingPoint = ((charset == "unicode") * 2) + 40 - (sizeof(banner) / 2);
+    int startingPoint = 40 - (sizeof(banner) / 2) - (charset == "unicode");
 
     for (int i = startingPoint; i < (startingPoint + sizeof(banner)); i++)
     {

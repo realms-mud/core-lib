@@ -82,12 +82,12 @@ private mapping orbs = (["north":-1, "south" : -1, "east" : -1, "west" : -1]);
 //     stealth: fear, fear, fear, wrath, wrath, envy
 private mapping validSequences = ([
     "endurance":(["north":3, "south" : 2, "east" : 0, "west" : 1]),
-        "flame" : (["north":2, "south" : 2, "east" : 2, "west" : 2]),
-        "frost" : (["north":3, "south" : 3, "east" : 3, "west" : 3]),
-        "envy" : (["north":1, "south" : 1, "east" : 1, "west" : 1]),
-        "weakness" : (["north":1, "south" : 1, "east" : 0, "west" : 0]),
-        "strength" : (["north":0, "south" : 0, "east" : 1, "west" : 1]),
-        "stealth" : (["north":2, "south" : 0, "east" : 3, "west" : 1]),
+    "flame" : (["north":2, "south" : 2, "east" : 2, "west" : 2]),
+    "frost" : (["north":3, "south" : 3, "east" : 3, "west" : 3]),
+    "envy" : (["north":1, "south" : 1, "east" : 1, "west" : 1]),
+    "weakness" : (["north":1, "south" : 1, "east" : 0, "west" : 0]),
+    "strength" : (["north":0, "south" : 0, "east" : 1, "west" : 1]),
+    "stealth" : (["north":2, "south" : 0, "east" : 3, "west" : 1]),
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
