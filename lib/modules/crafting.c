@@ -40,6 +40,7 @@ public nomask void completeCrafting()
             guilds->distributeExperience(experience,
                 CraftingItem->query("crafting guilds"));
         }
+        CraftingItem->unset("crafting in progress");
         move_object(CraftingItem, this_object());
         craftingEvent("onCraftingCompleted");
         CraftingItem = 0;

@@ -54,7 +54,11 @@ private nomask void getItemToCraft()
         string file = sprintf("/lib/instances/items/%s/%s/%s.c",
             CraftingType, CraftingSubType, regreplace(CraftingItem, " ", "-"));
         Item = clone_object(file);
+        Item->set("crafting in progress", 1);
         Item->set("identified");
+        Item->unset("primary crafting material");
+        Item->unset("material");
+        Item->unset("crafting materials");
         User->itemBeingCrafted(Item);
         Dictionary->applyCraftingBonuses(Item, User);
     }

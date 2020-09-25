@@ -1253,60 +1253,68 @@ private nomask mapping generateRandomComponents(object blueprint)
 public nomask varargs void getRandomCraftingMaterial(object item, 
     int useDefaultMaterial)
 {
-    object blueprint = getBlueprintFor(item);
-    if (useDefaultMaterial)
+    if (!item->query("crafting in progress"))
     {
-        blueprint->set("use default material", 1);
-    }
-    else
-    {
-        blueprint->unset("use default material");
-    }
-    mapping materialList = ([]);
+        object blueprint = getBlueprintFor(item);
+        if (useDefaultMaterial)
+        {
+            blueprint->set("use default material", 1);
+        }
+        else
+        {
+            blueprint->unset("use default material");
+        }
+        mapping materialList = ([]);
 
-    materialList += generateRandomMaterialList(blueprint) +
-        generateRandomComponents(blueprint);
+        materialList += generateRandomMaterialList(blueprint) +
+            generateRandomComponents(blueprint);
 
-    if (item->query("material"))
-    {
-        item->set("primary crafting material", item->query("material"));
+        if (item->query("material"))
+        {
+            item->set("primary crafting material", item->query("material"));
+        }
+        else if (blueprint->query("primary crafting material"))
+        {
+            item->set("primary crafting material",
+                blueprint->query("primary crafting material"));
+            item->set("material", blueprint->query("primary crafting material"));
+        }
+        item->set("crafting materials", materialList);
+        destruct(blueprint);
     }
-    else if (blueprint->query("primary crafting material"))
-    {
-        item->set("primary crafting material",
-            blueprint->query("primary crafting material"));
-        item->set("material", blueprint->query("primary crafting material"));
-    }
-    item->set("crafting materials", materialList);
-    destruct(blueprint);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void updateMaterial(object item)
 {
-    object blueprint = getBlueprintFor(item);
-    mapping materialList = item->query("crafting materials");
-
-    string materialClass =
-        materials[blueprint->query("default material")]["class"];
-
-    if (mappingp(materialList) && 
-        !item->query("do not update material"))
+    if (!item->query("crafting in progress"))
     {
-        item->set("do not update material", 1);
-        if (blueprint->query("primary component") && 
-            member(materialList, blueprint->query("primary component")))
-        {
-            materialList[blueprint->query("primary component")]
-                [materialClass] = item->query("material");
-        }
-        else
-        {
-            materialList[materialClass] = item->query("material");
-        }
-        item->set("crafting materials", materialList);
-        item->unset("do not update material");
-    }
+        object blueprint = getBlueprintFor(item);
+        mapping materialList = item->query("crafting materials");
 
-    destruct(blueprint);
+        string materialClass =
+            materials[blueprint->query("default material")]["class"];
+
+        if (mappingp(materialList) &&
+            !item->query("do not update material"))
+        {
+            item->set("do not update material", 1);
+
+            item->set("primary crafting material", item->query("material"));
+            if (blueprint->query("primary component") &&
+                member(materialList, blueprint->query("primary component")))
+            {
+                materialList[blueprint->query("primary component")]
+                    [materialClass] = item->query("material");
+            }
+            else
+            {
+                materialList[materialClass] = item->query("material");
+            }
+            item->set("crafting materials", materialList);
+            item->unset("do not update material");
+        }
+
+        destruct(blueprint);
+    }
 }

@@ -51,7 +51,10 @@ void CanGenerateItemsWithoutSubcomponents()
 void CanGenerateItemsWithBothSubcomponentsAndMaterials()
 {
     object ring = clone_object("/lib/instances/items/armor/accessories/ring.c");
-    ExpectFalse(ring->query("primary crafting material"));
+    ring->unset("primary crafting material");
+    ring->unset("material");
+    ring->unset("crafting materials");
+
     Dictionary->getRandomCraftingMaterial(ring);
     ExpectTrue(mappingp(ring->query("crafting materials")));
 
@@ -66,7 +69,10 @@ void CanGenerateItemsWithBothSubcomponentsAndMaterials()
 void HonorsGenerationWithDefaultMaterial()
 {
     object ring = clone_object("/lib/instances/items/armor/accessories/ring.c");
-    ExpectFalse(ring->query("primary crafting material"));
+    ring->unset("primary crafting material");
+    ring->unset("material");
+    ring->unset("crafting materials");
+
     Dictionary->getRandomCraftingMaterial(ring, 1);
     ExpectTrue(mappingp(ring->query("crafting materials")));
 
