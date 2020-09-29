@@ -337,6 +337,17 @@ void CheckPrerequsistesCorrectlyHandlesNotPresentChecks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CheckPrerequsistesCorrectlyHandlesSpokenTopicChecks()
+{
+    ExpectTrue(Prerequisite->AddTestPrerequisite("spoken topics",
+        (["type": "spoken topics", "value": ({ "start quest" })])));
+
+    ExpectFalse(Prerequisite->checkPrerequisites(Researcher, 0, Researcher), "check fails when not spoken");
+    Researcher->ToggleMockConversations();
+    ExpectTrue(Prerequisite->checkPrerequisites(Researcher, 0, Researcher), "check passes when spoken");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DisplayPrerequisitesCorrectlyDisplaysQuestPrerequisites()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("/lib/tests/support/quests/fakeQuestItem.c",

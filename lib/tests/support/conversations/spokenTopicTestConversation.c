@@ -2,10 +2,17 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/core/prerequisites.c";
+virtual inherit "/lib/modules/conversations/baseConversation.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs int AddTestPrerequisite(string key, mapping prerequisite, string grouping)
+protected void Setup()
 {
-    return addPrerequisite(key, prerequisite, grouping);
+    addTopic("test", "This is a test message");
+    addTopic("test 2", "This is another test message");
+    addTopicPrerequisite("test 2", ([
+        "spoken topic":([
+            "type": "spoken topics",
+            "value": ({ "test" })
+        ])
+    ]));
 }

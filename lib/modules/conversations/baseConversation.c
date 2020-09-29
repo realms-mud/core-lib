@@ -696,6 +696,7 @@ public nomask int speakMessage(string key, object actor, object owner)
         checkPrerequisites(actor, key, owner))
     {
         displayMessage("\n" + getTopicTemplate(key, actor, owner), actor, owner);
+        owner->updateSpokenTopic(actor, key);
 
         if (member(topics[key], "interjection") && environment(owner))
         {

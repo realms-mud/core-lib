@@ -35,7 +35,7 @@ void Setup()
     Actor->hitPoints(Actor->maxHitPoints());
     move_object(Actor, room);
 
-    Owner = clone_object("/lib/realizations/npc.c");
+    Owner = clone_object("/lib/tests/support/services/mockNPC.c");
     Owner->Name("Gertrude");
     Owner->Gender("female");
     Owner->Con(20);
@@ -96,6 +96,18 @@ void AddTopicPrerequisiteAddsAndHonorsPrerequisite()
     Actor->Race("elf");
     ExpectTrue(Conversation->speakMessage("test", Actor, Owner));
     ExpectSubStringMatch("This is a test message", Actor->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddTopicPrerequisiteHandlesSpokenTopicPrerequisite()
+{
+    Owner->testAddConversation("/lib/tests/support/conversations/spokenTopicTestConversation.c");
+    Conversation = load_object("/lib/tests/support/conversations/spokenTopicTestConversation.c");
+    ExpectFalse(Conversation->speakMessage("test 2", Actor, Owner), "test 2 conversation should fail");
+
+    ExpectTrue(Conversation->speakMessage("test", Actor, Owner), "test conversation should pass");
+    ExpectTrue(Conversation->speakMessage("test 2", Actor, Owner), "test 2 should pass");
+    ExpectSubStringMatch("This is another test message", Actor->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////

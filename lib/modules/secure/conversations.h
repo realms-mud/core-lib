@@ -8,18 +8,13 @@ private nosave mapping topics = ([]);
 private nosave object CurrentTopic = 0;
 
 private mapping opinions = ([]);
+private mapping spokenTopics = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask void loadConversationData(mapping data, object persistence)
 {
     if (isValidPersistenceObject(persistence))
     {
-/*        intoxicated = persistence->extractSaveData("intoxicated", data);
-        stuffed = persistence->extractSaveData("stuffed", data);
-        drugged = persistence->extractSaveData("drugged", data);
-        soaked = persistence->extractSaveData("soaked", data);
-        headache = persistence->extractSaveData("headache", data);
-        */
     }
 }
 
@@ -27,10 +22,5 @@ static nomask void loadConversationData(mapping data, object persistence)
 static nomask mapping sendConversation()
 {
     return ([
-/*        "intoxicated": intoxicated,
-        "stuffed": stuffed,
-        "drugged": drugged,
-        "soaked": soaked,
-        "headache": headache, */
     ]);
 }

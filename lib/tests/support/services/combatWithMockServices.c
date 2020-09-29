@@ -19,6 +19,7 @@ virtual inherit "/lib/tests/support/services/mockTraitsModule.c";
 virtual inherit "/lib/tests/support/services/mockResearchModule.c";
 virtual inherit "/lib/tests/support/services/mockQuestModule.c";
 virtual inherit "/lib/tests/support/services/mockFactionModule.c";
+virtual inherit "/lib/tests/support/services/mockConversationModule.c";
 
 private int UseMagicalDefendAttackBonus;
 private int UseMagicalAttackBonus;
@@ -29,7 +30,8 @@ private int Experience;
 /////////////////////////////////////////////////////////////////////////////
 public int has(string service)
 {
-    if (member(({ "guilds", "research", "traits", "biological", "background", "quests", "factions" }), service) > -1)
+    if (member(({ "guilds", "research", "traits", "biological", "background", "quests", "factions",
+        "conversations" }), service) > -1)
     {
         return 1;
     }

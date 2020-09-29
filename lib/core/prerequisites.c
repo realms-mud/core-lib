@@ -74,7 +74,8 @@ private nomask int isValidPrerequisiteType(string type)
 {
     return (member(({ "research", "attribute", "skill", "quest", "guild",
         "race", "faction", "trait", "background", "combat statistic", "level",
-        "opinion", "state", "presence", "not present", "guild rank" }), type) > -1);
+        "opinion", "state", "presence", "not present", "guild rank",
+        "spoken topics" }), type) > -1);
 }
 
 //-----------------------------------------------------------------------------
@@ -488,6 +489,24 @@ private nomask int checkPresence(object researcher, string *characters)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask int checkSpokenTopics(object researcher, object checker,
+    string *topics)
+{
+    int ret = sizeof(topics) && objectp(checker);
+
+    if (ret)
+    {
+        foreach(string topic in topics)
+        {
+            ret &&= checker->userHasHadConversation(researcher->RealName(), 
+                topic);
+        }
+    }
+
+    return ret;
+}
+
 //-----------------------------------------------------------------------------
 // Method: checkPrerequisites
 // Description: This method will check whether or not the passed researcher
@@ -498,12 +517,14 @@ private nomask int checkPresence(object researcher, string *characters)
 //
 // Returns: true if the researcher object has passed all of the prerequisites.
 //-----------------------------------------------------------------------------                        
-public nomask varargs int checkPrerequisites(object researcher, string grouping, object owner)
+public nomask varargs int checkPrerequisites(object researcher, string grouping, 
+    object owner)
 {
     int ret = 1;
     
     string *prerequisiteList = (grouping && member(prerequisites, grouping)) ?
         m_indices(prerequisites[grouping]) : m_indices(prerequisites);
+
     if(sizeof(prerequisiteList))
     {
         foreach(string prerequisite in prerequisiteList)
@@ -606,6 +627,12 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
                         ret &&= !checkPresence(researcher, prerequisiteData["value"]);
                         break;
                     }
+                    case "spoken topics":
+                    {
+                        ret &&= checkSpokenTopics(researcher, owner, 
+                            prerequisiteData["value"]);
+                        break;
+                    }
                     default:
                     {
                         ret = 0;
@@ -615,6 +642,7 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
             }
         }
     }
+
     return ret;
 }
 

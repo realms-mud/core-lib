@@ -90,6 +90,29 @@ public nomask int hasTopic(string topic)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int userHasHadConversation(string playerName, string topic)
+{
+    return member(spokenTopics, playerName) && 
+        (member(spokenTopics[playerName], topic) > -1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void updateSpokenTopic(object caller, string topic)
+{
+    if (objectp(caller) && member(topics, topic))
+    {
+        if (!member(spokenTopics, caller->RealName()))
+        {
+            spokenTopics[caller->RealName()] = ({ topic });
+        }
+        else if(member(spokenTopics[caller->RealName()], topic) < 0)
+        {
+            spokenTopics[caller->RealName()] += ({ topic });
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void updateConversationState(object caller, string newState)
 {
     if ((caller != this_object()) && this_player() && member(topics, newState))
@@ -101,7 +124,11 @@ public nomask void updateConversationState(object caller, string newState)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void resetConversationState()
 {
-    this_player()->characterState(this_object(), "first conversation");
+    if (this_player())
+    {
+        this_player()->characterState(this_object(), "first conversation");
+        m_delete(spokenTopics, this_player()->RealName());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

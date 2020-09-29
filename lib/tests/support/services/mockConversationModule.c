@@ -2,10 +2,18 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/core/prerequisites.c";
+virtual inherit "/lib/core/thing";
+
+private int useConversations = 0;
 
 /////////////////////////////////////////////////////////////////////////////
-public varargs int AddTestPrerequisite(string key, mapping prerequisite, string grouping)
+public void ToggleMockConversations()
 {
-    return addPrerequisite(key, prerequisite, grouping);
+    useConversations = !useConversations;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int userHasHadConversation(string playerName, string topic)
+{
+    return useConversations;
 }
