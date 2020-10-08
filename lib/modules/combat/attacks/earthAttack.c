@@ -26,6 +26,3 @@ public void reset(int arg)
             " and ##HitDictionary## ##TargetName## ##SimileDictionary##.", "1-150");
     }
 }
-
-
-

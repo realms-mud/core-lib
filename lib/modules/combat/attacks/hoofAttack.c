@@ -25,7 +25,3 @@ public void reset(int arg)
             "##SimileDictionary## with ##AttackerPossessive## hooves.", "1-150");
     }
 }
-
-
-
-

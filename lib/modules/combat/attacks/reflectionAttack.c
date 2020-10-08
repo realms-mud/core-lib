@@ -17,7 +17,3 @@ public void reset(int arg)
         addHitMessage("##AttackerName## ##Infinitive::reflect## the attack back to ##TargetName##.", "1-150");
     }
 }
-
-
-
-

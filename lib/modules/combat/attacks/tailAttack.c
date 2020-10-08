@@ -26,7 +26,3 @@ public void reset(int arg)
             "##SimileDictionary## with ##AttackerPossessive## tail.", "1-150");
     }
 }
-
-
-
-

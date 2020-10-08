@@ -25,7 +25,3 @@ public void reset(int arg)
             "##SimileDictionary## using ##AttackerPossessive## fangs.", "1-150");
     }
 }
-
-
-
-

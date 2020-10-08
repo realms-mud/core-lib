@@ -26,6 +26,3 @@ public void reset(int arg)
             "##SimileDictionary##.", "1-150");
     }
 }
-
-
-
