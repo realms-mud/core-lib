@@ -7,6 +7,18 @@ inherit "/lib/modules/traits/baseTrait.c";
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
-
+    if (!arg)
+    {
+        addSpecification("type", "personality");
+        addSpecification("name", "temperate");
+        addSpecification("description", "You tend to show moderation and "
+            "restraint in all of your outward actions and interactions.");
+        addSpecification("root", "kind");
+        addSpecification("opposing root", "harsh");
+        addSpecification("opinion", 15);
+        addSpecification("opposing opinion", -5);
+        addSpecification("bonus diplomacy", 1);
+        addSpecification("bonus etiquette", 1);
+        "baseTrait"::reset(arg);
+    }
 }
-

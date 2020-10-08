@@ -13,7 +13,7 @@ public void reset(int arg)
         addSpecification("name", "petulant");
         addSpecification("description", "You're prone to react to situations "
             "where you don't get your way in an overly sullen, childish "
-            "manneer.");
+            "manner.");
         addSpecification("root", "harsh");
         addSpecification("opposing root", "kind");
         addSpecification("opinion", -10);

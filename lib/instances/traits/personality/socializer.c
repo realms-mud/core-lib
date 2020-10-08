@@ -7,6 +7,16 @@ inherit "/lib/modules/traits/baseTrait.c";
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
-
+    if (!arg)
+    {
+        addSpecification("type", "personality");
+        addSpecification("name", "socializer");
+        addSpecification("description", "You are an outgoing, sociable "
+            "person, greatly enjoying the company of others.");
+        addSpecification("root", "extravert");
+        addSpecification("opposing root", "introvert");
+        addSpecification("opinion", 1);
+        addSpecification("opposing opinion", -1);
+        "baseTrait"::reset(arg);
+    }
 }
-

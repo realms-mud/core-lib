@@ -11,7 +11,8 @@ public void reset(int arg)
     {
         addSpecification("type", "personality");
         addSpecification("name", "vulgar");
-        addSpecification("description", "You have a way with words. A rather obscene one full of 'arsebiscuits', 'shite', and 'bollocks'.");
+        addSpecification("description", "You have a way with words. A rather "
+            "obscene one full of 'arsebiscuits', 'shite', and 'bollocks'.");
         addSpecification("root", "vulgar");
         addSpecification("opposing root", "eloquent");
         addSpecification("opinion", -5);
@@ -19,4 +20,3 @@ public void reset(int arg)
         "baseTrait"::reset(arg);
     }
 }
-
