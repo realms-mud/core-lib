@@ -77,7 +77,8 @@ Simply uncomment the top line and remove/comment out the second. Change DBUSER a
 handle = efun::db_connect(database, "My DB", "My Password");
 // handle = efun::db_connect(database);
 ```
-Rather than go through all of the intricacies of which options can/should be set to what, here's an example that led to a successful installation. I admit that several values are overkill:
+Rather than go through all of the intricacies of which options can/should be set to what, here's an example that led to a successful installation. 
+I admit that several values are overkill, but it's what I use:
 ```
 # <install mysql>
 # <get the LDMud source code tarball and extract it>
@@ -85,7 +86,33 @@ Rather than go through all of the intricacies of which options can/should be set
 # <lib dir>/secure/simulated-efuns/database/installDatabase.pl
 # cd <location of extracted LDMud/src>
 # ./update-autoconf.sh
-# ./configure --prefix=<your mudlib directory> --enable-compat-mode --with-read-file-max-size=0 --with-portno=<your port> --enable-erq=xerq --with-catch-reserved-cost=10000 --with-malloc=smalloc --enable-dynamic-costs --enable-opcprof --enable-verbose-opcprof --with-evaluator-stack-size=32768 --with-max-user-trace=32768 --with-max-trace=32868 --with-compiler-stack-size=65536 --with-max-cost=268435456 --with-max-array-size=0 --with-max-mapping-size=0 --with-htable-size=65536 --with-itable-size=32768 --with-otable-size=65536 --with-hard-malloc-limit=0 --enable-use-mysql=<path to mysql>
+# ./configure --prefix=<your mudlib directory> \
+              --enable-compat-mode \
+              --with-read-file-max-size=0 \
+              --with-portno=<your port> \
+              --enable-erq=xerq \
+              --with-udp-port=<your port> \
+              --with-catch-reserved-cost=10000 \
+              --with-malloc=smalloc \
+              --enable-dynamic-costs \
+              --enable-opcprof \
+              --enable-verbose-opcprof \
+              --enable-yydebug \
+              --with-time-to-clean_up=864000 \
+              --with-time-to-swap=86400 \
+              --with-time-to-swap-variables=86400 \
+              --with-evaluator-stack-size=131072 \
+              --with-max-user-trace=131072 \
+              --with-max-trace=131172 \
+              --with-compiler-stack-size=65536 \
+              --with-max-cost=268435456 \
+              --with-max-array-size=0 \
+              --with-max-mapping-size=0 \
+              --with-htable-size=65536 \
+              --with-itable-size=32768 \
+              --with-otable-size=65536 \
+              --with-hard-malloc-limit=0 \
+              --enable-use-mysql=<path to mysql>
 # make
 ```
 When you run the driver for the first time, it will create your database schema and will give the first user created ownership access to the MUD. 
