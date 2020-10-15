@@ -118,24 +118,42 @@ private void MaiwynStoryPartTwo()
     addResponse("story part two", "Your escape...", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::look## at Maiwyn and "
         "##ResponseInfinitive::ask##, @S@'How did you escape your captors?'");
+
     addResponse("story part two", "About these outlaws...", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::ask##, @S@'What can you tell me about these "
         "outlaws? What are they doing here?'");
+
     addResponse("story part two", "This ruin...", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::note##, @S@'I know that this ruin was once a "
         "fastness of the Scions of Dhuras. What can you tell me of its more "
         "recent uses?'");
+
     addResponse("story part two", "The other captives...", 
         "@D@@C@##InitiatorName## ##ResponseInfinitive::inquire##, @S@'You "
         "mentioned other captives. What can you tell me of them?'");
+
     addResponse("story part two", "What did they do to you?", 
         "@D@@C@##InitiatorName## ##ResponseInfinitive::ask##, @S@'What "
         "have you done here these last eight years? What did they do to "
         "you?'");
+    addResponsePrerequisite("story part two", "What did they do to you?", ([
+        "spoken topic":([
+            "type": "spoken topics",
+            "value": ({ "the outlaws" })
+        ])
+    ]));
+
     addResponse("story part two", "Assistance @I@Quest@E@", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::state##, @S@'The crimes committed here cannot "
         "go unanswered. You know the lay of this place. Tell me where the "
         "enemy can be found and where the others prisoners are held.'");
+    addResponsePrerequisite("story part two", "Assistance @I@Quest@E@", ([
+        "spoken topic":([
+            "type": "spoken topics",
+            "value": ({ "my escape", "the outlaws", "this ruin",
+                "other captives" })
+        ])
+    ]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -158,8 +176,9 @@ private void MaiwynDiscussionEscape()
 /////////////////////////////////////////////////////////////////////////////
 private void MaiwynDiscussionOutlaws()
 {
-    addTopic("the outlaws", "@S@'They are brutal and efficient. They're "
-        "led by a man known as \"Lord Sullath\". In all the time I have "
+    addTopic("the outlaws", "@S@'They are brutal and efficient. The man in "
+        "charge here is called \"Vargath\". He is just a thuggish crony of "
+        "a man known as \"Lord Sullath\". In all the time I have "
         "been here, I've seen him but a couple times. He does not pay "
         "any attention to us prisoners, but he exudes a darkness about "
         "himself.' @D@Maiwyn shudders at this and then continues. @S@'"
@@ -253,11 +272,59 @@ private void MaiwynDiscussionOutlaws()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void MaiwynDiscussionThisRuin()
+{
+    addTopic("this ruin", "@I@TBD");
+    addResponseTopic("story part two", "This ruin...", "this ruin");
+    addResponse("this ruin", "@I@Continue@E@", "@I@Continue@E@");
+    addResponseTopic("this ruin", "@I@Continue@E@", "story part two");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void MaiwynDiscussionOtherCaptives()
+{
+    addTopic("other captives", "@S@'There are maybe a dozen of us right now.'"
+        " @D@Maiwyn bites her lip as she thinks about them. @S@'There are "
+        "nobles. There are peasants. It matters only who is unfortunate "
+        "enough to be waylaid. I do not know any of them particularly well "
+        "as I have found that most do not survive very long. Long ago, I "
+        "found that attachment is torture on its own and the more I learn "
+        "about others, the more I must forget when they outlive their "
+        "usefulness. It may sound cruel, but it is the only way I know to "
+        "survive.' @D@As if coming to a realization, she adds, @S@'We are "
+        "kept in the eastern part of this keep, through the eastern doors "
+        "in the throne room.'");
+    addResponseTopic("story part two", "The other captives...", "other captives");
+    addResponse("other captives", "@I@Continue@E@", "@I@Continue@E@");
+    addResponseTopic("other captives", "@I@Continue@E@", "story part two");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void MaiwynDiscussionWhatDidTheyDo()
+{
+    addTopic("what they did to me", "@D@Maiwyn's face is a study in "
+        "anger and exasperation. @S@'I thought I was pretty clear! What do "
+        "men such as these do with women? Must I really spell it out for "
+        "you?' @D@She sighs in an attempt to dispel her anger. When she "
+        "continues, her face smooths into one with practically no "
+        "expression. @S@'I apologize for my response... Suffice it to say "
+        "that they are quite talented in their ability to torture others. "
+        "When they are not doing things TO us, we are their slaves.'");
+    addResponseTopic("story part two", "What did they do to you?",
+        "what they did to me");
+    addResponse("what they did to me", "@I@Continue@E@", "@I@Continue@E@");
+    addResponseTopic("what they did to me", "@I@Continue@E@", "story part two");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     MaiwynIntroduced();
     MaiwynStoryPartOne();
     MaiwynStoryPartTwo();
     MaiwynDiscussionEscape();
-    MaiwynDiscussionOutlaws();
+    MaiwynDiscussionOutlaws(); 
+    MaiwynDiscussionThisRuin();
+    MaiwynDiscussionOtherCaptives();
+    MaiwynDiscussionWhatDidTheyDo();
 }
