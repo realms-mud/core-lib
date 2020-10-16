@@ -459,7 +459,7 @@ protected nomask void displayMessage(string message, object initiator,
 
         foreach(object person in characters)
         {
-            if (person && objectp(person))// && interactive(person))
+            if (person && objectp(person) && interactive(person))
             {
                 string colorConfiguration = person->colorConfiguration() ?
                     person->colorConfiguration() : "3-bit";
@@ -645,12 +645,18 @@ private nomask void displayResponses(string id, object actor, object owner)
                         disabled ? "disabled" : "action", "conversation",
                         colorConfiguration), 1);
 
+                string responseColor =
+                    (member(topics[id]["responses"][response], "topic") &&
+                        owner->userHasHadConversation(actor->RealName(),
+                            topics[id]["responses"][response]["topic"])) ?
+                    "already spoken" : "response";
+
                 tell_object(actor,
                     Configuration->decorate(sprintf("[%s]: ", choice),
                         disabled ? "disabled" : "action", "conversation", 
                         colorConfiguration) +
                     Configuration->decorate(format(message, 72),
-                        disabled ? "disabled" : "speech", "conversation", 
+                        disabled ? "disabled" : responseColor, "conversation",
                         colorConfiguration));
             }
         }

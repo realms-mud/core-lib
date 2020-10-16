@@ -1100,6 +1100,18 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;190m",
             "24-bit": "\x1b[0;38;2;200;200;0m"
         ]),
+        "response":([
+            "grayscale": "\x1b[0;38;5;255;1m",
+            "3-bit": "\x1b[0;33;1m",
+            "8-bit": "\x1b[0;38;5;190;1m",
+            "24-bit": "\x1b[0;38;2;200;200;0;1m"
+        ]),
+        "already spoken":([
+            "grayscale": "\x1b[0;38;5;245m",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;148m",
+            "24-bit": "\x1b[0;38;2;150;150;0m"
+        ]),
         "condition":([
             "grayscale": "\x1b[0;38;5;246m",
             "3-bit": "\x1b[0;34;1m",
