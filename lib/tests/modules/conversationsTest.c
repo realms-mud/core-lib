@@ -495,7 +495,7 @@ void DisablesResponseWhenStatePrerequisiteNotMet()
     ExpectEq("met the king", stateMachine->getCurrentState());
 
     command("talk", Actor);
-    ExpectEq("\x1b[0;31;1m[4]: \x1b[0m\x1b[0;33mState Prerequisite\n\x1b[0m", 
+    ExpectEq("\x1b[0;31;1m[4]: \x1b[0m\x1b[0;33;1mState Prerequisite\n\x1b[0m", 
         Actor->caughtMessages()[4]);
 
     Actor->resetCatchList();
@@ -547,4 +547,23 @@ void UniqueCharacterInstancesHaveDistinctConversations()
     destruct(actor2);
     destruct(brendan);
     destruct(brendan2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResponsesAreCorrectlyHighlighted()
+{
+    Actor = PrepActor(1);
+
+    Owner->testAddConversation("/lib/tests/support/conversations/testDefaultConversation.c");
+
+    command("talk", Actor);
+
+    ExpectSubStringMatch("0;33;1mFirst", implode(Actor->caughtMessages(), ""));
+
+    command("1", Actor);
+    command("1", Actor);
+    Actor->resetCatchList();
+
+    command("talk", Actor);
+    ExpectSubStringMatch("0;36mFirst", implode(Actor->caughtMessages(), ""));
 }
