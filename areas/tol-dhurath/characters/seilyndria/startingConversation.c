@@ -163,7 +163,7 @@ private void MaiwynDiscussionEscape()
         "face flashes a hint of pain that is quickly sealed behind a wall. "
         "She continues levelly, @S@'time to be with me. He threw me down "
         "and I was fortunate enough to find this rock. After I killed him, "
-        "I fled his alcove and met up with you as I was about to leave "
+        "I fled the scene and met up with you as I was about to leave "
         "this place. I know that it looks like I am running to save only "
         "myself, but please believe me - I was going to report this as "
         "soon as I got to safety. You being here opened up another "
@@ -274,10 +274,82 @@ private void MaiwynDiscussionOutlaws()
 /////////////////////////////////////////////////////////////////////////////
 private void MaiwynDiscussionThisRuin()
 {
-    addTopic("this ruin", "@I@TBD");
+    addTopic("this ruin", "@S@'There are four distinct sections of this keep "
+        "as far as the activities of the current occupants go: the court yard, "
+        "the temple, the throne room, and the old guild hall.' @D@She "
+        "wrinkles her nose slightly and adds, @S@'We're only ever allowed "
+        "in the throne room and the courtyard...'");
     addResponseTopic("story part two", "This ruin...", "this ruin");
+
+    addResponse("this ruin", "The court yard...", "@D@You ask, @S@'What can "
+        "you tell me about the courtyard?'");
+    addResponse("this ruin", "The temple...", "@D@You ask, @S@'What can "
+        "you tell me about the temple?'");
+    addResponse("this ruin", "The throne room...", "@D@You ask, @S@'What can "
+        "you tell me about the throne room?'");
+    addResponse("this ruin", "The guild hall...", "@D@You ask, @S@'What can "
+        "you tell me about the old guild hall?'");
     addResponse("this ruin", "@I@Continue@E@", "@I@Continue@E@");
     addResponseTopic("this ruin", "@I@Continue@E@", "story part two");
+
+    addTopic("the court yard", "@D@Maiwyn shrugs, @S@'You're in it. On rare "
+        "occasions, the outlaws train here. Us prisoners are allowed out "
+        "here twice a week as Vargath doesn't like his women \"pasty "
+        "as a tooth\" as he puts it.' @D@She points to the north-central "
+        "part of the yard and adds, @S@'That alcove has a statue in it. "
+        "I don't really know how to describe it other than to say that "
+        "it's of a woman who is holding out her hand. It looks like it "
+        "might have once held something, but that is no longer the case.' "
+        "@D@She points a bit to the east of it and adds, @S@'The corpse "
+        "of the one who tried to rape me is in that corner alcove over "
+        "there.'");
+    addResponseTopic("this ruin", "The court yard...", "the court yard");
+    addResponse("the court yard", "@I@Continue@E@", "@I@Continue@E@");
+    addResponseTopic("the court yard", "@I@Continue@E@", "this ruin");
+
+    addTopic("the temple", "@S@'We're not allowed in there...' @D@"
+        "Maiwyn gives a playful wink and adds, @S@'But I have heard "
+        "the outlaws speak at length about it. There is what sounds "
+        "like a sealed door in there - a door that Lord Sullath seems "
+        "to really want access to what is behind it. They're trying "
+        "and failing to open it.' @D@There is an amused glint in her "
+        "eyes at this. @S@'What I do know is that they have found "
+        "several much revered but long lost relics of the Scions of "
+        "Dhuras when they plundered and destroyed the contents of "
+        "the catacombs.'");
+    addTopicInterjection("the temple",
+        "/areas/tol-dhurath/characters/halgaladh/halgaladh.c",
+        "scions of dhuras", 1);
+    addResponseTopic("this ruin", "The temple...", "the temple");
+    addResponse("the temple", "@I@Continue@E@", "@I@Continue@E@");
+    addResponseTopic("the temple", "@I@Continue@E@", "this ruin");
+
+    addTopic("the throne room", "@S@'The throne room and the residences "
+        "to the east of it are where the outlaws live.' @D@Maiwyn "
+        "grimaces as she adds, @S@'It is also where all of the "
+        "prisoners are kept. Right now, there were maybe a dozen of "
+        "those vermin in there, all drinking and debauching as we "
+        "speak. The rest are likely in the rooms behind or in the "
+        "temple section.'");
+    addResponseTopic("this ruin", "The throne room...", "the throne room");
+    addResponse("the throne room", "@I@Continue@E@", "@I@Continue@E@");
+    addResponseTopic("the throne room", "@I@Continue@E@", "this ruin");
+
+    addTopic("the guild hall", "@S@'I wish I could tell you more about "
+        "that place.' @D@She furrows her brow as she considers what "
+        "to say. @S@'It's entrance is through those doors to the "
+        "southwest of here. I have heard it described as a place with a "
+        "huge, many-pillared library in it. There are a couple rooms "
+        "that appear to have been used for training and then there is "
+        "a curious room with a... I don't know, they described it as "
+        "table with glowing runes on it. Next to it is a series of "
+        "bricks that can be pushed into the table. When that happens, "
+        "the glowing runes change. I'm sorry, I wish I could tell you "
+        "more, but I've never seen it and I've only heard through "
+        "what little I could eavesdrop.'");
+    addResponseTopic("this ruin", "The guild hall...", "the guild hall");
+    addResponse("the guild hall", "@I@Continue@E@", "@I@Continue@E@");
+    addResponseTopic("the guild hall", "@I@Continue@E@", "this ruin");
 }
 
 /////////////////////////////////////////////////////////////////////////////

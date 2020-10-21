@@ -7,7 +7,8 @@ virtual inherit "/lib/modules/conversations/baseConversation.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addTopic("seilyndria", "@S@'Seilyndria? This cannot be - she was cast "
-        "into the void a long time ago. What can this mean?' @D@says "
-        "Halgaladh, brow furrowed in thought, fear apparent on his face.");
+    addTopic("scions of dhuras", "@S@'That seems like a reasonable secondary "
+        "goal.' @D@notes Halgaladh. @S@'Returning them to the Scions of Dhuras "
+        "would bring both us and the king quite a bit of goodwill from that "
+        "order.'");
 }

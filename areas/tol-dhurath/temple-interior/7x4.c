@@ -19,4 +19,5 @@ public void Setup()
 
     addObject("/areas/tol-dhurath/characters/seilyndria/seilyndria.c");
     addObject("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+    addObject("/areas/tol-dhurath/characters/halgaladh/halgaladh.c");
 }
