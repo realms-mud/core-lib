@@ -4,6 +4,13 @@
 //*****************************************************************************
 inherit "/lib/modules/quests/questItem.c";
 
+
+/////////////////////////////////////////////////////////////////////////////
+private void registerEventHandlers()
+{
+    registerEventHandler("setupHelpingHand");
+}
+
 /////////////////////////////////////////////////////////////////////////////
 void reset(int arg)
 {
@@ -14,7 +21,6 @@ void reset(int arg)
         setType("primary");
         setDescription("Basil, the commander of the Aegis Guard, has tasked "
             "you to look into rumors of activity in the ruins of Tol Dhurath.");
-
 
         addState("start quest", "I've been asked to look into rumors of "
             "illicit activities coming from the ruins of Tol Dhurath.");
@@ -32,5 +38,13 @@ void reset(int arg)
         addEntryAction("a helping hand", "setupHelpingHand");
 
         setInitialState("start quest");
+
+        registerEventHandlers();
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void setupHelpingHand(object player)
+{
+    notify("setupHelpingHand", player);
 }
