@@ -7,6 +7,9 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    cloneEnvironment();
+    setStateMachine("/areas/tol-dhurath/state-machine/tol-dhurath-quest.c");
+
     setTerrain("/lib/environment/terrain/ruin-exterior.c");
     addDecorator("ruined interior courtyard with path");
 
