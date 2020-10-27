@@ -10,7 +10,7 @@ private int wasManipulated = 0;
 private mapping whenLocked = ([]);
 private int pickLockLevel = 5;
 
-private object messageParser = load_object("/lib/core/messageParser.c");
+protected object messageParser = load_object("/lib/core/messageParser.c");
 
 /////////////////////////////////////////////////////////////////////////////
 public string Type()
@@ -99,7 +99,7 @@ public nomask varargs void setWhenLockActive(string state, string period,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs int isLocked()
+public int isLocked()
 {
     int ret = isCurrentlyLocked;
 
@@ -224,7 +224,7 @@ public nomask void pickLock(object initiator)
         string message = sprintf("##InitiatorName## ##Infinitive::try## to "
             "pick the lock of an already-unlocked %s.", elementName);
 
-        if (isLocked(State))
+        if (isLocked())
         {
             if (initiator->getSkill("open lock") < pickLockLevel)
             {

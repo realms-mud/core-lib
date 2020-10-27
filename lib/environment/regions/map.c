@@ -73,6 +73,15 @@ private nomask int validateCustomIcon(string **icon)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int userInLocation(object user, object location)
+{
+    object playerEnvironment = objectp(user) ? environment(user) : 0;
+    return objectp(playerEnvironment) && objectp(location) && 
+        (playerEnvironment->getRegion() == location->getRegion()) &&
+        (playerEnvironment->getCoordinates() == location->getCoordinates());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask varargs string displayMapSection(object user, int startX, 
     int startY, int endX, int endY, string state, int addDivider)
 {
@@ -120,7 +129,8 @@ private nomask varargs string displayMapSection(object user, int startX,
                 }
                 else
                 {
-                    int userHere = objectp(present(user, location["environment"]));
+                    int userHere = objectp(present(user, location["environment"])) ||
+                        userInLocation(user, location["environment"]);
 
                     string decoratorType = objectp(location["environment"]) ?
                         location["environment"]->decoratorType() : location["room type"];
