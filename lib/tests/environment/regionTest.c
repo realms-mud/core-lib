@@ -191,7 +191,7 @@ void MapsChangeWithStateTransitions()
 
     ExpectEq("\n"
         " |                   \n"
-        " #  o  o  o  o  #    \n"
+        " P  o  o  o  o  #    \n"
         "                     \n"
         "                     \n"
         " o  o  o  o  o  #    \n"
@@ -218,7 +218,7 @@ void MapsChangeWithStateTransitions()
 
     ExpectEq("\n"
         " |                   \n"
-        " #--o  o  o  o--#-   \n"
+        " P--o  o  o  o--#-   \n"
         "    |        |       \n"
         "    |        |       \n"
         " o  o--o--o  o  #    \n"

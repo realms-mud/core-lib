@@ -2109,7 +2109,7 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
 
     command("s", player);
     ExpectEq(" |       ' This is a very large and cavernous chamber - easily two hundred\n"
-        " #  o  o ' yards wide by two hundred yards long the ceiling is hard to\n"
+        " P  o  o ' yards wide by two hundred yards long the ceiling is hard to\n"
         "         ' discern from this distance, but it appears to be solid amethyst.\n"
         "         ' The floor is fashioned out of what appears to be solid amethyst. A\n"
         " o  o  o ' luminous, roiling purple liquid fills the room, occasion ripples\n"
