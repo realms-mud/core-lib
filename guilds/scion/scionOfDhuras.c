@@ -13,7 +13,7 @@ public void SetupGuild()
     addRank("acolyte", (["name":"acolyte", "title" : "the title of titliness", "pretitle" : "Acolyte", "previous rank" : "neophyte", "next rank" : "master", "delay for next promotion" : 1]));
     addRank("master", (["name":"master", "title" : "the title of titliness", "pretitle" : "Master"]));
     setDefaultRank("neophyte");
-    prohibitedGuildCombinations(({ "fighter", "monk" }));
+    prohibitedGuildCombinations(({ "Aegis Guard", "fighter", "monk" }));
 
     addCriteria("hit points", ([
         "type": "modifier",

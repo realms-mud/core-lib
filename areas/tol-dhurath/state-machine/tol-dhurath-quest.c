@@ -4,7 +4,6 @@
 //*****************************************************************************
 inherit "/lib/modules/quests/questItem.c";
 
-
 /////////////////////////////////////////////////////////////////////////////
 private void registerEventHandlers()
 {
@@ -41,7 +40,7 @@ void reset(int arg)
 
         registerEventHandlers();
     }
-}
+}                  
 
 /////////////////////////////////////////////////////////////////////////////
 void setupHelpingHand(object player)
