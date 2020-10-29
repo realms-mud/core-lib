@@ -1292,10 +1292,11 @@ public nomask void updateMaterial(object item)
         object blueprint = getBlueprintFor(item);
         mapping materialList = item->query("crafting materials");
 
-        string materialClass =
-            materials[blueprint->query("default material")]["class"];
+        string materialClass = blueprint ?
+            materials[blueprint->query("default material")]["class"] : 
+            0;
 
-        if (mappingp(materialList) &&
+        if (materialClass && mappingp(materialList) &&
             !item->query("do not update material"))
         {
             item->set("do not update material", 1);
