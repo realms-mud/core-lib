@@ -189,7 +189,7 @@ private nomask varargs int canApplyLimitedTrait(string trait, string bonus)
     object traitObj = traitDictionary()->traitObject(trait);
 
     return isTraitOf(trait) && traitDictionary()->traitEffectIsLimited(trait) ?
-        (traitObj->canApplySkill(bonus, this_object(),
+        (traitObj->canApplySpecification(bonus, this_object(),
             function_exists("getTargetToAttack", this_object()) ?
             this_object()->getTargetToAttack() : 0)) : 1;
 }

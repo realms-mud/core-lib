@@ -145,7 +145,8 @@ public nomask mapping getPrerequisites()
 //
 // Returns: true if the prerequisite has been added
 //-----------------------------------------------------------------------------  
-protected nomask varargs int addPrerequisite(string key, mapping prerequisite, string grouping)
+protected nomask varargs int addPrerequisite(string key, mapping prerequisite, 
+    string grouping)
 {
     int ret = 0;
 

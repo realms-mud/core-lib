@@ -268,60 +268,60 @@ void EffectIsLimitedReturnsCorrectValue()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueIfNoLimitorsArePresent()
+void CanApplySpecificationReturnsTrueIfNoLimitorsArePresent()
 {
-    ExpectTrue(Specification->canApplySkill("name", Attacker, Attacker));
+    ExpectTrue(Specification->canApplySpecification("name", Attacker, Attacker));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForOpponentRace()
+void CanApplySpecificationReturnsTrueWithLimitorForOpponentRace()
 {
     mapping limitor = (["opponent race":"elf"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     Attacker->Race("elf");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForOpponentGuild()
+void CanApplySpecificationReturnsTrueWithLimitorForOpponentGuild()
 {
     mapping limitor = (["opponent guild":"test"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     Attacker->ToggleMockGuilds();
     Attacker->SetGuild("test");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForOpponentFaction()
+void CanApplySpecificationReturnsTrueWithLimitorForOpponentFaction()
 {
     mapping limitor = (["opponent faction":"/lib/tests/support/factions/goodGuys.c"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     Attacker->ToggleMockFaction();
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForEnvironment()
+void CanApplySpecificationReturnsTrueWithLimitorForEnvironment()
 {
     object room = clone_object("/lib/environment/environment");
 
     mapping limitor = (["environment":"unknown"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
     move_object(Attacker, room);
 
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForEnvironmentState()
+void CanApplySpecificationReturnsTrueWithLimitorForEnvironmentState()
 {
     object room = clone_object("/lib/environment/environment");
 
@@ -330,53 +330,53 @@ void CanApplySkillReturnsTrueWithLimitorForEnvironmentState()
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     move_object(Attacker, room);
 
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     room->currentState("blargish");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForIntoxication()
+void CanApplySpecificationReturnsTrueWithLimitorForIntoxication()
 {
     mapping limitor = (["intoxicated":1]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     Attacker->ToggleMockBiological();
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForDrugged()
+void CanApplySpecificationReturnsTrueWithLimitorForDrugged()
 {
     mapping limitor = (["drugged":1]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     Attacker->ToggleMockBiological();
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForNearDeath()
+void CanApplySpecificationReturnsTrueWithLimitorForNearDeath()
 {
     mapping limitor = (["near death":50]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
 
     Attacker->hitPoints(20);
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
     Attacker->hitPoints(Attacker->maxHitPoints());
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForWeapon()
+void CanApplySpecificationReturnsTrueWithLimitorForWeapon()
 {
     mapping limitor = (["equipment":"long sword"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
@@ -384,17 +384,17 @@ void CanApplySkillReturnsTrueWithLimitorForWeapon()
     weapon->set("equipment locations", OnehandedWeapon);
     move_object(weapon, Attacker);
 
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForWeaponInList()
+void CanApplySpecificationReturnsTrueWithLimitorForWeaponInList()
 {
     mapping limitor = (["equipment":({ "long sword", "short sword" })]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
@@ -402,23 +402,23 @@ void CanApplySkillReturnsTrueWithLimitorForWeaponInList()
     weapon->set("equipment locations", OnehandedWeapon);
     move_object(weapon, Attacker);
 
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
     weapon->set("weapon type", "short sword");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
     weapon->set("weapon type", "axe");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsFalseWithLimitorForWeaponNotMet()
+void CanApplySpecificationReturnsFalseWithLimitorForWeaponNotMet()
 {
     mapping limitor = (["equipment":"long sword"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
@@ -427,15 +427,15 @@ void CanApplySkillReturnsFalseWithLimitorForWeaponNotMet()
     move_object(weapon, Attacker);
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsFalseWithMultipleLimitorForWeaponNotMet()
+void CanApplySpecificationReturnsFalseWithMultipleLimitorForWeaponNotMet()
 {
     mapping limitor = (["equipment":({ "long sword", "short sword" })]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     object weapon = clone_object("/lib/items/weapon");
     weapon->set("name", "blah");
@@ -444,15 +444,15 @@ void CanApplySkillReturnsFalseWithMultipleLimitorForWeaponNotMet()
     move_object(weapon, Attacker);
 
     ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForArmor()
+void CanApplySpecificationReturnsTrueWithLimitorForArmor()
 {
     mapping limitor = (["equipment":"chainmail"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "blah");
@@ -460,17 +460,17 @@ void CanApplySkillReturnsTrueWithLimitorForArmor()
     armor->set("equipment locations", Armor);
     move_object(armor, Attacker);
 
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
     ExpectTrue(armor->equip("blah"), "armor equip called");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForEquipment()
+void CanApplySpecificationReturnsTrueWithLimitorForEquipment()
 {
     mapping limitor = (["equipment":"gloves"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "no values set");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "blah");
@@ -478,50 +478,50 @@ void CanApplySkillReturnsTrueWithLimitorForEquipment()
     armor->set("equipment locations", Gloves);
     move_object(armor, Attacker);
 
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
     ExpectTrue(armor->equip("blah"), "glove equip called");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForStaminaDrained()
+void CanApplySpecificationReturnsTrueWithLimitorForStaminaDrained()
 {
     mapping limitor = (["stamina drained":50]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
 
     Attacker->staminaPoints(20);
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
     Attacker->staminaPoints(Attacker->maxStaminaPoints());
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForSpellPointsDrained()
+void CanApplySpecificationReturnsTrueWithLimitorForSpellPointsDrained()
 {
     mapping limitor = (["spell points drained":50]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
 
     Attacker->spellPoints(20);
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
     Attacker->spellPoints(Attacker->maxSpellPoints());
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForSkill()
+void CanApplySpecificationReturnsTrueWithLimitorForSkill()
 {
     mapping limitor = (["skill":(["dodge":3, "parry" : 5])]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
 
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 
     Attacker->addSkillPoints(20);
     Attacker->advanceSkill("dodge", 5);
     Attacker->advanceSkill("parry", 5);
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -649,18 +649,18 @@ void LimitorsFallBackToSkillWhenInCorrectSubType()
         "set the limitor");
 
     object chainmail = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
-    ExpectFalse(Specification->canApplySkill("x", Attacker, chainmail));
+    ExpectFalse(Specification->canApplySpecification("x", Attacker, chainmail));
 
     limitor = ([ "crafting type": "chainmail" ]);
     ExpectTrue(Specification->addSpecification("limited by", limitor),
         "set the limitor");
-    ExpectTrue(Specification->canApplySkill("x", Attacker, chainmail));
+    ExpectTrue(Specification->canApplySpecification("x", Attacker, chainmail));
 
     destruct(chainmail);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForTimeOfDay()
+void CanApplySpecificationReturnsTrueWithLimitorForTimeOfDay()
 {
     mapping limitor = (["time of day": "dusk"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
@@ -669,14 +669,14 @@ void CanApplySkillReturnsTrueWithLimitorForTimeOfDay()
         load_object("/lib/dictionaries/environmentDictionary.c");
 
     environmentDictionary->timeOfDay("dusk");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
     environmentDictionary->timeOfDay("noon");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForSeason()
+void CanApplySpecificationReturnsTrueWithLimitorForSeason()
 {
     mapping limitor = (["season": "autumn"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
@@ -685,14 +685,14 @@ void CanApplySkillReturnsTrueWithLimitorForSeason()
         load_object("/lib/dictionaries/environmentDictionary.c");
 
     environmentDictionary->season("autumn");
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
     environmentDictionary->season("spring");
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanApplySkillReturnsTrueWithLimitorForMoonPhase()
+void CanApplySpecificationReturnsTrueWithLimitorForMoonPhase()
 {
     mapping limitor = (["moon phase": "waning gibbous"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
@@ -701,10 +701,10 @@ void CanApplySkillReturnsTrueWithLimitorForMoonPhase()
         load_object("/lib/dictionaries/environmentDictionary.c");
 
     environmentDictionary->setDay(17);
-    ExpectTrue(Specification->canApplySkill("blah", Attacker, Attacker), "limitors met");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
     environmentDictionary->setDay(24);
-    ExpectFalse(Specification->canApplySkill("blah", Attacker, Attacker), "limitors not met");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
 /////////////////////////////////////////////////////////////////////////////

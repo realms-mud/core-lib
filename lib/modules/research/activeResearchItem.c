@@ -29,7 +29,7 @@ protected int addSpecification(string type, mixed value)
         {
             if(intp(value) && (value > 0))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -47,7 +47,7 @@ protected int addSpecification(string type, mixed value)
         {
             if (value && stringp(value))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -122,9 +122,9 @@ private nomask int applyToScope(string command, object owner,
     string researchName)
 {
     int ret = 0;
-    if(member(researchData, "scope"))
+    if(member(specificationData, "scope"))
     {
-        switch(researchData["scope"])
+        switch(specificationData["scope"])
         {
             case "self":
             {
@@ -176,26 +176,26 @@ public nomask int execute(string command, object initiator)
         if(initiator->blockedByCooldown(researchName))
         {
             string coolDownMessage = 
-                (member(researchData, "use ability cooldown message") && 
-                stringp(researchData["use ability cooldown message"])) ?
-                researchData["use ability cooldown message"] :
+                (member(specificationData, "use ability cooldown message") && 
+                stringp(specificationData["use ability cooldown message"])) ?
+                specificationData["use ability cooldown message"] :
                 sprintf("You must wait longer before you use '%s' again.\n",
-                    member(researchData, "name") ? researchData["name"] :
+                    member(specificationData, "name") ? specificationData["name"] :
                     "that skill");
                     
             displayMessageToSelf(coolDownMessage, initiator);
             ret = 0;
         }
-        if(ret && ((member(researchData, "hit point cost") &&
-           (researchData["hit point cost"] > initiator->hitPoints())) ||
-           (member(researchData, "spell point cost") &&
-           (researchData["spell point cost"] > initiator->spellPoints())) ||
-           (member(researchData, "stamina point cost") &&
-           (researchData["stamina point cost"] > initiator->staminaPoints()))))
+        if(ret && ((member(specificationData, "hit point cost") &&
+           (specificationData["hit point cost"] > initiator->hitPoints())) ||
+           (member(specificationData, "spell point cost") &&
+           (specificationData["spell point cost"] > initiator->spellPoints())) ||
+           (member(specificationData, "stamina point cost") &&
+           (specificationData["stamina point cost"] > initiator->staminaPoints()))))
         {
             string costsTooMuch = sprintf("You do not have the required "
-                "energy reserve to use '%s'.\n", member(researchData, "name") ?
-                researchData["name"] : "that skill");
+                "energy reserve to use '%s'.\n", member(specificationData, "name") ?
+                specificationData["name"] : "that skill");
                 
             displayMessageToSelf(costsTooMuch, initiator);
             ret = 0;
@@ -206,17 +206,17 @@ public nomask int execute(string command, object initiator)
             ret = applyToScope(command, initiator, researchName);
             if(ret)
             {
-                if(member(researchData, "hit point cost"))
+                if(member(specificationData, "hit point cost"))
                 {
-                    initiator->hitPoints(-researchData["hit point cost"]);
+                    initiator->hitPoints(-specificationData["hit point cost"]);
                 }
-                if(member(researchData, "spell point cost"))
+                if(member(specificationData, "spell point cost"))
                 {
-                    initiator->spellPoints(-researchData["spell point cost"]);
+                    initiator->spellPoints(-specificationData["spell point cost"]);
                 }
-                if(member(researchData, "stamina point cost"))
+                if(member(specificationData, "stamina point cost"))
                 {
-                    initiator->staminaPoints(-researchData["stamina point cost"]);
+                    initiator->staminaPoints(-specificationData["stamina point cost"]);
                 }
             }
             initiator->spellAction(1);

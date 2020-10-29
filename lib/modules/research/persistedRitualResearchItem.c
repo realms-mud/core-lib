@@ -21,7 +21,7 @@ protected int addSpecification(string type, mixed value)
         if(bonusDictionary &&
             bonusDictionary->isValidBonusModifier(bonusToCheck, value))
         {
-            researchData[type] = value;
+            specificationData[type] = value;
             ret = 1;
         }
         else if(bonusDictionary)
@@ -37,7 +37,7 @@ protected int addSpecification(string type, mixed value)
         if (stringp(value) && traitsDictionary &&
             traitsDictionary->isValidPersistedTrait(value))
         {
-            researchData[type] = value;
+            specificationData[type] = value;
             ret = 1;
         }
         else
@@ -51,7 +51,7 @@ protected int addSpecification(string type, mixed value)
     {
         if(intp(value) && (value > 0))
         {
-            researchData[type] = value;
+            specificationData[type] = value;
             ret = 1;
         }
         else
@@ -71,7 +71,7 @@ protected int addSpecification(string type, mixed value)
             }
             if(validModifier)
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -115,32 +115,32 @@ protected nomask int executeOnSelf(object owner, string researchName)
 
     // checks for this item being researched are already done in execute()
     // as are checks to verify that owner is a living object.
-    if (member(researchData, "trait") || member(researchData, "negative trait"))
+    if (member(specificationData, "trait") || member(specificationData, "negative trait"))
     {
         if (owner->has("traits"))
         {
-            ret = owner->addTrait(researchData["trait"]);
+            ret = owner->addTrait(specificationData["trait"]);
         }
     }
     else
     {
-        object modifier = getModifierObject(owner, researchData);
-        if (modifier && member(researchData, "duration"))
+        object modifier = getModifierObject(owner, specificationData);
+        if (modifier && member(specificationData, "duration"))
         {
             ret = modifier->registerModifierWithTargetList(({ owner }));
 
             if (ret)
             {
-                call_out("deactivateModifierObject", researchData["duration"],
+                call_out("deactivateModifierObject", specificationData["duration"],
                     modifier);
             }
         }
     }
 
-    if (ret && member(researchData, "use ability message") &&
-        stringp(researchData["use ability message"]))
+    if (ret && member(specificationData, "use ability message") &&
+        stringp(specificationData["use ability message"]))
     {
-        displayMessage(researchData["use ability message"],
+        displayMessage(specificationData["use ability message"],
             owner, owner);
     }
     return ret;
@@ -160,21 +160,21 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
 {
     int ret = 0;
     object target = getTarget(owner, unparsedCommand);
-    if (target && (member(researchData, "trait") || member(researchData, "negative trait")))
+    if (target && (member(specificationData, "trait") || member(specificationData, "negative trait")))
     {
-        if (target->has("traits") && member(researchData, "trait"))
+        if (target->has("traits") && member(specificationData, "trait"))
         {
-            ret = target->addTrait(researchData["trait"]);
+            ret = target->addTrait(specificationData["trait"]);
         }
-        else if (target->has("traits") && member(researchData, "negative trait") &&
+        else if (target->has("traits") && member(specificationData, "negative trait") &&
             checkKillList(owner, target))
         {
-            ret = target->addTrait(researchData["negative trait"]);
+            ret = target->addTrait(specificationData["negative trait"]);
         }
     }
-    if (target && member(researchData, "duration"))
+    if (target && member(specificationData, "duration"))
     {
-        object modifier = getModifierObject(owner, researchData);
+        object modifier = getModifierObject(owner, specificationData);
 
         if (modifier && (!modifier->query("check kill list") ||
             (modifier->query("check kill list") && checkKillList(owner, target))))
@@ -183,13 +183,13 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
 
             if (ret)
             {
-                call_out("deactivateModifierObject", researchData["duration"],
+                call_out("deactivateModifierObject", specificationData["duration"],
                     modifier);
 
-                if (member(researchData, "use ability message") &&
-                    stringp(researchData["use ability message"]))
+                if (member(specificationData, "use ability message") &&
+                    stringp(specificationData["use ability message"]))
                 {
-                    displayMessage(researchData["use ability message"],
+                    displayMessage(specificationData["use ability message"],
                         owner, target);
                 }
             }
@@ -203,22 +203,22 @@ private nomask int applyTraitToArea(object owner, string researchName)
 {
     int ret = 0;
 
-    if (member(researchData, "trait") || member(researchData, "negative trait"))
+    if (member(specificationData, "trait") || member(specificationData, "negative trait"))
     {
         object *environmentObjects = all_inventory(environment(owner));
         foreach(object target in environmentObjects)
         {
-            if (target->has("traits") && member(researchData, "trait") &&
+            if (target->has("traits") && member(specificationData, "trait") &&
                 !target->isRealizationOf("monster"))
             {
                 ret = 1;
-                target->addTrait(researchData["trait"]);
+                target->addTrait(specificationData["trait"]);
             }
-            else if (member(researchData, "negative trait") &&
+            else if (member(specificationData, "negative trait") &&
                 checkKillList(owner, target) && (target != owner))
             {
                 ret = 1;
-                target->addTrait(researchData["negative trait"]);
+                target->addTrait(specificationData["negative trait"]);
             }
         }
     }
@@ -229,8 +229,8 @@ private nomask int applyTraitToArea(object owner, string researchName)
 private nomask int applyModifierToArea(object owner, string researchName)
 {
     int ret = 0;
-    object modifier = getModifierObject(owner, researchData);
-    if (modifier && environment(owner) && member(researchData, "duration"))
+    object modifier = getModifierObject(owner, specificationData);
+    if (modifier && environment(owner) && member(specificationData, "duration"))
     {
         object *environmentObjects = all_inventory(environment(owner));
         object *targetObjects = ({});
@@ -249,7 +249,7 @@ private nomask int applyModifierToArea(object owner, string researchName)
 
         if (ret)
         {
-            call_out("deactivateModifierObject", researchData["duration"],
+            call_out("deactivateModifierObject", specificationData["duration"],
                 modifier);
         }
     }
@@ -261,7 +261,7 @@ protected nomask int executeInArea(object owner, string researchName)
 {
     int ret = 0;
 
-    if (member(researchData, "trait") || member(researchData, "negative trait"))
+    if (member(specificationData, "trait") || member(specificationData, "negative trait"))
     {
         ret = applyTraitToArea(owner, researchName);
     }
@@ -272,10 +272,10 @@ protected nomask int executeInArea(object owner, string researchName)
 
     if (ret)
     {
-        if (member(researchData, "use ability message")
-            && stringp(researchData["use ability message"]))
+        if (member(specificationData, "use ability message")
+            && stringp(specificationData["use ability message"]))
         {
-            displayMessage(researchData["use ability message"],
+            displayMessage(specificationData["use ability message"],
                 owner, owner);
         }
     }

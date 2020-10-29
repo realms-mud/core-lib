@@ -7,7 +7,7 @@ virtual inherit "/lib/modules/secure/dataServices/basicPlayerDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/materialAttributesDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/guildDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/questDataService.c";
-virtual inherit "/lib/modules/secure/dataServices/researchDataService.c";
+virtual inherit "/lib/modules/secure/dataServices/specificationDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/skillsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/traitsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/inventoryDataService.c";

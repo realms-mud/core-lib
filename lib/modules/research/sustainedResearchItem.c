@@ -30,7 +30,7 @@ protected nomask int addSpecification(string type, mixed value)
         if(bonusDictionary &&
             bonusDictionary->isValidBonusModifier(bonusToCheck, value))
         {
-            researchData[type] = value;
+            specificationData[type] = value;
             ret = 1;
         }
         else if(bonusDictionary)
@@ -51,7 +51,7 @@ protected nomask int addSpecification(string type, mixed value)
             {
                 if(intp(value) && (value > 0))
                 {
-                    researchData[type] = value;
+                    specificationData[type] = value;
                     ret = 1;
                 }
                 else
@@ -70,7 +70,7 @@ protected nomask int addSpecification(string type, mixed value)
             {
                 if (value && stringp(value))
                 {
-                    researchData[type] = value;
+                    specificationData[type] = value;
                     ret = 1;
                 }
                 else
@@ -106,7 +106,7 @@ protected nomask int addSpecification(string type, mixed value)
                     }
                     if (validModifier)
                     {
-                        researchData[type] = value;
+                        specificationData[type] = value;
                         ret = 1;
                     }
                     else
@@ -132,7 +132,7 @@ protected nomask int addSpecification(string type, mixed value)
                 if (stringp(value) && traitsDictionary &&
                     traitsDictionary->isValidSustainedTrait(value))
                 {
-                    researchData[type] = value;
+                    specificationData[type] = value;
                     ret = 1;
                 }
                 else
@@ -161,24 +161,24 @@ private nomask int executeOnSelf(object owner, string researchName)
     if(owner->sustainedResearchIsActive(researchName))
     {
         ret = owner->deactivateSustainedResearch(researchName);
-        if(ret && member(researchData, "use ability deactivate message") &&
-           stringp(researchData["use ability deactivate message"]))
+        if(ret && member(specificationData, "use ability deactivate message") &&
+           stringp(specificationData["use ability deactivate message"]))
         {
-            displayMessage(researchData["use ability deactivate message"],
+            displayMessage(specificationData["use ability deactivate message"],
                 owner, owner);
         }
     }
     else
     {
-        if (member(researchData, "trait") || member(researchData, "negative trait"))
+        if (member(specificationData, "trait") || member(specificationData, "negative trait"))
         {
             ret = owner->has("traits") &&
                 owner->activateSustainedResearch(this_object()) &&
-                owner->addTrait(researchData["trait"]);
+                owner->addTrait(specificationData["trait"]);
         }
         else
         {
-            object modifier = getModifierObject(owner, researchData);
+            object modifier = getModifierObject(owner, specificationData);
             if (modifier)
             {
                 ret = owner->activateSustainedResearch(this_object(), modifier) &&
@@ -186,10 +186,10 @@ private nomask int executeOnSelf(object owner, string researchName)
             }
         }
 
-        if (ret && member(researchData, "use ability activate message") &&
-            stringp(researchData["use ability activate message"]))
+        if (ret && member(specificationData, "use ability activate message") &&
+            stringp(specificationData["use ability activate message"]))
         {
-            displayMessage(researchData["use ability activate message"],
+            displayMessage(specificationData["use ability activate message"],
                 owner, owner);
         }
     }
@@ -218,34 +218,34 @@ private nomask int executeOnTarget(string unparsedCommand, object owner,
             // Deactivate will clean-up - unregister/destruct all sustained
             // objects relating to this ability
             ret = owner->deactivateSustainedResearch(researchName);
-            if(ret && member(researchData, "use ability deactivate message") &&
-               stringp(researchData["use ability deactivate message"]))
+            if(ret && member(specificationData, "use ability deactivate message") &&
+               stringp(specificationData["use ability deactivate message"]))
             {
-                displayMessage(researchData["use ability deactivate message"],
+                displayMessage(specificationData["use ability deactivate message"],
                     owner, target);
             }
         }
         else
         {
-            if ((member(researchData, "trait") || member(researchData, "negative trait")))
+            if ((member(specificationData, "trait") || member(specificationData, "negative trait")))
             {
-                if (target->has("traits") && member(researchData, "trait"))
+                if (target->has("traits") && member(specificationData, "trait"))
                 {
                     ret = target->has("traits") &&
                         owner->activateSustainedResearch(this_object()) &&
-                        target->addTrait(researchData["trait"]);
+                        target->addTrait(specificationData["trait"]);
                 }
-                else if (target->has("traits") && member(researchData, "negative trait") &&
+                else if (target->has("traits") && member(specificationData, "negative trait") &&
                     checkKillList(owner, target))
                 {
                     ret = target->has("traits") &&
                         owner->activateSustainedResearch(this_object()) && 
-                        target->addTrait(researchData["negative trait"]);
+                        target->addTrait(specificationData["negative trait"]);
                 }
             }
             else
             {
-                object modifier = getModifierObject(owner, researchData);
+                object modifier = getModifierObject(owner, specificationData);
                 if(modifier && (!modifier->query("check kill list") || (modifier->query("check kill list") &&
                     checkKillList(owner, target))))
                 {
@@ -253,10 +253,10 @@ private nomask int executeOnTarget(string unparsedCommand, object owner,
                           modifier->registerModifierWithTargetList(({ target }));
                 }
             }
-            if (ret && member(researchData, "use ability activate message")
-                && stringp(researchData["use ability activate message"]))
+            if (ret && member(specificationData, "use ability activate message")
+                && stringp(specificationData["use ability activate message"]))
             {
-                displayMessage(researchData["use ability activate message"],
+                displayMessage(specificationData["use ability activate message"],
                     owner, target);
             }
         }
@@ -269,22 +269,22 @@ private nomask int applyTraitToArea(object owner, string researchName)
 {
     int ret = 0;
 
-    if (member(researchData, "trait") || member(researchData, "negative trait"))
+    if (member(specificationData, "trait") || member(specificationData, "negative trait"))
     {
         object *environmentObjects = all_inventory(environment(owner));
         foreach(object target in environmentObjects)
         {
-            if (target->has("traits") && member(researchData, "trait") &&
+            if (target->has("traits") && member(specificationData, "trait") &&
                 !target->isRealizationOf("monster"))
             {
                 ret = 1;
-                target->addTrait(researchData["trait"]);
+                target->addTrait(specificationData["trait"]);
             }
-            else if (member(researchData, "negative trait") &&
+            else if (member(specificationData, "negative trait") &&
                 checkKillList(owner, target) && (target != owner))
             {
                 ret = 1;
-                target->addTrait(researchData["negative trait"]);
+                target->addTrait(specificationData["negative trait"]);
             }
         }
     }
@@ -300,7 +300,7 @@ private nomask int applyTraitToArea(object owner, string researchName)
 private nomask int applyModifierToArea(object owner, string researchName)
 {
     int ret = 0;
-    object modifier = getModifierObject(owner, researchData);
+    object modifier = getModifierObject(owner, specificationData);
     if (modifier && environment(owner))
     {
         object *environmentObjects = all_inventory(environment(owner));
@@ -321,7 +321,7 @@ private nomask int applyModifierToArea(object owner, string researchName)
 
         if (ret)
         {
-            call_out("deactivateModifierObject", researchData["duration"],
+            call_out("deactivateModifierObject", specificationData["duration"],
                 modifier);
         }
     }
@@ -337,16 +337,16 @@ private nomask int executeInArea(object owner, string researchName)
         // Deactivate will clean-up - unregister/destruct all sustained
         // objects relating to this ability
         ret = owner->deactivateSustainedResearch(researchName);
-        if(ret && member(researchData, "use ability deactivate message") &&
-           stringp(researchData["use ability deactivate message"]))
+        if(ret && member(specificationData, "use ability deactivate message") &&
+           stringp(specificationData["use ability deactivate message"]))
         {
-            displayMessage(researchData["use ability deactivate message"],
+            displayMessage(specificationData["use ability deactivate message"],
                 owner, owner);
         }
     }
     else
     {
-        if (member(researchData, "trait") || member(researchData, "negative trait"))
+        if (member(specificationData, "trait") || member(specificationData, "negative trait"))
         {
             ret = applyTraitToArea(owner, researchName);
         }
@@ -354,10 +354,10 @@ private nomask int executeInArea(object owner, string researchName)
         {
             ret = applyModifierToArea(owner, researchName);
         }         
-        if(ret && member(researchData, "use ability activate message") 
-            && stringp(researchData["use ability activate message"]))
+        if(ret && member(specificationData, "use ability activate message") 
+            && stringp(specificationData["use ability activate message"]))
         {
-            displayMessage(researchData["use ability activate message"],
+            displayMessage(specificationData["use ability activate message"],
                 owner, owner);
         }
     }
@@ -393,9 +393,9 @@ private nomask int applyToScope(string command, object owner,
     string researchName)
 {
     int ret = 0;
-    if(member(researchData, "scope"))
+    if(member(specificationData, "scope"))
     {
-        switch(researchData["scope"])
+        switch(specificationData["scope"])
         {
             case "self":
             {
@@ -447,27 +447,27 @@ public nomask int execute(string command, object initiator)
         if(initiator->blockedByCooldown(researchName))
         {
             string coolDownMessage = 
-                (member(researchData, "use ability cooldown message") && 
-                stringp(researchData["use ability cooldown message"])) ?
-                researchData["use ability cooldown message"] :
+                (member(specificationData, "use ability cooldown message") && 
+                stringp(specificationData["use ability cooldown message"])) ?
+                specificationData["use ability cooldown message"] :
                 sprintf("You must wait longer before you use '%s' again.\n",
-                    member(researchData, "name") ? researchData["name"] :
+                    member(specificationData, "name") ? specificationData["name"] :
                     "that skill");
                  
             displayMessage(coolDownMessage, initiator, initiator);
             ret = 0;
         }
         if(ret && !initiator->sustainedResearchIsActive(researchName) &&
-           ((member(researchData, "hit point cost") &&
-           (researchData["hit point cost"] > initiator->maxHitPoints())) ||
-           (member(researchData, "spell point cost") &&
-           (researchData["spell point cost"] > initiator->maxSpellPoints())) ||
-           (member(researchData, "stamina point cost") &&
-           (researchData["stamina point cost"] > initiator->maxStaminaPoints()))))
+           ((member(specificationData, "hit point cost") &&
+           (specificationData["hit point cost"] > initiator->maxHitPoints())) ||
+           (member(specificationData, "spell point cost") &&
+           (specificationData["spell point cost"] > initiator->maxSpellPoints())) ||
+           (member(specificationData, "stamina point cost") &&
+           (specificationData["stamina point cost"] > initiator->maxStaminaPoints()))))
         {
             string costsTooMuch = sprintf("You do not have the required "
-                "energy reserve to use '%s'.\n", member(researchData, "name") ?
-                researchData["name"] : "that skill");
+                "energy reserve to use '%s'.\n", member(specificationData, "name") ?
+                specificationData["name"] : "that skill");
                 
             displayMessage(costsTooMuch, initiator, initiator);
             ret = 0;
@@ -476,9 +476,9 @@ public nomask int execute(string command, object initiator)
         if(ret)
         {
             ret = applyToScope(command, initiator, researchName);
-            if(!ret && member(researchData, "use ability fail message"))
+            if(!ret && member(specificationData, "use ability fail message"))
             {
-                displayMessage(researchData["use ability fail message"], 
+                displayMessage(specificationData["use ability fail message"], 
                     initiator, initiator);
             }
             else
@@ -500,25 +500,25 @@ public nomask int applySustainedCost(string modifier)
         {
             case "MaxHitPoints":
             {
-                if(member(researchData, "hit point cost"))
+                if(member(specificationData, "hit point cost"))
                 {
-                    ret = researchData["hit point cost"];
+                    ret = specificationData["hit point cost"];
                 }
                 break;
             }
             case "MaxSpellPoints":
             {
-                if(member(researchData, "spell point cost"))
+                if(member(specificationData, "spell point cost"))
                 {
-                    ret = researchData["spell point cost"];
+                    ret = specificationData["spell point cost"];
                 }
                 break;
             }
             case "MaxStaminaPoints":
             {
-                if(member(researchData, "stamina point cost"))
+                if(member(specificationData, "stamina point cost"))
                 {
-                    ret = researchData["stamina point cost"];
+                    ret = specificationData["stamina point cost"];
                 }
                 break;
             }

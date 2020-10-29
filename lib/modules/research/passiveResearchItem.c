@@ -35,7 +35,7 @@ protected int addSpecification(string type, mixed value)
         if(objectp(bonusDictionary) &&
             bonusDictionary->isValidBonusModifier(bonusToCheck, value))
         {
-            researchData[type] = value * applyModifier;
+            specificationData[type] = value * applyModifier;
             ret = 1;
         }
         else if(bonusDictionary)
@@ -60,7 +60,7 @@ private nomask int isBonusAttack(string bonusItem)
 
     object attacksDictionary = getDictionary("attacks");
 
-    if(bonusItem && stringp(bonusItem) && member(researchData, bonusItem) &&
+    if(bonusItem && stringp(bonusItem) && member(specificationData, bonusItem) &&
        sscanf(bonusItem, "bonus %s attack", attackType) && 
         attacksDictionary)
     {
@@ -74,7 +74,7 @@ private nomask int isBonusAttack(string bonusItem)
 public nomask mapping *getExtraAttacks()
 {
     mapping *ret = ({ });
-    string *keys = filter(m_indices(researchData), #'isBonusAttack);
+    string *keys = filter(m_indices(specificationData), #'isBonusAttack);
     if(keys)
     {
         foreach(string key in keys)
@@ -84,18 +84,18 @@ public nomask mapping *getExtraAttacks()
             string attack = 0;
             if (key == "bonus weapon attack")
             {
-                int numAttacks = researchData["bonus weapon attack"];
+                int numAttacks = specificationData["bonus weapon attack"];
                 for (int i = 0; i < numAttacks; i++)
                 {
                     ret += ({ (["attack type":"weapon"]) });
                 }
             }
-            else if(sscanf(key, "bonus %s attack", attack) && researchData[key] &&
-               intp(researchData[key]))
+            else if(sscanf(key, "bonus %s attack", attack) && specificationData[key] &&
+               intp(specificationData[key]))
             {
                 mapping attackMap =
                     getDictionary("attacks")->getAttackMapping(attack, 
-                    researchData[key]);
+                    specificationData[key]);
                 attackMap["to hit"] = 60;
                 if(attackMap)
                 {
@@ -118,9 +118,9 @@ public nomask int queryBonus(string bonus)
 
         if(bonusDictionary && objectp(bonusDictionary) &&
             bonusDictionary->isValidBonus(bonusToCheck) &&
-           member(researchData, bonus))
+           member(specificationData, bonus))
         {
-            ret = researchData[bonus];
+            ret = specificationData[bonus];
         }
     }
     return ret;

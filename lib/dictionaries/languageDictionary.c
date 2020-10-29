@@ -303,6 +303,20 @@ private nomask string garbleMessage(string language, int skillLevel, string mess
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string applyLanguageSkillToMessage(string language,
+    string message, int skillLevel)
+{
+    string revisedMessage = message;
+
+    if (!member(languages, language))
+    {
+        language = "garblish";
+    }
+ 
+    return capitalize(garbleMessage(language, skillLevel, revisedMessage));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string applyLanguageSkillToReceivedMessage(string language,
     string message, object target, object initiator)
 {

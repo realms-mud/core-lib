@@ -187,7 +187,7 @@ protected int ritualMultiplier(string type, int value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask object getModifierObject(object owner, mapping researchData)
+protected nomask object getModifierObject(object owner, mapping specificationData)
 {
     object ret = clone_object(ModifierObject);
 
@@ -201,7 +201,7 @@ protected nomask object getModifierObject(object owner, mapping researchData)
         }
 
         ret->set("fully qualified name", fullyQualifiedName);
-        string *listOfSpecifications = m_indices(researchData);
+        string *listOfSpecifications = m_indices(specificationData);
         object bonusDictionary = getDictionary("bonuses");
         if (bonusDictionary && listOfSpecifications)
         {
@@ -213,14 +213,14 @@ protected nomask object getModifierObject(object owner, mapping researchData)
                 {
                     ret->set(specification,
                         applyModifiers(ritualMultiplier(specification,
-                            researchData[specification]), owner, researchData["modifiers"]));
+                            specificationData[specification]), owner, specificationData["modifiers"]));
                 }
                 else if (sscanf(specification, "apply %s", bonusToCheck) &&
                     bonusDictionary->isValidBonus(bonusToCheck))
                 {
                     ret->set(bonusToCheck,
                         applyModifiers(ritualMultiplier(bonusToCheck,
-                            researchData[specification]), owner, researchData["modifiers"]));
+                            specificationData[specification]), owner, specificationData["modifiers"]));
                     if(owner->isNegativeCombatModifier(bonusToCheck))
                     {
                         ret->set("check kill list", 1);
@@ -231,7 +231,7 @@ protected nomask object getModifierObject(object owner, mapping researchData)
                 {
                     ret->set(specification,
                         applyModifiers(ritualMultiplier(specification,
-                            researchData[specification]), owner, researchData["modifiers"]));
+                            specificationData[specification]), owner, specificationData["modifiers"]));
                     ret->set("check kill list", 1);
                 }
             }

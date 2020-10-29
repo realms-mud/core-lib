@@ -25,20 +25,20 @@ public void reset(int arg)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidTrait()
 {
-    // The researchData element is an artifact of /lib/core/specification.
+    // The specificationData element is an artifact of /lib/core/specification.
     // All items that use research items check isValidTrait. Trying to
     // circumvent addSpecification won't work particularly well given that
     // the inherit_list and this method are called in unison.
-    int ret = member(researchData, "name") && member(researchData, "type") &&
-        member(researchData, "root");
+    int ret = member(specificationData, "name") && member(specificationData, "type") &&
+        member(specificationData, "root");
 
-    if(ret && (researchData["type"] == "effect"))
+    if(ret && (specificationData["type"] == "effect"))
     {
-        ret &&= member(researchData, "duration");
+        ret &&= member(specificationData, "duration");
     }
-    if(ret && (researchData["type"] == "sustained effect"))
+    if(ret && (specificationData["type"] == "sustained effect"))
     {
-        ret &&= member(researchData, "triggering research");
+        ret &&= member(specificationData, "triggering research");
     }
     return ret;
 }
@@ -54,7 +54,7 @@ protected int addSpecification(string type, mixed value)
     if (sscanf(type, "penalty to %s", bonusToCheck))
     {
         type = sprintf("bonus %s", bonusToCheck);
-        researchData["negative"] = 1;
+        specificationData["negative"] = 1;
         applyModifier = -1;
     }
 
@@ -65,8 +65,8 @@ protected int addSpecification(string type, mixed value)
         if (bonusDictionary &&
             bonusDictionary->isValidBonusModifier(bonusToCheck, value))
         {
-            researchData["enhanced"] = 1;
-            researchData[type] = value * applyModifier;
+            specificationData["enhanced"] = 1;
+            specificationData[type] = value * applyModifier;
             ret = 1;
         }
         else if (bonusDictionary)
@@ -88,7 +88,7 @@ protected int addSpecification(string type, mixed value)
                     traitsDictionary->isValidTraitType(value))
                 {
                     ret = 1;
-                    researchData[type] = value;
+                    specificationData[type] = value;
                 }
                 else
                 {
@@ -104,7 +104,7 @@ protected int addSpecification(string type, mixed value)
                 if(value && stringp(value))
                 {
                     ret = 1;
-                    researchData[type] = value;
+                    specificationData[type] = value;
                 }
                 else
                 {
@@ -117,7 +117,7 @@ protected int addSpecification(string type, mixed value)
             {
                 if (intp(value) && value < 0)
                 {
-                    researchData["negative"] = 1;
+                    specificationData["negative"] = 1;
                 }
                 // Yes, this intentionally passes through
             }
@@ -127,7 +127,7 @@ protected int addSpecification(string type, mixed value)
                 if (value && intp(value))
                 {
                     ret = 1;
-                    researchData[type] = value;
+                    specificationData[type] = value;
                 }
                 else
                 {
@@ -140,7 +140,7 @@ protected int addSpecification(string type, mixed value)
             {
                 if (intp(value) && (value > 0))
                 {
-                    researchData[type] = value;
+                    specificationData[type] = value;
                     ret = 1;
                 }
                 else
@@ -158,7 +158,7 @@ protected int addSpecification(string type, mixed value)
                     researchDictionary->researchTree(value))
                 {
                     ret = 1;
-                    researchData[type] = value;
+                    specificationData[type] = value;
                 }
                 else
                 {
@@ -175,7 +175,7 @@ protected int addSpecification(string type, mixed value)
                     researchDictionary->isSustainedResearchItem(value))
                 {
                     ret = 1;
-                    researchData[type] = value;
+                    specificationData[type] = value;
                 }
                 else
                 {
@@ -200,7 +200,7 @@ private nomask int isBonusAttack(string bonusItem)
     string attackType = 0;
 
     object attacksDictionary = getDictionary("attacks");
-    if(bonusItem && stringp(bonusItem) && member(researchData, bonusItem) &&
+    if(bonusItem && stringp(bonusItem) && member(specificationData, bonusItem) &&
        sscanf(bonusItem, "bonus %s attack", attackType) && 
         attacksDictionary)
     {
@@ -214,7 +214,7 @@ private nomask int isBonusAttack(string bonusItem)
 public nomask mapping *getExtraAttacks()
 {
     mapping *ret = ({ });
-    string *keys = filter(m_indices(researchData), #'isBonusAttack);
+    string *keys = filter(m_indices(specificationData), #'isBonusAttack);
     if(keys)
     {
         foreach(string key in keys)
@@ -224,18 +224,18 @@ public nomask mapping *getExtraAttacks()
             string attack = 0;
             if (key == "bonus weapon attack")
             {
-                int numAttacks = researchData["bonus weapon attack"];
+                int numAttacks = specificationData["bonus weapon attack"];
                 for (int i = 0; i < numAttacks; i++)
                 {
                     ret += ({ (["attack type":"weapon"]) });
                 }
             }
-            else if(sscanf(key, "bonus %s attack", attack) && researchData[key] &&
-               intp(researchData[key]))
+            else if(sscanf(key, "bonus %s attack", attack) && specificationData[key] &&
+               intp(specificationData[key]))
             {
                 mapping attackMap =
                     getDictionary("attacks")->getAttackMapping(attack, 
-                    researchData[key]);
+                    specificationData[key]);
                 attackMap["to hit"] = 60;
                 if(attackMap)
                 {
@@ -258,9 +258,9 @@ public nomask int queryBonus(string bonus)
 
         if(bonusDictionary && objectp(bonusDictionary) &&
             bonusDictionary->isValidBonus(bonusToCheck) &&
-           member(researchData, bonus))
+           member(specificationData, bonus))
         {
-            ret = researchData[bonus];
+            ret = specificationData[bonus];
         }
     }
     return ret;

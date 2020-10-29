@@ -45,6 +45,7 @@ protected object StateMachineDictionary =
     load_object("/lib/dictionaries/stateMachineDictionary.c");
 
 private mapping harvestData = ([]);
+private mapping bonuses = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -1609,4 +1610,51 @@ public nomask varargs string harvestStatistics(object user, string item)
 public string **customIcon(string **baseIcon, string color, string charset)
 {
     return baseIcon;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int environmentalBonusTo(string bonus, object actor)
+{
+    int ret = 0;
+    string actorName = objectp(actor) ? actor->RealName() : 0;
+    if (actorName)
+    {
+        string key = sprintf("%s#%s", actorName, currentState());
+
+        if (!member(bonuses, key))
+        {
+            bonuses[key] = ([]);
+        }
+
+        if (!member(bonuses[key], bonus))
+        {
+            bonuses[key][bonus] = 0;
+
+            foreach(string elementType in({ "terrain", "interior", "feature",
+                "building", "item", "door" }))
+            {
+                if (sizeof(environmentalElements[elementType]))
+                {
+                    string *elements = 
+                        m_indices(environmentalElements[elementType]);
+                    foreach(string element in elements)
+                    {
+                        object elementObj =
+                            environmentDictionary()->environmentalObject(element);
+                        if (elementObj)
+                        {
+                            bonuses[key][bonus] += 
+                                elementObj->environmentalBonusTo(
+                                    currentState(), 
+                                    this_object(),
+                                    bonus,
+                                    actor);
+                        }
+                    }
+                }
+            }
+        }
+        ret = bonuses[key][bonus];
+    }
+    return ret;
 }

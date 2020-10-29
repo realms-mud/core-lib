@@ -94,8 +94,8 @@ public nomask int isValidResearchItem()
     // All items that use research items check isValidResearchItem. Trying to
     // circumvent addSpecification won't work particularly well given that
     // the inherit_list and this method are called in unison.
-    return member(researchData, "type") && 
-        checkValidType(researchData["type"]);
+    return member(specificationData, "type") && 
+        checkValidType(specificationData["type"]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -126,7 +126,7 @@ protected int addSpecification(string type, mixed value)
                 if(checkValidType(value))
                 {
                     ret = 1;
-                    researchData["type"] = value;
+                    specificationData["type"] = value;
                 }
                 else if(stringp(value) && (member(({ "active", "passive", 
                     "sustained", "ritual", "knowledge", "domain" }), value) > -1))
@@ -150,7 +150,7 @@ protected int addSpecification(string type, mixed value)
                    "area", "environmental", "region", "global", "domain" }),value) > -1))
                 {
                     ret = 1;
-                    researchData["scope"] = value;
+                    specificationData["scope"] = value;
                 }
                 else
                 {
@@ -166,7 +166,7 @@ protected int addSpecification(string type, mixed value)
                    "enchantment", "summoning", "strategic" }),value) > -1))
                 {
                     ret = 1;
-                    researchData["effect"] = value;
+                    specificationData["effect"] = value;
                 }
                 else
                 {
@@ -182,7 +182,7 @@ protected int addSpecification(string type, mixed value)
                    "tree root", "granted" }),value) > -1))
                 {
                     ret = 1;
-                    researchData["research type"] = value;
+                    specificationData["research type"] = value;
                 }
                 else
                 {
@@ -197,7 +197,7 @@ protected int addSpecification(string type, mixed value)
                 if(value && intp(value) && (value > 0))
                 {
                     ret = 1;
-                    researchData["research cost"] = value;
+                    specificationData["research cost"] = value;
                 }
                 else
                 {
@@ -211,7 +211,7 @@ protected int addSpecification(string type, mixed value)
                 if (value && stringp(value))
                 {
                     ret = 1;
-                    researchData["source"] = value;
+                    specificationData["source"] = value;
                 }
                 else
                 {

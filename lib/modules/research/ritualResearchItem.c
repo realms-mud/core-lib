@@ -26,7 +26,7 @@ protected int addSpecification(string type, mixed value)
         {
             if(intp(value) && (value > 0))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -44,7 +44,7 @@ protected int addSpecification(string type, mixed value)
         {
             if (value && stringp(value))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -120,9 +120,9 @@ private nomask int applyToScope(string command, object owner,
     string researchName)
 {
     int ret = 0;
-    if(member(researchData, "scope"))
+    if(member(specificationData, "scope"))
     {
-        switch(researchData["scope"])
+        switch(specificationData["scope"])
         {
             case "self":
             {
@@ -180,11 +180,11 @@ public nomask int execute(string command, object initiator)
         if(initiator->blockedByCooldown(researchName))
         {
             string coolDownMessage = 
-                (member(researchData, "use ability cooldown message") && 
-                stringp(researchData["use ability cooldown message"])) ?
-                researchData["use ability cooldown message"] :
+                (member(specificationData, "use ability cooldown message") && 
+                stringp(specificationData["use ability cooldown message"])) ?
+                specificationData["use ability cooldown message"] :
                 sprintf("You must wait longer before you use '%s' again.\n",
-                    member(researchData, "name") ? researchData["name"] :
+                    member(specificationData, "name") ? specificationData["name"] :
                     "that skill");
                     
             displayMessage(coolDownMessage, initiator, initiator);
@@ -195,9 +195,9 @@ public nomask int execute(string command, object initiator)
         if(ret && !initiator->spellAction())
         {
             ret = applyToScope(command, initiator, researchName);
-            if(!ret && member(researchData, "use ability fail message"))
+            if(!ret && member(specificationData, "use ability fail message"))
             {
-                displayMessage(researchData["use ability fail message"], 
+                displayMessage(specificationData["use ability fail message"], 
                     initiator, initiator);
             }
             initiator->spellAction(1);

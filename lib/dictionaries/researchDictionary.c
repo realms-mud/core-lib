@@ -583,7 +583,7 @@ public nomask int LimitedSkillModifier(string researchItem, string skill,
 {
     int ret = 0;
     object researchObj = researchObject(researchItem);
-    if(researchObj && researchObj->canApplySkill(skill, owner, target))
+    if(researchObj && researchObj->canApplySpecification(skill, owner, target))
     {
         ret = lookUpBonus(researchItem, sprintf("bonus %s", skill));
     }

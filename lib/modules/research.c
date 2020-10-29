@@ -55,7 +55,7 @@ private nomask varargs int canApplyLimitedEffect(string researchItem, string bon
 
     return isResearched(researchItem) && 
         (researchDictionary()->researchEffectIsLimited(researchItem) ?
-        (researchObj->canApplySkill(bonus, this_object(), target,
+        (researchObj->canApplySpecification(bonus, this_object(), target,
         isActiveOrSustainedResearchAbility(researchItem))) : 1);
 }
 

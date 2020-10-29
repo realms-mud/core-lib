@@ -90,9 +90,9 @@ public nomask int hasNameOf(string name)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void addToLimitors(string key, mixed value)
 {
-    if (!member(researchData, "limited by"))
+    if (!member(specificationData, "limited by"))
     {
-        researchData["limited by"] = ([]);
+        specificationData["limited by"] = ([]);
     }
 
     if (!pointerp(value))
@@ -102,16 +102,16 @@ private nomask void addToLimitors(string key, mixed value)
 
     if (validLimitor(([key:value])))
     {
-        if (!member(researchData["limited by"], key))
+        if (!member(specificationData["limited by"], key))
         {
-            researchData["limited by"][key] = value;
+            specificationData["limited by"][key] = value;
         }
         else
         {
-            researchData["limited by"][key] += value;
+            specificationData["limited by"][key] += value;
         }
-        researchData["limited by"][key] =
-            m_indices(mkmapping(researchData["limited by"][key]));
+        specificationData["limited by"][key] =
+            m_indices(mkmapping(specificationData["limited by"][key]));
     }
     else
     {
@@ -159,20 +159,20 @@ public nomask void limitHarvestByOneOfTools(string *tools)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void limitHarvestBySkill(string skill, int value)
 {
-    if (!member(researchData, "limited by"))
+    if (!member(specificationData, "limited by"))
     {
-        researchData["limited by"] = ([]);
+        specificationData["limited by"] = ([]);
     }
 
     if (validLimitor((["skill": ([ skill: value ]) ])))
     {
-        if (!member(researchData["limited by"], "skill"))
+        if (!member(specificationData["limited by"], "skill"))
         {
-            researchData["limited by"]["skill"] = ([ skill: value ]);
+            specificationData["limited by"]["skill"] = ([ skill: value ]);
         }
         else
         {
-            researchData["limited by"]["skill"] += ([ skill: value ]);
+            specificationData["limited by"]["skill"] += ([ skill: value ]);
         }
     }
     else

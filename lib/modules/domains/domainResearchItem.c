@@ -15,7 +15,7 @@ protected nomask int addSpecification(string type, mixed value)
         {
             if(intp(value) && (value > 0))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -33,7 +33,7 @@ protected nomask int addSpecification(string type, mixed value)
             if (pointerp(value) && sizeof(value) && domains &&
                 domains->validBuildings(value))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -51,7 +51,7 @@ protected nomask int addSpecification(string type, mixed value)
             if (mappingp(value) && sizeof(value) && domains &&
                 domains->validBuildingEffects(value))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -69,7 +69,7 @@ protected nomask int addSpecification(string type, mixed value)
             if (mappingp(value) && sizeof(value) && domains &&
                 domains->validTroopEffects(value))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else

@@ -25,7 +25,7 @@ protected nomask int addSpecification(string type, mixed value)
                 }
                 if(validModifier)
                 {
-                    researchData[type] = value;
+                    specificationData[type] = value;
                     ret = 1;
                 }
                 else

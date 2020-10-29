@@ -52,13 +52,13 @@ protected nomask int applyFormula(object initiator, string type)
 {
     int ret = 0;
     
-    if(member(researchData, type) && isValidFormula(researchData[type]))
+    if(member(specificationData, type) && isValidFormula(specificationData[type]))
     {
         // First, build the probability dictionary
         mapping formulaDictionary = ([ ]);
         
         int currentProbability = 0;
-        foreach(mapping formula in researchData[type])
+        foreach(mapping formula in specificationData[type])
         {      
             int bottomOfRange = currentProbability;
             int topOfRange = bottomOfRange + formula["probability"];
@@ -88,9 +88,9 @@ protected nomask int applyFormula(object initiator, string type)
         
         ret = formulaDictionary[random(100)];
         
-        if(member(researchData, "modifiers"))
+        if(member(specificationData, "modifiers"))
         {
-            ret = applyModifiers(ret, initiator, researchData["modifiers"]);
+            ret = applyModifiers(ret, initiator, specificationData["modifiers"]);
         }
     }    
     return ret;    
@@ -111,7 +111,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
         case "decrease soaked":
         case "decrease stuffed":
         {
-            researchData["is beneficial"] = 1;
+            specificationData["is beneficial"] = 1;
             // This should fall through to the next session.
         }
         case "damage hit points":
@@ -124,7 +124,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
         {
             if(isValidFormula(value))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -146,7 +146,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
                 }
                 if(validModifier)
                 {
-                    researchData[type] = value;
+                    specificationData[type] = value;
                     ret = 1;
                 }
                 else
@@ -169,7 +169,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
             object attacks = getDictionary("attacks");
             if(stringp(value) && attacks && attacks->isValidDamageType(value))
             {
-                researchData[type] = value;
+                specificationData[type] = value;
                 ret = 1;
             }
             else
@@ -206,10 +206,10 @@ protected nomask int executeOnSelf(object owner, string researchName)
     // allow the caster to do negative things to themselves here...    
     ret = applyBeneficialEffect(owner, owner);
     
-    if(ret && member(researchData, "use ability message") &&
-       stringp(researchData["use ability message"]))
+    if(ret && member(specificationData, "use ability message") &&
+       stringp(specificationData["use ability message"]))
     {
-        displayMessage(researchData["use ability message"],
+        displayMessage(specificationData["use ability message"],
             owner, owner);
     }   
     return ret;
@@ -225,10 +225,10 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
     if(target)
     {
     
-        if(member(researchData, "use ability message") &&
-           stringp(researchData["use ability message"]))
+        if(member(specificationData, "use ability message") &&
+           stringp(specificationData["use ability message"]))
         {
-            displayMessage(researchData["use ability message"],
+            displayMessage(specificationData["use ability message"],
                 owner, target);
         }
         ret = applyEffect(owner, target);
@@ -256,10 +256,10 @@ protected nomask int executeInArea(object owner, string researchName)
         }
     }
           
-    if(member(researchData, "use ability message") 
-       && stringp(researchData["use ability message"]))
+    if(member(specificationData, "use ability message") 
+       && stringp(specificationData["use ability message"]))
     {
-        displayMessage(researchData["use ability message"],
+        displayMessage(specificationData["use ability message"],
             owner, owner);
     }
     return ret;

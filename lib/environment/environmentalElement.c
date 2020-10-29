@@ -399,6 +399,14 @@ private nomask string getHarvestedDescriptions(object environment)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string translateStringToLanguage(string text, string language)
+{
+    return this_player() ? 
+        getDictionary("environment")->applyLanguageSkillToMessage(
+            language, text, this_player()->getSkill(language)) : text;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs string description(string state, int illuminationLevel,
     object environment)
 {
@@ -538,6 +546,23 @@ protected nomask varargs void addDescriptionTemplate(string template,
     descriptionData[state]["template"] = template;
 
     foreach(string templateType in ({ "near dark template", "low light template" ,
+        "dim light template" , "some light template" }))
+    {
+        if (!member(descriptionData[state], templateType))
+        {
+            descriptionData[state][templateType] = template;
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addDescriptionTemplateWithPrerequisite(
+    string template, mapping prerequisite, string state)
+{
+    state = setupDescriptionForState(state);
+    descriptionData[state]["template"] = template;
+
+    foreach(string templateType in({ "near dark template", "low light template" ,
         "dim light template" , "some light template" }))
     {
         if (!member(descriptionData[state], templateType))
@@ -913,4 +938,11 @@ public nomask varargs string getHarvestStatistics(object user,
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int environmentalBonusTo(string state, object environment,
+    string bonus, object actor)
+{
+    return 0;
 }
