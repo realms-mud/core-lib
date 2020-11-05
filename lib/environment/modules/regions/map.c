@@ -2,8 +2,8 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/environment/regions/core.c";
-#include "/lib/environment/regions/display-characters.h"
+virtual inherit "/lib/environment/modules/regions/core.c";
+#include "/lib/environment/modules/regions/display-characters.h"
 
 private object configuration = getDictionary("configuration");
 
@@ -76,8 +76,12 @@ private nomask int validateCustomIcon(string **icon)
 private nomask int userInLocation(object user, object location)
 {
     object playerEnvironment = objectp(user) ? environment(user) : 0;
+
     return objectp(playerEnvironment) && objectp(location) && 
-        (playerEnvironment->getRegion() == location->getRegion()) &&
+        objectp(playerEnvironment->getRegion()) && 
+        objectp(location->getRegion()) &&
+        (playerEnvironment->getRegion()->regionName() == 
+            location->getRegion()->regionName()) &&
         (playerEnvironment->getCoordinates() == location->getCoordinates());
 }
 

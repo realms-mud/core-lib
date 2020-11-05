@@ -2,11 +2,11 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/environment/regions/core.c";
-virtual inherit "/lib/environment/regions/entries-and-exits.c";
-virtual inherit "/lib/environment/regions/generate-path.c";
-virtual inherit "/lib/environment/regions/generate-room.c";
-virtual inherit "/lib/environment/regions/generate-settlement.c";
+virtual inherit "/lib/environment/modules/regions/core.c";
+virtual inherit "/lib/environment/modules/regions/entries-and-exits.c";
+virtual inherit "/lib/environment/modules/regions/generate-path.c";
+virtual inherit "/lib/environment/modules/regions/generate-room.c";
+virtual inherit "/lib/environment/modules/regions/generate-settlement.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected int getRoomCount()

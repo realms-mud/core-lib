@@ -2,7 +2,7 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/environment/regions/core.c";
+virtual inherit "/lib/environment/modules/regions/core.c";
 
 /////////////////////////////////////////////////////////////////////////////
 private mapping getNextDirection(int x, int y, string previousDirection)

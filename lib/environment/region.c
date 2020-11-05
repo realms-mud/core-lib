@@ -2,11 +2,11 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/environment/regions/core.c";
-virtual inherit "/lib/environment/regions/domain.c";
-virtual inherit "/lib/environment/regions/generate-region.c";
-virtual inherit "/lib/environment/regions/persist-region.c";
-virtual inherit "/lib/environment/regions/map.c";
+virtual inherit "/lib/environment/modules/regions/core.c";
+virtual inherit "/lib/environment/modules/regions/domain.c";
+virtual inherit "/lib/environment/modules/regions/generate-region.c";
+virtual inherit "/lib/environment/modules/regions/persist-region.c";
+virtual inherit "/lib/environment/modules/regions/map.c";
 
 private int setupCompleted = 0;
 private int manualRegion = 0;

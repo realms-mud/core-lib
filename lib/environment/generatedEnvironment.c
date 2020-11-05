@@ -231,7 +231,7 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
 
         if (roomData)
         {
-            Region = region;
+            setRegion(region);
             if (member(roomData, "terrain"))
             {
                 setTerrain(roomData["terrain"]);
@@ -312,8 +312,8 @@ protected void setUpEncounter(object player)
         object personaDictionary = 
             load_object("/lib/dictionaries/personaDictionary.c");
 
-        int baseLevel = (objectp(Region) && Region->regionLevel()) ?
-            Region->regionLevel() : player->effectiveLevel();
+        int baseLevel = (objectp(getRegion()) && getRegion()->regionLevel()) ?
+            getRegion()->regionLevel() : player->effectiveLevel();
 
         string *encounterList = personaDictionary->filterEncountersForLevel(
             possibleEncounters, baseLevel);
@@ -330,7 +330,7 @@ protected void setUpEncounter(object player)
 
             for (int i = 0; i < count; i++)
             {
-                int level = (objectp(Region) && Region->regionLevel()) ?
+                int level = (objectp(getRegion()) && getRegion()->regionLevel()) ?
                     (baseLevel - 2 + random(5)) :
                     (baseLevel - 5 + random(11));
 
