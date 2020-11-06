@@ -317,4 +317,15 @@ public nomask void setUpForEnvironment(string state, object environment)
             harvestItem->resetQuantity(environment);
         }
     }
+
+    object *bonusItems = m_values(
+        filter(bonusData, (: $1 == $2->name() :)));
+
+    if (sizeof(bonusItems))
+    {
+        foreach(object bonusItem in bonusItems)
+        {
+            bonusItem->setupBonus(environment);
+        }
+    }
 }

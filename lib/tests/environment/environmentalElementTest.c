@@ -246,7 +246,6 @@ void GetDescriptionFromSetReturnsCorrectItemDescription()
         Element->long());
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 void HarvestableResourcesCorrectlySetUp()
 {
@@ -320,3 +319,39 @@ void HarvestingUpdatesDescription()
         "remain with branches laden with acorns, noonishly glowing",
         element->description(0, Dictionary->ambientLight(), environment));
 }
+
+/*
+/////////////////////////////////////////////////////////////////////////////
+void EnvironmentalBonusCorrectlySetUp()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("bob");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->charsetConfiguration("ascii");
+
+    object environment =
+        clone_object("/lib/tests/support/environment/bonusRoom.c");
+    move_object(player, environment);
+
+    Element->reset();
+    ExpectEq("Name: Oak\n"
+        "Alias(es): deciduous tree, oak tree, tree\n"
+        "This can only be harvested when the environment state is default.\n"
+        "This can only be harvested when you're using: axe.\n"
+        "This can only be harvested when your forestry skill is at least 5.\n"
+        "\n"
+        "Name: Acorn\n"
+        "This can only be harvested when the season is summer.\n"
+        "\n"
+        "Name: Mana\n"
+        "This can only be harvested when the environment state is deadified.\n"
+        "This can only be harvested when you're using: rod, staff, or wand.\n"
+        "This can only be harvested when the moon phase is full moon.\n"
+        "This can only be harvested when the season is winter.\n"
+        "This can only be harvested when your spellcraft skill is at least 5.\n"
+        "This can only be harvested when the time of day is midnight.\n"
+        "\n", 
+        Element->getBonusStatistics(environment, player));
+}
+*/

@@ -67,6 +67,22 @@ public void Setup()
     limitHarvestByTimeOfDay("mana", "midnight");
     limitHarvestByMoonPhase("mana", "full moon");
     limitHarvestBySeason("mana", "winter");
+
+    addBonus("strength", 3);
+    bonusRequiresOneOfEquipment("strength", ({ "staff", "rod", "wand" }));
+    limitBonusByState("strength", "deadified");
+    limitBonusBySkill("strength", "spellcraft", 5);
+    limitBonusByTimeOfDay("strength", "midnight");
+    limitBonusByMoonPhase("strength", "full moon");
+    limitBonusBySeason("strength", "winter");
+
+    addPenalty("hit points", 3);
+    penaltyRequiresOneOfEquipment("hit points", ({ "staff", "rod", "wand" }));
+    limitPenaltyByState("hit points", "deadified");
+    limitPenaltyBySkill("hit points", "spellcraft", 5);
+    limitPenaltyByTimeOfDay("hit points", "midnight");
+    limitPenaltyByMoonPhase("hit points", "full moon");
+    limitPenaltyBySeason("hit points", "winter");
 }
 
 /////////////////////////////////////////////////////////////////////////////

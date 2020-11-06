@@ -8,13 +8,14 @@ virtual inherit "/lib/environment/modules/environment/state.c";
 private mapping bonuses = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int environmentalBonusTo(string bonus, object actor)
+public nomask varargs int environmentalBonusTo(string bonus, object actor,
+    object target)
 {
     int ret = 0;
     string actorName = objectp(actor) ? actor->RealName() : 0;
     if (actorName)
     {
-        string key = sprintf("%s#%s", actorName, currentState());
+        string key = sprintf("%s#%s#%O", actorName, currentState(), target);
 
         if (!member(bonuses, key))
         {
@@ -43,7 +44,8 @@ public nomask int environmentalBonusTo(string bonus, object actor)
                                     currentState(), 
                                     this_object(),
                                     bonus,
-                                    actor);
+                                    actor,
+                                    target);
                         }
                     }
                 }

@@ -839,9 +839,6 @@ public nomask varargs int canApplySpecification(string skill, object owner,
 
     if (member(specificationData, "limited by") && owner && objectp(owner))
     {
-        string colorConfiguration = owner->colorConfiguration();
-        object configuration = getDictionary("configuration");
-
         ret &&= environmentalFactorsMet(owner, verbose) &&
             userFactorsMet(owner, target, verbose);
     }
