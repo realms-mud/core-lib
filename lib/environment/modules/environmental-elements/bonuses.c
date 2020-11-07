@@ -13,8 +13,7 @@ public nomask int environmentalBonusTo(string state, object environment,
     int ret = 0;
 
     object *bonusItems = m_values(
-        filter(bonusData, (: (($1 == $2->name()) &&
-            $2->harvestedDescription($3)) :), environment));
+        filter(bonusData, (: $2->name() == $3 :), bonus));
 
     if (sizeof(bonusItems))
     {
@@ -30,24 +29,26 @@ public nomask int environmentalBonusTo(string state, object environment,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string getBonusDescriptions(object environment,
+public nomask string *bonuses()
+{
+    return m_indices(bonusData);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getBonusDescriptions(object environment,
     object user)
 {
     string ret = 0;
 
-    object *bonusItems = m_values(
-        filter(bonusData, (: (($1 == $2->name()) &&
-            $2->harvestedDescription($3)) :), environment));
-
-    if (sizeof(bonusItems))
+    if (sizeof(bonusData))
     {
         string *descriptions = ({});
-        foreach(object item in bonusItems)
+        foreach(object item in m_values(bonusData))
         {
             descriptions += 
                 ({ item->getBonusStatistics(environment, user) });
         }
-        ret = implode(descriptions, " ");
+        ret = implode(descriptions, "\n");
     }
     return ret;
 }

@@ -55,3 +55,35 @@ public nomask varargs int environmentalBonusTo(string bonus, object actor,
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string bonusStatistics(object user, string item)
+{
+    string ret = 0;
+
+    foreach(string elementType in({ "terrain", "interior", "feature",
+        "building", "item", "door" }))
+    {
+        if (sizeof(environmentalElements[elementType]))
+        {
+            string *elements = 
+                m_indices(environmentalElements[elementType]);
+            foreach(string element in elements)
+            {
+                object elementObj =
+                    getDictionary("environment")->environmentalObject(element);
+                if (elementObj)
+                {
+                    ret += elementObj->getBonusDescriptions(
+                        this_object(), user) + "\n";
+                }
+            }
+        }
+    }
+
+    if (!ret)
+    {
+        ret = "There are no bonuses being applied from this environment.\n";
+    }
+    return ret;
+}

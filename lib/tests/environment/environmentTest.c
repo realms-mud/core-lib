@@ -2135,3 +2135,40 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
         player->caughtMessage());
     destruct(environment);
 }
+
+/*
+/////////////////////////////////////////////////////////////////////////////
+void BonusIsApplied()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("bob");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->charsetConfiguration("ascii");
+
+    object element =
+        load_object("/lib/tests/support/environment/fakeFeature.c");
+
+    object environment =
+        clone_object("/lib/tests/support/environment/bonusRoom.c");
+    move_object(player, environment);
+
+    ExpectEq(0, environment->environmentalBonusTo("strength", player));
+
+    object dictionary = getDictionary("environment");
+    dictionary->setDay(260);
+    ExpectEq(0, environment->environmentalBonusTo("strength", player));
+
+    player->addSkillPoints(20);
+    player->advanceSkill("spellcraft", 5);
+    ExpectEq(0, environment->environmentalBonusTo("strength", player));
+
+    object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
+    move_object(axe, player);
+    command("equip axe", player);
+
+    ExpectEq(0, environment->environmentalBonusTo("strength", player));
+
+    destruct(environment);
+}
+*/

@@ -320,7 +320,6 @@ void HarvestingUpdatesDescription()
         element->description(0, Dictionary->ambientLight(), environment));
 }
 
-/*
 /////////////////////////////////////////////////////////////////////////////
 void EnvironmentalBonusCorrectlySetUp()
 {
@@ -335,23 +334,18 @@ void EnvironmentalBonusCorrectlySetUp()
     move_object(player, environment);
 
     Element->reset();
-    ExpectEq("Name: Oak\n"
-        "Alias(es): deciduous tree, oak tree, tree\n"
-        "This can only be harvested when the environment state is default.\n"
-        "This can only be harvested when you're using: axe.\n"
-        "This can only be harvested when your forestry skill is at least 5.\n"
+    ExpectEq("Name: Hit Points\n"
+        "There is a -3 penalty to hit points active.\n"
+        "This is only applied when the moon phase is new moon.\n"
+        "This is only applied when the season is summer.\n"
+        "This is only applied when the time of day is noon.\n"
         "\n"
-        "Name: Acorn\n"
-        "This can only be harvested when the season is summer.\n"
-        "\n"
-        "Name: Mana\n"
-        "This can only be harvested when the environment state is deadified.\n"
-        "This can only be harvested when you're using: rod, staff, or wand.\n"
-        "This can only be harvested when the moon phase is full moon.\n"
-        "This can only be harvested when the season is winter.\n"
-        "This can only be harvested when your spellcraft skill is at least 5.\n"
-        "This can only be harvested when the time of day is midnight.\n"
-        "\n", 
-        Element->getBonusStatistics(environment, player));
+        "Name: Strength\n"
+        "There is a +4 bonus to strength active.\n"
+        "This is only applied when the environment state is deadified.\n"
+        "This is only applied when the moon phase is full moon.\n"
+        "This is only applied when the season is winter.\n"
+        "This is only applied when your spellcraft skill is at least 5.\n"
+        "This is only applied when the time of day is midnight.\n", 
+        Element->getBonusDescriptions(environment, player));
 }
-*/

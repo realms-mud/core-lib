@@ -187,19 +187,18 @@ public nomask string getBonusStatistics(object environment, object user)
         configuration->decorate(capitalizeName(), "field data",
             "element bonuses", colorConfiguration) + "\n";
 
-    if (member(environmentList, environment))
-    {
-        int value = environmentList[environment];
-        ret += (value > 0) ?
-            configuration->decorate(
-                sprintf("There is a +%d bonus to %s active.\n",
-                    value, bonusName),
-                "bonus", "element bonuses", colorConfiguration) :
-            configuration->decorate(
-                sprintf("There is a %d penalty to %s active.\n",
-                    value, bonusName),
-                "penalty", "element bonuses", colorConfiguration);
-    }
+    int value = member(environmentList, environment) ?
+        environmentList[environment] : bonusValue;
+
+    ret += (value > 0) ?
+        configuration->decorate(
+            sprintf("There is a +%d bonus to %s active.\n",
+                value, bonusName),
+            "bonus", "element bonuses", colorConfiguration) :
+        configuration->decorate(
+            sprintf("There is a %d penalty to %s active.\n",
+                value, bonusName),
+            "penalty", "element bonuses", colorConfiguration);
 
     ret += displayLimiters(colorConfiguration, configuration, 1);
     return format(ret, 78);

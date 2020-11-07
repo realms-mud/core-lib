@@ -84,6 +84,17 @@ public nomask void reset(int arg)
             harvestItem->resetQuantity();
         }
     }
+
+    object *bonusItems = m_values(
+        filter(bonusData, (: $1 == $2->name() :)));
+
+    if (sizeof(bonusItems))
+    {
+        foreach(object bonusItem in bonusItems)
+        {
+            bonusItem->setupBonus();
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
