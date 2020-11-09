@@ -336,16 +336,16 @@ void EnvironmentalBonusCorrectlySetUp()
     Element->reset();
     ExpectEq("Name: Hit Points\n"
         "There is a -3 penalty to hit points active.\n"
-        "This is only applied when the moon phase is new moon.\n"
-        "This is only applied when the season is summer.\n"
-        "This is only applied when the time of day is noon.\n"
-        "\n"
-        "Name: Strength\n"
-        "There is a +4 bonus to strength active.\n"
         "This is only applied when the environment state is deadified.\n"
+        "This is only applied when you're using: axe, rod, or wand.\n"
         "This is only applied when the moon phase is full moon.\n"
         "This is only applied when the season is winter.\n"
         "This is only applied when your spellcraft skill is at least 5.\n"
-        "This is only applied when the time of day is midnight.\n", 
+        "This is only applied when the time of day is midnight.\n"
+        "\n"
+        "Name: Strength\n"
+        "There is a +4 bonus to strength active.\n"
+        "This is only applied when the season is autumn.\n"
+        "This is only applied when the time of day is noon.\n",
         Element->getBonusDescriptions(environment, player));
 }

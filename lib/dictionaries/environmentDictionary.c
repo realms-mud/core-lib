@@ -447,7 +447,7 @@ public nomask varargs void advanceTime(int amount)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string season(string newSeason)
+public nomask varargs string season(string newSeason)
 {
     string ret = 0;
     if (newSeason && stringp(newSeason) && 

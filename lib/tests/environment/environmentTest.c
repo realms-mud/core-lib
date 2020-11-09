@@ -2136,7 +2136,6 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
     destruct(environment);
 }
 
-/*
 /////////////////////////////////////////////////////////////////////////////
 void BonusIsApplied()
 {
@@ -2152,23 +2151,15 @@ void BonusIsApplied()
     object environment =
         clone_object("/lib/tests/support/environment/bonusRoom.c");
     move_object(player, environment);
-
     ExpectEq(0, environment->environmentalBonusTo("strength", player));
 
     object dictionary = getDictionary("environment");
+    dictionary->timeOfDay("morning");
     dictionary->setDay(260);
     ExpectEq(0, environment->environmentalBonusTo("strength", player));
 
-    player->addSkillPoints(20);
-    player->advanceSkill("spellcraft", 5);
-    ExpectEq(0, environment->environmentalBonusTo("strength", player));
-
-    object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
-    move_object(axe, player);
-    command("equip axe", player);
-
-    ExpectEq(0, environment->environmentalBonusTo("strength", player));
+    dictionary->timeOfDay("noon");
+    ExpectEq(4, environment->environmentalBonusTo("strength", player));
 
     destruct(environment);
 }
-*/

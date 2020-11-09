@@ -234,7 +234,7 @@ protected nomask void bonusRequiresOneOfEquipment(string name, string *tools)
 {
     if (member(bonusData, name) && objectp(bonusData[name]))
     {
-        bonusData[name]->limitBonusByOneOfTools(tools);
+        bonusData[name]->limitBonusByOneOfEquipment(tools);
     }
     else
     {

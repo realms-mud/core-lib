@@ -24,7 +24,7 @@ public nomask varargs int environmentalBonusTo(string bonus, object actor,
 
         if (!member(bonuses[key], bonus))
         {
-            bonuses[key][bonus] = 0;
+            bonuses[key][bonus] = ({ });
 
             foreach(string elementType in({ "terrain", "interior", "feature",
                 "building", "item", "door" }))
@@ -37,21 +37,27 @@ public nomask varargs int environmentalBonusTo(string bonus, object actor,
                     {
                         object elementObj =
                             getDictionary("environment")->environmentalObject(element);
-                        if (elementObj)
+                        if (elementObj &&
+                            (member(elementObj->bonuses(), bonus) > -1))
                         {
-                            bonuses[key][bonus] += 
-                                elementObj->environmentalBonusTo(
-                                    currentState(), 
-                                    this_object(),
-                                    bonus,
-                                    actor,
-                                    target);
+                            bonuses[key][bonus] += ({ elementObj });
                         }
                     }
                 }
             }
         }
-        ret = bonuses[key][bonus];
+
+        if (sizeof(bonuses[key][bonus]))
+        {
+            foreach(object element in bonuses[key][bonus])
+            {
+                if (objectp(element))
+                {
+                    ret += element->environmentalBonusTo(
+                        currentState(), this_object(), bonus, actor, target);
+                }
+            }
+        }
     }
     return ret;
 }
