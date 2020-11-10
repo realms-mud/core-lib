@@ -17,5 +17,3 @@ public void decreaseHitPointsOnUser(object initiator)
 {
     initiator->hitPoints(-1 * (initiator->hitPoints() - 10));
 }
-
-

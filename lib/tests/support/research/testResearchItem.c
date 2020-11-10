@@ -9,4 +9,3 @@ public int addSpecification(string type, mixed value)
 {
     return researchItem::addSpecification(type, value);
 }
-

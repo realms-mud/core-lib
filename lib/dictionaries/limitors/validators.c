@@ -1,0 +1,350 @@
+//*****************************************************************************
+// Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validRaceLimitor(mixed raceValue)
+{
+    int ret = 0;
+    object racialDictionary = getDictionary("racial");
+    if (racialDictionary)
+    {
+        if (pointerp(raceValue) && sizeof(raceValue))
+        {
+            int isValid = 0;
+            foreach(string race in raceValue)
+            {
+                isValid ||= 
+                    racialDictionary->isValidRace(race) ||
+                    racialDictionary->isCreatureRace(race);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = racialDictionary->isValidRace(raceValue) ||
+                racialDictionary->isCreatureRace(raceValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validGuildLimitor(mixed guildValue)
+{
+    int ret = 0;
+    object guildDictionary = getDictionary("guilds");
+    if (guildDictionary)
+    {
+        if (pointerp(guildValue) && sizeof(guildValue))
+        {
+            int isValid = 0;
+            foreach(string guild in guildValue)
+            {
+                isValid ||= 
+                    guildDictionary->isValidGuild(guild);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = guildDictionary->isValidGuild(guildValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validFactionLimitor(mixed factionValue)
+{
+    int ret = 0;
+    object factionDictionary = getDictionary("factions");
+    if (factionDictionary)
+    {
+        if (pointerp(factionValue) && sizeof(factionValue))
+        {
+            int isValid = 0;
+            foreach(string faction in factionValue)
+            {
+                isValid ||= 
+                    factionDictionary->isValidFaction(faction);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = factionDictionary->isValidFaction(factionValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validSkillLimitor(mapping skills)
+{
+    int ret = 0;
+
+    object skillsDictionary = getDictionary("skills");
+    if (skillsDictionary && mappingp(skills) &&
+        sizeof(skills))
+    {
+        ret = 1;
+        foreach(string skill in m_indices(skills))
+        {
+            ret &&= skillsDictionary->isValidSkill(skill) && 
+                intp(skills[skill]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validAttributeLimitor(mixed attributes)
+{
+    int ret = 0;
+    if (mappingp(attributes) && sizeof(attributes))
+    {
+        ret = 1;
+        foreach(string attribute in m_indices(attributes))
+        {
+            ret &&= getDictionary("attribute")->isValidAttribute(attribute) &&
+                intp(attributes[attribute]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validQuestLimitor(mixed questValue)
+{
+    int ret = 0;
+
+    object questDictionary = getDictionary("quests");
+    if (questDictionary)
+    {
+        if (pointerp(questValue) && sizeof(questValue))
+        {
+            int isValid = 0;
+            foreach(string quest in questValue)
+            {
+                isValid ||= 
+                    objectp(questDictionary->questObject(quest));
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = objectp(questDictionary->questObject(questValue));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validResearchLimitor(mixed researchValue)
+{
+    int ret = 0;
+    object researchDictionary = getDictionary("research");
+    if (researchDictionary)
+    {
+        if (pointerp(researchValue) && sizeof(researchValue))
+        {
+            int isValid = 0;
+            foreach(string research in researchValue)
+            {
+                isValid ||=
+                    researchDictionary->validResearch(research);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = 
+                researchDictionary->validResearch(researchValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validResearchIsActiveLimitor(mixed researchValue)
+{
+    int ret = 0;
+    object researchDictionary = getDictionary("research");
+    if (researchDictionary)
+    {
+        if (pointerp(researchValue) && sizeof(researchValue))
+        {
+            int isValid = 0;
+            foreach(string research in researchValue)
+            {
+                isValid ||= 
+                    researchDictionary->isSustainedResearchItem(research);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = 
+                researchDictionary->isSustainedResearchItem(researchValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validTraitsLimitor(mixed traitValue)
+{
+    int ret = 0;
+    object traitDictionary = getDictionary("traits");
+    if (traitDictionary)
+    {
+        if (pointerp(traitValue) && sizeof(traitValue))
+        {
+            int isValid = 0;
+            foreach(string trait in traitValue)
+            {
+                isValid ||= 
+                    traitDictionary->validTrait(trait);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = traitDictionary->validTrait(traitValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validTimeOfDayLimitor(mixed timeOfDayValue)
+{
+    int ret = 0;
+    object environmentDictionary = getDictionary("environment");
+    if (environmentDictionary)
+    {
+        if (pointerp(timeOfDayValue) && sizeof(timeOfDayValue))
+        {
+            int isValid = 0;
+            foreach(string timeOfDay in timeOfDayValue)
+            {
+                isValid ||= environmentDictionary->isValidTimeOfDay(
+                    timeOfDay);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = environmentDictionary->isValidTimeOfDay(timeOfDayValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validSeasonLimitor(mixed seasonValue)
+{
+    int ret = 0;
+    object environmentDictionary = getDictionary("environment");
+    if (environmentDictionary)
+    {
+        if (pointerp(seasonValue) && sizeof(seasonValue))
+        {
+            int isValid = 0;
+            foreach(string season in seasonValue)
+            {
+                isValid ||= environmentDictionary->isValidSeason(
+                    season);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = environmentDictionary->isValidSeason(seasonValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validMoonPhaseLimitor(mixed moonPhaseValue)
+{
+    int ret = 0;
+    object environmentDictionary = getDictionary("environment");
+    if (environmentDictionary)
+    {
+        if (pointerp(moonPhaseValue) && sizeof(moonPhaseValue))
+        {
+            int isValid = 0;
+            foreach(string moonPhase in moonPhaseValue)
+            {
+                isValid ||= environmentDictionary->isValidMoonPhase(
+                    moonPhase);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = environmentDictionary->isValidMoonPhase(
+                moonPhaseValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validCraftingTypeLimitor(mixed type)
+{
+    int ret = 0;
+    object craftingDictionary = getDictionary("crafting");
+    if (craftingDictionary)
+    {
+        ret = craftingDictionary->isValidType(type);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validEnvironmentLimitor(mixed type)
+{
+    int ret = 0;
+    object environmentDictionary = getDictionary("environment");
+    if (environmentDictionary)
+    {
+        ret = environmentDictionary->isValidType(type);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validEquipmentLimitor(mixed equipmentValue)
+{
+    int ret = 0;
+
+    object materialsDictionary = getDictionary("materials");
+    if (materialsDictionary)
+    {
+        if (pointerp(equipmentValue) && sizeof(equipmentValue))
+        {
+            int isValid = 0;
+            foreach(string equipment in equipmentValue)
+            {
+                isValid ||= materialsDictionary->isValidArmorType(equipment) ||
+                    materialsDictionary->isValidArmorBlueprint(equipment) ||
+                    materialsDictionary->isValidWeaponType(equipment) ||
+                    materialsDictionary->isValidWeaponBlueprint(equipment);
+            }
+            ret = isValid;
+        }
+        else
+        {
+            ret = materialsDictionary->isValidArmorType(equipmentValue) ||
+                materialsDictionary->isValidArmorBlueprint(equipmentValue) ||
+                materialsDictionary->isValidWeaponType(equipmentValue) ||
+                materialsDictionary->isValidWeaponBlueprint(equipmentValue);
+        }
+    }
+    return ret;
+}

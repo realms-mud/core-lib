@@ -109,6 +109,14 @@ void CanSetLimitorForOpponentCreatureRace()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForRace()
+{
+    mapping limitor = (["race":"elf"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CannotSetLimitorForInvalidRace()
 {
     string err = catch (Specification->addSpecification("limited by", (["opponent race":"tomato"])));
@@ -126,6 +134,14 @@ void CanSetLimitorForOpponentGuild()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForGuild()
+{
+    mapping limitor = (["guild":"test"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CannotSetLimitorForInvalidGuild()
 {
     string err = catch (Specification->addSpecification("limited by", (["opponent guild":"turnip"])));
@@ -138,6 +154,14 @@ void CannotSetLimitorForInvalidGuild()
 void CanSetLimitorForOpponentFaction()
 {
     mapping limitor = (["opponent faction":"/lib/tests/support/factions/goodGuys.c"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForFaction()
+{
+    mapping limitor = (["faction":"/lib/tests/support/factions/goodGuys.c"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
 }
@@ -234,6 +258,55 @@ void CanSetLimitorForEquipmentThatIsValidListType()
 void CanSetLimitorForSkills()
 {
     mapping limitor = (["skill": ([ "dodge": 3, "parry": 5 ]) ]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForAttributes()
+{
+    mapping limitor = (["attribute":(["strength":3, "wisdom": 5])]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForQuests()
+{
+    mapping limitor = (["quests":({ "lib/tests/support/quests/fakeQuestItem.c" })]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForResearch()
+{
+    mapping limitor = (["research":({ "lib/tests/support/research/testTreeRoot.c" })]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForResearchIsActive()
+{
+    mapping limitor = (["research active":({ "lib/tests/support/research/testSustainedTraitResearch.c" })]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSetLimitorForInvalidActiveResearch()
+{
+    string err = catch (Specification->addSpecification("limited by", (["research active":({ "lib/tests/support/research/testTreeRoot.c" })])));
+    string expectedError = "*ERROR - specification: The value of 'limited by' must be a valid limiting mapping. See the specification.validLimitor method for details.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid 'limited by'");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForTrait()
+{
+    mapping limitor = (["traits":({ "lib/tests/support/traits/testTrait.c" })]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
 }

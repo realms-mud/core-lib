@@ -42,146 +42,98 @@ protected nomask int validLimitor(mapping limitor)
             ret = 1;
         }
 
+        object limitorDictionary = getDictionary("limitor");
         foreach(string key in limitorKeys)
         {
             if (key && stringp(key))
             {
                 switch (key)
                 {
+                    case "race":
                     case "opponent race":
                     {
-                        object racialDictionary = getDictionary("racial");
-                        if (racialDictionary)
-                        {
-                            ret &&= racialDictionary->isValidRace(
-                                limitor[key]) || racialDictionary->isCreatureRace(limitor[key]);
-                        }
+                        ret &&= 
+                            limitorDictionary->validRaceLimitor(limitor[key]);
                         break;
                     }
+                    case "guild":
                     case "opponent guild":
                     {
-                        object guildDictionary = getDictionary("guilds");
-                        if (guildDictionary)
-                        {
-                            ret &&= guildDictionary->isValidGuild(
-                                limitor[key]);
-                        }
+                        ret &&=
+                            limitorDictionary->validGuildLimitor(limitor[key]);
                         break;
                     }
+                    case "faction":
                     case "opponent faction":
                     {
-                        object factionDictionary = getDictionary("factions");
-                        if (factionDictionary)
-                        {
-                            ret &&= factionDictionary->isValidFaction(
-                                limitor[key]);
-                        }
+                        ret &&=
+                            limitorDictionary->validFactionLimitor(limitor[key]);
                         break;
                     }
                     case "skill":
                     {
-                        object skillsDictionary = getDictionary("skills");
-                        if (skillsDictionary && mappingp(limitor[key]) &&
-                            sizeof(limitor[key]))
-                        {
-                            foreach(string skill in m_indices(limitor[key]))
-                            {
-                                ret &&= skillsDictionary->isValidSkill(skill) && 
-                                    intp(limitor[key][skill]);
-                            }
-                        }
+                        ret &&=
+                            limitorDictionary->validSkillLimitor(limitor[key]);
+                        break;
+                    }
+                    case "attribute":
+                    {
+                        ret &&=
+                            limitorDictionary->validAttributeLimitor(limitor[key]);
+                        break;
+                    }
+                    case "quests":
+                    {
+                        ret &&=
+                            limitorDictionary->validQuestLimitor(limitor[key]);
+                        break;
+                    }
+                    case "research":
+                    {
+                        ret &&=
+                            limitorDictionary->validResearchLimitor(limitor[key]);
+                        break;
+                    }
+                    case "research active":
+                    {
+                        ret &&=
+                            limitorDictionary->validResearchIsActiveLimitor(limitor[key]);
+                        break;
+                    }
+                    case "traits":
+                    {
+                        ret &&=
+                            limitorDictionary->validTraitsLimitor(limitor[key]);
                         break;
                     }
                     case "time of day":
                     {
-                        object environmentDictionary = getDictionary("environment");
-                        if (environmentDictionary)
-                        {
-                            if (pointerp(limitor[key]) && sizeof(limitor[key]))
-                            {
-                                int isValid = 0;
-                                string *list = limitor[key];
-                                foreach(string timeOfDay in list)
-                                {
-                                    isValid ||= environmentDictionary->isValidTimeOfDay(
-                                        timeOfDay);
-                                }
-                                ret &&= isValid;
-                            }
-                            else
-                            {
-                                ret &&= environmentDictionary->isValidTimeOfDay(
-                                    limitor[key]);
-                            }
-                        }
+                        ret &&=
+                            limitorDictionary->validTimeOfDayLimitor(limitor[key]);
                         break;
                     }
                     case "season":
                     {
-                        object environmentDictionary = getDictionary("environment");
-                        if (environmentDictionary)
-                        {
-                            if (pointerp(limitor[key]) && sizeof(limitor[key]))
-                            {
-                                int isValid = 0;
-                                string *list = limitor[key];
-                                foreach(string season in list)
-                                {
-                                    isValid ||= environmentDictionary->isValidSeason(
-                                        season);
-                                }
-                                ret &&= isValid;
-                            }
-                            else
-                            {
-                                ret &&= environmentDictionary->isValidSeason(
-                                    limitor[key]);
-                            }
-                        }
+                        ret &&=
+                            limitorDictionary->validSeasonLimitor(limitor[key]);
                         break;
                     }
                     case "moon phase":
                     {
-                        object environmentDictionary = getDictionary("environment");
-                        if (environmentDictionary)
-                        {
-                            if (pointerp(limitor[key]) && sizeof(limitor[key]))
-                            {
-                                int isValid = 0;
-                                string *list = limitor[key];
-                                foreach(string moonPhase in list)
-                                {
-                                    isValid ||= environmentDictionary->isValidMoonPhase(
-                                        moonPhase);
-                                }
-                                ret &&= isValid;
-                            }
-                            else
-                            {
-                                ret &&= environmentDictionary->isValidMoonPhase(
-                                    limitor[key]);
-                            }
-                        }
+                        ret &&=
+                            limitorDictionary->validMoonPhaseLimitor(limitor[key]);
                         break;
                     }
                     case "crafting type":
                     {
-                        object craftingDictionary = getDictionary("crafting");
-                        if (craftingDictionary)
-                        {
-                            ret &&= craftingDictionary->isValidType(
-                                limitor[key]);
-                        }
+                        ret &&=
+                            limitorDictionary->validCraftingTypeLimitor(limitor[key]);
                         break;
                     }
                     case "environment":
                     {
-                        object environmentDictionary = getDictionary("environment");
-                        if (environmentDictionary)
-                        {
-                            ret &&= environmentDictionary->isValidType(
-                                limitor[key]);
-                        }
+                        ret &&=
+                            limitorDictionary->validEnvironmentLimitor(limitor[key]);
                         break;
                     }
                     case "environment state":
@@ -192,30 +144,8 @@ protected nomask int validLimitor(mapping limitor)
                     }
                     case "equipment":
                     {
-                        object materialsDictionary = getDictionary("materials");
-                        if (materialsDictionary)
-                        {
-                            if (pointerp(limitor[key]) && sizeof(limitor[key]))
-                            {
-                                int isValid = 0;
-                                string *list = limitor[key];
-                                foreach(string equipment in list)
-                                {
-                                    isValid ||= materialsDictionary->isValidArmorType(equipment) ||
-                                        materialsDictionary->isValidArmorBlueprint(equipment) ||
-                                        materialsDictionary->isValidWeaponType(equipment) ||
-                                        materialsDictionary->isValidWeaponBlueprint(equipment);
-                                }
-                                ret &&= isValid;
-                            }
-                            else
-                            {
-                                ret &&= materialsDictionary->isValidArmorType(limitor[key]) ||
-                                    materialsDictionary->isValidArmorBlueprint(limitor[key]) ||
-                                    materialsDictionary->isValidWeaponType(limitor[key]) ||
-                                    materialsDictionary->isValidWeaponBlueprint(limitor[key]);
-                            }
-                        }
+                        ret &&=
+                            limitorDictionary->validEquipmentLimitor(limitor[key]);
                         break;
                     }
                     case "intoxicated":
@@ -313,521 +243,18 @@ protected int blockSpecificationApplication(string skill, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int checkOpponentRaceLimitor(object target, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
- 
-    if (member(specificationData["limited by"], "opponent race"))
-    {
-        ret &&= target && objectp(target) &&
-            function_exists("Race", target) && (target->Race() ==
-                specificationData["limited by"]["opponent race"]);
-
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                sprintf("Your opponent is not of the %s race.\n",
-                specificationData["limited by"]["opponent race"]),
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkOpponentGuildLimitor(object target, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "opponent guild"))
-    {
-        ret &&= target && objectp(target) &&
-            function_exists("memberOfGuild", target) &&
-            target->memberOfGuild(
-                specificationData["limited by"]["opponent guild"]);
-
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                sprintf("Your opponent is not of the %s guild.\n",
-                specificationData["limited by"]["opponent guild"]),
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkOpponentFactionLimitor(object target, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "opponent faction"))
-    {
-        ret &&= target && objectp(target) &&
-            function_exists("memberOfFaction", target) &&
-            target->memberOfFaction(
-                specificationData["limited by"]["opponent faction"]);
-
-        if (!ret && verbose)
-        {
-            object faction = getDictionary("factions")->factionObject(
-                specificationData["limited by"]["opponent faction"]);
-
-            if (faction)
-            {
-                write(configuration->decorate(
-                    sprintf("Your opponent is not of the %s faction.\n",
-                    faction->name()),
-                    "missing prerequisites", "research", colorConfiguration));
-            }
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkCraftingTypeLimitor(object target, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "crafting type"))
-    {
-        ret &&= objectp(target);
-
-        if (stringp(specificationData["limited by"]["crafting type"]) &&
-            target)
-        {
-            ret &&= ((target->query("crafting type") ==
-                specificationData["limited by"]["crafting type"]) ||
-                (getDictionary("materials")->getBlueprintDetails(target,
-                    "skill to use") == 
-                    specificationData["limited by"]["crafting type"]));
-        }
-        else if (pointerp(specificationData["limited by"]["crafting type"]) &&
-            target)
-        {
-            int checkList = 0;
-            object materials = getDictionary("materials");
-
-            foreach(string key in specificationData["limited by"]["crafting type"])
-            {
-                checkList += ((target->query("crafting type") == key) ||
-                    (materials->getBlueprintDetails(target,
-                        "skill to use") == key));
-            }
-            ret &&= checkList;
-        }
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                "The item is of the wrong type to be affected by this research.\n",
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkEnvironmentLimitor(object owner, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "environment"))
-    {
-        object environmentDictionary =
-            getDictionary("environment");
-        if (environmentDictionary)
-        {
-            ret &&= environment(owner) &&
-                environmentDictionary->isEnvironmentOfType(environment(owner),
-                    specificationData["limited by"]["environment"]);
-        }
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                sprintf("You are not in the correct environment (%s) to do that.\n",
-                specificationData["limited by"]["environment"]),
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkEnvironmentStateLimitor(object owner, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "environment state"))
-    {
-        object environment = environment(owner);
-        if (environment)
-        {
-            if (!pointerp(specificationData["limited by"]["environment state"]))
-            {
-                specificationData["limited by"]["environment state"] =
-                    ({ specificationData["limited by"]["environment state"] });
-            }
-
-            ret &&= (member(specificationData["limited by"]["environment state"],
-                environment->currentState()) > -1);
-        }
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                format(sprintf("You are not in the correct environment state "
-                "(%s) to do that.\n",
-                pointerp(specificationData["limited by"]["environment state"]) ?
-                    implode(specificationData["limited by"]["environment state"], ", ") :
-                    specificationData["limited by"]["environment state"]), 78),
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkIntoxicatedLimitor(object owner, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "intoxicated"))
-    {
-        ret &&= function_exists("Intoxicated", owner) &&
-            (owner->Intoxicated() >=
-                specificationData["limited by"]["intoxicated"]);
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                "You are not intoxicated enough to do that.\n",
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkDruggedLimitor(object owner, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "drugged"))
-    {
-        ret &&= function_exists("Drugged", owner) &&
-            (owner->Drugged() >= specificationData["limited by"]["drugged"]);
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                "You are not drugged enough to do that.\n",
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkNearDeathLimitor(object owner, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "near death"))
-    {
-        ret &&= function_exists("hitPoints", owner) &&
-            (owner->hitPoints() <= specificationData["limited by"]["near death"]);
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                "You are not injured enough to do that.\n",
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkStaminaDrainedLimitor(object owner, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "stamina drained"))
-    {
-        ret &&= function_exists("staminaPoints", owner) &&
-            (owner->staminaPoints() <= specificationData["limited by"]["stamina drained"]);
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                "You are not weary enough to do that.\n",
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkSpellPointsDrainedLimitor(object owner, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "spell points drained"))
-    {
-        ret &&= function_exists("spellPoints", owner) &&
-            (owner->spellPoints() <= specificationData["limited by"]["spell points drained"]);
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                "You are not drained enough to do that.\n",
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkEquipmentLimitor(object owner, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "equipment"))
-    {
-        if (pointerp(specificationData["limited by"]["equipment"]) &&
-            sizeof(specificationData["limited by"]["equipment"]))
-        {
-            int hasEquipment = 0;
-            string *list = specificationData["limited by"]["equipment"];
-            foreach(string equipment in list)
-            {
-                hasEquipment ||= owner->usingEquipmentOfType(equipment);
-            }
-            ret &&= hasEquipment;
-        }
-        else
-        {
-            ret &&= function_exists("usingEquipmentOfType", owner) &&
-                owner->usingEquipmentOfType(specificationData["limited by"]["equipment"]);
-        }
-
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                sprintf("You must be using the proper equipment for that (%s).\n",
-                stringp(specificationData["limited by"]["equipment"]) ? 
-                    specificationData["limited by"]["equipment"] :
-                    implode(sort_array(specificationData["limited by"]["equipment"], 
-                        (: $1 > $2 :)), ", ")),
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkTimeOfDayLimitor(int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "time of day"))
-    {
-        object environmentDictionary = getDictionary("environment");
-        if (environmentDictionary)
-        {
-            if (pointerp(specificationData["limited by"]["time of day"]))
-            {
-                ret &&= (member(specificationData["limited by"]["time of day"],
-                    environmentDictionary->timeOfDay()) > -1);
-            }
-            else
-            {
-                ret &&= (environmentDictionary->timeOfDay() ==
-                    specificationData["limited by"]["time of day"]);
-            }
-        }
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                sprintf("It is not the proper time of day (%s) to do that.\n",
-                    pointerp(specificationData["limited by"]["time of day"]) ?
-                        implode(specificationData["limited by"]["time of day"], ", ") :
-                        specificationData["limited by"]["time of day"]),
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkSeasonLimitor(int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "season"))
-    {
-        object environmentDictionary = getDictionary("environment");
-        if (environmentDictionary)
-        {
-            if (pointerp(specificationData["limited by"]["season"]))
-            {
-                ret &&= (member(specificationData["limited by"]["season"],
-                    environmentDictionary->season()) > -1);
-            }
-            else
-            {
-                ret &&= (environmentDictionary->season() ==
-                    specificationData["limited by"]["season"]);
-            }
-        }
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                sprintf("It is not the proper season (%s) to do that.\n",
-                    pointerp(specificationData["limited by"]["season"]) ?
-                        implode(specificationData["limited by"]["season"], ", ") :
-                        specificationData["limited by"]["season"]),
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkMoonPhaseLimitor(int verbose, 
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "moon phase"))
-    {
-        object environmentDictionary = getDictionary("environment");
-        if (environmentDictionary)
-        {
-            if (pointerp(specificationData["limited by"]["moon phase"]))
-            {
-                ret &&= (member(specificationData["limited by"]["moon phase"],
-                    environmentDictionary->moonPhase()) > -1);
-            }
-            else
-            {
-                ret &&= (environmentDictionary->moonPhase() ==
-                    specificationData["limited by"]["moon phase"]);
-            }
-        }
-        if (!ret && verbose)
-        {
-            write(configuration->decorate(
-                sprintf("It is not the proper moon phase (%s) to do that.\n",
-                    pointerp(specificationData["limited by"]["moon phase"]) ?
-                        implode(specificationData["limited by"]["moon phase"], ", ") :
-                        specificationData["limited by"]["moon phase"]),
-                "missing prerequisites", "research", colorConfiguration));
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int checkSkillLimitor(object owner, int verbose,
-    string colorConfiguration, object configuration)
-{
-    int ret = 1;
-
-    if (member(specificationData["limited by"], "skill"))
-    {
-        foreach(string skill in 
-            m_indices(specificationData["limited by"]["skill"]))
-        {
-            int skillCheck = (owner->getSkill(skill) >=
-                specificationData["limited by"]["skill"][skill]);
-
-            ret &&= skillCheck;
-            if (!skillCheck && verbose)
-            {
-                write(configuration->decorate(
-                    sprintf("You need a minimum of %d in %s to do that.\n",
-                        specificationData["limited by"]["skill"][skill], skill),
-                    "missing prerequisites", "research", colorConfiguration));
-            }
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask varargs int environmentalFactorsMet(object owner, int verbose)
 {
-    int ret = 1;
-
-    if (member(specificationData, "limited by") && owner && objectp(owner))
-    {
-        string colorConfiguration = owner->colorConfiguration();
-        object configuration = getDictionary("configuration");
-
-        ret = checkEnvironmentLimitor(owner, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkEnvironmentStateLimitor(owner, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkTimeOfDayLimitor(verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkSeasonLimitor(verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkMoonPhaseLimitor(verbose,
-            colorConfiguration, configuration) && ret;
-    }
-    return ret;
+    return getDictionary("limitor")->environmentalFactorsMet(
+        specificationData, owner, verbose);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs int userFactorsMet(object owner, 
     object target, int verbose)
 {
-    int ret = 1;
-
-    if (member(specificationData, "limited by") && owner && objectp(owner))
-    {
-        string colorConfiguration = owner->colorConfiguration();
-        object configuration = getDictionary("configuration");
-
-        // This slice of yuck allows all of the limitors to
-        // display failure messages rather than only the first
-        // that evaluates to false if they were all AND-ed together
-        ret = checkOpponentRaceLimitor(target, verbose, 
-            colorConfiguration, configuration) && ret;
-        ret = checkOpponentGuildLimitor(target, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkOpponentFactionLimitor(target, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkCraftingTypeLimitor(target, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkIntoxicatedLimitor(owner, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkDruggedLimitor(owner, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkNearDeathLimitor(owner, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkStaminaDrainedLimitor(owner, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkSpellPointsDrainedLimitor(owner, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkEquipmentLimitor(owner, verbose,
-            colorConfiguration, configuration) && ret;
-        ret = checkSkillLimitor(owner, verbose,
-            colorConfiguration, configuration) && ret;
-    }
-
-    return ret;
+    return getDictionary("limitor")->userFactorsMet(
+        specificationData, owner, target, verbose);
 }
 
 /////////////////////////////////////////////////////////////////////////////

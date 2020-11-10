@@ -23,10 +23,9 @@ virtual inherit "/lib/core/thing.c";
 //
 // Returns: the list of bonus methods controlled by this object
 //-----------------------------------------------------------------------------
-static nomask string *validAttributes()
+static nomask string *bonusAttributes()
 {
-    return ({ "bonus strength", "bonus intelligence", "bonus dexterity",
-              "bonus wisdom", "bonus constitution", "bonus charisma" });
+    return getDictionary("attribute")->bonusAttributes();
 }
 
 //-----------------------------------------------------------------------------
@@ -46,7 +45,7 @@ public varargs nomask int attributeValue(string attribute, int useRaw)
     int value = 0;
     
     if(attribute && stringp(attribute) &&
-       (member(validAttributes(), sprintf("bonus %s", attribute)) > -1))
+       (member(getDictionary("attribute")->attributes(), attribute) > -1))
     {
         switch(attribute)
         {
@@ -272,7 +271,7 @@ private nomask int bonusForAttribute(string attribute)
     int bonus = 0;
     
     if(attribute && stringp(attribute) &&
-       (member(validAttributes(), sprintf("bonus %s", attribute)) > -1))
+       (member(getDictionary("attribute")->attributes(), attribute) > -1))
     {
         // TODO [98]: Revise this formula that was pulled out of... a dark place.
         bonus = (attributeValue(attribute) - 10) / 2;
