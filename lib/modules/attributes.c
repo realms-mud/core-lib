@@ -23,7 +23,7 @@ virtual inherit "/lib/core/thing.c";
 //
 // Returns: the list of bonus methods controlled by this object
 //-----------------------------------------------------------------------------
-static nomask string *bonusAttributes()
+static nomask string *validAttributes()
 {
     return getDictionary("attribute")->bonusAttributes();
 }

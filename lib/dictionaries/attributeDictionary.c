@@ -33,7 +33,7 @@ public nomask string *bonusAttributes()
     {
         foreach(string attribute in attributes)
         {
-            bonusAttributes += ({ attribute });
+            bonusAttributes += ({ sprintf("bonus %s", attribute) });
         }
     }
     return bonusAttributes + ({});
