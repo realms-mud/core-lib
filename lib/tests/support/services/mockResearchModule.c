@@ -79,5 +79,3 @@ public nomask int sustainedResearchIsActive(string name)
 {
     return name == researchName;
 }
-
-

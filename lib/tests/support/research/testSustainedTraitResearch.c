@@ -10,6 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         sustainedResearchItem::reset(arg);
+        addSpecification("source", "guild");
         addSpecification("name", "Sustained research");
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");

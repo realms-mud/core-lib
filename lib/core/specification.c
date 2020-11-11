@@ -348,6 +348,18 @@ public mixed query(string element)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private varargs string convertToString(string *list, int isInclusive,
+    int doNotReplaceLastComma)
+{
+    string endDelimeter = isInclusive ? " and " : " or ";
+
+    string ret = implode(sort_array(list, (: $1 > $2 :)),
+                 (sizeof(list) == 2) ? endDelimeter : ", ");
+    return doNotReplaceLastComma ? ret :
+        regreplace(ret, ", ([^,]+)$", "," + endDelimeter + "\\1", 1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs string displayLimiters(string colorConfiguration, 
     object configuration, int doNotFormat)
 {
@@ -366,6 +378,8 @@ public nomask varargs string displayLimiters(string colorConfiguration,
             {
                 case "opponent race":
                 case "opponent guild":
+                case "race":
+                case "guild":
                 case "crafting type":
                 case "environment":
                 case "environment state":
@@ -375,18 +389,17 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                 {
                     int isList = pointerp(specificationData["limited by"][key]);
                     string types = isList ?
-                        implode(sort_array(specificationData["limited by"][key],
-                            (: $1 > $2 :)), 
-                            (sizeof(specificationData["limited by"][key]) == 2) ? 
-                            " or " : ", ") :
+                        convertToString(specificationData["limited by"][key]) :
                         specificationData["limited by"][key];
-                    types = regreplace(types, ", ([^,]+)$", ", or \\1", 1);
 
-                    ret += sprintf(limiter, "the " + key, ((isList &&
+                    string article = (member(({ "race", "guild" }), key) > -1) ?
+                        "your " : "the ";
+                    ret += sprintf(limiter, article + key, ((isList &&
                         sizeof(specificationData["limited by"][key]) > 2) ? 
                             "is one of": "is"), types);
                     break;
                 }
+                case "faction":
                 case "opponent faction":
                 {
                     object faction = getDictionary("factions")->factionObject(
@@ -412,11 +425,8 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                     if (pointerp(specificationData["limited by"][key]) &&
                         sizeof(specificationData["limited by"][key]))
                     {
-                        equipment = implode(sort_array(
-                            specificationData["limited by"][key], (: $1 > $2 :)), 
-                            (sizeof(specificationData["limited by"][key]) == 2) ?
-                            " or " : ", ");
-                        equipment = regreplace(equipment, ", ([^,]+)$", ", or \\1", 1);
+                        equipment =
+                            convertToString(specificationData["limited by"][key]);
                     }
                     else
                     {
@@ -425,15 +435,72 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                     ret += sprintf(limiter, "you're", "using:", equipment);
                     break;
                 }
+                case "attribute":
                 case "skill":
                 {
-                    foreach(string skill in 
-                        m_indices(specificationData["limited by"]["skill"]))
+                    foreach(string item in 
+                        m_indices(specificationData["limited by"][key]))
                     {
-                        ret += sprintf(limiter, "your", skill,
-                            sprintf("skill is at least %d", 
-                                specificationData["limited by"]["skill"][skill]));
+                        ret += sprintf(limiter, "your", item,
+                            sprintf("%s is at least %d", key,
+                                specificationData["limited by"][key][item]));
                     }
+                    break;
+                }
+                case "quests":
+                {
+                    string *quests = ({});
+
+                    object questDictionary = getDictionary("quests");
+                    foreach(string quest in specificationData["limited by"]["quests"])
+                    {
+                        quests += ({ "\"" + questDictionary->questSummary(quest) +
+                            "\"" });
+                    }
+
+                    ret += sprintf(limiter, "you have completed all of the following",
+                        "quests:", convertToString(quests, 1, 1));
+                    break;
+                }
+                case "research":
+                case "research active":
+                {
+                    string *research = ({});
+
+                    object researchDictionary = getDictionary("research");
+                    foreach(string researchItem in 
+                        specificationData["limited by"][key])
+                    {
+                        object researchObj =
+                            researchDictionary->researchObject(researchItem);
+                        if (researchObj)
+                        {
+                            research += ({ capitalize(researchObj->query("name")) });
+                        }
+                    }
+
+                    ret += sprintf(limiter, "you have " + 
+                        ((key == "research") ? "completed " : "") +
+                        "any of the following", key + ":", convertToString(research));
+                    break;
+                }
+                case "traits":
+                {
+                    string *traits = ({});
+
+                    object traitDictionary = getDictionary("traits");
+                    foreach(string trait in 
+                        specificationData["limited by"]["traits"])
+                    {
+                        object traitObj =
+                            traitDictionary->traitObject(trait);
+                        if (traitObj)
+                        {
+                            traits += ({ capitalize(traitObj->query("name")) });
+                        }
+                    }
+                    ret += sprintf(limiter, "you have any of the following",
+                        "traits:", convertToString(traits));
                     break;
                 }
             }

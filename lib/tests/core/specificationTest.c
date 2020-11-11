@@ -358,6 +358,17 @@ void CanApplySpecificationReturnsTrueWithLimitorForOpponentRace()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForRace()
+{
+    mapping limitor = (["race":({ "elf", "human" }) ]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
+
+    Attacker->Race("elf");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanApplySpecificationReturnsTrueWithLimitorForOpponentGuild()
 {
     mapping limitor = (["opponent guild":"test"]);
@@ -370,9 +381,32 @@ void CanApplySpecificationReturnsTrueWithLimitorForOpponentGuild()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForGuild()
+{
+    mapping limitor = (["guild":"test"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
+
+    Attacker->ToggleMockGuilds();
+    Attacker->SetGuild("test");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanApplySpecificationReturnsTrueWithLimitorForOpponentFaction()
 {
     mapping limitor = (["opponent faction":"/lib/tests/support/factions/goodGuys.c"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
+
+    Attacker->ToggleMockFaction();
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForFaction()
+{
+    mapping limitor = (["faction":"/lib/tests/support/factions/goodGuys.c"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "no values set");
 
@@ -598,11 +632,89 @@ void CanApplySpecificationReturnsTrueWithLimitorForSkill()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForAttribute()
+{
+    mapping limitor = (["attribute":(["strength":21])]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
+
+    Attacker->Str(21);
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForQuests()
+{
+    mapping limitor = (["quests":({ "lib/tests/support/quests/fakeQuestItem.c" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
+
+    Attacker->ToggleMockQuests();
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForResearch()
+{
+    mapping limitor = (["research":({ "lib/tests/support/research/testResearchA.c" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
+
+    Attacker->ToggleMockResearch();
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForResearchActive()
+{
+    mapping limitor = (["research active":({ 
+        "lib/tests/support/research/testSustainedTraitResearch.c" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+
+    Attacker->ToggleMockResearch();
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
+
+    Attacker->activateSustainedResearch(
+        clone_object("/lib/tests/support/research/testSustainedTraitResearch.c"), 0);
+
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForTraits()
+{
+    mapping limitor = (["traits":({ "lib/tests/support/traits/testGeneticTrait.c" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+
+    ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
+
+    Attacker->ToggleMockTraits();
+    Attacker->addTrait("lib/tests/support/traits/testGeneticTrait.c");
+    ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DisplayLimitersStringCorrectWithLimitorForOpponentRace()
 {
     mapping limitor = (["opponent race":"elf"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("\x1b[0;36mThis is only applied when the opponent race is elf.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForRace()
+{
+    mapping limitor = (["race":({ "elf", "human" })]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when your race is elf or human.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -614,11 +726,27 @@ void  DisplayLimitersStringCorrectWithLimitorForOpponentGuild()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForGuild()
+{
+    mapping limitor = (["guild": "test" ]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when your guild is test.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void  DisplayLimitersStringCorrectWithLimitorForOpponentFaction()
 {
     mapping limitor = (["opponent faction":"/lib/tests/support/factions/goodGuys.c"]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("\x1b[0;36mThis is only applied when opponent faction is good guys.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void  DisplayLimitersStringCorrectWithLimitorForFaction()
+{
+    mapping limitor = (["faction":"/lib/tests/support/factions/goodGuys.c"]);
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when faction is good guys.\n\x1b[0m", Specification->displayLimiters(colorConfiguration, Configuration));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -849,5 +977,64 @@ void DisplayLimitersStringCorrectWithLimitorForListOfSkills()
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("\x1b[0;36mThis is only applied when your dodge skill is at least 3.\n"
         "This is only applied when your parry skill is at least 5.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForListOfAttributes()
+{
+    mapping limitor = (["attribute":(["strength":13, "wisdom" : 15])]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when your strength attribute is at least 13.\n"
+        "This is only applied when your wisdom attribute is at least 15.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForQuests()
+{
+    mapping limitor = (["quests":({ "lib/tests/support/quests/fakeQuestItem.c" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), 
+        "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when you have completed "
+        "all of the following quests:\n\"Hail to the king, baby!\".\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForResearch()
+{
+    mapping limitor = (["research":({ "lib/tests/support/research/testResearchA.c" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when you have completed any "
+        "of the following research:\nWeasel inversion.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForResearchActive()
+{
+    mapping limitor = (["research active":({ 
+        "lib/tests/support/research/testSustainedTraitResearch.c" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), 
+        "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when you have any "
+        "of the following research active:\nSustained research.\n\x1b[0m",
+        Specification->displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForTraits()
+{
+    mapping limitor = (["traits":({ "lib/tests/support/traits/testGeneticTrait.c" })]);
+
+    ExpectTrue(Specification->addSpecification("limited by", limitor), 
+        "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when you have any of the "
+        "following traits: Hunchback.\n\x1b[0m",
         Specification->displayLimiters(colorConfiguration, Configuration));
 }

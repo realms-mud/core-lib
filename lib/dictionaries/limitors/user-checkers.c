@@ -12,9 +12,14 @@ protected nomask int checkOpponentRaceLimitor(mapping specificationData,
  
     if (member(specificationData["limited by"], "opponent race"))
     {
+        string *races = 
+            pointerp(specificationData["limited by"]["opponent race"]) ?
+            specificationData["limited by"]["opponent race"] :
+            ({ specificationData["limited by"]["opponent race"] });
+
         ret &&= target && objectp(target) &&
-            function_exists("Race", target) && (target->Race() ==
-                specificationData["limited by"]["opponent race"]);
+            function_exists("Race", target) && 
+            (member(races, target->Race()) > -1);
 
         if (!ret && verbose)
         {
@@ -337,9 +342,13 @@ protected nomask int checkRaceLimitor(mapping specificationData, object owner,
  
     if (member(specificationData["limited by"], "race"))
     {
+        string *races = pointerp(specificationData["limited by"]["race"]) ?
+            specificationData["limited by"]["race"] :
+            ({ specificationData["limited by"]["race"] });
+
         ret &&= owner && objectp(owner) &&
             function_exists("Race", owner) &&
-            (member(specificationData["limited by"]["race"], owner->Race()) > -1);
+            (member(races, owner->Race()) > -1);
 
         if (!ret && verbose)
         {
@@ -538,22 +547,34 @@ protected nomask int checkResearchActiveLimitor(mapping specificationData,
     int ret = 1;
 
     if (member(specificationData["limited by"], "research active") &&
+        sizeof(specificationData["limited by"]["research active"]) &&
         objectp(owner))
     {
-        string research = specificationData["limited by"]["research active"];
+        int hasResearchActive = 0;
+
+        foreach(string research in
+            specificationData["limited by"]["research active"])
+        {
+            hasResearchActive ||= owner->sustainedResearchIsActive(research);
+        }
         ret = function_exists("sustainedResearchIsActive", owner) &&
-            owner->sustainedResearchIsActive(research);
+            hasResearchActive;
 
         if (!ret && verbose)
         {
-            object researchObj = 
-                getDictionary("research")->researchObject(research);
-
-            if (researchObj)
+            string *researchNames = ({});
+            foreach(string research in
+                specificationData["limited by"]["research active"])
+            {
+                object researchObj =
+                    getDictionary("research")->researchObject(research);
+                researchNames += ({ researchObj->query("name") });
+            }
+            if (sizeof(researchNames))
             {
                 write(configuration->decorate(
-                    sprintf("You do not have the following research active: "
-                        "%O.\n", researchObj->query("name")),
+                    sprintf("You do not have any of the following research active: "
+                        "%s.\n", implode(researchNames, ", ")),
                     "missing prerequisites", "research", colorConfiguration));
             }
         }

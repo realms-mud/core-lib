@@ -80,4 +80,3 @@ public nomask string *traitsResearchTrees()
     }
     return ret;
 }
-
