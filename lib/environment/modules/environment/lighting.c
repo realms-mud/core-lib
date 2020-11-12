@@ -20,7 +20,8 @@ private nomask int getElementLighting()
             {
                 object elementObj =
                     getDictionary("environment")->environmentalObject(element);
-                if (elementObj)
+                if (elementObj && 
+                    (!this_player() || elementObj->elementIsAvailable(this_player())))
                 {
                     ret += elementObj->isSourceOfLight(currentState(),
                         this_object());
@@ -155,7 +156,8 @@ private nomask int manipulateLights(string whichLights, string action,
             object elementObj =
                 getDictionary("environment")->environmentalObject(element);
 
-            if (elementObj)
+            if (elementObj &&
+                (!this_player() || elementObj->elementIsAvailable(this_player())))
             {
                 activatedItems += ({ elementObj->displayName() });
                 call_direct(elementObj, sprintf("%sLightSource", action),

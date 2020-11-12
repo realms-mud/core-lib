@@ -101,6 +101,52 @@ private nomask void addToLimitors(string key, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void addToLimitorsWithSubMapping(string topLevelKey,
+    string subKey, int value)
+{
+    if (!member(specificationData, "limited by"))
+    {
+        specificationData["limited by"] = ([]);
+    }
+
+    if (validLimitor(([topLevelKey:([subKey:value])])))
+    {
+        if (!member(specificationData["limited by"], topLevelKey))
+        {
+            specificationData["limited by"][topLevelKey] = ([subKey:value]);
+        }
+        else
+        {
+            specificationData["limited by"][topLevelKey] += ([subKey:value]);
+        }
+    }
+    else
+    {
+        raise_error("EnvironmentalElement: A valid skill and value "
+            "must be specified.\n");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void addIntValueToLimitors(string key, int value)
+{
+    if (!member(specificationData, "limited by"))
+    {
+        specificationData["limited by"] = ([]);
+    }
+
+    if (validLimitor(([key:value])))
+    {
+        specificationData["limited by"][key] = value;
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: A valid %s must be "
+            "specified.\n", key));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void limitBonusBySeason(string season)
 {
     addToLimitors("season", season);
@@ -139,27 +185,61 @@ public nomask void limitBonusByOneOfEquipment(string *tools)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void limitBonusBySkill(string skill, int value)
 {
-    if (!member(specificationData, "limited by"))
-    {
-        specificationData["limited by"] = ([]);
-    }
+    addToLimitorsWithSubMapping("skill", skill, value);
+}
 
-    if (validLimitor((["skill": ([ skill: value ]) ])))
-    {
-        if (!member(specificationData["limited by"], "skill"))
-        {
-            specificationData["limited by"]["skill"] = ([ skill: value ]);
-        }
-        else
-        {
-            specificationData["limited by"]["skill"] += ([ skill: value ]);
-        }
-    }
-    else
-    {
-        raise_error("EnvironmentalElement: A valid skill and value "
-            "must be specified.\n");
-    }
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitBonusByAttribute(string attribute, int value)
+{
+    addToLimitorsWithSubMapping("attribute", attribute, value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitBonusByResearch(string research)
+{
+    addToLimitors("research", research);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitBonusByTrait(string trait)
+{
+    addToLimitors("traits", trait);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitBonusByResearchThatIsActive(string research)
+{
+    addToLimitors("research active", research);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitBonusByIntoxication(int value)
+{
+    addIntValueToLimitors("intoxicated", value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitBonusByDrugEffect(int value)
+{
+    addIntValueToLimitors("drugged", value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitBonusByNearnessToDeath(int value)
+{
+    addIntValueToLimitors("near death", value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitBonusBySpellPointsDrained(int value)
+{
+    addIntValueToLimitors("spell points drained", value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitBonusByStaminaDrained(int value)
+{
+    addIntValueToLimitors("stamina drained", value);
 }
 
 /////////////////////////////////////////////////////////////////////////////

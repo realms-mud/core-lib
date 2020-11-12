@@ -31,7 +31,7 @@ public nomask object harvestResource(string resource, object user)
     {
         foreach(object element in harvestData[resource])
         {
-            if (objectp(element))
+            if (objectp(element) && element->elementIsAvailable(user))
             {
                 ret = element->harvestResource(resource, user,
                     this_object());
@@ -59,6 +59,7 @@ public nomask varargs string harvestStatistics(object user, string item)
             foreach(object element in harvestData[resource])
             {
                 if (objectp(element) && 
+                    element->elementIsAvailable(user) &&
                     (member(element->harvestableResources(1), resource) > -1))
                 {
                     ret += element->getHarvestStatistics(

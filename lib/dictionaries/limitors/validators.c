@@ -4,7 +4,7 @@
 //*****************************************************************************
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validRaceLimitor(mixed raceValue)
+private nomask int validRaceLimitor(mixed raceValue)
 {
     int ret = 0;
     object racialDictionary = getDictionary("racial");
@@ -31,7 +31,7 @@ public nomask int validRaceLimitor(mixed raceValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validGuildLimitor(mixed guildValue)
+private nomask int validGuildLimitor(mixed guildValue)
 {
     int ret = 0;
     object guildDictionary = getDictionary("guilds");
@@ -56,7 +56,7 @@ public nomask int validGuildLimitor(mixed guildValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validFactionLimitor(mixed factionValue)
+private nomask int validFactionLimitor(mixed factionValue)
 {
     int ret = 0;
     object factionDictionary = getDictionary("factions");
@@ -81,7 +81,7 @@ public nomask int validFactionLimitor(mixed factionValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validSkillLimitor(mapping skills)
+private nomask int validSkillLimitor(mapping skills)
 {
     int ret = 0;
 
@@ -100,7 +100,7 @@ public nomask int validSkillLimitor(mapping skills)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validAttributeLimitor(mixed attributes)
+private nomask int validAttributeLimitor(mixed attributes)
 {
     int ret = 0;
     if (mappingp(attributes) && sizeof(attributes))
@@ -116,7 +116,7 @@ public nomask int validAttributeLimitor(mixed attributes)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validQuestLimitor(mixed questValue)
+private nomask int validQuestLimitor(mixed questValue)
 {
     int ret = 0;
 
@@ -142,7 +142,7 @@ public nomask int validQuestLimitor(mixed questValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validResearchLimitor(mixed researchValue)
+private nomask int validResearchLimitor(mixed researchValue)
 {
     int ret = 0;
     object researchDictionary = getDictionary("research");
@@ -168,7 +168,7 @@ public nomask int validResearchLimitor(mixed researchValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validResearchIsActiveLimitor(mixed researchValue)
+private nomask int validResearchIsActiveLimitor(mixed researchValue)
 {
     int ret = 0;
     object researchDictionary = getDictionary("research");
@@ -194,7 +194,7 @@ public nomask int validResearchIsActiveLimitor(mixed researchValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validTraitsLimitor(mixed traitValue)
+private nomask int validTraitsLimitor(mixed traitValue)
 {
     int ret = 0;
     object traitDictionary = getDictionary("traits");
@@ -219,7 +219,7 @@ public nomask int validTraitsLimitor(mixed traitValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validTimeOfDayLimitor(mixed timeOfDayValue)
+private nomask int validTimeOfDayLimitor(mixed timeOfDayValue)
 {
     int ret = 0;
     object environmentDictionary = getDictionary("environment");
@@ -244,7 +244,7 @@ public nomask int validTimeOfDayLimitor(mixed timeOfDayValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validSeasonLimitor(mixed seasonValue)
+private nomask int validSeasonLimitor(mixed seasonValue)
 {
     int ret = 0;
     object environmentDictionary = getDictionary("environment");
@@ -269,7 +269,7 @@ public nomask int validSeasonLimitor(mixed seasonValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validMoonPhaseLimitor(mixed moonPhaseValue)
+private nomask int validMoonPhaseLimitor(mixed moonPhaseValue)
 {
     int ret = 0;
     object environmentDictionary = getDictionary("environment");
@@ -295,7 +295,7 @@ public nomask int validMoonPhaseLimitor(mixed moonPhaseValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validCraftingTypeLimitor(mixed type)
+private nomask int validCraftingTypeLimitor(mixed type)
 {
     int ret = 0;
     object craftingDictionary = getDictionary("crafting");
@@ -307,7 +307,7 @@ public nomask int validCraftingTypeLimitor(mixed type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validEnvironmentLimitor(mixed type)
+private nomask int validEnvironmentLimitor(mixed type)
 {
     int ret = 0;
     object environmentDictionary = getDictionary("environment");
@@ -319,7 +319,7 @@ public nomask int validEnvironmentLimitor(mixed type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int validEquipmentLimitor(mixed equipmentValue)
+private nomask int validEquipmentLimitor(mixed equipmentValue)
 {
     int ret = 0;
 
@@ -344,6 +344,138 @@ public nomask int validEquipmentLimitor(mixed equipmentValue)
                 materialsDictionary->isValidArmorBlueprint(equipmentValue) ||
                 materialsDictionary->isValidWeaponType(equipmentValue) ||
                 materialsDictionary->isValidWeaponBlueprint(equipmentValue);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int validLimitor(mapping limitor)
+{
+    int ret = 0;
+    if (limitor && mappingp(limitor))
+    {
+        string *limitorKeys = m_indices(limitor);
+        if (sizeof(limitorKeys))
+        {
+            ret = 1;
+        }
+
+        object limitorDictionary = getDictionary("limitor");
+        foreach(string key in limitorKeys)
+        {
+            if (key && stringp(key))
+            {
+                switch (key)
+                {
+                    case "race":
+                    case "opponent race":
+                    {
+                        ret &&= validRaceLimitor(limitor[key]);
+                        break;
+                    }
+                    case "guild":
+                    case "opponent guild":
+                    {
+                        ret &&= validGuildLimitor(limitor[key]);
+                        break;
+                    }
+                    case "faction":
+                    case "opponent faction":
+                    {
+                        ret &&= validFactionLimitor(limitor[key]);
+                        break;
+                    }
+                    case "skill":
+                    {
+                        ret &&= validSkillLimitor(limitor[key]);
+                        break;
+                    }
+                    case "attribute":
+                    {
+                        ret &&= validAttributeLimitor(limitor[key]);
+                        break;
+                    }
+                    case "quests":
+                    {
+                        ret &&= validQuestLimitor(limitor[key]);
+                        break;
+                    }
+                    case "research":
+                    {
+                        ret &&= validResearchLimitor(limitor[key]);
+                        break;
+                    }
+                    case "research active":
+                    {
+                        ret &&= validResearchIsActiveLimitor(limitor[key]);
+                        break;
+                    }
+                    case "traits":
+                    {
+                        ret &&= validTraitsLimitor(limitor[key]);
+                        break;
+                    }
+                    case "time of day":
+                    {
+                        ret &&= validTimeOfDayLimitor(limitor[key]);
+                        break;
+                    }
+                    case "season":
+                    {
+                        ret &&= validSeasonLimitor(limitor[key]);
+                        break;
+                    }
+                    case "moon phase":
+                    {
+                        ret &&= validMoonPhaseLimitor(limitor[key]);
+                        break;
+                    }
+                    case "crafting type":
+                    {
+                        ret &&= validCraftingTypeLimitor(limitor[key]);
+                        break;
+                    }
+                    case "environment":
+                    {
+                        ret &&= validEnvironmentLimitor(limitor[key]);
+                        break;
+                    }
+                    case "environment state":
+                    {
+                        ret &&= (pointerp(limitor[key]) && sizeof(limitor[key])) ||
+                            stringp(limitor[key]);
+                        break;
+                    }
+                    case "equipment":
+                    {
+                        ret &&= validEquipmentLimitor(limitor[key]);
+                        break;
+                    }
+                    case "intoxicated":
+                    case "drugged":
+                    {
+                        ret &&= intp(limitor[key]);
+                        break;
+                    }
+                    case "near death":
+                    case "stamina drained":
+                    case "spell points drained":
+                    {
+                        ret &&= intp(limitor[key]) && (limitor[key] >= 0)
+                            && (limitor[key] <= 100);
+                        break;
+                    }
+                    default:
+                    {
+                        ret = 0;
+                    }
+                }
+            }
+            else
+            {
+                ret = 0;
+            }
         }
     }
     return ret;

@@ -121,6 +121,72 @@ void CanLimitBonusBySkills()
         Bonus->getBonusStatistics(Environment, Player));
 }
 
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitDisplayByIntoxication()
+{
+    Bonus->setup("hit points", 5);
+    Bonus->limitBonusByIntoxication(5);
+
+    Bonus->setupBonus(Environment);
+    ExpectEq("Name: Hit Points\n"
+        "There is a +5 bonus to hit points active.\n"
+        "This is only applied when you are intoxicated.\n",
+        Bonus->getBonusStatistics(Environment, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitDisplayByDrugEffect()
+{
+    Bonus->setup("hit points", 5);
+    Bonus->limitBonusByDrugEffect(5);
+
+    Bonus->setupBonus(Environment);
+    ExpectEq("Name: Hit Points\n"
+        "There is a +5 bonus to hit points active.\n"
+        "This is only applied when you are drugged.\n",
+        Bonus->getBonusStatistics(Environment, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitDisplayByNearnessToDeath()
+{
+    Bonus->setup("hit points", 5);
+    Bonus->limitBonusByNearnessToDeath(10);
+
+    Bonus->setupBonus(Environment);
+    ExpectEq("Name: Hit Points\n"
+        "There is a +5 bonus to hit points active.\n"
+        "This is only applied when you are near death.\n",
+        Bonus->getBonusStatistics(Environment, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitDisplayBySpellPointsDrained()
+{
+    Bonus->setup("hit points", 5);
+    Bonus->limitBonusBySpellPointsDrained(10);
+
+    Bonus->setupBonus(Environment);
+    ExpectEq("Name: Hit Points\n"
+        "There is a +5 bonus to hit points active.\n"
+        "This is only applied when you are spell points drained.\n",
+        Bonus->getBonusStatistics(Environment, Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanLimitDisplayByStaminaDrained()
+{
+    Bonus->setup("hit points", 5);
+    Bonus->limitBonusByStaminaDrained(10);
+
+    Bonus->setupBonus(Environment);
+    ExpectEq("Name: Hit Points\n"
+        "There is a +5 bonus to hit points active.\n"
+        "This is only applied when you are stamina drained.\n",
+        Bonus->getBonusStatistics(Environment, Player));
+}
+
 /////////////////////////////////////////////////////////////////////////////
 void CanLimitBonusByTool()
 {

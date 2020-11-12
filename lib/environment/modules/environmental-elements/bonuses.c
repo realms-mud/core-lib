@@ -186,6 +186,29 @@ protected nomask void limitPenaltyByState(string name, string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void limitBonusByAttribute(string name, string attribute,
+    int value)
+{
+    if (member(bonusData, name) && objectp(bonusData[name]))
+    {
+        bonusData[name]->limitBonusByAttribute(attribute, value);
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown bonus (%O).\n"
+            "It must be added via the addBonus(...) method before "
+            "adding a state.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitPenaltyByAttribute(string name, string attribute,
+    int value)
+{
+    limitBonusByAttribute(name, attribute, value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void limitBonusBySkill(string name, string skill,
     int value)
 {
@@ -248,4 +271,109 @@ protected nomask void bonusRequiresOneOfEquipment(string name, string *tools)
 protected nomask void penaltyRequiresOneOfEquipment(string name, string *tools)
 {
     bonusRequiresOneOfEquipment(name, tools);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitBonusByIntoxication(string name, int value)
+{
+    if (member(bonusData, name) && objectp(bonusData[name]))
+    {
+        bonusData[name]->limitBonusByIntoxication(value);
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown bonus (%O).\n"
+            "It must be added via the addBonus(...) method before "
+            "adding a state.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitPenaltyByIntoxication(string name, int value)
+{
+    limitBonusByIntoxication(name, value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitBonusByDrugEffect(string name, int value)
+{
+    if (member(bonusData, name) && objectp(bonusData[name]))
+    {
+        bonusData[name]->limitBonusByDrugEffect(value);
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown bonus (%O).\n"
+            "It must be added via the addBonus(...) method before "
+            "adding a state.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitPenaltyByDrugEffect(string name, int value)
+{
+    limitBonusByDrugEffect(name, value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitBonusByNearnessToDeath(string name, int value)
+{
+    if (member(bonusData, name) && objectp(bonusData[name]))
+    {
+        bonusData[name]->limitBonusByNearnessToDeath(value);
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown bonus (%O).\n"
+            "It must be added via the addBonus(...) method before "
+            "adding a state.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitPenaltyByNearnessToDeath(string name, int value)
+{
+    limitBonusByNearnessToDeath(name, value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitBonusBySpellPointsDrained(string name, int value)
+{
+    if (member(bonusData, name) && objectp(bonusData[name]))
+    {
+        bonusData[name]->limitBonusBySpellPointsDrained(value);
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown bonus (%O).\n"
+            "It must be added via the addBonus(...) method before "
+            "adding a state.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitPenaltyBySpellPointsDrained(string name, int value)
+{
+    limitBonusBySpellPointsDrained(name, value);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitBonusByStaminaDrained(string name, int value)
+{
+    if (member(bonusData, name) && objectp(bonusData[name]))
+    {
+        bonusData[name]->limitBonusByStaminaDrained(value);
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown bonus (%O).\n"
+            "It must be added via the addBonus(...) method before "
+            "adding a state.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void limitPenaltyByStaminaDrained(string name, int value)
+{
+    limitBonusByStaminaDrained(name, value);
 }

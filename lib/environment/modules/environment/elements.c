@@ -244,7 +244,8 @@ protected string getElementDescriptions(string type, int illuminationLevel)
 
             object elementObj = 
                 getDictionary("environment")->environmentalObject(element);
-            if (elementObj)
+            if (elementObj && 
+                (!this_player() || elementObj->elementIsAvailable(this_player())))
             {
                 string elementDescription =
                     elementObj->description(currentState(), illuminationLevel,

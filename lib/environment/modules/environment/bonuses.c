@@ -51,7 +51,7 @@ public nomask varargs int environmentalBonusTo(string bonus, object actor,
         {
             foreach(object element in bonuses[key][bonus])
             {
-                if (objectp(element))
+                if (objectp(element) && element->elementIsAvailable(actor))
                 {
                     ret += element->environmentalBonusTo(
                         currentState(), this_object(), bonus, actor, target);
@@ -78,7 +78,7 @@ public nomask varargs string bonusStatistics(object user, string item)
             {
                 object elementObj =
                     getDictionary("environment")->environmentalObject(element);
-                if (elementObj)
+                if (elementObj && elementObj->elementIsAvailable(user))
                 {
                     ret += elementObj->getBonusDescriptions(
                         this_object(), user) + "\n";

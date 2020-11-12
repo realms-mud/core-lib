@@ -87,9 +87,14 @@ public nomask int execute(string command, object initiator)
             if (target)
             {
                 string longDesc = target->long(brief);
-                if (longDesc)
+                if (longDesc && (longDesc != ""))
                 {
                     tell_object(initiator, longDesc);
+                }
+                else
+                {
+                    tell_object(initiator, sprintf("There is no '%s' here.\n",
+                        getTargetString(initiator, command)));
                 }
             }
             else

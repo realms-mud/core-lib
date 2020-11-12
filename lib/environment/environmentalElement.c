@@ -6,6 +6,7 @@ virtual inherit "/lib/environment/modules/environmental-elements/core.c";
 virtual inherit "/lib/environment/modules/environmental-elements/bonuses.c";
 virtual inherit "/lib/environment/modules/environmental-elements/harvest.c";
 virtual inherit "/lib/environment/modules/environmental-elements/lighting.c";
+virtual inherit "/lib/environment/modules/environmental-elements/limitors.c";
 
 protected int isLegacy = 0;
 
@@ -160,7 +161,11 @@ public nomask string long(int brief)
     string state = currentState();
 
     string introText = isLegacy ? "" : "You see ";
-    if (member(descriptionData, state) && member(descriptionData[state],
+    if (!elementIsAvailable(this_player()))
+    {
+        ret = "";
+    }
+    else if (member(descriptionData, state) && member(descriptionData[state],
         "item template"))
     {
         ret = introText +

@@ -7,7 +7,7 @@ virtual inherit "/lib/dictionaries/limitors/user-checkers.c";
 virtual inherit "/lib/dictionaries/limitors/environment-checkers.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int userFactorsMet(mapping specificationData, object owner, 
+public nomask varargs int userFactorsMet(mapping specificationData, object owner, 
     object target, int verbose)
 {
     int ret = 1;

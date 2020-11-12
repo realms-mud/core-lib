@@ -561,49 +561,6 @@ void AddObjectRaisesErrorOnFailure()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanAddShop()
-{
-    Environment->testAddShop("/lib/environment/shopInventories/swordsmith.c");
-    ExpectEq("lib/environment/shopInventories/swordsmith.c", Environment->getShop());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void ShopInventoryUpdatesOnReset()
-{
-    Environment->testAddShop("/lib/environment/shopInventories/swordsmith.c");
-    Environment->getShop()->resetInventory();
-    ExpectEq(0, sizeof(Environment->getShop()->storeInventory()));
-    Environment->reset();
-    ExpectTrue(15 < sizeof(Environment->getShop()->storeInventory()));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanOnlyAddOneShop()
-{
-    Environment->testAddShop("/lib/environment/shopInventories/swordsmith.c");
-
-    string expected = "*ERROR in environment.c: a shop has already been assigned to this environment.\n";
-    string err = catch (Environment->testAddShop("/lib/environment/shopInventories/tailor.c"));
-    ExpectEq(expected, err);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void AddShopRaisesErrorIfInvalidObjectPassed()
-{
-    string expected = "*ERROR in environment.c: '/lib/tests/bad/path.c' is not a valid shop.\n";
-    string err = catch (Environment->testAddShop("/lib/tests/bad/path.c"));
-    ExpectEq(expected, err);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void AddShopRaisesErrorIfPassedFileIsNotAShop()
-{
-    string expected = "*ERROR in environment.c: '/lib/environment/environment.c' is not a valid shop.\n";
-    string err = catch (Environment->testAddShop("/lib/environment/environment.c"));
-    ExpectEq(expected, err);
-}
-
-/////////////////////////////////////////////////////////////////////////////
 void AddObjectToDefaultStateCreatesObjectOnReset()
 {
     Environment->testAddObject("/lib/items/weapon.c");
@@ -2162,4 +2119,82 @@ void BonusIsApplied()
     ExpectEq(4, environment->environmentalBonusTo("strength", player));
 
     destruct(environment);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayOfElementIsShownByLimitors()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("bob");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->charsetConfiguration("ascii");
+
+    object environment =
+        clone_object("/lib/tests/support/environment/limitedDisplayRoom.c");
+    move_object(player, environment);
+    command("l", player);
+    ExpectSubStringMatch("forest.\nThe sun", player->caughtMessage());
+
+    getDictionary("environment")->setDay(260);
+    command("l", player);
+    ExpectSubStringMatch("forest.\nThe sun", player->caughtMessage());
+
+    player->addSkillPoints(20);
+    player->advanceSkill("spot", 5);
+    command("l", player);
+    ExpectSubStringMatch("forest.\nThe sun", player->caughtMessage());
+
+    object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
+    move_object(axe, player);
+    command("equip axe", player);
+    command("l", player);
+    ExpectSubStringMatch("forest.\nThe sun", player->caughtMessage());
+
+    player->spellPoints(player->maxSpellPoints());
+    player->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c");
+    player->researchCommand("throw turnip");
+    command("l", player);
+    ExpectSubStringMatch("forest.*limited.*item.\nThe sun", player->caughtMessage());
+
+    destruct(environment);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ElementIsManipulatableByLimitors()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player->Name("bob");
+    player->addCommands();
+    player->colorConfiguration("none");
+    player->charsetConfiguration("ascii");
+
+    object environment =
+        clone_object("/lib/tests/support/environment/limitedDisplayRoom.c");
+    move_object(player, environment);
+    command("exa limited item", player);
+    ExpectEq("There is no 'limited item' here.\n", player->caughtMessage());
+    ExpectEq(0, environment->environmentalBonusTo("strength", player));
+
+    command("harvest mana", player);
+    ExpectFalse(present("mana", player));
+
+    getDictionary("environment")->setDay(260);
+
+    player->addSkillPoints(20);
+    player->advanceSkill("spot", 5);
+
+    object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
+    move_object(axe, player);
+    command("equip axe", player);
+
+    player->spellPoints(player->maxSpellPoints());
+    player->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c");
+    player->researchCommand("throw turnip");
+    command("exa limited item", player);
+    ExpectEq("You see a nifty limited item.\n", player->caughtMessage());
+    ExpectEq(4, environment->environmentalBonusTo("strength", player));
+
+    command("harvest mana", player);
+    ExpectTrue(present("mana", player), "mana potion found");
 }
