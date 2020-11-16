@@ -17,4 +17,3 @@ public void reset(int arg)
         TreeRoot("lib/tests/support/research/testTreeRoot.c");
     }
 }
-

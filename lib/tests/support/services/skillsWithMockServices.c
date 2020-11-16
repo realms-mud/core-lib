@@ -53,4 +53,3 @@ public nomask int isRealizationOfLiving()
 {
     return 1;
 }
-

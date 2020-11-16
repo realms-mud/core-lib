@@ -48,5 +48,3 @@ public int testApplyEffect(object initiator, object target)
 {
     return instantaneousRitualResearchItem::applyEffect(initiator, target);
 }
-
-

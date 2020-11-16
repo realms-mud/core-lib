@@ -29,4 +29,3 @@ public int testApplyModifiers(int value, object initiator, mapping *modifiers)
 {
     return effectModifier::applyModifiers(value, initiator, modifiers);
 }
-

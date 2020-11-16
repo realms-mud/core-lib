@@ -39,4 +39,3 @@ public void reset(int arg)
         addChild("lib/tests/support/research/testResearchG.c", "lib/tests/support/research/testResearchD.c");
     }
 }
-

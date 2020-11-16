@@ -57,4 +57,3 @@ public void heart_beat()
     call_other(this_object(), "healingHeartBeat");
     call_other(this_object(), "researchHeartBeat");
 }
-

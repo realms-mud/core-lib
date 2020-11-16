@@ -35,5 +35,3 @@ public int testExecuteInArea(object owner, string researchName)
 {
     return persistedActiveResearchItem::executeInArea(owner, researchName);
 }
-
-

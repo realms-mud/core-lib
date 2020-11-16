@@ -21,5 +21,3 @@ public int testApplyEffect(object initiator, object target)
 {
     return instantaneousActiveResearchItem::applyEffect(initiator, target);
 }
-
-

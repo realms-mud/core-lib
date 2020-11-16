@@ -19,4 +19,3 @@ public void reset(int arg)
         addPrerequisite("lib/tests/support/guilds/testGuildTreeRoot.c", (["type":"research"]));
     }
 }
-

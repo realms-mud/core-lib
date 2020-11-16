@@ -23,4 +23,3 @@ public void reset(int arg)
         addSpecification("bonus weapon attack", 1);
     }
 }
-

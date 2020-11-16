@@ -73,4 +73,3 @@ public int testExecuteInArea(object owner, string researchName)
 {
     return instantaneousEffect::executeInArea(owner, researchName);
 }
-

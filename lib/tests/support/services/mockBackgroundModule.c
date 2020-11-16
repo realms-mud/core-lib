@@ -35,4 +35,3 @@ public nomask string *backgroundResearchTrees()
     }
     return ret;
 }
-

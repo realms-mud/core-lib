@@ -16,4 +16,3 @@ public void Setup()
     addItem("/lib/tests/support/environment/fakeChest.c", "north");
     addExit("south", "/some/path.c");
 }
-

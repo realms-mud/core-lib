@@ -17,4 +17,3 @@ public void onUnregisterItem()
 {
     raise_error("event handler: onUnregisterItem called");
 }
-

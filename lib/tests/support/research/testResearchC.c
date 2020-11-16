@@ -19,4 +19,3 @@ public void reset(int arg)
         addSpecification("bonus long sword", 2);
     }
 }
-

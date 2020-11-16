@@ -61,6 +61,13 @@ protected mapping RegionTypes = ([
             "warg": 40,
             "dragon": 1,
             "creature": 1,
+        ]),
+        "default character": ([
+            "ascii": "*",
+            "unicode": "\u273e"
+        ]),
+        "default colors": ([
+
         ])
     ]),
     "keeper's temple":([

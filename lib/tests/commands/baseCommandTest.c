@@ -79,4 +79,3 @@ void MultipleCommandTemplatesParseAndSucceedCorrectly()
     ExpectFalse(Command->canExecuteCommand("throw llama"), "throw llama");
     ExpectTrue(Command->canExecuteCommand("throw turnip at carl"), "throw turnip at carl");
 }
-

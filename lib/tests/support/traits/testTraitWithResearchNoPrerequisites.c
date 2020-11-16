@@ -29,4 +29,3 @@ public int addSpecification(string type, mixed value)
 {
     return baseTrait::addSpecification(type, value);
 }
-

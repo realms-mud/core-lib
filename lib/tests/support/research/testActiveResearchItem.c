@@ -95,4 +95,3 @@ public int executeGlobally(object owner, string researchName)
     return ret;
 
 }
-

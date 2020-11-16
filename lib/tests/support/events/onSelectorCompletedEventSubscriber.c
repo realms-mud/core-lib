@@ -16,5 +16,3 @@ public void onSelectorCompleted(object caller)
 {
     NumTimesCalled++;
 }
-
-

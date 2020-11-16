@@ -37,4 +37,3 @@ public void unequipMethod()
 {
     raise_error("event handler: unequipMethod called");
 }
-

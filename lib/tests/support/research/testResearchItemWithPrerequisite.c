@@ -13,4 +13,3 @@ public void reset(int arg)
         addPrerequisite("long sword", (["type":"skill", "value" : 10]));
     }
 }
-
