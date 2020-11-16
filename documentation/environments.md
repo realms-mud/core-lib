@@ -280,3 +280,6 @@ TBD
 void setStateMachine(string newSM);
 ```
 TBD
+
+##### Environmental Bonuses
+TBD

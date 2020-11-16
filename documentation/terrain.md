@@ -156,3 +156,9 @@ TBD
 
 ##### Harvestable Resources
 TBD
+
+##### Environmental Bonuses
+TBD
+
+##### Environmental Limitors
+TBD
