@@ -220,6 +220,20 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "equivalence":
+            {
+                if (value && stringp(value))
+                {
+                    ret = 1;
+                    specificationData["equivalence"] = value;
+                }
+                else
+                {
+                    raise_error("ERROR - researchItem: The value of 'equivalence' "
+                        "must be a string value.\n");
+                }
+                break;
+            }
             default:
             {
                 ret = specification::addSpecification(type, value);

@@ -10,8 +10,8 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("source", "mage guild");
-        addSpecification("name", "weasel inversion");
+        addSpecification("source", "test guild");
+        addSpecification("name", "weasel blathering");
         addSpecification("description", "This is a description");
         addSpecification("scope", "self");
         addSpecification("research type", "points");

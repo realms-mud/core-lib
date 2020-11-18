@@ -187,6 +187,24 @@ void CheckPrerequsistesCorrectlyHandlesResearchChecks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void CheckPrerequsistesCorrectlyHandlesEquivalentResearchChecks()
+{
+    destruct(Researcher);
+    Researcher = clone_object("/lib/tests/support/services/researchWithMockServices");
+    Researcher->Name("Bob");
+    Researcher->addResearchPoints(2);
+
+    ExpectTrue(Prerequisite->AddTestPrerequisite("/lib/tests/support/research/testResearchA.c",
+        (["type":"research"])));
+    ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "check initially fails");
+
+    ExpectTrue(Researcher->initiateResearch(
+        "lib/tests/support/research/equivalenceItem.c"), "initiate research");
+
+    ExpectTrue(Prerequisite->checkPrerequisites(Researcher), "item researched");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CheckPrerequsistesCorrectlyHandlesAttributeChecks()
 {
     ExpectTrue(Prerequisite->AddTestPrerequisite("wisdom", (["type":"attribute", "value": 10])));
@@ -365,7 +383,7 @@ void DisplayPrerequisitesCorrectlyDisplaysResearchPrerequisites()
         (["type":"research"])));
 
     ExpectEq("\x1b[0;36mPrerequisites:\n"
-        "\x1b[0m\x1b[0;33m       Research: \x1b[0m\x1b[0;35mGranted research\n\x1b[0m",
+        "\x1b[0m\x1b[0;33m       Research: \x1b[0m\x1b[0;35mGranted Research\n\x1b[0m",
         Prerequisite->displayPrerequisites(colorConfiguration, Configuration));
 }
 
@@ -501,4 +519,19 @@ void DisplayPrerequisitesCorrectlyDisplaysPresenceWithPresencePrerequisites()
 
     ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;33m       Presence: \x1b[0m\x1b[0;35mFred\n\x1b[0m",
         Prerequisite->displayPrerequisites(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayPrerequisitesCorrectlyDisplaysEquivalence()
+{
+    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");    
+    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    object researchItem = getDictionary("research")->researchObject(
+        "lib/tests/support/research/testResearchPrereq.c");
+
+    ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;33m       Research: "
+        "\x1b[0m\x1b[0;35mWeasel Inversion\n"
+        "\x1b[0m\x1b[0;35m                 Equivalent: \x1b[0m"
+        "\x1b[0;35mWeasel Blathering\n\x1b[0m",
+        researchItem->displayPrerequisites(colorConfiguration, Configuration));
 }

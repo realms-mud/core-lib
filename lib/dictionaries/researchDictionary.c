@@ -10,6 +10,7 @@ private string BaseResearch = "lib/modules/research/researchItem.c";
 private string BaseResearchTree = "lib/modules/research/researchTree.c";
 private mapping researchCache = ([]);
 private mapping researchItemCache = ([]);
+private mapping researchEquivalencies = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs int valueIsCached(string research, string element, 
@@ -55,9 +56,30 @@ private nomask object getResearchItem(string researchItem)
     else
     {
         researchItemCache[researchItem] = load_object(researchItem);
+        string equivalence = 
+            researchItemCache[researchItem]->query("equivalence");
+
+        if (equivalence)
+        {
+            if (!member(researchEquivalencies, equivalence))
+            {
+                researchEquivalencies[equivalence] = ({ });
+            }
+            researchEquivalencies[equivalence] += ({ researchItem });
+        }
         ret = researchItemCache[researchItem];
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getFullyQualifiedPath(string item)
+{
+    if (item && stringp(item) && item[0] != '/')
+    {
+        item = "/" + item;
+    }
+    return item ? regreplace(item, " ", "_", 1) : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,11 +89,7 @@ public nomask object researchObject(string researchItem)
     // researchItem object.
     object ret = 0;
 
-    if (researchItem && stringp(researchItem) && researchItem[0] != '/')
-    {
-        researchItem = regreplace(researchItem, " ", "_", 1);
-        researchItem = "/" + researchItem;
-    }
+    researchItem = getFullyQualifiedPath(researchItem);
     if(researchItem && stringp(researchItem) && (file_size(researchItem) > 0))
     { 
         ret = getResearchItem(researchItem);
@@ -96,12 +114,7 @@ public nomask object researchTree(string tree)
     // researchTree object.
     object ret = 0;
 
-    if (tree && stringp(tree) && tree[0] != '/')
-    {
-    tree = regreplace(tree, " ", "_", 1);
-        tree = "/" + tree;
-    }
-
+    tree = getFullyQualifiedPath(tree);
     if(tree && stringp(tree) && (file_size(tree) > 0))
     {
         ret = getResearchItem(tree);
@@ -127,6 +140,53 @@ public nomask int validResearch(string researchItem)
     {
         object researchObj = researchObject(researchItem);
         ret = (researchObj && objectp(researchObj));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *equivalentItems(string researchItem)
+{
+    string *ret = ({ });
+    object researchObj = researchObject(researchItem);
+
+    if (researchObj && objectp(researchObj) && 
+        researchObj->query("equivalence"))
+    {
+        string *research = 
+            researchEquivalencies[researchObj->query("equivalence")] -
+                ({ getFullyQualifiedPath(researchItem) });
+
+        if (sizeof(research))
+        {
+            foreach(string item in research)
+            {
+                object instanceObj = researchObject(item);
+                ret += ({ capitalizeAllWords(instanceObj->query("name")) });
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int equivalentIsResearched(mapping research, string researchItem)
+{
+    int ret = 0;
+    object researchObj = researchObject(researchItem);
+
+    if (researchObj && objectp(researchObj) && 
+        researchObj->query("equivalence") && mappingp(research))
+    {
+        string equivalence = researchObj->query("equivalence");
+        mapping filteredResearch = filter(research,
+            (: member($2, "research complete") &&
+               $2["research complete"] &&
+                (member($3, getFullyQualifiedPath($1)) > -1) :),
+            researchEquivalencies[equivalence] - 
+                ({ getFullyQualifiedPath(researchItem) }));
+
+        ret = sizeof(filteredResearch) > 0;
     }
     return ret;
 }

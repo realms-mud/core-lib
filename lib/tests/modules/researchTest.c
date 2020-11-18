@@ -792,3 +792,29 @@ void CorrectEnchantmentsReturned()
     ExpectEq((["electricity":5, "fire" : 5, "magical" : 1]),
         Research->researchEnchantments());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void EquivalenceCorrectlyApplied()
+{
+    Research->addResearchPoints(2);
+    object researchItem = getDictionary("research")->researchObject(
+        "lib/tests/support/research/testResearchA.c");
+
+    ExpectFalse(Research->equivalentIsResearched(
+        "lib/tests/support/research/testResearchA.c"));
+
+    ExpectFalse(Research->initiateResearch(
+        "lib/tests/support/research/testResearchPrereq.c"), "initiate research");
+
+    ExpectTrue(Research->initiateResearch(
+        "lib/tests/support/research/equivalenceItem.c"), "initiate research");
+
+    ExpectTrue(Research->equivalentIsResearched(
+        "lib/tests/support/research/testResearchA.c"));
+
+    ExpectTrue(Research->initiateResearch(
+        "lib/tests/support/research/testResearchPrereq.c"), "initiate research");
+
+    ExpectFalse(Research->initiateResearch(
+        "lib/tests/support/research/testResearchA.c"), "initiate research");
+}

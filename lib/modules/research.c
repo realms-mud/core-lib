@@ -15,6 +15,12 @@ private nomask object researchDictionary()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int equivalentIsResearched(string researchItem)
+{
+    return researchDictionary()->equivalentIsResearched(research, researchItem);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isResearched(string researchItem)
 {
     return (researchDictionary()->validResearch(researchItem) &&
@@ -284,7 +290,7 @@ public nomask int canResearch(string researchItem)
 {
     int ret = 0;
     if(researchDictionary()->validResearch(researchItem) && 
-       !isResearched(researchItem))
+       !isResearched(researchItem) && !equivalentIsResearched(researchItem))
     {        
         ret = 1;
         string *researchTrees = availableResearchTrees();

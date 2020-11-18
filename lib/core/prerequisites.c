@@ -198,7 +198,8 @@ private nomask int validResearcher(object researcher)
 private nomask int checkResearch(object researcher, string research)
 {
     return (validResearcher(researcher) && researcher->has("research") &&
-        researcher->isResearched(research));
+        (researcher->isResearched(research) || 
+            researcher->equivalentIsResearched(research)));
 }
 
 //-----------------------------------------------------------------------------
@@ -658,7 +659,7 @@ private nomask string displayResearchPrerequsite(string item)
         object research = dictionary->researchObject(item);
         if (research)
         {
-            ret = capitalize(research->query("name"));
+            ret = capitalizeAllWords(research->query("name"));
         }
     }
     return ret;
@@ -715,6 +716,7 @@ public nomask string displayPrerequisites(string colorConfiguration,
         foreach(string key in prereqKeys)
         {
             string prereq = "";
+            string supplementalInfo = 0;
             switch (prerequisites[key]["type"])
             {
                 case "quest":
@@ -725,6 +727,27 @@ public nomask string displayPrerequisites(string colorConfiguration,
                 case "research":
                 {
                     prereq = displayResearchPrerequsite(key);
+                    
+                    string *equivalent = 
+                        getDictionary("research")->equivalentItems(key);
+                    if (sizeof(equivalent))
+                    {
+                        supplementalInfo = "";
+                        foreach(string item in equivalent)
+                        {
+                            if (sizeof(item) > 50)
+                            {
+                                item = item[0..46] + "...";
+                            }
+
+                            supplementalInfo += 
+                                configuration->decorate(
+                                    sprintf("%17sEquivalent: ", ""),
+                                    "prerequisite", "research", colorConfiguration) +
+                                configuration->decorate(item + "\n",
+                                    "equivalent", "research", colorConfiguration);
+                        }
+                    }
                     break;
                 }
                 case "trait":
@@ -795,6 +818,11 @@ public nomask string displayPrerequisites(string colorConfiguration,
                     "field data", "research", colorConfiguration) +
                 configuration->decorate(prereq + "\n",
                     "prerequisite", "research", colorConfiguration);
+
+            if (supplementalInfo)
+            {
+                ret += supplementalInfo;
+            }
         }
     }
     return ret;

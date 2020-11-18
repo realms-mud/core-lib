@@ -398,7 +398,7 @@ private nosave mapping decorators = ([
             "grayscale": "\x1b[0;38;5;240m",
             "3-bit": "\x1b[0;35m",
             "8-bit": "\x1b[0;38;5;20m",
-            "24-bit": "\x1b[0;38;2;0;5;170m"
+            "24-bit": "\x1b[0;38;2;0;5;195m"
         ]),
         "instructions":([
             "grayscale": "\x1b[0;38;5;250;1m",
@@ -856,6 +856,12 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;31m",
             "24-bit": "\x1b[0;38;2;80;125;185m"
         ]), 
+        "equivalent":([
+            "grayscale": "\x1b[0;38;5;237m",
+            "3-bit": "\x1b[0;35m",
+            "8-bit": "\x1b[0;38;5;19m",
+            "24-bit": "\x1b[0;38;2;0;5;160m"
+        ]),
         "known":([
             "grayscale": "\x1b[0;38;5;248m",
             "3-bit": "\x1b[0;34;1m",

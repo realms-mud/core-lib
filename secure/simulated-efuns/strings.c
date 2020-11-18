@@ -58,6 +58,19 @@ public nomask string convertDataToString(mixed data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string capitalizeAllWords(string stringToCapitalize)
+{
+    string *words = explode(stringToCapitalize, " ");
+    int size = sizeof(words);
+    for (int i = 0; i < size; i++)
+    {
+        words[i] = capitalize(words[i]);
+    }
+
+    return implode(words, " ");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string formatColoredString(string data, int length)
 {
     string ret = "";

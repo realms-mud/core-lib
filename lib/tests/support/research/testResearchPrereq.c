@@ -11,12 +11,13 @@ public void reset(int arg)
     {
         passiveResearchItem::reset(arg);
         addSpecification("source", "mage guild");
-        addSpecification("name", "weasel inversion");
         addSpecification("description", "This is a description");
+        addSpecification("name", "weasel improvement");
         addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
+        addSpecification("research type", "timed");
+        addSpecification("research cost", 20);
         addSpecification("bonus long sword", 2);
-        addSpecification("equivalence", "weasel bonuses");
+        addPrerequisite("lib/tests/support/research/testResearchA.c",
+            (["type":"research"]));
     }
 }
