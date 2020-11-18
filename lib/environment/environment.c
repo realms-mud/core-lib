@@ -249,16 +249,38 @@ public nomask varargs void enterEnvironment(object actor, object party)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void addDecorator(string decorator)
+public nomask varargs void addDecorator(string decorator, string state)
 {
-    environmentalElements["decorator"] = decorator;
+    if (!state)
+    {
+        state = "default";
+    }
+
+    if (!member(environmentalElements, "decorator"))
+    {
+        environmentalElements["decorator"] = ([]);
+    }
+    environmentalElements["decorator"][state] = decorator;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string decoratorType()
 {
-    return member(environmentalElements, "decorator") ?
-        environmentalElements["decorator"] : 0;
+    string ret = 0;
+
+    if (member(environmentalElements, "decorator"))
+    {
+        string state = currentState();
+        if (member(environmentalElements["decorator"], state))
+        {
+            ret = environmentalElements["decorator"][state];
+        }
+        else if (member(environmentalElements["decorator"], "default"))
+        {
+            ret = environmentalElements["decorator"]["default"];
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

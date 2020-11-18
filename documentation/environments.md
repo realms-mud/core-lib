@@ -232,20 +232,20 @@ addShop("/lib/environment/shopInventories/swordsmith.c");
 ```
 varargs void addObject(string file, string state);
 ```
-This method is only intended for use with monster programs - if you wish to assemble a monster
-on the fly, you will need to do that logic using your own custom handler. [See the discussion on monsters for details.](monsters.md)
+This method is only intended for use with fully-defined, clonable programs - if you wish to assemble a monster
+on the fly, for example, you will need to do that logic using your own custom handler. [See the discussion on monsters for details.](monsters.md)
 
 #### Adding Exits
+In addition to the `addBuilding` method, there are a couple other means of adding an exit to an environment.
 ```
 varargs void addExit(string direction, string path, string state);
 ```
-TBD
+The `addExit` method takes several parameters - the `direction` verb (north, south, up, down, etc), the fully-qualified `path` of the destination environment, and optionally, the `state` during which this exit is usable. 
 
 ```
-varargs void addExitWithDoor(string direction, string path, string door, 
-    string key, string state);
+varargs void addExitWithDoor(string direction, string path, string door, string key, string state);
 ```
-TBD
+The `addExitWithDoor` method is similar to the `addExit` method. The additional `door` and `key` parameters are the door object being used (see /lib/environment/doors for examples) and the optional key object if the door is locked / lockable (see /lib/environment/doors/baseDoor.c). The key object must inherit /lib/items/key.c 
 
 #### Regions
 ```
@@ -265,7 +265,7 @@ TBD
 ```
 varargs void setAdditionalLongDescription(string description, string state);
 ```
-This additional long description can have embedded efun calls in it as described as point #7
+This additional long description can have embedded efun calls in it as described as point number 7
 in the [`addDescriptionTemplate`](terrain.md) section of the environmental element discussion. 
 TBD
 
