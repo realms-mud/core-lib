@@ -35,5 +35,6 @@ public void reset(int arg)
         addSpecification("bonus two-handed sword", 1);
         addSpecification("bonus attack", 2);
         addSpecification("bonus damage", 2);
+        addSpecification("equivalence", "mordstreich");
     }
 }

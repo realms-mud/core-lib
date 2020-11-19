@@ -30,5 +30,6 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("bonus dodge", 3);
+        addSpecification("equivalence", "side stepping");
     }
 }

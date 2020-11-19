@@ -35,5 +35,6 @@ public void reset(int arg)
         addSpecification("bonus defense", 1);
         addSpecification("bonus attack", 2);
         addSpecification("bonus parry", 1);
+        addSpecification("equivalence", "the boar");
     }
 }

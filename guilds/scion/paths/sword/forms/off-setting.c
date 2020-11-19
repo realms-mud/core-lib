@@ -36,5 +36,6 @@ public void reset(int arg)
         addSpecification("research cost", 1);
         addSpecification("bonus dodge", 4);
         addSpecification("bonus attack", 1);
+        addSpecification("equivalence", "off-setting");
     }
 }

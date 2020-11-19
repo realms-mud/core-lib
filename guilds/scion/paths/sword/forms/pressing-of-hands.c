@@ -35,5 +35,6 @@ public void reset(int arg)
         addSpecification("bonus hand and a half sword", 1);
         addSpecification("bonus two-handed sword", 1);
         addSpecification("bonus attack", 4);
+        addSpecification("equivalence", "pressing of hands");
     }
 }

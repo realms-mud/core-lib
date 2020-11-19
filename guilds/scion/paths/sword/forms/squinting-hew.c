@@ -44,5 +44,6 @@ public void reset(int arg)
         addSpecification("bonus two-handed sword", 1);
         addSpecification("bonus attack", 2);
         addSpecification("bonus defense", 2);
+        addSpecification("equivalence", "squinting hew");
     }
 }

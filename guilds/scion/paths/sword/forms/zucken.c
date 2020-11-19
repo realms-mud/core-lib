@@ -38,5 +38,6 @@ public void reset(int arg)
         addSpecification("bonus parry", 1);
         addSpecification("bonus attack", 2);
         addSpecification("bonus damage", 1);
+        addSpecification("equivalence", "zucken");
     }
 }

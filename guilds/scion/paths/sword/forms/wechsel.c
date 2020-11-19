@@ -32,5 +32,6 @@ public void reset(int arg)
         addSpecification("research cost", 1);
         addSpecification("bonus defense", 1);
         addSpecification("bonus parry", 2);
+        addSpecification("equivalence", "wechsel");
     }
 }

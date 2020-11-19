@@ -25,5 +25,6 @@ public void reset(int arg)
         addSpecification("research cost", 1);
         addSpecification("bonus attack", 1);
         addSpecification("bonus damage", 1);
+        addSpecification("equivalence", "stabbing");
     }
 }

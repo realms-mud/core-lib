@@ -35,5 +35,6 @@ public void reset(int arg)
         addSpecification("bonus defense", 2);
         addSpecification("bonus attack", 1);
         addSpecification("bonus parry", 2);
+        addSpecification("equivalence", "porta di ferro e stretta");
     }
 }

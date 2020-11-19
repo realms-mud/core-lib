@@ -37,5 +37,6 @@ public void reset(int arg)
         addSpecification("bonus dodge", 1);
         addSpecification("bonus parry", 1);
         addSpecification("bonus attack", 1);
+        addSpecification("equivalence", "changing through");
     }
 }

@@ -26,5 +26,6 @@ public void reset(int arg)
         addSpecification("research cost", 1);
         addSpecification("bonus defense", 2);
         addSpecification("bonus parry", 1);
+        addSpecification("equivalence", "from the roof");
     }
 }
