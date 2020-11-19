@@ -532,6 +532,6 @@ void DisplayPrerequisitesCorrectlyDisplaysEquivalence()
     ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;33m       Research: "
         "\x1b[0m\x1b[0;35mWeasel Inversion\n"
         "\x1b[0m\x1b[0;35m                 Equivalent: \x1b[0m"
-        "\x1b[0;35mWeasel Blathering\n\x1b[0m",
+        "\x1b[0;34mWeasel Blathering\n\x1b[0m",
         researchItem->displayPrerequisites(colorConfiguration, Configuration));
 }

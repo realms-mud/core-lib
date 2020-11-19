@@ -76,12 +76,14 @@ void ResearchSubmenuDisplaysCorrectly()
         "    [\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;32;1mYou must select a number from 1 to 13.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
-        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m"
-        "\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research, "
-        "\x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available research tree,\n"
-        "\x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress, and "
-        "\x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research\n"
-        "requires prerequisites that are missing - view description for details.\n\x1b[0m\x1b[0m",
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option "
+        "about which you would like further details.\n"
+        "\x1b[0m\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen "
+        "research, \x1b[0m\x1b[0;34m(~)\x1b[0m\x1b[0;32m denotes that an equivalent "
+        "research\nis known, \x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available "
+        "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
+        "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
+        "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -115,14 +117,14 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
-        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
-        "X is the option about which you would like further details.\n"
-        "\x1b[0m\x1b[0;32;1m"
-        "\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research, "
-        "\x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available research tree,\n"
-        "\x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress, and "
-        "\x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research\n"
-        "requires prerequisites that are missing - view description for details.\n\x1b[0m\x1b[0m",
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option "
+        "about which you would like further details.\n"
+        "\x1b[0m\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen "
+        "research, \x1b[0m\x1b[0;34m(~)\x1b[0m\x1b[0;32m denotes that an equivalent "
+        "research\nis known, \x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available "
+        "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
+        "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
+        "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -187,14 +189,14 @@ void DescribeShowsResearchDetails()
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
-        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
-        "X is the option about which you would like further details.\n"
-        "\x1b[0m\x1b[0;32;1m"
-        "\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research, "
-        "\x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available research tree,\n"
-        "\x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress, and "
-        "\x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research\n"
-        "requires prerequisites that are missing - view description for details.\n\x1b[0m\x1b[0m",
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option "
+        "about which you would like further details.\n"
+        "\x1b[0m\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen "
+        "research, \x1b[0m\x1b[0;34m(~)\x1b[0m\x1b[0;32m denotes that an equivalent "
+        "research\nis known, \x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available "
+        "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
+        "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
+        "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -248,14 +250,14 @@ void ResearchTreesAreProperlyDisplayed()
         "    [\x1b[0;31;1m11\x1b[0m] - \x1b[0;32mZorlak's revenge    \x1b[0m\x1b[0;34;1m (*)\x1b[0m    [\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
-        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
-        "X is the option about which you would like further details.\n"
-        "\x1b[0m\x1b[0;32;1m"
-        "\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research, "
-        "\x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available research tree,\n"
-        "\x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress, and "
-        "\x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research\n"
-        "requires prerequisites that are missing - view description for details.\n\x1b[0m\x1b[0m",
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option "
+        "about which you would like further details.\n"
+        "\x1b[0m\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen "
+        "research, \x1b[0m\x1b[0;34m(~)\x1b[0m\x1b[0;32m denotes that an equivalent "
+        "research\nis known, \x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available "
+        "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
+        "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
+        "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 
 }
@@ -327,6 +329,10 @@ void ResearchDisplaysNoColorCorrectly()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");
+    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    Player->addResearchPoints(1);
+    Player->initiateResearch("lib/tests/support/research/equivalenceItem.c");
     Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
@@ -339,7 +345,7 @@ void ResearchDisplaysNoColorCorrectly()
         "    [4]  - Grog's revenge       (X)\n"
         "    [5]  - Hand of fist            "
         "    [6]  - Turnip seclusion        \n"
-        "    [7]  - Weasel inversion        "
+        "    [7]  - Weasel inversion     (~)"
         "    [8]  - Zap thingy           (X)\n"
         "    [9]  - Zorlak's revenge        "
         "    [10] - Mock research        (!)\n"
@@ -350,10 +356,11 @@ void ResearchDisplaysNoColorCorrectly()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n"
         "(*) denotes already-chosen research, "
-        "(T) denotes an available research tree,\n"
-        "(!) denotes research in progress, and "
-        "(X) indicates that learning this research\n"
-        "requires prerequisites that are missing - view description for details.\n",
+        "(~) denotes that an equivalent research\n"
+        "is known, (T) denotes an available research tree, "
+        "(!) denotes research in\nprogress, and (X) indicates that learning "
+        "this research requires prerequisites\n"
+        "that are missing - view description for details.\n",
         Player->caughtMessage());
 }
 
@@ -365,6 +372,10 @@ void ResearchDisplaysThreeBitColorCorrectly()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");
+    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    Player->addResearchPoints(1);
+    Player->initiateResearch("lib/tests/support/research/equivalenceItem.c");
     Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
@@ -377,7 +388,7 @@ void ResearchDisplaysThreeBitColorCorrectly()
         "    [\x1b[0;31;1m4\x1b[0m]  - \x1b[0;32mGrog's revenge      \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
         "    [\x1b[0;31;1m5\x1b[0m]  - \x1b[0;32mHand of fist        \x1b[0m    "
         "    [\x1b[0;31;1m6\x1b[0m]  - \x1b[0;32mTurnip seclusion    \x1b[0m    \n"
-        "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mWeasel inversion    \x1b[0m    "
+        "    [\x1b[0;31;1m7\x1b[0m]  - \x1b[0;32mWeasel inversion    \x1b[0m\x1b[0;34m (~)\x1b[0m"
         "    [\x1b[0;31;1m8\x1b[0m]  - \x1b[0;32mZap thingy          \x1b[0m\x1b[0;31m (X)\x1b[0m\n"
         "    [\x1b[0;31;1m9\x1b[0m]  - \x1b[0;32mZorlak's revenge    \x1b[0m    "
         "    [\x1b[0;31;1m10\x1b[0m] - \x1b[0;32mMock research       \x1b[0m\x1b[0;35m (!)\x1b[0m\n"
@@ -386,12 +397,14 @@ void ResearchDisplaysThreeBitColorCorrectly()
         "    [\x1b[0;31;1m13\x1b[0m] - \x1b[0;32mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;32;1mYou must select a number from 1 to 13.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
-        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m"
-        "\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen research, "
-        "\x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available research tree,\n"
-        "\x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in progress, and "
-        "\x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research\n"
-        "requires prerequisites that are missing - view description for details.\n\x1b[0m\x1b[0m",
+        "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option "
+        "about which you would like further details.\n"
+        "\x1b[0m\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes already-chosen "
+        "research, \x1b[0m\x1b[0;34m(~)\x1b[0m\x1b[0;32m denotes that an equivalent "
+        "research\nis known, \x1b[0m\x1b[0;32;1m(T)\x1b[0m\x1b[0;32m denotes an available "
+        "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
+        "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
+        "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -403,6 +416,10 @@ void ResearchDisplaysEightBitColorCorrectly()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");
+    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    Player->addResearchPoints(1);
+    Player->initiateResearch("lib/tests/support/research/equivalenceItem.c");
     Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
@@ -415,7 +432,7 @@ void ResearchDisplaysEightBitColorCorrectly()
         "    [\x1b[0;38;5;9;1m4\x1b[0m]  - \x1b[0;38;5;2mGrog's revenge      \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m\n"
         "    [\x1b[0;38;5;9;1m5\x1b[0m]  - \x1b[0;38;5;2mHand of fist        \x1b[0m    "
         "    [\x1b[0;38;5;9;1m6\x1b[0m]  - \x1b[0;38;5;2mTurnip seclusion    \x1b[0m    \n"
-        "    [\x1b[0;38;5;9;1m7\x1b[0m]  - \x1b[0;38;5;2mWeasel inversion    \x1b[0m    "
+        "    [\x1b[0;38;5;9;1m7\x1b[0m]  - \x1b[0;38;5;2mWeasel inversion    \x1b[0m\x1b[0;38;5;19m (~)\x1b[0m"
         "    [\x1b[0;38;5;9;1m8\x1b[0m]  - \x1b[0;38;5;2mZap thingy          \x1b[0m\x1b[0;38;5;9m (X)\x1b[0m\n"
         "    [\x1b[0;38;5;9;1m9\x1b[0m]  - \x1b[0;38;5;2mZorlak's revenge    \x1b[0m    "
         "    [\x1b[0;38;5;9;1m10\x1b[0m] - \x1b[0;38;5;2mMock research       \x1b[0m\x1b[0;38;5;31m (!)\x1b[0m\n"
@@ -424,12 +441,16 @@ void ResearchDisplaysEightBitColorCorrectly()
         "    [\x1b[0;38;5;9;1m13\x1b[0m] - \x1b[0;38;5;2mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;38;5;2;1mYou must select a number from 1 to 13.\n\x1b[0m"
         "\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
-        "\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;38;5;2;1m"
-        "\x1b[0;38;5;20;1m(*)\x1b[0m\x1b[0;38;5;144m denotes already-chosen research, "
-        "\x1b[0m\x1b[0;38;5;149;1m(T)\x1b[0m\x1b[0;38;5;144m denotes an available research tree,\n"
-        "\x1b[0m\x1b[0;38;5;31m(!)\x1b[0m\x1b[0;38;5;144m denotes research in progress, and "
-        "\x1b[0m\x1b[0;38;5;9m(X)\x1b[0m\x1b[0;38;5;144m indicates that learning this research\n"
-        "requires prerequisites that are missing - view description for details.\n\x1b[0m\x1b[0m",
+        "\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "\x1b[0m\x1b[0;38;5;2;1m\x1b[0;38;5;20;1m(*)\x1b[0m\x1b[0;38;5;144m denotes "
+        "already-chosen research, \x1b[0m\x1b[0;38;5;19m(~)\x1b[0m\x1b[0;38;5;144m "
+        "denotes that an equivalent research\nis known, \x1b[0m\x1b[0;38;5;149;1m(T)"
+        "\x1b[0m\x1b[0;38;5;144m denotes an available research tree, \x1b[0m"
+        "\x1b[0;38;5;31m(!)\x1b[0m\x1b[0;38;5;144m denotes research in\nprogress, "
+        "and \x1b[0m\x1b[0;38;5;9m(X)\x1b[0m\x1b[0;38;5;144m indicates that learning "
+        "this research requires\nprerequisites that are missing - view description for "
+        "details.\n\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
 
@@ -441,6 +462,10 @@ void ResearchDisplaysTwentyFourBitColorCorrectly()
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");
+    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    Player->addResearchPoints(1);
+    Player->initiateResearch("lib/tests/support/research/equivalenceItem.c");
     Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
@@ -453,7 +478,7 @@ void ResearchDisplaysTwentyFourBitColorCorrectly()
         "    [\x1b[0;38;2;220;40;0;1m4\x1b[0m]  - \x1b[0;38;2;170;180;110mGrog's revenge      \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m\n"
         "    [\x1b[0;38;2;220;40;0;1m5\x1b[0m]  - \x1b[0;38;2;170;180;110mHand of fist        \x1b[0m    "
         "    [\x1b[0;38;2;220;40;0;1m6\x1b[0m]  - \x1b[0;38;2;170;180;110mTurnip seclusion    \x1b[0m    \n"
-        "    [\x1b[0;38;2;220;40;0;1m7\x1b[0m]  - \x1b[0;38;2;170;180;110mWeasel inversion    \x1b[0m    "
+        "    [\x1b[0;38;2;220;40;0;1m7\x1b[0m]  - \x1b[0;38;2;170;180;110mWeasel inversion    \x1b[0m\x1b[0;38;2;0;5;160m (~)\x1b[0m"
         "    [\x1b[0;38;2;220;40;0;1m8\x1b[0m]  - \x1b[0;38;2;170;180;110mZap thingy          \x1b[0m\x1b[0;38;2;200;0;0m (X)\x1b[0m\n"
         "    [\x1b[0;38;2;220;40;0;1m9\x1b[0m]  - \x1b[0;38;2;170;180;110mZorlak's revenge    \x1b[0m    "
         "    [\x1b[0;38;2;220;40;0;1m10\x1b[0m] - \x1b[0;38;2;170;180;110mMock research       \x1b[0m\x1b[0;38;2;80;155;175m (!)\x1b[0m\n"
@@ -462,11 +487,16 @@ void ResearchDisplaysTwentyFourBitColorCorrectly()
         "    [\x1b[0;38;2;220;40;0;1m13\x1b[0m] - \x1b[0;38;2;170;180;110mReturn to previous menu\x1b[0m    \n"
         "\x1b[0;38;2;160;220;60;1mYou must select a number from 1 to 13.\n\x1b[0m"
         "\x1b[0;38;2;100;180;150mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
-        "\x1b[0;38;2;100;180;150mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;38;2;160;220;60;1m"
-        "\x1b[0;38;2;0;0;220;1m(*)\x1b[0m\x1b[0;38;2;100;180;150m denotes already-chosen research, "
-        "\x1b[0m\x1b[0;38;2;100;220;150;1m(T)\x1b[0m\x1b[0;38;2;100;180;150m denotes an available research tree,\n"
-        "\x1b[0m\x1b[0;38;2;80;155;175m(!)\x1b[0m\x1b[0;38;2;100;180;150m denotes research in progress, and "
-        "\x1b[0m\x1b[0;38;2;200;0;0m(X)\x1b[0m\x1b[0;38;2;100;180;150m indicates that learning this research\n"
-        "requires prerequisites that are missing - view description for details.\n\x1b[0m\x1b[0m",
+        "\x1b[0;38;2;100;180;150mFor details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n"
+        "\x1b[0m\x1b[0;38;2;160;220;60;1m\x1b[0;38;2;0;0;220;1m(*)\x1b[0m"
+        "\x1b[0;38;2;100;180;150m denotes already-chosen research, \x1b[0m"
+        "\x1b[0;38;2;0;5;160m(~)\x1b[0m\x1b[0;38;2;100;180;150m denotes that an "
+        "equivalent research\nis known, \x1b[0m\x1b[0;38;2;100;220;150;1m(T)"
+        "\x1b[0m\x1b[0;38;2;100;180;150m denotes an available research tree, "
+        "\x1b[0m\x1b[0;38;2;80;155;175m(!)\x1b[0m\x1b[0;38;2;100;180;150m denotes "
+        "research in\nprogress, and \x1b[0m\x1b[0;38;2;200;0;0m(X)\x1b[0m"
+        "\x1b[0;38;2;100;180;150m indicates that learning this research requires\n"
+        "prerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
         Player->caughtMessage());
 }
