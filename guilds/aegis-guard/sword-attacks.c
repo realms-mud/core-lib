@@ -11,9 +11,9 @@ private void FirstLevel()
     addResearchElement("guilds/aegis-guard/forms/sword/nistaros.c");
 
     addChild("guilds/aegis-guard/forms/sword/eithagos.c",
-        "guilds/aegis-guard/forms/sword/root.c");
+        "guilds/aegis-guard/forms/sword/attack-root.c");
     addChild("guilds/aegis-guard/forms/sword/nistaros.c",
-        "guilds/aegis-guard/forms/sword/root.c");
+        "guilds/aegis-guard/forms/sword/attack-root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

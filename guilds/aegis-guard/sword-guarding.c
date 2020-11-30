@@ -10,7 +10,7 @@ private void FirstLevel()
     addResearchElement("guilds/aegis-guard/forms/sword/celon-ai-esgal.c");
 
     addChild("guilds/aegis-guard/forms/sword/celon-ai-esgal.c",
-        "guilds/aegis-guard/forms/sword/root.c");
+        "guilds/aegis-guard/forms/sword/guarding-root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
