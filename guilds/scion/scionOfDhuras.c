@@ -9,9 +9,40 @@ public void SetupGuild()
 {
     guildName("Scion of Dhuras");
     addPreferredSkillType("combat");
-    addRank("neophyte", (["name":"neophyte", "title" : "the title of titliness", "pretitle" : "Neophyte", "next rank" : "acolyte"]));
-    addRank("acolyte", (["name":"acolyte", "title" : "the title of titliness", "pretitle" : "Acolyte", "previous rank" : "neophyte", "next rank" : "master", "delay for next promotion" : 1]));
-    addRank("master", (["name":"master", "title" : "the title of titliness", "pretitle" : "Master"]));
+
+    addRank("neophyte", ([
+        "name": "neophyte", 
+        "title": "the Scion of Dhuras", 
+        "pretitle": "Neophyte", 
+        "next rank": "acolyte",
+        "delay for next promotion": 1200
+    ]));
+
+    addRank("acolyte", ([
+        "name": "acolyte", 
+        "title": "the Scion of Dhuras", 
+        "pretitle": "Acolyte", 
+        "previous rank": "neophyte", 
+        "next rank": "adept",
+        "delay for next promotion": 3600
+    ]));
+
+    addRank("adept", ([
+        "name": "adept", 
+        "title": "the Scion of Dhuras", 
+        "pretitle": "Adept", 
+        "previous rank": "acolyte", 
+        "next rank": "master",
+        "delay for next promotion": 7200
+    ]));
+
+    addRank("master", ([
+        "name": "master", 
+        "title": "the Scion of Dhuras", 
+        "pretitle": "Master", 
+        "previous rank": "adept", 
+    ]));
+
     setDefaultRank("neophyte");
     prohibitedGuildCombinations(({ "Aegis Guard", "fighter", "monk" }));
 

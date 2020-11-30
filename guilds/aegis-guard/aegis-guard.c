@@ -9,15 +9,90 @@ public void SetupGuild()
 {
     guildName("Aegis Guard");
     addPreferredSkillType("combat");
-    addRank("recruit", (["name":"recruit", "title" : "the title of titliness", "pretitle" : "Recruit", "next rank" : "acolyte"]));
-    addRank("acolyte", (["name":"acolyte", "title" : "the title of titliness", "pretitle" : "Acolyte", "previous rank" : "neophyte", "next rank" : "master", "delay for next promotion" : 1]));
-    addRank("master", (["name":"master", "title" : "the title of titliness", "pretitle" : "Master"]));
+
+    addRank("recruit", ([
+        "name": "recruit", 
+        "title": "of the Aegis Guard", 
+        "pretitle": "Recruit", 
+        "next rank": "guardsman"
+    ]));
+
+    addRank("guardsman", ([
+        "name": "guardsman", 
+        "title": "of the Aegis Guard", 
+        "pretitle": "", 
+        "previous rank": "recruit", 
+        "next rank": "corporal",
+        "delay for next promotion": 1200
+    ]));
+
+    addRank("corporal", ([
+        "name": "corporal", 
+        "title": "of the Aegis Guard", 
+        "pretitle": "Corporal", 
+        "previous rank": "guardsman", 
+        "next rank": "sergeant",
+        "delay for next promotion": 3600
+    ]));
+
+    addRank("sergeant", ([
+        "name": "sergeant", 
+        "title": "of the Aegis Guard", 
+        "pretitle": "Corporal", 
+        "previous rank": "corporal", 
+        "next rank": "lieutenant",
+        "delay for next promotion": 3600
+    ]));
+
+    addRank("lieutenant", ([
+        "name": "lieutenant", 
+        "title": "of the Aegis Guard", 
+        "pretitle": "Lieutenant", 
+        "previous rank": "sergeant", 
+        "next rank": "lieutenant commander",
+        "delay for next promotion": 3600
+    ]));
+
+    addRank("lieutenant commander", ([
+        "name": "lieutenant commander", 
+        "title": "of the Aegis Guard", 
+        "pretitle": "Lieutenant Commander", 
+        "previous rank": "lieutenant", 
+        "next rank": "commander",
+        "delay for next promotion": 3600
+    ]));
+
+    addRank("commander", ([
+        "name": "commander", 
+        "title": "of the Aegis Guard", 
+        "pretitle": "Commander", 
+        "previous rank": "lieutenant commander", 
+        "next rank": "captain",
+        "delay for next promotion": 3600
+    ]));
+
+    addRank("captain", ([
+        "name": "captain", 
+        "title": "of the Aegis Guard", 
+        "pretitle": "Captain", 
+        "previous rank": "commander", 
+        "next rank": "general",
+        "delay for next promotion": 7200
+    ]));
+
+    addRank("general", ([
+        "name": "general", 
+        "title": "of the Aegis Guard", 
+        "pretitle": "General", 
+        "previous rank": "captain", 
+    ]));
+
     setDefaultRank("recruit");
     prohibitedGuildCombinations(({ "Scion of Dhuras", "fighter", "monk" }));
 
     addCriteria("hit points", ([
         "type": "modifier",
-        "apply" : "4 every level",
+        "apply" : "5 every level",
         "begin at level" : 1
     ]));
     addCriteria("spell points", ([
@@ -46,11 +121,35 @@ public void SetupGuild()
 
     addCriteria("initial research points", ([
         "type":"research points",
-        "apply": "at level 1"
+        "apply": "3 at level 1"
     ]));
 
     addCriteria("research points", ([
         "type":"research points",
         "apply": "2 every level"
+    ]));
+
+    addCriteria("sword attacks", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/aegis-guard/sword-attacks.c"
+    ]));
+
+    addCriteria("sword evasion", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/aegis-guard/sword-evading.c"
+    ]));
+
+    addCriteria("sword guarding", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/aegis-guard/sword-guarding.c"
+    ]));
+
+    addCriteria("bows", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/aegis-guard/bows.c"
     ]));
 }
