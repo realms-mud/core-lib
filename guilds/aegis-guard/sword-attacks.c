@@ -29,9 +29,9 @@ private void ThirdLevel()
     addResearchElement("guilds/aegis-guard/forms/sword/diyacuth.c");
 
     addChild("guilds/aegis-guard/forms/sword/tharcuth.c",
-        "guilds/aegis-guard/forms/sword/root.c");
+        "guilds/aegis-guard/forms/sword/attack-root.c");
     addChild("guilds/aegis-guard/forms/sword/diyacuth.c",
-        "guilds/aegis-guard/forms/sword/root.c");
+        "guilds/aegis-guard/forms/sword/attack-root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,12 +86,9 @@ private void NinthLevel()
 private void TenthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword/edaid-lhewig.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/nir-nuquerna.c");
 
     addChild("guilds/aegis-guard/forms/sword/edaid-lhewig.c",
         "guilds/aegis-guard/forms/sword/dravnu.c");
-    addChild("guilds/aegis-guard/forms/sword/nir-nuquerna.c",
-        "guilds/aegis-guard/forms/sword/caragpholg.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

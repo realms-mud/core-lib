@@ -22,7 +22,7 @@ public void reset(int arg)
               "guild": "Aegis Guard",
               "value": 3 ]));
 
-        addPrerequisite("guilds/aegis-guard/forms/sword/root.c",
+        addPrerequisite("guilds/aegis-guard/forms/sword/attack-root.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");

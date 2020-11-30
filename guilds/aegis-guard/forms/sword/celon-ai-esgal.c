@@ -18,7 +18,7 @@ public void reset(int arg)
         addSpecification("limited by", (["equipment":({ "dagger", "short sword",
             "long sword", "hand and a half sword", "two-handed sword" })]));
 
-        addPrerequisite("guilds/aegis-guard/forms/sword/root.c",
+        addPrerequisite("guilds/aegis-guard/forms/sword/guarding-root.c",
             (["type":"research"]));
 
         addSpecification("scope", "self");
