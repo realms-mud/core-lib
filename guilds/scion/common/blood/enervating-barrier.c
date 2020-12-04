@@ -41,25 +41,25 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/malefic-barrier.c", WeaponType),
                 "name" : "Malefic Barrier",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/corrupting-barrier.c", WeaponType),
                 "name" : "Corrupting Barrier",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/nefarious-barrier.c", WeaponType),
                 "name" : "Nefarious Barrier",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.5
             ]),
             ([
                 "type":"skill",

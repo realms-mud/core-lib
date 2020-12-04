@@ -307,9 +307,9 @@ private nomask string displayAffectedResearch(string colorConfiguration,
             ret += configuration->decorate(
                 sprintf("This research enhances '%s' by %s\n", key,
                     configuration->decorate((affectedResearch[key] > 0) ?
-                        "+" + to_string(affectedResearch[key]) :
-                        to_string(affectedResearch[key]), "bonus modifier",
-                        "research", colorConfiguration)),
+                        "+" + to_string(affectedResearch[key]) + "%" :
+                        to_string(affectedResearch[key]) + "%", 
+                        "bonus modifier", "research", colorConfiguration)),
                 "bonus text", "research", colorConfiguration);
         }
     }

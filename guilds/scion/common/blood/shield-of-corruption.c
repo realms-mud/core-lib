@@ -25,9 +25,11 @@ public void reset(int arg)
         Setup();
 
         addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 35 ]));
+        ([
+            "type":"level", 
+            "guild": "Scion of Dhuras",
+            "value": 35 
+        ]));
         addPrerequisite(sprintf("guilds/scion/paths/%s/blood/soul-shield.c", WeaponType),
             (["type":"research"]));
 

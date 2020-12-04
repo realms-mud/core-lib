@@ -33,9 +33,10 @@ public void reset(int arg)
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("affected research", (["Shocking Tendrils": 2,
-            "Shocking Barrier": 2,
-            "Tempest": 2
+        addSpecification("affected research", ([
+            "Shocking Tendrils": 50,
+            "Shocking Barrier": 50,
+            "Tempest": 50
         ]));
     }
 }

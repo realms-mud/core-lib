@@ -54,17 +54,17 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
                 "name" : "Parasitic Charge",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.5
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/leechs-promise.c", WeaponType),
                 "name" : "The Leech's Promise",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 2.0
             ]),
             ([
                 "type":"skill",

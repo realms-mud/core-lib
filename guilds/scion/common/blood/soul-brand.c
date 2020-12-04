@@ -33,6 +33,9 @@ public void reset(int arg)
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("affected research", (["Soul Strike":2]));
+        addSpecification("affected research", ([
+            "Malefic Strike": 30,
+            "Soul Strike": 40
+        ]));
     }
 }

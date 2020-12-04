@@ -40,41 +40,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/sweeping-shock.c", WeaponType),
                 "name" : "sweeping shock",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/shock-brand.c", WeaponType),
                 "name" : "shock brand",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
                 "name" : "energized strike",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/shocking-edge.c", WeaponType),
                 "name" : "shocking edge",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/thunders-boon.c", WeaponType),
                 "name" : "Thunder's Boon",
-                "formula" : "additive",
-                "base value" : 6,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.75
             ]),
         }));
 

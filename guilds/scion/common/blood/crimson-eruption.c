@@ -34,10 +34,10 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Soul Shear": 10,
-            "Sanguine Blast": 10,
-            "Carnage": 10,
-            "Destruction": 30
+            "Soul Shear": 40,
+            "Sanguine Blast": 40,
+            "Carnage": 40,
+            "Destruction": 40
         ]));
     }
 }

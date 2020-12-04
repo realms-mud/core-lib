@@ -54,17 +54,17 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
                 "name" : "Static Charge",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.5
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
                 "name" : "Electrostatic Induction",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 2.0
             ]),
             ([
                 "type":"skill",

@@ -41,25 +41,25 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType),
                 "name" : "Static Barrier",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType),
                 "name" : "Ionized Barrier",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/plasma-barrier.c", WeaponType),
                 "name" : "Plasma Barrier",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.5
             ]),
             ([
                 "type":"skill",

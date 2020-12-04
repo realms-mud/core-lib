@@ -25,9 +25,11 @@ public void reset(int arg)
         Setup();
 
         addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 31 ]));
+        ([
+            "type":"level", 
+            "guild": "Scion of Dhuras",
+            "value": 31 
+        ]));
         addPrerequisite(sprintf("guilds/scion/paths/%s/blood/sanguine-shroud.c", WeaponType),
             (["type":"research"]));
 

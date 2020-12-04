@@ -60,41 +60,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
                 "name" : "Static Charge",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
                 "name" : "Electrostatic Induction",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/ionization.c", WeaponType),
                 "name" : "Ionization",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/enhanced-discharge.c", WeaponType),
                 "name" : "Enhanced Discharge",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.35
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/electricity/plasma-eruption.c", WeaponType),
                 "name" : "Plasma Eruption",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"skill",

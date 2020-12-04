@@ -34,9 +34,9 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Choking Tendrils": 2,
-            "Enervating Barrier": 2,
-            "Bloodswarm": 2
+            "Choking Tendrils": 50,
+            "Enervating Barrier": 50,
+            "Bloodswarm": 50
         ]));
     }
 }

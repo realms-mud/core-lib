@@ -33,10 +33,11 @@ public void reset(int arg)
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("affected research", (["Lightning": 10,
-            "Lightning Blast": 10,
-            "Maelstrom": 10,
-            "Plasma Ball": 20
+        addSpecification("affected research", ([
+            "Lightning": 35,
+            "Lightning Blast": 35,
+            "Maelstrom": 35,
+            "Plasma Ball": 35
         ]));
     }
 }

@@ -35,41 +35,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/sweeping-torment.c", WeaponType),
                 "name" : "sweeping torment",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.67
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/soul-brand.c", WeaponType),
                 "name" : "soul brand",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/scourge-strike.c", WeaponType),
                 "name" : "scourge strike",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/wicked-edge.c", WeaponType),
                 "name" : "wicked edge",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/tortured-curse.c", WeaponType),
                 "name" : "tortured curse",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 2.0
             ]),
         }));
 

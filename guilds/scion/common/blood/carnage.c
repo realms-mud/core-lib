@@ -71,41 +71,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
                 "name" : "Parasitic Charge",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/leechs-promise.c", WeaponType),
                 "name" : "The Leech's Promise",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/enervation.c", WeaponType),
                 "name" : "Enervation",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/malefic-discharge.c", WeaponType),
                 "name" : "Malefic Discharge",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.35
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/blood/crimson-eruption.c", WeaponType),
                 "name" : "Crimson Eruption",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"skill",

@@ -34,10 +34,11 @@ public void reset(int arg)
             sprintf("guilds/scion/paths/%s/blood/root.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
-            (["type":"level",
-                "guild": "Scion of Dhuras",
-                "value": 23
-            ]));
+        ([
+            "type":"level",
+            "guild": "Scion of Dhuras",
+            "value": 23
+        ]));
 
         addSpecification("modifiers", ({ 
             ([
