@@ -60,41 +60,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/mystic-charge.c", WeaponType),
                 "name" : "Mystic Charge",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType),
                 "name" : "Magical Conduit",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/ionization.c", WeaponType),
                 "name" : "Ionization",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/kinetic-discharge.c", WeaponType),
                 "name" : "Kinetic Discharge",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.35
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/plasma-eruption.c", WeaponType),
                 "name" : "Plasma Eruption",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"skill",

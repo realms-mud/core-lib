@@ -35,41 +35,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/sweeping-caress.c", WeaponType),
                 "name" : "sweeping caress",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.67
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/spectral-brand.c", WeaponType),
                 "name" : "freezing brand",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/soul-strike.c", WeaponType),
                 "name" : "soul strike",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/spectral-edge.c", WeaponType),
                 "name" : "spectral edge",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/nienwyns-boon.c", WeaponType),
                 "name" : "Nienwyn's Boon",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 2.0
             ]),
         }));
 

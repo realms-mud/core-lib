@@ -40,41 +40,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/sweeping-energy.c", WeaponType),
                 "name" : "sweeping energy",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/mystic-brand.c", WeaponType),
                 "name" : "mystic brand",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/energized-strike.c", WeaponType),
                 "name" : "energized strike",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/magical-edge.c", WeaponType),
                 "name" : "shocking edge",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/dalreths-might.c", WeaponType),
                 "name" : "Dalreth's Might",
-                "formula" : "additive",
-                "base value" : 6,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.75
             ]),
         }));
 

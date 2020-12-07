@@ -40,41 +40,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/ice/sweeping-frost.c", WeaponType),
                 "name" : "sweeping frost",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/ice/freezing-brand.c", WeaponType),
                 "name" : "freezing brand",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/ice/frigid-strike.c", WeaponType),
                 "name" : "frigid strike",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/ice/icy-edge.c", WeaponType),
                 "name" : "icy edge",
-                "formula" : "additive",
-                "base value" : 3,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.3
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/ice/winters-boon.c", WeaponType),
                 "name" : "Winter's Boon",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.75
             ]),
         }));
 

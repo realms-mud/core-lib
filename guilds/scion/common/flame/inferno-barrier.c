@@ -34,9 +34,9 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Searing Tendrils": 2,
-            "Burning Barrier": 2,
-            "Inferno": 2
+            "Searing Tendrils": 50,
+            "Burning Barrier": 50,
+            "Inferno": 50
         ]));
     }
 }

@@ -34,11 +34,10 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Ice Bolt":5,
-            "Ice Javelin": 5,
-            "Frost Wave": 5,
-            "Blizzard": 5,
-            "Call of Winter": 10
+            "Ice Javelin": 25,
+            "Frost Wave": 25,
+            "Blizzard": 25,
+            "Call of Winter": 25
         ]));
     }
 }

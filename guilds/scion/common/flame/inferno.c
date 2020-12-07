@@ -41,25 +41,25 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/flame/flaming-barrier.c", WeaponType),
                 "name" : "Flaming Barrier",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/flame/blazing-barrier.c", WeaponType),
                 "name" : "Blazing Barrier",
-                "formula" : "additive",
-                "base value" : 2,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/flame/inferno-barrier.c", WeaponType),
                 "name" : "Inferno Barrier",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.5
             ]),
             ([
                 "type":"skill",

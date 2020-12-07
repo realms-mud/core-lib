@@ -71,41 +71,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/flame/fuel-the-flames.c", WeaponType),
                 "name" : "Fuel the Flames",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/flame/scorching-mark.c", WeaponType),
                 "name" : "Scorching Mark",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/flame/stoking-rage.c", WeaponType),
                 "name" : "Stoking Rage",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/flame/enhanced-blaze.c", WeaponType),
                 "name" : "Enhanced Blaze",
-                "formula" : "additive",
-                "base value" : 20,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.35
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/flame/inferno-mark.c", WeaponType),
                 "name" : "Inferno Mark",
-                "formula" : "additive",
-                "base value" : 30,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
 
             ([

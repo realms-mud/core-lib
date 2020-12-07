@@ -70,41 +70,41 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/chill-the-blood.c", WeaponType),
                 "name" : "Chill the Blood",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/spirit-mark.c", WeaponType),
                 "name" : "Spirit Mark",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/spectral-rage.c", WeaponType),
                 "name" : "Spectral Rage",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.25
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/nienwyns-kiss.c", WeaponType),
                 "name" : "Nienwyn's Kiss",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.35
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/laiwyths-mark.c", WeaponType),
                 "name" : "Laiwyth's Mark",
-                "formula" : "additive",
-                "base value" : 10,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.4
             ]),
             ([
                 "type":"skill",

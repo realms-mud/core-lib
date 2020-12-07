@@ -34,9 +34,9 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Tendrils of Laiwyth": 2,
-            "Spectral Barrier": 2,
-            "Soul Blight": 2
+            "Tendrils of Laiwyth": 25,
+            "Spectral Barrier": 25,
+            "Soul Blight": 25
         ]));
     }
 }

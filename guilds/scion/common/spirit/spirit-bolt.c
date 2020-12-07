@@ -54,17 +54,17 @@ public void reset(int arg)
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/chill-the-blood.c", WeaponType),
                 "name" : "Chill the Blood",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 1.5
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/spirit/spirit-mark.c", WeaponType),
                 "name" : "Spirit Mark",
-                "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "formula" : "multiplicative",
+                "base value" : 1,
+                "rate": 2.0
             ]),
             ([
                 "type":"skill",

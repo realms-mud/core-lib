@@ -34,10 +34,10 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Fire Bolt": 10,
-            "Fireball": 10,
-            "Conflagration": 10,
-            "Inferno Spear": 20
+            "Fire Bolt": 35,
+            "Fireball": 35,
+            "Conflagration": 35,
+            "Inferno Spear": 35
         ]));
     }
 }

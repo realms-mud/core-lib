@@ -34,9 +34,9 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Frost Tendrils": 2,
-            "Freezing Barrier": 2,
-            "Ice Storm": 2
+            "Frost Tendrils": 25,
+            "Freezing Barrier": 25,
+            "Ice Storm": 25
         ]));
     }
 }

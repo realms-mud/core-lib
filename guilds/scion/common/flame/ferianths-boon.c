@@ -34,8 +34,8 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Fire Brand": 5,
-            "Searing Brand": 6
+            "Fire Brand": 100,
+            "Searing Brand": 75
         ]));
     }
 }

@@ -37,7 +37,7 @@ public void reset(int arg)
         addSpecification("spell point cost", 15);
 
         addSpecification("damage hit points", ({ ([
-                "probability":80,
+                "probability": 80,
                 "base damage" : 5,
                 "range" : 5
             ]),
@@ -55,16 +55,16 @@ public void reset(int arg)
                 "research item": sprintf("guilds/scion/paths/%s/evocation/mystic-charge.c", WeaponType),
                 "name" : "Mystic Charge",
                 "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "base value" : 1,
+                "rate": 1.5
             ]),
             ([
                 "type":"research",
                 "research item": sprintf("guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType),
                 "name" : "Magical Conduit",
                 "formula" : "additive",
-                "base value" : 5,
-                "rate": 1.0
+                "base value" : 1,
+                "rate": 2.0
             ]),
             ([
                 "type":"skill",

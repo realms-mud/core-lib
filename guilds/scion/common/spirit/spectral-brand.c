@@ -35,8 +35,8 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Soul Brand":2,
-            "Brand of Laiwyth" : 3
+            "Soul Brand": 40,
+            "Brand of Laiwyth" : 30
         ]));
     }
 }

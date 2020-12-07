@@ -34,11 +34,11 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Spirit Bolt":5,
-            "Soul Shard": 5,
-            "Shadow Storm": 5,
-            "Spectral Storm": 5,
-            "Spirit Scourge": 10
+            "Spirit Bolt": 50,
+            "Soul Shard": 25,
+            "Shadow Storm": 25,
+            "Spectral Storm": 25,
+            "Spirit Scourge": 25
         ]));
     }
 }
