@@ -14,6 +14,21 @@ protected nomask int addSpecification(string type, mixed value)
 
     switch(type)
     { 
+        case "affected research type":
+        {
+            if (stringp(value) &&
+                (member(({ "percentage", "bonus" }), value) > -1))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error(sprintf("ERROR - knowledgeResearchItem: "
+                    "the '%s' specification must be either 'percentage' "
+                    "or 'bonus'.\n", type));
+            }
+        }
         case "affected research":
         {
             if(mappingp(value))
