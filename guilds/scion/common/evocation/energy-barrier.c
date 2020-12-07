@@ -38,5 +38,6 @@ public void reset(int arg)
             "Magical Barrier": 50,
             "Tempest": 50
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

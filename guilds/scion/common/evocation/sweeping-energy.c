@@ -37,5 +37,6 @@ public void reset(int arg)
             "Magical Strike": 67,
             "Power Strike" : 30
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

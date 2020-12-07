@@ -37,5 +37,6 @@ public void reset(int arg)
             "Malefic Strike": 75,
             "Soul Strike": 100
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

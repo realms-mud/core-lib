@@ -40,5 +40,6 @@ public void reset(int arg)
             "Conflagration": 25,
             "Inferno Spear": 25
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

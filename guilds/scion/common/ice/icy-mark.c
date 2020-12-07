@@ -39,5 +39,6 @@ public void reset(int arg)
             "Blizzard": 40,
             "Call of Winter": 40
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

@@ -38,5 +38,6 @@ public void reset(int arg)
             "Freezing Barrier": 50,
             "Ice Storm": 50
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

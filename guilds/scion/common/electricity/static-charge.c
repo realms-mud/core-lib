@@ -40,5 +40,6 @@ public void reset(int arg)
             "Maelstrom": 25,
             "Plasma Ball": 25
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

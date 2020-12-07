@@ -38,5 +38,6 @@ public void reset(int arg)
             "Spectral Barrier": 50,
             "Soul Blight": 50
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

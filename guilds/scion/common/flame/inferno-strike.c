@@ -37,6 +37,6 @@ public void reset(int arg)
             "Fire Brand": 40,
             "Searing Brand" : 30
         ]));
-
+        addSpecification("affected research type", "percentage");
     }
 }

@@ -38,5 +38,6 @@ public void reset(int arg)
             "Enervating Barrier": 50,
             "Bloodswarm": 50
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

@@ -38,5 +38,6 @@ public void reset(int arg)
             "Burning Barrier": 50,
             "Inferno": 50
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

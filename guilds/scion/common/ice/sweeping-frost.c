@@ -37,5 +37,6 @@ public void reset(int arg)
             "Frost Brand": 67,
             "Ice Brand" : 30
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

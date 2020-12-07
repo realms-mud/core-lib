@@ -37,5 +37,6 @@ public void reset(int arg)
             "Shock Strike":67,
             "Lightning Strike" : 30
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

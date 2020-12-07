@@ -73,7 +73,7 @@ public void reset(int arg)
                 "research item": sprintf("guilds/scion/paths/%s/flame/ferianths-boon.c", WeaponType),
                 "name" : "Ferianth's Boon",
                 "formula" : "multiplicative",
-                "base value" : 1
+                "base value": 1,
                 "rate": 1.75
             ]),
         }));

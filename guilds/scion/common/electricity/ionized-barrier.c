@@ -38,5 +38,6 @@ public void reset(int arg)
             "Shocking Barrier": 25,
             "Tempest": 25
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

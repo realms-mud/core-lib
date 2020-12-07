@@ -34,5 +34,6 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", (["Spirit Shroud": 5 ]));
+        addSpecification("affected research type", "bonus");
     }
 }

@@ -40,5 +40,6 @@ public void reset(int arg)
             "Carnage": 25,
             "Destruction": 25
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

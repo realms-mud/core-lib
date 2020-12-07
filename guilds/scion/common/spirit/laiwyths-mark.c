@@ -39,5 +39,6 @@ public void reset(int arg)
             "Spectral Storm": 40,
             "Spirit Scourge": 40
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

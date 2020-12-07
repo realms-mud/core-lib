@@ -37,5 +37,6 @@ public void reset(int arg)
             "Soul Brand": 100,
             "Brand of Laiwyth": 75
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

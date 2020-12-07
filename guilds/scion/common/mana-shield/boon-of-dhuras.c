@@ -28,5 +28,6 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", (["Mana Shield":2]));
+        addSpecification("affected research type", "bonus");
     }
 }
