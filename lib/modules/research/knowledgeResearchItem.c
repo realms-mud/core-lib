@@ -28,6 +28,7 @@ protected nomask int addSpecification(string type, mixed value)
                     "the '%s' specification must be either 'percentage' "
                     "or 'bonus'.\n", type));
             }
+            break;
         }
         case "affected research":
         {

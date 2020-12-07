@@ -19,7 +19,13 @@ private void FirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SecondLevel()
 {
+    //addResearchElement("guilds/aegis-guard/forms/sword/ercho.c");
+    //addResearchElement("guilds/aegis-guard/forms/sword/nestegi.c");
 
+    //addChild("guilds/aegis-guard/forms/sword/ercho.c",
+    //    "guilds/aegis-guard/forms/sword/eithagos.c");
+    //addChild("guilds/aegis-guard/forms/sword/nestegi.c",
+    //    "guilds/aegis-guard/forms/sword/nistaros.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -37,7 +43,10 @@ private void ThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FourthLevel()
 {
+    //addResearchElement("guilds/aegis-guard/forms/sword/esgeri.c");
 
+    //addChild("guilds/aegis-guard/forms/sword/esgeri.c",
+    //    "guilds/aegis-guard/forms/sword/tharcuth.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -52,13 +61,19 @@ private void FifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SixthLevel()
 {
+    //addResearchElement("guilds/aegis-guard/forms/sword/cirithu.c");
 
+    //addChild("guilds/aegis-guard/forms/sword/cirithu.c",
+    //    "guilds/aegis-guard/forms/sword/diyacuth.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
+    //addResearchElement("guilds/aegis-guard/forms/sword/dravo.c");
 
+    //addChild("guilds/aegis-guard/forms/sword/dravo.c",
+    //    "guilds/aegis-guard/forms/sword/dravnu.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
