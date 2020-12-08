@@ -17,9 +17,11 @@ public int testAddSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int testExecuteOnSelf(object owner, string researchName)
+public int testExecuteOnSelf(string unparsedCommand, object owner, 
+    string researchName)
 {
-    return persistedActiveResearchItem::executeOnSelf(owner, researchName);
+    return persistedActiveResearchItem::executeOnSelf(unparsedCommand, owner, 
+        researchName);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -31,7 +33,9 @@ public int testExecuteOnTarget(string unparsedCommand, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int testExecuteInArea(object owner, string researchName)
+public int testExecuteInArea(string unparsedCommand, object owner, 
+    string researchName)
 {
-    return persistedActiveResearchItem::executeInArea(owner, researchName);
+    return persistedActiveResearchItem::executeInArea(unparsedCommand, owner,
+        researchName);
 }

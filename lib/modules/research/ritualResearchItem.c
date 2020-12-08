@@ -79,7 +79,8 @@ protected int addSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int executeOnSelf(object owner, string researchName)
+protected int executeOnSelf(string unparsedCommand, object owner, 
+    string researchName)
 {
     return 0;
 }
@@ -92,25 +93,29 @@ protected int executeOnTarget(string unparsedCommand, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int executeInArea(object owner, string researchName)
+protected int executeInArea(string unparsedCommand, object owner, 
+    string researchName)
 {
     return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int executeOnEnvironment(object owner, string researchName)
+protected int executeOnEnvironment(string unparsedCommand, object owner, 
+    string researchName)
 {
     return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int executeOnRegion(object owner, string researchName)
+protected int executeOnRegion(string unparsedCommand, object owner, 
+    string researchName)
 {
     return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int executeGlobally(object owner, string researchName)
+protected int executeGlobally(string unparsedCommand, object owner, 
+    string researchName)
 {
     return 0;
 }
@@ -126,7 +131,7 @@ private nomask int applyToScope(string command, object owner,
         {
             case "self":
             {
-                ret = executeOnSelf(owner, researchName);
+                ret = executeOnSelf(command, owner, researchName);
                 break;
             }
             case "targeted":
@@ -136,22 +141,22 @@ private nomask int applyToScope(string command, object owner,
             }
             case "area":
             {
-                ret = executeInArea(owner, researchName);
+                ret = executeInArea(command, owner, researchName);
                 break;
             }
             case "environmental":
             {
-                ret = executeOnEnvironment(owner, researchName);
+                ret = executeOnEnvironment(command, owner, researchName);
                 break;
             }
             case "region":
             {
-                ret = executeOnRegion(owner, researchName);
+                ret = executeOnRegion(command, owner, researchName);
                 break;
             }
             case "global":
             {
-                ret = executeGlobally(owner, researchName);
+                ret = executeGlobally(command, owner, researchName);
                 break;
             }
         }

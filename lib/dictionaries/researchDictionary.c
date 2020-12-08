@@ -11,6 +11,7 @@ private string BaseResearchTree = "lib/modules/research/researchTree.c";
 private mapping researchCache = ([]);
 private mapping researchItemCache = ([]);
 private mapping researchEquivalencies = ([]);
+private mapping researchByNameAndSource = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs int valueIsCached(string research, string element, 
@@ -56,6 +57,12 @@ private nomask object getResearchItem(string researchItem)
     else
     {
         researchItemCache[researchItem] = load_object(researchItem);
+
+        researchByNameAndSource[sprintf("%s#%s",
+            lower_case(researchItemCache[researchItem]->query("name")),
+            lower_case(researchItemCache[researchItem]->query("source")))] =
+            researchItem;
+
         string equivalence = 
             researchItemCache[researchItem]->query("equivalence");
 
@@ -129,6 +136,15 @@ public nomask object researchTree(string tree)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string getResearchByNameAndSource(string name, string source)
+{
+    string key = sprintf("%s#%s", lower_case(name), lower_case(source));
+
+    return member(researchByNameAndSource, key) ?
+        researchByNameAndSource[key] : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////

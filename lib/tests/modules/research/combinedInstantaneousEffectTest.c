@@ -11,7 +11,7 @@ object User;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Effect = clone_object("/lib/tests/support/research/testInstantaneousEffect");
+    Effect = clone_object("/lib/tests/support/research/testCombinedInstantaneousEffect");
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices");
     User->Name("Bob");
@@ -235,7 +235,7 @@ void CannotAddFormulasThatAreLessThan100PercentProbability()
     ]);
 
     string err = catch (Effect->testAddInstantaneousSpecification("damage hit points", ({ formula })));
-    string expectedError = "*ERROR - instantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
     ExpectEq(expectedError, err);
 }
 
@@ -248,7 +248,7 @@ void CannotAddFormulasWithCustomMethodsThatDoNotExist()
     ]);
 
     string err = catch (Effect->testAddInstantaneousSpecification("damage hit points", ({ formula })));
-    string expectedError = "*ERROR - instantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
     ExpectEq(expectedError, err);
 }
 
@@ -281,7 +281,7 @@ void CannotAddInvalidModifierSpecification()
     ]);
 
     string err = catch (Effect->testAddInstantaneousSpecification("modifiers", ({ modifier })));
-    string expectedError = "*ERROR - instantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
 }
 
@@ -289,7 +289,7 @@ void CannotAddInvalidModifierSpecification()
 void CannotAddIncorrectModifierSpecification()
 {
     string err = catch (Effect->testAddInstantaneousSpecification("modifiers", "blah"));
-    string expectedError = "*ERROR - instantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
 }
 
@@ -303,7 +303,7 @@ void CanAddDamageTypeSpecification()
 void CannotAddInvalidDamageTypeSpecification()
 {
     string err = catch (Effect->testAddInstantaneousSpecification("damage type", "turnip"));
-    string expectedError = "*ERROR - instantaneousEffect: the 'damage type' specification must be a valid attack type as defined in attacksDictionary.\n";
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the 'damage type' specification must be a valid attack type as defined in attacksDictionary.\n";
     ExpectEq(expectedError, err);
 }
 
@@ -317,7 +317,7 @@ void CanApplyFormula()
     ]) });
 
     ExpectTrue(Effect->testAddInstantaneousSpecification("damage hit points", formula));
-    ExpectEq(50, Effect->testApplyFormula(User, "damage hit points"));
+    ExpectEq(50, Effect->testApplyFormula(User, 0, "damage hit points"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -339,7 +339,7 @@ void CanApplyMultipleFormulas()
     ]) });
 
     ExpectTrue(Effect->testAddInstantaneousSpecification("damage spell points", formula));
-    ExpectEq(25, Effect->testApplyFormula(User, "damage spell points"));
+    ExpectEq(25, Effect->testApplyFormula(User, 0, "damage spell points"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

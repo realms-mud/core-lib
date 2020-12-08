@@ -65,7 +65,8 @@ private nomask int isValidFormula(mapping *formulas)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int applyFormula(object initiator, string type)
+protected nomask int applyFormula(object initiator, int initialAmount,
+    string type)
 {
     int ret = 0;
     
@@ -85,13 +86,13 @@ protected nomask int applyFormula(object initiator, string type)
             // available since we passed the call to isValidFormula.
             if(member(formula, "custom method"))
             {
-                tmpFormula = 
+                tmpFormula = initialAmount +
                     call_other(this_object(), formula["custom method"], 
                                initiator);
             }
             else
             {
-                tmpFormula =
+                tmpFormula = initialAmount +
                     formula["base damage"] + random(formula["range"] + 1);
             }
 
@@ -146,7 +147,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
             }
             else
             {
-                raise_error(sprintf("ERROR - instantaneousEffect: "
+                raise_error(sprintf("ERROR - combinedInstantaneousEffect: "
                     "the '%s' specification must be a properly formatted "
                     "formula.\n" , type));
             }
@@ -168,14 +169,14 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
                 }
                 else
                 {
-                    raise_error(sprintf("ERROR - instantaneousEffect: "
+                    raise_error(sprintf("ERROR - combinedInstantaneousEffect: "
                         "the '%s' specification must be a properly formatted "
                         "modifier.\n" , type));
                 }                
             }
             else
             {
-                raise_error(sprintf("ERROR - instantaneousEffect: "
+                raise_error(sprintf("ERROR - combinedInstantaneousEffect: "
                     "the '%s' specification must be a properly formatted "
                     "modifier.\n" , type));
             }
@@ -191,7 +192,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
             }
             else
             {
-                raise_error("ERROR - instantaneousEffect: the "
+                raise_error("ERROR - combinedInstantaneousEffect: the "
                     "'damage type' specification must be a valid attack type "
                     "as defined in attacksDictionary.\n");
             }
@@ -202,19 +203,94 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int applyBeneficialEffect(object initiator, object target)
+protected int applyBeneficialEffect(object initiator, string *combo)
 {
     return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int applyEffect(object initiator, object target)
+protected int applyEffect(object initiator, object target, string *combo)
 {
     return 0;
 }
-    
+   
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int executeOnSelf(string unparsedCommand, object owner, 
+private string *getCombinationList(string unparsedCommand, object owner)
+{
+    string *ret = ({});
+    string *combination = explode(regreplace(unparsedCommand,
+        "combination (.*)( at .*)*", "\\1"), " ");
+
+    if (sizeof(combination))
+    {
+        string source = query("source");
+        object dictionary = getDictionary("research");
+
+        foreach(string item in combination)
+        {
+            ret += ({ 
+                dictionary->getResearchByNameAndSource(item, source) 
+            });
+        }
+        ret -= ({ 0 });
+    }
+    return (sizeof(ret) && query("valid combinations")) ? filter(ret,
+        (: (member(query("valid combinations"), $1) > -1) :)) : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask int applyAllFormulas(string *combo, object owner,
+    string type)
+{
+    int ret = 0;
+
+    if (combo && sizeof(combo))
+    {
+        object dictionary = getDictionary("research");
+        foreach(string item in combo)
+        {
+            object research = dictionary->researchObject(item);
+            if (research && research->query(type))
+            {
+                mapping researchData = research->getEffectsToApply(owner);
+                if (member(researchData["effects"], type))
+                {
+                    ret += researchData["effects"][type];
+                }
+            }
+        }
+    }
+    return applyFormula(owner, ret, type);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getComboMessage(string initialMessage, string *combo)
+{
+    string ret = initialMessage;
+
+    string *messages = ({});
+    if (sizeof(combo))
+    {
+        object dictionary = getDictionary("research");
+
+        foreach(string item in combo)
+        {
+            object research = dictionary->researchObject(item);
+            if (research && research->query("use combination message"))
+            {
+                messages += ({ research->query("use combination message") });
+            }
+        }
+    }
+
+    ret += sizeof(messages) ? regreplace(messages, 
+        implode(messages, (sizeof(messages) == 2) ? " and " : ", "),
+        ", ([^,]+)$", ", and \\1", 1) : "";
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask int executeOnSelf(string unparsedCommand, object owner,
     string researchName)
 {
     int ret = 0;
@@ -222,12 +298,14 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
     // checks for this item being researched are already done in execute()
     // as are checks to verify that owner is a living object. We don't
     // allow the caster to do negative things to themselves here...    
-    ret = applyBeneficialEffect(owner, owner);
-    
+    string *combo = getCombinationList(unparsedCommand, owner);
+    ret = applyBeneficialEffect(owner, combo);
+
     if(ret && member(specificationData, "use ability message") &&
        stringp(specificationData["use ability message"]))
     {
-        displayMessage(specificationData["use ability message"],
+        displayMessage(getComboMessage(
+            specificationData["use ability message"], combo),
             owner, owner);
     }   
     return ret;
@@ -242,13 +320,16 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
 
     if(target)
     {
+        string *combo = getCombinationList(unparsedCommand, owner);
+
         if(member(specificationData, "use ability message") &&
            stringp(specificationData["use ability message"]))
         {
-            displayMessage(specificationData["use ability message"],
+            displayMessage(getComboMessage(
+                specificationData["use ability message"], combo),
                 owner, target);
         }
-        ret = applyEffect(owner, target);
+        ret = applyEffect(owner, target, combo);
     }
     else
     {
@@ -258,7 +339,7 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int executeInArea(string unparsedCommand, object owner, 
+protected nomask int executeInArea(string unparsedCommand, object owner,
     string researchName)
 {
     int ret = 1;
@@ -266,43 +347,22 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
     object *environmentObjects = filter(all_inventory(environment(owner)),
         (: $1 != $2 :), owner);
 
+    string *combo = getCombinationList(unparsedCommand, owner);
+
     foreach(object target in environmentObjects)
     {
         if(function_exists("has", target) && target->has("combat"))
         {
-            ret += applyEffect(owner, target);
+            ret += applyEffect(owner, target, combo);
         }
     }
           
     if(member(specificationData, "use ability message") 
        && stringp(specificationData["use ability message"]))
     {
-        displayMessage(specificationData["use ability message"],
+        displayMessage(getComboMessage(
+            specificationData["use ability message"], combo),
             owner, owner);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask mapping getEffectsToApply(object initiator)
-{
-    mapping ret = ([
-        "damage type": specificationData["damage type"],
-        "use combination message": 
-            member(specificationData, "use combination message") ?
-            specificationData["use combination message"] : "",
-        "effects": ([])
-    ]);
-
-    string *effectList = filter(validEffects,
-        (: member(specificationData, $1) :));
-
-    foreach(string type in effectList)
-    {
-        if (member(specificationData, type))
-        {
-            ret["effects"][type] = applyFormula(initiator, type);
-        }
     }
     return ret;
 }

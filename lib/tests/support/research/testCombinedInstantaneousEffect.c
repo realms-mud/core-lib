@@ -2,7 +2,7 @@
 // Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/instantaneousEffect.c";
+inherit "/lib/modules/research/combinedInstantaneousEffect.c";
 
 private int useBeneficialEffect;
 private int useApplyEffect;
@@ -26,27 +26,27 @@ public int customFormula(object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int applyBeneficialEffect(object initiator, object target)
+public int applyBeneficialEffect(object initiator, string *combo)
 {
     return useBeneficialEffect;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int applyEffect(object initiator, object target)
+public int applyEffect(object initiator, object target, string *combo)
 {
     return useApplyEffect;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int testApplyFormula(object initiator, string type)
+public int testApplyFormula(object initiator, int amount, string type)
 {
-    return instantaneousEffect::applyFormula(initiator, type);
+    return combinedInstantaneousEffect::applyFormula(initiator, amount, type);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public int testAddInstantaneousSpecification(string type, mixed value)
 {
-    return instantaneousEffect::addInstantaneousSpecification(type, value);
+    return combinedInstantaneousEffect::addInstantaneousSpecification(type, value);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ public object testGetTarget(object owner, string command)
 public int testExecuteOnSelf(string unparsedCommand, object owner, 
     string researchName)
 {
-    return instantaneousEffect::executeOnSelf(unparsedCommand, owner, 
+    return combinedInstantaneousEffect::executeOnSelf(unparsedCommand, owner,
         researchName);
 }
 
@@ -67,7 +67,7 @@ public int testExecuteOnSelf(string unparsedCommand, object owner,
 public int testExecuteOnTarget(string unparsedCommand, object owner,
     string researchName)
 {
-    return instantaneousEffect::executeOnTarget(unparsedCommand, owner, 
+    return combinedInstantaneousEffect::executeOnTarget(unparsedCommand, owner,
         researchName);
 }
 
@@ -75,6 +75,6 @@ public int testExecuteOnTarget(string unparsedCommand, object owner,
 public int testExecuteInArea(string unparsedCommand, object owner, 
     string researchName)
 {
-    return instantaneousEffect::executeInArea(unparsedCommand, owner, 
+    return combinedInstantaneousEffect::executeInArea(unparsedCommand, owner,
         researchName);
 }

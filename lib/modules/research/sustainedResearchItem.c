@@ -152,7 +152,8 @@ protected nomask int addSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int executeOnSelf(object owner, string researchName)
+private nomask int executeOnSelf(string unparsedCommand, object owner, 
+    string researchName)
 {
     int ret = 0;
 
@@ -329,7 +330,8 @@ private nomask int applyModifierToArea(object owner, string researchName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int executeInArea(object owner, string researchName)
+private nomask int executeInArea(string unparsedCommand, object owner, 
+    string researchName)
 {
     int ret = 0;
     if(owner->sustainedResearchIsActive(researchName))
@@ -365,7 +367,8 @@ private nomask int executeInArea(object owner, string researchName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int executeOnEnvironment(object owner, string researchName)
+private nomask int executeOnEnvironment(string unparsedCommand, object owner, 
+    string researchName)
 {
     int ret = 0;
     // TODO [173]: Finish this
@@ -373,7 +376,8 @@ private nomask int executeOnEnvironment(object owner, string researchName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int executeOnRegion(object owner, string researchName)
+private nomask int executeOnRegion(string unparsedCommand, object owner, 
+    string researchName)
 {
     int ret = 0;
     // TODO [174]: Finish this
@@ -381,7 +385,8 @@ private nomask int executeOnRegion(object owner, string researchName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int executeGlobally(object owner, string researchName)
+private nomask int executeGlobally(string unparsedCommand, object owner, 
+    string researchName)
 {
     int ret = 0;
     // TODO [175] [176]: Finish this
@@ -399,7 +404,7 @@ private nomask int applyToScope(string command, object owner,
         {
             case "self":
             {
-                ret = executeOnSelf(owner, researchName);
+                ret = executeOnSelf(command, owner, researchName);
                 break;
             }
             case "targeted":
@@ -409,22 +414,22 @@ private nomask int applyToScope(string command, object owner,
             }
             case "area":
             {
-                ret = executeInArea(owner, researchName);
+                ret = executeInArea(command, owner, researchName);
                 break;
             }
             case "environmental":
             {
-                ret = executeOnEnvironment(owner, researchName);
+                ret = executeOnEnvironment(command, owner, researchName);
                 break;
             }
             case "region":
             {
-                ret = executeOnRegion(owner, researchName);
+                ret = executeOnRegion(command, owner, researchName);
                 break;
             }
             case "global":
             {
-                ret = executeGlobally(owner, researchName);
+                ret = executeGlobally(command, owner, researchName);
                 break;
             }
         }

@@ -109,7 +109,8 @@ public nomask void deactivateModifierObject(object modifierToDeactivate)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-protected nomask int executeOnSelf(object owner, string researchName)
+protected nomask int executeOnSelf(string unparsedCommand, object owner, 
+    string researchName)
 {
     int ret = 0;
 
@@ -257,7 +258,8 @@ private nomask int applyModifierToArea(object owner, string researchName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int executeInArea(object owner, string researchName)
+protected nomask int executeInArea(string unparsedCommand, object owner, 
+    string researchName)
 {
     int ret = 0;
 

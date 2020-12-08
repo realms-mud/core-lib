@@ -38,7 +38,8 @@ public void decreaseHitPointsOnUser(object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int executeOnSelf(object owner, string researchName)
+public int executeOnSelf(string unparsedCommand, object owner, 
+    string researchName)
 {
     int ret = query("scope") == "self";
     if (reportExecution)
@@ -62,7 +63,8 @@ public int executeOnTarget(string unparsedCommand, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int executeInArea(object owner, string researchName)
+public int executeInArea(string unparsedCommand, object owner, 
+    string researchName)
 {
     int ret = query("scope") == "area";
     if (reportExecution)
@@ -73,7 +75,8 @@ public int executeInArea(object owner, string researchName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int executeOnEnvironment(object owner, string researchName)
+public int executeOnEnvironment(string unparsedCommand, object owner,
+    string researchName)
 {
     int ret = query("scope") == "environmental";
     if (reportExecution)
@@ -84,7 +87,8 @@ public int executeOnEnvironment(object owner, string researchName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int executeOnRegion(object owner, string researchName)
+public int executeOnRegion(string unparsedCommand, object owner,
+    string researchName)
 {
     int ret = query("scope") == "region";
     if (reportExecution)
@@ -95,7 +99,8 @@ public int executeOnRegion(object owner, string researchName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int executeGlobally(object owner, string researchName)
+public int executeGlobally(string unparsedCommand, object owner,
+    string researchName)
 {
     int ret = query("scope") == "global";
     if (reportExecution)
