@@ -345,8 +345,8 @@ void CallingExecuteWithSelfScopeAppliesEffectsToUser()
     ExpectEq("({ ([ attack type: wielded primary, ]), ([ attack type: wielded primary, ]), })", User->getAttacks(), "only one attack initially");
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
 
-    object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
-    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#lib/tests/support/services/combatWithMockServices.c",
+    object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
+    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectEq(10, User->getSkill("long sword"), "long sword skill after ability used");
@@ -372,8 +372,8 @@ void ExecuteOnSelfAppliesCombatEffectOnSelf()
 
     ExpectTrue(ResearchItem->execute("the command", User), "can execute command");
 
-    object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
-    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#lib/tests/support/services/combatWithMockServices.c",
+    object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
+    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectTrue(User->inventoryGetModifier("combatModifiers", "haste"));
@@ -389,8 +389,8 @@ void ExecuteOnTargetAppliesEffectOnTarget()
     ExpectEq(10, Target->getSkill("long sword"), "initial long sword skill");
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
 
-    object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
-    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#lib/tests/support/services/combatWithMockServices.c",
+    object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
+    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectEq(15, Target->getSkill("long sword"), "long sword skill after research used");
@@ -405,8 +405,8 @@ void ExecuteOnTargetAppliesCombatEffectOnTarget()
 
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
 
-    object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User));
-    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#lib/tests/support/services/combatWithMockServices.c",
+    object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
+    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectTrue(Target->inventoryGetModifier("combatModifiers", "haste"));
@@ -457,7 +457,7 @@ void ExecuteOnTargetAppliesNegativeEffect()
     ExpectEq(10, Target->getSkill("long sword"), "initial long sword skill");
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
 
-    ExpectTrue(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
+    ExpectTrue(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
     ExpectEq(5, Target->getSkill("long sword"), "long sword skill after research used");
 }
 
@@ -476,7 +476,7 @@ void ExecuteOnTargetFailsIfEffectNegativeAndTargetNotOnKillList()
 
     ExpectFalse(ResearchItem->execute("throw turnip at frank", User), "can execute command");
 
-    ExpectFalse(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
+    ExpectFalse(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -497,7 +497,7 @@ void ExecuteOnTargetFailsIfEffectNegativeAndTargetButNotUserOnKillList()
 
     ExpectFalse(ResearchItem->execute("throw turnip at frank", User), "can execute command");
 
-    ExpectFalse(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
+    ExpectFalse(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -525,7 +525,7 @@ void ExecuteOnTargetAppliedIfBothPlayersOnKillList()
     ExpectEq(10, Target->getSkill("long sword"), "initial long sword skill");
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
 
-    ExpectTrue(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
+    ExpectTrue(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
     ExpectEq(5, Target->getSkill("long sword"), "long sword skill after research used");
 }
 
@@ -558,10 +558,10 @@ void NegativeExecuteInAreaAppliedOnCorrectTargets()
     ExpectEq(10, badguy->getSkill("long sword"), "initial badguy long sword skill");
     ExpectTrue(ResearchItem->execute("the command", User), "can execute command");
 
-    ExpectFalse(User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
-    ExpectTrue(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
-    ExpectTrue(badguy->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
-    ExpectFalse(bystander->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
+    ExpectFalse(User->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
+    ExpectTrue(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
+    ExpectTrue(badguy->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
+    ExpectFalse(bystander->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
     ExpectEq(5, User->getSkill("long sword"), "user long sword skill after research used");
     ExpectEq(5, Target->getSkill("long sword"), "target long sword skill after research used");
     ExpectEq(10, bystander->getSkill("long sword"), "bystander long sword skill after research used");
@@ -597,10 +597,10 @@ void ExecuteInAreaAppliedOnCorrectTargets()
     ExpectEq(10, badguy->getSkill("long sword"), "initial badguy long sword skill");
     ExpectTrue(ResearchItem->execute("the command", User), "can execute command");
 
-    ExpectTrue(User->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
-    ExpectFalse(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
-    ExpectFalse(badguy->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
-    ExpectTrue(bystander->registeredInventoryObject(program_name(ResearchItem) + "#" + program_name(User)));
+    ExpectTrue(User->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
+    ExpectFalse(Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
+    ExpectFalse(badguy->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
+    ExpectTrue(bystander->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName()));
     ExpectEq(10, User->getSkill("long sword"), "user long sword skill after research used");
     ExpectEq(10, Target->getSkill("long sword"), "target long sword skill after research used");
     ExpectEq(15, bystander->getSkill("long sword"), "bystander long sword skill after research used");
