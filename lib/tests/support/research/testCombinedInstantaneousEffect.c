@@ -78,3 +78,11 @@ public int testExecuteInArea(string unparsedCommand, object owner,
     return combinedInstantaneousEffect::executeInArea(unparsedCommand, owner,
         researchName);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public object *testGetCombinationList(string unparsedCommand,
+    object owner)
+{
+    return combinedInstantaneousEffect::getCombinationList(unparsedCommand,
+        owner);
+}

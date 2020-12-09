@@ -13,7 +13,7 @@ void Setup()
 {
     Effect = clone_object("/lib/tests/support/research/testCombinedInstantaneousEffect");
 
-    User = clone_object("/lib/tests/support/services/combatWithMockServices");
+    User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User->Name("Bob");
     User->addAlias("bob");
     User->Str(20);
@@ -343,136 +343,152 @@ void CanApplyMultipleFormulas()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetTargetReturnsFalseIfCommandDoesNotParse()
+void CanAddMaximumCombinationChainSpecification()
 {
-    ExpectFalse(Effect->testGetTarget(User, "flumfrug blibblefro"));
+    ExpectTrue(
+        Effect->testAddInstantaneousSpecification("maximum combination chain", 2));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetTargetReturnsFalseIfTargetDoesNotExist()
+void CannotAddInvalidMaximumCombinationChainSpecification()
 {
-    Effect->addCommandTemplate("throw turnip at ##Target##");
-    ExpectFalse(Effect->testGetTarget(User, "throw turnip at gertrude"));
+    string err = catch (
+        Effect->testAddInstantaneousSpecification("maximum combination chain", -1));
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the "
+        "'maximum combination chain' specification must be a "
+        "positive integer.\n";
+    ExpectEq(expectedError, err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetTargetReturnsFalseIfTargetNotPresent()
+void CanAddMaxCombinationChainModifierSpecification()
 {
-    object room = clone_object("/lib/environment/environment");
-    object victim = clone_object("/lib/tests/support/services/combatWithMockServices");
-    victim->Name("Frank");
-    victim->addAlias("frank");
+    mapping *modifiers = ({ ([
+        "type":"skill",
+        "name" : "long sword",
+        "formula" : "additive",
+        "rate" : 1.25
+    ]),
+    ([
+        "type":"attribute",
+        "name" : "strength",
+        "formula" : "subtractive",
+        "rate" : 0.25
+    ]) });
 
-    Effect->addCommandTemplate("throw turnip at ##Target##");
-    ExpectFalse(Effect->testGetTarget(User, "throw turnip at frank"));
+    ExpectTrue(Effect->testAddInstantaneousSpecification("max combination chain modifier", modifiers));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetTargetReturnsValidTarget()
+void CannotAddInvalidMaxCombinationChainModifierSpecification()
 {
-    object room = clone_object("/lib/environment/environment");
-    object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
-    move_object(User, room);
-    move_object(owner, room);
+    mapping modifier = ([
+        "name": "long sword",
+        "formula": "additive",
+        "rate": 1.25
+    ]);
 
-    Effect->addCommandTemplate("throw turnip at ##Target##");
-
-    ExpectEq(User, Effect->testGetTarget(owner, "throw turnip at bob"));
+    string err = catch (Effect->testAddInstantaneousSpecification("modifiers", ({ modifier })));
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
+    ExpectEq(expectedError, err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetTargetWithNoneSpecifiedReturnsUser()
+void CanAddCombinationRulesSpecification()
 {
-    object room = clone_object("/lib/environment/environment");
-    object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
-    move_object(User, room);
-    move_object(owner, room);
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "must include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemC.c",
+            "lib/tests/support/research/comboPartResearchItemD.c", }),
+        "can include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemE.c",
+            "lib/tests/support/research/comboPartResearchItemF.c", }),
+        "can include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemG.c",
+            "lib/tests/support/research/comboPartResearchItemH.c", }),
+    ]);
 
-    Effect->addCommandTemplate("throw turnip [at ##Target##]");
-
-    ExpectEq(User, Effect->testGetTarget(owner, "throw turnip"));
+    ExpectTrue(Effect->testAddInstantaneousSpecification("combination rules", rules));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetTargetForDamageItemWithNoneSpecifiedReturnsNullIfNotInCombat()
+void CannotAddSameCombinationItemsToMultipleScopesSpecification()
 {
-    object room = clone_object("/lib/environment/environment");
-    object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
-    move_object(User, room);
-    move_object(owner, room);
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "must include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemD.c", }),
+        "can include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemE.c",
+            "lib/tests/support/research/comboPartResearchItemF.c", }),
+        "can include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemG.c",
+            "lib/tests/support/research/comboPartResearchItemH.c", }),
+    ]);
 
-    Effect->addCommandTemplate("throw turnip [at ##Target##]");
-    Effect->testAddInstantaneousSpecification("damage type", "fire");
-    ExpectEq(0, Effect->testGetTarget(owner, "throw turnip"));
+    string err = catch (Effect->testAddInstantaneousSpecification("combination rules", rules));
+    string expectedError = "ERROR - combinedInstantaneousEffect: items "
+        ".lib/tests/support/research/comboPartResearchItemA.c. can only be "
+        "placed once in only one of 'must include only";
+    ExpectSubStringMatch(expectedError, err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetTargetForDamageItemWithNoneSpecifiedReturnsAttackerInCombat()
+void CannotAddInvalidCombinationItemsSpecification()
 {
-    object room = clone_object("/lib/environment/environment");
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "breaking junk": "stuff"
+    ]);
 
-    object victim = clone_object("/lib/tests/support/services/combatWithMockServices");
-    victim->Name("Frank");
-    victim->addAlias("frank");
-    victim->Con(20);
-    victim->hitPoints(victim->maxHitPoints());
-
-    object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
-    owner->Con(20);
-    owner->hitPoints(owner->maxHitPoints());
-    move_object(victim, room);
-    move_object(owner, room);
-
-    owner->attack(victim);
-    Effect->addCommandTemplate("throw turnip [at ##Target##]");
-    Effect->testAddInstantaneousSpecification("damage type", "fire");
-    ExpectEq(victim, Effect->testGetTarget(owner, "throw turnip"));
+    string err = catch (Effect->testAddInstantaneousSpecification("combination rules", rules));
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the "
+        "'combination rules' specification must be a valid rule set.\n";
+    ExpectEq(expectedError, err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ExecuteOnSelfDoesNotCallApplyEffect()
+void GetCombinationListReturnsValidList()
 {
-    Effect->ToggleApplyEffect();
-    ExpectFalse(Effect->testExecuteOnSelf("command", User, program_name(Effect)));
-}
+    User->addResearchPoints(50);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
 
-/////////////////////////////////////////////////////////////////////////////
-void ExecuteOnSelfCallsApplyBeneficialEffect()
-{
-    Effect->ToggleBeneficialEffect();
-    ExpectTrue(Effect->testExecuteOnSelf("command", User, program_name(Effect)));
-}
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "must include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemC.c",
+            "lib/tests/support/research/comboPartResearchItemD.c", }),
+        "can include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemE.c",
+            "lib/tests/support/research/comboPartResearchItemF.c", }),
+        "can include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemG.c",
+            "lib/tests/support/research/comboPartResearchItemH.c", }),
+    ]);
 
-/////////////////////////////////////////////////////////////////////////////
-void ExecuteOnTargetMustHaveAValidTarget()
-{
-    object room = clone_object("/lib/environment/environment");
-    object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
-    move_object(owner, room);
+    Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
+    Effect->testAddInstantaneousSpecification("combination rules", rules);
 
-    Effect->ToggleApplyEffect();
-    Effect->addCommandTemplate("throw turnip at ##Target##");
-
-    ExpectFalse(Effect->testExecuteOnTarget("blarg flargleblarg", owner, program_name(Effect)), "invalid command sent");
-    ExpectFalse(Effect->testExecuteOnTarget("throw turnip at bob", owner, program_name(Effect)), "bob is not present");
-
-    move_object(User, room);
-    ExpectTrue(Effect->testExecuteOnTarget("throw turnip at bob", owner, program_name(Effect)), "bob is present");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void ExecuteInAreaCallsApplyEffect()
-{
-    object room = clone_object("/lib/environment/environment");
-    object creature = clone_object("/lib/tests/support/services/combatWithMockServices");
-    move_object(creature, room);
-
-    creature = clone_object("/lib/tests/support/services/combatWithMockServices");
-    move_object(creature, room);
-
-    move_object(User, room);
-
-    ExpectEq(1, Effect->testExecuteInArea("command", User, program_name(Effect)));
-    Effect->ToggleApplyEffect();
-    ExpectEq(3, Effect->testExecuteInArea("command", User, program_name(Effect)));
+    ExpectEq(({"lib/tests/support/research/comboPartResearchItemA.c",
+        "lib/tests/support/research/comboPartResearchItemD.c",
+        "lib/tests/support/research/comboPartResearchItemF.c" }), 
+        Effect->testGetCombinationList("combination blarg frumbus clerb",
+        User));
 }

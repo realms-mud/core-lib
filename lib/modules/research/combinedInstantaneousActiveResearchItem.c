@@ -21,7 +21,7 @@ protected nomask int addSpecification(string type, mixed value)
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int applyBeneficialEffect(object initiator, 
-    string *combo)
+    object *combo)
 {
     int ret = 0;
     if(member(specificationData, "increase hit points"))
@@ -64,7 +64,7 @@ protected nomask int applyBeneficialEffect(object initiator,
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int applyEffect(object initiator, object target,
-    string *combo)
+    object *combo)
 {
     int ret = 0;
 

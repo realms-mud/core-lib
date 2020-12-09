@@ -11,7 +11,7 @@ virtual inherit "/lib/core/prerequisites.c";
 virtual inherit "/lib/commands/baseCommand.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
-string *validEffects = ({ 
+private string *validEffects = ({ 
     "increase hit points", 
     "increase spell points",
     "increase stamina points", 
@@ -27,6 +27,15 @@ string *validEffects = ({
     "increase soaked",
     "increase stuffed" 
 });
+
+private string *validCombinationTypes = ({
+    "must include only one of",
+    "must include any of",
+    "can include only one of",
+    "can include any of",
+});
+
+private mapping combinationResearchItems = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int isValidFormula(mapping *formulas)
@@ -60,6 +69,50 @@ private nomask int isValidFormula(mapping *formulas)
         }
         
         ret &&= cumulativeProbability == 100;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int validateCombinationSet(mapping combinations)
+{
+    int ret = 0;
+
+    if (mappingp(combinations) && sizeof(combinations))
+    {
+        ret = 1;
+        object dictionary = getDictionary("research");
+        foreach(string key in combinations)
+        {
+            ret &&= (member(validCombinationTypes, key) > -1) &&
+                pointerp(combinations[key]) &&
+                sizeof(combinations[key]);
+
+            if (ret)
+            {
+                foreach(string researchItem in combinations[key])
+                {
+                    object researchObj =
+                        dictionary->researchObject(researchItem);
+
+                    ret &&= objectp(researchObj);
+                    if (ret)
+                    {
+                        string itemName = lower_case(researchObj->query("name"));
+
+                        if (member(combinationResearchItems, itemName))
+                        {
+                            raise_error(sprintf("ERROR - "
+                                "combinedInstantaneousEffect: items (%s) can only "
+                                "be placed once in only one of 'must include only "
+                                "one of', 'must include any of', 'can include only "
+                                "one of', or 'can include any of'.\n", researchItem));
+                        }
+                        combinationResearchItems[itemName] = researchItem;
+                    }
+                }
+            }
+        }
     }
     return ret;
 }
@@ -153,6 +206,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
             }
             break;
         }
+        case "max combination chain modifier":
         case "modifiers":
         {
             if(value && pointerp(value) && sizeof(value) && mappingp(value[0]))
@@ -198,48 +252,131 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
             }
             break;
         }
+        case "maximum combination chain":
+        {
+            object attacks = getDictionary("attacks");
+            if(intp(value) && (value > 0))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error("ERROR - combinedInstantaneousEffect: the "
+                    "'maximum combination chain' specification must be a "
+                    "positive integer.\n");
+            }
+            break;
+        }
+        case "combination rules":
+        {
+            if (validateCombinationSet(value))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error("ERROR - combinedInstantaneousEffect: the "
+                    "'combination rules' specification must be a "
+                    "valid rule set.\n");
+            }
+            break;
+        }
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int applyBeneficialEffect(object initiator, string *combo)
+protected int applyBeneficialEffect(object initiator, object *combo)
 {
     return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int applyEffect(object initiator, object target, string *combo)
+protected int applyEffect(object initiator, object target, object *combo)
 {
     return 0;
 }
    
 /////////////////////////////////////////////////////////////////////////////
-private string *getCombinationList(string unparsedCommand, object owner)
+private nomask int getMaximumSizeOfChainedCombination(object owner)
 {
-    string *ret = ({});
-    string *combination = explode(regreplace(unparsedCommand,
-        "combination (.*)( at .*)*", "\\1"), " ");
-
-    if (sizeof(combination))
+    int ret = specificationData["maximum combination chain"];
+        
+    if(member(specificationData, "max combination chain modifier"))
     {
-        string source = query("source");
-        object dictionary = getDictionary("research");
-
-        foreach(string item in combination)
-        {
-            ret += ({ 
-                dictionary->getResearchByNameAndSource(item, source) 
-            });
-        }
-        ret -= ({ 0 });
+        ret = applyModifiers(ret, owner,
+            specificationData["max combination chain modifier"]);
     }
-    return (sizeof(ret) && query("valid combinations")) ? filter(ret,
-        (: (member(query("valid combinations"), $1) > -1) :)) : 0;
+
+    if (!ret)
+    {
+        raise_error("ERROR - combinedInstantaneousEffect: the "
+            "'maximum combination chain' specification must be set.\n");
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int applyAllFormulas(string *combo, object owner,
+private nomask mapping getComboRulesFor(string *comboItems, string type)
+{
+    mapping ret = ([]);
+
+    if (sizeof(comboItems) == sizeof(filter(comboItems, 
+        (: (member($2, $1) > -1) :), m_indices(combinationResearchItems))))
+    {
+        mapping rules = specificationData["combination rules"];
+        string *list = member(rules, type) ? filter(comboItems,
+            (: (member($2[$3], combinationResearchItems[$1]) > -1) :), 
+            rules, type) : ({});
+
+        ret = filter(combinationResearchItems,
+            (: (member($3, $1) > -1) :), list);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask object *getCombinationList(string unparsedCommand, 
+    object owner)
+{
+    object *ret = ({});
+    string *comboItems = explode(regreplace(unparsedCommand,
+        "combination (.*)( at .*)*", "\\1"), " ");
+
+    if ((sizeof(comboItems) > 1) &&
+        (sizeof(comboItems) <= getMaximumSizeOfChainedCombination(owner)))
+    {
+
+        mapping validComboItems = 
+            getComboRulesFor(comboItems, "must include only one of") +
+            getComboRulesFor(comboItems, "must include any of") +
+            getComboRulesFor(comboItems, "can include only one of") +
+            getComboRulesFor(comboItems, "can include any of");
+
+        object dictionary = getDictionary("research");
+
+        foreach(string item in m_values(validComboItems))
+        {
+            if (owner->isResearched(item))
+            {
+                ret += ({ dictionary->researchObject(item) });
+            }
+        }
+        ret -= ({ 0 });
+    }
+
+    if (sizeof(ret) != sizeof(comboItems))
+    {
+        displayMessage("That is an invalid combination.\n",
+            owner, owner);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask int applyAllFormulas(object *combo, object owner,
     string type)
 {
     int ret = 0;
@@ -264,7 +401,7 @@ protected nomask int applyAllFormulas(string *combo, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string getComboMessage(string initialMessage, string *combo)
+private nomask string getComboMessage(string initialMessage, object *combo)
 {
     string ret = initialMessage;
 
@@ -275,10 +412,9 @@ private nomask string getComboMessage(string initialMessage, string *combo)
 
         foreach(string item in combo)
         {
-            object research = dictionary->researchObject(item);
-            if (research && research->query("use combination message"))
+            if (item->query("use combination message"))
             {
-                messages += ({ research->query("use combination message") });
+                messages += ({ item->query("use combination message") });
             }
         }
     }
@@ -298,7 +434,7 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
     // checks for this item being researched are already done in execute()
     // as are checks to verify that owner is a living object. We don't
     // allow the caster to do negative things to themselves here...    
-    string *combo = getCombinationList(unparsedCommand, owner);
+    object *combo = getCombinationList(unparsedCommand, owner);
     ret = applyBeneficialEffect(owner, combo);
 
     if(ret && member(specificationData, "use ability message") &&
@@ -313,14 +449,14 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int executeOnTarget(string unparsedCommand, object owner,
-    string researchName)
+    object researchName)
 {
     int ret = 0;
     object target = getTarget(owner, unparsedCommand);
 
     if(target)
     {
-        string *combo = getCombinationList(unparsedCommand, owner);
+        object *combo = getCombinationList(unparsedCommand, owner);
 
         if(member(specificationData, "use ability message") &&
            stringp(specificationData["use ability message"]))
@@ -347,7 +483,7 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
     object *environmentObjects = filter(all_inventory(environment(owner)),
         (: $1 != $2 :), owner);
 
-    string *combo = getCombinationList(unparsedCommand, owner);
+    object *combo = getCombinationList(unparsedCommand, owner);
 
     foreach(object target in environmentObjects)
     {
