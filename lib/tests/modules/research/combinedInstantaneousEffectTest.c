@@ -27,6 +27,7 @@ void Setup()
     User->staminaPoints(User->maxStaminaPoints());
     User->addSkillPoints(200);
     User->advanceSkill("long sword", 16);
+    User->colorConfiguration("none");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -485,10 +486,207 @@ void GetCombinationListReturnsValidList()
 
     Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
     Effect->testAddInstantaneousSpecification("combination rules", rules);
+    Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
 
     ExpectEq(({"lib/tests/support/research/comboPartResearchItemA.c",
         "lib/tests/support/research/comboPartResearchItemD.c",
         "lib/tests/support/research/comboPartResearchItemF.c" }), 
+        Effect->testGetCombinationList("combination blarg frumbus clerb at frank",
+        User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetCombinationListCanGetMultipleOfTheSameItem()
+{
+    User->addResearchPoints(50);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+    ]);
+
+    Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
+    Effect->testAddInstantaneousSpecification("combination rules", rules);
+    Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
+
+    ExpectEq(({ "lib/tests/support/research/comboPartResearchItemA.c",
+        "lib/tests/support/research/comboPartResearchItemA.c" }),
+        Effect->testGetCombinationList("combination blarg blarg",
+        User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetCombinationListReturnsFailureWhenItemsNotResearched()
+{
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "must include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemC.c",
+            "lib/tests/support/research/comboPartResearchItemD.c", }),
+        "can include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemE.c",
+            "lib/tests/support/research/comboPartResearchItemF.c", }),
+        "can include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemG.c",
+            "lib/tests/support/research/comboPartResearchItemH.c", }),
+    ]);
+
+    Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
+    Effect->testAddInstantaneousSpecification("combination rules", rules);
+    Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
+
+    ExpectEq(0, 
         Effect->testGetCombinationList("combination blarg frumbus clerb",
         User));
+    ExpectEq("That is an invalid combination. You do not have the following "
+        "researched:\nblarg, clerb, and frumbus.\n", User->caughtMessage());
+
+    User->addResearchPoints(50);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+
+    ExpectEq(0, 
+        Effect->testGetCombinationList("combination blarg frumbus clerb",
+        User));
+    ExpectEq("That is an invalid combination. You do not have the following "
+        "researched:\nclerb and frumbus.\n", User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetCombinationListFailsWhenMustIncludeOnlyOneOfRuleIsViolated()
+{
+    User->addResearchPoints(50);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "can include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemG.c",
+            "lib/tests/support/research/comboPartResearchItemH.c", }),
+    ]);
+
+    Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
+    Effect->testAddInstantaneousSpecification("combination rules", rules);
+    Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
+
+    ExpectEq(0,
+        Effect->testGetCombinationList("combination hruf muclid",
+            User));
+    ExpectEq("That is an invalid combination. You must use exactly one of: "
+        "blarg or rarg.\n", User->caughtMessage());
+
+    ExpectEq(0, 
+        Effect->testGetCombinationList("combination blarg rarg",
+        User));
+    ExpectEq("That is an invalid combination. You must use exactly one of: "
+        "blarg or rarg.\n", User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetCombinationListFailsWhenCanIncludeOnlyOneOfRuleIsViolated()
+{
+    User->addResearchPoints(50);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "can include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemE.c",
+            "lib/tests/support/research/comboPartResearchItemF.c", }),
+    ]);
+
+    Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
+    Effect->testAddInstantaneousSpecification("combination rules", rules);
+    Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
+
+    ExpectEq(({ "lib/tests/support/research/comboPartResearchItemA.c",
+        "lib/tests/support/research/comboPartResearchItemE.c" }),
+        Effect->testGetCombinationList("combination blarg surlac",
+        User));
+
+    ExpectEq(0, 
+        Effect->testGetCombinationList("combination blarg surlac clerb",
+        User));
+    ExpectEq("That is an invalid combination. You can only use one of: "
+        "clerb or surlac.\n", User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetCombinationListFailsWhenMustIncludeAnyOfRuleIsViolated()
+{
+    User->addResearchPoints(50);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+
+    mapping rules = ([
+        "must include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+    ]);
+
+    Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
+    Effect->testAddInstantaneousSpecification("combination rules", rules);
+    Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
+
+    ExpectEq(0, 
+        Effect->testGetCombinationList("combination frumbus clerb",
+        User));
+    ExpectEq("That is an invalid combination. You must use at least one of: "
+        "blarg or rarg.\n", User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanOnlyExecuteCombinationsOfValidSizes()
+{
+    User->addResearchPoints(50);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "must include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemC.c",
+            "lib/tests/support/research/comboPartResearchItemD.c", }),
+        "can include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemE.c",
+            "lib/tests/support/research/comboPartResearchItemF.c", }),
+        "can include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemG.c",
+            "lib/tests/support/research/comboPartResearchItemH.c", }),
+    ]);
+
+    Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
+    Effect->testAddInstantaneousSpecification("combination rules", rules);
+    Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
+
+    ExpectEq(0, sizeof(Effect->testGetCombinationList("combination frumbus", User)));
+    ExpectEq("That is an invalid combination. You can "
+            "only chain 2 to 3 actions together.\n", User->caughtMessage());
+
+    ExpectEq(2, sizeof(Effect->testGetCombinationList("combination blarg frumbus at frank", User)));
+    ExpectEq(3, sizeof(Effect->testGetCombinationList("combination blarg frumbus clerb", User)));
+
+    ExpectEq(0, sizeof(Effect->testGetCombinationList("combination blarg frumbus hruf clerb", User)));
+    ExpectEq("That is an invalid combination. You can "
+        "only chain 2 to 3 actions together.\n", User->caughtMessage());
 }

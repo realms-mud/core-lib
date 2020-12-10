@@ -193,3 +193,13 @@ public nomask string process_string(string arg)
 {
     return "Disabled\n";
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string stringFromList(string *list, int isOr)
+{
+    string delimeter = isOr ? " or " : " and ";
+
+    string ret = implode(sort_array(list, (: $1 > $2 :)), 
+        (sizeof(list) == 2) ? delimeter : ", ");
+    return regreplace(ret, ", ([^,]+)$", ", " + delimeter + "\\1", 1);
+}

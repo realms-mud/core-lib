@@ -283,6 +283,30 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
             }
             break;
         }
+        case "command template":
+        {
+            if (member(specificationData, "combination rules"))
+            {
+                specificationData["command name"] =
+                    regreplace(value, "(.*) ##Combinations##.*", "\\1", 1);
+                specificationData["command target"] =
+                    regreplace(value, ".*##Combinations## (.*)", "\\1", 1);
+                specificationData["command target"] = regreplace(
+                    specificationData["command target"], 
+                    "\\[(.*)##(Target|Environment|Item|Value)##\\]", "\\1(.+)", 1);
+
+                specificationData["command combinations"] = "((" +
+                    implode(m_indices(combinationResearchItems), " *|") + " *)+)";
+
+                ret = addCommandTemplate(specificationData["command name"] + " [.*]");
+            }
+            else
+            {
+                raise_error("ERROR - combinedInstantaneousEffect: the "
+                    "'combination rules' specification must be set "
+                    "before a command template is created.\n");
+            }
+        }
     }
     return ret;
 }
@@ -298,13 +322,13 @@ protected int applyEffect(object initiator, object target, object *combo)
 {
     return 0;
 }
-   
+
 /////////////////////////////////////////////////////////////////////////////
 private nomask int getMaximumSizeOfChainedCombination(object owner)
 {
     int ret = specificationData["maximum combination chain"];
-        
-    if(member(specificationData, "max combination chain modifier"))
+
+    if (member(specificationData, "max combination chain modifier"))
     {
         ret = applyModifiers(ret, owner,
             specificationData["max combination chain modifier"]);
@@ -323,12 +347,12 @@ private nomask mapping getComboRulesFor(string *comboItems, string type)
 {
     mapping ret = ([]);
 
-    if (sizeof(comboItems) == sizeof(filter(comboItems, 
+    if (sizeof(comboItems) == sizeof(filter(comboItems,
         (: (member($2, $1) > -1) :), m_indices(combinationResearchItems))))
     {
         mapping rules = specificationData["combination rules"];
         string *list = member(rules, type) ? filter(comboItems,
-            (: (member($2[$3], combinationResearchItems[$1]) > -1) :), 
+            (: (member($2[$3], combinationResearchItems[$1]) > -1) :),
             rules, type) : ({});
 
         ret = filter(combinationResearchItems,
@@ -338,40 +362,156 @@ private nomask mapping getComboRulesFor(string *comboItems, string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask object *getCombinationList(string unparsedCommand, 
-    object owner)
+private nomask string checkMustIncludeOnlyOneOfRules(mapping list)
+{
+    string ret = 0;
+
+    if (member(specificationData["combination rules"],
+        "must include only one of") && (sizeof(list) != 1))
+    {
+        if (sizeof(list) > 1)
+        {
+            ret = sprintf("That is an invalid combination. "
+                "You must use exactly one of: %s.",
+                stringFromList(m_indices(list), 1));
+        }
+        else if(!sizeof(list))
+        {
+            ret = sprintf("That is an invalid combination. "
+                "You must use exactly one of: %s.",
+                stringFromList(m_indices(filter(combinationResearchItems,
+                    (: (member(specificationData["combination rules"]
+                        ["must include only one of"], $2) > -1) :))), 1));
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkMustIncludeAnyOfRules(mapping list)
+{
+    string ret = 0;
+
+    if (member(specificationData["combination rules"], 
+        "must include any of") && (sizeof(list) < 1))
+    {
+        ret = sprintf("That is an invalid combination. "
+            "You must use at least one of: %s.",
+            stringFromList(m_indices(filter(combinationResearchItems,
+                (: (member(specificationData["combination rules"]
+                    ["must include any of"], $2) > -1) :))), 1));
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkCanIncludeOnlyOneOfRules(mapping list)
+{
+    string ret = 0;
+
+    if (sizeof(list) > 1)
+    {
+        ret = sprintf("That is an invalid combination. "
+            "You can only use one of: %s.",
+            stringFromList(m_indices(list), 1));
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask object *getResearchObjectsFromComboList(string *comboItems,
+    object owner, mapping validComboItems)
 {
     object *ret = ({});
-    string *comboItems = explode(regreplace(unparsedCommand,
-        "combination (.*)( at .*)*", "\\1"), " ");
+    object dictionary = getDictionary("research");
 
-    if ((sizeof(comboItems) > 1) &&
-        (sizeof(comboItems) <= getMaximumSizeOfChainedCombination(owner)))
+    foreach(string item in m_values(validComboItems))
     {
-
-        mapping validComboItems = 
-            getComboRulesFor(comboItems, "must include only one of") +
-            getComboRulesFor(comboItems, "must include any of") +
-            getComboRulesFor(comboItems, "can include only one of") +
-            getComboRulesFor(comboItems, "can include any of");
-
-        object dictionary = getDictionary("research");
-
-        foreach(string item in m_values(validComboItems))
+        if (owner->isResearched(item))
         {
-            if (owner->isResearched(item))
+            foreach(string element in filter(comboItems,
+                (: $3[$1] == $2 :), item, validComboItems))
             {
                 ret += ({ dictionary->researchObject(item) });
             }
         }
-        ret -= ({ 0 });
     }
+    ret -= ({ 0 });
 
     if (sizeof(ret) != sizeof(comboItems))
     {
-        displayMessage("That is an invalid combination.\n",
-            owner, owner);
+        ret = 0;
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask object *getCombinationList(string unparsedCommand,
+    object owner)
+{
+    object *ret = ({});
+
+    string itemsToCheck = regreplace(unparsedCommand,
+        specificationData["command name"] + " (.*)", "\\1", 1);
+    itemsToCheck = regreplace(itemsToCheck,
+        "(.*)" + specificationData["command target"], "\\1", 1);
+
+    string *comboItems = explode(itemsToCheck, " ") - ({ "" });
+
+    string failureMessage = 0;
+
+    if ((sizeof(comboItems) > 1) &&
+        (sizeof(comboItems) <= getMaximumSizeOfChainedCombination(owner)))
+    {
+        mapping mustIncludeOnlyOneOf =
+            getComboRulesFor(comboItems, "must include only one of");
+        mapping mustIncludeAnyOf =
+            getComboRulesFor(comboItems, "must include any of");
+        mapping canIncludeOnlyOneOf =
+            getComboRulesFor(comboItems, "can include only one of");
+        mapping canIncludeAnyOf =
+            getComboRulesFor(comboItems, "can include any of");
+
+        failureMessage = checkMustIncludeOnlyOneOfRules(mustIncludeOnlyOneOf) ||
+            checkMustIncludeAnyOfRules(mustIncludeAnyOf) ||
+            checkCanIncludeOnlyOneOfRules(canIncludeOnlyOneOf);
+
+        if (!failureMessage)
+        {
+            mapping validComboItems = mustIncludeOnlyOneOf + mustIncludeAnyOf +
+                canIncludeOnlyOneOf + canIncludeAnyOf;
+
+            ret = getResearchObjectsFromComboList(comboItems, owner,
+                validComboItems);
+
+            if (!ret)
+            {
+                failureMessage = sprintf("That is an invalid combination. You do "
+                    "not have the following researched: %s.\n",
+                    stringFromList(filter(comboItems,
+                        (: !$2->isResearched($3[$1]) :),
+                        owner, validComboItems)));
+            }
+        }
+    }
+    else
+    {
+        failureMessage = sprintf("That is an invalid combination. You can "
+            "only chain 2 to %d actions together.\n",
+            getMaximumSizeOfChainedCombination(owner));
+    }
+
+    if (failureMessage)
+    {
+        ret = 0;
+        displayMessageToSelf(configuration->decorate(format(failureMessage,
+            "failure message", "research", owner->colorConfiguration(), 78)), 
+            owner);
+    }
+
     return ret;
 }
 
@@ -448,11 +588,37 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask object getComboTarget(string unparsedCommand, object owner)
+{
+    string target = lower_case(regreplace(unparsedCommand,
+        ".*" + specificationData["command target"], "\\1", 1));
+
+    object ret = present(target, environment(owner)) ||
+        present(target, owner);
+
+    if (!ret && environment(owner)->isEnvironmentalElement(target))
+    {
+        ret = environment(owner)->getEnvironmentalElement(target);
+    }
+    else if (!ret && (query("scope") == "targeted") &&
+        (target == ""))
+    {
+        ret = owner;
+    }
+
+    if ((ret == owner) && query("damage type") && !query("is beneficial"))
+    {
+        ret = owner->getTargetToAttack();
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int executeOnTarget(string unparsedCommand, object owner,
     object researchName)
 {
     int ret = 0;
-    object target = getTarget(owner, unparsedCommand);
+    object target = getComboTarget(unparsedCommand, owner);
 
     if(target)
     {
