@@ -28,5 +28,6 @@ public void reset(int arg)
         addSpecification("event handler", "usedResearchEvent");
         addSpecification("command template", "frumbus [at ##Target##]");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::throw## a turnip at ##TargetName##.");
+        addSpecification("use combination message", "frumbus with great conviction");
     }
 }

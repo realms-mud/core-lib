@@ -28,5 +28,6 @@ public void reset(int arg)
         addSpecification("event handler", "usedResearchEvent");
         addSpecification("command template", "gurg [at ##Target##]");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::throw## a turnip at ##TargetName##.");
+        addSpecification("use combination message", "gurg longingly");
     }
 }

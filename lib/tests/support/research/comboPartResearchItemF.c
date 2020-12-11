@@ -22,11 +22,12 @@ public void reset(int arg)
             "base damage": 11,
             "range": 0
         ]) }));
-        addSpecification("damage type", "physical");
+        addSpecification("damage type", "fire");
 
         addSpecification("cooldown", 4);
         addSpecification("event handler", "usedResearchEvent");
         addSpecification("command template", "clerb [at ##Target##]");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::throw## a turnip at ##TargetName##.");
+        addSpecification("use combination message", "clerb at ##TargetName## with fiery death");
     }
 }

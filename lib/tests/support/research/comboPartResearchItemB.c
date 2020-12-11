@@ -17,7 +17,7 @@ public void reset(int arg)
         addSpecification("research type", "granted");
         addSpecification("research cost", 1);
         addSpecification("spell point cost", 1);
-        addSpecification("damage hit points", ({ ([
+        addSpecification("increase hit points", ({ ([
             "probability": 100,
             "base damage": 35,
             "range": 0
@@ -28,5 +28,6 @@ public void reset(int arg)
         addSpecification("event handler", "usedResearchEvent");
         addSpecification("command template", "rarg [at ##Target##]");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::throw## a turnip at ##TargetName##.");
+        addSpecification("use combination message", "rarg with conviction");
     }
 }

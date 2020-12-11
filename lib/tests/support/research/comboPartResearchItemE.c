@@ -22,11 +22,12 @@ public void reset(int arg)
             "base damage": 32,
             "range": 0
         ]) }));
-        addSpecification("damage type", "physical");
+        addSpecification("damage type", "electricity");
 
         addSpecification("cooldown", 4);
         addSpecification("event handler", "usedResearchEvent");
         addSpecification("command template", "surlac [at ##Target##]");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::throw## a turnip at ##TargetName##.");
+        addSpecification("use combination message", "surlac surily");
     }
 }

@@ -38,39 +38,49 @@ private string *validCombinationTypes = ({
 private mapping combinationResearchItems = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int isValidFormula(mapping *formulas)
+private nomask void registerEffectTypesForItem(object researchItem)
 {
-    int ret = 0;
-    
-    if(formulas && pointerp(formulas) && sizeof(formulas))
+    foreach(string effect in validEffects)
     {
-        ret = 1;
-        
-        // At the end of the loop, this MUST be 100
-        int cumulativeProbability = 0;
-        
-        foreach(mapping formula in formulas)
+        if (researchItem->query(effect))
         {
-            ret &&= (formula && mappingp(formula) && 
-                member(formula, "probability") && 
-                intp(formula["probability"])) &&
-                ((member(formula, "base damage") && 
-                intp(formula["base damage"]) &&
-                member(formula, "range") && 
-                intp(formula["range"])) || 
-                (member(formula, "custom method") &&
-                stringp(formula["custom method"]) &&
-                function_exists(formula["custom method"], this_object())));
-                
-            if(ret)
+            if (!specificationData["damage type"] ||
+                (researchItem->query("damage type") != "physical"))
             {
-                cumulativeProbability += formula["probability"];
+                specificationData["damage type"] =
+                    researchItem->query("damage type");
             }
         }
-        
-        ret &&= cumulativeProbability == 100;
+
+        if (researchItem->query(effect))
+        {
+            switch (effect)
+            {
+                case "increase hit points":
+                case "increase spell points":
+                case "increase stamina points":
+                case "decrease intoxication":
+                case "decrease druggedness":
+                case "decrease soaked":
+                case "decrease stuffed":
+                {
+                    specificationData["is beneficial"] = 1;
+                    // This should fall through to the next session.
+                }
+                case "damage hit points":
+                case "damage spell points":
+                case "damage stamina points":        
+                case "increase intoxication":
+                case "increase druggedness":
+                case "increase soaked":
+                case "increase stuffed":
+                {
+                    specificationData[effect] = 1;
+                    break;
+                }
+            }
+        }
     }
-    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,6 +119,8 @@ private nomask int validateCombinationSet(mapping combinations)
                                 "one of', or 'can include any of'.\n", researchItem));
                         }
                         combinationResearchItems[itemName] = researchItem;
+
+                        registerEffectTypesForItem(researchObj);
                     }
                 }
             }
@@ -118,94 +130,12 @@ private nomask int validateCombinationSet(mapping combinations)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int applyFormula(object initiator, int initialAmount,
-    string type)
-{
-    int ret = 0;
-    
-    if(member(specificationData, type) && isValidFormula(specificationData[type]))
-    {
-        // First, build the probability dictionary
-        mapping formulaDictionary = ([ ]);
-        
-        int currentProbability = 0;
-        foreach(mapping formula in specificationData[type])
-        {      
-            int bottomOfRange = currentProbability;
-            int topOfRange = bottomOfRange + formula["probability"];
-            
-            int tmpFormula = 0;
-            // If this exists, we already know that we have this method 
-            // available since we passed the call to isValidFormula.
-            if(member(formula, "custom method"))
-            {
-                tmpFormula = initialAmount +
-                    call_other(this_object(), formula["custom method"], 
-                               initiator);
-            }
-            else
-            {
-                tmpFormula = initialAmount +
-                    formula["base damage"] + random(formula["range"] + 1);
-            }
-
-            for(int i = bottomOfRange; i < topOfRange; i++)
-            {
-                formulaDictionary[i] = tmpFormula;
-            }
-                
-            currentProbability += formula["probability"];       
-        }
-        
-        ret = formulaDictionary[random(100)];
-        
-        if(member(specificationData, "modifiers"))
-        {
-            ret = applyModifiers(ret, initiator, specificationData["modifiers"]);
-        }
-    }    
-    return ret;    
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask int addInstantaneousSpecification(string type, mixed value)
 {
     int ret = 0;
 
     switch(type)
     {
-        case "increase hit points":
-        case "increase spell points":
-        case "increase stamina points":
-        case "decrease intoxication":
-        case "decrease druggedness":
-        case "decrease soaked":
-        case "decrease stuffed":
-        {
-            specificationData["is beneficial"] = 1;
-            // This should fall through to the next session.
-        }
-        case "damage hit points":
-        case "damage spell points":
-        case "damage stamina points":        
-        case "increase intoxication":
-        case "increase druggedness":
-        case "increase soaked":
-        case "increase stuffed":
-        {
-            if(isValidFormula(value))
-            {
-                specificationData[type] = value;
-                ret = 1;
-            }
-            else
-            {
-                raise_error(sprintf("ERROR - combinedInstantaneousEffect: "
-                    "the '%s' specification must be a properly formatted "
-                    "formula.\n" , type));
-            }
-            break;
-        }
         case "max combination chain modifier":
         case "modifiers":
         {
@@ -236,22 +166,6 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
             }
             break;
         }      
-        case "damage type":
-        {
-            object attacks = getDictionary("attacks");
-            if(stringp(value) && attacks && attacks->isValidDamageType(value))
-            {
-                specificationData[type] = value;
-                ret = 1;
-            }
-            else
-            {
-                raise_error("ERROR - combinedInstantaneousEffect: the "
-                    "'damage type' specification must be a valid attack type "
-                    "as defined in attacksDictionary.\n");
-            }
-            break;
-        }
         case "maximum combination chain":
         {
             object attacks = getDictionary("attacks");
@@ -285,18 +199,27 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
         }
         case "command template":
         {
-            if (member(specificationData, "combination rules"))
+            if (!sizeof(regexp(({ value }), "##Combinations##")))
+            {
+                raise_error("ERROR - combinedInstantaneousEffect: the "
+                    "'command template' specification must include "
+                    "the ##Combinations## macro.\n");
+            }
+            else if (member(specificationData, "combination rules"))
             {
                 specificationData["command name"] =
                     regreplace(value, "(.*) ##Combinations##.*", "\\1", 1);
+
                 specificationData["command target"] =
                     regreplace(value, ".*##Combinations## (.*)", "\\1", 1);
+
                 specificationData["command target"] = regreplace(
                     specificationData["command target"], 
                     "\\[(.*)##(Target|Environment|Item|Value)##\\]", "\\1(.+)", 1);
 
                 specificationData["command combinations"] = "((" +
-                    implode(m_indices(combinationResearchItems), " *|") + " *)+)";
+                    implode(sort_array(m_indices(combinationResearchItems),
+                        (: $1 > $2 :)), " *|") + " *)+)";
 
                 ret = addCommandTemplate(specificationData["command name"] + " [.*]");
             }
@@ -524,12 +447,12 @@ protected nomask int applyAllFormulas(object *combo, object owner,
     if (combo && sizeof(combo))
     {
         object dictionary = getDictionary("research");
-        foreach(string item in combo)
+        foreach(object research in combo)
         {
-            object research = dictionary->researchObject(item);
             if (research && research->query(type))
             {
                 mapping researchData = research->getEffectsToApply(owner);
+
                 if (member(researchData["effects"], type))
                 {
                     ret += researchData["effects"][type];
@@ -537,7 +460,12 @@ protected nomask int applyAllFormulas(object *combo, object owner,
             }
         }
     }
-    return applyFormula(owner, ret, type);
+
+    if (member(specificationData, "modifiers"))
+    {
+        ret = applyModifiers(ret, owner, specificationData["modifiers"]);
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -557,11 +485,13 @@ private nomask string getComboMessage(string initialMessage, object *combo)
                 messages += ({ item->query("use combination message") });
             }
         }
+
+        messages = sort_array(messages, (: $1 > $2 :));
     }
 
-    ret += sizeof(messages) ? regreplace(messages, 
+    ret += sizeof(messages) ? " and " + regreplace(
         implode(messages, (sizeof(messages) == 2) ? " and " : ", "),
-        ", ([^,]+)$", ", and \\1", 1) : "";
+        ", ([^,]+)$", ", and \\1", 1) + "." : ".";
     return ret;
 }
 
@@ -588,7 +518,8 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object getComboTarget(string unparsedCommand, object owner)
+private nomask object getComboTarget(string unparsedCommand, object owner,
+    object *combo)
 {
     string target = lower_case(regreplace(unparsedCommand,
         ".*" + specificationData["command target"], "\\1", 1));
@@ -606,7 +537,22 @@ private nomask object getComboTarget(string unparsedCommand, object owner)
         ret = owner;
     }
 
-    if ((ret == owner) && query("damage type") && !query("is beneficial"))
+    int shouldSwitchToAttackingTarget = (ret == owner);
+    if (shouldSwitchToAttackingTarget && sizeof(combo))
+    {
+        foreach(object item in combo)
+        {
+            shouldSwitchToAttackingTarget &&= 
+                (item->query("damage type") &&
+                !item->query("is beneficial"));
+            if (shouldSwitchToAttackingTarget)
+            {
+                break;
+            }
+        }
+    }
+
+    if (shouldSwitchToAttackingTarget)
     {
         ret = owner->getTargetToAttack();
     }
@@ -618,12 +564,11 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
     object researchName)
 {
     int ret = 0;
-    object target = getComboTarget(unparsedCommand, owner);
+    object *combo = getCombinationList(unparsedCommand, owner);
+    object target = getComboTarget(unparsedCommand, owner, combo);
 
     if(target)
     {
-        object *combo = getCombinationList(unparsedCommand, owner);
-
         if(member(specificationData, "use ability message") &&
            stringp(specificationData["use ability message"]))
         {

@@ -5,7 +5,6 @@
 inherit "/lib/tests/framework/testFixture.c";
 #include "/lib/include/inventory.h"
 
-object Effect;
 object User;
 object Target;
 object Room;
@@ -13,12 +12,7 @@ object Room;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Effect = clone_object("/lib/tests/support/research/testInstantaneousActiveResearchItem");
-    Effect->testAddSpecification("command template", "throw turnip [at ##Target##]");
-    Effect->testAddSpecification("scope", "targeted");
-    Effect->testAddSpecification("damage type", "magical");
-
-    User = clone_object("/lib/tests/support/services/combatWithMockServices");
+    User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User->Name("Bob");
     User->addAlias("bob");
     User->Str(20);
@@ -34,8 +28,10 @@ void Setup()
     User->advanceSkill("long sword", 16);
     User->toggleKillList();
     User->ToggleMockResearch();
+    User->addResearchPoints(50);
+    User->initiateResearch("lib/tests/support/research/comboResearchItem.c");
 
-    Target = clone_object("/lib/realizations/monster");
+    Target = clone_object("/lib/realizations/monster.c");
     Target->Name("Frank");
     Target->addAlias("frank");
     Target->Str(20);
@@ -44,9 +40,9 @@ void Setup()
     Target->Con(20);
     Target->Wis(20);
     Target->Chr(20);
-    Target->hitPoints(50);
-    Target->spellPoints(50);
-    Target->staminaPoints(50);
+    Target->hitPoints(Target->maxHitPoints());
+    Target->spellPoints(Target->maxSpellPoints());
+    Target->staminaPoints(Target->maxStaminaPoints());
 
     Room = clone_object("/lib/environment/environment");
     move_object(User, Room);
@@ -58,395 +54,141 @@ void CleanUp()
 {
     destruct(Target);
     destruct(User);
-    destruct(Effect);
     destruct(Room);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DamageHitPointsWillExecuteAttack()
 {
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 0
-    ]);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
 
-    ExpectTrue(Effect->testAddSpecification("damage hit points", ({ formula })));
+    ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
+    command("do stuff blarg frumbus clerb at frank", User);
+    ExpectEq(103, Target->hitPoints(), "Frank has taken damage");
 
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(50, Target->hitPoints(), "Frank's initial HP");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(29, Target->hitPoints(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectTrue(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void IncreaseHitPointsWillNotExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("increase hit points", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(50, Target->hitPoints(), "Frank's initial HP");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(75, Target->hitPoints(), "Frank has been healed");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectFalse(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CannotDamageIfTargetNotOnKillList()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
-    ]);
-    destruct(Target);
-    Target = clone_object("/lib/tests/support/services/combatWithMockServices");
-    Target->Name("Frank");
-    Target->addAlias("frank");
-    move_object(Target, Room);
-
-    ExpectTrue(Effect->testAddSpecification("damage hit points", ({ formula })));
-    ExpectFalse(Effect->execute("throw turnip at frank", User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CannotDamageIfTargetPlayerOnKillListButInitiatorIsNot()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
-    ]);
-    destruct(Target);
-    Target = clone_object("/lib/tests/support/services/combatWithMockServices");
-    Target->Name("Frank");
-    Target->addAlias("frank");
-    Target->toggleKillList();
-
-    User->toggleKillList();
-    ExpectFalse(Effect->execute("throw turnip at frank", User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void DamageSpellPointsWillExecuteAttack()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("damage spell points", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(50, Target->spellPoints(), "Frank's initial SP");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(25, Target->spellPoints(), "Frank has taken damage");
+    ExpectEq("You ready a turnip and blarg swimmingly, clerb at Frank with fiery "
+        "death, and\nfrumbus with great conviction.\n", User->caughtMessage());
 
     // Proof that Bob and Frank are now fighting
     ExpectTrue(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void IncreaseSpellPointsWillNotExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("increase spell points", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(50, Target->spellPoints(), "Frank's initial SP");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(75, Target->spellPoints(), "Frank has been healed");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectFalse(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void DamageStaminaPointsWillExecuteAttack()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("damage stamina points", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(50, Target->staminaPoints(), "Frank's initial stamina");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(25, Target->staminaPoints(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectTrue(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void IncreaseStaminaPointsWillNotExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("increase stamina points", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(50, Target->staminaPoints(), "Frank's initial stamina");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(75, Target->staminaPoints(), "Frank has been healed");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectFalse(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void IncreaseIntoxicationWillExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("increase intoxication", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(0, Target->Intoxicated(), "Frank's initial intoxication");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(20, Target->Intoxicated(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectTrue(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void IncreaseDruggednessWillExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("increase druggedness", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(0, Target->Drugged(), "Frank's initial druggedness");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(20, Target->Drugged(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectTrue(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void IncreaseSoakedWillExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("increase soaked", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(0, Target->Soaked(), "Frank's initial soaked");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(20, Target->Soaked(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectTrue(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void IncreaseStuffedWillExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("increase stuffed", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(0, Target->Stuffed(), "Frank's initial stuffed");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(20, Target->Stuffed(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectTrue(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void DecreaseIntoxicationWillNotExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("decrease intoxication", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(25, Target->Intoxicated(25), "Frank's initial intoxication");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(5, Target->Intoxicated(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectFalse(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void DecreaseDruggednessWillNotExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("decrease druggedness", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(25, Target->Drugged(25), "Frank's initial druggedness");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(5, Target->Drugged(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectFalse(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void DecreaseSoakedWillNotExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("decrease soaked", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(25, Target->Soaked(25), "Frank's initial soaked");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(5, Target->Soaked(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectFalse(Target->unregisterAttacker(User));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void DecreaseStuffedWillNotExecuteAttack()
-{
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("decrease stuffed", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
-
-    ExpectEq(25, Target->Stuffed(25), "Frank's initial stuffed");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(5, Target->Stuffed(), "Frank has taken damage");
-
-    // Proof that Bob and Frank are now fighting
-    ExpectFalse(Target->unregisterAttacker(User));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NotSpecifyingTargetWillTargetCurrentForDamageResearch()
 {
-    Target->hitPoints(100);
-    mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
-    ]);
-
-    ExpectTrue(Effect->testAddSpecification("damage hit points", ({ formula })));
-
-    // This proves that Bob is not one of Frank's attackers
-    ExpectFalse(Target->unregisterAttacker(User));
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
 
     ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
-    ExpectTrue(Effect->execute("throw turnip at frank", User));
-    ExpectEq(129, Target->hitPoints(), "Frank has taken damage");
+    command("do stuff blarg frumbus clerb at frank", User);
+    ExpectEq(103, Target->hitPoints(), "Frank has taken damage");
 
-    // Proof that Bob and Frank are now fighting
-    ExpectTrue(Target->unregisterAttacker(User));
+    ExpectEq("You ready a turnip and blarg swimmingly, clerb at Frank with fiery "
+        "death, and\nfrumbus with great conviction.\n", User->caughtMessage());
+
     User->heart_beat();
-    Target->hitPoints(100);
-    ExpectEq(150, Target->hitPoints(), "Frank has taken damage");
-    ExpectTrue(Effect->execute("throw turnip", User));
-    ExpectEq(129, Target->hitPoints(), "Frank has taken damage");
+    Target->hitPoints(Target->maxHitPoints());
+
+    User->resetCatchList();
+
+    command("do stuff blarg frumbus clerb", User);
+    ExpectEq("You ready a turnip and blarg swimmingly, clerb at Frank with fiery "
+        "death, and\nfrumbus with great conviction.\n", User->caughtMessage());
+
+    ExpectEq(103, Target->hitPoints(), "Frank has taken damage");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NotSpecifyingTargetWillTargetOwnerForBeneficialResearch()
 {
-    mapping formula = ([
-        "probability":100,
-        "base damage": 25,
-        "range": 0
-    ]);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemI.c");
 
-    User->hit(110);
-    ExpectTrue(Effect->testAddSpecification("increase hit points", ({ formula })));
+    User->hit(130);
+    ExpectEq(24, User->hitPoints());
 
-    ExpectEq(50, User->hitPoints(), "Bob's initial HP");
-    ExpectTrue(Effect->execute("throw turnip", User));
-    ExpectEq(75, User->hitPoints(), "Bob has been healed");
+    command("do stuff rarg rarg fargle", User);
+    ExpectEq("You ready a turnip and fargle mightily, rarg with conviction, and "
+        "rarg with\nconviction.\n", User->caughtMessage());
+
+    ExpectEq(129, User->hitPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanUseSelfTargetCombinations()
+{
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemI.c");
+    User->initiateResearch("lib/tests/support/research/comboSelfResearchItem.c");
+
+    User->hit(130);
+    ExpectEq(24, User->hitPoints());
+
+    command("do to self rarg rarg fargle", User);
+    ExpectEq("You ready a turnip and fargle mightily, rarg with conviction, and "
+        "rarg with\nconviction.\n", User->caughtMessage());
+
+    ExpectEq(129, User->hitPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanExecuteAreaCombinations()
+{
+    object herman = clone_object("/lib/realizations/monster.c");
+    herman->Name("Herman");
+    herman->addAlias("herman");
+    herman->Str(20);
+    herman->Int(20);
+    herman->Dex(20);
+    herman->Con(20);
+    herman->Wis(20);
+    herman->Chr(20);
+    herman->hitPoints(herman->maxHitPoints());
+    herman->spellPoints(herman->maxSpellPoints());
+    herman->staminaPoints(herman->maxStaminaPoints());
+    move_object(herman, Room);
+
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("lib/tests/support/research/comboAreaResearchItem.c");
+
+    ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
+    ExpectEq(150, herman->hitPoints(), "Frank's initial HP");
+    command("do to area blarg frumbus clerb", User);
+    ExpectEq(103, Target->hitPoints(), "Frank has taken damage");
+    ExpectEq(103, herman->hitPoints(), "Herman has taken damage");
+
+    ExpectEq("You ready a turnip and blarg swimmingly, clerb at Bob with fiery "
+        "death, and\nfrumbus with great conviction.\n", User->caughtMessage());
+
+    // Proof that Bob and Frank are now fighting
+    ExpectTrue(Target->unregisterAttacker(User));
+    ExpectTrue(herman->unregisterAttacker(User));
 }

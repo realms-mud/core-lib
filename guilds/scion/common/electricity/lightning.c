@@ -135,11 +135,3 @@ public void reset(int arg)
             "flies from ##InitiatorPossessive::Name## ##InitiatorWeapon## into ##TargetName##.");
     }
 }
-
-/////////////////////////////////////////////////////////////////////////////
-public int testExecuteOnTarget(string unparsedCommand, object owner,
-    string researchName)
-{
-    return instantaneousEffect::executeOnTarget(unparsedCommand, owner,
-        researchName);
-}

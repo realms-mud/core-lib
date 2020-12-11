@@ -38,9 +38,10 @@ public int applyEffect(object initiator, object target, string *combo)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int testApplyFormula(object initiator, int amount, string type)
+public int testApplyAllFormulas(object *combo, object owner,
+    string type)
 {
-    return combinedInstantaneousEffect::applyFormula(initiator, amount, type);
+    return combinedInstantaneousEffect::applyAllFormulas(combo, owner, type);
 }
 
 /////////////////////////////////////////////////////////////////////////////

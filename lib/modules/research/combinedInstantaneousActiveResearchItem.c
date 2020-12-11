@@ -68,7 +68,8 @@ protected nomask int applyEffect(object initiator, object target,
 {
     int ret = 0;
 
-    if(target && objectp(target) && member(specificationData, "damage type") && 
+    if(target && objectp(target) && (target != initiator) &&
+        member(specificationData, "damage type") && 
         ((target->onKillList() && !target->isRealizationOf("player")) || 
         (target->isRealizationOf("player") && initiator->isRealizationOf("player") &&
         target->onKillList() && initiator->onKillList())))

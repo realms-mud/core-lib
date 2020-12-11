@@ -38,222 +38,6 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanAddDamageHitPointsSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage hit points", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddDamageSpellPointsSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage spell points", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddDamageStaminaPointsSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage stamina points", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddIncreaseHitPointsSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase hit points", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddIncreaseSpellPointsSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase spell points", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddIncreaseStaminaPointsSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase stamina points", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddIncreaseIntoxicationSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase intoxication", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddIncreaseDruggednessSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase druggedness", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddIncreaseSoakedSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase soaked", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddIncreaseStuffedSpecification()
-{
-    mapping formula = ([
-        "probability": 100,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase stuffed", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddDecreaseIntoxicationSpecification()
-{
-    mapping formula = ([
-        "probability":100,
-            "base damage" : 25,
-            "range" : 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("decrease intoxication", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddDecreaseDruggednessSpecification()
-{
-    mapping formula = ([
-        "probability":100,
-            "base damage" : 25,
-            "range" : 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("decrease druggedness", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddDecreaseSoakedSpecification()
-{
-    mapping formula = ([
-        "probability":100,
-            "base damage" : 25,
-            "range" : 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("decrease soaked", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddDecreaseStuffedSpecification()
-{
-    mapping formula = ([
-        "probability":100,
-            "base damage" : 25,
-            "range" : 25
-    ]);
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("decrease stuffed", ({ formula })));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddComplexSpecification()
-{
-    mapping *formula = ({ ([
-        "probability": 33,
-        "base damage": 25,
-        "range": 25
-    ]),
-    ([
-        "probability": 33,
-        "base damage": 15,
-        "range": 15
-    ]),
-    ([
-        "probability": 34,
-        "custom method": "customFormula"
-    ]) });
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage hit points", formula));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CannotAddFormulasThatAreLessThan100PercentProbability()
-{
-    mapping formula = ([
-        "probability": 50,
-        "base damage": 25,
-        "range": 25
-    ]);
-
-    string err = catch (Effect->testAddInstantaneousSpecification("damage hit points", ({ formula })));
-    string expectedError = "*ERROR - combinedInstantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
-    ExpectEq(expectedError, err);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CannotAddFormulasWithCustomMethodsThatDoNotExist()
-{
-    mapping formula = ([
-        "probability":100,
-        "custom method": "thisMethodDoesNotExist"
-    ]);
-
-    string err = catch (Effect->testAddInstantaneousSpecification("damage hit points", ({ formula })));
-    string expectedError = "*ERROR - combinedInstantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
-    ExpectEq(expectedError, err);
-}
-
-/////////////////////////////////////////////////////////////////////////////
 void CanAddModifierSpecification()
 {
     mapping *modifiers = ({ ([
@@ -292,55 +76,6 @@ void CannotAddIncorrectModifierSpecification()
     string err = catch (Effect->testAddInstantaneousSpecification("modifiers", "blah"));
     string expectedError = "*ERROR - combinedInstantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanAddDamageTypeSpecification()
-{
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage type", "fire"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CannotAddInvalidDamageTypeSpecification()
-{
-    string err = catch (Effect->testAddInstantaneousSpecification("damage type", "turnip"));
-    string expectedError = "*ERROR - combinedInstantaneousEffect: the 'damage type' specification must be a valid attack type as defined in attacksDictionary.\n";
-    ExpectEq(expectedError, err);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanApplyFormula()
-{
-    mapping *formula = ({ ([
-        "probability": 100,
-        "base damage": 50,
-        "range": 0
-    ]) });
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage hit points", formula));
-    ExpectEq(50, Effect->testApplyFormula(User, 0, "damage hit points"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanApplyMultipleFormulas()
-{
-    mapping *formula = ({ ([
-        "probability": 33,
-        "base damage": 25,
-        "range": 0
-    ]),
-    ([
-        "probability": 33,
-        "base damage": 25,
-        "range": 0
-    ]),
-    ([
-        "probability": 34,
-        "custom method": "customFormula"
-    ]) });
-
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage spell points", formula));
-    ExpectEq(25, Effect->testApplyFormula(User, 0, "damage spell points"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -454,6 +189,54 @@ void CannotAddInvalidCombinationItemsSpecification()
     string expectedError = "*ERROR - combinedInstantaneousEffect: the "
         "'combination rules' specification must be a valid rule set.\n";
     ExpectEq(expectedError, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddCommandTemplateBeforeCombinationRulesAreSet()
+{
+    string err = catch (
+        Effect->testAddInstantaneousSpecification("command template", 
+            "do stuff ##Combinations## [at ##Target##]"));
+
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the "
+        "'combination rules' specification must be set before a command "
+        "template is created.\n";
+    ExpectEq(expectedError, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotAddCommandTemplateWithoutCombinationsKeyword()
+{
+    string err = catch (
+        Effect->testAddInstantaneousSpecification("command template", 
+            "do stuff [at ##Target##]"));
+
+    string expectedError = "*ERROR - combinedInstantaneousEffect: the "
+        "'command template' specification must include the ##Combinations## "
+        "macro.\n";
+    ExpectEq(expectedError, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAddCommandTemplate()
+{
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "can include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemG.c",
+            "lib/tests/support/research/comboPartResearchItemH.c", }),
+    ]);
+
+    Effect->testAddInstantaneousSpecification("combination rules", rules);
+    Effect->testAddInstantaneousSpecification("command template",
+        "do stuff ##Combinations## [at ##Target##]");
+
+    ExpectEq("do stuff", Effect->query("command name"));
+    ExpectEq("at (.+)", Effect->query("command target"));
+    ExpectEq("((blarg *|hruf *|muclid *|rarg *)+)", 
+        Effect->query("command combinations"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -689,4 +472,52 @@ void CanOnlyExecuteCombinationsOfValidSizes()
     ExpectEq(0, sizeof(Effect->testGetCombinationList("combination blarg frumbus hruf clerb", User)));
     ExpectEq("That is an invalid combination. You can "
         "only chain 2 to 3 actions together.\n", User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ApplyAllFormulasAppliesAllResearchFormulasAndCombinationModifiers()
+{
+    User->addResearchPoints(50);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+
+    mapping rules = ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "must include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemC.c",
+            "lib/tests/support/research/comboPartResearchItemD.c", }),
+        "can include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemE.c",
+            "lib/tests/support/research/comboPartResearchItemF.c", }),
+        "can include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemG.c", }),
+    ]);
+
+    Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
+    Effect->testAddInstantaneousSpecification("combination rules", rules);
+    Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
+
+    Effect->testAddInstantaneousSpecification("modifiers", ({ ([
+        "type": "research",
+        "research item": "lib/tests/support/research/comboPartResearchItemH.c",
+        "name": "Combo stuff",
+        "formula": "multiplicative",
+        "base value": 1,
+        "rate": 1.5
+     ]) }));
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+
+    ExpectEq(93, Effect->testApplyAllFormulas(({
+        load_object("lib/tests/support/research/comboPartResearchItemA.c"),
+        load_object("lib/tests/support/research/comboPartResearchItemD.c"),
+        load_object("lib/tests/support/research/comboPartResearchItemE.c") }),
+        User, "damage hit points"));
 }
