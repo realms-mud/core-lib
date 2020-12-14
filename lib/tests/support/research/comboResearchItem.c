@@ -16,7 +16,7 @@ public void reset(int arg)
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
         addSpecification("research cost", 1);
-        addSpecification("spell point cost", 1);
+        addSpecification("stamina point cost", 10);
         addSpecification("maximum combination chain", 3);
         addSpecification("combination rules", ([
             "must include only one of": ({ 

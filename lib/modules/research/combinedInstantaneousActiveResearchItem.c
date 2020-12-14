@@ -129,3 +129,29 @@ protected nomask int applyEffect(object initiator, object target,
     ret ||= applyBeneficialEffect(initiator, combo);
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected mapping getUsageCosts(string command, object initiator)
+{
+    object *combo = getCombinationList(command, initiator, 1);
+
+    int hitPointCost = query("hit point cost");
+    int spellPointCost = query("spell point cost");
+    int staminaPointCost = query("stamina point cost");
+
+    if (sizeof(combo))
+    {
+        foreach(object item in combo)
+        {
+            hitPointCost += item->query("hit point cost");
+            spellPointCost += item->query("spell point cost");
+            staminaPointCost += item->query("stamina point cost");
+        }
+    }
+
+    return ([
+        "hit point cost": hitPointCost,
+        "spell point cost": spellPointCost,
+        "stamina point cost": staminaPointCost
+    ]);
+}

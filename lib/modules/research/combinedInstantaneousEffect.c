@@ -372,8 +372,8 @@ private nomask object *getResearchObjectsFromComboList(string *comboItems,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask object *getCombinationList(string unparsedCommand,
-    object owner)
+protected nomask varargs object *getCombinationList(string unparsedCommand,
+    object owner, int doNotDisplayFeedback)
 {
     object *ret = ({});
 
@@ -430,9 +430,13 @@ protected nomask object *getCombinationList(string unparsedCommand,
     if (failureMessage)
     {
         ret = 0;
-        displayMessageToSelf(configuration->decorate(format(failureMessage,
-            "failure message", "research", owner->colorConfiguration(), 78)), 
-            owner);
+
+        if (!doNotDisplayFeedback)
+        {
+            displayMessageToSelf(configuration->decorate(format(failureMessage,
+                "failure message", "research", owner->colorConfiguration(), 78)),
+                owner);
+        }
     }
 
     return ret;
@@ -505,15 +509,19 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
     // as are checks to verify that owner is a living object. We don't
     // allow the caster to do negative things to themselves here...    
     object *combo = getCombinationList(unparsedCommand, owner);
-    ret = applyBeneficialEffect(owner, combo);
 
-    if(ret && member(specificationData, "use ability message") &&
-       stringp(specificationData["use ability message"]))
+    if (sizeof(combo))
     {
-        displayMessage(getComboMessage(
-            specificationData["use ability message"], combo),
-            owner, owner);
-    }   
+        ret = applyBeneficialEffect(owner, combo);
+
+        if (ret && member(specificationData, "use ability message") &&
+            stringp(specificationData["use ability message"]))
+        {
+            displayMessage(getComboMessage(
+                specificationData["use ability message"], combo),
+                owner, owner);
+        }
+    }
     return ret;
 }
 
@@ -565,22 +573,25 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
 {
     int ret = 0;
     object *combo = getCombinationList(unparsedCommand, owner);
-    object target = getComboTarget(unparsedCommand, owner, combo);
+    if (sizeof(combo))
+    {
+        object target = getComboTarget(unparsedCommand, owner, combo);
 
-    if(target)
-    {
-        if(member(specificationData, "use ability message") &&
-           stringp(specificationData["use ability message"]))
+        if (target)
         {
-            displayMessage(getComboMessage(
-                specificationData["use ability message"], combo),
-                owner, target);
+            if (member(specificationData, "use ability message") &&
+                stringp(specificationData["use ability message"]))
+            {
+                displayMessage(getComboMessage(
+                    specificationData["use ability message"], combo),
+                    owner, target);
+            }
+            ret = applyEffect(owner, target, combo);
         }
-        ret = applyEffect(owner, target, combo);
-    }
-    else
-    {
-        displayMessageToSelf("You must specify a target.\n", owner);
+        else
+        {
+            displayMessageToSelf("You must specify a target.\n", owner);
+        }
     }
     return ret;
 }
@@ -596,20 +607,23 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
 
     object *combo = getCombinationList(unparsedCommand, owner);
 
-    foreach(object target in environmentObjects)
+    if (sizeof(combo))
     {
-        if(function_exists("has", target) && target->has("combat"))
+        foreach(object target in environmentObjects)
         {
-            ret += applyEffect(owner, target, combo);
+            if (function_exists("has", target) && target->has("combat"))
+            {
+                ret += applyEffect(owner, target, combo);
+            }
         }
-    }
-          
-    if(member(specificationData, "use ability message") 
-       && stringp(specificationData["use ability message"]))
-    {
-        displayMessage(getComboMessage(
-            specificationData["use ability message"], combo),
-            owner, owner);
+
+        if (member(specificationData, "use ability message")
+            && stringp(specificationData["use ability message"]))
+        {
+            displayMessage(getComboMessage(
+                specificationData["use ability message"], combo),
+                owner, owner);
+        }
     }
     return ret;
 }

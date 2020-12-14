@@ -168,6 +168,16 @@ private nomask int applyToScope(string command, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected mapping getUsageCosts(string command, object initiator)
+{
+    return ([
+        "hit point cost": query("hit point cost"),
+        "spell point cost": query("spell point cost"),
+        "stamina point cost": query("stamina point cost")
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int execute(string command, object initiator)
 {
     int ret = 0;
@@ -192,12 +202,11 @@ public nomask int execute(string command, object initiator)
             displayMessageToSelf(coolDownMessage, initiator);
             ret = 0;
         }
-        if(ret && ((member(specificationData, "hit point cost") &&
-           (specificationData["hit point cost"] > initiator->hitPoints())) ||
-           (member(specificationData, "spell point cost") &&
-           (specificationData["spell point cost"] > initiator->spellPoints())) ||
-           (member(specificationData, "stamina point cost") &&
-           (specificationData["stamina point cost"] > initiator->staminaPoints()))))
+
+        mapping costs = getUsageCosts(command, initiator);
+        if(ret && ((costs["hit point cost"] > initiator->hitPoints()) ||
+            (costs["spell point cost"] > initiator->spellPoints()) ||
+            (costs["stamina point cost"] > initiator->staminaPoints())))
         {
             string costsTooMuch = sprintf("You do not have the required "
                 "energy reserve to use '%s'.\n", member(specificationData, "name") ?
@@ -212,17 +221,17 @@ public nomask int execute(string command, object initiator)
             ret = applyToScope(command, initiator, researchName);
             if(ret)
             {
-                if(member(specificationData, "hit point cost"))
+                if(costs["hit point cost"])
                 {
-                    initiator->hitPoints(-specificationData["hit point cost"]);
+                    initiator->hitPoints(-costs["hit point cost"]);
                 }
-                if(member(specificationData, "spell point cost"))
+                if(costs["spell point cost"])
                 {
-                    initiator->spellPoints(-specificationData["spell point cost"]);
+                    initiator->spellPoints(-costs["spell point cost"]);
                 }
-                if(member(specificationData, "stamina point cost"))
+                if(costs["stamina point cost"])
                 {
-                    initiator->staminaPoints(-specificationData["stamina point cost"]);
+                    initiator->staminaPoints(-costs["stamina point cost"]);
                 }
             }
             initiator->spellAction(1);

@@ -81,6 +81,31 @@ void DamageHitPointsWillExecuteAttack()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void WillNotExecuteInvalidCombinations()
+{
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+
+    ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
+    command("do stuff blarg rarg clerb at frank", User);
+    ExpectEq(150, Target->hitPoints(), "Frank has taken damage");
+
+    // The empty message is due to the notify_fail / the way execute is handled
+    ExpectEq(({ "",
+        "That is an invalid combination. You must use exactly one of: blarg or rarg.\n" }),
+        User->caughtMessages());
+
+    // Proof that Bob and Frank are not fighting
+    ExpectFalse(Target->unregisterAttacker(User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void NotSpecifyingTargetWillTargetCurrentForDamageResearch()
 {
     User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
@@ -191,4 +216,55 @@ void CanExecuteAreaCombinations()
     // Proof that Bob and Frank are now fighting
     ExpectTrue(Target->unregisterAttacker(User));
     ExpectTrue(herman->unregisterAttacker(User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CostCorrectlyApplied()
+{
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+
+    ExpectEq(150, User->hitPoints());
+    ExpectEq(150, User->spellPoints());
+    ExpectEq(150, User->staminaPoints());
+    command("do stuff blarg frumbus clerb at frank", User);
+
+    ExpectEq(140, User->hitPoints());
+    ExpectEq(120, User->spellPoints());
+    ExpectEq(140, User->staminaPoints());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ActionBlockedIfCostNotMet()
+{
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+
+    User->spellPoints(-125);
+
+    ExpectEq(150, User->hitPoints());
+    ExpectEq(25, User->spellPoints());
+    ExpectEq(150, User->staminaPoints());
+    command("do stuff blarg frumbus clerb at frank", User);
+
+    // The empty message is due to the notify_fail / the way execute is handled
+    ExpectEq(({ "",
+        "You do not have the required energy reserve to use 'combo blarg'.\n" }), 
+        User->caughtMessages());
+
+    ExpectEq(150, User->hitPoints());
+    ExpectEq(25, User->spellPoints());
+    ExpectEq(150, User->staminaPoints());
 }
