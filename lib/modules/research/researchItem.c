@@ -234,6 +234,51 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "affected research type":
+            {
+                if (stringp(value) &&
+                    (member(({ "percentage", "bonus" }), value) > -1))
+                {
+                    specificationData[type] = value;
+                    ret = 1;
+                }
+                else
+                {
+                    raise_error(sprintf("ERROR - researchItem: "
+                        "the '%s' specification must be either 'percentage' "
+                        "or 'bonus'.\n", type));
+                }
+                break;
+            }
+            case "affected research":
+            {
+                if(mappingp(value))
+                {
+                    int validModifier = 1;
+                    foreach(mixed key in m_indices(value))
+                    {
+                        validModifier &&= stringp(key) && intp(value[key]);
+                    }
+                    if(validModifier)
+                    {
+                        specificationData[type] = value;
+                        ret = 1;
+                    }
+                    else
+                    {
+                        raise_error(sprintf("ERROR - researchItem: "
+                            "the '%s' specification must be a properly formatted "
+                            "modifier.\n" , type));
+                    }                
+                }
+                else
+                {
+                    raise_error(sprintf("ERROR - researchItem: "
+                        "the '%s' specification must be a properly formatted "
+                        "modifier.\n" , type));
+                }
+                break;
+            }      
             default:
             {
                 ret = specification::addSpecification(type, value);
