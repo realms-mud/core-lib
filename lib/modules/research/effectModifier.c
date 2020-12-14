@@ -9,7 +9,8 @@
 private string ModifierObject = "/lib/items/modifierObject.c";
 
 private string *modifierTypes = ({ "skill", "attribute", "skill bonus", 
-                                   "attribute bonus", "level", "research", "trait" });
+                                   "attribute bonus", "level", "research", "trait",
+                                   "highest skill" });
 private string *modifierFormulas = ({ "additive", "subtractive", "logarithmic",
                                       "multiplicative" });
                                       
@@ -39,6 +40,22 @@ private nomask int modifierValueByType(object initiator, mapping modifier)
     {    
         switch(modifier["type"])
         {
+            case "highest skill":
+            {
+                mapping items = ([]);
+                if (initiator->has("skills") &&
+                    pointerp(modifier["skills"]) && sizeof(modifier["skills"]))
+                {
+                    foreach(string skill in modifier["skills"])
+                    {
+                        items[skill] = initiator->getSkill(skill) - 
+                            (member(modifier, "base value") ? 
+                                modifier["base value"] : 0);
+                    }
+                    ret = sort_array(m_values(items), (: $1 < $2 :))[0];
+                    break;
+                }
+            }
             case "skill":
             {
                 if(initiator->has("skills"))

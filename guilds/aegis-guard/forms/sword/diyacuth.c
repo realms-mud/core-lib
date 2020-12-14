@@ -25,6 +25,10 @@ public void reset(int arg)
         addPrerequisite("guilds/aegis-guard/forms/sword/attack-root.c",
             (["type":"research"]));
 
+        addSpecification("affected research", ([
+            "Esgeri": 50
+        ]));
+
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);

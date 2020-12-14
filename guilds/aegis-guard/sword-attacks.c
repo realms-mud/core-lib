@@ -9,23 +9,23 @@ private void FirstLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword/eithagos.c");
     addResearchElement("guilds/aegis-guard/forms/sword/nistaros.c");
+    addResearchElement("guilds/aegis-guard/forms/sword/nestegi.c");
 
     addChild("guilds/aegis-guard/forms/sword/eithagos.c",
         "guilds/aegis-guard/forms/sword/attack-root.c");
     addChild("guilds/aegis-guard/forms/sword/nistaros.c",
         "guilds/aegis-guard/forms/sword/attack-root.c");
+    addChild("guilds/aegis-guard/forms/sword/nestegi.c",
+        "guilds/aegis-guard/forms/sword/nistaros.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SecondLevel()
 {
-    //addResearchElement("guilds/aegis-guard/forms/sword/ercho.c");
-    //addResearchElement("guilds/aegis-guard/forms/sword/nestegi.c");
+    addResearchElement("guilds/aegis-guard/forms/sword/ercho.c");
 
-    //addChild("guilds/aegis-guard/forms/sword/ercho.c",
-    //    "guilds/aegis-guard/forms/sword/eithagos.c");
-    //addChild("guilds/aegis-guard/forms/sword/nestegi.c",
-    //    "guilds/aegis-guard/forms/sword/nistaros.c");
+    addChild("guilds/aegis-guard/forms/sword/ercho.c",
+        "guilds/aegis-guard/forms/sword/eithagos.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,10 +43,10 @@ private void ThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FourthLevel()
 {
-    //addResearchElement("guilds/aegis-guard/forms/sword/esgeri.c");
+    addResearchElement("guilds/aegis-guard/forms/sword/esgeri.c");
 
-    //addChild("guilds/aegis-guard/forms/sword/esgeri.c",
-    //    "guilds/aegis-guard/forms/sword/tharcuth.c");
+    addChild("guilds/aegis-guard/forms/sword/esgeri.c",
+        "guilds/aegis-guard/forms/sword/tharcuth.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
