@@ -48,12 +48,12 @@ public void SetupGuild()
 
     addCriteria("hit points", ([
         "type": "modifier",
-        "apply" : "3 every level",
+        "apply" : "4 every level",
         "begin at level" : 1
     ]));
     addCriteria("spell points", ([
         "type": "modifier",
-        "apply" : "3 every level",
+        "apply" : "4 every level",
         "begin at level" : 1
     ]));
     addCriteria("stamina points", ([
@@ -77,7 +77,7 @@ public void SetupGuild()
 
     addCriteria("initial research points", ([
         "type":"research points",
-        "apply": "at level 1"
+        "apply": "3 at level 1"
     ]));
 
     addCriteria("research points", ([
@@ -92,7 +92,7 @@ public void SetupGuild()
 
     addCriteria("spellcraft", ([
         "type":"skill",
-        "apply": "1 every 2 levels"
+        "apply": "3 every 2 levels"
     ]));
 
     addCriteria("mana shield tree", ([

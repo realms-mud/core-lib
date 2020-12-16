@@ -7,28 +7,28 @@ inherit "/lib/modules/research/researchTree.c";
 /////////////////////////////////////////////////////////////////////////////
 private void FirstLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/celon-ai-esgal.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/celon-ai-esgal.c");
 
-    addChild("guilds/aegis-guard/forms/sword/celon-ai-esgal.c",
-        "guilds/aegis-guard/forms/sword/guarding-root.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/celon-ai-esgal.c",
+        "guilds/aegis-guard/forms/sword-guarding/guarding-root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SecondLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/an-vund.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/an-aras.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/an-lobraidywe.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/gwisten.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/an-vund.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/an-aras.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/an-lobraidywe.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/gwisten.c");
 
-    addChild("guilds/aegis-guard/forms/sword/an-vund.c",
-        "guilds/aegis-guard/forms/sword/celon-ai-esgal.c");
-    addChild("guilds/aegis-guard/forms/sword/an-aras.c",
-        "guilds/aegis-guard/forms/sword/celon-ai-esgal.c");
-    addChild("guilds/aegis-guard/forms/sword/an-lobraidywe.c",
-        "guilds/aegis-guard/forms/sword/celon-ai-esgal.c");
-    addChild("guilds/aegis-guard/forms/sword/gwisten.c",
-        "guilds/aegis-guard/forms/sword/celon-ai-esgal.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/an-vund.c",
+        "guilds/aegis-guard/forms/sword-guarding/celon-ai-esgal.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/an-aras.c",
+        "guilds/aegis-guard/forms/sword-guarding/celon-ai-esgal.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/an-lobraidywe.c",
+        "guilds/aegis-guard/forms/sword-guarding/celon-ai-esgal.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/gwisten.c",
+        "guilds/aegis-guard/forms/sword-guarding/celon-ai-esgal.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,70 +40,70 @@ private void ThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FourthLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/an-craban.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/an-rin.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/uva-tirith.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/an-craban.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/an-rin.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/uva-tirith.c");
 
-    addChild("guilds/aegis-guard/forms/sword/an-craban.c",
-        "guilds/aegis-guard/forms/sword/an-vund.c");
-    addChild("guilds/aegis-guard/forms/sword/an-rin.c",
-        "guilds/aegis-guard/forms/sword/an-vund.c");
-    addChild("guilds/aegis-guard/forms/sword/uva-tirith.c",
-        "guilds/aegis-guard/forms/sword/an-vund.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/an-craban.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-vund.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/an-rin.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-vund.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/uva-tirith.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-vund.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FifthLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/dirn-pandastan.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/tirnruth.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/glin-an-aemas.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/dirn-pandastan.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/tirnruth.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/glin-an-aemas.c");
 
-    addChild("guilds/aegis-guard/forms/sword/dirn-pandastan.c",
-        "guilds/aegis-guard/forms/sword/an-craban.c");
-    addChild("guilds/aegis-guard/forms/sword/tirnruth.c",
-        "guilds/aegis-guard/forms/sword/an-craban.c");
-    addChild("guilds/aegis-guard/forms/sword/glin-an-aemas.c",
-        "guilds/aegis-guard/forms/sword/an-craban.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/dirn-pandastan.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-craban.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/tirnruth.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-craban.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/glin-an-aemas.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-craban.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SixthLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/an-foph.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/angannon.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/an-foph.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/angannon.c");
 
-    addChild("guilds/aegis-guard/forms/sword/an-foph.c",
-        "guilds/aegis-guard/forms/sword/an-craban.c");
-    addChild("guilds/aegis-guard/forms/sword/angannon.c",
-        "guilds/aegis-guard/forms/sword/an-craban.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/an-foph.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-craban.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/angannon.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-craban.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/raud-angannon.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/alagos-tir-angannon.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/raud-angannon.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/alagos-tir-angannon.c");
 
-    addChild("guilds/aegis-guard/forms/sword/raud-angannon.c",
-        "guilds/aegis-guard/forms/sword/angannon.c");
-    addChild("guilds/aegis-guard/forms/sword/alagos-tir-angannon.c",
-        "guilds/aegis-guard/forms/sword/angannon.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/raud-angannon.c",
+        "guilds/aegis-guard/forms/sword-guarding/angannon.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/alagos-tir-angannon.c",
+        "guilds/aegis-guard/forms/sword-guarding/angannon.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void EighthLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/glingamath.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/sathataen.c");
-    addResearchElement("guilds/aegis-guard/forms/sword/caragpholg.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/glingamath.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/sathataen.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/caragpholg.c");
 
-    addChild("guilds/aegis-guard/forms/sword/glingamath.c",
-        "guilds/aegis-guard/forms/sword/an-foph.c");
-    addChild("guilds/aegis-guard/forms/sword/sathataen.c",
-        "guilds/aegis-guard/forms/sword/an-foph.c");
-    addChild("guilds/aegis-guard/forms/sword/caragpholg.c",
-        "guilds/aegis-guard/forms/sword/angannon.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/glingamath.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-foph.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/sathataen.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-foph.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/caragpholg.c",
+        "guilds/aegis-guard/forms/sword-guarding/angannon.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -115,19 +115,19 @@ private void NinthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TenthLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/nir-nuquerna.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/nir-nuquerna.c");
 
-    addChild("guilds/aegis-guard/forms/sword/nir-nuquerna.c",
-        "guilds/aegis-guard/forms/sword/caragpholg.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/nir-nuquerna.c",
+        "guilds/aegis-guard/forms/sword-guarding/caragpholg.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwelfthLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/tafnenrin.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/tafnenrin.c");
 
-    addChild("guilds/aegis-guard/forms/sword/tafnenrin.c",
-        "guilds/aegis-guard/forms/sword/an-vund.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/tafnenrin.c",
+        "guilds/aegis-guard/forms/sword-guarding/an-vund.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -205,10 +205,10 @@ private void ThirtiethLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyFirstLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/mithrannon.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/mithrannon.c");
 
-    addChild("guilds/aegis-guard/forms/sword/mithrannon.c",
-        "guilds/aegis-guard/forms/sword/angannon.c");
+    addChild("guilds/aegis-guard/forms/sword-guarding/mithrannon.c",
+        "guilds/aegis-guard/forms/sword-guarding/angannon.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -220,8 +220,8 @@ public void reset(int arg)
         Name("Tirith ai Megil");
         Description("");
         Source("Aegis Guard");
-        addResearchElement("guilds/aegis-guard/forms/sword/guarding-root.c");
-        TreeRoot("guilds/aegis-guard/forms/sword/guarding-root.c");
+        addResearchElement("guilds/aegis-guard/forms/sword-guarding/guarding-root.c");
+        TreeRoot("guilds/aegis-guard/forms/sword-guarding/guarding-root.c");
 
         FirstLevel();
         SecondLevel();

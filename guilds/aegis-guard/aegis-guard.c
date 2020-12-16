@@ -102,7 +102,7 @@ public void SetupGuild()
     ]));
     addCriteria("stamina points", ([
         "type": "modifier",
-        "apply" : "2 every level",
+        "apply" : "3 every level",
         "begin at level" : 1
     ]));
 
@@ -126,7 +126,12 @@ public void SetupGuild()
 
     addCriteria("research points", ([
         "type":"research points",
-        "apply": "2 every level"
+        "apply": "1 every level"
+    ]));
+
+    addCriteria("supplemental research points", ([
+        "type":"research points",
+        "apply": "2 every 5 levels"
     ]));
 
     addCriteria("sword attacks", ([
@@ -151,5 +156,20 @@ public void SetupGuild()
         "type":"research tree",
         "apply": "at level 1",
         "research tree": "guilds/aegis-guard/bows.c"
+    ]));
+    addCriteria("combinations", ([
+        "type":"research tree",
+        "apply": "at level 5",
+        "research tree": "guilds/aegis-guard/sword-combinations.c"
+    ]));
+    addCriteria("actions", ([
+        "type":"research tree",
+        "apply": "at level 11",
+        "research tree": "guilds/aegis-guard/sword-actions.c"
+    ]));
+    addCriteria("mythic", ([
+        "type":"research tree",
+        "apply": "at level 15",
+        "research tree": "guilds/aegis-guard/sword-mythic.c"
     ]));
 }
