@@ -5,147 +5,84 @@
 inherit "/lib/modules/research/researchTree.c";
 
 /////////////////////////////////////////////////////////////////////////////
-private void FirstLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SecondLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirdLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FourthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FifthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SixthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SeventhLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void EighthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/an-alag.c");
 
+    addChild("guilds/aegis-guard/forms/sword-combinations/an-alag.c",
+        "guilds/aegis-guard/forms/sword-combinations/combination-root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void TenthLevel()
+private void EleventhLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/godramin.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwelfthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirteenLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FourteenLevel()
-{
-
+    addChild("guilds/aegis-guard/forms/sword-combinations/godramin.c",
+        "guilds/aegis-guard/forms/sword-combinations/combination-root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FifteenthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/thel-hannas.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SixteenthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SeventeenthLevel()
-{
-
+    addChild("guilds/aegis-guard/forms/sword-combinations/thel-hannas.c",
+        "guilds/aegis-guard/forms/sword-combinations/combination-root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/laeg-hannas.c");
 
+    addChild("guilds/aegis-guard/forms/sword-combinations/laeg-hannas.c",
+        "guilds/aegis-guard/forms/sword-combinations/thel-hannas.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void TwentiethLevel()
+private void TwentyFirstLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/tad-godref.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentyThirdLevel()
-{
-
+    addChild("guilds/aegis-guard/forms/sword-combinations/tad-godref.c",
+        "guilds/aegis-guard/forms/sword-combinations/godramin.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFifthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/bronadui-hannas.c");
 
+    addChild("guilds/aegis-guard/forms/sword-combinations/bronadui-hannas.c",
+        "guilds/aegis-guard/forms/sword-combinations/thel-hannas.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentySeventhLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/golwen-alag.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentyNinthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirtiethLevel()
-{
-
+    addChild("guilds/aegis-guard/forms/sword-combinations/golwen-alag.c",
+        "guilds/aegis-guard/forms/sword-combinations/an-alag.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyFirstLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/neledh-godref.c");
 
+    addChild("guilds/aegis-guard/forms/sword-combinations/neledh-godref.c",
+        "guilds/aegis-guard/forms/sword-combinations/tad-godref.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void ThirtyFifthLevel()
+{
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/tur-godref.c");
+
+    addChild("guilds/aegis-guard/forms/sword-combinations/tur-godref.c",
+        "guilds/aegis-guard/forms/sword-combinations/neledh-godref.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -162,29 +99,15 @@ public void reset(int arg)
         TreeRoot(
             "guilds/aegis-guard/forms/sword-combinations/combination-root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-        SixthLevel();
-        SeventhLevel();
-        EighthLevel();
         NinthLevel();
-        TenthLevel();
-        TwelfthLevel();
+        EleventhLevel();
         ThirteenLevel();
-        FourteenLevel();
         FifteenthLevel();
-        SixteenthLevel();
-        SeventeenthLevel();
         NineteenthLevel();
-        TwentiethLevel();
-        TwentyThirdLevel();
+        TwentyFirstLevel();
         TwentyFifthLevel();
         TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtiethLevel();
         ThirtyFirstLevel();
+        ThirtyFifthLevel();
     }
 }

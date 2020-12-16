@@ -99,6 +99,12 @@ public nomask int isValidResearchItem()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public int cooldown(object initiator)
+{
+    return query("cooldown");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected int addSpecification(string type, mixed value)
 {
     int ret = 0;
@@ -469,12 +475,32 @@ private nomask string displayUsageCost(string colorConfiguration,
                 "field data", "research", colorConfiguration);
     }
 
-    if (query("cooldown"))
+    int cooldown = cooldown(this_player());
+    if (cooldown)
     {
         ret += configuration->decorate(sprintf("%-15s : ", "Usage cooldown"),
             "field header", "research", colorConfiguration) +
-            configuration->decorate(timeString(query("cooldown")) + "\n",
-                "field data", "research", colorConfiguration); 
+            configuration->decorate(timeString(cooldown) + "\n",
+                "field data", "research", colorConfiguration);
+
+        if (sizeof(query("cooldown modifiers")))
+        {
+            object dictionary = getDictionary("research");
+            mapping modifiers = query("cooldown modifiers");
+            foreach(string researchItem in m_indices(modifiers))
+            {
+                object researchObj = dictionary->researchObject(researchItem);
+                if (researchObj)
+                {
+                    ret += sprintf("%-18s", "") +
+                        configuration->decorate(
+                            sprintf("%s decreases cooldown by %d",
+                                researchObj->query("name"), 
+                                modifiers[researchItem]),
+                            "field data", "research", colorConfiguration);
+                }
+            }
+        }
     }
 
     string details = displayUsageInfo(colorConfiguration, configuration);

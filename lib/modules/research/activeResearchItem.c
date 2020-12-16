@@ -40,6 +40,23 @@ protected int addSpecification(string type, mixed value)
             }
             break;
         }
+        case "cooldown modifiers":
+        {
+            if(mappingp(value) && (sizeof(value) == sizeof(filter(value,
+                (: (getDictionary("research")->researchObject($1) &&
+                   intp($2) && ($2 < query("cooldown"))) :)))))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error(sprintf("ERROR - activeResearchItem: the '%s'"
+                    " specification must be a valid cooldown modifier mapping.\n",
+                    type));
+            }
+            break;
+        }
         case "event handler":
         case "use ability message":
         case "use ability fail message":
@@ -76,6 +93,27 @@ protected int addSpecification(string type, mixed value)
         default:
         {
             ret = "researchItem"::addSpecification(type, value);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int cooldown(object initiator)
+{
+    int ret = query("cooldown");
+    mapping modifiers = query("cooldown modifiers");
+
+    if (mappingp(modifiers) && objectp(initiator))
+    {
+        modifiers = filter(modifiers, (: $3->isResearched($1) :), initiator);
+        foreach(string item in modifiers)
+        {
+            ret -= modifiers[item];
+        }
+        if (ret < 2)
+        {
+            ret = 2;
         }
     }
     return ret;

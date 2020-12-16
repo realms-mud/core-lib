@@ -171,9 +171,13 @@ public nomask int deactivateSustainedResearch(string researchItem)
         }
 
         object researchObj = researchDictionary()->researchObject(researchItem);
-        if(researchObj && researchObj->query("cooldown"))
+        if(researchObj)
         {
-            research[researchItem]["cooldown"] = researchObj->query("cooldown");
+            int cooldown = researchObj->cooldown(this_object());
+            if (cooldown)
+            {
+                research[researchItem]["cooldown"] = cooldown;
+            }
         }
 
         object state = getService("state");
@@ -783,10 +787,13 @@ public nomask int researchCommand(string command)
         ret = researchDictionary()->researchCommand(commandToExecute,
             command, this_object());
 
-        if (ret && researchObj && (researchObj->query("type") != "sustained") &&
-            researchObj->query("cooldown"))
+        if (ret && researchObj && (researchObj->query("type") != "sustained"))
         {
-            research[commandToExecute]["cooldown"] = researchObj->query("cooldown");
+            int cooldown = researchObj->cooldown(this_object());
+            if (cooldown)
+            {
+                research[commandToExecute]["cooldown"] = cooldown;
+            }
         }
 
         object eventObj = getService("events");

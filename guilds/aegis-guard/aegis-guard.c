@@ -114,6 +114,7 @@ public void SetupGuild()
         "type":"attribute points",
         "apply": "1 every 5 levels"
     ]));
+
     addCriteria("skill points", ([
         "type":"skill points",
         "apply" : "5 every level"
@@ -121,7 +122,7 @@ public void SetupGuild()
 
     addCriteria("initial research points", ([
         "type":"research points",
-        "apply": "3 at level 1"
+        "apply": "at level 1"
     ]));
 
     addCriteria("research points", ([
@@ -157,16 +158,19 @@ public void SetupGuild()
         "apply": "at level 1",
         "research tree": "guilds/aegis-guard/bows.c"
     ]));
+
     addCriteria("combinations", ([
         "type":"research tree",
         "apply": "at level 5",
         "research tree": "guilds/aegis-guard/sword-combinations.c"
     ]));
+
     addCriteria("actions", ([
         "type":"research tree",
         "apply": "at level 11",
         "research tree": "guilds/aegis-guard/sword-actions.c"
     ]));
+
     addCriteria("mythic", ([
         "type":"research tree",
         "apply": "at level 15",

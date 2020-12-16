@@ -122,7 +122,35 @@ void SettingInvalidStaminaPointCostThrowsError()
 void CanSetValidCooldown()
 {
     ExpectTrue(ResearchItem->addTestSpecification("cooldown", 5), "add cooldown specification");
-    ExpectEq(5, ResearchItem->query("cooldown"), "can query the cooldown");
+    ExpectEq(5, ResearchItem->cooldown(User), "can query the cooldown");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanModifyCooldown()
+{
+    destruct(User);
+    User = clone_object("/lib/tests/support/services/mockPlayer.c");
+    User->Name("Bob");
+    User->addResearchPoints(3);
+
+    ExpectTrue(ResearchItem->addTestSpecification("cooldown", 30), "add cooldown specification");
+    ExpectTrue(ResearchItem->addTestSpecification("cooldown modifiers", ([
+        "lib/tests/support/research/comboPartResearchItemA.c": 6,
+        "lib/tests/support/research/comboPartResearchItemB.c": 4,
+        "lib/tests/support/research/comboPartResearchItemC.c": 20 ])), 
+        "add cooldown modifiers specification");
+
+    ExpectEq(30, ResearchItem->cooldown(User));
+
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    ExpectEq(24, ResearchItem->cooldown(User));
+
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    ExpectEq(20, ResearchItem->cooldown(User));
+
+    // Cooldown cannot go below 2
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    ExpectEq(2, ResearchItem->cooldown(User));
 }
 
 /////////////////////////////////////////////////////////////////////////////

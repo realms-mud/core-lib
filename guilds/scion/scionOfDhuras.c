@@ -58,7 +58,7 @@ public void SetupGuild()
     ]));
     addCriteria("stamina points", ([
         "type": "modifier",
-        "apply" : "1 every level",
+        "apply" : "2 every level",
         "begin at level" : 1
     ]));
 
@@ -77,7 +77,7 @@ public void SetupGuild()
 
     addCriteria("initial research points", ([
         "type":"research points",
-        "apply": "3 at level 1"
+        "apply": "at level 1"
     ]));
 
     addCriteria("research points", ([
