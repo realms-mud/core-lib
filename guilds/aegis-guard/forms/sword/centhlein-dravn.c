@@ -27,6 +27,12 @@ public void reset(int arg)
               "guild": "Aegis Guard",
               "value": 20 ]));
 
+        addSpecification("affected research", ([
+            "Dravo": 15,
+            "Naetho": 15,
+            "Maetha": 15
+        ]));
+
         addPrerequisite("guilds/aegis-guard/forms/sword/nistaros.c",
             (["type":"research"]));
         addPrerequisite("guilds/aegis-guard/forms/sword/sathataen.c",

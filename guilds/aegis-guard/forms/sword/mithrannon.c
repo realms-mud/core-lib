@@ -27,6 +27,13 @@ public void reset(int arg)
         addPrerequisite("guilds/aegis-guard/forms/sword/angannon.c",
             (["type":"research"]));
 
+        addSpecification("affected research", ([
+            "Maetha": 25,
+            "Hasto": 25,
+            "Maego": 25,
+            "Narcha": 25
+        ]));
+
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);

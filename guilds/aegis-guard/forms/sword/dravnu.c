@@ -26,6 +26,10 @@ public void reset(int arg)
         addPrerequisite("guilds/aegis-guard/forms/sword/eithagos.c",
             (["type":"research"]));
 
+        addSpecification("affected research", ([
+            "Cirithu": 15
+        ]));
+
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);

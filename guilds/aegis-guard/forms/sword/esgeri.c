@@ -62,7 +62,25 @@ public void reset(int arg)
                 "skills": ({ "dagger", "short sword", "long sword", 
                     "hand and a half sword", "two-handed sword" }),
                 "formula" : "additive",
-                "rate" : 1.05
+                "rate" : 0.5
+            ]),
+            ([
+                "type": "skill",
+                "name": "dancing",
+                "formula": "additive",
+                "rate": 0.10
+            ]),
+            ([
+                "type": "skill",
+                "name": "acrobatics",
+                "formula": "additive",
+                "rate": 0.10
+            ]),
+            ([
+                "type": "skill",
+                "name": "anatomy and physiology",
+                "formula": "additive",
+                "rate": 0.10
             ]),
             ([
                 "type":"attribute",

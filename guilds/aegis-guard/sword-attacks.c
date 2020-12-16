@@ -61,36 +61,36 @@ private void FifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SixthLevel()
 {
-    //addResearchElement("guilds/aegis-guard/forms/sword/cirithu.c");
+    addResearchElement("guilds/aegis-guard/forms/sword/cirithu.c");
 
-    //addChild("guilds/aegis-guard/forms/sword/cirithu.c",
-    //    "guilds/aegis-guard/forms/sword/diyacuth.c");
+    addChild("guilds/aegis-guard/forms/sword/cirithu.c",
+        "guilds/aegis-guard/forms/sword/diyacuth.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
-    //addResearchElement("guilds/aegis-guard/forms/sword/dravo.c");
+    addResearchElement("guilds/aegis-guard/forms/sword/dravo.c");
 
-    //addChild("guilds/aegis-guard/forms/sword/dravo.c",
-    //    "guilds/aegis-guard/forms/sword/dravnu.c");
+    addChild("guilds/aegis-guard/forms/sword/dravo.c",
+        "guilds/aegis-guard/forms/sword/dravnu.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void EighthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword/thar-dravn.c");
 
+    addChild("guilds/aegis-guard/forms/sword/thar-dravn.c",
+        "guilds/aegis-guard/forms/sword/dravnu.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
 {
-    addResearchElement("guilds/aegis-guard/forms/sword/thar-dravn.c");
     addResearchElement("guilds/aegis-guard/forms/sword/enaidravn.c");
     addResearchElement("guilds/aegis-guard/forms/sword/nuath-dravn.c");
 
-    addChild("guilds/aegis-guard/forms/sword/thar-dravn.c",
-        "guilds/aegis-guard/forms/sword/dravnu.c");
     addChild("guilds/aegis-guard/forms/sword/enaidravn.c",
         "guilds/aegis-guard/forms/sword/dravnu.c");
     addChild("guilds/aegis-guard/forms/sword/nuath-dravn.c",
@@ -137,9 +137,12 @@ private void FourteenLevel()
 private void FifteenthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword/ruth-dravn.c");
+    addResearchElement("guilds/aegis-guard/forms/sword/naetho.c");
 
     addChild("guilds/aegis-guard/forms/sword/ruth-dravn.c",
         "guilds/aegis-guard/forms/sword/thar-dravn.c");
+    addChild("guilds/aegis-guard/forms/sword/naetho.c",
+        "guilds/aegis-guard/forms/sword/gwistamacil.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -163,7 +166,10 @@ private void SeventeenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword/maetha.c");
 
+    addChild("guilds/aegis-guard/forms/sword/maetha.c",
+        "guilds/aegis-guard/forms/sword/lanna-dravn.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -187,7 +193,10 @@ private void TwentyThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFifthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword/hasto.c");
 
+    addChild("guilds/aegis-guard/forms/sword/hasto.c",
+        "guilds/aegis-guard/forms/sword/asta-dravn.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -199,7 +208,10 @@ private void TwentySeventhLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyNinthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword/maego.c");
 
+    addChild("guilds/aegis-guard/forms/sword/maego.c",
+        "guilds/aegis-guard/forms/sword/maetha.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -211,7 +223,10 @@ private void ThirtiethLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyFirstLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword/narcha.c");
 
+    addChild("guilds/aegis-guard/forms/sword/narcha.c",
+        "guilds/aegis-guard/forms/sword/hasto.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

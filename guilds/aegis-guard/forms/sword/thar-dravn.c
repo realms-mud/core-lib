@@ -21,10 +21,14 @@ public void reset(int arg)
         addPrerequisite("level", 
             (["type":"level", 
               "guild": "Aegis Guard",
-              "value": 9 ]));
+              "value": 8 ]));
 
         addPrerequisite("guilds/aegis-guard/forms/sword/dravnu.c",
             (["type":"research"]));
+
+        addSpecification("affected research", ([
+            "Dravo": 15
+        ]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");

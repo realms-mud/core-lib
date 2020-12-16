@@ -31,6 +31,11 @@ public void reset(int arg)
         addPrerequisite("guilds/aegis-guard/forms/sword/thar-dravn.c",
             (["type":"research"]));
 
+        addSpecification("affected research", ([
+            "Dravo": 15,
+            "Maetha": 15
+        ]));
+
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);

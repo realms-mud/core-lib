@@ -28,10 +28,15 @@ public void reset(int arg)
 
         addPrerequisite("guilds/aegis-guard/forms/sword/thar-dravn.c",
             (["type":"research"]));
-        addPrerequisite("guilds/aegis-guard/forms/sword/wrath-guard.c",
+        addPrerequisite("guilds/aegis-guard/forms/sword/tirnruth.c",
             (["type":"research"]));
         addPrerequisite("guilds/aegis-guard/forms/sword/gwisten.c",
             (["type":"research"]));
+
+        addSpecification("affected research", ([
+            "Dravo": 15,
+            "Naetho": 15
+        ]));
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");

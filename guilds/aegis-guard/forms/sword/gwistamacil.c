@@ -30,6 +30,12 @@ public void reset(int arg)
         addPrerequisite("guilds/aegis-guard/forms/sword/nistaros.c",
             (["type":"research"]));
 
+        addSpecification("affected research", ([
+            "Ercho": 15,
+            "Nestegi": 15,
+            "Dravo": 15
+        ]));
+
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
