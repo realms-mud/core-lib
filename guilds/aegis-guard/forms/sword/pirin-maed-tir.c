@@ -28,6 +28,11 @@ public void reset(int arg)
         addPrerequisite("guilds/aegis-guard/forms/sword/pirin-tir.c",
             (["type":"research"]));
 
+        addSpecification("affected research", ([
+            "Maego": 15,
+            "Narcha": 15
+        ]));
+
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
