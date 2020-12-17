@@ -257,7 +257,8 @@ protected int addSpecification(string type, mixed value)
             case "affected research type":
             {
                 if (stringp(value) &&
-                    (member(({ "percentage", "bonus" }), value) > -1))
+                    (member(({ "percentage", "bonus", "max combination chain",
+                        "decrease cost" }), value) > -1))
                 {
                     specificationData[type] = value;
                     ret = 1;
