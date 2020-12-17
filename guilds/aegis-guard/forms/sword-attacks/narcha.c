@@ -16,6 +16,8 @@ public void reset(int arg)
             "knowledge of a hewing technique known to the Aegis Guard as narcha. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
+        addSpecification("usage summary", "A master hewing technique suitable "
+            "against all defenses.");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/asta-dravn.c",
             (["type":"research"]));

@@ -16,6 +16,8 @@ public void reset(int arg)
             "knowledge of a thrusting technique known to the Aegis Guard as nestegi. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
+        addSpecification("usage summary", "A novice thrust best "
+            "used against unarmored foes.");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/nistaros.c",
             (["type":"research"]));

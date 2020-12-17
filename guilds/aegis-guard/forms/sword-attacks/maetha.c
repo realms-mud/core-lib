@@ -16,6 +16,8 @@ public void reset(int arg)
             "knowledge of a swordplay technique known to the Aegis Guard as maetha. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
+        addSpecification("usage summary", "An advanced slashing attack used to "
+            "throw enemies off balance.");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/lanna-dravn.c",
             (["type":"research"]));

@@ -16,6 +16,8 @@ public void reset(int arg)
             "knowledge of a stabbing technique known to the Aegis Guard as maego. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
+        addSpecification("usage summary", "An advanced thrust used to break "
+            "an opponent's low guards.");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/maetha.c",
             (["type":"research"]));

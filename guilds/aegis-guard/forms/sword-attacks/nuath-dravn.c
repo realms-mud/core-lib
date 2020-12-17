@@ -29,6 +29,7 @@ public void reset(int arg)
         addSpecification("affected research", ([
             "Dravo": 15
         ]));
+        addSpecification("affected research type", "percentage");
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");

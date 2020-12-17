@@ -27,7 +27,11 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Godrebh ai Megil": 25
+            "Godrebh ai Megil": 25,
+            "Raeg": 50,
+            "Lanc": 50,
+            "Gleina": 50
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

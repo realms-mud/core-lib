@@ -10,24 +10,27 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Laeg Hannas");
+        addSpecification("name", "Tur Dadben");
         addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of a mid guard to mid attack transition to use during "
-            "combination attacks.");
+        addSpecification("description", "This research provides the user with the "
+            "knowledge of a master hewing technique for Dadben.");
+
+        addPrerequisite("guilds/aegis-guard/forms/sword-actions/braig-an-dadben.c",
+            (["type":"research"]));
+
+        addSpecification("limited by", (["equipment":({ "dagger", "short sword",
+            "long sword", "hand and a half sword", "two-handed sword" })]));
 
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Aegis Guard",
-                "value": 19
+                "value": 39
             ]));
-        addPrerequisite("guilds/aegis-guard/forms/sword-combinations/thel-hannas.c",
-            (["type":"research"]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Godrebh ai Megil": 5
+            "Dadben": 25
         ]));
         addSpecification("affected research type", "percentage");
     }

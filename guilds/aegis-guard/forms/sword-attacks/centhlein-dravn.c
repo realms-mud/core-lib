@@ -32,6 +32,7 @@ public void reset(int arg)
             "Naetho": 15,
             "Maetha": 15
         ]));
+        addSpecification("affected research type", "percentage");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/nistaros.c",
             (["type":"research"]));

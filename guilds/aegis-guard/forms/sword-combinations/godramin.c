@@ -26,6 +26,6 @@ public void reset(int arg)
         addSpecification("affected research", ([
             "Godrebh ai Megil": 1
         ]));
-        addSpecification("affected research type", "bonus");
+        addSpecification("affected research type", "max combination chain");
     }
 }

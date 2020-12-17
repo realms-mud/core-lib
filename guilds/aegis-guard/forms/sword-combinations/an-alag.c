@@ -27,5 +27,6 @@ public void reset(int arg)
         addSpecification("affected research", ([
             "Godrebh ai Megil": 5
         ]));
+        addSpecification("affected research type", "percentage");
     }
 }

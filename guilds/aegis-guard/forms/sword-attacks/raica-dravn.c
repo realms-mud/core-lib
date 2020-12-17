@@ -33,6 +33,7 @@ public void reset(int arg)
             "Cirithu": 25,
             "Dravo": 25
         ]));
+        addSpecification("affected research type", "percentage");
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");

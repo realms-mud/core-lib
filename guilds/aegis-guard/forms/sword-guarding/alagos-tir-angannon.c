@@ -33,6 +33,7 @@ public void reset(int arg)
             "Ercho": 25,
             "Nestegi": 25
         ]));
+        addSpecification("affected research type", "percentage");
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");

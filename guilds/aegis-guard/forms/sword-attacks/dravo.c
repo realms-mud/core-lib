@@ -16,6 +16,8 @@ public void reset(int arg)
             "knowledge of a hewing technique known to the Aegis Guard as dravo. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
+        addSpecification("usage summary", "A hewing technique moving from "
+            "various guards to a counter attack.");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/dravnu.c",
             (["type":"research"]));

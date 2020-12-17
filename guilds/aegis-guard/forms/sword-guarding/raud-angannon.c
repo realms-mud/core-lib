@@ -31,8 +31,11 @@ public void reset(int arg)
 
         addSpecification("affected research", ([
             "Ercho": 25,
-            "Nestegi": 25
+            "Nestegi": 25,
+            "Athra": 15,
+            "Celeg": 15
         ]));
+        addSpecification("affected research type", "percentage");
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");

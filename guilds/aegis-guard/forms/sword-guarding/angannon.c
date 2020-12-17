@@ -27,6 +27,12 @@ public void reset(int arg)
         addPrerequisite("guilds/aegis-guard/forms/sword-guarding/an-craban.c",
             (["type":"research"]));
 
+        addSpecification("affected research", ([
+            "Athra": 10,
+            "Celeg": 10
+        ]));
+        addSpecification("affected research type", "percentage");
+
         addSpecification("scope", "self");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);

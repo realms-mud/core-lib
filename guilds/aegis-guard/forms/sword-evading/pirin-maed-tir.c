@@ -32,6 +32,7 @@ public void reset(int arg)
             "Maego": 15,
             "Narcha": 15
         ]));
+        addSpecification("affected research type", "percentage");
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");

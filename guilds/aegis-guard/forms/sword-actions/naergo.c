@@ -10,16 +10,17 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Naetho");
+        addSpecification("name", "Naergo");
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of a stabbing technique known to the Aegis Guard as naetho. "
-            "It is a form that can either be done by itself or as part of a "
-            "combination attack.");
-        addSpecification("usage summary", "An advanced thrusting technique "
-            "well-suited to circumventing shields.");
+            "knowledge of a thrusting technique based loosely from Beraid. It is "
+            "particularly great at breaking down heavily-armored defenses. It is "
+            "known to the Aegis Guard as naergo. It is a form that "
+            "can only be done as part of a combination attack.");
+        addSpecification("usage summary", "A punishing thrust used to bypass "
+            "heavy armor.");
 
-        addPrerequisite("guilds/aegis-guard/forms/sword-attacks/gwistamacil.c",
+        addPrerequisite("guilds/aegis-guard/forms/sword-guarding/beraid.c",
             (["type":"research"]));
 
         addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -28,23 +29,23 @@ public void reset(int arg)
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Aegis Guard",
-                "value": 15
+                "value": 30
             ]));
 
         addSpecification("scope", "targeted");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("stamina point cost", 50);
+        addSpecification("stamina point cost", 75);
 
         addSpecification("damage hit points", ({ ([
                 "probability": 80,
-                "base damage": 50,
-                "range": 100
+                "base damage": 150,
+                "range": 150
             ]),
             ([
                 "probability": 20,
-                "base damage": 150,
-                "range": 100
+                "base damage": 250,
+                "range": 250
             ])
         }));
         addSpecification("damage type", "thrust");
@@ -52,36 +53,28 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
-                "name": "Lelyan Isilme",
+                "research item": "guilds/aegis-guard/forms/sword-actions/delu-an-beraid.c",
+                "name": "angannon",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/aegis-guard/forms/sword-guarding/braig-an-beraid.c",
+                "name": "glingamath",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type":"research",
-                "research item": "guilds/aegis-guard/forms/sword-attacks/ruth-dravn.c",
-                "name" : "Ruth Dravn",
+                "research item" : "guilds/aegis-guard/forms/sword-guarding/tur-beraid.c",
+                "name" : "raud-angannon",
                 "formula" : "multiplicative",
                 "base value" : 1,
-                "rate": 1.15
-            ]),
-            ([
-                "type":"research",
-                "research item": "guilds/aegis-guard/forms/sword-attacks/lanna-dravn.c",
-                "name" : "Lanna Dravn",
-                "formula" : "multiplicative",
-                "base value" : 1,
-                "rate": 1.15
-            ]),
-            ([
-                "type": "research",
-                "research item" : "guilds/aegis-guard/forms/sword-attacks/centhlein-dravn.c",
-                "name" : "Centhlein Dravn",
-                "formula" : "multiplicative",
-                "base value" : 1,
-                "rate" : 1.15
-            ]),
+                "rate" : 1.25
+            ]),            
             ([
                 "type":"highest skill",
                 "name" : "sword skills",
@@ -94,19 +87,31 @@ public void reset(int arg)
                 "type": "skill",
                 "name": "dancing",
                 "formula": "additive",
-                "rate": 0.25
+                "rate": 0.15
             ]),
             ([
                 "type": "skill",
                 "name": "acrobatics",
                 "formula": "additive",
-                "rate": 0.25
+                "rate": 0.10
             ]),
             ([
                 "type": "skill",
                 "name": "anatomy and physiology",
                 "formula": "additive",
-                "rate": 0.25
+                "rate": 0.10
+            ]),
+            ([
+                "type": "skill",
+                "name": "physics",
+                "formula": "additive",
+                "rate": 0.10
+            ]),
+            ([
+                "type": "skill",
+                "name": "mathematics",
+                "formula": "additive",
+                "rate": 0.10
             ]),
             ([
                 "type":"attribute",
@@ -124,23 +129,14 @@ public void reset(int arg)
                 "type": "attribute",
                 "name": "wisdom",
                 "formula": "additive",
-                "rate": 0.25
-            ]),
-            ([
-                "type": "attribute",
-                "name": "intelligence",
-                "formula": "additive",
-                "rate": 0.25
+                "rate": 0.5
             ]),
         }));
 
-        addSpecification("cooldown", 6);
-        addSpecification("event handler", "naethoEvent");
-        addSpecification("command template", "naetho [at ##Target##]");
-        addSpecification("use ability message",  "##InitiatorPossessive::Name## "
-            "##Infinitive::stab## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName## with an artful thrusting motion.");
-        addSpecification("use combination message", "##Infinitive::stab## "
-            "artfully");
+        addSpecification("cooldown", 8);
+        addSpecification("event handler", "naergoEvent");
+
+        addSpecification("use combination message", "##Infinitive::lunge## "
+            "##InitiatorPossessive## ##InitiatorWeapon## in an aggressive thrust");
     }
 }

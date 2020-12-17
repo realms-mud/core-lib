@@ -16,6 +16,7 @@ public void reset(int arg)
             "knowledge of a cutting technique known to the Aegis Guard as esgeri. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
+        addSpecification("usage summary", "A foundational cutting technique.");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/tharcuth.c",
             (["type":"research"]));

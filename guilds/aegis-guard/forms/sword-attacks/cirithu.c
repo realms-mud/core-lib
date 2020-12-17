@@ -16,6 +16,8 @@ public void reset(int arg)
             "knowledge of a cleaving technique known to the Aegis Guard as cirithu. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
+        addSpecification("usage summary", "A cleave well-suited against "
+            "lightly-armored opponents.");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/diyacuth.c",
             (["type":"research"]));

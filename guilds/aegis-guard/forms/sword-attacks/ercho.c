@@ -16,6 +16,8 @@ public void reset(int arg)
             "knowledge of a stabbing technique known to the Aegis Guard as ercho. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
+        addSpecification("usage summary", "A basic stabbing technique effective "
+            "against light armor.");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/eithagos.c",
             (["type":"research"]));

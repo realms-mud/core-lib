@@ -16,6 +16,8 @@ public void reset(int arg)
             "knowledge of a hewing technique known to the Aegis Guard as hasto. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
+        addSpecification("usage summary", "An advanced hew used to break down "
+            "an opponent's high guards.");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-attacks/asta-dravn.c",
             (["type":"research"]));

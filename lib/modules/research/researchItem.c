@@ -240,6 +240,20 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "usage summary":
+            {
+                if (value && stringp(value))
+                {
+                    ret = 1;
+                    specificationData["usage summary"] = value;
+                }
+                else
+                {
+                    raise_error("ERROR - researchItem: The value of 'usage summary' "
+                        "must be a string value.\n");
+                }
+                break;
+            }
             case "affected research type":
             {
                 if (stringp(value) &&
@@ -353,17 +367,37 @@ private nomask string displayAffectedResearch(string colorConfiguration,
     mapping affectedResearch = query("affected research");
     if (mappingp(affectedResearch) && sizeof(affectedResearch))
     {
-        string appendType =
-            (query("affected research type") == "percentage") ? "%" : "";
+        string appendType = "This research enhances '%s' by %s.\n";
+        switch (query("affected research type"))
+        {
+            case "percentage":
+            {
+                appendType = "This research enhances '%s' by %s%%.\n";
+                break;
+            }
+            case "max combination chain":
+            {
+                appendType = "This increases the '%s' maximum "
+                    "combo chain size by %s.\n";
+                break;
+            }
+            case "decrease cost":
+            {
+                appendType = "This reduces the cost to use '%s' by %s.\n";
+                break;
+            }
+        }
 
         foreach(string key in m_indices(affectedResearch))
         {
             ret += configuration->decorate(
-                sprintf("This research enhances '%s' by %s\n", key,
+                sprintf(appendType, key,
                     configuration->decorate((affectedResearch[key] > 0) ?
-                        "+" + to_string(affectedResearch[key]) + appendType :
-                        to_string(affectedResearch[key]) + appendType,
-                        "bonus modifier", "research", colorConfiguration)),
+                        "+" + to_string(affectedResearch[key]) :
+                        to_string(affectedResearch[key]),
+                        ((affectedResearch[key] > 0) ? 
+                        "bonus modifier" : "penalty modifier"), "research", 
+                        colorConfiguration)),
                 "bonus text", "research", colorConfiguration);
         }
     }

@@ -28,6 +28,7 @@ public void reset(int arg)
         addSpecification("affected research", ([
             "Esgeri": 50
         ]));
+        addSpecification("affected research type", "percentage");
 
         addSpecification("scope", "self");
         addSpecification("research type", "points");

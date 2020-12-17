@@ -58,24 +58,21 @@ public void reset(int arg)
                 "guilds/aegis-guard/forms/sword-mythic/lhorn.c",
                 "guilds/aegis-guard/forms/sword-mythic/gwaeren.c"
             }),
+            */
             "can include any of": ({ 
                 "guilds/aegis-guard/forms/sword-actions/athra.c",
                 "guilds/aegis-guard/forms/sword-actions/celeg.c",
                 "guilds/aegis-guard/forms/sword-actions/raeg.c",
                 "guilds/aegis-guard/forms/sword-actions/lanc.c",
                 "guilds/aegis-guard/forms/sword-actions/gleina.c",
-                "guilds/aegis-guard/forms/sword-actions/delu.c",
-                "guilds/aegis-guard/forms/sword-actions/braig.c",
                 "guilds/aegis-guard/forms/sword-actions/beraid.c",
                 "guilds/aegis-guard/forms/sword-actions/gling.c",
                 "guilds/aegis-guard/forms/sword-actions/naergo.c",
-                "guilds/aegis-guard/forms/sword-actions/tur.c",
                 "guilds/aegis-guard/forms/sword-actions/bauglo.c",
                 "guilds/aegis-guard/forms/sword-actions/dadben.c",
                 "guilds/aegis-guard/forms/sword-actions/gliri.c",
                 "guilds/aegis-guard/forms/sword-actions/hwinio.c"
             })
-            */
         ]));
 
         addSpecification("max combination chain modifier", ({ 
@@ -215,6 +212,5 @@ public void reset(int arg)
         addSpecification("command template", "godreb ai megil ##Combinations## [at ##Target##]");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::point## "
             "##InitiatorPossessive## ##InitiatorWeapon## at ##TargetName## ");
-
     }
 }
