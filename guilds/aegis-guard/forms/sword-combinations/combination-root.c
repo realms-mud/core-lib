@@ -9,7 +9,7 @@ public void reset(int arg)
 {
     if (!arg)
     {
-        passiveResearchItem::reset(arg);
+        combinedInstantaneousActiveResearchItem::reset(arg);
         addSpecification("name", "Godrebh ai Megil");
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This skill provides the user with the "
@@ -35,9 +35,9 @@ public void reset(int arg)
                 "guilds/aegis-guard/forms/sword-attacks/maetha.c",
                 "guilds/aegis-guard/forms/sword-attacks/hasto.c",
                 "guilds/aegis-guard/forms/sword-attacks/maego.c",
-                "guilds/aegis-guard/forms/sword-attacks/narcha.c",
+                "guilds/aegis-guard/forms/sword-attacks/narcha.c"
             }),
-            "can include only one of": ({ 
+/*            "can include only one of": ({ 
                 "guilds/aegis-guard/forms/sword-mythic/auth.c",
                 "guilds/aegis-guard/forms/sword-mythic/anwar.c",
                 "guilds/aegis-guard/forms/sword-mythic/dagnir.c",
@@ -56,7 +56,7 @@ public void reset(int arg)
                 "guilds/aegis-guard/forms/sword-mythic/geilo.c",
                 "guilds/aegis-guard/forms/sword-mythic/alagos.c",
                 "guilds/aegis-guard/forms/sword-mythic/lhorn.c",
-                "guilds/aegis-guard/forms/sword-mythic/gwaeren.c",
+                "guilds/aegis-guard/forms/sword-mythic/gwaeren.c"
             }),
             "can include any of": ({ 
                 "guilds/aegis-guard/forms/sword-actions/athra.c",
@@ -73,8 +73,9 @@ public void reset(int arg)
                 "guilds/aegis-guard/forms/sword-actions/bauglo.c",
                 "guilds/aegis-guard/forms/sword-actions/dadben.c",
                 "guilds/aegis-guard/forms/sword-actions/gliri.c",
-                "guilds/aegis-guard/forms/sword-actions/hwinio.c",
+                "guilds/aegis-guard/forms/sword-actions/hwinio.c"
             })
+            */
         ]));
 
         addSpecification("max combination chain modifier", ({ 

@@ -101,7 +101,6 @@ public void reset(int arg)
 
         NinthLevel();
         EleventhLevel();
-        ThirteenLevel();
         FifteenthLevel();
         NineteenthLevel();
         TwentyFirstLevel();

@@ -14,8 +14,7 @@ public void reset(int arg)
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This skill provides the user with the "
             "knowledge to chain an additional attack to their combinations.");
-        Setup();
-
+ 
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Aegis Guard",

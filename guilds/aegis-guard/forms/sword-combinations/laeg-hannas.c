@@ -15,7 +15,6 @@ public void reset(int arg)
         addSpecification("description", "This skill provides the user with the "
             "knowledge of a mid guard to mid attack transition to use during "
             "combination attacks.");
-        Setup();
 
         addPrerequisite("level",
             (["type":"level",
