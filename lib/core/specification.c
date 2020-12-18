@@ -77,9 +77,9 @@ protected int addSpecification(string type, mixed value)
             }
             default:
             {
-                raise_error("ERROR - specification: The provided specification "
-                    "type is unknown. It must be one of: name, description, "
-                    "or limited by.\n");
+                raise_error(sprintf("ERROR - specification: The provided specification "
+                    "type (%s) is unknown. It must be one of: name, description, "
+                    "or limited by.\n", type));
             }
         }
     }

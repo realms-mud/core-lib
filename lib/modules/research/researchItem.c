@@ -360,6 +360,55 @@ private nomask string displayCost(string colorConfiguration,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string displayRelatedResearchEffects(string colorConfiguration,
+    object configuration)
+{
+    string ret = "";
+
+    mapping rules = query("combination rules");
+    if (mappingp(rules) && sizeof(rules))
+    {
+        object dictionary = getDictionary("research");
+        foreach(string ruleType in m_indices(rules))
+        {
+            ret += configuration->decorate(sprintf("%-15s : ", "Combination Rule"),
+                "field header", "research", colorConfiguration) +
+                configuration->decorate(capitalize(ruleType) + ":\n",
+                    "field data", "research", colorConfiguration);
+
+            if (sizeof(rules[ruleType]))
+            {
+                foreach(string item in rules[ruleType])
+                {
+                    object researchObj = dictionary->researchObject(item);
+                    if (researchObj && researchObj->query("usage summary"))
+                    {
+                        ret += sprintf("%-18s", "") +
+                            configuration->decorate(
+                                lower_case(researchObj->query("name")) + ": ",
+                                "field data", "research", colorConfiguration) +
+                            configuration->decorate(
+                                capitalize(researchObj->query("usage summary")) + "\n",
+                                "formula", "research", colorConfiguration);
+                    }
+                }
+            }
+        }
+    }
+
+    if (query("maximum combination chain"))
+    {
+        ret += configuration->decorate(sprintf("%-15s : ", "Max Combo Size"),
+            "field header", "research", colorConfiguration) +
+            configuration->decorate(sprintf("%d\n", 
+                query("maximum combination chain")),
+                "field data", "research", colorConfiguration);
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string displayAffectedResearch(string colorConfiguration,
     object configuration)
 {
@@ -455,7 +504,8 @@ private nomask string displayExtraResearchInformation(string colorConfiguration,
                 "apply modifier", "research", colorConfiguration); 
         }
     }
-    ret += displayAffectedResearch(colorConfiguration, configuration);
+    ret += displayAffectedResearch(colorConfiguration, configuration) +
+        displayRelatedResearchEffects(colorConfiguration, configuration);
     return ret;
 }
 
@@ -617,7 +667,7 @@ private nomask string displayEffectInformationForType(string type,
 {
     string ret = "";
     mapping *formulas = query(type);
-    if (formulas)
+    if (formulas && pointerp(formulas))
     {
         foreach(mapping formula in formulas)
         {
@@ -657,7 +707,8 @@ private nomask string displayEffectInformation(string colorConfiguration,
         {
             float rate = modifier["rate"];
             ret += configuration->decorate(sprintf("%-18sModified -> ",
-                ""), "field data", "research", colorConfiguration) +
+                query("combination rules") ? "Combo Damage    : " : ""), 
+                "field data", "research", colorConfiguration) +
                 configuration->decorate(((rate > 1.00 || rate < 1.00) ? 
                     sprintf("%1.2f * ", rate) : "by ") + 
                     sprintf("your %s %s ", modifier["name"],

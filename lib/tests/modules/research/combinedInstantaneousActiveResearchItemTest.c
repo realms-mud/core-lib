@@ -268,3 +268,35 @@ void ActionBlockedIfCostNotMet()
     ExpectEq(25, User->spellPoints());
     ExpectEq(150, User->staminaPoints());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDisplayResearchInfo()
+{
+    object effect = clone_object("lib/tests/support/research/comboResearchItem.c");
+
+    ExpectEq("Research Name   : Combo blarg\n"
+        "This is combo active research\n"
+        "\n"
+        "This research item is granted to the user at a pre-defined time.\n"
+        "Research Type   : Active\n"
+        "Scope           : Targeted\n"
+        "Cost to use     : 10 stamina points\n"
+        "Usage cooldown  : 1 second\n"
+        "Command syntax  : do stuff [.*]\n"
+        "Combination Rule : Can include any of:\n"
+        "                  hruf: This will hruf stuff.\n"
+        "                  muclid: This muclidifies stuff.\n"
+        "Combination Rule : Can include only one of:\n"
+        "                  surlac: This surily surlacs stuff.\n"
+        "                  clerb: Beware the clerb.\n"
+        "Combination Rule : Must include any of:\n"
+        "                  gurg: This inverse gurgs stuff.\n"
+        "                  frumbus: This unfrumbuses stuff.\n"
+        "                  fargle: This fargles with the fresh scent of Brute.\n"
+        "Combination Rule : Must include only one of:\n"
+        "                  blarg: This blargifies stuff.\n"
+        "                  rarg: This de-rargulates stuff.\n"
+        "Max Combo Size  : 3\n"
+        "Combo Damage    : Modified -> 1.25 * your Combo stuff research (multiplicative)\n",
+        effect->researchDetails());
+}

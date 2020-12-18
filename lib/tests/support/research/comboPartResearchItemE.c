@@ -13,6 +13,7 @@ public void reset(int arg)
         addSpecification("name", "surlac");
         addSpecification("source", "blarg");
         addSpecification("description", "This is limited active research");
+        addSpecification("usage summary", "This surily surlacs stuff.");
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
         addSpecification("research cost", 1);

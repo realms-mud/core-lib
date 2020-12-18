@@ -41,6 +41,7 @@ public void reset(int arg)
             "base value": 1,
             "rate": 1.25
         ]) }));
+
         addSpecification("cooldown", 1);
         addSpecification("event handler", "usedComboEvent");
         addSpecification("command template", "do stuff ##Combinations## [at ##Target##]");

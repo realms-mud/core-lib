@@ -13,6 +13,7 @@ public void reset(int arg)
         addSpecification("name", "clerb");
         addSpecification("source", "blarg");
         addSpecification("description", "This is limited active research");
+        addSpecification("usage summary", "Beware the clerb.");
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
         addSpecification("research cost", 1);
