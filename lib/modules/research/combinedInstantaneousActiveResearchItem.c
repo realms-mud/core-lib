@@ -135,23 +135,18 @@ protected mapping getUsageCosts(string command, object initiator)
 {
     object *combo = getCombinationList(command, initiator, 1);
 
-    int hitPointCost = query("hit point cost");
-    int spellPointCost = query("spell point cost");
-    int staminaPointCost = query("stamina point cost");
+    mapping costs = researchItem::getUsageCosts(command, initiator);
 
     if (sizeof(combo))
     {
         foreach(object item in combo)
         {
-            hitPointCost += item->query("hit point cost");
-            spellPointCost += item->query("spell point cost");
-            staminaPointCost += item->query("stamina point cost");
+            mapping costData = item->getUsageCosts(command, initiator);
+            costs["hit point cost"] += costData["hit point cost"];
+            costs["spell point cost"] += costData["spell point cost"];
+            costs["stamina point cost"] += costData["stamina point cost"];
         }
     }
 
-    return ([
-        "hit point cost": hitPointCost,
-        "spell point cost": spellPointCost,
-        "stamina point cost": staminaPointCost
-    ]);
+    return costs + ([]);
 }

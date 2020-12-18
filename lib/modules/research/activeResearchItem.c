@@ -57,6 +57,27 @@ protected int addSpecification(string type, mixed value)
             }
             break;
         }
+        case "hit point cost modifiers":
+        case "spell point cost modifiers":
+        case "stamina point cost modifiers":
+        {
+            string cost = regreplace(type, "(.*) modifiers", "\\1", 1);
+
+            if(mappingp(value) && (sizeof(value) == sizeof(filter(value,
+                (: (getDictionary("research")->researchObject($1) &&
+                   intp($2) && ($2 < query(cost))) :)))))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error(sprintf("ERROR - activeResearchItem: the '%s'"
+                    " specification must be a valid cost modifier mapping.\n",
+                    type));
+            }
+            break;
+        }
         case "event handler":
         case "use ability message":
         case "use ability fail message":
@@ -203,16 +224,6 @@ private nomask int applyToScope(string command, object owner,
         }
     }
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected mapping getUsageCosts(string command, object initiator)
-{
-    return ([
-        "hit point cost": query("hit point cost"),
-        "spell point cost": query("spell point cost"),
-        "stamina point cost": query("stamina point cost")
-    ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -88,9 +88,9 @@ void DamageHitPointsWillExecuteAttack()
 void IncreaseHitPointsWillNotExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("increase hit points", ({ formula })));
@@ -110,9 +110,9 @@ void IncreaseHitPointsWillNotExecuteAttack()
 void CannotDamageIfTargetNotOnKillList()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
     ]);
     destruct(Target);
     Target = clone_object("/lib/tests/support/services/combatWithMockServices");
@@ -128,9 +128,9 @@ void CannotDamageIfTargetNotOnKillList()
 void CannotDamageIfTargetPlayerOnKillListButInitiatorIsNot()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
     ]);
     destruct(Target);
     Target = clone_object("/lib/tests/support/services/combatWithMockServices");
@@ -168,9 +168,9 @@ void DamageSpellPointsWillExecuteAttack()
 void IncreaseSpellPointsWillNotExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("increase spell points", ({ formula })));
@@ -212,9 +212,9 @@ void DamageStaminaPointsWillExecuteAttack()
 void IncreaseStaminaPointsWillNotExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("increase stamina points", ({ formula })));
@@ -234,9 +234,9 @@ void IncreaseStaminaPointsWillNotExecuteAttack()
 void IncreaseIntoxicationWillExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
+        "probability": 100,
+        "base damage": 20,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("increase intoxication", ({ formula })));
@@ -256,9 +256,9 @@ void IncreaseIntoxicationWillExecuteAttack()
 void IncreaseDruggednessWillExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
+        "probability": 100,
+        "base damage": 20,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("increase druggedness", ({ formula })));
@@ -278,9 +278,9 @@ void IncreaseDruggednessWillExecuteAttack()
 void IncreaseSoakedWillExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
+        "probability": 100,
+        "base damage": 20,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("increase soaked", ({ formula })));
@@ -300,9 +300,9 @@ void IncreaseSoakedWillExecuteAttack()
 void IncreaseStuffedWillExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
+        "probability": 100,
+        "base damage": 20,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("increase stuffed", ({ formula })));
@@ -322,9 +322,9 @@ void IncreaseStuffedWillExecuteAttack()
 void DecreaseIntoxicationWillNotExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
+        "probability": 100,
+        "base damage": 20,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("decrease intoxication", ({ formula })));
@@ -344,9 +344,9 @@ void DecreaseIntoxicationWillNotExecuteAttack()
 void DecreaseDruggednessWillNotExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
+        "probability": 100,
+        "base damage": 20,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("decrease druggedness", ({ formula })));
@@ -366,9 +366,9 @@ void DecreaseDruggednessWillNotExecuteAttack()
 void DecreaseSoakedWillNotExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
+        "probability": 100,
+        "base damage": 20,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("decrease soaked", ({ formula })));
@@ -388,9 +388,9 @@ void DecreaseSoakedWillNotExecuteAttack()
 void DecreaseStuffedWillNotExecuteAttack()
 {
     mapping formula = ([
-        "probability":100,
-        "base damage" : 20,
-        "range" : 0
+        "probability": 100,
+        "base damage": 20,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("decrease stuffed", ({ formula })));
@@ -411,9 +411,9 @@ void NotSpecifyingTargetWillTargetCurrentForDamageResearch()
 {
     Target->hitPoints(100);
     mapping formula = ([
-        "probability":100,
-        "base damage" : 25,
-        "range" : 0
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
     ]);
 
     ExpectTrue(Effect->testAddSpecification("damage hit points", ({ formula })));
@@ -438,7 +438,7 @@ void NotSpecifyingTargetWillTargetCurrentForDamageResearch()
 void NotSpecifyingTargetWillTargetOwnerForBeneficialResearch()
 {
     mapping formula = ([
-        "probability":100,
+        "probability": 100,
         "base damage": 25,
         "range": 0
     ]);
@@ -449,4 +449,50 @@ void NotSpecifyingTargetWillTargetOwnerForBeneficialResearch()
     ExpectEq(50, User->hitPoints(), "Bob's initial HP");
     ExpectTrue(Effect->execute("throw turnip", User));
     ExpectEq(75, User->hitPoints(), "Bob has been healed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CooldownAffectedByOtherResearch()
+{
+    User = clone_object("/lib/tests/support/services/mockPlayer.c");
+    User->Name("Bob");
+
+    ExpectTrue(Effect->testAddSpecification("cooldown", 100));
+    ExpectTrue(Effect->testAddSpecification("cooldown modifiers", 
+        (["lib/tests/support/research/comboPartResearchItemA.c": 25 ])));
+
+    ExpectEq(100, Effect->cooldown(User));
+
+    User->addResearchPoints(1);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+
+    ExpectEq(75, Effect->cooldown(User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CostAffectedByOtherResearch()
+{
+    User = clone_object("/lib/tests/support/services/mockPlayer.c");
+    User->Name("Bob");
+
+    ExpectTrue(Effect->testAddSpecification("hit point cost", 100));
+    ExpectTrue(Effect->testAddSpecification("spell point cost", 100));
+    ExpectTrue(Effect->testAddSpecification("stamina point cost", 100));
+    ExpectTrue(Effect->testAddSpecification("hit point cost modifiers",
+        (["lib/tests/support/research/comboPartResearchItemA.c": 25 ])));
+    ExpectTrue(Effect->testAddSpecification("spell point cost modifiers",
+        (["lib/tests/support/research/comboPartResearchItemA.c": 15 ])));
+    ExpectTrue(Effect->testAddSpecification("stamina point cost modifiers",
+        (["lib/tests/support/research/comboPartResearchItemA.c": 10 ])));
+
+    ExpectEq((["hit point cost": 100,
+               "spell point cost": 100,
+               "stamina point cost": 100]), Effect->getUsageCosts("", User));
+
+    User->addResearchPoints(1);
+    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+
+    ExpectEq((["hit point cost": 75,
+               "spell point cost": 85,
+               "stamina point cost": 90 ]), Effect->getUsageCosts("", User));
 }

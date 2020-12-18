@@ -258,7 +258,7 @@ protected int addSpecification(string type, mixed value)
             {
                 if (stringp(value) &&
                     (member(({ "percentage", "bonus", "max combination chain",
-                        "decrease cost" }), value) > -1))
+                        "decrease cost", "decrease cooldown" }), value) > -1))
                 {
                     specificationData[type] = value;
                     ret = 1;
@@ -387,6 +387,12 @@ private nomask string displayAffectedResearch(string colorConfiguration,
                 appendType = "This reduces the cost to use '%s' by %s.\n";
                 break;
             }
+            case "decrease cooldown":
+            {
+                appendType = "This reduces the cooldown delay to use '%s' "
+                    "by %s.\n";
+                break;
+            }
         }
 
         foreach(string key in m_indices(affectedResearch))
@@ -482,23 +488,60 @@ private nomask string displayUsageInfo(string colorConfiguration,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private int getCostModifiers(string type, object initiator)
+{
+    int ret = 0;
+    mapping modifiers = query(sprintf("%s modifiers", type));
+
+    if (mappingp(modifiers) && objectp(initiator))
+    {
+        modifiers = filter(modifiers, (: $3->isResearched($1) :), initiator);
+        foreach(string item in modifiers)
+        {
+            ret += modifiers[item];
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public mapping getUsageCosts(string command, object initiator)
+{
+    int hitPointCost = query("hit point cost") ? (query("hit point cost") - 
+        getCostModifiers("hit point cost", initiator)) : 0;
+    int spellPointCost = query("spell point cost") ? 
+        (query("spell point cost") - 
+            getCostModifiers("spell point cost", initiator)) : 0;
+    int staminaPointCost = 
+        query("stamina point cost") ? (query("stamina point cost") -
+            getCostModifiers("stamina point cost", initiator)) : 0;
+
+    return ([
+        "hit point cost": (hitPointCost > 0) ? hitPointCost : 0,
+        "spell point cost": (spellPointCost > 0) ? spellPointCost : 0,
+        "stamina point cost": (staminaPointCost > 0) ? staminaPointCost : 0
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string displayUsageCost(string colorConfiguration,
     object configuration)
 {
     string ret = "";
 
     string *costs = ({});
-    if (query("hit point cost"))
+    mapping costData = getUsageCosts("", this_player());
+    if (member(costData, "hit point cost") && costData["hit point cost"])
     {
-        costs += ({ sprintf("%d hit points", query("hit point cost")) });
+        costs += ({ sprintf("%d hit points", costData["hit point cost"]) });
     }
-    if (query("spell point cost"))
+    if (member(costData, "spell point cost") && costData["spell point cost"])
     {
-        costs += ({ sprintf("%d spell points", query("spell point cost")) });
+        costs += ({ sprintf("%d spell points", costData["spell point cost"]) });
     }
-    if (query("stamina point cost"))
+    if (member(costData, "stamina point cost") && costData["stamina point cost"])
     {
-        costs += ({ sprintf("%d stamina points", query("stamina point cost")) });
+        costs += ({ sprintf("%d stamina points", costData["stamina point cost"]) });
     }
     if (sizeof(costs))
     {
@@ -508,6 +551,25 @@ private nomask string displayUsageCost(string colorConfiguration,
             "field header", "research", colorConfiguration) +
             configuration->decorate(list + "\n",
                 "field data", "research", colorConfiguration);
+
+        if (sizeof(query("cost modifiers")))
+        {
+            object dictionary = getDictionary("research");
+            mapping modifiers = query("cost modifiers");
+            foreach(string researchItem in m_indices(modifiers))
+            {
+                object researchObj = dictionary->researchObject(researchItem);
+                if (researchObj)
+                {
+                    ret += sprintf("%-18s", "") +
+                        configuration->decorate(
+                            sprintf("%s decreases cost by %d",
+                                researchObj->query("name"), 
+                                modifiers[researchItem]),
+                            "field data", "research", colorConfiguration);
+                }
+            }
+        }
     }
 
     int cooldown = cooldown(this_player());
