@@ -2,7 +2,7 @@
 // Class: stateObject
 // File Name: stateObject.c
 //
-// Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: All objects that are to be used by the state machine engine

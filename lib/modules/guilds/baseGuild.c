@@ -2,7 +2,7 @@
 // Class: baseGuild
 // File Name: baseGuild.c
 //
-// Copyright (c) 2020 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/prerequisites.c";
