@@ -5,6 +5,30 @@
 inherit "/lib/modules/research/researchTree.c";
 
 /////////////////////////////////////////////////////////////////////////////
+private void EleventhLevel()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void TwelfthLevel()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void ThirteenLevel()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FourteenLevel()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void FifteenthLevel()
 {
 
@@ -80,10 +104,14 @@ public void reset(int arg)
         Description("");
         Source("Aegis Guard");
         addResearchElement(
-            "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
+            "guilds/aegis-guard/forms/sword-elemental/elemental-root.c");
         TreeRoot(
-            "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
+            "guilds/aegis-guard/forms/sword-elemental/elemental-root.c");
 
+        EleventhLevel();
+        TwelfthLevel();
+        ThirteenLevel();
+        FourteenLevel();
         FifteenthLevel();
         SixteenthLevel();
         SeventeenthLevel();

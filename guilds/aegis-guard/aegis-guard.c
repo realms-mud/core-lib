@@ -167,8 +167,14 @@ public void SetupGuild()
 
     addCriteria("actions", ([
         "type":"research tree",
-        "apply": "at level 11",
+        "apply": "at level 7",
         "research tree": "guilds/aegis-guard/sword-actions.c"
+    ]));
+
+    addCriteria("elemental", ([
+        "type":"research tree",
+        "apply": "at level 11",
+        "research tree": "guilds/aegis-guard/sword-elemental.c"
     ]));
 
     addCriteria("mythic", ([
