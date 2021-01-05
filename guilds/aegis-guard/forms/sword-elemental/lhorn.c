@@ -10,15 +10,15 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Ambar");
+        addSpecification("name", "Lhorn");
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This research provides the user with the "
             "knowledge of a technique that allows one to project a wave of elemental "
-            "earth energy known to the Aegis Guard as ambar. "
+            "water energy known to the Aegis Guard as lhorn. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
         addSpecification("usage summary", "A technique projecting a wave of "
-            "elemental earth energy");
+            "elemental water energy");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-elemental/elemental-root.c",
             (["type":"research"]));
@@ -47,7 +47,7 @@ public void reset(int arg)
                 "range": 100
             ])
         }));
-        addSpecification("damage type", "earth");
+        addSpecification("damage type", "water");
 
         addSpecification("modifiers", ({ 
             ([
@@ -100,7 +100,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "skill",
-                "name": "elemental earth",
+                "name": "elemental water",
                 "formula": "logarithmic",
                 "rate": 1.10
             ]),
@@ -147,7 +147,7 @@ public void reset(int arg)
             "guilds/aegis-guard/forms/sword-elemental/faen-celair.c": 15,
             "guilds/aegis-guard/forms/sword-elemental/faen-edlothia.c": 15,
             "guilds/aegis-guard/forms/sword-elemental/faen-manadh.c": 10,
-            "guilds/aegis-guard/forms/sword-elemental/faen-dagnir.c": 10
+            "guilds/aegis-guard/forms/sword-elemental/faen-dagnir.c": 10,
         ]));
 
         addSpecification("cooldown", 60);
@@ -162,8 +162,8 @@ public void reset(int arg)
         addSpecification("command template", "ambar [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
             "##Infinitive::gesture## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName## sending a hail of stone their way.");
+            "##InitiatorWeapon## at ##TargetName## sending a powerful blast of water their way.");
         addSpecification("use combination message", "##Infinitive::summon## "
-            "a hail of stones");
+            "a blast of water");
     }
 }

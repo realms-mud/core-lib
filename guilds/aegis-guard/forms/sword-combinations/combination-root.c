@@ -37,28 +37,21 @@ public void reset(int arg)
                 "guilds/aegis-guard/forms/sword-attacks/maego.c",
                 "guilds/aegis-guard/forms/sword-attacks/narcha.c"
             }),
-/*            "can include only one of": ({ 
+            "can include only one of": ({ 
                 "guilds/aegis-guard/forms/sword-mythic/auth.c",
-                "guilds/aegis-guard/forms/sword-mythic/anwar.c",
-                "guilds/aegis-guard/forms/sword-mythic/dagnir.c",
-                "guilds/aegis-guard/forms/sword-mythic/sereg.c",
-                "guilds/aegis-guard/forms/sword-mythic/edlothia.c",
-                "guilds/aegis-guard/forms/sword-mythic/celair.c",
-                "guilds/aegis-guard/forms/sword-mythic/guruthos.c",
-                "guilds/aegis-guard/forms/sword-mythic/manadh.c",
-                "guilds/aegis-guard/forms/sword-mythic/ambar.c",
-                "guilds/aegis-guard/forms/sword-mythic/lhutha.c",
-                "guilds/aegis-guard/forms/sword-mythic/naurtho.c",
-                "guilds/aegis-guard/forms/sword-mythic/heleg.c",
-                "guilds/aegis-guard/forms/sword-mythic/glauro.c",
-                "guilds/aegis-guard/forms/sword-mythic/angolo.c",
-                "guilds/aegis-guard/forms/sword-mythic/eiliant.c",
-                "guilds/aegis-guard/forms/sword-mythic/geilo.c",
-                "guilds/aegis-guard/forms/sword-mythic/alagos.c",
-                "guilds/aegis-guard/forms/sword-mythic/lhorn.c",
-                "guilds/aegis-guard/forms/sword-mythic/gwaeren.c"
+//                "guilds/aegis-guard/forms/sword-mythic/sereg.c",
+//                "guilds/aegis-guard/forms/sword-mythic/guruthos.c",
+//                "guilds/aegis-guard/forms/sword-mythic/lhutha.c",
+//                "guilds/aegis-guard/forms/sword-mythic/angolo.c",
+                "guilds/aegis-guard/forms/sword-elemental/ambar.c",
+                "guilds/aegis-guard/forms/sword-elemental/naurtho.c",
+//                "guilds/aegis-guard/forms/sword-elemental/heleg.c",
+//                "guilds/aegis-guard/forms/sword-elemental/glauro.c",
+                "guilds/aegis-guard/forms/sword-elemental/geilo.c",
+//                "guilds/aegis-guard/forms/sword-elemental/alagos.c",
+                "guilds/aegis-guard/forms/sword-elemental/lhorn.c",
+                "guilds/aegis-guard/forms/sword-elemental/gwaeren.c"
             }),
-            */
             "can include any of": ({ 
                 "guilds/aegis-guard/forms/sword-actions/athra.c",
                 "guilds/aegis-guard/forms/sword-actions/celeg.c",
@@ -208,6 +201,13 @@ public void reset(int arg)
         }));
 
         addSpecification("cooldown", 60);
+        addSpecification("cooldown modifiers", ([
+            "guilds/aegis-guard/forms/sword-combinations/heleg-alag.c": 10,
+            "guilds/aegis-guard/forms/sword-combinations/heleg-bronadui.c": 10,
+            "guilds/aegis-guard/forms/sword-combinations/heleg-golwen.c": 15,
+            "guilds/aegis-guard/forms/sword-combinations/heleg-godref.c": 15,
+        ]));
+
         addSpecification("event handler", "godrebAiMegilEvent");
         addSpecification("command template", "godreb ai megil ##Combinations## [at ##Target##]");
         addSpecification("use ability message", "##InitiatorName## ##Infinitive::point## "

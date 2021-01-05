@@ -167,7 +167,7 @@ private void TwelfthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void ThirteenLevel()
+private void ThirteenthLevel()
 {
     addResearchElement("guilds/scion/paths/dagger/forms/crooked-strike.c");
     addResearchElement("guilds/scion/paths/dagger/forms/dance-of-death.c");
@@ -312,7 +312,7 @@ public void reset(int arg)
         NinthLevel();
         TenthLevel();
         TwelfthLevel();
-        ThirteenLevel();
+        ThirteenthLevel();
         FourteenLevel();
         FifteenthLevel();
         SixteenthLevel();

@@ -10,11 +10,11 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Ambar");
+        addSpecification("name", "Geilo");
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of a technique that allows one to project a wave of elemental "
-            "earth energy known to the Aegis Guard as ambar. "
+            "knowledge of a technique that allows one to project a wave of electrical "
+            "energy known to the Aegis Guard as geilo. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
         addSpecification("usage summary", "A technique projecting a wave of "
@@ -29,7 +29,7 @@ public void reset(int arg)
         addPrerequisite("level", ([  
             "type":"level",
             "guild": "Aegis Guard",
-            "value": 11
+            "value": 13
         ]));
 
         addSpecification("scope", "targeted");
@@ -38,16 +38,16 @@ public void reset(int arg)
 
         addSpecification("damage hit points", ({ ([
                 "probability": 80,
-                "base damage": 25,
-                "range": 50
+                "base damage": 35,
+                "range": 60
             ]),
             ([
                 "probability": 20,
-                "base damage": 50,
-                "range": 100
+                "base damage": 60,
+                "range": 120
             ])
         }));
-        addSpecification("damage type", "earth");
+        addSpecification("damage type", "electricity");
 
         addSpecification("modifiers", ({ 
             ([
@@ -100,7 +100,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "skill",
-                "name": "elemental earth",
+                "name": "elemental air",
                 "formula": "logarithmic",
                 "rate": 1.10
             ]),
@@ -147,10 +147,10 @@ public void reset(int arg)
             "guilds/aegis-guard/forms/sword-elemental/faen-celair.c": 15,
             "guilds/aegis-guard/forms/sword-elemental/faen-edlothia.c": 15,
             "guilds/aegis-guard/forms/sword-elemental/faen-manadh.c": 10,
-            "guilds/aegis-guard/forms/sword-elemental/faen-dagnir.c": 10
+            "guilds/aegis-guard/forms/sword-elemental/faen-dagnir.c": 10,
         ]));
 
-        addSpecification("cooldown", 60);
+        addSpecification("cooldown", 70);
         addSpecification("cooldown modifiers", ([
             "guilds/aegis-guard/forms/sword-elemental/heleg-celair.c": 10,
             "guilds/aegis-guard/forms/sword-elemental/heleg-edlothia.c": 10,
@@ -158,12 +158,12 @@ public void reset(int arg)
             "guilds/aegis-guard/forms/sword-elemental/heleg-dagnir.c": 10,
         ]));
 
-        addSpecification("event handler", "ambarEvent");
-        addSpecification("command template", "ambar [at ##Target##]");
+        addSpecification("event handler", "geiloEvent");
+        addSpecification("command template", "geilo [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
             "##Infinitive::gesture## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName## sending a hail of stone their way.");
+            "##InitiatorWeapon## at ##TargetName## sending an arc of electrical sparks their way.");
         addSpecification("use combination message", "##Infinitive::summon## "
-            "a hail of stones");
+            "an arc of sparks");
     }
 }

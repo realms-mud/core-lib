@@ -10,15 +10,15 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Ambar");
+        addSpecification("name", "Naurtho");
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of a technique that allows one to project a wave of elemental "
-            "earth energy known to the Aegis Guard as ambar. "
+            "knowledge of a technique that allows one to project elemental flame "
+            "energy known to the Aegis Guard as naurtho. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
         addSpecification("usage summary", "A technique projecting a wave of "
-            "elemental earth energy");
+            "elemental flame energy");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-elemental/elemental-root.c",
             (["type":"research"]));
@@ -47,7 +47,7 @@ public void reset(int arg)
                 "range": 100
             ])
         }));
-        addSpecification("damage type", "earth");
+        addSpecification("damage type", "fire");
 
         addSpecification("modifiers", ({ 
             ([
@@ -100,7 +100,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "skill",
-                "name": "elemental earth",
+                "name": "elemental fire",
                 "formula": "logarithmic",
                 "rate": 1.10
             ]),
@@ -147,7 +147,7 @@ public void reset(int arg)
             "guilds/aegis-guard/forms/sword-elemental/faen-celair.c": 15,
             "guilds/aegis-guard/forms/sword-elemental/faen-edlothia.c": 15,
             "guilds/aegis-guard/forms/sword-elemental/faen-manadh.c": 10,
-            "guilds/aegis-guard/forms/sword-elemental/faen-dagnir.c": 10
+            "guilds/aegis-guard/forms/sword-elemental/faen-dagnir.c": 10,
         ]));
 
         addSpecification("cooldown", 60);
@@ -158,12 +158,12 @@ public void reset(int arg)
             "guilds/aegis-guard/forms/sword-elemental/heleg-dagnir.c": 10,
         ]));
 
-        addSpecification("event handler", "ambarEvent");
-        addSpecification("command template", "ambar [at ##Target##]");
+        addSpecification("event handler", "naurthoEvent");
+        addSpecification("command template", "naurtho [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
             "##Infinitive::gesture## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName## sending a hail of stone their way.");
+            "##InitiatorWeapon## at ##TargetName## sending a hail of flaming bolts their way.");
         addSpecification("use combination message", "##Infinitive::summon## "
-            "a hail of stones");
+            "a hail of flaming bolts");
     }
 }

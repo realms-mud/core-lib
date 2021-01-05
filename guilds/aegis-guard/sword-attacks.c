@@ -116,7 +116,7 @@ private void TwelfthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void ThirteenLevel()
+private void ThirteenthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-attacks/raica-dravn.c");
 
@@ -252,7 +252,7 @@ public void reset(int arg)
         NinthLevel();
         TenthLevel();
         TwelfthLevel();
-        ThirteenLevel();
+        ThirteenthLevel();
         FourteenLevel();
         FifteenthLevel();
         SixteenthLevel();

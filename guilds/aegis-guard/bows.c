@@ -71,7 +71,7 @@ private void TwelfthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void ThirteenLevel()
+private void ThirteenthLevel()
 {
 
 }
@@ -171,7 +171,7 @@ public void reset(int arg)
         NinthLevel();
         TenthLevel();
         TwelfthLevel();
-        ThirteenLevel();
+        ThirteenthLevel();
         FourteenLevel();
         FifteenthLevel();
         SixteenthLevel();

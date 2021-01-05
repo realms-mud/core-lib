@@ -23,6 +23,15 @@ private void EleventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void ThirteenthLevel()
+{
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/heleg-alag.c");
+
+    addChild("guilds/aegis-guard/forms/sword-combinations/heleg-alag.c",
+        "guilds/aegis-guard/forms/sword-combinations/godramin.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void FifteenthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-combinations/thel-hannas.c");
@@ -47,6 +56,15 @@ private void TwentyFirstLevel()
 
     addChild("guilds/aegis-guard/forms/sword-combinations/tad-godref.c",
         "guilds/aegis-guard/forms/sword-combinations/godramin.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void TwentyThirdLevel()
+{
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/heleg-bronadui.c");
+
+    addChild("guilds/aegis-guard/forms/sword-combinations/heleg-bronadui.c",
+        "guilds/aegis-guard/forms/sword-combinations/heleg-alag.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -77,12 +95,30 @@ private void ThirtyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void ThirtyThirdLevel()
+{
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/heleg-golwen.c");
+
+    addChild("guilds/aegis-guard/forms/sword-combinations/heleg-golwen.c",
+        "guilds/aegis-guard/forms/sword-combinations/heleg-bronadui.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void ThirtyFifthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-combinations/tur-godref.c");
 
     addChild("guilds/aegis-guard/forms/sword-combinations/tur-godref.c",
         "guilds/aegis-guard/forms/sword-combinations/neledh-godref.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyThirdLevel()
+{
+    addResearchElement("guilds/aegis-guard/forms/sword-combinations/heleg-godref.c");
+
+    addChild("guilds/aegis-guard/forms/sword-combinations/heleg-godref.c",
+        "guilds/aegis-guard/forms/sword-combinations/heleg-golwen.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -101,12 +137,16 @@ public void reset(int arg)
 
         NinthLevel();
         EleventhLevel();
+        ThirteenthLevel();
         FifteenthLevel();
         NineteenthLevel();
         TwentyFirstLevel();
+        TwentyThirdLevel();
         TwentyFifthLevel();
         TwentySeventhLevel();
         ThirtyFirstLevel();
+        ThirtyThirdLevel();
         ThirtyFifthLevel();
+        FortyThirdLevel();
     }
 }

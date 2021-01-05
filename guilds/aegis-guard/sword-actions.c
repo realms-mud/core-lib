@@ -32,7 +32,7 @@ private void EleventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void ThirteenLevel()
+private void ThirteenthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-actions/gleina.c");
 
@@ -225,7 +225,7 @@ public void reset(int arg)
         SeventhLevel();
         NinthLevel();
         EleventhLevel();
-        ThirteenLevel();
+        ThirteenthLevel();
         FourteenLevel();
         FifteenthLevel();
         SeventeenthLevel();
