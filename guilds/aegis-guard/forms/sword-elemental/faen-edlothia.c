@@ -35,6 +35,8 @@ public void reset(int arg)
             "Alagos": 15,
             "Lhorn": 15,
             "Gwaeren": 15,
+            "Luithia": 15,
+            "Gonatsai": 15
         ]));
         addSpecification("affected research type", "decrease cost");
     }

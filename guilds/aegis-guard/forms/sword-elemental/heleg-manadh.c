@@ -35,6 +35,8 @@ public void reset(int arg)
             "Alagos": 10,
             "Lhorn": 10,
             "Gwaeren": 10,
+            "Luithia": 10,
+            "Gonatsai": 10
         ]));
         addSpecification("affected research type", "decrease cooldown");
     }
