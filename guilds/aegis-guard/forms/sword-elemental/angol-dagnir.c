@@ -35,7 +35,8 @@ public void reset(int arg)
             "Lhorn": 25,
             "Gwaeren": 25,
             "Luithia": 25,
-            "Gonatsai": 25
+            "Gonatsai": 25,
+            "Lhacha": 25
         ]));
         addSpecification("affected research type", "percentage");
     }

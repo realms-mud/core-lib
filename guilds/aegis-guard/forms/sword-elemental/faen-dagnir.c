@@ -36,7 +36,8 @@ public void reset(int arg)
             "Lhorn": 10,
             "Gwaeren": 10,
             "Luithia": 10,
-            "Gonatsai": 10
+            "Gonatsai": 10,
+            "Lhacha": 10
         ]));
         addSpecification("affected research type", "decrease cost");
     }

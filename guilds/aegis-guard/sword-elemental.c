@@ -42,12 +42,6 @@ private void FifteenthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void SixteenthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void SeventeenthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-elemental/heleg-celair.c");
@@ -68,13 +62,19 @@ private void NineteenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFirstLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-elemental/gonatsai.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-elemental/alagos.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-elemental/luithia.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-elemental/lhacha.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentyThirdLevel()
-{
-
+    addChild("guilds/aegis-guard/forms/sword-elemental/gonatsai.c",
+        "guilds/aegis-guard/forms/sword-elemental/ambar.c");
+    addChild("guilds/aegis-guard/forms/sword-elemental/alagos.c",
+        "guilds/aegis-guard/forms/sword-elemental/gwaeren.c");
+    addChild("guilds/aegis-guard/forms/sword-elemental/luithia.c",
+        "guilds/aegis-guard/forms/sword-elemental/lhorn.c");
+    addChild("guilds/aegis-guard/forms/sword-elemental/lhacha.c",
+        "guilds/aegis-guard/forms/sword-elemental/naurtho.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -105,15 +105,15 @@ private void TwentyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void ThirtiethLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void ThirtyFirstLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/sword-elemental/heleg.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-elemental/glauro.c");
 
+    addChild("guilds/aegis-guard/forms/sword-elemental/heleg.c",
+        "guilds/aegis-guard/forms/sword-elemental/luithia.c");
+    addChild("guilds/aegis-guard/forms/sword-elemental/glauro.c",
+        "guilds/aegis-guard/forms/sword-elemental/geilo.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -205,15 +205,12 @@ public void reset(int arg)
         EleventhLevel();
         ThirteenthLevel();
         FifteenthLevel();
-        SixteenthLevel();
         SeventeenthLevel();
         NineteenthLevel();
         TwentyFirstLevel();
-        TwentyThirdLevel();
         TwentyFifthLevel();
         TwentySeventhLevel();
         TwentyNinthLevel();
-        ThirtiethLevel();
         ThirtyFirstLevel();
         ThirtyFifthLevel();
         ThirtySeventhLevel();

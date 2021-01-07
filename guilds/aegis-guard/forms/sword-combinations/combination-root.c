@@ -45,11 +45,14 @@ public void reset(int arg)
 //                "guilds/aegis-guard/forms/sword-mythic/angolo.c",
                 "guilds/aegis-guard/forms/sword-elemental/ambar.c",
                 "guilds/aegis-guard/forms/sword-elemental/naurtho.c",
-//                "guilds/aegis-guard/forms/sword-elemental/heleg.c",
-//                "guilds/aegis-guard/forms/sword-elemental/glauro.c",
+                "guilds/aegis-guard/forms/sword-elemental/heleg.c",
+                "guilds/aegis-guard/forms/sword-elemental/glauro.c",
                 "guilds/aegis-guard/forms/sword-elemental/geilo.c",
-//                "guilds/aegis-guard/forms/sword-elemental/alagos.c",
+                "guilds/aegis-guard/forms/sword-elemental/alagos.c",
                 "guilds/aegis-guard/forms/sword-elemental/lhorn.c",
+                "guilds/aegis-guard/forms/sword-elemental/luithia.c",
+                "guilds/aegis-guard/forms/sword-elemental/gonatsai.c",
+                "guilds/aegis-guard/forms/sword-elemental/lhacha.c",
                 "guilds/aegis-guard/forms/sword-elemental/gwaeren.c"
             }),
             "can include any of": ({ 
