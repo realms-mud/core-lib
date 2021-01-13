@@ -29,31 +29,31 @@ public void reset(int arg)
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Aegis Guard",
-                "value": 11
+                "value": 15
             ]));
 
         addSpecification("scope", "targeted");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("spell point cost", 25);
 
         addSpecification("damage hit points", ({ ([
                 "probability": 80,
-                "base damage": 15,
-                "range": 15
+                "base damage": 50,
+                "range": 50
             ]),
             ([
                 "probability": 20,
-                "base damage": 20,
-                "range": 20
+                "base damage": 100,
+                "range": 100
             ])
         }));
-        addSpecification("damage type", "undead");
+
+        addSpecification("damage type", "chaos");
 
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/sword-mythic/auth-anwar.c",
+                "research item": "guilds/aegis-guard/forms/sword-mythic/delu-anwar.c",
                 "name": "auth-anwar",
                 "formula": "multiplicative",
                 "base value": 1,
@@ -61,7 +61,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/sword-mythic/auth-celair.c",
+                "research item": "guilds/aegis-guard/forms/sword-mythic/delu-celair.c",
                 "name": "auth-celair",
                 "formula": "multiplicative",
                 "base value": 1,
@@ -69,7 +69,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/sword-mythic/auth-edlothia.c",
+                "research item": "guilds/aegis-guard/forms/sword-mythic/delu-edlothia.c",
                 "name": "auth-edlothia",
                 "formula": "multiplicative",
                 "base value": 1,
@@ -77,7 +77,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/sword-mythic/auth-eiliant.c",
+                "research item": "guilds/aegis-guard/forms/sword-mythic/delu-eiliant.c",
                 "name": "auth-eiliant",
                 "formula": "multiplicative",
                 "base value": 1,
@@ -85,7 +85,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/sword-mythic/auth-manadh.c",
+                "research item": "guilds/aegis-guard/forms/sword-mythic/delu-manadh.c",
                 "name": "auth-manadh",
                 "formula": "multiplicative",
                 "base value": 1,
@@ -93,7 +93,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/sword-mythic/auth-dagnir.c",
+                "research item": "guilds/aegis-guard/forms/sword-mythic/delu-dagnir.c",
                 "name": "auth-dagnir",
                 "formula": "multiplicative",
                 "base value": 1,
@@ -124,8 +124,20 @@ public void reset(int arg)
                 "rate": 0.10
             ]), 
             ([
+                "type": "skill",
+                "name": "manipulation",
+                "formula": "logarithmic",
+                "rate": 1.025
+            ]), 
+            ([
+                "type": "skill",
+                "name": "destruction",
+                "formula": "logarithmic",
+                "rate": 1.025
+            ]), 
+            ([
                 "type":"attribute",
-                "name": "charisma",
+                "name": "constitution",
                 "formula": "additive",
                 "rate": 0.25
             ]), 
@@ -143,13 +155,29 @@ public void reset(int arg)
             ]),
         }));
 
-        addSpecification("cooldown", 12);
+        addSpecification("spell point cost", 150);
+        addSpecification("spell point cost modifiers", ([
+            "guilds/aegis-guard/forms/sword-mythic/faen-celair.c": 15,
+            "guilds/aegis-guard/forms/sword-mythic/faen-edlothia.c": 15,
+            "guilds/aegis-guard/forms/sword-mythic/faen-manadh.c": 10,
+            "guilds/aegis-guard/forms/sword-mythic/faen-dagnir.c": 10
+        ]));
+
+        addSpecification("cooldown", 60);
+        addSpecification("cooldown modifiers", ([
+            "guilds/aegis-guard/forms/sword-mythic/heleg-celair.c": 10,
+            "guilds/aegis-guard/forms/sword-mythic/heleg-edlothia.c": 10,
+            "guilds/aegis-guard/forms/sword-mythic/heleg-manadh.c": 10,
+            "guilds/aegis-guard/forms/sword-mythic/heleg-dagnir.c": 10,
+        ]));
+
         addSpecification("event handler", "authEvent");
         addSpecification("command template", "auth [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
-            "##Infinitive::arc## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName## in a masterful hewing motion.");
-        addSpecification("use combination message", "##Infinitive::hew## "
-            "masterfully");
+            "##Infinitive::wave## ##InitiatorPossessive## "
+            "##InitiatorWeapon## at ##TargetName##, sending a wave of spirit "
+            "energy at ##TargetObjective##.");
+        addSpecification("use combination message", "##Infinitive::summon## "
+            "a wave of spirit energy");
     }
 }
