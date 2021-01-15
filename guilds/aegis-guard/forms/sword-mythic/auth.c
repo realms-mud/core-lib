@@ -157,18 +157,18 @@ public void reset(int arg)
 
         addSpecification("spell point cost", 150);
         addSpecification("spell point cost modifiers", ([
-            "guilds/aegis-guard/forms/sword-mythic/faen-celair.c": 15,
-            "guilds/aegis-guard/forms/sword-mythic/faen-edlothia.c": 15,
-            "guilds/aegis-guard/forms/sword-mythic/faen-manadh.c": 10,
-            "guilds/aegis-guard/forms/sword-mythic/faen-dagnir.c": 10
+            "guilds/aegis-guard/forms/sword-mythic/tur-celair.c": 15,
+            "guilds/aegis-guard/forms/sword-mythic/tur-edlothia.c": 15,
+            "guilds/aegis-guard/forms/sword-mythic/tur-manadh.c": 10,
+            "guilds/aegis-guard/forms/sword-mythic/tur-dagnir.c": 10
         ]));
 
         addSpecification("cooldown", 60);
         addSpecification("cooldown modifiers", ([
-            "guilds/aegis-guard/forms/sword-mythic/heleg-celair.c": 10,
-            "guilds/aegis-guard/forms/sword-mythic/heleg-edlothia.c": 10,
-            "guilds/aegis-guard/forms/sword-mythic/heleg-manadh.c": 10,
-            "guilds/aegis-guard/forms/sword-mythic/heleg-dagnir.c": 10,
+            "guilds/aegis-guard/forms/sword-mythic/braig-celair.c": 10,
+            "guilds/aegis-guard/forms/sword-mythic/braig-edlothia.c": 10,
+            "guilds/aegis-guard/forms/sword-mythic/braig-manadh.c": 10,
+            "guilds/aegis-guard/forms/sword-mythic/braig-dagnir.c": 10,
         ]));
 
         addSpecification("event handler", "authEvent");
