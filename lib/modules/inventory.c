@@ -570,8 +570,21 @@ public nomask int inventoryGetArmorClass()
 }    
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string normalizeDamageType(string damageType)
+{
+    string ret = damageType;
+    if (member(({ "slash", "bludgeon", "thrust" }), ret) > -1)
+    {
+        ret = "physical";
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int inventoryGetDefenseBonus(string damageType)
 {
+    damageType = normalizeDamageType(damageType);
+
     int ret = inventoryGetModifier("combatModifiers", "bonus defense");
 
     string resistBonus = sprintf("resist %s", damageType);
@@ -761,6 +774,8 @@ public nomask int inventoryGetAttackBonus(object weapon)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int inventoryGetDamageBonus(object weapon, string damageType)
 {
+    damageType = normalizeDamageType(damageType);
+
     int ret = (damageType == "physical") ?
         inventoryGetModifier("combatModifiers", "bonus damage") : 0;
 

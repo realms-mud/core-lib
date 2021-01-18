@@ -9,6 +9,7 @@ protected void Setup()
 {
     WeaponType = "hammer";
     WeaponSkill = "hammer";
+    ValidWeaponTypes = ({ "hammer" });
 
-    addSpecification("limited by", (["equipment":({ "hammer" })]));
+    addSpecification("limited by", (["equipment": ValidWeaponTypes]));
 }

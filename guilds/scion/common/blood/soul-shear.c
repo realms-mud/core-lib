@@ -6,6 +6,7 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 
 protected string WeaponType = "ERROR";
 protected string WeaponSkill = "unarmed";
+protected string *ValidWeaponTypes = ({ });
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
@@ -28,7 +29,7 @@ public void reset(int arg)
 
         addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
             (["type":"research"]));
-        addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/sparks.c", WeaponType),
+        addPrerequisite(sprintf("guilds/scion/paths/%s/blood/soulspike.c", WeaponType),
             (["type":"research"]));
         addPrerequisite("level",
             (["type":"level",
@@ -95,6 +96,13 @@ public void reset(int arg)
                 "formula" : "multiplicative",
                 "base value" : 1,
                 "rate": 1.4
+            ]),
+            ([
+                "type": "weapon damage",
+                "name" : WeaponSkill,
+                "types" : ValidWeaponTypes,
+                "formula" : "additive",
+                "rate" : 1.0
             ]),
             ([
                 "type":"skill",

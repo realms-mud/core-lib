@@ -9,6 +9,7 @@ protected void Setup()
 {
     WeaponType = "staff";
     WeaponSkill = "staff";
+    ValidWeaponTypes = ({ "staff" });
 
-    addSpecification("limited by", (["equipment":({ "staff" })]));
+    addSpecification("limited by", (["equipment": ValidWeaponTypes]));
 }

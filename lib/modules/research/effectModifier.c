@@ -10,7 +10,7 @@ private string ModifierObject = "/lib/items/modifierObject.c";
 
 private string *modifierTypes = ({ "skill", "attribute", "skill bonus", 
                                    "attribute bonus", "level", "research", "trait",
-                                   "highest skill" });
+                                   "highest skill", "weapon damage" });
 private string *modifierFormulas = ({ "additive", "subtractive", "logarithmic",
                                       "multiplicative" });
                                       
@@ -123,6 +123,29 @@ private nomask int modifierValueByType(object initiator, mapping modifier)
                     initiator->isTraitOf(modifier["trait"]))
                 {
                     ret = modifier["base value"];
+                }
+                break;
+            }
+            case "weapon damage":
+            {
+                object weapon = 
+                    initiator->equipmentInSlot("wielded primary");
+
+                if (objectp(weapon) && pointerp(modifier["types"]) &&
+                    (member(modifier["types"], weapon->query("weapon type")) > -1))
+                {
+                    string *damageTypes = 
+                        getDictionary("materials")->getMaterialDamageType(
+                            weapon) +
+                        m_indices(weapon->query("enchantments"));
+
+                    damageTypes = m_indices(mkmapping(damageTypes));
+                    ret -= modifier["base"];
+
+                    foreach(string damageType in damageTypes)
+                    {
+                        ret += initiator->calculateDamage(weapon, damageType, 1);
+                    }
                 }
                 break;
             }

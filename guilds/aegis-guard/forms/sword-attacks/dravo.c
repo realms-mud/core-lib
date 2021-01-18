@@ -130,7 +130,15 @@ public void reset(int arg)
                 "formula" : "multiplicative",
                 "base value" : 1,
                 "rate" : 1.15
-            ]),            
+            ]), 
+            ([
+                "type": "weapon damage",
+                "name" : "sword",
+                "types" : ({ "dagger", "short sword", "long sword",
+                    "hand and a half sword", "two-handed sword" }),
+                "formula" : "additive",
+                "rate" : 0.5
+            ]),
             ([
                 "type":"highest skill",
                 "name" : "sword skills",

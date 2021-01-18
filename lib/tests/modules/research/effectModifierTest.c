@@ -266,6 +266,7 @@ void ApplyModifiersCorrectlyAppliesTraitModifier()
     User->ToggleMockTrait();
     ExpectEq(15, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void ApplyModifiersAppliesSpecialModifier()
 {
@@ -300,3 +301,28 @@ void ApplyModifiersCorrectlyAddsMultipleModifiers()
     ExpectEq(35, EffectModifier->testApplyModifiers(0, User, modifiers));
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void ApplyModifiersCorrectlyAppliesWeaponDamage()
+{
+    object weapon = 
+        clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    weapon->set("material", "galvorn");
+    weapon->set("enchantments", (["magical":3, "fire" : 5, "acid" : 5]));
+    move_object(weapon, User);
+   
+    mapping modifier = ([
+        "type": "weapon damage",
+        "name" : "sword",
+        "types" : ({ "dagger", "short sword", "long sword",
+            "hand and a half sword", "two-handed sword" }),
+        "formula" : "additive",
+        "base": 10.0,
+        "rate" : 1.0
+    ]);
+
+    ExpectEq(0, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+
+    User->equip(weapon);
+    // Should be: 24 physical, 10 magical, 7 fire, and 7 acid and the base is -10
+    ExpectEq(38, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+}
