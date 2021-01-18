@@ -10,14 +10,14 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Auth");
+        addSpecification("name", "Sereg");
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of a technique that allows one to project a spirit "
-            "energy wave known to the Aegis Guard as auth. "
+            "knowledge of a technique that allows one to project a hail of "
+            "destructive magic known to the Aegis Guard as sereg. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
-        addSpecification("usage summary", "A technique projecting a spirit "
+        addSpecification("usage summary", "A technique projecting a destructive "
             "energy wave");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-mythic/mythic-root.c",
@@ -48,7 +48,7 @@ public void reset(int arg)
             ])
         }));
 
-        addSpecification("damage type", "chaos");
+        addSpecification("damage type", "disease");
 
         addSpecification("modifiers", ({ 
             ([
@@ -101,7 +101,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "skill",
-                "name": "spirit",
+                "name": "body",
                 "formula": "logarithmic",
                 "rate": 1.10
             ]),
@@ -119,7 +119,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "skill",
-                "name": "evocation",
+                "name": "transformation",
                 "formula": "additive",
                 "rate": 0.10
             ]), 
@@ -171,13 +171,13 @@ public void reset(int arg)
             "guilds/aegis-guard/forms/sword-mythic/braig-dagnir.c": 10,
         ]));
 
-        addSpecification("event handler", "authEvent");
-        addSpecification("command template", "auth [at ##Target##]");
+        addSpecification("event handler", "seregEvent");
+        addSpecification("command template", "sereg [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
-            "##Infinitive::wave## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName##, sending a wave of spirit "
-            "energy at ##TargetObjective##.");
+            "##Infinitive::point## ##InitiatorPossessive## "
+            "##InitiatorWeapon## at ##TargetName##, sending a hail of crimson "
+            "bolts at ##TargetObjective##.");
         addSpecification("use combination message", "##Infinitive::summon## "
-            "a wave of spirit energy");
+            "a hail of crimson bolts");
     }
 }

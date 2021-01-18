@@ -8,8 +8,14 @@ inherit "/lib/modules/research/researchTree.c";
 private void FifteenthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-mythic/auth.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-mythic/sereg.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-mythic/guruthos.c");
 
     addChild("guilds/aegis-guard/forms/sword-mythic/auth.c",
+        "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
+    addChild("guilds/aegis-guard/forms/sword-mythic/sereg.c",
+        "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
+    addChild("guilds/aegis-guard/forms/sword-mythic/guruthos.c",
         "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
 }
 
@@ -37,6 +43,18 @@ private void TwentyFifthLevel()
     addResearchElement("guilds/aegis-guard/forms/sword-mythic/delu-anwar.c");
 
     addChild("guilds/aegis-guard/forms/sword-mythic/delu-anwar.c",
+        "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void TwentyNinthLevel()
+{
+    addResearchElement("guilds/aegis-guard/forms/sword-mythic/lhutha.c");
+    addResearchElement("guilds/aegis-guard/forms/sword-mythic/angolo.c");
+
+    addChild("guilds/aegis-guard/forms/sword-mythic/lhutha.c",
+        "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
+    addChild("guilds/aegis-guard/forms/sword-mythic/angolo.c",
         "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
 }
 
@@ -157,6 +175,7 @@ public void reset(int arg)
         TwentyFirstLevel();
         TwentyThirdLevel();
         TwentyFifthLevel();
+        TwentyNinthLevel();
         ThirtyFirstLevel();
         ThirtyThirdLevel();
         ThirtyFifthLevel();

@@ -10,14 +10,14 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Auth");
+        addSpecification("name", "Angolo");
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of a technique that allows one to project a spirit "
-            "energy wave known to the Aegis Guard as auth. "
+            "knowledge of a technique that allows one to project a magical "
+            "energy wave known to the Aegis Guard as angolo. "
             "It is a form that can either be done by itself or as part of a "
             "combination attack.");
-        addSpecification("usage summary", "A technique projecting a spirit "
+        addSpecification("usage summary", "A technique projecting a magical "
             "energy wave");
 
         addPrerequisite("guilds/aegis-guard/forms/sword-mythic/mythic-root.c",
@@ -29,7 +29,7 @@ public void reset(int arg)
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Aegis Guard",
-                "value": 15
+                "value": 29
             ]));
 
         addSpecification("scope", "targeted");
@@ -38,17 +38,17 @@ public void reset(int arg)
 
         addSpecification("damage hit points", ({ ([
                 "probability": 80,
-                "base damage": 50,
-                "range": 50
+                "base damage": 150,
+                "range": 300
             ]),
             ([
                 "probability": 20,
-                "base damage": 100,
-                "range": 100
+                "base damage": 250,
+                "range": 500
             ])
         }));
 
-        addSpecification("damage type", "chaos");
+        addSpecification("damage type", "magical");
 
         addSpecification("modifiers", ({ 
             ([
@@ -101,7 +101,7 @@ public void reset(int arg)
             ]),
             ([
                 "type": "skill",
-                "name": "spirit",
+                "name": "transformation",
                 "formula": "logarithmic",
                 "rate": 1.10
             ]),
@@ -109,7 +109,7 @@ public void reset(int arg)
                 "type": "skill",
                 "name": "spellcraft",
                 "formula": "logarithmic",
-                "rate": 1.05
+                "rate": 1.10
             ]),
             ([
                 "type": "skill",
@@ -155,7 +155,7 @@ public void reset(int arg)
             ]),
         }));
 
-        addSpecification("spell point cost", 150);
+        addSpecification("spell point cost", 250);
         addSpecification("spell point cost modifiers", ([
             "guilds/aegis-guard/forms/sword-mythic/tur-celair.c": 15,
             "guilds/aegis-guard/forms/sword-mythic/tur-edlothia.c": 15,
@@ -163,7 +163,7 @@ public void reset(int arg)
             "guilds/aegis-guard/forms/sword-mythic/tur-dagnir.c": 10
         ]));
 
-        addSpecification("cooldown", 60);
+        addSpecification("cooldown", 150);
         addSpecification("cooldown modifiers", ([
             "guilds/aegis-guard/forms/sword-mythic/braig-celair.c": 10,
             "guilds/aegis-guard/forms/sword-mythic/braig-edlothia.c": 10,
@@ -171,13 +171,13 @@ public void reset(int arg)
             "guilds/aegis-guard/forms/sword-mythic/braig-dagnir.c": 10,
         ]));
 
-        addSpecification("event handler", "authEvent");
-        addSpecification("command template", "auth [at ##Target##]");
+        addSpecification("event handler", "angoloEvent");
+        addSpecification("command template", "angolo [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
             "##Infinitive::wave## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName##, sending a wave of spirit "
+            "##InitiatorWeapon## at ##TargetName##, sending a torrent of magical "
             "energy at ##TargetObjective##.");
         addSpecification("use combination message", "##Infinitive::summon## "
-            "a wave of spirit energy");
+            "a torrent of magical energy");
     }
 }
