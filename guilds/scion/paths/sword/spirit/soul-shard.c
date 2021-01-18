@@ -9,7 +9,8 @@ protected void Setup()
 {
     WeaponType = "sword";
     WeaponSkill = "long sword";
+    ValidWeaponTypes = ({ "long sword", "hand and a half sword",
+        "two-handed sword" });
 
-    addSpecification("limited by", (["equipment":({
-        "long sword", "hand and a half sword", "two-handed sword" })]));
+    addSpecification("limited by", (["equipment": ValidWeaponTypes]));
 }

@@ -9,6 +9,7 @@ protected void Setup()
 {
     WeaponType = "dagger";
     WeaponSkill = "dagger";
+    ValidWeaponTypes = ({ "dagger", "short sword" });
 
-    addSpecification("limited by", (["equipment":({ "dagger", "short sword" })]));
+    addSpecification("limited by", (["equipment": ValidWeaponTypes]));
 }
