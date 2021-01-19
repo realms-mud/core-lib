@@ -375,3 +375,70 @@ void CallingExecuteDecreasesStaminaPointsAppropriately()
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
     ExpectEq(130, User->staminaPoints(), "stamina point total after execution");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void ResearchCorrectlyConsumesComponents()
+{
+    move_object(User, 
+        clone_object("/lib/tests/support/environment/startingRoom.c"));
+
+    ResearchItem->addSpecification("scope", "self");
+    User->ToggleMockResearch();
+
+    ResearchItem->addSpecification("consumables", ([ 
+        "mana potion": 1,
+        "arrow": 2 
+    ]));
+
+    ResearchItem->TogglePerformRitual();
+
+    ExpectFalse(ResearchItem->execute("the command", User), "initial");
+    User->heart_beat();
+
+    object quiver =
+        clone_object("/lib/instances/items/weapons/ammunition/quiver-of-arrows.c");
+    move_object(quiver, User);
+
+    object mana = clone_object("/lib/instances/items/potions/mana.c");
+    move_object(mana, User);
+
+    ExpectTrue(ResearchItem->execute("the command", User));
+    ExpectEq("A quiver containing 22 arrows (24 max)", quiver->short());
+    ExpectFalse(mana);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResearchCorrectlyConsumesOverMultipleComponents()
+{
+    move_object(User,
+        clone_object("/lib/tests/support/environment/startingRoom.c"));
+
+    ResearchItem->addSpecification("scope", "self");
+    User->ToggleMockResearch();
+
+    ResearchItem->addSpecification("consumables", ([ 
+        "mana potion": 1,
+        "arrow": 30 
+    ]));
+
+    ResearchItem->TogglePerformRitual();
+
+    ExpectFalse(ResearchItem->execute("the command", User), "initial");
+    User->heart_beat();
+
+    object quiver =
+        clone_object("/lib/instances/items/weapons/ammunition/quiver-of-arrows.c");
+    move_object(quiver, User);
+
+    object quiver2 =
+        clone_object("/lib/instances/items/weapons/ammunition/quiver-of-arrows.c");
+    move_object(quiver2, environment(User));
+
+    object mana = clone_object("/lib/instances/items/potions/mana.c");
+    move_object(mana, environment(User));
+
+    ExpectTrue(ResearchItem->execute("the command", User));
+    ExpectEq("A quiver that is empty (24 max)", quiver->short());
+    ExpectEq("A quiver containing 18 arrows (24 max)", quiver2->short());
+    ExpectFalse(mana);
+}

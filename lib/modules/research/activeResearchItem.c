@@ -111,6 +111,22 @@ protected int addSpecification(string type, mixed value)
             }
             break;
         }
+        case "consumables":
+        {
+            if (mappingp(value) && (sizeof(value) == sizeof(filter(value,
+                (: (stringp($1) && intp($2)) :)))))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error(sprintf("ERROR - activeResearchItem: the '%s'"
+                    " specification must be a valid mapping.\n",
+                    type));
+            }
+            break;
+        }
         default:
         {
             ret = "researchItem"::addSpecification(type, value);
@@ -227,6 +243,67 @@ private nomask int applyToScope(string command, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int useConsumables(object initiator)
+{
+    int ret = 1;
+
+    if (member(specificationData, "consumables"))
+    {
+        object *potentialConsumables = all_inventory(initiator) +
+            all_inventory(environment(initiator));
+        mapping itemsToConsume = ([]);
+
+        foreach(string item in m_indices(specificationData["consumables"]))
+        {
+            for (int i = 0; i < specificationData["consumables"][item]; i++)
+            {
+                object *consumables = filter(potentialConsumables,
+                    (: ($1->id($2) && 
+                        !(($1->query("quantity") <= itemsToConsume[$1]) &&
+                        $1->doNotDestroyWhenConsumed())) :), item);
+
+                if (sizeof(consumables))
+                {
+                    if (member(itemsToConsume, consumables[0]))
+                    {
+                        itemsToConsume[consumables[0]]++;
+                    }
+                    else
+                    {
+                        itemsToConsume[consumables[0]] = 1;
+                    }
+                }
+                else
+                {
+                    ret = 0;
+                    itemsToConsume = ([]);
+                    break;
+                }
+            }
+        }
+
+        if (ret)
+        {
+            foreach(object item in m_indices(itemsToConsume))
+            {
+                if (item->query("quantity") > 0)
+                {
+                    int newQty = item->query("quantity") - itemsToConsume[item];
+                    item->set("quantity", newQty);
+                }
+                if ((item->query("quantity") < 1) &&
+                    !item->doNotDestroyWhenConsumed())
+                {
+                    destruct(item);
+                }
+            }
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int execute(string command, object initiator)
 {
     int ret = 0;
@@ -267,7 +344,9 @@ public nomask int execute(string command, object initiator)
         
         if(ret && !initiator->spellAction())
         {
-            ret = applyToScope(command, initiator, researchName);
+            ret = useConsumables(initiator) && 
+                applyToScope(command, initiator, researchName);
+
             if(ret)
             {
                 if(costs["hit point cost"])
