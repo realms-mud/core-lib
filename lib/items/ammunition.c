@@ -118,7 +118,7 @@ public nomask varargs int set(string element, mixed data)
                 if (intp(data) && member(itemData, "max capacity"))
                 {
                     ret = 1;
-                    addAmmunition(data);
+                    itemData["quantity"] = data;
                 }
                 else
                 {
