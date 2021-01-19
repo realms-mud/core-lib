@@ -1131,12 +1131,14 @@ private nomask string displayUnequippedItems(object banner, int verbose,
 
         if (member(otherItems, key))
         {
-            otherItems[key]++;
+            otherItems[key] += equipment->query("quantity") ?
+                equipment->query("quantity") : 1;
             allItems -= ({ equipment });
         }
         else
         {
-            otherItems[key] = 1;
+            otherItems[key] = equipment->query("quantity") ? 
+                equipment->query("quantity") : 1;
         }
     }
 

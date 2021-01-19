@@ -87,6 +87,22 @@ protected int addSpecification(string type, mixed value)
             }
             break;
         }
+        case "consumables":
+        {
+            if (mappingp(value) && (sizeof(value) == sizeof(filter(value,
+                (: (stringp($1) && intp($2)) :)))))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error(sprintf("ERROR - ritualResearchItem: the '%s'"
+                    " specification must be a valid mapping.\n",
+                    type));
+            }
+            break;
+        }
         default:
         {
             ret = "researchItem"::addSpecification(type, value);
@@ -209,6 +225,47 @@ protected int performRitual(object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int useConsumables(object initiator)
+{
+    int ret = 1;
+    if (member(specificationData, "comsumables"))
+    {
+        object *potentialConsumables = all_inventory(initiator) +
+            all_inventory(environment(initiator));
+
+        foreach(string item in m_indices(specificationData["comsumables"]))
+        {
+            for (int i = 0; i < specificationData["comsumables"][item]; i++)
+            {
+                object *consumables = filter(potentialConsumables,
+                    (: ($1->id($2) && !(($1->query("quantity") == 0) &&
+                        $1->doNotDestroyWhenConsumed())) :), item);
+
+                if (sizeof(consumables))
+                {
+                    object itemObj = consumables[0];
+                    if (itemObj->query("quantity") > 0)
+                    {
+                        itemObj->set("quantity", itemObj->query("quantity") - 1);
+                    }
+                    if (!itemObj->query("quantity") &&
+                        !itemObj->doNotDestroyWhenConsumed())
+                    {
+                        destruct(itemObj);
+                    }
+                }
+                else
+                {
+                    ret = 0;
+                    break;
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int execute(string command, object initiator)
 {
     int ret = 0;
@@ -233,19 +290,21 @@ public nomask int execute(string command, object initiator)
             displayMessage(coolDownMessage, initiator, initiator);
             ret = 0;
         }
-        ret &&= performRitual(initiator);
-        
-        if(ret && !initiator->spellAction())
+        if (!initiator->spellAction())
         {
-            ret = applyToScope(command, initiator, researchName);
-            if(!ret && member(specificationData, "use ability fail message"))
+            ret &&= useConsumables(initiator) && performRitual(initiator) &&
+                applyToScope(command, initiator, researchName);
+
+            if (!ret && member(specificationData, "use ability fail message"))
             {
-                displayMessage(specificationData["use ability fail message"], 
+                displayMessage(specificationData["use ability fail message"],
                     initiator, initiator);
             }
-            initiator->spellAction(1);
+            else
+            {
+                initiator->spellAction(1);
+            }
         }
     }
     return ret;
 }
-
