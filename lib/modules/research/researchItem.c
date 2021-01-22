@@ -621,6 +621,20 @@ private nomask string displayUsageCost(string colorConfiguration,
             }
         }
     }
+    mapping consumables = query("consumables");
+    if (sizeof(consumables))
+    {
+        foreach(string consumable in m_indices(consumables))
+        {
+            ret += sprintf("%-18s", "") +
+                configuration->decorate(
+                    sprintf("This research consumes %d %s%s per use.\n",
+                        consumables[consumable],
+                        consumable, 
+                        ((consumables[consumable] > 1) ? "s" : "")),
+                    "field data", "research", colorConfiguration);
+        }
+    }
 
     int cooldown = cooldown(this_player());
     if (cooldown)

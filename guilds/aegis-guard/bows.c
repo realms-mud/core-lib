@@ -67,8 +67,26 @@ private void TenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void EleventhLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/pilin-ai-ambar.c");
+    addResearchElement("guilds/aegis-guard/forms/bow/pilin-ai-angolo.c");
+    addResearchElement("guilds/aegis-guard/forms/bow/pilin-ai-glauro.c");
+    addResearchElement("guilds/aegis-guard/forms/bow/pilin-ai-guruthos.c");
+    addResearchElement("guilds/aegis-guard/forms/bow/pilin-ai-heleg.c");
+    addResearchElement("guilds/aegis-guard/forms/bow/pilin-ai-lhutha.c");
     addResearchElement("guilds/aegis-guard/forms/bow/pilin-ai-naurtho.c");
 
+    addChild("guilds/aegis-guard/forms/bow/pilin-ai-ambar.c",
+        "guilds/aegis-guard/forms/bow/angol-ai-cu.c");
+    addChild("guilds/aegis-guard/forms/bow/pilin-ai-angolo.c",
+        "guilds/aegis-guard/forms/bow/angol-ai-cu.c");
+    addChild("guilds/aegis-guard/forms/bow/pilin-ai-glauro.c",
+        "guilds/aegis-guard/forms/bow/angol-ai-cu.c");
+    addChild("guilds/aegis-guard/forms/bow/pilin-ai-guruthos.c",
+        "guilds/aegis-guard/forms/bow/angol-ai-cu.c");
+    addChild("guilds/aegis-guard/forms/bow/pilin-ai-heleg.c",
+        "guilds/aegis-guard/forms/bow/angol-ai-cu.c");
+    addChild("guilds/aegis-guard/forms/bow/pilin-ai-lhutha.c",
+        "guilds/aegis-guard/forms/bow/angol-ai-cu.c");
     addChild("guilds/aegis-guard/forms/bow/pilin-ai-naurtho.c",
         "guilds/aegis-guard/forms/bow/angol-ai-cu.c");
 }
