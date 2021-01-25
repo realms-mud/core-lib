@@ -7,19 +7,28 @@ inherit "/lib/modules/research/researchTree.c";
 /////////////////////////////////////////////////////////////////////////////
 private void FirstLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/beria-an-cu.c");
 
+    addChild("guilds/aegis-guard/forms/bow/beria-an-cu.c",
+        "guilds/aegis-guard/forms/bow/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SecondLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/caro-tithen.c");
 
+    addChild("guilds/aegis-guard/forms/bow/caro-tithen.c",
+        "guilds/aegis-guard/forms/bow/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirdLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/peleth-eithad.c");
 
+    addChild("guilds/aegis-guard/forms/bow/peleth-eithad.c",
+        "guilds/aegis-guard/forms/bow/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,7 +52,10 @@ private void SixthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/adleg.c");
 
+    addChild("guilds/aegis-guard/forms/bow/adleg.c",
+        "guilds/aegis-guard/forms/bow/peleth-eithad.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -100,7 +112,10 @@ private void TwelfthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void ThirteenthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/edwen-idh.c");
 
+    addChild("guilds/aegis-guard/forms/bow/edwen-idh.c",
+        "guilds/aegis-guard/forms/bow/adleg.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
