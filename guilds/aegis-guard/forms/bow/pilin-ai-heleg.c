@@ -56,7 +56,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/aegis-guard/forms/bow/pilin-celair.c",
-                "name": "pilin-anwar",
+                "name": "pilin-celair",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
@@ -64,7 +64,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/aegis-guard/forms/bow/pilin-edlothia.c",
-                "name": "pilin-anwar",
+                "name": "pilin-edlothia",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
@@ -72,7 +72,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/aegis-guard/forms/bow/pilin-eiliant.c",
-                "name": "pilin-anwar",
+                "name": "pilin-eiliant",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
@@ -80,7 +80,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/aegis-guard/forms/bow/pilin-manadh.c",
-                "name": "pilin-anwar",
+                "name": "pilin-manadh",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
@@ -88,7 +88,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/aegis-guard/forms/bow/pilin-dagnir.c",
-                "name": "pilin-anwar",
+                "name": "pilin-dagnir",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15

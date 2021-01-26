@@ -45,56 +45,62 @@ public void reset(int arg)
         addSpecification("damage type", "physical");
 
         addSpecification("modifiers", ({ 
-            /*
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-anwar.c",
-                "name": "pilin-anwar",
+                "research item": "guilds/aegis-guard/forms/bow/bregol-pilin.c",
+                "name": "bregol-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-celair.c",
-                "name": "pilin-anwar",
+                "research item": "guilds/aegis-guard/forms/bow/alag-pilin.c",
+                "name": "alag-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-edlothia.c",
-                "name": "pilin-anwar",
+                "research item": "guilds/aegis-guard/forms/bow/megor-pilin.c",
+                "name": "megor-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-eiliant.c",
-                "name": "pilin-anwar",
+                "research item": "guilds/aegis-guard/forms/bow/lhegren-pilin.c",
+                "name": "lhegren-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-manadh.c",
-                "name": "pilin-anwar",
+                "research item": "guilds/aegis-guard/forms/bow/goeol-pilin.c",
+                "name": "goeol-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-dagnir.c",
-                "name": "pilin-anwar",
+                "research item": "guilds/aegis-guard/forms/bow/dagnir-pilin.c",
+                "name": "dagnir-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
-            */
+            ([
+                "type": "research",
+                "research item": "guilds/aegis-guard/forms/bow/maethor-pilin.c",
+                "name": "maethor-pilin",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
             ([
                 "type": "weapon damage",
                 "name" : "bow",
@@ -143,7 +149,7 @@ public void reset(int arg)
         addSpecification("consumables", (["arrow": 1]));
 
         addSpecification("stamina point cost", 50);
-/*        addSpecification("spell point cost modifiers", ([
+/*        addSpecification("stamina point cost modifiers", ([
             "guilds/aegis-guard/forms/bow/gwaelphilin-celair.c": 10,
             "guilds/aegis-guard/forms/bow/gwaelphilin-edlothia.c": 10,
             "guilds/aegis-guard/forms/bow/gwaelphilin-manadh.c": 10,

@@ -26,8 +26,11 @@ private void SecondLevel()
 private void ThirdLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/bow/peleth-eithad.c");
+    addResearchElement("guilds/aegis-guard/forms/bow/bregol-adleg.c");
 
     addChild("guilds/aegis-guard/forms/bow/peleth-eithad.c",
+        "guilds/aegis-guard/forms/bow/root.c");
+    addChild("guilds/aegis-guard/forms/bow/bregol-adleg.c",
         "guilds/aegis-guard/forms/bow/root.c");
 }
 
@@ -67,7 +70,10 @@ private void EighthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/bregol-pilin.c");
 
+    addChild("guilds/aegis-guard/forms/bow/bregol-pilin.c",
+        "guilds/aegis-guard/forms/bow/bregol-adleg.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -127,7 +133,10 @@ private void FourteenLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FifteenthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/alag-pilin.c");
 
+    addChild("guilds/aegis-guard/forms/bow/alag-pilin.c",
+        "guilds/aegis-guard/forms/bow/bregol-pilin.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -149,9 +158,12 @@ private void NineteenthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void TwentiethLevel()
+private void TwentyFirstLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/megor-pilin.c");
 
+    addChild("guilds/aegis-guard/forms/bow/megor-pilin.c",
+        "guilds/aegis-guard/forms/bow/alag-pilin.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -163,7 +175,10 @@ private void TwentyThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFifthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/lhegren-pilin.c");
 
+    addChild("guilds/aegis-guard/forms/bow/lhegren-pilin.c",
+        "guilds/aegis-guard/forms/bow/megor-pilin.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -175,7 +190,10 @@ private void TwentySeventhLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyNinthLevel()
 {
+    addResearchElement("guilds/aegis-guard/forms/bow/goeol-pilin.c");
 
+    addChild("guilds/aegis-guard/forms/bow/goeol-pilin.c",
+        "guilds/aegis-guard/forms/bow/lhegren-pilin.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -188,6 +206,24 @@ private void ThirtiethLevel()
 private void ThirtyFirstLevel()
 {
 
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void ThirtyThirdLevel()
+{
+    addResearchElement("guilds/aegis-guard/forms/bow/dagnir-pilin.c");
+
+    addChild("guilds/aegis-guard/forms/bow/dagnir-pilin.c",
+        "guilds/aegis-guard/forms/bow/goeol-pilin.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void ThirtySeventhLevel()
+{
+    addResearchElement("guilds/aegis-guard/forms/bow/maethor-pilin.c");
+
+    addChild("guilds/aegis-guard/forms/bow/maethor-pilin.c",
+        "guilds/aegis-guard/forms/bow/dagnir-pilin.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -219,12 +255,14 @@ public void reset(int arg)
         SixteenthLevel();
         SeventeenthLevel();
         NineteenthLevel();
-        TwentiethLevel();
+        TwentyFirstLevel();
         TwentyThirdLevel();
         TwentyFifthLevel();
         TwentySeventhLevel();
         TwentyNinthLevel();
         ThirtiethLevel();
         ThirtyFirstLevel();
+        ThirtyThirdLevel();
+        ThirtySeventhLevel();
     }
 }
