@@ -21,7 +21,7 @@ public void reset(int arg)
                 "guild": "Aegis Guard",
                 "value": 17
             ]));
-        addPrerequisite("guilds/aegis-guard/forms/bow/cu-ai-root.c",
+        addPrerequisite("guilds/aegis-guard/forms/bow/angol-ai-cu.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");

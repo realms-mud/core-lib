@@ -19,7 +19,7 @@ public void reset(int arg)
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Aegis Guard",
-                "value": 49
+                "value": 43
             ]));
         addPrerequisite("guilds/aegis-guard/forms/bow/gwaelphilin-manadh.c",
             (["type":"research"]));

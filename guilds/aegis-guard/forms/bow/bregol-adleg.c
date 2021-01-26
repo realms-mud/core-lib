@@ -149,13 +149,13 @@ public void reset(int arg)
         addSpecification("consumables", (["arrow": 1]));
 
         addSpecification("stamina point cost", 50);
-/*        addSpecification("stamina point cost modifiers", ([
-            "guilds/aegis-guard/forms/bow/gwaelphilin-celair.c": 10,
-            "guilds/aegis-guard/forms/bow/gwaelphilin-edlothia.c": 10,
-            "guilds/aegis-guard/forms/bow/gwaelphilin-manadh.c": 10,
-            "guilds/aegis-guard/forms/bow/gwaelphilin-dagnir.c": 10
+        addSpecification("stamina point cost modifiers", ([
+            "guilds/aegis-guard/forms/bow/bregol-gwaelphilin.c": 10,
+            "guilds/aegis-guard/forms/bow/lhegren-gwaelphilin.c": 10,
+            "guilds/aegis-guard/forms/bow/dagnir-gwaelphilin.c": 10,
+            "guilds/aegis-guard/forms/bow/maethor-gwaelphilin.c": 10
         ]));
-*/
+
         addSpecification("cooldown", 60);
 /*        addSpecification("cooldown modifiers", ([
             "guilds/aegis-guard/forms/bow/cu-ai-celair.c": 10,
