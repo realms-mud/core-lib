@@ -282,7 +282,8 @@ public nomask void displayMessage(object attacker, object foe,
                     "passes through ##TargetName##.";
             }
             else if ((damageInflicted < 1) && 
-                (member(({ "physical", "slash", "bludgeon", "unarmed", "thrust" }),
+                (member(({ "physical", "slash", "bludgeon", "unarmed", 
+                    "thrust", "arrow", "bolt", "bullet" }),
                     damageType->getDamageType()) > -1))
             {
                 int missType = random(51);

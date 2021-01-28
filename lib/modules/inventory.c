@@ -573,7 +573,8 @@ public nomask int inventoryGetArmorClass()
 private nomask string normalizeDamageType(string damageType)
 {
     string ret = damageType;
-    if (member(({ "slash", "bludgeon", "thrust" }), ret) > -1)
+    if (member(({ "slash", "bludgeon", "thrust", 
+        "arrow", "bolt", "bullet" }), ret) > -1)
     {
         ret = "physical";
     }

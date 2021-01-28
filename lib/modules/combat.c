@@ -83,7 +83,8 @@ static nomask string *validCombatModifiers()
         "bonus resist neutral", "bonus resist physical", "bonus resist slash", 
         "bonus resist air", "bonus resist acid", "bonus resist disease", 
         "bonus resist good", "bonus resist magical", "bonus resist energy", 
-        "bonus resist electricity", "bonus resist thrust", "bonus resist sonic", 
+        "bonus resist electricity", "bonus resist thrust", "bonus resist sonic",
+        "bonus resist arrow", "bonus resist bolt", "bonus resist bullet",
         "bonus resist chaos", "bonus resist earth", "bonus resist paralysis", 
         "bonus resist psionic", "bonus resist poison", "bonus resist undead", 
         "bonus resist water", "bonus resist cold" });

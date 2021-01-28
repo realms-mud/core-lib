@@ -2814,7 +2814,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "crossbow",
         "default location": TwohandedWeapon,
-        "damage type": "thrust",
+        "damage type": "bolt",
         "skill to craft": 15,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c":(["type":"research"]),
@@ -2845,7 +2845,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "crossbow",
         "default location": TwohandedWeapon,
-        "damage type": "thrust",
+        "damage type": "bolt",
         "skill to craft": 18,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c":(["type":"research"]),
@@ -2877,7 +2877,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "crossbow",
         "default location": TwohandedWeapon,
-        "damage type": "thrust",
+        "damage type": "bolt",
         "skill to craft": 25,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c":(["type":"research"]),
@@ -2909,7 +2909,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
-        "damage type": "thrust",
+        "damage type": "arrow",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
@@ -2938,7 +2938,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
-        "damage type": "thrust",
+        "damage type": "arrow",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
@@ -2967,7 +2967,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
-        "damage type": "thrust",
+        "damage type": "arrow",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
@@ -2996,7 +2996,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
-        "damage type": "thrust",
+        "damage type": "arrow",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
@@ -3026,7 +3026,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "bow",
         "default location": TwohandedWeapon,
-        "damage type": "thrust",
+        "damage type": "arrow",
         "skill to craft": 18,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
@@ -3057,7 +3057,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "sling",
         "default location": OnehandedWeapon,
-        "damage type": "bludgeon",
+        "damage type": "bullet",
         "skill to craft": 2,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
@@ -3084,7 +3084,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "sling",
         "default location": TwohandedWeapon,
-        "damage type": "bludgeon",
+        "damage type": "bullet",
         "skill to craft": 6,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
@@ -3114,7 +3114,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "sling",
         "default location": OnehandedWeapon,
-        "damage type": "bludgeon",
+        "damage type": "bullet",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
@@ -3144,7 +3144,7 @@ private nosave mapping weaponBlueprints = ([
         "type": "weapon",
         "subtype": "sling",
         "default location": OnehandedWeapon,
-        "damage type": "bludgeon",
+        "damage type": "bullet",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),

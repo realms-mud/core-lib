@@ -29,7 +29,8 @@ private nosave string *validArmorTypes = ({ "plate armor", "splint armor", "chai
 private nosave string *validWeaponTypes = ({ "shield", "axe", "long sword",
     "hand and a half sword", "short sword", "dagger", "bow", "crossbow", "sling",
     "thrown", "two-handed sword", "pole arm", "mace", "hammer", "flail", "staff" });
-private nosave string *validDamageTypes = ({ "slash", "bludgeon", "thrust" });
+private nosave string *validDamageTypes = ({ "slash", "bludgeon", "thrust", 
+    "arrow", "bolt", "bullet" });
 private nosave object configuration = getDictionary("configuration");
 
 private mapping defaultValues = ([
