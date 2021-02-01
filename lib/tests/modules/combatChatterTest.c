@@ -104,7 +104,7 @@ void CanSeeDeathMessage()
         "and ##Infinitive::gasp##, `I just wanted a jar of dried beef.'");
     Target->hit(20000, "fire", Attacker);
     ExpectSubStringMatch("Nukulevee looks at you and gasps, `I just wanted a jar of dried beef",
-        Attacker->caughtMessages()[1]);
+        Attacker->caughtMessages()[2]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
