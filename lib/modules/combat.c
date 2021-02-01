@@ -522,10 +522,10 @@ public nomask int calculateDefendAttack()
 {
     int ret = 0;
     object skills = getService("skills");
-    
+
     if (member(combatCache, "defend attack"))
     {
-        ret = combatCache["defend attack"];
+        ret += combatCache["defend attack"];
     }
     else
     {
@@ -592,6 +592,17 @@ public nomask int calculateDefendAttack()
         combatCache["defend attack"] = ret;
     }
     ret += this_object()->magicalDefendAttackBonus();
+
+    object traits = getService("traits");
+
+    if (traits && traits->hasTraitOfRoot("offensive stance"))
+    {
+        ret = to_int(ret * 0.5);
+    }
+    else if (traits && traits->hasTraitOfRoot("defensive stance"))
+    {
+        ret = to_int(ret * 1.5);
+    }
 
     object materialAttributes = getService("materialAttributes");
     if (materialAttributes && skills && !materialAttributes->canSee())
@@ -693,6 +704,16 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
                      (attributes->intelligenceBonus() / 2);
         }
         combatCache[attackKey] = toHit;
+    }
+
+    object traits = getService("traits");
+    if (traits && traits->hasTraitOfRoot("offensive stance"))
+    {
+        toHit = to_int(toHit * 1.5);
+    }
+    else if (traits && traits->hasTraitOfRoot("defensive stance"))
+    {
+        toHit = to_int(toHit * 0.5);
     }
 
     if (!doNotRandomize)
@@ -1491,7 +1512,6 @@ public nomask varargs int hit(int damage, string damageType, object foe)
             determineFateFromDeath(foe);
         }
         
-
         object inventory = getService("inventory");        
         if(foe && inventory)
         {
@@ -1518,6 +1538,11 @@ public nomask varargs int hit(int damage, string damageType, object foe)
     }
     if (isDead())
     {
+        if(foe && objectp(foe))
+        {
+            attackObject()->displayDeathMessage(this_object(), foe, 
+                ret);
+        }
         say(sprintf("%s died.\n", capitalize(this_object()->RealName())));
         getDictionary("combatChatter")->displayCombatChatter(ret,
             foe, this_object());
@@ -1587,6 +1612,11 @@ protected nomask void doOneAttack(object foe, object weapon)
                 }
             }
 
+            if (roundsSinceAttack > 0)
+            {
+                damage = to_int(damage * (1 + (roundsSinceAttack / 10.0)));
+            }
+
             // foe can die / be destructed at any time - need to verify that it
             // still exists
             if(foe && objectp(foe))
@@ -1607,9 +1637,42 @@ protected nomask void doOneAttack(object foe, object weapon)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void registerAttack(object attacker, object foe, 
+    int fireEvents)
+{
+    foe->registerAttacker(this_object());
+    registerAttacker(foe);
+
+    set_heart_beat(1);
+
+    if (fireEvents)
+    {
+        combatNotification("onAttack");
+        if (function_exists("notify", foe))
+        {
+            call_other(foe, "notify", "onAttacked");
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int roundsSinceLastAttack()
+{
+    return roundsSinceAttack;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void resetRoundsSinceLastAttack()
+{
+    roundsSinceAttack = 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int attack(object foe)
 {
     int ret = 0;
+    object traits = getService("traits");
+
     if(abortCombat(foe))
     {
         if(foe)
@@ -1617,17 +1680,15 @@ public nomask int attack(object foe)
             stopFight(foe);
         }
     }
+    else if ((roundsSinceAttack < 10) &&
+        traits && traits->hasTraitOfRoot("do not attack"))
+    {
+        roundsSinceAttack++;
+        registerAttack(this_object(), foe, 0);
+    }
     else if(foe && objectp(foe))
     {
-        foe->registerAttacker(this_object());
-        registerAttacker(foe);
-
-        set_heart_beat(1);
-        combatNotification("onAttack");
-        if(function_exists("notify", foe))
-        {
-            call_other(foe, "notify", "onAttacked");
-        }
+        registerAttack(this_object(), foe, 1);
 
         ret = 1;
         foreach(mapping attack in getAttacks())
@@ -1662,6 +1723,7 @@ public nomask int attack(object foe)
         {
             persona->executePersonaResearch(foe->RealName());
         }
+        roundsSinceAttack = 0;
     }
     return ret;
 }

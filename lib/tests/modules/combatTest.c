@@ -2157,3 +2157,155 @@ void DamageTransitionsToHitPointsWhenManaIsDepleted()
     ExpectEq(844, Target->hitPoints());
     ExpectEq(0, Target->spellPoints());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DefensiveStanceCorrectlyApplied()
+{
+    destruct(Attacker);
+    Attacker = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Attacker->Name("Bob");
+    Attacker->Str(20);
+    Attacker->Dex(20);
+    Attacker->Con(20);
+    Attacker->Int(20);
+    Attacker->Wis(20);
+    object weapon = CreateWeapon("blah");
+
+    Attacker->addSkillPoints(100);
+    Attacker->advanceSkill("long sword", 8);
+
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectEq(5, Attacker->calculateDefendAttack());
+    ExpectEq(13, Attacker->calculateAttack(Target, weapon, 1));
+
+    Attacker->addTrait("lib/tests/support/traits/testDefensiveStanceTrait.c");
+
+    ExpectEq(7, Attacker->calculateDefendAttack());
+    ExpectEq(6, Attacker->calculateAttack(Target, weapon, 1));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void OffensiveStanceCorrectlyApplied()
+{
+    destruct(Attacker);
+    Attacker = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Attacker->Name("Bob");
+    Attacker->Str(20);
+    Attacker->Dex(20);
+    Attacker->Con(20);
+    Attacker->Int(20);
+    Attacker->Wis(20);
+    object weapon = CreateWeapon("blah");
+
+    Attacker->addSkillPoints(100);
+    Attacker->advanceSkill("long sword", 8);
+
+    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectEq(5, Attacker->calculateDefendAttack());
+    ExpectEq(13, Attacker->calculateAttack(Target, weapon, 1));
+
+    Attacker->addTrait("lib/tests/support/traits/testOffensiveStanceTrait.c");
+
+    ExpectEq(2, Attacker->calculateDefendAttack());
+    ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AttackerDoesNotAttackWhenDoNotAttackTraitIsActive()
+{
+    destruct(Attacker);
+    Attacker = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Attacker->Name("Bob");
+    Attacker->Str(20);
+    Attacker->Dex(20);
+    Attacker->Con(20);
+    Attacker->Int(20);
+    Attacker->Wis(20);
+    move_object(Attacker, Room);
+
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
+    ToggleCallOutBypass();
+    Attacker->hitPoints(Attacker->maxHitPoints());
+    Target->hitPoints(Target->maxHitPoints());
+
+    Attacker->attack(Target);
+
+    object handler = clone_object("/lib/tests/support/events/onAttackSubscriber");
+    ExpectTrue(Attacker->registerEvent(handler), "event handler registered for attacker");
+
+    ExpectEq(0, handler->TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
+    ExpectEq(0, Attacker->roundsSinceLastAttack());
+    ExpectEq(0, Target->roundsSinceLastAttack());
+
+    Attacker->heart_beat();
+    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, one onAttack event fired");
+    ExpectEq(0, Attacker->roundsSinceLastAttack());
+    ExpectEq(0, Target->roundsSinceLastAttack());
+
+    Attacker->addTrait("lib/tests/support/traits/testDoNotAttackTrait.c");
+
+    Attacker->heart_beat();
+    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
+    ExpectEq(1, Attacker->roundsSinceLastAttack());
+    ExpectEq(0, Target->roundsSinceLastAttack());
+
+    Attacker->heart_beat();
+    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
+    ExpectEq(2, Attacker->roundsSinceLastAttack());
+    ExpectEq(0, Target->roundsSinceLastAttack());
+
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AttackOccursAfterTenRoundsWhileDoNotAttackIsActive()
+{
+    destruct(Attacker);
+    Attacker = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Attacker->Name("Bob");
+    Attacker->Str(20);
+    Attacker->Dex(20);
+    Attacker->Con(20);
+    Attacker->Int(20);
+    Attacker->Wis(20);
+    move_object(Attacker, Room);
+
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
+    ToggleCallOutBypass();
+    Attacker->hitPoints(Attacker->maxHitPoints());
+    Target->hitPoints(Target->maxHitPoints());
+
+    Attacker->attack(Target);
+
+    object handler = clone_object("/lib/tests/support/events/onAttackSubscriber");
+    ExpectTrue(Attacker->registerEvent(handler), "event handler registered for attacker");
+
+    Attacker->heart_beat();
+    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, one onAttack event fired");
+    ExpectEq(0, Attacker->roundsSinceLastAttack());
+    ExpectEq(0, Target->roundsSinceLastAttack());
+
+    Attacker->addTrait("lib/tests/support/traits/testDoNotAttackTrait.c");
+
+    Attacker->heart_beat();
+    Attacker->heart_beat();
+    Attacker->heart_beat();
+    Attacker->heart_beat();
+    Attacker->heart_beat();
+    Attacker->heart_beat();
+    Attacker->heart_beat();
+    Attacker->heart_beat();
+    Attacker->heart_beat();
+    Attacker->heart_beat();
+    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
+    ExpectEq(10, Attacker->roundsSinceLastAttack());
+    ExpectEq(0, Target->roundsSinceLastAttack());
+
+    Attacker->heart_beat();
+    ExpectEq(2, handler->TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
+    ExpectEq(0, Attacker->roundsSinceLastAttack());
+    ExpectEq(0, Target->roundsSinceLastAttack());
+    ToggleCallOutBypass();
+}

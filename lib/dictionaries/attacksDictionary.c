@@ -357,6 +357,58 @@ public nomask void displayMessage(object attacker, object foe,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void displayDeathMessage(object attacker, object foe,
+                                  int damageInflicted)
+{  
+    string template = "##AttackerName## fatally ##Infinitive::wound## "
+        "##TargetName##.";
+
+    // This annoying loop handles the fact that everyone has different
+    // setting for color.
+    object *characters = filter(all_inventory(environment(attacker)),
+        (: $1->isRealizationOfLiving() :));
+
+    object configuration = getDictionary("configuration");
+    string damageLevel = getColorForDamage(damageInflicted);
+
+    foreach(object person in characters)
+    {
+        if(person && objectp(person))
+        {
+            string message;
+            if(person == attacker)
+            {
+                message = parseTemplate(template, "attacker", attacker,
+                                        foe, 0);
+            }
+            else if(person == foe)
+            {
+                message = parseTemplate(template, "defender", attacker,
+                                        foe, 0);
+            }
+            else
+            {
+                message = parseTemplate(template, "other", attacker,
+                                        foe, 0);
+            }
+
+            if (damageInflicted)
+            {
+                message = format(message, 78);
+                        
+                message = configuration->decorate(
+                    message[0..sizeof(message) - 2],
+                    damageLevel, "combat", person->colorConfiguration()) +
+                    configuration->decorate(
+                        sprintf(" [ %d ]\n", damageInflicted),
+                        "damage", "combat", person->colorConfiguration());
+            }
+            tell_object(person, message);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isValidDamageType(string damageType)
 {
     return (getAttack(damageType) != 0);

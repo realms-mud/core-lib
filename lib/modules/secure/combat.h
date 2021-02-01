@@ -15,6 +15,7 @@ private int timeToHealSP;
 private int timeToHealST;
 private int onKillList;
 
+private nosave int roundsSinceAttack = 0;
 private nosave int IntervalBetweenHealing = 30;
 private nosave int WasSlowedLastRound = 0;
 
